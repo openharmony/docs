@@ -39,7 +39,7 @@
 
 3. 指定[算法参数配置](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)。
 
-4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，，并获取会话的句柄handle。
+4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
 5. 调用[OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession)更新密钥会话。
 

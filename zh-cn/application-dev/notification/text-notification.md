@@ -11,13 +11,13 @@
 
 ## 接口说明
 
-通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定，可以包括通知内容，通知ID，通知的通道类型和通知发布时间等信息。
+通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定，可以包括通知内容、通知ID、通知的通道类型和通知发布时间等信息。
 
 | **接口名** | **描述** |
 | -------- | -------- |
 | publish(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 发布通知。                 |
 | cancel(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。           |
-| cancelAll(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 取消所有该应用发布的通知。 |
+| cancelAll(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消所有该应用发布的通知。 |
 
 
 ## 开发步骤

@@ -4,6 +4,8 @@
 
 > **说明：**
 >
+> 从API Version 13 开始，该组件不再维护，推荐使用[NavPathStack](ts-basic-components-navigation.md#navpathstack10)配合navDestination属性进行页面路由。
+>
 > 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
@@ -26,6 +28,8 @@ NavRouter()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### NavRouter<sup>10+</sup>
 
 NavRouter(value: RouteInfo)
@@ -34,17 +38,19 @@ NavRouter(value: RouteInfo)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名     | 参数类型                                | 必填   | 参数描述          |
+| 参数名     | 类型                                | 必填   | 说明          |
 | ------- | ----------------------------------- | ---- | ------------- |
-| value   | [RouteInfo](#routeinfo10对象说明) | 否    | 路由信息 |
+| value   | [RouteInfo](#routeinfo10对象说明) | 是    | 路由信息 |
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-### mode
+### mode<sup>10+</sup>
 
 mode(mode: NavRouteMode)
 
@@ -56,7 +62,7 @@ mode(mode: NavRouteMode)
 
 **参数：** 
 
-| 参数名                           | 类型                                     | 必填                                   | 描述                                       |
+| 参数名                           | 类型                                     | 必填                                   | 说明                                       |
 | ----------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | mode                  | [NavRouteMode](#navroutemode枚举类型说明)                                  | 是                                 | 指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。<br/>默认值：NavRouteMode.PUSH_WITH_RECREATE |
 
@@ -64,7 +70,9 @@ mode(mode: NavRouteMode)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                 | 类型                                                     | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string            | 是   | 点击NavRouter跳转到的NavDestination页面的名称。 |
 | param             | unknown            | 否   | 点击NavRouter跳转到NavDestination页面时，传递的参数。 |
@@ -73,7 +81,7 @@ mode(mode: NavRouteMode)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称    | 描述               |
+| 名称    | 说明             |
 | ----- | ---------------- |
 | PUSH_WITH_RECREATE | 跳转到新的NavDestination页面时，替换当前显示的NavDestination页面，页面销毁，但该页面信息仍保留在路由栈中。 |
 | PUSH   | 跳转到新的NavDestination页面时，覆盖当前显示的NavDestination页面，该页面不销毁，且页面信息保留在路由栈中。 |
@@ -93,7 +101,7 @@ onStateChange(callback: (isActivated: boolean) => void)
 
 **参数：** 
 
-| 参数名      | 类型    | 必填 | 描述                                    |
+| 参数名      | 类型    | 必填 | 说明                                    |
 | ----------- | ------- | ---- | --------------------------------------- |
 | isActivated | boolean | 是   | isActivated为true时表示激活，为false时表示未激活。 |
 

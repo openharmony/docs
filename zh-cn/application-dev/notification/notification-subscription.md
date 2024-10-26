@@ -32,6 +32,8 @@
 
 **表2** 通知订阅回调接口介绍
 
+详细接口介绍请参见[NotificationSubscriber](../reference/apis-notification-kit/js-apis-inner-notification-notificationSubscriber-sys.md)。
+
 | **接口名** | **描述** |
 | -------- | -------- |
 | onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | 通知回调。               |
@@ -66,11 +68,11 @@
    ```ts
    let subscriber:notificationSubscribe.NotificationSubscriber = {
      onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
+       let req: notificationManager.NotificationRequest = data.request;
        hilog.info(DOMAIN_NUMBER, TAG, `onConsume callback. req.id: ${req.id}`);
      },
      onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
+       let req: notificationManager.NotificationRequest = data.request;
        hilog.info(DOMAIN_NUMBER, TAG, `onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {

@@ -20,7 +20,7 @@
 
 \@Require装饰器仅用于装饰struct内的\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)。
 
-预览器限制场景请参考[PreviewChecker检测规则]( https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-previewer-previewchecker-0000001910869788-V5)。
+预览器限制场景请参考[PreviewChecker检测规则](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-previewer-previewchecker-V5)。
 
 ## 使用场景
 
@@ -79,6 +79,72 @@ struct Child {
 ```
 
  ![img](figures/9e2d58bc-b0e1-4613-934b-8e4237bd5c05.png) 
+
+使用@ComponentV2修饰的自定义组组件ChildPage通过父组件ParentPage进行初始化，因为有@Require装饰，所以父组件必须进行构造赋值。
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string = '';
+  @Trace age: number = 0;
+}
+
+@ComponentV2
+struct ChildPage {
+  @Require @Param childInfo: Info = new Info();
+  @Require @Param state_value: string = "Hello";
+  build() {
+    Column() {
+      Text(`ChildPage childInfo name :${this.childInfo.name}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      Text(`ChildPage childInfo age :${this.childInfo.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      Text(`ChildPage state_value age :${this.state_value}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct ParentPage {
+  info1: Info = { name: "Tom", age: 25 };
+  label1: string = "Hello World";
+  @Local info2: Info = { name: "Tom", age: 25 };
+  @Local label2: string = "Hello World";
+
+  build() {
+    Column() {
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage({ childInfo: this.info1, state_value: this.label1}) // 调用自定义组件
+      Line()
+        .width('100%')
+        .height(5)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage({ childInfo: this.info2, state_value: this.label2}) // 调用自定义组件
+      Line()
+        .width('100%')
+        .height(5)
+        .backgroundColor('#000000').margin(10)
+      Button("change info1&info2")
+        .onClick(() => {
+          this.info1 = { name: "Cat", age: 18} // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
+          this.info2 = { name: "Cat", age: 18} // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
+          this.label1 = "Luck"; // 不会刷新，原因是没有装饰器修饰监听不到值的改变。
+          this.label2 = "Luck"; // 会刷新，原因是有装饰器修饰，可以监听到值的改变。
+        })
+    }
+  }
+}
+```
 
 ## 错误场景
 

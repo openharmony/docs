@@ -1,7 +1,7 @@
 # System Common Events (To Be Deprecated Soon)
 
 This document provides indexes for predefined system common events.
-Common event types are defined in [Support enumeration of the ohos.commonEvent module](../js-apis-commonEvent.md#support).
+Common event types are defined in [Support enumeration of the ohos.commonEvent module](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEvent.md#support).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -286,7 +286,7 @@ Indicates that user switching is in progress.
 
 
 * COMMON_EVENT_USER_STARTING
-(Reserved, not supported yet) Indicates that the user has been started.
+(Reserved, not supported yet) Indicates that user starting is in progress.
   - Value: **usual.event.USER_STARTING**
   - Permission required by subscribers: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS. Only system applications can apply for this permission.
 
@@ -304,7 +304,7 @@ Indicates that user switching is in progress.
 
 
 * COMMON_EVENT_USER_STOPPED
-(Reserved, not supported yet) Indicates that the user has been started.
+(Reserved, not supported yet) Indicates that the user has been stopped.
   - Value: **usual.event.USER_STOPPED**
   - Required subscriber permissions: none
 
@@ -334,7 +334,7 @@ Indicates that the Wi-Fi connection state has changed.
 
 
 * COMMON_EVENT_WIFI_HOTSPOT_STATE
-Indicates that the Wi-Fi state has changed, for example, enabled or disabled.
+Indicates that the Wi-Fi hotspot state has changed, for example, enabled or disabled.
   - Value: **usual.event.wifi.HOTSPOT_STATE**
   - Required subscriber permissions: none
 
@@ -406,13 +406,13 @@ This event is reserved and is not supported currently. It indicates that the dev
 
 
 * COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE
-(Reserved, not supported yet) Indicates that the connection state of Bluetooth A2DP Sink has changed.
+(Reserved, not supported yet) Indicates that the connection state of Bluetooth A2DP has changed.
   - Value: **usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE
-(Reserved event, not supported yet) Indicates the connection state of Bluetooth A2DP.
+(Reserved, not supported yet) Indicates the connection state of Bluetooth A2DP.
   - Value: **usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
@@ -628,7 +628,7 @@ This event is reserved and is not supported currently. It indicates that the Blu
 
 
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
-(Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the enabled state.
+(Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the disabled state.
   - Value: **usual.event.nfc.action.RF_FIELD_OFF_DETECTED**
   - Permission required by subscribers: ohos.permission.MANAGE_SECURE_SETTINGS (Only system applications can apply for this permission.)
 
@@ -718,7 +718,7 @@ Indicates that a user has been removed from the system.
 
 
 * COMMON_EVENT_IVI_VOLTAGE_ABNORMAL
-(Reserved, not supported yet) Indicates that the voltage of the vehicle's power system is restored to normal.
+(Reserved, not supported yet) Indicates that the voltage of the vehicle's power system is abnormal.
   - Value: **common.event.IVI_VOLTAGE_ABNORMAL**
   - Required subscriber permissions: none
 
@@ -832,13 +832,13 @@ This event is reserved and is not supported currently. A message is displayed, i
 
 
 * COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup>
-Indicates that an external storage device was mounted.
+Indicates that an external storage device was removed.
   - Value: **usual.event.data.VOLUME_REMOVED**
   - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup>
-Indicates that an external storage device was mounted.
+Indicates that an external storage device was unmounted.
   - Value: **usual.event.data.VOLUME_UNMOUNTED**
   - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
@@ -885,7 +885,7 @@ Indicates that the airplane mode of the device has changed.
   - Required subscriber permissions: none
 
 
-* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](../common_event/commonEvent-window.md)
+* COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>
 Indicates that the screen has been split.
 
 
@@ -911,5 +911,5 @@ Indicates that the user information has been updated.
   - Value: **usual.event.USER_INFO_UPDATED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](../common_event/commonEvent-mms.md)
+* COMMON_EVENT_SMS_RECEIVE_COMPLETED
 Indicates that a new SMS message has been received.

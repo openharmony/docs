@@ -1,6 +1,6 @@
 # @ohos.app.ability.ShareExtensionAbility (分享模板服务扩展能力)
 
-ShareExtensionAbility是为开发者提供分享操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ShareExtension为人们提供了一种通过应用程序、社交媒体帐户和其他服务共享当前上下文信息的便捷方式。
+ShareExtensionAbility是为开发者提供分享操作业务模板，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。ShareExtension为人们提供了一种通过应用程序、社交媒体帐户和其他服务共享当前上下文信息的便捷方式。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 > 
@@ -144,7 +144,6 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
     onCreate() {
       console.info(TAG, `onCreate`);
     }
-
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
       console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
       if (want.parameters) {
@@ -156,37 +155,33 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
         session.loadContent('pages/Index', storage);
       }
     }
-
     onForeground() {
       console.info(TAG, `ononForeground`);
     }
-
     onBackground() {
       console.info(TAG, `onBackground`);
     }
-
     onSessionDestroy(session: UIExtensionContentSession) {
       console.info(TAG, `onSessionDestroy`);
     }
-
     onDestroy() {
       console.info(TAG, `onDestroy`);
     }
   }
   ```
 
-4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“shared”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“share”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "ShareExtAbility",
            "icon": "$media:icon",
            "description": "share",
-           "type": "shared",
+           "type": "share",
            "exported": true,
            "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ets"
          }

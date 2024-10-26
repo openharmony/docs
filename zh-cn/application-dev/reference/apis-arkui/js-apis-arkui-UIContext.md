@@ -217,6 +217,15 @@ struct AnimateToExample {
   @State heightSize: number = 100
   @State rotateAngle: number = 0
   private flag: boolean = true
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+  }
 
   build() {
     Column() {
@@ -226,7 +235,7 @@ struct AnimateToExample {
         .margin(30)
         .onClick(() => {
           if (this.flag) {
-            uiContext.animateTo({
+            this.uiContext?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 3,
@@ -239,28 +248,37 @@ struct AnimateToExample {
               this.heightSize = 60
             })
           } else {
-            uiContext.animateTo({}, () => {
+            this.uiContext?.animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
             })
           }
           this.flag = !this.flag
         })
-      Button('change rotate angle')
+      Button('stop rotating')
         .margin(50)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
-        .onClick(() => {
-          uiContext.animateTo({
+        .onAppear(() => {
+          // 组件出现时开始做动画
+          this.uiContext?.animateTo({
             duration: 1200,
             curve: Curve.Friction,
             delay: 500,
             iterations: -1, // 设置-1表示动画无限循环
             playMode: PlayMode.Alternate,
-            onFinish: () => {
-              console.info('play end')
+            expectedFrameRateRange: {
+              min: 10,
+              max: 120,
+              expected: 60,
             }
           }, () => {
             this.rotateAngle = 90
+          })
+        })
+        .onClick(() => {
+          this.uiContext?.animateTo({ duration: 0 }, () => {
+            // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
+            this.rotateAngle = 0
           })
         })
     }.width('100%').margin({ top: 5 })
@@ -395,7 +413,7 @@ struct Index {
 
 getFrameNodeById(id: string): FrameNode | null
 
-提供getFrameNodeById接口通过组件的id获取组件树的实体节点。
+通过组件的id获取组件树的实体节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -405,7 +423,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)                          |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。       |
 
 **返回值：**
 
@@ -413,10 +431,46 @@ getFrameNodeById(id: string): FrameNode | null
 | ---------------------------------------- | ------------- |
 | [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
 
+> **说明：**
+>
+> getFrameNodeById通过遍历查询对应id的节点，性能较差。推荐使用[getAttachedFrameNodeById](#getattachedframenodebyid12)。
+
 **示例：**
 
 ```ts
 uiContext.getFrameNodeById("TestNode")
+```
+
+### getAttachedFrameNodeById<sup>12+</sup>
+
+getAttachedFrameNodeById(id: string): FrameNode | null
+
+通过组件的id获取当前窗口上的实体节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+> **说明：**
+>
+> getAttachedFrameNodeById仅能查询上屏节点。
+
+**示例：**
+
+```ts
+uiContext.getAttachedFrameNodeById("TestNode")
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
@@ -862,7 +916,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例：**
 
@@ -1057,28 +1111,6 @@ getDragController(): DragController
 uiContext.getDragController();
 ```
 
-### getDragPreview<sup>11+</sup>
-
-getDragPreview(): dragController.DragPreview
-
-返回一个代表拖拽背板的对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：** 
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
-
-**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
-
-**示例：**
-
-请参考[animate](js-apis-arkui-dragController.md#animate11)
-
 ### keyframeAnimateTo<sup>11+</sup>
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
@@ -1147,7 +1179,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例：**
 
@@ -1186,7 +1218,7 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例：**
 
@@ -1498,6 +1530,106 @@ struct Index {
 }
 ```
 
+### getWindowWidthBreakpoint<sup>13+</sup>
+
+getWindowWidthBreakpoint(): WidthBreakpoint
+
+获取当前实例所在窗口的宽度断点枚举值。具体枚举值根据窗口宽度vp值确定，详见 [WidthBreakpoint](./arkui-ts/ts-appendix-enums.md#widthbreakpoint13)。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| [WidthBreakpoint](./arkui-ts/ts-appendix-enums.md#widthbreakpoint13) | 当前实例所在窗口的宽度断点枚举值。若窗口宽度为 0vp，则返回WIDTH_XS。 |
+
+**示例：**
+
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text('test')
+            .fontSize(30)
+        }
+        .onClick(() => {
+          let uiContext: UIContext = this.getUIContext();
+          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
+          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### getWindowHeightBreakpoint<sup>13+</sup>
+
+getWindowHeightBreakpoint(): HeightBreakpoint
+
+获取当前实例所在窗口的高度断点。具体枚举值根据窗口高宽比确定，详见 [HeightBreakpoint](./arkui-ts/ts-appendix-enums.md#heightbreakpoint13)。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| [HeightBreakpoint](./arkui-ts/ts-appendix-enums.md#heightbreakpoint13) | 当前实例所在窗口的宽高比对应的高度断点枚举值。若窗口高宽比为0，则返回HEIGHT_SM。 |
+
+**示例：**
+
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        Button() {
+          Text('test')
+            .fontSize(30)
+        }
+        .onClick(() => {
+          let uiContext: UIContext = this.getUIContext();
+          let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
+          let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### postFrameCallback<sup>12+</sup>
 
 postFrameCallback(frameCallback: FrameCallback): void
@@ -1661,10 +1793,10 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120002 | The bindSheetContent already exists. |
-| 120004 | The targetld does not exist. |
+| 120004 | The targetId does not exist. |
 | 120005 | The node of targetId is not in the component tree. |
 | 120006 | The node of targetId is not a child of the page node or NavDestination node. |
 
@@ -1759,7 +1891,7 @@ struct UIContextBindSheet {
 
 ### updateBindSheet<sup>12+</sup>
 
-updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOptions: SheetOptions，partialUpdate?: boolean ): Promise&lt;void&gt;
+updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOptions: SheetOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
 更新bindSheetContent对应的半模态页面的样式，使用Promise异步回调。
 
@@ -1792,7 +1924,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheet
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120003 | The bindSheetContent cannot be found. |
 
@@ -1896,7 +2028,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 > 使用此接口关闭半模态页面时，不会触发shouldDismiss回调。
 >
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1918,7 +2050,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120003 | The bindSheetContent cannot be found. |
 
@@ -2011,6 +2143,229 @@ struct UIContextBindSheet {
 }
 ```
 
+### isFollowingSystemFontScale<sup>13+</sup>
+
+isFollowingSystemFontScale(): boolean
+
+获取当前UI上下文是否跟随系统字体倍率。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型      | 说明            |
+|---------|---------------|
+| boolean | 当前UI上下文是否跟随系统字体倍率。 |
+
+**示例：**
+```ts
+uiContext.isFollowingSystemFontScale()
+```
+
+### getMaxFontScale<sup>13+</sup>
+
+getMaxFontScale(): number
+
+获取当前UI上下文最大字体倍率。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| number | 当前UI上下文最大字体倍率。 |
+
+**示例：**
+```ts
+uiContext.getMaxFontScale()
+```
+
+### bindTabsToScrollable<sup>14+</sup>
+
+bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
+
+绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | 是 | Tabs组件的控制器。 |
+| scroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct TabsExample {
+  private arr: string[] = []
+  private parentTabsController: TabsController = new TabsController()
+  private childTabsController: TabsController = new TabsController()
+  private listScroller: Scroller = new Scroller()
+  private parentScroller: Scroller = new Scroller()
+  private childScroller: Scroller = new Scroller()
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 20; i++) {
+      this.arr.push(i.toString())
+    }
+    let context = this.getUIContext()
+    context.bindTabsToScrollable(this.parentTabsController, this.listScroller)
+    context.bindTabsToScrollable(this.childTabsController, this.listScroller)
+    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+  }
+
+  aboutToDisappear(): void {
+    let context = this.getUIContext()
+    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller)
+    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller)
+    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+  }
+
+  build() {
+    Tabs({ barPosition: BarPosition.End, controller: this.parentTabsController }) {
+      TabContent() {
+        Tabs({ controller: this.childTabsController }) {
+          TabContent() {
+            List({ space: 20, initialIndex: 0, scroller: this.listScroller }) {
+              ForEach(this.arr, (item: string) => {
+                ListItem() {
+                  Text(item)
+                    .width('100%')
+                    .height(100)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .borderRadius(10)
+                    .backgroundColor(Color.Gray)
+                }
+              }, (item: string) => item)
+            }
+            .scrollBar(BarState.Off)
+            .width('90%')
+            .height('100%')
+            .contentStartOffset(56)
+            .contentEndOffset(52)
+          }.tabBar(SubTabBarStyle.of('顶部页签'))
+        }
+        .width('100%')
+        .height('100%')
+        .barOverlap(true)
+        .clip(true)
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'scroller联动多个TabsController'))
+
+      TabContent() {
+        Scroll(this.parentScroller) {
+            List({ space: 20, initialIndex: 0, scroller: this.listScroller }) {
+              ForEach(this.arr, (item: string) => {
+                ListItem() {
+                  Text(item)
+                    .width('100%')
+                    .height(100)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .borderRadius(10)
+                    .backgroundColor(Color.Gray)
+                }
+              }, (item: string) => item)
+            }
+            .scrollBar(BarState.Off)
+            .width('90%')
+            .height('100%')
+            .contentEndOffset(52)
+            .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST })
+        }
+        .width('100%')
+        .height('100%')
+        .scrollBar(BarState.Off)
+        .scrollable(ScrollDirection.Vertical)
+        .edgeEffect(EdgeEffect.Spring)
+      }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), '嵌套的scroller联动TabsController'))
+    }
+    .width('100%')
+    .height('100%')
+    .barOverlap(true)
+    .clip(true)
+  }
+}
+```
+
+![bindTabsToScrollable](figures/bindTabsToScrollable.gif)
+
+### unbindTabsFromScrollable<sup>14+</sup>
+
+unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void;
+
+解除Tabs组件和可滚动容器组件的绑定。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | 是 | Tabs组件的控制器。 |
+| scroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
+
+**示例：**
+
+参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+
+### bindTabsToNestedScrollable<sup>14+</sup>
+
+bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+
+绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | 是 | Tabs组件的控制器。 |
+| parentScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
+| childScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。其对应组件为parentScroller对应组件的子组件，且组件间存在嵌套滚动关系。 |
+
+**示例：**
+
+参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+
+### unbindTabsFromNestedScrollable<sup>14+</sup>
+
+unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+
+解除Tabs组件和嵌套的可滚动容器组件的绑定。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| tabsController | [TabsController](./arkui-ts/ts-container-tabs.md#tabscontroller) | 是 | Tabs组件的控制器。 |
+| parentScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
+| childScroller | [Scroller](./arkui-ts/ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。其对应组件为parentScroller对应组件的子组件，且组件间存在嵌套滚动关系。 |
+
+**示例：**
+
+参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -2057,6 +2412,10 @@ getSystemFontList(): Array\<string>
 | 类型             | 说明        |
 | -------------- | --------- |
 | Array\<string> | 系统的字体名列表。 |
+
+>  **说明：**
+>
+>  该接口仅在2in1设备上生效。
 
 **示例：** 
 
@@ -3185,6 +3544,8 @@ on(type: 'tabContentUpdate', callback: Callback\<observer.TabContentInfo\>): voi
 
 监听TabContent页面的切换事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -3251,6 +3612,8 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 
 取消监听TabContent页面的切换事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -3269,6 +3632,8 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 on(type: 'tabContentUpdate', options: observer.ObserverOptions, callback: Callback\<observer.TabContentInfo\>): void
 
 监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3336,6 +3701,8 @@ struct TabsExample {
 off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Callback\<observer.TabContentInfo\>): void
 
 取消监听TabContent页面的切换事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3450,7 +3817,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3502,7 +3869,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3562,7 +3929,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3619,7 +3986,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3682,7 +4049,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
@@ -3730,9 +4097,9 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -3786,8 +4153,8 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
@@ -3839,7 +4206,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.               |
 
@@ -3898,7 +4265,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.   |
@@ -3950,7 +4317,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.  |
@@ -4009,7 +4376,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.  |
@@ -4066,7 +4433,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.   |
@@ -4129,7 +4496,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -4177,7 +4544,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.         |
 
@@ -4234,8 +4601,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.       |
 
 **示例：**
@@ -4287,7 +4654,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -4542,7 +4909,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **示例：**
@@ -4633,7 +5000,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **示例：**
@@ -4655,11 +5022,11 @@ try {
 };
 ```
 
-### openToast<sup>12+</sup>
+### openToast<sup>13+</sup>
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4681,7 +5048,7 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
 **示例：**
@@ -4729,11 +5096,11 @@ struct toastExample {
 }
 ```
 
-### closeToast<sup>12+</sup>
+### closeToast<sup>13+</sup>
 
 closeToast(toastId: number): void
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4749,12 +5116,12 @@ closeToast(toastId: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
 
 **示例：**
 
-示例请看[openToaset12](#opentoast12)的示例。
+示例请看[openToaset13](#opentoast13)的示例。
 
 ### showDialog
 
@@ -4779,7 +5146,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **示例：**
@@ -4849,7 +5216,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **示例：**
@@ -4910,7 +5277,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal error. |
 
 **示例：**
@@ -4970,7 +5337,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **示例：**
@@ -5029,7 +5396,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **示例：**
@@ -5070,7 +5437,7 @@ try {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5095,7 +5462,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
@@ -5180,7 +5547,7 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -5276,7 +5643,7 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -5343,6 +5710,120 @@ struct Index {
 }
 ```
 
+### openCustomDialog<sup>12+</sup>
+
+openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
+
+创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [promptAction.CustomDialogOptions](js-apis-promptAction.md#customdialogoptions11) | 是   | 自定义弹窗的内容。 |
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | 返回供closeCustomDialog使用的对话框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+### closeCustomDialog<sup>12+</sup>
+
+closeCustomDialog(dialogId: number): void
+
+关闭自定义弹窗。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                             |
+| -------- | ------ | ---- | -------------------------------- |
+| dialogId | number | 是   | openCustomDialog返回的对话框id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**示例：** 
+
+```ts
+import { PromptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  private customDialogComponentId: number = 0
+
+  @Builder
+  customDialogComponent() {
+    Column() {
+      Text('弹窗').fontSize(30)
+      Row({ space: 50 }) {
+        Button("确认").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+        Button("取消").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            this.promptAction.openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
+                }
+              }
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId
+            })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## DragController<sup>11+</sup>
 以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
 
@@ -5369,7 +5850,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **示例：**
@@ -5454,7 +5935,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **示例：**
@@ -5540,7 +6021,7 @@ struct DragControllerPage {
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
-创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
+创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常；当Action对象的生命周期结束后，注册在该对象上的回调函数会失效，因此需要在一个尽量长的作用域下持有该对象，并在每次发起拖拽前通过createDragAction返回新的对象覆盖旧值。
 
 **说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
 
@@ -5566,7 +6047,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **示例：**
@@ -5709,6 +6190,28 @@ struct DragControllerPage {
   }
 }
 ```
+
+### getDragPreview<sup>11+</sup>
+
+getDragPreview(): dragController.DragPreview
+
+返回一个代表拖拽背板的对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+
+**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+
+**示例：**
+
+请参考[animate](js-apis-arkui-dragController.md#animate11)
 
 ### setDragEventStrictReportingEnabled<sup>12+</sup>
 
@@ -6189,6 +6692,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 | ------ | ---- | ---------- |
 | OFFSET | 0    | 上抬模式。 |
 | RESIZE | 1    | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
 
 
 ## FocusController<sup>12+</sup>
@@ -6255,7 +6760,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-通过组件的id将焦点转移到组件树对应的实体节点。
+通过组件的id将焦点转移到组件树对应的实体节点。当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6271,11 +6776,11 @@ requestFocus(key: string): void
 
 以下错误码的详细介绍请参见[焦点错误码](errorcode-focus.md)。
 
-| 错误码ID  | 错误信息                                     |
-| ------ | ---------------------------------------- |
-| 150001 | This component is not focusable. |
-| 150002 | This component has an unfocusable ancestor.      |
-| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
+| 错误码ID | 错误信息                                        |
+| -------- | ----------------------------------------------- |
+| 150001   | the component cannot be focused.                |
+| 150002   | This component has an unfocusable ancestor.     |
+| 150003   | the component is not on tree or does not exist. |
 
 **示例：**
 
@@ -6614,9 +7119,18 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6670,7 +7184,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
@@ -6678,7 +7192,16 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6738,9 +7261,19 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否    | 截图相关的自定义参数。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6826,7 +7359,17 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
-**示例：**
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
+
+**示例：** 
 
 ```ts
 import { image } from '@kit.ImageKit';
@@ -6880,15 +7423,86 @@ struct ComponentSnapshotExample {
 }
 ```
 
+### getSync<sup>12+</sup>
+
+getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ----------------------------- | -------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
+| 160002 | Timeout. |
+
+**示例：**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          try {
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixelmap
+          } catch (error) {
+            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
 ## FrameCallback<sup>12+</sup>
 
-用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)方法，实现具体的业务逻辑。
+用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)或[onIdle](#onidle12)方法，实现具体的业务逻辑。
 
 ### onFrame<sup>12+</sup>
 
-在下一帧进行渲染时，该方法将被执行。
-
 onFrame(frameTimeInNano: number): void
+
+在下一帧进行渲染时，该方法将被执行。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6931,6 +7545,62 @@ struct Index {
         Button('点击触发postDelayedFrameCallback')
           .onClick(() => {
             this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### onIdle<sup>12+</sup>
+
+onIdle(timeLeftInNano: number): void
+
+在下一帧渲染结束时，如果距离下一个Vsync信号到来还有1ms以上的剩余时间，该方法将被执行，否则将顺延至后面的帧。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| timeLeftInNano | number | 是   | 这一帧剩余的空闲时间。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyIdleCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onIdle(timeLeftInNano: number) {
+    console.info('MyIdleCallback ' + this.tag + ' ' + timeLeftInNano.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('点击触发postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyIdleCallback("normTask"));
+          })
+        Button('点击触发postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyIdleCallback("delayTask"), 5);
           })
       }
       .width('100%')
@@ -7103,3 +7773,102 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 | -------- | ---- | ---------------------- |
 | GESTURE | 0   | 手势操作场景 |
 | ANIMATION | 1   | 动画过度场景 |
+
+## MarqueeDynamicSyncScene<sup>13+</sup>
+
+MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Marquee的动态帧率场景。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                                      | 只读 | 可选 | 说明                                |
+| --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
+| type      | [MarqueeDynamicSyncSceneType](#marqueedynamicsyncscenetype13) | 是   | 否   | Marquee的动态帧率场景。             |
+
+## MarqueeDynamicSyncSceneType<sup>13+</sup>
+
+枚举值，表示Marquee的动态帧率场景的类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| ANIMATION | 1   | 动画过度场景 |
+
+**示例：**
+
+```ts
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct MarqueeExample {
+  @State start: boolean = false
+  @State src: string = ''
+  @State marqueeText: string = 'Running Marquee'
+  private fromStart: boolean = true
+  private step: number = 10
+  private loop: number = Number.POSITIVE_INFINITY
+  controller: TextClockController = new TextClockController()
+  convert2time(value: number): string{
+    let date = new Date(Number(value+'000'));
+    let hours = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+    return hours+ ":" + minutes + ":" + seconds;
+  }
+  @State ANIMATION: ExpectedFrameRateRange = {min:0, max:120, expected:30}
+  private scenes: MarqueeDynamicSyncScene[] = []
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Marquee({
+        start: this.start,
+        step: this.step,
+        loop: this.loop,
+        fromStart: this.fromStart,
+        src: this.marqueeText + this.src
+      })
+        .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE_POSITION)
+        .width(300)
+        .height(80)
+        .fontColor('#FFFFFF')
+        .fontSize(48)
+        .fontWeight(700)
+        .backgroundColor('#182431')
+        .margin({ bottom: 40 })
+        .id('dynamicMarquee')
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[]
+        })
+      Button('Start')
+        .onClick(() => {
+          this.start = true
+          this.controller.start()
+          this.scenes.forEach((scenes: MarqueeDynamicSyncScene) => {
+            if (scenes.type == MarqueeDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION)
+            }
+          });
+        })
+        .width(120)
+        .height(40)
+        .fontSize(16)
+        .fontWeight(500)
+        .backgroundColor('#007DFF')
+      TextClock({ timeZoneOffset: -8, controller: this.controller })
+        .format('hms')
+        .onDateChange((value: number) => {
+          this.src = this.convert2time(value);
+        })
+        .margin(20)
+        .fontSize(30)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

@@ -18,7 +18,7 @@ PersistentStorage和AppStorage中的属性建立双向同步。应用开发通�
 PersistentStorage允许的类型和值有：
 
 - `number, string, boolean, enum` 等简单类型。
-- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象，以及对象的属性方法不支持持久化。
+- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象，但是对象中的成员方法不支持持久化。
 - API12及以上支持Map类型，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。且更新的值被持久化存储。详见[装饰Map类型变量](#装饰map类型变量)。
 - API12及以上支持Set类型，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。且更新的值被持久化存储。详见[装饰Set类型变量](#装饰set类型变量)。
 - API12及以上支持Date类型，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。且更新的值被持久化存储。详见[装饰Date类型变量](#装饰date类型变量)。
@@ -120,7 +120,7 @@ struct Index {
   4. 因为“aProp”对应的属性已经被持久化，所以在AppStorage中“aProp”的改变会触发PersistentStorage，将新的改变写入本地磁盘。
 
 - 后续启动应用：
-  1. 执行PersistentStorage.persistProp('aProp', 47)，在首先查询在PersistentStorage本地文件查询“aProp”属性，成功查询到。
+  1. 执行PersistentStorage.persistProp('aProp', 47)，首先在PersistentStorage本地文件查询“aProp”属性，成功查询到。
   2. 将在PersistentStorage查询到的值写入AppStorage中。
   3. 在Index组件里，\@StorageLink绑定的“aProp”为PersistentStorage写入AppStorage中的值，即为上一次退出应用存入的值。
 

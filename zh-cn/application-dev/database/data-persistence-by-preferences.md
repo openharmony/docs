@@ -55,7 +55,7 @@
 
 2. 获取Preferences实例。
 
-   Stage模型示例：
+   <!--Del-->Stage模型示例：<!--DelEnd-->
 
 
    ```ts
@@ -73,7 +73,7 @@
    }
    ```
 
-   FA模型示例：
+   <!--Del-->FA模型示例：
 
 
    ```ts
@@ -85,6 +85,7 @@
    let options: preferences.Options =  { name: 'myStore' };
    let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
+<!--DelEnd-->
 
 3. 写入数据。
 
@@ -122,7 +123,7 @@
    // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
    let uInt8Array2 : preferences.ValueType = dataPreferences.getSync('uInt8', new Uint8Array(0));
    let textDecoder = util.TextDecoder.create('utf-8');
-   val = textDecoder.decodeWithStream(uInt8Array2 as Uint8Array);
+   val = textDecoder.decodeToString(uInt8Array2 as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 

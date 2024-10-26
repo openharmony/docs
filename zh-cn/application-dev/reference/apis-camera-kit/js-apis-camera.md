@@ -71,7 +71,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 否   | 相机位置。    |
 | cameraType     | [CameraType](#cameratype)         | 是   | 否   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 否   | 相机连接类型。 |
-| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 相机旋转角度。 |
+| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 镜头的安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°。 |
 
 ## CameraPosition
 
@@ -81,12 +81,12 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                         | 值   | 说明            |
-| --------------------------- | ---- | -------------- |
-| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。  |
-| CAMERA_POSITION_BACK        | 1    | 后置相机。       |
-| CAMERA_POSITION_FRONT       | 2    | 前置相机。       |
-| CAMERA_POSITION_FOLD_INNER<sup>11+</sup>  | 3    | 折叠态相机。     |
+| 名称                         | 值   | 说明                                                              |
+| --------------------------- | ---- |-----------------------------------------------------------------|
+| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。                                                        |
+| CAMERA_POSITION_BACK        | 1    | 后置相机。                                                           |
+| CAMERA_POSITION_FRONT       | 2    | 前置相机。                                                           |
+| CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | 折叠态相机。<br/> 从API version 11开始支持，从API version 12开始废弃。 |
 
 ## CameraType
 
@@ -127,6 +127,18 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CAMERA_STATUS_AVAILABLE   | 2    | 相机可用。       |
 | CAMERA_STATUS_UNAVAILABLE | 3    | 相机不可用。     |
 
+## FoldStatus<sup>12+</sup>
+
+枚举，折叠机折叠状态。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值   | 说明            |
+| ------------------------- | ---- | ------------    |
+| NON_FOLDABLE      | 0    | 表示当前设备不可折叠。   |
+| EXPANDED   | 1    | 表示当前设备折叠状态为完全展开。 |
+| FOLDED   | 2    | 表示当前设备折叠状态为折叠。       |
+
 ## CameraStatusInfo
 
 相机管理器回调返回的接口实例，表示相机状态信息。
@@ -138,6 +150,17 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | camera | [CameraDevice](#cameradevice) |     否    |       否     | 相机信息。 |
 | status | [CameraStatus](#camerastatus) |     否    |       否     | 相机状态。 |
 
+## FoldStatusInfo<sup>12+</sup>
+
+相机管理器回调返回的接口实例，表示折叠机折叠状态信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称   | 类型                           |    只读   |     可选     | 说明       |
+| ------ | ----------------------------- | --------- |------------ | ---------- |
+| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     否    |       否     | 当前折叠状态所支持的相机信息列表。 |
+| foldStatus | [FoldStatus](#foldstatus12) |     否    |       否     | 折叠屏折叠状态。 |
+
 ## Profile
 
 相机配置信息项。
@@ -147,7 +170,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | 名称      | 类型                          | 只读 | 可选 | 说明         |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | 是  |  否  | 输出格式。      |
-| size     | [Size](#size)                 | 是  |  否  | 分辨率。       |
+| size     | [Size](#size)                 | 是  |  否  | 分辨率。<br>设置的是相机分辨率宽高，非实际出图宽高。  |
 
 ## FrameRateRange
 
@@ -264,7 +287,7 @@ getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。       |
+| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。       |
 
 **返回值：**
 
@@ -304,7 +327,7 @@ getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。       |
+| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。      |
 
 **返回值：**
 
@@ -526,6 +549,53 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 }
 ```
 
+### createPreviewOutput<sup>12+</sup>
+
+createPreviewOutput(surfaceId: string): PreviewOutput
+
+创建无配置信息的预览输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12)一起使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                              |
+| -------- | ----------------------------------------------- | ---- | ------------------------------- |
+| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [PreviewOutput](#previewoutput)    | PreviewOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                           |
+|---------|------------------------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400201 | Camera service fatal error.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createPreviewOutput(cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput | undefined {
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
+  try {
+    previewOutput = cameraManager.createPreviewOutput(surfaceId);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The createPreviewOutput call failed. error code: ${err.code}`);
+  }
+  return previewOutput;
+}
+```
+
 ### createPhotoOutput<sup>(deprecated)</sup>
 
 createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
@@ -577,7 +647,7 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 ### createPhotoOutput<sup>11+</sup>
 
-createPhotoOutput(profile: Profile): PhotoOutput
+createPhotoOutput(profile?: Profile): PhotoOutput
 
 创建拍照输出对象，同步返回结果。
 
@@ -586,8 +656,8 @@ createPhotoOutput(profile: Profile): PhotoOutput
 **参数：**
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
+| -------- | ------------------------------------------- |----| ----------------------------------- |
+| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用[preconfig](#preconfig12)进行预配置，传入profile参数会覆盖preconfig的预配置参数。|
 
 **返回值：**
 
@@ -599,10 +669,10 @@ createPhotoOutput(profile: Profile): PhotoOutput
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect.               |
-| 7400201                |  Camera service fatal error.               |
+| 错误码ID    | 错误信息                                           |
+|----------|------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400201  | Camera service fatal error.                    |
 
 **示例：**
 
@@ -663,6 +733,53 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
   let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The createVideoOutput call failed. error code: ${err.code}`);
+  }
+  return videoOutput;
+}
+```
+
+### createVideoOutput<sup>12+</sup>
+
+createVideoOutput(surfaceId: string): VideoOutput
+
+创建无配置信息的录像输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12-1)功能一起使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名       | 类型     | 必填    | 说明                                                                         |
+|-----------|--------|-------|----------------------------------------------------------------------------|
+| surfaceId | string | 是     | 从[AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9)获取的surfaceId。 |
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [VideoOutput](#videooutput)   | VideoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+|----------|------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400201  | Camera service fatal error.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createVideoOutput(cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput | undefined {
+  let videoOutput: camera.VideoOutput | undefined = undefined;
+  try {
+    videoOutput = cameraManager.createVideoOutput(surfaceId);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
@@ -774,7 +891,7 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 | 参数名   | 类型              | 必填 | 说明       |
 | -------- | -----------------| ---- | --------- |
-| mode     | SceneMode        | 是   | 相机支持的模式。 |
+| mode     | [SceneMode](#scenemode11)     | 是   | 相机支持的模式。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -869,6 +986,67 @@ function unregisterCameraStatus(cameraManager: camera.CameraManager): void {
 }
 ```
 
+### on('foldStatusChange')<sup>12+</sup>
+
+on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
+
+开启折叠设备折叠状态变化的监听。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型            | 必填 | 说明       |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | 是   | 监听事件，固定为'foldStatusChange'。表示折叠设备折叠状态发生变化。 |
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | 是   | 回调函数。返回折叠设备折叠信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('foldStatusChange with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`camera length: ${foldStatusInfo.supportedCameras.length}`);
+  console.info(`foldStatus: ${foldStatusInfo.foldStatus}`);
+}
+
+function registerFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.on('foldStatusChange', callback);
+}
+```
+
+### off('foldStatusChange')<sup>12+</sup>
+
+off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
+
+关闭折叠设备折叠状态变化的监听。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型            | 必填 | 说明       |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | 是   | 监听事件，固定为'foldStatusChange'。表示折叠设备折叠状态发生变化。 |
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | 否   | 回调函数，返回折叠设备折叠信息。如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.off('foldStatusChange');
+}
+```
+
 ### isTorchSupported<sup>11+</sup>
 
 isTorchSupported(): boolean
@@ -904,7 +1082,7 @@ isTorchModeSupported(mode: TorchMode): boolean
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。 |
+| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。传参为null或者undefined，作为0处理，手电筒关闭。 |
 
 **返回值：**
 
@@ -957,7 +1135,7 @@ setTorchMode(mode: TorchMode): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。 |
+| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。传参为null或者undefined，作为0处理，手电筒关闭。 |
 
 **错误码：**
 
@@ -1104,6 +1282,18 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010格式的图片。      |
+| CAMERA_FORMAT_HEIC<sup>13+</sup>       |   2003    | HEIF格式的图片。            |
+
+## VideoCodecType<sup>13+</sup>
+
+枚举，视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称   | 值    | 说明          |
+|------|------|-------------|
+| HVC  | 0    | 视频编码类型HVC。  |
+| HEVC | 1 | 视频编码类型HEVC。 |
 
 ## CameraInput
 
@@ -1815,7 +2005,7 @@ setFrameRate(minFps: number, maxFps: number): void
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12)查询支持的帧率范围。
 
 > **说明：**
-> 仅在[VideoSession](#videosession11)模式下支持。
+> 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1823,8 +2013,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率 |
-| maxFps   | number        | 是   | 最大帧率 |
+| minFps   | number        | 是   | 最小帧率。 |
+| maxFps   | number        | 是   | 最大帧率，当传入的最小值大于最大值时，传参异常，接口不生效。|
 
 **错误码：**
 
@@ -1868,6 +2058,130 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): Profile
+
+获取当前生效的配置信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [Profile](#profile) | 当前生效的配置信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profile | undefined {
+  let activeProfile: camera.Profile | undefined = undefined;
+  try {
+    activeProfile = previewOutput.getActiveProfile();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The previewOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+
+### getPreviewRotation<sup>12+</sup>
+
+getPreviewRotation(displayRotation: number): ImageRotation
+
+获取预览旋转角度。
+
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| displayRotation | number  | 是   | 显示设备的屏幕旋转角度，通过[display.getDefaultDisplaySync](../apis-arkui/js-apis-display.md#displaygetdefaultdisplaysync9)获得。 |
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | 获取预览旋转角度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+  let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+  try {
+    previewRotation = previewOutput.getPreviewRotation(imageRotation);
+    console.log(`Preview rotation is: ${previewRotation}`);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The previewOutput.getPreviewRotation call failed. error code: ${err.code}`);
+  }
+  return previewRotation;
+}
+```
+### setPreviewRotation<sup>12+</sup>
+setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): void
+
+设置预览旋转角度。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| previewRotation | [ImageRotation](#imagerotation)  | 是   | 预览旋转角度 |
+| isDisplayLocked | boolean  | 否   | 是否旋转锁定 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
+  try {
+    previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The previewOutput.setPreviewRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
 ## ImageRotation
 
 枚举，图片旋转角度。
@@ -2358,7 +2672,7 @@ function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
 
 ### on('photoAssetAvailable')<sup>12+</sup>
 
-on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 注册监听photoAsset上报。使用callback异步回调。
 
@@ -2373,7 +2687,7 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 回调函数，用于监听photoAsset上报。 |
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 回调函数，用于监听photoAsset上报。 |
 
 **示例：**
 
@@ -2397,7 +2711,7 @@ function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void
 
 ### off('photoAssetAvailable')<sup>12+</sup>
 
-off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
+off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 解注册photoAsset上报。
 
@@ -2408,7 +2722,7 @@ off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
 | 参数名     | 类型      | 必填  | 说明                                                                         |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
 | type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。                         |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 否   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 否   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
 
 **示例：**
 
@@ -2438,6 +2752,107 @@ isMirrorSupported(): boolean
 function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
   let isSupported: boolean = photoOutput.isMirrorSupported();
   return isSupported;
+}
+```
+
+### enableMirror<sup>13+</sup>
+
+enableMirror(enabled: boolean): void
+
+是否启用镜像拍照。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                        |
+|----------| ---------------------- | ---- |---------------------------|
+| enabled | boolean                | 是   | true为开启镜像拍照，false为关闭镜像拍照。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+| -------- |------------------------------------------------|
+| 202      | Not System Application.                             |
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400103  | Session not config.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableMirror(photoOutput: camera.PhotoOutput): void {
+  try {
+    photoOutput.enableMirror(true);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableMirror call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getSupportedMovingPhotoVideoCodecTypes<sup>13+</sup>
+
+getSupportedMovingPhotoVideoCodecTypes(): Array\<VideoCodecType\>
+
+查询支持的动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                |
+| -------------- |-------------------|
+| Array\<[VideoCodecType](#videocodectype13)\> | 支持的动态照片短视频编码类型列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function getSupportedMovingPhotoVideoCodecType(photoOutput: camera.PhotoOutput): Array<camera.VideoCodecType> {
+  let supportedVideoCodecTypesArray: Array<camera.VideoCodecType> = photoOutput.getSupportedMovingPhotoVideoCodecTypes();
+  return supportedVideoCodecTypesArray;
+}
+```
+
+### setMovingPhotoVideoCodecType<sup>13+</sup>
+
+setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
+
+设置动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名        | 类型                                  | 说明                |
+| ------------- |-------------------------------------| ------------        |
+| codecType     | [VideoCodecType](#videocodectype13) | 获取动态照片短视频编码类型  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function setMovingPhotoVideoCodecTypes(photoOutput: camera.PhotoOutput, videoCodecType: camera.VideoCodecType): void {
+   photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
 }
 ```
 
@@ -2726,7 +3141,7 @@ function registerPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void 
 
 off(type: 'captureReady', callback?: AsyncCallback\<void\>): void
 
-注销监听监听可拍下一张。
+注销监听可拍下一张。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2858,6 +3273,93 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('error');
+}
+```
+
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): Profile
+
+获取当前生效的配置信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [Profile](#profile) | 当前生效的配置信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile | undefined {
+  let activeProfile: camera.Profile | undefined = undefined;
+  try {
+    activeProfile = photoOutput.getActiveProfile();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The photoOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+### getPhotoRotation<sup>12+</sup>
+
+getPhotoRotation(deviceDegree: number): ImageRotation
+
+获取拍照旋转角度。
+
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| deviceDegree | number | 是   | 设备旋转角度 |
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | 获取拍照旋转角度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+  let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+  try {
+    photoRotation = photoOutput.getPhotoRotation(deviceDegree);
+    console.log(`Photo rotation is: ${photoRotation}`);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
+  }
+  return photoRotation;
 }
 ```
 
@@ -3246,12 +3748,12 @@ function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<camera.F
 
 setFrameRate(minFps: number, maxFps: number): void
 
-设置预览流帧率范围，设置的范围必须在支持的帧率范围内。
+设置录像流帧率范围，设置的范围必须在支持的帧率范围内。
 
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12-1)查询支持的帧率范围。
 
 > **说明：**
-> 仅在[VideoSession](#videosession11)模式下支持。
+> 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3259,8 +3761,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率 |
-| maxFps   | number        | 是   | 最大帧率 |
+| minFps   | number        | 是   | 最小帧率。 |
+| maxFps   | number        | 是   | 最大帧率。当传入的最小值大于最大值时，传参异常，接口不生效。 |
 
 **错误码：**
 
@@ -3285,7 +3787,7 @@ getActiveFrameRate(): FrameRateRange
 
 获取已设置的帧率范围。
 
-使用[setFrameRate](#setframerate12-1)对预览流设置过帧率后可查询。
+使用[setFrameRate](#setframerate12-1)对录像流设置过帧率后可查询。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3304,6 +3806,93 @@ function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRa
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): VideoProfile
+
+获取当前生效的配置信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [VideoProfile](#videoprofile) | 当前生效的配置信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile | undefined {
+  let activeProfile: camera.VideoProfile | undefined = undefined;
+  try {
+    activeProfile = videoOutput.getActiveProfile();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The videoOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+
+### getVideoRotation<sup>12+</sup>
+
+getVideoRotation(deviceDegree: number): ImageRotation
+
+获取录像旋转角度。
+
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| deviceDegree | number | 是   | 设备旋转角度 |
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | 获取录像旋转角度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+  try {
+    videoRotation = videoOutput.getVideoRotation(deviceDegree);
+    console.log(`Video rotation is: ${videoRotation}`);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
+  }
+  return videoRotation;
+}
+```
 
 ## MetadataOutput
 
@@ -3784,7 +4373,7 @@ canAddInput(cameraInput: CameraInput): boolean
 
 | 参数名        | 类型                          | 必填 | 说明                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
+| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -3897,7 +4486,7 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 
 | 参数名        | 类型                          | 必填 | 说明                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraOutput | [CameraOutput](#cameraoutput) | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput | [CameraOutput](#cameraoutput) | 是   | 需要添加的CameraOutput实例。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -4247,7 +4836,7 @@ setFlashMode(flashMode: FlashMode): void
 
 | 参数名       | 类型                     | 必填 | 说明                  |
 | --------- | ----------------------- | ---- | --------------------- |
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。       |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。传参为null或者undefined，作为0处理，闪光灯关闭。       |
 
 **错误码：**
 
@@ -4369,7 +4958,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 参数名       | 类型                     | 必填 | 说明                               |
 | --------- | ----------------------- | ---- | --------------------------------- |
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。                     |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。传参为null或者undefined，作为0处理，闪光灯关闭。             |
 
 **返回值：**
 
@@ -4461,7 +5050,7 @@ setExposureMode(aeMode: ExposureMode): void
 
 | 参数名      | 类型                            | 必填 | 说明                    |
 | -------- | -------------------------------| ---- | ----------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                |
+| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。传参为null或者undefined，作为0处理，曝光锁定。                |
 
 **错误码：**
 
@@ -4667,7 +5256,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 | 参数名      | 类型                           | 必填  | 说明                           |
 | -------- | -------------------------------| ---- | ----------------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                      |
+| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。传参为null或者undefined，作为0处理，曝光锁定。                 |
 
 **返回值：**
 
@@ -4761,7 +5350,7 @@ setFocusMode(afMode: FocusMode): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。       |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。传参为null或者undefined，作为0处理，手动对焦模式。       |
 
 **错误码：**
 
@@ -4963,7 +5552,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 参数名      | 类型                     | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | -------------------------------- |
-| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。                    |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。传参为null或者undefined，作为0处理，手动对焦模式。                    |
 
 **返回值：**
 
@@ -5033,9 +5622,9 @@ setZoomRatio(zoomRatio: number): void
 
 **参数：**
 
-| 参数名       | 类型                  | 必填 | 说明                                                                                   |
-| --------- | -------------------- | ---- |--------------------------------------------------------------------------------------|
-| zoomRatio | number               | 是   | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
+| 参数名       | 类型                  | 必填 | 说明                                                                                                                              |
+| --------- | -------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------|
+| zoomRatio | number               | 是   | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。<br>设置可变焦距比到底层生效需要一定时间，获取正确设置的可变焦距比需要等待1~2帧的时间。 |
 
 **错误码：**
 
@@ -6326,7 +6915,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填  | 说明                                                                                                                                                                                    |
 | -------- | -------------------------------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| exposureBias   | number                   | 是  | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| exposureBias   | number                   | 是  | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。传参为null或者undefined，作为0处理，曝光补偿设置0。 |
 
 **错误码：**
 
@@ -6724,7 +7313,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 参数名       | 类型                  | 必填  | 说明                 |
 | --------- | -------------------- |-----| ------------------- |
-| zoomRatio | number               | 是  | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
+| zoomRatio | number               | 是  | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。传参为null或者undefined，作为0处理，变焦设置最小值。 |
 
 **错误码：**
 
@@ -6813,7 +7402,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 参数名      | 类型                                              | 必填 | 说明                             |
 | -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。                    |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。传参为null或者undefined，作为0处理，超级防抖模式关闭。              |
 
 **返回值：**
 
@@ -6905,7 +7494,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 | 参数名      | 类型                                              | 必填 | 说明                    |
 | -------- | ------------------------------------------------- | ---- | --------------------- |
-| mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。   |
+| mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。传参为null或者undefined，作为0处理，超级防抖模式关闭。   |
 
 **错误码：**
 
@@ -7206,6 +7795,31 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 }
 ```
 
+## PreconfigType<sup>12+</sup>
+
+枚举，提供预配置的类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                      | 值 | 说明         |
+|-------------------------|---|------------|
+| PRECONFIG_720P          | 0 | 720P预配置。   |
+| PRECONFIG_1080P         | 1 | 1080P预配置。  |
+| PRECONFIG_4K            | 2 | 4K预配置。     |
+| PRECONFIG_HIGH_QUALITY  | 3 | 高质量预配置。    |
+
+## PreconfigRatio<sup>12+</sup>
+
+枚举，提供预配置的分辨率比例。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值 | 说明      |
+|--------------------------|---|---------|
+| PRECONFIG_RATIO_1_1      | 0 | 1:1画幅。  |
+| PRECONFIG_RATIO_4_3      | 1 | 4:3画幅。  |
+| PRECONFIG_RATIO_16_9     | 2 | 16:9画幅。 |
+
 ## PhotoSession<sup>11+</sup>
 
 PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12)
@@ -7215,6 +7829,88 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 > **说明：**
 >
 > 默认的拍照模式，用于拍摄标准照片。支持多种照片格式和分辨率，适合大多数日常拍摄场景。
+
+### canPreconfig<sup>12+</sup>
+
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
+
+查询当前Session是否支持指定的与配置类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为4:3。  |
+
+**返回值：**
+
+| 类型      | 说明                                      |
+|---------|-----------------------------------------|
+| boolean | true: 支持指定预配值类型。<br/>false: 不支持指定预配值类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testCanPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    let result = photoSession.canPreconfig(preconfigType, preconfigRatio);
+    console.info(`canPreconfig ${preconfigType} ${preconfigRatio} result is : ${result}`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The canPreconfig call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### preconfig<sup>12+</sup>
+
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
+
+对当前Session进行预配置。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为4:3。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    photoSession.preconfig(preconfigType, preconfigRatio);
+    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The preconfig call failed. error code: ${err.code}`);
+  }
+}
+```
 
 ### on('error')<sup>11+</sup>
 
@@ -7401,6 +8097,88 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 > **说明：**
 >
 > 默认的视频录制模式，适用于一般场景。支持720P、1080p等多种分辨率的录制，可选择不同帧率（如30fps、60fps）。
+
+### canPreconfig<sup>12+</sup>
+
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
+
+查询当前Session是否支持指定的与配置类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为16:9。 |
+
+**返回值：**
+
+| 类型      | 说明                                      |
+|---------|-----------------------------------------|
+| boolean | true: 支持指定预配值类型。<br/>false: 不支持指定预配值类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testCanPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    let result = videoSession.canPreconfig(preconfigType, preconfigRatio);
+    console.info(`canPreconfig ${preconfigType} ${preconfigRatio} result is : ${result}`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The canPreconfig call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### preconfig<sup>12+</sup>
+
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
+
+对当前Session进行预配置。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为16:9。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    videoSession.preconfig(preconfigType, preconfigRatio);
+    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The preconfig call failed. error code: ${err.code}`);
+  }
+}
+```
 
 ### on('error')<sup>11+</sup>
 
@@ -7601,7 +8379,7 @@ addSecureOutput(previewOutput: PreviewOutput): void
 
 | 参数名           | 类型                             | 必填 | 说明            |
 | ------------- | ------------------------------- | ---- |---------------|
-| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要标记成安全输出的预览流 |
+| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要标记成安全输出的预览流，传参异常时，会返回错误码。 |
 
 **错误码：**
 

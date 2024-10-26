@@ -26,8 +26,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 装饰器参数                                                   | 无                                                           |
 | 同步类型                                                     | 双向同步。<br/>父组件中\@State,&nbsp;\@StorageLink和\@Link&nbsp;和子组件\@Link可以建立双向数据同步，反之亦然。 |
-| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
-| <br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>不支持any。 |                                                              |
+| 允许装饰的变量类型                                           | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>类型必须被指定，且和双向绑定状态变量的类型相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Link支持联合类型实例](#link支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Link a : string \| undefined`。 |
 | 被装饰变量的初始值                                           | 无，禁止本地初始化。                                         |
 
 
@@ -402,6 +401,54 @@ struct SetSample1 {
 }
 ```
 
+### 使用双向同步机制更改本地其他变量
+
+使用[\@Watch](./arkts-watch.md)可以在双向同步时，更改本地变量。
+
+下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量sourceNumber，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State sourceNumber: number = 0;
+
+  build() {
+    Column() {
+      Text(`父组件的sourceNumber：` + this.sourceNumber)
+      Child({ sourceNumber: this.sourceNumber })
+      Button('父组件更改sourceNumber')
+        .onClick(() => {
+          this.sourceNumber++;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @State memberMessage: string = 'Hello World';
+  @Link @Watch('onSourceChange') sourceNumber: number;
+
+  onSourceChange() {
+    this.memberMessage = this.sourceNumber.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.memberMessage)
+      Text(`子组件的sourceNumber：` + this.sourceNumber.toString())
+      Button('子组件更改memberMessage')
+        .onClick(() => {
+          this.memberMessage = 'Hello memberMessage';
+        })
+    }
+  }
+}
+```
+
 ## Link支持联合类型实例
 
 @Link支持联合类型和undefined和null，在下面的示例中，name类型为string | undefined，点击父组件Index中的Button改变name的属性或者类型，Child中也会对应刷新。
@@ -538,6 +585,196 @@ struct Parent {
       // @Link装饰的变量需要和数据源@State类型一致
       LinkChild({ testNum: this.testNum })
     }
+  }
+}
+```
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Link装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改Child组件中的this.score.value时，UI不会刷新。
+
+【反例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Link score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Score.changeScore1(this.score);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeScore2(this.score);
+        })
+    }
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.score加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Link score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score1 = this.score;
+          Score.changeScore1(score1);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score2 = this.score;
+          this.changeScore2(score2);
+        })
+    }
+  }
+}
+```
+
+### \@State放在build后定义时初始化\@Link报错
+
+当\@State变量放在build函数后定义，用来初始化\@Link变量时，会被识别为常量，而\@Link变量不能被常量初始化，所以会造成编译报错。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      child({ count: this.count })
+      Button(`click times: ${this.count}`)
+        .onClick(() => {
+          this.count += 1;
+        })
+    }
+  }
+  // 在build函数之后定义@State变量
+  @State count: number = 0;
+}
+
+@Component
+struct child {
+  @Link count: number;
+
+  build() {
+    Text(`cout: ${this.count}`).fontSize(30)
+  }
+}
+```
+
+![State-After-Build](figures/State-After-Build.png)
+
+正确的写法，可以把\@State变量放在build函数前定义。
+
+【正例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State count: number = 0;
+
+  build() {
+    Column() {
+      child({ count: this.count })
+      Button(`click times: ${this.count}`)
+        .onClick(() => {
+          this.count += 1;
+        })
+    }
+  }
+}
+
+@Component
+struct child {
+  @Link count: number;
+
+  build() {
+    Text(`cout: ${this.count}`).fontSize(30)
   }
 }
 ```

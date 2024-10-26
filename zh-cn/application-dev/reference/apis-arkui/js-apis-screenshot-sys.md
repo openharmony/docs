@@ -67,7 +67,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
-| 202     | Permission denied, non-system app called system api.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
@@ -129,6 +129,7 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 
 **示例：**
 
@@ -182,6 +183,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
 | 201     | Permission verification failed.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **示例：**

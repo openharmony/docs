@@ -33,21 +33,21 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory | Description                                                       |
+| Name    | Type                                                | Mandatory| Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | bundleName | string                                               | Yes  | Bundle name of the application.                                 |
 
 **Return value**
 
-  | Type                                       | Description       |
-  | ------------------------------------------- | --------- |
-  | [DeviceManager](#devicemanager) | **DeviceManager** instance created. |
+| Type                                       | Description       |
+| ------------------------------------------- | --------- |
+| [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
@@ -77,7 +77,7 @@ Releases a **DeviceManager** instance that is no longer used.
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory | Description                               |
+| Name    | Type                                                | Mandatory| Description                               |
 | ---------- | ---------------------------------------------------- | ---- | --------------------------------- |
 | deviceManager | [DeviceManager](#devicemanager)    | Yes  | **DeviceManager** instance to release.                                 |
 
@@ -85,7 +85,7 @@ Releases a **DeviceManager** instance that is no longer used.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -118,7 +118,7 @@ Represents the basic information about a distributed device.
 | ---------------------- | ------------------------- | ---- | -------- |
 | deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and **appid** encrypted using SHA-256.|
 | deviceName             | string                    | Yes   | Device name.   |
-| deviceType             | string                    | Yes   | Device type.   |
+| deviceType             | string                    | Yes   | [Device type](#getdevicetype).   |
 | networkId              | string                    | No   | Network ID of the device. |
 
 ## DeviceStateChange
@@ -132,7 +132,7 @@ Enumerates the device states.
 | Name        | Value | Description             |
 | ----------- | ---- | --------------- |
 | UNKNOWN     | 0    | The device state is unknown after the device goes online. Before the device state changes to available, distributed services cannot be used.          |
-| AVAILABLE   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services. |
+| AVAILABLE   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services.|
 | UNAVAILABLE | 2    | The device goes offline, and the device state is unknown.          |
 
 
@@ -152,15 +152,15 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-  | Type                                       | Description       |
-  | ------------------------------------------- | --------- |
-  | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained. |
+| Type                                       | Description       |
+| ------------------------------------------- | --------- |
+| Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -193,15 +193,15 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                   |
-  | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices. |
+| Name      | Type                                    | Mandatory  | Description                   |
+| -------- | ---------------------------------------- | ---- | --------------------- |
+| callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
@@ -239,15 +239,15 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                                                      | Description                              |
-  | ---------------------------------------------------------- | ---------------------------------- |
-  | Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result. |
+| Type                                                      | Description                              |
+| ---------------------------------------------------------- | ---------------------------------- |
+| Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
@@ -278,15 +278,15 @@ Obtains the network ID of the local device.
 
 **Return value**
 
-  | Type                     | Description             |
-  | ------------------------- | ---------------- |
-  | string | Network ID of the local device obtained. |
+| Type                     | Description             |
+| ------------------------- | ---------------- |
+| string | Network ID of the local device obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
@@ -318,15 +318,15 @@ Obtains the local device name.
 
 **Return value**
 
-  | Type                     | Description             |
-  | ------------------------- | ---------------- |
-  | string                    | Name of the local device obtained. |
+| Type                     | Description             |
+| ------------------------- | ---------------- |
+| string                    | Name of the local device obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
@@ -358,15 +358,15 @@ Obtains the local device type.
 
 **Return value**
 
-  | Type                     | Description             |
-  | ------------------------- | ---------------- |
-  | number                    | <!--RP1-->Local device type obtained.<!--RP1End--> |
+| Type                     | Description             |
+| ------------------------- | ---------------- |
+| number                    | <!--RP1-->Local device type obtained.<!--RP1End--> |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
@@ -398,15 +398,15 @@ Obtains the local device ID.
 
 **Return value**
 
-  | Type                     | Description             |
-  | ------------------------- | ---------------- |
-  | string                    | Local device ID obtained. |
+| Type                     | Description             |
+| ------------------------- | ---------------- |
+| string                    | Local device ID obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
@@ -438,21 +438,21 @@ Obtains the device name based on the network ID of the specified device.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description       |
-  | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device. |
+| Name      | Type                                    | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-  | Type                     | Description             |
-  | ------------------------- | ---------------- |
-  | string                    | Device name obtained. |
+| Type                     | Description             |
+| ------------------------- | ---------------- |
+| string                    | Device name obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified networkId is greater than 255. |
@@ -487,21 +487,21 @@ Obtains the device type based on the network ID of the specified device.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description       |
-  | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device. |
+| Name      | Type                                    | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-  | Type                     | Description             |
-  | ------------------------- | ---------------- |
-  | number                    | <!--RP2-->Device type obtained.<!--RP2End--> |
+| Type                     | Description             |
+| ------------------------- | ---------------- |
+| number                    | <!--RP2-->Device type obtained.<!--RP2End--> |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified networkId is greater than 255. |
@@ -536,16 +536,16 @@ Starts to discover devices nearby. The discovery process lasts 2 minutes. A maxi
 
 **Parameters**
 
-  | Name           | Type                       | Mandatory  | Description   |
-  | ------------- | ------------------------------- | ---- | -----  |
-  | discoverParam  | {[key:&nbsp;string]:&nbsp;Object;}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
-  | filterOptions | {[key:&nbsp;string]:&nbsp;Object;}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>- **availableStatus(0-1)**: status of the device to discover. The value **0** means the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: distance of the device to discover, in cm. This parameter is not used in Wi-Fi scenarios.<br>**authenticationStatus(0-1)**: authentication status of the device to discover.<br>- **0**: The device is not authenticated.<br>The value **1** means the device has been authenticated.<br>- **authorizationType(0-2)**: authorization type of the device to discover.<br>- **0**: The device is authenticated by a temporarily agreed session key.<br>- **1**: The device is authenticated by a key of the same account.<br>- **2**: The device is authenticated by a credential key of different accounts.|
+| Name           | Type                       | Mandatory  | Description   |
+| ------------- | ------------------------------- | ---- | -----  |
+| discoverParam  | {[key:&nbsp;string]:&nbsp;Object;}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
+| filterOptions | {[key:&nbsp;string]:&nbsp;Object;}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>- **availableStatus(0-1)**: status of the device to discover. The value **0** means the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: distance of the device to discover, in cm. This parameter is not used in Wi-Fi scenarios.<br>**authenticationStatus(0-1)**: authentication status of the device to discover.<br>- **0**: The device is not authenticated.<br>The value **1** means the device has been authenticated.<br>- **authorizationType(0-2)**: authorization type of the device to discover.<br>- **0**: The device is authenticated by a temporarily agreed session key.<br>- **1**: The device is authenticated by a key of the same account.<br>- **2**: The device is authenticated by a credential key of different accounts.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
@@ -598,7 +598,7 @@ Stops device discovery.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
@@ -631,17 +631,17 @@ Binds a device.
 
 **Parameters**
 
-  | Name    | Type                                               | Mandatory | Description        |
-  | ---------- | --------------------------------------------------- | ----- | ------------ |
+| Name    | Type                                               | Mandatory | Description        |
+| ---------- | --------------------------------------------------- | ----- | ------------ |
 | deviceId   | string                                              | Yes   | ID of the device to bind.  |
-| bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pairs to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory. The values **2**, **3**, and **4** are embedded and are not supported currently.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the device to bind.<br>**appName**: application that attempts to bind the device.<br>**appOperation**: reason for the application to bind the device.<br>**customDescription**: detailed description of the operation.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result. |
+| bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory. The value **1** means PIN authentication. <br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation. |
+| callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                        |
+| ID| Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified deviceId is greater than 255.  |
@@ -694,15 +694,15 @@ Unbinds a device.
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory | Description      |
-  | -------- | ------------------------- | ---- | ---------- |
-  | deviceId | string                    | Yes  | Device ID. |
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| deviceId | string                    | Yes  | Device ID.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified deviceId is greater than 255.  |
@@ -735,16 +735,16 @@ Subscribes to the device state changes. The application (identified by the bundl
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes. |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.|
+| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -788,16 +788,16 @@ Unsubscribes from the device state changes.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                         |
-  | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister. |
+| Name      | Type                                    | Mandatory  | Description                         |
+| -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
+| callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -841,16 +841,16 @@ Subscribes to the **'discoverSuccess'** event. The application will be notified 
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                        |
-  | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**. |
-  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback invoked when a device is successfully discovered.              |
+| Name      | Type                                    | Mandatory  | Description                        |
+| -------- | ---------------------------------------- | ---- | -------------------------- |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.|
+| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback invoked when a device is successfully discovered.              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -893,16 +893,16 @@ Unsubscribes from the **'discoverSuccess'** event.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                         |
-  | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.                |
-  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister. |
+| Name      | Type                                    | Mandatory  | Description                         |
+| -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.                |
+| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -944,16 +944,16 @@ Subscribes to device name changes. The application will be notified when the nam
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**. |
-  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | Yes   | Callback used to return the device name change.                |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
+| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | Yes   | Callback used to return the device name change.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -990,16 +990,16 @@ Unsubscribes from the device name changes.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**. |
-  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | No   | Callback to unregister.                |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
+| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | No   | Callback to unregister.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -1036,16 +1036,16 @@ Subscribes to the **'discoverFailure'** event. The application will be notified 
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**. |
-  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered.                |
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.|
+| callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -1082,16 +1082,16 @@ Unsubscribes from the **'discoverFailure'** event.
 
 **Parameters**
 
-  | Name      | Type                                    | Mandatory  | Description               |
-  | -------- | ---------------------------------------- | ---- | ----------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.    |
-  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | No   | Callback to unregister. |
+| Name      | Type                                    | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.    |
+| callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -1128,16 +1128,16 @@ Subscribes to the dead events of the **DeviceManager** service. The application 
 
 **Parameters**
 
-  | Name      | Type                   | Mandatory  | Description                                      |
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**. |
-  | callback | Callback&lt;{}&gt; | No   | Callback invoked when the **DeviceManager** service is terminated unexpectedly.                       |
+| Name      | Type                   | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
+| callback | Callback&lt;{}&gt; | No   | Callback invoked when the **DeviceManager** service is terminated unexpectedly.                       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |
@@ -1170,16 +1170,16 @@ Unsubscribes from the dead events of the **DeviceManager** service.
 
 **Parameters**
 
-  | Name      | Type                   | Mandatory  | Description                                      |
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**. |
-  | callback | Callback&lt;{}&gt; | No   | Callback to unregister.                    |
+| Name      | Type                   | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
+| callback | Callback&lt;{}&gt; | No   | Callback to unregister.                    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                       |
+| ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 255.  |

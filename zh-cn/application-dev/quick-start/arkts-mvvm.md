@@ -1010,7 +1010,7 @@ export class ObservedArray<T> extends Array<T> {
 
    - 在Edit状态通过Input.onChange回调事件接受用户的键盘输入时，在点击“Save Changes”之前，这个修改是不希望同步回数据源的，但又希望刷新在当前的PersonEditView中，所以\@Prop深拷贝当前Person的详细信息；
 
-   - PersonEditView通过\@Link seletedPerson: Person和AddressBookView的``selectedPerson建立双向同步，当用户点击“Save Changes”的时候，\@Prop的修改将被赋值给\@Link seletedPerson: Person，这就意味这，数据将被同步回数据源。
+   - PersonEditView通过\@Link selectedPerson: Person和AddressBookView的`selectedPerson`建立双向同步，当用户点击“Save Changes”的时候，\@Prop的修改将被赋值给\@Link selectedPerson: Person，这就意味这，数据将被同步回数据源。
 
    - PersonEditView中通过\@Consume addrBook: AddressBook和根节点PageEntry建立跨组件层级的直接的双向同步关系，当用户在PersonEditView界面删除某一个联系人时，会直接同步回PageEntry，PageEntry的更新会通知AddressBookView刷新contracts的列表页。 PersonEditView声明如下：
 

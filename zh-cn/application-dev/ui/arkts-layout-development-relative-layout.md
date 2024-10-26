@@ -3,7 +3,7 @@
 
 ## 概述
 
-在应用的开发过程中，经常需要设计复杂界面，此时涉及到多个相同或不同组件之间的嵌套。如果布局组件嵌套深度过深，或者嵌套组件数过多，会带来额外的开销。如果在布局的方式上进行优化，就可以有效的提升性能，减少时间开销。<!--Del-->请参考[优化布局时间](../performance/reduce-view-nesting-levels.md)了解RelativeContainer相对于List，在布局时间上的性能提升。<!--DelEnd-->
+在应用的开发过程中，经常需要设计复杂界面，此时涉及到多个相同或不同组件之间的嵌套。如果布局组件嵌套深度过深，或者嵌套组件数过多，会带来额外的开销。如果在布局的方式上进行优化，就可以有效的提升性能，减少时间开销。<!--Del-->请参考[优化布局时间](../performance/reduce-view-nesting-levels.md#优化布局时间)了解RelativeContainer相对于List，在布局时间上的性能提升。<!--DelEnd-->
 
 RelativeContainer为采用相对布局的容器，支持容器内部的子元素设置相对位置关系，适用于界面复杂场景的情况，对多个子组件进行对齐和排列。子元素支持指定兄弟元素作为锚点，也支持指定父容器作为锚点，基于锚点做相对位置布局。下图是一个RelativeContainer的概念图，图中的虚线表示位置的依赖关系。
 
@@ -29,7 +29,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
 ### 锚点设置
 
 锚点设置是指设置子元素相对于父元素或兄弟元素的位置依赖关系。在水平方向上，可以设置left、middle、right的锚点。在竖直方向上，可以设置top、center、bottom的锚点。
-为了明确定义锚点，必须为RelativeContainer及其子元素设置ID，用于指定锚点信息。ID默认为“__container__”，其余子元素的ID通过id属性设置。未设置ID的子元素在RelativeContainer中不会显示。互相依赖，环形依赖时容器内子组件全部不绘制。同方向上两个以上位置设置锚点，但锚点位置逆序时此子组件大小为0，即不绘制。
+为了明确定义锚点，必须为RelativeContainer及其子元素设置ID，用于指定锚点信息。ID默认为“\_\_container\_\_”，其余子元素的ID通过id属性设置。不设置id的组件能显示，但是不能被其他子组件作为锚点，相对布局容器会为其拼接id，此id的规律无法被应用感知。互相依赖，环形依赖时容器内子组件全部不绘制。同方向上两个以上位置设置锚点，但锚点位置逆序时此子组件大小为0，即不绘制。
 
 >**说明：**
 >
@@ -48,19 +48,26 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row().width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
+ 
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
 
-    Row().width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(AlignRue)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(AlignRue)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![zh-cn_image_0000001562820901](figures/zh-cn_image_0000001562820901.png)
@@ -78,19 +85,26 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row().width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
 
-    Row().width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(RelConB)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
+
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(RelConB)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![zh-cn_image_0000001562940613](figures/zh-cn_image_0000001562940613.png)
@@ -98,15 +112,13 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
 - 子组件锚点可以任意选择，但需注意不要相互依赖。
 
   ```ts
-
   @Entry
   @Component
   struct Index {
     build() {
       Row() {
-
         RelativeContainer() {
-          Row().width(100).height(100)
+          Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
             .backgroundColor('#ff3339ff')
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -114,7 +126,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row1")
 
-          Row().width(100)
+          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
             .backgroundColor('#ff298e1e')
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -123,7 +135,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row2")
 
-          Row().height(100)
+          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
             .backgroundColor('#ffff6a33')
             .alignRules({
               top: {anchor: "row1", align: VerticalAlign.Bottom},
@@ -132,7 +144,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row3")
 
-          Row()
+          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
             .backgroundColor('#ffff33fd')
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -141,7 +153,6 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
               bottom: {anchor: "__container__", align: VerticalAlign.Bottom}
             })
             .id("row4")
-
         }
         .width(300).height(300)
         .margin({left: 50})
@@ -150,7 +161,6 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image1.png)
 
@@ -171,15 +181,13 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
 子组件经过相对位置对齐后，位置可能还不是目标位置，开发者可根据需要进行额外偏移设置offset。
 
   ```ts
-
   @Entry
   @Component
   struct Index {
     build() {
       Row() {
-
         RelativeContainer() {
-          Row().width(100).height(100)
+          Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
             .backgroundColor("#FF3333")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -187,7 +195,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row1")
 
-          Row().width(100)
+          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
             .backgroundColor("#FFCC00")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -200,7 +208,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row2")
 
-          Row().height(100)
+          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
             .backgroundColor("#FF6633")
             .alignRules({
               top: {anchor: "row1", align: VerticalAlign.Bottom},
@@ -213,7 +221,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row3")
 
-          Row()
+          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF9966")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -227,7 +235,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row4")
 
-          Row()
+          Row(){Text('row5')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF66FF")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -241,7 +249,7 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
             })
             .id("row5")
 
-          Row()
+          Row(){Text('row6')}.justifyContent(FlexAlign.Center)
             .backgroundColor('#ff33ffb5')
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -264,7 +272,6 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image2.png)
 
@@ -273,7 +280,6 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
 Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组件规则进行对其排布。
 
   ```ts
-
   @Entry
   @Component
   struct Index {
@@ -333,7 +339,6 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image3.png)
 
@@ -342,15 +347,14 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
 子组件尺寸大小不会受到相对布局规则的影响。若子组件某个方向上设置两个或以上alignRules时最好不设置此方向尺寸大小，否则对齐规则确定的组件尺寸与开发者设置的尺寸可能产生冲突。
 
   ```ts
-
   @Entry
   @Component
   struct Index {
     build() {
       Row() {
-
         RelativeContainer() {
-          Row().width(100).height(100)
+          Row(){Text('row1')}.justifyContent(FlexAlign.Center)
+            .width(100).height(100)
             .backgroundColor("#FF3333")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -358,7 +362,7 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
             })
             .id("row1")
 
-          Row().width(100)
+          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
             .backgroundColor("#FFCC00")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -367,7 +371,7 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
             })
             .id("row2")
 
-          Row().height(100)
+          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
             .backgroundColor("#FF6633")
             .alignRules({
               top: {anchor: "row1", align: VerticalAlign.Bottom},
@@ -376,7 +380,7 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
             })
             .id("row3")
 
-          Row()
+          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF9966")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -386,7 +390,7 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
             })
             .id("row4")
 
-          Row()
+          Row(){Text('row5')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF66FF")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -396,7 +400,7 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
             })
             .id("row5")
 
-          Row()
+          Row(){Text('row6')}.justifyContent(FlexAlign.Center)
             .backgroundColor('#ff33ffb5')
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -415,6 +419,5 @@ Row、Column、Flex、Stack等多种布局组件，可按照RelativeContainer组
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image4.png)

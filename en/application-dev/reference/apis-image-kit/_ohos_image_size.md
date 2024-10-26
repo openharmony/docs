@@ -19,8 +19,8 @@ The **OhosImageSize** struct defines the image size.
 
 | Name| Description| 
 | -------- | -------- |
-| [width](#width) | Defines the image width, in pixels.| 
-| [height](#height) | Defines the image height, in pixels.| 
+| int32_t [width](#width) | Defines the image width, in pixels. | 
+| int32_t [height](#height) | Defines the image height, in pixels. | 
 
 
 ## Member Variable Description

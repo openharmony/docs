@@ -112,8 +112,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed|
-| 62980097 | If the ipc error|
+| 62980096 | Operation failed|
+| 62980097 | IPC error.|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -207,7 +207,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980115 | Invalid input parameter|
+| 62980115 | If the image parameter invalid.|
 | 62980105 | Failed to get the data|
 | 62980178 | Failed to create the PixelMap|
 
@@ -544,8 +544,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
-|  60980246    | Failed to read the PixelMap |
-|  60980248    | PixelMap does not allow modification |
+|  62980246    | Failed to read the pixelMap. |
+|  62980248    | PixelMap not allow modify. |
 
 **Example**
 
@@ -594,7 +594,7 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result. If the pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixels of this image and writes the data to the buffer based on the pixel format of the pixel map. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -635,7 +635,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses an asynchronous callback to return the result. If the pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixels of this image and writes the data to the buffer based on the pixel format of the pixel map. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -674,7 +674,7 @@ async function Demo() {
 
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API returns the result synchronously.
+Reads the pixels of this image and writes the data to the buffer based on the pixel format of the pixel map. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -714,7 +714,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads the pixels in an area. This API uses a promise to return the result.
+Reads the pixels from an area of this image and writes the data to the buffer based on the BGRA_8888 format. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -760,7 +760,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels in an area. This API uses an asynchronous callback to return the result.
+Reads the pixels from an area of this image and writes the data to the buffer based on the BGRA_8888 format. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -804,7 +804,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-Reads the pixels in an area. This API returns the result synchronously.
+Reads the pixels from an area of this image and writes the data to the buffer based on the BGRA_8888 format. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -847,7 +847,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Writes the pixels to an area. This API uses a promise to return the result.
+Writes the pixels of this image to the specified area based on the BGRA_8888 format. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -897,7 +897,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Writes the pixels to an area. This API uses an asynchronous callback to return the result.
+Writes the pixels of this image to the specified area based on the BGRA_8888 format. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -944,7 +944,7 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-Writes the pixels to an area. This API returns the result synchronously.
+Writes the pixels of this image to the specified area based on the BGRA_8888 format. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -993,7 +993,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API uses a promise to return the result.
+Reads the pixels in the buffer and writes the data to the pixel map based on the pixel format of the pixel map. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1038,7 +1038,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API uses an asynchronous callback to return the result.
+Reads the pixels in the buffer and writes the data to the pixel map based on the pixel format of the pixel map. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1081,7 +1081,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API returns the result synchronously.
+Reads the pixels in the buffer and writes the data to the pixel map based on the pixel format of the pixel map. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1309,7 +1309,7 @@ let getDensity: number = pixelMap.getDensity();
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-Sets an opacity rate for this image. This API uses an asynchronous callback to return the result.
+Sets an opacity rate for this image. This API uses an asynchronous callback to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1348,7 +1348,7 @@ async function Demo() {
 
 opacity(rate: number): Promise\<void>
 
-Sets an opacity rate for this image. This API uses a promise to return the result.
+Sets an opacity rate for this image. This API uses a promise to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1389,7 +1389,7 @@ async function Demo() {
 
 opacitySync(rate: number): void
 
-Sets an opacity rate for this pixel map and initializes the pixel map. This API returns the result synchronously.
+Sets an opacity rate for this image. This API returns the result synchronously. It is invalid for YUV images.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1427,7 +1427,7 @@ async function Demo() {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result.
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1461,7 +1461,7 @@ async function Demo() {
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses an asynchronous callback to return the result.
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses an asynchronous callback to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1498,7 +1498,7 @@ async function Demo() {
 
 createAlphaPixelmapSync(): PixelMap
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously.
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously. It is invalid for YUV images.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1654,6 +1654,99 @@ async function Demo() {
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
     pixelMap.scaleSync(scaleX, scaleY);
+  }
+}
+```
+
+### scale<sup>12+</sup>
+
+scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
+
+Scales this image based on a given scaling multiple of the width and height. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | Yes  | Scaling multiple of the width.|
+| y      | number | Yes  | Scaling multiple of the height.|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | Yes  | Anti-aliasing level.|
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY, image.AntiAliasingLevel.LOW).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number, level: AntiAliasingLevel): void
+
+Scales this image based on a given width and height. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | Yes  | Scaling multiple of the width.|
+| y      | number | Yes  | Scaling multiple of the height.|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | Yes  | Anti-aliasing level.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
   }
 }
 ```
@@ -2311,6 +2404,201 @@ async function Demo() {
 }
 ```
 
+### toSdr<sup>12+<sup>
+
+toSdr(): Promise\<void>
+
+Converts an HDR image into an SDR image. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 62980137 | Invalid image operation.              |
+
+**Example**
+
+```ts
+import image from '@ohos.multimedia.image'
+import resourceManager from '@ohos.resourceManager'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 'hdr.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+let img = await getContext(this).resourceManager.getMediaContent($r('app.media.hdr'));
+let imageSource = image.createImageSource(img.buffer.slice(0));
+let decodingOptions: image.DecodingOptions = {
+  desiredDynamicRange: image.DecodingDynamicRange.AUTO
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+  try {
+    await pixelmap.toSdr();
+    let imageInfo = pixelmap.getImageInfoSync();
+    console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
+  } catch (e) {
+    console.info('toSdr failed' + e);
+  }
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### getMetadata<sup>12+</sup>
+
+getMetadata(key: HdrMetadataKey): HdrMetadataValue
+
+Obtains the value of the metadata with a given key in this pixel map.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name       | Type                            | Mandatory| Description            |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| key | [HdrMetadataKey](#hdrmetadatakey12) | Yes  | Key of the HDR metadata.|
+
+**Return value**
+
+| Type                             | Description                             |
+| --------------------------------- | --------------------------------- |
+| [HdrMetadataValue](#hdrmetadatavalue12) | Value of the metadata with the given key.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.          |
+| 501 | Resource unavailable.          |
+| 62980173 | The DMA memory does not exist.          |
+| 62980173 | Memory copy failed.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import image from '@ohos.multimedia.image'
+
+// Replace 'app.media.test' with a local HDR image.
+let img = await getContext(this).resourceManager.getMediaContent($r('app.media.test'));
+let imageSource = image.createImageSource(img.buffer.slice(0));
+let decodingOptions: image.DecodingOptions = {
+  desiredDynamicRange: image.DecodingDynamicRange.AUTO
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+  try {
+    let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
+    console.info("getmetadata:" + JSON.stringify(staticMetadata));
+  } catch (e) {
+    console.info('pixelmap create failed' + e);
+  }
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### setMetadata<sup>12+</sup>
+
+setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
+
+Sets the value for the metadata with a given key in this pixel map.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name       | Type                            | Mandatory| Description            |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| key | [HdrMetadataKey](#hdrmetadatakey12) | Yes  | Key of the HDR metadata.|
+| value | [HdrMetadataValue](#hdrmetadatavalue12) | Yes  | Value of the metadata.|
+
+**Return value**
+
+| Type          | Description                 |
+| -------------- | --------------------- |
+| Promise\<void> |  Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401|  Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
+| 501 | Resource unavailable.          |
+| 62980173 | The DMA memory does not exist.          |
+| 62980173 | Memory copy failed.          |
+
+**Example**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { BusinessError } from '@kit.BasicServicesKit';
+@State pixelmap: image.PixelMap | undefined = undefined;
+
+async Demo() {
+  let staticMetadata: image.HdrStaticMetadata = {
+    displayPrimariesX: [1.1, 1.1, 1.1],
+    displayPrimariesY: [1.2, 1.2, 1.2],
+    whitePointX: 1.1,
+    whitePointY: 1.2,
+    maxLuminance: 2.1,
+    minLuminance: 1.0,
+    maxContentLightLevel: 2.1,
+    maxFrameAverageLightLevel: 2.1,
+  }
+  this.pixelmap?.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata);
+}
+```
+
+### setTransferDetached<sup>12+<sup>
+
+setTransferDetached(detached: boolean): void
+
+Sets whether to detach from the original thread when this pixel map is transmitted across threads. This API applies to the scenario where the pixel map needs to be released immediately.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type              | Mandatory| Description                         |
+| ------- | ------------------ | ---- | ----------------------------- |
+| detached | boolean   | Yes  | Whether to detach from the original thread.                 |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  if (pixelMap != undefined) {
+    pixelMap.setTransferDetached(true);
+  }
+}
+```
+
 ### marshalling<sup>10+</sup>
 
 marshalling(sequence: rpc.MessageSequence): void
@@ -2686,6 +2974,7 @@ Creates an **ImageSource** instance based on a given file descriptor.
 import { fileIo } from '@kit.CoreFileKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+const context: Context = getContext();
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 const filePath: string = context.filesDir + "/test.jpg";
 let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
@@ -2802,6 +3091,14 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
 
+The **ImageSource** instance created in incremental mode supports the following capabilities (applicable to synchronous, callback, and promise modes):
+- Obtaining image information: Call [getImageInfo](#getimageinfo) to obtain image information by index, or call [getImageInfo](#getimageinfo-1) to directly obtain image information.
+- Obtaining an image property: Call [getImageProperty](#getimageproperty11) to obtain the value of a property with the specified index in an image.
+- Obtaining image properties: Call [getImageProperties](#getimageproperties12) to obtain the values of properties with the given names in an image.
+- Updating incremental data: Call [updateData](#updatedata9) to update data.
+- Creating a **PixelMap** object: Call [createPixelMap](#createpixelmap7) or [createPixelMap](#createpixelmap7-2) to create a pixel map based on image decoding parameters, or call [createPixelMap](#createpixelmap7-1) to create a pixel map based on default parameters.
+- Releasing an **ImageSource** instance: Call [release](#release) to release an image source.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
@@ -2843,6 +3140,8 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance in incremental mode based on buffers. Such an instance does not support reading or writing of EXIF information.
+
+The capabilities supported by the **ImageSource** instance created by this API are the same as those supported by the instance created by [CreateIncrementalSource(buf: ArrayBuffer): ImageSource](#imagecreateincrementalsource9).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -3064,7 +3363,18 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
+| 62980096 | The operation failed.             |
+| 62980103 | The image data is not supported.         |
+| 62980110 | The image source data is incorrect.      |
+| 62980111 | The image source data is incomplete. |
+| 62980112 | The image format does not match.       |
+| 62980113 | Unknown image format.        |
+| 62980115 | Invalid image parameter.      |
+| 62980116| Failed to decode the image.            |
+| 62980118 | Failed to create the image plugin.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980123| Images in EXIF format are not supported.             |
+| 62980135| The EXIF value is invalid.             |
 
 **Example**
 
@@ -3265,6 +3575,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.        |
 
@@ -3674,7 +3985,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
@@ -3733,7 +4043,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
@@ -3787,7 +4096,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
@@ -3848,7 +4156,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
@@ -3895,7 +4202,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -3940,7 +4246,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
@@ -3986,7 +4291,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -4030,7 +4334,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
@@ -4162,7 +4465,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -4204,7 +4507,7 @@ Packs an image. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -4675,6 +4978,8 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 Reads the latest image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
 
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
 **Parameters**
@@ -4703,6 +5008,8 @@ readLatestImage(): Promise\<Image>
 
 Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
 
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
 **Return value**
@@ -4728,6 +5035,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(callback: AsyncCallback\<Image>): void
 
 Reads the next image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
+
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4756,6 +5065,8 @@ receiver.readNextImage((err: BusinessError, img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
+
+**NOTE**: When the [Image](#image9) object returned by this API is no longer needed, call [release](#release9-4) to release the object. New data can be received only after the release.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -5484,16 +5795,15 @@ Describes the region information.
 
 Describes the options for image packing.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 | Name   | Type  | Read Only| Optional| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | No  | No  | Format of the packed image.<br>Currently, only **"image/jpeg"**, **"image/webp"**, and **"image/png"** are supported.|
-| quality | number | No  | No  | Quality of the output image in JPEG encoding. The value ranges from 0 to 100. The value **0** means the lowest quality, and **100** means the highest quality. The higher the quality, the larger the space occupied by the generated image.|
-| bufferSize<sup>9+</sup> | number | No  | Yes  | Size of the buffer for receiving the encoded data, in bytes. If the size is not set, the default value 25 MB is used. If the size of an image exceeds 25 MB, you must specify the size. The value of **bufferSize** must be greater than the size of the encoded image. The use of [packToFile](#packtofile11) is not restricted by this parameter.|
+| format  | string | No  | No  | Format of the packed image.<br>Currently, only **"image/jpeg"**, **"image/webp"**, and **"image/png"** are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| quality | number | No  | No  | Quality of the output image in JPEG encoding. The value ranges from 0 to 100. The value **0** means the lowest quality, and **100** means the highest quality. The higher the quality, the larger the space occupied by the generated image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| bufferSize<sup>9+</sup> | number | No  | Yes  | Size of the buffer for receiving the encoded data, in bytes. If the size is not set, the default value 25 MB is used. If the size of an image exceeds 25 MB, you must specify the size. The value of **bufferSize** must be greater than the size of the encoded image. The use of [packToFile](#packtofile11) is not restricted by this parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | No  | Yes  | Desired dynamic range. The default value is **SDR**.|
+| needsPackProperties<sup>12+</sup> | boolean | No  | Yes  | Whether to encode image property information, for example, EXIF. The default value is **false**.|
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -5527,180 +5837,180 @@ Describes the exchangeable image file format (EXIF) data of an image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name              |   Value                   |    Readable/Writable                |   Description                   |
-| ----------------- | ----------------------- |---------------------------------|---------------------------|
-| NEW_SUBFILE_TYPE <sup>12+</sup>           | "NewSubfileType"            | Readable and writable| Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.|
-| SUBFILE_TYPE <sup>12+</sup>               | "SubfileType"               | Readable and writable| Type of data contained in this subfile. This tag has been deprecated. Use **NewSubfileType** instead.|
-| IMAGE_WIDTH                               | "ImageWidth"                | Readable and writable| Image width.|
-| IMAGE_LENGTH                              | "ImageLength"               | Readable and writable| Image length.|
-| BITS_PER_SAMPLE                           | "BitsPerSample"             | Readable and writable| Number of bits per component.|
-| COMPRESSION <sup>12+</sup>                | "Compression"               | Readable and writable| Compression scheme used on the image data.|
-| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | Readable and writable| Color space of the image data, for example, RGB or YCbCr.|
-| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"          | Readable and writable| Image description.|
-| MAKE<sup>10+</sup>                        | "Make"                      | Readable and writable| Manufacturer.|
-| MODEL<sup>10+</sup>                       | "Model"                     | Readable and writable| Device model.|
-| STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | Readable and writable| Byte offset of each strip.|
-| ORIENTATION                               | "Orientation"               | Readable and writable| Image orientation.<br>- **Top-left**: The image is not rotated.<br>- **Top-right**: The image is flipped horizontally.<br>- **Bottom-right**: The image is rotated by 180°.<br>- **Bottom-left**: The image is flipped vertically.<br>- **Left-top**: The image is flipped horizontally and then rotated clockwise by 270°.<br>- **Right-top**: The image is rotated clockwise by 90°.<br>- **Right-bottom**: The image is vertically flipped and then rotated clockwise by 90°.<br>- **Left-bottom**: The image is rotated clockwise by 270°.<br>- **Unknown Value**: No value is defined.|
-| SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | Readable and writable| Number of components per pixel. The value is 3 for RGB and YCbCr images. The **JPEG** key is used in JPEG compressed data.|
-| ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | Readable and writable| Number of rows per strip.|
-| STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | Readable and writable| Number of bytes in each strip after compression.|
-| X_RESOLUTION <sup>12+</sup>               | "XResolution"               | Readable and writable| Number of pixels per ResolutionUnit in the image width (X) direction.|
-| Y_RESOLUTION <sup>12+</sup>               | "YResolution"               | Readable and writable| Number of pixels per ResolutionUnit in the image height (Y) direction.|
-| PLANAR_CONFIGURATION <sup>12+</sup>       | "PlanarConfiguration"       | Readable and writable| Storage format of components of each pixel, which can be chunky or planar.|
-| RESOLUTION_UNIT <sup>12+</sup>            | "ResolutionUnit"            | Readable and writable| Unit of measurement for XResolution and YResolution.|
-| TRANSFER_FUNCTION <sup>12+</sup>          | "TransferFunction"          | Readable and writable| Transfer function for the image, which is usually used for color correction.|
-| SOFTWARE <sup>12+</sup>                   | "Software"                  | Readable and writable| Name and version number of the software used to create the image.|
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | Readable and writable| Date and time of image creation.|
-| ARTIST <sup>12+</sup>                     | "Artist"                    | Readable and writable| Person who created the image.|
-| WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | Readable and writable| Chromaticity of the white point of the image.|
-| PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | Readable and writable| Chromaticities of the primaries of the image.|
-| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode"                 | Readable and writable| Photographing mode.|
-| JPEG_INTERCHANGE_FORMAT <sup>12+</sup>    | "JPEGInterchangeFormat"     | Readable and writable| Offset of the SOI marker of a JPEG interchange format bitstream.|
-| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | Readable and writable| Number of bytes of the JPEG stream.|
-| YCBCR_COEFFICIENTS <sup>12+</sup>         | "YCbCrCoefficients"         | Readable and writable| Transformation from RGB to YCbCr image data.|
-| YCBCR_SUB_SAMPLING <sup>12+</sup>         | "YCbCrSubSampling"          | Readable and writable| Subsampling factors used for the chrominance components of a YCbCr image.|
-| YCBCR_POSITIONING <sup>12+</sup>          | "YCbCrPositioning"          | Readable and writable| Positioning of subsampled chrominance components relative to luminance samples.|
-| REFERENCE_BLACK_WHITE <sup>12+</sup>      | "ReferenceBlackWhite"       | Readable and writable| A pair of headroom and footroom image data values (codes) for each pixel component.|
-| COPYRIGHT <sup>12+</sup>                  | "Copyright"                 | Readable and writable| Copyright notice of the image.|
-| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"              | Readable and writable| Exposure time, for example, 1/33 seconds.|
-| F_NUMBER<sup>9+</sup>                     | "FNumber"                   | Readable and writable| F number, for example, f/1.8.|
-| EXPOSURE_PROGRAM <sup>12+</sup>           | "ExposureProgram"           | Readable and writable| Class of the program used by the camera to set exposure when the image was captured.|
-| SPECTRAL_SENSITIVITY <sup>12+</sup>       | "SpectralSensitivity"       | Readable and writable| Spectral sensitivity of each channel of the camera.|
-| GPS_VERSION_ID <sup>12+</sup>             | "GPSVersionID"              | Readable and writable| Version of GPSInfoIFD.|
-| GPS_LATITUDE_REF                          | "GPSLatitudeRef"            | Readable and writable| Whether the latitude is north or south latitude.|
-| GPS_LATITUDE                              | "GPSLatitude"               | Readable and writable| Image latitude.|
-| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | Readable and writable| Whether the longitude is east or west longitude.|
-| GPS_LONGITUDE                             | "GPSLongitude"              | Readable and writable| Image longitude.|
-| GPS_ALTITUDE_REF <sup>12+</sup>           | "GPSAltitudeRef"            | Readable and writable| Whether the latitude is north or south latitude.|
-| GPS_ALTITUDE <sup>12+</sup>               | "GPSAltitude"               | Readable and writable| Altitude based on the reference in GPSAltitudeRef.|
-| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | Readable and writable| GPS timestamp.|
-| GPS_SATELLITES <sup>12+</sup>             | "GPSSatellites"             | Readable and writable| GPS satellites used for measurement.|
-| GPS_STATUS <sup>12+</sup>                 | "GPSStatus"                 | Readable and writable| Status of the GPS receiver when the image was recorded.|
-| GPS_MEASURE_MODE <sup>12+</sup>           | "GPSMeasureMode"            | Readable and writable| GPS measurement pmode.|
-| GPS_DOP <sup>12+</sup>                    | "GPSDOP"                    | Readable and writable| GPS DOP (data degree of precision)|
-| GPS_SPEED_REF <sup>12+</sup>              | "GPSSpeedRef"               | Readable and writable| Unit used to express the movement speed of the GPS receiver.|
-| GPS_SPEED <sup>12+</sup>                  | "GPSSpeed"                  | Readable and writable| Movement speed of the GPS receiver.|
-| GPS_TRACK_REF <sup>12+</sup>              | "GPSTrackRef"               | Readable and writable| Reference of the movement direction of the GPS receiver.|
-| GPS_TRACK <sup>12+</sup>                  | "GPSTrack"                  | Readable and writable| Movement direction of the GPS receiver.|
-| GPS_IMG_DIRECTION_REF <sup>12+</sup>      | "GPSImgDirectionRef"        | Readable and writable| Reference of the direction of the image when it was captured.|
-| GPS_IMG_DIRECTION <sup>12+</sup>          | "GPSImgDirection"           | Readable and writable| Direction of the image when it was captured.|
-| GPS_MAP_DATUM <sup>12+</sup>              | "GPSMapDatum"               | Readable and writable| Geodetic survey data used by the GPS receiver.|
-| GPS_DEST_LATITUDE_REF <sup>12+</sup>      | "GPSDestLatitudeRef"        | Readable and writable| Whether the latitude of the destination point is north or south latitude.|
-| GPS_DEST_LATITUDE <sup>12+</sup>          | "GPSDestLatitude"           | Readable and writable| Latitude of the destination point.|
-| GPS_DEST_LONGITUDE_REF <sup>12+</sup>     | "GPSDestLongitudeRef"       | Readable and writable| Whether the longitude of the destination point is east or west longitude.|
-| GPS_DEST_LONGITUDE <sup>12+</sup>         | "GPSDestLongitude"          | Readable and writable| Longitude of the destination point.|
-| GPS_DEST_BEARING_REF <sup>12+</sup>       | "GPSDestBearingRef"         | Readable and writable| Reference of the bearing to the destination point.|
-| GPS_DEST_BEARING <sup>12+</sup>           | "GPSDestBearing"            | Readable and writable| Bearing to the destination point.|
-| GPS_DEST_DISTANCE_REF <sup>12+</sup>      | "GPSDestDistanceRef"        | Readable and writable| Unit used to express the distance to the destination point.|
-| GPS_DEST_DISTANCE <sup>12+</sup>          | "GPSDestDistance"           | Readable and writable| Distance to the destination point.|
-| GPS_PROCESSING_METHOD <sup>12+</sup>      | "GPSProcessingMethod"       | Readable and writable| String that records the name of the method used for positioning.|
-| GPS_AREA_INFORMATION <sup>12+</sup>       | "GPSAreaInformation"        | Readable and writable| String that records the name of the GPS area.|
-| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"              | Readable and writable| GPS date stamp.|
-| GPS_DIFFERENTIAL <sup>12+</sup>           | "GPSDifferential"           | Readable and writable| Whether differential correction is applied to the GPS receiver. It is critical to accurate location accuracy.|
-| GPS_H_POSITIONING_ERROR <sup>12+</sup>    | "GPSHPositioningError"      | Readable and writable| Horizontal positioning error, in meters.|
-| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"           | Readable and writable| ISO sensitivity or ISO speed, for example, 400.|
-| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup>   | "PhotographicSensitivity"   | Readable and writable| Sensitivity of the camera or input device when the image was captured.|
-| OECF <sup>12+</sup>                       | "OECF"                      | Readable and writable| Opto-Electric Conversion Function (OECF) specified in ISO 14524.|
-| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"           | Readable and writable| Sensitivity type.|
-| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity" | Readable and writable| Standard output sensitivity.|
-| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"  | Readable and writable| Recommended exposure index.|
-| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"           | Readable and writable| ISO speed.|
-| ISO_SPEED_LATITUDE_YYY <sup>12+</sup>     | "ISOSpeedLatitudeyyy"       | Readable and writable| ISO speed latitude yyy value of the camera or input device, which is defined in ISO 12232.|
-| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup>     | "ISOSpeedLatitudezzz"       | Readable and writable| ISO speed latitude zzz value of the camera or input device, which is defined in ISO 12232.|
-| EXIF_VERSION <sup>12+</sup>               | "ExifVersion"               | Readable and writable| Version of the supported EXIF standard.|
-| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"          | Readable and writable| Time when the original image data was generated, for example, 2022:09:06 15:48:00.|
-| DATE_TIME_DIGITIZED <sup>12+</sup>        | "DateTimeDigitized"         | Readable and writable| Date and time when the image was stored as digital data, in the format of YYYY:MM:DD HH:MM:SS.|
-| OFFSET_TIME <sup>12+</sup>                | "OffsetTime"                | Readable and writable| Time with an offset from UTC when the image was captured, in the format of ±HH:MM.|
-| OFFSET_TIME_ORIGINAL <sup>12+</sup>       | "OffsetTimeOriginal"        | Readable and writable| Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.|
-| OFFSET_TIME_DIGITIZED <sup>12+</sup>      | "OffsetTimeDigitized"       | Readable and writable| Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.|
-| COMPONENTS_CONFIGURATION <sup>12+</sup>   | "ComponentsConfiguration"   | Readable and writable| Specific information about compressed data.|
-| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup>  | "CompressedBitsPerPixel"    | Readable and writable| Number of bits per pixel. It is specific to compressed data.|
-| SHUTTER_SPEED <sup>12+</sup>              | "ShutterSpeedValue"         | Readable and writable| Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.|
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | Readable and writable| Lens aperture.|
-| BRIGHTNESS_VALUE <sup>12+</sup>           | "BrightnessValue"           | Readable and writable| Value of brightness, expressed in APEX values.|
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"         | Readable and writable| Exposure bias.|
-| MAX_APERTURE_VALUE <sup>12+</sup>         | "MaxApertureValue"          | Readable and writable| Smallest F number of the lens.|
-| SUBJECT_DISTANCE <sup>12+</sup>           | "SubjectDistance"           | Readable and writable| Distance to the subject, in meters.|
-| METERING_MODE<sup>10+</sup>               | "MeteringMode"              | Readable and writable| Metering mode.|
-| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | Readable and writable| Light source.|
-| FLASH <sup>10+</sup>                      | "Flash"                     | Readable and writable| Flash status.|
-| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | Readable and writable| Focal length of the lens.|
-| SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | Readable and writable| Location and area of the main subject in the entire scene.|
-| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | Read Only| Marker used by EXIF/DCF manufacturers to record any required information.|
-| SCENE_POINTER <sup>12+</sup>              | "HwMnoteScenePointer"       | Read Only| Pointer to the scene.|
-| SCENE_VERSION <sup>12+</sup>              | "HwMnoteSceneVersion"       | Read Only| Scene algorithm version.|
-| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"      | Read Only| Photographing scene: food.|
-| SCENE_STAGE_CONF<sup>11+</sup>            | "HwMnoteSceneStageConf"     | Read Only| Photographing scene: stage.|
-| SCENE_BLUE_SKY_CONF<sup>11+</sup>         | "HwMnoteSceneBlueSkyConf"   | Read Only| Photographing scene: blue sky.|
-| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | Read Only| Photographing scene: green plant.|
-| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"     | Read Only| Photographing scene: beach.|
-| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"      | Read Only| Photographing scene: snow.|
-| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"    | Read Only| Photographing scene: sunset.|
-| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"   | Read Only| Photographing scene: flowers.|
-| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"     | Read Only| Photographing scene: night.|
-| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"      | Read Only| Photographing scene: text.|
-| FACE_POINTER <sup>12+</sup>               | "HwMnoteFacePointer"        | Read Only| Face pointer.|
-| FACE_VERSION <sup>12+</sup>               | "HwMnoteFaceVersion"        | Read Only| Facial recognition algorithm version.|
-| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"          | Read Only| Number of faces.|
-| FACE_CONF <sup>12+</sup>                  | "HwMnoteFaceConf"           | Read Only| Face confidence.|
-| FACE_SMILE_SCORE <sup>12+</sup>           | "HwMnoteFaceSmileScore"     | Read Only| Smile score of for faces.|
-| FACE_RECT <sup>12+</sup>                  | "HwMnoteFaceRect"           | Read Only| Face rectangle.|
-| FACE_LEYE_CENTER <sup>12+</sup>           | "HwMnoteFaceLeyeCenter"     | Read Only| Left eye centered.|
-| FACE_REYE_CENTER <sup>12+</sup>           | "HwMnoteFaceReyeCenter"     | Read Only| Right eye centered.|
-| FACE_MOUTH_CENTER <sup>12+</sup>          | "HwMnoteFaceMouthCenter"    | Read Only| Mouth centered.|
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"        | Readable and writable| Capture mode.|
-| BURST_NUMBER <sup>12+</sup>               | "HwMnoteBurstNumber"        | Read Only| Number of burst shooting times.|
-| FRONT_CAMERA <sup>12+</sup>               | "HwMnoteFrontCamera"        | Read Only| Whether the front camera is used to take a selfie.|
-| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"          | Read Only| Roll angle.|
-| PITCH_ANGLE<sup>11+</sup>                 | "HwMnotePitchAngle"         | Read Only| Pitch angle.|
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"   | Read Only| Physical aperture.|
-| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"          | Read Only| Focus mode.|
-| USER_COMMENT <sup>10+</sup>               | "UserComment"               | Readable and writable| User comments.|
-| SUBSEC_TIME <sup>12+</sup>                | "SubsecTime"                | Readable and writable| Tag used to record fractions of seconds for the **DateTime** tag.|
-| SUBSEC_TIME_ORIGINAL <sup>12+</sup>       | "SubsecTimeOriginal"        | Readable and writable| Tag used to record fractions of seconds for the **DateTimeOriginal** tag.|
-| SUBSEC_TIME_DIGITIZED <sup>12+</sup>      | "SubsecTimeDigitized"       | Readable and writable| Tag used to record fractions of seconds for the **DateTimeDigitized** tag.|
-| FLASHPIX_VERSION <sup>12+</sup>           | "FlashpixVersion"           | Readable and writable| FlashPix format version supported by an FPXR file. It is used to enhance device compatibility.|
-| COLOR_SPACE <sup>12+</sup>                | "ColorSpace"                | Readable and writable| Color space information, which is usually recorded as a color space specifier.|
-| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"           | Readable and writable| Pixel X dimension.|
-| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"           | Readable and writable| Pixel Y dimension.|
-| RELATED_SOUND_FILE <sup>12+</sup>         | "RelatedSoundFile"          | Readable and writable| Name of an audio file related to the image data.|
-| FLASH_ENERGY <sup>12+</sup>               | "FlashEnergy"               | Readable and writable| Strobe energy at the time the image was captured, in Beam Candle Power Seconds (BCPS).|
-| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse"  | Readable and writable| Spatial frequency table of the camera or input device.|
-| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup>   | "FocalPlaneXResolution"     | Readable and writable| Number of pixels in the image width (X) direction per FocalPlaneResolutionUnit.|
-| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup>   | "FocalPlaneYResolution"     | Readable and writable| Number of pixels in the image height (Y) direction per FocalPlaneResolutionUnit.|
-| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit"  | Readable and writable| Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution.|
-| SUBJECT_LOCATION <sup>12+</sup>           | "SubjectLocation"           | Readable and writable| Location of the main subject relative to the left edge.|
-| EXPOSURE_INDEX <sup>12+</sup>             | "ExposureIndex"             | Readable and writable| Exposure index selected at the time the image is captured.|
-| SENSING_METHOD <sup>12+</sup>             | "SensingMethod"             | Readable and writable| Type of the image sensor on the camera.|
-| FILE_SOURCE <sup>12+</sup>                | "FileSource"                | Readable and writable| Image source.|
-| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                 | Readable and writable| Type of the scene, for example, portrait, scenery, motion, and night.|
-| CFA_PATTERN <sup>12+</sup>                | "CFAPattern"                | Readable and writable| Color Filter Array (CFA) geometric pattern of the image sensor.|
-| CUSTOM_RENDERED <sup>12+</sup>            | "CustomRendered"            | Readable and writable| Special processing on image data.|
-| EXPOSURE_MODE <sup>12+</sup>              | "ExposureMode"              | Readable and writable| Exposure mode set when the image was captured.|
-| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"              | Readable and writable| White balance.|
-| DIGITAL_ZOOM_RATIO <sup>12+</sup>         | "DigitalZoomRatio"          | Readable and writable| Digital zoom ratio when the image was captured.|
-| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"     | Readable and writable| Focal length in 35mm film.|
-| SCENE_CAPTURE_TYPE <sup>12+</sup>         | "SceneCaptureType"          | Readable and writable| Type of the scene that was captured.|
-| GAIN_CONTROL <sup>12+</sup>               | "GainControl"               | Readable and writable| Degree of overall image gain adjustment.|
-| CONTRAST <sup>12+</sup>                   | "Contrast"                  | Readable and writable| Direction of contrast processing used by the camera.|
-| SATURATION <sup>12+</sup>                 | "Saturation"                | Readable and writable| Direction of saturation processing used by the camera.|
-| SHARPNESS <sup>12+</sup>                  | "Sharpness"                 | Readable and writable| Direction of sharpness processing used by the camera.|
-| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"  | Readable and writable| Information about the photographing conditions of a specific camera model.|
-| SUBJECT_DISTANCE_RANGE <sup>12+</sup>     | "SubjectDistanceRange"      | Readable and writable| Distance to the subject.|
-| IMAGE_UNIQUE_ID <sup>12+</sup>            | "ImageUniqueID"             | Readable and writable| Unique identifier assigned to each image.|
-| CAMERA_OWNER_NAME <sup>12+</sup>          | "CameraOwnerName"           | Readable and writable| Name of the camera owner.|
-| BODY_SERIAL_NUMBER <sup>12+</sup>         | "BodySerialNumber"          | Readable and writable| Serial number of the camera body.|
-| LENS_SPECIFICATION <sup>12+</sup>         | "LensSpecification"         | Readable and writable| Specifications of the lens.|
-| LENS_MAKE <sup>12+</sup>                  | "LensMake"                  | Readable and writable| Manufacturer of the lens.|
-| LENS_MODEL <sup>12+</sup>                 | "LensModel"                 | Readable and writable| Model of the lens.|
-| LENS_SERIAL_NUMBER <sup>12+</sup>         | "LensSerialNumber"          | Readable and writable| Serial number of the lens.|
-| COMPOSITE_IMAGE <sup>12+</sup>            | "CompositeImage"            | Readable and writable| Whether the image is a composite image.|
-| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup>   | "SourceImageNumberOfCompositeImage"       | Readable and writable| Number of source images of the composite image.|
-| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"     | Readable and writable| Exposure time of source images of the composite image.|
-| GAMMA <sup>12+</sup>                      | "Gamma"                     | Readable and writable| Gamma value.|
-| DNG_VERSION <sup>12+</sup>                | "DNGVersion"                | Readable and writable| DNG version. It encodes the DNG 4-tier version number.|
-| DEFAULT_CROP_SIZE <sup>12+</sup>          | "DefaultCropSize"           | Readable and writable| Size of the final image area, in raw image coordinates, taking into account extra pixels around the edges of the final image.|
-| GIF_LOOP_COUNT <sup>12+</sup>             | "GIFLoopCount"              | Read Only| Number of GIF loops. The value **0** means an infinite loop, and other values means the number of loops.|
+| Name              |   Value                   |   Description                   |
+| ----------------- | ----------------------- |---------------------------|
+| NEW_SUBFILE_TYPE <sup>12+</sup>           | "NewSubfileType"            | **Read/Write capability**: readable and writable<br> Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.|
+| SUBFILE_TYPE <sup>12+</sup>               | "SubfileType"               | **Read/Write capability**: readable and writable<br> Type of data contained in this subfile. This tag has been deprecated. Use **NewSubfileType** instead.|
+| IMAGE_WIDTH                               | "ImageWidth"                | **Read/Write capability**: readable and writable<br> Image width.|
+| IMAGE_LENGTH                              | "ImageLength"               | **Read/Write capability**: readable and writable<br> Image length.|
+| BITS_PER_SAMPLE                           | "BitsPerSample"             | **Read/Write capability**: readable and writable<br> Number of bits per component.|
+| COMPRESSION <sup>12+</sup>                | "Compression"               | **Read/Write capability**: readable and writable<br> Compression scheme used on the image data.|
+| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | **Read/Write capability**: readable and writable<br> Color space of the image data, for example, RGB or YCbCr.|
+| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"          | **Read/Write capability**: readable and writable<br> Image description.|
+| MAKE<sup>10+</sup>                        | "Make"                      | **Read/Write capability**: readable and writable<br> Manufacturer.|
+| MODEL<sup>10+</sup>                       | "Model"                     | **Read/Write capability**: readable and writable<br> Device model.|
+| STRIP_OFFSETS <sup>12+</sup>              | "StripOffsets"              | **Read/Write capability**: readable and writable<br> Byte offset of each strip.|
+| ORIENTATION                               | "Orientation"               | **Read/Write capability**: readable and writable<br> Image orientation.<br>- 1: **Top-left**: The image is not rotated.<br>- 2: **Top-right**: The image is flipped horizontally.<br>- 3: **Bottom-right**: The image is rotated by 180°.<br>- 4: **Bottom-left**: The image is flipped vertically.<br>- 5: **Left-top**: The image is flipped horizontally and then rotated clockwise by 270°.<br>- 6: **Right-top**: The image is rotated clockwise by 90°.<br>- 7: **Right-bottom**: The image is vertically flipped and then rotated clockwise by 90°.<br>- 8: **Left-bottom**: The image is rotated clockwise by 270°.<br>- **Unknown Value**: No value is defined.|
+| SAMPLES_PER_PIXEL <sup>12+</sup>          | "SamplesPerPixel"           | **Read/Write capability**: readable and writable<br> Number of components per pixel. The value is 3 for RGB and YCbCr images. The **JPEG** key is used in JPEG compressed data.|
+| ROWS_PER_STRIP <sup>12+</sup>             | "RowsPerStrip"              | **Read/Write capability**: readable and writable<br> Number of rows per strip.|
+| STRIP_BYTE_COUNTS <sup>12+</sup>          | "StripByteCounts"           | **Read/Write capability**: readable and writable<br> Number of bytes in each strip after compression.|
+| X_RESOLUTION <sup>12+</sup>               | "XResolution"               | **Read/Write capability**: readable and writable<br> Number of pixels per ResolutionUnit in the image width (X) direction.|
+| Y_RESOLUTION <sup>12+</sup>               | "YResolution"               | **Read/Write capability**: readable and writable<br> Number of pixels per ResolutionUnit in the image height (Y) direction.|
+| PLANAR_CONFIGURATION <sup>12+</sup>       | "PlanarConfiguration"       | **Read/Write capability**: readable and writable<br> Storage format of components of each pixel, which can be chunky or planar.|
+| RESOLUTION_UNIT <sup>12+</sup>            | "ResolutionUnit"            | **Read/Write capability**: readable and writable<br> Unit of measurement for XResolution and YResolution.|
+| TRANSFER_FUNCTION <sup>12+</sup>          | "TransferFunction"          | **Read/Write capability**: readable and writable<br> Transfer function for the image, which is usually used for color correction.|
+| SOFTWARE <sup>12+</sup>                   | "Software"                  | **Read/Write capability**: readable and writable<br> Name and version number of the software used to create the image.|
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                  | **Read/Write capability**: readable and writable<br> Date and time of image creation.|
+| ARTIST <sup>12+</sup>                     | "Artist"                    | **Read/Write capability**: readable and writable<br> Person who created the image.|
+| WHITE_POINT <sup>12+</sup>                | "WhitePoint"                | **Read/Write capability**: readable and writable<br> Chromaticity of the white point of the image.|
+| PRIMARY_CHROMATICITIES <sup>12+</sup>     | "PrimaryChromaticities"     | **Read/Write capability**: readable and writable<br> Chromaticities of the primaries of the image.|
+| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode"                 | **Read/Write capability**: readable and writable<br> Photographing mode.|
+| JPEG_INTERCHANGE_FORMAT <sup>12+</sup>    | "JPEGInterchangeFormat"     | **Read/Write capability**: readable and writable<br> Offset of the SOI marker of a JPEG interchange format bitstream.|
+| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | **Read/Write capability**: readable and writable<br> Number of bytes of the JPEG stream.|
+| YCBCR_COEFFICIENTS <sup>12+</sup>         | "YCbCrCoefficients"         | **Read/Write capability**: readable and writable<br> Transformation from RGB to YCbCr image data.|
+| YCBCR_SUB_SAMPLING <sup>12+</sup>         | "YCbCrSubSampling"          | **Read/Write capability**: readable and writable<br> Subsampling factors used for the chrominance components of a YCbCr image.|
+| YCBCR_POSITIONING <sup>12+</sup>          | "YCbCrPositioning"          | **Read/Write capability**: readable and writable<br> Positioning of subsampled chrominance components relative to luminance samples.|
+| REFERENCE_BLACK_WHITE <sup>12+</sup>      | "ReferenceBlackWhite"       | **Read/Write capability**: readable and writable<br> A pair of headroom and footroom image data values (codes) for each pixel component.|
+| COPYRIGHT <sup>12+</sup>                  | "Copyright"                 | **Read/Write capability**: readable and writable<br> Copyright notice of the image.|
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"              | **Read/Write capability**: readable and writable<br> Exposure time, for example, 1/33 seconds.|
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                   | **Read/Write capability**: readable and writable<br> F number, for example, f/1.8.|
+| EXPOSURE_PROGRAM <sup>12+</sup>           | "ExposureProgram"           | **Read/Write capability**: readable and writable<br> Class of the program used by the camera to set exposure when the image was captured.|
+| SPECTRAL_SENSITIVITY <sup>12+</sup>       | "SpectralSensitivity"       | **Read/Write capability**: readable and writable<br> Spectral sensitivity of each channel of the camera.|
+| GPS_VERSION_ID <sup>12+</sup>             | "GPSVersionID"              | **Read/Write capability**: readable and writable<br> Version of GPSInfoIFD.|
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"            | **Read/Write capability**: readable and writable<br> Whether the latitude is north or south latitude.|
+| GPS_LATITUDE                              | "GPSLatitude"               | **Read/Write capability**: readable and writable<br> Image latitude.|
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | **Read/Write capability**: readable and writable<br> Whether the longitude is east or west longitude.|
+| GPS_LONGITUDE                             | "GPSLongitude"              | **Read/Write capability**: readable and writable<br> Image longitude.|
+| GPS_ALTITUDE_REF <sup>12+</sup>           | "GPSAltitudeRef"            | **Read/Write capability**: readable and writable<br> Whether the latitude is north or south latitude.|
+| GPS_ALTITUDE <sup>12+</sup>               | "GPSAltitude"               | **Read/Write capability**: readable and writable<br> Altitude based on the reference in GPSAltitudeRef.|
+| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | **Read/Write capability**: readable and writable<br> GPS timestamp.|
+| GPS_SATELLITES <sup>12+</sup>             | "GPSSatellites"             | **Read/Write capability**: readable and writable<br> GPS satellites used for measurement.|
+| GPS_STATUS <sup>12+</sup>                 | "GPSStatus"                 | **Read/Write capability**: readable and writable<br> Status of the GPS receiver when the image was recorded.|
+| GPS_MEASURE_MODE <sup>12+</sup>           | "GPSMeasureMode"            | **Read/Write capability**: readable and writable<br> GPS measurement pmode.|
+| GPS_DOP <sup>12+</sup>                    | "GPSDOP"                    | **Read/Write capability**: readable and writable<br> GPS DOP (data degree of precision)|
+| GPS_SPEED_REF <sup>12+</sup>              | "GPSSpeedRef"               | **Read/Write capability**: readable and writable<br> Unit used to express the movement speed of the GPS receiver.|
+| GPS_SPEED <sup>12+</sup>                  | "GPSSpeed"                  | **Read/Write capability**: readable and writable<br> Movement speed of the GPS receiver.|
+| GPS_TRACK_REF <sup>12+</sup>              | "GPSTrackRef"               | **Read/Write capability**: readable and writable<br> Reference of the movement direction of the GPS receiver.|
+| GPS_TRACK <sup>12+</sup>                  | "GPSTrack"                  | **Read/Write capability**: readable and writable<br> Movement direction of the GPS receiver.|
+| GPS_IMG_DIRECTION_REF <sup>12+</sup>      | "GPSImgDirectionRef"        | **Read/Write capability**: readable and writable<br> Reference of the direction of the image when it was captured.|
+| GPS_IMG_DIRECTION <sup>12+</sup>          | "GPSImgDirection"           | **Read/Write capability**: readable and writable<br> Direction of the image when it was captured.|
+| GPS_MAP_DATUM <sup>12+</sup>              | "GPSMapDatum"               | **Read/Write capability**: readable and writable<br> Geodetic survey data used by the GPS receiver.|
+| GPS_DEST_LATITUDE_REF <sup>12+</sup>      | "GPSDestLatitudeRef"        | **Read/Write capability**: readable and writable<br> Whether the latitude of the destination point is north or south latitude.|
+| GPS_DEST_LATITUDE <sup>12+</sup>          | "GPSDestLatitude"           | **Read/Write capability**: readable and writable<br> Latitude of the destination point.|
+| GPS_DEST_LONGITUDE_REF <sup>12+</sup>     | "GPSDestLongitudeRef"       | **Read/Write capability**: readable and writable<br> Whether the longitude of the destination point is east or west longitude.|
+| GPS_DEST_LONGITUDE <sup>12+</sup>         | "GPSDestLongitude"          | **Read/Write capability**: readable and writable<br> Longitude of the destination point.|
+| GPS_DEST_BEARING_REF <sup>12+</sup>       | "GPSDestBearingRef"         | **Read/Write capability**: readable and writable<br> Reference of the bearing to the destination point.|
+| GPS_DEST_BEARING <sup>12+</sup>           | "GPSDestBearing"            | **Read/Write capability**: readable and writable<br> Bearing to the destination point.|
+| GPS_DEST_DISTANCE_REF <sup>12+</sup>      | "GPSDestDistanceRef"        | **Read/Write capability**: readable and writable<br> Unit used to express the distance to the destination point.|
+| GPS_DEST_DISTANCE <sup>12+</sup>          | "GPSDestDistance"           | **Read/Write capability**: readable and writable<br> Distance to the destination point.|
+| GPS_PROCESSING_METHOD <sup>12+</sup>      | "GPSProcessingMethod"       | **Read/Write capability**: readable and writable<br> String that records the name of the method used for positioning.|
+| GPS_AREA_INFORMATION <sup>12+</sup>       | "GPSAreaInformation"        | **Read/Write capability**: readable and writable<br> String that records the name of the GPS area.|
+| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"              | **Read/Write capability**: readable and writable<br> GPS date stamp.|
+| GPS_DIFFERENTIAL <sup>12+</sup>           | "GPSDifferential"           | **Read/Write capability**: readable and writable<br> Whether differential correction is applied to the GPS receiver. It is critical to accurate location accuracy.|
+| GPS_H_POSITIONING_ERROR <sup>12+</sup>    | "GPSHPositioningError"      | **Read/Write capability**: readable and writable<br> Horizontal positioning error, in meters.|
+| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"           | **Read/Write capability**: readable and writable<br> ISO sensitivity or ISO speed, for example, 400.|
+| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup>   | "PhotographicSensitivity"   | **Read/Write capability**: readable and writable<br> Sensitivity of the camera or input device when the image was captured.|
+| OECF <sup>12+</sup>                       | "OECF"                      | **Read/Write capability**: readable and writable<br> Opto-Electric Conversion Function (OECF) specified in ISO 14524.|
+| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"           | **Read/Write capability**: readable and writable<br> Sensitivity type.|
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity" | **Read/Write capability**: readable and writable<br> Standard output sensitivity.|
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"  | **Read/Write capability**: readable and writable<br> Recommended exposure index.|
+| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"           | **Read/Write capability**: readable and writable<br> ISO speed.|
+| ISO_SPEED_LATITUDE_YYY <sup>12+</sup>     | "ISOSpeedLatitudeyyy"       | **Read/Write capability**: readable and writable<br> ISO speed latitude yyy value of the camera or input device, which is defined in ISO 12232.|
+| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup>     | "ISOSpeedLatitudezzz"       | **Read/Write capability**: readable and writable<br> ISO speed latitude zzz value of the camera or input device, which is defined in ISO 12232.|
+| EXIF_VERSION <sup>12+</sup>               | "ExifVersion"               | **Read/Write capability**: readable and writable<br> Version of the supported EXIF standard.|
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"          | **Read/Write capability**: readable and writable<br> Time when the original image data was generated, for example, 2022:09:06 15:48:00.|
+| DATE_TIME_DIGITIZED <sup>12+</sup>        | "DateTimeDigitized"         | **Read/Write capability**: readable and writable<br> Date and time when the image was stored as digital data, in the format of YYYY:MM:DD HH:MM:SS.|
+| OFFSET_TIME <sup>12+</sup>                | "OffsetTime"                | **Read/Write capability**: readable and writable<br> Time with an offset from UTC when the image was captured, in the format of ±HH:MM.|
+| OFFSET_TIME_ORIGINAL <sup>12+</sup>       | "OffsetTimeOriginal"        | **Read/Write capability**: readable and writable<br> Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.|
+| OFFSET_TIME_DIGITIZED <sup>12+</sup>      | "OffsetTimeDigitized"       | **Read/Write capability**: readable and writable<br> Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.|
+| COMPONENTS_CONFIGURATION <sup>12+</sup>   | "ComponentsConfiguration"   | **Read/Write capability**: readable and writable<br> Specific information about compressed data.|
+| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup>  | "CompressedBitsPerPixel"    | **Read/Write capability**: readable and writable<br> Number of bits per pixel. It is specific to compressed data.|
+| SHUTTER_SPEED <sup>12+</sup>              | "ShutterSpeedValue"         | **Read/Write capability**: readable and writable<br> Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.|
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"             | **Read/Write capability**: readable and writable<br> Lens aperture.|
+| BRIGHTNESS_VALUE <sup>12+</sup>           | "BrightnessValue"           | **Read/Write capability**: readable and writable<br> Value of brightness, expressed in APEX values.|
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"         | **Read/Write capability**: readable and writable<br> Exposure bias.|
+| MAX_APERTURE_VALUE <sup>12+</sup>         | "MaxApertureValue"          | **Read/Write capability**: readable and writable<br> Smallest F number of the lens.|
+| SUBJECT_DISTANCE <sup>12+</sup>           | "SubjectDistance"           | **Read/Write capability**: readable and writable<br> Distance to the subject, in meters.|
+| METERING_MODE<sup>10+</sup>               | "MeteringMode"              | **Read/Write capability**: readable and writable<br> Metering mode.|
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"               | **Read/Write capability**: readable and writable<br> Light source.|
+| FLASH <sup>10+</sup>                      | "Flash"                     | **Read/Write capability**: readable and writable<br> Flash status.|
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"               | **Read/Write capability**: readable and writable<br> Focal length of the lens.|
+| SUBJECT_AREA <sup>12+</sup>               | "SubjectArea"               | **Read/Write capability**: readable and writable<br> Location and area of the main subject in the entire scene.|
+| MAKER_NOTE <sup>12+</sup>                 | "MakerNote"                 | **Read/Write capability**: read-only<br> Marker used by EXIF/DCF manufacturers to record any required information.|
+| SCENE_POINTER <sup>12+</sup>              | "HwMnoteScenePointer"       | **Read/Write capability**: read-only<br> Pointer to the scene.|
+| SCENE_VERSION <sup>12+</sup>              | "HwMnoteSceneVersion"       | **Read/Write capability**: read-only<br> Scene algorithm version.|
+| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"      | **Read/Write capability**: read-only<br> Photographing scene: food.|
+| SCENE_STAGE_CONF<sup>11+</sup>            | "HwMnoteSceneStageConf"     | **Read/Write capability**: read-only<br> Photographing scene: stage.|
+| SCENE_BLUE_SKY_CONF<sup>11+</sup>         | "HwMnoteSceneBlueSkyConf"   | **Read/Write capability**: read-only<br> Photographing scene: blue sky.|
+| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | **Read/Write capability**: read-only<br> Photographing scene: green plant.|
+| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"     | **Read/Write capability**: read-only<br> Photographing scene: beach.|
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"      | **Read/Write capability**: read-only<br> Photographing scene: snow.|
+| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"    | **Read/Write capability**: read-only<br> Photographing scene: sunset.|
+| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"   | **Read/Write capability**: read-only<br> Photographing scene: flowers.|
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"     | **Read/Write capability**: read-only<br> Photographing scene: night.|
+| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"      | **Read/Write capability**: read-only<br> Photographing scene: text.|
+| FACE_POINTER <sup>12+</sup>               | "HwMnoteFacePointer"        | **Read/Write capability**: read-only<br> Face pointer.|
+| FACE_VERSION <sup>12+</sup>               | "HwMnoteFaceVersion"        | **Read/Write capability**: read-only<br> Facial recognition algorithm version.|
+| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"          | **Read/Write capability**: read-only<br> Number of faces.|
+| FACE_CONF <sup>12+</sup>                  | "HwMnoteFaceConf"           | **Read/Write capability**: read-only<br> Face confidence.|
+| FACE_SMILE_SCORE <sup>12+</sup>           | "HwMnoteFaceSmileScore"     | **Read/Write capability**: read-only<br> Smile score of for faces.|
+| FACE_RECT <sup>12+</sup>                  | "HwMnoteFaceRect"           | **Read/Write capability**: read-only<br> Face rectangle.|
+| FACE_LEYE_CENTER <sup>12+</sup>           | "HwMnoteFaceLeyeCenter"     | **Read/Write capability**: read-only<br> Left eye centered.|
+| FACE_REYE_CENTER <sup>12+</sup>           | "HwMnoteFaceReyeCenter"     | **Read/Write capability**: read-only<br> Right eye centered.|
+| FACE_MOUTH_CENTER <sup>12+</sup>          | "HwMnoteFaceMouthCenter"    | **Read/Write capability**: read-only<br> Mouth centered.|
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"        | **Read/Write capability**: readable and writable<br> Capture mode.|
+| BURST_NUMBER <sup>12+</sup>               | "HwMnoteBurstNumber"        | **Read/Write capability**: read-only<br> Number of burst shooting times.|
+| FRONT_CAMERA <sup>12+</sup>               | "HwMnoteFrontCamera"        | **Read/Write capability**: read-only<br> Whether the front camera is used to take a selfie.|
+| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"          | **Read/Write capability**: read-only<br> Roll angle.|
+| PITCH_ANGLE<sup>11+</sup>                 | "HwMnotePitchAngle"         | **Read/Write capability**: read-only<br> Pitch angle.|
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"   | **Read/Write capability**: read-only<br> Physical aperture.|
+| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"          | **Read/Write capability**: read-only<br> Focus mode.|
+| USER_COMMENT <sup>10+</sup>               | "UserComment"               | **Read/Write capability**: readable and writable<br> User comments.|
+| SUBSEC_TIME <sup>12+</sup>                | "SubsecTime"                | **Read/Write capability**: readable and writable<br> Tag used to record fractions of seconds for the **DateTime** tag.|
+| SUBSEC_TIME_ORIGINAL <sup>12+</sup>       | "SubsecTimeOriginal"        | **Read/Write capability**: readable and writable<br> Tag used to record fractions of seconds for the **DateTimeOriginal** tag.|
+| SUBSEC_TIME_DIGITIZED <sup>12+</sup>      | "SubsecTimeDigitized"       | **Read/Write capability**: readable and writable<br> Tag used to record fractions of seconds for the **DateTimeDigitized** tag.|
+| FLASHPIX_VERSION <sup>12+</sup>           | "FlashpixVersion"           | **Read/Write capability**: readable and writable<br> FlashPix format version supported by an FPXR file. It is used to enhance device compatibility.|
+| COLOR_SPACE <sup>12+</sup>                | "ColorSpace"                | **Read/Write capability**: readable and writable<br> Color space information, which is usually recorded as a color space specifier.|
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"           | **Read/Write capability**: readable and writable<br> Pixel X dimension.|
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"           | **Read/Write capability**: readable and writable<br> Pixel Y dimension.|
+| RELATED_SOUND_FILE <sup>12+</sup>         | "RelatedSoundFile"          | **Read/Write capability**: readable and writable<br> Name of an audio file related to the image data.|
+| FLASH_ENERGY <sup>12+</sup>               | "FlashEnergy"               | **Read/Write capability**: readable and writable<br> Strobe energy at the time the image was captured, in Beam Candle Power Seconds (BCPS).|
+| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse"  | **Read/Write capability**: readable and writable<br> Spatial frequency table of the camera or input device.|
+| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup>   | "FocalPlaneXResolution"     | **Read/Write capability**: readable and writable<br> Number of pixels in the image width (X) direction per FocalPlaneResolutionUnit.|
+| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup>   | "FocalPlaneYResolution"     | **Read/Write capability**: readable and writable<br> Number of pixels in the image height (Y) direction per FocalPlaneResolutionUnit.|
+| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit"  | **Read/Write capability**: readable and writable<br> Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution.|
+| SUBJECT_LOCATION <sup>12+</sup>           | "SubjectLocation"           | **Read/Write capability**: readable and writable<br> Location of the main subject relative to the left edge.|
+| EXPOSURE_INDEX <sup>12+</sup>             | "ExposureIndex"             | **Read/Write capability**: readable and writable<br> Exposure index selected at the time the image is captured.|
+| SENSING_METHOD <sup>12+</sup>             | "SensingMethod"             | **Read/Write capability**: readable and writable<br> Type of the image sensor on the camera.|
+| FILE_SOURCE <sup>12+</sup>                | "FileSource"                | **Read/Write capability**: readable and writable<br> Image source.|
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                 | **Read/Write capability**: readable and writable<br> Type of the scene, for example, portrait, scenery, motion, and night.|
+| CFA_PATTERN <sup>12+</sup>                | "CFAPattern"                | **Read/Write capability**: readable and writable<br> Color Filter Array (CFA) geometric pattern of the image sensor.|
+| CUSTOM_RENDERED <sup>12+</sup>            | "CustomRendered"            | **Read/Write capability**: readable and writable<br> Special processing on image data.|
+| EXPOSURE_MODE <sup>12+</sup>              | "ExposureMode"              | **Read/Write capability**: readable and writable<br> Exposure mode set when the image was captured.|
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"              | **Read/Write capability**: readable and writable<br> White balance.|
+| DIGITAL_ZOOM_RATIO <sup>12+</sup>         | "DigitalZoomRatio"          | **Read/Write capability**: readable and writable<br> Digital zoom ratio when the image was captured.|
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"     | **Read/Write capability**: readable and writable<br> Focal length in 35mm film.|
+| SCENE_CAPTURE_TYPE <sup>12+</sup>         | "SceneCaptureType"          | **Read/Write capability**: readable and writable<br> Type of the scene that was captured.|
+| GAIN_CONTROL <sup>12+</sup>               | "GainControl"               | **Read/Write capability**: readable and writable<br> Degree of overall image gain adjustment.|
+| CONTRAST <sup>12+</sup>                   | "Contrast"                  | **Read/Write capability**: readable and writable<br> Direction of contrast processing used by the camera.|
+| SATURATION <sup>12+</sup>                 | "Saturation"                | **Read/Write capability**: readable and writable<br> Direction of saturation processing used by the camera.|
+| SHARPNESS <sup>12+</sup>                  | "Sharpness"                 | **Read/Write capability**: readable and writable<br> Direction of sharpness processing used by the camera.|
+| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"  | **Read/Write capability**: readable and writable<br> Information about the photographing conditions of a specific camera model.|
+| SUBJECT_DISTANCE_RANGE <sup>12+</sup>     | "SubjectDistanceRange"      | **Read/Write capability**: readable and writable<br> Distance to the subject.|
+| IMAGE_UNIQUE_ID <sup>12+</sup>            | "ImageUniqueID"             | **Read/Write capability**: readable and writable<br> Unique identifier assigned to each image.|
+| CAMERA_OWNER_NAME <sup>12+</sup>          | "CameraOwnerName"           | **Read/Write capability**: readable and writable<br> Name of the camera owner.|
+| BODY_SERIAL_NUMBER <sup>12+</sup>         | "BodySerialNumber"          | **Read/Write capability**: readable and writable<br> Serial number of the camera body.|
+| LENS_SPECIFICATION <sup>12+</sup>         | "LensSpecification"         | **Read/Write capability**: readable and writable<br> Specifications of the lens.|
+| LENS_MAKE <sup>12+</sup>                  | "LensMake"                  | **Read/Write capability**: readable and writable<br> Manufacturer of the lens.|
+| LENS_MODEL <sup>12+</sup>                 | "LensModel"                 | **Read/Write capability**: readable and writable<br> Model of the lens.|
+| LENS_SERIAL_NUMBER <sup>12+</sup>         | "LensSerialNumber"          | **Read/Write capability**: readable and writable<br> Serial number of the lens.|
+| COMPOSITE_IMAGE <sup>12+</sup>            | "CompositeImage"            | **Read/Write capability**: readable and writable<br> Whether the image is a composite image.|
+| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup>   | "SourceImageNumberOfCompositeImage"       | **Read/Write capability**: readable and writable<br> Number of source images of the composite image.|
+| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"     | **Read/Write capability**: readable and writable<br> Exposure time of source images of the composite image.|
+| GAMMA <sup>12+</sup>                      | "Gamma"                     | **Read/Write capability**: readable and writable<br> Gamma value.|
+| DNG_VERSION <sup>12+</sup>                | "DNGVersion"                | **Read/Write capability**: readable and writable<br> DNG version. It encodes the DNG 4-tier version number.|
+| DEFAULT_CROP_SIZE <sup>12+</sup>          | "DefaultCropSize"           | **Read/Write capability**: readable and writable<br> Size of the final image area, in raw image coordinates, taking into account extra pixels around the edges of the final image.|
+| GIF_LOOP_COUNT <sup>12+</sup>             | "GIFLoopCount"              | **Read/Write capability**: read-only<br> Number of GIF loops. The value **0** means an infinite loop, and other values means the number of loops.|
 
 ## ImageFormat<sup>9+</sup>
 
@@ -5760,7 +6070,108 @@ Describes the desired dynamic range of a pixel map during encoding.
 | Name         | Value      | Description        |
 | ------------- | ----------| ------------ |
 | AUTO          | 0    | Adaptive. The [pixelmap](#pixelmap7) is encoded based on the format. If the pixel map is in HDR format, it is encoded based on the HDR content; otherwise, it is encoded based on the SDR content. |
-| SDR           | 1    | The pixel map is encoded according to the standard dynamic range.  |
+| SDR           | 1    | The image is decoded according to the standard dynamic range.  |
+
+## HdrMetadataKey<sup>12+</sup>
+
+Enumerates the keys of HDR metadata used by [pixelmap](#pixelmap7).
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Value      | Description        |
+| ------------- | ----------| ------------ |
+| HDR_METADATA_TYPE    | 0    | Metadata type used by [pixelmap](#pixelmap7). |
+| HDR_STATIC_METADATA  | 1    | Static metadata.  |
+| HDR_DYNAMIC_METADATA | 2    | Dynamic metadata.  |
+| HDR_GAINMAP_METADATA | 3    | Metadata used by gain maps.  |
+
+## HdrMetadataType<sup>12+</sup>
+
+Enumerates the values available for **HDR_METADATA_TYPE** in [HdrMetadataKey](#hdrmetadatakey12).
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Value      | Description        |
+| ------------- | ----------| ------------ |
+| NONE     | 0    | No metadata. |
+| BASE     | 1    | Metadata used for base graphics.  |
+| GAINMAP  | 2    | Metadata used for gain maps.  |
+| ALTERNATE| 3    | Metadata used for synthesized HDR graphics.  |
+
+## HdrStaticMetadata<sup>12+</sup>
+
+Describes the static metadata keys, that is, the values available for **HDR_STATIC_METADATA** in [HdrMetadataKey](#hdrmetadatakey12).
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Type      | Description        |
+| ------------- | ----------| ------------ |
+| displayPrimariesX     | Array\<number>    | X coordinate of the three primary colors of the display device after normalization. The array length is 3. The unit is 0.00002. The value range is [0.0, 1.0]. |
+| displayPrimariesY     | Array\<number>    | Y coordinate of the three primary colors of the display device after normalization. The array length is 3. The unit is 0.00002. The value range is [0.0, 1.0]. |
+| whitePointX  | number    | X coordinate of the white point after normalization. The unit is 0.00002. The value range is [0.0, 1.0].  |
+| whitePointY  | number     | X coordinate of the white point after normalization. The unit is 0.00002. The value range is [0.0, 1.0].  |
+| maxLuminance  | number    | Maximum luminance of the main monitor. The unit is 1, and the maximum value is 65535.  |
+| minLuminance  | number     | Minimum luminance of the main monitor. The unit is 0.0001, and the maximum value is 6.55535.  |
+| maxContentLightLevel  | number    | Maximum luminance of the displayed content. The unit is 1, and the maximum value is 65535.  |
+| maxFrameAverageLightLevel  | number     | Maximum average luminance of the displayed content. The unit is 1, and the maximum value is 65535.|
+
+## GainmapChannel<sup>12+</sup>
+
+Describes the data content of a single channel of the gain map. For details, see ISO 21496-1.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Type      | Description        |
+| ------------- | ----------| ------------ |
+| gainmapMax     | number   | Maximum value of the gain map. For details, see ISO 21496-1. |
+| gainmapMin     | number   | Minimum value of the gain map. For details, see ISO 21496-1. |
+| gamma  | number    | Gamma. For details, see ISO 21496-1.  |
+| baseOffset  | number     | Offset of the base graphic. For details, see ISO 21496-1.  |
+| alternateOffset  | number    | Offset of the alternative graphic that can be extracted. For details, see ISO 21496-1.   |
+
+## HdrGainmapMetadata<sup>12+</sup>
+
+Describes the metadata keys used by a gain map, that is, the values available for **HDR_GAINMAP_METADATA** in [HdrMetadataKey](#hdrmetadatakey12). For details, see ISO 21496-1.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Type      | Description        |
+| ------------- | ----------| ------------ |
+| writerVersion     | number   | Version used by the metadata editor. |
+| miniVersion     | number   | Minimum version that needs to be understood for metadata parsing. |
+| gainmapChannelCount  | number    | Number of color channels of the gain map. When the value is 3, the metadata values of the RGB channels are different. When the value is 1, the metadata values of the RGB channels are the same. For details, see ISO 21496-1. |
+| useBaseColorFlag  | boolean     | Whether to use the color space of the base graphic. For details, see ISO 21496-1.  |
+| baseHeadroom  | number    |  Headroom of the base graphic, which means the additional brightness that can be added to the base graphic. For details, see ISO 21496-1.  |
+| alternateHeadroom  | number     |  Headroom of the alternate graphic. For details, see ISO 21496-1. |
+| channels  | Array<[GainmapChannel](#gainmapchannel12)> | Number of channels. The length is 3. For details, see ISO 21496-1.|
+
+## HdrMetadataValue<sup>12+</sup>
+
+type HdrMetadataValue = HdrMetadataType | HdrStaticMetadata | ArrayBuffer | HdrGainmapMetadata
+
+Describes the HDR metadata values used by a pixel map, which corresponds to the values available for [HdrMetadataKey](#hdrmetadatakey12).
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Type               | Description                                           |
+| ------------------- | ----------------------------------------------- |
+| [HdrMetadataType](#hdrmetadatatype12) | Metadata value corresponding to the **HDR_GAINMAP_METADATA** key in [HdrMetadataKey](#hdrmetadatakey12).|
+| [HdrStaticMetadata](#hdrstaticmetadata12) | Metadata value corresponding to the **HDR_STATIC_METADATA** key in [HdrMetadataKey](#hdrmetadatakey12).|
+| ArrayBuffer | Metadata value corresponding to the **HDR_DYNAMIC_METADATA** key in [HdrMetadataKey](#hdrmetadatakey12).|
+| [HdrGainmapMetadata](#hdrgainmapmetadata12) | Metadata value corresponding to the **HDR_GAINMAP_METADATA** key in [HdrMetadataKey](#hdrmetadatakey12).|
+
+## AntiAliasingLevel<sup>12+</sup>
+
+Enumerates the anti-aliasing levels.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name                  |   Value  | Description             |
+| ---------------------- | ------ | ----------------- |
+| NONE                | 0      | The nearest neighbor interpolation algorithm is used by default.       |
+| LOW                 | 1      | Bilinear interpolation.    |
+| MEDIUM              | 2      | Bilinear interpolation with mipmap enabled.|
+| HIGH                | 3      | Cubic convolution.|
 
 ## Supplementary Information
 ### SVG Tags

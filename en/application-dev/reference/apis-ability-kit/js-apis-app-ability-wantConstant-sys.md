@@ -14,7 +14,7 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 import { wantConstant } from '@kit.AbilityKit';
 ```
 
-## wantConstant.Params
+## Params
 
 Defines **Params** (specifying the action that can be performed) in the Want.
 

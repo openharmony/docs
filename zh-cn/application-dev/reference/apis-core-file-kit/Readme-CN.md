@@ -14,6 +14,7 @@
   - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)
   - [@ohos.file.BackupExtensionContext (备份恢复扩展能力)](js-apis-file-backupextensioncontext.md)
   <!--Del-->
+  - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)(系统接口)](js-apis-application-backupExtensionAbility-sys.md)
   - [@ohos.file.backup (备份恢复)(系统接口)](js-apis-file-backup-sys.md)
   - [@ohos.file.cloudSync (端云同步能力)(系统接口)](js-apis-file-cloudsync-sys.md)
   - [@ohos.file.cloudSyncManager (端云同步管理)(系统接口)](js-apis-file-cloudsyncmanager-sys.md)

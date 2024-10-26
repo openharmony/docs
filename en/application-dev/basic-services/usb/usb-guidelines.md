@@ -1,5 +1,7 @@
 # USB Service Development
 
+
+
 ## When to Use
 
 In Host mode, you can obtain the list of connected USB devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
@@ -28,7 +30,7 @@ The following table lists the USB APIs currently available. For details, see the
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                                  |
 | getFileDescriptor(pipe: USBDevicePipe): number                 | Obtains the file descriptor.                                              |
 | getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | Obtains the raw USB descriptor.                                       |
-| controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: number): Promise&lt;number&gt; | Performs control transfer.                                                  |
+| usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout?: number): Promise&lt;number&gt; | Performs control transfer.                                                  |
 
 
 ## How to Develop
@@ -124,38 +126,63 @@ You can set a USB device as a host to connect to a device for data transfer. The
    usbManager.claimInterface(pipe, interface1, true);
    ```
 
-4. Perform data transfer.
+4. Perform data transfer. Currently, only bulk transfer and control transfer are supported.
 
-   ```ts
-   import { usbManager } from '@kit.BasicServicesKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   /*
-    Read data. Select the corresponding RX endpoint from deviceList for data transfer.
-   (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
-   */
-   let inEndpoint : usbManager.USBEndpoint = interface1.endpoints[2];
-   let outEndpoint : usbManager.USBEndpoint = interface1.endpoints[1];
-   let dataUint8Array : Uint8Array = new Uint8Array(1024);
-   usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
-   if (dataLength >= 0) {
-     console.info("usb readData result Length : " + dataLength);
-   } else {
-     console.info("usb readData failed : " + dataLength);
-   }
-   }).catch((error : BusinessError) => {
-   console.info("usb readData error : " + JSON.stringify(error));
-   });
-   // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
-   usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
-     if (dataLength >= 0) {
-       console.info("usb writeData result write length : " + dataLength);
-     } else {
-       console.info("writeData failed");
-     }
-   }).catch((error : BusinessError) => {
-     console.info("usb writeData error : " + JSON.stringify(error));
-   });
-   ```
+    - Bulk transfer
+
+    ```ts
+    import { usbManager } from '@kit.BasicServicesKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    /*
+      Read data. Select the corresponding RX endpoint from deviceList for data transfer.
+    (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
+    */
+    let inEndpoint : usbManager.USBEndpoint = interface1.endpoints[2];
+    let outEndpoint : usbManager.USBEndpoint = interface1.endpoints[1];
+    let dataUint8Array : Uint8Array = new Uint8Array(1024);
+    usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
+    if (dataLength >= 0) {
+      console.info("usb readData result Length : " + dataLength);
+    } else {
+      console.info("usb readData failed : " + dataLength);
+    }
+    }).catch((error : BusinessError) => {
+    console.info("usb readData error : " + JSON.stringify(error));
+    });
+    // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
+    usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
+      if (dataLength >= 0) {
+        console.info("usb writeData result write length : " + dataLength);
+      } else {
+        console.info("writeData failed");
+      }
+    }).catch((error : BusinessError) => {
+      console.info("usb writeData error : " + JSON.stringify(error));
+    });
+    ```
+
+    - Control transfer
+
+    ```ts
+    import { usbManager } from '@kit.BasicServicesKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    /*
+      Construct control transfer parameters.
+    */
+    let param: usbManager.USBDeviceRequestParams = {
+      bmRequestType: 0x80,    // 0x80 indicates a standard request for data transfer from the device to the host.
+      bRequest: 0x06,    // 0x06 indicates a request for the descriptor.
+      wValue:0x01 << 8 | 0,    // The value is of two bytes. The high byte indicates the descriptor type. Here, 0x01 indicates the device descriptor. The low byte indicates the descriptor index. The value is set to 0 because it is not involved for the device descriptor.
+      wIndex: 0,    // Descriptor index. The value can be 0.
+      wLength: 18,    // Descriptor length. The value 18 indicates that a maximum of 1024 characters are supported.
+      data: new Uint8Array(18)
+    };
+
+    usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
+    console.info("usbControlTransfer = ${ret}");
+    })
+    ```
 
 5. Release the USB interface, and close the USB device.
 

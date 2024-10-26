@@ -22,7 +22,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 - You must register the **onerror** API in the main thread to listen for worker thread errors, which might cause a JavaScript crash.
 - Worker thread files cannot be used across HAPs.
 - During the creation of a worker object, the worker thread files of the current module can be loaded, but those of other modules cannot. To use the worker provided by another module, encapsulate the entire worker logic into a method, export the method, and then import the method.
-- Before referencing the HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-0000001547293682-V5).
+- Before referencing the HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5).
 
 
 ### Precautions for Creating a Worker Thread

@@ -11,7 +11,7 @@
 
 **起始版本：** 8
 
-**废弃版本：** 8
+**废弃版本：** 10
 
 **废弃替代：** [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md)
 

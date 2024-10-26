@@ -27,7 +27,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
-| TYPE_INPUT_METHOD<sup>9+</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
+| TYPE_INPUT_METHOD<sup>(deprecated)</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 从API version 9开始支持，从API version 13开始废弃，无替代窗口类型，输入法相关控制都请调用[输入法框架侧接口](../../inputmethod/inputmethod-application-guide.md)执行。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
 | TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
 | TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
 | TYPE_KEYGUARD<sup>9+</sup>          | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
@@ -644,6 +644,7 @@ on(type: 'waterMarkFlagChange', callback: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -682,6 +683,7 @@ off(type: 'waterMarkFlagChange', callback?: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
@@ -920,7 +922,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 ## window.getSnapshot<sup>12+</sup>
 
-window.getSnapshot(windowId: number): Promise<image.PixelMap>
+getSnapshot(windowId: number): Promise<image.PixelMap>
 
 获取指定窗口截图，使用Promise异步回调
 
@@ -971,7 +973,7 @@ try {
 
 ## window.getVisibleWindowInfo<sup>12+</sup>
 
-window.getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 
 获取当前屏幕的可见窗口（未退至后台的窗口）信息。
 
@@ -2165,6 +2167,8 @@ try {
 setBackdropBlur(radius: number): void
 
 设置窗口背景模糊。
+窗口背景是指窗口覆盖的下层区域，与窗口大小相同。
+需要通过[setWindowBackgroundColor](js-apis-window.md#setwindowbackgroundcolor9)将窗口内容背景设置成透明，否则无法看到模糊效果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2191,6 +2195,7 @@ setBackdropBlur(radius: number): void
 
 ```ts
 try {
+  windowClass.setWindowBackgroundColor('#00FFFFFF');
   windowClass.setBackdropBlur(4.0);
 } catch (exception) {
   console.error(`Failed to set backdrop blur. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -2372,7 +2377,6 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -2416,7 +2420,6 @@ raiseToAppTop(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -2465,6 +2468,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The display device is abnormal.           |
@@ -2511,6 +2515,7 @@ setWaterMarkFlag(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The display device is abnormal.           |
@@ -2945,6 +2950,127 @@ export default class EntryAbility extends UIAbility {
         });
     }
 };
+```
+
+### startMoving<sup>13+</sup>
+
+startMoving(): Promise&lt;void&gt;
+
+开始移动窗口，使用Promise异步回调。
+
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+
+仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**系统接口：** 此接口为系统接口。
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.   |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  build() {
+    row() {
+      Column() {
+        // 设置最小宽度为160
+        Blank('160').onTouch((event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            try {
+              windowClass.startMoving().then(() => {
+                console.info('Succeeded in starting moving window.')
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### enableDrag<sup>13+</sup>
+
+enableDrag(enable: boolean): Promise&lt;void&gt;
+
+使能/禁止拖拽窗口。使用Promise异步回调。
+
+使能后，将允许通过鼠标对窗口进行拉伸操作。
+
+仅对2in1设备的系统窗口生效，其它设备类型调用此接口会报错。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ---------------------------- | -- | --------- |
+| enable| boolean | 是 | 是否允许拖拽。<br>true表示允许，false表示不允许。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.   |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  windowClass.enableDrag(true).then(() => { 
+    console.info('succeeded in setting window draggable');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
@@ -3422,6 +3548,58 @@ promise.then(() => {
 });
 ```
 
+### requestFocus<sup>13+</sup>
+
+requestFocus(isFocused: boolean): Promise&lt;void&gt;
+
+支持当前窗口主动请求获焦/失焦，使用Promise异步回调。调用成功即返回，该接口返回值不代表最终获焦/失焦生效结果。可使用[on('windowEvent')](js-apis-window.md#onwindowevent10)监听窗口获焦/失焦状态。
+
+获焦请求发送后，窗口获焦结果受到窗口可获焦属性及窗口可见状态的限制。获焦成功的窗口需满足以下约束：1.窗口支持获焦；2.窗口可见（窗口已显示，未销毁且未退至后台）。
+
+失焦请求发送后，窗口无条件失焦。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| isFocused | boolean | 是   | 是否获取焦点，true表示请求获焦，false表示请求失焦。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let isFocused: boolean = true;
+let promise = windowClass.requestFocus(isFocused);
+promise.then(() => {
+  console.info('Succeeded in requesting focus.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## SubWindowOptions<sup>11+</sup>
 
 子窗口创建参数。
@@ -3789,7 +3967,7 @@ try {
 }
 ```
 
-## ExtensionWindowAttribute<sup>12+</sup>
+## ExtensionWindowAttribute<sup>14+</sup>
 
 扩展窗口的属性枚举。
 
@@ -3804,7 +3982,7 @@ try {
 | SYSTEM_WINDOW  | 0 | 系统窗口。|
 | SUB_WINDOW  | 1 | 子窗口。|
 
-## SystemWindowOptions<sup>12+</sup>
+## SystemWindowOptions<sup>14+</sup>
 
 系统窗口的创建参数。
 
@@ -3814,11 +3992,11 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 参数名 | 类型                      | 只读  |可选 | 说明       |
+| 名称 | 类型                      | 只读  |可选 | 说明       |
 | ------ | ------------------------- | ---- | ---- |---------- |
-| windowType   | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。无默认类型，不配置会导致窗口创建失败。 |
+| windowType   | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。无默认类型，不配置会导致窗口创建失败。不支持TYPE_DIALOG类型。 |
 
-## ExtensionWindowConfig<sup>12+</sup>
+## ExtensionWindowConfig<sup>14+</sup>
 
 创建扩展窗口时需要配置的参数。
 
@@ -3828,10 +4006,10 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 参数名 | 类型                      | 只读  |可选 | 说明       |
+| 名称 | 类型                      | 只读  |可选 | 说明       |
 | ------ | ------------------------- | ---- | ---- |---------- |
 | windowName   | string | 否 | 否  | 窗口名。 |
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
 | windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形区域。 |
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
-| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions12) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
+| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |

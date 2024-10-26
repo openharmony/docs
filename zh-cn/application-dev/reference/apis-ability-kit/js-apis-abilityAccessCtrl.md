@@ -1,6 +1,6 @@
 # @ohos.abilityAccessCtrl (程序访问控制管理)
 
-程序访问控制提供程序的权限管理能力，包括鉴权、授权和取消授权等。
+程序访问控制提供程序的权限管理能力，包括鉴权、授权等。
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -177,7 +177,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 用于<!--RP1-->UIAbility<!--RP1End-->拉起弹框请求用户授权。使用callback异步回调。
 
-如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。
+如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。或是调用[requestPermissionOnSetting](#requestpermissiononsetting12)，拉起权限设置弹框，引导用户授权。
 
 > **说明：**
 >
@@ -233,7 +233,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 用于<!--RP1-->UIAbility<!--RP1End-->拉起弹框请求用户授权。使用promise异步回调。
 
-如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。
+如果用户拒绝授权，将无法再次拉起弹框，需要用户在系统应用“设置”的界面中，手动授予权限。或是调用[requestPermissionOnSetting](#requestpermissiononsetting12)，拉起权限设置弹框，引导用户授权。
 
 > **说明：**
 >
@@ -421,7 +421,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. Possible causes: 1. The context is invalid when it does not belong to the application itself; 2. The permission list contains the permission that is not declared in the module.json file; 3. The permission list is invalid because the permissions in it do not belong to the same permission group. |
+| 12100001 | Invalid parameter. Possible causes: 1. The context is invalid because it does not belong to the application itself; 2. The permission list contains the permission that is not declared in the module.json file; 3. The permission list is invalid because the permissions in it do not belong to the same permission group. |
 | 12100010 | The request already exists. |
 | 12100011 | All permissions in the permission list have been granted. |
 | 12100012 | The permission list contains the permission that has not been revoked by the user. |
@@ -465,7 +465,7 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | 是 | 请求权限的UIAbility/UIExtensionAbility>的Context。 |
-| type | [SwitchType](#switchtype) | 是 | 全局开关类型。 |
+| type | [SwitchType](#switchtype12) | 是 | 全局开关类型。 |
 
 **返回值：**
 
@@ -500,7 +500,7 @@ atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then
 });
 ```
 
-### SwitchType
+### SwitchType<sup>12+</sup>
 
 表示全局开关类型。
 

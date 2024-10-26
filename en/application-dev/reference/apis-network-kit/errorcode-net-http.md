@@ -182,7 +182,8 @@ This error code is reported if an error occurs while writing received data to th
 
 **Cause**
 
-The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The **destroy** function is called before the data of the last request is fully received.
 
 **Solution**
 
@@ -511,6 +512,24 @@ The specified identity verification field does not match that on the server.
 **Solution**
 
 Check whether the specified identity verification field matches that on the server.
+
+## 2300998 Domain Access Denied
+
+**Error Message**
+
+It is not allowed to access this domain.
+
+**Description**
+
+This error code is reported if access to a certain domain is prohibited.
+
+**Cause**
+
+An incorrect server domain name is configured for the atomic service.
+
+**Solution**
+
+Configure a correct server domain name for the atomic service.
 
 ## 2300999 Unknown Error
 

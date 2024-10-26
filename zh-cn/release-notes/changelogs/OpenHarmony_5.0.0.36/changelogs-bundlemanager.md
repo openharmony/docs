@@ -8,7 +8,7 @@
 
 **变更原因**
 
-bm install、bm uninstall命令在-u未指定情况下，默认为全部用户，需要变更为当前活跃用户，提高安全性。
+bm install、bm uninstall命令在-u未指定情况下，默认为全部用户，基于安全考虑，变更为当前活跃用户。
 
 **变更影响**
 
@@ -18,7 +18,7 @@ bm install、bm uninstall命令在-u未指定情况下，默认为全部用户�
 bm install、bm uninstall命令在-u未指定情况下，默认为全部用户。
 
 变更后：
-bm install、bm uninstall命令在-u未指定情况下，默认当前活跃用户。
+bm install、bm uninstall命令在-u未指定情况下，默认当前活跃用户。如果需要为全部用户安装或卸载应用，需要通过-u指定用户id逐一进行安装或卸载。
 
 **API Level**
 

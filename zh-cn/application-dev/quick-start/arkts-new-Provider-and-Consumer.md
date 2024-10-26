@@ -205,7 +205,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`child postion x: ${this.childX}, y: ${this.childY}`)
+      Text(`child position x: ${this.childX}, y: ${this.childY}`)
       Child()
     }
   }
@@ -254,7 +254,7 @@ struct Parent {
   build() {
     Column() {
       Child()
-      Button('age new user')
+      Button('add new user')
         .onClick(() => {
           this.users.push(new User('Molly', 18));
         })

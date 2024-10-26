@@ -139,7 +139,7 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[3] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     // 第一个参数为向resolve传入的信息，第二个参数为向reject传入的信息，第三个参数为Promise的状态
-    bool status;
+    bool status = false;
     OH_JSVM_GetValueBool(env, args[2], &status);
     // 创建Promise对象
     JSVM_Deferred deferred = nullptr;

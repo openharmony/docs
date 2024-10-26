@@ -157,7 +157,7 @@ Syntax issues are classified as warning or error, depending on the **compatibleS
   - In compatible mode, where the value of **compatibleSdkVersion** is smaller than 10, syntax issues are reported as warnings and will not block the compilation process.
 
 
-## ARK Runtime Compatibility with TS/JS
+## ArkCompiler Runtime Compatibility with TS/JS
 
 The OpenHarmony SDK of API version 11 uses TypeScript 4.9.5, with the **target** field of **es2017**. In the application, you can use the syntax of ECMA2017+ for TS/JS development.
 
@@ -170,4 +170,4 @@ The OpenHarmony SDK of API version 11 uses TypeScript 4.9.5, with the **target**
 
 **Differences from Standard TS/JS**
 
-1. In standard TS/JS, the number format of JSON, the decimal point must be followed by a number. Scientific notation such as `2.e3` is not allowed and throws `SyntaxError`. In the ARK Runtime, this type of scientific notation is allowed.
+In standard TS/JS, the number format of JSON, the decimal point must be followed by a number. Scientific notation such as `2.e3` is not allowed and throws `SyntaxError`. In the ArkCompiler Runtime, this type of scientific notation is allowed.

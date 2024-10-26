@@ -557,7 +557,7 @@ To adapt the  ArkUI subsystem, you need to add the `ace_engine_lite` component t
         {
             "component": "ace_engine_lite",
             "features": [
-            "enable_ohos_ace_engine_lite_product_config = true"
+            "ace_engine_lite_feature_product_config = true"
             ]
         }
         ]
@@ -576,7 +576,7 @@ To adapt the aafwk subsystem, you need to add the `aafwk_lite` component to the 
         {
         "component": "aafwk_lite",
         "features": [
-            "enable_ohos_appexecfwk_feature_ability = true"	 --- The FA feature is supported, that is, the graphics capability is included.
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true"	 --- The FA feature is supported, that is, the graphics capability is included.
         ]
         }
     ]

@@ -197,7 +197,7 @@ Stack进行增、删、改、查操作的常用API如下：
 
 ## 线性容器的使用
 
-此处列举常用的线性容器ArrayList、Vector、Deque、Stack、List的使用示例，包括导入模块、增加元素、访问元素及修改等操作。示例代码如下所示：
+此处列举常用的线性容器ArrayList、Deque、Stack、List的使用示例，包括导入模块、增加元素、访问元素及修改等操作。示例代码如下所示：
 
 
 ```ts
@@ -211,19 +211,6 @@ arrayList2.add(1); // 增加元素
 console.info(`result: ${arrayList2[0]}`); // 访问元素
 arrayList1[0] = 'one'; // 修改元素
 console.info(`result: ${arrayList1[0]}`);
-
-// Vector
-import { Vector } from '@kit.ArkTS'; // 导入Vector模块
-
-let vector1: Vector<string> = new Vector();
-vector1.add('a');
-let vector2: Vector<Array<number>> = new Vector();
-let b1 = [1, 2, 3];
-vector2.add(b1);
-let vector3: Vector<boolean> = new Vector();
-vector3.add(false); // 增加元素
-console.info(`result: ${vector1[0]}`); // 访问元素
-console.info(`result: ${vector2.getFirstElement()}`); // 访问元素
 
 // Deque
 import { Deque } from '@kit.ArkTS'; // 导入Deque模块

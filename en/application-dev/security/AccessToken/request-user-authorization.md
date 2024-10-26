@@ -29,6 +29,11 @@ This topic elaborates steps 3 and 4.
 
 - Frequent pop-up windows may disturb user experience and are not recommended. If a user rejects the authorization, the window for requesting user authorization will not be displayed again. The application needs to provide information to guide the user to manually grant the permission in **Settings**.
 
+- The system permission pop-up window cannot be obscured.
+
+  The system permission pop-up window cannot be obscured by other components. The information in the pop-up window must be completely displayed so that the user can identify and complete authorization.
+  If the system permission pop-up window is displayed in the same position as another component, the system permission pop-up window takes precedence over the other component by default.
+
 ## How to Develop
 
 The following example steps you through on how to request the permission for using the microphone.
@@ -88,7 +93,7 @@ The following example steps you through on how to request the permission for usi
 
 3. Request user authorization when your application needs to access the microphone.
 
-   Use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to request user authorization. You can specify a list of permissions, such as the permission to access the location, Calendar, camera, or microphone, in the **Array<Permissions>** parameter of this API. The user can grant or deny the permissions.
+   Use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to request user authorization. You can specify a list of permissions, such as the permission to access the location, Calendar, camera, or microphone, in the **Array\<Permissions>** parameter of this API. The user can grant or deny the permissions.
 
    You can have [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) called in **onWindowStageCreate()** of the UIAbility to dynamically request user authorization, or request user authorization on the UI based on service requirements.
 

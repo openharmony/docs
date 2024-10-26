@@ -18,7 +18,7 @@
 
 ### native侧ArkWeb绑定
 
-* ArkWeb组件声明在ArkTS侧，需要用户自定义一个标识webTag，并将webTag通过NAPI传至应用C++侧，后续ArkWeb native接口使用，均需webTag作为对应组件的唯一标识。
+* ArkWeb组件声明在ArkTS侧，需要用户自定义一个标识webTag，并将webTag通过Node-API传至应用C++侧，后续ArkWeb native接口使用，均需webTag作为对应组件的唯一标识。
 
 * ArkTS侧
 
@@ -27,7 +27,7 @@
   webTag: string = 'ArkWeb1';
   controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
   ...
-  // aboutToAppear中将webTag通过NAPI接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
+  // aboutToAppear中将webTag通过Node-API接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
   aboutToAppear() {
     console.info("aboutToAppear")
     //初始化web ndk
@@ -60,7 +60,7 @@
 
 ### native侧API结构体获取
 
-ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_ark_web___any_native_a_p_i.md#arkweb_anynativeapi)获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)函数指针结构体。其中[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/ts-basic-components-web.md)。
+ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)函数指针结构体。其中[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/ts-basic-components-web.md)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -172,8 +172,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
               document.getElementById("webDemo").innerHTML = "ndkProxy method2 undefined"
               return "objName  test undefined"
         }
-        var retStr = window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
-        document.getElementById("webDemo").innerHTML  = "ndkProxy and method1 is ok, " + retStr;
+        window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
   }
 
   function testNdkProxyObjMethod2() {
@@ -200,8 +199,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       var cars = [student, 456, false, 4.567];
       let params = "[\"{\\\"scope\\\"]";
 
-      var retStr = window.ndkProxy.method2("hello", "world", false, cars, params);
-      document.getElementById("webDemo").innerHTML  = "ndkProxy and method2 is ok, " + retStr;
+      window.ndkProxy.method2("hello", "world", false, cars, params);
   }
 
   function runJSRetStr(data) {
@@ -269,14 +267,14 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   }
   ```
 
-* NAPI侧暴露ArkTS接口`entry/src/main/cpp/types/libentry/index.d.ts`
+* Node-API侧暴露ArkTS接口`entry/src/main/cpp/types/libentry/index.d.ts`
 
   ```javascript
   export const nativeWebInit: (webName: string) => void;
   export const runJavaScript: (webName: string, jsCode: string) => void;
   ```
 
-* NAPI侧编译配置`entry/src/main/cpp/CMakeLists.txt`
+* Node-API侧编译配置`entry/src/main/cpp/CMakeLists.txt`
 
   ```c++
   # the minimum version of CMake.
@@ -305,7 +303,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   target_link_libraries(entry PUBLIC libace_napi.z.so ${hilog-lib} libohweb.so)
   ```
 
-* NAPI层代码`entry/src/main/cpp/hello.cpp`
+* Node-API层代码`entry/src/main/cpp/hello.cpp`
 
   ```c++
   #include "napi/native_api.h"

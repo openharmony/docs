@@ -14,6 +14,7 @@
       - [Creating a List (List)](arkts-layout-development-create-list.md)
       - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)
+      - [Tabs](arkts-navigation-tabs.md)
   - Adding a Component
     - Adding a Common Component
       - [Button](arkts-common-components-button.md)
@@ -22,19 +23,21 @@
       - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
       - [Text Display (Text/Span)](arkts-common-components-text-display.md)
       - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
+      - [Rich Text (RichEditor)](arkts-common-components-richeditor.md)
       - [Image Display](arkts-graphics-display.md)
       - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [Video Playback (Video)](arkts-common-components-video-player.md)
-      - [Custom Drawing (XComponent)](arkts-common-components-xcomponent.md)
-      - [Native XComponent](napi-xcomponent-guidelines.md)
+      - [Symbol Glyph (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
+      - [Custom Rendering (XComponent)](napi-xcomponent-guidelines.md)
     - Adding a Popup and Menu
       - [Popup](arkts-popup-and-menu-components-popup.md)
       - [Menu](arkts-popup-and-menu-components-menu.md)
-  - Setting Page Routing and Component Navigation
-    - Component Navigation
-      - [Navigation](arkts-navigation-navigation.md)
-      - [Tabs](arkts-navigation-tabs.md)
-    - [Page Routing (@ohos.router)](arkts-routing.md)
+    - Using Text
+      - [Styled String (StyledString/MutableStyledString)](arkts-styled-string.md)
+  - Setting Component Navigation and Page Routing
+    - [Component Navigation (Navigation) (Recommended)](arkts-navigation-navigation.md)
+    - [Page Routing (@ohos.router) (Not Recommended)](arkts-routing.md)
+    - [Transition from Router to Navigation](arkts-router-to-navigation.md)
   - Using Graphics
     - [Drawing Geometric Shapes (Shape)](arkts-geometric-shape-drawing.md)
     - [Drawing Custom Graphics on the Canvas (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -42,7 +45,7 @@
     - [Animation Overview](arkts-animation.md)
     - Property Animation
       - [Property Animation Overview](arkts-attribute-animation-overview.md)
-      - [Property Animation APIs](arkts-attribute-animation-apis.md)
+      - [Implementing Property Animation](arkts-attribute-animation-apis.md)
       - [Custom Property Animation](arkts-custom-attribute-animation.md)
     - Transition Animation
       - [Transition Animation Overview](arkts-transition-overview.md)
@@ -50,7 +53,9 @@
       - [Navigation Transition](arkts-navigation-transition.md)
       - [Modal Transition](arkts-modal-transition.md)
       - [Shared Element Transition](arkts-shared-element-transition.md)
+      - [Screen Rotation Animation Enhancement](arkts-rotation-transition-animation.md)
       - [Page Transition Animation (Not Recommended)](arkts-page-transition-animation.md)
+    - [Particle Animation](arkts-particle-animation.md)
     - [Component Animation](arkts-component-animation.md)
     - Animation Curve
       - [Animation Curve Overview](arkts-curve-overview.md)
@@ -61,18 +66,52 @@
       - [Blur Effect](arkts-blur-effect.md)
       - [Shadow Effect](arkts-shadow-effect.md)
       - [Color Effect](arkts-color-effect.md)
+    - [Frame Animation](arkts-animator.md)
   - Using Interaction Events
     - [Interaction Event Overview](arkts-event-overview.md)
     - Universal Events
+      - [Event Distribution](arkts-common-events-distribute.md)
       - [Touchscreen Event](arkts-common-events-touch-screen-event.md)
       - [Keyboard and Mouse Event](arkts-common-events-device-input-event.md)
       - [Focus Event](arkts-common-events-focus-event.md)
+      - [Drag Event](arkts-common-events-drag-event.md)
     - Gesture Events
       - [Gesture Binding](arkts-gesture-events-binding.md)
       - [Single Gesture](arkts-gesture-events-single-gesture.md)
       - [Combined Gestures](arkts-gesture-events-combined-gestures.md)
       - [Multi-level Gesture Events](arkts-gesture-events-multi-level-gesture.md)
-- UI Development (JavaScript-compatible Web-like Development Paradigm)
+  - Using Customization Capabilities
+    - [Customization Capability Overview](arkts-user-defined.md)
+    - Custom Nodes
+      - [Custom Node Overview](arkts-user-defined-node.md)
+      - [Custom Placeholder Node](arkts-user-defined-place-hoder.md)
+      - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
+      - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
+      - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+    - Custom Extension
+      - [Custom Extension Capability Overview](arkts-user-defined-modifier.md)
+      - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
+      - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
+  - [Using the Mirroring Capability](arkts-mirroring-display.md)
+  - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)
+  - Setting the Theme
+    - [Setting Theme Skinning](theme_skinning.md)
+  - Using NDK APIs to Build UIs
+    - [NDK API Overview](ndk-build-ui-overview.md)
+    - [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md)
+    - Adding Interaction Events
+      - [Listening for Component Events](ndk-listen-to-component-events.md)
+      - [Binding Gesture Events](ndk-bind-gesture-events.md)
+    - [Using Animations](ndk-use-animation.md)
+    - [Developing a Long List with Lazy Loading](ndk-loading-long-list.md)
+    - [Building Dialog Boxes](ndk-build-pop-up-window.md)
+    - [Building Custom Components](ndk-build-custom-components.md)
+    - [Embedding ArkTS Components](ndk-embed-arkts-components.md)
+  - Launching Pages Across Processes
+    <!--Del-->
+    - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](arkts-ui-extension-components.md)
+    <!--DelEnd-->
+- UI Development with JavaScript-compatible Web-like Development Paradigm
   - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui-js-overview.md)
   - Framework Overview
     - [File Organization](js-framework-file.md)
@@ -144,4 +183,5 @@
         - [Animation Effect](ui-js-animate-dynamic-effects.md)
         - [Animation Frame](ui-js-animate-frame.md)
   - [Custom Components](ui-js-custom-components.md)
+  - [WebGL](../webgl/Readme-EN.md)
 - [Window Manager](../windowmanager/Readme-EN.md)

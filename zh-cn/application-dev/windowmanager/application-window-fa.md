@@ -32,9 +32,9 @@
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。                                               |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。                                             |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。                                           |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | 设置窗口布局是否为全屏布局。                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。                                 |
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | 显示当前窗口。                                               |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。                           |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | 销毁当前窗口。                                               |
@@ -192,25 +192,23 @@
    // 实现沉浸式效果。方式一：设置导航栏、状态栏不显示。
    let names: Array<'status' | 'navigation'> = [];
    let mainWindowClass: window.Window = window.findWindow("test");
-   mainWindowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the system bar to be visible.');
-   });
+   mainWindowClass.setWindowSystemBarEnable(names)
+    .then(() => {
+      console.info('Succeeded in setting the system bar to be visible.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+    });
    // 实现沉浸式效果。
    // 方式二：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
    let isLayoutFullScreen: boolean = true;
-   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the window layout to full-screen mode.');
-   });
+   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
+    .then(() => {
+      console.info('Succeeded in setting the window layout to full-screen mode.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+    });
    let sysBarProps: window.SystemBarProperties = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
@@ -218,14 +216,13 @@
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the system bar properties.');
-   });
+   mainWindowClass.setWindowSystemBarProperties(sysBarProps)
+    .then(() => {
+      console.info('Succeeded in setting the system bar properties.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+    });
    ```
 
 3. 加载显示沉浸式窗口的具体内容。

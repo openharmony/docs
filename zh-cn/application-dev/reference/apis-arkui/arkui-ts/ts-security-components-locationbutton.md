@@ -26,7 +26,7 @@ LocationButton()
 
 ### LocationButton
 
-LocationButton(option:LocationButtonOptions)
+LocationButton(options:LocationButtonOptions)
 
 创建包含指定元素的位置按钮。
 
@@ -38,21 +38,28 @@ LocationButton(option:LocationButtonOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| option | [LocationButtonOptions](#locationbuttonoptions) | 否 | 创建包含指定元素的位置按钮。 |
+| options | [LocationButtonOptions](#locationbuttonoptions) | 是 | 创建包含指定元素的位置按钮。 |
 
 ## LocationButtonOptions
+
+用于指定位置按钮的图标、文本等指定元素。
+
+> **说明：**
+> 
+> icon或text需至少传入一个。<br>
+> 如果icon、text都不传入，[LocationButton](#locationbutton-1)中的options参数不起效，创建的LocationButton为默认样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [LocationIconStyle](#locationiconstyle枚举说明) | 否 | 设置位置按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置位置按钮的背景样式<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
+| icon | [LocationIconStyle](#locationiconstyle枚举说明) | 否 | 设置位置按钮的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置按钮的文本描述。<br/>不传入该参数表示没有文字描述。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置位置按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## LocationIconStyle枚举说明
 
@@ -60,7 +67,7 @@ LocationButton(option:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
 | LINES | 1 | 位置按钮展示线条样式图标。 |
@@ -71,7 +78,7 @@ LocationButton(option:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | CURRENT_LOCATION | 0 | 位置按钮的文字描述为“当前位置”。 |
 | ADD_LOCATION | 1 | 位置按钮的文字描述为“添加位置”。 |
@@ -91,7 +98,7 @@ LocationButton(option:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 位置按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置按钮点击后位置权限授权失败。 |
@@ -142,6 +149,18 @@ struct Index {
           .backgroundColor(0x10007dff)
         // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
         LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+        // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
+        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .width(30)
+        // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
+        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .size({width: 30, height: 30})
+        // 图标、文字、背景都存在，如果设置宽度小于当前属性组合下允许的最小宽度时，宽度仍为设置值，此时按钮文本信息会自动换行，以保证安全控件显示的完整性。
+        LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
+          .fontSize(16)
+          .constraintSize({minWidth: 0, maxWidth: 30, minHeight: 0, maxHeight: 30})
       }.width('100%')
     }.height('100%')
   }

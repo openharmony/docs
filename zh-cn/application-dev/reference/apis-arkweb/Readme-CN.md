@@ -19,9 +19,12 @@
     - [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md)
     - [ArkWeb_ComponentAPI](_ark_web___component_a_p_i.md)
     - [ArkWeb_ControllerAPI](_ark_web___controller_a_p_i.md)
+    - [ArkWeb_CookieManagerAPI](_ark_web___cookie_manager_a_p_i.md)
     - [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md)
     - [ArkWeb_JavaScriptObject](_ark_web___java_script_object.md)
     - [ArkWeb_ProxyMethod](_ark_web___proxy_method.md)
     - [ArkWeb_ProxyObject](_ark_web___proxy_object.md)
+    - [ArkWeb_WebMessageAPI](_ark_web___web_message_a_p_i.md)
+    - [ArkWeb_WebMessagePortAPI](_ark_web___web_message_port_a_p_i.md)
 - 错误码
   - [Webview错误码](errorcode-webview.md)

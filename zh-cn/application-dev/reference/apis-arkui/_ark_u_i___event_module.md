@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。  <br> **库：** libace_ndk.z.so| 
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so |  
 
 
 ### 类型定义
@@ -30,7 +30,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 } | UI输入事件类型定义。  | 
-| { UI_TOUCH_EVENT_ACTION_CANCEL = 0, UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3 } | 定义输入事件的Action Code。  | 
+| {<br/>OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br/>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br/>} | 定义输入事件的Action Code。  | 
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
 | [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | 定义触摸测试类型的枚举值。  | 
@@ -122,10 +122,13 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| UI_TOUCH_EVENT_ACTION_CANCEL  | 触摸取消。  |
-| UI_TOUCH_EVENT_ACTION_DOWN  | 触摸按下。  |
-| UI_TOUCH_EVENT_ACTION_MOVE  | 触摸移动。  |
-| UI_TOUCH_EVENT_ACTION_UP  | 触摸抬起。  |
+| OH_NATIVEXCOMPONENT_RESULT_SUCCESS  | 成功结果。  | 
+| OH_NATIVEXCOMPONENT_RESULT_FAILED  | 失败结果。  | 
+| OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER  | 无效参数。  | 
+| UI_TOUCH_EVENT_ACTION_CANCEL  | 触摸取消。  | 
+| UI_TOUCH_EVENT_ACTION_DOWN  | 触摸按下。  | 
+| UI_TOUCH_EVENT_ACTION_MOVE  | 触摸移动。  | 
+| UI_TOUCH_EVENT_ACTION_UP  | 触摸抬起。  | 
 
 
 ### anonymous enum
@@ -141,12 +144,12 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN  | 不支持的工具类型。  |
-| UI_INPUT_EVENT_TOOL_TYPE_FINGER  | 手指。  |
-| UI_INPUT_EVENT_TOOL_TYPE_PEN  | 笔。  |
-| UI_INPUT_EVENT_TOOL_TYPE_MOUSE  | 鼠标。  |
-| UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD  | 触控板。  |
-| UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK  | 操纵杆。  |
+| UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN  | 不支持的工具类型。  | 
+| UI_INPUT_EVENT_TOOL_TYPE_FINGER  | 手指。  | 
+| UI_INPUT_EVENT_TOOL_TYPE_PEN  | 笔。  | 
+| UI_INPUT_EVENT_TOOL_TYPE_MOUSE  | 鼠标。  | 
+| UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD  | 触控板。  | 
+| UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK  | 操纵杆。  | 
 
 
 ### anonymous enum
@@ -162,9 +165,9 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN  | 不支持的来源类型。  |
-| UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE  | 鼠标。  |
-| UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN  | 触摸屏。  |
+| UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN  | 不支持的来源类型。  | 
+| UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE  | 鼠标。  | 
+| UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN  | 触摸屏。  | 
 
 
 ### anonymous enum
@@ -180,10 +183,10 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| UI_MOUSE_EVENT_ACTION_UNKNOWN  | 无效行为  |
-| UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。  |
-| UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。  |
-| UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。  |
+| UI_MOUSE_EVENT_ACTION_UNKNOWN  | 无效行为  | 
+| UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。  | 
+| UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。  | 
+| UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。  | 
 
 
 ### anonymous enum
@@ -199,12 +202,12 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| UI_MOUSE_EVENT_BUTTON_NONE  | 无按键。  |
-| UI_MOUSE_EVENT_BUTTON_LEFT  | 鼠标左键。  |
-| UI_MOUSE_EVENT_BUTTON_RIGHT  | 鼠标右键。  |
-| UI_MOUSE_EVENT_BUTTON_MIDDLE  | 鼠标中键。  |
-| UI_MOUSE_EVENT_BUTTON_BACK  | 鼠标左侧后退键。  |
-| UI_MOUSE_EVENT_BUTTON_FORWARD  | 鼠标左侧前进键。  |
+| UI_MOUSE_EVENT_BUTTON_NONE  | 无按键。  | 
+| UI_MOUSE_EVENT_BUTTON_LEFT  | 鼠标左键。  | 
+| UI_MOUSE_EVENT_BUTTON_RIGHT  | 鼠标右键。  | 
+| UI_MOUSE_EVENT_BUTTON_MIDDLE  | 鼠标中键。  | 
+| UI_MOUSE_EVENT_BUTTON_BACK  | 鼠标左侧后退键。  | 
+| UI_MOUSE_EVENT_BUTTON_FORWARD  | 鼠标左侧前进键。  | 
 
 
 ### ArkUI_ModifierKeyName
@@ -220,10 +223,10 @@ enum ArkUI_ModifierKeyName
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  |
-| ARKUI_MODIFIER_KEY_SHIFT  | Shift.  |
-| ARKUI_MODIFIER_KEY_ALT  | Alt.  |
-| ARKUI_MODIFIER_KEY_FN  | Fn.  |
+| ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
+| ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
+| ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn.  | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -251,10 +254,10 @@ enum HitTestMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HTMDEFAULT  | 默认触摸测试效果，自身和子节点都响应触摸测试，但会阻塞兄弟节点的触摸测试。  |
-| HTMBLOCK  | 自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。  |
-| HTMTRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。  |
-| HTMNONE  | 自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。  |
+| HTMDEFAULT  | 默认触摸测试效果，自身和子节点都响应触摸测试，但会阻塞兄弟节点的触摸测试。  | 
+| HTMBLOCK  | 自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。  | 
+| HTMTRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。  | 
+| HTMNONE  | 自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。  | 
 
 
 ## 函数说明
@@ -530,7 +533,6 @@ int64_t OH_ArkUI_PointerEvent_GetHistoryEventTime (const ArkUI_UIInputEvent * ev
 
 返回UI输入事件发生的时间，如果参数异常则返回0。
 
-
 ### OH_ArkUI_PointerEvent_GetHistoryPointerCount()
 
 ```
@@ -742,6 +744,7 @@ float OH_ArkUI_PointerEvent_GetHistoryWindowX (const ArkUI_UIInputEvent * event,
 **返回：**
 
 返回当前带有指向性的输入事件相对于当前应用窗口左上角的X坐标，如果参数异常则返回0.0f。
+
 
 ### OH_ArkUI_PointerEvent_GetHistoryWindowY()
 

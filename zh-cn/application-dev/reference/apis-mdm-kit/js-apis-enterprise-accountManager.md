@@ -1,6 +1,6 @@
 # @ohos.enterprise.accountManager（账户管理）
 
-本模块提供设备帐户管理能力，包括禁止创建本地用户等。
+本模块提供设备账户管理能力，包括禁止创建本地用户等。
 
 > **说明：**
 >
@@ -135,7 +135,7 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。                                               |
 | name   | string                                                       | 是   | 用户ID，指定具体用户，取值范围：大于等于0。                  |
-| type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员帐号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
+| type   | [osAccount.OsAccountType](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 是   | 要添加的账号的类型。<br/>取值范围：ADMIN、NORMAL、GUEST。<br/>· ADMIN：管理员账号。<br/>· NORMAL：普通账号。<br/>· GUEST：访客账号。 |
 
 **返回值：**
 

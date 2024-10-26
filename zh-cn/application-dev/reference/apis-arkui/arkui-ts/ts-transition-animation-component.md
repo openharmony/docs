@@ -12,7 +12,7 @@
 
 | 名称 | 参数类型 | 参数描述 |
 | -------- | -------- | -------- |
-| transition | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。 |
+| transition | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | transition<sup>12+</sup> | ([TransitionEffect](#transitioneffect10对象说明), Optional<[TransitionFinishCallback](#transitionfinishcallback12)>) | 设置组件插入显示和删除隐藏的过渡效果和转场动画结束回调。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/> |
 
 >  **说明：**
@@ -32,8 +32,8 @@
 | ------ | ------ |
 | TOP    | 窗口的上边缘 |
 | BOTTOM | 窗口的下边缘 |
-| START  | 窗口的左边缘 |
-| END    | 窗口的右边缘 |
+| START  | 窗口的起始边缘，LTR时为左边缘，RTL时为右边缘 |
+| END    | 窗口的终止边缘，LTR时为右边缘，RTL时为左边缘 |
 
 ## TransitionEffect<sup>10+</sup>对象说明
 TransitionEffect以函数的形式指定转场效果。提供了以下接口：
@@ -42,9 +42,9 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 
 | 接口名称 | 参数类型 | 是否静态函数 | 参数描述 |
 | -------- | ---------- | -------- | -------- |
-| opacity | number | 是 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置小于0的非法值按0处理，大于1的非法值按1处理。 |
+| opacity | number | 是 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>**说明：** <br/>设置小于0的非法值按0处理，大于1的非法值按1处理。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | translate | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 是 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| scale |   [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明)| 是 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| scale |   [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明)| 是 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br>**说明：** <br>设置centerX、centerY为非法字符串时（例如，"illegalString"），默认值为"0"。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | rotate | [RotateOptions](ts-universal-attributes-transformation.md#rotateoptions对象说明)  | 是 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>-centerZ指z轴锚点，即3D旋转中心点的z轴分量，centerZ默认值是0。<br/>-perspective指视距，不支持perspective属性做转场动画。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | move | [TransitionEdge](#transitionedge10) | 是 | 指定组件转场时从屏幕边缘滑入和滑出的效果，本质为平移效果，为插入时起点和删除时终点的值。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | asymmetric | appear: [TransitionEffect](#transitioneffect10对象说明),<br/>disappear: [TransitionEffect](#transitioneffect10对象说明)<br/> | 是 | 指定非对称的转场效果。<br/>第一个参数指定出现的转场效果，第二个参数指定消失的转场效果。<br/>如不通过asymmetric函数构造TransitionEffect，则表明该效果在组件出现和消失时均生效。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
@@ -101,7 +101,7 @@ TransitionOptions通过指定结构体内的参数来指定转场效果。
 | type | [TransitionType](ts-appendix-enums.md#transitiontype)  | 否 | 指定该转场样式生效的场景。<br/>默认值：TransitionType.All<br/>**说明：**<br/>不指定type时默认为TransitionType.All，即插入删除都生效。 |
 | opacity | number | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>**说明：** <br/>设置小于0的非法值时，按0处理；设置大于1的非法值时，按1处理。 |
 | translate |   [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明)  |否  | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。|
-| scale |  [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明) | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。 |
+| scale |  [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明) | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br>**说明：** <br>设置centerX、centerY为非法字符串时（例如，"illegalString"），默认值为"0"。 |
 | rotate |  [RotateOptions](ts-universal-attributes-transformation.md#rotateoptions对象说明)| 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。 |
 
 >  **说明：**

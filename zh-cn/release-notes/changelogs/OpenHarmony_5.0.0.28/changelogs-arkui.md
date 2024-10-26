@@ -416,3 +416,214 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 **适配指导**
 
 默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.11 TipsDialog的imageRes/imageSize/title变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+TipsDialog 原来只支持 resource 类型的图片，现扩展 TipsDialog 支持 pixelMap 和 string 类型的图片，方便用户根据使用场景选用图片类型，提升用户使用体验。同时变更 TipsDialog 图片大小和中间标题由必填改为非必填，方便用户根据使用场景决定是否选用默认样式。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+1. TipsDialog不支持pixelMap和string类型的图片
+2. TipsDialog的图片大小为必填
+3. TipsDialog必须有中间标题
+
+变更后：
+1. TipsDialog支持pixelMap和string类型的图片
+2. TipsDialog图片大小非必填，默认大小64vp*64vp
+3. TipsDialog中间标题可为非必填，未填不展示标题
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.28开始。
+
+**适配指导**
+
+TipsDialg组件创建函数变更：无需适配，但应注意变更后的属性范围扩展是否符合开发者预期，如不符合可具体参考：
+```ts
+import { TipsDialog } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  isChecked = false;
+  dialogControllerImage: CustomDialogController = new CustomDialogController({
+    builder: TipsDialog({
+      imageRes: $r('sys.media.ohos_ic_public_voice'),
+      content: '想要卸载这个APP嘛?',
+      primaryButton: {
+        value: '取消',
+        action: () => {
+          console.info('Callback when the first button is clicked')
+        },
+      },
+      secondaryButton: {
+        value: '删除',
+        role: ButtonRole.ERROR,
+        action: () => {
+          console.info('Callback when the second button is clicked')
+        }
+      },
+      onCheckedChange: () => {
+        console.info('Callback when the checkbox is clicked')
+      }
+    }),
+  })
+
+  build() {
+    Row() {
+      Stack() {
+        Column(){
+          Button("上图下文弹出框")
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogControllerImage.open()
+            })
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```
+
+## cl.arkui.12 ChipGroup组件items拓展参数类型支持SymbolGlyphModifier
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+ChipGroup组件设置IconGroupSuffix的items参数原来只支持image类型的图片，现扩展支持HM Symbol资源设置，方便用户使用资源更加丰富的Symbol库，提升用户使用体验。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+IconGroupSuffix的参数items类型是Array\<IconItemOptions>，支持用户传参image类型的图标。
+
+变更后：
+IconGroupSuffix的参数items类型是Array\<IconItemOptions | SymbolGlyphModifier>，支持用户传参image类型或者symbol类型的图标。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.28开始。
+
+**变更的接口/组件**
+
+[@ohos.arkui.advanced.ChipGroup.d.ets](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.arkui.advanced.ChipGroup.d.ets)中如下接口：
+
+items: Array<IconItemOptions | SymbolGlyphModifier>;
+
+**适配指导**
+
+ChipGroup创建IconGroupSuffx变更：无需适配，开发者可以根据需要设置image或者symbol图标，如要使用symbol图标，可以参考以下示例：
+```ts
+import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
+
+@Entry
+@Preview
+@Component
+struct Index {
+  @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6];
+  @State selected_state: boolean = true;
+  @State prefixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star'));
+  @State prefixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State suffixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
+  @State suffixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
+
+  @LocalBuilder
+  ChipGroupSuffix(): void {
+    IconGroupSuffix({
+      items: [
+        new SymbolGlyphModifier($r('sys.symbol.magnifyingglass'))
+          .onClick(() => {
+            if (this.selected_state == false) {
+              this.selected_index = [0, 1, 2, 3, 4, 5, 6];
+              this.selected_state = true;
+            } else {
+              this.selected_index = [];
+              this.selected_state = false;
+            }
+          })
+      ]
+    })
+  }
+
+  build() {
+    Column() {
+      ChipGroup({
+        items: [
+          {
+            prefixSymbol: { normal: this.prefixModifierNormal, activated: this.prefixModifierActivated },
+            label: { text: "操作块1" },
+            suffixSymbol: { normal: this.suffixModifierNormal, activated: this.suffixModifierActivated },
+            allowClose: false,
+          },
+          {
+            prefixSymbol: { normal: this.prefixModifierNormal, activated: this.prefixModifierActivated },
+            label: { text: "操作块2" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
+            label: { text: "操作块3" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
+            label: { text: "操作块4" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
+            label: { text: "操作块5" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
+            label: { text: "操作块6" },
+            allowClose: true,
+          },
+        ],
+        itemStyle: {
+          size: ChipSize.NORMAL,
+          backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
+          fontColor: $r('sys.color.ohos_id_color_text_primary'),
+          selectedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
+          selectedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary'),
+        },
+        selectedIndexes: this.selected_index,
+        multiple: true,
+        chipGroupSpace: { itemSpace: 8, endSpace: 0 },
+        chipGroupPadding: { top: 10, bottom: 10 },
+        onChange: (activatedChipsIndex: Array<number>) => {
+          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+        },
+        suffix: this.ChipGroupSuffix
+      })
+    }
+  }
+}
+```

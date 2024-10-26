@@ -19,8 +19,8 @@ The **ImagePacker_Opts_** struct defines the image encoding options.
 
 | Name| Description| 
 | -------- | -------- |
-| [format](#format) | Encoding format.| 
-| [quality](#quality) | Encoding quality.| 
+| const char \* [format](#format) | Encoding format. | 
+| int [quality](#quality) | Encoding quality. | 
 
 
 ## Member Variable Description

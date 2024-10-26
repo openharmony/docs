@@ -45,7 +45,7 @@ cpp部分代码
 
 static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 {
-    // 将obj作为参数传入
+    // 解析ArkTS的传参
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -99,20 +99,20 @@ cpp部分代码
 
 static napi_value SetProperty(napi_env env, napi_callback_info info)
 {
-    // 接收ArkTS侧传入的三个参数：第一个参数为想要设置的object第二个参数为属性，第三个参数为属性对应的值
+    // 接收ArkTS侧传入的三个参数：第一个参数为想要设置的object，第二个参数为属性，第三个参数为属性对应的值
     size_t argc = 3;
     napi_value args[3] = {nullptr};
     napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_get_cb_info fail");
     }
-    // 通过调用napi_set_property接口将属性与值设置入object如果失败，直接抛出错误
+    // 通过调用napi_set_property接口将属性与值设置入object，如果失败，直接抛出错误
     status = napi_set_property(env, args[0], args[1], args[2]);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_set_property fail");
         return nullptr;
     }
-    // 将设置成功后的object返回出去
+    // 返回设置成功的object对象
     return args[0];
 }
 ```
@@ -144,7 +144,7 @@ try {
 
 ### napi_get_property
 
-获取给定Object的给定属性对应的值
+获取object指定的属性的值
 
 cpp部分代码
 
@@ -687,7 +687,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ', testNapi.crea
 
 ### napi_get_all_property_names
 
-用于在传入的ArkTS对象上设置一个命名属性。
+用于获取传入的ArkTS对象的所有属性名。
 
 cpp部分代码
 

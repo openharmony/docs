@@ -23,28 +23,30 @@ Enumerates the window types.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                 | Value | Description                                                                                    |
+| Name                                 | Value| Description                                                                                    |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | Application subwindow.<br>**Model restriction**: This API can be used only in the FA model.                                                  |
 | TYPE_SYSTEM_ALERT                   | 1      | System alert window.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 11.                               |
-| TYPE_FLOAT<sup>9+</sup>             | 8      | Floating window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Required permissions**: ohos.permission.SYSTEM_FLOAT_WINDOW |
-| TYPE_DIALOG<sup>10+</sup>           | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.                                                |
+| TYPE_FLOAT<sup>9+</sup>             | 8      | Floating window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TYPE_DIALOG<sup>10+</sup>           | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Configuration<sup>9+</sup>
 
 Defines the parameters for creating a subwindow or system window.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name | Type | Mandatory | Description                                                                         |
+| Name| Type| Mandatory| Description                                                                         |
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
-| name       | string                     | Yes | Name of the window.                                                                      |
-| windowType | [WindowType](#windowtype7) | Yes | Window type.                                                                      |
-| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | No | Current application context. If no value is passed, no context is used.<br>In the FA model, do not pass in this parameter when creating a subwindow. Otherwise, an error is reported.<br>In the stage model, you must pass in this parameter when creating a floating window, modal window, or system window. |
-| displayId  | number                     | No | ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
-| parentId   | number                     | No | ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
-| decorEnabled<sup>12+</sup> | boolean | No | Whether the window decoration is enabled. This parameter is valid only when **windowType** is set to **TYPE_DIALOG**. The value **true** means that the window decoration is enabled, and **false** means the opposite. The default value is **false**.<br>**System capability**: SystemCapability.Window.SessionManager |
-| title<sup>12+</sup> | string| No | Title of the window when **decorEnabled** is set to **true**. If this parameter is not set, an empty string is used by default.<br>**System capability**: SystemCapability.Window.SessionManager |
+| name       | string                     | Yes| Name of the window.                                                                      |
+| windowType | [WindowType](#windowtype7) | Yes| Window type.                                                                      |
+| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>In the FA model, do not pass in this parameter when creating a subwindow. Otherwise, an error is reported.<br>In the stage model, you must pass in this parameter when creating a floating window, modal window, or system window.|
+| displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
+| parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
+| decorEnabled<sup>12+</sup> | boolean | No| Whether the window decoration is enabled. This parameter is valid only when **windowType** is set to **TYPE_DIALOG**. The value **true** means that the window decoration is enabled, and **false** means the opposite. The default value is **false**.<br>**System capability**: SystemCapability.Window.SessionManager|
+| title<sup>12+</sup> | string| No| Title of the window when **decorEnabled** is set to **true**. If this parameter is not set, an empty string is used by default.<br>**System capability**: SystemCapability.Window.SessionManager|
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -56,7 +58,7 @@ Enumerates the types of the area where the window cannot be displayed.
 
 | Name                            | Value  | Description                                                        |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
-| TYPE_SYSTEM                      | 0    | Default area of the system. Generally, the status bar and navigation bar are included. The default area may vary according to the device in use. |
+| TYPE_SYSTEM                      | 0    | Default area of the system. Generally, the status bar and navigation bar are included. The default area may vary according to the device in use.|
 | TYPE_CUTOUT                      | 1    | Notch.                                            |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | Gesture area.                                              |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | Soft keyboard area.                                            |
@@ -69,7 +71,7 @@ Describes the properties of the status bar and navigation bar. These properties 
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name                                  | Type |  Mandatory | Description                                                        |
+| Name                                  | Type|  Mandatory| Description                                                        |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **'#00FF00'** or **'#FF00FF00'**. The default value is **'#0x66000000'**.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
@@ -84,9 +86,11 @@ Describes the properties of the status bar and navigation bar. These properties 
 
 Describes the properties of the status bar. These properties are valid for the page-level status bar.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type | Read Only | Optional | Description              |
+| Name  | Type| Read Only| Optional| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
 | statusBarContentColor   | string   | Yes  | Yes  | Color of the text on the status bar. The default value is **'#0xE5FFFFFF'**.|
 
@@ -96,24 +100,24 @@ Enumerates the window orientations.
 
 | Name                                 | Value  | Description                         |
 | ------------------------------------- | ---- | ----------------------------- |
-| UNSPECIFIED                           | 0    | Unspecified. The orientation is determined by the system.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| UNSPECIFIED                           | 0    | Unspecified. The orientation is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | PORTRAIT                              | 1    | Portrait.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| LANDSCAPE                             | 2    | Landscape.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| LANDSCAPE                             | 2    | Landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | PORTRAIT_INVERTED                     | 3    | Reverse portrait.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | LANDSCAPE_INVERTED                    | 4    | Reverse landscape.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUTO_ROTATION                         | 5    | Automatically rotates with the sensor. The orientation can be portrait, landscape, reverse portrait, or reverse landscape.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| AUTO_ROTATION_PORTRAIT                | 6    | Automatically rotates with the sensor in the vertical direction. The orientation can be portrait or reverse portrait.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| AUTO_ROTATION_PORTRAIT                | 6    | Automatically rotates with the sensor in the vertical direction. The orientation can be portrait or reverse portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | AUTO_ROTATION_LANDSCAPE               | 7    | Automatically rotates with the sensor in the horizontal direction. The orientation can be landscape or reverse landscape.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUTO_ROTATION_RESTRICTED              | 8    | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be portrait, landscape, reverse portrait, or reverse landscape.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be portrait or reverse portrait.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be landscape or reverse landscape.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
-| LOCKED                                | 11   | Locked.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
-| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system. For example, the window can rotate to portrait, landscape, or reverse landscape, but not reverse portrait, on a certain device.<br>**System capability**: SystemCapability.Window.SessionManager|
-| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | Temporarily rotates to portrait mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**System capability**: SystemCapability.Window.SessionManager|
-| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | Temporarily rotates to landscape mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**System capability**: SystemCapability.Window.SessionManager|
-| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | Temporarily rotates to reverse portrait mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**System capability**: SystemCapability.Window.SessionManager|
-| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | Temporarily rotates to reverse landscape mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**System capability**: SystemCapability.Window.SessionManager|
-| FOLLOW_DESKTOP<sup>12+</sup>                   | 17   | Follows the orientation of the home screen.<br>**System capability**: SystemCapability.Window.SessionManager|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be portrait or reverse portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be landscape or reverse landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| LOCKED                                | 11   | Locked.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system. For example, the window can rotate to portrait, landscape, or reverse landscape, but not reverse portrait, on a certain device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Window.SessionManager|
+| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | Temporarily rotates to portrait mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Window.SessionManager|
+| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | Temporarily rotates to landscape mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Window.SessionManager|
+| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | Temporarily rotates to reverse portrait mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Window.SessionManager|
+| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | Temporarily rotates to reverse landscape mode, and then automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation that can be rotated to is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Window.SessionManager|
+| FOLLOW_DESKTOP<sup>12+</sup>                   | 17   | Follows the orientation of the home screen.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Window.SessionManager|
 
 ## Rect<sup>7+</sup>
 
@@ -123,36 +127,36 @@ Describes the rectangular area of the window.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name  | Type | Readable | Writable | Description              |
+| Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value must be an integer. |
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value must be an integer. |
-| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value must be an integer. |
-| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value must be an integer. |
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value must be an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value must be an integer.|
+| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value must be an integer.|
 
 ## AvoidArea<sup>7+</sup>
 
-Describes the area where the window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. Touch events will not be responded in this area. 
+Describes the area where the window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. Touch events will not be responded in this area.
 
-Pay attention to the following restrictions on this area: 
+Pay attention to the following restrictions on this area:
 
-- The non-navigation bar area in the gesture area at the bottom supports transparent transmission of touch events, touch and hold events, but not drag events. 
+- The non-navigation bar area in the gesture area at the bottom supports transparent transmission of touch events, touch and hold events, but not drag events.
 
-- The gesture area on the left and right sides supports transparent transmission of touch events, touch and hold events, and swipe up and down events, but not drag events. 
+- The gesture area on the left and right sides supports transparent transmission of touch events, touch and hold events, and swipe up and down events, but not drag events.
 
-- The navigation bar area supports responding to touch events, touch and hold events, and drag events. However, it does not support transparent transmission of events. 
+- The navigation bar area supports responding to touch events, touch and hold events, and drag events. However, it does not support transparent transmission of events.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name      | Type     | Readable | Writable | Description              |
+| Name      | Type     | Readable| Writable| Description              |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| visible<sup>9+</sup>    | boolean       | Yes  | Yes  | Whether the window can be displayed in the area. The value **true** means that the window can be displayed in the area, and **false** means the opposite. |
-| leftRect   | [Rect](#rect7) | Yes  | Yes  | Rectangle on the left of the screen. |
-| topRect    | [Rect](#rect7) | Yes  | Yes  | Rectangle at the top of the screen. |
-| rightRect  | [Rect](#rect7) | Yes  | Yes  | Rectangle on the right of the screen. |
-| bottomRect | [Rect](#rect7) | Yes  | Yes  | Rectangle at the bottom of the screen. |
+| visible<sup>9+</sup>    | boolean       | Yes  | Yes  | Whether the window can be displayed in the area. The value **true** means that the window can be displayed in the area, and **false** means the opposite.|
+| leftRect   | [Rect](#rect7) | Yes  | Yes  | Rectangle on the left of the screen.|
+| topRect    | [Rect](#rect7) | Yes  | Yes  | Rectangle at the top of the screen.|
+| rightRect  | [Rect](#rect7) | Yes  | Yes  | Rectangle on the right of the screen.|
+| bottomRect | [Rect](#rect7) | Yes  | Yes  | Rectangle at the bottom of the screen.|
 
 ## Size<sup>7+</sup>
 
@@ -162,10 +166,10 @@ Describes the window size.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name  | Type | Readable | Writable | Description      |
+| Name  | Type| Readable| Writable| Description      |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | Yes  | Yes  | Window width, in px. The value must be an integer. |
-| height | number   | Yes  | Yes  | Window height, in px. The value must be an integer. |
+| width  | number   | Yes  | Yes  | Window width, in px. The value must be an integer.|
+| height | number   | Yes  | Yes  | Window height, in px. The value must be an integer.|
 
 ## RectChangeReason<sup>12+</sup>
 
@@ -180,10 +184,10 @@ Enumerates the reasons for window rectangle (position and size) changes.
 | UNDEFINED                 | 0    | Default value.                                                  |
 | MAXIMIZE                | 1    | The window is maximized.                                                  |
 | RECOVER              | 2    | The window is restored to the previous state.                                                  |
-| MOVE | 3    | The window is moved. |
-| DRAG  | 4    | The window is zoomed in or out by dragging. |
-| DRAG_START  | 5    | The window starts zooming in or out. |
-| DRAG_END  | 6    | The window finishes zooming in or out. |
+| MOVE | 3    | The window is moved.|
+| DRAG  | 4    | The window is zoomed in or out by dragging.|
+| DRAG_START  | 5    | The window starts zooming in or out.|
+| DRAG_END  | 6    | The window finishes zooming in or out.|
 
 ## RectChangeOptions<sup>12+</sup>
 
@@ -193,10 +197,10 @@ Describes the value and reason returned upon a window rectangle (position and si
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name      | Type     | Readable | Writable | Description              |
+| Name      | Type     | Readable| Writable| Description              |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| rect   | [Rect](#rect7) | Yes  | Yes  | New value of the window rectangle. |
-| reason    | [RectChangeReason](#rectchangereason12) | Yes  | Yes  | Reason for the window rectangle change. |
+| rect   | [Rect](#rect7) | Yes  | Yes  | New value of the window rectangle.|
+| reason    | [RectChangeReason](#rectchangereason12) | Yes  | Yes  | Reason for the window rectangle change.|
 
 ## AvoidAreaOptions<sup>12+</sup>
 
@@ -206,10 +210,10 @@ Describes the new area where the window cannot be displayed. The new area is ret
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name      | Type     | Readable | Writable | Description              |
+| Name      | Type     | Readable| Writable| Description              |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| type   | [AvoidAreaType](#avoidareatype7) | Yes  | Yes  | Type of the new area returned. |
-| area   | [AvoidArea](#avoidarea7)         | Yes  | Yes  | New area returned. |
+| type   | [AvoidAreaType](#avoidareatype7) | Yes  | Yes  | Type of the new area returned.|
+| area   | [AvoidArea](#avoidarea7)         | Yes  | Yes  | New area returned.|
 
 ## WindowProperties
 
@@ -217,32 +221,35 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                                 | Type                 | Readable | Writable | Description                                                                                                    |
+| Name                                 | Type                 | Read Only| Optional| Description                                                                                                    |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
-| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | Yes  | Yes  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.                                                                                                 |
-| type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                                                                 |
-| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                 |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                           |
-| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.                                                                |
-| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.                                                                |
-| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is **-1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the dimmest.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9. |
-| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                  |
-| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.                                                                 |
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.      |
-| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.                                                                  |
-| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0**. The value must be an integer.                                                                                   |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
+| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | No  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | No  | No  | Window type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
+| isFullScreen                          | boolean                   | No  | No  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                 |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | No  | No  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                           |
+| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
+| brightness                            | number                    | No  | No  | Screen brightness. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the brightest. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is **-1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | No  | No  | Dimness of the window that is not on top. The value is a floating point number in the range [0.0, 1.0], and the value **1.0** means the dimmest.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9. |
+| isKeepScreenOn                        | boolean                   | No  | No  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                  |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | No  | No  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                 |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | No  | No  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.      |
+| isTransparent<sup>7+</sup>            | boolean                   | No  | No  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
+| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0**. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| displayId<sup>12+</sup>               | number                    | Yes  | Yes  | ID of the screen where the window is located. By default, the ID of the main screen is returned. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ColorSpace<sup>8+</sup>
 
 Enumerates the color spaces.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name      | Value | Description          |
+| Name      | Value| Description          |
 | ---------- | ------ | -------------- |
-| DEFAULT    | 0      | Default SRGB gamut. |
+| DEFAULT    | 0      | Default SRGB gamut.|
 | WIDE_GAMUT | 1      | Wide-gamut.  |
 
 ## WindowEventType<sup>10+</sup>
@@ -251,7 +258,7 @@ Enumerates the window lifecycle states.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name      | Value | Description      |
+| Name      | Value| Description      |
 | ---------- | ------ | ---------- |
 | WINDOW_SHOWN      | 1      | The window is running in the foreground.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
 | WINDOW_ACTIVE     | 2      | The window gains focus.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
@@ -267,7 +274,7 @@ Defines the window size limits. You can call [setWindowLimits](#setwindowlimits1
 
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name     | Type  | Readable | Writable | Description                                                        |
+| Name     | Type  | Readable| Writable| Description                                                        |
 | :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
 | maxWidth  | number | Yes  | Yes  | Maximum window width, in px. The value must be an integer. The default value is **0**, indicating that the property does not change. The lower limit is **0**, and the upper limit is the maximum width specified by the system. |
 | maxHeight | number | Yes  | Yes  | Maximum window height, in px. The value must be an integer. The default value is **0**, indicating that the property does not change. The lower limit is **0**, and the upper limit is the maximum height specified by the system. |
@@ -277,6 +284,8 @@ Defines the window size limits. You can call [setWindowLimits](#setwindowlimits1
 ## WindowStatusType<sup>11+</sup>
 
 Enumerates the window modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -297,12 +306,26 @@ Defines the rectangle used to hold the minimize, maximize, and close buttons on 
 
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name  | Type  | Readable | Writable | Description                                      |
+| Name  | Type  | Readable| Writable| Description                                      |
 | ------ | ------ | ---- | ---- | ------------------------------------------ |
-| right  | number | Yes  | Yes  | Right boundary of the rectangle, in vp. The value must be an integer. |
-| top    | number | Yes  | Yes  | Top boundary of the rectangle, in vp. The value must be an integer. |
+| right  | number | Yes  | Yes  | Right boundary of the rectangle, in vp. The value must be an integer.|
+| top    | number | Yes  | Yes  | Top boundary of the rectangle, in vp. The value must be an integer.|
 | width  | number | Yes  | Yes  | Width of the rectangle, in vp. The value must be an integer.  |
 | height | number | Yes  | Yes  | Height of the rectangle, in vp. The value must be an integer.  |
+
+## MaximizePresentation<sup>12+</sup>
+
+Enumerates the layout when the window is maximized.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name      | Value  | Description                         |
+| ---------- | ---- | ----------------------------- |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | The window, when maximized, follows the immersive layout of the application.      |
+| EXIT_IMMERSIVE | 1    | The window, when maximized, exits the immersive layout.            |
+| ENTER_IMMERSIVE    | 2    | The window, when maximized, enters the immersive layout.  |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -310,25 +333,30 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 Creates a subwindow or system window. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.SYSTEM_FLOAT_WINDOW (required when the window type is **window.WindowType.TYPE_FLOAT**)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | --------------------------------- |
-| config   | [Configuration](#configuration9)       | Yes | Parameters used for creating the window.  |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes | Callback used to return the window created. |
+| config   | [Configuration](#configuration9)       | Yes| Parameters used for creating the window.  |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the window created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -367,30 +395,35 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 Creates a subwindow or system window. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.SYSTEM_FLOAT_WINDOW (required when the window type is **window.WindowType.TYPE_FLOAT**)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | -------------------------------- | -- | ------------------ |
-| config | [Configuration](#configuration9) | Yes | Parameters used for creating the window. |
+| config | [Configuration](#configuration9) | Yes| Parameters used for creating the window.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------------------------------- | ------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the window created. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -432,21 +465,21 @@ Finds a window based on the name.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description    |
+| Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| name   | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9). |
+| name   | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ----------------- | ------------------- |
-| [Window](#window) | Window found. |
+| [Window](#window) | Window found.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
@@ -474,16 +507,16 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
-| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes | Current application context. |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes | Callback used to return the top window obtained. |
+| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes| Current application context.|
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes| Callback used to return the top window obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.   |
@@ -530,21 +563,21 @@ Obtains the top window of the current application. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context. |
+| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.   |
@@ -582,6 +615,8 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 
 Shifts the window focus from the source window to the target window in the same application. The window focus can be shifted between the main window and a subwindow.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
@@ -595,13 +630,13 @@ Shifts the window focus from the source window to the target window in the same 
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message                                     |
+| ID| Error Message                                     |
 | ------- | --------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -690,19 +725,12 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory | Description                                |
+| Name  | Type                                  | Mandatory| Description                                |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
 | id       | string                                 | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 | type     | [WindowType](#windowtype7)              | Yes  | Window type.                          |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created. |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **Example**
 
@@ -737,24 +765,17 @@ Creates a subwindow. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description      |
+| Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
 | id     | string                    | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).  |
-| type   | [WindowType](#windowtype7) | Yes  | Window type. |
+| type   | [WindowType](#windowtype7) | Yes  | Window type.|
 
 **Return value**
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **Example**
 
@@ -785,20 +806,13 @@ Creates a system window. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory | Description                                |
+| Name  | Type                                                   | Mandatory| Description                                |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context.                |
 | id       | string                                                  | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).  |
 | type     | [WindowType](#windowtype7)                              | Yes  | Window type.                          |
-| callback | AsyncCallback&lt;[Window](#window)&gt;                  | Yes  | Callback used to return the subwindow created. |
+| callback | AsyncCallback&lt;[Window](#window)&gt;                  | Yes  | Callback used to return the subwindow created.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **Example**
 
@@ -832,25 +846,18 @@ Creates a system window. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description                                                        |
+| Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context. |
-| id     | string                    | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9). |
+| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
+| id     | string                    | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
 **Return value**
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **Example**
 
@@ -881,10 +888,10 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory | Description                                |
+| Name  | Type                                  | Mandatory| Description                                |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9). |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window found. |
+| id       | string                                 | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window found.|
 
 **Example**
 
@@ -917,15 +924,15 @@ Finds a window based on the ID. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description    |
+| Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| id     | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9). |
+| id     | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 
 **Return value**
 
 | Type                            | Description                                 |
 | -------------------------------- | ------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the window found. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the window found.|
 
 **Example**
 
@@ -958,9 +965,9 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory | Description                                        |
+| Name  | Type                                  | Mandatory| Description                                        |
 | -------- | -------------------------------------- | ---- | -------------------------------------------- |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained. |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.|
 
 **Example**
 
@@ -997,7 +1004,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Type                            | Description                                           |
 | -------------------------------- | ----------------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained.|
 
 **Example**
 
@@ -1028,9 +1035,9 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 **Parameters**
 
-| Name  | Type                                  | Mandatory | Description                                                        |
+| Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | Yes  | Current application context. |
+| ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | Yes  | Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -1075,15 +1082,15 @@ Obtains the top window of the current application. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context. |
+| ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
 
 **Return value**
 
 | Type                            | Description                                           |
 | -------------------------------- | ----------------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the top window obtained.|
 
 **Example**
 
@@ -1120,8 +1127,8 @@ Enumerates the types of system bars that can be displayed or hidden.
 | Type      | Description    |
 |------------|--------|
 | 'status'   | Status bar.  |
-| 'navigation'   | Navigation bar.  |
-| 'navigationIndicator'   | Bottom navigation bar. |
+| 'navigation'   | Three-button navigation bar.  |
+| 'navigationIndicator'   | Bottom navigation bar.|
 
 ## Window
 
@@ -1133,7 +1140,7 @@ In the following API examples, you must use [getLastWindow()](#windowgetlastwind
 
 showWindow(callback: AsyncCallback&lt;void&gt;): void
 
-Shows this window. This API uses an asynchronous callback to return the result.
+Shows this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application subwindow. For the main window of an application, this API moves it at the top when the main window is already displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1141,15 +1148,15 @@ Shows this window. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -1172,7 +1179,7 @@ windowClass.showWindow((err: BusinessError) => {
 
 showWindow(): Promise&lt;void&gt;
 
-Shows this window. This API uses a promise to return the result.
+Shows this window. This API uses a promise to return the result. This API takes effect only for a system window or an application subwindow. For the main window of an application, this API moves it at the top when the main window is already displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1180,15 +1187,15 @@ Shows this window. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -1209,7 +1216,7 @@ promise.then(() => {
 
 destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 
-Destroys this window. This API uses an asynchronous callback to return the result.
+Destroys this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application subwindow.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1217,15 +1224,15 @@ Destroys this window. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1249,7 +1256,7 @@ windowClass.destroyWindow((err) => {
 
 destroyWindow(): Promise&lt;void&gt;
 
-Destroys this window. This API uses a promise to return the result.
+Destroys this window. This API uses a promise to return the result. This API takes effect only for a system window or an application subwindow.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1257,15 +1264,15 @@ Destroys this window. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
@@ -1289,7 +1296,10 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 Moves this window. This API uses an asynchronous callback to return the result.
 
-This operation is not supported in a window in full-screen mode.
+<!--RP4-->
+In full-screen mode, this API takes effect only on 2-in-1 devices.<!--RP4End-->
+
+On a 2-in-1 device, the window moves relative to the screen. On other devices, the window moves relative to the parent window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1297,17 +1307,17 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
-| y        | number                    | Yes | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.                                    |
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -1336,9 +1346,12 @@ try {
 
 moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
-Moves this window. This API uses a promise to return the result.
+Moves this window. This API uses a promise to return the result. The result is returned once the API is called successfully. However, the final effect cannot be obtained immediately after the result is returned. To obtain the final effect immediately, call [moveWindowToAsync()](#movewindowtoasync12).
 
-This operation is not supported in a window in full-screen mode.
+<!--RP4-->
+In full-screen mode, this API takes effect only on 2-in-1 devices.<!--RP4End-->
+
+On a 2-in-1 device, the window moves relative to the screen. On other devices, the window moves relative to the parent window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1346,22 +1359,22 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
-| y | number | Yes | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
+| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -1376,6 +1389,66 @@ try {
   let promise = windowClass.moveWindowTo(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### moveWindowToAsync<sup>12+</sup>
+
+moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
+
+Moves this window. This API uses a promise to return the result.
+
+The result is returned once the API is called successfully. However, the final effect cannot be obtained immediately after the result is returned. To obtain the final effect immediately, call **getWindowProperties** (see the code snippet below).
+
+This operation is not supported in a window in full-screen mode.
+
+On a 2-in-1 device, the window moves relative to the screen. On other devices, the window moves relative to the parent window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -- | ----- | -- | --------------------------------------------- |
+| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+| 1300010 | The operation is not supported in full-screen mode. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let promise = windowClass.moveWindowToAsync(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the window.');
+    let rect = windowClass.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -1408,17 +1481,17 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes | New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
-| height   | number                    | Yes | New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.               |
+| width    | number                    | Yes| New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
+| height   | number                    | Yes| New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
@@ -1449,6 +1522,8 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 Changes the size of this window. This API uses a promise to return the result.
 
+The result is returned once the API is called successfully. However, the final effect cannot be obtained immediately after the result is returned. To obtain the final effect immediately, call [resizeAsync()](#resizeasync12).
+
 The main window and subwindow have the following default size limits: [320, 1920] in width and [240, 1920] in height, both in units of vp.
 
 The minimum width and height of the main window and subwindow of the application depends on the configuration on the product side. You can call [getWindowLimits](#getwindowlimits11) to obtain size limits.
@@ -1467,22 +1542,22 @@ This operation is not supported in a window in full-screen mode.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes | New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
-| height | number | Yes | New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
+| width  | number | Yes| New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
+| height | number | Yes| New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
@@ -1505,6 +1580,75 @@ try {
 }
 ```
 
+### resizeAsync<sup>12+</sup>
+
+resizeAsync(width: number, height: number): Promise&lt;void&gt;
+
+Changes the size of this window. This API uses a promise to return the result.
+
+ The result is returned once the API is called successfully. However, the final effect cannot be obtained immediately after the result is returned. To obtain the final effect immediately, call **getWindowProperties** (see the code snippet below).
+
+The main window and subwindow have the following default size limits: [320, 1920] in width and [240, 1920] in height, both in units of vp.
+
+The minimum width and height of the main window and subwindow of the application depends on the configuration on the product side. You can call [getWindowLimits](#getwindowlimits11) to obtain size limits.
+
+The system window has the following size limits: [0, 1920] in width and [0, 1920] in height, both in units of vp.
+
+The window width and height you set must meet the limits. The rules are as follows:
+
+- If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
+
+This operation is not supported in a window in full-screen mode.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | -- | ------------------------ |
+| width  | number | Yes| New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
+| height | number | Yes| New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+| 1300010 | The operation is not supported in full-screen mode. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let promise = windowClass.resizeAsync(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the window size.');
+    let rect = windowClass.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### getWindowProperties<sup>9+</sup>
 
 getWindowProperties(): WindowProperties
@@ -1517,15 +1661,15 @@ Obtains the properties of this window.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------------------------- | ------------- |
-| [WindowProperties](#windowproperties) | Window properties obtained. |
+| [WindowProperties](#windowproperties) | Window properties obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -1543,7 +1687,9 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-Obtains the area where the main window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area.
+Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area.
+
+This API can be used in the **onWindowStageCreate** callback to obtain the avoid area in the initial layout during application startup. It can also be used when a subwindow requires temporary display, necessitating the avoidance of the layout for the existing content.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1551,21 +1697,21 @@ Obtains the area where the main window cannot be displayed, for example, the sys
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
-| type | [AvoidAreaType](#avoidareatype7) | Yes | Type of the area. |
+| type | [AvoidAreaType](#avoidareatype7) | Yes| Type of the area.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 |--------------------------| ----------------- |
-| [AvoidArea](#avoidarea7) | Area where the window cannot be displayed. |
+| [AvoidArea](#avoidarea7) | Area where the window cannot be displayed.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
@@ -1573,96 +1719,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      try {
-        let avoidArea = windowClass.getWindowAvoidArea(type);
-      } catch (exception) {
-        console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
-}
-```
-
-### setWindowLayoutFullScreen<sup>9+</sup>
-
-setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
-
-Sets whether the main window layout or the subwindow layout is immersive. This API uses an asynchronous callback to return the result.
-- An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
-- A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**Parameters**
-
-| Name | Type | Mandatory | Description |
-| ------------------ | ------------------------- | -- | --------- |
-| isLayoutFullScreen | boolean                   | Yes | Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite. |
-| callback           | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID | Error Message |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let isLayoutFullScreen = true;
-      try {
-        windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the window layout to full-screen mode.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+try {
+  let avoidArea = windowClass.getWindowAvoidArea(type);
+} catch (exception) {
+  console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1680,21 +1741,21 @@ Sets whether the main window layout or the subwindow layout is immersive. This A
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | Yes | Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite. |
+| isLayoutFullScreen | boolean | Yes| Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -1739,7 +1800,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-Sets whether to enable the immersive layout for the main window. This API does not change the window mode.
+Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1747,44 +1808,29 @@ Sets whether to enable the immersive layout for the main window. This API does n
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                                                        |
+| Name     | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| enabled    | boolean | Yes  | Whether to enable the immersive layout.<br>The value **true** means to enable the immersive layout, and **false** means the opposite.|
+| enabled    | boolean | Yes  | Whether to enable the immersive layout.<br>The value **true** means to enable the immersive layout, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service work abnormally. |
-| 1300004 | This operation is not access.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let enabled = false;
-      windowClass.setImmersiveModeEnabledState(enabled);
-    });
-  }
+try {
+  let enabled = false;
+  windowClass.setImmersiveModeEnabledState(enabled);
+} catch (exception) {
+  console.error(`Failed to set the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1792,7 +1838,7 @@ export default class EntryAbility extends UIAbility {
 
 getImmersiveModeEnabledState(): boolean
 
-Checks whether the immersive layout is enabled for the main window.
+Checks whether the immersive layout is enabled for this window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1801,105 +1847,25 @@ Checks whether the immersive layout is enabled for the main window.
 **Return value**
 | Type    | Description                                                                                |
 | ------- | ------------------------------------------------------------------------------------ |
-| boolean | **true**: The immersive layout is enabled.<br>**false**: The immersive layout is disabled. |
+| boolean | Result indicating whether the immersive layout is enabled.<br>The value **true** means that the immersive layout is enabled, and **false** means the opposite.<br>|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------------------------------------------- |
 | 1300002  | This window state is abnormal.               |
-| 1300003  | This window manager service work abnormally. |
-| 1300004  | This operation is not access.                |
+| 1300003  | This window manager service works abnormally. |
+| 1300004  | Unauthorized operation.               |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let isEnabled = windowClass.getImmersiveModeEnabledState();
-    });
-  }
-}
-```
-
-### setWindowSystemBarEnable<sup>9+</sup>
-
-setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
-
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses an asynchronous callback to return the result.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name | Type | Mandatory | Description |
-| -------- | ---------------------------- | -- | --------- |
-| names    | Array<'status'\|'navigation'> | Yes | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID | Error Message |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// In this example, the status bar and navigation bar are not displayed.
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let names: Array<'status' | 'navigation'> = [];
-      try {
-        windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the system bar to be invisible.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  let isEnabled = windowClass.getImmersiveModeEnabledState();
+} catch (exception) {
+  console.error(`Failed to get the window immersive mode enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1907,7 +1873,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses a promise to return the result.
+Sets whether to show the three-button navigation bar, status bar, and bottom navigation bar of the main window. This API uses a promise to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the three-button navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1915,21 +1883,21 @@ Sets whether to display the status bar and navigation bar when the main window i
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type | Mandatory| Description|
 | ----- | ---------------------------- | -- | --------------------------------- |
-| names | Array<'status'\|'navigation'> | Yes | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| names | Array<'status'\|'navigation'> | Yes| Whether to show the three-button navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -1938,7 +1906,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// In this example, the status bar and navigation bar are not displayed.
+// In this example, the three-button navigation bar, status bar, and bottom navigation bar are not displayed.
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1975,7 +1943,9 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-Sets whether to show the navigation bar, status bar, or bottom navigation bar of the main window in full-screen mode. This API uses a promise to return the result.
+Sets whether to show the three-button navigation bar, status bar, and bottom navigation bar of the main window. This API uses a promise to return the result. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -1983,23 +1953,23 @@ Sets whether to show the navigation bar, status bar, or bottom navigation bar of
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type | Mandatory| Description|
 | ----- | ---------------------------- | -- | --------------------------------- |
-| name  | [SpecificSystemBar](#specificsystembar11) | Yes | Type of the system bar to be shown or hidden. |
-| enable  | boolean | Yes | Whether to show the status bar, navigation bar, or bottom navigation bar. The value **true** means to show them, and **false** means to hide them.|
-| enableAnimation<sup>12+</sup>  | boolean | No | Whether to enable animation when the status bar, navigation bar, or bottom navigation bar status changes. The value **true** means to enable animation, and **false** means the opposite. The default value is **false**.|
+| name  | [SpecificSystemBar](#specificsystembar11) | Yes| Type of the system bar to be shown or hidden.|
+| enable  | boolean | Yes| Whether to show the three-button navigation bar, status bar, and bottom navigation bar. The value **true** means to show them, and **false** means to hide them.|
+| enableAnimation<sup>12+</sup>  | boolean | No| Whether to enable animation when the three-button navigation bar, status bar, and bottom navigation bar status changes. The value **true** means to enable animation, and **false** means the opposite. The default value is **false**.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -2042,84 +2012,11 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowSystemBarProperties<sup>9+</sup>
 
-setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
-
-Sets the properties of the status bar and navigation bar when the main window is in full-screen mode. This API uses an asynchronous callback to return the result.
-
-The setting does not take effect for 2-in-1 devices.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**Parameters**
-
-| Name             | Type                                       | Mandatory | Description                  |
-| ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar. |
-| callback            | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.            |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID | Error Message |
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-
-**Example**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let SystemBarProperties: window.SystemBarProperties = {
-        statusBarColor: '#ff00ff',
-        navigationBarColor: '#00ff00',
-        // The following properties are supported since API version 8.
-        statusBarContentColor: '#ffffff',
-        navigationBarContentColor: '#00ffff'
-      };
-      try {
-        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in setting the system bar properties.');
-        });
-      } catch (exception) {
-        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
-}
-```
-
-### setWindowSystemBarProperties<sup>9+</sup>
-
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-Sets the properties of the status bar and navigation bar when the main window is in full-screen mode. This API uses a promise to return the result.
+Sets the properties of the three-button navigation bar and status bar of the main window. This API uses a promise to return the result. <!--RP5-->This API does not take effect on 2-in-1 devices.<!--RP5End-->
 
-The setting does not take effect for 2-in-1 devices.
+This API does not take effect when it is called by a subwindow.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2127,21 +2024,21 @@ The setting does not take effect for 2-in-1 devices.
 
 **Parameters**
 
-| Name             | Type                                       | Mandatory | Description                  |
+| Name             | Type                                       | Mandatory| Description                  |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the status bar and navigation bar. |
+| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes  | Properties of the three-button navigation bar and status bar.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -2193,7 +2090,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowSystemBarProperties(): SystemBarProperties
 
-Obtains the properties of the status bar and navigation bar. This API can be called only by the main window.
+Obtains the properties of the three-button navigation bar and status bar of the main window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2201,15 +2098,15 @@ Obtains the properties of the status bar and navigation bar. This API can be cal
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------------------------- | ------------- |
-| [SystemBarProperties](#systembarproperties) | Properties of the status bar and navigation bar. |
+| [SystemBarProperties](#systembarproperties) | Properties of the three-button navigation bar and status bar.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
@@ -2250,7 +2147,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. It takes effect only on the device that supports rotation with the sensor.
+Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2258,7 +2155,7 @@ Sets the preferred orientation for the main window. This API uses an asynchronou
 
 **Parameters**
 
-| Name             | Type                                       | Mandatory | Description                  |
+| Name             | Type                                       | Mandatory| Description                  |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
 | orientation         | [Orientation](#orientation9)                | Yes  | Orientation to set.        |
 | callback            | AsyncCallback&lt;void&gt;                   | Yes  | Callback used to return the result.            |
@@ -2267,7 +2164,7 @@ Sets the preferred orientation for the main window. This API uses an asynchronou
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
@@ -2313,7 +2210,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-Sets the preferred orientation for the main window. This API uses a promise to return the result. It takes effect only on the device that supports rotation with the sensor.
+Sets the preferred orientation for the main window. This API uses a promise to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2321,7 +2218,7 @@ Sets the preferred orientation for the main window. This API uses a promise to r
 
 **Parameters**
 
-| Name             | Type                                       | Mandatory | Description                  |
+| Name             | Type                                       | Mandatory| Description                  |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
 | orientation         | [Orientation](#orientation9)                | Yes  | Orientation to set.      |
 
@@ -2329,13 +2226,13 @@ Sets the preferred orientation for the main window. This API uses a promise to r
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
@@ -2387,15 +2284,15 @@ Obtains the orientation of the main window. This API can be called only by the m
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 |------------------------------| ------------------ |
-| [Orientation](#orientation9) | Orientation. |
+| [Orientation](#orientation9) | Orientation.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -2444,13 +2341,13 @@ Obtain a **UIContext** instance.
 
 | Type      | Description                  |
 | ---------- | ---------------------- |
-| [UIContext](js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained. |
+| [UIContext](js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -2503,16 +2400,16 @@ Loads the content of a page, with its path in the current project specified, to 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | -------------------- |
-| path     | string                    | Yes | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.         |
+| path     | string                    | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.         |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -2549,21 +2446,21 @@ Loads the content of a page, with its path in the current project specified, to 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ---- | ------ | -- | ------------------ |
-| path | string | Yes | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
+| path | string | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -2600,17 +2497,17 @@ Loads the content of a page, with its path in the current project specified, to 
 
 **Parameters**
 
-| Name  | Type                                           | Mandatory | Description                                                        |
+| Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
+| path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -2647,22 +2544,22 @@ Loads the content of a page, with its path in the current project specified, to 
 
 **Parameters**
 
-| Name | Type                                           | Mandatory | Description                                                        |
+| Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
+| path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -2697,24 +2594,24 @@ Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory | Description                                                        |
+| Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | Yes  | Name of the named route page.                                            |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message                                     |
+| ID| Error Message                                     |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // Import the named route page.
@@ -2735,6 +2632,7 @@ try {
   console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -2770,28 +2668,28 @@ Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description            |
+| Name  | Type                     | Mandatory| Description            |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes  | Name of the named route page. |
+| name     | string                    | Yes  | Name of the named route page.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.      |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message                                     |
+| ID| Error Message                                     |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // Import the named route page.
 
-try {  
+try {
   (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
@@ -2804,6 +2702,7 @@ try {
   console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -2839,29 +2738,29 @@ Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory | Description                                                        |
+| Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name    | string                                                  | Yes  | Name of the named route page.                                            |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message                                     |
+| ID| Error Message                                     |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // Import the named route page.
@@ -2879,6 +2778,7 @@ try {
   console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -2912,15 +2812,15 @@ Checks whether this window is displayed.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------- | ------------------------------------------------------------------ |
-| boolean | Whether the window is displayed. The value **true** means that the window is displayed, and **false** means the opposite. |
+| boolean | Whether the window is displayed. The value **true** means that the window is displayed, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -2947,16 +2847,16 @@ Subscribes to the window size change event.
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description                                                    |
+| Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
+| type     | string                         | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
 | callback | Callback&lt;[Size](#size7)&gt; | Yes  | Callback used to return the window size.                          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -2984,16 +2884,16 @@ Unsubscribes from the window size change event.
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                                                    |
+| Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
-| type     | string                        | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
+| type     | string                        | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
 | callback | Callback&lt;[Size](#size7)&gt; | No  | Callback used to return the window size. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -3004,11 +2904,9 @@ const callback = (size: window.Size) => {
   // ...
 }
 try {
+  // Enable listening through the on API.
   windowClass.on('windowSizeChange', callback);
-} catch (exception) {
-  console.error(`Failed to enable the listener for window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+  // Disable the listening of a specified callback.
   windowClass.off('windowSizeChange', callback);
   // Unregister all the callbacks that have been registered through on().
   windowClass.off('windowSizeChange');
@@ -3021,7 +2919,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-Subscribes to the event indicating changes to the area where the main window cannot be displayed.
+Subscribes to the event indicating changes to the area where this window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3029,48 +2927,29 @@ Subscribes to the event indicating changes to the area where the main window can
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description                                 |
+| Name  | Type                             | Mandatory| Description                                 |
 | -------- |----------------------------------| ---- |--------------------------------------|
-| type     | string                           | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
+| type     | string                           | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
 | callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | Yes  | Callback used to return the area and area type.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('avoidAreaChange', (data) => {
-          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+try {
+  windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3078,7 +2957,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
-Unsubscribes from the event indicating changes to the area where the main window cannot be displayed.
+Unsubscribes from the event indicating changes to the area where this window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3086,59 +2965,37 @@ Unsubscribes from the event indicating changes to the area where the main window
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description                               |
+| Name  | Type                             | Mandatory| Description                               |
 | -------- |----------------------------------|------|------------------------------------|
-| type     | string                           | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
+| type     | string                           | Yes  | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
 | callback | Callback&lt;[AvoidAreaOptions](#avoidareaoptions12)&gt; | No  | Callback used to return the area and area type. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
+interface Param {
+  type: window.AvoidAreaType,
+  area: window.AvoidArea
+}
+const callback = (data: Param) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-	  interface Param {
-		type: window.AvoidAreaType,
-		area: window.AvoidArea
-	  }
-	  const callback = (data: Param) => {
-		// ...
-	  }
-	  try {
-		windowClass.on('avoidAreaChange', callback);
-	  } catch (exception) {
-		console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-	  }
-	  try {
-		windowClass.off('avoidAreaChange', callback);
-		// Unregister all the callbacks that have been registered through on().
-		windowClass.off('avoidAreaChange');
-	  } catch (exception) {
-		console.error(`Failed to disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-	  }
-    });
-  }
+}
+try {
+  windowClass.on('avoidAreaChange', callback);
+
+  windowClass.off('avoidAreaChange', callback);
+  // Unregister all the callbacks that have been registered through on().
+  windowClass.off('avoidAreaChange');
+} catch (exception) {
+  console.error(`Failed to enable or disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3148,24 +3005,26 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to the event indicating soft keyboard height changes in fixed state.
 
-The system notifies the keyboard height change when the soft keyboard overlaps with the window.
+The system notifies the keyboard height change when the soft keyboard is invoked by the window and overlaps with the window.
 
-Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10).
+Since API version 10, the soft keyboard can be set to the fixed or floating state. For details, see [Input Method Service](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type               | Mandatory | Description                                       |
+| Name  | Type               | Mandatory| Description                                       |
 | -------- | ------------------- | ---- |-------------------------------------------|
-| type     | string              | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event. |
+| type     | string              | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
 | callback | Callback&lt;number&gt; | Yes  | Callback used to return the current keyboard height, which is an integer, in px.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -3189,22 +3048,24 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from the event indicating soft keyboard height changes in fixed state.
 
-Since API version 10, the input method panel can be set to the fixed or floating state. For details, see [Input Method Service](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10).
+Since API version 10, the soft keyboard can be set to the fixed or floating state. For details, see [Input Method Service](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                                        |
+| Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event. |
+| type     | string                 | Yes  | Event type. The value is fixed at **'keyboardHeightChange'**, indicating the keyboard height change event.|
 | callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height, which is an integer, in px. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -3239,16 +3100,16 @@ Subscribes to the touch event outside this window.
 
 **Parameters**
 
-| Name  | Type               | Mandatory | Description                                                        |
+| Name  | Type               | Mandatory| Description                                                        |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the touch event outside this window. |
+| type     | string              | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the touch event outside this window.|
 | callback | Callback&lt;void&gt; | Yes  | Callback used to return the touch event outside this window.                              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -3276,16 +3137,16 @@ Unsubscribes from the touch event outside this window.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                  |
+| Name  | Type                  | Mandatory| Description                                  |
 | -------- |----------------------| ---- |--------------------------------------|
-| type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the touch event outside this window. |
+| type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the touch event outside this window.|
 | callback | Callback&lt;void&gt; | No  | Callback used to return the touch event outside this window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -3297,15 +3158,11 @@ const callback = () => {
 }
 try {
   windowClass.on('touchOutside', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('touchOutside', callback);
   // Unregister all the callbacks that have been registered through on().
   windowClass.off('touchOutside');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3315,20 +3172,22 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 Subscribes to the screenshot event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type               | Mandatory | Description                                                        |
+| Name  | Type               | Mandatory| Description                                                        |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event, which can be initiated from the Control Panel, by running hdc commands, or by calling the screenshot interfaces. |
+| type     | string              | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event, which can be initiated from the Control Panel, by running hdc commands, or by calling the screenshot interfaces.|
 | callback | Callback&lt;void&gt; | Yes  | Callback invoked when a screenshot event occurs.                              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -3350,20 +3209,22 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the screenshot event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                                        |
+| Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event. |
-| callback | Callback&lt;void&gt; | No  | Callback invoked when a screenshot event occurs. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string                 | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event.|
+| callback | Callback&lt;void&gt; | No  | Callback invoked when a screenshot event occurs. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -3387,22 +3248,24 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-Subscribes to click or touch events in a window covered by a modal window.
+Subscribes to click or touch events in a window covered by a modal window. This API takes effect only when it is called by a modal window.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                         |
+| Name  | Type                | Mandatory| Description                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click or touch event in a window covered by a modal window. |
-| callback | Callback&lt;void&gt;| Yes  | Callback invoked when a click or touch event occurs in the window covered by the modal window. |
+| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click or touch event in a window covered by a modal window.|
+| callback | Callback&lt;void&gt;| Yes  | Callback invoked when a click or touch event occurs in the window covered by the modal window.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -3424,20 +3287,22 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the touch event of the target window in the modal window mode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                                         |
+| Name  | Type                   | Mandatory| Description                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the touch event of the target window in the modal window mode. |
-| callback | Callback&lt;void&gt;      | No  | Callback invoked when the touch event occurs in the target window of the modal window mode. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string                 | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the touch event of the target window in the modal window mode.|
+| callback | Callback&lt;void&gt;      | No  | Callback invoked when the touch event occurs in the target window of the modal window mode. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -3449,15 +3314,11 @@ const callback = () => {
 }
 try {
   windowClass.on('dialogTargetTouch', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('dialogTargetTouch', callback);
   // Unregister all the callbacks that have been registered through on().
   windowClass.off('dialogTargetTouch');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3473,16 +3334,16 @@ Subscribes to the window lifecycle change event.
 
 **Parameters**
 
-| Name  | Type                                                      | Mandatory | Description                                                        |
+| Name  | Type                                                      | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                     | Yes  | Event type. The value is fixed at **'windowEvent'**, indicating the window lifecycle change event. |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'windowEvent'**, indicating the window lifecycle change event.|
 | callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | Yes  | Callback used to return the window lifecycle state.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -3510,16 +3371,16 @@ Unsubscribes from the window lifecycle change event.
 
 **Parameters**
 
-| Name  | Type                                                      | Mandatory | Description                                                        |
+| Name  | Type                                                      | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                     | Yes  | Event type. The value is fixed at **'windowEvent'**, indicating the window lifecycle change event. |
+| type     | string                                                     | Yes  | Event type. The value is fixed at **'windowEvent'**, indicating the window lifecycle change event.|
 | callback | Callback&lt;[WindowEventType](#windoweventtype10)&gt; | No  | Callback used to return the window lifecycle state. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
@@ -3530,11 +3391,9 @@ const callback = (windowEventType: window.WindowEventType) => {
   // ...
 }
 try {
+  // Enable listening through the on API.
   windowClass.on('windowEvent', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+  // Disable the listening of a specified callback.
   windowClass.off('windowEvent', callback);
   // Unregister all the callbacks that have been registered through on().
   windowClass.off('windowEvent');
@@ -3549,20 +3408,22 @@ on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
 
 Subscribes to the visibility status change event of this window.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | --------------------------| ---- | ------------------------------------------------------------ |
-| type     | string                    | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event. |
+| type     | string                    | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event.|
 | callback | Callback&lt;boolean&gt;   | Yes  | Callback used to return the visibility status of the window, which is a Boolean value. The value **true** means that the window is visible, and **false** means the opposite.                              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3587,20 +3448,22 @@ off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
 
 Unsubscribes from the visibility status change event of this window.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                  |
+| Name  | Type                       | Mandatory| Description                                  |
 | -------- |----------------------------| ---- |--------------------------------------|
-| type     | string                     | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event. |
+| type     | string                     | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event.|
 | callback | Callback&lt;boolean&gt;    | No  | Callback used to return the visibility status of the window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3614,11 +3477,9 @@ const callback = (bool: boolean) => {
   // ...
 }
 try {
+  // Enable listening through the on API.
   windowClass.on('windowVisibilityChange', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
+  // Disable the listening of a specified callback.
   windowClass.off('windowVisibilityChange', callback);
   // Unregister all the callbacks that have been registered through on().
   windowClass.off('windowVisibilityChange');
@@ -3635,21 +3496,23 @@ Subscribes to non-interaction events in a window within the specified period.
 
 Interaction events include physical keyboard input events and screen touch/click events, but not soft keyboard input events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | --------------------------| ---- | ------------------------------------------------------------ |
-| type     | string                    | Yes  | Event type. The value is fixed at **'noInteractionDetected'**, indicating that there is no interaction event in the window within the specified period. |
-| timeout     | number                    | Yes  | Period during which no interaction is performed, in seconds. The value must be an integer. Negative numbers and decimals are invalid. |
+| type     | string                    | Yes  | Event type. The value is fixed at **'noInteractionDetected'**, indicating that there is no interaction event in the window within the specified period.|
+| timeout     | number                    | Yes  | Period during which no interaction is performed, in seconds. The value must be an integer. Negative numbers and decimals are invalid.|
 | callback | Callback&lt;void&gt;      | Yes  | Callback invoked when there is no interaction event in the current window within the specified period. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3676,20 +3539,22 @@ Unsubscribes from non-interaction events in a window within the specified period
 
 Interaction events include physical keyboard input events and screen touch/click events, but not soft keyboard input events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                  |
+| Name  | Type                       | Mandatory| Description                                  |
 | -------- |----------------------------| ---- |--------------------------------------|
-| type     | string                     | Yes  | Event type. The value is fixed at **'noInteractionDetected'**, indicating that there is no interaction event in the window within the specified period. |
-| callback | Callback&lt;void&gt;    | No  | Callback invoked when there is no interaction event in the current window within the specified period. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string                     | Yes  | Event type. The value is fixed at **'noInteractionDetected'**, indicating that there is no interaction event in the window within the specified period.|
+| callback | Callback&lt;void&gt;    | No  | Callback invoked when there is no interaction event in the current window within the specified period. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3704,15 +3569,11 @@ const callback = () => {
 }
 try {
   windowClass.on('noInteractionDetected', 60, callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('noInteractionDetected', callback);
   // Unregister all the callbacks that have been registered through on().
   windowClass.off('noInteractionDetected');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3722,20 +3583,22 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 Subscribes to the window status change event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description                                                    |
+| Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event. |
+| type     | string                         | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event.|
 | callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | Yes  | Callback used to return the window status.                          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3758,20 +3621,22 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 
 Unsubscribes from the window status change event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                                                    |
+| Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
-| type     | string                        | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event. |
+| type     | string                        | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event.|
 | callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | No  | Callback used to return the window status. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3784,10 +3649,6 @@ const callback = (windowStatusType: window.WindowStatusType) => {
 }
 try {
     windowClass.on('windowStatusChange', callback);
-} catch (exception) {
-    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
     windowClass.off('windowStatusChange', callback);
     // Unregister all the callbacks that have been registered through on().
     windowClass.off('windowStatusChange');
@@ -3808,21 +3669,21 @@ Sets the grayscale effect for this window. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                                    |
+| Name| Type| Mandatory| Description                                    |
 | --------- | ------ | -- | ---------------------------------------- |
-| grayScale | number | Yes | Grayscale of the window. The value is a floating point number in the range [0.0, 1.0], The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0. |
+| grayScale | number | Yes| Grayscale of the window. The value is a floating point number in the range [0.0, 1.0], The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3860,7 +3721,7 @@ windowClass?.setUIContent('pages/Index', (error: BusinessError) => {
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
-Subscribes to the change event of the rectangle that holds the minimize, maximize, and close buttons on the title bar of the main window. This API can be used only on 2-in-1 devices.
+Subscribes to the change event of the rectangle that holds the minimize, maximize, and close buttons on the title bar of the window. This API takes effect for the window that has a title bar or a three-button area on 2-in-1 devices. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3868,16 +3729,16 @@ Subscribes to the change event of the rectangle that holds the minimize, maximiz
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                        |
+| Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'windowTitleButtonRectChange'**, indicating that the change event of the rectangle that holds the minimize, maximize, and close buttons. |
-| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | Yes  | Callback used to return the new rectangle. |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'windowTitleButtonRectChange'**, indicating that the change event of the rectangle that holds the minimize, maximize, and close buttons.|
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | Yes  | Callback used to return the new rectangle.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3886,39 +3747,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
-          console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    windowClass?.on('windowTitleButtonRectChange', (titleButtonRect) => {
+      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
     });
+  } catch (exception) {
+    console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### off('windowTitleButtonRectChange')<sup>11+</sup>
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
-Unsubscribes from the change event of the rectangle that holds the minimize, maximize, and close buttons on the title bar of the main window. This API can be used only on 2-in-1 devices.
+Unsubscribes from the change event of the rectangle that holds the minimize, maximize, and close buttons on the title bar of the window. This API takes effect for the window that has a title bar or a three-button area on 2-in-1 devices. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3926,16 +3770,16 @@ Unsubscribes from the change event of the rectangle that holds the minimize, max
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                        |
+| Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'windowTitleButtonRectChange'**, indicating that the change event of the rectangle that holds the minimize, maximize, and close buttons. |
-| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | No  | Callback used to return the new rectangle. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'windowTitleButtonRectChange'**, indicating that the change event of the rectangle that holds the minimize, maximize, and close buttons.|
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | No  | Callback used to return the new rectangle. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -3944,40 +3788,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (titleButtonRect: window.TitleButtonRect) => {
-        // ...
-      }
-      try {
-        windowClass.on('windowTitleButtonRectChange', callback);
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-      try {
-        windowClass.off('windowTitleButtonRectChange', callback);
-        // Unregister all the callbacks that have been registered through on().
-        windowClass.off('windowTitleButtonRectChange');
-      } catch (exception) {
-        console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
+windowClass.setUIContent('pages/WindowPage').then(() => {
+	const callback = (titleButtonRect: window.TitleButtonRect) => {
+		// ...
+	}
+  try {
+    // Enable listening through the on API.
+    windowClass?.on('windowTitleButtonRectChange', callback);
+    // Disable the listening of a specified callback.
+    windowClass?.off('windowTitleButtonRectChange', callback);
+    // Unregister all the callbacks that have been registered through on().
+    windowClass?.off('windowTitleButtonRectChange');
+  } catch (exception) {
+    console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### on('windowRectChange')<sup>12+</sup>
@@ -3992,16 +3817,16 @@ Subscribes to window rectangle (position and size) change events.
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description                                                    |
+| Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | Yes  | Event type. The value is fixed at **'windowRectChange'**, indicating the window rectangle change event. |
+| type     | string                         | Yes  | Event type. The value is fixed at **'windowRectChange'**, indicating the window rectangle change event.|
 | callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | Yes  | Callback used to return the value and reason of the window rectangle change.                          |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -4028,16 +3853,16 @@ Unsubscribes from window rectangle (position and size) change events.
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description                                                        |
+| Name  | Type                          | Mandatory| Description                                                        |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | Yes  | Event type. The value is fixed at **'windowRectChange'**, indicating the window rectangle change event.    |
-| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | No  | Callback used to return the value and reason of the window rectangle change. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | No  | Callback used to return the value and reason of the window rectangle change. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -4062,20 +3887,22 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
 Subscribes to the event indicating that the subwindow is closed. This event is triggered only when the user touches the close button in the upper right corner provided by the system to close the subwindow. It is not triggered when the subwindow is closed in other ways.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description                                                    |
+| Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | Yes  | Event type. The value is fixed at **'subWindowClose'**, indicating the subwindow close event. |
+| type     | string                         | Yes  | Event type. The value is fixed at **'subWindowClose'**, indicating the subwindow close event.|
 | callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the upper right corner of the subwindow is touched. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the subwindow. The value **true** means not to close the subwindow, and **false** means to continue to close the subwindow.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -4102,20 +3929,22 @@ off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from the event indicating that the subwindow is closed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description                                                        |
+| Name  | Type                          | Mandatory| Description                                                        |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | Yes  | Event type. The value is fixed at **'subWindowClose'**, indicating the subwindow close event.    |
-| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the upper right corner of the subwindow is touched. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the subwindow. The value **true** means not to close the subwindow, and **false** means to continue to close the subwindow. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the upper right corner of the subwindow is touched. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the subwindow. The value **true** means not to close the subwindow, and **false** means to continue to close the subwindow. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
@@ -4131,15 +3960,11 @@ const callback = () => {
 }
 try {
   windowClass.on('subWindowClose', callback);
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-try {
   windowClass.off('subWindowClose', callback);
   // Unregister all the callbacks that have been registered through on().
   windowClass.off('subWindowClose');
 } catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4155,15 +3980,15 @@ Checks whether this window supports the wide-gamut color space. This API uses an
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | ---------------------------- | -- | -------------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -4194,15 +4019,15 @@ Checks whether this window supports the wide-gamut color space. This API uses a 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ---------------------- | ------------------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the wide-gamut color space is supported, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -4231,16 +4056,16 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ----------- |
-| colorSpace | [ColorSpace](#colorspace8) | Yes | Color space to set. |
-| callback   | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.  |
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
+| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
@@ -4276,21 +4101,21 @@ Sets a color space for this window. This API uses a promise to return the result
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ---------- | ------------------------- | -- | ------------- |
-| colorSpace | [ColorSpace](#colorspace8) | Yes | Color space to set. |
+| colorSpace | [ColorSpace](#colorspace8) | Yes| Color space to set.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
@@ -4324,15 +4149,15 @@ Obtains the color space of this window.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------------- | ------------- |
-| [ColorSpace](#colorspace8) | Color space obtained. |
+| [ColorSpace](#colorspace8) | Color space obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 1300002 | This window state is abnormal. |
 
@@ -4354,15 +4179,15 @@ Sets the background color for this window. In the stage model, this API must be 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | Yes | Background color to set. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **'#00FF00'** or **'#FF00FF00'**. |
+| color | string | Yes| Background color to set. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **'#00FF00'** or **'#FF00FF00'**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
@@ -4403,16 +4228,16 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                                       |
+| Name| Type| Mandatory| Description                                       |
 | ---------- | ------------------------- | -- |-------------------------------------------|
-| brightness | number                    | Yes | Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness. |
-| callback   | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.                                    |
+| brightness | number                    | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
+| callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -4469,21 +4294,21 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                                    |
+| Name| Type| Mandatory| Description                                    |
 | ---------- | ------ | -- |----------------------------------------|
-| brightness | number | Yes | Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness. |
+| brightness | number | Yes| Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -4536,16 +4361,16 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ----------- | ------------------------- | -- | ------------------------------------------------------- |
-| isFocusable | boolean                   | Yes | Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite. |
-| callback    | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.                                              |
+| isFocusable | boolean                   | Yes| Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite.|
+| callback    | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -4583,21 +4408,21 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ----------- | ------- | -- | -------------------------------------------------------- |
-| isFocusable | boolean | Yes | Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite. |
+| isFocusable | boolean | Yes| Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite. |
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -4627,22 +4452,24 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 Sets whether to keep the screen always on. This API uses an asynchronous callback to return the result.
 
+Set **isKeepScreenOn** to **true** only in necessary scenarios (such as navigation, video playback, drawing, and gaming scenarios). After exiting these scenarios, set the parameter to **false**. Do not use this API in other scenarios (such as no screen interaction or audio playback). When the system detects that the API is used in a non-standard manner, automatic screen-off may be invoked.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------------- | ------------------------- | -- | ---------------------------------------------------- |
-| isKeepScreenOn | boolean                   | Yes | Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite. |
-| callback       | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.                                           |
+| isKeepScreenOn | boolean                   | Yes| Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite. |
+| callback       | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                           |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -4674,27 +4501,29 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 Sets whether to keep the screen always on. This API uses a promise to return the result.
 
+Set **isKeepScreenOn** to **true** only in necessary scenarios (such as navigation, video playback, drawing, and gaming scenarios). After exiting these scenarios, set the parameter to **false**. Do not use this API in other scenarios (such as no screen interaction or audio playback). When the system detects that the API is used in a non-standard manner, automatic screen-off may be invoked.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------------- | ------- | -- | --------------------------------------------------- |
-| isKeepScreenOn | boolean | Yes | Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite. |
+| isKeepScreenOn | boolean | Yes| Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -4734,16 +4563,16 @@ A window in privacy mode cannot be captured or recorded. This API can be used in
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------------- | ------------------------- | -- | ------------------------------------------------------ |
-| isPrivacyMode | boolean                   | Yes | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
-| callback      | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.                                             |
+| isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
+| callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                             |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -4785,21 +4614,21 @@ A window in privacy mode cannot be captured or recorded. This API can be used in
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------------- | ------- | -- | ----------------------------------------------------- |
-| isPrivacyMode | boolean | Yes | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
+| isPrivacyMode | boolean | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
@@ -4835,16 +4664,16 @@ Sets whether this window is touchable. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ----------- | ------------------------- | -- | ----------------------------------------------- |
-| isTouchable | boolean                   | Yes | Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite. |
-| callback    | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result.                                       |
+| isTouchable | boolean                   | Yes| Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite.|
+| callback    | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -4882,21 +4711,21 @@ Sets whether this window is touchable. This API uses a promise to return the res
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ----------- | ------- | -- | ----------------------------------------------- |
-| isTouchable | boolean | Yes | Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite. |
+| isTouchable | boolean | Yes| Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
@@ -5016,7 +4845,7 @@ This API can be called only for the main window and the setting takes effect onl
 
 | Name  | Type   | Mandatory | Description                                                  |
 | ----- | ------ | --------- | ------------------------------------------------------------ |
-| ratio | number | Yes       | Aspect ratio of the window content layout except border decoration. The value is a floating point number and is restricted by the maximum and minimum sizes of the window. The minimum ratio is the value of minimum width divided by the maximum height, and the maximum ratio is the maximum width divided by the maximum height. The maximum and minimum sizes of the window are determined by the intersection of the setting of [WindowLimits](#windowlimits11) and the system limit. The system limit takes precedence over [WindowLimits](#windowlimits11). |
+| ratio | number | Yes       | Aspect ratio of the window content layout except border decoration. The value is a floating point number and is restricted by the maximum and minimum sizes of the window. The minimum ratio is the value of minimum width divided by the maximum height, and the maximum ratio is the maximum width divided by the minimum height. The maximum and minimum sizes of the window are determined by the intersection of the setting of [WindowLimits](#windowlimits11) and the system limit. The system limit takes precedence over [WindowLimits](#windowlimits11). |
 
 **Return value**
 
@@ -5031,11 +4860,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -5081,7 +4910,7 @@ This API can be called only for the main window and the setting takes effect onl
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| ratio    | number                    | Yes       | Aspect ratio of the window content layout except border decoration. The value is a floating point number greater than or equal to 0.0. |
+| ratio    | number                    | Yes       | Aspect ratio of the window content layout except border decoration. The value is a floating point number and is restricted by the maximum and minimum sizes of the window. The minimum ratio is the value of minimum width divided by the maximum height, and the maximum ratio is the maximum width divided by the minimum height. The maximum and minimum sizes of the window are determined by the intersection of the setting of [WindowLimits](#windowlimits11) and the system limit. The system limit takes precedence over [WindowLimits](#windowlimits11). |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -5091,11 +4920,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -5152,11 +4981,11 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -5209,11 +5038,11 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 1300002 | This window state is abnormal.               |
-| 1300004 | Unauthorized operation.                      |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -5273,8 +5102,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -5320,8 +5149,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -5337,14 +5166,19 @@ promise.then(() => {
 ```
 
 ### maximize<sup>12+</sup>
+maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-maximize(): Promise&lt;void&gt;
-
-Maximizes the main window to enter the immersive mode. This API uses a promise to return the result.
+Maximizes the main window. This API uses a promise to return the result. It can be used only on 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name         | Type                                            | Mandatory | Description                                                  |
+| ------------ | ----------------------------------------------- | --------- | ------------------------------------------------------------ |
+| presentation | [MaximizePresentation](#maximizepresentation12) | No        | Layout when the window is maximized. The default value is **window.MaximizePresentation.ENTER_IMMERSIVE**, indicating that the window enters the immersive layout when maximized. |
 
 **Return value**
 
@@ -5359,10 +5193,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+| 1300004 | Unauthorized operation.                                      |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -5384,6 +5218,7 @@ export default class EntryAbility extends UIAbility {
       }
       windowClass = data;
       let promise = windowClass.maximize();
+      // let promise = windowClass.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
       promise.then(() => {
         console.info('Succeeded in maximizing the window.');
       }).catch((err: BusinessError) => {
@@ -5398,7 +5233,7 @@ export default class EntryAbility extends UIAbility {
 
 recover(): Promise&lt;void&gt;
 
-Restores the main window from the full-screen, maximized, or split-screen mode to a floating window, and restores the window size and position to those before the full-screen, maximized, or split-screen mode is entered. If the main window is already in the floating window mode, nothing will happen. This API uses a promise to return the result. It takes effect only in the multi-window cascade layout.
+Restores the main window from the full-screen, maximized, or split-screen mode to a floating window, and restores the window size and position to those before the full-screen, maximized, or split-screen mode is entered. If the main window is already in the floating window mode, nothing will happen. This API uses a promise to return the result. It takes effect only in the multi-window cascade layout. It can be used only on 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5417,8 +5252,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300001 | Repeated operation. |
-| 1300002 | This window state is abnormal. |
+| 1300001 | Repeated operation.                                          |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5472,8 +5307,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | :------ | :----------------------------------------------------------- |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5490,6 +5325,7 @@ try {
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 Sets the size limits for this application window. This API uses a promise to return the result.
+By default, system size limits are provided. They are determined by the product configuration and cannot be modified. If **setWindowLimits** has not been called, you can call [getWindowLimits](#getwindowlimits11) to obtain the system size limits.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5503,9 +5339,9 @@ Sets the size limits for this application window. This API uses a promise to ret
 
 **Return value**
 
-| Type                                           | Description                                 |
-| :--------------------------------------------- | :------------------------------------------ |
-| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise used to return the new size limits. |
+| Type                                           | Description                                                  |
+| :--------------------------------------------- | :----------------------------------------------------------- |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise used to return the final size limits, which are the intersection between the passed-in size limits and the system size limits. |
 
 **Error codes**
 
@@ -5513,11 +5349,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | :------ | :----------------------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5573,10 +5409,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | :------ | :----------------------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5624,8 +5461,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.           |
-| 1300004 | Unauthorized operation.                  |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5641,7 +5478,7 @@ try {
 
 setWindowDecorVisible(isVisible: boolean): void
 
-Sets whether the title bar is visible in the main window.
+Sets whether the title bar is visible in the window. This API takes effect for the window that has a title bar or a three-button area on 2-in-1 devices. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5659,49 +5496,32 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
-| 1300004  | Unauthorized operation.        |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    // Load content for the main window.
-    windowStage.loadContent("pages/page2", (err: BusinessError) => {
-      let errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-      // Obtain the main window.
-      let mainWindow: window.Window | undefined = undefined;
-      windowStage.getMainWindow((err: BusinessError, data) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        mainWindow = data;
-        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        let isVisible = false;
-        // Call setWindowDecorVisible.
-        try {
-            mainWindow.setWindowDecorVisible(isVisible);
-        } catch (exception) {
-            console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-      });
-    });
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
+  let errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-};
+  console.info('Succeeded in loading the content.');
+  let isVisible = false;
+  // Call setWindowDecorVisible.
+  try {
+      windowClass?.setWindowDecorVisible(isVisible);
+  } catch (exception) {
+      console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+});
 ```
 
 ### setSubWindowModal<sup>12+</sup>
@@ -5737,10 +5557,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
-| 1300004  | Unauthorized operation.        |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300004 | Unauthorized operation.                                      |
 
 **Example**
 
@@ -5781,7 +5601,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-<!--RP1-->Sets the title bar height of the main window or the decorated subwindow. This API can be used only on 2-in-1 devices.<!--RP1End-->
+<!--RP1-->
+Sets the height of the title bar of this window. This API takes effect for the window that has a title bar or a three-button area on 2-in-1 devices. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
+<!--RP1End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5799,45 +5621,31 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let height: number = 50;
-      try {
-        windowClass.setWindowDecorHeight(height);
-      } catch (exception) {
-        console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  let height: number = 50;
+  try {
+    windowClass?.setWindowDecorHeight(height);
+    console.info(`Succeeded in setting the height of window decor: ${height}`);
+  } catch (exception) {
+    console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
-<!--RP2-->Obtains the title bar height of the main window or the decorated subwindow. This API can be used only on 2-in-1 devices.<!--RP2End-->
+<!--RP2-->
+Obtains the height of the title bar of this window. This API takes effect for the window that has a title bar or a three-button area on 2-in-1 devices. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
+<!--RP2End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5855,36 +5663,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        let height = windowClass.getWindowDecorHeight();
-      } catch (exception) {
-        console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let height = windowClass?.getWindowDecorHeight();
+    console.info(`Succeeded in getting the height of window decor: ${height}`);
+  } catch (exception) {
+    console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### getTitleButtonRect<sup>11+</sup>
@@ -5909,8 +5701,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
 
 **Example**
 
@@ -5942,13 +5734,142 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### getWindowStatus<sup>12+</sup>
+
+getWindowStatus(): WindowStatusType
+
+Obtains the mode of this window.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Type                                    | Description  |
+| --------------------------------------- | ------------ |
+| [WindowStatusType](#windowstatustype11) | Window mode. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID      | Error Message                                                |
+| ------- | ------------------------------------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+
+**Example**
+
+```ts
+try {
+  let windowStatusType = windowClass.getWindowStatus();
+} catch (exception) {
+  console.error(`Failed to obtain the window status of window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### isFocused<sup>12+</sup>
+
+isFocused(): boolean
+
+Checks whether this window is focused.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Return value**
+
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Result indicating whether the window is focused. The value **true** means that the window is focused, and **false** means the opposite. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+try {
+  let focus = windowClass.isFocused();
+  console.info('Succeeded in checking whether the window is focused. Data: ' + JSON.stringify(focus));
+} catch (exception) {
+  console.error(`Failed to check whether the window is focused. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### createSubWindowWithOptions<sup>12+</sup>
+
+createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
+
+Creates a subwindow under the main window or another subwindow. This API uses a promise to return the result. It takes effect only on 2-in-1 devices.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name    | Type                                    | Mandatory | Description                                 |
+| ------- | --------------------------------------- | --------- | ------------------------------------------- |
+| name    | string                                  | Yes       | Name of the subwindow.                      |
+| options | [SubWindowOptions](#subwindowoptions11) | Yes       | Parameters used for creating the subwindow. |
+
+**Return value**
+
+| Type                             | Description                                           |
+| -------------------------------- | ----------------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to used to return the subwindow created. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID      | Error Message                                                |
+| ------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: Incorrect parameter types.  |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+| 1300004 | Unauthorized operation.                                      |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let options : window.SubWindowOptions = {
+    title: 'title',
+    decorEnabled: true,
+    isModal: true
+  };
+  let promise = windowClass.createSubWindowWithOptions('mySubWindow', options);
+  promise.then((data) => {
+    console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### enableLandscapeMultiWindow<sup>12+</sup>
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 Enables the landscape multi-window mode for the UI page that supports the horizontal layout. You are not advised to call this API for the UI page that adopts the vertical layout.
 
-This API takes effect only when the **preferMultiWindowOrientation** field in the [abilities](../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file is set to **landscape_auto**.
+This API takes effect only for the main window of the application. In addition, **preferMultiWindowOrientation** must be set to **landscape_auto** in the [abilities](../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5966,20 +5887,38 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let promise = windowClass.enableLandscapeMultiWindow();
-promise.then(() => {
-    console.info('Succeeded in making multi-window become landscape.');
-}).catch((err: BusinessError) => {
-    console.error(`Failed to make multi-window become landscape. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let promise = windowClass.enableLandscapeMultiWindow();
+      promise.then(() => {
+        console.info('Succeeded in making multi-window become landscape.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to make multi-window become landscape. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### disableLandscapeMultiWindow<sup>12+</sup>
@@ -5988,7 +5927,7 @@ disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 Disables the landscape multi-window mode for the UI page that supports the horizontal layout.
 
-This API takes effect only when the **preferMultiWindowOrientation** field in the [abilities](../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file is set to **landscape_auto**.
+This API takes effect only for the main window of the application. In addition, **preferMultiWindowOrientation** must be set to **landscape_auto** in the [abilities](../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6006,20 +5945,354 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 
 | ID      | Error Message                                 |
 | ------- | --------------------------------------------- |
-| 1300002 | This window state is abnormal.               |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **Example**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let promise = windowClass.disableLandscapeMultiWindow();
+      promise.then(() => {
+        console.info('Succeeded in making multi-window become not landscape.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to make multi-window become not landscape. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
+```
+
+### setDialogBackGestureEnabled<sup>12+</sup>
+
+setDialogBackGestureEnabled(enabled: boolean): Promise&lt;void&gt;
+
+Sets whether the modal window responds to the back gesture event. An error code is returned if this API is called for a non-modal window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name    | Type    | Mandatory | Description                                                  |
+| ------- | ------- | --------- | ------------------------------------------------------------ |
+| enabled | boolean | Yes       | Whether to respond to the back gesture event.<br>The value **true** means to respond to the back gesture event and trigger the **onBackPress** callback, and **false** means the opposite. |
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID      | Error Message                                                |
+| ------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+| 1300004 | Unauthorized operation.                                      |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.disableLandscapeMultiWindow();
-promise.then(() => {
-    console.info('Succeeded in making multi-window become not landscape.');
-}).catch((err: BusinessError) => {
-    console.error(`Failed to make multi-window become not landscape. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        windowClass = data;
+        windowClass.setUIContent("pages/Index");
+        let enabled = true;
+        let promise = windowClass.setDialogBackGestureEnabled(enabled);
+        promise.then(() => {
+          console.info('Succeeded in setting dialog window to respond back gesture.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set dialog window to respond back gesture. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+```ts
+// ets/pages/Index.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+    }
+    .height('100%')
+    .width('100%')
+  }
+
+  onBackPress(): boolean | void {
+    console.info('Succeeded in setting dialog window to respond back gesture.');
+    return true;
+  }
+}
+```
+
+### setWindowSystemBarProperties<sup>(deprecated)</sup>
+
+setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the properties of the three-button navigation bar and status bar of the main window. This API uses an asynchronous callback to return the result. <!--RP5-->This API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setWindowSystemBarProperties](#setwindowsystembarproperties9) in promise mode instead.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name                | Type                                        | Mandatory | Description                                                  |
+| ------------------- | ------------------------------------------- | --------- | ------------------------------------------------------------ |
+| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes       | Properties of the three-button navigation bar and status bar. |
+| callback            | AsyncCallback&lt;void&gt;                   | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID      | Error Message                                                |
+| ------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        // The following properties are supported since API version 8.
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      try {
+        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar properties.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### setWindowSystemBarEnable<sup>(deprecated)</sup>
+
+setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
+
+Sets whether to show the three-button navigation bar, status bar, and bottom navigation bar of the main window. This API uses an asynchronous callback to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the three-button navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setWindowSystemBarEnable](#setwindowsystembarenable9) in promise mode instead.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                          | Mandatory | Description                                                  |
+| -------- | ----------------------------- | --------- | ------------------------------------------------------------ |
+| names    | Array<'status'\|'navigation'> | Yes       | Whether to show the three-button navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| callback | AsyncCallback&lt;void&gt;     | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID      | Error Message                                                |
+| ------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+
+**Example**
+
+```ts
+// In this example, the three-button navigation bar, status bar, and bottom navigation bar are not displayed.
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      try {
+        windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar to be invisible.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### setWindowLayoutFullScreen<sup>(deprecated)</sup>
+
+setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Sets whether the main window layout or the subwindow layout is immersive. This API uses an asynchronous callback to return the result.
+- An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
+- A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setWindowLayoutFullScreen](#setwindowlayoutfullscreen9) in promise mode instead.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name               | Type                      | Mandatory | Description                                                  |
+| ------------------ | ------------------------- | --------- | ------------------------------------------------------------ |
+| isLayoutFullScreen | boolean                   | Yes       | Whether the window layout is immersive. (The status bar and navigation bar of the immersive layout are still displayed.) The value **true** means that the window layout is immersive, and **false** means the opposite. |
+| callback           | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID      | Error Message                                                |
+| ------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen = true;
+      try {
+        windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
 ```
 
 ### show<sup>(deprecated)</sup>
@@ -6390,7 +6663,7 @@ promise.then((data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-Obtains the area where the main window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. This API uses an asynchronous callback to return the result.
+Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -6408,41 +6681,24 @@ Obtains the area where the main window cannot be displayed, for example, the sys
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      windowClass.getAvoidArea(type, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      });
-    });
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+    return;
   }
-}
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+});
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-Obtains the area where the main window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. This API uses a promise to return the result.
+Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -6465,32 +6721,15 @@ Obtains the area where the main window cannot be displayed, for example, the sys
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      let type = window.AvoidAreaType.TYPE_SYSTEM;
-      let promise = windowClass.getAvoidArea(type);
-      promise.then((data) => {
-        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    });
-  }
-}
+let type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
+promise.then((data) => {
+  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
@@ -6513,14 +6752,6 @@ Sets whether the main window or the subwindow is in full-screen mode. This API u
 | ------------ | ------------------------- | --------- | ------------------------------------------------------------ |
 | isFullScreen | boolean                   | Yes       | Whether to set full-screen mode. This setting affects the display of the status bar and navigation bar. The value **true** means to set full-screen mode, and **false** means the opposite. |
 | callback     | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6581,14 +6812,6 @@ Sets whether the main window or the subwindow is in full-screen mode. This API u
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -6640,14 +6863,6 @@ Sets whether the main window layout or the subwindow layout is immersive. This A
 | ------------------ | ------------------------- | --------- | ------------------------------------------------------------ |
 | isLayoutFullScreen | boolean                   | Yes       | Whether the window layout is immersive. This setting does not affect the display of the status bar and navigation bar. The value **true** means that the window layout is immersive, and **false** means the opposite. |
 | callback           | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6708,14 +6923,6 @@ Sets whether the main window layout or the subwindow layout is immersive. This A
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -6751,7 +6958,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses an asynchronous callback to return the result.
+Sets whether to show the three-button navigation bar, status bar, and bottom navigation bar of the main window. This API uses an asynchronous callback to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the three-button navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 > **NOTE**
 >
@@ -6763,21 +6972,14 @@ Sets whether to display the status bar and navigation bar when the main window i
 
 | Name     | Type                          | Mandatory | Description                                                  |
 | -------- | ----------------------------- | --------- | ------------------------------------------------------------ |
-| names    | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| names    | Array<'status'\|'navigation'> | Yes       | Whether to show the three-button navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
 | callback | AsyncCallback&lt;void&gt;     | Yes       | Callback used to return the result.                          |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-// In this example, the status bar and navigation bar are not displayed.
+// In this example, the three-button navigation bar, status bar, and bottom navigation bar are not displayed.
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6812,7 +7014,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-Sets whether to display the status bar and navigation bar when the main window is in full-screen mode. This API uses a promise to return the result.
+Sets whether to show the three-button navigation bar, status bar, and bottom navigation bar of the main window. This API uses a promise to return the result. The display of the status bar and bottom navigation bar is controlled by **status**, and that of the three-button navigation bar is controlled by **navigation**. From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 > **NOTE**
 >
@@ -6824,7 +7028,7 @@ Sets whether to display the status bar and navigation bar when the main window i
 
 | Name  | Type                          | Mandatory | Description                                                  |
 | ----- | ----------------------------- | --------- | ------------------------------------------------------------ |
-| names | Array<'status'\|'navigation'> | Yes       | Whether to display the status bar and navigation bar when the window is in full-screen mode.<br>For example, to display the status bar and navigation bar, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
+| names | Array<'status'\|'navigation'> | Yes       | Whether to show the three-button navigation bar, status bar, and bottom navigation bar of the window in full-screen mode.<br>For example, to show all of them, set this parameter to **['status', 'navigation']**. By default, they are not displayed. |
 
 **Return value**
 
@@ -6832,18 +7036,11 @@ Sets whether to display the status bar and navigation bar when the main window i
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-// In this example, the status bar and navigation bar are not displayed.
+// In this example, the three-button navigation bar, status bar, and bottom navigation bar are not displayed.
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6876,7 +7073,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the properties of the status bar and navigation bar when the main window is in full-screen mode. This API uses an asynchronous callback to return the result. The setting does not take effect for 2-in-1 devices.
+Sets the properties of the three-button navigation bar and status bar of the main window. This API uses an asynchronous callback to return the result. <!--RP5-->This API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 > **NOTE**
 >
@@ -6886,18 +7085,10 @@ Sets the properties of the status bar and navigation bar when the main window is
 
 **Parameters**
 
-| Name                | Type                                        | Mandatory | Description                                      |
-| ------------------- | ------------------------------------------- | --------- | ------------------------------------------------ |
-| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes       | Properties of the status bar and navigation bar. |
-| callback            | AsyncCallback&lt;void&gt;                   | Yes       | Callback used to return the result.              |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| Name                | Type                                        | Mandatory | Description                                                  |
+| ------------------- | ------------------------------------------- | --------- | ------------------------------------------------------------ |
+| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes       | Properties of the three-button navigation bar and status bar. |
+| callback            | AsyncCallback&lt;void&gt;                   | Yes       | Callback used to return the result.                          |
 
 **Example**
 
@@ -6942,7 +7133,9 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-Sets the properties of the status bar and navigation bar when the main window is in full-screen mode. This API uses a promise to return the result. The setting does not take effect for 2-in-1 devices.
+Sets the properties of the three-button navigation bar and status bar of the main window. This API uses a promise to return the result. <!--RP5-->This API does not take effect on 2-in-1 devices.<!--RP5End-->
+
+This API does not take effect when it is called by a subwindow.
 
 > **NOTE**
 >
@@ -6952,23 +7145,15 @@ Sets the properties of the status bar and navigation bar when the main window is
 
 **Parameters**
 
-| Name                | Type                                        | Mandatory | Description                                      |
-| ------------------- | ------------------------------------------- | --------- | ------------------------------------------------ |
-| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes       | Properties of the status bar and navigation bar. |
+| Name                | Type                                        | Mandatory | Description                                                  |
+| ------------------- | ------------------------------------------- | --------- | ------------------------------------------------------------ |
+| systemBarProperties | [SystemBarProperties](#systembarproperties) | Yes       | Properties of the three-button navigation bar and status bar. |
 
 **Return value**
 
 | Type                | Description                    |
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7146,7 +7331,7 @@ promise.then((data) => {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-Subscribes to the event indicating changes to the area where the main window cannot be displayed.
+Subscribes to the event indicating changes to the area where this window cannot be displayed.
 
 > **NOTE**
 >
@@ -7161,46 +7346,20 @@ Subscribes to the event indicating changes to the area where the main window can
 | type     | string                                   | Yes       | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
 | callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | Yes       | Callback used to return the area.                            |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      windowClass.on('systemAvoidAreaChange', (data) => {
-        console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
-      });
-    });
-  }
-}
+windowClass.on('systemAvoidAreaChange', (data) => {
+  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+});
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-Unsubscribes from the event indicating changes to the area where the main window cannot be displayed.
+Unsubscribes from the event indicating changes to the area where this window cannot be displayed.
 
 > **NOTE**
 >
@@ -7215,43 +7374,16 @@ Unsubscribes from the event indicating changes to the area where the main window
 | type     | string                                   | Yes       | Event type. The value is fixed at **'systemAvoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
 | callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | No        | Callback used to return the area. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
-
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
+const callback = (avoidArea: window.AvoidArea) => {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (avoidArea: window.AvoidArea) => {
-        // ...
-      }
-      windowClass.on('systemAvoidAreaChange', callback);
-      windowClass.off('systemAvoidAreaChange', callback);
-      // Unregister all the callbacks that have been registered through on().
-      windowClass.off('systemAvoidAreaChange');
-    });
-  }
 }
+windowClass.on('systemAvoidAreaChange', callback);
+windowClass.off('systemAvoidAreaChange', callback);
+// Unregister all the callbacks that have been registered through on().
+windowClass.off('systemAvoidAreaChange');
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -7337,13 +7469,6 @@ Sets a color space for this window. This API uses an asynchronous callback to re
 | colorSpace | [ColorSpace](#colorspace8) | Yes       | Color space to set.                 |
 | callback   | AsyncCallback&lt;void&gt;  | Yes       | Callback used to return the result. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -7384,13 +7509,6 @@ Sets a color space for this window. This API uses a promise to return the result
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -7488,13 +7606,6 @@ Sets the background color for this window. This API uses an asynchronous callbac
 | color    | string                    | Yes       | Background color to set. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **'#00FF00'** or **'#FF00FF00'**. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7536,13 +7647,6 @@ Sets the background color for this window. This API uses a promise to return the
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7579,13 +7683,6 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 | brightness | number                    | Yes       | Brightness to set. The value is a floating point number in the range [0.0, 1.0] or **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness. |
 | callback   | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7629,13 +7726,6 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7741,13 +7831,6 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 | isFocusable | boolean                   | Yes       | Whether the window can gain focus. The value **true** means that the window can gain focus, and **false** means the opposite. |
 | callback    | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7789,13 +7872,6 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7830,13 +7906,6 @@ Sets whether to keep the screen always on. This API uses an asynchronous callbac
 | isKeepScreenOn | boolean                   | Yes       | Whether to keep the screen always on. The value **true** means to keep the screen always on, and **false** means the opposite. |
 | callback       | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7877,14 +7946,6 @@ Sets whether to keep the screen always on. This API uses a promise to return the
 | Type                | Description                    |
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -7996,14 +8057,6 @@ A window in privacy mode cannot be captured or recorded. This API can be used in
 | isPrivacyMode | boolean                   | Yes       | Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
 | callback      | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -8046,14 +8099,6 @@ A window in privacy mode cannot be captured or recorded. This API can be used in
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -8087,13 +8132,6 @@ Sets whether this window is touchable. This API uses an asynchronous callback to
 | isTouchable | boolean                   | Yes       | Whether the window is touchable. The value **true** means that the window is touchable, and **false** means the opposite. |
 | callback    | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8135,13 +8173,6 @@ Sets whether this window is touchable. This API uses a promise to return the res
 | ------------------- | ------------------------------ |
 | Promise&lt;void&gt; | Promise that returns no value. |
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8173,20 +8204,22 @@ Describes the lifecycle of a window stage.
 | ACTIVE                | 2     | The window stage gains focus.                                |
 | INACTIVE              | 3     | The window stage loses focus.                                |
 | HIDDEN                | 4     | The window stage is running in the background.               |
-| RESUMED<sup>11+</sup> | 5     | The window stage is interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
-| PAUSED<sup>11+</sup>  | 6     | The window stage is non-interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
+| RESUMED<sup>11+</sup> | 5     | The window stage is interactive in the foreground, for example, when the user touches the application icon on the recent tasks screen to open the application again. |
+| PAUSED<sup>11+</sup>  | 6     | The window stage is non-interactive in the foreground, for example, when the user swipes up from the bottom of the screen and hold to access the recent tasks screen. |
 
 ## SubWindowOptions<sup>11+</sup>
 
 Describes the parameters used for creating a subwindow.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name                  | Type    | Read Only | Mandatory | Description                                                  |
-| --------------------- | ------- | --------- | --------- | ------------------------------------------------------------ |
-| title                 | string  | No        | Yes       | Title of the subwindow.                                      |
-| decorEnabled          | boolean | No        | Yes       | Whether decorations are displayed in the subwindow. The value **true** means that decorations are displayed, and **false** means the opposite. |
-| isModal<sup>12+</sup> | boolean | No        | No        | Whether the modal property is enabled for the subwindow. The value **true** means that modal property is enabled, and **false** means the opposite. When the modal property is enabled, the parent window cannot respond to user operations. The default value is **false**. |
+| Name                  | Type    | Read Only | Optional | Description                                                  |
+| --------------------- | ------- | --------- | -------- | ------------------------------------------------------------ |
+| title                 | string  | No        | No       | Title of the subwindow.                                      |
+| decorEnabled          | boolean | No        | No       | Whether decorations are displayed in the subwindow. The value **true** means that decorations are displayed, and **false** means the opposite. |
+| isModal<sup>12+</sup> | boolean | No        | Yes      | Whether the modal property is enabled for the subwindow. The value **true** means that modal property is enabled, and **false** means the opposite. When the modal property is enabled, the parent window cannot respond to user operations. The default value is **false**. |
 
 ## WindowStage<sup>9+</sup>
 
@@ -8312,8 +8345,8 @@ Obtains the main window of this window stage.
 
 **Return value**
 
-| Type              | Description             |
-| ----------------- | ----------------------- |
+| Type              | Description  |
+| ----------------- | ------------ |
 | [Window](#window) | Main window. |
 
 **Error codes**
@@ -8326,7 +8359,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | 1300005 | This window stage is abnormal. |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8371,8 +8404,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                               |
 | ------- | ----------------------------------------------------------- |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                              |
+| 1300005 | This window stage is abnormal.                              |
 
 **Example**
 
@@ -8441,8 +8474,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                               |
 | ------- | ----------------------------------------------------------- |
 | 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                              |
+| 1300005 | This window stage is abnormal.                              |
 
 **Example**
 
@@ -8480,6 +8513,8 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
@@ -8499,11 +8534,12 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID      | Error Message                                               |
-| ------- | ----------------------------------------------------------- |
-| 401     | Parameter error. Possible cause: Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| ID      | Error Message                                                |
+| ------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: Incorrect parameter types.  |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8564,7 +8600,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | 1300005 | This window stage is abnormal. |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8616,7 +8652,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 | 1300005 | This window stage is abnormal. |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8666,8 +8702,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8732,8 +8768,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8791,8 +8827,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -8848,9 +8884,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -8931,9 +8967,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -9011,9 +9047,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 1300002 | This window state is abnormal.                               |
+| 1300003 | This window manager service works abnormally.                |
 
 **Example**
 
@@ -9093,8 +9129,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -9145,8 +9181,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 
@@ -9188,6 +9224,8 @@ By default, the system's default density is not used, and the window layout chan
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
@@ -9204,8 +9242,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300005 | This window stage is abnormal. |
+| 1300002 | This window state is abnormal.                               |
+| 1300005 | This window stage is abnormal.                               |
 
 **Example**
 

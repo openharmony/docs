@@ -43,6 +43,7 @@ enableScreenCurtain(isEnable: boolean): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
@@ -207,5 +208,45 @@ rootElement.getCursorPosition((err: BusinessError, data: number) => {
     return;
   }
   console.info(`Succeeded in getCursorPosition, ${data}`);
+});
+```
+
+### startAbility<sup>12+</sup>
+
+startAbility(want: Want): void;
+
+提供拉起前台页面的能力。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let want: Want = {
+  bundleName: 'com.huawei.hmos.photos'
+  abilityName: 'com.huawei.hmos.photos.MainAbility'
+}
+
+axContext.startAbility(want).then(() => {
+  console.info(`startAbility Succeeded enable ability`);
+}).catch((err: BusinessError) => {
+  console.error(`startAbility failed to enable ability, Code is ${err.code}, message is ${err.message}`);
 });
 ```

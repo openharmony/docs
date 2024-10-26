@@ -1,12 +1,12 @@
 # Refresh
 
- The **\<Refresh>** component is a container that provides the pull-to-refresh feature.
+The **Refresh** component is a container that provides the pull-to-refresh feature.
 
 >  **NOTE**
 >
 >  - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  - This component provides linkage with a vertical scrolling **\<Swiper>** and **\<Web>** component since API version 12. The linkage does not work if the **loop** attribute of **\<Swiper>** is set to **true**.
+>  - This component provides linkage with a vertical scrolling **Swiper** and **Web** component since API version 12. The linkage does not work if the **loop** attribute of **Swiper** is set to **true**.
 
 ## Child Components
 
@@ -20,21 +20,26 @@ Refresh(value: RefreshOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Value Type| Type| Mandatory| Description|
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value |  [RefreshOptions](#refreshoptions)| Yes| Parameters of the **\<Refresh>** component.|
+| value |  [RefreshOptions](#refreshoptions)| Yes| Parameters of the **Refresh** component.|
 
 ## RefreshOptions
 
-| Name        | Value Type                                     | Mandatory  | Description                                    |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name        | Type                                     | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| refreshing | boolean                                  | Yes   | Whether the current component is being refreshed.<br>Default value: **false**<br>This parameter supports [$$](../../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| refreshing | boolean                                  | Yes   | Whether the component is being refreshed. The value **true** means that the component is being refreshed, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports [$$](../../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offset<sup>(deprecated)</sup>    | string \| number               | No   | Distance from the pull-down starting point to the top of the component.<br>Default value: **16**, in vp<br>This API is deprecated since API version 11. No substitute API is provided.<br>**NOTE**<br>The value range of **offset** is [0vp, 64vp]. If the value is greater than 64 vp, the value 64 vp will be used. The value cannot be a percentage or a negative number.|
-| friction<sup>(deprecated)</sup>   | number \| string               | No   | Coefficient of friction, which indicates the **<Refresh\>** component's sensitivity to the pull-down gesture. The value ranges from 0 to 100.<br>Default value: **62**<br>- **0** indicates that the **\<Refresh>** component is not sensitive to the pull-down gesture.<br>- **100** indicates that the **\<Refresh>** component is highly sensitive to the pull-down gesture.<br>- A larger value indicates a more sensitive response of the **\<Refresh>** component to the pull-down gesture.<br>This API is deprecated since API version 11. You can use [pullDownRatio](#pulldownratio12) instead since API version 12.|
-| builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | No   | Component with a custom refresh style set for the pull-down gesture.<br>**NOTE**<br>In API version 10 and earlier versions, there is a height limit of 64 vp on custom components. This restriction is removed since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Text displayed at the bottom of the component.<br>**NOTE**<br>For details about the restrictions on the text, see the Text component. When the builder is used to customize the refresh style, promptText is not displayed.|
+| friction<sup>(deprecated)</sup>   | number \| string               | No   | Coefficient of friction, which indicates the **<Refresh\>** component's sensitivity to the pull-down gesture. The value ranges from 0 to 100.<br>Default value: **62**<br>- **0** indicates that the **Refresh** component is not responsive to the pull-down gesture.<br>- **100** indicates that the **Refresh** component is highly responsive to the pull-down gesture.<br>- A larger value indicates higher responsiveness of the **Refresh** component to the pull-down gesture.<br>This API is deprecated since API version 11. You can use [pullDownRatio](#pulldownratio12) instead since API version 12.|
+| builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom content in the refreshing area.<br>**NOTE**<br>In API version 10 and earlier versions, there is a height limit of 64 vp on custom components. This restriction is removed since API version 11.<br>When a custom component is set with a fixed height, it will be displayed below the refreshing area at that fixed height; when the custom component does not have a height set, its height will adapt to the height of the refreshing area, which may result in the height of the custom component changing to 0 along with the refreshing area. To prevent its height from being less than expected, you are advised to set a minimum height constraint for the custom component. For reference, see [Example 2](#example-2).<br>Since API version 12, use **refreshingContent** instead of **builder** for customizing the content of the refreshing area, to avoid animation interruptions caused by the destruction and re-creation of the custom component during the refreshing process.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Custom text displayed at the bottom of the refreshing area.<br>**NOTE**<br>When setting the text, follow the constraints on the **Text** components. If you are using **builder** or **refreshingContent** to customize the content displayed in the refreshing area, the text set with **promptText** will not be displayed.<br>When **promptText** is set and effective, the [refreshOffset](#refreshoffset12) attribute defaults to 96 vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| refreshingContent<sup>12+</sup>    | [ComponentContent](../js-apis-arkui-ComponentContent.md) | No   | Custom content in the refreshing area.<br>**NOTE**<br>If this parameter and the **builder** parameter are set at the same time, the **builder** parameter does not take effect.<br>When a custom component is set with a fixed height, it will be displayed below the refreshing area at that fixed height; when the custom component does not have a height set, its height will adapt to the height of the refreshing area, which may result in the height of the custom component changing to 0 along with the refreshing area. To prevent its height from being less than expected, you are advised to set a minimum height constraint for the custom component. For reference, see [Example 5](#example-5).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Attributes
 
@@ -46,40 +51,47 @@ refreshOffset(value: number)
 
 Sets the pull-down offset that initiates a refresh.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Value Type| Type                                       | Mandatory| Description                                                      |
+| Name| Type                                       | Mandatory| Description                                                      |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | number |  Yes| Pull-down offset, in vp.<br>Default value: 64 vp<br>If the value specified is 0 or less than 0, the default value is used.
+| value  | number |  Yes| Pull-down offset, in vp.<br>Default value: 96 vp when [promptText](#refreshoptions) is set and 64 vp when [promptText](#refreshoptions) is not<br>If the value specified is 0 or less than 0, the default value is used.|
+
 ### pullToRefresh<sup>12+</sup>
 
 pullToRefresh(value: boolean)
 
-Sets whether to initiate a refresh when the pull-down distance exceeds the value of **refreshOffset**.
+Sets whether to initiate a refresh when the pull-down distance exceeds the value of [refreshOffset](#refreshoffset12).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Value Type| Type                                       | Mandatory| Description                                                      |
+| Name| Type                                       | Mandatory| Description                                                      |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| value  | boolean |  Yes| Whether to initiate a refresh.<br>Default value: **true**|
+| value  | boolean |  Yes| Whether to initiate a refresh when the pull-down distance exceeds the value of [refreshOffset](#refreshoffset12). The value **true** means to initiate a refresh, and **false** means the opposite.<br>Default value: **true**|
 
 ### pullDownRatio<sup>12+</sup>
 
-pullDownRatio(ratio: number)
+pullDownRatio(ratio: [Optional](ts-universal-attributes-custom-property.md#optional12)\<number>)
 
 Sets the pull-down ratio.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Value Type| Type                                       | Mandatory| Description                                                      |
+| Name| Type                                       | Mandatory| Description                                                      |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| ratio  | number |  Yes| Pull-down ratio. A larger value indicates higher sensitive to the pull-down gesture. The value **0** indicates that the pull-down does not follow the gesture, and **1** indicates that the pull-down follows the gesture proportionally.<br>If this parameter is not set or is set to **undefined**, a dynamic pull-down ratio is used. That is, the larger the pull-down distance, the smaller the ratio.<br>The value ranges from 0 to 1. A value less than 0 is handled as **0**, and a value greater than 1 is handled as **1**.
+| ratio  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> |  Yes| Pull-down ratio. A larger value indicates higher responsiveness to the pull-down gesture. The value **0** indicates that the pull-down does not follow the gesture, and **1** indicates that the pull-down follows the gesture proportionally.<br>If this parameter is not set or is set to **undefined**, a dynamic pull-down ratio is used. That is, the larger the pull-down distance, the smaller the ratio.<br>The value ranges from 0 to 1. A value less than 0 is handled as **0**, and a value greater than 1 is handled as **1**.
 
 ## Events
 
@@ -97,7 +109,7 @@ Called when the refresh status changes.
 
 **Parameters**
 
-| Value Type| Type                                   | Mandatory| Description      |
+| Name| Type                                   | Mandatory| Description      |
 | ------ | --------------------------------------- | ---- | ---------- |
 | state  | [RefreshStatus](#refreshstatus) | Yes  | Refresh status.|
 
@@ -117,11 +129,13 @@ onOffsetChange(callback: Callback\<number>)
 
 Called when the pull-down distance changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Value Type| Type                                   | Mandatory| Description      |
+| Name| Type                                   | Mandatory| Description      |
 | ------ | --------------------------------------- | ---- | ---------- |
 | value  | number | Yes  | Pull-down distance.<br>Unit: vp|
 
@@ -130,20 +144,22 @@ Called when the pull-down distance changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Value      | Description                  |
 | -------- | -------- | -------------------- |
 | Inactive | 0 | The component is not pulled down. This is the default value.            |
 | Drag     | 1 | The component is being pulled down, but the pull-down distance is shorter than the minimum length required to trigger the refresh.     |
 | OverDrag | 2 | The component is being pulled down, and the pull-down distance exceeds the minimum length required to trigger the refresh.     |
-| Refresh  | 3 | The pull-down ends, and the component rebounds to the minimum length required to trigger the refresh and enters the refresh state.|
-| Done     | 4 | The refresh is complete, and the component returns to the initial state (top).    |
+| Refresh  | 3 | The pull-down ends, and the component rebounds to the minimum length required to trigger the refresh and enters the refreshing state.|
+| Done     | 4 | The refresh is complete, and the component returns to the initial state (at the top).    |
 
 
 ## Example
 
 ### Example 1
 
-This example implements a **\<Refresh>** in the default style.
+This example implements a **Refresh** with its refreshing area in the default style.
 
 ```ts
 // xxx.ets
@@ -160,7 +176,7 @@ struct RefreshExample {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('100%').height(100).fontSize(16)
+                .width('70%').height(80).fontSize(16).margin(10)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
@@ -170,7 +186,7 @@ struct RefreshExample {
         })
         .width('100%')
         .height('100%')
-        .divider({strokeWidth:1,color:Color.Yellow,startMargin:10,endMargin:10})
+        .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
@@ -197,7 +213,7 @@ struct RefreshExample {
 
 ### Example 2
 
-This example implements a **\<Refresh>** component in a custom style.
+This example implements a **Refresh** with its refreshing area displaying the custom content defined with **builder**.
 
 ```ts
 // xxx.ets
@@ -217,7 +233,11 @@ struct RefreshExample {
         Text("Refreshing...").fontSize(16).margin({left:20})
       }
       .alignItems(VerticalAlign.Center)
-    }.width("100%").align(Alignment.Center)
+    }
+    .align(Alignment.Center)
+    .clip(true)
+    .constraintSize({minHeight:32}) // Setting a minimum height constraint ensures that the height of the custom component does not fall below the specified minHeight when the height of the refreshing area changes.
+    .width("100%")
   }
 
   build() {
@@ -227,7 +247,7 @@ struct RefreshExample {
           ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
-                .width('100%').height(100).fontSize(16)
+                .width('70%').height(80).fontSize(16).margin(10)
                 .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
             }
           }, (item: string) => item)
@@ -237,9 +257,12 @@ struct RefreshExample {
         })
         .width('100%')
         .height('100%')
-        .divider({strokeWidth:1,color:Color.Yellow,startMargin:10,endMargin:10})
+        .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
       }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(64)
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
@@ -249,9 +272,6 @@ struct RefreshExample {
         }, 2000)
         console.log('onRefreshing test')
       })
-      .backgroundColor(0x89CFF0)
-      .refreshOffset(64)
-      .pullToRefresh(true)
     }
   }
 }
@@ -261,7 +281,7 @@ struct RefreshExample {
 
 ### Example 3
 
-This example implements a **\<Refresh>** component that produces a bounce effect when the boundary is reached.
+This example implements a **Refresh** component that produces a bounce effect when the boundary is reached.
 
 ```ts
 // Index.ets
@@ -286,7 +306,10 @@ struct ListRefreshLoad {
           .style({ status: this.refreshing ? ProgressStatus.LOADING : ProgressStatus.PROGRESSING })
           .margin(10)
       }
-    }.height("100%").width("100%")
+    }
+    .clip(true)
+    .height("100%")
+    .width("100%")
   }
 
   @Builder
@@ -364,3 +387,219 @@ struct ListRefreshLoad {
 ```
 
 ![refresh_boundary_resilience](figures/refresh_boundary_resilience.gif)
+
+### Example 4
+
+This example demonstrates how to use **promptText** to set the text displayed in the refreshing area.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State promptText: string = "Refreshing..."
+  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing, promptText: this.promptText}) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('70%').height(80).fontSize(16).margin(10)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .onScrollIndex((first: number) => {
+          console.info(first.toString())
+        })
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(96)
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onOffsetChange((value: number) => {
+        console.info('Refresh onOffsetChange offset:' + value)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false
+        }, 2000)
+        console.log('onRefreshing test')
+      })
+    }
+  }
+}
+```
+
+![en-us_image_refresh_example4](figures/en-us_image_refresh_example4.gif)
+
+### Example 5
+
+This example implements a **Refresh** with its refreshing area displaying the custom content defined with **refreshingContent**.
+
+```ts
+import { ComponentContent } from '@ohos.arkui.node';
+
+class Params {
+  refreshStatus: RefreshStatus = RefreshStatus.Inactive
+
+  constructor(refreshStatus: RefreshStatus) {
+    this.refreshStatus = refreshStatus;
+  }
+}
+
+@Builder
+function customRefreshingContent(params:Params) {
+  Stack() {
+    Row() {
+      LoadingProgress().height(32)
+      Text("refreshStatus: "+params.refreshStatus).fontSize(16).margin({left:20})
+    }
+    .alignItems(VerticalAlign.Center)
+  }
+  .align(Alignment.Center)
+  .clip(true)
+  .constraintSize({minHeight:32}) // Setting a minimum height constraint ensures that the height of the custom component does not fall below the specified minHeight when the height of the refreshing area changes.
+  .width("100%")
+}
+
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State refreshStatus: RefreshStatus = RefreshStatus.Inactive
+  private contentNode?: ComponentContent<Object> = undefined
+
+  aboutToAppear():void {
+    let uiContext = this.getUIContext();
+    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), new Params(this.refreshStatus))
+  }
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('70%').height(80).fontSize(16).margin(10)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .onScrollIndex((first: number) => {
+          console.info(first.toString())
+        })
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(96)
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        this.refreshStatus = refreshStatus
+        this.contentNode?.update(new Params(this.refreshStatus)) // Update the content of the custom component.
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false
+        }, 2000)
+        console.log('onRefreshing test')
+      })
+    }
+  }
+}
+```
+![en-us_image_refresh_example5](figures/en-us_image_refresh_example5.gif)
+
+### Example 6
+
+This example shows how to use the [pullDownRatio](#pulldownratio12) attribute and the [onOffsetChange](#onoffsetchange12) event to implement the maximum pull-down distance.
+
+```ts
+import { ComponentContent } from '@ohos.arkui.node';
+
+@Builder
+function customRefreshingContent() {
+  Stack() {
+    Row() {
+      LoadingProgress().height(32)
+    }
+    .alignItems(VerticalAlign.Center)
+  }
+  .align(Alignment.Center)
+  .clip(true)
+  .constraintSize({minHeight:32}) // Setting a minimum height constraint ensures that the height of the custom component does not fall below the specified minHeight when the height of the refreshing area changes.
+  .width("100%")
+}
+
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State maxRefreshingHeight: number = 100.0
+  @State ratio: number = 1
+  private contentNode?: ComponentContent<Object> = undefined
+
+  aboutToAppear():void {
+    let uiContext = this.getUIContext();
+    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent))
+  }
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('70%').height(80).fontSize(16).margin(10)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .onScrollIndex((first: number) => {
+          console.info(first.toString())
+        })
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .backgroundColor(0x89CFF0)
+      .pullDownRatio(this.ratio)
+      .pullToRefresh(true)
+      .refreshOffset(64)
+      .onOffsetChange((offset: number)=>{
+          this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3) // The closer to the maximum pull-down distance, the smaller the pull-down ratio.
+      })
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false
+        }, 2000)
+        console.log('onRefreshing test')
+      })
+    }
+  }
+}
+```
+
+![en-us_image_refresh_example6](figures/en-us_image_refresh_example6.gif)

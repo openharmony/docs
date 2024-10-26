@@ -4,6 +4,8 @@
 
 > **说明：**
 >
+> 从API Version 13 开始，该组件不再维护，推荐使用组件[Navigation](ts-basic-components-navigation.md)进行页面路由。
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -18,9 +20,11 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型       | 必填 | 参数描述                                       |
+| 参数名 | 类型       | 必填 | 说明                                       |
 | ------ | -------------- | ---- | ---------------------------------------------- |
 | target | string         | 是   | 指定跳转目标页面的路径。     |
 | type   | [NavigationType](#navigationtype枚举说明) | 否   | 指定路由方式。<br/>默认值：NavigationType.Push |
@@ -29,7 +33,9 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 枚举值  | 描述                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 值  | 说明                       |
 | ------- | ------- | -------------------------- |
 | Push    | 1 | 跳转到应用内的指定页面。               |
 | Replace | 2 | 用应用内的某个页面替换当前页面，并销毁被替换的页面。 |

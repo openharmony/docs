@@ -344,3 +344,29 @@ struct Index {
 **图20** aboutToAppear耗时——优化后
 
 ![](./figures/smartperf-host-using-20.png)
+
+### 应用冷启动分析
+
+如果开发者需要对冷启动阶段耗时进行拆解分析，可以使用[SmartPerf的AppStartUp](#appstartup应用启动分析)能力抓取Trace，通过网站上分段点可以快速的分析冷启动过程中的耗时瓶颈。
+
+![](./figures/application_coldstart_smartperf_guidance.png)
+
+1.1、**ProcessTouchEvent**：点击事件处理阶段，对应的trace起点为`H:touchEventDispatch`  
+1.2、**StartUIAbilityBySCB**：拉起应用阶段，对应的trace起点为`H:OHOS::ErrCode OHOS::AAFwk::AbilityManagerClient::StartUIAbilityBySCB`  
+1.3、**LoadAbility**：进程创建阶段，对应的trace起点为`H:virtual void OHOS::AppExecFwk::AppMgrServiceInner::LoadAbility`  
+2.1、**Application Launching**：应用启动阶段，对应的trace起点为`AppMgrServiceInner::AttachApplication##{bundleName}`  
+2.2、**UI Ability Launching**：UIAbility启动阶段，对应的trace打点为`MainThread::HandleLaunchAbility`  
+3、**UI Ability OnForeground**：应用进入前台阶段，对应的trace打点为`AbilityThread::HandleAbilityTransaction`  
+4.1、**First Frame - APP Phase**：App首帧渲染提交阶段，对应的trace打点为应用主线程`H:ReceiveVsync`  
+4.2、**First Frame - Render Phase**：RS首帧渲染提交阶段，对应的trace打点为Render Service主线程中`H:ReceiveVsync`  
+
+冷启动在首帧上屏之前主线程还可能存在以下几个耗时阶段，与各个应用实现相关，可能存在于2.2~4.2中的每一个阶段。  
+1、应用侧业务逻辑处理。例如：验证当前登录信息是否有效、广告引擎初始化、服务初始化等。  
+2、网络请求数据获取。例如：首页框架数据、首页图片数据需从网络端实时获取等。
+
+4.2阶段结束后，应用首帧已完成渲染，等待Buffer来临后即可完成上屏。部分应用此时已可展示首页内容、部分应用仅展示骨架屏信息，等待网络数据返回后会再一次进行反序列化解析，当解析完成后会再次对主页内容进行刷新。
+>**说明：**
+>
+> 具体示例可参考[提升应用冷启动速度](improve-application-cold-start-speed.md)
+
+<!--no_check-->

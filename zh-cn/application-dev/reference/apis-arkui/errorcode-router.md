@@ -125,3 +125,21 @@ Uri error. The URI of the page to be used for replacement is incorrect or does n
 **处理步骤**
 
 请检查输入的路由uri是否正确。
+
+## 300001 Navigation跳转前下载hsp分包失败
+
+**错误信息**
+
+hsp silent install fail.
+
+**错误描述**
+
+Navigation跳转前下载跳转页面所在hsp分包失败，系统会产生此错误码。
+
+**可能原因**
+
+下载的目标hsp分包不存在。
+
+**处理步骤**
+
+请检查待跳转的目标页面所在hsp分包是否存在，传入的moduleName是否正确。

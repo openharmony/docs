@@ -697,6 +697,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 14400003 | Unsupported operation. The current device does not support port role switching.                         |
 
 **返回值：**
 

@@ -26,16 +26,18 @@ Checkbox(options?: CheckboxOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                        | 必填 | 描述               |
+| 参数名  | 类型                                        | 必填 | 说明               |
 | ------- | ------------------------------------------- | ---- | ------------------ |
 | options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
 
 ## CheckboxOptions对象说明
 
-| 名称  | 类型 | 必填  | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型 | 必填  | 说明 |
 | --------| --------| ------ | -------- |
-| name    | string | 否 | 用于指定多选框名称。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| name    | string | 否 | 用于指定多选框名称。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## 属性
@@ -58,7 +60,7 @@ select(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 描述                               |
+| 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | value  | boolean | 是   | 多选框是否选中。<br/>默认值：false |
 
@@ -76,7 +78,7 @@ selectedColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 描述                                                         |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
 
@@ -92,9 +94,9 @@ unselectedColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 描述                       |
+| 参数名 | 类型                                       | 必填 | 说明                     |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
@@ -108,9 +110,9 @@ mark(value: MarkStyle)
 
 **参数：** 
 
-| 参数名 | 类型                              | 必填 | 描述                 |
-| ------ | --------------------------------- | ---- | -------------------- |
-| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。|
+| 参数名 | 类型                                         | 必填 | 说明                                                         |
+| ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
 
 ### shape<sup>11+</sup>
 
@@ -126,7 +128,7 @@ shape(value: CheckBoxShape)
 
 **参数：** 
 
-| 参数名 | 类型                                          | 必填 | 描述                                                         |
+| 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [CheckBoxShape](#checkboxshape11枚举类型说明) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
 
@@ -152,7 +154,7 @@ contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 ### onChange
 
-onChange(callback: (value: boolean) => void)
+onChange(callback: OnCheckboxChangeCallback)
 
 当选中状态发生变化时，触发该回调。
 
@@ -164,13 +166,33 @@ onChange(callback: (value: boolean) => void)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 描述                                              |
+| 参数名   | 类型                                                    | 必填 | 说明             |
+| -------- | ------------------------------------------------------- | ---- | ---------------- |
+| callback | [OnCheckboxChangeCallback](#oncheckboxchangecallback13) | 是   | 返回选中的状态。 |
+
+## OnCheckboxChangeCallback<sup>13+</sup>
+
+type OnCheckboxChangeCallback  = (value: boolean) => void
+
+选中的状态。
+
+**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
 | value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
 
 ## CheckBoxShape<sup>11+</sup>枚举类型说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 值   | 说明     |
 | -------------- | ---- | -------- |
@@ -183,11 +205,13 @@ onChange(callback: (value: boolean) => void)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| name | string | - |当前多选框名称。 |
-| selected | boolean| false | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
-| triggerChange |Callback\<boolean>| - |触发多选框选中状态变化。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型    |    只读    |    可选      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| name | string | 否 | 否 |当前多选框名称。 |
+| selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。 |
 
 ## 示例
 
@@ -304,7 +328,7 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
           .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
           .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
           .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:11,top:10})
+          .margin({left:10,top:10})
           .opacity(config.enabled ? 1 : 0.1)
       }
       .width(300)
@@ -336,7 +360,7 @@ struct Index {
             this.checkboxEnabled = false
           }
         })
-      }
+      }.position({ x: 50, y: 130 })
     }.margin({top : 30})
   }
 }

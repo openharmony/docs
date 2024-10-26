@@ -21,7 +21,7 @@
 
 ## 接口
 
-Gauge(options:{value: number, min?: number, max?: number})
+Gauge(options: GaugeOptions)
 
 创建数据量规图表组件。
 
@@ -32,6 +32,18 @@ Gauge(options:{value: number, min?: number, max?: number})
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options |  [GaugeOptions](#gaugeoptions14对象说明)| 是 | 数据量规图表组件参数。 |
+
+## GaugeOptions<sup>14+</sup>对象说明
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -99,7 +111,7 @@ endAngle(angle: number)
 
 ### colors
 
-colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient | number]>)
+colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient, number]>)
 
 设置量规图的颜色。
 
@@ -123,7 +135,7 @@ colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGra
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明)&nbsp;\|&nbsp;Array&lt;[[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明)&nbsp;\|&nbsp;number]&gt; | 是   | 量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>API version 11默认值：<br/>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为"0xFF64BB5C"、"0xFFF7CE00"、"0xFFE84026"的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为"0xFFE84026"。 |
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\|&nbsp;Array&lt;[[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10)&nbsp;\,&nbsp;number]&gt; | 是   | 量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>API version 11默认值：<br/>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为"0xFF64BB5C"、"0xFFF7CE00"、"0xFFE84026"的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为"0xFFE84026"。 |
 
 ### strokeWidth
 
@@ -181,6 +193,8 @@ indicator(value: GaugeIndicatorOptions)
 
 设置指针样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -194,6 +208,8 @@ indicator(value: GaugeIndicatorOptions)
 privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 设置隐私敏感。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -231,9 +247,11 @@ GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型 | 必填 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| icon | [Resource](ts-types.md#resource) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |
 | space | [Dimension](ts-types.md#dimension10) | 否 | 指针距离圆环外边的间距。(不支持百分比) <br/>默认值：8<br/>单位：vp <br/>**说明：** <br/> 对于默认的三角形样式指针，间距为黑色三角形到圆环外边的间距。<br/> 若设置值小于0，则使用默认值。<br/>若设置值大于圆环半径，则使用默认值。|
 
 ## GaugeConfiguration<sup>12+</sup>对象说明
@@ -242,11 +260,13 @@ GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    | 说明              |
-| ------ | ------ | ---------------- |
-| value | number | 当前数据值。 |
-| min | number | 当前数据段最小值。 |
-| max | number | 当前数据段最大值。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    | 必填 | 说明              |
+| ------ | ------ | ----| ---------------- |
+| value | number | 是 | 当前数据值。 |
+| min | number | 是 | 当前数据段最小值。 |
+| max | number | 是 | 当前数据段最大值。 |
 
 
 ## 示例

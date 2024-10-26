@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { systemLoad } from '@kit.BasicServicesKit';
 ```
 
 ## systemLoad.on('systemLoadChange')
@@ -38,7 +38,7 @@ on(type: 'systemLoadChange', callback: Callback\<SystemLoadLevel>): void
 **示例**：
 
 ```ts
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { systemLoad } from '@kit.BasicServicesKit';
 
 function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
     console.log(`system load changed, current level ` + res);
@@ -77,7 +77,7 @@ off(type: 'systemLoadChange', callback?: Callback\<SystemLoadLevel>): void
 **示例**：
 
 ```ts
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { systemLoad } from '@kit.BasicServicesKit';
 
 function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
     console.log(`system load changed, current level ` + res);
@@ -108,8 +108,8 @@ getLevel(): Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import systemLoad from '@ohos.resourceschedule.systemload';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { systemLoad } from '@kit.BasicServicesKit';
 
 systemLoad.getLevel().then((res: systemLoad.SystemLoadLevel) => {
     console.log(`getLevel promise succeeded. result: ` + JSON.stringify(res));

@@ -107,7 +107,7 @@ isModifiable(): boolean
 
 appendChild(node: FrameNode): void
 
-在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
+在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。[typeNode](#typenode12)在appendChild时会校验子组件类型或个数，不满足抛出异常信息，限制情况请查看[typeNode](#typenode12)描述。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -332,7 +332,7 @@ getParent(): FrameNode | null;
 
   getPositionToWindow(): Position
 
-获取FrameNode相对于窗口的位置偏移。
+获取FrameNode相对于窗口的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -342,7 +342,7 @@ getParent(): FrameNode | null;
 
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -353,7 +353,7 @@ getParent(): FrameNode | null;
 
 getPositionToParent(): Position
 
-获取FrameNode相对于父组件的位置偏移。
+获取FrameNode相对于父组件的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -363,7 +363,7 @@ getPositionToParent(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -373,7 +373,7 @@ getPositionToParent(): Position
 
   getPositionToScreen(): Position
 
-获取FrameNode相对于屏幕的位置偏移。
+获取FrameNode相对于屏幕的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -383,7 +383,7 @@ getPositionToParent(): Position
 
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -394,7 +394,7 @@ getPositionToParent(): Position
 
 getPositionToParentWithTransform(): Position
 
-获取FrameNode相对于父组件带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于父组件带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -404,7 +404,7 @@ getPositionToParentWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -414,7 +414,7 @@ getPositionToParentWithTransform(): Position
 
 getPositionToWindowWithTransform(): Position
 
-获取FrameNode相对于窗口带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于窗口带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -424,7 +424,7 @@ getPositionToWindowWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -434,7 +434,7 @@ getPositionToWindowWithTransform(): Position
 
 getPositionToScreenWithTransform(): Position
 
-获取FrameNode相对于屏幕带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于屏幕带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -444,7 +444,7 @@ getPositionToScreenWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -455,7 +455,7 @@ getPositionToScreenWithTransform(): Position
 
 getMeasuredSize(): Size
 
-获取FrameNode测量后的大小。
+获取FrameNode测量后的大小，单位为PX。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -465,7 +465,7 @@ getMeasuredSize(): Size
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Size](./js-apis-arkui-graphics.md#size) | 节点测量后的大小。 |
+| [Size](./js-apis-arkui-graphics.md#size) | 节点测量后的大小，单位为PX。 |
 
 **示例：**
 
@@ -476,7 +476,7 @@ getMeasuredSize(): Size
 
 getLayoutPosition(): Position
 
-获取FrameNode布局后相对于父组件的位置偏移。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
+获取FrameNode布局后相对于父组件的位置偏移，单位为PX。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -486,7 +486,7 @@ getLayoutPosition(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点布局后相对于父组件的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点布局后相对于父组件的位置偏移，单位为PX。 |
 
 **示例：**
 
@@ -686,7 +686,7 @@ isClipToFrame(): boolean
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | 节点是否是剪裁到页面。 |
+| boolean | 节点是否是剪裁到组件区域。 |
 
 **示例：**
 
@@ -762,11 +762,17 @@ getCustomProperty(name: string): Object | undefined
 
 dispose(): void
 
-立即释放当前FrameNode。
+立即解除当前FrameNode对象对实体FrameNode节点的引用关系。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+>
+> FrameNode对象调用dispose后，由于不对应任何实体FrameNode节点，在调用部分查询接口(getPositionToParent、getPositionToScreen、getPositionToWindow、getPositionToParentWithTransform、getPositionToScreenWithTransform、getPositionToWindowWithTransform、getMeasuredSize、getLayoutPosition、getUserConfigBorderWidth、getUserConfigPadding、getUserConfigMargin、getUserConfigSize)的时候会导致应用出现jscrash。
+>
+> 通过[getUniqueId](#getuniqueid12)可以判断当前FrameNode是否对应一个实体FrameNode节点。当UniquedId大于0时表示该对象对应一个实体FrameNode节点。
 
 **示例：**
 
@@ -1085,7 +1091,7 @@ invalidate(): void
 
 addComponentContent\<T>(content: ComponentContent\<T>): void
 
-支持添加ComponentContent类型的组件内容。
+支持添加ComponentContent类型的组件内容。要求当前节点是一个可修改的节点，即[isModifiable](#ismodifiable12)的返回值为true，否则抛出异常信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1096,6 +1102,12 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
 | content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 100021   | The FrameNode is not modifiable. |
 
 ```ts
 import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
@@ -1124,8 +1136,10 @@ class MyNodeController extends NodeController {
       .borderColor(Color.Black)
       .backgroundColor(Color.Green)
     let component = new ComponentContent<Object>(uiContext, wrapBuilder(buildText))
-    row4.addComponentContent(component)
-    col.appendChild(row4)
+    if (row4.isModifiable()) {
+      row4.addComponentContent(component)
+      col.appendChild(row4)
+    }
     return node
   }
 }
@@ -1332,29 +1346,22 @@ struct Index {
 
 TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的FrameNode。
 
-### initialize<sup>12+</sup>
-
-initialize: C
-
-该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。
+### 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### attribute<sup>12+</sup>
-
-attribute(): T
-
-该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称       | 类型 | 只读 | 可选 | 说明                                                         |
+| ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| initialize | C    | 否   | 否   | 该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。 |
+| attribute  | T    | 否   | 否   | 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。 |
 
 ## typeNode<sup>12+</sup>
 
 typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础接口进行自定义的挂载，使用占位容器进行显示。
+
+使用typeNode创建Text、Image、Select、Toggle节点时，当传入的[UIContext](./js-apis-arkui-UIContext.md)对应的UI实例销毁后，调用该接口会返回一个无效的FrameNode节点，无法正常挂载和显示。
 
 **示例：**
 
@@ -1363,15 +1370,15 @@ typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础
 ### Text<sup>12+</sup>
 type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
 
-Text类型的FrameNode节点类型。
+Text类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;TextInterface, TextAttribute&gt; | 提供Text类型FrameNode节点。<br/>**说明：**<br/> TextInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Text组件的构造函数类型。 <br/> TextAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Text组件的属性设置对象。 |
+| 类型                                               | 说明                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;TextInterface, TextAttribute&gt; | 提供Text类型FrameNode节点。<br/>**说明：**<br/> TextInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Text组件的构造函数类型。 <br/> TextAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Text组件的属性设置对象。 |
 
 ### createNode('Text')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Text'): Text
@@ -1410,9 +1417,9 @@ Column类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt; | 提供Column类型FrameNode节点。<br/>**说明：**<br/> ColumnInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Column组件的构造函数类型。 <br/> ColumnAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Column组件的属性设置对象。 |
+| 类型                                                   | 说明                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ColumnInterface, ColumnAttribute&gt; | 提供Column类型FrameNode节点。<br/>**说明：**<br/> ColumnInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Column组件的构造函数类型。 <br/> ColumnAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Column组件的属性设置对象。 |
 
 ### createNode('Column')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Column'): Column
@@ -1450,9 +1457,9 @@ Row类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;RowInterface, RowAttribute&gt; | 提供Row类型FrameNode节点。<br/>**说明：**<br/> RowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Row组件的构造函数类型。 <br/> RowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Row组件的属性设置对象。 |
+| 类型                                             | 说明                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;RowInterface, RowAttribute&gt; | 提供Row类型FrameNode节点。<br/>**说明：**<br/> RowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Row组件的构造函数类型。 <br/> RowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Row组件的属性设置对象。 |
 
 ### createNode('Row')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Row'): Row
@@ -1490,9 +1497,9 @@ Stack类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;StackInterface, StackAttribute&gt; | 提供Stack类型FrameNode节点。<br/>**说明：**<br/> StackInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> StackAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Stack组件的属性设置对象。 |
+| 类型                                                 | 说明                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;StackInterface, StackAttribute&gt; | 提供Stack类型FrameNode节点。<br/>**说明：**<br/> StackInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Stack组件的构造函数类型。 <br/> StackAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Stack组件的属性设置对象。 |
 
 ### createNode('Stack')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Stack'): Stack
@@ -1524,15 +1531,15 @@ typeNode.createNode(uiContext, 'Stack');
 ### GridRow<sup>12+</sup>
 type GridRow = TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt;
 
-GridRow类型的FrameNode节点类型。
+GridRow类型的FrameNode节点类型。只允许添加GridCol类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridRow组件的属性设置对象。 |
+| 类型                                                     | 说明                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridRow组件的属性设置对象。 |
 
 ### createNode('GridRow')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridRow'): GridRow
@@ -1564,15 +1571,15 @@ typeNode.createNode(uiContext, 'GridRow');
 ### GridCol<sup>12+</sup>
 type GridCol = TypedFrameNode&lt;GridColInterface, GridColAttribute&gt;
 
-GridCol类型的FrameNode节点类型。
+GridCol类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
+| 类型                                                     | 说明                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridCol组件的属性设置对象。 |
 
 ### createNode('GridCol')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridCol'): GridCol
@@ -1610,9 +1617,9 @@ Flex类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Flex组件的属性设置对象。 |
+| 类型                                               | 说明                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Flex组件的属性设置对象。 |
 
 ### createNode('Flex')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Flex'): Flex
@@ -1650,9 +1657,9 @@ Swiper类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
+| 类型                                                   | 说明                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Swiper组件的属性设置对象。 |
 
 ### createNode('Swiper')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Swiper'): Swiper
@@ -1684,15 +1691,15 @@ typeNode.createNode(uiContext, 'Swiper');
 ### Progress<sup>12+</sup>
 type Progress = TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt;
 
-Progress类型的FrameNode节点类型。
+Progress类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Progress组件的属性设置对象。 |
+| 类型                                                       | 说明                                                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Progress组件的属性设置对象。 |
 
 ### createNode('Progress')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Progress'): Progress
@@ -1724,15 +1731,15 @@ typeNode.createNode(uiContext, 'Progress');
 ### Scroll<sup>12+</sup>
 type Scroll = TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt;
 
-Scroll类型的FrameNode节点类型。
+Scroll类型的FrameNode节点类型。允许添加一个子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
+| 类型                                                   | 说明                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Scroll组件的属性设置对象。 |
 
 ### createNode('Scroll')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Scroll'): Scroll
@@ -1770,9 +1777,9 @@ RelativeContainer类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
 
 ### createNode('RelativeContainer')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
@@ -1804,15 +1811,15 @@ typeNode.createNode(uiContext, 'RelativeContainer');
 ### Divider<sup>12+</sup>
 type Divider = TypedFrameNode&lt;DividerInterface, DividerAttribute&gt;
 
-Divider类型的FrameNode节点类型。
+Divider类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
+| 类型                                                     | 说明                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Divider组件的属性设置对象。 |
 
 ### createNode('Divider')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Divider'): Divider
@@ -1844,15 +1851,15 @@ typeNode.createNode(uiContext, 'Divider');
 ### LoadingProgress<sup>12+</sup>
 type LoadingProgress = TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt;
 
-LoadingProgress类型的FrameNode节点类型。
+LoadingProgress类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
 
 ### createNode('LoadingProgress')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
@@ -1890,9 +1897,9 @@ Search类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
+| 类型                                                   | 说明                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Search组件的属性设置对象。 |
 
 ### createNode('Search')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Search'): Search
@@ -1924,15 +1931,15 @@ typeNode.createNode(uiContext, 'Search');
 ### Blank<sup>12+</sup>
 type Blank = TypedFrameNode&lt;BlankInterface, BlankAttribute&gt;
 
-Blank类型的FrameNode节点类型。
+Blank类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Blank组件的属性设置对象。 |
+| 类型                                                 | 说明                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Blank组件的属性设置对象。 |
 
 ### createNode('Blank')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Blank'): Blank;
@@ -1964,15 +1971,15 @@ typeNode.createNode(uiContext, 'Blank');
 ### Image<sup>12+</sup>
 type Image = TypedFrameNode&lt;ImageInterface, ImageAttribute&gt;
 
-Image类型的FrameNode节点类型。
+Image类型的FrameNode节点类型。不允许添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
+| 类型                                                 | 说明                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Image组件的属性设置对象。 |
 
 ### createNode('Image')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Image'): Image
@@ -2004,15 +2011,15 @@ typeNode.createNode(uiContext, 'Image');
 ### List<sup>12+</sup>
 type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
 
-List类型的FrameNode节点类型。
+List类型的FrameNode节点类型。只允许添加ListItem、ListItemGroup类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回List组件的属性设置对象。 |
+| 类型                                               | 说明                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回List组件的属性设置对象。 |
 
 ### createNode('List')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'List'): List
@@ -2050,9 +2057,9 @@ ListItem类型的FrameNode节点类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt; | 提供ListItem类型FrameNode节点。<br/>**说明：**<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItem组件的属性设置对象。 |
+| 类型                                                       | 说明                                                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt; | 提供ListItem类型FrameNode节点。<br/>**说明：**<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回ListItem组件的属性设置对象。 |
 
 ### createNode('ListItem')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'ListItem'): ListItem
@@ -2091,9 +2098,9 @@ TextInput类型的FrameNode节点类型。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt; | 提供TextInput类型FrameNode节点。<br/>**说明：**<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回TextInput组件的属性设置对象。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt; | 提供TextInput类型FrameNode节点。<br/>**说明：**<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextInput组件的属性设置对象。 |
 
 ### createNode('TextInput')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'TextInput'): TextInput
@@ -2126,15 +2133,15 @@ typeNode.createNode(uiContext, 'TextInput');
 ### Button<sup>12+</sup>
 type Button = TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt;
 
-Button类型的FrameNode节点类型。
+Button类型的FrameNode节点类型。以子组件模式创建允许添加一个子组件。以label模式创建不可以添加子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件,并且不允许再设置子组件，否则会抛出异常。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。<br/> 以子组件模式创建时，只能包含一个子组件，不能设置多个子组件，否则会抛出异常。 |
+| 类型                                                   | 说明                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件,并且不允许再设置子组件，否则会抛出异常。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。<br/> 以子组件模式创建时，只能包含一个子组件，不能设置多个子组件，否则会抛出异常。 |
 
 ### createNode('Button')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Button'): Button
@@ -2167,15 +2174,15 @@ typeNode.createNode(uiContext, 'Button');
 ### ListItemGroup<sup>12+</sup>
 type ListItemGroup = TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt;
 
-ListItemGroup类型的FrameNode节点类型。
+ListItemGroup类型的FrameNode节点类型。只允许添加ListItem类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt; | 提供ListItemGroup类型FrameNode节点。<br/>**说明：**<br/> ListItemGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItemGroup组件的构造函数类型。 <br/> ListItemGroupAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItemGroup组件的属性设置对象。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt; | 提供ListItemGroup类型FrameNode节点。<br/>**说明：**<br/> ListItemGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为ListItemGroup组件的构造函数类型。 <br/> ListItemGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回ListItemGroup组件的属性设置对象。 |
 
 ### createNode('ListItemGroup')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
@@ -2208,15 +2215,15 @@ typeNode.createNode(uiContext, 'ListItemGroup');
 ### WaterFlow<sup>12+</sup>
 type WaterFlow = TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt;
 
-WaterFlow类型的FrameNode节点类型。
+WaterFlow类型的FrameNode节点类型。只允许添加FlowItem类型子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt; | 提供WaterFlow类型FrameNode节点。<br/>**说明：**<br/> WaterFlowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为WaterFlow组件的构造函数类型。 <br/> WaterFlowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回WaterFlow组件的属性设置对象。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt; | 提供WaterFlow类型FrameNode节点。<br/>**说明：**<br/> WaterFlowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为WaterFlow组件的构造函数类型。 <br/> WaterFlowAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回WaterFlow组件的属性设置对象。 |
 
 ### createNode('WaterFlow')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
@@ -2249,15 +2256,15 @@ typeNode.createNode(uiContext, 'WaterFlow');
 ### FlowItem<sup>12+</sup>
 type FlowItem = TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt;
 
-FlowItem类型的FrameNode节点类型。
+FlowItem类型的FrameNode节点类型。允许添加一个子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt; | 提供FlowItem类型FrameNode节点。<br/>**说明：**<br/> FlowItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为FlowItem组件的构造函数类型。 <br/> FlowItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回FlowItem组件的属性设置对象。 |
+| 类型                                                       | 说明                                                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------ |
+| TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt; | 提供FlowItem类型FrameNode节点。<br/>**说明：**<br/> FlowItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为FlowItem组件的构造函数类型。 <br/> FlowItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回FlowItem组件的属性设置对象。 |
 
 ### createNode('FlowItem')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
@@ -2296,9 +2303,9 @@ XComponent类型的FrameNode节点类型。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;XComponentInterface, XComponentAttribute&gt; | 提供XComponent类型FrameNode节点。<br/>**说明：**<br/> XComponentInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为XComponent组件的构造函数类型。 <br/> XComponentAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回XComponent组件的属性设置对象。 |
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TypedFrameNode&lt;XComponentInterface, XComponentAttribute&gt; | 提供XComponent类型FrameNode节点。<br/>**说明：**<br/> XComponentInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为XComponent组件的构造函数类型。 <br/> XComponentAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回XComponent组件的属性设置对象。 |
 
 ### createNode('XComponent')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'XComponent'): XComponent
@@ -2326,6 +2333,698 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 
 ```ts
 typeNode.createNode(uiContext, 'XComponent');
+```
+
+### createNode('XComponent')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOptions): XComponent
+
+按照options中的配置参数创建XComponent类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
+| options | [XComponentOptions](./arkui-ts/ts-basic-components-xcomponent.md#xcomponentoptions12) | 是 | 定义XComponent的具体配置参数。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+let controller: XComponentController = new XComponentController();
+let options: XComponentOptions = {
+  type: XComponentType.TEXTURE,
+  controller: controller
+};
+typeNode.createNode(uiContext, 'XComponent', options);
+```
+
+### QRCode<sup>13+</sup>
+type QRCode = TypedFrameNode&lt;QRCodeInterface, QRCodeAttribute&gt;
+
+QRCode类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;QRCodeInterface, QRCodeAttribute&gt; | 提供QRCode类型FrameNode节点。<br/>**说明：**<br/> QRCodeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为QRCode组件的构造函数类型。 <br/> QRCodeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回QRCode组件的属性设置对象。 |
+
+### createNode('QRCode')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'QRCode'): QRCode
+
+创建QRCode类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'QRCode' | 是 | 创建QRCode类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [QRCode](#qrcode13) | QRCode类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'QRCode');
+```
+
+### Badge<sup>13+</sup>
+type Badge = TypedFrameNode&lt;BadgeInterface, BadgeAttribute&gt;
+
+Badge类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;BadgeInterface, BadgeAttribute&gt; | 提供Badge类型FrameNode节点。<br/>**说明：**<br/> BadgeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Badge组件的构造函数类型。 <br/> BadgeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Badge组件的属性设置对象。 |
+
+### createNode('Badge')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Badge'): Badge
+
+创建Badge类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Badge' | 是 | 创建Badge类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Badge](#badge13) | Badge类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Badge');
+```
+
+### Grid<sup>13+</sup>
+type Grid = TypedFrameNode&lt;GridInterface, GridAttribute&gt;
+
+Grid类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;GridInterface, GridAttribute&gt; | 提供Grid类型FrameNode节点。<br/>**说明：**<br/> GridInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Grid组件的构造函数类型。 <br/> GridAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Grid组件的属性设置对象。 |
+
+### createNode('Grid')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Grid'): Grid
+
+创建Grid类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Grid' | 是 | 创建Grid类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Grid](#grid13) | Grid类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Grid');
+```
+
+### GridItem<sup>13+</sup>
+type GridItem = TypedFrameNode&lt;GridItemInterface, GridItemAttribute&gt;
+
+GridItem类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;GridItemInterface, GridItemAttribute&gt; | 提供GridItem类型FrameNode节点。<br/>**说明：**<br/> GridItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridItem组件的构造函数类型。 <br/> GridItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridItem组件的属性设置对象。 |
+
+### createNode('GridItem')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'GridItem'): GridItem
+
+创建GridItem类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'GridItem' | 是 | 创建GridItem类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [GridItem](#griditem13) | GridItem类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'GridItem');
+```
+
+### TextClock<sup>13+</sup>
+type TextClock = TypedFrameNode&lt;TextClockInterface, TextClockAttribute&gt;
+
+TextClock类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;TextClockInterface, TextClockAttribute&gt; | 提供TextClock类型FrameNode节点。<br/>**说明：**<br/> TextClockInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextClock组件的构造函数类型。 <br/> TextClockAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextClock组件的属性设置对象。 |
+
+### createNode('TextClock')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'TextClock'): TextClock
+
+创建TextClock类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'TextClock' | 是 | 创建TextClock类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [TextClock](#textclock13) | TextClock类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'TextClock');
+```
+
+### TextTimer<sup>13+</sup>
+type TextTimer = TypedFrameNode&lt;TextTimerInterface, TextTimerAttribute&gt;
+
+TextTimer类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;TextTimerInterface, TextTimerAttribute&gt; | 提供TextTimer类型FrameNode节点。<br/>**说明：**<br/> TextTimerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextTimer组件的构造函数类型。 <br/> TextTimerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextTimer组件的属性设置对象。 |
+
+### createNode('TextTimer')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'TextTimer'): TextTimer
+
+创建TextTimer类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'TextTimer' | 是 | 创建TextTimer类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [TextTimer](#texttimer13) | TextTimer类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'TextTimer');
+```
+
+### Marquee<sup>13+</sup>
+type Marquee = TypedFrameNode&lt;MarqueeInterface, MarqueeAttribute&gt;
+
+Marquee类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;MarqueeInterface, MarqueeAttribute&gt; | 提供Marquee类型FrameNode节点。<br/>**说明：**<br/> MarqueeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Marquee组件的构造函数类型。 <br/> MarqueeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Marquee组件的属性设置对象。 |
+
+### createNode('Marquee')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Marquee'): Marquee
+
+创建Marquee类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Marquee' | 是 | 创建Marquee类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Marquee](#marquee13) | Marquee类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Marquee');
+```
+
+### TextArea<sup>13+</sup>
+type TextArea = TypedFrameNode&lt;TextAreaInterface, TextAreaAttribute&gt;
+
+TextArea类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;TextAreaInterface, TextAreaAttribute&gt; | 提供TextArea类型FrameNode节点。<br/>**说明：**<br/> TextAreaInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextArea组件的构造函数类型。 <br/> TextAreaAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextArea组件的属性设置对象。 |
+
+### createNode('TextArea')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'TextArea'): TextArea
+
+创建TextArea类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'TextArea' | 是 | 创建TextArea类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [TextArea](#textarea13) | TextArea类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'TextArea');
+```
+
+### SymbolGlyph<sup>13+</sup>
+type SymbolGlyph = TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt;
+
+SymbolGlyph类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt; | 提供SymbolGlyph类型FrameNode节点。<br/>**说明：**<br/> SymbolGlyphInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为SymbolGlyph组件的构造函数类型。 <br/> SymbolGlyphAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回SymbolGlyph组件的属性设置对象。 |
+
+### createNode('SymbolGlyph')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
+
+创建SymbolGlyph类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'SymbolGlyph' | 是 | 创建SymbolGlyph类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [SymbolGlyph](#symbolglyph13) | SymbolGlyph类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'SymbolGlyph');
+```
+
+### Checkbox<sup>13+</sup>
+type Checkbox = TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt;
+
+Checkbox类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt; | 提供Checkbox类型FrameNode节点。<br/>**说明：**<br/> CheckboxInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Checkbox组件的构造函数类型。 <br/> CheckboxAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Checkbox组件的属性设置对象。 |
+
+### createNode('Checkbox')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
+
+创建Checkbox类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Checkbox' | 是 | 创建Checkbox类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Checkbox](#checkbox13) | Checkbox类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Checkbox');
+```
+
+### CheckboxGroup<sup>13+</sup>
+type CheckboxGroup = TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt;
+
+CheckboxGroup类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt; | 提供CheckboxGroup类型FrameNode节点。<br/>**说明：**<br/> CheckboxGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为CheckboxGroup组件的构造函数类型。 <br/> CheckboxGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回CheckboxGroup组件的属性设置对象。 |
+
+### createNode('CheckboxGroup')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
+
+创建CheckboxGroup类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'CheckboxGroup' | 是 | 创建CheckboxGroup类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [CheckboxGroup](#checkboxgroup13) | CheckboxGroup类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'CheckboxGroup');
+```
+
+### Rating<sup>13+</sup>
+type Rating = TypedFrameNode&lt;RatingInterface, RatingAttribute&gt;
+
+Rating类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;RatingInterface, RatingAttribute&gt; | 提供Rating类型FrameNode节点。<br/>**说明：**<br/> RatingInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Rating组件的构造函数类型。 <br/> RatingAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Rating组件的属性设置对象。 |
+
+### createNode('Rating')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Rating'): Rating
+
+创建Rating类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Rating' | 是 | 创建Rating类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Rating](#rating13) | Rating类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Rating');
+```
+
+### Radio<sup>13+</sup>
+type Radio = TypedFrameNode&lt;RadioInterface, RadioAttribute&gt;
+
+Radio类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;RadioInterface, RadioAttribute&gt; | 提供Radio类型FrameNode节点。<br/>**说明：**<br/> RadioInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Radio组件的构造函数类型。 <br/> RadioAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Radio组件的属性设置对象。 |
+
+### createNode('Radio')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Radio'): Radio
+
+创建Radio类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Radio' | 是 | 创建Radio类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Radio](#radio13) | Radio类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Radio');
+```
+
+### Slider<sup>13+</sup>
+type Slider = TypedFrameNode&lt;SliderInterface, SliderAttribute&gt;
+
+Slider类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SliderInterface, SliderAttribute&gt; | 提供Slider类型FrameNode节点。<br/>**说明：**<br/> SliderInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Slider组件的构造函数类型。 <br/> SliderAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Slider组件的属性设置对象。 |
+
+### createNode('Slider')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Slider'): Slider
+
+创建Slider类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Slider' | 是 | 创建Slider类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Slider](#slider13) | Slider类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Slider');
+```
+
+### Select<sup>13+</sup>
+type Select = TypedFrameNode&lt;SelectInterface, SelectAttribute&gt;
+
+Select类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SelectInterface, SelectAttribute&gt; | 提供Select类型FrameNode节点。<br/>**说明：**<br/> SelectInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Select组件的构造函数类型。 <br/> SelectAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Select组件的属性设置对象。 |
+
+### createNode('Select')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Select'): Select
+
+创建Select类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Select' | 是 | 创建Select类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Select](#select13) | Select类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Select');
+```
+
+### Toggle<sup>13+</sup>
+type Toggle = TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt;
+
+Toggle类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt; | 提供Toggle类型FrameNode节点。<br/>**说明：**<br/> ToggleInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Toggle组件的构造函数类型。 <br/> ToggleAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Toggle组件的属性设置对象。 |
+
+### createNode('Toggle')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Toggle
+
+创建Toggle类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Toggle' | 是 | 创建Toggle类型的节点。 |
+| options | ToggleOptions | 否 | 创建Toggle节点的接口参数。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Toggle](#toggle13) | Toggle类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+let toggleOptions: ToggleOptions = {type: ToggleType.Button, isOn: false};
+typeNode.createNode(uiContext, 'Toggle', toggleOptions);
 ```
 
 ## NodeAdapter<sup>12+</sup>
@@ -2404,7 +3103,7 @@ reloadAllItems(): void
 
 reloadItem(start: number, count: number): void
 
-定义从索引值开始重新加载指定数量的节点数据。
+从索引值开始重新加载指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2421,7 +3120,7 @@ reloadItem(start: number, count: number): void
 
 removeItem(start: number, count: number): void
 
-定义从索引值开始删除指定数量的节点数据。
+从索引值开始删除指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2438,7 +3137,7 @@ removeItem(start: number, count: number): void
 
 insertItem(start: number, count: number): void
 
-定义从索引值开始新增指定数量的节点数据。
+从索引值开始新增指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2455,7 +3154,7 @@ insertItem(start: number, count: number): void
 
 moveItem(from: number, to: number): void
 
-定义数据移动操作。将数据从起始索引移动到结束索引。
+将数据从原始索引移动到目的索引。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2465,8 +3164,8 @@ moveItem(from: number, to: number): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| from | number | 是   | 数据移动起始索引值。 |
-| to | number | 是   | 数据移动结束索引值。 |
+| from | number | 是   | 数据移动的原始索引值。 |
+| to | number | 是   | 数据移动的目的索引值。 |
 
 ### getAllAvailableItems<sup>12+</sup>
 

@@ -130,45 +130,7 @@ Sets the style and color for the text decorative line.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | Yes  | Style of the text decorative line.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>} |
-
-
-## TextRange<sup>12+</sup>
-
-Sets the text range.
-
-| Name| Type| Mandatory| Description|
-| -- | -- | -- | -- |
-| start | number | No| Start index.|
-| end | number | No| End index.|
-
-## OnDidChangeCallback<sup>12+</sup>
-
-type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
-
-Sets the callback invoked after text changes.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -- | -- | -- | -- |
-| rangeBefore | [TextRange](#textrange12) | Yes| Range of the text to be changed.|
-| rangeAfter | [TextRange](#textrange12) | Yes| Range of the text added.|
-
-## StyledStringChangedListener<sup>12+</sup>
-Defines the listener for changes of change listener of the attribute string.
-| Name| Type| Mandatory| Description|
-| -- | -- | -- | -- |
-| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | No| Callback invoked when text is about to change.|
-| onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | No| Callback invoked when text is changed.|
-
-## StyledStringChangeValue<sup>12+</sup>
-Describes the text changes of the styled string.
-
-| Name| Type| Mandatory| Description|
-| -- | -- | -- | -- |
-| range | TextRange | Yes| Range of the styled string to be replaced in the original string.|
-| replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | Yes| Styled string used for replacement.|
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | Yes  | Style of the text decorative line.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>}<br>**NOTE**<br>The **style** parameter cannot be used in widgets.|
 
 ## Example
 

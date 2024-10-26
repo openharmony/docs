@@ -3,8 +3,9 @@
 - [Introduction to Sensor Service Kit](sensorservice-kit-intro.md)
 - Sensor
   - [Sensor Overview](sensor-overview.md)
-  - [Sensor Development](sensor-guidelines.md)
+  - [Sensor Development (ArkTS)](sensor-guidelines.md)
+  - [Sensor Development (C/C++)](sensor-guidelines-capi.md)
 - Vibrator
   - [Vibrator Overview](vibrator-overview.md)
-  - [Vibrator Development](vibrator-guidelines.md)
-  - [Capi Vibrator Development](vibrator-guidelines-capi.md)
+  - [Vibrator Development (ArkTS)](vibrator-guidelines.md)
+  - [Vibrator Development (C/C++)](vibrator-guidelines-capi.md)

@@ -4,7 +4,9 @@
 
 ## 系统音量
 
-管理系统音量的接口是AudioVolumeManager，在使用之前，需要使用getVolumeManager()获取AudioVolumeManager实例。目前该接口只能获取音量信息及监听音量变化，不能主动调节系统音量。
+管理系统音量的接口是AudioVolumeManager，在使用之前，需要使用getVolumeManager()获取AudioVolumeManager实例。
+
+通过AudioVolumeManager只能获取音量信息及监听音量变化，不能主动调节系统音量。如果应用需要调节系统音量，可以[使用音量面板调节系统音量](#使用音量面板调节系统音量)。
 
 ```ts
 import { audio } from '@kit.AudioKit';
@@ -44,7 +46,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 管理音频流音量的接口是AVPlayer或AudioRenderer的setVolume()方法，使用[AVPlayer](../../reference/apis-media-kit/js-apis-media.md#mediacreateavplayer9)设置音频流音量的示例代码如下：
 
 ```ts
-let volume = 1.0  // 指定的音量大小，取值范围为[0.00-1.00]，1表示最大音量
+let volume = 1.0;  // 指定的音量大小，取值范围为[0.00-1.00]，1表示最大音量
 avPlayer.setVolume(volume);
 ```
 

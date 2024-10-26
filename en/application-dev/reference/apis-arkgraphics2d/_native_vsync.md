@@ -35,7 +35,7 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 
 | Name| Description| 
 | -------- | -------- |
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000,NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,<br>NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
 
 
 ### Functions
@@ -44,7 +44,8 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 | -------- | -------- |
 | [OH_NativeVSync_Create](#oh_nativevsync_create) (const char \*name, unsigned int length) | Creates an **OH_NativeVSync** instance. A new **OH_NativeVSync** instance is created each time this function is called.|
 | [OH_NativeVSync_Destroy](#oh_nativevsync_destroy) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync) | Destroys an **OH_NativeVSync** instance.|
-| [OH_NativeVSync_RequestFrame](#oh_nativevsync_requestframe) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked.|
+| int [OH_NativeVSync_RequestFrame](#oh_nativevsync_requestframe) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked. If this function is called for multiple times in the same frame, only the last callback function is invoked.| 
+| int [OH_NativeVSync_RequestFrameWithMultiCallback](#oh_nativevsync_requestframewithmulticallback) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked. If this function is called for multiple times in the same frame, every callback function is invoked.| 
 | [OH_NativeVSync_GetPeriod](#oh_nativevsync_getperiod) ([OH_NativeVSync](#oh_nativevsync) \*nativeVsync, long long \*period) |Obtains the VSync period.|
 
 ## Type Description
@@ -124,8 +125,12 @@ Enumerates the error codes.
 | NATIVE_ERROR_BUFFER_IN_CACHE  | The buffer is already in the buffer queue.  | 
 | NATIVE_ERROR_BUFFER_QUEUE_FULL  | The queue is full.  | 
 | NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | The buffer is not in the buffer queue.  | 
-| NATIVE_ERROR_UNSUPPORT  | The device or platform does not support the operation.  | 
+| NATIVE_ERROR_CONSUMER_DISCONNECTED | The consumer is disconnected.|
+| NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED | No listener is registered on the consumer side.|
+| NATIVE_ERROR_UNSUPPORTED  | The device or platform does not support the operation.  | 
 | NATIVE_ERROR_UNKNOWN  | Unknown error. Check the log.  | 
+| NATIVE_ERROR_HDI_ERROR  | Failed to call the HDI.  | 
+| NATIVE_ERROR_BINDER_ERROR  | Cross-process communication failed.  |  
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | The EGL environment is abnormal.  | 
 | NATIVE_ERROR_EGL_API_FAILED  | Failed to call the EGL APIs.  | 
 
@@ -214,7 +219,7 @@ int OH_NativeVSync_RequestFrame (OH_NativeVSync * nativeVsync, OH_NativeVSync_Fr
 
 **Description**
 
-Requests the next VSync signal. When the signal arrives, a callback function is invoked.
+Requests the next VSync signal. When the signal arrives, a callback function is invoked. If this function is called for multiple times in the same frame, only the last callback function is invoked.
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -225,6 +230,33 @@ Requests the next VSync signal. When the signal arrives, a callback function is 
 | nativeVsync | Pointer to an **OH_NativeVSync** instance.|
 | callback | Function pointer of the **OH_NativeVSync_FrameCallback** type. This function pointer will be called when the next VSync signal arrives.|
 | data | Pointer to the user-defined data struct. The type is void\*.|
+
+**Returns**
+
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
+
+
+### OH_NativeVSync_RequestFrameWithMultiCallback()
+
+```
+int OH_NativeVSync_RequestFrameWithMultiCallback (OH_NativeVSync* nativeVsync, OH_NativeVSync_FrameCallback callback, void* data )
+```
+
+**Description**
+
+Requests the next VSync signal. When the signal arrives, a callback function is invoked. If this function is called for multiple times in the same frame, every callback function is invoked.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeVsync
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| nativeVsync | Pointer to an **OH_NativeVSync** instance.| 
+| callback | Function pointer of the **OH_NativeVSync_FrameCallback** type. This function pointer will be called when the next VSync signal arrives.| 
+| data | Pointer to the user-defined data struct. The type is void\*.| 
 
 **Returns**
 

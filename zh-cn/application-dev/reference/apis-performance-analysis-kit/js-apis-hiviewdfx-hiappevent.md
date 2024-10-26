@@ -261,7 +261,7 @@ hiAppEvent.write({
 | domain    | string                  | 是   | 事件领域。事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
 | name      | string                  | 是   | 事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
 | eventType | [EventType](#eventtype) | 是   | 事件类型。                                                   |
-| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
+| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值。**系统事件中params包含的字段已由各系统事件定义，具体字段含义在各类系统事件指南的介绍中，例如[崩溃事件介绍](../../dfx/hiappevent-watcher-crash-events.md)。** 针对应用事件，打点写入的参数由开发者定义，其规格如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
 
 ## hiAppEvent.setEventParam<sup>12+</sup>
 
@@ -612,6 +612,7 @@ hiAppEvent.addWatcher({
 });
 
 // 2. 如果观察者未传入回调的相关参数，则可以选择使用返回的holder对象手动去处理订阅事件
+// 针对异常退出时产生的崩溃事件（hiAppEvent.event.APP_CRASH）和卡死事件（hiAppEvent.event.APP_FREEZE），系统捕获维测日志有一定耗时，典型情况下30s内完成，极端情况下2min左右完成。在手动处理订阅事件的方法中，建议在进程启动后延时重试调用takeNext()获取此类事件。
 let holder = hiAppEvent.addWatcher({
   name: "watcher2",
 });
@@ -714,9 +715,9 @@ hiAppEvent.removeWatcher(watcher);
 
 | 名称    | 类型   | 必填 | 说明                                   |
 | ------- | ------ | ---- | -------------------------------------- |
-| row     | number | 否   | 满足触发回调的事件总数量。             |
-| size    | number | 否   | 满足触发回调的事件总大小，单位为byte。 |
-| timeOut | number | 否   | 满足触发回调的超时时长，单位为30s。    |
+| row     | number | 否   | 满足触发回调的事件总数量，正整数。默认值0，不触发回调。传入负值时，会被置为默认值。             |
+| size    | number | 否   | 满足触发回调的事件总大小，正整数，单位为byte。默认值0，不触发回调。传入负值时，会被置为默认值。 |
+| timeOut | number | 否   | 满足触发回调的超时时长，正整数，单位为30s。默认值0，不触发回调。传入负值时，会被置为默认值。    |
 
 ## AppEventFilter
 

@@ -83,5 +83,4 @@ type ValuesBucket = Record<string, ValueType>
 
 | 类型 | 说明                  |
 | ------ | ----------------------- |
-| string | 表示键类型为string。 |
-| [ValueType](#valuetype)| 表示值类型为[ValueType](#valuetype)。 |
+| Record<string, [ValueType](#valuetype)> | 表示键值对类型。键的类型为string，值的类型为[ValueType](#valuetype)。|

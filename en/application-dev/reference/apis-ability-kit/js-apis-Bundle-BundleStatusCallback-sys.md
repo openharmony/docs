@@ -8,7 +8,6 @@ The **BundleStatusCallback** module provides callbacks for bundle status changes
 >
 > The APIs provided by this module are system APIs.
 
-
 ## BundleStatusCallback<sup>(deprecated)<sup>
 > This API is deprecated since API version 9. You are advised to use [bundleMonitor](js-apis-bundleMonitor-sys.md) instead.
 
@@ -21,4 +20,3 @@ The **BundleStatusCallback** module provides callbacks for bundle status changes
 | add    | (bundleName : string, userId: number) => void | Used to obtain information when a bundle is installed.|
 | update | (bundleName : string, userId: number) => void | Used to obtain information when a bundle is updated.|
 | remove | (bundleName : string, userId: number) => void | Used to obtain information when a bundle is uninstalled.|
-

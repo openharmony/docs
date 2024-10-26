@@ -1926,7 +1926,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 参数名 | 类型       | 必填 | 说明                                      |
 | ------ | ---------- | ---- | ----------------------------------------- |
-| On     | [On](#on9) | 是   | 目标控件的属性要求。                      |
+| on    | [On](#on9) | 是   | 目标控件的属性要求。                      |
 | time   | number     | 是   | 查找目标控件的持续时间。单位ms，取值大于等于0。 |
 
 **返回值：**
@@ -4709,8 +4709,9 @@ assertComponentExist(by: By): Promise\<void>
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 17000002 | The async function is not called with await. |
-| 17000003 | Assertion failed.                      |
+| 401      | if the input parameters are invalid.             |
+| 17000002 | if the async function was not called with await. |
+| 17000003 | if the assertion failed.                         |
 
 **示例：**
 

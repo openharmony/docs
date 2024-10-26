@@ -9,12 +9,18 @@
   - [拍照(ArkTS)](camera-shooting.md)
   - [录像(ArkTS)](camera-recording.md)
   - [元数据(ArkTS)](camera-metadata.md)
+  - [适配不同折叠状态的摄像头变更(ArkTS)](camera-foldable-display.md)
   <!--Del-->
   - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
   <!--DelEnd-->
   - [分段式拍照(ArkTS)](camera-deferred-capture.md)
   - [动态照片(ArkTS)](camera-moving-photo.md)
+  - [相机基础动效(ArkTS)](camera-animation.md)
+  <!--Del-->
+  - [深度信息(仅对系统应用开放)(ArkTS)](camera-depth-data.md)
+  <!--DelEnd-->
 - 相机最佳实践(ArkTS)
+  - [通过系统相机拍照和录像(ArkTS)](camera-picker.md)
   - [拍照实现方案(ArkTS)](camera-shooting-case.md)
   - [录像实现方案(ArkTS)](camera-recording-case.md)
   - [双路预览(ArkTS)](camera-dual-channel-preview.md)

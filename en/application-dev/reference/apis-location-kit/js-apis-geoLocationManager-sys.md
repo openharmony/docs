@@ -228,6 +228,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locatingRequiredDataChange')} due to limited device capabilities.          |
 |3301800 | Failed to start WiFi or Bluetooth scanning.                            |
@@ -266,7 +267,7 @@ Unsubscribes from changes in the required data of the location service and stops
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locatingRequiredDataChange** indicates a change in the required data of the location service.|
-  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -275,6 +276,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locatingRequiredDataChange')} due to limited device capabilities.          |
 
@@ -512,6 +514,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
@@ -770,6 +773,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocatingRequiredData} due to limited device capabilities.          |
 |3301800  | Failed to start WiFi or Bluetooth scanning.                    |
@@ -816,6 +820,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.on('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                        |
@@ -850,7 +855,7 @@ Unsubscribes from status changes of the location icon.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. Event type. The value **locationIconStatusChange** indicates status changes of the location icon.|
-  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;[LocationIconStatus](#locationiconstatus12)&gt;  | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -858,6 +863,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
 |801 | Capability not supported. Failed to call ${geoLocationManager.off('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.        |
@@ -900,6 +906,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
 |801 | Capability not supported. Failed to call ${geoLocationManager.getLocationIconStatus} due to limited device capabilities.          |
 |3301000  | The location service is unavailable.                  |
 

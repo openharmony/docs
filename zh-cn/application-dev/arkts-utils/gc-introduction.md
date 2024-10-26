@@ -1,6 +1,6 @@
-# GC介绍
+# GC垃圾回收
 
-GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。ArkTS运行时中就是基于分代模型和混合算法来实现不同场景下内存回收的高性能表现。
+GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。ArkTS运行时基于分代模型（年轻代/老年代），混合使用引用计数和对象追踪算法，并行并发化执行GC任务，从而实现不同场景下的高性能内存回收表现。
 
 在ArkTS中，数据类型分为两类，简单类型和引用类型。简单类型内容直接保存在栈（Stack）中，由操作系统自动分配和释放。引用类型保存在堆（heap）中，需要引擎进行手动释放。GC就是针对堆空间的内存自动回收的管理机制。
 
@@ -85,7 +85,7 @@ heap中会生成两个Semi Space供copying使用。
 | MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数 |
 | MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数 |
 
-注：该线程池主要用于执行GC流程中的并发任务，实际线程池初始化综合参考gcThreadNum以及线程上下限，gcThreadNum为负值时初始化线程池线程数 = cpu核心数/2
+注：该线程池主要用于执行GC流程中的并发任务，实际线程池初始化综合参考gcThreadNum以及线程上下限，gcThreadNum为负值时初始化线程池线程数 = CPU核心数/2
 
 #### 其他参数
 
@@ -102,7 +102,9 @@ heap中会生成两个Semi Space供copying使用。
 
 ![image](./figures/gc-process.png)
 
-### HPPGC
+### HPP GC
+
+HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾回收，其中“High Performance”主要三方面，包含分代模型、混合算法和GC流程优化，以下主要是对HPP GC的流程中的一些具体策略的介绍。
 
 #### Young GC
 
@@ -211,7 +213,7 @@ heap中会生成两个Semi Space供copying使用。
 - 应用点击页面跳转
 - 超长帧
 
-除应用冷启动是默认支持，其他敏感场景均为调用dfxjsnapi接口进行设置且无本质区别。
+当前该特性使能由系统侧进行管控，三方应用暂无接口直接调用。
 
 日志关键词: “SmartGC”
 
@@ -221,43 +223,12 @@ heap中会生成两个Semi Space供copying使用。
 
 标记性能敏感场景，在进入和退出性能敏感场景时，在堆上标记，避免不必要的GC，维持高性能表现。
 
-### IDLE GC
-
-利用系统绘帧过程中存在的线程idletime，高效利用计算资源分段完成完整的GC工作，减少后续累积内存占用触发长GC造成的卡顿。
-
-#### **Incremental Mark**
-
-完成old gc通常需要消耗较多时间，一次idle time很难完成此项任务，因此将mark过程分布在多次idle time中完成。
-
-![image](./figures/gc-incremental-mark-feature.png)
-
-在线性空间扩容时尝试进行Incremental Mark，满足以下条件则触发增量标记：
-
-- 在ArkProperties里打开ENABLE_IDLE_GC且收到了元能力发送的idleTime开关回调函数；
-- 当前无idleTask且未触发ConcurrentMark；
-- 增量标记完成时，堆大小距到达水线小于256K；
-- 增量标记期间分配对象大小小于100_KB
-
-注：Incremental Mark与Full ConcurrentMark互斥。线性空间主要指的是semiSpace。
-
-#### **Idle YoungGC**
-
-![image](./figures/gc-idle-feature.png)
-
-在线性空间扩容时尝试进行Idle Collection，满足以下条件则设置相应的IdleTask：
-
-- 在ArkProperties里打开ENABLE_IDLE_GC且收到了元能力发送的idleTime开关回调函数；
-- 当前无idleTask且未触发ConcurrentMark；
-- 堆大小小于触发YoungGC ConcurrentMark水线256K以内；
-
-注：Idle YoungGC可与ConcurrentMark共存（防止还未接收到IdleTime就达到GC水线），可先触发ConcurrentMark，后开始Idle YoungGC.
-
 ## 日志解释
 
 ### 典型日志
 
 ```
-// GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrrentMark耗时），GC触发原因。
+// GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。
 C03F00/ArkCompiler: [gc]  [ CompressGC ] 26.1164 (35) -> 7.10049 (10.5) MB, 160.626(+0)ms, Switch to background
 // GC运行时的各种状态以及应用名称
 C03F00/ArkCompiler: [gc] IsInBackground: 1; SensitiveStatus: 0; OnStartupEvent: 0; BundleName: com.huawei.hmos.filemanager;
@@ -323,7 +294,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 - 接口类型：js接口
 - 作用：调用后由VM主动触发判断当前是否适合进行一次full GC。后台场景、内存预期存活率低于设定值，则会触发，判断为敏感状态则不会触发。
 - 使用场景：开发者提示系统进行GC
-- 典型日志：无直接日志，仅可区分外部触发（`GCReason::EXTERNAL_TRIGGER`）
+- 典型日志：无直接日志，仅可区分外部触发（`GCReason::TRIGGER_BY_JS`）
 
 
 使用参考

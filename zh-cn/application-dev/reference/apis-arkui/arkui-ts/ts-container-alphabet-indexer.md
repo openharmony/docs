@@ -22,7 +22,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | arrayValue | Array&lt;string&gt; | 是 | 字母索引字符串数组，不可设置为空。 |
 | selected   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
@@ -30,6 +30,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 ## 属性
 
 [width](ts-universal-attributes-size.md#width)属性设置"auto"时表示自适应宽度，宽度会随索引项最大宽度变化。
+
+[padding](ts-universal-attributes-size.md#padding)属性默认为4vp。
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
@@ -111,7 +113,7 @@ popupBackground(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗背景色。<br/>默认值：<br />API version 11及以前：0xFFFFFFFF。<br />API version 12及以后：#66808080。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 提示弹窗背景色。<br/>弹窗的背景模糊材质效果会对背景色产生影响，可通过设置[popupBackgroundBlurStyle](#popupbackgroundblurstyle12)属性值为NONE关闭背景模糊材质效果。<br/>默认值：<br />API version 11及以前：0xFFFFFFFF。<br />API version 12及以后：#66808080。 |
 
 ### usingPopup
 
@@ -374,7 +376,7 @@ popupBackgroundBlurStyle(value: BlurStyle)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>默认值：COMPONENT_REGULAR。 |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 设置提示弹窗的背景模糊材质。<br/>弹窗的背景模糊材质效果会对背景色[popupBackground](#popupbackground)产生影响，可通过设置属性值为NONE关闭背景模糊材质效果。<br/>默认值：COMPONENT_REGULAR。 |
 
 ### popupTitleBackground<sup>12+</sup>   
 
@@ -408,7 +410,7 @@ enableHapticFeedback(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Left | 弹框显示在索引条右侧。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | Right | 弹框显示在索引条左侧。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -555,6 +557,7 @@ struct AlphabetIndexerSample {
         .height('100%')
 
         AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+          .autoCollapse(false)
           .selectedColor(0xFFFFFF) // 选中项文本颜色
           .popupColor(0xFFFAF0) // 弹出框文本颜色
           .selectedBackgroundColor(0xCCCCCC) // 选中项背景颜色

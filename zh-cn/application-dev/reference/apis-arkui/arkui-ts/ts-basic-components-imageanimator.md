@@ -21,6 +21,8 @@ ImageAnimator()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -123,8 +125,6 @@ preDecode(value: number)
 
 从API version 9开始废弃。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -171,13 +171,15 @@ iterations(value: number)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名称   | 参数类型   | 必填 | 参数描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填 | 说明 |
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。<br/>默认值：0   <br/>从API version 10开始，该接口支持在ArkTS卡片中使用       |
-| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。<br/>默认值：0     <br/>从API version 10开始，该接口支持在ArkTS卡片中使用        |
-| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0  <br/>从API version 10开始，该接口支持在ArkTS卡片中使用  |
-| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用   |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。<br/>默认值：0   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
+| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。<br/>默认值：0     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
+| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
+| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用   |
 | duration | number          | 否     | 每一帧图片的播放时长，单位毫秒。<br/>默认值：0         |
 
 ## 事件

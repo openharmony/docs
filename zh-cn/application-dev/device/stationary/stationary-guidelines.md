@@ -31,11 +31,11 @@
 
 ## 接口说明
 
-| 模块          | 接口名                                                       | 描述                                                         |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ohos.stationary | on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | 订阅设备状态，结果通过callback返回。 |
-| ohos.stationary | once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | 查询设备状态，结果通过callback返回。 |
-| ohos.stationary | off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | 取消订阅设备状态。                                 |
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | 订阅设备状态，结果通过callback返回。 |
+| once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | 查询设备状态，结果通过callback返回。 |
+| off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | 取消订阅设备状态。                                 |
 
 ## 约束与限制
 

@@ -22,16 +22,18 @@ Span(value: string | Resource)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string \| [Resource](ts-types.md#resource) | 是 | 文本内容。 |
 
 
 ## 属性
 
-属性继承自[BaseSpan](#basespan)，通用属性方法仅支持[文本通用](ts-universal-attributes-text-style.md)。
+属性继承自[BaseSpan](#basespan)。
 
 ### decoration
 
@@ -47,8 +49,8 @@ decoration(value: DecorationStyleInterface)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型      | 必填 | 说明     |
+| ------ | -------- | ---- | -------------- |
 | value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
 
 ### letterSpacing
@@ -65,8 +67,8 @@ letterSpacing(value: number | string)
 
 **参数：** 
 
-| 参数名 | 类型                       | 必填 | 描述           |
-| ------ | -------------------------- | ---- | -------------- |
+| 参数名 | 类型     | 必填 |  说明   |
+| ------ | ------- | ---- | -------------- |
 | value  | number&nbsp;\|&nbsp;string | 是   | 文本字符间距。 |
 
 ### textCase
@@ -83,9 +85,99 @@ textCase(value: TextCase)
 
 **参数：** 
 
-| 参数名 | 类型                                      | 必填 | 描述                                     |
-| ------ | ----------------------------------------- | ---- | ---------------------------------------- |
+| 参数名 | 类型   | 必填 | 说明   |
+| ------ | ------- | ---- | ------- |
 | value  | [TextCase](ts-appendix-enums.md#textcase) | 是   | 文本大小写。<br/>默认值：TextCase.Normal |
+
+### fontColor
+
+fontColor(value: ResourceColor)
+
+设置字体颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明       |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。 |
+
+### fontSize
+
+fontSize(value: number | string | Resource)
+
+设置字体大小。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;&nbsp;string\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+
+### fontStyle
+
+fontStyle(value: FontStyle)
+
+设置字体样式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                        | 必填 | 说明                                    |
+| ------ | ------------------------------------------- | ---- | --------------------------------------- |
+| value  | [FontStyle](ts-appendix-enums.md#fontstyle) | 是   | 字体样式。<br/>默认值：FontStyle.Normal |
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+设置文本的字体粗细，设置过大可能会在不同字体下有截断。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+设置字体列表。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### lineHeight<sup>10+</sup>
 
@@ -99,8 +191,8 @@ lineHeight(value: Length)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述           |
-| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| 参数名 | 类型    | 必填 | 说明  |
+| ------ | ------ | ---- | ---- |
 | value  | [Length](ts-types.md#length) | 是   | 文本行高。 |
 
 ### font<sup>10+</sup>
@@ -115,7 +207,7 @@ font(value: Font)
 
 **参数：** 
 
-| 参数名 | 类型                     | 必填 | 描述       |
+| 参数名 | 类型                     | 必填 | 说明       |
 | ------ | ------------------------ | ---- | ---------- |
 | value  | [Font](ts-types.md#font) | 是   | 文本样式。 |
 
@@ -131,8 +223,8 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述           |
-| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ----- | ---- | --- |
 | value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是   | 文字阴影效果。 |
 
 ## 事件
@@ -153,7 +245,7 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 ### textBackgroundStyle<sup>11+</sup>
 
-textBackgroundStyle(style: TextBackgroundStyle)
+textBackgroundStyle(style: TextBackgroundStyle): T
 
 设置背景样式。作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
 
@@ -163,13 +255,19 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---- | ---- | ---- |
+| style  | [TextBackgroundStyle](#textbackgroundstyle11对象说明) | 是   | 背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| T | 返回当前Span的属性。 |
 
 ### baselineOffset<sup>12+</sup>
 
-baselineOffset(value: LengthMetrics)
+baselineOffset(value: LengthMetrics): T
 
 设置Span基线的偏移量。此属性与父组件的baselineOffset是共存的。
 
@@ -179,9 +277,26 @@ baselineOffset(value: LengthMetrics)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型 | 必填 | 说明  |
+| ----- | ---- | ---- | ---- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置Span基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0<br/>在ImageSpan中，设置为非0时会导致设置verticalAlign失效。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| T | 返回当前Span的属性。 |
+
+## TextBackgroundStyle<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型     | 必填 | 说明         |
+| ------ | ------- | ---- | ------------ |
+| color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 文本背景色。 |
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 文本背景圆角。 |
 
 ## 示例
 ### 示例1

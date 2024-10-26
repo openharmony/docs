@@ -4,7 +4,7 @@
 
 - 日历管理器[CalendarManager](#calendarmanager)用于管理日历[Calendar](#calendar)。
 
-- 日历[Calendar](#calendar)主要包含账户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于一对多关系，一个Calendar可以有多个Event，一个Event只属于一个Calendar。
+- 日历[Calendar](#calendar)主要包含账户信息[CalendarAccount](#calendaraccount)和配置信息[CalendarConfig](#calendarconfig)。日历Calendar与日程Event属于从属关系，需要先创建日历Calendar对象，然后再通过日历Calendar创建日程Event对象，一个Calendar可以有多个Event，一个Event只属于一个Calendar。日历管理器是对日历的管理，日程过滤器是对日程的管理。
 
 > **说明：**
 >
@@ -83,7 +83,7 @@ export default class EntryAbility extends UIAbility {
       console.log(`get Permission success, result: ${JSON.stringify(result)}`);
       calendarMgr = calendarManager.getCalendarManager(mContext);
     }).catch((error: BusinessError) => {
-      console.error(`get Permission error, error. Code: ${err.code}, message: ${err.message}`);
+      console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
     })
   }
 
@@ -157,7 +157,7 @@ try {
     }
   });
 } catch (error) {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -209,7 +209,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
   console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 });
 ```
 
@@ -259,7 +259,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
       console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
       calendarMgr?.deleteCalendar(data, (err1: BusinessError) => {
         if (err1) {
-          console.error(`Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to delete calendar. Code: ${err1.code}, message: ${err1.message}`);
         } else {
           console.info("Succeeded in deleting calendar");
         }
@@ -267,7 +267,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     }
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -326,7 +326,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -426,7 +426,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     }
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -585,9 +585,9 @@ editEvent(event: Event): Promise\<number>
 
 **返回值**：
 
-| 类型           | 说明                     |
-| -------------- | ------------------------ |
-| Promise\<number> | Promise对象，返回日程的id。 |
+| 类型           | 说明                                                                          |
+| -------------- |-----------------------------------------------------------------------------|
+| Promise&lt;number&gt; | Promise对象，返回日程的id，日程id是日程的唯一标识符，是数据库的自增主键，小于0代表日程创建失败，大于0代表日程创建成功，没有等于0的情况。 |
 
 **示例**：
 
@@ -619,9 +619,9 @@ calendarMgr?.editEvent(event).then((eventId: number): void => {
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称 | 类型   | 只读 | 可选 | 说明     |
-| ---- | ------ | ---- |----| -------- |
-| id   | number | 是   | 否  | 日历账户id。 |
+| 名称 | 类型   | 只读 | 可选 | 说明                                                                       |
+| ---- | ------ | ---- |----|--------------------------------------------------------------------------|
+| id   | number | 是   | 否  | 日历账户id，日历账户id是日历账户的唯一标识符，是数据库的自增主键，小于0代表日历账户创建失败，大于0代表日历账户创建成功，没有等于0的情况。 |
 
 ### addEvent
 
@@ -635,10 +635,10 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 **参数**：
 
-| 参数名   | 类型                   | 必填 | 说明                   |
-| -------- | ---------------------- | ---- | ---------------------- |
-| event    | [Event](#event)        | 是   | Event对象。            |
-| callback | AsyncCallback\<number> | 是   | 回调函数，返回日程id。 |
+| 参数名   | 类型                   | 必填 | 说明                                                                    |
+| -------- | ---------------------- | ---- |-----------------------------------------------------------------------|
+| event    | [Event](#event)        | 是   | Event对象。                                                              |
+| callback | AsyncCallback\<number> | 是   | 回调函数，返回日程id，日程id是日程的唯一标识符，是数据库的自增主键，小于0代表日程创建失败，大于0代表日程创建成功，没有等于0的情况。 |
 
 **示例**：
 
@@ -835,10 +835,10 @@ deleteEvent(id: number, callback: AsyncCallback\<void>): void
 
 **参数**：
 
-| 参数名   | 类型                 | 必填 | 说明       |
-| -------- | -------------------- | ---- | ---------- |
-| id       | number               | 是   | 日程id。   |
-| callback | AsyncCallback\<void> | 是   | 回调函数。 |
+| 参数名   | 类型                 | 必填 | 说明                                     |
+| -------- | -------------------- | ---- |----------------------------------------|
+| id       | number               | 是   | 日程id，传入的日程id为正整数，表示已创建日程的id，是日程的唯一标识符。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。                                  |
 
 **示例**：
 
@@ -860,18 +860,18 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
   } else {
     console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
     calendar = data;
-    await calendar.addEvent(event).then((data: number) => {
+    calendar.addEvent(event).then((data: number) => {
       console.info(`Succeeded in adding event, id -> ${data}`);
       id = data;
+      calendar?.deleteEvent(id, (err: BusinessError) => {
+        if (err) {
+          console.error(`Failed to delete event. Code: ${err.code}, message: ${err.message}`);
+        } else {
+          console.info(`Succeeded in deleting event, err -> ${JSON.stringify(err)}`);
+        }
+      });
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
-    });
-    calendar.deleteEvent(id, (err: BusinessError) => {
-      if (err) {
-        console.error(`Failed to delete event. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info(`Succeeded in deleting event, err -> ${JSON.stringify(err)}`);
-      }
     });
   }
 });
@@ -1178,7 +1178,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 getEvents(callback: AsyncCallback\<Event[]>): void
 
-查询Calendar下所有Event，使用callback异步回调。
+查询当前日历下所有日程，使用callback异步回调。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1322,6 +1322,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event. Code: ${err.code}, message: ${err.message}`);
     });
+    // 根据MyEvent进行模糊查询，如果存在类似标题为MyEvent1类型的日程，也可查询出来
     const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
       console.info(`Succeeded in getting events, data -> ${JSON.stringify(data)}`);
@@ -1495,11 +1496,11 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称        | 类型                          | 只读 | 可选 | 说明                                   |
-| ----------- | ----------------------------- | ---- |----| -------------------------------------- |
-| name        | string                        | 是   | 否  | 账户名称。                             |
-| type        | [CalendarType](#calendartype) | 否   | 否  | 账户类型。                             |
-| displayName | string                        | 否   | 是  | 账户的显示名称。不填时，默认为空字符串。 |
+| 名称        | 类型                          | 只读 | 可选 | 说明                               |
+| ----------- | ----------------------------- | ---- |----|----------------------------------|
+| name        | string                        | 是   | 否  | 账户名称（面向开发者）。                     |
+| type        | [CalendarType](#calendartype) | 否   | 否  | 账户类型。                            |
+| displayName | string                        | 否   | 是  | 账户显示在日历应用上的名称（面向用户）。不填时，默认为空字符串。 |
 
 ## CalendarConfig
 
@@ -1527,9 +1528,9 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 | startTime      | number                            | 否   | 否  | 日程开始时间，需要13位时间戳。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                   |
 | endTime        | number                            | 否   | 否  | 日程结束时间，需要13位时间戳。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                  |
 | isAllDay       | boolean                           | 否   | 是  | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                           |
-| attendee       | [Attendee](#attendee)[]           | 否   | 是  | 日程参与者。不填时，默认为null。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                |
+| attendee       | [Attendee](#attendee)[]           | 否   | 是  | 会议日程参与者。不填时，默认为null。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                              |
 | timeZone       | string                            | 否   | 是  | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone)获取当前系统时区。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| reminderTime   | number[]                          | 否   | 是  | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。可为负值。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                  |
+| reminderTime   | number[]                          | 否   | 是  | 日程提醒时间，单位为分钟。填写x分钟，即距开始时间提前x分钟提醒，不填时，默认为不提醒。为负值时表示延期多长时间提醒。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 是  | 日程重复规则。不填时，默认为不重复。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
 | description    | string                            | 否   | 是  | 日程描述。不填时，默认为空字符串。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                 |
 | service        | [EventService](#eventservice)     | 否   | 是  | 日程服务。不填时，默认没有一键服务。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                               |
@@ -1708,7 +1709,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 static filterByTitle(title: string): EventFilter
 
-根据日程标题过滤日程。
+根据日程标题过滤日程，该条件为模糊匹配。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1766,10 +1767,10 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称      | 值   | 说明                 |
-| --------- | ---- | -------------------- |
-| NORMAL    | 0    | 普通日程。           |
-| IMPORTANT | 1    | 重要日程。支持倒计时。 |
+| 名称      | 值   | 说明                      |
+| --------- | ---- |-------------------------|
+| NORMAL    | 0    | 普通日程，例如会议，闹钟等日常提醒的日程。   |
+| IMPORTANT | 1    | 重要日程，例如结婚纪念日等具有重要意义的日期，不推荐三方开发者使用，重要日程类型不支持一键服务跳转功能及无法自定义提醒时间。 |
 
 ## RecurrenceRule
 
@@ -1777,13 +1778,19 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称                | 类型                                        | 只读 | 可选 | 说明                                                                        |
-| ------------------- | ------------------------------------------- | ---- |----|---------------------------------------------------------------------------|
-| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 否  | 日程重复规则类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
-| expire              | number                                      | 否   | 是  | 重复周期截止日。不填时，默认为0。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| count<sup>12+</sup>               | number                                      | 否   | 是  | 重复日程重复次数。 不填时，默认为0。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| interval<sup>12+</sup>            | number                                      | 否   | 是  | 重复日程重复间隔。 不填时，默认为0。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程排除日期。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| 名称                | 类型                                        | 只读 | 可选 | 说明                                                                                                                                                                                                                                                                                                                              |
+| ------------------- | ------------------------------------------- | ---- |----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 否  | 日程重复规则类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                 |
+| expire              | number                                      | 否   | 是  | 重复周期截止日。不填时，默认为0。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                        |
+| count<sup>12+</sup>               | number                                      | 否   | 是  | 重复日程的重复次数，取值为非负整数，不填时默认为0，表示不会限定重复次数，会一直重复，取值为负时，效果等同于取值为0。当count与expire同时存在时以count为准。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                     |
+| interval<sup>12+</sup>            | number                                      | 否   | 是  | 重复日程的重复间隔，取值为非负整数，不填时默认为0，表示日程按照重复规则一直重复，没有间隔。取值为负时，效果等同于取值为0。当interval与expire同时存在时以expire为准。 <br/>此属性与recurrenceFrequency重复规则相关，不同的重复规则下，表示的重复间隔不同，以interval取2为例，分为以下几种情况：<br/>每天重复时：表示日程每隔两天重复一次。<br/>每周重复时：表示日程每隔两周重复一次。<br/>每月重复时：表示日程每隔两月重复一次。<br/>每年重复时：表示日程每隔两年重复一次。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程的排除日期，参数取值为时间戳格式，不填时，默认为空，表示没有排除的日期，0或负数为无效值，与空值效果相同。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                 |
+| daysOfWeek<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一周第几天重复。不填时，默认为空，表示没有一周第几天重复的规则。范围为1到7，对应周一到周日，其他值为无效值，与空值效果相同。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                         |
+| daysOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几天重复。不填时，默认为空，表示没有一个月第几天重复的规则。范围为1到31，1到31对应1到31号，其他值为无效值，与空值效果相同。若当月没有31号，31也为无效值。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                  |
+| daysOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年第几天重复。不填时，默认为空，表示没有一年第几天重复的规则。范围为1到366，1到366表示一年的1到366天，其他值为无效值，与空值效果相同。若当年没有366天，366也为无效值。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                            |
+| weeksOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几周重复。不填时，默认为空，表示没有一个月第几周重复的规则。范围为1到5，1到5为每月的第1到第5周，其他值为无效值，与空值效果相同。若当月没有第五周，5也为无效值。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                  |
+| weeksOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几周重复。不填时，默认为空，表示没有一年第几周重复的规则。范围为1到53，1到53为每年的第1到第53周，其他值为无效值，与空值效果相同。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                |
+| monthsOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几个月重复。不填时，默认为空，表示没有一年第几个月重复的规则。范围为1到12，1到12为每年的1到12月，其他值为无效值，与空值效果相同。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                |
 ## RecurrenceFrequency
 
 日程重复规则类型枚举。
@@ -1801,15 +1808,15 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 ## Attendee
 
-日程参与者。
+会议日程参与者。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称  | 类型   | 只读 | 可选 | 说明                                                                    |
-| ----- | ------ | ---- |----|-----------------------------------------------------------------------|
-| name  | string | 否   | 否  | 参与者的姓名。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| email | string | 否   | 否  | 参与者的邮箱。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | 否   | 是  | 参与者的角色。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称  | 类型   | 只读 | 可选 | 说明                                                                 |
+| ----- | ------ | ---- |----|--------------------------------------------------------------------|
+| name  | string | 否   | 否  | 会议日程参与者的姓名。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| email | string | 否   | 否  | 会议日程参与者的邮箱。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | 否   | 是  | 会议日程参与者的角色。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## EventService
 
@@ -1820,10 +1827,10 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 **系统能力**：SystemCapability.Applications.CalendarData
 
 | 名称        | 类型                        | 只读 | 可选 | 说明                                  |
-| ----------- | --------------------------- | ---- |----| ------------------------------------- |
-| type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                            |
-| uri         | string                      | 否   | 否  | 服务的uri。可以跳转到三方应用相应界面。 |
-| description | string                      | 否   | 是  | 服务辅助描述。不填时，默认为空字符串。  |
+| ----------- | --------------------------- | ---- |----|-------------------------------------|
+| type        | [ServiceType](#servicetype) | 否   | 否  | 服务类型。                               |
+| uri         | string                      | 否   | 否  | 服务的uri，格式为Deeplink类型。可以跳转到三方应用相应界面。 |
+| description | string                      | 否   | 是  | 服务辅助描述。不填时，默认为空字符串。                 |
 
 ## ServiceType
 
@@ -1847,7 +1854,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 ## AttendeeRole<sup>12+</sup>
 
-与会人角色类型枚举。
+会议日程参与者角色类型枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

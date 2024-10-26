@@ -183,8 +183,6 @@ setTimeout(() => {
 
 ## Transmitting Data over TCP Socket Server Connections
 
-### How to Develop
-
 The TCP socket server connection process is described as follows:
 
 1. Import the required **socket** module.
@@ -268,8 +266,6 @@ setTimeout(() => {
 
 ## Transmitting Data over Multicast Socket Connections
 
-### How to Develop
-
 1. Import the required **socket** module.
 
 2. Create a **MulticastSocket** object.
@@ -297,7 +293,6 @@ let addr : socket.NetAddress = {
 }
 
 // Add the MulticastSocket object to a multicast group.
-// addMembership() does not support static call. You need to create a dynamic variable to call this API.
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
@@ -338,8 +333,6 @@ multicast.dropMembership(addr).then(() => {
 ```
 
 ## Transmitting Data over Local Socket Connections
-
-### How to Develop
 
 1. Import the required **socket** module.
 
@@ -409,8 +402,6 @@ client.close().then(() => {
 ```
 
 ## Transmitting Data over Local Socket Server Connections
-
-### How to Develop
 
 The local socket connection process on the server is described as follows:
 
@@ -496,8 +487,6 @@ server.off('error');
 ```
 
 ## Implementing Encrypted Data Transmission over TLS Socket Connections
-
-### How to Develop
 
 The TLS socket connection process on the client is described as follows:
 
@@ -655,9 +644,136 @@ tlsTwoWay.close((err: BusinessError) => {
 });
 ```
 
-## Implementing Encrypted Data Transmission over TLS Socket Server Connections
+## Implementing Encrypted Data Transmission by Upgrading a TCP Socket Connection to a TLS Socket Connection
 
-### How to Develop
+The process of upgrading a TCP socket connection to a TLS socket connection is as follows:
+
+1. Import the required **socket** module.
+
+2. Create a TCP socket connection. For details, see [Transmitting Data over TCP Socket or UDP Socket Connections](#transmitting-data-over-tcp-socket-or-udp-socket-connections).
+
+3. After the TCP socket connection is established, use the **TCPSocket** object to create a TLS socket connection. A **TLSSocket** object is returned.
+
+4. For two-way authentication, upload the client CA certificate and digital certificate. For one-way authentication, upload the client CA certificate.
+
+5. (Optional) Subscribe to events of the **TLSSocketConnection** object.
+
+6. Send data over the connection.
+
+7. Enable the TLS socket connection to be automatically closed after use.
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+
+// Create a TCP socket connection. A TCPSocket object is returned.
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+tcp.on('message', (value: SocketInfo) => {
+  console.log("on message");
+  let buffer = value.message;
+  let dataView = new DataView(buffer);
+  let str = "";
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i));
+  }
+  console.log("on connect received:" + str);
+});
+tcp.on('connect', () => {
+  console.log("on connect");
+});
+
+// Bind the local IP address and port number.
+let ipAddress: socket.NetAddress = {} as socket.NetAddress;
+ipAddress.address = "192.168.xxx.xxx";
+ipAddress.port = 1234;
+tcp.bind(ipAddress, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+
+  // Set up a connection to the specified IP address and port number.
+  ipAddress.address = "192.168.xxx.xxx";
+  ipAddress.port = 443;
+
+  let tcpConnect: socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
+  tcpConnect.address = ipAddress;
+  tcpConnect.timeout = 6000;
+
+  tcp.connect(tcpConnect, (err: BusinessError) => {
+    if (err) {
+      console.log('connect fail');
+      return;
+    }
+    console.log('connect success');
+
+    // After TCP socket connection is established, upgrade it to a TLS socket connection.
+    let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+    // Subscribe to events of the TLSSocket object.
+    tlsTwoWay.on('message', (value: SocketInfo) => {
+      console.log("tls on message");
+      let buffer = value.message;
+      let dataView = new DataView(buffer);
+      let str = "";
+      for (let i = 0; i < dataView.byteLength; ++i) {
+        str += String.fromCharCode(dataView.getUint8(i));
+      }
+      console.log("tls on connect received:" + str);
+    });
+    tlsTwoWay.on('connect', () => {
+      console.log("tls on connect");
+    });
+    tlsTwoWay.on('close', () => {
+      console.log("tls on close");
+    });
+
+    // Configure the destination address and certificate of the TLSSocket object.
+    ipAddress.address = "192.168.xxx.xxx";
+    ipAddress.port = 1234;
+
+    let tlsSecureOption: socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
+    tlsSecureOption.key = "xxxx";
+    tlsSecureOption.cert = "xxxx";
+    tlsSecureOption.ca = ["xxxx"];
+    tlsSecureOption.password = "xxxx";
+    tlsSecureOption.protocols = [socket.Protocol.TLSv12];
+    tlsSecureOption.useRemoteCipherPrefer = true;
+    tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
+    tlsSecureOption.cipherSuite = "AES256-SHA256";
+
+    let tlsTwoWayConnectOption: socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
+    tlsSecureOption.key = "xxxx";
+    tlsTwoWayConnectOption.address = ipAddress;
+    tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
+    tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
+
+    // Establish a TLS socket connection.
+    tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
+      console.log("tls connect success");
+
+      // Enable the socket connection to be automatically closed after use. Then, unsubscribe from events of the connection.
+      tlsTwoWay.close((err: BusinessError) => {
+        if (err) {
+          console.log("tls close callback error = " + err);
+        } else {
+          console.log("tls close success");
+        }
+        tlsTwoWay.off('message');
+        tlsTwoWay.off('connect');
+        tlsTwoWay.off('close');
+      });
+    });
+  });
+});
+```
+
+## Implementing Encrypted Data Transmission over TLS Socket Server Connections
 
 The TLS socket connection process on the server is described as follows:
 

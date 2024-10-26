@@ -98,7 +98,7 @@ class C1 {
 let stack : Stack<number | string | C1> = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
-let c : C1  = {name : "Dylon", age : "13"};
+let c : C1  = {name : "Dylan", age : "13"};
 let result2 = stack.push(c);
 ```
 
@@ -302,10 +302,6 @@ let result = stack.isEmpty();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -101,7 +101,7 @@ let result = queue.add("a");
 let result1 = queue.add(1);
 let b = [1, 2, 3];
 let result2 = queue.add(b);
-let c : C1 = {name : "Dylon", age : "13"};
+let c : C1 = {name : "Dylan", age : "13"};
 let result3 = queue.add(c);
 ```
 
@@ -229,10 +229,6 @@ queue.forEach((value : number, index ?: number) : void => {
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

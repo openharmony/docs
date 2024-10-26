@@ -36,10 +36,10 @@ You can obtain the timestamp information from the event callback, including the 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name            | Type                                     | Read-only| Mandatory| Description                                      |
+| Name            | Type                                     | Read-only| Optional| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | Yes  | Yes  | Time when the current frame arrives, in nanoseconds.|
-| targetTimestamp | number| Yes  | Yes  | Expected arrival time of the next frame, in nanoseconds.|
+| timestamp      | number | Yes  | No  | Time when the current frame arrives, in nanoseconds.|
+| targetTimestamp | number| Yes  | No  | Expected arrival time of the next frame, in nanoseconds.|
 
 ## DisplaySync
 
@@ -67,7 +67,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameters types. 3. Parameter verification failed. or check ExpectedFrameRateRange if valid.|
 
 **Example**
 

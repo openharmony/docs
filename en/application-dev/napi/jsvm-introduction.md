@@ -4,13 +4,12 @@
 
 The OpenHarmony JSVM-API provides a set of stable application binary interfaces (ABIs) based on the standard JavaScript (JS) engine. It provides complete JS engine capabilities, including creating and destroying a JS engine, executing JS code, and implementing interaction between JS and C/C++ modules.
 
-> **NOTE**
->
-> JSVM stands for JavaScript Virtual Machine.
+OpenHarmony JSVM-API provides a set of APIs written in C programming language that complies with C99.
 
 JSVM-API allows dynamically loaded JS code segment to be directly run during application runtime. With JSVM-API, you can also use C/C++ to implement core functionalities that demand high performance or closely rely on underlying system invocation, register C++ methods in JS code, and directly call the JS code to improve the execution speed.
 
 Unless otherwise specified, JSVM-API in this document refers to OpenHarmony JSVM-API.
+
 
 ## JSVM-API Architecture
 
@@ -54,6 +53,6 @@ Unless otherwise specified, JSVM-API in this document refers to OpenHarmony JSVM
 
 The interaction between JSVM-API and a native module is as follows:
 
-1. **Initialization**: Initialize the JSVM and JS context on the native module and register the native functions in JS code. The native functions are hooked to **GlobalThis**, which is the global context of the JS execution environment.
+1. **Initialization**: Initialize the JSVM and JS context on the native module and register native functions in JS code. The native functions are hooked to **GlobalThis**, which is the global context of the JS execution environment.
 
 2. **Invocation**: Call JS APIs to invoke the native functions that are registered in **GlobalThis** using JSVM-API. The JS engine calls the corresponding C/C++ functions.

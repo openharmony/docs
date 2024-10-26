@@ -144,7 +144,6 @@ struct PopupExample {
           placementOnTop: true,
           showInSubWindow: false,
           onStateChange: (e) => {
-            console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
               this.handlePopup = false
             }
@@ -211,7 +210,6 @@ struct Index {
           placement:Placement.Bottom, // 气泡的弹出位置
           popupColor:Color.Pink, // 气泡的背景色
           onStateChange: (e) => {
-            console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
               this.customPopup = false
             }

@@ -1,6 +1,6 @@
-# 电话服务开发概述
+# Telephony Kit简介
 
-电话服务系统提供系列API帮助开发者开发通讯类应用，包括：
+Telephony Kit（蜂窝通信服务）提供一系列API帮助开发者开发通讯类应用，包括：
 
 - call模块（拨打电话）：系统应用可以直接拨打电话，在应用界面显示通话；三方应用可以拉起系统电话应用，跳转至拨号界面，从而实现拨打电话的功能，具体可参考[拨打电话开发指导](telephony-call.md)。除此之外，应用还可以通过call模块，实现格式化电话号码、判断是否紧急号码等功能，详情请参考[@ohos.telephony.call API参考](../reference/apis-telephony-kit/js-apis-call.md)。
 

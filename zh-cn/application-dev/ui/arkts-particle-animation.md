@@ -61,7 +61,7 @@ Particle(...).width(300).height(300).emitter(this.emitterProperties) // 动态�
 
 ## 颜色
 
-通过 [distributionType](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#particlecolorpropertyoptions) 设置粒子初始颜色随机值分布。可以设置为均匀分布或者高斯（正态）分布。
+通过 [DistributionType](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#distributiontype12) 设置粒子初始颜色随机值分布。可以设置为均匀分布或者高斯（正态）分布。
 
 ```ts
 // ...
@@ -79,7 +79,7 @@ color: {
 
 粒子的生命周期（Lifecycle）是粒子从生成到消亡的过程，用于指定粒子的生存时长。
 
-通过 [lifetime](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#emitteroptions) 和 [lifetimeRange](../reference/apis-arkui/arkui-ts/ts-particle-animation.md#emitteroptions) 设置粒子生命周期。
+通过lifetime和lifetimeRange设置粒子生命周期。
 
 ```ts
 // ...

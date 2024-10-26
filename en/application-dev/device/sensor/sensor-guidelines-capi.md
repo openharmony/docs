@@ -1,4 +1,4 @@
-# Capi Sensor Development
+# Sensor Development (C/C++)
 
 
 ## When to Use
@@ -55,6 +55,7 @@ The following uses the acceleration sensor as an example to describe the develop
          {
            "name": "ohos.permission.ACCELEROMETER",
          },
+       ]
    ```
 
 3. Add the dynamic dependency libraries into the **CMakeLists.txt** file.
@@ -62,7 +63,7 @@ The following uses the acceleration sensor as an example to describe the develop
    ```c
    target_link_libraries(entry PUBLIC libace_napi.z.so)
    target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
-   target_link_libraries(entry PUBLIC libohsensor.z.so)
+   target_link_libraries(entry PUBLIC libohsensor.so)
    ```
 
 4. Import the module.
@@ -229,3 +230,12 @@ The following uses the acceleration sensor as an example to describe the develop
        }
    }
    ```
+   
+9. Introduce the NAPI APIs to the **index.d.ts** file in **types/libentry**.
+
+   ```c
+   export const getSensorInfos: () => number;
+   export const subscriber: () => number;
+   ```
+
+10. Write JavaScript test cases to test the APIs.

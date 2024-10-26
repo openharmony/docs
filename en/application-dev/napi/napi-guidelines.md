@@ -41,7 +41,7 @@ static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
     napi_value* argv = new napi_value[argc];
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // Service code.
-    // ...
+    // ... ...
     // argv is an object created by new and must be manually released when it is not required.
     delete argv;
     return nullptr;
@@ -49,18 +49,18 @@ static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
 
 static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
-    napi_value* argv[2] = {nullptr};
+    napi_value argv[2] = {nullptr};
     // napi_get_cb_info writes the arguments (of the quantity specified by argc) passed by JS or undefined to argv.
     napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
     // Service code.
-    // ...
+    // ... ...
     return nullptr;
 }
 ```
 
 ## Lifecycle Management
 
-**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leaks.
+**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leakage.
 
 Each **napi_value** belongs to a specific **HandleScope**, which is opened and closed by **napi_open_handle_scope** and **napi_close_handle_scope**, respectively. After a **HandleScope** is closed, its **napi_value** is automatically released.
 
@@ -155,11 +155,15 @@ void callbackTest(CallbackContext* context)
     work->data = (void*)context;
     uv_queue_work(
         loop, work, [](uv_work_t* work) {},
-        // Using callback function back to JS thread
+        // using callback function back to JS thread
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
+            napi_handle_scope scope = nullptr; 
+            napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
+                if (work != nullptr) {
+                    delete work;
+                }
                 return;
             }
             napi_value callback = nullptr;
@@ -181,7 +185,7 @@ void callbackTest(CallbackContext* context)
 
 ## Object Wrapping
 
-**[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()** , use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
+**[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()**, use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
 
 The **napi_wrap** interface is defined as follows:
 
@@ -199,12 +203,12 @@ Generally, you can directly pass in **nullptr** for the last parameter **result*
 // Case 1: Pass in nullptr via the last parameter in napi_wrap. In this case, the created napi_ref is a weak reference, which is managed by the system and does not need manual release.
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
 
-// Case 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, a memory leak may occur.
+// Case 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, memory leakage may occur.
 napi_ref result;
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
 // When js_object and result are no longer used, call napi_remove_wrap to release result.
-napi_value result1;
-napi_remove_wrap(env, jsobject, result1);
+void* nativeObjectResult = nullptr;
+napi_remove_wrap(env, jsobject, &nativeObjectResult);
 ```
 
 ## Arrays for High Performance
@@ -267,7 +271,7 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
 >
 > The following data is the accumulated data written in thousands of cycles. To better reflect the difference, the core frequency of the device has been limited.
 
-| Container Type   | Benchmark Data (us)|
+| Container Type   | Benchmark Data (us) |
 | ----------- | ------------------- |
 | JSArray     | 1566.174            |
 | ArrayBuffer | 3.609               |

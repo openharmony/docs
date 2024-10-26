@@ -307,8 +307,8 @@ struct Index {
 ```ts
 @ObservedV2
 class Info {
-  name: string;
-  age: number;
+  @Trace name: string;
+  @Trace age: number;
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
@@ -473,6 +473,66 @@ struct Index {
       Button("change to number")
         .onClick(() => {
           this.count = 10;
+      })
+    }
+  }
+}
+```
+
+## 常见问题
+
+### 复杂类型常量重复赋值给状态变量触发刷新
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  list: string[][] = [['a'], ['b'], ['c']];
+  @Local dataObjFromList: string[] = this.list[0];
+
+  @Monitor("dataObjFromList")
+  onStrChange(monitor: IMonitor) {
+    console.log("dataObjFromList has changed");
+  }
+
+  build() {
+    Column() {
+      Button('change to self').onClick(() => {
+        // 新值和本地初始化的值相同
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+```
+
+以上示例每次点击Button('change to self')，把相同的Array类型常量赋值给一个Array类型的状态变量，都会触发刷新。原因是在状态管理V2中，会给使用状态变量装饰器如@Trace、@Local装饰的Date、Map、Set、Array添加一层代理用于观测API调用产生的变化。  
+当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Array类型，判断是不相等的，因此会触发赋值和刷新。  
+为了避免这种不必要的赋值和刷新，可以使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，当两者相同时不执行赋值。
+
+使用UIUtils.getTarget()方法示例
+
+```ts
+import { UIUtils } from '@ohos.arkui.StateManagement';
+
+@Entry
+@ComponentV2
+struct Index {
+  list: string[][] = [['a'], ['b'], ['c']];
+  @Local dataObjFromList: string[] = this.list[0];
+
+  @Monitor("dataObjFromList")
+  onStrChange(monitor: IMonitor) {
+    console.log("dataObjFromList has changed");
+  }
+
+  build() {
+    Column() {
+      Button('change to self').onClick(() => {
+        // 获取原始对象来和新值做对比
+        if (UIUtils.getTarget(this.dataObjFromList) !== this.list[0]) {
+          this.dataObjFromList = this.list[0];
+        }
       })
     }
   }

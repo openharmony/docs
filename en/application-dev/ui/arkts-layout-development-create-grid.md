@@ -3,14 +3,14 @@
 
 ## Overview
 
-The grid layout consists of cells formed by rows and columns. You can specify the cells where items are located to form various layouts. The grid layout excels at dividing a page into regions and defining the proportion of child components. It is a key adaptive layout and applies to scenarios such as photo gallery, calendar, and calculator.
+The grid layout consists of cells formed by rows and columns. You can specify the cells where items are located to create various layouts. The grid layout excels at dividing a page into regions and defining the proportion of child components. It is a key adaptive layout and applies to scenarios such as photo gallery, calendar, and calculator.
 
-ArkUI provides the [\<Grid>](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [\<GridItem>](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) components for building grid layouts. **\<Grid>** is a container for defining the grid layout, while **\<GridItem>** is a child component in the container. The **\<Grid>** component allows creation of child components with conditional rendering, rendering of repeated content, and [lazy data loading](../quick-start/arkts-rendering-control-lazyforeach.md).
+ArkUI provides the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) components for building grid layouts. **Grid** is a container for defining the grid layout, while **GridItem** is a child component in the container. The **Grid** component allows creation of child components using methods such as [if/else](../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md).
 
 
 ## Layout and Constraints
 
-Each item in the **\<Grid>** container corresponds to a **\<GridItem>** component, as shown below.
+Each item in the **Grid** container corresponds to a **GridItem** component, as shown below.
 
 **Figure 1** Relationship between \<Grid> and \<GridItem> components
 
@@ -18,23 +18,23 @@ Each item in the **\<Grid>** container corresponds to a **\<GridItem>** componen
 
 >**NOTE**
 >
->The **\<Grid>** component accepts only **\<GridItem>** as its child.
+>The **Grid** component accepts only **GridItem** as its child.
 
-The grid layout is a two-dimensional layout. The **\<Grid>** component allows you to define the number of rows and columns, proportion of each row and column, number of rows or columns that child components span, and the horizontal and vertical alignment. When it has its size changed, its child components and spacing are adjusted proportionally. By leveraging these layout capabilities, you can build grid layouts of different styles, as shown below.
+The grid layout is a two-dimensional layout. The **Grid** component allows you to define the number of rows and columns, proportion of each row and column, number of rows or columns that child components span, and the horizontal and vertical alignment. When it has its size changed, its child components and spacing are adjusted proportionally. By leveraging these layout capabilities, you can build grid layouts of different styles, as shown below.
 
 **Figure 2** Grid layout
 
 ![en-us_image_0000001562700473](figures/en-us_image_0000001562700473.png)
 
-The size of the **\<Grid>** component follows its width and height settings (if configured) or adapts to the size of its parent component.
+The size of the **Grid** component follows its width and height settings (if configured) or adapts to the size of its parent component.
 
-Depending on the settings of the quantity and proportion of rows and columns, the **\<Grid>** component behaves as follows:
+Depending on the settings of the quantity and proportion of rows and columns, the **Grid** component behaves as follows:
 
-- If both the quantity and proportion are set for rows or columns, the **\<Grid>** component displays elements only in the set number of rows or columns, and it cannot be scrolled. (This layout mode is recommended.)
+- If both the quantity and proportion are set for rows or columns, the **Grid** component displays elements only in the set number of rows or columns, and it cannot be scrolled. (This layout mode is recommended.)
 
-- If only the quantity or proportion is set for rows or columns, the **\<Grid>** component lays out elements in the specified direction, and it can be scrolled to display excess elements.
+- If only the quantity or proportion is set for rows or columns, the **Grid** component lays out elements in the specified direction, and it can be scrolled to display excess elements.
 
-- If neither the quantity nor the proportion is set for rows or columns, the **\<Grid>** component lays out elements in the layout direction. The number of rows and columns is determined by the layout direction and the width and height of the grid. Elements that exceed the range of rows and columns are not displayed, and the **\<Grid>** component cannot be scrolled.
+- If neither the quantity nor the proportion is set for rows or columns, the **Grid** component lays out elements in the layout direction. The number of rows and columns is determined by the layout direction and the width and height of the grid. Elements that exceed the range of rows and columns are not displayed, and the **Grid** component cannot be scrolled.
 
 
 ## Setting the Arrangement Mode
@@ -42,7 +42,7 @@ Depending on the settings of the quantity and proportion of rows and columns, th
 
 ### Setting the Number and Proportion of Rows and Columns
 
-You can set the number and proportion of rows and columns to determine the overall arrangement mode of the grid layout. To do so, use the **rowsTemplate** and **columnsTemplate** attributes of the **\<Grid>** component.
+You can set the number and proportion of rows and columns to determine the overall arrangement mode of the grid layout. To do so, use the **rowsTemplate** and **columnsTemplate** attributes of the **Grid** component.
 
 The values of **rowsTemplate** and **columnsTemplate** are a string consisting of 'number+fr' segments, separated by spaces. Wherein **fr** indicates the number of rows or columns in the grid layout, and the number in front of **fr** is used to calculate the proportion of the row or column in the grid width, thereby determining the width of the row or column.
 
@@ -65,51 +65,47 @@ Grid() {
 
 >**NOTE**
 >
->When **rowsTemplate** or **columnsTemplate** is set for the **\<Grid>** component, its **layoutDirection**, **maxCount**, **minCount**, and **cellLength** attributes do not take effect. For details about the attributes, see [Grid Attributes](../reference/apis-arkui/arkui-ts/ts-container-grid.md#attributes).
+>When **rowsTemplate** or **columnsTemplate** is set for the **Grid** component, its **layoutDirection**, **maxCount**, **minCount**, and **cellLength** attributes do not take effect. For details about the attributes, see [Grid Attributes](../reference/apis-arkui/arkui-ts/ts-container-grid.md#attributes).
 
 
 ### Setting the Number of Rows and Columns Occupied by a Child Component
 
-In real-world applications, an uneven grid layout, where grid cells span a varying number of cells and rows, is as common as its even counterpart. To implement an uneven grid layout, as shown below, you can set **rowStart**, **rowEnd**, **columnStart**, and **columnEnd** of **\<GridItem>**. The valid value range of **rowStart** and **rowEnd** is 0 to the total number of rows minus 1. The valid value range of **columnStart** and **columnEnd** is 0 to the total number of columns minus 1. For details, see [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md).
+In real-world applications, an uneven grid layout, where grid cells span a varying number of cells and rows, is as common as its even counterpart. To allow a single grid cell in a grid to span multiple rows or columns, passing appropriate [GridLayoutOptions](../reference/apis-arkui/arkui-ts/ts-container-grid.md#gridlayoutoptions10) when creating the grid. Use **irregularIndexes** and **onGetIrregularSizeByIndex** for grids with only **rowsTemplate** or **columnsTemplate**, and **onGetRectByIndex** for grids with both.
 
 **Figure 4** Uneven grid layout
 
 ![en-us_image_0000001511900480](figures/en-us_image_0000001511900480.png)
 
-A common application with an uneven grid layout is the calculator. As shown in the following figure, the **0** key spans the first and second columns, and the **=** key spans the fifth and sixth rows. For a grid layout created using the **\<Grid>** component, the row and column numbers start from 0 and increase incrementally.
+A common application with an uneven grid layout is the calculator. As shown in the following figure, the **0** key spans the first and second columns, and the **=** key spans the fifth and sixth rows. For a grid layout created using the **Grid** component, the row and column numbers start from 0 and increase incrementally.
 
 **Figure 5** Calculator 
 
 ![en-us_image_0000001511421292](figures/en-us_image_0000001511421292.png)
 
-For a single grid cell, the **rowStart** and **rowEnd** attributes indicate the start and end row numbers of the current element, and the **columnStart** and **columnEnd** attributes indicate the start and end column numbers of the current element.
+In the grid, use the **onGetRectByIndex** callback to return the array [rowStart, columnStart, rowSpan, columnSpan] to achieve a layout that spans rows and columns, wherein **rowStart** and **rowEnd** indicate the start and end row numbers of the current element, and **columnStart** and **columnEnd** indicate the start and end column numbers of the current element.
 
-Therefore, for the **0** key to span the first and second columns, just set the **\<GridItem>** component of the key as follows: **columnStart** to **1**, **columnEnd** to **2**, **rowStart** and **rowEnd** to **5**.
-
-
-```ts
-GridItem() {
-  Text(key)
-    ...
-}
-.columnStart(0)
-.columnEnd(1)
-.rowStart(5)
-.rowEnd(5)
-```
-
-For the **=** key to span the fifth and sixth rows, just set the **\<GridItem>** component of the key as follows: **rowStart** to **4**, **rowEnd** to **5**, **columnStart** and **columnStart** to **4**.
+To make the **0** key span across the first and second columns, and the **=** key span across the fifth and sixth rows, set **onGetRectByIndex** for **0** and **=** as follows: for **0**, set **rowStart** and **columnStart** at **5** and **0**, and **rowSpan** and **columnSpan** at **1** and **2**; for **=**, set **rowStart** and **columnStart** at **4** and **3**, and **rowSpan** and **columnSpan** at **2** and **1**.
 
 
 ```ts
-GridItem() {
-  Text(key)
-    ...
+layoutOptions: GridLayoutOptions = {
+  regularSize: [1, 1],
+  onGetRectByIndex: (index: number) => {
+    if (index = = key1) { // key1 is the index of the 0 key.
+      return [5, 0, 1, 2]
+    } else if (index == key2) { // key2 is the index of the = key.
+      return [4, 3, 2, 1]
+    }
+    // ...
+    // Here, you need to return the positions of other items based on the specific layout.
+  }
 }
-.rowStart(4)
-.rowEnd(5)
-.columnStart(4)
-.columnEnd(4)    
+
+Grid(undefined, this.layoutOptions) {
+  // ...
+}
+.columnsTemplate('1fr 1fr 1fr 1fr')
+.rowsTemplate('2fr 1fr 1fr 1fr 1fr 1fr')
 ```
 
 
@@ -147,7 +143,7 @@ The grid layout organizes its internal elements in two-dimensional layout mode, 
 
 ![en-us_image_0000001563060729](figures/en-us_image_0000001563060729.png)
 
-The **\<Grid>** component can display a group of **\<GridItem>** child components in two-dimensional layout mode.
+The **Grid** component can display a group of **GridItem** child components in two-dimensional layout mode.
 
 
 ```ts
@@ -176,7 +172,7 @@ Grid() {
 .columnsTemplate('1fr 1fr')
 ```
 
-For multiple **\<GridItem>** components with similar content structures, you are advised to nest them in **ForEach** statements to reduce repeated code.
+For multiple **GridItem** components with similar content structures, you are advised to nest them in **ForEach** statements to reduce repeated code.
 
 
 ```ts
@@ -266,7 +262,7 @@ Similar to the Back to top button in a list layout, the feature of controlling t
 
 ![en-us_image_0000001562940549](figures/en-us_image_0000001562940549.gif)
 
-When the **\<Grid>** component is initialized, it can be bound to a [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object for scrolling control. In this example, the [scrollPage](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollpage9) API of the **Scroller** object is used to turn pages.
+When the **Grid** component is initialized, it can be bound to a [Scroller](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scroller) object for scrolling control. In this example, the [scrollPage](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrollpage9) API of the **Scroller** object is used to turn pages.
 
 
 ```ts
@@ -307,7 +303,7 @@ Just as [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is 
 
 For details about the implementation, see the example in [LazyForEach: Lazy Data Loading](../quick-start/arkts-rendering-control-lazyforeach.md).
 
-When the grid is rendered in lazy loading mode, to improve the grid scrolling experience and minimize white blocks during grid scrolling, you can use the **cachedCount** parameter of the **\<Grid>** component. This parameter sets the number of grid items preloaded outside of the screen and is valid only in **LazyForEach**.
+When the grid is rendered in lazy loading mode, to improve the grid scrolling experience and minimize white blocks during grid scrolling, you can use the **cachedCount** parameter of the **Grid** component. This parameter sets the number of grid items preloaded outside of the screen and is valid only in **LazyForEach**.
 
   Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
 

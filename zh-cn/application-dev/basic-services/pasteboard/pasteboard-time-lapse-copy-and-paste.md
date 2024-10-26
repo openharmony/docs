@@ -1,4 +1,4 @@
-# 使用剪贴板的延迟复制粘贴功能
+# 使用剪贴板进行延迟复制粘贴
 
 ## 场景介绍
 
@@ -34,7 +34,7 @@
 
    ```ts
    let plainTextData = new unifiedDataChannel.UnifiedData();
-   globalThis.GetDelayPlainText = ((dataType:string) => {
+   let GetDelayPlainText = ((dataType:string) => {
      let plainText = new unifiedDataChannel.PlainText();
      plainText.details = {
        Key: 'delayPlaintext',
@@ -50,10 +50,10 @@
 3. 向系统剪贴板中存入一条PlainText数据。
 
    ```ts
-   globalThis.SetDelayPlainText = (() => {
+   let SetDelayPlainText = (() => {
      plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
      // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-     plainTextData.properties.getDelayData = globalThis.GetDelayPlainText;
+     plainTextData.properties.getDelayData = GetDelayPlainText;
      pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
        // 存入成功，处理正常场景
      }).catch((error: BusinessError) => {
@@ -65,16 +65,16 @@
 4. 从系统剪贴板中读取这条text数据
 
    ```ts
-   globalThis.GetPlainTextUnifiedData = (() => {
+   let GetPlainTextUnifiedData = (() => {
      pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
        let outputData = data;
        let records = outputData.getRecords();
        if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
          let record = records[0] as unifiedDataChannel.PlainText;
-         globalThis.setLog('GetPlainText success, type:' + records[0].getType + ', details:' +
+         console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
          JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
        } else {
-         globalThis.setLog('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+         console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
        }
      }).catch((error: BusinessError) => {
        //处理异常场景

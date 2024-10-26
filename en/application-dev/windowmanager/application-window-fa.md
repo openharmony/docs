@@ -24,15 +24,15 @@ The table below lists the common APIs used for application window development. F
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Window static method | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config**: parameters used for creating the window.              |
-| Window static method | findWindow(name: string): Window                             | Finds a window based on the name.                                    |
+| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config**: parameters used for creating the window.              |
+| Window static method| findWindow(name: string): Window                             | Finds a window based on the name.                                    |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **config.json** file of the project in the FA model.                                |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                              |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for the window layout.                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the full-screen mode for the window layout.                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar. |
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for touch events outside this window.                          |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
@@ -190,25 +190,23 @@ To create a better video watching and gaming experience, you can use the immersi
    // Implement the immersive effect by hiding the status bar and navigation bar.
    let names: Array<'status' | 'navigation'> = [];
    let mainWindowClass: window.Window = window.findWindow("test");
-   mainWindowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the system bar to be visible.');
-   });
+   mainWindowClass.setWindowSystemBarEnable(names)
+    .then(() => {
+      console.info('Succeeded in setting the system bar to be visible.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+    });
    // Implement the immersive effect by setting the properties of the status bar and navigation bar.
     
    let isLayoutFullScreen: boolean = true;
-   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the window layout to full-screen mode.');
-   });
+   mainWindowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
+    .then(() => {
+      console.info('Succeeded in setting the window layout to full-screen mode.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+    });
    let sysBarProps: window.SystemBarProperties = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
@@ -216,14 +214,13 @@ To create a better video watching and gaming experience, you can use the immersi
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
-     let errCode: number = err.code;
-     if (errCode) {
-       console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-       return;
-     }
-     console.info('Succeeded in setting the system bar properties.');
-   });
+   mainWindowClass.setWindowSystemBarProperties(sysBarProps)
+    .then(() => {
+      console.info('Succeeded in setting the system bar properties.');
+    })
+    .catch((err: BusinessError) => {
+      console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+    });
    ```
 
 3. Load content to and show the immersive window.

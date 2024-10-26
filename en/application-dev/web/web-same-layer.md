@@ -25,7 +25,7 @@ The following constraints apply when same-layer rendering is used:
 
 - Only one nesting level is supported for the **\<Web>** component. If multiple nesting levels are detected, an error message is displayed.
 
-- The following touchscreen events are supported in the region for same-layer rendering: swipe, tap, pinch, and long press; dragging is not supported.
+- The touchscreen events supported in the region for same-layer rendering include swiping, taping, scaling, and long pressing, while dragging is not supported.
 
 - When same-layer rendering is enabled, web pages opened by the **\<Web>** component do not support the pinch gesture or scale APIs, including [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin), and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout).
 
@@ -38,7 +38,7 @@ The following constraints apply when same-layer rendering is used:
 
 ### Enabling Same-Layer Rendering
 
-You enable or disable same-layer rendering through [enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11). To use same-layer rendering, the **\<embed>** element must be explicitly used in the HTML file, and the **type** attribute of the element must start with **native/**. The background of the elements corresponding to the tags at the same layer is transparent.
+You can enable or disable same-layer rendering through [enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11). To use same-layer rendering, the **\<embed>** element must be explicitly used in the HTML file, and the **type** attribute of the element must start with **native/**. The background of the elements corresponding to the tags at the same layer is transparent.
 
 - Example of using same-layer rendering on the application side:
 
@@ -66,7 +66,7 @@ You enable or disable same-layer rendering through [enableNativeEmbedMode()](../
     height : number
   }
 
-  // The NodeController instance must be used with a <NodeContainer> for controlling and feeding back the behavior of the nodes in the container.
+  // The NodeController instance must be used with a NodeContainer for controlling and feeding back the behavior of the nodes in the container.
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[Params]> | undefined | null;
     private embedId_ : string = "";
@@ -85,8 +85,8 @@ You enable or disable same-layer rendering through [enableNativeEmbedMode()](../
       this.height_ = params.height;
       this.type_ = params.type;
     }
-    // Method that must be overridden. It is used to build the number of nodes and return the number of nodes that will be mounted to the corresponding <NodeContainer>.
-    // Called when the corresponding <NodeContainer> is created or called by the rebuild method.
+    // Method that must be overridden. It is used to build the number of nodes and return the number of nodes that will be mounted to the corresponding NodeContainer.
+    // Called when the corresponding NodeContainer is created or called by the rebuild method.
     makeNode(uiContext: UIContext): FrameNode | null{
       if (this.isDestroy_) { // rootNode is null.
         return null;
@@ -188,7 +188,7 @@ You enable or disable same-layer rendering through [enableNativeEmbedMode()](../
             Web({ src: $rawfile("test.html"), controller: this.browserTabController })
                 // Enable same-layer rendering.
               .enableNativeEmbedMode(true)
-                // Obtain the lifecycle change data of the <embed> element.
+                // Obtain the lifecycle change data of the embed element.
               .onNativeEmbedLifecycleChange((embed) => {
                 console.log("NativeEmbed surfaceId" + embed.surfaceId);
                 // 1. If embed.info.id is used as the key for mapping nodeController, explicitly specify the ID on the HTML5 page.
@@ -202,9 +202,9 @@ You enable or disable same-layer rendering through [enableNativeEmbedMode()](../
                     renderType : NodeRenderType.RENDER_TYPE_TEXTURE, embedId : embed.embedId as string,
                     width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
                   nodeController.setDestroy(false);
-                  // Save the NodeController instance to the map, with the ID attribute of the <embed> element passed in by the <Web> component as the key.
+                  // Save the NodeController instance to the map, with the ID attribute of the embed element passed in by the Web component as the key.
                   this.nodeControllerMap.set(componentId, nodeController)
-                  // Save the ID attribute of the <embed> element passed in by the <Web> component to the @State decorated array variable for dynamically creating a node container. The push action must be executed after the set action.
+                  // Save the ID attribute of the embed element passed in by the Web component to the @State decorated array variable for creating a node container dynamically. The push action must be executed after the set action.
                   this.componentIdArr.push(componentId)
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   let nodeController = this.nodeControllerMap.get(componentId)
@@ -251,7 +251,7 @@ You enable or disable same-layer rendering through [enableNativeEmbedMode()](../
 
   export class AVPlayerDemo {
     private count: number = 0;
-    private surfaceID: string = ''; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through the XComponent.
+    private surfaceID: string = ''; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through XComponent.
     private isSeek: boolean = true; // Specify whether the seek operation is supported.
 
     setSurfaceID(surface_id: string){
@@ -362,7 +362,7 @@ You can also use [registerNativeEmbedRule(tag: string, type: string)](../referen
 
 For the **tag** parameter, only **embed** and **object** are supported. For the **type** parameter, you can specify any string. These two parameters are case insensitive: The ArkWeb kernel converts the values into lowercase letters. The **tag** parameter uses the full string for matching, and **type** uses the prefix for matching.
 
-If you do not use this API or the API receives an invalid string (for example, an empty string), the kernel uses the default prefix mode "embedded" + "native/". If the specified type is the same as any object or embedded type defined by W3C, as in **registerNativeEmbedRule("object", "application/pdf")**,
+If you do not use this API or the API receives an invalid string (for example, an empty string), the kernel uses the default prefix mode "embed" + "native/". If the specified type is the same as any object or embedded type defined by W3C, as in **registerNativeEmbedRule("object", "application/pdf")**,
 ArkWeb will follow the W3C standard behavior and will not identify it as a tag at the same layer.
 
 - Example of using **registerNativeEmbedRule** on the application side: 

@@ -45,7 +45,7 @@ if (kvManager !== undefined) {
       backup: false,
       autoSync: false,
       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-      securityLevel: distributedKVStore.SecurityLevel.S2
+      securityLevel: distributedKVStore.SecurityLevel.S3
     };
     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
       if (err) {
@@ -82,7 +82,7 @@ let store: relationalStore.RdbStore;
 let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
-  securityLevel: relationalStore.SecurityLevel.S1,
+  securityLevel: relationalStore.SecurityLevel.S3,
   encrypt: true
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {

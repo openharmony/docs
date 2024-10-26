@@ -8,6 +8,6 @@
   - [视频编码](video-encoding.md)
   - [时域可分层视频编码](video-encoding-temporal-scalability.md)
   - [视频解码](video-decoding.md)
-- 文件解析封装
-  - [音视频封装](audio-video-muxer.md)
-  - [音视频解封装](audio-video-demuxer.md)
+- 媒体数据封装与解析
+  - [媒体数据封装](audio-video-muxer.md)
+  - [媒体数据解析](audio-video-demuxer.md)

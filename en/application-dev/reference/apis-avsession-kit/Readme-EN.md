@@ -1,4 +1,4 @@
-# AVSession Kit API Reference
+# AVSession Kit
 
 - ArkTS APIs
   - [@ohos.multimedia.avsession (AVSession Management)](js-apis-avsession.md)

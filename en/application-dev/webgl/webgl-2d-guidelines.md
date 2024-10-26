@@ -50,11 +50,11 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 | GLshort    | short              | Signed integer represented by 2's complement of 16 bits.                            |
 | GLint      | long               | Signed integer represented by 2's complement of 32 bits.                          |
 | GLsizei    | long               | Size, for example, the width and height of the drawing buffer.     |
-| GLintptr   | long long          | A special type used to represent a pointer.                                     |
-| GLsizeiptr | long long          | A special type used to represent a pointer.                                     |
+| GLintptr   | long long          | A special type used to represent a pointer. It is usually used to specify the offset of a buffer object.      |
+| GLsizeiptr | long long          | A special type used to represent a pointer. It is usually used to specify the size of a buffer object.        |
 | GLubyte    | octet              | Unsigned integer represented by 2's complement of 8 bits (one byte).                |
 | GLushort   | unsigned short     | Unsigned integer represented by 2's complement of 16 bits.                         |
-| GLuint    | unsigned short     | Unsigned integer represented by 2's complement of 32 bits.                       |
+| GLuint    | unsigned short     | Signed integer represented by 2's complement of 32 bits.                       |
 | GLfloat   | unrestricted float | 32-bit IEEE floating point number.                            |
 | GLclampf   | unrestricted float | 32-bit IEEE floating point number.                                     |
 

@@ -52,41 +52,6 @@ OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-ki
    });
    ```
 
-## 在指定的系统账号上登录绑定分布式账号
-
-具体开发实例如下：
-
-1. 确定目标系统账号，并定义待登录的分布式账号信息。其中，登录场景下需将event指定为"Ohos.account.event.LOGIN"。
-
-   ```ts
-   let localId: number = 100;
-   let distributedInfo: distributedAccount.DistributedInfo = {
-       name: 'ZhangSan',
-       id: '12345',
-       event: 'Ohos.account.event.LOGIN',
-   };
-   ```
-
-2. 调用setOsAccountDistributedInfoByLocalId接口，将指定分布式账号与当前系统账号绑定。
-
-   ```ts
-   distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
-       console.log('setOsAccountDistributedInfoByLocalId successfully');
-   }).catch((err: BusinessError) => {
-       console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
-   });
-   ```
-
-3. 在账号绑定之后，可以调用[getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10)接口查看分布式账号的登录信息。
-
-   ```ts
-   distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: distributedAccount.DistributedInfo) => {
-       console.log('distributed information: ' + JSON.stringify(data));
-   }).catch((err: BusinessError) => {
-       console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
-   });
-   ```
-
 ## 在当前系统账号上登出解绑分布式账号
 
 具体开发实例如下：
@@ -108,6 +73,41 @@ OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-ki
        console.log('setOsAccountDistributedInfo successfully');
    }).catch((err: BusinessError) => {
        console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
+   });
+   ```
+
+## 在指定的系统账号上登录绑定分布式账号
+
+具体开发实例如下：
+
+1. 确定目标系统账号，并定义待登录的分布式账号信息。其中，登录场景下需将event指定为"Ohos.account.event.LOGIN"。
+
+   ```ts
+   let localId: number = 100;
+   let distributedInfo: distributedAccount.DistributedInfo = {
+       name: 'ZhangSan',
+       id: '12345',
+       event: 'Ohos.account.event.LOGIN',
+   };
+   ```
+
+2. 调用[setOsAccountDistributedInfoByLocalId](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10)接口，将指定分布式账号与当前系统账号绑定。
+
+   ```ts
+   distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
+       console.log('setOsAccountDistributedInfoByLocalId successfully');
+   }).catch((err: BusinessError) => {
+       console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+   });
+   ```
+
+3. 在账号绑定之后，可以调用[getOsAccountDistributedInfoByLocalId](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#getosaccountdistributedinfobylocalid10)接口查看分布式账号的登录信息。
+
+   ```ts
+   distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: distributedAccount.DistributedInfo) => {
+       console.log('distributed information: ' + JSON.stringify(data));
+   }).catch((err: BusinessError) => {
+       console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
    });
    ```
 

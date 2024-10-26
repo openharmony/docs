@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ProgressButton (下载按钮)
+# ProgressButton
 
 
 文本下载按钮，可显示具体下载进度。
@@ -28,9 +28,7 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | progress | number | 是 | \@Prop | 下载按钮的当前进度值。 |
 | content | string | 是 | \@Prop | 下载按钮的文本。 |

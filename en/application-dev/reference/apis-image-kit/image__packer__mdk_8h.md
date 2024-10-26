@@ -33,23 +33,23 @@ The packing process is as follows:
 
 | Name| Description| 
 | -------- | -------- |
-| [ImagePacker_Opts](_image_packer___opts__.md) | Defines the image packing options.| 
+| struct  [ImagePacker_Opts_](_image_packer___opts__.md) | Defines the image packing options. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| [ImagePacker_Native](image.md#imagepacker_native) | Defines the **ImagePacker** instance at the native layer.| 
-| [ImagePacker_Opts](image.md#imagepacker_opts) | Defines the alias of the image packing options.| 
+| typedef struct ImagePacker_Native_ [ImagePacker_Native](image.md#imagepacker_native) | Defines the **ImagePacker** instance at the native layer. | 
+| typedef struct [ImagePacker_Opts_](_image_packer___opts__.md) [ImagePacker_Opts](image.md#imagepacker_opts) | Defines the alias of the image packing options. | 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_ImagePacker_Create](image.md#oh_imagepacker_create) (napi_env env, napi_value \*res) | Obtains an **ImagePacker** object at the JavaScript native layer.| 
-| [OH_ImagePacker_InitNative](image.md#oh_imagepacker_initnative) (napi_env env, napi_value packer) | Converts an **ImagePacker** object at the JavaScript native layer into an **ImagePacker_Native** object.| 
-| [OH_ImagePacker_PackToData](image.md#oh_imagepacker_packtodata) ([ImagePacker_Native](image.md#imagepacker_native) \*native, napi_value source, [ImagePacker_Opts](image.md#imagepacker_opts) \*opts, uint8_t \*outData, size_t \*size) | Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a buffer (defined by **outData**) based on the specified **ImagePacker_Opts** struct.| 
-| [OH_ImagePacker_PackToFile](image.md#oh_imagepacker_packtofile) ([ImagePacker_Native](image.md#imagepacker_native) \*native, napi_value source, [ImagePacker_Opts](image.md#imagepacker_opts) \*opts, int fd) | Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a file based on the specified **ImagePacker_Opts** struct.| 
-| [OH_ImagePacker_Release](image.md#oh_imagepacker_release) ([ImagePacker_Native](image.md#imagepacker_native) \*native) | Releases an [ImagePacker_Native](image.md#imagepacker_native) object.| 
+| int32_t [OH_ImagePacker_Create](image.md#oh_imagepacker_create) (napi_env env, napi_value \*res) | Obtains an **ImagePacker** object at the JavaScript native layer. | 
+| [ImagePacker_Native](image.md#imagepacker_native) \* [OH_ImagePacker_InitNative](image.md#oh_imagepacker_initnative) (napi_env env, napi_value packer) | Converts an **ImagePacker** object at the JavaScript native layer into an **ImagePacker_Native** object. | 
+| int32_t [OH_ImagePacker_PackToData](image.md#oh_imagepacker_packtodata) ([ImagePacker_Native](image.md#imagepacker_native) \*native, napi_value source, [ImagePacker_Opts](image.md#imagepacker_opts) \*opts, uint8_t \*outData, size_t \*size) | Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a buffer (defined by **outData**) based on the specified **ImagePacker_Opts** struct.| 
+| int32_t [OH_ImagePacker_PackToFile](image.md#oh_imagepacker_packtofile) ([ImagePacker_Native](image.md#imagepacker_native) \*native, napi_value source, [ImagePacker_Opts](image.md#imagepacker_opts) \*opts, int fd) | Packs a **PixelMap** object or an **ImagePacker** object at the JavaScript native layer to a file based on the specified **ImagePacker_Opts** struct. | 
+| int32_t [OH_ImagePacker_Release](image.md#oh_imagepacker_release) ([ImagePacker_Native](image.md#imagepacker_native) \*native) | Releases an [ImagePacker_Native](image.md#imagepacker_native) object.| 

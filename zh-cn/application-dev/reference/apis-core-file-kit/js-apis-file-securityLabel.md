@@ -43,7 +43,7 @@ type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4' |
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-以异步方法设置数据标签，以Promise形式返回结果。
+以异步方法设置数据标签，数据标签安全等级仅可由低向高或平级设置，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -91,7 +91,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
 setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
-以异步方法设置数据标签，以callback形式返回结果。
+以异步方法设置数据标签，数据标签安全等级仅可由低向高或平级设置，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -136,7 +136,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
 
 setSecurityLabelSync(path:string, type:DataLevel):void
 
-以同步方法设置数据标签。
+以同步方法设置数据标签，数据标签安全等级仅可由低向高或平级设置。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -173,7 +173,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-异步方法获取数据标签，以Promise形式返回结果。
+异步方法获取数据标签，若未设置过数据标签安全等级则默认返回“s3”，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -220,7 +220,7 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 
 getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
-异步方法获取数据标签，以callback形式返回结果。
+异步方法获取数据标签，若未设置过数据标签安全等级则默认返回“s3”，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -264,7 +264,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
 getSecurityLabelSync(path:string):string
 
-以同步方法获取数据标签。
+以同步方法获取数据标签，若未设置过数据标签安全等级则默认返回“s3”。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

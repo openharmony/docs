@@ -18,7 +18,7 @@ import { missionManager } from '@kit.AbilityKit';
 
 ohos.permission.MANAGE_MISSIONS
 
-## missionManager.on
+## missionManager.on('mission')
 
 on(type:'mission', listener: MissionListener): number
 
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -149,7 +149,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **示例：**
 
@@ -218,7 +218,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
@@ -252,7 +252,7 @@ off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16300002 | Input error. The specified mission listener does not exist. |
+| 16300002 | The specified mission listener does not exist. |
 
 **示例：**
 

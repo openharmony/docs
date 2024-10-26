@@ -10,28 +10,28 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                             | Type                                                        | Readable | Writable | Description                |
+| Name                             | Type                                                        | Read-Only| Optional| Description                |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
-| name                              | string                                                       | Yes  | No  | Module name.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| icon                              | string                                                       | Yes  | No  | Module icon.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| iconId                            | number                                                       | Yes  | No  | ID of the module icon.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| label                             | string                                                       | Yes  | No  | Module label.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| labelId                           | number                                                       | Yes  | No  | ID of the module label.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| description                       | string                                                       | Yes  | No  | Module description.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| descriptionId                     | number                                                       | Yes  | No  | ID of the module description.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| mainElementName                   | string                                                       | Yes  | No  | Name of the main ability.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| abilitiesInfo                     | Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>         | Yes  | No  | Ability information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ABILITY** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| extensionAbilitiesInfo            | Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | Yes  | No  | ExtensionAbility information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| metadata                          | Array\<[Metadata](js-apis-bundleManager-metadata.md)>               | Yes  | No  | Metadata of the ability. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices where the module can run.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| hashValue                         | string                                                       | Yes  | No  | Hash value of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| type                              | [bundleManager.ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| dependencies                      | Array\<[Dependency](#dependency)>                            | Yes  | No  | Dynamic shared libraries on which the module depends.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| fileContextMenuConfig<sup>11+</sup>     | string                                                       | Yes  | No  | File menu configuration of the module. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_MENU** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem12)>                            | Yes  | No  | [Router table configuration of the module](../../quick-start/module-configuration-file.md#routermap). The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| codePath<sup>12+</sup>            | string                                                       | Yes  | No  | Installation path of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| name                              | string                                                       | Yes  | No  | Module name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| icon                              | string                                                       | Yes  | No  | Module icon.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| iconId                            | number                                                       | Yes  | No  | ID of the module icon.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| label                             | string                                                       | Yes  | No  | Module label.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| labelId                           | number                                                       | Yes  | No  | ID of the module label.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| description                       | string                                                       | Yes  | No  | Module description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| descriptionId                     | number                                                       | Yes  | No  | ID of the module description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| mainElementName                   | string                                                       | Yes  | No  | Name of the main ability.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| abilitiesInfo                     | Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>         | Yes  | No  | Ability information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ABILITY** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| extensionAbilitiesInfo            | Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)> | Yes  | No  | ExtensionAbility information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| metadata                          | Array\<[Metadata](js-apis-bundleManager-metadata.md)>               | Yes  | No  | Metadata of the ability. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| deviceTypes                       | Array\<string>                                               | Yes  | No  | Types of devices where the module can run.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| installationFree                  | boolean                                                      | Yes  | No  | Whether installation-free is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| hashValue                         | string                                                       | Yes  | No  | Hash value of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| type                              | [bundleManager.ModuleType](js-apis-bundleManager.md#moduletype)            | Yes  | No  | Type of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| dependencies                      | Array\<[Dependency](#dependency)>                            | Yes  | No  | Dynamic shared libraries on which the module depends.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fileContextMenuConfig<sup>11+</sup>     | string                                                       | Yes  | No  | File menu configuration of the module. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_MENU** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem12)>                            | Yes  | No  | [Router table configuration of the module](../../quick-start/module-configuration-file.md#routermap). The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| codePath<sup>12+</sup>            | string                                                       | Yes  | No  | Installation path of the module.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | nativeLibraryPath<sup>12+</sup>     | string                                                       | Yes  | No  | Local library file path of a HAP module in the application.                   |
 
 ## PreloadItem
@@ -42,7 +42,7 @@ Describes the preloaded module information in the atomic service.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name     | Type          | Readable | Writable | Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 |moduleName | string         | Yes  | No  | Name of the module automatically preloaded by the system.|
 
@@ -54,10 +54,10 @@ Describes the information about the dynamic shared library on which the module d
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name       | Type  | Readable | Writable | Description                  |
+| Name       | Type  | Read-Only| Optional| Description                  |
 | ----------- | ------ | ---- | ---- | ---------------------- |
 | bundleName<sup>10+</sup>  | string | Yes  | No  | Name of the shared bundle on which the current module depends.      |
-| moduleName  | string | Yes  | No  | Module name of the shared bundle on which the current module depends. |
+| moduleName  | string | Yes  | No  | Module name of the shared bundle on which the current module depends.|
 | versionCode<sup>10+</sup> | number | Yes  | No  | Version number of the shared bundle.  |
 
 ## RouterItem<sup>12+</sup>
@@ -68,13 +68,13 @@ Describes the router table configuration of the module.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name          | Type  | Read-only | Mandatory | Description                  |
+| Name          | Type  | Read-Only| Optional| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |
-| name          | string | Yes  | Yes  | Name of the page to be redirected to.      |
-| pageSourceFile| string | Yes  | Yes  | Path of the page in the module.  |
-| buildFunction | string | Yes  | Yes  | Function decorated by @Builder. The function describes the UI of the page.  |
-| data          | Array\<[DataItem](#dataitem12)> | Yes  | Yes  | User-defined string in the [routing table configuration file](../../quick-start/module-configuration-file.md#routermap), that is, value of the **data** field. This field is parsed by the system. You do not need to parse it.  |
-| customData    | string | Yes  | Yes  | Any type of custom data in the [routing table configuration file](../../quick-start/module-configuration-file.md#routermap), that is, JSON string of the **customData** field. You need to call **JSON.parse** to parse the field.  |
+| name          | string | Yes  | No  | Name of the page to be redirected to.      |
+| pageSourceFile| string | Yes  | No  | Path of the page in the module.  |
+| buildFunction | string | Yes  | No  | Function decorated by @Builder. The function describes the UI of the page.  |
+| data          | Array\<[DataItem](#dataitem12)> | Yes  | No  | User-defined string in the [routing table configuration file](../../quick-start/module-configuration-file.md#routermap), that is, value of the **data** field. This field is parsed by the system. You do not need to parse it.  |
+| customData    | string | Yes  | No  | Any type of custom data in the [routing table configuration file](../../quick-start/module-configuration-file.md#routermap), that is, JSON string of the **customData** field. You need to call **JSON.parse** to parse the field.  |
 
 ## DataItem<sup>12+</sup>
 
@@ -84,7 +84,7 @@ Describes the user-defined data in the routing table configuration of the module
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name         | Type   | Read-only | Mandatory | Description                  |
+| Name         | Type   | Read-Only| Optional| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |
-| key           | string | Yes  | Yes  | Key of the user-defined data.      |
-| value         | string | Yes  | Yes  | Value of the user-defined data. |
+| key           | string | Yes  | No  | Key of the user-defined data.      |
+| value         | string | Yes  | No  | Value of the user-defined data.|

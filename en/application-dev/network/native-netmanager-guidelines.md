@@ -28,7 +28,7 @@ The following table lists the common **NetConnection** APIs. For details, see [N
 
 ### How to Develop
 
-To use related APIs to obtain network information, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTs layer. You can use hilog or console.log to print the log information on the console or generate device logs.
+To use related APIs to obtain network information, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTS layer. You can use hilog or console.log to print the log information on the console or generate device logs.
 
 This document describes how to obtain the default active data network as an example.
 
@@ -92,7 +92,7 @@ static napi_value NetId(napi_env env, napi_callback_info info) {
 }
 ```
 
-> **NOTE**<br>The two functions are used to obtain information about the default network connection of the system. Wherein, `GetDefaultNet` is used to receive the test parameters passed from ArkTs and return the corresponding return value after the API is called. You can change `param` as needed. If the return value is **0**, the parameters are obtained successfully. If the return value is **401**, the parameters are incorrect. If the return value is **201**, the user does not have the operation permission. `NetId` indicates the ID of the default network connection. You can use the information for further network operations.
+> **NOTE**<br>The two functions are used to obtain information about the default network connection of the system. Wherein, GetDefaultNet is used to receive the test parameters passed from ArkTS and return the corresponding return value after the API is called. You can change param as needed. If the return value is **0**, the parameters are obtained successfully. If the return value is **401**, the parameters are incorrect. If the return value is **201**, the user does not have the operation permission. NetId indicates the ID of the default network connection. You can use the information for further network operations.
 
 
 2. Initialize and export the `napi_value` objects encapsulated through **NAPI**, and expose the preceding two functions to JavaScript through external function APIs.

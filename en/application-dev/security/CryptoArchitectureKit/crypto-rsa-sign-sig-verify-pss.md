@@ -1,4 +1,4 @@
-# Signing and Signature Verification with an RSA Key Pair (PSS Mode)
+# Signing and Signature Verification with an RSA Key Pair (PSS Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify-overview.md#rsa).
@@ -19,7 +19,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 5. Use [Sign.getSignSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getsignspec10) to obtain other parameters for signing.
 
 6. Use [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
-   Currently, the amount of the data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
+   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
 
 7. Use [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2) to generate a signature.
 
@@ -34,7 +34,7 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 3. Use [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
 4. Use [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   Currently, the amount of the data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
+   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
 
 5. Use [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
 

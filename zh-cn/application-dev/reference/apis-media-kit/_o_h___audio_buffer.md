@@ -22,7 +22,7 @@
 | uint8_t \* [buf](#buf) | 音频buffer内存。  | 
 | int32_t [size](#size) | 音频buffer内存大小。  | 
 | int64_t [timestamp](#timestamp) | 音频buffer时间戳。  | 
-| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype)[type](#type) | 音频录制源类型。  | 
+| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype) [type](#type) | 音频录制源类型。  | 
 
 
 ## 结构体成员变量说明

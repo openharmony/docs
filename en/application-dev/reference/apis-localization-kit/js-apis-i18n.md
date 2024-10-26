@@ -1,9 +1,12 @@
 # @ohos.i18n (Internationalization)
 
- This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
+This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
+>
 >  - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+>  - The APIs of this module conform to the [Common Locale Data Repository (CLDR)](https://cldr.unicode.org) internationalization database. The processing result may change with CLDR evolution. API version 12 corresponds to [CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42). For details about data changes, visit the official website.
 >
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
 
@@ -14,14 +17,13 @@
 import { i18n } from '@kit.LocalizationKit';
 ```
 
-
 ## System<sup>9+</sup>
 
 ### getDisplayCountry<sup>9+</sup>
 
 static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
-Obtains the localized script for the specified country.
+Obtains the localized display of the text for the specified country.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -33,13 +35,13 @@ Obtains the localized script for the specified country.
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Valid country code.           |
 | locale       | string  | Yes   | Valid locale ID for the specified country.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
 
 **Return value**
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Localized script for the specified country.|
+| string | Localized display of the text.|
 
 **Error codes**
 
@@ -49,6 +51,10 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
 
 **Example**
   ```ts
@@ -66,7 +72,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-Obtains the localized script for the specified language.
+Obtains the localized display of the text for the specified language. For example, if **getDisplayLanguage ("de," "zh-Hans-CN")** is called to display German in Chinese, the output is in German.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -78,13 +84,13 @@ Obtains the localized script for the specified language.
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Valid language ID.           |
 | locale       | string  | Yes   | Valid locale ID for the specified language.    |
-| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+| sentenceCase | boolean | No   | Whether the first letter of the text is capitalized. The default value is **true**.|
 
 **Return value**
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Localized script for the specified language.|
+| string | Localized display of the text for the specified language.|
 
 **Error codes**
 
@@ -100,7 +106,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
+    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // Display Chinese in English.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -127,14 +133,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLanguages failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
   ```
 
 ### getSystemCountries<sup>9+</sup>
@@ -157,7 +156,7 @@ Obtains the list of countries and regions supported for the specified language.
 
 | Type                 | Description          |
 | ------------------- | ------------ |
-| Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language.|
+| Array&lt;string&gt; | List of countries or regions supported for the specified language.|
 
 **Error codes**
 
@@ -168,12 +167,16 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
+
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ], 240 countries or regions in total
+    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
@@ -195,13 +198,13 @@ Checks whether the system language matches the specified region.
 | Name     | Type    | Mandatory  | Description           |
 | -------- | ------ | ---- | ------------- |
 | language | string | Yes   | Valid language ID, for example, **zh**.|
-| region   | string | No   | Valid region ID, for example, **CN**. The default value is the country or region where the SIM card is used. |
+| region   | string | No   | Valid region ID, for example, **CN**.<br>The default value is the country or region where the SIM card is used. |
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the system language matches the specified region, and the value **false** indicates the opposite.|
+| boolean | The value **true** indicates that the language matches the specified country or region,<br>and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -211,6 +214,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
 
 **Example**
   ```ts
@@ -244,14 +252,7 @@ Obtains the system language.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage indicates the current system language.
   ```
 
 ### getSystemRegion<sup>9+</sup>
@@ -272,14 +273,7 @@ Obtains the system region.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemRegion: string = i18n.System.getSystemRegion(); // Obtain the current system region.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemRegion: string = i18n.System.getSystemRegion(); // Obtain the current system region.
   ```
 
 ### getSystemLocale<sup>9+</sup>
@@ -300,14 +294,7 @@ Obtains the system locale.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let systemLocale: string = i18n.System.getSystemLocale();  // Obtain the current system locale.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let systemLocale: string = i18n.System.getSystemLocale();  // Obtain the current system locale.
   ```
 
 ### is24HourClock<sup>9+</sup>
@@ -330,14 +317,7 @@ Checks whether the 24-hour clock is used.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let is24HourClock: boolean = i18n.System.is24HourClock();  // Check whether the 24-hour clock is enabled.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.is24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let is24HourClock: boolean = i18n.System.is24HourClock();  // Check whether the 24-hour clock is enabled.
   ```
 
 
@@ -359,14 +339,7 @@ Obtains the list of preferred languages.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getPreferredLanguageList failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // Obtain the current preferred language list.
   ```
 
 ### getFirstPreferredLanguage<sup>9+</sup>
@@ -387,14 +360,7 @@ Obtains the first language in the preferred language list.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // Obtain the first language in the preferred language list.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getFirstPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // Obtain the first language in the preferred language list.
   ```
 
 ### setAppPreferredLanguage<sup>11+</sup>
@@ -452,14 +418,7 @@ Obtains the preferred language of an application.
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
   ```
 
 
@@ -477,18 +436,11 @@ Checks whether use of local digits is enabled.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
+| boolean | The value **true** indicates that the local digit switch is enabled, and the value **false** indicates the opposite.|
 
 **Example**
   ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  try {
-    let status: boolean = i18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
-  } catch(error) {
-    let err: BusinessError = error as BusinessError;
-    console.error(`call System.getUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
-  }
+  let status: boolean = i18n.System.getUsingLocalDigit();  // Check whether the local digit switch is enabled.
   ```
 
 
@@ -496,7 +448,7 @@ Checks whether use of local digits is enabled.
 
 isRTL(locale: string): boolean
 
-Checks whether a locale uses an RTL language.
+Checks whether a locale uses a right-to-left (RTL) language.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -512,14 +464,13 @@ Checks whether a locale uses an RTL language.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | The value **true** indicates that the localized script is displayed from right to left, and the value **false** indicates the opposite.|
+| boolean | The value **true** indicates that the locale uses an RTL language, and the value **false** indicates the opposite.|
 
 **Example**
   ```ts
   i18n.isRTL("zh-CN");// Since Chinese is not written from right to left, false is returned.
   i18n.isRTL("ar-EG");// Since Arabic is written from right to left, true is returned.
   ```
-
 
 ## i18n.getCalendar<sup>8+</sup>
 
@@ -535,8 +486,8 @@ Obtains a **Calendar** object.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**.                |
-| type   | string | No   | Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. The default value is the default calendar type of the locale.|
+| locale | string | Yes   | Valid locale ID, for example, **zh-Hans-CN**.                |
+| type   | string | No   | Valid calendar type. The value can be **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, or **persian**.<br>The default value is the default calendar type of the locale. For details, see [Calendar Setting](../../internationalization/i18n-calendar.md).|
 
 **Return value**
 
@@ -550,8 +501,6 @@ Obtains a **Calendar** object.
   ```
 
 ## EntityRecognizer<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### constructor<sup>11+</sup>
 
@@ -567,7 +516,7 @@ Creates an **entityRecognizer** object.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | No   | Valid locale ID.|
+| locale | string | No   | Valid locale ID, for example, **zh-Hans-CN**.|
 
 **Error codes**
 
@@ -597,13 +546,13 @@ Recognizes entities in text.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| text | string | Yes   | Text for entity recognition.|
+| text | string | Yes   | Text to be recognized.|
 
 **Return value**
 
 | Type  | Description               |
 | ---- | ----------------- |
-| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | List of recognized entities.|
+| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | List of entities in the text.|
 
 **Error codes**
 
@@ -624,7 +573,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## EntityInfoItem<sup>11+</sup>
 
-Defines an entity information object.
+Defines a list of entities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -632,19 +581,17 @@ Defines an entity information object.
 
 | Name | Type  | Readable  | Writable  | Description               |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | Yes   | Yes   | Entity type, which can be **phone_number** or **date**.|
+| type | string | Yes   | Yes   | Entity type. Only phone number and date are supported.|
 | begin | number | Yes   | Yes   | Start position of an entity.|
 | end | number | Yes   | Yes   | End position of an entity.|
 
 ## Calendar<sup>8+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 ### setTime<sup>8+</sup>
 
 setTime(date: Date): void
 
-Sets the date for this **Calendar** object.
+Sets the date and time for a **Calendar** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -654,7 +601,7 @@ Sets the date for this **Calendar** object.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | Yes   | Date to be set for the **Calendar** object.|
+| date | Date | Yes   | Date and time.|
 
 **Example**
   ```ts
@@ -668,7 +615,7 @@ Sets the date for this **Calendar** object.
 
 setTime(time: number): void
 
-Sets the date and time for this **Calendar** object. The value is represented by the number of milliseconds that have elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).
+Sets the date and time for a **Calendar** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -685,7 +632,6 @@ Sets the date and time for this **Calendar** object. The value is represented by
   let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
-
 
 ### set<sup>8+</sup>
 
@@ -714,7 +660,6 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
   ```
 
-
 ### setTimeZone<sup>8+</sup>
 
 setTimeZone(timezone: string): void
@@ -729,7 +674,7 @@ Sets the time zone of this **Calendar** object.
 
 | Name     | Type    | Mandatory  | Description                       |
 | -------- | ------ | ---- | ------------------------- |
-| timezone | string | Yes   | Time zone, for example, **Asia/Shanghai**.|
+| timezone | string | Yes   | Valid time zone ID, for example, Asia/Shanghai.|
 
 **Example**
   ```ts
@@ -752,7 +697,7 @@ Obtains the time zone of this **Calendar** object.
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | Time zone of the **Calendar** object.|
+| string | Time zone ID.|
 
 **Example**
   ```ts
@@ -766,7 +711,7 @@ Obtains the time zone of this **Calendar** object.
 
 getFirstDayOfWeek(): number
 
-Obtains the start day of a week for this **Calendar** object.
+Obtains the start day of a week for a **Calendar** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -789,7 +734,7 @@ Obtains the start day of a week for this **Calendar** object.
 
 setFirstDayOfWeek(value: number): void
 
-Sets the start day of a week for this **Calendar** object.
+Sets the start day of a week for a **Calendar** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -807,7 +752,6 @@ Sets the start day of a week for this **Calendar** object.
   calendar.setFirstDayOfWeek(3);
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
-
 
 ### getMinimalDaysInFirstWeek<sup>8+</sup>
 
@@ -860,7 +804,7 @@ Sets the minimum number of days in the first week of a year.
 
 get(field: string): number
 
-Obtains the value of the specified field in the **Calendar** object.
+Obtains the value of the associated field in a **Calendar** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -870,7 +814,33 @@ Obtains the value of the specified field in the **Calendar** object.
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| field | string | Yes   | Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**.|
+| field | string | Yes   | Associated field in a **Calendar** object. The following table lists the supported field values.|
+
+
+| Field  | Description                                      |
+| ----- | ---------------------------------------- |
+| era | Era, for example, AD or BC.|
+| year | Year.|
+| month | Month.|
+| date | Date.|
+| hour | Wall-clock hour.|
+| hour_of_day | Hour of day.|
+| minute | Minute.|
+| second | Second.|
+| millisecond | Millisecond.|
+| week_of_year | Week of year. Note that the algorithm for calculating the first week of a year varies according to regions. For example, the first seven days in a year are the first week.|
+| year_woy | Year used with the week of year field. |
+| week_of_month | Week of month.|
+| day_of_week_in_month | Day of week in month.|
+| day_of_year | Day of year.|
+| day_of_week | Day of week.|
+| milliseconds_in_day | Milliseconds in day.|
+| zone_offset | Fixed time zone offset in milliseconds (excluding DST).|
+| dst_offset | DST offset in milliseconds.|
+| dow_local | Localized day of week.|
+| extended_year | Extended year, which can be a negative number.|
+| julian_day | Julian day.|
+| is_leap_month | Whether a month is a leap month.|
 
 **Return value**
 
@@ -900,13 +870,13 @@ Obtains the displayed name of the **Calendar** object for the specified locale.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Locale for the displayed name of the **Calendar** object. For example, displayed name of **buddhist** is **Buddhist Calendar** when the locale is set to **en-US**.|
+| locale | string | Yes   | Locale ID.|
 
 **Return value**
 
 | Type    | Description                 |
 | ------ | ------------------- |
-| string | Displayed name of the **Calendar** object for the specified locale.|
+| string | Displayed name of the **Calendar** object for the specified locale. For example, **buddhist** is displayed as **Buddhist Calendar** if the locale is **en-US**.|
 
 **Example**
   ```ts
@@ -929,7 +899,7 @@ Checks whether a given date is a weekend in the calendar.
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | No   | Specified date. If this parameter is left empty, the system checks whether the current date is a weekend. The default value is the system date.|
+| date | Date | No   | Specified date.<br>The default value is the system date. If this parameter is left empty, the system checks whether the current date is a weekend.|
 
 **Return value**
 
@@ -951,7 +921,7 @@ Checks whether a given date is a weekend in the calendar.
 
 add(field: string, amount: number): void
 
-Performs addition and subtraction operations on the specified field of the **Calendar** object.
+Adds or subtracts some fields in a **Calendar** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -961,7 +931,7 @@ Performs addition and subtraction operations on the specified field of the **Cal
 
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
-| field | string | Yes   | Specified field of the **Calendar** object. The supported value year, month, week_of_year, week_of_month, date, day_of_year, day_of_week, day_of_week_in_month, hour, hour_of_day, minute, second, millisecond.|
+| field | string | Yes   | Specified field in the **Calendar** object. The value can be any of the following: **year**, **month**, **week_of_year**, **week_of_month**, **date**, **day_of_year**, **day_of_week**, **day_of_week_in_month**, **hour**, **hour_of_day**, **minute**, **second**, **millisecond**.<br>For details about the values, see [get](#get8).|
 | amount | number | Yes   | Addition or subtraction amount.|
 
 **Error codes**
@@ -1017,7 +987,7 @@ Obtains number of milliseconds that have elapsed since the Unix epoch in the cur
 
 compareDays(date: Date): number
 
-Compares the number of days between the calendar date and the specified date. The value is accurate to milliseconds. If the value is less than one day, it is treated as one day.
+Compares the **Calendar** object and the specified date for the difference in the number of days.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1033,7 +1003,7 @@ Compares the number of days between the calendar date and the specified date. Th
 
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
-| number | Number of days between the calendar date and the specified date. A positive number indicates that the calendar date is earlier, and a negative number indicates the opposite.|
+| number | Difference in the number of days between the calendar date and the specified date. A positive number indicates that the calendar date is earlier, and a negative number indicates the opposite.<br>The value is accurate to milliseconds. If the value is less than one day, it is considered as one day.|
 
 **Error codes**
 
@@ -1058,10 +1028,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   }
   ```
 
-
 ## PhoneNumberFormat<sup>8+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### constructor<sup>8+</sup>
 
@@ -1078,14 +1046,13 @@ Creates a **PhoneNumberFormat** object.
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. The default value is **NATIONAL**. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options for initializing the **PhoneNumberFormat** object. The default value is **NATIONAL**. |
 
 **Example**
   ```ts
   let option: i18n.PhoneNumberFormatOptions = {type: "E164"};
   let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
   ```
-
 
 ### isValidNumber<sup>8+</sup>
 
@@ -1120,7 +1087,10 @@ Checks whether the format of the specified phone number is valid.
 
 format(number: string): string
 
-Formats a phone number. Formatting dialed phone numbers is supported since API version 12.
+Formats a phone number.
+
+> **Description**
+> Formatting dialed phone numbers is supported since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1171,7 +1141,7 @@ Obtains the home location of a phone number.
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
 | number | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
-| locale | string | Yes   | Locale ID.|
+| locale | string | Yes   | Valid locale ID.|
 
 **Return value**
 
@@ -1189,7 +1159,7 @@ Obtains the home location of a phone number.
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
-Defines the options for this **PhoneNumberFormat** object.
+Options for initializing the **PhoneNumberFormat** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1197,7 +1167,7 @@ Defines the options for this **PhoneNumberFormat** object.
 
 | Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Formatting type of a phone number. The value can be any of the following:<br>E164, INTERNATIONAL, NATIONAL, RFC3966, or TYPING.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.<br>- **TYPING** is supported since API version 12.|
+| type | string | Yes   | Yes   | Type of the phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, **RFC3966**, or **TYPING**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.<br>- **TYPING** is supported since API version 12.|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1228,7 +1198,7 @@ Creates an **IndexUtil** object.
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | No   | A string containing locale information, including the language, optional script, and region. The default value is the system locale.|
+| locale | string | No   | A string containing locale information, including the language, optional script, and region.<br>The default value is the system locale.|
 
 **Return value**
 
@@ -1250,7 +1220,7 @@ Creates an **IndexUtil** object.
 
 getIndexList(): Array&lt;string&gt;
 
-Obtains the index list for this **locale** object.
+Obtains the index list of the current locale.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1260,7 +1230,7 @@ Obtains the index list for this **locale** object.
 
 | Type                 | Description                |
 | ------------------- | ------------------ |
-| Array&lt;string&gt; | Index list for the **locale** object.|
+| Array&lt;string&gt; | Index list of the current locale.|
 
 **Example**
   ```ts
@@ -1275,7 +1245,7 @@ Obtains the index list for this **locale** object.
 
 addLocale(locale: string): void
 
-Adds a **locale** object to the current index list.
+Adds the index list of a new locale to the index list of the current locale to form a composite list.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1292,7 +1262,6 @@ Adds a **locale** object to the current index list.
   let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
   ```
-
 
 ### getIndex<sup>8+</sup>
 
@@ -1337,13 +1306,13 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**. The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
+| locale | string | Yes   | A string containing locale information, including the language, optional script, and region.<br>The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
 
 **Return value**
 
 | Type                              | Description         |
 | -------------------------------- | ----------- |
-| [BreakIterator](#breakiterator8) | [BreakIterator](#breakiterator8) object used for text segmentation.|
+| [BreakIterator](#breakiterator8) | Break iterator used for text segmentation.|
 
 **Example**
   ```ts
@@ -1353,7 +1322,6 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 ## BreakIterator<sup>8+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### setLineBreakText<sup>8+</sup>
 
@@ -1406,7 +1374,7 @@ Obtains the text being processed by the **BreakIterator** object.
 
 current(): number
 
-Obtains the position of the **BreakIterator** object in the text being processed.
+Obtains the position of a **BreakIterator** object in the processed text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1430,7 +1398,7 @@ Obtains the position of the **BreakIterator** object in the text being processed
 
 first(): number
 
-Puts the **BreakIterator** object to the first break point, which is always at the beginning of the processed text.
+Moves a **BreakIterator** object to the first break point, which is always at the beginning of the processed text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1454,7 +1422,7 @@ Puts the **BreakIterator** object to the first break point, which is always at t
 
 last(): number
 
-Puts the **BreakIterator** object to the last break point, which is always the next position after the end of the processed text.
+Moves a **BreakIterator** object to the last break point, which is always the next position after the end of the processed text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1488,13 +1456,13 @@ Moves the **BreakIterator** object backward by the corresponding number of break
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | No   | Number of break points to be moved by the **BreakIterator** object. A positive value indicates that the break point is moved backward by the specified number of break points, and a negative value indicates the opposite. The default value is **1**.|
+| index | number | No   | Number of break points to be moved by the **BreakIterator** object.<br>A positive value indicates that the break point is moved backward by the specified number of break points, and a negative value indicates the opposite.<br>The default value is **1**.|
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the **BreakIterator** object in the text after it is moved by the specified number of break points. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of break points.|
+| number | Position of the **BreakIterator** object in the text after it is moved by the specified number of break points.<br>The value **-1** is returned if the position of the **BreakIterator** object is outside of the processed text after movement.|
 
 **Example**
   ```ts
@@ -1520,7 +1488,7 @@ Moves the **BreakIterator** object forward by one break point.
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the **BreakIterator** object in the text after it is moved to the previous break point. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of break points.|
+| number | Position of the **BreakIterator** object in the text after it is moved to the previous break point.<br>The value **-1** is returned if the position of the **BreakIterator** object is outside of the processed text after movement.|
 
 **Example**
   ```ts
@@ -1536,7 +1504,7 @@ Moves the **BreakIterator** object forward by one break point.
 
 following(offset: number): number
 
-Moves the **BreakIterator** to the break point following the specified position.
+Moves a **BreakIterator** object to the break point following the specified position.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1546,13 +1514,13 @@ Moves the **BreakIterator** to the break point following the specified position.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | Yes   | Moves the **BreakIterator** to the break point following the specified position.|
+| offset | number | Yes   | Offset to the break point following the specified position.|
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | The value **-1** is returned if the break point to which the **BreakIterator** object is moved is outside of the processed text.|
+| number | Position of the **BreakIterator** object after movement. The value **-1** is returned if the position of the **BreakIterator** object is outside of the processed text after movement.|
 
 **Example**
   ```ts
@@ -1568,7 +1536,7 @@ Moves the **BreakIterator** to the break point following the specified position.
 
 isBoundary(offset: number): boolean
 
-Checks whether the specified position of the text is a break point.
+Checks whether the specified position is a break point.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1578,13 +1546,13 @@ Checks whether the specified position of the text is a break point.
 
 | Name   | Type    | Mandatory  | Description         |
 | ------ | ------ | ---- | ----------- |
-| offset | number | Yes   | Offset to the specified position of the text. The value **true** is returned if the position specified by **offset** is a break point, and the value **false** is returned otherwise. If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, **following** is called.|
+| offset | number | Yes   | Specified position.|
 
 **Return value**
 
 | Type     | Description                             |
 | ------- | ------------------------------- |
-| boolean | The value **true** indicates that the position specified by the offset is a break point, and the value **false** indicates the opposite.|
+| boolean | Offset to the specified position of the text. The value **true** is returned if the position specified by **offset** is a break point, and the value **false** is returned otherwise.<br>If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, **following** is called.|
 
 **Example**
   ```ts
@@ -1609,7 +1577,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| zondID | string | No   | Time zone ID. The default value is the system time zone.|
+| zoneID | string | No   | Time zone ID. The default value is the system time zone.|
 
 **Return value**
 
@@ -1622,10 +1590,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
   let timezone: i18n.TimeZone = i18n.getTimeZone();
   ```
 
-
 ## TimeZone
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### getID
 
@@ -1664,14 +1629,14 @@ Obtains the localized representation of a **TimeZone** object.
 
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | No   | Locale ID. The default value is the system locale.               |
+| locale | string  | No   | A string containing locale information, including the language, optional script, and region. The default value is the system locale.               |
 | isDST  | boolean | No   | Whether DST is considered in the localized representation of the **TimeZone** object. The default value is **false**.|
 
 **Return value**
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Representation of the **TimeZone** object in the specified locale.|
+| string | Localized display of the **TimeZone** object in the specified locale.|
 
 **Example**
   ```ts
@@ -1723,7 +1688,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time. The default value is the system time.|
+| number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time.|
 
 **Example**
   ```ts
@@ -1750,7 +1715,7 @@ Obtains the list of time zone IDs supported by the system.
 
 **Example**
   ```ts
-  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"], 24 time zones supported in total
+  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"]
   let ids: Array<string> = i18n.TimeZone.getAvailableIDs();
   ```
 
@@ -1773,10 +1738,9 @@ Obtains the list of time zone city IDs supported by the system.
 
 **Example**
   ```ts
-  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"], 24 time zone cities supported in total
+  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]
   let cityIDs: Array<string> = i18n.TimeZone.getAvailableZoneCityIDs();
   ```
-
 
 ### getCityDisplayName<sup>9+</sup>
 
@@ -1793,13 +1757,13 @@ Obtains the localized representation of a time zone city in the specified locale
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | cityID | string | Yes   | Time zone city ID.|
-| locale | string | Yes   | Locale ID. |
+| locale | string | Yes   | A string containing locale information, including the language, optional script, and region. |
 
 **Return value**
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | Localized representation of the time zone city in the specified locale.|
+| string | Localized display of the time zone city in the specified locale.|
 
 **Example**
   ```ts
@@ -1848,14 +1812,14 @@ Creates an array of **TimeZone** objects corresponding to the specified longitud
 
 | Name    | Type    | Mandatory  | Description    |
 | --------- | ------ | ---- | ------ |
-| longitude | number | Yes   | Longitude. The value ranges from **-180** to **179.9**. A positive value is used for east longitude and a negative value is used for west longitude.|
-| latitude  | number | Yes   | Latitude. The value ranges from **-90** to **89.9**. A positive value is used for north latitude and a negative value is used for south latitude.|
+| longitude | number | Yes   | Longitude. The value range is [-180, 179.9). A positive value is used for east longitude and a negative value is used for west longitude.|
+| latitude  | number | Yes   | Latitude. The value range is [-90, 89.9). A positive value is used for north latitude and a negative value is used for south latitude.|
 
 **Return value**
 
 | Type      | Description         |
 | -------- | ----------- |
-| Array&lt;[TimeZone](#timezone)&gt; | Array of **TimeZone** objects.|
+| Array&lt;[TimeZone](#timezone)&gt; | **TimeZone** object array.|
 
 **Error codes**
 
@@ -1865,6 +1829,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
 
 **Example**
   ```ts
@@ -1877,7 +1846,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 ## Transliterator<sup>9+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### getAvailableIDs<sup>9+</sup>
 
@@ -1978,7 +1946,7 @@ Checks whether the input string is composed of digits.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| char | string | Yes   | Input string.|
 
 **Return value**
 
@@ -2006,7 +1974,7 @@ Checks whether the input character is a space.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| char | string | Yes   | Input string.|
 
 **Return value**
 
@@ -2034,7 +2002,7 @@ Checks whether the input character is a white space.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character.|
+| char | string | Yes   | String obtained.|
 
 **Return value**
 
@@ -2253,7 +2221,6 @@ The following table lists only the common types. For more details, see the Unico
 
 ## I18NUtil<sup>9+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### unitConvert<sup>9+</sup>
 
@@ -2272,8 +2239,8 @@ Converts one measurement unit into another and formats the unit based on the spe
 | fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
 | toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
 | value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
-| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
-| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
+| locale   | string                 | Yes   | A string containing locale information, including the language, optional script, and region, for example, **zh-Hans-CN**.               |
+| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**. The default value is **short**.<br>For details about the meaning or display effect of different values, see [Number and Unit of Measurement Formatting](../../internationalization/i18n-numbers-weights-measures.md).|
 
 **Return value**
 
@@ -2287,7 +2254,6 @@ Converts one measurement unit into another and formats the unit based on the spe
   let toUnit: i18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
   let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, "en-US", "long"); // res = 236.588 liters
   ```
-
 
 ### getDateOrder<sup>9+</sup>
 
@@ -2303,7 +2269,7 @@ Obtains the sequence of the year, month, and day in the specified locale.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.|
+| locale | string | Yes   | A string containing locale information, including the language, optional script, and region, for example, **zh-Hans-CN**.|
 
 **Return value**
 
@@ -2332,7 +2298,7 @@ Obtains the localized expression for the specified time of the specified locale.
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | Yes   | Specified time, for example, **16**.|
-| locale | string | No   | Specified locale. By default, the locale of the application is used, for example, **zh-Hans-CN**.|
+| locale | string | No   | A string containing locale information, including the language, optional script, and region, for example, **zh-Hans-CN**.<br>The default value is the current locale.|
 
 **Return value**
 
@@ -2375,7 +2341,7 @@ Obtains the locale that best matches a region from the specified locale list.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | Yes   | Locale ID, for example, zh-Hans-CN.|
+| locale | string | Yes   | Locale ID, for example, **zh-Hans-CN**.|
 | localeList | string[] | Yes  | Locale ID list.|
 
 **Return value**
@@ -2410,7 +2376,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getThreeLetterLanguage(locale: string): string
 
-Converts a language code from two letters to three letters. For example, the two-letter language code of Chinese is **zh**, and the corresponding three-letter language code is **zho**. For details, see [ISO 639](https://www.iso.org/iso-639-language-code).
+Converts a language code from two letters to three letters.<br>For example, the two-letter language code of Chinese is **zh**, and the corresponding three-letter language code is **zho**. For details, see [ISO 639](https://www.iso.org/iso-639-language-code).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2447,7 +2413,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getThreeLetterRegion(locale: string): string
 
-Converts a country/region code from two letters to three letters. For example, the two-letter country/region code of China is **CN**, and the three-letter country/region code is **CHN**. For details, see [ISO 3166](https://www.iso.org/iso-3166-country-codes.html).
+Converts a country/region code from two letters to three letters.<br>For example, the two-letter country/region code of China is **CN**, and the three-letter country/region code is **CHN**. For details, see [ISO 3166](https://www.iso.org/iso-3166-country-codes.html).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2482,7 +2448,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 ## Normalizer<sup>10+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### getInstance<sup>10+</sup>
 
@@ -2556,7 +2521,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
   ```
 
-
 ## NormalizerMode<sup>10+</sup>
 
 Enumerates text normalization modes.
@@ -2575,7 +2539,6 @@ Enumerates text normalization modes.
 
 ## HolidayManager<sup>11+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### constructor<sup>11+</sup>
 
@@ -2730,6 +2693,36 @@ Defines the local names of a holiday.
 | language        | string           |   Yes   | Local language of a holiday, for example, **ar**, **en**, or **tr**.         |
 | name            | string           |   Yes   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
+
+## i18n.getDisplayCountry<sup>(deprecated)</sup>
+
+getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
+
+Obtains the localized script for the specified country.
+
+This API is deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9).
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name         | Type     | Mandatory  | Description              |
+| ------------ | ------- | ---- | ---------------- |
+| country      | string  | Yes   | Specified country.           |
+| locale       | string  | Yes   | Locale ID.    |
+| sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| string | Localized script for the specified country.|
+
+**Example**
+  ```ts
+  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
+  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
+  ```
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 

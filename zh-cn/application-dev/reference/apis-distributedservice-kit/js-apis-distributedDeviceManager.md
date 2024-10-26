@@ -112,13 +112,11 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-**参数：**
-
 | 名称                     | 类型                        | 必填   | 说明       |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | 是    | 设备的唯一标识。 实际值为udid-hash与appid基于sha256方式进行加密后的值。|
+| deviceId               | string                    | 是    | 设备标识符。 实际值为udid-hash与appid和盐值基于sha256方式进行混淆后的值。|
 | deviceName             | string                    | 是    | 设备名称。    |
-| deviceType             | string                    | 是    | 设备类型。    |
+| deviceType             | string                    | 是    | [设备类型](#getdevicetype)。    |
 | networkId              | string                    | 否    | 设备网络标识。  |
 
 ## DeviceStateChange
@@ -126,8 +124,6 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 表示设备状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-**参数：**
 
 | 名称         | 值  | 说明              |
 | ----------- | ---- | --------------- |
@@ -390,7 +386,7 @@ getLocalDeviceType(): number;
 
 getLocalDeviceId(): string;
 
-获取本地设备id。
+获取本地设备id，实际值为udid-hash与appid和盐值基于sha256方式进行混淆后的值。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -661,7 +657,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
   // 认证的设备信息，可以从发现的结果中获取
   let deviceId = 'XXXXXXXX';
   let bindParam: Record<string, string | number> = {
-    'bindType': 1, // 认证类型： 1 - 无帐号PIN码认证
+    'bindType': 1, // 认证类型： 1 - 无账号PIN码认证
     'targetPkgName': 'xxxx',
     'appName': 'xxxx',
     'appOperation': 'xxxx',

@@ -36,8 +36,8 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | 参数名      | 参数类型                                                                                         | 必填 | 参数描述                                                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。 |
-| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。                                                                                                |
+| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
 
 ## 属性
 
@@ -48,6 +48,8 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 muted(isMuted: boolean)
 
 设置是否静音。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -64,6 +66,8 @@ objectFit(value: ImageFit)
 
 设置动态照片显示模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -73,15 +77,88 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
 | value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
 
+### autoPlayPeriod<sup>13+</sup>
+
+autoPlayPeriod(startTime: number, endTime: number)
+
+设置自动播放区间，附属于autoPlay的子配置项。
+
+在调用此方法前，需将[autoPlay](#autoplay13)设置为true，设置自动播放，否则指定的视频区间(startTime, endTime)无法生效。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+
+| 参数名  | 类型    | 必填 | 说明                         |
+| ------- | ------- | ---- | ---------------------------- |
+| startTime| number| 是   | 区间播放开始时间，单位：ms。<br/>取值范围：[0,3000]|
+| endTime| number| 是   | 区间播放结束时间，单位：ms。<br/>取值范围：[0,3000]|
+
+### autoPlay<sup>13+</sup>
+
+autoPlay(isAutoPlay: boolean)
+
+设置自动播放，自动播放一遍视频，完成播放后显示静态图。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+
+| 参数名  | 类型    | 必填 | 说明                         |
+| ------- | ------- | ---- | ---------------------------- |
+| isAutoPlay| boolean| 是   | 是否自动播放。<br/>false：不自动播放<br/>true：自动播放<br/>默认值：false|
+
+### repeatPlay<sup>13+</sup>
+
+repeatPlay(isRepeatPlay: boolean)
+
+设置循环播放，重复播放视频。 repeatPlay与autoPlay及长按播放互斥，repeatPlay设置时，autoplay和长按播放均不生效。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+
+| 参数名  | 类型    | 必填 | 说明                         |
+| ------- | ------- | ---- | ---------------------------- |
+| isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放<br/>true：循环播放<br/>默认值：false|
+
 ## 事件
 
 除支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)外，还支持以下事件：
+
+### onComplete<sup>13+</sup>
+
+onComplete(callback: MovingPhotoViewEventCallback)
+
+动态照片加载完成图片时触发该事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+
+| 参数名   | 类型                                                          | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片加载完成图片的回调。 |
 
 ### onStart
 
 onStart(callback: MovingPhotoViewEventCallback)
 
 播放时触发该事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -98,6 +175,8 @@ onPause(callback: MovingPhotoViewEventCallback)
 
 播放暂停时触发该事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -112,6 +191,8 @@ onPause(callback: MovingPhotoViewEventCallback)
 onFinish(callback: MovingPhotoViewEventCallback)
 
 播放结束时触发该事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -128,6 +209,8 @@ onError(callback: MovingPhotoViewEventCallback)
 
 播放失败时触发该事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -142,6 +225,8 @@ onError(callback: MovingPhotoViewEventCallback)
 onStop(callback: MovingPhotoViewEventCallback)
 
 播放停止时触发该事件(当stop()方法被调用后触发)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -168,6 +253,8 @@ startPlayback(): void
 
 开始播放。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ### stopPlayback
@@ -175,6 +262,8 @@ startPlayback(): void
 stopPlayback(): void
 
 停止播放，再次播放时从头开始播放。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -245,7 +334,13 @@ struct MovingPhotoViewDemo {
             .width('100%')
             .height('100%')
             .muted(this.isMuted)
-            .objectFit(ImageFit.Contain)
+            .autoPlay(true)
+            .repeatPlay(false)
+            .autoPlayPeriod(0, 600)
+            .objectFit(ImageFit.Cover)
+            .onComplete(() => {
+              console.log('Completed');
+            })
             .onStart(() => {
               console.log('onStart')
             })

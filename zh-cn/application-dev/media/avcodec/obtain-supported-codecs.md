@@ -9,13 +9,23 @@
 
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+   target_link_libraries(sample PUBLIC libnative_media_core.so)
+   target_link_libraries(sample PUBLIC libnative_media_venc.so)
+   target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    ```
+   > **说明：**
+   >
+   > 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+   >
 
 2. 添加头文件。
 
    ```c++
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avcodec_videoencoder.h>
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
    ```
 
 3. 获得音视频编解码能力实例。
@@ -380,13 +390,9 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 
 视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中级别对帧级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每帧宏块数目为36864。
 
-给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerFrameLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, $MaxMBsPerFrameSubmit$是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerFrameLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, *MaxMBsPerFrameSubmit*是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
 
-$$
-MaxMBsPerFrame = \min(MaxMBsPerFrameLevelLimits, MaxMBsPerFrameSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxWidth = \lfloor MaxMBsPerFrame \div \lceil \frac{height}{MBHeight} \rceil \rfloor \times MBWidth
-$$
+![](figures/formula-maxmbsperframe.png)
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -481,13 +487,9 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 视频编解码的帧率不仅会受编解码器秒级编解码能力限制，同时也会受协议中级别对秒级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每秒宏块数目为983040。
 
-给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerSecondLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, $MaxMBsPerSecondSubmit$是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerSecondLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, *MaxMBsPerSecondSubmit*是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
 
-$$
-MaxMBsPerSecond = \min(MaxMBsPerSecondLevelLimits, MaxMBsPerSecondSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxFrameRate = MaxMBsPerSecond \div (\lceil{\frac{width}{MBWidth}} \rceil \times \lceil \frac{height}{MBHeight} \rceil)
-$$
+![](figures/formula-maxmbspersecond.png)
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -598,8 +600,8 @@ if (isSupported) {
    // 2. 查询支持的长期参考帧个数
    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(capability, VIDEO_ENCODER_LONG_TERM_REFERENCE);
    int32_t maxLTRCount = -1;
-   int32_t ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
-   if (ret == AV_ERR_OK && maxLTRCount >= NEEDED_MIN_LTR_NUM) {
+   bool ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
+   if (ret && maxLTRCount >= NEEDED_LTR_NUM) {
       if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_NUM)) {
          // 异常处理
       }

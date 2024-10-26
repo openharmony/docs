@@ -1,6 +1,8 @@
-# @ohos.router (页面路由)
+# @ohos.router (页面路由)(不推荐)
 
 本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、同应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
+
+推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)作为应用路由框架。
 
 > **说明**
 >
@@ -11,8 +13,6 @@
 > - 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > - 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getRouter](./js-apis-arkui-UIContext.md#getrouter)方法获取当前UI上下文关联的[Router](./js-apis-arkui-UIContext.md#router)对象。
->
-> - 为了实现更好的转场效果，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)和[模态转场](../../ui/arkts-modal-transition.md)。
 >
 > - 如果使用传入callback形式的pushUrl，pushNamedRoute接口，则在callback中使用getLength等接口获取的栈信息是中间态的栈信息，可能和最终状态不一致。
 
@@ -50,7 +50,7 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -111,7 +111,7 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -177,7 +177,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -239,7 +239,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
 | 100003    | Page stack error. Too many pages are pushed. |
@@ -305,7 +305,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
@@ -355,7 +355,7 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
@@ -412,8 +412,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
@@ -463,7 +463,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
@@ -519,7 +519,7 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
@@ -582,7 +582,7 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
@@ -648,7 +648,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
@@ -710,7 +710,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 | 100003    | Page stack error. Too many pages are pushed. |
 | 100004    | Named route error. The named route does not exist. |
@@ -776,7 +776,7 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
@@ -826,7 +826,7 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
@@ -883,8 +883,8 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001    | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
 **示例：**
@@ -934,7 +934,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004    | Named route error. The named route does not exist. |
 
@@ -966,7 +966,7 @@ router.replaceNamedRoute({
 
 back(options?: RouterOptions ): void
 
-返回上一页面或指定的页面。
+返回上一页面或指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -988,7 +988,7 @@ router.back({url:'pages/detail'});
 
 back(index: number, params?: Object): void;
 
-返回指定的页面。
+返回指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1176,7 +1176,7 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 
 **示例：**
@@ -1238,7 +1238,7 @@ getParams(): Object
 
 **示例：**
 
-```
+```ts
 router.getParams();
 ```
 
@@ -1254,7 +1254,7 @@ router.getParams();
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页，首页默认为页面跳转配置项src数组的第一个数据项。 |
 | params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
-
+| recoverable<sup>13+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true，表示可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
 
   > **说明：**
   > 页面路由栈支持的最大Page数量为32。
@@ -1283,7 +1283,8 @@ router.getParams();
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | name   | string | 是   | 表示目标命名路由页面的name。                                 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 <br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
+| recoverable<sup>13+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true，表示可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
 
 ## 完整示例
 
@@ -1319,6 +1320,10 @@ export default {
 
 ### 基于TS扩展的声明式开发范式
 
+> **说明：**
+> 
+> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import { router } from '@kit.ArkUI';
@@ -1352,6 +1357,7 @@ struct Index {
       params: new routerParams('这是第一页的值' ,[12, 45, 78])
     }
     try {
+      // 建议使用this.getUIContext().getRouter().pushUrl()
       await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
@@ -1406,6 +1412,7 @@ class routerParams {
 @Component
 struct Second {
   private content: string = "这是第二页"
+  // 建议使用this.getUIContext().getRouter().getParams()
   @State text: string = (router.getParams() as routerParams).text
   @State data: object = (router.getParams() as routerParams).data
   @State secondData: string = ''

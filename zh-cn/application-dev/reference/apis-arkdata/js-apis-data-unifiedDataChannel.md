@@ -803,6 +803,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 
 ```ts
 import { image } from '@kit.ImageKit'; // PixelMap类定义所在模块
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const color = new ArrayBuffer(96); // 创建pixelmap对象
 let opts: image.InitializationOptions = {
@@ -821,6 +823,20 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
     let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
     sdpixel.rawData = u8Array;
     let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+
+    // 从unifiedData中读取pixelMap类型的record
+    let records = unifiedData.getRecords();
+    for (let i = 0; i < records.length; i++) {
+      if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
+        let pixelmapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
+        let newArraybuf = pixelmapRecord.rawData.buffer;
+        pixelmap.writeBufferToPixels(newArraybuf).then(() => {
+          console.info('Succeeded in writing data from buffer to a pixelMap');
+        }).catch((error: BusinessError) => {
+          console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
+        })
+      }
+    }
   }
 })
 ```
@@ -898,7 +914,6 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -958,7 +973,6 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1010,7 +1024,6 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1070,7 +1083,6 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1122,7 +1134,6 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1187,7 +1198,6 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1245,7 +1255,6 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
@@ -1310,7 +1319,6 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**

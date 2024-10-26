@@ -1,5 +1,3 @@
-
-
 # @ohos.web.webview (Webview)
 
 The **Webview** module provides APIs for web control. It can work with the [Web](ts-basic-components-web.md) component, which is used to display web pages.
@@ -30,16 +28,16 @@ Registers a one-time callback for web events of the specified type.
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description                 |
+| Name | Type             | Mandatory| Description                 |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | Yes  | Web event type. The value can be **"webInited"**, indicating completion of web initialization.     |
-| callback | Callback\<void\> | Yes  | Callback to register. |
+| callback | Callback\<void\> | Yes  | Callback to register.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ----------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.   |
 
@@ -75,23 +73,24 @@ Implements a **WebMessagePort** object to send and receive messages.
 
 postMessageEvent(message: WebMessage): void
 
-Sends a message. For the complete sample code, see [postMessage](#postmessage).
+Sends a message. You must call [onMessageEvent](#onmessageevent) at first. Otherwise, the message fails to be sent. For the complete sample code, see [postMessage](#postmessage).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description          |
+| Name | Type  | Mandatory| Description          |
 | ------- | ------ | ---- | :------------- |
-| message | [WebMessage](#webmessage) | Yes  | Message to send. |
+| message | [WebMessage](#webmessage) | Yes  | Message to send.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100010 | Failed to post messages through the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -134,17 +133,18 @@ Registers a callback to receive messages from the HTML side. For the complete sa
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                |
+| Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | :------------------- |
-| callback | (result: [WebMessage](#webmessage)) => void | Yes  | Message received. |
+| callback | (result: [WebMessage](#webmessage)) => void | Yes  | Message received.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                       |
+| ID| Error Message                                       |
 | -------- | ----------------------------------------------- |
 | 17100006 | Failed to register a message event for the port.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.|
 
 **Example**
 
@@ -192,31 +192,32 @@ struct WebComponent {
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name        | Type  | Readable | Writable | Description                                             |
+| Name        | Type  | Readable| Writable| Description                                             |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | Yes  | Yes | Whether to use the extended interface when creating a **WebMessagePort** instance.  |
+| isExtentionType | boolean | Yes  | Yes| Whether to use the extended interface when creating a **WebMessagePort** instance.  |
 
 ### postMessageEventExt<sup>10+</sup>
 
 postMessageEventExt(message: WebMessageExt): void
 
-Sends a message. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+Sends a message. You must call [onMessageEventExt](#onmessageeventext10) at first. Otherwise, the message fails to be sent. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description          |
+| Name | Type  | Mandatory| Description          |
 | ------- | ------ | ---- | :------------- |
-| message | [WebMessageExt](#webmessageext10) | Yes  | Message to send. |
+| message | [WebMessageExt](#webmessageext10) | Yes  | Message to send.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                             |
+| ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17100010 | Failed to post messages through the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### onMessageEventExt<sup>10+</sup>
 
@@ -228,17 +229,18 @@ Registers a callback to receive messages from the HTML5 side.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                |
+| Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | :------------------- |
-| callback | (result: [WebMessageExt](#webmessageext10)) => void | Yes  | Message received. |
+| callback | (result: [WebMessageExt](#webmessageext10)) => void | Yes  | Message received.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                       |
+| ID| Error Message                                       |
 | -------- | ----------------------------------------------- |
 | 17100006 | Failed to register a message event for the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -384,7 +386,7 @@ struct WebComponent {
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPageEnd(() => {
-          console.log("In ArkTS side message onPageEnd init mesaage channel");
+          console.log("In ArkTS side message onPageEnd init message channel");
           // 1. Create a message port.
           this.ports = this.controller.createWebMessagePorts(true);
           // 2. Send port 1 to HTML5.
@@ -598,9 +600,9 @@ Constructor used to create a **WebviewController** object.
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                              |
+| Name    | Type  | Mandatory| Description                              |
 | ---------- | ------ | ---- | -------------------------------- |
-| webTag   | string | No  | Name of the **Web** component. The default value is **Empty**. |
+| webTag   | string | No  | Name of the **Web** component. The default value is **Empty**.|
 
 **Example**
 
@@ -678,6 +680,11 @@ static initializeWebEngine(): void
 
 Loads the dynamic link library (DLL) file of the web engine. This API can be called before the **Web** component is initialized to improve the startup performance.
 
+> **NOTE**
+>
+> - **initializeWebEngine** cannot be called in an asynchronous thread. Otherwise, the system breaks down.
+> - **initializeWebEngine** takes effect globally and needs to be called only once in an application lifecycle.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
@@ -708,16 +715,16 @@ Sets how the Web component uses HTTPDNS for DNS resolution.
 
 **Parameters**
 
-| Name             | Type   | Mandatory  |  Description |
+| Name             | Type   | Mandatory  |  Description|
 | ------------------ | ------- | ---- | ------------- |
 | secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | Yes  | Mode in which HTTPDNS is used.|
-| secureDnsConfig       | string | Yes | Information about the HTTPDNS server to use, which must use HTTPS. Only one HTTPDNS server can be configured. |
+| secureDnsConfig       | string | Yes| Information about the HTTPDNS server to use, which must use HTTPS. Only one HTTPDNS server can be configured.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ----------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 
@@ -748,13 +755,15 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-Sets whether to enable web debugging. For details, see [Debugging Frontend Pages by Using DevTools](../../web/web-debugging-with-devtools.md).
+Sets whether to enable web debugging. By default,  web debugging is disabled. For details, see [Debugging Frontend Pages by Using DevTools](../../web/web-debugging-with-devtools.md).
+
+NOTE: Enabling web debugging allows users to check and modify the internal status of the web page, which poses security risks. Therefore, you are advised not to enable this function in the officially released version of the app.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name             | Type   | Mandatory  |  Description |
+| Name             | Type   | Mandatory  |  Description|
 | ------------------ | ------- | ---- | ------------- |
 | webDebuggingAccess | boolean | Yes  | Sets whether to enable web debugging.|
 
@@ -804,20 +813,21 @@ Loads a specified URL.
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                 |
+| Name | Type            | Mandatory| Description                 |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string \| Resource | Yes  | URL to load.     |
-| headers | Array\<[WebHeader](#webheader)> | No  | Additional HTTP request header of the URL. |
+| headers | Array\<[WebHeader](#webheader)> | No  | Additional HTTP request header of the URL.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
 | 17100003 | Invalid resource path or file type.                          |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -905,7 +915,7 @@ struct WebComponent {
 }
 ```
 
-2. Using the resources protocol
+2. Using the resources protocol, which can be used by WebView to load links with a hash (#).
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -956,27 +966,28 @@ Loads specified data.
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                                                        |
+| Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
 | data       | string | Yes  | Character string obtained after being Base64 or URL encoded.                   |
 | mimeType   | string | Yes  | Media type (MIME).                                          |
 | encoding   | string | Yes  | Encoding type, which can be Base64 or URL.                      |
-| baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. |
-| historyUrl | string | No  | URL used for historical records. If this parameter is not empty, historical records are managed based on this URL. This parameter is invalid when **baseUrl** is left empty. |
+| baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**.|
+| historyUrl | string | No  | URL used for historical records. If this parameter is not empty, historical records are managed based on this URL. This parameter is invalid when **baseUrl** is left empty.|
 
 > **NOTE**
 >
 > To load a local image, you can assign a space to either **baseUrl** or **historyUrl**. For details, see the sample code.
 > In the scenario of loading a local image, **baseUrl** and **historyUrl** cannot be both empty. Otherwise, the image cannot be loaded.
-> If the rich text in HTML contains special characters such as #, you are advised to assign a space to both **baseUrl** and **historyUrl**.
+> If the rich text in HTML contains special characters such as hash (#), you are advised to set the values of **baseUrl** and **historyUrl** to spaces.
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1050,13 +1061,13 @@ Checks whether going to the next page can be performed on the current page.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise. |
+| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1101,7 +1112,7 @@ Moves to the next page based on the history stack. This API is generally used to
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1145,13 +1156,13 @@ Checks whether going to the previous page can be performed on the current page.
 
 | Type   | Description                            |
 | ------- | -------------------------------- |
-| boolean | Returns **true** if moving to the previous page can be performed on the current page; returns **false** otherwise. |
+| boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1196,7 +1207,7 @@ Moves to the previous page based on the history stack. This API is generally use
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1241,7 +1252,7 @@ Called when the **Web** component enters the active state.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1279,13 +1290,15 @@ onInactive(): void
 
 Called when the **Web** component enters the inactive state. You can implement the behavior to perform after the application loses focus.
 
+When this API is called, any content that can be safely paused, such as animations and geographical locations, is paused as much as possible. However, the JavaScript is not paused. To pause the JavaScript globally, use [pauseAllTimers](#pausealltimers12). To reactivate the **Web** component, use [onActive](#onactive).
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1328,7 +1341,7 @@ Called when the **Web** component refreshes the web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1370,23 +1383,24 @@ Checks whether a specific number of steps forward or backward can be performed o
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                                  |
+| Name| Type| Mandatory| Description                                  |
 | ------ | -------- | ---- | ------------------------------------------ |
-| step   | number   | Yes  | Number of the steps to take. A positive number means to move forward, and a negative number means to move backward. |
+| step   | number   | Yes  | Number of the steps to take. A positive number means to move forward, and a negative number means to move backward.|
 
 **Return value**
 
 | Type   | Description              |
 | ------- | ------------------ |
-| boolean | Whether moving forward or backward is performed on the current page. |
+| boolean | Whether moving forward or backward is performed on the current page.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1430,7 +1444,7 @@ Clears the browsing history.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1474,13 +1488,13 @@ Obtains the element type of the area being clicked.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [WebHitTestType](#webhittesttype)| Element type of the area being clicked. |
+| [WebHitTestType](#webhittesttype)| Element type of the area being clicked.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -1515,7 +1529,7 @@ struct WebComponent {
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>): void
+registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>, permission?: string): void
 
 Registers a proxy for interaction between the application and web pages loaded by the **Web** component.
 <br>Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. After this API is called, call [refresh](#refresh) for the registration to take effect.
@@ -1524,26 +1538,29 @@ Registers a proxy for interaction between the application and web pages loaded b
 >
 > - It is recommended that **registerJavaScriptProxy** be used only with trusted URLs and over secure HTTPS connections. Injecting JavaScript objects into untrusted web components can expose your application to malicious attacks.
 > - After **registerJavaScriptProxy** is called, the application exposes the registered JavaScript object to all page frames.
-> - If a method is both registered in the synchronous and asynchronous method lists, it is called asynchronously by default.
+> - If a **registerJavaScriptProxy** is both registered in the synchronous and asynchronous lists, it is called asynchronously by default.
+> - You should register **registerJavaScriptProxy** either in synchronous list or in asynchronous list. Otherwise, this API fails to be registered.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name    | Type      | Mandatory | Description                                       |
+| Name    | Type      | Mandatory| Description                                       |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5.<br>The parameter and return value can be any of the following types:<br>string, number, boolean.<br>Dictionary or Array, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter also supports Function and Promise. Their callback cannot have return values.<br>The return value supports Promise. Its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md). |
-| name       | string         | Yes  | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side. |
+| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5.<br>The parameter and return value can be any of the following types:<br>string, number, boolean.<br>Dictionary or Array, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter also supports Function and Promise. Their callback cannot have return values.<br>The return value supports Promise. Its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
+| name       | string         | Yes  | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
 | methodList | Array\<string> | Yes  | Synchronous methods of the JavaScript object to be registered at the application side.                      |
 | asyncMethodList<sup>12+</sup> | Array\<string> | No  | Asynchronous methods of the JavaScript object to be registered at the application side. The default value is null. Asynchronous methods cannot obtain return values. |
+| permission<sup>12+</sup> | string | No  | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL trustlist at the object and method levels.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1681,18 +1698,19 @@ Executes a JavaScript script. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                        |
+| Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
 | script   | string                   | Yes  | JavaScript script.                                            |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned. |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1765,23 +1783,25 @@ Executes a JavaScript script. This API uses a promise to return the script execu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description        |
+| Name| Type| Mandatory| Description        |
 | ------ | -------- | ---- | ---------------- |
-| script | string   | Yes  | JavaScript script. |
+| script | string   | Yes  | JavaScript script.|
 
 **Return value**
 
 | Type           | Description                                               |
 | --------------- | --------------------------------------------------- |
-| Promise\<string> | Promise used to return the result if the operation is successful and null otherwise. |
+| Promise\<string> | Promise used to return the result if the operation is successful and null otherwise.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -1848,18 +1868,19 @@ Executes a JavaScript script. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                        |
+| Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string \| ArrayBuffer<sup>12+</sup>         | Yes  | JavaScript script. |
-| callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | Yes  | Callback used to return the result. |
+| script   | string \| ArrayBuffer<sup>12+</sup>         | Yes  | JavaScript script.|
+| callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2057,23 +2078,24 @@ Executes a JavaScript script. This API uses a promise to return the script execu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description        |
+| Name| Type| Mandatory| Description        |
 | ------ | -------- | ---- | ---------------- |
-| script | string \| ArrayBuffer<sup>12+</sup> | Yes  | JavaScript script. |
+| script | string \| ArrayBuffer<sup>12+</sup> | Yes  | JavaScript script.|
 
 **Return value**
 
 | Type           | Description                                               |
 | --------------- | --------------------------------------------------- |
-| Promise\<[JsMessageExt](#jsmessageext10)> | Promise used to return the script execution result. |
+| Promise\<[JsMessageExt](#jsmessageext10)> | Promise used to return the script execution result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2258,18 +2280,19 @@ Deletes a specific application JavaScript object that is registered with the win
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description |
 | ------ | -------- | ---- | ---- |
-| name   | string   | Yes  | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side. |
+| name   | string   | Yes  | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Failed to delete JavaScriptProxy because it does not exist.                               |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2360,18 +2383,19 @@ Zooms in or out of this web page. This API is effective only when [zoomAccess](t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | Yes  | Relative zoom ratio. The value must be greater than 0. The value **1** indicates that the page is not zoomed. A value smaller than **1** indicates zoom-out, and a value greater than **1** indicates zoom-in. |
+| factor | number   | Yes  | Relative zoom ratio. The value must be greater than 0. The value **1** indicates that the page is not zoomed. A value smaller than **1** indicates zoom-out, and a value greater than **1** indicates zoom-in.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enabled.                                         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2413,17 +2437,18 @@ Searches the web page for content that matches the keyword specified by **'searc
 
 **Parameters**
 
-| Name      | Type | Mandatory | Description      |
+| Name      | Type| Mandatory| Description      |
 | ------------ | -------- | ---- | -------------- |
-| searchString | string   | Yes  | Search keyword. |
+| searchString | string   | Yes  | Search keyword.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2483,7 +2508,7 @@ Clears the matches found through [searchAllAsync](#searchallasync).
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -2527,17 +2552,18 @@ Searches for and highlights the next match.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description              |
+| Name | Type| Mandatory| Description              |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | Yes  | Whether to search forward. |
+| forward | boolean  | Yes  | Whether to search forward.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2581,7 +2607,7 @@ Clears the user operation corresponding to the SSL certificate error event recor
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -2625,7 +2651,7 @@ Clears the user operation corresponding to the client certificate request event 
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -2667,23 +2693,24 @@ Creates web message ports. For the complete sample code, see [onMessageEventExt]
 
 **Parameters**
 
-| Name | Type                  | Mandatory | Description                            |
+| Name| Type                  | Mandatory| Description                            |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | No | Whether to use the extended interface. The default value is **false**, indicating that the extended interface is not used. |
+| isExtentionType<sup>10+</sup>   | boolean     | No | Whether to use the extended interface. The default value is **false**, indicating that the extended interface is not used.|
 
 **Return value**
 
 | Type                  | Description             |
 | ---------------------- | ----------------- |
-| Array\<[WebMessagePort](#webmessageport)> | List of web message ports. |
+| Array\<[WebMessagePort](#webmessageport)> | List of web message ports.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2725,7 +2752,7 @@ Sends a web message to an HTML window.
 
 **Parameters**
 
-| Name | Type                  | Mandatory | Description                            |
+| Name| Type                  | Mandatory| Description                            |
 | ------ | ---------------------- | ---- | :------------------------------- |
 | name   | string                 | Yes  | Name of the message to send.           |
 | ports  | Array\<[WebMessagePort](#webmessageport)> | Yes  | Message ports for sending the message.           |
@@ -2735,9 +2762,10 @@ Sends a web message to an HTML window.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -2888,7 +2916,7 @@ Requests focus for this web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -2932,7 +2960,7 @@ Zooms in on this web page by 20%.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enabled.                                         |
@@ -2977,7 +3005,7 @@ Zooms out of this web page by 20%.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enabled.                                         |
@@ -3022,13 +3050,13 @@ Obtains the element information of the area being clicked.
 
 | Type        | Description                |
 | ------------ | -------------------- |
-| [HitTestValue](#hittestvalue) | Element information of the area being clicked. |
+| [HitTestValue](#hittestvalue) | Element information of the area being clicked.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3074,13 +3102,13 @@ Obtains the index value of this **Web** component, which can be used for **Web**
 
 | Type  | Description                 |
 | ------ | --------------------- |
-| number | Index value of the current **Web** component. |
+| number | Index value of the current **Web** component.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3119,19 +3147,21 @@ getUserAgent(): string
 
 Obtains the default user agent of this web page.
 
+For details about the default **UserAgent**, see [Default User Agent String](../../web/web-default-userAgent.md).
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
 | Type  | Description          |
 | ------ | -------------- |
-| string | Default user agent. |
+| string | Default user agent.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3208,13 +3238,13 @@ Obtains the title of the current web page.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | Title of the current web page. |
+| string | Title of the current web page.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3259,13 +3289,13 @@ Obtains the height of this web page.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Height of the current web page. Unit: px |
+| number | Height of the current web page. Unit: px|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3308,17 +3338,17 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type             | Mandatory | Description                                                        |
+| Name  | Type             | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | Yes  | Save path of the web page. The value cannot be null.                                |
-| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
+| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value.|
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the save path if the operation is successful and null otherwise.                  |
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -3370,22 +3400,22 @@ Stores this web page. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description                                                        |
+| Name  | Type| Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | baseName | string   | Yes  | Save path of the web page. The value cannot be null.                                |
-| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
+| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value.|
 
 **Return value**
 
 | Type           | Description                                                 |
 | --------------- | ----------------------------------------------------- |
-| Promise\<string> | Promise used to return the save path if the operation is successful and null otherwise. |
+| Promise\<string> | Promise used to return the save path if the operation is successful and null otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -3439,13 +3469,13 @@ Obtains the URL of this page.
 
 | Type  | Description               |
 | ------ | ------------------- |
-| string | URL of the current page. |
+| string | URL of the current page.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3490,7 +3520,7 @@ Stops page loading.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3534,17 +3564,18 @@ Because the previously loaded web pages are used for the operation, no page relo
 
 **Parameters**
 
-| Name | Type | Mandatory | Description              |
+| Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| step   | number   | Yes  | Number of the steps to take. |
+| step   | number   | Yes  | Number of the steps to take.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -3577,26 +3608,28 @@ struct WebComponent {
 
 ### scrollTo
 
-scrollTo(x:number, y:number): void
+scrollTo(x:number, y:number, duration?:number): void
 
-Scrolls the page to the specified absolute position.
+Scrolls the page to the specified absolute position within a specified period.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description              |
+| Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| x   | number   | Yes  | X coordinate of the absolute position. If the value is a negative number, the value 0 is used. |
+| x   | number   | Yes  | X coordinate of the absolute position. If the value is a negative number, the value 0 is used.|
 | y   | number   | Yes  | Y coordinate of the absolute position. If the value is a negative number, the value 0 is used.|
+| duration<sup>13+</sup> | number | No| Scrolling animation duration,<br>in milliseconds.<br>If no value is input or the input value is a negative number or 0, the animation is disabled.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -3615,7 +3648,15 @@ struct WebComponent {
       Button('scrollTo')
         .onClick(() => {
           try {
-            this.controller.scrollTo(50, 50);
+            this.controller.scrollTo(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); // If you want to stop the animation generated by the current scroll, you can generate another 1ms animation to interrupt the animation.
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3635,8 +3676,8 @@ HTML file to be loaded:
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3651,26 +3692,31 @@ Scroll Test
 
 ### scrollBy
 
-scrollBy(deltaX:number, deltaY:number): void
+scrollBy(deltaX:number, deltaY:number,duration?:number): void
 
-Scrolls the page by the specified amount.
+Scrolls the page by the specified amount within a specified period.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description              |
+| Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward. |
-| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward. |
-
+| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward.|
+| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward.|
+| duration<sup>13+</sup> | number | No| Scrolling animation duration,<br>in milliseconds.<br>If no value is input or the input value is a negative number or 0, the animation is disabled.|
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+> **NOTE**
+>
+> Calling **scrollBy** does not trigger the nested scrolling of the parent component.
 
 **Example**
 
@@ -3689,7 +3735,101 @@ struct WebComponent {
       Button('scrollBy')
         .onClick(() => {
           try {
-            this.controller.scrollBy(50, 50);
+            this.controller.scrollBy(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); // If you want to stop the animation generated by the current scroll, you can generate another 1ms animation to interrupt the animation.
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+}
+```
+
+HTML file to be loaded:
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:2000px;
+            height:2000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
+### scrollByWithResult<sup>12+</sup>
+
+scrollByWithResult(deltaX:number, deltaY:number): boolean
+
+Scrolls the page by the specified amount and returns value to indicate whether the scrolling is successful.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description              |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward.|
+| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward.|
+
+**Return value**
+
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| boolean | Whether the current web page can be scrolled. The default value is **false**.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+> **NOTE**
+>
+> - If the web page is being touched, **false** is returned. Otherwise, **true** is returned.
+> - If the rendering area at the same layer of the web page is being touched, **true** is returned.
+> - Calling **scrollByWithResult** does not trigger the nested scrolling of the parent component.
+> - This API does not support the high frame rate of scrolling performance.
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollByWithResult')
+        .onClick(() => {
+          try {
+          let result = this.controller.scrollByWithResult(50, 50);
+          console.log("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3709,8 +3849,8 @@ HTML file to be loaded:
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3722,7 +3862,6 @@ Scroll Test
 </body>
 </html>
 ```
-
 ### slideScroll
 
 slideScroll(vx:number, vy:number): void
@@ -3733,18 +3872,19 @@ Simulates a slide-to-scroll action on the page at the specified velocity.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description              |
+| Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| vx     | number   | Yes  | Horizontal velocity component of the slide-to-scroll action, where the positive direction is rightward. |
-| vy     | number   | Yes  | Vertical velocity component of the slide-to-scroll action, where the positive direction is downward. |
+| vx     | number   | Yes  | Horizontal velocity component of the slide-to-scroll action, where the positive direction is rightward.|
+| vy     | number   | Yes  | Vertical velocity component of the slide-to-scroll action, where the positive direction is downward.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -3810,13 +3950,13 @@ Risk warning: If you want to obtain the URL for JavaScriptProxy communication AP
 
 | Type  | Description                   |
 | ------ | ----------------------- |
-| string | Original URL of the current page. |
+| string | Original URL of the current page.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3861,13 +4001,13 @@ Obtains the favicon of this page.
 
 | Type                                  | Description                           |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the favicon of the page. |
+| [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the favicon of the page.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -3911,17 +4051,18 @@ Sets the **window.navigator.onLine** attribute in JavaScript.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                             |
+| Name| Type   | Mandatory| Description                             |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | Yes  | Whether to enable **window.navigator.onLine**. |
+| enable | boolean | Yes  | Whether to enable **window.navigator.onLine**.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -3983,17 +4124,18 @@ Checks whether this page contains images. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                      |
+| Name  | Type                   | Mandatory| Description                      |
 | -------- | ----------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4041,15 +4183,16 @@ Checks whether this page contains images. This API uses a promise to return the 
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. |
+| Promise\<boolean> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -4093,17 +4236,18 @@ Clears the cache in the application. This API will clear the cache for all webvi
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                                                    |
+| Name  | Type   | Mandatory| Description                                                    |
 | -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | Yes  | Whether to clear the cache in the ROM and RAM at the same time. The value **true** means to clear the cache in the ROM and RAM at the same time, and **false** means to only clear the cache in the RAM. |
+| clearRom | boolean | Yes  | Whether to clear the cache in the ROM and RAM at the same time. The value **true** means to clear the cache in the ROM and RAM at the same time, and **false** means to only clear the cache in the RAM.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4143,17 +4287,18 @@ Scrolls the page up by half the viewport or jumps to the top of the page.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| top    | boolean | Yes  | Whether to jump to the top of the page. The value **true** means to jump to the top of the page; and **false** means to scroll the page up by half the viewport. |
+| top    | boolean | Yes  | Whether to jump to the top of the page. The value **true** means to jump to the top of the page; and **false** means to scroll the page up by half the viewport.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4193,17 +4338,18 @@ Scrolls the page down by half the viewport or jumps to the bottom of the page.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| bottom | boolean | Yes  | Whether to jump to the bottom of the page. The value **true** means to jump to the bottom of the page; and **false** means to scroll the page down by half the viewport. |
+| bottom | boolean | Yes  | Whether to jump to the bottom of the page. The value **true** means to jump to the bottom of the page; and **false** means to scroll the page down by half the viewport.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4245,13 +4391,13 @@ Obtains the historical information list of the current webview.
 
 | Type                               | Description                       |
 | ----------------------------------- | --------------------------- |
-| [BackForwardList](#backforwardlist) | Provides the historical information list of the current webview. |
+| [BackForwardList](#backforwardlist) | The historical information list of the current webview.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -4295,13 +4441,13 @@ Serializes the page status history of the current Webview.
 
 | Type      | Description                                         |
 | ---------- | --------------------------------------------- |
-| Uint8Array | Serialized data of the page status history of the current WebView. |
+| Uint8Array | Serialized data of the page status history of the current WebView.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -4367,17 +4513,18 @@ Restores the page status history from the serialized data of the current WebView
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description                        |
+| Name| Type      | Mandatory| Description                        |
 | ------ | ---------- | ---- | ---------------------------- |
-| state  | Uint8Array | Yes  | Serialized data of the page status history. |
+| state  | Uint8Array | Yes  | Serialized data of the page status history.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -4450,15 +4597,15 @@ Grants the cross-domain request and fetch request permissions for the specified 
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                     |
+| Name  | Type   | Mandatory| Description                     |
 | -------- | ------- | ---- | -------------------------------------- |
-| schemes | Array\<[WebCustomScheme](#webcustomscheme)\> | Yes  | Array of up to 10 custom schemes. |
+| schemes | Array\<[WebCustomScheme](#webcustomscheme)\> | Yes  | Array of up to 10 custom schemes.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 | 17100020 | Failed to register custom schemes. |
@@ -4513,15 +4660,16 @@ Obtains the certificate information of this website. When the **Web** component 
 
 | Type      | Description                                         |
 | ---------- | --------------------------------------------- |
-| Promise<Array<cert.X509Cert>> | Promise used to obtain the X.509 certificate array of the current HTTPS website. |
+| Promise<Array<cert.X509Cert>> | Promise used to obtain the X.509 certificate array of the current HTTPS website.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -4672,15 +4820,15 @@ Obtains the certificate information of this website. When the **Web** component 
 
 **Parameters**
 
-| Name  | Type                        | Mandatory | Description                                    |
+| Name  | Type                        | Mandatory| Description                                    |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<Array<cert.X509Cert>> | Yes  | Callback used to obtain the X.509 certificate array of the current website. |
+| callback | AsyncCallback<Array<cert.X509Cert>> | Yes  | Callback used to obtain the X.509 certificate array of the current website.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
 
@@ -4833,15 +4981,15 @@ Mutes this web page.
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                     |
+| Name  | Type   | Mandatory| Description                     |
 | -------- | ------- | ---- | -------------------------------------- |
-| mute | boolean | Yes  | Whether to mute the web page. The value **true** means to mute the web page, and **false** means the opposite. |
+| mute | boolean | Yes  | Whether to mute the web page. The value **true** means to mute the web page, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -4878,6 +5026,10 @@ struct WebComponent {
 prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 Prefetches resources in the background for a page that is likely to be accessed in the near future, without executing the page JavaScript code or presenting the page. This can significantly reduce the load time for the prefetched page.
+
+> **NOTE**
+>
+> The downloaded page resources are cached for about 5 minutes. After this period, the **Web** component automatically releases the resources.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4941,7 +5093,7 @@ Prefetches resource requests based on specified request information and addition
 | ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
 | request           | [RequestInfo](#requestinfo12)   | Yes  | Information about the prefetched request.                                                     |
 | additionalHeaders | Array\<[WebHeader](#webheader)> | No  | Additional HTTP request header of the prefetched request.                                            |
-| cacheKey          | string                          | No  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not transferred or is left empty, the default value url is used as the key. |
+| cacheKey          | string                          | No  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not passed or is left empty, **url** is used by default.|
 | cacheValidTime    | number                          | No  | Validity period for caching prefetched resources. Value range: (0, 2147483647] Unit: second. Default value: **300s**         |
 
 **Error codes**
@@ -4990,7 +5142,7 @@ Clears the cache of prefetched resources based on the specified cache key list. 
 
 | Name            | Type       | Mandatory | Description                                                                      |
 | ------------------| ----------- | ---- | ------------------------------------------------------------------------- |
-| cacheKeyList      | Array\<string>      | Yes  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not transferred or is left empty, the default value **url** is used as the key. |
+| cacheKeyList      | Array\<string>      | Yes  | Key used to query the cache of prefetched resources. The value can contain only letters and digits. If this parameter is not passed or is left empty, **url** is used by default.|
 
 **Example**
 
@@ -5078,6 +5230,8 @@ When a URL is set for the **Web** component **src**, you are advised to set User
 
 When **src** of the **Web** component is set to an empty string, you are advised to call the **setCustomUserAgent** method to set **UserAgent** and then use **loadUrl** to load a specific page.
 
+For details about the default **UserAgent**, see [Default User Agent String](../../web/web-default-userAgent.md).
+
 > **NOTE**
 >
 >If a URL is set for the **Web** component **src**, and **UserAgent** is not set in the **onControllerAttached** callback event, calling **setCustomUserAgent** again may result in the loaded page being inconsistent with the actual user agent.
@@ -5088,7 +5242,7 @@ When **src** of the **Web** component is set to an empty string, you are advised
 
 | Name         | Type   |  Mandatory | Description                                           |
 | ---------------| ------- | ---- | ------------- |
-| userAgent      | string  | Yes  | Information about the custom user agent. It is recommended that you obtain the current default user agent through [getUserAgent](#getuseragent) and then customize the obtained user agent. |
+| userAgent      | string  | Yes  | Information about the custom user agent. It is recommended that you obtain the current default user agent through [getUserAgent](#getuseragent) and then customize the obtained user agent.|
 
 **Error codes**
 
@@ -5097,6 +5251,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID | Error Message                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -5140,7 +5295,7 @@ Sets a **WebDownloadDelegate** object to receive downloads and download progress
 
 | Name         | Type   |  Mandatory | Description                                           |
 | ---------------| ------- | ---- | ------------- |
-| delegate      | [WebDownloadDelegate](#webdownloaddelegate11)  | Yes  | Delegate used to receive the download progress. |
+| delegate      | [WebDownloadDelegate](#webdownloaddelegate11)  | Yes  | Delegate used to receive the download progress.|
 
 **Error codes**
 
@@ -5191,7 +5346,7 @@ Downloads a file, such as an image, from the specified URL.
 
 | Name         | Type   |  Mandatory | Description                                           |
 | ---------------| ------- | ---- | ------------- |
-| url      | string  | Yes  | Download URL. |
+| url      | string  | Yes  | Download URL.|
 
 **Error codes**
 
@@ -5245,13 +5400,15 @@ getCustomUserAgent(): string
 
 Obtains a custom user agent.
 
+For details about the default **UserAgent**, see [Default User Agent String](../../web/web-default-userAgent.md).
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| string | Information about the custom user agent. |
+| string | Information about the custom user agent.|
 
 **Error codes**
 
@@ -5303,13 +5460,13 @@ Sets the network connection timeout. You can use the **onErrorReceive** method i
 
 | Name         | Type   |  Mandatory | Description                                           |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | Yes  | Socket connection timeout interval, in seconds. The value of socket must be an integer greater than 0. |
+| timeout        | number  | Yes  | Socket connection timeout interval, in seconds. The value of socket must be an integer greater than 0.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 
@@ -5392,7 +5549,7 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.
+<!--RP1-->Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.<!--RP1End-->
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5400,13 +5557,13 @@ Enables the safe browsing feature. This feature is forcibly enabled and cannot b
 
 | Name  | Type   |  Mandatory | Description                      |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | Yes  | Whether to enable the safe browsing feature. |
+|  enable | boolean | Yes  | Whether to enable the safe browsing feature.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ----------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
@@ -5489,13 +5646,13 @@ Enables intelligent tracking prevention. By default, this feature is disabled.
 
 | Name  | Type   |  Mandatory | Description                      |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | Yes  | Whether to enable intelligent tracking prevention. |
+|  enable | boolean | Yes  | Whether to enable intelligent tracking prevention.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -5547,7 +5704,7 @@ Obtains whether intelligent tracking prevention is enabled on this web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -5592,7 +5749,7 @@ Adds a list of domain names that bypass intelligent tracking prevention.
 
 | Name      | Type          | Mandatory | Description                     |
 | ----------- | ------------- | ---- | ------------------------ |
-| hostList    | Array\<string> | Yes  | List of domain names that bypass intelligent tracking prevention. |
+| hostList    | Array\<string> | Yes  | List of domain names that bypass intelligent tracking prevention.|
 
 **Error codes**
 
@@ -5643,7 +5800,7 @@ Deletes the domain names from the list of domain names added through the **addIn
 
 | Name      | Type          | Mandatory | Description                     |
 | ----------- | ------------- | ---- | ------------------------ |
-| hostList    | Array\<string> | Yes  | List of domain names that bypass intelligent tracking prevention. |
+| hostList    | Array\<string> | Yes  | List of domain names that bypass intelligent tracking prevention.|
 
 **Error codes**
 
@@ -5725,16 +5882,16 @@ Enables ad blocking. By default, this feature is disabled.
 
 | Name  | Type   |  Mandatory | Description                      |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | Yes  | Whether to enable ad blocking. |
+|  enable | boolean | Yes  | Whether to enable ad blocking.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **Example**
 
@@ -5777,7 +5934,7 @@ Checks whether ad blocking is enabled. By default, this feature is disabled.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | Returns **true** if ad blocking is enabled; returns **false** otherwise. |
+| boolean | Returns **true** if ad blocking is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -5821,7 +5978,7 @@ After ads blocking is enabled for the **Web** component, this feature is enabled
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | Returns **true** if ad blocking is enabled; returns **false** otherwise. |
+| boolean | Returns **true** if ad blocking is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -5864,7 +6021,7 @@ Sets the ArkWeb render subprocess mode.
 
 | Name      | Type          | Mandatory | Description                     |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| Yes  | Render subprocess mode. |
+| mode        | [RenderProcessMode](#renderprocessmode12)| Yes  | Render subprocess mode.|
 
 **Error codes**
 
@@ -5913,7 +6070,7 @@ Obtains the ArkWeb render subprocess mode.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| Render subprocess mode. |
+| [RenderProcessMode](#renderprocessmode12)| Render subprocess mode.|
 
 
 **Example**
@@ -5954,7 +6111,7 @@ Calling this API will destroy the associated render process. If the render proce
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | Result of destroying the render process. If the render process can be destroyed, **true** is returned. Otherwise, **false** is returned. |
+| boolean | Result of destroying the render process. If the render process can be destroyed, **true** is returned. Otherwise, **false** is returned. If the rendering process is destroyed, **true** is returned.|
 
 **Error codes**
 
@@ -5998,7 +6155,7 @@ Loads the specified URL with **postData** using the POST method. If **url** is n
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                 |
+| Name | Type            | Mandatory| Description                 |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string | Yes  | URL to load.     |
 | postData | ArrayBuffer | Yes  | Data to transfer using the POST method. The request must be encoded in "application/x-www-form-urlencoded" format.|
@@ -6007,10 +6164,11 @@ Loads the specified URL with **postData** using the POST method. If **url** is n
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -6068,7 +6226,7 @@ Creates a **PrintDocumentAdapter** instance to provide content for printing.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                 |
+| Name | Type   | Mandatory| Description                 |
 | ------- | ------ | ---- | :-------------------- |
 | jobName | string | Yes  | Name of the file to print.     |
 
@@ -6076,13 +6234,13 @@ Creates a **PrintDocumentAdapter** instance to provide content for printing.
 
 | Type                | Description                     |
 | -------------------- | ------------------------- |
-| print.printDocumentAdapter | **PrintDocumentAdapter** instance created. |
+| print.printDocumentAdapter | **PrintDocumentAdapter** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                                   |
+| ID| Error Message                                                                   |
 | -------- | -------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -6127,13 +6285,13 @@ Checks whether this Webview is in incognito mode.
 
 | Type                | Description                     |
 | -------------------- | ------------------------- |
-| boolean              | Whether the Webview is in incognito mode. |
+| boolean              | Whether the Webview is in incognito mode.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                                   |
+| ID| Error Message                                                                   |
 | -------- | -------------------------------------------------------------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6178,13 +6336,13 @@ Obtains the security level of this web page.
 
 | Type                               | Description                       |
 | ----------------------------------- | --------------------------- |
-| [SecurityLevel](#securitylevel11) | Security level of the web page. The value can be **NONE**, **SECURE**, **WARNING**, or **DANGEROUS**. |
+| [SecurityLevel](#securitylevel11) | Security level of the web page. The value can be **NONE**, **SECURE**, **WARNING**, or **DANGEROUS**.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6214,7 +6372,7 @@ struct WebComponent {
 
 ### setScrollable<sup>12+</sup>
 
-setScrollable(enable: boolean): void
+setScrollable(enable: boolean, type?: ScrollType): void
 
 Sets whether this web page is scrollable.
 
@@ -6222,15 +6380,16 @@ Sets whether this web page is scrollable.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description              |
+| Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| enable     | boolean   | Yes  | Whether the web page is scrollable. The value **true** means the web page is scrollable, and **false** means the opposite. |
+| enable     | boolean   | Yes  | Whether the web page is scrollable. The value **true** means the web page is scrollable, and **false** means the opposite.|
+| type       | [ScrollType](#scrolltype12) |  No| Scrolling type supported by the web page. The default value is supported.<br> - If the value of **enable** is set to **false**, the specified **ScrollType** is disabled. If **ScrollType** is set to the default value, all scrolling types are disabled.<br> - If the value of **enable** is set to **true**, all scrolling types are enabled regardless of the value of **ScrollType**.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -6275,13 +6434,13 @@ Obtains whether this web page is scrollable.
 
 | Type  | Description          |
 | ------ | -------------- |
-| boolean | Whether the web page is scrollable. The value **true** means the web page is scrollable, and **false** means the opposite. |
+| boolean | Whether the web page is scrollable. The value **true** means the web page is scrollable, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6324,15 +6483,15 @@ Sets whether to print the web page background.
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                     |
+| Name  | Type   | Mandatory| Description                     |
 | -------- | ------- | ---- | -------------------------------------- |
-| enable | boolean | Yes  | Whether to print the web page background. The value **true** means to print the web page background, and **false** means the opposite. |
+| enable | boolean | Yes  | Whether to print the web page background. The value **true** means to print the web page background, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -6376,13 +6535,13 @@ Obtains whether the web page background is printed.
 
 | Type                | Description                     |
 | -------------------- | ------------------------- |
-| boolean              | Whether the web page background is printed. |
+| boolean              | Whether the web page background is printed.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6425,7 +6584,7 @@ Pauses all WebView timers.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6492,7 +6651,7 @@ Resumes all timers that are paused from the **pauseAllTimers()** API.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6573,7 +6732,7 @@ Stops all audio and video on a web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6617,7 +6776,7 @@ Pauses all audio and video on a web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6661,7 +6820,7 @@ Resumes the playback of the audio and video that are paused by the pauseAllMedia
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6705,7 +6864,7 @@ Closes all full-screen videos on a web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6749,13 +6908,13 @@ Queries the current audio and video playback control status.
 
 | Type                                       | Description                                                     |
 | ------------------------------------------- | --------------------------------------------------------- |
-| [MediaPlaybackState](#mediaplaybackstate12) | Playback control status of the current web page. The options are **NONE**, **PLAYING**, **PAUSED**, and **STOPPED**. |
+| [MediaPlaybackState](#mediaplaybackstate12) | Playback control status of the current web page. The options are **NONE**, **PLAYING**, **PAUSED**, and **STOPPED**.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6797,16 +6956,16 @@ Sets the [WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemeh
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| scheme    | string | Yes  | Protocol to be intercepted. |
-| handler    | [WebSchemeHandler](#webschemehandler12) | Yes  | Interceptor that intercepts this protocol. |
+| scheme    | string | Yes  | Protocol to be intercepted.|
+| handler    | [WebSchemeHandler](#webschemehandler12) | Yes  | Interceptor that intercepts this protocol.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types.                                    |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -6852,7 +7011,7 @@ Clears all WebSchemeHandlers set for the current Web component.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -6894,16 +7053,16 @@ Sets the WebSchemeHandler used to intercept ServiceWorker for all Web components
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| scheme    | string | Yes  | Protocol to be intercepted. |
-| handler    | [WebSchemeHandler](#webschemehandler12) | Yes  | Interceptor that intercepts this protocol. |
+| scheme    | string | Yes  | Protocol to be intercepted.|
+| handler    | [WebSchemeHandler](#webschemehandler12) | Yes  | Interceptor that intercepts this protocol.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -6940,7 +7099,7 @@ struct WebComponent {
 
 clearServiceWorkerWebSchemeHandler(): void
 
-Clear all WebSchemeHandlers that are set in the application and used to intercept ServiceWorker.
+Clears all WebSchemeHandlers that are set in the application and used to intercept ServiceWorker.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6971,7 +7130,7 @@ struct WebComponent {
 
 startCamera(): void
 
-Enable the camera capture of the current web page.
+Enables the camera capture of the current web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6979,7 +7138,7 @@ Enable the camera capture of the current web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -7104,13 +7263,13 @@ Stops the camera capture of the current web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
-For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
+For the complete sample code, see [startCamera](#startcamera12).
 
 ### closeCamera<sup>12+</sup>
 
@@ -7124,7 +7283,7 @@ Disables the camera capture of the current web page.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -7143,7 +7302,7 @@ The API determines whether to update the existing bytecode cache based on the pr
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                 |
+| Name | Type   | Mandatory| Description                 |
 | ------- | ------ | ---- | :-------------------- |
 | url | string | Yes  | Network address corresponding to the local JavaScript file, that is, the network address used when the service web page requests the server version of the file. The network address supports only the HTTP and HTTPS protocols and contains a maximum of 2048 characters. If the cache corresponding to the network address is invalid, the service web page requests the corresponding resource through the network.     |
 | script | string \| Uint8Array | Yes  | Text content of the local JavaScript. The content cannot be empty.     |
@@ -7153,13 +7312,13 @@ The API determines whether to update the existing bytecode cache based on the pr
 
 | Type                               | Description                       |
 | ----------------------------------- | --------------------------- |
-| Promise\<number\> | Promise used to return the error code for generating the bytecode cache. The value **0** indicates no error, and the value **-1** indicates an internal error. |
+| Promise\<number\> | Promise used to return the error code for generating the bytecode cache. The value **0** indicates no error, and the value **-1** indicates an internal error.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -7334,6 +7493,7 @@ JavaScript resources can also be obtained through [network requests](../apis-net
 
 6. Use the component on the page.
 
+   <!--code_no_check-->
    ```ts
    // Index.ets
    import { webview } from '@kit.ArkWeb';
@@ -7341,25 +7501,25 @@ JavaScript resources can also be obtained through [network requests](../apis-net
    import { createNode } from "./DynamicComponent"
    import { precompileWebview } from "./PrecompileWebview"
    import { businessWebview } from "./BusinessWebview"
-   
+
    @Entry
    @Component
    struct Index {
      @State precompileNode: NodeController | undefined = undefined;
      precompileController: webview.WebviewController = new webview.WebviewController();
-   
+
      @State businessNode: NodeController | undefined = undefined;
      businessController: webview.WebviewController = new webview.WebviewController();
-   
+
      aboutToAppear(): void {
-       // Initialize the web component used to inject local resources.
+       // Initialize the Web component used to inject local resources.
        this.precompileNode = createNode(precompileWebview,
          { url: "https://www.example.com/empty.html", controller: this.precompileController});
      }
 
      build() {
        Column() {
-         // Load the web component used by the service at a proper time. In this example, the button is clicked.
+         // Load the Web component used by the service at a proper time. In this example, the button is clicked.
          Button ("Load Page")
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
@@ -7367,7 +7527,7 @@ JavaScript resources can also be obtained through [network requests](../apis-net
                controller: this.businessController
              });
            })
-         // Web components used for services
+         // The Web component used for the service.
          NodeContainer(this.businessNode);
        }
      }
@@ -7387,9 +7547,9 @@ If the application does not take over media playback on the web page, this callb
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 |--------|------|------|------|
-| callback | [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) | Yes | Callback when the application takes over media playback on the web page. |
+| callback | [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) | Yes| Callback when the application takes over media playback on the web page.|
 
 **Example**
 
@@ -7425,7 +7585,7 @@ class ActualNativeMediaPlayerListener {
     this.handler.handleEnded();
   }
   onVolumeChanged() {
-    // Obtains the volume of the local player.
+    // Obtain the volume of the local player.
     let volume: number = getVolume();
     this.handler.handleVolumeChanged(volume);
   }
@@ -7501,7 +7661,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
   }
 
   setVolume(volume: number) {
-    // The ArkWeb engine requires that the volume of the local player be adjusted.
+    // The ArkWeb kernel requires the volume of the local player to be adjusted.
     // Set the volume of the local player.
   }
 
@@ -7523,9 +7683,11 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
 
   resumePlayer() {
     // Create a local player again.
+    // Resume the status information of the local player.
   }
 
   suspendPlayer(type: SuspendType) {
+    // Record the status information of the local player.
     // Destroy the local player.
   }
 }
@@ -7592,7 +7754,7 @@ After **web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderPro
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                 |
+| Name | Type   | Mandatory| Description                 |
 | ------- | ------ | ---- | :-------------------- |
 | resourceMaps | Array\<[OfflineResourceMap](#offlineresourcemap12)\> | Yes  | Configuration object for local offline resources. A maximum of 30 resources can be injected in a single call, with a maximum size of 10 MB per individual resource.     |
 
@@ -7600,7 +7762,7 @@ After **web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderPro
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
@@ -7796,6 +7958,7 @@ When appropriate, use this API in conjunction with dynamic components. Offline *
    ```
 
 6. Use the component on the page.
+   <!--code_no_check-->
    ```ts
    // Index.ets
    import { webview } from '@kit.ArkWeb';
@@ -7829,7 +7992,7 @@ When appropriate, use this API in conjunction with dynamic components. Offline *
                controller: this.businessController
              });
            })
-         // Web components used for services
+         // The Web component used for the service.
          NodeContainer(this.businessNode);
        }
      }
@@ -7860,17 +8023,17 @@ Sets the IP address of the host after domain name resolution.
 
 **Parameters**
 
-| Name   | Type | Mandatory | Description                            |
+| Name   | Type| Mandatory| Description                            |
 | --------- | -------- | ---- | ------------------------------------ |
-| hostName  | string   | Yes  | Domain name of the host to which the DNS record is to be added.           |
-| address   | string   | Yes  | Host domain name resolution address (IPv4 and IPv6). |
+| hostName  | string   | Yes  | Domain name of the host whose DNS records are to be added.           |
+| address   | string   | Yes  | Host domain name resolution address (IPv4 and IPv6).|
 | aliveTime | number   | Yes  | Cache validity period, in seconds.                |
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | ------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
@@ -7888,15 +8051,15 @@ Clears the IP address of a specified host after domain name resolution.
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description                 |
+| Name  | Type| Mandatory| Description                 |
 | -------- | -------- | ---- | ------------------------- |
-| hostName | string   | Yes  | Domain name of the host whose DNS records are to be cleared. |
+| hostName | string   | Yes  | Domain name of the host whose DNS records are to be cleared.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | ------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
@@ -7941,7 +8104,7 @@ struct WebComponent {
 
 getSurfaceId(): string
 
-Obtains the ID of the surface corresponding to ArkWeb. This parameter is valid only when the rendering mode of the web component is ASYNC_RENDER. The value of **getSurfaceId** can be obtained only after the **Web** component is initialized.
+Obtains the ID of the surface corresponding to ArkWeb. This parameter is valid only when the rendering mode of the **Web** component is **ASYNC_RENDER**. The value of **getSurfaceId** can be obtained only after the **Web** component is initialized.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7949,7 +8112,7 @@ Obtains the ID of the surface corresponding to ArkWeb. This parameter is valid o
 
 | Type  | Description               |
 | ------ | ------------------- |
-| string | ID of the surface held by ArkWeb. |
+| string | ID of the surface held by ArkWeb.|
 
 **Example**
 
@@ -7989,6 +8152,373 @@ struct Example{
 }
 ```
 
+### setUrlTrustList<sup>12+</sup>
+
+setUrlTrustList(urlTrustList: string): void
+
+Sets the URL trustlist of the web page. Only URLs in the trustlist can be loaded or redirected. Otherwise, the URL is blocked and an alarm page is displayed.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                 |
+| ------- | ------ | ---- | :-------------------- |
+| urlTrustList | string | Yes  | URL trustlist, which is configured in JSON format. The maximum size is 10 MB.<br>**setUrlTrustList()** is used in overwrite mode. If it is called for multiple times, the latest setting overwrites the previous setting.<br>If this parameter is left blank, the trustlist is canceled and access to all URLs is allowed.<br>Example in JSON format:<br>{<br>&nbsp;&nbsp;"UrlPermissionList":&nbsp;[<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"https",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example1.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;443,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"pathA/pathB"<br>&nbsp;&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"http",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example2.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;80,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"test1/test2/test3"<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;]<br>} |
+
+**Parameters in JSON format**:
+| Name  | Type| Mandatory| Description                 |
+| -------- | -------- | ---- | ------------------------- |
+| scheme | string   | No| Optional parameter. The supported protocols are HTTP and HTTPS.|
+| host | string | Yes| Mandatory parameter. The URL is permitted only when its host field is the same as the rule field. Multiple rules for the same host at the same time are allowed.|
+| port | number | No| Optional parameter.|
+| path | string | No| Optional parameter. This field uses prefix matching. For example, in **pathA/pathB/pathC**, **pathA/pathB/** is specified, and all level-3 directories such as **pathC** can be accessed, which must be a complete directory name or file name. Partial matching is not allowed.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed.                                     |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    urltrustList: string = "{\"UrlPermissionList\":[{\"scheme\":\"http\", \"host\":\"trust.example.com\", \"port\":80, \"path\":\"test\"}]}"
+
+    build() {
+      Column() {
+        Button('Setting the trustlist')
+          .onClick(() => {
+            try {
+              // Set a trustlist to allow access only to trust web pages.
+              this.controller.setUrlTrustList(this.urltrustList);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('Cancel the trustlist.')
+          .onClick(() => {
+            try {
+              // Input an empty string to setUrlTrustList() to disable the trustlist, and all URLs can be accessed.
+              this.controller.setUrlTrustList("");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('Access the trust web')
+          .onClick(() => {
+            try {
+              // The trustlist is enabled and trust web pages can be accessed.
+              this.controller.loadUrl('http://trust.example.com/test');
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Button('Access the untrust web')
+          .onClick(() => {
+            try {
+              // The trustlist is enabled that untrust web pages cannot be accessed and an error page is displayed.
+              this.controller.loadUrl('http://untrust.example.com/test');
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Web({ src: 'http://untrust.example.com/test', controller: this.controller }).onControllerAttached(() => {
+          try {
+            // Set the trustlist using onControllerAttached() to enable the trustlist before the URL starts to be loaded. The untrusted web page cannot be accessed, and an error page is displayed.
+            this.controller.setUrlTrustList(this.urltrustList);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      }
+    }
+  }
+  ```
+
+### setPathAllowingUniversalAccess<sup>12+</sup>
+
+setPathAllowingUniversalAccess(pathList: Array\<string\>): void
+
+Sets a path list. When a file protocol accesses resources in the path of list, it can access the local files across domains. In addition, when a path list is set, the file protocol can access only the resources in the path list. The behavior of [fileAccess](ts-basic-components-web.md#fileAccess) will be overwritten by that of this API. The paths in the list must be any of the following:
+
+1. The path of subdirectory of the application file directory. (The application file directory is obtained using [Context.filesDir](../apis-ability-kit/js-apis-inner-application-context.md#context) in the Ability Kit.) For example:
+
+* /data/storage/el2/base/files/example
+* /data/storage/el2/base/haps/entry/files/example
+
+2. The path of application resource directory or its subdirectory. (The application resource directory is obtained from [Context.resourceDir](../apis-ability-kit/js-apis-inner-application-context.md#context) in the Ability Kit.) For example:
+
+* /data/storage/el1/bundle/entry/resource/resfile
+* /data/storage/el1/bundle/entry/resource/resfile/example
+
+If a path in the list is not any of the preceding paths, error code 401 is reported and the path list fails to be set. When the path list is set to empty, the accessible files for the file protocol are subject to the behavior of the [fileAccess](ts-basic-components-web.md#fileAccess).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type| Mandatory| Description                 |
+| -------- | -------- | ---- | ------------------------- |
+| pathList | Array\<string\>   | Yes  | The path list.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                |
+| -------- | ------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+
+  build() {
+    Row() {
+      Web({ src: "", controller: this.controller })
+        .onControllerAttached(() => {
+          try {
+            // Set the list of paths that can be accessed across domains.
+            this.controller.setPathAllowingUniversalAccess([
+              getContext().resourceDir,
+              getContext().filesDir + "/example"
+            ])
+            this.controller.loadUrl("file://" + getContext().resourceDir + "/index.html")
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .domStorageAccess(true)
+    }
+  }
+}
+
+```
+
+Load the HTML file, which is located in the application resource directory **resource/resfile/index.html**.
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+    <script>
+		function getFile() {
+			var file = "file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js";
+			var xmlHttpReq = new XMLHttpRequest();
+			xmlHttpReq.onreadystatechange = function(){
+			    console.log("readyState:" + xmlHttpReq.readyState);
+			    console.log("status:" + xmlHttpReq.status);
+				if(xmlHttpReq.readyState == 4){
+				    if (xmlHttpReq.status == 200) {
+                // If the path list is set on the eTS, resources can be obtained.
+				        const element = document.getElementById('text');
+                        element.textContent = "load " + file + " success";
+				    } else {
+                // If the path list is not set on the eTS, a CORS error is triggered.
+				        const element = document.getElementById('text');
+                        element.textContent = "load " + file + " failed";
+				    }
+				}
+			}
+			xmlHttpReq.open("GET", file);
+			xmlHttpReq.send(null);
+		}
+
+    </script>
+</head>
+
+<body>
+<div class="page">
+    <button id="example" onclick="getFile()">stealFile</button>
+</div>
+<div id="text"></div>
+</body>
+
+</html>
+```
+
+In HTML, the file protocol is used to access the local JS file through XMLHttpRequest. The JS file is stored in **resource/resfile/js/script.js**.
+<!--code_no_check-->
+```javascript
+const body = document.body;
+const element = document.createElement('div');
+element.textContent = 'success';
+body.appendChild(element);
+```
+
+### enableBackForwardCache<sup>12+</sup>
+
+static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
+
+Enables the back-forward cache of a **Web** component. You can specify whether to add a specific page to the back-forward cache.
+
+This API must be called before [initializeWebEngine()](#initializewebengine) initializes the kernel.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | Yes  | Features of the pages, which allow them to be added to the back-forward cache.|
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let features = new webview.BackForwardCacheSupportedFeatures();
+        features.nativeEmbed = true;
+        features.mediaTakeOver = true;
+        // If a page uses the same-layer rendering and takes over media playback at the same time, you need to set the values of **nativeEmbed** and **mediaTakeOver** to **true** to add the page to the back-forward cache.
+         
+        webview.WebviewController.enableBackForwardCache(features);
+        webview.WebviewController.initializeWebEngine();
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
+### setBackForwardCacheOptions<sup>12+</sup>
+
+setBackForwardCacheOptions(options: BackForwardCacheOptions): void
+
+Sets the back-forward cache options of the **Web** component.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | Yes  | Options to control the back-forward cache of the **Web** component.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Row() {
+        Button("Add options").onClick((event: ClickEvent) => {
+          let options = new webview.BackForwardCacheOptions();
+          options.size = 3;
+          options.timeToLive = 10;
+          this.controller.setBackForwardCacheOptions(options);
+        })
+        Button("Backward").onClick((event: ClickEvent) => {
+          this.controller.backward();
+        })
+        Button("Forward").onClick((event: ClickEvent) => {
+          this.controller.forward();
+        })
+      }
+      Web({ src: "https://www.example.com", controller: this.controller })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### trimMemoryByPressureLevel<sup>14+</sup>
+
+trimMemoryByPressureLevel(level: number): void
+
+Clears the cache occupied by **Web** component based on the specified memory pressure level.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type   | Mandatory| Description                 |
+| ------- | ------ | ---- | :-------------------- |
+| level | [PressureLevel](#pressurelevel14) | Yes| Pressure level of the memory to be cleared.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+
+**Example**
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Row() {
+        Button('trim_Memory')
+          .onClick(() => {
+            try {
+              // Set the current memory pressure level to moderate and release a small amount of memory.
+              webview.WebviewController.trimMemoryByPressureLevel(
+                webview.PressureLevel.MEMORY_PRESSURE_LEVEL_MODERATE);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+      }.height('10%')
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookieManager** instance.
@@ -8007,23 +8537,24 @@ Obtains the cookie corresponding to the specified URL.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
 
 **Return value**
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| string | Cookie value corresponding to the specified URL. |
+| string | Cookie value corresponding to the specified URL.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                              |
+| ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -8058,30 +8589,31 @@ struct WebComponent {
 
 static fetchCookieSync(url: string, incognito?: boolean): string
 
-Obtains the cookie corresponding to the specified URL.
+Obtains the cookie value corresponding to the specified URL.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended. |
-| incognito    | boolean | No  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite. |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| incognito    | boolean | No  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite.|
 
 **Return value**
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| string | Cookie value corresponding to the specified URL. |
+| string | Cookie value corresponding to the specified URL.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                              |
+| ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8122,18 +8654,18 @@ Obtains the cookie value of a specified URL. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended. |
-| callback | AsyncCallback\<string> | Yes | Callback used to return the result. |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| callback | AsyncCallback\<string> | Yes| Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                              |
+| ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 
 **Example**
@@ -8182,23 +8714,23 @@ Obtains the cookie value of a specified URL. This API uses a promise to return t
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
 
 **Return value**
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| Promise\<string> | Promise used to obtain the result. |
+| Promise\<string> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                              |
+| ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 
 **Example**
@@ -8250,19 +8782,20 @@ Sets a cookie for the specified URL.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                              |
+| ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8296,32 +8829,33 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-Sets a cookie for the specified URL.
+Sets the cookie value for the specified URL.
 
 > **NOTE**
 >
->- You can set **url** in **configCookieSync** to a domain name so that cookies are attached to requests on the page.
->
->- It is recommended that cookie syncing be completed before the **Web** component is loaded.
+>You can set **url** in **configCookieSync** to a domain name so that the cookie is attached to the requests on the page.
+
+>It is recommended that cookie syncing be completed before the **Web** component is loaded.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
-| incognito    | boolean | No  | Whether to obtain the cookie in incognito mode. The value **true** means to obtain the cookie in incognito mode, and **false** means the opposite. |
+| incognito    | boolean | No  | Whether to set the cookies in incognito mode. The value **true** means to set the cookies in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                              |
+| ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8340,7 +8874,7 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // Only one cookie value can be set.
+            // Only a single cookie value can be set.
             webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -8362,19 +8896,19 @@ Sets the value of a single cookie for a specified URL. This API uses an asynchro
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                              |
+| ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -8420,24 +8954,24 @@ Sets the value of a single cookie for a specified URL. This API uses a promise t
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                     |
+| Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended. |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
 | value  | string | Yes  | Cookie value to set.     |
 
 **Return value**
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -8485,9 +9019,17 @@ Saves the cookies in the memory to the drive. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                              |
+| Name  | Type                  | Mandatory| Description                                              |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return whether the cookies are successfully saved. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return whether the cookies are successfully saved.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -8533,7 +9075,15 @@ Saves the cookies in the memory to the drive. This API uses a promise to return 
 
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
-| Promise\<void> | Promise used to return the operation result. |
+| Promise\<void> | Promise used to return the operation result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -8579,9 +9129,17 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                |
+| Name| Type   | Mandatory| Description                                |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive cookies.<br>Default value: **true** |
+| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive cookies.<br>Default value: **true**|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -8623,7 +9181,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 | Type   | Description                            |
 | ------- | -------------------------------- |
-| boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies. The default value is **true**. |
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies. The default value is **true**.|
 
 **Example**
 
@@ -8659,9 +9217,17 @@ Sets whether the **WebCookieManager** instance has the permission to send and re
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                      |
+| Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.<br>Default value: **false** |
+| accept | boolean | Yes  | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.<br>Default value: **false**|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -8703,7 +9269,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies. The default value is **false**. |
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies. The default value is **false**.|
 
 **Example**
 
@@ -8739,15 +9305,15 @@ Checks whether cookies exist.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                      |
+| Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | :----------------------------------------- |
-| incognito<sup>11+</sup>    | boolean | No  | Whether to check for cookies in incognito mode. The value **true** means to check for cookies in incognito mode, and **false** means the opposite. |
+| incognito<sup>11+</sup>    | boolean | No  | Whether to check for cookies in incognito mode. The value **true** means to check for cookies in incognito mode, and **false** means the opposite.|
 
 **Return value**
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Whether cookies exist. The value **true** means that cookies exist, and **false** means the opposite. |
+| boolean | Whether cookies exist. The value **true** means that cookies exist, and **false** means the opposite.|
 
 **Example**
 
@@ -8818,9 +9384,9 @@ Deletes all cookies.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                      |
+| Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | :----------------------------------------- |
-| incognito    | boolean | No  | Whether to delete all cookies in incognito mode. The value **true** means to delete all cookies in incognito mode, and **false** means the opposite. |
+| incognito    | boolean | No  | Whether to delete all cookies in incognito mode. The value **true** means to delete all cookies in incognito mode, and **false** means the opposite.|
 
 **Example**
 
@@ -8855,9 +9421,17 @@ Clears all cookies. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                              |
+| Name  | Type                  | Mandatory| Description                                              |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to obtain the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -8903,7 +9477,15 @@ Clears all cookies. This API uses a promise to return the result.
 
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
-| Promise\<void> | Promise used to obtain the result. |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -9015,9 +9597,17 @@ Clears all session cookies. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                              |
+| Name  | Type                  | Mandatory| Description                                              |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -9063,7 +9653,15 @@ Clears all session cookies. This API uses a promise to return the result.
 
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -9117,17 +9715,18 @@ Deletes all data in the specified origin.
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                                  |
-| ------ | ------ | --------- | ------------------------------------------------------------ |
-| origin | string | Yes       | Index of the origin, which is obtained through [getOrigins](#getorigins). |
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| origin | string | Yes  | Index of the origin, which is obtained through [getOrigins](#getorigins).|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9214,17 +9813,18 @@ Obtains information about all origins that are currently using the Web SQL Datab
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<Array\<[WebStorageOrigin](#webstorageorigin)>> | Yes       | Callback used to return the information about the origins. For details, see [WebStorageOrigin](#webstorageorigin). |
+| Name  | Type                                  | Mandatory| Description                                                  |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------ |
+| callback | AsyncCallback\<Array\<[WebStorageOrigin](#webstorageorigin)>> | Yes  | Callback used to return the information about the origins. For details, see [WebStorageOrigin](#webstorageorigin).|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message               |
-| -------- | --------------------------- |
-| 17100012 | Invalid web storage origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100012 | Invalid web storage origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9278,17 +9878,18 @@ Obtains information about all origins that are currently using the Web SQL Datab
 
 **Return value**
 
-| Type                                                    | Description                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[WebStorageOrigin](#webstorageorigin)>> | Promise used to return the information about the origins. For details, see [WebStorageOrigin](#webstorageorigin). |
+| Type                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<[WebStorageOrigin](#webstorageorigin)>> | Promise used to return the information about the origins. For details, see [WebStorageOrigin](#webstorageorigin).|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message               |
-| -------- | --------------------------- |
-| 17100012 | Invalid web storage origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100012 | Invalid web storage origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9342,18 +9943,19 @@ Obtains the storage quota of an origin in the Web SQL Database, in bytes. This A
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                  |
-| -------- | ---------------------- | --------- | ---------------------------- |
-| origin   | string                 | Yes       | Index of the origin.         |
-| callback | AsyncCallback\<number> | Yes       | Storage quota of the origin. |
+| Name  | Type                 | Mandatory| Description              |
+| -------- | --------------------- | ---- | ------------------ |
+| origin   | string                | Yes  | Index of the origin.|
+| callback | AsyncCallback\<number> | Yes  | Storage quota of the origin.  |
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9404,23 +10006,24 @@ Obtains the storage quota of an origin in the Web SQL Database, in bytes. This A
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description          |
-| ------ | ------ | --------- | -------------------- |
-| origin | string | Yes       | Index of the origin. |
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | Yes  | Index of the origin.|
 
 **Return value**
 
-| Type             | Description                                             |
-| ---------------- | ------------------------------------------------------- |
-| Promise\<number> | Promise used to return the storage quota of the origin. |
+| Type           | Description                                   |
+| --------------- | --------------------------------------- |
+| Promise\<number> | Promise used to return the storage quota of the origin.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9471,18 +10074,19 @@ Obtains the storage usage of an origin in the Web SQL Database, in bytes. This A
 
 **Parameters**
 
-| Name     | Type                   | Mandatory | Description                  |
-| -------- | ---------------------- | --------- | ---------------------------- |
-| origin   | string                 | Yes       | Index of the origin.         |
-| callback | AsyncCallback\<number> | Yes       | Storage usage of the origin. |
+| Name  | Type                 | Mandatory| Description              |
+| -------- | --------------------- | ---- | ------------------ |
+| origin   | string                | Yes  | Index of the origin.|
+| callback | AsyncCallback\<number> | Yes  | Storage usage of the origin.  |
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9533,23 +10137,24 @@ Obtains the storage usage of an origin in the Web SQL Database, in bytes. This A
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description          |
-| ------ | ------ | --------- | -------------------- |
-| origin | string | Yes       | Index of the origin. |
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | Yes  | Index of the origin.|
 
 **Return value**
 
-| Type             | Description                                             |
-| ---------------- | ------------------------------------------------------- |
-| Promise\<number> | Promise used to return the storage usage of the origin. |
+| Type           | Description                                 |
+| --------------- | ------------------------------------- |
+| Promise\<number> | Promise used to return the storage usage of the origin.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                             |
+| -------- | ----------------------------------------------------- |
+| 17100011 | Invalid origin.                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9598,9 +10203,9 @@ Deletes all data in the Web SQL Database.
 
 **Parameters**
 
-| Name                    | Type    | Mandatory | Description                                                  |
-| ----------------------- | ------- | --------- | ------------------------------------------------------------ |
-| incognito<sup>11+</sup> | boolean | No        | Whether to delete all data in the Web SQL Database in incognito mode. The value **true** means to delete all data in the Web SQL Database in incognito mode, and **false** means the opposite. |
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| incognito<sup>11+</sup>    | boolean | No  | Whether to delete all data in the Web SQL Database in incognito mode. The value **true** means to delete all data in the Web SQL Database in incognito mode, and **false** means the opposite.|
 
 **Example**
 
@@ -9651,24 +10256,24 @@ Retrieves HTTP authentication credentials for a given host and realm. This API r
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                                           |
-| ----- | ------ | --------- | ----------------------------------------------------- |
-| host  | string | Yes       | Host to which HTTP authentication credentials apply.  |
-| realm | string | Yes       | Realm to which HTTP authentication credentials apply. |
+| Name| Type  | Mandatory| Description                        |
+| ------ | ------ | ---- | ---------------------------- |
+| host   | string | Yes  | Host to which HTTP authentication credentials apply.|
+| realm  | string | Yes  | Realm to which HTTP authentication credentials apply.  |
 
 **Return value**
 
-| Type           | Description                                                  |
-| -------------- | ------------------------------------------------------------ |
-| Array\<string> | Returns the array of the matching user names and passwords if the operation is successful; returns an empty array otherwise. |
+| Type | Description                                        |
+| ----- | -------------------------------------------- |
+| Array\<string> | Returns the array of the matching user names and passwords if the operation is successful; returns an empty array otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9712,20 +10317,20 @@ Saves HTTP authentication credentials for a given host and realm. This API retur
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                                           |
-| -------- | ------ | --------- | ----------------------------------------------------- |
-| host     | string | Yes       | Host to which HTTP authentication credentials apply.  |
-| realm    | string | Yes       | Realm to which HTTP authentication credentials apply. |
-| username | string | Yes       | User name.                                            |
-| password | string | Yes       | Password.                                             |
+| Name  | Type  | Mandatory| Description                        |
+| -------- | ------ | ---- | ---------------------------- |
+| host     | string | Yes  | Host to which HTTP authentication credentials apply.|
+| realm    | string | Yes  | Realm to which HTTP authentication credentials apply.  |
+| username | string | Yes  | User name.                    |
+| password | string | Yes  | Password.                      |
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9767,9 +10372,9 @@ Checks whether any saved HTTP authentication credentials exist. This API returns
 
 **Return value**
 
-| Type    | Description                                                  |
+| Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist; returns **false** otherwise. |
+| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist; returns **false** otherwise.|
 
 **Example**
 
@@ -9857,18 +10462,19 @@ Allows the specified origin to use the geolocation information.
 
 **Parameters**
 
-| Name                    | Type    | Mandatory | Description                                                  |
-| ----------------------- | ------- | --------- | ------------------------------------------------------------ |
-| origin                  | string  | Yes       | Index of the origin.                                         |
-| incognito<sup>11+</sup> | boolean | No        | Whether to allow the specified origin to use the geolocation information in incognito mode. The value **true** means to allow the specified origin to use the geolocation information in incognito mode, and **false** means the opposite. |
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | Yes  |Index of the origin.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to allow the specified origin to use the geolocation information in incognito mode. The value **true** means to allow the specified origin to use the geolocation information in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9909,18 +10515,19 @@ Clears the geolocation permission status of a specified origin.
 
 **Parameters**
 
-| Name                    | Type    | Mandatory | Description                                                  |
-| ----------------------- | ------- | --------- | ------------------------------------------------------------ |
-| origin                  | string  | Yes       | Index of the origin.                                         |
-| incognito<sup>11+</sup> | boolean | No        | Whether to clear the geolocation permission status of a specified origin in incognito mode. The value **true** means to clear the geolocation permission status of a specified origin in incognito mode, and **false** means the opposite. |
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| origin | string | Yes  | Index of the origin.|
+| incognito<sup>11+</sup>   | boolean | No  | Whether to clear the geolocation permission status of a specified origin in incognito mode. The value **true** means to clear the geolocation permission status of a specified origin in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -9961,19 +10568,20 @@ Obtains the geolocation permission status of the specified origin. This API uses
 
 **Parameters**
 
-| Name                    | Type                    | Mandatory | Description                                                  |
-| ----------------------- | ----------------------- | --------- | ------------------------------------------------------------ |
-| origin                  | string                  | Yes       | Index of the origin.                                         |
-| callback                | AsyncCallback\<boolean> | Yes       | Callback used to return the geolocation permission status of the specified origin. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified origin is not found. |
-| incognito<sup>11+</sup> | boolean                 | No        | Whether to obtain the geolocation permission status of the specified origin in incognito mode. The value **true** means to obtain the geolocation permission status of the specified origin in incognito mode, and **false** means the opposite. |
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| origin   | string                 | Yes  | Index of the origin.                                          |
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the geolocation permission status of the specified origin. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified origin is not found.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to obtain the geolocation permission status of the specified origin in incognito mode. The value **true** means to obtain the geolocation permission status of the specified origin in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10020,24 +10628,25 @@ Obtains the geolocation permission status of the specified origin. This API uses
 
 **Parameters**
 
-| Name                    | Type    | Mandatory | Description                                                  |
-| ----------------------- | ------- | --------- | ------------------------------------------------------------ |
-| origin                  | string  | Yes       | Index of the origin.                                         |
-| incognito<sup>11+</sup> | boolean | No        | Whether to obtain the geolocation permission status of the specified origin in incognito mode. The value **true** means to obtain the geolocation permission status of the specified origin in incognito mode, and **false** means the opposite. |
+| Name| Type| Mandatory| Description            |
+| ------ | -------- | ---- | -------------------- |
+| origin | string   | Yes  | Index of the origin.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to obtain the geolocation permission status of the specified origin in incognito mode. The value **true** means to obtain the geolocation permission status of the specified origin in incognito mode, and **false** means the opposite.|
 
 **Return value**
 
-| Type              | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the geolocation permission status of the specified origin. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified origin is not found. |
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<boolean> | Promise used to return the geolocation permission status of the specified origin. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified origin is not found.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message   |
-| -------- | --------------- |
-| 17100011 | Invalid origin. |
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10083,18 +10692,18 @@ Obtains the geolocation permission status of all origins. This API uses an async
 
 **Parameters**
 
-| Name                    | Type                           | Mandatory | Description                                                  |
-| ----------------------- | ------------------------------ | --------- | ------------------------------------------------------------ |
-| callback                | AsyncCallback\<Array\<string>> | Yes       | Callback used to return the geolocation permission status of all origins. |
-| incognito<sup>11+</sup> | boolean                        | No        | Whether to obtain the geolocation permission status of all origins in incognito mode. The value **true** means to obtain the geolocation permission status of all origins in incognito mode, and **false** means the opposite. |
+| Name  | Type                        | Mandatory| Description                                    |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| callback | AsyncCallback\<Array\<string>> | Yes  | Callback used to return the geolocation permission status of all origins.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to obtain the geolocation permission status of all origins in incognito mode. The value **true** means to obtain the geolocation permission status of all origins in incognito mode, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10141,23 +10750,23 @@ Obtains the geolocation permission status of all origins. This API uses a promis
 
 **Parameters**
 
-| Name                    | Type    | Mandatory | Description                                                  |
-| ----------------------- | ------- | --------- | ------------------------------------------------------------ |
-| incognito<sup>11+</sup> | boolean | No        | Whether to obtain the geolocation permission status of all origins in incognito mode. The value **true** means to obtain the geolocation permission status of all origins in incognito mode, and **false** means the opposite. |
+| Name  | Type                        | Mandatory| Description                                    |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| incognito<sup>11+</sup>   | boolean | No  | Whether to obtain the geolocation permission status of all origins in incognito mode. The value **true** means to obtain the geolocation permission status of all origins in incognito mode, and **false** means the opposite.|
 
 **Return value**
 
-| Type                     | Description                                                  |
-| ------------------------ | ------------------------------------------------------------ |
-| Promise\<Array\<string>> | Promise used to return the geolocation permission status of all origins. |
+| Type                  | Description                                                     |
+| ---------------------- | --------------------------------------------------------- |
+| Promise\<Array\<string>> | Promise used to return the geolocation permission status of all origins.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10203,9 +10812,9 @@ Clears the geolocation permission status of all sources.
 
 **Parameters**
 
-| Name                    | Type    | Mandatory | Description                                                  |
-| ----------------------- | ------- | --------- | ------------------------------------------------------------ |
-| incognito<sup>11+</sup> | boolean | No        | Whether to clear the geolocation permission status of all sources in incognito mode. The value **true** means to clear the geolocation permission status of all sources in incognito mode, and **false** means the opposite. |
+| Name  | Type                        | Mandatory| Description                                    |
+| -------- | ---------------------------- | ---- | ---------------------------------------- |
+| incognito<sup>11+</sup>    | boolean | No  | Whether to clear the geolocation permission status of all sources in incognito mode. The value **true** means to clear the geolocation permission status of all sources in incognito mode, and **false** means the opposite.|
 
 **Example**
 
@@ -10240,10 +10849,10 @@ Describes the request/response header returned by the **Web** component.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name        | Type   | Readable | Writable | Description                           |
-| ----------- | ------ | -------- | -------- | ------------------------------------- |
-| headerKey   | string | Yes      | Yes      | Key of the request/response header.   |
-| headerValue | string | Yes      | Yes      | Value of the request/response header. |
+| Name       | Type  | Readable| Writable|Description                |
+| ----------- | ------ | -----|------|------------------- |
+| headerKey   | string | Yes| Yes| Key of the request/response header.  |
+| headerValue | string | Yes| Yes| Value of the request/response header.|
 
 ## RequestInfo<sup>12+</sup>
 
@@ -10251,11 +10860,11 @@ Describes the information about the resource request sent by the **Web** compone
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name     | Type   | Readable | Writable | Description                    |
-| -------- | ------ | -------- | -------- | ------------------------------ |
-| url      | string | Yes      | Yes      | URL of the request.            |
-| method   | string | Yes      | Yes      | Method of the request.         |
-| formData | string | Yes      | Yes      | Form data in the request body. |
+| Name     | Type  | Readable| Writable|Description       |
+| ---------| ------ | -----|------|--------  |
+| url      | string | Yes| Yes| URL of the request.   |
+| method   | string | Yes| Yes| Method of the request.   |
+| formData | string | Yes| Yes| Form data in the request body.|
 
 ## WebHitTestType
 
@@ -10263,16 +10872,16 @@ The [getHitTest](#gethittest) API is used to indicate a cursor node.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name          | Value | Description                                                |
-| ------------- | ----- | ---------------------------------------------------------- |
-| EditText      | 0     | Editable area.                                             |
-| Email         | 1     | Email address.                                             |
-| HttpAnchor    | 2     | Hyperlink, where **src** is **http**.                      |
-| HttpAnchorImg | 3     | Image with a hyperlink, where **src** is http + HTML::img. |
-| Img           | 4     | HTML::img tag.                                             |
-| Map           | 5     | Geographical address.                                      |
-| Phone         | 6     | Phone number.                                              |
-| Unknown       | 7     | Unknown content.                                           |
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| EditText      | 0 |Editable area.                           |
+| Email         | 1 |Email address.                           |
+| HttpAnchor    | 2 |Hyperlink, where **src** is **http**.                    |
+| HttpAnchorImg | 3 |Image with a hyperlink, where **src** is http + HTML::img.|
+| Img           | 4 |HTML::img tag.                          |
+| Map           | 5 |Geographical address.                               |
+| Phone         | 6 |Phone number.                               |
+| Unknown       | 7 |Unknown content.                               |
 
 ## SecurityLevel<sup>11+</sup>
 
@@ -10280,12 +10889,12 @@ Defines the security level of the web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name      | Value | Description                                                  |
-| --------- | ----- | ------------------------------------------------------------ |
-| NONE      | 0     | The web page is neither absolutely secure nor insecure, that is, neutral. A typical example is a web page whose URL scheme is not HTTP or HTTPS. |
-| SECURE    | 1     | The web page is secure, using the HTTPS protocol and a trusted certificate. |
-| WARNING   | 2     | The web page is possibly compromised. A typical example is a web page that uses the HTTP or HTTPS protocol but an outdated TLS version. |
-| DANGEROUS | 3     | The web page is insecure. This means that the page may have attempted to load HTTPS scripts to no avail, have failed authentication, or contain insecure active content in HTTPS, malware, phishing, or any other sources of major threats. |
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| NONE          | 0 |The web page is neither absolutely secure nor insecure, that is, neutral. A typical example is a web page whose URL scheme is not HTTP or HTTPS.|
+| SECURE        | 1 |The web page is secure, using the HTTPS protocol and a trusted certificate.|
+| WARNING       | 2 |The web page is possibly compromised. A typical example is a web page that uses the HTTP or HTTPS protocol but an outdated TLS version.|
+| DANGEROUS     | 3 |The web page is insecure. This means that the page may have attempted to load HTTPS scripts to no avail, have failed authentication, or contain insecure active content in HTTPS, malware, phishing, or any other sources of major threats.|
 
 ##  HitTestValue
 
@@ -10293,10 +10902,10 @@ Provides the element information of the area being clicked. For details about th
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name  | Type                              | Readable | Writable | Description                                                  |
-| ----- | --------------------------------- | -------- | -------- | ------------------------------------------------------------ |
-| type  | [WebHitTestType](#webhittesttype) | Yes      | Yes      | Element type of the area being clicked.                      |
-| extra | string                            | Yes      | Yes      | Extra information of the area being clicked. If the area being clicked is an image or a link, the extra information is the URL of the image or link. |
+| Name| Type| Readable| Writable| Description|
+| ---- | ---- | ---- | ---- |---- |
+| type | [WebHitTestType](#webhittesttype) | Yes| Yes| Element type of the area being clicked.|
+| extra | string        | Yes| Yes|Extra information of the area being clicked. If the area being clicked is an image or a link, the extra information is the URL of the image or link.|
 
 ## WebMessage
 
@@ -10306,10 +10915,10 @@ Describes the data types supported for [WebMessagePort](#webmessageport).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Type        | Description  |
-| ----------- | ------------ |
-| string      | String type. |
-| ArrayBuffer | Binary type. |
+| Type      | Description                                    |
+| -------- | -------------------------------------- |
+| string   | String type.|
+| ArrayBuffer   | Binary type.|
 
 ## JsMessageType<sup>10+</sup>
 
@@ -10317,14 +10926,14 @@ Describes the type of the returned result of script execution using [runJavaScir
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name         | Value | Description             |
-| ------------ | ----- | ----------------------- |
-| NOT_SUPPORT  | 0     | Unsupported data type.  |
-| STRING       | 1     | String type.            |
-| NUMBER       | 2     | Number type.            |
-| BOOLEAN      | 3     | Boolean type.           |
-| ARRAY_BUFFER | 4     | Raw binary data buffer. |
-| ARRAY        | 5     | Array type.             |
+| Name        | Value| Description                             |
+| ------------ | -- |--------------------------------- |
+| NOT_SUPPORT  | 0 |Unsupported data type.|
+| STRING       | 1 |String type.|
+| NUMBER       | 2 |Number type.|
+| BOOLEAN      | 3 |Boolean type.|
+| ARRAY_BUFFER | 4 |Raw binary data buffer.|
+| ARRAY        | 5 |Array type.|
 
 ## WebMessageType<sup>10+</sup>
 
@@ -10332,15 +10941,15 @@ Describes the data type supported by the [webMessagePort](#webmessageport) API.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name         | Value | Description             |
-| ------------ | ----- | ----------------------- |
-| NOT_SUPPORT  | 0     | Unsupported data type.  |
-| STRING       | 1     | String type.            |
-| NUMBER       | 2     | Number type.            |
-| BOOLEAN      | 3     | Boolean type.           |
-| ARRAY_BUFFER | 4     | Raw binary data buffer. |
-| ARRAY        | 5     | Array type.             |
-| ERROR        | 6     | Error object type.      |
+| Name        | Value| Description                           |
+| ------------ | -- |------------------------------- |
+| NOT_SUPPORT  | 0 |Unsupported data type.|
+| STRING       | 1 |String type.|
+| NUMBER       | 2 |Number type.|
+| BOOLEAN      | 3 |Boolean type.|
+| ARRAY_BUFFER | 4 |Raw binary data buffer.|
+| ARRAY        | 5 |Array type.|
+| ERROR        | 6 |Error object type.|
 
 ## MediaPlaybackState<sup>12+</sup>
 
@@ -10348,12 +10957,12 @@ Enumerates the playback states on the current web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name    | Value | Description                                        |
-| ------- | ----- | -------------------------------------------------- |
-| NONE    | 0     | No audio or video playback is started on the page. |
-| PLAYING | 1     | The audio and video on the page are being played.  |
-| PAUSED  | 2     | The audio and video on the page are paused.        |
-| STOPPED | 3     | The audio and video on the page are stopped.       |
+| Name   | Value  | Description              |
+| ------- | ---- | ------------------ |
+| NONE    | 0    | No audio or video playback is started on the page.|
+| PLAYING | 1    | The audio and video on the page are being played.|
+| PAUSED  | 2    | The audio and video on the page are paused.  |
+| STOPPED | 3    | The audio and video on the page are stopped.  |
 
 ## RenderProcessMode<sup>12+</sup>
 
@@ -10361,10 +10970,10 @@ Enumerates the ArkWeb render subprocess modes.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name     | Value | Description                                                  |
-| -------- | ----- | ------------------------------------------------------------ |
-| SINGLE   | 0     | ArkWeb single render subprocess mode. In this mode, multiple **Web** components share one render subprocess. |
-| MULTIPLE | 1     | ArkWeb multi-render subprocess mode. In this mode, each **Web** component has a rendering subprocess. |
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| SINGLE        | 0 |ArkWeb single render subprocess mode. In this mode, multiple **Web** components share one render subprocess.|
+| MULTIPLE      | 1 |ArkWeb multi-render subprocess mode. In this mode, each **Web** component has a rendering subprocess.|
 
 
 ## JsMessageExt<sup>10+</sup>
@@ -10381,9 +10990,9 @@ Obtains the type of the data object. For the complete sample code, see [runJavaS
 
 **Return value**
 
-| Type                              | Description                                                  |
-| --------------------------------- | ------------------------------------------------------------ |
-| [JsMessageType](#jsmessagetype10) | Type of the data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API. |
+| Type          | Description                                                     |
+| --------------| --------------------------------------------------------- |
+| [JsMessageType](#jsmessagetype10) | Type of the data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API.|
 
 ### getString<sup>10+</sup>
 
@@ -10395,16 +11004,16 @@ Obtains string-type data of the data object. For the complete sample code, see [
 
 **Return value**
 
-| Type   | Description              |
-| ------ | ------------------------ |
-| string | Data of the string type. |
+| Type          | Description         |
+| --------------| ------------- |
+| string | Data of the string type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
@@ -10417,16 +11026,16 @@ Obtains number-type data of the data object. For the complete sample code, see [
 
 **Return value**
 
-| Type   | Description              |
-| ------ | ------------------------ |
-| number | Data of the number type. |
+| Type          | Description         |
+| --------------| ------------- |
+| number | Data of the number type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
@@ -10439,16 +11048,16 @@ Obtains Boolean-type data of the data object. For the complete sample code, see 
 
 **Return value**
 
-| Type    | Description               |
-| ------- | ------------------------- |
-| boolean | Data of the Boolean type. |
+| Type          | Description         |
+| --------------| ------------- |
+| boolean | Data of the Boolean type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
@@ -10461,16 +11070,16 @@ Obtains raw binary data of the data object. For the complete sample code, see [r
 
 **Return value**
 
-| Type        | Description      |
-| ----------- | ---------------- |
-| ArrayBuffer | Raw binary data. |
+| Type          | Description         |
+| --------------| ------------- |
+| ArrayBuffer | Raw binary data.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
@@ -10483,16 +11092,16 @@ Obtains array-type data of the data object. For the complete sample code, see [r
 
 **Return value**
 
-| Type                                 | Description             |
-| ------------------------------------ | ----------------------- |
-| Array\<string \| number \| boolean\> | Data of the array type. |
+| Type          | Description         |
+| --------------| ------------- |
+| Array\<string \| number \| boolean\> | Data of the array type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ## WebMessageExt<sup>10+</sup>
@@ -10509,9 +11118,9 @@ Obtains the type of the data object. For the complete sample code, see [onMessag
 
 **Return value**
 
-| Type                                | Description                                                  |
-| ----------------------------------- | ------------------------------------------------------------ |
-| [WebMessageType](#webmessagetype10) | Data type supported by the [webMessagePort](#webmessageport) API. |
+| Type          | Description                                                     |
+| --------------| --------------------------------------------------------- |
+| [WebMessageType](#webmessagetype10) | Data type supported by the [webMessagePort](#webmessageport) API.|
 
 ### getString<sup>10+</sup>
 
@@ -10523,16 +11132,16 @@ Obtains string-type data of the data object. For the complete sample code, see [
 
 **Return value**
 
-| Type   | Description              |
-| ------ | ------------------------ |
-| string | Data of the string type. |
+| Type          | Description         |
+| --------------| ------------- |
+| string | Data of the string type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
@@ -10545,16 +11154,16 @@ Obtains number-type data of the data object. For the complete sample code, see [
 
 **Return value**
 
-| Type   | Description              |
-| ------ | ------------------------ |
-| number | Data of the number type. |
+| Type          | Description         |
+| --------------| ------------- |
+| number | Data of the number type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
@@ -10567,16 +11176,16 @@ Obtains Boolean-type data of the data object. For the complete sample code, see 
 
 **Return value**
 
-| Type    | Description               |
-| ------- | ------------------------- |
-| boolean | Data of the Boolean type. |
+| Type          | Description         |
+| --------------| ------------- |
+| boolean | Data of the Boolean type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
@@ -10589,16 +11198,16 @@ Obtains raw binary data of the data object. For the complete sample code, see [o
 
 **Return value**
 
-| Type        | Description      |
-| ----------- | ---------------- |
-| ArrayBuffer | Raw binary data. |
+| Type          | Description         |
+| --------------| ------------- |
+| ArrayBuffer | Raw binary data.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
@@ -10611,16 +11220,16 @@ Obtains array-type data of the data object. For the complete sample code, see [o
 
 **Return value**
 
-| Type                                 | Description             |
-| ------------------------------------ | ----------------------- |
-| Array\<string \| number \| boolean\> | Data of the array type. |
+| Type          | Description         |
+| --------------| ------------- |
+| Array\<string \| number \| boolean\> | Data of the array type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### getError<sup>10+</sup>
@@ -10633,16 +11242,16 @@ Obtains the error-object-type data of the data object. For the complete sample c
 
 **Return value**
 
-| Type  | Description                    |
-| ----- | ------------------------------ |
-| Error | Data of the error object type. |
+| Type          | Description         |
+| --------------| ------------- |
+| Error | Data of the error object type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
 
 ### setType<sup>10+</sup>
@@ -10655,15 +11264,16 @@ Sets the type for the data object. For the complete sample code, see [onMessageE
 
 **Parameters**
 
-| Name | Type                                | Mandatory | Description                                                  |
-| ---- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| type | [WebMessageType](#webmessagetype10) | Yes       | Data type supported by the [webMessagePort](#webmessageport) API. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| type  | [WebMessageType](#webmessagetype10) | Yes  | Data type supported by the [webMessagePort](#webmessageport) API.|
 
 **Error codes**
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setString<sup>10+</sup>
 
@@ -10675,15 +11285,16 @@ Sets the string-type data of the data object. For the complete sample code, see 
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description  |
-| ------- | ------ | --------- | ------------ |
-| message | string | Yes       | String type. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | string | Yes  | String type.|
 
 **Error codes**
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setNumber<sup>10+</sup>
 
@@ -10695,15 +11306,16 @@ Sets the number-type data of the data object. For the complete sample code, see 
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description              |
-| ------- | ------ | --------- | ------------------------ |
-| message | number | Yes       | Data of the number type. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | number | Yes  | Data of the number type.|
 
 **Error codes**
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setBoolean<sup>10+</sup>
 
@@ -10715,15 +11327,16 @@ Sets the Boolean-type data for the data object. For the complete sample code, se
 
 **Parameters**
 
-| Name    | Type    | Mandatory | Description               |
-| ------- | ------- | --------- | ------------------------- |
-| message | boolean | Yes       | Data of the Boolean type. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | boolean | Yes  | Data of the Boolean type.|
 
 **Error codes**
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setArrayBuffer<sup>10+</sup>
 
@@ -10735,17 +11348,18 @@ Sets the raw binary data for the data object. For the complete sample code, see 
 
 **Parameters**
 
-| Name    | Type        | Mandatory | Description      |
-| ------- | ----------- | --------- | ---------------- |
-| message | ArrayBuffer | Yes       | Raw binary data. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | ArrayBuffer | Yes  | Raw binary data.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setArray<sup>10+</sup>
 
@@ -10757,17 +11371,18 @@ Sets the array-type data for the data object. For the complete sample code, see 
 
 **Parameters**
 
-| Name    | Type                                 | Mandatory | Description             |
-| ------- | ------------------------------------ | --------- | ----------------------- |
-| message | Array\<string \| number \| boolean\> | Yes       | Data of the array type. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | Array\<string \| number \| boolean\> | Yes  | Data of the array type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setError<sup>10+</sup>
 
@@ -10779,17 +11394,18 @@ Sets the error-object-type data for the data object. For the complete sample cod
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                    |
-| ------- | ----- | --------- | ------------------------------ |
-| message | Error | Yes       | Data of the error object type. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | Error | Yes  | Data of the error object type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                   |
-| -------- | ----------------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ## WebStorageOrigin
 
@@ -10797,11 +11413,11 @@ Provides usage information of the Web SQL Database.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name   | Type   | Readable | Writable | Description                  |
-| ------ | ------ | -------- | -------- | ---------------------------- |
-| origin | string | Yes      | Yes      | Index of the origin.         |
-| usage  | number | Yes      | Yes      | Storage usage of the origin. |
-| quota  | number | Yes      | Yes      | Storage quota of the origin. |
+| Name  | Type  | Readable| Writable| Description|
+| ------ | ------ | ---- | ---- | ---- |
+| origin | string | Yes | Yes| Index of the origin.|
+| usage  | number | Yes | Yes| Storage usage of the origin.    |
+| quota  | number | Yes | Yes| Storage quota of the origin.  |
 
 ## BackForwardList
 
@@ -10809,10 +11425,10 @@ Provides the historical information list of the current webview.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name         | Type   | Readable | Writable | Description                                                  |
-| ------------ | ------ | -------- | -------- | ------------------------------------------------------------ |
-| currentIndex | number | Yes      | Yes      | Index of the current page in the page history stack.         |
-| size         | number | Yes      | Yes      | Number of indexes in the history stack. The maximum value is 50. If this value is exceeded, the earliest index will be overwritten. |
+| Name        | Type  | Readable| Writable| Description                                                        |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| currentIndex | number | Yes  | Yes  | Index of the current page in the page history stack.                                |
+| size         | number | Yes  | Yes  | Number of indexes in the history stack. The maximum value is 50. If this value is exceeded, the earliest index will be overwritten.|
 
 ### getItemAtIndex
 
@@ -10824,23 +11440,23 @@ Obtains the page record with the specified index in the history stack.
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                                           |
-| ----- | ------ | --------- | ----------------------------------------------------- |
-| index | number | Yes       | Index of the target page record in the history stack. |
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| index  | number | Yes  | Index of the target page record in the history stack.|
 
 **Return value**
 
-| Type                        | Description             |
-| --------------------------- | ----------------------- |
-| [HistoryItem](#historyitem) | Historical page record. |
+| Type                       | Description        |
+| --------------------------- | ------------ |
+| [HistoryItem](#historyitem) | Historical page record.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **Example**
 
@@ -10881,12 +11497,12 @@ Describes a historical page record.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name          | Type                                                         | Readable | Writable | Description                                             |
-| ------------- | ------------------------------------------------------------ | -------- | -------- | ------------------------------------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes      | No       | **PixelMap** object of the icon on the historical page. |
-| historyUrl    | string                                                       | Yes      | Yes      | URL of the historical page.                             |
-| historyRawUrl | string                                                       | Yes      | Yes      | Original URL of the historical page.                    |
-| title         | string                                                       | Yes      | Yes      | Title of the historical page.                           |
+| Name         | Type                                  | Readable| Writable| Description                        |
+| ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | No  | **PixelMap** object of the icon on the historical page.|
+| historyUrl    | string                                 | Yes  | Yes  | URL of the historical page.       |
+| historyRawUrl | string                                 | Yes  | Yes  | Original URL of the historical page.   |
+| title         | string                                 | Yes  | Yes  | Title of the historical page.          |
 
 ## WebCustomScheme
 
@@ -10894,17 +11510,17 @@ Defines a custom URL scheme.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                               | Type    | Readable | Writable | Description                                                  |
-| ---------------------------------- | ------- | -------- | -------- | ------------------------------------------------------------ |
-| schemeName                         | string  | Yes      | Yes      | Name of the custom URL scheme. The value can contain a maximum of 32 characters, including lowercase letters, digits, periods (.), plus signs (+), and hyphens (-), and must start with a letter. |
-| isSupportCORS                      | boolean | Yes      | Yes      | Whether to support cross-origin resource sharing (CORS).     |
-| isSupportFetch                     | boolean | Yes      | Yes      | Whether to support fetch requests.                           |
-| isStandard<sup>12+</sup>           | boolean | Yes      | Yes      | Whether the scheme is processed as a standard scheme. The standard scheme must comply with the URL normalization and parsing rules defined in section 3.1 of [RFC 1738](http://www.ietf.org/rfc/rfc1738.txt). |
-| isLocal<sup>12+</sup>              | boolean | Yes      | Yes      | Whether the scheme is treated with the same security rules as those applied to file URLs. |
-| isDisplayIsolated<sup>12+</sup>    | boolean | Yes      | Yes      | Whether the content of the scheme can be displayed or accessed from other content that uses the same scheme. |
-| isSecure<sup>12+</sup>             | boolean | Yes      | Yes      | Whether the scheme is treated with the same security rules as those applied to HTTPS URLs. |
-| isCspBypassing<sup>12+</sup>       | boolean | Yes      | Yes      | Whether the scheme can bypass the content security policy (CSP) checks. In most cases, this value should not be set when **isStandard** is set to **true**. |
-| isCodeCacheSupported<sup>12+</sup> | boolean | Yes      | Yes      | Whether JavaScript resources loaded with the scheme can be used to create a code cache. |
+| Name          | Type      | Readable| Writable| Description                        |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| schemeName     | string    | Yes  | Yes  | Name of the custom URL scheme. The value can contain a maximum of 32 characters, including lowercase letters, digits, periods (.), plus signs (+), and hyphens (-), and must start with a letter.       |
+| isSupportCORS  | boolean   | Yes  | Yes  | Whether to support cross-origin resource sharing (CORS).   |
+| isSupportFetch | boolean   | Yes  | Yes  | Whether to support fetch requests.          |
+| isStandard<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is processed as a standard scheme. The standard scheme must comply with the URL normalization and parsing rules defined in section 3.1 of RFC 1738.          |
+| isLocal<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is treated with the same security rules as those applied to file URLs.          |
+| isDisplayIsolated<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the content of the scheme can be displayed or accessed from other content that uses the same scheme.          |
+| isSecure<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme is treated with the same security rules as those applied to HTTPS URLs.          |
+| isCspBypassing<sup>12+</sup> | boolean   | Yes  | Yes  | Whether the scheme can bypass the content security policy (CSP) checks. In most cases, this value should not be set when **isStandard** is set to **true**.        |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | Yes  | Yes  | Whether JavaScript resources loaded with the scheme can be used to create a code cache.        |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -10912,11 +11528,11 @@ Describes the mode in which the **Web** component uses HTTPDNS.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name        | Value | Description                                                  |
-| ----------- | ----- | ------------------------------------------------------------ |
-| OFF         | 0     | HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration. |
-| AUTO        | 1     | HTTPDNS is used in automatic mode. If the specified HTTPDNS server is unavailable for resolution, the component falls back to the system DNS server. |
-| SECURE_ONLY | 2     | The specified HTTPDNS server is forcibly used for DNS resolution. |
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| OFF                                  | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
+| AUTO                                 | 1 |HTTPDNS is used in automatic mode. If the specified HTTPDNS server is unavailable for resolution, the component falls back to the system DNS server.|
+| SECURE_ONLY                          | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|
 
 ## WebDownloadState<sup>11+</sup>
 
@@ -10924,15 +11540,15 @@ Describes the state of a download task.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name        | Value | Description                                |
-| ----------- | ----- | ------------------------------------------ |
-| IN_PROGRESS | 0     | The download task is in progress.          |
-| COMPLETED   | 1     | The download task is completed.            |
-| CANCELED    | 2     | The download task has been canceled.       |
-| INTERRUPTED | 3     | The download task is interrupted.          |
-| PENDING     | 4     | The download task is pending.              |
-| PAUSED      | 5     | The download task is paused.               |
-| UNKNOWN     | 6     | The state of the download task is unknown. |
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| IN_PROGRESS                                  | 0 |The download task is in progress.|
+| COMPLETED                                 | 1 |The download task is completed.|
+| CANCELED                          | 2 |The download task has been canceled.|
+| INTERRUPTED                          | 3 |The download task is interrupted.|
+| PENDING                          | 4 |The download task is pending.|
+| PAUSED                          | 5 |The download task is paused.|
+| UNKNOWN                          | 6 |The state of the download task is unknown.|
 
 ## WebDownloadErrorCode<sup>11+</sup>
 
@@ -10940,36 +11556,36 @@ Describes the download task error code.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                           | Value | Description                                                  |
-| ------------------------------ | ----- | ------------------------------------------------------------ |
-| ERROR_UNKNOWN                  | 0     | Unknown error.                                               |
-| FILE_FAILED                    | 1     | Failed to operate the file.                                  |
-| FILE_ACCESS_DENIED             | 2     | No permission to access the file.                            |
-| FILE_NO_SPACE                  | 3     | The disk space is insufficient.                              |
-| FILE_NAME_TOO_LONG             | 5     | The file name is too long.                                   |
-| FILE_TOO_LARGE                 | 6     | The file is too large.                                       |
-| FILE_TRANSIENT_ERROR           | 10    | Some temporary issues occur, such as insufficient memory, files in use, and too many files open at the same time. |
-| FILE_BLOCKED                   | 11    | Access to the file is blocked due to certain local policies. |
-| FILE_TOO_SHORT                 | 13    | The file to resume downloading is not long enough. It may not exist. |
-| FILE_HASH_MISMATCH             | 14    | Hash mismatch.                                               |
-| FILE_SAME_AS_SOURCE            | 15    | The file already exists.                                     |
-| NETWORK_FAILED                 | 20    | Common network error.                                        |
-| NETWORK_TIMEOUT                | 21    | Network connection timeout.                                  |
-| NETWORK_DISCONNECTED           | 22    | Network disconnected.                                        |
-| NETWORK_SERVER_DOWN            | 23    | The server is shut down.                                     |
-| NETWORK_INVALID_REQUEST        | 24    | Invalid network request. The request may be redirected to an unsupported scheme or an invalid URL. |
-| SERVER_FAILED                  | 30    | The server returns a general error.                          |
-| SERVER_NO_RANGE                | 31    | The server does not support the range request.               |
-| SERVER_BAD_CONTENT             | 33    | The server does not have the requested data.                 |
-| SERVER_UNAUTHORIZED            | 34    | The file cannot be downloaded from the server.               |
-| SERVER_CERT_PROBLEM            | 35    | The server certificate is incorrect.                         |
-| SERVER_FORBIDDEN               | 36    | The access to the server is forbidden.                       |
-| SERVER_UNREACHABLE             | 37    | The server cannot be accessed.                               |
-| SERVER_CONTENT_LENGTH_MISMATCH | 38    | The received data does not match the content length.         |
-| SERVER_CROSS_ORIGIN_REDIRECT   | 39    | An unexpected cross-site redirection occurs.                 |
-| USER_CANCELED                  | 40    | The user cancels the download.                               |
-| USER_SHUTDOWN                  | 41    | The user closes the application.                             |
-| CRASH                          | 50    | The application crashes.                                     |
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| ERROR_UNKNOWN                                  | 0 |Unknown error.|
+| FILE_FAILED | 1 |  Failed to operate the file.|
+| FILE_ACCESS_DENIED | 2 | No permission to access the file.|
+| FILE_NO_SPACE | 3 | The disk space is insufficient.|
+| FILE_NAME_TOO_LONG | 5 | The file name is too long.|
+| FILE_TOO_LARGE | 6 | The file is too large.|
+| FILE_TRANSIENT_ERROR | 10 |  Some temporary issues occur, such as insufficient memory, files in use, and too many files open at the same time.|
+| FILE_BLOCKED | 11 |  Access to the file is blocked due to certain local policies.|
+| FILE_TOO_SHORT | 13 |  The file to resume downloading is not long enough. It may not exist.|
+| FILE_HASH_MISMATCH | 14 |  Hash mismatch.|
+| FILE_SAME_AS_SOURCE | 15 |  The file already exists.|
+| NETWORK_FAILED | 20 |  Common network error.|
+| NETWORK_TIMEOUT | 21 | Network connection timeout.|
+| NETWORK_DISCONNECTED | 22 | Network disconnected.|
+| NETWORK_SERVER_DOWN | 23 |  The server is shut down.|
+| NETWORK_INVALID_REQUEST | 24 |  Invalid network request. The request may be redirected to an unsupported scheme or an invalid URL.|
+| SERVER_FAILED | 30 | The server returns a general error.|
+| SERVER_NO_RANGE | 31 |  The server does not support the range request.|
+| SERVER_BAD_CONTENT | 33 |   The server does not have the requested data.|
+| SERVER_UNAUTHORIZED | 34 |  The file cannot be downloaded from the server.|
+| SERVER_CERT_PROBLEM | 35 |  The server certificate is incorrect.|
+| SERVER_FORBIDDEN | 36 |  The access to the server is forbidden.|
+| SERVER_UNREACHABLE | 37 |  The server cannot be accessed.|
+| SERVER_CONTENT_LENGTH_MISMATCH | 38 |  The received data does not match the content length.|
+| SERVER_CROSS_ORIGIN_REDIRECT | 39 | An unexpected cross-site redirection occurs.|
+| USER_CANCELED | 40 | The user cancels the download.|
+| USER_SHUTDOWN | 41 | The user closes the application.|
+| CRASH | 50 | The application crashes.|
 
 ## WebDownloadItem<sup>11+</sup>
 
@@ -10989,9 +11605,9 @@ Obtains the unique ID of this download task.
 
 **Return value**
 
-| Type   | Description                     |
-| ------ | ------------------------------- |
-| string | Unique ID of the download task. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Unique ID of the download task.|
 
 **Example**
 
@@ -11054,9 +11670,9 @@ Obtains the download speed, in bytes per second.
 
 **Return value**
 
-| Type   | Description                          |
-| ------ | ------------------------------------ |
-| number | Download speed, in bytes per second. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Download speed, in bytes per second.|
 
 **Example**
 
@@ -11119,9 +11735,9 @@ Obtains the download progress. The value **100** indicates that the download is 
 
 **Return value**
 
-| Type   | Description                                                  |
-| ------ | ------------------------------------------------------------ |
-| number | Download progress. The value **100** indicates that the download is complete. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Download progress. The value **100** indicates that the download is complete.|
 
 **Example**
 
@@ -11184,9 +11800,9 @@ Obtains the total length of the file to be downloaded.
 
 **Return value**
 
-| Type   | Description                                |
-| ------ | ------------------------------------------ |
-| number | Total length of the file to be downloaded. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Total length of the file to be downloaded.|
 
 **Example**
 
@@ -11249,9 +11865,9 @@ Obtains the download state.
 
 **Return value**
 
-| Type                                    | Description     |
-| --------------------------------------- | --------------- |
-| [WebDownloadState](#webdownloadstate11) | Download state. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| [WebDownloadState](#webdownloadstate11) | Download state.|
 
 **Example**
 
@@ -11314,9 +11930,9 @@ Obtains the download error code.
 
 **Return value**
 
-| Type                                            | Description                                         |
-| ----------------------------------------------- | --------------------------------------------------- |
-| [WebDownloadErrorCode](#webdownloaderrorcode11) | Error code returned when the download error occurs. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| [WebDownloadErrorCode](#webdownloaderrorcode11) | Error code returned when the download error occurs.|
 
 **Example**
 
@@ -11380,9 +11996,9 @@ Obtains the request mode of this download task.
 
 **Return value**
 
-| Type   | Description                        |
-| ------ | ---------------------------------- |
-| string | Request mode of the download task. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Request mode of the download task.|
 
 **Example**
 
@@ -11445,9 +12061,9 @@ Obtains the MIME type of this download task (for example, a sound file may be ma
 
 **Return value**
 
-| Type   | Description                                                  |
-| ------ | ------------------------------------------------------------ |
-| string | MIME type (for example, audio/ogg for a sound file, and image/png for an image file). |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | MIME type (for example, audio/ogg for a sound file, and image/png for an image file).|
 
 **Example**
 
@@ -11510,9 +12126,9 @@ Obtains the download request URL.
 
 **Return value**
 
-| Type   | Description           |
-| ------ | --------------------- |
-| string | Download request URL. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Download request URL.|
 
 **Example**
 
@@ -11575,9 +12191,9 @@ Obtains the suggested file name for this download task.
 
 **Return value**
 
-| Type   | Description          |
-| ------ | -------------------- |
-| string | Suggested file name. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Suggested file name.|
 
 **Example**
 
@@ -11640,9 +12256,9 @@ Obtains the number of received bytes.
 
 **Return value**
 
-| Type   | Description               |
+| Type  | Description                     |
 | ------ | ------------------------- |
-| number | Number of received bytes. |
+| number | Number of received bytes.|
 
 **Example**
 
@@ -11706,9 +12322,9 @@ Obtains the full path of the downloaded file on the disk.
 
 **Return value**
 
-| Type   | Description                                   |
-| ------ | --------------------------------------------- |
-| string | Full path of the downloaded file on the disk. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Full path of the downloaded file on the disk.|
 
 **Example**
 
@@ -11772,9 +12388,9 @@ Serializes the failed download to a byte array.
 
 **Return value**
 
-| Type       | Description                                              |
-| ---------- | -------------------------------------------------------- |
-| Uint8Array | Byte array into which the failed download is serialized. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Uint8Array | Byte array into which the failed download is serialized.|
 
 **Example**
 
@@ -11840,23 +12456,23 @@ Deserializes the serialized byte array into a **WebDownloadItem** object.
 
 **Parameters**
 
-| Name           | Type       | Mandatory | Description                                       |
-| -------------- | ---------- | --------- | ------------------------------------------------- |
-| serializedData | Uint8Array | Yes       | Byte array into which the download is serialized. |
+| Name             | Type   | Mandatory  |  Description|
+| ------------------ | ------- | ---- | ------------- |
+| serializedData | Uint8Array | Yes  | Byte array into which the download is serialized.|
 
 **Return value**
 
-| Type                                  | Description                 |
-| ------------------------------------- | --------------------------- |
-| [WebDownloadItem](#webdownloaditem11) | **WebDownloadItem** object. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| [WebDownloadItem](#webdownloaditem11) | **WebDownloadItem** object.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
 
 **Example**
 
@@ -11930,17 +12546,17 @@ Starts a download. This API must be used in the **onBeforeDownload** callback of
 
 **Parameters**
 
-| Name         | Type   | Mandatory | Description                                             |
-| ------------ | ------ | --------- | ------------------------------------------------------- |
-| downloadPath | string | Yes       | Path (including the file name) of the file to download. |
+| Name| Type                  | Mandatory| Description                            |
+| ------ | ---------------------- | ---- | ------------------------------|
+| downloadPath   | string     | Yes | Path (including the file name) of the file to download.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
 
 **Example**
 
@@ -12096,8 +12712,8 @@ Pauses a download task.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                         |
-| -------- | ------------------------------------- |
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
 | 17100019 | The download task is not started yet. |
 
 **Example**
@@ -12192,8 +12808,8 @@ Resumes a download task.
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                    |
-| -------- | -------------------------------- |
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
 | 17100016 | The download task is not paused. |
 
 **Example**
@@ -12298,9 +12914,9 @@ Invoked to notify users before the download starts. **WebDownloadItem.start("xxx
 
 **Parameters**
 
-| Name     | Type                                             | Mandatory | Description                         |
-| -------- | ------------------------------------------------ | --------- | :---------------------------------- |
-| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes       | Callback for triggering a download. |
+| Name | Type  | Mandatory| Description          |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes  | Callback for triggering a download.|
 
 **Example**
 
@@ -12400,9 +13016,9 @@ Invoked when the download progress is updated.
 
 **Parameters**
 
-| Name     | Type                                             | Mandatory | Description                                               |
-| -------- | ------------------------------------------------ | --------- | :-------------------------------------------------------- |
-| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes       | Callback invoked when the downloaded progress is updated. |
+| Name | Type  | Mandatory| Description          |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes  | Callback invoked when the downloaded progress is updated.|
 
 **Example**
 
@@ -12502,9 +13118,9 @@ Invoked when the download is complete.
 
 **Parameters**
 
-| Name     | Type                                             | Mandatory | Description                                     |
-| -------- | ------------------------------------------------ | --------- | :---------------------------------------------- |
-| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes       | Callback invoked when the download is complete. |
+| Name | Type  | Mandatory| Description          |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes  | Callback invoked when the download is complete.|
 
 **Example**
 
@@ -12604,9 +13220,9 @@ Invoked when the download fails.
 
 **Parameters**
 
-| Name     | Type                                             | Mandatory | Description                               |
-| -------- | ------------------------------------------------ | --------- | :---------------------------------------- |
-| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes       | Callback invoked when the download fails. |
+| Name | Type  | Mandatory| Description          |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes  | Callback invoked when the download fails.|
 
 **Example**
 
@@ -12710,9 +13326,9 @@ Sets the delegate used to receive download progress triggered from **WebDownload
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                     |
-| -------- | --------------------------------------------- | --------- | ----------------------------------------------- |
-| delegate | [WebDownloadDelegate](#webdownloaddelegate11) | Yes       | Delegate used to receive the download progress. |
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| delegate      | [WebDownloadDelegate](#webdownloaddelegate11)  | Yes  | Delegate used to receive the download progress.|
 
 **Example**
 
@@ -12807,22 +13423,22 @@ struct WebComponent {
 
 static resumeDownload(webDownloadItem: WebDownloadItem): void
 
-Resumes a download task.
+Resumes a failed download task.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name            | Type                                  | Mandatory | Description              |
-| --------------- | ------------------------------------- | --------- | ------------------------ |
-| webDownloadItem | [WebDownloadItem](#webdownloaditem11) | Yes       | Download task to resume. |
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| webDownloadItem      | [WebDownloadItem](#webdownloaditem11)  | Yes  | Download task to resume.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                            |
-| -------- | ---------------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100018 | No WebDownloadDelegate has been set yet. |
 
 **Example**
@@ -12926,7 +13542,7 @@ Obtains the URL of the frame from which the last JavaScript proxy object was cal
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                                |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
@@ -13056,16 +13672,16 @@ Initializes this **WebHttpBodyStream** instance.
 
 **Return value**
 
-| Type            | Description                        |
-| --------------- | ---------------------------------- |
-| Promise\<void\> | Promise used to return the result. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                              |
-| -------- | ------------------------------------------ |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100022 | Failed to initialize the HTTP body stream. |
 
 **Example**
@@ -13162,23 +13778,23 @@ Reads data from this **WebHttpBodyStream** instance.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                                  |
-| ---- | ------ | --------- | ------------------------------------------------------------ |
-| size | number | Yes       | Number of bytes obtained from the **WebHttpBodyStream** instance. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  size | number | Yes  | Number of bytes obtained from the **WebHttpBodyStream** instance.|
 
 **Return value**
 
-| Type                   | Description                        |
-| ---------------------- | ---------------------------------- |
-| Promise\<ArrayBuffer\> | Promise used to return the result. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Promise\<ArrayBuffer\> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 
 **Example**
 
@@ -13194,9 +13810,9 @@ Obtains the size of data in this **WebHttpBodyStream** instance. This API always
 
 **Return value**
 
-| Type   | Description                                                 |
-| ------ | ----------------------------------------------------------- |
-| number | Size of data in the current **WebHttpBodyStream** instance. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Size of data in the current **WebHttpBodyStream** instance.|
 
 **Example**
 
@@ -13212,9 +13828,9 @@ Reads the current read position in this **WebHttpBodyStream** instance.
 
 **Return value**
 
-| Type   | Description                                                  |
-| ------ | ------------------------------------------------------------ |
-| number | Current read position in the **WebHttpBodyStream** instance. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Current read position in the **WebHttpBodyStream** instance.|
 
 **Example**
 
@@ -13230,9 +13846,9 @@ Checks whether this **WebHttpBodyStream** instance is transmitted by chunk.
 
 **Return value**
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| boolean | Whether the **WebHttpBodyStream** instance is transmitted by chunk. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| boolean | Whether the **WebHttpBodyStream** instance is transmitted by chunk.|
 
 **Example**
 
@@ -13248,9 +13864,9 @@ Checks whether all data in this **WebHttpBodyStream** instance has been read. Th
 
 **Return value**
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| boolean | Whether all data in the **WebHttpBodyStream** instance has been read. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| boolean | Whether all data in the **WebHttpBodyStream** instance has been read.|
 
 **Example**
 
@@ -13266,9 +13882,9 @@ Checks whether the uploaded data in this **httpBodyStream** instance is in memor
 
 **Return value**
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| boolean | Whether the uploaded data in the **WebHttpBodyStream** instance is stored in memory. |
+| Type  | Description                     |
+| ------ | ------------------------- |
+| boolean | Whether the uploaded data in the **WebHttpBodyStream** instance is stored in memory.|
 
 **Example**
 
@@ -13288,9 +13904,9 @@ Obtains the information about the resource request header.
 
 **Return value**
 
-| Type                             | Description                                    |
-| -------------------------------- | ---------------------------------------------- |
-| Array\<[WebHeader](#webheader)\> | Information about the resource request header. |
+| Type                        | Description        |
+| -------------------------- | ---------- |
+| Array\<[WebHeader](#webheader)\> | Information about the resource request header.|
 
 **Example**
 
@@ -13306,9 +13922,9 @@ Obtains the URL of the resource request.
 
 **Return value**
 
-| Type   | Description                  |
-| ------ | ---------------------------- |
-| string | URL of the resource request. |
+| Type    | Description           |
+| ------ | ------------- |
+| string | URL of the resource request.|
 
 **Example**
 
@@ -13324,9 +13940,9 @@ Obtains the request method.
 
 **Return value**
 
-| Type   | Description     |
-| ------ | --------------- |
-| string | Request method. |
+| Type    | Description           |
+| ------ | ------------- |
+| string | Request method.|
 
 **Example**
 
@@ -13342,9 +13958,9 @@ Obtains the referrer.
 
 **Return value**
 
-| Type   | Description        |
-| ------ | ------------------ |
-| string | Obtained referrer. |
+| Type    | Description           |
+| ------ | ------------- |
+| string | Obtained referrer.|
 
 **Example**
 
@@ -13360,9 +13976,9 @@ Checks whether the resource request is for the main frame.
 
 **Return value**
 
-| Type    | Description                                         |
-| ------- | --------------------------------------------------- |
-| boolean | Whether the resource request is for the main frame. |
+| Type    | Description           |
+| ------ | ------------- |
+| boolean | Whether the resource request is for the main frame.|
 
 **Example**
 
@@ -13378,9 +13994,9 @@ Checks whether the resource request is associated with a gesture (for example, a
 
 **Return value**
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| boolean | Whether the resource request is associated with a gesture (for example, a tap). |
+| Type    | Description           |
+| ------ | ------------- |
+| boolean | Whether the resource request is associated with a gesture (for example, a tap).|
 
 **Example**
 
@@ -13396,9 +14012,9 @@ Obtains the **WebHttpBodyStream** instance in this resource request.
 
 **Return value**
 
-| Type                                              | Description                                                  |
-| ------------------------------------------------- | ------------------------------------------------------------ |
-| [WebHttpBodyStream](#webhttpbodystream12) \| null | **WebHttpBodyStream** instance in the resource request. If there is no **WebHttpBodyStream** instance, **null** is returned. |
+| Type    | Description           |
+| ------ | ------------- |
+| [WebHttpBodyStream](#webhttpbodystream12) \| null | **WebHttpBodyStream** instance in the resource request. If there is no **WebHttpBodyStream** instance, **null** is returned.|
 
 **Example**
 
@@ -13414,9 +14030,9 @@ Obtains the resource type of this resource request.
 
 **Return value**
 
-| Type                                  | Description                            |
-| ------------------------------------- | -------------------------------------- |
-| [WebResourceType](#webresourcetype12) | Resource type of the resource request. |
+| Type    | Description           |
+| ------ | ------------- |
+| [WebResourceType](#webresourcetype12) | Resource type of the resource request.|
 
 **Example**
 
@@ -13432,9 +14048,9 @@ Obtains the URL of the frame that triggers this request.
 
 **Return value**
 
-| Type   | Description                                 |
-| ------ | ------------------------------------------- |
-| string | URL of the frame that triggers the request. |
+| Type    | Description           |
+| ------ | ------------- |
+| string | URL of the frame that triggers the request.|
 
 **Example**
 
@@ -13507,9 +14123,9 @@ Sets the redirection URL or the URL changed due to HSTS for this response. After
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description              |
-| ---- | ------ | --------- | ------------------------ |
-| url  | string | Yes       | URL to be redirected to. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  url | string | Yes  | URL to be redirected to.|
 
 **Example**
 
@@ -13519,9 +14135,9 @@ For the complete sample code, see [constructor](#constructor12).
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 ### setNetErrorCode<sup>12+</sup>
 
@@ -13533,17 +14149,17 @@ Sets the network error code for this response.
 
 **Parameters**
 
-| Name | Type                                                       | Mandatory | Description         |
-| ---- | ---------------------------------------------------------- | --------- | ------------------- |
-| code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | Yes       | Network error code. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | Yes  | Network error code.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 
 **Example**
 
@@ -13559,17 +14175,17 @@ Sets the HTTP status code for this response.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description       |
-| ---- | ------ | --------- | ----------------- |
-| code | number | Yes       | HTTP status code. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  code | number | Yes  | HTTP status code.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **Example**
 
@@ -13585,17 +14201,17 @@ Sets the status text for this response.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description  |
-| ---- | ------ | --------- | ------------ |
-| text | string | Yes       | Status text. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  text | string | Yes  | Status text.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **Example**
 
@@ -13611,17 +14227,17 @@ Sets the MIME type for this response.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description |
-| ---- | ------ | --------- | ----------- |
-| type | string | Yes       | MIME type.  |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  type | string | Yes  | MIME type.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **Example**
 
@@ -13637,17 +14253,17 @@ Sets the character set for this response.
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description    |
-| -------- | ------ | --------- | -------------- |
-| encoding | string | Yes       | Character set. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  encoding | string | Yes  | Character set.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **Example**
 
@@ -13663,19 +14279,19 @@ Sets the header information for this response.
 
 **Parameters**
 
-| Name      | Type    | Mandatory | Description                                                  |
-| --------- | ------- | --------- | ------------------------------------------------------------ |
-| name      | string  | Yes       | Name of the header.                                          |
-| value     | string  | Yes       | Value of the header.                                         |
-| overwrite | boolean | Yes       | Whether to override the existing header. The value **true** means to override the existing header, and **false** means the opposite. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  name | string | Yes  | Name of the header.|
+|  value | string | Yes  | Value of the header.|
+|  overwrite | boolean | Yes  | Whether to override the existing header. The value **true** means to override the existing header, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 
 **Example**
 
@@ -13692,9 +14308,9 @@ Caution: To obtain the URL for JavaScriptProxy communication API authentication,
 
 **Return value**
 
-| Type   | Description                                     |
-| ------ | ----------------------------------------------- |
-| string | Redirection URL or the URL changed due to HSTS. |
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| string | Redirection URL or the URL changed due to HSTS.|
 
 **Example**
 
@@ -13710,9 +14326,9 @@ Obtains the network error code of this response.
 
 **Return value**
 
-| Type                                                       | Description                         |
-| ---------------------------------------------------------- | ----------------------------------- |
-| [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | Network error code of the response. |
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | Network error code of the response.|
 
 **Example**
 
@@ -13728,9 +14344,9 @@ Obtains the HTTP status code of this response.
 
 **Return value**
 
-| Type   | Description                       |
-| ------ | --------------------------------- |
-| number | HTTP status code of the response. |
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| number | HTTP status code of the response.|
 
 **Example**
 
@@ -13746,9 +14362,9 @@ Obtains the status text of this response.
 
 **Return value**
 
-| Type   | Description  |
-| ------ | ------------ |
-| string | Status text. |
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| string | Status text.|
 
 **Example**
 
@@ -13764,9 +14380,9 @@ Obtains the MIME type of this response.
 
 **Return value**
 
-| Type   | Description |
-| ------ | ----------- |
-| string | MIME type.  |
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| string | MIME type.|
 
 **Example**
 
@@ -13782,9 +14398,9 @@ Obtains the character set of this response.
 
 **Return value**
 
-| Type   | Description    |
-| ------ | -------------- |
-| string | Character set. |
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| string | Character set.|
 
 **Example**
 
@@ -13794,22 +14410,22 @@ For the complete sample code, see [constructor](#constructor12).
 
 getHeaderByName(name: string): string
 
-Obtains the header of this response.
+Obtains the character set of this response.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description         |
-| ---- | ------ | --------- | ------------------- |
-| name | string | Yes       | Name of the header. |
+| Name | Type            | Mandatory| Description                 |
+| ------- | ---------------- | ---- | -------------------- |
+| name     | string | Yes  | Name of the header.     |
 
 
 **Return value**
 
-| Type   | Description          |
-| ------ | -------------------- |
-| string | Value of the header. |
+| Type   | Description                                    |
+| ------- | --------------------------------------- |
+| string | Value of the header.|
 
 **Example**
 
@@ -13829,18 +14445,18 @@ Sends a response header for this request.
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description       |
-| -------- | ------------------------------------------------------- | --------- | ----------------- |
-| response | [WebSchemeHandlerResponse](#webschemehandlerresponse12) | Yes       | Response to send. |
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| response      | [WebSchemeHandlerResponse](#webschemehandlerresponse12)  | Yes  | Response to send.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                                |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
-| 17100021 | The resource handler is invalid.                             |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
+| 17100021 | The resource handler is invalid. |
 
 **Example**
 
@@ -13856,18 +14472,18 @@ Sends a response body for this request.
 
 **Parameters**
 
-| Name | Type        | Mandatory | Description    |
-| ---- | ----------- | --------- | -------------- |
-| data | ArrayBuffer | Yes       | Response body. |
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| data      | ArrayBuffer  | Yes  | Response body.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                                |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
-| 17100021 | The resource handler is invalid.                             |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
+| 17100021 | The resource handler is invalid. |
 
 **Example**
 
@@ -13877,7 +14493,7 @@ See [OnRequestStart](#onrequeststart12).
 
 didFinish(): void
 
-Notifies the **Web** component that this request is completed and that no more data is available.
+Notifies the **Web** component that this request is completed and that no more data is available. Before calling this API, you need to call [didReceiveResponse](#didreceiveresponse12) to send a response header for this request.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -13885,8 +14501,8 @@ Notifies the **Web** component that this request is completed and that no more d
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                    |
-| -------- | -------------------------------- |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
 | 17100021 | The resource handler is invalid. |
 
 **Example**
@@ -13897,24 +14513,24 @@ See [OnRequestStart](#onrequeststart12).
 
 didFail(code: WebNetErrorList): void
 
-Notifies the ArkWeb engine that this request fails.
+Notifies the ArkWeb kernel that this request fails. Before calling this API, call [didReceiveResponse](#didreceiveresponse12) to send a response header to this request.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type                                                       | Mandatory | Description         |
-| ---- | ---------------------------------------------------------- | --------- | ------------------- |
-| code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | Yes       | Network error code. |
+| Name  | Type   |  Mandatory | Description                      |
+| --------| ------- | ---- | ---------------------------|
+|  code | [WebNetErrorList](js-apis-netErrorList.md#webneterrorlist) | Yes  | Network error code.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID       | Error Message                                                |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
-| 17100021 | The resource handler is invalid.                             |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 17100021 | The resource handler is invalid. |
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -13936,17 +14552,17 @@ Called when a request starts. In this callback, you can determine whether to int
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| callback | (request: [WebSchemeHandlerRequest](#webschemehandlerrequest12), handler: [WebResourceHandler](#webresourcehandler12)) => boolean | Yes       | Callback invoked when a request for the specified scheme starts. **request** represents a request. **handler** provides the custom response header and response body for the **Web** component. The return value indicates whether the request is intercepted. |
+| Name  | Type                | Mandatory| Description      |
+| -------- | -------------------- | ---- | ---------- |
+| callback   | (request: [WebSchemeHandlerRequest](#webschemehandlerrequest12), handler: [WebResourceHandler](#webresourcehandler12)) => boolean | Yes| Callback invoked when a request for the specified scheme starts. **request** represents a request. **handler** provides the custom response header and response body for the **Web** component. The return value indicates whether the request is intercepted.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -14010,10 +14626,13 @@ struct WebComponent {
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
+              // Before calling didFinish or didFail, call didReceiveResponse to send a response header to this request.
               let buf = buffer.from(this.htmlData)
               try {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
+                  resourceHandler.didReceiveResponse(response);
+                  resourceHandler.didReceiveResponseBody(buf.buffer);
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
@@ -14056,17 +14675,17 @@ Called when a request is complete, under the prerequisite that the request is in
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                    |
-| -------- | ------------------------------------------------------------ | --------- | ---------------------------------------------- |
-| callback | Callback\<[WebSchemeHandlerRequest](#webschemehandlerrequest12)\> | Yes       | Callback invoked when the request is complete. |
+| Name  | Type                | Mandatory| Description      |
+| -------- | -------------------- | ---- | ---------- |
+| callback | Callback\<[WebSchemeHandlerRequest](#webschemehandlerrequest12)\> | Yes  | Callback invoked when the request is complete.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message            |
-| ---- | ------------------------ |
-| 401  | Invalid input parameter. |
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 401 | Invalid input parameter. |
 
 **Example**
 
@@ -14078,9 +14697,9 @@ Represents a configuration object for precompiling JavaScript in the **Web** com
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name            | Type                           | Readable | Writable | Description                                                  |
-| --------------- | ------------------------------ | -------- | -------- | ------------------------------------------------------------ |
-| responseHeaders | Array<[WebHeader](#webheader)> | Yes      | Yes      | Array of response headers from the server when a JavaScript file is requested. They include information such as E-Tag or Last-Modified to identify the file version and determine whether the bytecode cache needs to be refreshed. |
+| Name       | Type  | Readable| Writable|Description                |
+| ----------- | ------ | -----|------|------------------- |
+| responseHeaders   | Array<[WebHeader](#webheader)> | Yes| Yes| Array of response headers from the server when a JavaScript file is requested. They include information such as E-Tag or Last-Modified to identify the file version and determine whether the bytecode cache needs to be refreshed.  |
 
 ## PlaybackStatus<sup>12+</sup>
 
@@ -14088,10 +14707,10 @@ Represents the playback status of the player, functioning as a parameter in [han
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name    | Value | Description |
-| ------- | ----- | ----------- |
-| PAUSED  | 0     | Playing.    |
-| PLAYING | 1     | Paused.     |
+| Name| Value| Description|
+|------|----|------|
+| PAUSED  | 0 | Playing.|
+| PLAYING | 1 | Paused.|
 
 ## NetworkState<sup>12+<sup>
 
@@ -14099,12 +14718,12 @@ Describes the network status of the player.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name          | Value | Description                                                  |
-| ------------- | ----- | ------------------------------------------------------------ |
-| EMPTY         | 0     | The player has not started downloading data.                 |
-| IDLE          | 1     | The player's network activity is idle. This could mean that the download of a media segment is complete, and the player is waiting to start downloading the next segment. |
-| LOADING       | 2     | The player is downloading media data.                        |
-| NETWORK_ERROR | 3     | A network error occurs.                                      |
+| Name| Value| Description|
+|------|----|------|
+| EMPTY         | 0 | The player has not started downloading data.|
+| IDLE          | 1 | The player's network activity is idle. This could mean that the download of a media segment is complete, and the player is waiting to start downloading the next segment.|
+| LOADING       | 2 | The player is downloading media data.|
+| NETWORK_ERROR | 3 | A network error occurs.|
 
 ## ReadyState<sup>12+<sup>
 
@@ -14112,13 +14731,13 @@ Enumerates the cache states of the player.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name              | Value | Description                                                  |
-| ----------------- | ----- | ------------------------------------------------------------ |
-| HAVE_NOTHING      | 0     | There is no data cached.                                     |
-| HAVE_METADATA     | 1     | Only media metadata is cached.                               |
-| HAVE_CURRENT_DATA | 2     | Data up to the current playback position is cached.          |
-| HAVE_FUTURE_DATA  | 3     | Data beyond the current playback position is cached, but there might still be stutters during playback. |
-| HAVE_ENOUGH_DATA  | 4     | Sufficient data has been cached to ensure smooth playback.   |
+| Name| Value| Description|
+|------|----|------|
+| HAVE_NOTHING      | 0 | There is no data cached.|
+| HAVE_METADATA     | 1 | Only media metadata is cached.|
+| HAVE_CURRENT_DATA | 2 | Data up to the current playback position is cached.|
+| HAVE_FUTURE_DATA  | 3 | Data beyond the current playback position is cached, but there might still be stutters during playback.|
+| HAVE_ENOUGH_DATA  | 4 | Sufficient data has been cached to ensure smooth playback.|
 
 ## MediaError<sup>12+<sup>
 
@@ -14126,11 +14745,11 @@ Enumerates the error types of the player.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name          | Value | Description         |
-| ------------- | ----- | ------------------- |
-| NETWORK_ERROR | 1     | Network error.      |
-| FORMAT_ERROR  | 2     | Media format error. |
-| DECODE_ERROR  | 3     | Decoding error.     |
+| Name| Value| Description|
+|------|----|------|
+| NETWORK_ERROR | 1 | Network error.|
+| FORMAT_ERROR  | 2 | Media format error.|
+| DECODE_ERROR  | 3 | Decoding error.|
 
 ## NativeMediaPlayerHandler<sup>12+<sup>
 
@@ -14147,9 +14766,9 @@ Called to notify the ArkWeb engine of the playback status of the player when the
 
 **Parameters**
 
-| Name   | Type                                | Mandatory | Description    |
-| ------ | ----------------------------------- | --------- | -------------- |
-| status | [PlaybackStatus](#playbackstatus12) | Yes       | Player status. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| status | [PlaybackStatus](#playbackstatus12) | Yes| Player status.|
 
 **Example**
 
@@ -14165,9 +14784,9 @@ Called to notify the ArkWeb engine of the volume of the player when the volume c
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description           |
-| ------ | ------ | --------- | --------------------- |
-| volume | number | Yes       | Volume of the player. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| volume | number | Yes| Volume of the player.|
 
 **Example**
 
@@ -14183,9 +14802,9 @@ Called to notify the ArkWeb engine of the muted status of the player when the mu
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                  |
-| ----- | ------- | --------- | ---------------------------- |
-| muted | boolean | Yes       | Whether the player is muted. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| muted | boolean | Yes| Whether the player is muted.|
 
 **Example**
 
@@ -14201,9 +14820,9 @@ Called to notify the ArkWeb engine of the playback rate of the player when the p
 
 **Parameters**
 
-| Name         | Type   | Mandatory | Description    |
-| ------------ | ------ | --------- | -------------- |
-| playbackRate | number | Yes       | Playback rate. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| playbackRate | number | Yes| Playback rate.|
 
 **Example**
 
@@ -14219,9 +14838,9 @@ Called to notify the ArkWeb engine of the total duration of the media.
 
 **Parameters**
 
-| Name     | Type   | Mandatory | Description                                |
-| -------- | ------ | --------- | ------------------------------------------ |
-| duration | number | Yes       | Total duration of the media. Unit: second. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| duration | number | Yes| Total duration of the media. Unit: second.|
 
 **Example**
 
@@ -14237,9 +14856,9 @@ Called to notify the ArkWeb engine of the playback progress when the playback pr
 
 **Parameters**
 
-| Name            | Type   | Mandatory | Description                     |
-| --------------- | ------ | --------- | ------------------------------- |
-| currentPlayTime | number | Yes       | Current progress. Unit: second. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| currentPlayTime | number | Yes| Current progress. Unit: second. |
 
 **Example**
 
@@ -14255,9 +14874,9 @@ Called to notify the ArkWeb engine of the buffer time when the buffer time chang
 
 **Parameters**
 
-| Name            | Type   | Mandatory | Description                           |
-| --------------- | ------ | --------- | ------------------------------------- |
-| bufferedEndTime | number | Yes       | Duration of media data in the buffer. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| bufferedEndTime | number | Yes| Duration of media data in the buffer.|
 
 **Example**
 
@@ -14285,9 +14904,9 @@ Called to notify the ArkWeb engine of the network status of the player when the 
 
 **Parameters**
 
-| Name  | Type                            | Mandatory | Description                   |
-| ----- | ------------------------------- | --------- | ----------------------------- |
-| state | [NetworkState](#networkstate12) | Yes       | Network status of the player. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| state | [NetworkState](#networkstate12) | Yes| Network status of the player.|
 
 **Example**
 
@@ -14303,9 +14922,9 @@ Called to notify the ArkWeb engine of the cache status of the player when the ca
 
 **Parameters**
 
-| Name  | Type                        | Mandatory | Description                 |
-| ----- | --------------------------- | --------- | --------------------------- |
-| state | [ReadyState](#readystate12) | Yes       | Cache status of the player. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| state | [ReadyState](#readystate12) | Yes| Cache status of the player.|
 
 **Example**
 
@@ -14321,9 +14940,9 @@ Called to notify the ArkWeb engine of the full screen status of the player when 
 
 **Parameters**
 
-| Name       | Type    | Mandatory | Description                           |
-| ---------- | ------- | --------- | ------------------------------------- |
-| fullscreen | boolean | Yes       | Whether the player is in full screen. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| fullscreen | boolean | Yes| Whether the player is in full screen.|
 
 **Example**
 
@@ -14363,10 +14982,10 @@ Called to notify the ArkWeb engine that an error occurs with the player.
 
 **Parameters**
 
-| Name         | Type                        | Mandatory | Description        |
-| ------------ | --------------------------- | --------- | ------------------ |
-| error        | [MediaError](#mediaerror12) | Yes       | Error object type. |
-| errorMessage | string                      | Yes       | Error message.     |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| error | [MediaError](#mediaerror12) | Yes| Error object type.|
+| errorMessage | string | Yes| Error message.|
 
 **Example**
 
@@ -14382,10 +15001,10 @@ Called to notify the ArkWeb engine of the video size of the player.
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description   |
-| ------ | ------ | --------- | ------------- |
-| width  | number | Yes       | Video width.  |
-| height | number | Yes       | Video height. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| width  | number | Yes| Video width.|
+| height | number | Yes| Video height.|
 
 **Example**
 
@@ -14397,11 +15016,11 @@ Enumerates the suspension types of the player.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                     | Value | Description                                         |
-| ------------------------ | ----- | --------------------------------------------------- |
-| ENTER_BACK_FORWARD_CACHE | 0     | The page enters the BFCache.                        |
-| ENTER_BACKGROUND         | 1     | The page is displayed in the background.            |
-| AUTO_CLEANUP             | 2     | The page is automatically cleaned up by the system. |
+| Name| Value| Description|
+|------|----|------|
+| ENTER_BACK_FORWARD_CACHE | 0 | The page enters the BFCache.|
+| ENTER_BACKGROUND         | 1 | The page is displayed in the background.|
+| AUTO_CLEANUP             | 2 | The page is automatically cleaned up by the system.|
 
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
@@ -14419,12 +15038,12 @@ Updates the surface position information.
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                                |
-| ------ | ------ | --------- | ---------------------------------------------------------- |
-| x      | number | Yes       | X coordinate of the surface relative to the web component. |
-| y      | number | Yes       | Y coordinate of the surface relative to the web component. |
-| width  | number | Yes       | Width of the surface.                                      |
-| height | number | Yes       | Height of the surface.                                     |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| x | number | Yes| X coordinate of the surface relative to the web component.|
+| y | number | Yes| Y coordinate of the surface relative to the web component.|
+| width  | number | Yes| Width of the surface.|
+| height | number | Yes| Height of the surface.|
 
 **Example**
 
@@ -14464,9 +15083,9 @@ Seeks to a specific time point in the media.
 
 **Parameters**
 
-| Name       | Type   | Mandatory | Description                      |
-| ---------- | ------ | --------- | -------------------------------- |
-| targetTime | number | Yes       | Target time point. Unit: second. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| targetTime | number | Yes| Target time point. Unit: second.|
 
 **Example**
 
@@ -14481,9 +15100,9 @@ The value range is [0, 1.0].
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                                  |
-| ------ | ------ | --------- | ------------------------------------------------------------ |
-| volume | number | Yes       | Playback volume. The value range is [0, 1.0]. The value **0** indicates mute, and **1.0** indicates the maximum volume level. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| volume | number | Yes| Playback volume. The value range is [0, 1.0]. The value **0** indicates mute, and **1.0** indicates the maximum volume level.|
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14501,9 +15120,9 @@ Sets the muted status.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                 |
-| ----- | ------- | --------- | --------------------------- |
-| muted | boolean | Yes       | Whether to mute the player. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| muted | boolean | Yes| Whether to mute the player.|
 
 **Example**
 
@@ -14520,9 +15139,9 @@ The value range is [0, 10.0].
 
 **Parameters**
 
-| Name         | Type   | Mandatory | Description                                                  |
-| ------------ | ------ | --------- | ------------------------------------------------------------ |
-| playbackRate | number | Yes       | Playback rate. The value range is [0, 10.0]. The value **1** indicates the original speed of playback. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| playbackRate | number | Yes| Playback rate. The value range is [0, 10.0]. The value **1** indicates the original speed of playback.|
 
 **Example**
 
@@ -14568,7 +15187,7 @@ For the complete sample code, see [onCreateNativeMediaPlayer](#oncreatenativemed
 
 resumePlayer?(): void
 
-Resumes this player.
+Resumes the player and its status information.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -14580,15 +15199,15 @@ For the complete sample code, see [onCreateNativeMediaPlayer](#oncreatenativemed
 
 suspendPlayer?(type: SuspendType): void
 
-Suspends this player.
+Suspends the player and save its status information.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type                          | Mandatory | Description                    |
-| ---- | ----------------------------- | --------- | ------------------------------ |
-| type | [SuspendType](#suspendtype12) | Yes       | Suspension type of the player. |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| type | [SuspendType](#suspendtype12) | Yes| Suspension type of the player.|
 
 **Example**
 
@@ -14600,10 +15219,10 @@ Enumerates the media types.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name  | Value | Description |
-| ----- | ----- | ----------- |
-| VIDEO | 0     | Video.      |
-| AUDIO | 1     | Audio.      |
+| Name| Value| Description|
+|------|----|------|
+| VIDEO | 0 | Video.|
+| AUDIO | 1 | Audio.|
 
 ## SourceType<sup>12+<sup>
 
@@ -14611,10 +15230,10 @@ Enumerates the media source types.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name | Value | Description |
-| ---- | ----- | ----------- |
-| URL  | 0     | URL.        |
-| MSE  | 1     | Blob.       |
+| Name| Value| Description|
+|------|----|------|
+| URL | 0 | URL.|
+| MSE | 1 | Blob.|
 
 ## MediaSourceInfo<sup>12+<sup>
 
@@ -14622,11 +15241,11 @@ Provides the information about the media source.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name   | Type                        | Read Only | Mandatory | Description                                                  |
-| ------ | --------------------------- | --------- | --------- | ------------------------------------------------------------ |
-| type   | [SourceType](#sourcetype12) | No        | Yes       | Type of the media source.                                    |
-| source | string                      | No        | Yes       | Address of the media source.                                 |
-| format | string                      | No        | Yes       | Format of the media source, which may be empty. You need to determine the format by yourself. |
+| Name| Type| Mandatory| Description|
+|------|------|------|------|
+| type | [SourceType](#sourcetype12) | Yes| Type of the media source.|
+| source | string | Yes| Address of the media source.|
+| format | string | Yes| Format of the media source, which may be empty. You need to determine the format by yourself.|
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -14634,10 +15253,10 @@ Provides the surface information used for same-layer rendering [when the applica
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name | Type                      | Read Only | Mandatory | Description                                                  |
-| ---- | ------------------------- | --------- | --------- | ------------------------------------------------------------ |
-| id   | string                    | No        | Yes       | Surface ID, which is the **psurfaceid** of the native image used for rendering at the same layer.<br>For details, see [NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11). |
-| rect | [RectEvent](#rectevent12) | No        | Yes       | Position of the surface.                                     |
+| Name| Type| Mandatory| Description|
+|------|------|------|------|
+| id | string | Yes| Surface ID, which is the **psurfaceid** of the native image used for rendering at the same layer.<br>For details, see [NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11).|
+| rect | [RectEvent](#rectevent12) | Yes| Position of the surface.|
 
 ## Preload<sup>12+<sup>
 
@@ -14645,11 +15264,11 @@ Defines how the player preloads media data.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name     | Value | Description                                                  |
-| -------- | ----- | ------------------------------------------------------------ |
-| NONE     | 0     | No media data is preloaded.                                  |
-| METADATA | 1     | Only the metadata of the media is preloaded.                 |
-| AUTO     | 2     | A sufficient amount of media data is preloaded to ensure smooth playback |
+| Name| Value| Description|
+|------|----|------|
+| NONE     | 0 | No media data is preloaded.|
+| METADATA | 1 | Only the metadata of the media is preloaded.|
+| AUTO     | 2 | A sufficient amount of media data is preloaded to ensure smooth playback|
 
 ## MediaInfo<sup>12+<sup>
 
@@ -14658,19 +15277,19 @@ The object contains information about media on the web page. The application may
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name          | Type                                                         | Read Only | Mandatory | Description                                                  |
-| ------------- | ------------------------------------------------------------ | --------- | --------- | ------------------------------------------------------------ |
-| embedID       | string                                                       | No        | Yes       | ID of **\<video>** or **\<audio>** on the web page.          |
-| mediaType     | [MediaType](#mediatype12)                                    | No        | Yes       | Type of the media.                                           |
-| mediaSrcList  | [MediaSourceInfo](#mediasourceinfo12)[]                      | No        | Yes       | Source of the media. There may be multiple sources. The application needs to select a supported source to play. |
-| surfaceInfo   | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | No        | Yes       | Surface information used for same-layer rendering.           |
-| controlsShown | boolean                                                      | No        | Yes       | Whether the **controls** attribute exists in **\<video>** or **\<audio>**. |
-| controlList   | string[]                                                     | No        | Yes       | Value of the **controlslist** attribute in **\<video>** or **\<audio>**. |
-| muted         | boolean                                                      | No        | Yes       | Whether to mute the player.                                  |
-| posterUrl     | string                                                       | No        | Yes       | URL of a poster.                                             |
-| preload       | [Preload](#preload12)                                        | No        | Yes       | Whether preloading is required.                              |
-| headers       | Record\<string, string\>                                     | No        | Yes       | HTTP headers that need to be included in the player's request for media resources. |
-| attributes    | Record\<string, string\>                                     | No        | Yes       | Attributes in **\<video>** or **\<audio>**.                  |
+| Name| Type| Mandatory| Description|
+|------|------|------|------|
+| embedID | string | Yes| ID of **\<video>** or **\<audio>** on the web page.|
+| mediaType | [MediaType](#mediatype12) | Yes| Type of the media.|
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | Yes| Source of the media. There may be multiple sources. The application needs to select a supported source to play.|
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | Yes| Surface information used for same-layer rendering.|
+| controlsShown | boolean | Yes| Whether the **controls** attribute exists in **\<video>** or **\<audio>**.|
+| controlList | string[] | Yes| Value of the **controlslist** attribute in **\<video>** or **\<audio>**.|
+| muted | boolean | Yes| Whether to mute the player.|
+| posterUrl | string | Yes| URL of a poster.|
+| preload | [Preload](#preload12) | Yes| Whether preloading is required.|
+| headers | Record\<string, string\> | Yes| HTTP headers that need to be included in the player's request for media resources.|
+| attributes | Record\<string, string\> | Yes| Attributes in **\<video>** or **\<audio>**.|
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
@@ -14684,16 +15303,16 @@ This object is used to create a player to take over media playback of the web pa
 
 **Parameters**
 
-| Name      | Type                                                    | Mandatory | Description                                                  |
-| --------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| handler   | [NativeMediaPlayerHandler](#nativemediaplayerhandler12) | Yes       | Object used to report the player status to the ArkWeb engine. |
-| mediaInfo | [MediaInfo](#mediainfo12)                               | Yes       | Information about the media on the web page.                 |
+| Name| Type| Mandatory| Description|
+|--------|------|------|------|
+| handler | [NativeMediaPlayerHandler](#nativemediaplayerhandler12) | Yes| Object used to report the player status to the ArkWeb engine.|
+| mediaInfo | [MediaInfo](#mediainfo12) | Yes| Information about the media on the web page.|
 
 **Return value**
 
-| Type                                                  | Description                                                  |
-| ----------------------------------------------------- | ------------------------------------------------------------ |
-| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb engine.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine. |
+| Type| Description|
+|------|------|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the interface class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb kernel.|
 
 **Example**
 
@@ -14705,12 +15324,12 @@ Implements an **OfflineResourceMap** object, which is used to set up information
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name            | Type                                          | Readable | Writable | Description                                                  |
-| --------------- | --------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
-| urlList         | Array\<string\>                               | Yes      | Yes      | List of network addresses of the local offline resources. The first item in the list is used as the resources' origin. If only one network address is provided, this single address is used for the resources' origin. The URL supports only the HTTP and HTTPS protocols and contains a maximum of 2048 characters. |
-| resource        | Uint8Array                                    | Yes      | Yes      | Content of a local offline resource.                         |
-| responseHeaders | Array<[WebHeader](#webheader)>                | Yes      | Yes      | HTTP response headers corresponding to the resources. The **Cache-Control** or **Expires** response header is used to control the validity period of the resource in the memory cache. If neither of the headers is provided, a default validity time of 86400 seconds (1 day) will be applied. The **Content-Type** response header is used to define the MIME type of the resource. For resources of type MODULE_JS, a valid MIME type must be provided. For other types, the MIME type is optional, with no default value. A non-standard MIME type can lead to the resource being invalidated in the memory cache. If a **script** tag in the web page uses the **crossorigin** attribute, the **Cross-Origin** response header must be set in the **responseHeaders** parameter of the API. The value for this header should be **anonymous** or **use-credentials**. |
-| type            | [OfflineResourceType](#offlineresourcetype12) | Yes      | Yes      | Resource type. Currently, only the JavaScript, image, and CSS types are supported. |
+| Name       | Type  | Readable| Writable|Description                |
+| ----------- | ------ | -----|------|------------------- |
+| urlList | Array\<string\> | Yes  | Yes  | List of network addresses of the local offline resources. The first item in the list is used as the resources' origin. If only one network address is provided, this single address is used for the resources' origin. The URL supports only the HTTP and HTTPS protocols and contains a maximum of 2048 characters.     |
+| resource | Uint8Array | Yes  | Yes  | Content of a local offline resource.     |
+| responseHeaders | Array<[WebHeader](#webheader)> | Yes  | Yes  | HTTP response headers corresponding to the resources. The **Cache-Control** or **Expires** response header is used to control the validity period of the resource in the memory cache. If neither of the headers is provided, a default validity time of 86400 seconds (1 day) will be applied. The **Content-Type** response header is used to define the MIME type of the resource. For resources of type MODULE_JS, a valid MIME type must be provided. For other types, the MIME type is optional, with no default value. A non-standard MIME type can lead to the resource being invalidated in the memory cache. If a **script** tag in the web page uses the **crossorigin** attribute, the **Cross-Origin** response header must be set in the **responseHeaders** parameter of the API. The value for this header should be **anonymous** or **use-credentials**.     |
+| type | [OfflineResourceType](#offlineresourcetype12) | Yes  | Yes  | Resource type. Currently, only the JavaScript, image, and CSS types are supported.     |
 
 ## OfflineResourceType<sup>12+</sup>
 
@@ -14718,12 +15337,12 @@ Represents the local offline resource type corresponding to an [OfflineResourceM
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name       | Value | Description                                                  |
-| ---------- | ----- | ------------------------------------------------------------ |
-| IMAGE      | 0     | Resource of the image type.                                  |
-| CSS        | 1     | Resource of the CSS type.                                    |
-| CLASSIC_JS | 2     | Javascript resource loaded through the <script src="" /\> tag. |
-| MODULE_JS  | 3     | Javascript resource loaded through the <script src="" type="module" /\> tag. |
+| Name        | Value| Description                             |
+| ------------ | -- |--------------------------------- |
+| IMAGE  | 0 | Resource of the image type.|
+| CSS       | 1 | Resource of the CSS type.|
+| CLASSIC_JS       | 2 | Javascript resource loaded through the <script src="" /\> tag.|
+| MODULE_JS      | 3 |Javascript resource loaded through the <script src="" type="module" /\> tag.|
 
 ## WebResourceType<sup>12+</sup>
 
@@ -14731,28 +15350,28 @@ Enumerates the types of requested resources.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                          | Value | Description                                                  |
-| ----------------------------- | ----- | ------------------------------------------------------------ |
-| MAIN_FRAME                    | 0     | Top-level page.                                              |
-| SUB_FRAME                     | 1     | Frame or Iframe.                                             |
-| STYLE_SHEET                   | 2     | CSS style sheet.                                             |
-| SCRIPT                        | 3     | External script.                                             |
-| IMAGE                         | 4     | Image (JPG, GIF, PNG, or other format).                      |
-| FONT_RESOURCE                 | 5     | Font.                                                        |
-| SUB_RESOURCE                  | 6     | Other sub-resource. If the type is unknown, it is used as the default type. |
-| OBJECT                        | 7     | Object (or embed) tag of the plug-in, or the resource requested by the plug-in. |
-| MEDIA                         | 8     | Media resource.                                              |
-| WORKER                        | 9     | Main resource of a dedicated worker thread.                  |
-| SHARED_WORKER                 | 10    | Main resource of a shared worker thread.                     |
-| PREFETCH                      | 11    | Explicit prefetch request.                                   |
-| FAVICON                       | 12    | Website icon.                                                |
-| XHR                           | 13    | XMLHttpRequest.                                              |
-| PING                          | 14    | <a ping\>/sendBeacon ping request.                           |
-| SERVICE_WORKER                | 15    | Main resource of a service worker.                           |
-| CSP_REPORT                    | 16    | Report of Content Security Policy violation.                 |
-| PLUGIN_RESOURCE               | 17    | Resource requested by the plug-in.                           |
-| NAVIGATION_PRELOAD_MAIN_FRAME | 19    | Main frame redirection request that triggers service worker preloading. |
-| NAVIGATION_PRELOAD_SUB_FRAME  | 20    | Subframe redirection request that triggers service worker preloading. |
+| Name        | Value| Description                             |
+| ------------ | -- |--------------------------------- |
+| MAIN_FRAME | 0 | Top-level page.|
+| SUB_FRAME | 1 | Frame or Iframe.|
+| STYLE_SHEET | 2 | CSS style sheet.|
+| SCRIPT | 3 | External script.|
+| IMAGE | 4 | Image (JPG, GIF, PNG, or other format).|
+| FONT_RESOURCE | 5 | Font.|
+| SUB_RESOURCE | 6 | Other sub-resource. If the type is unknown, it is used as the default type.|
+| OBJECT | 7 | Object (or embed) tag of the plug-in, or the resource requested by the plug-in.|
+| MEDIA | 8 | Media resource.|
+| WORKER | 9 | Main resource of a dedicated worker thread.|
+| SHARED_WORKER | 10 | Main resource of a shared worker thread.|
+| PREFETCH | 11 | Explicit prefetch request.|
+| FAVICON | 12 | Website icon.|
+| XHR | 13 | XMLHttpRequest.|
+| PING | 14 | <a ping\>/sendBeacon ping request.|
+| SERVICE_WORKER | 15 | Main resource of a service worker.|
+| CSP_REPORT | 16 | Report of Content Security Policy violation.|
+| PLUGIN_RESOURCE | 17 | Resource requested by the plug-in.|
+| NAVIGATION_PRELOAD_MAIN_FRAME | 19 | Main frame redirection request that triggers service worker preloading.|
+| NAVIGATION_PRELOAD_SUB_FRAME | 20 | Subframe redirection request that triggers service worker preloading.|
 
 ## RectEvent<sup>12+<sup>
 
@@ -14760,12 +15379,34 @@ Defines a rectangle.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name   | Type   | Readable | Writable | Description                                                  |
-| ------ | ------ | -------- | -------- | ------------------------------------------------------------ |
-| x      | number | Yes      | Yes      | X-axis coordinate of the upper left corner of the rectangle. |
-| y      | number | Yes      | Yes      | Y-axis coordinate of the upper left corner of the rectangle. |
-| width  | number | Yes      | Yes      | Width of the rectangle.                                      |
-| height | number | Yes      | Yes      | Height of the rectangle.                                     |
+| Name          | Type      | Readable| Writable| Description                        |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| x  | number   | Yes  | Yes  | X-axis coordinate of the upper left corner of the rectangle.   |
+| y  | number   | Yes  | Yes  | Y-axis coordinate of the upper left corner of the rectangle.   |
+| width  | number   | Yes  | Yes  | Width of the rectangle.   |
+| height  | number   | Yes  | Yes  | Height of the rectangle.   |
+
+## BackForwardCacheSupportedFeatures<sup>12+<sup>
+
+Adds a page that uses any of the following features to the back-forward cache.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name| Type| Mandatory| Description|
+|------|------|------|------|
+| nativeEmbed | bool | Yes| Whether to add a page that uses same-layer rendering to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for the same-layer rendering elements to avoid resource leak.|
+| mediaTakeOver | bool | Yes| Whether to add a page that takes over media playback to the back-forward cache. The default value is **false**. When the value is set to **true**, you need to maintain the lifecycle of native controls created for video elements to avoid resource leak.|
+
+## BackForwardCacheOptions<sup>12+<sup>
+
+Represents a configuration object for the back-forward cache, which is used to set back-forward cache options of the **Web** component.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name| Type| Mandatory| Description|
+|------|------|------|------|
+| size | number | Yes| The maximum number of pages that can be cached in a **Web** component. The default value is **1**, and the maximum value is **50**. If this parameter is set to **0** or a negative value, the back-forward cache is disabled. The web reclaims the cache for memory pressure.|
+| timeToLive | number | Yes| The time that a **Web** component allows a page to stay in the back-forward cache. The default value is **600**, in seconds. If this parameter is set to **0** or a negative value, the back-forward cache is disabled.|
 
 ## AdsBlockManager<sup>12+</sup>
 
@@ -14785,18 +15426,18 @@ Sets a custom ad blocking rule file that conforms to the universal EasyList synt
 
 **Parameters**
 
-| Name      | Type    | Mandatory | Description                                                  |
-| --------- | ------- | --------- | ------------------------------------------------------------ |
-| rulesFile | string  | Yes       | Path to the rule file that conforms to the universal EasyList syntax. The application needs to have read permission for this file. |
-| replace   | boolean | Yes       | Whether to replace the built-in default rules. The value **true** indicates that the built-in default rules will be forcibly replaced; **false** indicates that the custom rules will work alongside the built-in default rules. |
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | -------------------------------- |
+| rulesFile | string | Yes  | Path to the rule file that conforms to the universal EasyList syntax. The application needs to have read permission for this file.|
+| replace   | boolean | Yes  | Whether to replace the built-in default rules. The value **true** indicates that the built-in default rules will be forcibly replaced; **false** indicates that the custom rules will work alongside the built-in default rules.|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -14854,17 +15495,17 @@ Adds an array of domain names to the disallowed list of this **AdsBlockManager**
 
 **Parameters**
 
-| Name           | Type            | Mandatory | Description                                                  |
-| -------------- | --------------- | --------- | ------------------------------------------------------------ |
-| domainSuffixes | Array\<string\> | Yes       | Array of domain names, for example, ['example.com', 'abcd.efg.com']. |
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | Yes  | Array of domain names, for example, ['example.com', 'abcd.efg.com'].|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -14931,17 +15572,17 @@ Removes an array of domain names from the disallowed list of this **AdsBlockMana
 
 **Parameters**
 
-| Name           | Type            | Mandatory | Description                                                  |
-| -------------- | --------------- | --------- | ------------------------------------------------------------ |
-| domainSuffixes | Array\<string\> | Yes       | List of domain names, for example, ['example.com', 'abcd.efg.com']. |
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | Yes  | Array of domain names, for example, ['example.com', 'abcd.efg.com'].|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -15065,17 +15706,17 @@ Adds an array of domain names to the allowed list of this **AdsBlockManager** ob
 
 **Parameters**
 
-| Name           | Type            | Mandatory | Description                                                  |
-| -------------- | --------------- | --------- | ------------------------------------------------------------ |
-| domainSuffixes | Array\<string\> | Yes       | List of domain names, for example, ['example.com', 'abcd.efg.com']. |
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | Yes  | Array of domain names, for example, ['example.com', 'abcd.efg.com'].|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -15145,17 +15786,17 @@ Removes an array of domain names from the allowed list of this **AdsBlockManager
 
 **Parameters**
 
-| Name           | Type            | Mandatory | Description                                                  |
-| -------------- | --------------- | --------- | ------------------------------------------------------------ |
-| domainSuffixes | Array\<string\> | Yes       | List of domain names, for example, ['example.com', 'abcd.efg.com']. |
+| Name    | Type  | Mandatory| Description                              |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | Yes  | Array of domain names, for example, ['example.com', 'abcd.efg.com'].|
 
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](errorcode-webview.md).
 
-| ID   | Error Message                                                |
-| ---- | ------------------------------------------------------------ |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| ID| Error Message                 |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -15163,7 +15804,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
 
-// This example demonstrates how to click a button to remove an array of domain names from the allowed list.
+// This example demonstrates how to click a button to remove an array of domain names from the disallowed list.
 @Entry
 @Component
 struct WebComponent {
@@ -15309,10 +15950,10 @@ Obtains the full drawing result of the web page. (Local resource web pages are n
 
 **Parameters**
 
-| Name     | Type                                | Mandatory | Description                                        |
-| -------- | ----------------------------------- | --------- | -------------------------------------------------- |
-| info     | [SnapshotInfo](#snapshotinfo12)     | Yes       | Information for obtaining the full drawing result. |
-| callback | [SnapshotResult](#snapshotresult12) | Yes       | Callback used to return the result.                |
+| Name      | Type          | Mandatory | Description                     |
+| ----------- | ------------- | ---- | ------------------------ |
+| info        | [SnapshotInfo](#snapshotinfo12)| Yes  | Information for obtaining the full drawing result.|
+| callback        | [SnapshotResult](#snapshotresult12)| Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -15356,10 +15997,10 @@ Provides information used to obtain a full drawing result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name | Type                                                         | Mandatory | Description                                                  |
-| ---- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| id   | string                                                       | No        | Snapshot ID.                                                 |
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions) | No        | Size for web rendering. The maximum size is 16000 px x 16000 px. The length unit can be px, vp, or %. The length unit must be the consistent across parameters. The default unit is vp. If the size exceeds the specifications , the maximum size is returned. Example: **width: '100px', height: '200px'** or **width: '20%', height'30%'**. If only digits are written, the unit is vp. |
+| Name| Type|  Mandatory| Description|
+|------|------|------|------|
+| id | string | No| Snapshot ID.|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | No| Size for web rendering. The maximum size is 16000 px x 16000 px. The length unit can be px, vp, or %. The length unit must be the consistent across parameters. The default unit is vp. If the size exceeds the specifications , the maximum size is returned. Example: **width: '100px', height: '200px'** or **width: '20%', height'30%'**. If only digits are written, the unit is vp.|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -15367,9 +16008,30 @@ Represents a full drawing result.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name          | Type                                                         | Mandatory | Description                                                  |
-| ------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| id            | string                                                       | No        | Snapshot ID.                                                 |
-| status        | boolean                                                      | No        | Snapshot status. The value can be **true** (normal) or **false** (failure). If the full drawing result fails to be obtained, the width and height of the returned size are both 0, and the map is empty. |
-| size          | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions) | No        | Actual size drawn on the web page. The value is of the number type, and the unit is vp. |
-| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No        | Full drawing result in image.pixelMap format.                |
+| Name| Type| Mandatory|  Description|
+|------|------|--|---------|
+| id | string | No| Snapshot ID.|
+| status | boolean | No|  Snapshot status. The value can be **true** (normal) or **false** (failure). If the full drawing result fails to be obtained, the width and height of the returned size are both 0, and the map is empty.|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | No| Actual size drawn on the web page. The value is of the number type, and the unit is vp.|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No| Full drawing result in image.pixelMap format.|
+
+## ScrollType<sup>12+</sup>
+
+Represents a scroll type, which is used in [setScrollable](#setscrollable12).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Value| Description                             |
+| ------------ | -- |--------------------------------- |
+| EVENT  | 0 | Scrolling event, indicating that a web page is scrolled by using a touchscreen, a touchpad, or a mouse.|
+
+## PressureLevel<sup>14+</sup>
+
+Represents a memory pressure level. When an application clears the cache occupied by the **Web** component, the **Web** kernel releases the cache based on the memory pressure level.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name| Value| Description|
+| ------------------------------- | - | ---------- |
+| MEMORY_PRESSURE_LEVEL_MODERATE | 1 | Moderate memory pressure level. At this level, the **Web** kernel attempts to release the cache that has low reallocation overhead and does not need to be used immediately.|
+| MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | Critical memory pressure level. At this level, the **Web** kernel attempts to release all possible memory caches.|

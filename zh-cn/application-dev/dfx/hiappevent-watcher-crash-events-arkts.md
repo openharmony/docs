@@ -105,9 +105,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     })
    ```
 
-5. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。
+5. 点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。崩溃事件发生后，系统会根据崩溃类型（JsError或NativeCrash）采用不同的栈回溯方式生成崩溃日志，然后再进行回调。其中NativeCrash栈回溯耗时约2秒，实际耗时与业务线程数量、进程间通信耗时有关。JsError触发进程内栈回溯，NativeCrash触发进程外栈回溯，因此NativeCrash栈回溯会比JsError栈回溯更耗时。用户可以订阅崩溃事件，栈回溯完成后会异步上报，不会阻塞当前业务。
 
-6. 应用崩溃退出后，重新进入应用可以在Log窗口看到对系统事件数据的处理日志：
+6. 下次应用启动后，HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。并可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS
@@ -122,10 +122,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
    HiAppEvent eventInfo.params.pid=2043
    HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=...
+   HiAppEvent eventInfo.params.uuid=b1e953ba0022c112e4502e28e8b3ad6d95cf3c87bae74068038f03b38ce7f66a
    HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:55:34)"}
    HiAppEvent eventInfo.params.hilog.size=90
    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1711440614112_2043.log"]
    HiAppEvent eventInfo.params.log_over_limit=false
    HiAppEvent eventInfo.params.test_data=100
    ```
+
+<!--RP1-->
+<!--RP1End-->

@@ -771,6 +771,22 @@ Failed to uninstall updates because the HAP is not pre-installed.
 **处理步骤**<br/>
 确认指定的应用是否为预置应用。
 
+## 17700058 指定的应用禁止在本设备或指定用户下安装
+
+**错误信息**<br/>
+Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
+
+**错误描述**<br/>
+指定的应用禁止在本设备或指定用户下安装。
+
+**可能原因**<br/>
+1. 当前使用的设备是洗白机。
+2. 指定的应用不支持在指定的用户下安装。
+
+**处理步骤**<br/>
+1. 确认使用的设备是否是洗白机。
+2. 将指定的应用安装在其他用户下。
+
 ## 17700059 指定的开发者ID不存在
 
 **错误信息**<br/>
@@ -833,21 +849,28 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 **处理步骤**<br/>
 检查ShortcutInfo结构体中的want有效性。
 
-## 17700068 应用支持分身后，最大分身数量在更新时不可减小
+## 17700066 安装失败，native软件包安装失败
 
 **错误信息**<br/>
-Failed to install the HAP because the maximum count of clone app cannot be reduced.
+Failed to install the HAP because installing the native package failed.
 
 **错误描述**<br/>
-应用多开模式为appClone，在更新时，maxCount数值不允许减小。
+安装hap时，native软件包安装失败。
 
-**可能原因**<br/>
-支持分身的应用在更新时，最大分身数量减小了。
+**可能原因**<br/>native软件包配置信息有误。
 
-**处理步骤**<br/>
-1. 检查更新应用是否支持分身。
-2. 检查应用在更新前后，支持最大分身数量是否减小。
+**处理步骤**<br/>检查native软件包的配置信息。
 
+## 17700067 卸载应用失败，native软件包卸载失败
+
+**错误信息**<br/>
+Failed to uninstall the HAP because uninstalling the native package failed.
+
+**错误描述**<br/>卸载应用时，native软件包卸载失败。
+
+**可能原因**<br/>需要卸载的native软件包被占用。
+
+**处理步骤**<br/>检查是否存在进程占用相应native软件包。
 
 ## 17700069 多开模式非分身的应用，不能创建分身实例
 
@@ -876,6 +899,31 @@ The specified shortcut id is illegal.
 
 **处理步骤**<br/>
 1. 检查包名或者快捷方式id是否正确。
+
+## 17700071 不允许企业应用安装
+**错误信息**<br/>
+It is not allowed to install the enterprise bundle.
+
+**错误描述**<br/>
+特定的安装接口，不允许通过其安装企业应用。
+
+**可能原因**<br/>
+因策略管制，不允许通过特定的接口，安装企业应用。
+
+**处理步骤**<br/>
+
+## 17700072 Launch Want不存在
+**错误信息**<br/>
+The launch want is not found.
+
+**错误描述**<br/>
+Launch Want不存在。
+
+**可能原因**<br/>
+应用没有Ability，或者没有entities配置为entity.system.home和actions配置为action.system.home的Ability。
+
+**处理步骤**<br/>
+应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

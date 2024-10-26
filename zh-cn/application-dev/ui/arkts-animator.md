@@ -10,7 +10,7 @@
 1. 引入相关依赖。
 
    ```ts
-   import {Animator as animator, AnimatorOptions, AnimatorResult  } from '@kit.ArkUI';
+   import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
    ```
 
 2. 创建执行动画的对象。
@@ -29,7 +29,7 @@
       // 动画onFrame 插值尾帧值                                    
       end: 400.0                                            
    }; 
-   let result: AnimatorResult = animator.create(options);
+   let result: AnimatorResult = this.getUIContext().createAnimator(options);
       // 设置接收到帧时回调，动画播放过程中每帧会调用onFrame回调
        result.onFrame = (value: number) => {
        console.log("current value is :" + value);
@@ -55,7 +55,7 @@
 1. 引入相关依赖。
 
    ```ts
-   import {Animator as animator, AnimatorOptions, AnimatorResult  } from '@kit.ArkUI';
+   import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
    ```
 
 2. 定义要做动画的组件。
@@ -72,7 +72,7 @@
    ```ts
    onPageShow(): void {
        //创建animatorResult对象
-       this.animatorOptions = animator.create(this.animatorOption);
+       this.animatorOptions = this.getUIContext().createAnimator(options);
        this.animatorOptions.onFrame = (progress: number) => {
        this.translateX = progress;
        if (progress > this.topWidth && this.translateY < this.bottomHeight) {
@@ -120,7 +120,7 @@
 完整示例如下。
 
 ```ts
-import { Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -146,7 +146,7 @@ struct Index {
   @State translateY: number = 0;
 
   onPageShow(): void {
-    this.animatorOptions = animator.create(this.animatorOption)
+    this.animatorOptions = this.getUIContext().createAnimator(this.animatorOption)
     this.animatorOptions.onFrame = (progress: number) => {
       this.translateX = progress;
       if (progress > this.topWidth && this.translateY < this.bottomHeight) {

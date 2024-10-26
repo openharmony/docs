@@ -1,14 +1,14 @@
-# @ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)
+# FormMenu
 
 本组件封装了一个“添加至桌面”菜单，用于实现应用内长按组件生成“添加至桌面”菜单，点击该菜单，触发卡片添加至桌面操作。通过桌面访问该应用快捷卡片，可以直接访问该组件功能。在应用使用过程中，该组件作为留存和复访入口，可吸引用户将功能快捷添加到桌面。
 
 本组件支持应用内支持长按菜单快捷添加卡片到桌面：
 
-1） 开发者将卡片数据以及应用内功能组件ID传给卡片框架。
+1. 开发者将卡片数据以及应用内功能组件ID传给卡片框架。
 
-2） 点击事件会根据组件ID获取应用内功能组件的快照和位置，用于添加到桌面时的过渡动效。
+2. 点击事件会根据组件ID获取应用内功能组件的快照和位置，用于添加到桌面时的过渡动效。
 
-3） 卡片框架通过将加桌数据通知给桌面，触发卡片添加到桌面操作。
+3. 卡片框架通过将加桌数据通知给桌面，触发卡片添加到桌面操作。
 
 
 > **说明：**
@@ -37,7 +37,7 @@ AddFormMenuItem(
   want: Want,
   componentId: string,
   options?: AddFormOptions
-): void;
+): void
 
 
 **装饰器类型：**@Component
@@ -77,7 +77,7 @@ AddFormMenuItem(
 **参数：**
 | 名称            | 参数类型           | 必填 | 说明 |
 | --------------- | ----------------- | ---- | ---- |
-| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明) | 否   | 包含设置MenuItem的各项信息。|
+| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明) | 否   | 包含设置MenuItem的各项信息。|
 
 > **说明：**
 >
@@ -119,9 +119,13 @@ struct Index {
         {
           formBindingData: formBindingData.createFormBindingData({}),
           // formBindingData: formBindingData.createFormBindingData({ data: 'share' }),
-          callback:
-          (error, formId) => {
-            hilog.info(0x3900, tag, 'callback info：error: ' + error + ' formId:' + formId);
+          callback: (error, formId) => {
+            hilog.info(0x3900, tag, `callback info：error = ${JSON.stringify(error)}, formId = ${formId}`);
+            if (error?.code === 0) {
+              hilog.info(0x3900, tag, "添加至桌面成功")
+            } else {
+              hilog.info(0x3900, tag, "添加至桌面失败，请尝试其它添加方式")
+            }
           },
           style: {
             // options: {

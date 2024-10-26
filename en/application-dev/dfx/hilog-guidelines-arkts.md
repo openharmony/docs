@@ -11,14 +11,14 @@ To print logs, you can use HiLog or console APIs. This topic focuses on how to u
 
 HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides APIs to output logs of different levels. For details about the APIs, see [HiLog](../reference/apis-performance-analysis-kit/js-apis-hilog.md).
 
-| API| Description| 
+| API | Description |
 | -------- | -------- |
-| isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed.|
-| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
-| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes..|
-| warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system.|
-| error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors.|
-| fatal(domain: number, tag: string, format: string, ...args: any[]) | Outputs FATAL logs, which indicate program or functionality crashes that cannot be rectified.|
+| isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed. |
+| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window. |
+| info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes.. |
+| warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system. |
+| error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors. |
+| fatal(domain: number, tag: string, format: string, ...args: any[]) | Outputs FATAL logs, which indicate program or functionality crashes that cannot be rectified. |
 
 ### Parameters
 
@@ -35,20 +35,21 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 - **level**: log level. For details about the value, see [LogLevel](../reference/apis-performance-analysis-kit/js-apis-hilog.md#loglevel).
 
 - **format**: format of the log to output. The value is a string in the "%{private flag}specifier" format.
-  | Private Flag| Description|
+  | Private Flag | Description |
   | -------- | -------- |
-  | private | The output is **\<private>**, which indicates that the log information is invisible.|
-  | public | The log information is displayed.|
-  | Not specified| The default value **\<private>** is used.|
+  | private | The output is **\<private>**, which indicates that the log information is invisible. |
+  | public | The log information is displayed. |
+  | Not specified | The default value **\<private>** is used. |
 
-  | Specifier| Description| Example|
+  | Specifier | Description | Example |
   | -------- | -------- | -------- |
-  | d/i | Prints logs of the **number** and **bigint** types.| 123 |
-  | s | Prints logs of the **string**, **undefined**, **bool**, and **null** types.| "123" |
+  | d/i | Prints logs of the **number** and **bigint** types. | 123 |
+  | s | Prints logs of the **string**, **undefined**, **boolean**, and **null** types. | "123" |
 
-  You can set multiple parameters in the **format** string, for example, **%s World**, where **%s** is a variable of the string type and its value is defined by **args**. 
+  You can set multiple parameters in the **format** string, for example, **%s World**, where **%s** is a variable of the string type and its value is defined by **args**. <!--Del-->
 
   To display the log masked by {**private**} in debugging, run the **hilog -p off** command.
+<!--DelEnd-->
 
 - **args**: parameters of the types specified by **specifier** in **format**. This parameter can be left blank. The number and type of parameters must match **specifier**.
 
@@ -70,7 +71,7 @@ Add a click event in a button, which prints a log when the button is clicked.
    ```ts
    // Index.ets
    
-   import hilog from '@ohos.hilog';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    @Entry
    @Component
@@ -117,4 +118,4 @@ Add a click event in a button, which prints a log when the button is clicked.
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria.
    Specifically, select the current device and process, set the log level to **Verbose**, and enter **testTag** in the search box. Then, only the logs that meet the filter criteria are displayed.
 
-   In this example, the printed log is "hello World 3."
+   In this example, the printed log is "hello World 3".

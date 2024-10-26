@@ -16,8 +16,11 @@
 animateTo(value: AnimateParam, event: () => void): void
 ```
 
-[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[动画参数](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[曲线](../reference/apis-arkui/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
+[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[AnimateParam对象](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[Curve](../reference/apis-arkui/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
 
+> **说明：**
+> 
+> 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -44,7 +47,7 @@ struct AnimateToDemo {
       .height(100)
       .borderRadius(30)
       .onClick(() => {
-        animateTo({ curve: curves.springMotion() }, () => {
+        this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
           this.animate = !this.animate;
           // 第三步：闭包内通过状态变量改变UI界面
           // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画
@@ -52,7 +55,7 @@ struct AnimateToDemo {
           this.rotateValue = this.animate ? 90 : 0;
           // 组件二的透明度发生变化，所以会给组件二添加透明度的动画
           this.opacityValue = this.animate ? 0.6 : 1;
-          // 组件二的offset属性发生变化，所以会给组件二添加offset偏移动画
+          // 组件二的translate属性发生变化，所以会给组件二添加translate偏移动画
           this.translateX = this.animate ? 50 : 0;
         })
       })
@@ -117,7 +120,7 @@ struct AnimationDemo {
         // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画
         // 组件一的rotate属性发生变化，所以会给组件一添加rotate旋转动画
         this.rotateValue = this.animate ? 90 : 0;
-        // 组件二的offset属性发生变化，所以会给组件二添加offset偏移动画
+        // 组件二的translate属性发生变化，所以会给组件二添加translate偏移动画
         this.translateX = this.animate ? 50 : 0;
         // 父组件column的opacity属性有变化，会导致其子节点的透明度也变化，所以这里会给column和其子节点的透明度属性都加动画
         this.opacityValue = this.animate ? 0.6 : 1;

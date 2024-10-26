@@ -29,23 +29,24 @@ In the following example, the **Web** component intercepts the web page request 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseResource: WebResourceResponse = new WebResourceResponse()
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseResource: WebResourceResponse = new WebResourceResponse();
     // Customize a response.
     @State webData: string = '<!DOCTYPE html>\n' +
-    '<html>\n'+
-    '<head>\n'+
-    '<title>intercept test</title>\n'+
-    '</head>\n'+
-    '<body>\n'+
-    '<h1>intercept ok</h1>\n'+
-    '</body>\n'+
-    '</html>'
+      '<html>\n' +
+      '<head>\n' +
+      '<title>intercept test</title>\n' +
+      '</head>\n' +
+      '<body>\n' +
+      '<h1>intercept ok</h1>\n' +
+      '</body>\n' +
+      '</html>'
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -70,7 +71,7 @@ In the following example, the **Web** component intercepts the web page request 
   }
   ```
 
-Create a **CodeCache** object for a JavaScript resource in a custom request response: If the resource of a custom request response is a JavaScript script, you can add the **ResponseDataID** field to the response header. After obtaining this field, the **Web** kernel generates a **CodeCache** object, which accelerates JavaScript execution. Any changes to the **ResponseDataID** field must be notified to the **Web** component. If the **ResponseDataID** field is not added, no **CodeCache** object is created by default.
+Create a **CodeCache** object for a custom JS request response: If the resource of a custom request response is a JavaScript script, you can add the **ResponseDataID** field to the response header. After obtaining this field, the **Web** kernel generates a **CodeCache** object, which accelerates JavaScript execution. Any changes to the **ResponseDataID** field must be notified to the **Web** component. If the **ResponseDataID** field is not added, no **CodeCache** object is created by default.
 
 In the following example, the **Web** component intercepts the web page request **https://www.example.com/test.js**; a custom response is constructed in the application code, with the **ResponseDataID** field added to the response header.
 
@@ -105,13 +106,13 @@ In the following example, the **Web** component intercepts the web page request 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseResource: WebResourceResponse = new WebResourceResponse()
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseResource: WebResourceResponse = new WebResourceResponse();
     // Customize response data. (The CodeCache object is created only when the response data length is greater than or equal to 1024 bytes.)
     @State jsData: string = 'let text_msg = "the modified content:version 0000000000001";\n' +
       'let element1 = window.document.getElementById("div-1");\n' +
@@ -135,8 +136,8 @@ In the following example, the **Web** component intercepts the web page request 
       'element8.innerHTML = text_msg;\n' +
       'element9.innerHTML = text_msg;\n' +
       'element10.innerHTML = text_msg;\n' +
-      'element11.innerHTML = text_msg;\n'
-  
+      'element11.innerHTML = text_msg;\n';
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })

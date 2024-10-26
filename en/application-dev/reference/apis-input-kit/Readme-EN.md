@@ -1,4 +1,4 @@
-# Input Kit API Reference
+# Input Kit
 
 - ArkTS API
   - [@ohos.multimodalInput.inputDevice (Input Device)](js-apis-inputdevice.md)

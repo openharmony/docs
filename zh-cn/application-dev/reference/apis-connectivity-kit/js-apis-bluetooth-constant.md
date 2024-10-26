@@ -161,7 +161,7 @@ import { constant } from '@kit.ConnectivityKit';
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
 
 
-## ProfileUuids
+## ProfileUuids<sup>12+</sup>
 
 枚举，表示Profile的UUID。
 

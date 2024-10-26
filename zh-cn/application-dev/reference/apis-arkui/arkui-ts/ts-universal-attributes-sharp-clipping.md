@@ -10,9 +10,13 @@
 
 clip(value: boolean)
 
-是否对当前组件的子组件进行裁剪。
+是否对子组件超出当前组件范围外的区域进行裁剪。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -48,6 +52,10 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
@@ -58,9 +66,11 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 mask(value: ProgressMask)
 
-为组件上添加指定形状的遮罩。
+为组件上添加可调节进度的遮罩。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -96,6 +106,10 @@ maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                             |
@@ -107,6 +121,8 @@ maskShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 ProgressMask设置遮罩的进度、最大值和遮罩颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>10+</sup>
 

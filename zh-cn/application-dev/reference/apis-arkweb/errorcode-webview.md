@@ -16,7 +16,7 @@ WebviewController还没有和具体的Web组件关联，无法进行相应的操
 
 **处理步骤**
 
-请检查WebviewController对象是否已与Web组件关联。
+请检查WebviewController对象是否已与Web组件关联，可以通过[onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10)接口进行检查。
 
 
 ## 17100002 Url格式错误
@@ -411,8 +411,8 @@ WebHttpBodyStream数据初始化失败。
 
 **可能原因**
 
-发起的POST等类型的请求中，携带的数据不合法。例如里面数据流中有文件类型的数据，但是该文件路径不存在，则数据流初始化失败.
+发起的POST等类型的请求中，携带的数据不合法。例如里面数据流中有文件类型的数据，但是该文件路径不存在，则数据流初始化失败。
 
 **处理步骤**
 
-检查发起的POST等类型的请求中，携带的数据是否合法
+检查发起的POST等类型的请求中，携带的数据是否合法。

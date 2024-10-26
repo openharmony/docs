@@ -94,7 +94,7 @@ deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertFront(c);
 deque.insertFront(false);
 ```
@@ -136,7 +136,7 @@ deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Dylan", age : "13"};
 deque.insertEnd(c);
 deque.insertEnd(false);
 ```
@@ -374,10 +374,6 @@ let result = deque.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

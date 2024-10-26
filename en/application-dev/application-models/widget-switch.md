@@ -21,13 +21,13 @@ Widget switching involves the following parts:
 Figure 1 Entry configuration differences
 
 
-![widget-switch1](../form/figures/widget-switch1.png)
+![widget-switch1](./figures/widget-switch1.png)
 
 
 Figure 2 Widget configuration differences
 
 
-![widget-switch2](../form/figures/widget-switch2.png)
+![widget-switch2](./figures/widget-switch2.png)
 
 
 | Item| FA Model| Stage Model|
@@ -39,10 +39,10 @@ Figure 2 Widget configuration differences
 Figure 3 Entry file differences
 
 
-![widget-switch3](../form/figures/widget-switch3.png)
+![widget-switch3](./figures/widget-switch3.png)
 
 
 Figure 4 Lifecycle differences (The lifecycle callbacks are the same and require no adjustment.)
 
 
-![widget-switch4](../form/figures/widget-switch4.png)
+![widget-switch4](./figures/widget-switch4.png)

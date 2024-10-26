@@ -26,7 +26,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                                  | 必填 | 描述                 |
+| 参数名  | 类型                                                  | 必填 | 说明                 |
 | ------- | ----------------------------------------------------- | ---- | -------------------- |
 | options | [CheckboxGroupOptions](#checkboxgroupoptions对象说明) | 否   | 配置多选框群组参数。 |
 
@@ -35,6 +35,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -88,8 +90,6 @@ unselectedColor(value: ResourceColor)
 
 设置非选中状态边框颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -98,15 +98,13 @@ unselectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                 |
 | ------ | ------------------------------------------ | ---- | -------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：'#33ffffff'。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
 mark(value: MarkStyle)
 
 设置多选框内部图标样式。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -142,7 +140,7 @@ checkboxShape(value: CheckBoxShape)
 
 ### onChange
 
-onChange(callback: (event: CheckboxGroupResult) => void )
+onChange(callback: OnCheckboxGroupChangeCallback)
 
 CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。
 
@@ -154,9 +152,27 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **参数：** 
 
+| 参数名   | 类型                                                         | 必填 | 说明               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| callback | [OnCheckboxGroupChangeCallback](#oncheckboxgroupchangecallback13) | 是   | 多选框群组的信息。 |
+
+## OnCheckboxGroupChangeCallback<sup>13+</sup>
+
+type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
+
+多选框群组的信息。
+
+**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名 | 类型                                                | 必填 | 说明               |
 | ------ | --------------------------------------------------- | ---- | ------------------ |
-| event  | [CheckboxGroupResult](#checkboxgroupresult对象说明) | 是   | 多选框群组的信息。 |
+| value  | [CheckboxGroupResult](#checkboxgroupresult对象说明) | 是   | 多选框群组的信息。 |
 
 ## CheckboxGroupResult对象说明
 
@@ -164,10 +180,12 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型   | 描述      |
-| ------ | ------ | ------- |
-| name   | Array&lt;string&gt; | 群组内所有被选中的多选框名称。 |
-| status | [SelectStatus](#selectstatus枚举说明) | 选中状态。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型   | 只读 | 可选 | 说明      |
+| ------ | ------ | ------- | ------- | ------- |
+| name   | Array&lt;string&gt; | 否 | 否 | 群组内所有被选中的多选框名称。 |
+| status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。 |
 
 ## SelectStatus枚举说明
 
@@ -175,7 +193,9 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称  | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 说明 |
 | ----- | -------------------- |
 | All   | 群组多选择框全部选择。 |
 | Part  | 群组多选择框部分选择。 |

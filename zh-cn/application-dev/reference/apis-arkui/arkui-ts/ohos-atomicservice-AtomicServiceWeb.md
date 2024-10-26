@@ -1,4 +1,4 @@
-# @ohos.atomicservice.AtomicServiceWeb（Web高阶组件）
+# AtomicServiceWeb
 
 为开发者提供满足定制化诉求的Web高阶组件，屏蔽原生Web组件中无需关注的接口，并提供JS扩展能力。
 
@@ -27,15 +27,24 @@ import { AtomicServiceWeb } from '@kit.ArkUI';
 
 ## AtomicServiceWeb
 
+```
 AtomicServiceWeb({
   src: ResourceStr,
+  controller: AtomicServiceWebController,
   navPathStack?: NavPathStack,
-  onMessage?: Callback\<OnMessageEvent\>,
-  onErrorReceive?: Callback\<OnErrorReceiveEvent\>,
-  onHttpErrorReceive?: Callback\<OnHttpErrorReceiveEvent\>,
-  onPageBegin?: Callback\<OnPageBeginEvent\>,
-  onPageEnd?: Callback\<OnPageEndEvent\>
+  mixedMode?: MixedMode,
+  darkMode?: WebDarkMode,
+  forceDarkAccess?: boolean,
+  onMessage?: Callback<OnMessageEvent>,
+  onErrorReceive?: Callback<OnErrorReceiveEvent>,
+  onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>,
+  onPageBegin?: Callback<OnPageBeginEvent>,
+  onPageEnd?: Callback<OnPageEndEvent>,
+  onControllerAttached?: Callback<void>,
+  onLoadIntercept?: Callback<OnLoadInterceptEvent, boolean>,
+  onProgressChange?: Callback<OnProgressChangeEvent>
 })
+```
 
 **装饰器类型：**@Component
 
@@ -45,15 +54,286 @@ AtomicServiceWeb({
 
 **参数**：
 
-| 名称                 | 类型                                                                                      | 必填 | 描述                                                                                                                   |
-|--------------------|-----------------------------------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------|
-| src                | [ResourceStr](ts-types.md#resourcestr)                           | 是  | 网页资源地址，访问网络资源需要在AGC配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。 |
-| navPathStack       | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 否  | 路由栈信息。当使用NavDestination作为页面的根容器时，需传入NavDestination容器对应的NavPathStack处理页面路由。                                           |
-| onMessage          | Callback\<[OnMessageEvent](#onmessageevent)\>                                           | 否  | H5页面通过JS SDK的postMessage()发送消息后，Web组件对应的页面返回或销毁时，触发该回调。                                                              |
-| onErrorReceive     | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent)\>                                 | 否  | 网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。                                                                 |
-| onHttpErrorReceive | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent)\>                         | 否  | 网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。                                                                                     |
-| onPageBegin        | Callback\<[OnPageBeginEvent](#onpagebeginevent)\>                                       | 否  | 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。                                                              |
-| onPageEnd          | Callback\<[OnPageEndEvent](#onpageendevent)\>                                           | 否  | 网页加载完成时触发该回调，且只在主frame触发。                                                                                            |
+| 名称                   | 类型                                                                                                               | 必填 | 装饰器类型       | 描述                                                                                                                   |
+|----------------------|------------------------------------------------------------------------------------------------------------------|----|-------------|----------------------------------------------------------------------------------------------------------------------|
+| src                  | [ResourceStr](ts-types.md#resourcestr)                                                                           | 是  | -           | 网页资源地址，访问网络资源需要在AGC配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。 |
+| controller           | [AtomicServiceWebController](#atomicservicewebcontroller)                                                        | 是  | @ObjectLink | 通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。                                                              |
+| navPathStack         | [NavPathStack](ts-basic-components-navigation.md#navpathstack10)                                                 | 否  | -           | 路由栈信息。当使用NavDestination作为页面的根容器时，需传入NavDestination容器对应的NavPathStack处理页面路由。                                           |
+| mixedMode            | [MixedMode](../../apis-arkweb/ts-basic-components-web.md#mixedmode枚举说明)                                          | 否  | @Prop       | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。                                                    |
+| darkMode             | [WebDarkMode](../../apis-arkweb/ts-basic-components-web.md#webdarkmode9枚举说明)                                     | 否  | @Prop       | 设置Web深色模式，默认关闭。                                                                                                      |
+| forceDarkAccess      | boolean                                                                                                          | 否  | @Prop       | 设置网页是否开启强制深色模式。默认关闭。该属性仅在darkMode开启深色模式时生效。                                                                          |
+| onMessage            | Callback\<[OnMessageEvent](#onmessageevent)\>                                                                    | 否  | -           | H5页面通过JS SDK的postMessage()发送消息后，Web组件对应的页面返回或销毁时，触发该回调。                                                              |
+| onErrorReceive       | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent)\>                                                          | 否  | -           | 网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。                                                                 |
+| onHttpErrorReceive   | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent)\>                                                  | 否  | -           | 网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。                                                                                     |
+| onPageBegin          | Callback\<[OnPageBeginEvent](#onpagebeginevent)\>                                                                | 否  | -           | 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。                                                              |
+| onPageEnd            | Callback\<[OnPageEndEvent](#onpageendevent)\>                                                                    | 否  | -           | 网页加载完成时触发该回调，且只在主frame触发。                                                                                            |
+| onControllerAttached | Callback\<void\>                                                                                                 | 否  | -           | 当Controller成功绑定到Web组件时触发该回调。                                                                                         |
+| onLoadIntercept      | Callback\<[OnLoadInterceptEvent](../../apis-arkweb/ts-basic-components-web.md#onloadinterceptevent12), boolean\> | 否  | -           | 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。                                                                              |
+| onProgressChange     | Callback\<[OnProgressChangeEvent](../../apis-arkweb/ts-basic-components-web.md#onprogresschangeevent12)\>        | 否  | -           | 网页加载进度变化时触发该回调。                                                                                                      |
+
+## AtomicServiceWebController
+
+通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。一个AtomicServiceWebController对象只能控制一个AtomicServiceWeb组件，且必须在AtomicServiceWeb组件和AtomicServiceWebController绑定后，才能调用AtomicServiceWebController上的方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### constructor
+
+constructor()
+
+用于创建 AtomicServiceWebController 对象的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getUserAgent
+
+getUserAgent(): string
+
+获取当前默认用户代理。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明      |
+|--------|---------|
+| string | 默认用户代理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md)。
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### getCustomUserAgent
+
+getCustomUserAgent(): string
+
+获取自定义用户代理。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明         |
+|--------|------------|
+| string | 用户自定义代理信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### setCustomUserAgent
+
+setCustomUserAgent(userAgent: string): void
+
+设置自定义用户代理，会覆盖系统的用户代理。
+
+建议在onControllerAttached回调事件中设置UserAgent，设置方式请参考示例。不建议将UserAgent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
+
+> **说明：**
+>
+>当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型     | 必填 | 说明                                                                       |
+|-----------|--------|----|--------------------------------------------------------------------------|
+| userAgent | string | 是  | 用户自定义代理信息。建议先使用[getUserAgent](#getuseragent)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### refresh
+
+refresh(): void
+
+调用此接口通知AtomicServiceWeb组件刷新网页。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### forward
+
+forward(): void
+
+按照历史栈，前进一个页面。一般结合[accessForward](#accessforward)一起使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### backward
+
+backward(): void
+
+按照历史栈，后退一个页面。一般结合[accessBackward](#accessbackward)一起使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### accessForward
+
+accessForward(): boolean
+
+当前页面是否可前进，即当前页面是否有前进历史记录。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型      | 说明                    |
+|---------|-----------------------|
+| boolean | 可以前进返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### accessBackward
+
+accessBackward(): boolean
+
+当前页面是否可后退，即当前页面是否有返回历史记录。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型      | 说明                    |
+|---------|-----------------------|
+| boolean | 可以后退返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### accessStep
+
+accessStep(step: number): boolean
+
+当前页面是否可前进或者后退给定的step步。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 | 说明                    |
+|------|--------|----|-----------------------|
+| step | number | 是  | 要跳转的步数，正数代表前进，负数代表后退。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| boolean | 页面是否可前进或者后退给定的step步 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+
+### loadUrl
+
+loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
+
+加载指定的URL。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明             |
+|---------|---------------------------------|----|:---------------|
+| url     | string \| [Resource](../../apis-arkui/arkui-ts/ts-types.md#resource)               | 是  | 需要加载的 URL。     |
+| headers | Array\<[WebHeader](#webheader)> | 否  | URL的附加HTTP请求头。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[错误码](../../apis-arkweb/errorcode-webview.md).
+
+| 错误码ID    | 错误信息                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------|
+| 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
+| 17100002 | Invalid url.                                                                                     |
+| 17100003 | Invalid resource path or file type.                                                              |
+
+## WebHeader
+
+Web组件返回的请求/响应头对象。
+
+| 名称          | 类型     | 可读 | 可写 | 说明            |
+|-------------|--------|----|----|---------------|
+| headerKey   | string | 是  | 是  | 请求/响应头的key。   |
+| headerValue | string | 是  | 是  | 请求/响应头的value。 |
 
 ## OnMessageEvent
 
@@ -63,9 +343,9 @@ AtomicServiceWeb({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型        | 必填 | 说明    |
-|------|-----------|----|-------|
-| data | Object[]	 | 是  | 消息列表。 |
+| 名称   | 类型       | 必填 | 说明    |
+|------|----------|----|-------|
+| data | Object[] | 是  | 消息列表。 |
 
 ## OnErrorReceiveEvent
 
@@ -75,10 +355,10 @@ AtomicServiceWeb({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                                                                     | 必填 | 说明              |
-|---------|----------------------------------------------------------------------------------------|----|-----------------|
-| request | [WebResourceRequest](../../apis-arkweb/ts-basic-components-web.md#webresourcerequest)	 | 是  | 网页请求的封装信息。      |
-| error   | [WebResourceError](../../apis-arkweb/ts-basic-components-web.md#webresourceerror)      | 是  | 网页加载资源错误的封装信息 。 |
+| 名称      | 类型                                                                                    | 必填 | 说明              |
+|---------|---------------------------------------------------------------------------------------|----|-----------------|
+| request | [WebResourceRequest](../../apis-arkweb/ts-basic-components-web.md#webresourcerequest) | 是  | 网页请求的封装信息。      |
+| error   | [WebResourceError](../../apis-arkweb/ts-basic-components-web.md#webresourceerror)     | 是  | 网页加载资源错误的封装信息 。 |
 
 ## OnHttpErrorReceiveEvent
 
@@ -90,7 +370,7 @@ AtomicServiceWeb({
 
 | 名称       | 类型                                                                                      | 必填 | 说明         |
 |----------|-----------------------------------------------------------------------------------------|----|------------|
-| request  | [WebResourceRequest](../../apis-arkweb/ts-basic-components-web.md#webresourcerequest)	  | 是  | 网页请求的封装信息。 |
+| request  | [WebResourceRequest](../../apis-arkweb/ts-basic-components-web.md#webresourcerequest)   | 是  | 网页请求的封装信息。 |
 | response | [WebResourceResponse](../../apis-arkweb/ts-basic-components-web.md#webresourceresponse) | 是  | 资源响应的封装信息。 |
 
 ## OnPageBeginEvent
@@ -129,14 +409,16 @@ AtomicServiceWeb({
 
 ```ts
 // xxx.ets
-import { AtomicServiceWeb } from '@kit.ArkUI';
+import { AtomicServiceWeb, AtomicServiceWebController } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct WebComponent {
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+  
   build() {
     Column() {
-      AtomicServiceWeb({ src: $rawfile("index.html") })
+      AtomicServiceWeb({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
 }
@@ -148,14 +430,16 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import { AtomicServiceWeb } from '@kit.ArkUI';
+import { AtomicServiceWeb, AtomicServiceWebController } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct WebComponent {
+    @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+
     build() {
         Column() {
-            AtomicServiceWeb({ src: 'https://www.example.com' })
+            AtomicServiceWeb({ src: 'https://www.example.com', controller: this.controller })
         }
     }
 }
@@ -167,7 +451,7 @@ NavDestination容器中加载网页。
 
 ```ts
 // xxx.ets
-import { AtomicServiceWeb } from '@kit.ArkUI';
+import { AtomicServiceWeb, AtomicServiceWebController } from '@kit.ArkUI';
 
 @Builder
 export function WebComponentBuilder(name: string, param: Object) {
@@ -177,10 +461,11 @@ export function WebComponentBuilder(name: string, param: Object) {
 @Component
 struct WebComponent {
   navPathStack: NavPathStack = new NavPathStack();
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
 
   build() {
     NavDestination() {
-      AtomicServiceWeb({ src: $rawfile("index.html"), navPathStack: this.navPathStack })
+      AtomicServiceWeb({ src: $rawfile("index.html"), controller: this.controller, navPathStack: this.navPathStack })
     }
     .onReady((context: NavDestinationContext) => {
       this.navPathStack = context.pathStack;
@@ -195,15 +480,18 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import { AtomicServiceWeb, OnMessageEvent } from '@kit.ArkUI';
+import { AtomicServiceWeb, AtomicServiceWebController, OnMessageEvent } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct WebComponent {
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+
   build() {
     Column() {
       AtomicServiceWeb({
         src: $rawfile("index.html"),
+        controller: this.controller,
         // H5页面点击“发送消息”后，再点击“返回上一页”，触发该回调
         onMessage: (event: OnMessageEvent) => {
           console.log(`[AtomicServiceWebLog] onMessage data=${JSON.stringify(event.data)}`);
@@ -261,6 +549,7 @@ struct WebComponent {
 // xxx.ets
 import {
   AtomicServiceWeb,
+  AtomicServiceWebController,
   OnErrorReceiveEvent,
   OnHttpErrorReceiveEvent,
   OnPageBeginEvent,
@@ -270,10 +559,13 @@ import {
 @Entry
 @Component
 struct WebComponent {
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+
   build() {
     Column() {
       AtomicServiceWeb({
         src: $rawfile('index.html'),
+        controller: this.controller,
         // 网页加载遇到错误时触发该回调
         onErrorReceive: (event: OnErrorReceiveEvent) => {
           console.log(`AtomicServiceWebLog onErrorReceive event=${JSON.stringify({
@@ -303,6 +595,114 @@ struct WebComponent {
           console.log(`AtomicServiceWebLog onPageEnd event=${JSON.stringify({
             url: event.url
           })}`);
+        }
+      })
+    }
+  }
+}
+```
+
+### 示例6
+
+AtomicServiceWeb跟AtomicServiceWebController的使用示例。
+
+```ts
+// xxx.ets
+import {
+  AtomicServiceWeb,
+  AtomicServiceWebController,
+  OnErrorReceiveEvent,
+  OnHttpErrorReceiveEvent,
+  OnPageBeginEvent,
+  OnPageEndEvent,
+  OnMessageEvent,
+  OnLoadInterceptEvent,
+  OnProgressChangeEvent
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct WebComponent {
+  @State darkMode: WebDarkMode = WebDarkMode.On;
+  @State forceDarkAccess: boolean = true;
+  @State mixedMode: MixedMode = MixedMode.None;
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+  @State num: number = 1;
+
+  build() {
+    Column() {
+      Button('accessForward').onClick(() => {
+        console.log(`AtomicServiceWebLog accessForward = ${this.controller.accessForward()}`);
+      })
+      Button('accessBackward').onClick(() => {
+        console.log(`AtomicServiceWebLog accessBackward = ${this.controller.accessBackward()}`);
+      })
+      Button('accessStep').onClick(() => {
+        console.log(`AtomicServiceWebLog accessStep = ${this.controller.accessStep(1)}`);
+      })
+      Button('forward').onClick(() => {
+        console.log(`AtomicServiceWebLog forward = ${this.controller.forward()}`);
+      })
+      Button('backward').onClick(() => {
+        console.log(`AtomicServiceWebLog backward = ${this.controller.backward()}`);
+      })
+      Button('refresh').onClick(() => {
+        console.log(`AtomicServiceWebLog refresh = ${this.controller.refresh()}`);
+      })
+      Button('loadUrl').onClick(() => {
+        console.log(`AtomicServiceWebLog loadUrl = ${this.controller.loadUrl('https://www.baidu.com/')}`);
+      })
+      Button('深色模式').onClick(() => {
+        this.forceDarkAccess = !this.forceDarkAccess;
+      })
+      Button('mixedMode').onClick(() => {
+        this.mixedMode = this.mixedMode == MixedMode.None ? MixedMode.All : MixedMode.None;
+      })
+      Button('点击').onClick(() => {
+        console.log(`AtomicServiceWebLog getUserAgent = ${this.controller.getUserAgent()}`);
+        console.log(`AtomicServiceWebLog getCustomUserAgent = ${this.controller.getCustomUserAgent()}`);
+        this.controller.setCustomUserAgent('test' + this.num++);
+
+        console.log(`AtomicServiceWebLog getUserAgent after set = ${this.controller.getUserAgent()}`);
+        console.log(`AtomicServiceWebLog getCustomUserAgent after set = ${this.controller.getCustomUserAgent()}`);
+      })
+      AtomicServiceWeb({
+        src: 'https://www.example.com',
+        mixedMode: this.mixedMode,
+        darkMode: this.darkMode,
+        forceDarkAccess: this.forceDarkAccess,
+        controller: this.controller,
+        onControllerAttached: () => {
+          console.log("AtomicServiceWebLog onControllerAttached call back success");
+        },
+        onLoadIntercept: (event: OnLoadInterceptEvent) => {
+          console.log("AtomicServiceWebLog onLoadIntercept call back success " + JSON.stringify({
+            getRequestUrl: event.data.getRequestUrl(),
+            getRequestMethod: event.data.getRequestMethod(),
+            getRequestHeader: event.data.getRequestHeader(),
+            isRequestGesture: event.data.isRequestGesture(),
+            isMainFrame: event.data.isMainFrame(),
+            isRedirect: event.data.isRedirect(),
+          }))
+          return false;
+        },
+        onProgressChange: (event: OnProgressChangeEvent) => {
+          console.log("AtomicServiceWebLog onProgressChange call back success " + JSON.stringify(event));
+        },
+        onMessage: (event: OnMessageEvent) => {
+          console.log("onMessage call back success " + JSON.stringify(event));
+        },
+        onPageBegin: (event: OnPageBeginEvent) => {
+          console.log("onPageBegin call back success " + JSON.stringify(event));
+        },
+        onPageEnd: (event: OnPageEndEvent) => {
+          console.log("onPageEnd call back success " + JSON.stringify(event));
+        },
+        onHttpErrorReceive: (event: OnHttpErrorReceiveEvent) => {
+          console.log("onHttpErrorReceive call back success " + JSON.stringify(event));
+        },
+        onErrorReceive: (event: OnErrorReceiveEvent) => {
+          console.log("onErrorReceive call back success " + JSON.stringify(event));
         }
       })
     }

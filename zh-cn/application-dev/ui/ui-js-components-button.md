@@ -169,7 +169,8 @@ export default {
 
 ![zh-cn_image_0000001208393581](figures/zh-cn_image_0000001208393581.gif)
 
-> **说明：**
+> **说明：** 
+>
 > setProgress方法只支持button的类型为download。
 
 

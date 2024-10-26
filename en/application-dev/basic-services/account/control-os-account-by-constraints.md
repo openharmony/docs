@@ -53,7 +53,7 @@ You can use [isOsAccountConstraintEnabled](../../reference/apis-basic-services-k
 
 **Procedure**
 
-1. Specifies the system account ID and constraint.
+1. Set the system account ID and constraint.
 
    ```ts
    let localId: number = 100;

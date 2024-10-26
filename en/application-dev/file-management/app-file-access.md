@@ -44,9 +44,9 @@ The following example demonstrates how to create a file, read data from it, and 
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import buffer from '@ohos.buffer';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { buffer } from '@kit.ArkTS';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -78,8 +78,8 @@ The following example demonstrates how to read data from a file and copy it to a
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions, WriteOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -123,8 +123,8 @@ The following example demonstrates how to read and write file data using a strea
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -159,7 +159,7 @@ async function readWriteFileWithStream(): Promise<void> {
 
 > **NOTE**
 >
-> - Close the stream once it is not required. 
+> - Close the stream once it is not required.
 > - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode. 
 > - The **Stream** APIs do not support concurrent read and write operations.
 
@@ -168,8 +168,8 @@ async function readWriteFileWithStream(): Promise<void> {
 The following example demonstrates how to list files that meet the specified conditions.
 
 ```ts
-import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -200,8 +200,8 @@ The following sample code demonstrates how to use readable and writable streams.
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -243,9 +243,9 @@ The following code demonstrates how to use a file hash stream.
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
-import hash from '@ohos.file.hash';
-import common from '@ohos.app.ability.common';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { hash } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;

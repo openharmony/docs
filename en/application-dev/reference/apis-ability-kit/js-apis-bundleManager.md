@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager)
 
-The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, ExtensionAbilities, and more.
+The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-bundleInfo.md), [ApplicationInfo](js-apis-bundleManager-applicationInfo.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -22,18 +22,18 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 
 | Name                                         | Value        | Description                                                        |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | Used to obtain the default bundle information. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | Used to obtain the bundle information with application information. The obtained information does not contain information about the signature, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | Used to obtain the bundle information with HAP module information. The obtained information does not contain information about the signature, application, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | Used to obtain the bundle information with ability information. The obtained information does not contain information about the signature, application, ExtensionAbility, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | Used to obtain the bundle information with ExtensionAbility information. The obtained information does not contain information about the signature, application, ability, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | Used to obtain the bundle information with permission information. The obtained information does not contain information about the signature, application, HAP module, ability, or ExtensionAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | Used to obtain the default bundle information. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | Used to obtain the bundle information with application information. The obtained information does not contain information about the signature, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | Used to obtain the bundle information with HAP module information. The obtained information does not contain information about the signature, application, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | Used to obtain the bundle information with ability information. The obtained information does not contain information about the signature, application, ExtensionAbility, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | Used to obtain the bundle information with ExtensionAbility information. The obtained information does not contain information about the signature, application, ability, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | Used to obtain the bundle information with permission information. The obtained information does not contain information about the signature, application, HAP module, ability, or ExtensionAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### ExtensionAbilityType
 
@@ -41,31 +41,31 @@ Enumerates the types of ExtensionAbilities.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name | Value | Description |
+| Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle. |
-| INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications. |
-| SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->: enables applications to run in the background and provide services. |
-| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI. |
-| DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->: enables applications to read and write data. |
-| FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved. |
-| STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->: provides APIs for processing static events, such as the startup event. |
-| WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved. |
-| BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore. |
-| WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->: allows system applications to display UIs of other applications. |
-| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts. |
-| THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved. |
-| PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved. |
-| PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet. |
-| SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities. |
-| PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved. |
-| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This type of ability is not supported yet. |
-| ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities. |
-| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This type of ability is not supported yet. |
-| EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md): provides ExtensionAbilities for the embeddable UI across process. |
-| INSIGHT_INTENT_UI<sup>12+</sup> | 22 | **InsightIntentUIExtensionAbility**: provides APIs that enable applications to be called by Celia intents so as to be displayed in windows. |
-| UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities. |
+| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
+| INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
+| SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->: enables applications to run in the background and provide services.|
+| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](https://developer.huawei.com/consumer/en/doc/harmonyos-references-V5/is-inner-application-accessibilityextensioncontext-V5): provides accessibility for access to and operations on the UI.|
+| DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->: enables applications to read and write data.|
+| FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
+| STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->: provides APIs for processing static events, such as the startup event.|
+| WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved and supported only by system applications.|
+| BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
+| WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->: allows system applications to display UIs of other applications.|
+| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
+| THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved and supported only by system applications.|
+| PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
+| PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. This ability is supported only by system applications.|
+| SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
+| PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
+| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](../apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This ability is supported only by system applications.|
+| ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
+| ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This ability is supported only by system applications.|
+| EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md): provides ExtensionAbilities for the embeddable UI across process.|
+| INSIGHT_INTENT_UI<sup>12+</sup> | 22 | **InsightIntentUIExtensionAbility**: provides APIs that enable applications to be called by Celia intents so as to be displayed in windows.|
+| UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities.|
 
 
 ### PermissionGrantState
@@ -76,9 +76,9 @@ Enumerates the permission grant states.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name | Value | Description |
+| Name| Value| Description|
 |:----------------:|:---:|:---:|
-| PERMISSION_DENIED|  -1 | Permission denied. |
+| PERMISSION_DENIED|  -1 | Permission denied.|
 | PERMISSION_GRANTED |  0  |  Permission granted. |
 
 ### SupportWindowMode
@@ -89,10 +89,10 @@ Enumerates the window modes supported by the ability.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name | Value | Description |
+| Name| Value| Description|
 |:----------------:|:---:|:---:|
-| FULL_SCREEN      | 0   | A window in full-screen mode is supported. |
-| SPLIT            | 1   | A window in split-screen mode is supported. |
+| FULL_SCREEN      | 0   | A window in full-screen mode is supported.|
+| SPLIT            | 1   | A window in split-screen mode is supported.|
 | FLOATING         | 2   | A floating window is supported.  |
 
 ### LaunchType
@@ -103,11 +103,11 @@ Enumerates the launch types of the ability.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name | Value | Description |
+| Name| Value| Description|
 |:----------------:|:---:|:---:|
-| SINGLETON        | 0   | The ability can have only one instance. |
-| MULTITON         | 1   | The ability can have multiple instances. |
-| SPECIFIED        | 2   | The ability can have one or multiple instances, depending on the internal service of the ability. |
+| SINGLETON        | 0   | The ability can have only one instance.|
+| MULTITON         | 1   | The ability can have multiple instances.|
+| SPECIFIED        | 2   | The ability can have one or multiple instances, depending on the internal service of the ability.|
 
 ### AbilityType
 
@@ -121,7 +121,7 @@ Enumerates the types of abilities.
 | :-----: | ---- | :--------------------------------------------------------: |
 | PAGE    | 1    | Ability that has the UI. FA developed using the Page template to provide the capability of interacting with users.       |
 | SERVICE | 2    | Ability of the background service type, without the UI. PA developed using the Service template to provide the capability of running tasks in the background. |
-|  DATA   | 3    | PA developed using the Data template to provide unified data access for external systems. |
+|  DATA   | 3    | PA developed using the Data template to provide unified data access for external systems.|
 
 ### DisplayOrientation
 
@@ -129,18 +129,18 @@ Enumerates the display orientations of the ability. This property applies only t
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                              |Value |Description |
+| Name                              |Value|Description|
 |:----------------------------------|---|---|
-| UNSPECIFIED                        |0 |Unspecified. The orientation is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| LANDSCAPE                          |1 |Landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| PORTRAIT                           |2 |Portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| FOLLOW_RECENT                      |3 |The last display orientation is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| LANDSCAPE_INVERTED                 |4 |Reverse landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| PORTRAIT_INVERTED                  |5 |Reverse portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| AUTO_ROTATION                      |6 |Auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| AUTO_ROTATION_LANDSCAPE            |7 |Auto rotation in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| AUTO_ROTATION_PORTRAIT             |8 |Auto rotation in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| AUTO_ROTATION_RESTRICTED           |9 |Switched-determined auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| UNSPECIFIED                        |0 |Unspecified. The orientation is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LANDSCAPE                          |1 |Landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PORTRAIT                           |2 |Portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| FOLLOW_RECENT                      |3 |The last display orientation is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LANDSCAPE_INVERTED                 |4 |Reverse landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PORTRAIT_INVERTED                  |5 |Reverse portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION                      |6 |Auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_LANDSCAPE            |7 |Auto rotation in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_PORTRAIT             |8 |Auto rotation in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_RESTRICTED           |9 |Switched-determined auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|Switched-determined auto rotation in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|Switched-determined auto rotation in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | LOCKED                             |12|Locked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -157,7 +157,7 @@ Defines the version compatibility type of the shared library.
 
 | Name                  | Value  | Description                            |
 | ---------------------- | ---- | -------------------------------- |
-| BACKWARD_COMPATIBILITY | 1    | The shared library is backward compatible. |
+| BACKWARD_COMPATIBILITY | 1    | The shared library is backward compatible.|
 
 ### ModuleType
 
@@ -170,7 +170,7 @@ Enumerates the module types.
 | Name   | Value  | Description                |
 | ------- | ---- | -------------------- |
 | ENTRY   | 1    | Main module of the application.  |
-| FEATURE | 2    | Dynamic feature module of the application. |
+| FEATURE | 2    | Dynamic feature module of the application.|
 | SHARED  | 3    | Dynamic shared library module of the application. |
 
 ### BundleType
@@ -184,17 +184,17 @@ Enumerates the bundle types.
 | Name          | Value  | Description           |
 | -------------- | ---- | --------------- |
 | APP            | 0    | The bundle is an application.   |
-| ATOMIC_SERVICE | 1    | The bundle is an atomic service. |
+| ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
 
 ### MultiAppModeType<sup>12+</sup>
 Enumerates the types of the multi-app mode.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name | Value | Description |
+| Name| Value| Description|
 |:----------------:|:---:|:---:|
-| UNSPECIFIED|  0 | Unspecified type. |
-| MULTI_INSTANCE |  1  | Multiton mode. |
+| UNSPECIFIED|  0 | Unspecified type.|
+| MULTI_INSTANCE |  1  | Multiton mode. A resident process does not support this value. |
 | APP_CLONE |  2  |  App clone mode. |
 
 ## APIs
@@ -211,9 +211,9 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description               |
+| Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain. |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
 
@@ -225,7 +225,7 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
@@ -263,16 +263,16 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description               |
+| Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain. |
-| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object. |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
@@ -316,18 +316,18 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Parameters**
 
-| Name      | Type                         | Mandatory | Description                                                        |
+| Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName   | string                        | Yes  | Module name.                                    |
 | abilityName  | string                        | Yes  | Name of the UIAbility component.                                   |
 | metadataName | string                        | Yes  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file.                                 |
-| callback     | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object. |
+| callback     | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
@@ -377,23 +377,23 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description                      |
+| Name      | Type  | Mandatory| Description                      |
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | Yes  | Module name.  |
 | abilityName  | string | Yes  | Name of the UIAbility component. |
-| metadataName | string | No  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file. The default value is null. |
+| metadataName | string | No  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file. The default value is null.|
 
 **Return value**
 
 | Type                   | Description                           |
 | ----------------------- | ------------------------------- |
-| Promise<Array\<string>> | Promise used to return the array of JSON strings obtained. |
+| Promise<Array\<string>> | Promise used to return the array of JSON strings obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
@@ -461,23 +461,23 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Parameters**
 
-| Name      | Type  | Mandatory | Description                      |
+| Name      | Type  | Mandatory| Description                      |
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | Yes  | Module name.  |
 | abilityName  | string | Yes  | Name of the UIAbility component. |
-| metadataName | string | No  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file. The default value is null. |
+| metadataName | string | No  | Metadata name of the UIAbility component, that is, **name** of the **metadata** tag under **abilities** in the **module.json5** file. The default value is null.|
 
 **Return value**
 
 | Type                   | Description                           |
 | ----------------------- | ------------------------------- |
-| Array\<string> | An array of JSON strings. |
+| Array\<string> | An array of JSON strings.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
@@ -539,18 +539,18 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Parameters**
 
-| Name                | Type                         | Mandatory | Description                                                        |
+| Name                | Type                         | Mandatory| Description                                                        |
 | -------------------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | moduleName           | string                        | Yes  | Module name.                                  |
 | extensionAbilityName | string                        | Yes  | Name of the ExtensionAbility component.                        |
 | metadataName         | string                        | Yes  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file.                                |
-| callback             | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object. |
+| callback             | AsyncCallback<Array\<string>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of JSON strings obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
@@ -599,23 +599,23 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Parameters**
 
-| Name                | Type  | Mandatory | Description                              |
+| Name                | Type  | Mandatory| Description                              |
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | Yes  | Module name.          |
-| extensionAbilityName | string | Yes  | Name of the ExtensionAbility component. |
+| extensionAbilityName | string | Yes  | Name of the ExtensionAbility component.|
 | metadataName         | string | No  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file. The default value is null.        |
 
 **Return value**
 
 | Type                   | Description                               |
 | ----------------------- | ----------------------------------- |
-| Promise<Array\<string>> | Promise used to return the array of JSON strings obtained. |
+| Promise<Array\<string>> | Promise used to return the array of JSON strings obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
@@ -673,23 +673,23 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Parameters**
 
-| Name                | Type  | Mandatory | Description                              |
+| Name                | Type  | Mandatory| Description                              |
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | Yes  | Module name.          |
-| extensionAbilityName | string | Yes  | Name of the ExtensionAbility component. |
+| extensionAbilityName | string | Yes  | Name of the ExtensionAbility component.|
 | metadataName         | string | No  |  Metadata name of the ExtensionAbility component, that is, **name** of the **metadata** tag under **extensionAbilities** in the **module.json5** file. The default value is null.        |
 
 **Return value**
 
 | Type                   | Description                               |
 | ----------------------- | ----------------------------------- |
-| Array\<string> | An array of JSON strings. |
+| Array\<string> | An array of JSON strings.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
@@ -737,21 +737,21 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description               |
+| Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain. |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
 
 | Type                                             | Description                |
 | ------------------------------------------------- | -------------------- |
-| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained. |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
@@ -773,164 +773,6 @@ try {
 }
 ```
 
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
-
-Verifies an .abc file. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.RUN_DYN_CODE
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory | Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | Yes  | Path of the .abc file. |
-| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If the verification is successful, **err** is **undefined**; otherwise, **err** is an error object. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID | Error Message                             |
-| -------- | ------------------------------------- |
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | Failed to verify the abc file. |
-
-**Example**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-  bundleManager.verifyAbc(abcPaths, true, (err, data) => {
-    if (err) {
-      hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
-    } else {
-      hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-    }
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
-}
-```
-
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
-
-Verifies an .abc file. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.RUN_DYN_CODE
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory | Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | Yes  | Path of the .abc file. |
-| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.      |
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID | Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | Failed to verify the abc file. |
-
-**Example**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-  bundleManager.verifyAbc(abcPaths, true).then((data) => {
-    hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-  }).catch((err: BusinessError) => {
-    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.deleteAbc<sup>11+</sup>
-
-deleteAbc(abcPath: string): Promise\<void>
-
-Deletes an .abc file based on the specified file path. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.RUN_DYN_CODE
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory | Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPath  | string | Yes  | Path of the .abc file. |
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID | Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700202 | Failed to delete the abc file. |
-
-**Example**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPath: string = '/data/storage/el2/base/a.abc';
-
-try {
-  bundleManager.deleteAbc(abcPath).then((data) => {
-    hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
-  }).catch((err: BusinessError) => {
-    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
-}
-```
-
 ### bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
@@ -943,21 +785,21 @@ Checks whether a link can be opened. The scheme of the specified link must be co
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description               |
+| Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| link | string | Yes  | Link to check. |
+| link | string | Yes  | Link to check.|
 
 **Return value**
 
 | Type                                             | Description                |
 | ------------------------------------------------- | -------------------- |
-| boolean | **true**: The link can be opened.<br>**false**: The link cannot be opened. |
+| boolean | **true**: The link can be opened.<br>**false**: The link cannot be opened.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700055 | The specified link is invalid.                      |
@@ -977,5 +819,46 @@ try {
 } catch (err) {
   let message = (err as BusinessError).message;
   hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
+}
+```
+
+### bundleManager.getLaunchWant<sup>13+</sup>
+
+getLaunchWant(): Want
+
+Obtains the **Want** parameter used to start the application.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Return value**
+
+| Type                               | Description                                       |
+| ----------------------------------- | ------------------------------------------- |
+| [Want](js-apis-app-ability-want.md) | Want object that contains the bundle name and ability name.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 17700072 | The launch want is not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+  let want = bundleManager.getLaunchWant();
+  hilog.info(0x0000, 'testTag', 'getLaunchWant ability name: %{public}s', want.abilityName);
+  hilog.info(0x0000, 'testTag', 'getLaunchWant bundle name: %{public}s', want.bundleName);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getLaunchWant failed: %{public}s', message);
 }
 ```

@@ -35,9 +35,9 @@ Before sharing an application file, you need to [obtain the application file pat
 1. Obtain the application sandbox path of the file and convert it into the file URI.
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import fileUri from '@ohos.file.fileuri';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { fileUri } from '@kit.CoreFileKit';
+   import { window } from '@kit.ArkUI';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -45,7 +45,7 @@ Before sharing an application file, you need to [obtain the application file pat
        let pathInSandbox = this.context.filesDir + "/test1.txt";
        // Convert the application sandbox path into a URI.
        let uri = fileUri.getUriFromPath(pathInSandbox);
-       // The obtained URI is file://com.example.demo/data/storage/el2/base/files/test.txt.
+       // The obtained URI is file://com.example.demo/data/storage/el2/base/files/test1.txt.
      }
    }
    ```
@@ -58,12 +58,12 @@ Before sharing an application file, you need to [obtain the application file pat
    > The write permission granted includes the read permission.
 
    ```ts
-   import fileUri from '@ohos.file.fileuri';
-   import window from '@ohos.window';
-   import wantConstant from '@ohos.app.ability.wantConstant';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base';
+   import { fileUri } from '@kit.CoreFileKit';
+   import { window } from '@kit.ArkUI';
+   import { wantConstant } from '@kit.AbilityKit';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { Want } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -130,9 +130,9 @@ After obtaining the URI of the shared file from **want**, the target application
 
 ```ts
 // xxx.ets
-import fs from '@ohos.file.fs';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getShareFile() {
   try {
@@ -158,7 +158,3 @@ function getShareFile() {
   }
 }
 ```
-
-
- 
-

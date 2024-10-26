@@ -1,46 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 移动窗口布局模式瀑布流行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-优化[移动窗口布局模式](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md#waterflowlayoutmode12)瀑布流使用LazyForEach增删节点时布局方式。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：在显示范围上方增加节点，显示范围节点会下移；在显示范围上方删除节点，显示范围节点会上移
-
-变更后：在显示范围上方增删节点，显示范围不变
-
-下表显示在显示范围上方增加一个节点时变更前后的效果对比：
-| 增加节点前|变更前：图7显示到原图8的位置 | 变更后：图8位置不变 |
-| --- |--- | --- |
-|![waterflow](figures/waterflow.png) |![waterflow-before](figures/waterflow-before.png) |![waterflow-after](figures/waterflow-after.png)  |
-
-
-**起始API Level**
-
-API 12
-
-**变更发生版本**
-
-从OpenHarmony 5.0.0.36 版本开始。
-
-**变更的接口/组件**
-
-WaterFlow组件布局模式WaterFlowLayoutMode.SLIDING_WINDOW。
-
-**适配指导**
-
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
-
-## cl.arkui.2 Tabs组件的页签可滚动且为非子页签样式时增加页签默认切换动效
+## cl.arkui.1 Tabs组件的页签可滚动且为非子页签样式时增加页签默认切换动效
 
 **访问级别**
 
@@ -127,7 +87,7 @@ struct TabsSample {
 }
 ```
 
-## cl.arkui.3 Refresh组件promptText参数设置为undefined时清空文本内容
+## cl.arkui.2 Refresh组件promptText参数设置为undefined时清空文本内容
 
 **访问级别**
 
@@ -199,7 +159,7 @@ struct RefreshExample {
 }
 ```
 
-## cl.arkui.4 Popup（气泡组件）UX样式变更
+## cl.arkui.3 Popup（气泡组件）UX样式变更
 
 **访问级别**
 
@@ -241,7 +201,7 @@ Popup（气泡组件）
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.5 Menu(菜单组件)组件内borderRadius方法支持设置LocalizedBorderRadiuses类型参数
+## cl.arkui.4 Menu(菜单组件)组件内borderRadius方法支持设置LocalizedBorderRadiuses类型参数
 
 **访问级别**
 
@@ -320,7 +280,161 @@ struct Index {
 }
 ```
 
-## cl.arkui.6 QRCode深浅色适配修改
+## cl.arkui.5 setWindowSystemBarEnable 接口废弃变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该接口有Promise和callback两种调用方式，使用callback方式的接口错误码不满足ArkTS API异常处理规范，标废弃，使用同名的Promise接口代替。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+从API version 12开始，setWindowSystemBarEnable的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
+
+**起始 API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36版本开始。
+
+**变更的接口/组件**
+
+Window#setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void。
+
+**适配指导**
+
+不涉及
+
+## cl.arkui.6 setWindowLayoutFullScreen 接口废弃变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该接口有Promise和callback两种调用方式，使用callback方式的接口错误码不满足ArkTS API异常处理规范，标废弃，使用同名的Promise接口代替。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+从API version 12 setWindowLayoutFullScreen的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
+
+**起始 API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36版本开始。
+
+**变更的接口/组件**
+
+Window#setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void。
+
+**适配指导**
+
+不涉及
+
+## cl.arkui.7 setWindowSystemBarProperties 接口废弃变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该接口有Promise和callback两种调用方式，使用callback方式的接口错误码不满足ArkTS API异常处理规范，标废弃，使用同名的Promise接口代替。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+从API version 12开始，setWindowSystemBarProperties的callback方式调用将不推荐使用，推荐使用Promise方式的同名接口。
+
+**起始 API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36版本开始。
+
+**变更的接口/组件**
+
+Window#setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void。
+
+**适配指导**
+
+不涉及
+
+## cl.arkui.8  Toast弹窗UX样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变更
+
+**变更影响**
+
+该变更为不兼容变更。
+
+- API version 11及之前，Toast弹窗背景色为深黑色、字色为白色，最大高度没有限制，界面语超长没有截断。<br/>
+
+- API version 12及之后，Toast弹窗在常规亮色显示风格下toast透明模糊背景、字色黑色，暗色显示风格下透明模糊背景、字色白色。<br/>
+Toast的最大高度 =（屏幕高度-信号栏-导航条）*0.65，最大宽度：基于屏幕宽度-2侧margin，根据容器自适应，最大到400vp不再变化。<br/>
+界面语超长逐级缩小字号至12fp，超出截断。
+
+- API version 11及之前对比API version 12及之后属性变更如下
+
+ | 属性名 | 变更前 | 变更后 |
+|---------|---------|---------|
+| 背景色 | bg_color | COMPONENT_ULTRA_THICK |
+| 圆角 | toast_border_radius | corner_radius_level9 |
+| padding-left | toast_padding_horizontal | padding_level8 |
+| padding-top | toast_padding_vertical | padding_level4 |
+| padding-right | toast_padding_horizontal | padding_level8 |
+| padding-bottom | toast_padding_vertical | padding_level4 |
+| 字体大小 | text_font_size | Body_M |
+| 字体颜色 | text_color | font_primary |
+| 字重 | toast_text_font_weight | font_weight_regular |
+
+示例如下：
+如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/toast_api11.png)  |  ![](figures/toast_api12.png)  |
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36 版本开始。
+
+**变更的接口/组件**
+
+promptAction.showToast
+
+**适配指导**
+
+UX默认行为变更，无需适配。可以通过[promptAction](../../../application-dev/reference/apis-arkui/js-apis-promptAction.md)中ShowToastOptions接口自定义Toast背景色、字色等。
+
+
+## cl.arkui.9 QRCode深浅色适配修改
 
 **访问级别**
 

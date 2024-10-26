@@ -1,6 +1,6 @@
 # Web组件在不同的窗口间迁移
 
-Web组件可以在不同在窗口的页面上进行挂载或移除操作。开发者可以基于这一能力，实现同一个Web组件在不同窗口间的迁移。使用该能力，可以实现诸如浏览器tab页拖出成独立窗口等功能。
+Web组件可以在不同窗口的页面上进行挂载或移除操作。开发者可以基于这一能力，实现同一个Web组件在不同窗口间的迁移。使用该能力，可以实现诸如浏览器tab页拖出成独立窗口等功能。
 
 
 
@@ -25,7 +25,7 @@ import { createNWeb, defaultUrl } from '../pages/common'
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建，应用仅创建一个web组件
+      // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建，应用仅创建一个Web组件
       createNWeb(defaultUrl, windowStage.getMainWindowSync().getUIContext());
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });

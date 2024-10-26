@@ -23,7 +23,7 @@ GridItem(value?: GridItemOptions)
 
 **参数：** 
 
-| 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
+| 参数名 | 类型                                      | 必填 | 说明                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value<sup>11+</sup>  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
 
@@ -173,8 +173,8 @@ selected(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 参数类型                                  | 必填 | 描述                                                         |
-| ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| 名称  | 类型                  | 必填 | 说明                         |
+| ----- | -------------------- | ---- | ---------------------------- |
 | style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值: GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
 
 ## GridItemStyle<sup>11+</sup>枚举说明
@@ -183,7 +183,7 @@ selected(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  |枚举值| 描述                     |
+| 名称  |值| 说明                   |
 | ----- |----| ------------------------ |
 | NONE  |  0 | 无样式。                 |
 | PLAIN |  1 | 显示Hover、Press态样式。 |

@@ -12,11 +12,11 @@ Init error. The WebviewController must be associated with a Web component.
 
 **Description**
 
-This error code is reported when the **WebviewController** object is not associated with any **\<Web>** component.
+This error code is reported when the **WebviewController** object is not associated with any **Web** component.
 
 **Solution**
 
-Bind the **WebviewController** object to a **\<Web>** component.
+Use [onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10) to check whether the **WebViewController** object is associated with the **Web** component.
 
 
 ## 17100002 Invalid URL
@@ -390,7 +390,7 @@ This error code is reported when the **WebResourceHandler** object is invalid.
 
 1. The corresponding request is not intercepted in **WebSchemeHandler**.
 
-2. The request is intercepted before the response body is constructed, and the request has ended due to some reasons.
+2. The request is intercepted before the response body is constructed, and the request is ended due to some reasons.
 
 3. The **WebResourceHandler** object has called **didFinish** and **didFail**.
 

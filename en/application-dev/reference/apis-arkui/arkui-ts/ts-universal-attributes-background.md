@@ -100,6 +100,28 @@ Sets the position of the component background image.
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Position](ts-types.md#position) \| [Alignment](ts-appendix-enums.md#alignment) | Yes  | Position of the background image in the component, that is, the coordinates relative to the upper left corner of the component.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} <br> When **x** and **y** are set in percentage, the offset is calculated based on the width and height of the component.|
 
+## BlurStyle<sup>9+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                  | Description       |
+| -------------------- | --------- |
+| Thin                 | Thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| Regular              | Regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Thick                | Thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
+| BACKGROUND_THIN       | Material that creates the minimum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_REGULAR    | Material that creates a medium shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_THICK      | Material that creates a high shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| BACKGROUND_ULTRA_THICK | Material that creates the maximum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| NONE<sup>10+</sup> | No blur.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | Component ultra-thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_THIN<sup>11+</sup> | Component thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_REGULAR<sup>11+</sup> | Component regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_THICK<sup>11+</sup> | Component thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
 ## backgroundBlurStyle<sup>9+</sup>
 
 backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
@@ -116,7 +138,7 @@ Sets the background blur style applied between the content and the background.
 
 | Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
+| value                 | [BlurStyle](#blurstyle9)                 | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
 
 ## backgroundEffect<sup>11+</sup> 
@@ -133,7 +155,26 @@ Sets the background effect of the component.
 
 | Name | Type                                                        | Mandatory| Description                                      |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | Yes  | Background effect, including saturation, brightness, and color.|
+| options | [BackgroundEffectOptions](#backgroundeffectoptions11) | Yes  | Background effect, including saturation, brightness, and color.|
+
+## BackgroundEffectOptions<sup>11+</sup>
+Describes the background effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name       |   Type        |   Mandatory|  Description                       |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0** |
+| saturation   | number        |   No  |   Saturation.<br>Value range: [0, +∞)<br>Default value: **1** Recommended value range: [0, 50]    |
+| brightness   | number        |   No  |   Brightness.<br>Value range: [0, +∞)<br>Default value: **1** Recommended value range: [0, 2]|
+| color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color.<br>Default value: transparent |
+| adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT** When set to **AVERAGE**, the adaptive color mode takes effect only when the color has transparency.  |
+| blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0, 0]** |
+| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | No   | Blur activation policy.<br> Default value: **FOLLOWS_WINDOW_ACTIVE_STATE**<br>|
+| inactiveColor | ResourceColor | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).<br>|
+| type | [BlurType](ts-appendix-enums.md#blurtype13) | No   | Blur type.<br> Default value: **WITHIN_WINDOW**<br>|
 
 ## backgroundImageResizable<sup>12+</sup>
 
@@ -144,6 +185,8 @@ Sets the resizable background image options.
 When **ResizableOptions** is set to a valid value, the **repeat** parameter in [backgroundImage](#backgroundimage) does not take effect.
 
 When the sum of the values of **top** and **bottom** is greater than the source image height, or the sum of the values of **left** and **right** is greater than the source image width, the **ResizableOptions** attribute does not take effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -157,7 +200,13 @@ When the sum of the values of **top** and **bottom** is greater than the source 
 
 Inherited from [BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md).
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+| Name| Type                                                        | Mandatory| Description                                                |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | No   | Blur activation policy.<br> Default value: **FOLLOWS_WINDOW_ACTIVE_STATE**<br>|
+| inactiveColor | ResourceColor | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).<br>|
+| type | [BlurType](ts-appendix-enums.md#blurtype13) | No   | Blur type.<br> Default value: **WITHIN_WINDOW**<br>|
 
 
 ## backgroundBrightness<sup>12+</sup> 
@@ -165,6 +214,8 @@ Inherited from [BlurStyleOptions](ts-universal-attributes-foreground-blur-style.
 backgroundBrightness(params: BackgroundBrightnessOptions)
 
 Sets the background brightness of the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -176,6 +227,7 @@ Sets the background brightness of the component.
 
 ## BackgroundBrightnessOptions<sup>12+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name           | Type                                    | Mandatory  | Description                                      |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -355,3 +407,4 @@ When **rate** is set to **0.5** and **lightUpDegree** **-0.1**
 The following figure shows how the component looks without the background brightness set.
 
 ![en-us_image_background_brightness3](figures/en-us_image_background_brightness3.png)
+<!--no_check-->

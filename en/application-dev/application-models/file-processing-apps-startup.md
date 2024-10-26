@@ -1,8 +1,8 @@
-# Using startAbility to Start a File Application
+# Starting a File Application
 
 ## When to Use
 
-You can call **startAbility** to enable the system to search for an application that can handle the intent of opening a file from installed applications. For example, after downloading a PDF file from a browser, you can call this API to start a file application to open the PDF file. You must set the file URI and type and other fields in the request so that the system can identify the file to open. Then the system directly starts an application to open the file or displays a dialog box for users to select an application to open the file.
+You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to enable the system to search for an application that can handle the intent of opening a file from installed applications. For example, after downloading a PDF file from a browser, you can call this API to start a file application to open the PDF file. You must set the file URI (specified by [uri](#key-api-parameters)) and type (specified by [type](#key-api-parameters)) and other fields in the request so that the system can identify the file to open. Then the system directly starts an application to open the file or displays a dialog box for users to select an application to open the file.
 
 **Figure 1** Example of opening a file
 
@@ -14,11 +14,11 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 
 **Table 1** Description of [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) in startAbility
 
-| Parameter| Type  | Mandatory| Description                                                                                                                                                                                  |
-|----------|--------|----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Parameter| Type  | Mandatory| Description                 |
+|----------|--------|----------|---------------------|
 | uri      | string | Yes      | URI of the file to open. This parameter is used together with **type**.<br>The URI format is file:\/\/bundleName\/path.<br>- **file**: indicates a file URI.<br>- *bundleName*: specifies the owner of the file.<br>- *path*: specifies the application sandbox path of the file.|
 | type     | string | No      | MIME type of the file to open, for example, **'text/xml'** and **'image/*'**. For details about the MIME type definition, see https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com.                 |
-| parameters | Record<string, Object>       | No        | Custom parameters that are defined by the system and assigned values by developers as required. For details, see Table 2.                                                                                                                                                                                      |
+| parameters | Record<string, Object>       | No        | Custom parameters that are defined by the system and assigned values by developers as required. For details, see Table 2.        |
 | flags | number | No| Processing mode. For details, see Table 3.                                                                                                                                                                                      |
 
 **Table 2** Description of [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)
@@ -41,7 +41,8 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 ### Procedure for the Caller Application
 
 1. Import the required modules.
-    ```TypeScript
+
+    ```ts
     // xxx.ets
     import { fileUri } from '@kit.CoreFileKit';
     import { UIAbility, Want, common, wantConstant } from '@kit.AbilityKit';
@@ -49,68 +50,71 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     ```
 
 2. Obtain the [application file paths](application-context-stage.md#obtaining-application-file-paths).
-    ```TypeScript
+
+    ```ts
     // xxx.ets
     // Assume that the bundle name is com.example.demo.
     export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Obtain the application sandbox path of the file.
-        let filePath = this.context.filesDir + '/test1.txt';
-        // Convert the application sandbox path into a URI.
-        let uri = fileUri.getUriFromPath(filePath);
-        // The obtained URI is file://com.example.demo/data/storage/el2/base/files/test.txt.
-    }
-    // ...
+        onWindowStageCreate(windowStage: window.WindowStage) {
+            // Obtain the application sandbox path of the file.
+            let filePath = this.context.filesDir + '/test1.txt';
+            // Convert the application sandbox path into a URI.
+            let uri = fileUri.getUriFromPath(filePath);
+            // The obtained URI is file://com.example.demo/data/storage/el2/base/files/test.txt.
+        }
+        // ...
     }
     ```
 
 3. Construct request data.
-    ```TypeScript
+
+    ```ts
     // xxx.ets
     export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Obtain the application sandbox path of the file.
-        let filePath = this.context.filesDir + '/test.txt';
-        // Convert the application sandbox path into a URI.
-        let uri = fileUri.getUriFromPath(filePath);
-        // Construct the request data.
-        let want: Want = {
-        uri: uri,
-        type: 'text/plain', // Type of the file to open.
-        // Grant the read and write permissions on the file to the target application.
-        flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
-        };
-    }
-    // ...
+        onWindowStageCreate(windowStage: window.WindowStage) {
+            // Obtain the application sandbox path of the file.
+            let filePath = this.context.filesDir + '/test.txt';
+            // Convert the application sandbox path into a URI.
+            let uri = fileUri.getUriFromPath(filePath);
+            // Construct the request data.
+            let want: Want = {
+            uri: uri,
+            type: 'text/plain', // Type of the file to open.
+            // Grant the read and write permissions on the file to the target application.
+            flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
+            };
+        }
+        // ...
     }
     ```
 
 4. Call the API to start the target application.
-    ```TypeScript
+    
+    ```ts
     // xxx.ets
     export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Obtain the application sandbox path of the file.
-        let filePath = this.context.filesDir + '/test.txt';
-        // Convert the application sandbox path into a URI.
-        let uri = fileUri.getUriFromPath(filePath);
-        // Construct the request data.
-        let want: Want = {
-        uri: uri,
-        type: 'text/plain', // Type of the file to open.
-        // Grant the read and write permissions on the file to the target application.
-        flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
-        };
-        // Call startAbility.
-        this.context.startAbility(want)
-        .then(() => {
-            console.info('Succeed to invoke startAbility.');
-        })
-        .catch((err: BusinessError) => {
-            console.error(`Failed to invoke startAbility, code: ${err.code}, message: ${err.message}`);
-        });
-    }
-    // ...
+        onWindowStageCreate(windowStage: window.WindowStage) {
+            // Obtain the application sandbox path of the file.
+            let filePath = this.context.filesDir + '/test.txt';
+            // Convert the application sandbox path into a URI.
+            let uri = fileUri.getUriFromPath(filePath);
+            // Construct the request data.
+            let want: Want = {
+            uri: uri,
+            type: 'text/plain', // Type of the file to open.
+            // Grant the read and write permissions on the file to the target application.
+            flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
+            };
+            // Call startAbility.
+            this.context.startAbility(want)
+            .then(() => {
+                console.info('Succeed to invoke startAbility.');
+            })
+            .catch((err: BusinessError) => {
+                console.error(`Failed to invoke startAbility, code: ${err.code}, message: ${err.message}`);
+            });
+        }
+        // ...
     }
     ```
 
@@ -118,8 +122,9 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 
 1. Declare the capability to open files.
 
-    Applications that are able to open files must declare the file opening capability in the **module.json5** file. The **uris** field indicates the type of the URIs, and the **scheme** field is fixed at **file**. The **type** field indicates the types of files that can be opened. For details, see [MIME Definition] (https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com). In the following example, the file type is TXT.
-    ```TypeScript
+    Applications that are able to open files must declare the file opening capability in the [module.json5](../quick-start/module-configuration-file.md) file. The **uris** field indicates the type of the URIs, and the **scheme** field is fixed at **file**. The **type** field indicates the types of files that can be opened. For details, see [MIME Definition](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com). In the following example, the file type is TXT.
+
+    ```ts
     {
     "module": {
         // ...
@@ -152,9 +157,9 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 
 2. Process the file.
 
-    After the target application is started and obtains the URI of the file to open from the want information, it opens the file and obtains the corresponding file object for reading and writing.
+    After the target application is started and obtains the URI of the file to open from the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) information, it opens the file and obtains the corresponding file object for reading and writing.
 
-    ```TypeScript
+    ```ts
     // xxx.ets
     import fs from '@ohos.file.fs';
     import { Want } from '@kit.AbilityKit';

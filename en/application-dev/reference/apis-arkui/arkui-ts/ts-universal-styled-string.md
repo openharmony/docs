@@ -1,20 +1,24 @@
 # Styled String
 
-Styled strings are strings with associated style attributes. They can be linked to a **\<Text>** component using the [setStyledString](./ts-basic-components-text.md#setstyledstring12) API in **TextController**.
+Styled strings are string objects that facilitate the flexible use of text styles. They can be bound to the **Text** component using the [setStyledString](./ts-basic-components-text.md#setstyledstring12) API in **TextController**, and to the **RichEditor** component using the [setStyledString](ts-basic-components-richeditor.md#setstyledstring12) API in **RichEditorStyledStringController**.
 
 >  **NOTE**
 >
 >  The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  Currently, styled strings cannot be used in worker threads.
 
 ## Rules of Use
 
 * If a styled string conflicts with the current style settings in a component, the style set in the styled string takes effect.
-* If a styled string conflicts with the child components in [\<Text>](./ts-basic-components-text.md), the style set in the styled string is applied to the **\<Text>** component, and style settings of the child components, including [\<Span>](./ts-basic-components-span.md), are ignored.
+* If a styled string conflicts with the child components in [Text](./ts-basic-components-text.md), the style set in the styled string is applied to the **Text** component, and style settings of the child components, including [Span](./ts-basic-components-span.md), are ignored.
 * @State is not supported.
 
 ## StyledString
 
 constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -25,17 +29,21 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name |   Type  |   Read Only  |   Optional  |   Description  |
 | ------ | ------ | ------ | ------ | -------------- |
-| length | number |  Yes  | No  | Length of the styled string.<br>**NOTE**<br>If the styled string contains an image, its length is 1.|
+| length | number |  Yes  | No  | Length of the styled string.<br>**NOTE**<br>If the styled string contains an image or a custom span, its length is 1.|
 
 ### getString
 
 getString(): string
 
 Obtains the text of this styled string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,6 +59,8 @@ equals(other: StyledString): boolean
 
 Checks whether this styled string the same as another styled string.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -63,13 +73,15 @@ Checks whether this styled string the same as another styled string.
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| boolean | Whether the two styled strings are the same.<br>**NOTE**<br>The two styled strings are the same if they have the same text and style.<br>**GestureStyle** in styled strings is not compared. This means that, if two styled strings are the same except for the event configured, they are the same.<br>In comparing **CustomSpan** objects, addresses are compared. The objects that have the same address are the same.|
+| boolean | Whether two styled strings are equal.<br>**NOTE**<br>The two styled strings are the same if they have the same text and style.<br>**GestureStyle** in styled strings is not compared. This means that, if two styled strings are the same except for the event configured, they are the same.<br>In comparing **CustomSpan** objects, addresses are compared. The objects that have the same address are the same.|
 
 ### subStyledString
 
 Obtains a substring of this styled string.
 
 subStyledString(start: number , length?: number): StyledString
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,7 +96,7 @@ subStyledString(start: number , length?: number): StyledString
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| [StyledString](#styledstring) | Styled substring.<br>**NOTE**<br>If the value of **start** is valid, the difference between the length of the styled string and the value of **start** is used as the default value of **length**.<br>If the value of **start** or **length** is out of range or mandatory parameters are set to **undefined**, an exception is thrown.|
+| [StyledString](#styledstring) | Styled substring.<br>**NOTE**<br>If the value of **start** is valid, the difference between the length of the styled string and the value of **start** is used as the default value of **length**.<br>If the values of **start** and **length** are out of the acceptable range or if any mandatory parameter is passed as **undefined**, an exception is thrown.|
 
 **Error codes**
 
@@ -100,6 +112,8 @@ Obtains the styles in the specified range of a styled string.
 
 getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<SpanStyle>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -108,13 +122,43 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | Yes  | Subscript that corresponds to the target range in the styled string.|
 | length | number | Yes  | Length of the target range in the styled string.|
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | No  | Style key of the styled string.|
+| styledKey | [StyledStringKey](#styledstringkey12) | No  | Style key of the styled string.|
 
 **Return value**
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| Array<[SpanStyle](#spanstyle)> | Array of styles.<br>**NOTE**<br>If no style is set for the specified range in the styled string, an empty array is returned.<br>If **start** and **length** are out of range or mandatory parameters are set to **undefined**, an exception is thrown.<br>If **styledKey** is set to an invalid value or **undefined**, an exception is thrown.<br>If **styledKey** is a **CustomSpan** object, the style returned is the one passed to create the object. That is, modifying the style object also affects the actual display effect.|
+| Array<[SpanStyle](#spanstyle)> | Array of styles.<br>**NOTE**<br>If no style is set for the specified range in the styled string, an empty array is returned.<br>If the values of **start** and **length** are out of the acceptable range or if any mandatory parameter is passed as **undefined**, an exception is thrown.<br>If **styledKey** is set to an invalid value or **undefined**, an exception is thrown.<br>If **styledKey** is a **CustomSpan** object, the style returned is the one passed to create the object. That is, modifying the style object also affects the actual display effect.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### fromHtml
+
+Converts an HTML-formatted string into a styled string. Currently, the conversion supports the following HTML tags: **\<p>**, **\<span>**, **\<img>**. Only the styles defined by the **style** attributes of these tags can be converted into corresponding styles in styled strings.
+
+static fromHtml(html: string): Promise\<StyledString>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                                        |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| html | string | Yes  | HTML-formatted string.|
+
+**Return value**
+
+| Type             |       Description      |
+| ------- | --------------------------------- |
+| [StyledString](#styledstring) | Styled string.|
 
 **Error codes**
 
@@ -130,7 +174,7 @@ Inherits from the [StyledString](#styledstring) class.
 
 >  **An exception is thrown in the following cases:**
 >
-> **start** and **length** are out of range or mandatory parameters are set to **undefined**.
+> The values of **start** and **length** are out of the acceptable range or if any mandatory parameter is passed as **undefined**.
 >
 > **styledKey** or **styledValue** is set to an invalid value or they do not match.
 > 
@@ -140,6 +184,8 @@ Inherits from the [StyledString](#styledstring) class.
 Replaces the string in the specified range of this styled string.
 
 replaceString(start: number , length: number , other: string): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -164,6 +210,8 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 Inserts a string.
 
 insertString(start: number , other: string): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -190,6 +238,8 @@ This API equally works when the styled string contains an image.
 
 removeString(start: number , length: number): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -213,6 +263,8 @@ Replaces the style in the specified range of this styled string.
 
 replaceStyle(spanStyle: SpanStyle): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -235,23 +287,27 @@ Sets a new style for the specified range of this styled string.
 
 setStyle(spanStyle: SpanStyle): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the new style is applied without removing the the original style. If the style already exists, it is updated.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
+| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the new style is applied without removing the original style. If the style already exists, it is updated.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
 
 ### removeStyle
 
 Removes the style for the specified range of this styled string.
 
-After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is not set, the default value is used.
 
 This API equally works when the styled string contains an image.
 
 removeStyle(start: number , length: number , styledKey: StyledStringKey): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -261,7 +317,7 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | Yes  | Subscript that corresponds to the start position of the target range.|
 | length | number | Yes  | Length of the target range.|
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | Yes  | Styled key.|
+| styledKey | [StyledStringKey](#styledstringkey12) | Yes  | Styled key.|
 
 **Error codes**
 
@@ -275,11 +331,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 Removes all styles for the specified range of this styled string.
 
-After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is not set, the default value is used.
 
 This API equally works when the styled string contains an image.
 
 removeStyles(start: number , length: number): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -302,9 +360,11 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 Removes all styles of this styled string.
 
-After a style is removed, the value set for the corresponding style attribute in the [\<Text>](./ts-basic-components-text.md) component is used. If the value is is not set, the default value is used.
+After a style is removed, the value set for the corresponding style attribute in the [Text](./ts-basic-components-text.md) component is used. If the value is not set, the default value is used.
 
 clearStyles(): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -313,6 +373,8 @@ clearStyles(): void
 Replaces the styled string in the specified range.
 
 replaceStyledString(start: number , length: number , other: StyledString): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -338,6 +400,8 @@ Inserts a new styled string at the specified position.
 
 insertStyledString(start: number , other: StyledString): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -361,6 +425,8 @@ Appends a styled string.
 
 appendStyledString(other: StyledString): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -371,20 +437,24 @@ appendStyledString(other: StyledString): void
 
 ## StyleOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | No  | Start position of the styled string style.|
 | length | number | No  | Length of the styled string style.|
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | Yes  | Style key.|
+| styledKey | [StyledStringKey](#styledstringkey12) | Yes  | Style key.|
 | styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | Yes  | Style object.|
 
 ## SpanStyle
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | Yes  | Start position of the styled string style.|
 | length | number | Yes  | Length of the styled string style.|
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | Yes  | Style key.|
+| styledKey | [StyledStringKey](#styledstringkey12) | Yes  | Style key.|
 | styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | Yes  | Style object.|
 
 ## TextStyle
@@ -394,6 +464,8 @@ Describes the text font style.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -409,6 +481,8 @@ Describes the text font style.
 
 constructor(value?: TextStyleInterface)
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -418,6 +492,8 @@ constructor(value?: TextStyleInterface)
 | value | [TextStyleInterface](#textstyleinterface) | No  | Font style options.|
 
 ## TextStyleInterface
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -437,6 +513,8 @@ Describes the event gesture style.
 
 constructor(value?: GestureStyleInterface)
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -446,6 +524,8 @@ constructor(value?: GestureStyleInterface)
 | value | [GestureStyleInterface](#gesturestyleinterface) | No  | Event options.|
 
 ## GestureStyleInterface
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -460,6 +540,8 @@ Describes the text decorative line style.
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Mandatory  | Description    |
@@ -471,6 +553,8 @@ Describes the text decorative line style.
 ### constructor
 
 constructor(value: DecorationStyleInterface)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -488,6 +572,20 @@ constructor(value: DecorationStyleInterface)
 | color | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the text decorative line.|
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Style of the text decorative line.|
 
+## DecorationStyleResult
+
+Provides the text decorative line information returned by the backend.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Type of the text decorative line.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the text decorative line.|
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Style of the text decorative line.|
+
 ## BaselineOffsetStyle
 
 Describes the text baseline offset style.
@@ -495,6 +593,8 @@ Describes the text baseline offset style.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -505,6 +605,8 @@ Describes the text baseline offset style.
 ### constructor
 
 constructor(value: LengthMetrics)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -522,6 +624,8 @@ Describes the letter spacing style.
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Mandatory  | Description    |
@@ -531,6 +635,8 @@ Describes the letter spacing style.
 ### constructor
 
 constructor(value: LengthMetrics)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -548,6 +654,8 @@ Describes the text line height style.
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Mandatory  | Description    |
@@ -557,6 +665,8 @@ Describes the text line height style.
 ### constructor
 
 constructor(lineHeight: LengthMetrics)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -574,6 +684,8 @@ Describes the text shadow style.
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Mandatory  | Description    |
@@ -583,6 +695,8 @@ Describes the text shadow style.
 ### constructor
 
 constructor(value: ShadowOptions | Array\<ShadowOptions>)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -600,6 +714,8 @@ Describes the image attachment.
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Mandatory  | Description    |
@@ -614,6 +730,8 @@ Describes the image attachment.
 
 constructor(value: ImageAttachmentInterface)
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -624,6 +742,8 @@ constructor(value: ImageAttachmentInterface)
 
 ## ImageAttachmentInterface
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source.|
@@ -633,6 +753,8 @@ constructor(value: ImageAttachmentInterface)
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout.|
 
 ## ImageAttachmentLayoutStyle
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -654,6 +776,8 @@ Called to obtain the size of a custom span.
 
 abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -666,7 +790,7 @@ abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| [CustomSpanMetrics](#customspanmetrics) | Size of the custom span.<br>**NOTE**<br>The final height of the custom span is subject to the line height of the **\<Text>** component. If no value is specified for **height**, the custom span takes the **fontSize** value of the **\<Text>** component as its height. If the value specified is greater than the height of other child components on the same line, the custom span takes the line height of the **\<Text>** component as its height.|
+| [CustomSpanMetrics](#customspanmetrics) | Size of the custom span.<br>**NOTE**<br>The final height of the custom span is subject to the line height of the **Text** component. If no value is specified for **height**, the custom span takes the **fontSize** value of the **Text** component as its height. If the value specified is greater than the height of other child components on the same line, the custom span takes the line height of the **Text** component as its height.|
 
 ### onDraw
 
@@ -674,22 +798,28 @@ Called to draw a custom span.
 
 abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | Yes  | Drawing context.<br>**NOTE**<br>The **canvas** method of **DrawContext** obtains the canvas of the **\<Text>** component. As such, the custom span does not extend beyond the area of the **\<Text>** component.|
+| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | Yes  | Drawing context.<br>**NOTE**<br>The **canvas** method of **DrawContext** obtains the canvas of the **Text** component. As such, the custom span does not extend beyond the area of the **Text** component.|
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo) | Yes  | Drawing information of the custom span.|
 
 ## CustomSpanMeasureInfo
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontSize | number |  Yes | Text font size.<br>Unit: fp|
 
 ## CustomSpanMetrics
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -698,11 +828,13 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
 ## CustomSpanDrawInfo
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | x | number |  Yes | Offset of the custom span relative to the mounted component.<br>Unit: px|
-| lineTop | number |  Yes | Top margin of the custom span relative to the **\<Text>** component.<br>Unit: px|
-| lineBottom | number |  Yes | Bottom margin of the custom span relative to the **\<Text>** component.<br>Unit: px|
+| lineTop | number |  Yes | Top margin of the custom span relative to the **Text** component.<br>Unit: px|
+| lineBottom | number |  Yes | Bottom margin of the custom span relative to the **Text** component.<br>Unit: px|
 | baseline | number |  Yes | Baseline offset of the line where the custom span is located.<br>Unit: px|
 
 ## ParagraphStyle
@@ -717,6 +849,8 @@ The style of a paragraph is the one (if any) set for the first element or the pa
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Mandatory  | Description    |
@@ -730,11 +864,13 @@ The style of a paragraph is the one (if any) set for the first element or the pa
 
 >  **NOTE**
 >
->  As the **maxLines** and **overflow** attributes of the styled string take effect only in the **\<Text>** component, you are advised to set them in the component.
+>  As the **maxLines** and **overflow** attributes of the styled string take effect only in the **Text** component, you are advised to set them in the component.
 
 ### constructor
 
 constructor(value?: ParagraphStyleInterface)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -745,6 +881,8 @@ constructor(value?: ParagraphStyleInterface)
 | value | [ParagraphStyleInterface](#paragraphstyleinterface) | No  | Paragraph style options.|
 
 ## ParagraphStyleInterface
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
@@ -761,9 +899,29 @@ Implements a **UserDataSpan** object for storing and obtaining user data. Only t
 
 The extended user data does not affect the display effect.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+## StyledStringKey<sup>12+</sup>
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).|
+| DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).|
+| BASELINE_OFFSET | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).|
+| LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).|
+| LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).|
+| TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).|
+| GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).|
+| PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).|
+| IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).|
+| CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).|
+| USER_DATA | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).|
 
 ## Example
 
@@ -1000,7 +1158,7 @@ struct styled_string_demo2 {
     Column() {
       Scroll(this.scroll) {
         Column({ space: 30 }) {
-          Button ("Change Background Color in Response to Event") .backgroundColor (this.backgroundColor1).width ('80%')
+          Button("Change Background Color in Response to Event").backgroundColor(this.backgroundColor1).width('80%')
           // Styled string that contains an event
           Text(undefined, { controller: this.controller3 }).fontSize(30)
             .copyOption(CopyOptions.InApp)
@@ -1300,7 +1458,6 @@ struct styled_string_demo4 {
           .onClick(() => {
             this.mutableStr.replaceString(2, 5, "789")
             this.controller.setStyledString(this.mutableStr)
-            this.mutableStr
           })
 
         Button('Image: Get')
@@ -1615,3 +1772,54 @@ struct styled_string_demo6 {
 ```
 
 ![](figures/styledstring_6.PNG)
+
+### Example 7
+
+This example shows the usage of **UserDataSpan**.
+
+```ts
+// xxx.ets
+class MyUserDateSpan extends UserDataSpan {
+  constructor(name: string, age: number) {
+    super()
+    this.name = name
+    this.age = age
+  }
+
+  name: string
+  age: number
+}
+
+@Entry
+@Component
+struct styled_string_demo7 {
+  @State name: string = "world"
+  @State age: number = 10
+  controller: TextController = new TextController()
+  styleString: MutableStyledString = new MutableStyledString("hello world", [{
+    start: 0,
+    length: 11,
+    styledKey: StyledStringKey.USER_DATA,
+    styledValue: new MyUserDateSpan("hello", 21)
+  }])
+
+  onPageShow(): void {
+    this.controller.setStyledString(this.styleString)
+  }
+
+  build() {
+    Column() {
+      Text(undefined, { controller: this.controller })
+      Button("get user data").onClick(() => {
+        let arr = this.styleString.getStyles(0, this.styleString.length)
+        let userDataSpan = arr[0].styledValue as MyUserDateSpan
+        this.name = userDataSpan.name
+        this.age = userDataSpan.age
+      })
+      Text("name:" + this.name + "  age: " + this.age)
+    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![](figures/styledstring_7.gif)

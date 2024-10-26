@@ -146,7 +146,7 @@
 
 > **说明：**
 >
-> 待匹配应用组件的skills配置的uris中scheme、host、port、path、pathStartWith和pathRegex属性拼接，如果依次声明了path、pathStartWith和pathRegex属性时，uris将分别拼接为如下三种表达式：
+> 待匹配应用组件的skills配置的uris中scheme、host、port、path、pathStartWith和pathRegex属性拼接，如果依次声明了path、pathStartWith和pathRegex属性时，uris将分别拼接为如下四种表达式：
 >
 > - **前缀uri表达式**：当配置文件只配置scheme，或者只配置scheme和host，或者只配置scheme，host和port时，参数传入以配置文件为前缀的Uri
 >     * `scheme://`
@@ -157,6 +157,9 @@
 > - **正则表达式**：`scheme://host:port/pathRegex`
 >
 > 系统应用预留uri的scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的uri不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。
+
+**图5** want参数中uri的匹配规则示例
+![want-uri-case](figures/want-uri-case.png)
 
 ### type匹配规则
 
@@ -186,6 +189,6 @@
 
 
 
-**图5** want参数中linkFeature具体匹配规则
+**图6** want参数中linkFeature具体匹配规则
 ![want-linkFeature](figures/linkFeature.png)
 ![want-linkFeature-case](figures/want-linkFeature-case.png)

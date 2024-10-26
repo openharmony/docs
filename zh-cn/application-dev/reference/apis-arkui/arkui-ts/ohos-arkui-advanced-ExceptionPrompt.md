@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ExceptionPrompt (异常提示)
+# ExceptionPrompt
 
 
 异常提示，适用于有异常需要提示异常内容的情况。
@@ -37,7 +37,7 @@ ExceptionPrompt({ options: PromptOptions, onTipClick?: ()=>void, onActionTextCli
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | options | [PromptOptions](#promptoptions) | 是 | \@Prop | 指定当前异常提示的配置信息。 |
 | onTipClick | ()=>void | 否 | - | 点击左侧提示文本的回调函数。 |
@@ -162,7 +162,7 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct Index1 {
-  @State ButtomText: string = ''
+  @State ButtonText: string = ''
   @State MAP_HEIGHT: string = '30%'
   @State duration: number = 2500
   @State tips: string = ''

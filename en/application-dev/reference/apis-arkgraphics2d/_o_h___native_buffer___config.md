@@ -21,13 +21,13 @@ The **OH_NativeBuffer_Config** struct describes the **OH_NativeBuffer** attribut
 
 ### Member Variables
 
-| Name| Description|
+| Name | Description |
 | -------- | -------- |
-| [width](#width) | Width, in pixels.|
-| [height](#height) | Height, in pixels.|
-| [format](#format) | Pixel map format.|
-| [usage](#usage) | Description of the buffer usage.|
-| [stride](#stride) | Stride of the local window buffer.|
+| [width](#width) | Width, in pixels. |
+| [height](#height) | Height, in pixels. |
+| [format](#format) | Pixel map format. |
+| [usage](#usage) | Description of the buffer usage. |
+| [stride](#stride) | Output parameter. Stride of the local window buffer, in bytes. |
 
 
 ## Member Variable Description
@@ -63,7 +63,7 @@ int32_t OH_NativeBuffer_Config::stride
 
 **Description**
 
-Stride of the local window buffer.
+Output parameter. Stride of the local window buffer, in bytes.
 
 **Since**
 

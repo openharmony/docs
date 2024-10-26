@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **arkweb_interface.h** file provides ArkWeb interfaces for obtaining Native APIs and the basic Native API types.
+The **arkweb_interface.h** file provides ArkWeb APIs for obtaining native APIs and the basic native API types.
 
 **Library**: libohweb.so
 
@@ -21,7 +21,7 @@ The **arkweb_interface.h** file provides ArkWeb interfaces for obtaining Native 
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) | Defines a struct for basic Native API types. | 
+| struct&nbsp;&nbsp;[ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) | Defines the basic Native API types. | 
 
 
 ### Enums

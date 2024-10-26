@@ -78,11 +78,7 @@ Try to share an unavailable iface.
 
 **处理步骤**
 
-1.通过指令查看共享的网卡是否被创建。
-
-    ```
-    ifconfig -a
-    ```
+1.通过指令（ifconfig -a）查看共享的网卡是否被创建。
 
 2.检查网卡名是否拼写错误。
 

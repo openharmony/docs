@@ -1,8 +1,6 @@
 # Loading a Module Using Node-API
 
-You can use **napi_load_module_with_info** to load modules. After a module is loaded, you can use **napi_get_property** to obtain the variables exported by the module or use **napi_get_named_property** to obtain the functions exported by the module. 
-
-The **napi_load_module_with_info** API can be used in a [newly created ArkTS runtime environment](use-napi-ark-runtime.md).
+You can use **napi_load_module_with_info** to load modules. After a module is loaded, you can use **napi_get_property** to obtain the variables exported by the module or use **napi_get_named_property** to obtain the functions exported by the module. The **napi_load_module_with_info** API can be used in a [newly created ArkTS runtime environment](use-napi-ark-runtime.md).
 
 ## Function Description
 
@@ -20,11 +18,11 @@ napi_status napi_load_module_with_info(napi_env env,
 | module_info   | Path composed of **bundleName** and **moduleName**.      |
 | result         | Module loaded.         |
 
-**NOTE**:
-
-1. **bundleName** indicates the project name configured in **AppScope/app.json5**.
-2. **moduleName** indicates the module name configured in **module.json5** in the HAP of the module to be loaded.
-3. You can also use [napi_load_module](use-napi-load-module.md) to load modules. However, **napi_load_module** is limited to loading modules in the main thread only.
+> **NOTE**
+> 
+> - **bundleName** indicates the project name configured in **AppScope/app.json5**.
+> - **moduleName** indicates the module name configured in **module.json5** in the HAP of the module to be loaded.
+> - You can also use [napi_load_module](use-napi-load-module.md) to load modules. However, **napi_load_module** is limited to loading modules in the main thread only.
 
 ## When to Use
 
@@ -37,14 +35,15 @@ napi_status napi_load_module_with_info(napi_env env,
 | API        |    Load @ohos. or @system. to a HAP.         | -                            |
 | Native library module  | Load **libNativeLibrary.so** to a HAP.| -                            |
 
-**NOTE**:
-
-1. The "module" to be loaded is the entry file, generally **index.ets/ts**, of the module.
-2. To load a HAR to another HAR, ensure that **module_info** is correct. The value of **moduleName** must be that of the HAP.
+> **NOTE**
+>
+> - The "module" to be loaded is the entry file, generally **index.ets/ts**, of the module.
+> - To load a HAR to another HAR, ensure that **module_info** is correct. The value of **moduleName** must be that of the HAP.
+> - If a third-party package is directly or indirectly used in a HAP/HSP and the third-party package uses **napi_load_module_with_info** to load other module, for example, module A, the dependency of module A must also be added to the HAP/HSP.
 
 ## How to Use
 
-- Loading a module from a local project file to a HAP
+- **Loading a module from a local project file to a HAP**
 
 Load a module from a file as shown in the following ArkTS code.
 
@@ -74,6 +73,10 @@ export {value, test};
 ```
 
 2. Use **napi_load_module_with_info** to load the **Test.ets** file, call the **test()** function, and obtain the variable values.
+
+> **NOTE**
+>
+> If **seNormalizedOHMUrl** is enabled (the **useNormalizedOHMUrl** field of **strictMode** in the application's **build-profile.json5** file at the same level as **entry** in the project directory is set to **true**), **bundleName** does not affect the loading logic when a HAP module is loaded. The corresponding HAP in the process is intelligently indexed based on the module name. For example, the module can be successfully loaded if **bundleName** is set to **com.example.application1** while the actual bundle name of the project is **com.example.application**.
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -308,7 +311,7 @@ export const add: (a: number, b: number) => number;
 ```json
 {
     "dependencies": {
-        "libentry.so": "file../src/main/cpp/types/libentry"
+        "libentry.so": "file:../src/main/cpp/types/libentry"
     }
 }
 ```
@@ -415,3 +418,4 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     return result;
 }
 ```
+<!--no_check-->

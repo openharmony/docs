@@ -14,7 +14,7 @@ The **device** module provides APIs for checking information about the current d
 import device from '@system.device';
 ```
 
-## device.getInfo
+## device.getInfo<sup>(deprecated)</sup>
 
 getInfo(options?: GetDeviceOptions): void
 
@@ -29,9 +29,9 @@ Obtains the device information.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetDeviceOptions](#getdeviceoptions) | No| Parameters for obtaining the device information.|
+| options | [GetDeviceOptions](#getdeviceoptionsdeprecated) | No| Parameters for obtaining the device information.|
 
-## GetDeviceOptions
+## GetDeviceOptions<sup>(deprecated)</sup>
 
 Defines the parameters for obtaining the device information.
 
@@ -39,11 +39,11 @@ Defines the parameters for obtaining the device information.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | (data: DeviceResponse)=> void| No| Called when an API call is successful. **data** indicates the returned device information. For details, see [DeviceResponse](#deviceresponse).|
+| success | (data: DeviceResponse)=> void| No| Called when an API call is successful. **data** indicates the returned device information. For details, see [DeviceResponse](#deviceresponsedeprecated).|
 | fail | (data: any,code:number)=> void| No| Called when an API call has failed. **code** indicates the error code returned upon a failure.<br>**code:200**: Certain information could not be obtained.|
 | complete | () => void| No| Called when an API call is complete.|
 
-## DeviceResponse
+## DeviceResponse<sup>(deprecated)</sup>
 
 Defines the device information.
 

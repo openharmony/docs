@@ -1,6 +1,6 @@
-# @ohos.logLibrary (Log Library) (System API)
+# @ohos.logLibrary (LogLibrary) (System API)
 
-The **logLibrary** module provides APIs for obtaining various system maintenance and test logs.
+The **LogLibrary** module provides APIs for obtaining various system maintenance and test logs.
 
 > **NOTE**
 >

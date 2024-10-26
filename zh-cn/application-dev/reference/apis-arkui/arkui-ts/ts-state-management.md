@@ -36,7 +36,7 @@ static ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述               |
+| 参数名   | 类型   | 必填 | 说明               |
 | -------- | ------ | ---- | ---------------------- |
 | propName | string | 是   | AppStorage中的属性名。 |
 
@@ -72,7 +72,7 @@ static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
 | defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
@@ -108,7 +108,7 @@ static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -142,7 +142,7 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
 | defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，从API version 12开始，defaultValue可以为null或undefined。 |
@@ -173,7 +173,7 @@ static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -208,7 +208,7 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
 | defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，从API version 12开始，defaultValue可以为null或undefined。 |
@@ -238,7 +238,7 @@ static has(propName: string): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -266,7 +266,7 @@ static get&lt;T&gt;(propName: string): T | undefined
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -290,7 +290,7 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 在[AppStorage](../../../quick-start/arkts-appstorage.md)中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值，从API version 12开始，newValue可以为null或undefined。
 
 > **说明：**<br/>
-> 从API version 12开始，AppStorage支持[Map](../../../quick-start/arkts-appstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-appstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-appstorage.md#装饰date类型变量)，支持null、understand以及[联合类型](../../../quick-start/arkts-appstorage.md#appstorage支持联合类型)。
+> 从API version 12开始，AppStorage支持[Map](../../../quick-start/arkts-appstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-appstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-appstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../quick-start/arkts-appstorage.md#appstorage支持联合类型)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -298,7 +298,7 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述                   |
+| 参数名      | 类型     | 必填   | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | propName | string | 是    | AppStorage中的属性名。       |
 | newValue | T      | 是    | 属性值，从API version 12开始可以为null或undefined。 |
@@ -333,7 +333,7 @@ static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述                   |
+| 参数名      | 类型     | 必填   | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | propName | string | 是    | AppStorage中的属性名。       |
 | newValue | T      | 是    | 属性值，从API version 12开始可以为null或undefined。 |
@@ -360,7 +360,7 @@ static delete(propName: string): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -469,7 +469,7 @@ static Link(propName: string): any
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -500,7 +500,7 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
 | defaultValue | T      | 是   | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为null或undefined。 |
@@ -533,7 +533,7 @@ static Prop(propName: string): any
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -564,7 +564,7 @@ static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstrac
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
 | defaultValue | S      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为null或undefined。 |
@@ -594,7 +594,7 @@ static Has(propName: string): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -622,7 +622,7 @@ static Get&lt;T&gt;(propName: string): T | undefined
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -651,7 +651,7 @@ static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述                        |
+| 参数名   | 类型   | 必填 | 说明                        |
 | -------- | ------ | ---- | ------------------------------- |
 | propName | string | 是   | AppStorage中的属性名。          |
 | newValue | T      | 是   | 属性值，不能为null或undefined。 |
@@ -684,7 +684,7 @@ newValue不能为null或undefined。
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述                        |
+| 参数名   | 类型   | 必填 | 说明                        |
 | -------- | ------ | ---- | ------------------------------- |
 | propName | string | 是   | AppStorage中的属性名。          |
 | newValue | T      | 是   | 属性值，不能为null或undefined。 |
@@ -711,7 +711,7 @@ static Delete(propName: string): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -817,7 +817,7 @@ static IsMutable(propName: string): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述             |
+| 参数名      | 类型     | 必填   | 说明             |
 | -------- | ------ | ---- | ---------------- |
 | propName | string | 是    | AppStorage中的属性名。 |
 
@@ -879,7 +879,7 @@ constructor(initializingProperties?: Object)
 
 **参数：**
 
-| 参数名                    | 类型     | 必填   | 参数描述                                     |
+| 参数名                    | 类型     | 必填   | 说明                                     |
 | ---------------------- | ------ | ---- | ---------------------------------------- |
 | initializingProperties | Object | 否    | 用initializingProperties包含的属性和数值初始化LocalStorage。initializingProperties不能为undefined。 |
 
@@ -928,7 +928,7 @@ has(propName: string): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述               |
+| 参数名      | 类型     | 必填   | 说明               |
 | -------- | ------ | ---- | ------------------ |
 | propName | string | 是    | LocalStorage中的属性名。 |
 
@@ -960,7 +960,7 @@ get&lt;T&gt;(propName: string): T | undefined
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述               |
+| 参数名      | 类型     | 必填   | 说明               |
 | -------- | ------ | ---- | ------------------ |
 | propName | string | 是    | LocalStorage中的属性名。 |
 
@@ -996,7 +996,7 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述                    |
+| 参数名      | 类型     | 必填   | 说明                    |
 | -------- | ------ | ---- | ----------------------- |
 | propName | string | 是    | LocalStorage中的属性名。      |
 | newValue | T      | 是    | 属性值，从API version 12开始可以为undefined或者null。 |
@@ -1036,7 +1036,7 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述                    |
+| 参数名      | 类型     | 必填   | 说明                    |
 | -------- | ------ | ---- | ----------------------- |
 | propName | string | 是    | LocalStorage中的属性名。      |
 | newValue | T      | 是    | 属性值，从API version 12开始可以为undefined或者null。 |
@@ -1054,12 +1054,12 @@ let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.setOrCreate('PropA', 121); // true
 let res1: boolean = storage.setOrCreate('PropB', 111); // true
-let res2: boolean = storage.setOrCreate('PropB', null); // false
+let res2: boolean = storage.setOrCreate('PropB', null); // true (API12及之后返回true，API11及之前返回false)
 ```
 
 ### ref<sup>12+</sup>
 
-ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
+public ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 如果给定的propName在[LocalStorage](../../../quick-start/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。否则，返回undefined。
 
@@ -1071,7 +1071,7 @@ ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 参数描述                 |
+| 参数名   | 类型   | 必填 | 说明                 |
 | -------- | ------ | ---- | ------------------------ |
 | propName | string | 是   | LocalStorage中的属性名。 |
 
@@ -1093,7 +1093,7 @@ refToPropA1?.set(48); // refToPropA1.get() == refToPropA2.get() == 48
 
 ### setAndRef<sup>12+</sup>
 
-setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
 与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../quick-start/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
@@ -1108,7 +1108,7 @@ setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
 | defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
@@ -1146,7 +1146,7 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述               |
+| 参数名      | 类型     | 必填   | 说明               |
 | -------- | ------ | ---- | ------------------ |
 | propName | string | 是    | LocalStorage中的属性名。 |
 
@@ -1184,7 +1184,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
 | defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，从API version 12开始defaultValue可以为null或undefined。 |
@@ -1218,7 +1218,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述               |
+| 参数名      | 类型     | 必填   | 说明               |
 | -------- | ------ | ---- | ------------------ |
 | propName | string | 是    | LocalStorage中的属性名。 |
 
@@ -1256,7 +1256,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
 | defaultValue | S      | 是   | 当propName在LocalStorage中不存在，使用defaultValue在LocalStorage中初始化对应的propName，从API version 12开始defaultValue可以为null或undefined。 |
@@ -1292,7 +1292,7 @@ delete(propName: string): boolean
 
 **参数：**
 
-| 参数名      | 类型     | 必填   | 参数描述               |
+| 参数名      | 类型     | 必填   | 说明               |
 | -------- | ------ | ---- | ------------------ |
 | propName | string | 是    | LocalStorage中的属性名。 |
 
@@ -1468,7 +1468,7 @@ set(newValue: T): void
 **参数：**
 
 
-| 参数名   | 类型 | 必填 | 参数描述                              |
+| 参数名   | 类型 | 必填 | 说明                              |
 | -------- | ---- | ---- | ------------------------------------- |
 | newValue | T    | 是   | 要更新的数据，可以为null或undefined。 |
 
@@ -1565,7 +1565,7 @@ abstract set(newValue: T): void
 **参数：**
 
 
-| 参数名   | 类型 | 必填 | 参数描述                                                  |
+| 参数名   | 类型 | 必填 | 说明                                                  |
 | -------- | ---- | ---- | --------------------------------------------------------- |
 | newValue | T    | 是   | 要设置的数据，从API version 12开始可以为null或undefined。 |
 
@@ -1609,6 +1609,10 @@ link.aboutToBeDeleted();
 
 ## PersistentStorage
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储UI状态)](../../../quick-start/arkts-persiststorage.md)
 
 > **说明：**<br/>
@@ -1622,7 +1626,7 @@ PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储
 
 **参数：**
 
-| 参数名       | 类型                                  | 必填 | 参数描述                                                     |
+| 参数名       | 类型                                  | 必填 | 说明                                                     |
 | ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | key          | string                                | 是   | 属性名。                                                     |
 | defaultValue | number \| string \| boolean \| Object | 是   | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化它。从API version 12开始，defaultValue允许为null或undefined。 |
@@ -1650,7 +1654,7 @@ static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | key          | string | 是   | 属性名。                                                     |
 | defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。从API version 12开始允许为null或undefined。 |
@@ -1674,7 +1678,7 @@ static deleteProp(key: string): void
 
 **参数：**
 
-| 参数名  | 类型     | 必填   | 参数描述                    |
+| 参数名  | 类型     | 必填   | 说明                    |
 | ---- | ------ | ---- | ----------------------- |
 | key  | string | 是    | PersistentStorage中的属性名。 |
 
@@ -1696,7 +1700,7 @@ static persistProps(props: PersistPropsOptions[]): void
 
 **参数：**
 
-| 参数名        | 类型                                       | 必填   | 参数描述                                     |
+| 参数名        | 类型                                       | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | props | [PersistPropsOptions](#persistpropsoptions)[] | 是 | 持久化数组。 |
 
@@ -1752,7 +1756,7 @@ static PersistProp&lt;T&gt;(key: string, defaultValue: T): void
 
 **参数：**
 
-| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | key          | string | 是   | 属性名。                                                     |
 | defaultValue | T      | 是   | 在PersistentStorage和AppStorage中未查询到时，则使用默认值进行初始化。不允许为null或undefined。 |
@@ -1780,7 +1784,7 @@ static DeleteProp(key: string): void
 
 **参数：**
 
-| 参数名  | 类型     | 必填   | 参数描述                    |
+| 参数名  | 类型     | 必填   | 说明                    |
 | ---- | ------ | ---- | ----------------------- |
 | key  | string | 是    | PersistentStorage中的属性名。 |
 
@@ -1803,7 +1807,7 @@ static PersistProps(properties: {key: string, defaultValue: any;}[]): void
 
 **参数：**
 
-| 参数名     | 类型                               | 必填 | 参数描述                                                     |
+| 参数名     | 类型                               | 必填 | 说明                                                     |
 | ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | properties | {key: string, defaultValue: any}[] | 是   | 持久化数组，启动key为属性名，defaultValue为默认值。规则同PersistProp。 |
 
@@ -1839,6 +1843,9 @@ let keys: Array<string> = PersistentStorage.Keys();
 
 ## Environment
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 Environment具体使用说明，详见[Environment(设备环境查询)](../../../quick-start/arkts-environment.md)
 
@@ -1850,7 +1857,7 @@ Environment具体使用说明，详见[Environment(设备环境查询)](../../..
 
 **参数：**
 
-| 参数名       | 类型                        | 必填 | 参数描述                                                     |
+| 参数名       | 类型                        | 必填 | 说明                                                     |
 | ------------ | --------------------------- | ---- | ------------------------------------------------------------ |
 | key          | string                      | 是   | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。 |
 | defaultValue | number \| string \| boolean | 是   | 查询不到环境变量key，则使用defaultValue作为默认值存入AppStorage中。 |
@@ -1872,7 +1879,7 @@ static envProp&lt;S&gt;(key: string, value: S): boolean
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 参数描述                                                     |
+| 参数名 | 类型   | 必填 | 说明                                                     |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | key    | string | 是   | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。 |
 | value  | S      | 是   | 查询不到环境变量key时，则使用value作为默认值存入AppStorage中。 |
@@ -1901,7 +1908,7 @@ static envProps(props: EnvPropsOptions[]): void
 
 **参数：**
 
-| 参数名 | 类型                                          | 必填 | 参数描述                             |
+| 参数名 | 类型                                          | 必填 | 说明                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------ |
 | props  | [EnvPropsOptions](#envpropsoptions)[] | 是   | 系统环境变量和默认值的键值对的数组。 |
 
@@ -1958,7 +1965,7 @@ static EnvProp&lt;S&gt;(key: string, value: S): boolean
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 参数描述                                                     |
+| 参数名 | 类型   | 必填 | 说明                                                     |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | key    | string | 是   | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。 |
 | value  | S      | 是   | 查询不到环境变量key，则使用value作为默认值存入AppStorage中。 |
@@ -1990,7 +1997,7 @@ static EnvProps(props: {key: string; defaultValue: any;}[]): void
 
 **参数：**
 
-| 参数名 | 类型                                              | 必填 | 参数描述                             |
+| 参数名 | 类型                                              | 必填 | 说明                             |
 | ------ | ------------------------------------------------- | ---- | ------------------------------------ |
 | props  | {key:&nbsp;string,&nbsp;defaultValue:&nbsp;any}[] | 是   | 系统环境变量和默认值的键值对的数组。 |
 

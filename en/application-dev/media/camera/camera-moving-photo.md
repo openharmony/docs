@@ -6,7 +6,7 @@ To develop the moving photo feature, perform the following steps:
 
 - Check whether the device supports taking moving photos.
 - Enable the capability of taking moving photos (if supported).
-- Listen for the photo callback function and save the photo to the media library.
+- Listen for the photo callback function and save the photo to the media library. For details, see [Accessing and Managing Moving Photos](../medialibrary/photoAccessHelper-movingphoto.md).
 
 ## How to Develop
 
@@ -91,7 +91,7 @@ Register a callback function to listen for **'photoAssetAvailable'** events.
 
    async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
      try {
-       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest  (photoAsset);
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        assetChangeRequest.saveCameraPhoto();
        await phAccessHelper.applyChanges(assetChangeRequest);
        console.info('apply saveCameraPhoto successfully');
@@ -112,3 +112,5 @@ Register a callback function to listen for **'photoAssetAvailable'** events.
      });
    }
    ```
+
+ <!--no_check--> 

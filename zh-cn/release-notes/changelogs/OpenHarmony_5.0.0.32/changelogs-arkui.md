@@ -1,3 +1,5 @@
+# ArkUI子系统Changelog
+
 ## cl.arkui.1 UIExtensionComponent增加使用约束
 
 **访问级别**
@@ -168,33 +170,47 @@ struct ListExample {
 }
 ```
 
-## cl.arkui.5 CreateModalUIExtension默认行为变更
+## cl.arkui.5 模态UIExtension创建默认行为变更
 
 **访问级别**
 
-系统接口
+公开接口
 
 **变更原因**
 
-CreateModalUIExtension创建的UIExtension可能被其他组件或窗口遮挡，造成安全风险。
+通过各个应用或者kit提供的开放能力创建出来的模态`UIExtension`，可能被三方应用组件或窗口遮挡，造成安全风险。
+> 各个应用或者kit是通过`CreateModalUIExtension`这个系统接口来创建模态`UIExtension`，
+> 本质上是这个接口的默认行为发生了变化
 
 **变更影响**
 
 该变更为不兼容变更。
 
-CreateModalUIExtension增加禁止其他宿主进程组件遮挡的校验逻辑。
+模态`UIExtension`不允许被不安全窗口遮挡，拉起模态`UIExtension`时，会隐藏三方应用已创建的不安全窗口和组件，并阻止三方应用创建新的不安全窗口
 
-CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前后行为如下表所示。
+变更前后行为如下表所示：
 
-| 变更前 | 变更后 |
-| --- | --- |
-| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许自行设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
+| 变更前                                   | 变更后                                       |
+| ---------------------------------------- | -------------------------------------------- |
+| 允许不安全窗口遮挡，允许三方应用组件遮挡 | 不允许不安全窗口遮挡，不允许三方应用组件遮挡 |
 
-hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
+不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
 
-| 变更前 | 变更后 |
-| --- | --- |
+| 变更前                                   | 变更后                                                       |
+| ---------------------------------------- | ------------------------------------------------------------ |
 | 非系统全局悬浮窗<br>宿主创建的非系统子窗 | 非系统全局悬浮窗<br>宿主创建的非系统子窗<br>宿主创建的非系统Dialog窗口 |
+
+**变更前**：
+
+图中的权限弹窗就是一个模态UIExtension，该窗口弹出后，通话子窗口不会被隐藏
+![变更前](figures/modalUIExtension_before.gif)
+
+
+**变更后**：
+
+图中的权限弹窗就是一个模态UIExtension，该窗口弹出后，通话子窗口被隐藏，退出后通话子窗口重新展示
+
+![变更后](figures/modalUIExtension_after.gif)
 
 **起始API Level**
 
@@ -206,7 +222,19 @@ hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog
 
 **变更的接口/组件**
 
-CreateModalUIExtension和hideNonSecureWindows接口。
+| kit名称           | 接口名/组件名                                                |
+| ----------------- | ------------------------------------------------------------ |
+| Core File Kit     | DocumentViewPicker组件                                       |
+| Store Kit         | productViewManager.loadService<br>productViewManager.loadProduct |
+| Media Library Kit | PhotoAccessHelper.createDeleteRequest<br>PhotoAccessHelper. removeAssets<br>PhotoAccessHelper.showAssetsCreationDialog<br>PhotoAccessHelper.createAssetWithShortTermPermission<br>PhotoAccessHelper.select |
+| Scan Kit          | scanBarcode.startScanForResult                               |
+| Ads Kit           | advertising.showAd                                           |
+| AbilityKit        | AtManager.requestPermissionsFromUser                         |
+| ShareKit          | SystemShare.show                                             |
+| Game Service Kit  | gamePlayer.init<br/>gamePlayer.unionLogin<br/>gamePlayer.getLocalPlayer<br/>gamePlayer.verifyLocalPlayer |
+| Map Kit           | sceneMap.chooseLocation<br/>sceneMap.queryLocation<br/>sceneMap.selectDistrict |
+| Account Kit       | authentication.executeRequest.LoginWithHuaweiID<br/>authentication.executeRequest.AuthorizationWithHuaweiID<br/>extendService.verifyAccount<br/>extendService.startAccountCenter<br/>loginComponent.LoginWithHuaweiIDButton<br/>loginComponent.LoginPanel<br/>loginComponent.startFacialRecognitionVerification<br/>realName.startFacialRecognitionVerification<br/>shippingAddress.chooseAddress<br/>minorsProtection.verifyMinorsProtectionCredential<br/>minorsProtection.leadToTurnOnMinorsMode<br/>minorsProtection.leadToTurnOffMinorsMode |
+| ArkUI             | TextInput输入框组件(仅系统密码自动填充服务场景涉及, <br>InputType设置为USER_NAME/Password/NEW_PASSWORD类型) |
 
 **适配指导**
 

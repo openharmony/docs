@@ -2,10 +2,10 @@
 
 ## 概述
 
-针对应用，构建ArkUI应用级和页面级主题设置能力，并提供局部深浅色模式设置、动态换肤等功能。
+对于使用ets声明式前端开发的应用，提供应用内组件的主题能力，支持局部深浅色、动态换肤功能。本功能不支持C-API和Node-API,不支持Ability和窗口的主题设置。
 本文提供如下场景：
 - [自定义品牌色](#自定义品牌色)
-- [应用级自定义品牌色](#设置应用级自定义品牌色)
+- [应用级自定义品牌色](#设置应用内组件自定义品牌色)
 - [局部页面自定义主题风格](#设置应用局部页面自定义主题风格)
 - [局部深浅色](#设置应用页面局部深浅色)
 
@@ -28,7 +28,7 @@
     export let gAppTheme: CustomTheme = new AppTheme()
   ```
 
-## 设置应用级自定义品牌色
+## 设置应用内组件自定义品牌色
 - 可在页面入口处统一设置，需要在页面build前执行[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)。
 其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
 
@@ -252,13 +252,25 @@
 ![customTheme](figures/customTheme.gif)
 
 ## 设置应用页面局部深浅色
-通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置深浅色模式，[ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10)有三种模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
+通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置深浅色模式，[ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#themecolormode10枚举说明)有三种模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。</br>
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
 
 设置局部深浅色时，需要添加dark.json资源文件，深浅色模式才会生效。
 
 ![resources_dark](figures/resources_dark.png)
+
+dark.json数据示例：
+  ```ts
+    {
+      "color": [
+        {
+          "name": "start_window_background",
+          "value": "#FFFFFF"
+        }
+      ]
+    }
+  ```
 
   ```ts
     @Entry

@@ -2017,14 +2017,14 @@ for (let num of counter(1, 5)) {
 **ArkTS**
 
 ```typescript
-async function complexNumberProcessing(str: string): Promise<string> {
+async function complexNumberProcessing(num: number): Promise<number> {
   // ...
-  return str;
+  return num;
 }
 
 async function foo() {
   for (let i = 1; i <= 5; i++) {
-    console.log(await complexNumberProcessing(i));
+    await complexNumberProcessing(i);
   }
 }
 

@@ -207,7 +207,8 @@ export default {
 
 ![zh-cn_image_0000001220396499](figures/zh-cn_image_0000001220396499.gif)
 
-> **说明：**
+> **说明：** 
+>
 > direction：指定动画的播放模式。
 >
 > normal： 动画正向循环播放。

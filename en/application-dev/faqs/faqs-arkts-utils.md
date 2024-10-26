@@ -446,7 +446,7 @@ ArkTS supports overloading in TS, that is, multiple overload signatures + implem
 
 ArkTS does not support overloading of multiple function bodies.
 
-**Sample Code**
+Example:
 
 ```ts
 class User {
@@ -706,6 +706,16 @@ You are advised to use a [continuous task](../reference/apis-arkts/js-apis-taskp
 **References**
 
 [Compiling and Generating TS Files](../quick-start/har-package.md#compiling-and-generating-ts-files)
+
+## When a UI component in the TS HAR is used, an error message is displayed during the build, indicating that the UI component does not meet UI component syntax. What should I do?
+
+When there is a dependency on the TS HAR, a UI component in the TS HAR cannot be referenced.
+
+To use a UI component in the HAR, use the source code HAR or JS HAR.
+
+**References**
+
+[HAR](../quick-start/har-package.md)
 
 ## What are the commands used for setting various hdc properties?
 

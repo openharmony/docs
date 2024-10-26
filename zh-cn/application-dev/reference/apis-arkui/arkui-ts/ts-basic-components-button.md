@@ -55,13 +55,15 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 ## ButtonOptions对象说明
 
-| 名称                      | 类型                                          | 必填 | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
-| stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
-| role<sup>12+</sup> | [ButtonRole](#buttonrole12枚举说明)         | 否   | 描述按钮的角色。<br/>默认值：ButtonRole.NORMAL              **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 13开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 12及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| role<sup>12+</sup> | [ButtonRole](#buttonrole12枚举说明)         | 否   | 描述按钮的角色。<br/>默认值：ButtonRole.NORMAL <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -83,7 +85,7 @@ type(value: ButtonType)
 
 | 参数名 | 类型                              | 必填 | 说明                                        |
 | ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.Capsule |
+| value  | [ButtonType](#buttontype枚举说明) | 是   | Button样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE |
 
 ### fontSize
 
@@ -99,9 +101,9 @@ fontSize(value: Length)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                              |
-| ------ | ---------------------------- | ---- | --------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：若controlSize的值为：controlSize.NORMAL，取'16fp'，若controlSize的值为：controlSize.SMALL，取'12fp' |
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。 |
 
 ### fontColor
 
@@ -117,9 +119,9 @@ fontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                  |
-| ------ | ------------------------------------------ | ---- | ------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本显示颜色。<br/>默认值：'\#ffffff' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本显示颜色。<br/>默认值：$r('sys.color.font_on_primary')，显示为白色字体。 |
 
 ### fontWeight
 
@@ -137,7 +139,7 @@ fontWeight(value: number&nbsp;|&nbsp;FontWeight&nbsp;|&nbsp;string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：400 |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100, 900]，取值间隔为100，取值越大，字体越粗。<br>默认值：500 |
 
 ### fontStyle<sup>8+</sup>
 
@@ -191,7 +193,7 @@ fontFamily(value: string | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
 
 ### labelStyle<sup>10+</sup>
 
@@ -285,24 +287,30 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述                 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
 | ------- | ------------------ |
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
 | Circle  | 圆形按钮。              |
 | Normal  | 普通按钮（默认不带圆角）。      |
+| ROUNDED_RECTANGLE<sup>13+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp） |
 
 >  **说明：**
->  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置（不支持通过border接口设置圆角），且只支持设置参数为[Length](ts-types.md#length)的圆角。
+>  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
 >  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为宽、高中较小值的一半。
 >  - 当按钮类型为Circle时，若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；若不设置宽高，则borderRadius为按钮半径；若borderRadius的值为负，则borderRadius的值按照0处理。
->  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md#属性)进行设置。
+>  - 按钮文本通过[fontSize](#fontsize)、[fontColor](#fontcolor)、[fontStyle](#fontstyle8)、[fontFamily](#fontfamily8)、[fontWeight](#fontweight)进行设置。
 >  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)为透明色。
+>  - 在不设置borderRadius时，圆角矩形按钮的圆角大小保持默认值不变。圆角大小不会随按钮高度变化而变化，和controlSize属性有关，controlSize为NORMAL时圆角大小20vp，controlSize为SMALL时圆角大小14vp。
 
 ## LabelStyle<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用
 
-| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                 | 类型                                                         | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置label文本超长时的显示方式。文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格。<br>默认值：TextOverflow.Ellipsis |
 | maxLines             | number                                                       | 否   | 设置label文本的最大行数。默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过overflow来指定截断方式。<br>默认值：1 |
@@ -317,7 +325,9 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述                 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
 | ------- | ------------------ |
 | EMPHASIZED | 强调按钮（用于强调当前操作）。 |
 | NORMAL  | 普通按钮（一般界面操作）。              |
@@ -329,7 +339,9 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述                 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
 | ------- | ------------------ |
 | SMALL | 小尺寸按钮。 |
 | NORMAL  | 正常尺寸按钮。              |
@@ -340,7 +352,9 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述                 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
 | ------- | ------------------ |
 | NORMAL | 正常按钮。 |
 | ERROR  | 警示按钮。              |
@@ -351,17 +365,25 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    | 说明              |
-| ------ | ------ | ---------------- |
-| label | string | Button的文本标签。 |
-| pressed | boolean | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
-| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12对象说明) | 使用builder新构建出来组件的点击事件。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    | 只读  | 可选 | 说明              |
+| ------ | ------ | ---------------- | ---------------- | ---------------- |
+| label | string | 否 | 否 | Button的文本标签。 |
+| pressed | boolean | 否 | 否 | 指示是否按下Button。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。 |
+| triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12对象说明) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
 
 ## ButtonTriggerClickCallback<sup>12+</sup>对象说明
+
+type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 
 定义ButtonConfiguration中使用的回调类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
@@ -471,7 +493,7 @@ struct SwipeGestureExample {
 @Component
 struct buttonTestDemo {
   @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
-  @State widthShortSize: number = 200;
+  @State widthShortSize: number = 210;
 
   build() {
     Row() {
@@ -479,6 +501,7 @@ struct buttonTestDemo {
         Button(this.txt)
           .width(this.widthShortSize)
           .height(100)
+          .backgroundColor(0x317aff)
           .labelStyle({ overflow: TextOverflow.Clip,
             maxLines: 1,
             minFontSize: 20,
@@ -627,3 +650,43 @@ struct ButtonExample {
 }
 ```
 ![buttonrole](figures/buttonbuilder.gif)
+
+### 示例7
+该示例创建了圆角矩形按钮。
+```ts
+@Entry
+@Component
+struct ButtonExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('Rounded rectangle button with rounded corners by default.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .controlSize(ControlSize.NORMAL)
+          .width(180)
+      }
+      Text('Rounded rectangle button configured with a borderRadius of 5.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .controlSize(ControlSize.NORMAL)
+          .width(180)
+          .borderRadius(5)
+      }
+      Text('Rounded rectangle button configured extra long text.').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Rounded rectangle Rounded rectangle Rounded rectangle Rounded rectangle')
+          .type(ButtonType.ROUNDED_RECTANGLE)
+          .backgroundColor(0x317aff)
+          .width(180)
+            //.buttonStyle(ButtonStyleMode.NORMAL)
+          .labelStyle({overflow:TextOverflow.Ellipsis, maxLines:3, minFontSize: 0})
+      }
+    }.height(400).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+![roundedrectbutton](figures/roundedrectbutton.jpeg)

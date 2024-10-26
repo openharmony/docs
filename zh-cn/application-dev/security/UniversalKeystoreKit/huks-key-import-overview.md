@@ -12,7 +12,8 @@
 - 推荐使用该方式导入的密钥类型：非对称密钥的公钥
 
 - 不推荐使用该方式导入的密钥类型：对称密钥、非对称密钥对
-
+  > **说明：**
+  > 轻量级设备只支持明文导入，不支持加密导入。
 
 ## 加密导入
 
@@ -28,31 +29,34 @@
 
 导出密钥接口返回的[公钥明文材料](huks-concepts.md#公钥材料格式)是按照**X.509**格式封装，导入加密密钥接口中的密钥材料需满足**Length<sub>Data</sub>-Data**的格式封装。
 
+> **说明：**
+> 1. 加密导入密钥时，协商算法支持ECDH和X25519，协商后的Shared_Key使用AES-GCM算法加密Caller_Kek。对应算法套件定义见[HuksUnwrapSuite](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksunwrapsuite9)。
+> 2. 轻量级设备只支持明文导入，不支持加密导入。
 
 ### 加密导入密钥材料格式
 
-| 内容 | 长度 | 
+| 内容 | 长度 |
 | -------- | -------- |
-| 业务公钥长度L<sub>Caller_Pk</sub> | 4字节 | 
-| 业务公钥Caller_Pk | L<sub>Caller_Pk</sub>字节 | 
-| Shared_Key加密参数AAD2长度L<sub>AAD2</sub> | 4字节 | 
-| Shared_Key加密参数AAD2 | L<sub>AAD2</sub>字节 | 
-| Shared_Key加密参数Nonce2长度L<sub>Nonce2</sub> | 4字节 | 
-| Shared_Key加密参数Nonce2 | L<sub>Nonce2</sub>字节 | 
-| Shared_Key加密参数AEAD2长度L<sub>AEAD2</sub> | 4字节 | 
-| Shared_Key加密参数AEAD2 | L<sub>AEAD2</sub>字节 | 
-| Caller_Kek密文长度L<sub>Caller_Kek_enc</sub> | 4字节 | 
-| Caller_Kek密文Caller_Kek_enc | L<sub>Caller_Kek_enc</sub>字节 | 
-| Caller_Kek加密参数AAD3长度L<sub>AAD3</sub> | 4字节 | 
-| Caller_Kek加密参数AAD3 | L<sub>AAD3</sub>字节 | 
-| Caller_Kek加密参数Nonce3长度L<sub>Nonce3</sub> | 4字节 | 
-| Caller_Kek加密参数Nonce3 | L<sub>Nonce3</sub>字节 | 
-| Caller_Kek加密参数AEAD3长度L<sub>AEAD3</sub> | 4字节 | 
-| Caller_Kek加密参数AEAD3 | L<sub>AEAD3</sub>字节 | 
-| 密钥明文材料长度的长度L<sub>To_Import_Key_size</sub> | 4字节 | 
-| 密钥明文材料长度To_Import_Key_size | L<sub>To_Import_Key_size</sub>字节 | 
-| To_Import_Key密文长度L<sub>To_Import_Key_enc</sub> | 4字节 | 
-| To_Import_Key密文To_Import_Key_enc | L<sub>To_Import_Key_enc</sub>字节 | 
+| 业务公钥长度L<sub>Caller_Pk</sub> | 4字节 |
+| 业务公钥Caller_Pk | L<sub>Caller_Pk</sub>字节 |
+| Shared_Key加密参数AAD2长度L<sub>AAD2</sub> | 4字节 |
+| Shared_Key加密参数AAD2 | L<sub>AAD2</sub>字节 |
+| Shared_Key加密参数Nonce2长度L<sub>Nonce2</sub> | 4字节 |
+| Shared_Key加密参数Nonce2 | L<sub>Nonce2</sub>字节 |
+| Shared_Key加密参数AEAD2长度L<sub>AEAD2</sub> | 4字节 |
+| Shared_Key加密参数AEAD2 | L<sub>AEAD2</sub>字节 |
+| Caller_Kek密文长度L<sub>Caller_Kek_enc</sub> | 4字节 |
+| Caller_Kek密文Caller_Kek_enc | L<sub>Caller_Kek_enc</sub>字节 |
+| Caller_Kek加密参数AAD3长度L<sub>AAD3</sub> | 4字节 |
+| Caller_Kek加密参数AAD3 | L<sub>AAD3</sub>字节 |
+| Caller_Kek加密参数Nonce3长度L<sub>Nonce3</sub> | 4字节 |
+| Caller_Kek加密参数Nonce3 | L<sub>Nonce3</sub>字节 |
+| Caller_Kek加密参数AEAD3长度L<sub>AEAD3</sub> | 4字节 |
+| Caller_Kek加密参数AEAD3 | L<sub>AEAD3</sub>字节 |
+| 密钥明文材料长度的长度L<sub>To_Import_Key_size</sub> | 4字节 |
+| 密钥明文材料长度To_Import_Key_size | L<sub>To_Import_Key_size</sub>字节 |
+| To_Import_Key密文长度L<sub>To_Import_Key_enc</sub> | 4字节 |
+| To_Import_Key密文To_Import_Key_enc | L<sub>To_Import_Key_enc</sub>字节 |
 
 
 ## 支持的算法
@@ -63,7 +67,7 @@
 
 **建议开发者使用必选规格开发应用，可保证全平台兼容。**
 <!--DelEnd-->
-
+**标准设备规格**
 | 算法 | 支持的密钥长度 | API级别 | <!--DelCol4-->是否必选规格 |
 | -------- | -------- | -------- | -------- |
 | AES | 128、192、256 | 8+ | 是 |
@@ -79,3 +83,18 @@
 | <!--DelRow-->DH | 3072、4096 | 8+ | 否 |
 | SM2 | 256 | 9+ | 是 |
 | SM4 | 128 | 9+ | 是 |
+
+**轻量级设备规格**
+
+<!--Del-->
+轻量级设备所列规格，OEM厂商将基于实际情况决定是否实现，如需使用，请查阅具体厂商提供的说明，确保规格支持再使用。
+<!--DelEnd-->
+
+| 算法 | 支持的密钥长度 | API级别 |
+| -------- | -------- | -------- |
+| AES | 128、192、256 | 12+ |
+| DES | 64 | 12+ |
+| 3DES | 128、192 | 12+ |
+| RSA |  1024-2048（含），必须是8的倍数 | 12+ |
+| HMAC | 8-1024（含），必须是8的倍数 | 12+ |
+| CMAC | 128 | 12+ |

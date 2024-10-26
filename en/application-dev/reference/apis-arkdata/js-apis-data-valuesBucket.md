@@ -39,5 +39,4 @@ Defines the types of the key and value in a KV pair. This type is not multi-thre
 
 | Type         | Description                                     |
 | ------------- | --------------------------------------------- |
-| string | The key is a string. |
-| [ValueType](#valuetype)\| Uint8Array \| null | The value type can be [ValueType](#valuetype), Uint8Array, or null. |
+| Record<string, [ValueType](#valuetype) \| Uint8Array \| null> | Types of the key and value in a KV pair. The key type is string, and the value type is [ValueType](#valuetype), Uint8Array, or null. |

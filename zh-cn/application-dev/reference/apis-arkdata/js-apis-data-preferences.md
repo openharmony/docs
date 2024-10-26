@@ -4,6 +4,7 @@
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
 
+用户首选项默认加密等级为EL2，持久化文件存储在对应的EL2路径下。设备开机后，若无锁屏密码，可直接访问；若有锁屏密码，此路径下的文件需要至少一次解锁对应用户的锁屏界面后（密码、指纹、人脸等方式解锁皆可）才能够访问。需避免在开机未解锁的情况下访问首选项。修改加密等级的方法请参见[获取和修改加密分区](../../../application-dev/application-models/application-context-stage.md#获取和修改加密分区)。
 
 > **说明：**
 >
@@ -412,6 +413,8 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+不支持该接口与preference其他接口并发调用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
@@ -482,6 +485,8 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+不支持该接口与preference其他接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -556,6 +561,8 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+不支持该接口与preference其他接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -633,6 +640,8 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+不支持该接口与preference其他接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

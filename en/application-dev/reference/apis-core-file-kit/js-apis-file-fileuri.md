@@ -9,14 +9,14 @@ The **fileUri** module allows the uniform resource identifier (URI) of a file to
 ## Modules to Import
 
 ```ts
-import fileUri from "@ohos.file.fileuri";
+import { fileUri } from '@kit.CoreFileKit';
 ```
 
 Before using this module, you need to obtain the application sandbox path of the file. The following is an example:
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -28,14 +28,14 @@ Before using this module, you need to obtain the application sandbox path of the
 
 ## FileUri<sup>10+</sup>
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.AppFileService
 
-| Name| Type| Read-Only| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| path<sup>10+</sup> | string | Yes| No| Path of the file.|
-| name<sup>10+</sup> | string | Yes| No| Name of the file.|
+| Name| Type| Mandatory| Description|
+| -------- | --------| -------- | -------- |
+| path<sup>10+</sup> | string | Yes| Path of the file.|
+| name<sup>10+</sup> | string | Yes| Name of the file.|
 
 ### constructor<sup>10+</sup>
 
@@ -123,7 +123,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
     let path = pathDir + '/test.txt';
     let fileUriObject = new fileUri.FileUri(path);
@@ -159,7 +159,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   function isRemoteUriExample() {
     let uri = "file://com.example.demo/data/stroage/el2/base/test.txt?networkid=xxxx";// ?networkid identifies a remote device.
     let fileUriObject = new fileUri.FileUri(uri);
@@ -174,7 +174,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getUriFromPath(path: string): string
 
-Obtains the URI from a file path. This API returns the result synchronously.
+Obtains the URI based on a file path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.AppFileService
 

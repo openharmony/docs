@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SelectTitleBar (Drop-down Title Bar)
+# SelectTitleBar
 
 
 The drop-down title bar is a title bar that contains a drop-down menu for switching between pages of different levels (configured with the Back button).
@@ -12,7 +12,7 @@ The drop-down title bar is a title bar that contains a drop-down menu for switch
 ## Modules to Import
 
 ```
-import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
+import { SelectTitleBar } from '@kit.ArkUI'
 ```
 
 
@@ -29,6 +29,8 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -41,16 +43,18 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | subtitle | [ResourceStr](ts-types.md#resourcestr)                                      | No| - | Subtitle.|
 | badgeValue | number                                                                      | No| - | Badge.|
 | hidesBackButton | boolean                                                                     | No| - | Whether to hide the back arrow on the left.<br>Default value: **false** The value **true** means to hide the provider, and **false** means the opposite.|
-| onSelected | (index: number) =&gt; void                                   | No| - | Invoked when an option in the drop-down list box is selected. The index of the selected option is passed in.|
-
+| onSelected | (index: number) =&gt; void                                   | No| - | Callback invoked when an option in the drop-down menu is selected. The index of the selected option is passed in.|
 
 ## SelectTitleBarMenuItem
 
-| Name| Type| Mandatory| Description| 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
-| isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> The value **true** means to enable the item, and **false** means the opposite.| 
-| action | () =&gt; void | No| Action to perform.| 
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon resource.|
+| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Icon label.|
+| isEnabled | boolean | No| Whether to enable the item.<br>Default value: **false**<br> The value **true** means to enable the item, and **false** means the opposite.|
+| action | () =&gt; void | No| Action to perform.|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.
@@ -58,8 +62,7 @@ The [universal events](ts-universal-events-click.md) are not supported.
 ## Example
 
 ```ts
-import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
-import promptAction from '@ohos.promptAction'
+import { SelectTitleBar, promptAction } from '@kit.ArkUI'
 
 interface menuItems {
   value: Resource;
@@ -101,8 +104,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -112,8 +115,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -123,8 +126,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 1,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -134,8 +137,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 1,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
@@ -148,8 +151,8 @@ struct Index {
         SelectTitleBar({
           options: [
             { value: 'All photos' },
-            { value:'Local (device)' },
-            {"value":"Local (memory card)"}
+            { value: 'Local (device)' },
+            { value: 'Local (memory card)'}
           ],
           selected: 0,
           onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),

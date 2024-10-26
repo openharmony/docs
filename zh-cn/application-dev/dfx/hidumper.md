@@ -17,6 +17,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 | -ls | 列出系统能力。 |
 | -c | 获取系统信息集群详细信息。 |
 | -s | 获取所有系统能力详细信息。 |
+| -s [SA] -a ["option"] | 执行单个系统能力的特定选项。SA表示系统能力名称，option表示该系统能力支持的选项。可通过 -s [SA] -a ["-h"] 获取单个系统能力支持的所有选项。|
 | -e | 获取崩溃历史记录的故障日志。 |
 | --net [pid] | 获取网络信息。如果指定了进程的pid，则只输出该进程的网络流量使用信息。 |
 | --storage [pid] | 获取存储信息。如果指定了进程的pid，则只输出该进程的io信息。 |
@@ -27,7 +28,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 | --zip | 保存命令输出到/data/log/hidumper下的压缩文件。 |
 | --ipc pid/-a --start-stat/stop-stat/stat | 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。 |
 | --mem-smaps pid [-v] | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。 (仅限制debug版本使用) |
-| --mem-jsheap pid [-T tid] [--gc] | pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出。 |
+| --mem-jsheap pid [-T tid] [--gc] [--leakobj] | pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则获取泄露对象的列表 |
 
 ## 常用命令
 
@@ -83,17 +84,27 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-cpuusage-pid.png)
 
-6. 获取id为3301的元能力的帮助，命令格式如下：
-
+6. 列出系统能力
    ```
-   hidumper -s 3301 -a "-h" 
+   hidumper -ls
    ```
 
    **使用样例：**
 
-   ![](figures/hidumper-s-3301.png)
+   ![](figures/hidumper-ls.PNG)
 
-7. 获取RenderService的使用帮助，命令格式如下：
+7. 获取所有系统能力详细信息，命令格式如下：
+
+   ```
+   hidumper -s
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-s.png)
+
+
+   获取RenderService的使用帮助，命令格式如下：
 
    ```
    hidumper -s RenderService -a "h" 
@@ -167,9 +178,9 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 如何区分debug/release版本：
     >
-    > 命令1、执行hdc shell "param get|grep const.debuggable"查看输出为0还是1。
+    > 命令1：执行hdc shell "param get|grep const.debuggable"查看输出为0还是1。
     >
-    > 命令2、执行hdc shell "param get|grep const.product.software.version"查看当前版本是否包含"log"字符串。
+    > 命令2：执行hdc shell "param get|grep const.product.software.version"查看当前版本是否包含"log"字符串。
     >
     > release版本:命令1执行结果为0且命令2不包含"log"字符串
     >
@@ -179,10 +190,10 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-mem-smaps.png)
 
-14. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出。(仅限debug版本使用)
+14. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出;如果指定--leakobj，则获取泄露对象的列表。(仅限debug版本使用)
 
     ```
-    hidumper --mem-jsheap pid [-T tid] [--gc]
+    hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]
     ```
 
     > **注意**

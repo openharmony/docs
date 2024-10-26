@@ -17,14 +17,16 @@ The **params** parameter in the event information is described as follows.
 | pid | number | Process ID of the application.|
 | uid | number | User ID of the application.|
 | resource_type | string | Resource type. For details, see **resource_type**.|
-| memory | object | Memory information. For details, see **memory**.|
+| memory | object | Memory information (only available for **pss_memory** and **js_heap**). For details, see **memory**.|
+| fd | object | File descriptor information (only available for **fd**). For details, see **fd**.|
+| thread | object | Thread information (only available for **thread**). For details, see **thread**.|
 
 **resource_type**
 
 | Value   | Description                      |
 | ------- | ------------------------- |
 | pss_memory | PSS memory leak.|
-| js_memory | JS memory leak.|
+| js_heap | JS memory leak.|
 | fd | FD resource leak.|
 | thread | Thread leak.|
 
@@ -32,9 +34,25 @@ The **params** parameter in the event information is described as follows.
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
-| rss | number | Size of the memory allocated for a process, in KB.|
-| vss | number | Size of the virtual memory applied by a process from the system, in KB.|
-| pss | number | Size of the physical memory actually used by a process, in KB.|
-| sys_free_mem | number | Size of free memory, in KB.|
-| sys_avail_mem | number | Size of available memory, in KB.|
-| sys_total_mem | number | Total memory size, in KB.|
+| rss | number | Size of the memory allocated for a process (only available for **pss_memory**), in KB.|
+| vss | number | Size of the virtual memory applied by a process from the system (only available for **pss_memory**), in KB.|
+| pss | number | Size of the physical memory actually used by a process (only available for **pss_memory**), in KB.|
+| sys_free_mem | number | Size of free memory (only available for **pss_memory**), in KB.|
+| sys_avail_mem | number | Size of available memory (only available for **pss_memory**), in KB.|
+| sys_total_mem | number | Total memory size (only available for **pss_memory**), in KB.|
+| limit_size | number | Limit of memory size (only available for **js_heap**), in KB.|
+| live_object_size | number | Size of the used memory (only available for **js_heap**), in KB.|
+
+**fd**
+
+| Name       | Type  | Description               |
+| ----------- | ------ | ------------------- |
+| num         | number | Total number of FDs.         |
+| top_fd_type | string | FD with the largest number. |
+| top_fd_num  | number | Number of **top_fd_type**.|
+
+**thread**
+
+| Name| Type  | Description          |
+| ---- | ------ | -------------- |
+| num  | number | Total number of threads.|

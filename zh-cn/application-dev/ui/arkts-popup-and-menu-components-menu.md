@@ -1,7 +1,7 @@
 # 菜单（Menu）
 
 
-Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考[Menu控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)。
+Menu是菜单接口，一般用于鼠标右键弹窗、点击弹窗等。具体用法请参考[菜单控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)。
 
 
 ## 创建默认样式的菜单

@@ -20,7 +20,7 @@
 
 非对称加解密，不支持update操作，仅需要调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)和[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)完成加解密。
 
-非对称密钥的分段加密是指当明文大于单次加密支持的数据长度时（具体长度请查[RSA算法规格](crypto-asym-encrypt-decrypt-spec.md)），需要将待加密数据分为合适长度的数据段，并对每个数据段执行加密操作，即创建Cipher，然后调用Cipher.init和Cipher.doFinal接口。
+非对称密钥的分段加密是指当明文大于单次加密支持的数据长度时（具体长度请查[非对称密钥加解密算法规格](crypto-asym-encrypt-decrypt-spec.md)），需要将待加密数据分为合适长度的数据段，并对每个数据段执行加密操作，即创建Cipher，然后调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)和[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)接口。
 
 严格意义上说，是数据的拆分加解密，此时单次传入的数据量长度与密钥规格的长度相关。
 

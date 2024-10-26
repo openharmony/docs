@@ -4,7 +4,7 @@ During application development, you may need to use different resources, such as
 
 - Application resources: Configure device- or configuration-specific resources in the resource files.
 
-- System resources: Use the preset resource definitions<!--Del--> (that is, [layered parameters](../../design/ux-design/design-resources.md), with which a resource with the same ID has different values under different configurations, including device types and color modes<!--DelEnd-->).
+- System resources: Use the preset resource definitions<!--Del--> (that is, [layered parameters](../../design/ux-design/design-resources.md), with which each resource ID is assigned different values under different configurations, including device types and color modes)<!--DelEnd-->.
 
 ## Resource Categories
 
@@ -53,7 +53,7 @@ resources
 #### base Directory
 
 The **base** directory is provided by default. Under this directory, the **element** subdirectory stores basic elements such as strings, colors, and boolean values, and the **media** and **profile** subdirectories store resource files such as media, animations, and layouts.<br>
-Resource files in the subdirectories are compiled into binary files, and each resource file is assigned an ID. Resource files in the subdirectory are referenced based on the resource type and resource name.
+Resource files in the subdirectories are compiled into binary files, and each resource file is assigned an ID. Resource files in the subdirectories are referenced based on the resource type and resource name.
 
 #### Qualifiers Directory
 
@@ -78,9 +78,9 @@ Table 2 Requirements for qualifier values
 | Text         | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters. For example, **Hans** indicates simplified Chinese, and **Hant** indicates traditional Chinese.<br>For details about the value range, see [ISO 15924](https://www.iso.org/standard/81905.html) (codes for the representation of names of scripts).|
 | Country/Region      | Indicates the country or region where the user is located. The value consists of two or three uppercase letters or three digits. For example, **CN** indicates China, and **GB** indicates the United Kingdom.<br>For details about the value range, see [ISO 3166-1](https://www.iso.org/iso-3166-country-codes.html) (codes for the representation of names of countries and their subdivisions).|
 | Screen orientation        | Indicates the screen orientation of the device. The value can be:<br>- **vertical**: portrait orientation<br>- **horizontal**: landscape orientation|
-| Device type       | Indicates the device type. The value can be:<br>- **car**: head unit<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable|
+| Device type       | <!--RP1-->Indicates the device type. The value can be:<br>- **car**: head unit<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable<!--RP1End--> |
 | Color mode       | Indicates the color mode of the device. The value can be:<br>- **dark**: dark mode<br>- **light**: light mode|
-| Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: screen density with small-scale dots per inch (SDPI). This value is applicable for devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale screen density (Medium-scale Dots Per Inch), applicable to DPI whose value is (120,  160] device.<br>- **ldpi**: screen density with large-scale dots per inch (LDPI). This value is applicable for devices with a DPI range of (160, 240].<br>- **xldpi**: screen density with extra-large-scale dots per inch (XLDPI). This value is applicable for devices with a DPI range of (240, 320].<br>- **xxldpi**: screen density with extra-extra-large-scale dots per inch (XXLDPI). This value is applicable for devices with a DPI range of (320, 480].<br>- **xxxldpi**: screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). This value is applicable for devices with a DPI range of (480, 640].|
+| Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: screen density with small-scale dots per inch (SDPI). This value is applicable for devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale screen density (Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch), applicable to DPI whose value is (120, &nbsp;160] device.<br>- **ldpi**: screen density with large-scale dots per inch (LDPI). This value is applicable for devices with a DPI range of (160, 240].<br>- **xldpi**: screen density with extra-large-scale dots per inch (XLDPI). This value is applicable for devices with a DPI range of (240, 320].<br>- **xxldpi**: screen density with extra-extra-large-scale dots per inch (XXLDPI). This value is applicable for devices with a DPI range of (320, 480].<br>- **xxxldpi**: screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). This value is applicable for devices with a DPI range of (480, 640].|
 
 #### rawfile Directory
 
@@ -88,7 +88,7 @@ You can create multiple levels of subdirectories with custom names to store vari
 
 #### resfile Directory
 
-You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. After an application is installed, the **resfile** directory is decompressed to the application sandbox path. You can obtain the path through the [resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) attribute of **Context**.
+You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. After an application is installed, the **resfile** directory is decompressed to the application sandbox path. You can obtain the path through the [resourceDir](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-inner-application-context.md#properties) attribute of **Context**.
 
 ### Resource Group Directories
 
@@ -98,7 +98,7 @@ Resource group directories include **element**, **media**, and **profile**, whic
 
 | Directory   | Description                                    | Resource File                                    |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | Element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows:<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating point number ranging from -2^128 to 2^128<br>- **intarray**: array of integers<br>- **integer**: integer ranging from -2^31 to 2^31-1<!--Del--><br>- **pattern**: style (for system applications only)<!--DelEnd--><br/>- **plural**: plural form data<br/>- **strarray**: array of strings<br/>- **string**: string data. [See descriptions of strings in specified format.](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)<!--Del--><br/>- **theme**: theme (for system applications only)<!--DelEnd-->| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>- boolean.json<br>- color.json<br>- float.json<br>- intarray.json<br>- integer.json<!--Del--><br>- pattern.json<!--DelEnd--><br>- plural.json<br>- strarray.json<br>- string.json |
+| element | Element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows:<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating point number ranging from -2^128 to 2^128<br>- **intarray**: array of integers<br>- **integer**: integer ranging from -2^31 to 2^31-1<!--Del--><br>- **pattern**: style (for system applications only)<!--DelEnd--><br>- **plural**: plural form data<br>- **strarray**: array of strings<br>- **string**: string. [See descriptions for formatting strings.](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)<!--Del--><br>- **theme**: theme (for system applications only)<!--DelEnd-->| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>-&nbsp;boolean.json<br>-&nbsp;color.json<br>-&nbsp;float.json<br>-&nbsp;intarray.json<br>-&nbsp;integer.json<!--Del--><br>-&nbsp;pattern.json<!--DelEnd--><br>-&nbsp;plural.json<br>-&nbsp;strarray.json<br>-&nbsp;string.json |
 | media   | Indicates media resources, including non-text files such as images, audios, and videos. (Only files are supported in this directory.)<br>Table 4 and Table 5 describe the types of images, audios, and videos.             | The file name can be customized, for example, **icon.png**.                    |
 | profile  | Indicates a custom configuration file. You can obtain the file content by using the [getProfileByAbility](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability) API. (Only JSON files are supported in this directory.)      | The file name can be customized, for example, **test_profile.json**.          |
 
@@ -230,7 +230,9 @@ Right-click a directory under **resources** and choose **New** > **XXX Resource 
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
 ## Using the attr Attribute for Resource Translation
+
 ### Function Description
+
 You can use the **attr** attribute to specify whether a string should be translated and the translation status. The **attr** attribute is not involved in resource compilation.
 
 If the **attr** attribute is not configured, a string is translated by default.
@@ -296,37 +298,37 @@ This example sets the **attr** attribute for strings.
 
   ```ts
     Text('Hello')
-    .fontColor($r('sys.color.ohos_id_color_emphasize'))
-    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+    .fontColor($r('app.color.ohos_id_color_emphasize'))
+    .fontSize($r('app.float.ohos_id_text_size_headline1'))
+    .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
+    .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
 
-    Image($r('sys.media.ohos_app_icon'))
+    Image($r('app.media.ohos_app_icon'))
     .border({
-      color: $r('sys.color.ohos_id_color_palette_aux1'),
-      radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+      color: $r('app.color.ohos_id_color_palette_aux1'),
+      radius: $r('app.float.ohos_id_corner_radius_button'), width: 2
     })
     .margin({
-      top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
-      bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+      top: $r('app.float.ohos_id_elements_margin_horizontal_m'),
+      bottom: $r('app.float.ohos_id_elements_margin_horizontal_l')
     })
     .height(200)
     .width(300)
   ```
 
-- Obtain a **ResourceManager** object through the application context, and then call [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to access different resources.<br>For example, call **getContext.resourceManager.getStringByNameSync('app.string.XXX')** to obtain string resources; call **getContext.resourceManager.getRawFd('rawfilepath')** to obtain the descriptor of the HAP where the raw file is located, and then use the descriptor ({fd, offset, length}) to access the raw file.
+- Obtain a **ResourceManager** object through the application context, and then call [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to access different resources.<br>For example, call **getContext().resourceManager.getStringByNameSync('test')** to obtain string resources; call **getContext().resourceManager.getRawFd('rawfilepath')** to obtain the descriptor of the HAP where a raw file is located, and then use the descriptor ({fd, offset, length}) to access the raw file.
 
 ### Cross-HAP/HSP Resources
 
 <!--Del-->
 #### Cross-Bundle Access (for System Applications Only)
 
-- Call **createModuleContext(bundleName, moduleName)** to obtain the context of the target HAP/HSP module in another application. Obtain a **ResourceManager** object through the context, and then call [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to access different resources.<br>Example: **getContext.createModuleContext(bundleName, moduleName).resourceManager.getStringByNameSync('app.string.XXX')**
+- Call **createModuleContext(bundleName, moduleName)** to obtain the context of the target HAP/HSP module in another application. Obtain a **ResourceManager** object through the context, and then call [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to access different resources.<br>Example: **getContext().createModuleContext(bundleName, moduleName).resourceManager.getStringByNameSync('test')**.
 <!--DelEnd-->
 
 #### Inter-Bundle, Cross-Module Access
 
-- Call **createModuleContext(moduleName)** to obtain the context of the target HAP/HSP module in the same application. Obtain a **ResourceManager** object through the context, and then call resource management APIs to access different resources.<br>Example: **getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX').**
+- Call **createModuleContext(moduleName)** to obtain the context of the target HAP/HSP module in the same application. Obtain a **ResourceManager** object through the context, and then call resource management APIs to access different resources.<br>Example: **getContext().createModuleContext(moduleName).resourceManager.getStringByNameSync('test')**.
 
 - Use **$r** or **$rawfile** to reference resources. Specifically, perform either of the following:
 
@@ -410,6 +412,8 @@ When your application needs to use a resource, the system preferentially searche
 - Qualifiers are matched with the device resources in the following priorities: MCC&MNC > locale (options: language, language_script, language_country/region, and language_script_country/region) > screen orientation > device type > color mode > screen density
 
 - If the qualifiers subdirectories contain the MCC, MNC, language, script, screen orientation, device type, and color mode qualifiers, their values must be consistent with the current device status so that the subdirectories can be used for matching the device resources. For example, the qualifiers subdirectory **zh_CN-car-ldpi** cannot be used for matching the resource files labeled **en_US**.
+
+- If there are multiple qualifiers subdirectories for the screen density, the closest qualifiers are matched upwards; otherwise, downwards. For example, if qualifiers directories **xldpi** and **xxldpi** exist and the device screen density is **xxldpi**, the qualifier directory **xxldpi** will be matched.
 
 For more information about how resources are loaded in applications, see the internationalization and localization documents.
 

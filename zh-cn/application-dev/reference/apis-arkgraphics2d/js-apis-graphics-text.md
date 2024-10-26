@@ -7,7 +7,7 @@
 - [TextStyle](#textstyle)：文本样式，控制文本的字体类型、大小、间距等属性。
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
-- [Paragraph](#paragraph)：段落，由段落生成器类调用[build()](#build)接口构建而成。
+- [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -188,6 +188,8 @@ import { text } from '@kit.ArkGraphics2D';
 
 省略号类型枚举。
 
+EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
+
 **系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称   | 值 | 说明      |
@@ -206,7 +208,7 @@ import { text } from '@kit.ArkGraphics2D';
 | ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  是   | 字体阴影的颜色，默认为黑色Color(255, 0, 0, 0)。        |
 | point         | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是  |  是   | 字体阴影基于当前文本的偏移位置，横、纵坐标要大于等于零。    |
-| blurRadius    | number                                               | 是  |  是   | 模糊半径，浮点数，默认为0.0。       |
+| blurRadius    | number                                               | 是  |  是   | 模糊半径，浮点数，默认为0.0px。       |
 
 ## RectStyle
 
@@ -257,17 +259,17 @@ import { text } from '@kit.ArkGraphics2D';
 | fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。                          |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
-| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体类型，默认为系统字体。                    |
-| fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。  |
-| letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
-| wordSpacing   | number                                               | 是 | 是 | 单词间距，浮点数，默认为0.0，单位为逻辑像素。                 |
-| heightScale   | number                                               | 是 | 是 | 行高缩放倍数，浮点数，默认为1.0。              |
+| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体族名称列表，默认为系统字体。                    |
+| fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为px。  |
+| letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为物理像素px。|
+| wordSpacing   | number                                               | 是 | 是 | 单词间距，浮点数，默认为0.0，单位为px。                 |
+| heightScale   | number                                               | 是 | 是 | 行高缩放倍数，浮点数，默认为1.0，heightOnly为true时生效。              |
+| heightOnly    | boolean                                              | 是 | 是 | true表示根据字体大小和heightScale设置文本框的高度，false表示根据行高和行距，默认为false。|
 | halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
-| heightOnly    | boolean                                              | 是 | 是 | true表示根据字体大小计算文本框的高度，false表示根据行高和行距，默认为false。|
 | ellipsis      | string                                               | 是 | 是 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END。                        |
-| locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
-| baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。                        |
+| locale        | string                                               | 是 | 是 | 语言类型，如字段为'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。具体请参照ISO 639-1规范，默认为空字符串。|
+| baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0px。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
@@ -275,7 +277,7 @@ import { text } from '@kit.ArkGraphics2D';
 
 ## StrutStyle
 
-支柱样式，用于控制绘制文本时行之间的间距、基线对齐方式以及其他与行高相关的属性。
+支柱样式，用于控制绘制文本的行间距、基线对齐方式以及其他与行高相关的属性，默认不开启。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -285,7 +287,7 @@ import { text } from '@kit.ArkGraphics2D';
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
 | fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。                                                      |
-| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。                             |
+| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为物理像素px。                             |
 | height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
 | leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
 | forceHeight    | boolean                                              | 是   | 是 | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
@@ -316,15 +318,14 @@ static getGlobalInstance(): FontCollection
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let fontCollection = text.FontCollection.getGlobalInstance();
-  fontCollection.loadFontSync('test', 'File://');
 }
 
 @Entry
 @Component
 struct Index {
-  fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -339,7 +340,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径的文件，以name作为使用的别名，加载成字体。
+同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -348,28 +349,40 @@ loadFontSync(name: string, path: string | Resource): void
 | 参数名 | 类型               | 必填 | 说明                              |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | name  | string             | 是   | 加载成字体后，调用该字体所使用的命名。                                                |
-| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "File:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
+| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
-  let fontCollection = new text.FontCollection;
-  fontCollection.loadFontSync('test', 'File://');
-}
+let fontCollection: text.FontCollection = new text.FontCollection();
 
 @Entry
 @Component
-struct Index {
-  @State fun: Function = Text;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
+struct RenderTest {
+  LoadFontSyncTest() {
+    fontCollection.loadFontSync('Clock_01', 'file:///system/fonts/HarmonyClock_01.ttf')
+    let fontFamilies: Array<string> = ["Clock_01"]
+    let myTextStyle: text.TextStyle = {
+      fontFamilies: fontFamilies
+    };
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
     }
+    let paragraphBuilder: text.ParagraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    let textData = "测试 loadFontSync 加载字体HarmonyClock_01.ttf";
+    paragraphBuilder.addText(textData);
+    let paragraph: text.Paragraph = paragraphBuilder.build();
+    paragraph.layoutSync(600);
+  }
+
+  aboutToAppear() {
+    this.LoadFontSyncTest();
+  }
+
+  build() {
   }
 }
 ```
@@ -449,11 +462,11 @@ struct Index {
 
 | 名称           | 类型                                           | 只读 | 可选 | 说明                         |
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
-| width          | number                                        | 是   | 否   | 占位符的宽度，浮点数，单位为逻辑像素。|
-| height         | number                                        | 是   | 否   | 占位符的高度，浮点数，单位为逻辑像素。|
+| width          | number                                        | 是   | 否   | 占位符的宽度，浮点数，单位为物理像素px。|
+| height         | number                                        | 是   | 否   | 占位符的高度，浮点数，单位为物理像素px。|
 | align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 否   | 相对于周围文本的纵向的对齐方式。|
 | baseline       | [TextBaseline](#textbaseline)                 | 是   | 否   | 基线类型。                   |
-| baselineOffset | number                                        | 是   | 否   | 基线偏移量，浮点数，单位为逻辑像素。  |
+| baselineOffset | number                                        | 是   | 否   | 基线偏移量，浮点数，单位为物理像素px。  |
 
 ## Range
 
@@ -484,7 +497,7 @@ layoutSync(width: number): void
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
-| width | number | 是   | 单行的最大宽度，浮点数，单位为逻辑像素。|
+| width | number | 是   | 单行的最大宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
@@ -559,7 +572,7 @@ getMaxWidth(): number
 
 | 类型   | 说明       |
 | ------ | --------- |
-| number | 最大的行宽，浮点数，单位为逻辑像素。|
+| number | 最大的行宽，浮点数，单位为物理像素px。|
 
 **示例：**
 
@@ -579,7 +592,7 @@ getHeight(): number
 
 | 类型   | 说明   |
 | ------ | ----- |
-| number | 总高度，浮点数，单位为逻辑像素。|
+| number | 总高度，浮点数，单位为物理像素px。|
 
 **示例：**
 
@@ -599,12 +612,32 @@ getLongestLine(): number
 
 | 类型   | 说明           |
 | ------ | ------------- |
-| number | 最长一行的宽度，浮点数，单位为逻辑像素。|
+| number | 最长一行的宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
 ```ts
 let longestLine = paragraph.getLongestLine();
+```
+
+### getLongestLineWithIndent<sup>13+</sup>
+
+getLongestLineWithIndent(): number
+
+获取文本最长一行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | ------------- |
+| number | 最长一行的宽度（该宽度包含当前行缩进的宽度），浮点数，单位为物理像素px。|
+
+**示例：**
+
+```ts
+let longestLineWithIndent = paragraph.getLongestLineWithIndent();
 ```
 
 ### getMinIntrinsicWidth
@@ -619,7 +652,7 @@ getMinIntrinsicWidth(): number
 
 | 类型   | 说明                           |
 | ------ | ----------------------------- |
-| number | 该段落所占水平空间的最小固有宽度，浮点数，单位为逻辑像素。|
+| number | 该段落所占水平空间的最小固有宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
@@ -639,7 +672,7 @@ getMaxIntrinsicWidth(): number
 
 | 类型   | 说明                           |
 | ------ | ----------------------------- |
-| number | 该段落所占水平空间的最大固有宽度，浮点数，单位为逻辑像素。|
+| number | 该段落所占水平空间的最大固有宽度，浮点数，单位为物理像素px。|
 
 **示例：**
 
@@ -659,7 +692,7 @@ getAlphabeticBaseline(): number
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| number | 拉丁字母下的基线位置，浮点数，单位为逻辑像素。|
+| number | 拉丁字母下的基线位置，浮点数，单位为物理像素px。|
 
 **示例：**
 
@@ -679,7 +712,7 @@ getIdeographicBaseline(): number
 
 | 类型   | 说明                  |
 | ------ | -------------------- |
-| number | 获取表意字下的基线位置，浮点数，单位为逻辑像素。|
+| number | 获取表意字下的基线位置，浮点数，单位为物理像素px。|
 
 **示例：**
 
@@ -1036,7 +1069,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 | 名称  | 值 | 说明                                   |
 | ----- | - | -------------------------------------- |
-| TIGHT | 0 | 与字形紧贴。                            |
+| TIGHT | 0 | 不设置letterSpacing时，与字形紧贴，否则包含letterSpacing。                            |
 | MAX   | 1 | 扩展宽度，以匹配所有行上最宽矩形的位置。   |
 
 ## RectHeightStyle
@@ -1089,14 +1122,14 @@ ParagraphBuilder对象的构造函数。
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1105,7 +1138,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1142,14 +1175,14 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.CENTER,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1159,7 +1192,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1186,14 +1219,14 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1204,7 +1237,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1237,14 +1270,14 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1254,7 +1287,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1287,9 +1320,9 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myParagraphStyle: text.ParagraphStyle = {
-    align: 3,
+    align: text.TextAlign.END,
   };
   let myPlaceholderSpan: text.PlaceholderSpan = {
     width: 10000,
@@ -1306,7 +1339,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1337,9 +1370,9 @@ build(): Paragraph
 import { drawing, text, common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   let myParagraphStyle: text.ParagraphStyle = {
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1349,7 +1382,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1370,23 +1403,23 @@ addSymbol(symbolId: number): void
 
 **参数：**
 
-| 参数名    | 类型    | 必填 | 说明                       |
-| -------- | ------- | ---- | -------------------------- |
-| symbolId | number  | 是   | 要设置的符号，十六进制。|
+| 参数名    | 类型    | 必填 | 说明                                                        |
+| -------- | ------- | ---- | ----------------------------------------------------------- |
+| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位及其对应的symbol名称请参阅以下链接中 JSON 文件的 value 字段和 name 字段： [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json)|
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let myTextStyle: text.TextStyle = {
     color: { alpha: 255, red: 255, green: 0, blue: 0 },
     fontSize: 33,
   };
   let myParagraphStyle: text.ParagraphStyle = {
     textStyle: myTextStyle,
-    align: 3,
+    align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1397,7 +1430,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1433,14 +1466,14 @@ getGlyphCount(): number
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let GlyphCount = lines[0].getGlyphCount();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1470,14 +1503,14 @@ getTextRange(): Range
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let textRange = lines[0].getTextRange();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1507,14 +1540,14 @@ getGlyphRuns(): Array\<Run>
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let runs = lines[0].getGlyphRuns();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1549,7 +1582,7 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
   let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
   let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
@@ -1560,7 +1593,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1596,14 +1629,14 @@ getGlyphCount(): number
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let glyphs = runs[0].getGlyphCount();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1633,14 +1666,14 @@ getGlyphs(): Array\<number>
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function Text() {
+function textFunc() {
   let glyph = runs[0].getGlyphs();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1670,14 +1703,14 @@ getPositions(): Array<common2D.Point>
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let positions = runs[0].getPositions();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1707,14 +1740,14 @@ getOffsets(): Array<common2D.Point>
 ```ts
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let offsets = runs[0].getOffsets();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1745,14 +1778,14 @@ getFont(): drawing.Font
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D";
 
-function Text() {
+function textFunc() {
   let font = runs[0].getFont();
 }
 
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1787,7 +1820,7 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function Text() {
+function textFunc() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
   let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
   let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
@@ -1798,7 +1831,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  @State fun: Function = Text;
+  fun: Function = textFunc;
   build() {
     Column() {
       Button().onClick(() => {

@@ -63,7 +63,15 @@
 
 
 - **OpenHarmony主干代码获取**
+  >获取代码时尽可能在根目录下新建路径中获取。
   
+  ```
+  cd ~
+  mkdir ohos_master       #在根目录下新建ohos_master路径
+  cd ohos_master          #进入ohos_master路径拉取代码
+  ```
+  
+
    方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
    
   ```
@@ -72,7 +80,7 @@
   repo forall -c 'git lfs pull'
   ```
 
-  方式二：通过repo + https下载。
+  方式二：通过repo + https下载（云计算服务器推荐用此方法）。
 
   
   ```

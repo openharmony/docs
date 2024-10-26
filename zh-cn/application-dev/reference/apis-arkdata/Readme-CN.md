@@ -39,6 +39,8 @@
   - 模块
     - [Data](_data.md)
     - [RDB](_r_d_b.md)
+    - [UDMF](_u_d_m_f.md)
+    - [Preferences](_preferences.md)
   - 头文件
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
@@ -47,6 +49,14 @@
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)
     - [relational_store.h](relational__store_8h.md)
+    - [udmf.h](udmf_8h.md)
+    - [udmf_err_code.h](udmf__err__code_8h.md)
+    - [udmf_meta.h](udmf__meta_8h.md)
+    - [uds.h](uds_8h.md)
+    - [utd.h](utd_8h.md)
+    - [oh_preferences.h](oh__preferences_8h.md)
+    - [oh_preferences_option.h](oh__preferences__option_8h.md)
+    - [oh_preferences_value.h](oh__preferences__value_8h.md)
   - 结构体
     - [OH_Cursor](_o_h___cursor.md)
     - [OH_Predicates](_o_h___predicates.md)

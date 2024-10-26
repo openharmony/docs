@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides APIs for creating and modifying tensor information.
+Provides tensor-related APIs, which can be used to create tensors and modify tensor information. These APIs are non-thread-safe.
 
 **Since**
 

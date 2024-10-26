@@ -396,6 +396,10 @@ struct Index {
 
 - When the entire object changes but the listened property remains unchanged, the \@Monitor callback is not triggered.
 
+The following code represents the behavior in the comment when you execute the instructions in the sequence of Step 1, Step 2 and Step 3.
+
+If you only execute the instruction of Step 2 or Step 3 to change the values of **name** or **age**, the **onNameChange** and **onAgeChange** methods are triggered.
+
 ```ts
 @ObservedV2
 class Info {
@@ -427,15 +431,15 @@ struct Index {
   info: Info = new Info("Tom", 25);
   build() {
     Column() {
-      Button("1, Only change name")
+      Button("Step 1, only change name")
         .onClick(() => {
           this.info.person = new Person("Jack", 25);  // Can trigger the onNameChange method, but not the onAgeChange method.
         })
-      Button("2, Only change age")
+      Button("Step 2, only change age")
         .onClick(() => {
           this.info.person = new Person("Jack", 18);  // Can trigger the onAgeChange method, but not the onNameChange method.
         })
-      Button("3, Change name and age")
+      Button("Step 3, change name and age")
         .onClick(() => {
           this.info.person = new Person("Lucy", 19);  // Can trigger the onNameChange and onAgeChange methods.
         })

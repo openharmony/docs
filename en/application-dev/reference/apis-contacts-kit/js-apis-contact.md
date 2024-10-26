@@ -31,7 +31,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | contact  | [Contact](#contact)         | Yes  | Contact information.                                                |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the added contact is returned. If the operation fails, an invalid contact ID is returned.                              |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the added contact is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
 
@@ -48,14 +48,19 @@ Adds a contact. This API uses an asynchronous callback to return the result.
   let context = getContext(this) as Context;
   contact.addContact(
     context,
-    {name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+    {
+	  name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
     }, (err: BusinessError, data) => {
       if (err) {
-        console.log(`addContact callback: err->${JSON.stringify(err)}`);
+        console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
         return;
       }
-      console.log(`addContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
 ```
 
@@ -75,24 +80,28 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                          |
-| -------- | --------------------------- | ---- | ------------------------------ |
-| contact  | [Contact](#contact)         | Yes  | Contact information.                  |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result, which is a contact ID.|
+| Name  | Type                       | Mandatory| Description                                                    |
+| -------- | --------------------------- | ---- | -------------------------------------------------------- |
+| contact  | [Contact](#contact)         | Yes  | Contact information.                                            |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the added contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.addContact({
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`addContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`addContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
   ```
 
@@ -117,9 +126,9 @@ Adds a contact. This API uses a promise to return the result.
 
 **Return Value**
 
-| Type                 | Description                                       |
-| --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the contact ID.|
+| Type                 | Description                             |
+| --------------------- | --------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the ID of the added contact.|
 
 **Error codes**
 
@@ -136,13 +145,18 @@ Adds a contact. This API uses a promise to return the result.
   let context = getContext(this) as Context;
   let promise = contact.addContact(
     context,
-    {name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+    {
+	  name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   });
   promise.then((data) => {
-    console.log(`addContact success: data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-    console.error(`addContact fail: err->${JSON.stringify(err)}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -168,22 +182,26 @@ Adds a contact. This API uses a promise to return the result.
 
 **Return Value**
 
-| Type                 | Description                                       |
-| --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the contact ID.|
+| Type                 | Description                             |
+| --------------------- | --------------------------------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the ID of the added contact.|
 
 **Example**
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.addContact({
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   });
   promise.then((data) => {
-      console.log(`addContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`addContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -202,8 +220,8 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| key      | string                    | Yes  | Unique query key of a contact. One contact corresponds to one key.                        |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
+| key      | string                    | Yes  | Unique query key of a contact. One contact corresponds to one key.            |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the deleted contact is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
 
@@ -220,10 +238,10 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
   let context = getContext(this) as Context; 
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
-          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('deleteContact success');
+      console.info('Succeeded in deleting Contact.');
   });
 ```
 
@@ -246,7 +264,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 | Name  | Type                     | Mandatory| Description                                |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | key      | string                    | Yes  | Unique query key of a contact. One contact corresponds to one key.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.    |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the deleted contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -254,10 +272,10 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.deleteContact('xxx', (err: BusinessError) => {
       if (err) {
-          console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('deleteContact success');
+      console.info('Succeeded in deleting Contact.');
   });
   ```
 
@@ -281,9 +299,9 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 **Return Value**
 
-| Type               | Description                                         |
-| ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -300,9 +318,9 @@ Deletes a contact based on the specified contact key. This API uses a promise to
   let context = getContext(this) as Context;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
-      console.log(`deleteContact success`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -328,9 +346,9 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 **Return Value**
 
-| Type               | Description                                         |
-| ------------------- | --------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -338,9 +356,9 @@ Deletes a contact based on the specified contact key. This API uses a promise to
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
-      console.log(`deleteContact success`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -351,7 +369,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -360,8 +378,8 @@ Updates a contact based on the specified contact information. This API uses an a
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| contact  | [Contact](#contact)       | Yes  | Contact information. Contact ID, which is mandatory.                                                |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                        |
+| contact  | [Contact](#contact)       | Yes  | Contact information. Contact ID, which is mandatory.                                        |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the updated contact is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
 
@@ -378,14 +396,18 @@ Updates a contact based on the specified contact information. This API uses an a
   let context = getContext(this) as Context;
   contact.updateContact(context, {
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -399,7 +421,7 @@ Updates a contact based on the specified contact information. This API uses an a
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10).
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -408,7 +430,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | Name  | Type                     | Mandatory| Description                                |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)       | Yes  | Contact information. Contact ID, which is mandatory.                        |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the updated contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -416,14 +438,18 @@ Updates a contact based on the specified contact information. This API uses an a
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.updateContact({
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -434,7 +460,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 Updates a contact based on the specified contact information. This API uses an asynchronous callback to return the result.
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -443,9 +469,9 @@ Updates a contact based on the specified contact information. This API uses an a
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| contact  | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                                                |
+| contact  | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                                        |
 | attrs    | [ContactAttributes](#contactattributes) | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result.                        |
+| callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result. If the operation is successful, the ID of the updated contact is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
 
@@ -462,16 +488,20 @@ Updates a contact based on the specified contact information. This API uses an a
   let context = getContext(this) as Context;
   contact.updateContact(context, {
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -485,7 +515,7 @@ Updates a contact based on the specified contact information. This API uses an a
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10-1).
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -495,7 +525,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                        |
 | attrs    | [ContactAttributes](#contactattributes) | Yes  | List of contact attributes.                  |
-| callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result. If the operation is successful, the ID of the updated contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -503,16 +533,20 @@ Updates a contact based on the specified contact information. This API uses an a
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.updateContact({
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.log(`updateContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -523,7 +557,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 Updates a contact based on the specified contact information and attributes. This API uses a promise to return the result.
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -537,9 +571,9 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 **Return Value**
 
-| Type               | Description                                             |
-| ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -556,15 +590,19 @@ Updates a contact based on the specified contact information and attributes. Thi
   let context = getContext(this) as Context;
   let promise = contact.updateContact(context, {
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`updateContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -578,7 +616,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [updateContact](#contactupdatecontact10-2).
 
-**Permission required**: ohos.permission.WRITE_CONTACTS
+**Required permissions**: ohos.permission.WRITE_CONTACTS and ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -590,9 +628,9 @@ Updates a contact based on the specified contact information and attributes. Thi
 | attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
-| Type               | Description                                             |
-| ------------------- | ------------------------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -600,15 +638,19 @@ Updates a contact based on the specified contact information and attributes. Thi
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.updateContact({
       id: 1,
-      name: {fullName: 'xxx'},
-      phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
+      name: {
+	    fullName: 'xxx'
+	  },
+      phoneNumbers: [{
+	    phoneNumber: '138xxxxxxxx'
+	  }]
   }, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.log('updateContact success');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`updateContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -629,7 +671,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                      | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | id       | number                       | Yes  | Contact ID. Each contact corresponds to one ID.                  |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, a Boolean value is returned. The value **true** indicates that the contact ID is in the local phonebook, and the value **false** indicates the opposite. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -646,10 +688,10 @@ Checks whether the ID of this contact is in the local address book. This API use
   let context = getContext(this) as Context;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -672,7 +714,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | Yes  | Contact ID. Each contact corresponds to one ID.                  |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, a Boolean value is returned. The value **true** indicates that the contact ID is in the local phonebook, and the value **false** indicates the opposite. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -680,10 +722,10 @@ Checks whether the ID of this contact is in the local address book. This API use
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.isLocalContact(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isLocalContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -708,7 +750,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact ID is in the local phonebook, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -725,9 +767,9 @@ Checks whether the ID of this contact is in the local address book. This API use
   let context = getContext(this) as Context;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
-      console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -755,7 +797,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact ID is in the local address book, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact ID is in the local phonebook, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -763,9 +805,9 @@ Checks whether the ID of this contact is in the local address book. This API use
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
-      console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -784,8 +826,8 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                      | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| id       | number                       | Yes  | Contact ID.                                        |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| id       | number                       | Yes  | Contact ID.                                          |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, a Boolean value is returned. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -802,10 +844,10 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
   let context = getContext(this) as Context;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -827,8 +869,8 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| id       | number                       | Yes  | Contact ID.                                        |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| id       | number                       | Yes  | Contact ID.                                          |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, a Boolean value is returned. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -836,10 +878,10 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`isMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -863,9 +905,9 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 **Return Value**
 
-| Type                  | Description                                                        |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| Type                  | Description                                                      |
+| ---------------------- | ---------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -882,9 +924,9 @@ Checks whether a contact is included in my card. This API uses a promise to retu
   let context = getContext(this) as Context;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
-      console.log(`isMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -910,9 +952,9 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 **Return Value**
 
-| Type                  | Description                                                        |
-| ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| Type                  | Description                                                      |
+| ---------------------- | ---------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -920,9 +962,9 @@ Checks whether a contact is included in my card. This API uses a promise to retu
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
-      console.log(`isMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -941,7 +983,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 | Name  | Type                                    | Mandatory| Description                                                        |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, information about my card is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
 
@@ -958,10 +1000,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
   let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -981,9 +1023,9 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                          |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                    | Mandatory| Description                                                    |
+| -------- | ---------------------------------------- | ---- | -------------------------------------------------------- |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, information about my card is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -991,10 +1033,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1014,7 +1056,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, information about my card is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
 
@@ -1033,10 +1075,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1056,10 +1098,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                          |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.            |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                    | Mandatory| Description                                                    |
+| -------- | ---------------------------------------- | ---- | -------------------------------------------------------- |
+| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                      |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, information about my card is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1069,10 +1111,10 @@ Queries my card. This API uses an asynchronous callback to return the result.
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryMyCard callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1095,9 +1137,9 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
 **Return Value**
 
-| Type                              | Description                                       |
-| ---------------------------------- | ------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
+| Type                              | Description                                   |
+| ---------------------------------- | --------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is a contact in my card.|
 
 **Error codes**
 
@@ -1116,9 +1158,9 @@ Queries my card based on the specified contact attributes. This API uses a promi
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -1143,9 +1185,9 @@ Queries my card based on the specified contact attributes. This API uses a promi
 | attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
-| Type                              | Description                                       |
-| ---------------------------------- | ------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
+| Type                              | Description                                   |
+| ---------------------------------- | --------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is a contact in my card.|
 
 **Example**
 
@@ -1155,9 +1197,9 @@ Queries my card based on the specified contact attributes. This API uses a promi
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1176,9 +1218,9 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of selected contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1186,10 +1228,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContact((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1208,9 +1250,9 @@ Selects a contact. This API uses a promise to return the result.
 
 **Return Value**
 
-| Type                                           | Description                                             |
-| ----------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                   |
+| ----------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of selected contacts.|
 
 **Example**
 
@@ -1218,9 +1260,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContact();
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1236,9 +1278,9 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of selected contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -1252,10 +1294,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1271,15 +1313,10 @@ Selects a contact. This API uses a promise to return the result.
 
 **Return Value**
 
-| Type                                           | Description                                             |
-| ----------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                   |
+| ----------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of selected contacts.|
 
-**Error codes**
-
-| ID| Error Message          |
-| -------- | ------------------ |
-| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1287,9 +1324,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1308,7 +1345,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | options | [ContactSelectionOptions](#contactselectionoptions10) | Yes  | Contact selection options.|
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of selected contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -1324,10 +1361,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1349,9 +1386,9 @@ Selects a contact. This API uses a promise to return the result.
 
 **Return Value**
 
-| Type                                           | Description                                             |
-| ----------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                   |
+| ----------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of selected contacts.|
 
 **Error codes**
 
@@ -1365,9 +1402,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1387,7 +1424,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.  |
 
 **Error codes**
 
@@ -1404,10 +1441,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1427,10 +1464,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                  |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.      |
+| Name  | Type                                    | Mandatory| Description                                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                    |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1438,10 +1475,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1450,7 +1487,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key and holder. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1463,7 +1500,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | context  | Context                                  | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
 | holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                      |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.  |
 
 **Error codes**
 
@@ -1484,10 +1521,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1495,7 +1532,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key and holder. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1507,11 +1544,11 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                  |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
-| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.      |
+| Name  | Type                                    | Mandatory| Description                                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                    |
+| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                    |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1523,10 +1560,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1534,7 +1571,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key and attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1547,7 +1584,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | context  | Context                                  | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
 | attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.  |
 
 **Error codes**
 
@@ -1566,10 +1603,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1577,7 +1614,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key and attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1589,11 +1626,11 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                  |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
-| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                    |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.      |
+| Name  | Type                                    | Mandatory| Description                                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                    |
+| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                        |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1603,10 +1640,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1614,7 +1651,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key, holder, and attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1628,7 +1665,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
 | holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                      |
 | attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.  |
 
 **Error codes**
 
@@ -1651,10 +1688,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1662,7 +1699,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
-Queries a contact based on the specified key. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified key, holder, and attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1674,12 +1711,12 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                                  |
-| -------- | ---------------------------------------- | ---- | -------------------------------------- |
-| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.|
-| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                |
-| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                    |
-| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result.      |
+| Name  | Type                                    | Mandatory| Description                                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                    |
+| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                    |
+| attrs    | [ContactAttributes](#contactattributes)  | Yes  | List of contact attributes.                                        |
+| callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1693,10 +1730,10 @@ Queries a contact based on the specified key. This API uses an asynchronous call
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContact callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContact callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1705,7 +1742,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
 queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
-Queries contacts based on the specified key, application, and attributes. This API uses a promise to return the result.
+Queries a contact based on the specified key, holder, and attributes. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1717,13 +1754,13 @@ Queries contacts based on the specified key, application, and attributes. This A
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | key     | string                                  | Yes  | Contact key. Each contact corresponds to one key.                      |
-| holder  | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
-| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+| holder  | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.      |
+| attrs   | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.          |
 
 **Return Value**
-| Type                              | Description                                           |
-| ---------------------------------- | ----------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
+| Type                              | Description                                 |
+| ---------------------------------- | ------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is thequeried contact.|
 
 **Error codes**
 
@@ -1746,9 +1783,9 @@ Queries contacts based on the specified key, application, and attributes. This A
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1756,7 +1793,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
-Queries contacts based on the specified key, application, and attributes. This API uses a promise to return the result.
+Queries a contact based on the specified key, holder, and attributes. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -1771,13 +1808,13 @@ Queries contacts based on the specified key, application, and attributes. This A
 | Name| Type                                   | Mandatory| Description                                  |
 | ------ | --------------------------------------- | ---- | -------------------------------------- |
 | key    | string                                  | Yes  | Contact key. Each contact corresponds to one key.|
-| holder | [Holder](#holder)                       | No  | Application that creates the contacts.                |
-| attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                    |
+| holder | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.               |
+| attrs  | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.                   |
 
 **Return Value**
-| Type                              | Description                                           |
-| ---------------------------------- | ----------------------------------------------- |
-| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result.|
+| Type                              | Description                                 |
+| ---------------------------------- | ------------------------------------- |
+| Promise&lt;[Contact](#contact)&gt; | Promise used to return the result, which is thequeried contact.|
 
 **Example**
 
@@ -1791,9 +1828,9 @@ Queries contacts based on the specified key, application, and attributes. This A
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContact success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContact fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1812,7 +1849,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -1829,10 +1866,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   let context = getContext(this) as Context;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1852,9 +1889,9 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1862,10 +1899,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1873,7 +1910,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified holder. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1885,7 +1922,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -1906,10 +1943,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1917,7 +1954,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified holder. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1929,10 +1966,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -1944,10 +1981,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1955,7 +1992,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -1967,7 +2004,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -1986,10 +2023,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1997,7 +2034,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2009,10 +2046,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                    |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2022,10 +2059,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2033,7 +2070,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified holder and attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2046,7 +2083,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | context  | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
 | attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2069,10 +2106,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2080,7 +2117,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries all contacts. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified holder and attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2092,11 +2129,11 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                |
-| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                    |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2110,10 +2147,10 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContacts callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2121,7 +2158,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
 queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-Queries all contacts based on the specified application and attributes. This API uses a promise to return the result.
+Queries contacts based on the specified holder and attributes. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2132,13 +2169,13 @@ Queries all contacts based on the specified application and attributes. This API
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| holder  | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
-| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+| holder  | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.      |
+| attrs   | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.              |
 
 **Return Value**
-| Type                                           | Description                                               |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                     |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of queried contacts.|
 
 **Error codes**
 
@@ -2161,9 +2198,9 @@ Queries all contacts based on the specified application and attributes. This API
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2171,7 +2208,7 @@ Queries all contacts based on the specified application and attributes. This API
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-Queries all contacts based on the specified application and attributes. This API uses a promise to return the result.
+Queries contacts based on the specified holder and attributes. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2185,14 +2222,14 @@ Queries all contacts based on the specified application and attributes. This API
 
 | Name| Type                                   | Mandatory| Description                  |
 | ------ | --------------------------------------- | ---- | ---------------------- |
-| holder | [Holder](#holder)                       | No  | Application that creates the contacts.|
-| attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
+| holder | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.|
+| attrs  | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.    |
 
 **Return Value**
 
-| Type                                           | Description                                               |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                     |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of queried contacts.|
 
 **Example**
 
@@ -2206,9 +2243,9 @@ Queries all contacts based on the specified application and attributes. This API
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -2228,7 +2265,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context     | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2245,10 +2282,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2268,10 +2305,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory| Description                                  |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2279,10 +2316,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2291,7 +2328,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number and holder. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2304,7 +2341,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | context     | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
 | holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2325,10 +2362,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2336,7 +2373,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number and holder. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2348,11 +2385,11 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory| Description                                  |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
-| holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2364,10 +2401,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2375,7 +2412,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number and attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2388,7 +2425,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | context     | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
 | attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2407,10 +2444,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2418,7 +2455,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number and attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2430,11 +2467,11 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory| Description                                  |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
-| attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                    |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2444,10 +2481,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2455,7 +2492,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number, holder, and attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2469,7 +2506,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
 | holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
 | attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2492,10 +2529,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2503,7 +2540,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified phone number. This API uses an asynchronous callback to return the result.
+Queries contacts based on the specified phone number, holder, and attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2515,12 +2552,12 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 **Parameters**
 
-| Name     | Type                                                 | Mandatory| Description                                  |
-| ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| phoneNumber | string                                                | Yes  | Phone number of the contacts.                    |
-| holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                |
-| attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                    |
-| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name     | Type                                                 | Mandatory| Description                                                        |
+| ----------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| phoneNumber | string                                                | Yes  | Phone number of the contacts.                                          |
+| holder      | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| attrs       | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback    | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2534,10 +2571,10 @@ Queries contacts based on the specified phone number. This API uses an asynchron
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByPhoneNumber callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2545,7 +2582,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
 queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-Queries contacts based on the specified phone number, application, and attributes. This API uses a promise to return the result.
+Queries contacts based on the specified phone number, holder, and attributes. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2557,14 +2594,14 @@ Queries contacts based on the specified phone number, application, and attribute
 | ----------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context     | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | phoneNumber | string                                  | Yes  | Phone number of the contacts.                                          |
-| holder      | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
-| attrs       | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+| holder      | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.      |
+| attrs       | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.              |
 
 **Return Value**
 
-| Type                                           | Description                                               |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                     |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of queried contacts.|
 
 **Error codes**
 
@@ -2587,9 +2624,9 @@ Queries contacts based on the specified phone number, application, and attribute
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2597,7 +2634,7 @@ Queries contacts based on the specified phone number, application, and attribute
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-Queries contacts based on the specified phone number, application, and attributes. This API uses a promise to return the result.
+Queries contacts based on the specified phone number, holder, and attributes. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2612,14 +2649,14 @@ Queries contacts based on the specified phone number, application, and attribute
 | Name     | Type                                   | Mandatory| Description                  |
 | ----------- | --------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                  | Yes  | Phone number of the contacts.    |
-| holder      | [Holder](#holder)                       | No  | Application that creates the contacts.|
-| attrs       | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
+| holder      | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.|
+| attrs       | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.    |
 
 **Return Value**
 
-| Type                                           | Description                                               |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                     |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of queried contacts.|
 
 **Example**
 
@@ -2633,9 +2670,9 @@ Queries contacts based on the specified phone number, application, and attribute
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2655,7 +2692,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | email    | string                                                | Yes  | Email address of the contact.                                          |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2672,10 +2709,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2695,10 +2732,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| email    | string                                                | Yes  | Email address of the contact.                    |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2706,10 +2743,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2717,7 +2754,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified email and holder. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2730,7 +2767,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | context  | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | email    | string                                                | Yes  | Email address of the contact.                                          |
 | holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2751,10 +2788,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2762,7 +2799,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified email and holder. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2774,11 +2811,11 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                  |
-| -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
-| email    | string                                                | Yes  | Email address of the contact.                    |
-| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2790,10 +2827,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2801,7 +2838,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified email and attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2814,7 +2851,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | context  | Context                                               | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | email    | string                                                | Yes  | Email address of the contact.                                          |
 | attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                        |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2833,10 +2870,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2844,7 +2881,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified email and attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2856,11 +2893,11 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| email    | string                                                | Yes  | Email address of the contact.                  |
-| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                  |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2870,10 +2907,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2881,7 +2918,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified email, holder, and attributes. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2895,7 +2932,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | email    | string                                                | Yes  | Email address of the contact.                                          |
 | holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
 | attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.                        |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -2918,10 +2955,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2929,7 +2966,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-Queries contacts based on the specified email address. This API uses an asynchronous callback to return the result.
+Queries a contact based on the specified email, holder, and attributes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -2941,12 +2978,12 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory| Description                                |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| email    | string                                                | Yes  | Email address of the contact.                  |
-| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.              |
-| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                  |
-| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| email    | string                                                | Yes  | Email address of the contact.                                          |
+| holder   | [Holder](#holder)                                     | Yes  | Application that creates the contacts.                                      |
+| attrs    | [ContactAttributes](#contactattributes)               | Yes  | List of contact attributes.                                          |
+| callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried contacts is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -2960,10 +2997,10 @@ Queries contacts based on the specified email address. This API uses an asynchro
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryContactsByEmail callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2971,7 +3008,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
 queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-Queries contacts based on the specified email address, application, and attributes. This API uses a promise to return the result.
+Queries a contact based on the specified email, holder, and attributes. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -2983,14 +3020,14 @@ Queries contacts based on the specified email address, application, and attribut
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | email   | string                                  | Yes  | Email address of the contact.                                          |
-| holder  | [Holder](#holder)                       | No  | Application that creates the contacts.                                      |
-| attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
+| holder  | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.                                      |
+| attrs   | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.                                          |
 
 **Return Value**
 
-| Type                                           | Description                                               |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                     |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of queried contacts.|
 
 **Error codes**
 
@@ -3013,9 +3050,9 @@ Queries contacts based on the specified email address, application, and attribut
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3023,7 +3060,7 @@ Queries contacts based on the specified email address, application, and attribut
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
-Queries contacts based on the specified email address, application, and attributes. This API uses a promise to return the result.
+Queries a contact based on the specified email, holder, and attributes. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -3038,14 +3075,14 @@ Queries contacts based on the specified email address, application, and attribut
 | Name| Type                                   | Mandatory| Description                  |
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | email  | string                                  | Yes  | Email address of the contact.    |
-| holder | [Holder](#holder)                       | No  | Application that creates the contacts.|
-| attrs  | [ContactAttributes](#contactattributes) | No  | List of contact attributes.    |
+| holder | [Holder](#holder)                       | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.|
+| attrs  | [ContactAttributes](#contactattributes) | No  | Contact attribute list. If this parameter is not specified, all contact attributes are queried by default.    |
 
 **Return Value**
 
-| Type                                           | Description                                               |
-| ----------------------------------------------- | --------------------------------------------------- |
-| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result.|
+| Type                                           | Description                                     |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | Promise used to return the result, which is an array of queried contacts.|
 
 **Example**
 
@@ -3059,9 +3096,9 @@ Queries contacts based on the specified email address, application, and attribut
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3080,7 +3117,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 | Name  | Type                                             | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                           | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.                        |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried groups is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -3097,10 +3134,10 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   let context = getContext(this) as Context;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3120,9 +3157,9 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                                |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried groups is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -3130,10 +3167,10 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3141,7 +3178,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
-Queries all groups of this contact. This API uses an asynchronous callback to return the result.
+Queries all groups of this contact based on the specified holder. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3153,7 +3190,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                           | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.                                      |
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.                        |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried groups is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -3174,10 +3211,10 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3185,7 +3222,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
-Queries all groups of this contact. This API uses an asynchronous callback to return the result.
+Queries all groups of this contact based on the specified holder. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3197,10 +3234,10 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                             | Mandatory| Description                                |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.              |
-| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                             | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| holder   | [Holder](#holder)                                 | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of queried groups is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -3212,10 +3249,10 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryGroups callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3223,7 +3260,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
-Queries all groups of this contact based on the specified application. This API uses a promise to return the result.
+Queries all groups of this contact based on the specified holder. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3234,13 +3271,13 @@ Queries all groups of this contact based on the specified application. This API 
 | Name | Type             | Mandatory| Description                                                        |
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
 | context | Context           | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| holder  | [Holder](#holder) | No  | Application that creates the contacts.                                      |
+| holder  | [Holder](#holder) | No  | Application information for a contact. If this parameter is not specified, it is not used for group filtering by default.                                      |
 
 **Return Value**
 
-| Type                                       | Description                                             |
-| ------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise used to return the result.|
+| Type                                       | Description                                   |
+| ------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise used to return the result, which is an array of groups.|
 
 **Error codes**
 
@@ -3261,9 +3298,9 @@ Queries all groups of this contact based on the specified application. This API 
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryGroups success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3271,7 +3308,7 @@ Queries all groups of this contact based on the specified application. This API 
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
-Queries all groups of this contact based on the specified application. This API uses a promise to return the result.
+Queries all groups of this contact based on the specified holder. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -3285,13 +3322,13 @@ Queries all groups of this contact based on the specified application. This API 
 
 | Name| Type             | Mandatory| Description                  |
 | ------ | ----------------- | ---- | ---------------------- |
-| holder | [Holder](#holder) | No  | Application that creates the contacts.|
+| holder | [Holder](#holder) | No  | Application information for a contact. If this parameter is not specified, it is not used for group filtering by default.|
 
 **Return Value**
 
-| Type                                       | Description                                             |
-| ------------------------------------------- | ------------------------------------------------- |
-| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise used to return the result.|
+| Type                                       | Description                                   |
+| ------------------------------------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[Group](#group)&gt;&gt; | Promise used to return the result, which is an array of groups.|
 
 **Example**
 
@@ -3303,9 +3340,9 @@ Queries all groups of this contact based on the specified application. This API 
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryGroups success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3324,7 +3361,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 | Name  | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                             | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | Yes  | Callback used to return the result.        |
+| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of the queried applications is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -3341,10 +3378,10 @@ Queries all applications that have created contacts. This API uses an asynchrono
   let context = getContext(this) as Context;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3364,9 +3401,9 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
 **Parameters**
 
-| Name  | Type                                               | Mandatory| Description                                                |
-| -------- | --------------------------------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                                               | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, an array of the queried applications is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -3374,10 +3411,10 @@ Queries all applications that have created contacts. This API uses an asynchrono
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryHolders((err: BusinessError, data) => {
       if (err) {
-          console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryHolders callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3399,9 +3436,9 @@ Queries all applications that have created contacts. This API uses a promise to 
 
 **Return Value**
 
-| Type                                         | Description                                                        |
-| --------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise used to return the result.|
+| Type                                         | Description                                                   |
+| --------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise used to return the result, which is an array of queried applications.|
 
 **Error codes**
 
@@ -3418,9 +3455,9 @@ Queries all applications that have created contacts. This API uses a promise to 
   let context = getContext(this) as Context;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
-      console.log(`queryHolders success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3440,9 +3477,9 @@ Queries all applications that have created contacts. This API uses a promise to 
 
 **Return Value**
 
-| Type                                         | Description                                                        |
-| --------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise used to return the result.|
+| Type                                         | Description                                                   |
+| --------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | Promise used to return the result, which is an array of queried applications.|
 
 **Example**
 
@@ -3450,9 +3487,9 @@ Queries all applications that have created contacts. This API uses a promise to 
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryHolders();
   promise.then((data) => {
-      console.log(`queryHolders success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3472,7 +3509,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | id       | number                      | Yes  | Contact ID.                                        |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                     |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the key of the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -3489,10 +3526,10 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3512,10 +3549,10 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                   |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| id       | number                      | Yes  | Contact ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| id       | number                      | Yes  | Contact ID.                                        |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the key of the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -3523,10 +3560,10 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3534,7 +3571,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
-Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+Queries the key of a contact based on the specified contact ID and holder. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3547,7 +3584,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 | context  | Context                     | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | id       | number                      | Yes  | Contact ID.                                        |
 | holder   | [Holder](#holder)           | Yes  | Application that creates the contacts.                                      |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.                     |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the key of the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -3568,10 +3605,10 @@ Queries the key of a contact based on the specified contact ID. This API uses an
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3579,7 +3616,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
-Queries the key of a contact based on the specified contact ID. This API uses an asynchronous callback to return the result.
+Queries the key of a contact based on the specified contact ID and holder. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -3591,11 +3628,11 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                                   |
-| -------- | --------------------------- | ---- | --------------------------------------- |
-| id       | number                      | Yes  | Contact ID.                   |
-| holder   | [Holder](#holder)           | Yes  | Application that creates the contacts.                 |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| id       | number                      | Yes  | Contact ID.                                        |
+| holder   | [Holder](#holder)           | Yes  | Application that creates the contacts.                                      |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, the key of the queried contact is returned. If the operation fails, an error code is returned.|
 
 **Example**
 
@@ -3607,10 +3644,10 @@ Queries the key of a contact based on the specified contact ID. This API uses an
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`queryKey callback: err->${JSON.stringify(err)}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.log(`queryKey callback: success data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3618,7 +3655,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
 queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
-Queries the key of a contact based on the specified contact ID and application. This API uses a promise to return the result.
+Queries the key of a contact based on the specified contact ID and holder. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
@@ -3630,13 +3667,13 @@ Queries the key of a contact based on the specified contact ID and application. 
 | ------- | ----------------- | ---- | ------------------------------------------------------------ |
 | context | Context           | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | id      | number            | Yes  | Contact ID.                                        |
-| holder  | [Holder](#holder) | No  | Application that creates the contacts.                                      |
+| holder  | [Holder](#holder) | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.                                      |
 
 **Return Value**
 
-| Type                 | Description                                                |
-| --------------------- | ---------------------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;string&gt; | Promise used to return the result, which is the key of the queried contact.|
 
 **Error codes**
 
@@ -3657,9 +3694,9 @@ Queries the key of a contact based on the specified contact ID and application. 
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryKey success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryKey fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3667,7 +3704,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
-Queries the key of a contact based on the specified contact ID and application. This API uses a promise to return the result.
+Queries the key of a contact based on the specified contact ID and holder. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -3682,13 +3719,13 @@ Queries the key of a contact based on the specified contact ID and application. 
 | Name| Type             | Mandatory| Description                  |
 | ------ | ----------------- | ---- | ---------------------- |
 | id     | number            | Yes  | Contact ID.  |
-| holder | [Holder](#holder) | No  | Application that creates the contacts.|
+| holder | [Holder](#holder) | No  | Application information for a contact. If this parameter is not specified, it is not used for contact filtering by default.|
 
 **Return Value**
 
-| Type                 | Description                                                |
-| --------------------- | ---------------------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result.|
+| Type                 | Description                                      |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;string&gt; | Promise used to return the result, which is the key of the queried contact.|
 
 **Example**
 
@@ -3700,9 +3737,9 @@ Queries the key of a contact based on the specified contact ID and application. 
       displayName: ""
   });
   promise.then((data) => {
-      console.log(`queryKey success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`queryKey fail: err->${JSON.stringify(err)}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 

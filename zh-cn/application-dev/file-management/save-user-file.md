@@ -11,7 +11,9 @@
 
 ## 保存图片或视频类文件
 
-[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)在后续版本不再演进，请使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)在后续版本不再演进，建议使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
+
+如果开发场景无法调用安全控件进行图片、视频保存，可使用相册管理模块[PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)接口进行保存操作。
 
 ## 保存文档类文件
 
@@ -23,6 +25,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
+
 2. 创建文档保存选项实例。
 
    ```ts
@@ -30,11 +33,12 @@
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // 保存文件名（可选） 
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
-   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如过选择项存在多个后缀，默认选择第一个。
+   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如果选择项存在多个后缀，默认选择第一个。
    documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
 
-3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。
+3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口拉起FilePicker界面进行文件保存。
+
    ```ts
    let uris: Array<string> = [];
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -49,9 +53,10 @@
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
+
 > **注意**：
 > <br>**1**、不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存URI。
-> <br>**2**、使用picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
+> <br>**2**、使用picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
 > <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
 > <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
@@ -92,7 +97,7 @@
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; 
    ```
 
-3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-4)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6)接口拉起FilePicker界面进行文件保存。
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-5)接口拉起FilePicker界面进行文件保存。
    ```ts
    let uri: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -149,7 +154,7 @@
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD; 
    ```
 
-3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的uri。
+3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-1)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的uri。
    
    ```ts
    let uri: string = '';

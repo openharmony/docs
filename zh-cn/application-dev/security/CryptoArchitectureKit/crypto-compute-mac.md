@@ -33,9 +33,9 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
 ### HMAC（一次性传入）
 
-1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac)，指定摘要算法SHA256，生成消息认证码操作实例（Mac）。
+1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac)，指定摘要算法SHA256，生成消息认证码实例（Mac）。
 
-2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为AES、长度为128位的对称密钥（SymKey）。
+2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为HMAC的对称密钥（SymKey）。
    生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
 
 3. 调用[Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-6)，指定共享对称密钥（SymKey），初始化Mac对象。
@@ -54,7 +54,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
   async function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
     let symKey = await aesGenerator.convertKey(symKeyBlob);
     console.info('convertKey success');
     return symKey;
@@ -84,7 +84,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
   function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
     let symKey =  aesGenerator.convertKeySync(symKeyBlob);
     console.info('[Sync]convertKey success');
     return symKey;
@@ -108,9 +108,9 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
 ### 分段HMAC
 
-1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac)，指定摘要算法SHA256，生成消息认证码操作实例（Mac）。
+1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac)，指定摘要算法SHA256，生成消息认证码实例（Mac）。
 
-2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为AES、长度为128位的对称密钥（SymKey）。
+2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为HMAC的对称密钥（SymKey）。
    生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
 
 3. 调用[Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-7)，指定共享对称密钥（SymKey），初始化Mac对象。
@@ -129,7 +129,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
   async function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
     let symKey = await aesGenerator.convertKey(symKeyBlob);
     console.info('convertKey success');
     return symKey;
@@ -165,7 +165,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
   function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
     let symKey = aesGenerator.convertKeySync(symKeyBlob);
     console.info('[Sync]convertKey success');
     return symKey;

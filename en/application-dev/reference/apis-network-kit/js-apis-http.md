@@ -58,7 +58,7 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
         publicKeyHash: 'Pin2', // Certificate PIN passed by the application. This attribute is supported since API version 12.
         hashAlgorithm: 'SHA-256' // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
       }
-    ]
+    ],
     multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
       {
         name: "Part1", // Data name. This field is supported since API version 11.
@@ -190,10 +190,11 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -272,10 +273,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -382,10 +384,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -491,10 +494,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -565,10 +569,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -666,10 +671,11 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
-> For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
+> For details about the error codes, see [Common Error Codes](../errorcode-universal.md) and [HTTP Error Codes](errorcode-net-http.md).
 > The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
@@ -852,9 +858,6 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 Registers an observer for events indicating receiving of HTTP streaming responses.
 
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -912,9 +915,6 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 
 Registers an observer for events indicating completion of receiving HTTP streaming responses.
 
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -971,9 +971,6 @@ httpRequest.off("dataEnd");
 on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
-
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1100,8 +1097,8 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
-| usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **HttpProxy** type, the specified network proxy is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **globalThis.getContext().filesDir**. Currently, only **.pem** certificates are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
 | resumeFrom<sup>11+</sup> | number | No| Download start position. This field can be used only for the GET method. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | resumeTo<sup>11+</sup> | number | No| Download end position. This field can be used only for the GET method. According to section 3.1 of RFC 7233:<br>- If the HTTP PUT method is used, do not use this option because it may conflict with other options.<br>- The value ranges from **1** to **4294967296** (4 GB). If the value is out of this range, this field does not take effect.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No| Client certificate.|
@@ -1121,14 +1118,14 @@ Defines an HTTP request method.
 
 | Name   | Value     | Description               |
 | :------ | ------- | :------------------ |
-| OPTIONS | "OPTIONS" | OPTIONS method.|
-| GET     | "GET"     | GET method.    |
-| HEAD    | "HEAD"    | HEAD method.   |
-| POST    | "POST"    | POST method.   |
-| PUT     | "PUT"     | PUT method.    |
-| DELETE  | "DELETE"  | DELETE method. |
-| TRACE   | "TRACE"   | TRACE method.  |
-| CONNECT | "CONNECT" | CONNECT method.|
+| OPTIONS | "OPTIONS" | Describes the communication options of the target resource.|
+| GET     | "GET"     | Requests the representation of the specified resource. The GET request should only retrieve data and should not contain the request content.|
+| HEAD    | "HEAD"    | Requests the same response (but does not have a response body) as the GET request.|
+| POST    | "POST"    | Submits an entity to a specified resource, which usually causes a status change on the server.|
+| PUT     | "PUT"     | Replaces all current representations of the target resource with the requested content.|
+| DELETE  | "DELETE"  | Deletes the specified resource.|
+| TRACE   | "TRACE"   | Performs a message loopback test along the path to the target resource.|
+| CONNECT | "CONNECT" | Establishes a tunnel to the server identified by the target resource.|
 
 ## ResponseCode
 
@@ -1530,7 +1527,7 @@ Defines the dynamic configuration of certificate pinning.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-|  Name |  Type |   Description    |
-| ------------------  | -- | ----------- |
-| publicKeyHash       | string | Certificate PIN of the string type.|
-| hashAlgorithm        | 'SHA-256' | Encryption algorithm. Currently, only SHA-256 is supported.|
+|  Name |  Type |  Mandatory |Description    |
+| ------------------  |---- |-- | ----------- |
+| publicKeyHash       | string | Yes|Certificate PIN of the string type.|
+| hashAlgorithm        | 'SHA-256' |  Yes |Encryption algorithm. Currently, only SHA-256 is supported.|

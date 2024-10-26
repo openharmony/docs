@@ -66,9 +66,13 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
 
    - **ImagePacker_Native** instance obtained
 
-   - Image source (napi_value), **PixelMap** object, or** ImageSource** object (when **CreatePixelMap** is not called yet) to be encoded
+   - Image source (napi_value), **PixelMap** object, or **ImageSource** object (when **CreatePixelMap** is not called yet) to be encoded
 
    - Encoding parameters, including the encoding format and encoding quality
+
+      > **NOTE**
+      >
+      > According to the MIME protocol, the standard encoding format is image/jpeg. When the APIs provided by the image module are used for encoding, **format** of the encoding parameters must be set to **image/jpeg**. The file name extension of the encoded image file can be .jpg or .jpeg, and the file can be used on platforms that support image/jpeg decoding.
 
    The encoding APIs can output data to the buffer (memory) or a file. They have the same input parameters, as described previously. You can select either of them as required.
 

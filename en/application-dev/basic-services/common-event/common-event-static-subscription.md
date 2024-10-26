@@ -14,16 +14,15 @@ Subscribing to a common event in static mode is achieved by configuring a declar
 
 ## How to Develop
 
-1. Declaring a static subscriber.
+1. Declare a static subscriber.
 
    To declare a static subscriber, create an ExtensionAbility, which is derived from the **StaticSubscriberExtensionAbility** class, in the project.
 
    You can implement service logic in the [`onReceiveEvent()`](../../reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md#staticsubscriberextensionabilityonreceiveevent) callback.
 
    ```ts
-   import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-   import type commonEventManager from '@ohos.commonEventManager';
-   import hilog from '@ohos.hilog';
+   import { commonEventManager, StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'StaticSubscriber';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -47,11 +46,12 @@ Subscribing to a common event in static mode is achieved by configuring a declar
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
-           "srcEntry": "./ets/staticsubscriber/StaticSubscriber.ts",
+           "srcEntry": "./ets/staticsubscriber/StaticSubscriber.ets",
            "description": "$string:StaticSubscriber_desc",
-           "icon": "$media:icon",
+           "icon": "$media:app_icon",
            "label": "$string:StaticSubscriber_label",
            "type": "staticSubscriber",
+           "exported": false,
            "metadata": [
              {
                "name": "ohos.extension.staticSubscriber",
@@ -101,7 +101,7 @@ Subscribing to a common event in static mode is achieved by configuring a declar
 4. Modify the [preset configuration file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json) of the device, that is, the **/system/variant/phone/base/etc/app/install_list_capability.json** file on the device. When the device is started, this file is read. During application installation, the common event type specified by **allowCommonEvent** in the file is authorized. The **install_list_capability.json** file contains the following fields:
 
    - **bundleName**: bundle name of the application.
-   - **app_signature**: fingerprint information of the application. For details about how to configure fingerprint information, see [Application Privilege Configuration Guide](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson).
+   - **app_signature**: fingerprint information of the application. For details about how to configure fingerprint information, see [Application Privilege Configuration](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-app-privilege-config-guide.md#configuration-in-install_list_capabilityjson), or obtain and enter the app ID using [Bundle Manager](https://gitee.com/openharmony/docs/blob/master/en/application-dev/tools/bm-tool.md).
    - **allowCommonEvent**: type of common event that can be started by static broadcast.
 
    ```json
@@ -118,9 +118,3 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    > **NOTE**
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
-
-## Samples
-
-For details about how to develop StaticSubscriberExtensionAbility, see the following sample:
-
-- [Static Subscription (ArkTS) (Full SDK) (API10)] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)

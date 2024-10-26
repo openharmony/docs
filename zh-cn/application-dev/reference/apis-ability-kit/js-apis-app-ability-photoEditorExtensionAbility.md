@@ -11,9 +11,9 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 ```
 ## 属性
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
-|  名称 |类型   |只读   |必填   |说明   |
+|  名称 |类型   |只读   |可选   |说明   |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 否  | 上下文  |
+|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | 否  | 是  | 上下文  |
 
 ## PhotoEditorExtensionAbility.onCreate
 onCreate(): void
@@ -76,7 +76,7 @@ PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility�
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
@@ -99,7 +99,7 @@ PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility�
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**系统能力：** SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
@@ -116,7 +116,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 
 ```
 ## PhotoEditorExtensionAbility.onDestroy
-onDestroy(): void | Promise<void>
+onDestroy(): void | Promise\<void>
 
 PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。 
 
@@ -127,7 +127,7 @@ PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资�
 **返回值：**
 |  类型 |说明   |
 | ------------ | ------------ |
-|  Promise<void> |  Promise对象。无返回结果的Promise对象。 |
+|  Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

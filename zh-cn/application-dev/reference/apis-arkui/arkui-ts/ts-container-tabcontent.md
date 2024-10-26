@@ -87,7 +87,7 @@ SubTabBarStyle的构造函数。
 
 **参数：**
 
-| 参数名 | 参数类型         | 必填 | 参数描述 |
+| 参数名 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
@@ -103,7 +103,7 @@ SubTabBarStyle的构造函数。支持ComponentContent设置自定义内容。
 
 **参数：**
 
-| 参数名 | 参数类型         | 必填 | 参数描述 |
+| 参数名 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
@@ -119,7 +119,7 @@ SubTabBarStyle的静态构造函数。
 
 **参数：**
 
-| 参数名  | 参数类型                                   | 必填 | 参数描述           |
+| 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------------ | ---- | ------------------ |
 | content | [ResourceStr](ts-types.md#resourcestr) | 是   | 页签内的文字内容。 |
 
@@ -141,7 +141,7 @@ SubTabBarStyle的静态构造函数。
 
 **参数：**
 
-| 参数名  | 参数类型                                   | 必填 | 参数描述           |
+| 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------------ | ---- | ------------------ |
 | content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的内容。支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
@@ -151,19 +151,159 @@ SubTabBarStyle的静态构造函数。
 | ------- | ------------------------------------------------------------ |
 | [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回创建的SubTabBarStyle对象。 |
 
-### 属性
+### indicator<sup>10+</sup>
 
-支持以下属性：
+indicator(value: IndicatorStyle): SubTabBarStyle
 
-| 名称         | 参数类型                                                     | 描述                                                         |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10对象说明)| 设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10枚举说明)   | 设置选中子页签的显示方式。子页签的显示方式仅在水平模式下有效。<br />默认值：SelectedMode.INDICATOR<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| board<sup>10+</sup> | [BoardStyle](#boardstyle10对象说明)   | 设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置子页签的label文本和字体的样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| padding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 设置子页签的内边距属性，支持镜像能力（不支持百分比设置）。<br/>默认值：{start:LengthMetircs.vp(8),end:LengthMetircs.vp(8),<br/>top:LengthMetircs.vp(17),bottom:LengthMetircs.vp(18)}<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| id<sup>11+</sup> | string | 设置子页签的[id](ts-universal-attributes-component-id.md#属性)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+设置选中子页签的下划线风格。子页签的下划线风格仅在水平模式下有效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [IndicatorStyle](#indicatorstyle10对象说明) | 是   | 选中子页签的下划线风格对象。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+
+### selectedMode<sup>10+</sup>
+
+selectedMode(value: SelectedMode): SubTabBarStyle
+
+设置选中子页签的显示方式。子页签的显示方式仅在水平模式下有效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [SelectedMode](#selectedmode10枚举说明) | 是   | 选中子页签的显示方式。<br />默认值：SelectedMode.INDICATOR |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+
+### board<sup>10+</sup>
+
+board(value: BoardStyle): SubTabBarStyle
+
+设置选中子页签的背板风格。子页签的背板风格仅在水平模式下有效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [BoardStyle](#boardstyle10对象说明) | 是   | 选中子页签的背板风格对象。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+
+### labelStyle<sup>10+</sup>
+
+labelStyle(value: LabelStyle): SubTabBarStyle
+
+设置子页签的label文本和字体的样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [LabelStyle](#labelstyle10对象说明) | 是   | 子页签的label文本和字体的样式对象。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+
+### padding<sup>10+</sup>
+
+padding(value: Padding | Dimension): SubTabBarStyle
+
+设置子页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | 是   | 子页签的内边距属性。<br />默认值：{left:8.0vp,right:8.0vp,top:17.0vp,bottom:18.0vp} |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+
+### padding<sup>12+</sup>
+
+padding(padding: LocalizedPadding): SubTabBarStyle
+
+设置子页签的内边距属性，支持镜像能力（不支持百分比设置）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| padding | [LocalizedPadding](ts-types.md#localizedpadding12) | 是   | 子页签的内边距属性。<br />默认值：{start:LengthMetircs.vp(8),end:LengthMetircs.vp(8),<br/>top:LengthMetircs.vp(17),bottom:LengthMetircs.vp(18)} |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
+
+### id<sup>11+</sup>
+
+id(value: string): SubTabBarStyle
+
+设置子页签的[id](ts-universal-attributes-component-id.md#属性)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | string | 是   | 子页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [SubTabBarStyle](#subtabbarstyle9对象说明) | 返回SubTabBarStyle对象本身。 |
 
 ## IndicatorStyle<sup>10+</sup>对象说明
 
@@ -171,7 +311,7 @@ SubTabBarStyle的静态构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下划线的颜色和背板颜色。<br/>默认值:#FF007DFF |
 | height | [Length](ts-types.md#length) | 否 | 下划线的高度（不支持百分比设置）。<br/>默认值:2.0<br/>单位：vp |
@@ -185,7 +325,7 @@ SubTabBarStyle的静态构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 描述                     |
+| 名称       | 说明               |
 | ---------- | ------------------------ |
 | INDICATOR | 使用下划线模式。     |
 | BOARD   | 使用背板模式。     |
@@ -196,7 +336,7 @@ SubTabBarStyle的静态构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | ------------------------------------ |
 | borderRadius | [Length](ts-types.md#length) | 否 | 背板的圆角半径（不支持百分比设置）。<br/>默认值：8.0<br/>单位：vp |
 
@@ -204,7 +344,7 @@ SubTabBarStyle的静态构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| 名称                 | 类型                                                     | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 否   | 设置Label文本超长时的显示方式。默认值是省略号截断。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | maxLines             | number                                                       | 否   | 设置Label文本的最大行数。如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过textOverflow来指定截断方式。默认值是1。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -231,7 +371,7 @@ BottomTabBarStyle的构造函数。
 
 **参数：**
 
-| 参数名 | 参数类型         | 必填 | 参数描述 |
+| 参数名 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12对象说明) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
@@ -248,7 +388,7 @@ BottomTabBarStyle的静态构造函数。
 
 **参数：**
 
-| 参数名 | 参数类型         | 必填 | 参数描述 |
+| 参数名 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12对象说明) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
@@ -259,19 +399,159 @@ BottomTabBarStyle的静态构造函数。
 | ------- | ------------------------------------------------------------ |
 | [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回创建的BottomTabBarStyle对象。 |
 
-### 属性
+### padding<sup>10+</sup>
 
-支持以下属性：
+padding(value: Padding | Dimension | LocalizedPadding): BottomTabBarStyle
 
-| 名称         | 参数类型                                                     | 描述                                                         |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| padding<sup>10+</sup> | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) \| [LocalizedPadding<sup>12+</sup>](ts-types.md#localizedpadding12) | 设置底部页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。<br/>默认值：{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp}<br/>使用LocalizedPadding时，支持镜像能力。<br />默认值：{start:LengthMetircs.vp(4),end:LengthMetircs.vp(4),<br/>top:LengthMetircs.vp(0),bottom:LengthMetircs.vp(0)}<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| verticalAlign<sup>10+</sup> |  [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置底部页签的图片、文字在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| layoutMode<sup>10+</sup> |  [LayoutMode](#layoutmode10枚举说明) | 设置底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。<br/>默认值：LayoutMode.VERTICAL<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| iconStyle<sup>12+</sup> | [TabBarIconStyle](#tabbariconstyle12对象说明) | 设置底部页签的label图标的样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+设置底部页签的内边距属性（不支持百分比设置）。使用Dimension时，四个方向内边距同时生效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) \| [LocalizedPadding<sup>12+</sup>](ts-types.md#localizedpadding12) | 是   | 底部页签的内边距。<br/>默认值：{left:4.0vp,right:4.0vp,top:0.0vp,bottom:0.0vp}<br/>使用LocalizedPadding时，支持镜像能力。<br />默认值：{start:LengthMetircs.vp(4),end:LengthMetircs.vp(4),<br/>top:LengthMetircs.vp(0),bottom:LengthMetircs.vp(0)} |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+
+### verticalAlign<sup>10+</sup>
+
+verticalAlign(value: VerticalAlign): BottomTabBarStyle
+
+设置底部页签的图片、文字在垂直方向上的对齐格式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 是   | 底部页签的图片、文字在垂直方向上的对齐格式。<br/>默认值：VerticalAlign.Center |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+
+### layoutMode<sup>10+</sup>
+
+layoutMode(value: LayoutMode): BottomTabBarStyle
+
+设置底部页签的图片、文字排布的方式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [LayoutMode](#layoutmode10枚举说明) | 是   | 底部页签的图片、文字排布的方式，具体参照LayoutMode枚举。<br/>默认值：LayoutMode.VERTICAL |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+
+### symmetricExtensible<sup>10+</sup>
+
+symmetricExtensible(value: boolean): BottomTabBarStyle
+
+设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | boolean | 是   | 底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值。<br/>默认值：false |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+
+### labelStyle<sup>10+</sup>
+
+labelStyle(value: LabelStyle): BottomTabBarStyle
+
+设置底部页签的label文本和字体的样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | [LabelStyle](#labelstyle10对象说明) | 是   | 底部页签的label文本和字体的样式。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+
+### id<sup>11+</sup>
+
+id(value: string): BottomTabBarStyle
+
+设置底部页签的id。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| value | string | 是   | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
+
+### iconStyle<sup>12+</sup>
+
+iconStyle(style: TabBarIconStyle): BottomTabBarStyle
+
+置底部页签的label图标的样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                   | 必填 | 说明           |
+| ------- | ------------------------------------- | ---- | ------------- |
+| style | [TabBarIconStyle](#tabbariconstyle12对象说明) | 是   | 底部页签的label图标的样式。 |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| [BottomTabBarStyle](#bottomtabbarstyle9对象说明) | 返回BottomTabBarStyle对象本身。 |
 
 ## TabBarSymbol<sup>12+</sup>对象说明
 
@@ -279,7 +559,7 @@ BottomTabBarStyle的静态构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型         | 必填 | 参数描述 |
+| 名称 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：fontColor：#66182431，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
 | selected | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。<br/>默认值：fontColor：#ff007dff，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
@@ -290,7 +570,7 @@ BottomTabBarStyle的静态构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 描述                                       |
+| 名称         | 说明                                     |
 | ----------  | ---------------------------------------- |
 | AUTO        | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
 | VERTICAL    | 页签内容上下排布。 |
@@ -302,7 +582,7 @@ BottomTabBarStyle的静态构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| 名称                 | 类型                                                     | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label图标未选中时的颜色。<br/>默认值:#33182431 <br/>**说明：** <br/>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置Label图标选中时的颜色。<br/>默认值:#FF007DFF <br/>**说明：** <br/>仅对svg图源生效，设置后会替换svg图片的填充颜色。 |
@@ -355,17 +635,18 @@ struct TabContentExample {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder tabBuilder(index: number) {
     Column() {
-      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+      Image(this.selectedIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
         .height(24)
         .margin({ bottom: 4 })
         .objectFit(ImageFit.Contain)
       Text(`Tab${index + 1}`)
-        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(10)
         .fontWeight(500)
         .lineHeight(14)
@@ -438,7 +719,15 @@ struct TabContentExample {
       .vertical(false)
       .barHeight(56)
       .onChange((index: number) => {
+        // currentIndex控制TabContent显示页签
         this.currentIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        // selectedIndex控制自定义TabBar内Image和Text颜色切换
+        this.selectedIndex = targetIndex
       })
       .width(360)
       .height(190)
@@ -461,17 +750,18 @@ struct TabContentExample {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder tabBuilder(index: number) {
     Column() {
-      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+      Image(this.selectedIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
         .height(24)
         .margin({ bottom: 4 })
         .objectFit(ImageFit.Contain)
       Text('Tab')
-        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(10)
         .fontWeight(500)
         .lineHeight(14)
@@ -494,7 +784,15 @@ struct TabContentExample {
       .barWidth(96)
       .barHeight(414)
       .onChange((index: number) => {
+        // currentIndex控制TabContent显示页签
         this.currentIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        // selectedIndex控制自定义TabBar内Image和Text颜色切换
+        this.selectedIndex = targetIndex
       })
       .width(96)
       .height(414)

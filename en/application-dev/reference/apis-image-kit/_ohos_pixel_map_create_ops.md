@@ -19,12 +19,12 @@ The **OhosPixelMapCreateOps** struct defines the options used for creating a pix
 
 | Name| Description| 
 | -------- | -------- |
-| [width](#width) | Image width, in pixels.| 
-| [height](#height) | Image height, in pixels.| 
-| [pixelFormat](#pixelformat) | Image format.| 
-| [editable](#editable) | Editing type of the image.| 
-| [alphaType](#alphatype) | Alpha type of the image.| 
-| [scaleMode](#scalemode) | Scale mode of the image.| 
+| uint32_t [width](#width) | Image width, in pixels. | 
+| uint32_t [height](#height) | Image height, in pixels. | 
+| int32_t [pixelFormat](#pixelformat) | Image format. | 
+| uint32_t [editable](#editable) | Editing type of the image. | 
+| uint32_t [alphaType](#alphatype) | Alpha type of the image. | 
+| uint32_t [scaleMode](#scalemode) | Scale mode of the image. | 
 
 
 ## Member Variable Description

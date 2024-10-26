@@ -21,7 +21,7 @@ struct WebComponent {
       Web({ 
       	src: 
       	"https://www.example.com/test.pdf", 					// 方式一 加载网络PDF文档
-      	// "file://" + getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
+      	// getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
       	// "resource://rawfile/test.pdf", 						// 方式三 应用内resource资源PDF文档
       	// $rawfile('test.pdf'), 								// 方式四 应用内resource资源PDF文档
       	controller: this.controller 
@@ -35,7 +35,7 @@ struct WebComponent {
 上述示例中，由于PDF预览页面对于侧边导航栏是否展开会根据用户操作使用`window.localStorage`进行持久化记录，所以需开启文档对象模型存储[domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess)权限:
 
   ```
-  Web().domStorageAccesss(true)
+  Web().domStorageAccess(true)
   ```
 
 在Web组件创建时，指定默认加载的PDF文档。在默认PDF文档加载完成后，如果需要变更此Web组件显示的PDF文档，可以通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载指定的PDF文档。[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)的第一个参数变量src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)重新加载。
@@ -50,14 +50,15 @@ struct WebComponent {
   })
     .domStorageAccess(true)
   ```
-- 预览加载应用沙箱内PDF文件
+- 预览加载应用沙箱内PDF文件，需要开启应用中文件系统的访问[fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess)权限。
 
   ```
   Web({ 
-    src: "file://" + getContext(this).filesDir + "/test.pdf",
+    src: getContext(this).filesDir + "/test.pdf",
     controller: this.controller 
   })
     .domStorageAccess(true)
+    .fileAccess(true)
   ```
 - 预览加载应用内PDF资源文件，有两种使用形式。`$rawfile('test.pdf')`形式无法指定下面介绍的预览参数。
 
@@ -91,3 +92,4 @@ https://example.com/test.pdf#page=3&zoom=200,250,100
 https://example.com/test.pdf#toolbar=0  
 https://example.com/test.pdf#navpanes=0  
 ```
+<!--RP1--><!--RP1End-->

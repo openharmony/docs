@@ -1,0 +1,31 @@
+# FaceAuth HDI 参考
+
+- 模块
+    - [HdfFaceAuth (V1_1)](_hdf_face_auth_v11.md)
+    - [HdfFaceAuth (V1_0)](_hdf_face_auth_v10.md)
+- 头文件
+    - HdfFaceAuth (V1_1)
+        - [FaceAuthTypes.idl](_face_auth_types_8idl_v11.md)
+        - [IExecutor.idl](_i_executor_8idl_faceauth_v11.md)
+        - [IFaceAuthInterface.idl](_i_face_auth_interface_8idl_v11.md)
+        - [ISaCommandCallback.idl](_i_sa_command_callback_8idl_faceauth_v11.md)
+    - HdfFaceAuth (V1_0)
+        - [FaceAuthTypes.idl](_face_auth_types_8idl_v10.md)
+        - [IExecutor.idl](_i_executor_8idl_faceauth_v10.md)
+        - [IExecutorCallback.idl](_i_executor_callback_8idl_faceauth_v10.md)
+        - [IFaceAuthInterface.idl](_i_face_auth_interface_8idl_v10.md)
+- 结构体
+    - HdfFaceAuth (V1_1)
+        - [IExecutor](interface_i_executor_faceauth_v11.md)
+        - [IFaceAuthInterface](interface_i_face_auth_interface_v11.md)
+        - [ISaCommandCallback](interface_i_sa_command_callback_faceauth_v11.md)
+        - [Property](_property_faceauth_v11.md)
+        - [SaCommand](_sa_command_faceauth_v11.md)
+        - [SaCommandParam](union_sa_command_param_faceauth_v11.md)
+        - [SaCommandParamNone](_sa_command_param_none_faceauth_v11.md)
+    - HdfFaceAuth (V1_0)
+        - [ExecutorInfo](_executor_info_faceauth_v10.md)
+        - [IExecutor](interface_i_executor_faceauth_v10.md)
+        - [IExecutorCallback](interface_i_executor_callback_faceauth_v10.md)
+        - [IFaceAuthInterface](interface_i_face_auth_interface_v10.md)
+        - [TemplateInfo](_template_info_faceauth_v10.md)

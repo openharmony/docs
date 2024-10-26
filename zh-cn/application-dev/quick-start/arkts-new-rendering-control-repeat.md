@@ -6,38 +6,53 @@
 >
 >当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
-Repeat组件不开启virtualScroll开关时，Repeat基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
+API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
 
-Repeat组件开启virtualScroll开关时，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
+Repeat组件non-virtualScroll场景（不开启virtualScroll开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
+
+Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件，必须与滚动类容器组件配合使用。当在滚动类容器组件中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
 
 > **注意：**
 >
-> Repeat组件的virtualScroll场景不完全兼容V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用V1装饰器和virtualScroll场景。
+> Repeat组件的virtualScroll场景不完全兼容V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
 
 ## 使用限制
 
-- Repeat必须在容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持虚拟滚动（此时配置cachedCount会生效）。其它容器组件使用Repeat时请不要打开virtualScroll开关。
-- Repeat开启virtualScroll后，在每次迭代中，必须创建且只允许创建一个子组件。不开启virtualScroll没有该限制。
-- 生成的子组件必须是允许包含在Repeat父容器组件中的子组件。
-- 允许Repeat包含在if/else条件渲染语句中，也允许Repeat中出现if/else条件渲染语句。
-- Repeat内部使用键值作为标识，因此键值生成器必须针对每个数据生成唯一的值，如果多个数据同一时刻生成的键值相同，会导致UI组件渲染出现问题。
-- 未开启virtualScroll目前暂时不支持template模板，复用会有问题。
+- Repeat使用键值作为标识，因此键值生成函数`key()`必须针对每个数据生成唯一的值。
+- Repeat virtualScroll场景必须在滚动类容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持virtualScroll场景（此时配置cachedCount会生效）。其它容器组件只适用于non-virtualScroll场景。
+- Repeat开启virtualScroll后，在每次迭代中，必须创建且只允许创建一个子组件。不开启virtualScroll没有该限制。生成的子组件必须是允许包含在Repeat父容器组件中的子组件。
+- 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
+- template模板目前只支持virtualScroll场景。当多个template type相同时，Repeat会覆盖旧的`template()`函数，仅生效最新的`template()`。
+- totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
 
 ## 键值生成规则
 
+键值生成函数`key()`的目的是允许Repeat识别数组更改的细节：添加了哪些数据、删除了哪些数据，以及哪些数据改变了位置（索引）。
+
+开发者使用建议：
+
+- 即使数据项有重复，开发者也必须保证键值key唯一（即使数据源发生变化）；
+- 每次执行`key()`函数时，使用相同的数据项作为输入，输出必须是一致的；
+- `key()`中使用index是允许的，但不建议这样使用。原因是数据项移动时索引发生变化，即键值发生变化。因此Repeat会认为数据项发生了变化，并触发UI重新渲染，会降低性能表现；
+- 推荐将简单类型数组转换为类对象数组，并添加一个`readonly id`属性，在构造函数中给它赋一个唯一的值。
+
 ### non-virtualScroll规则
 
-![Repeat-Slide](./figures/Repeat-NonVirtualScroll-Key.PNG)
+`key()`可以缺省，Repeat会生成默认key值。
+
+![Repeat-NonVS-KeyGen](./figures/Repeat-NonVS-KeyGen.png)
 
 ### virtualScroll规则
 
-和non-virtualScroll的键值生成规则基本一致，但是不会自动处理重复的键值，需要开发者自己保证键值的唯一性。
+和non-virtualScroll的键值生成规则基本一致，`key()`可以缺省。
 
-![Repeat-Slide](./figures/Repeat-VirtualScroll-Key.PNG)
+![Repeat-VS-KeyGen](./figures/Repeat-VS-KeyGen.png)
 
 ## 组件生成及复用规则
 
 ### non-virtualScroll规则
+
+![Repeat-NonVS-FuncGen](./figures/Repeat-NonVS-FuncGen.png)
 
 子组件在Repeat首次渲染时全部创建，在数据更新时会对原组件进行复用。
 
@@ -83,11 +98,31 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
+## totalCount规则
+
+数据源的总长度，可以大于已加载数据项的数量。令arr.length表示数据源长度，以下为totalCount的处理规则：
+
+- totalCount缺省/非自然数时，totalCount默认为arr.length，列表正常滚动；
+- 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据；
+- totalCount > arr.length时，代表Repeat将渲染totalCount个数据，滚动条样式根据totalCount值变化。
+
+> **注意：** 当totalCount < arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
+
 ## cachedCount规则
 
-首先需要明确List/Grid `.cachedCount`属性方法和Repeat `cachedCount`的区别。这两者都是为了平衡性能和内存，但是其含义是不同的。
-- List/Grid `.cachedCount`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
-- template  `cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
+cachedCount是当前模板在Repeat的缓存池中可缓存子节点的最大数量，仅在virtualScroll场景下生效。
+
+首先需要明确滚动类容器组件 `.cachedCount()`属性方法和Repeat `cachedCount`的区别。这两者都是为了平衡性能和内存，但是其含义是不同的。
+
+- 滚动类容器组件 `.cachedCount()`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
+- Repeat `cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
+
+将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。
+
+- cachedCount缺省时，框架会分别对不同template，根据屏上节点+预加载的节点个数来计算cachedCount。当屏上节点+预加载的节点个数变多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。
+- 显式指定cachedCount，推荐设置成和屏幕上节点个数一致。需要注意，不推荐设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而导致性能劣化。
+
+
 
 ## 使用场景
 
@@ -451,58 +486,6 @@ struct Parent {
 
 ![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-Template.gif)
 
-#### key值相同时界面异常渲染
-
-当开发者在virtualScroll场景中错误使用了重复key值时，会出现界面渲染异常。
-
-```ts
-@Entry
-@ComponentV2
-struct RepeatKey {
-  @Local simpleList: Array<string> = [];
-
-  aboutToAppear(): void {
-    for (let i = 0; i < 200; i++) {
-      this.simpleList.push(`item ${i}`);
-    }
-  }
-
-  build() {
-    Column({ space: 10 }) {
-      List() {
-        Repeat<string>(this.simpleList)
-          .each((obj: RepeatItem<string>) => {
-            ListItem() {
-              Text(obj.item)
-                .fontSize(30)
-            }
-          })
-          .key((item: string, index: number) => {
-            return 'same key'; // 定义相同键值
-          })
-          .virtualScroll({ totalCount: 200 })
-          .templateId((item:string, index: number) => 'default')
-          .template('default', (ri) => {
-            Text(ri.item)
-              .fontSize(30)
-          }, { cachedCount: 2 })
-      }
-      .cachedCount(2)
-      .border({ width: 1 })
-      .width('90%')
-      .height('70%')
-    }
-    .justifyContent(FlexAlign.Center)
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-异常效果如下图（第一个数据项`item 0`消失）：
-
-<img src="./figures/Repeat-VirtualScroll-Same-Key.jpg" width="300" />
-
 ## 常见问题
 
 ### 屏幕外的列表数据发生变化时，保证滚动条位置不变
@@ -649,7 +632,7 @@ export struct RepeatTemplateSingle {
 
 当数据源总长度很大时，会使用懒加载的方式先加载一部分数据，为了使Repeat显示正确的滚动条样式，需要将数据总长度赋值给totalCount，即数据源全部加载完成前，totalCount大于array.length。
 
-在Repeat组件初始化时，应用必须提供足够的数据项用于渲染。在父组件容器滚动过程中，应用需要在渲染之前进行后续数据项的请求逻辑，保证应用在列表滑动的过程中不会出现空白，直到数据源全部加载完成。
+totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
 上述规范可以通过实现父组件List/Grid的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
 

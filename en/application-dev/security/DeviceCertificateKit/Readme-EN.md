@@ -1,4 +1,4 @@
-# Device Certificate Kit (Device Certificate Kit)
+# Device Certificate Kit
 
 - [Introduction to Device Certificate Kit](device-certificate-kit-intro.md)
 - Certificate Framework
@@ -13,3 +13,4 @@
 - Certificate Management
   - [Certificate Management Overview](certManager-overview.md)
   - [Certificate Management Development](certManager-guidelines.md)
+  - [Certificate Management Dialog Box Development](certManagerDialog-guidelines.md)

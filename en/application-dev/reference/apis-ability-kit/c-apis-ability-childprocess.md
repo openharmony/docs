@@ -5,6 +5,8 @@
 
 The ChildProcess module provides APIs to manage child processes. You can call the APIs to create a native child process and establish an IPC channel between the parent and child processes to implement multi-process application development.
 
+The created child process does not support the UI or the calling of context-related APIs. A maximum of 512 child processes can be started through this module and [childProcessManager](js-apis-app-ability-childProcessManager.md) (non-SELF_FORK mode).
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Since**: 12
@@ -25,6 +27,9 @@ The ChildProcess module provides APIs to manage child processes. You can call th
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
 | typedef enum Ability_NativeChildProcess_ErrCode [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)                        | Defines an enum for the error codes used by the native child process module.|
 | typedef void(\* [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)) (int errCode, OHIPCRemoteProxy \*remoteProxy) | Defines a callback function for notifying the child process startup result.|
+| typedef struct [NativeChildProcess_Fd](#nativechildprocess_fdlist) | Defines a struct for the file descriptor of a child process.|
+| typedef struct [NativeChildProcess_FdList](#nativechildprocess_fdlist) | Defines a struct for the linked list of file descriptors of a child process.|
+| typedef struct [NativeChildProcess_Args](#nativechildprocess_args) | Defines a struct for the arguments used for starting a child process.|
 
 
 ### Enums
@@ -40,6 +45,9 @@ The ChildProcess module provides APIs to manage child processes. You can call th
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | int [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess) (const char \*libName, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | Creates a child process, loads the specified dynamic library file, and returns the startup result asynchronously through a callback parameter. The callback notification is an independent thread. When implementing the callback function, pay attention to thread synchronization and do not perform time-consuming operations to avoid long-time blocking.|
 
+> **NOTE**
+>
+> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
 
 ## Type Description
 ### OH_Ability_OnNativeChildProcessStarted
@@ -67,7 +75,93 @@ Defines a callback function for notifying the child process startup result.
 
 [OH_IPCRemoteProxy_Destory](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
 
+### NativeChildProcess_Fd
 
+```
+typedef struct NativeChildProcess_Fd {
+    char* fdName;
+    int32_t fd;
+    struct NativeChildProcess_Fd* next;
+} NativeChildProcess_Fd;
+```
+
+**Description**
+
+Defines a struct for the file descriptor of a child process.
+
+**Since**: 13
+
+**Parameters**
+
+| Name         | Description|
+| ----------- | ------------- |
+| fdName     | Pointer to the keyword of the file descriptor. A maximum of 20 characters are allowed.|
+| fd | File descriptor handle.|
+| next | Pointer to the next file descriptor.|
+
+### NativeChildProcess_FdList
+
+```
+typedef struct NativeChildProcess_FdList {
+    struct NativeChildProcess_Fd* head;
+} NativeChildProcess_FdList;
+```
+
+**Description**
+
+Defines a struct for the linked list of file descriptors of a child process. A maximum of 16 file descriptors are supported.
+
+**Since**: 13
+
+**Parameters**
+
+| Name         | Description|
+| ----------- | ------------- |
+| head     | First file descriptor record in the linked list. For details, see [NativeChildProcess_FdList](#nativechildprocess_fdlist).|
+
+### NativeChildProcess_Args
+
+```
+typedef struct NativeChildProcess_Args {
+    char* entryParams;
+    struct NativeChildProcess_FdList fdList;
+} NativeChildProcess_Args;
+```
+
+**Description**
+
+Defines a struct for the arguments used for starting a child process.
+
+**Since**: 13
+
+**Parameters**
+
+| Name         | Description|
+| ----------- | ------------- |
+| entryParams     | Pointer to the entry parameters. The size cannot exceed 150 KB.|
+| fdList | Linked list of File descriptors. For details, see [NativeChildProcess_FdList](#nativechildprocess_fdlist).|
+
+### NativeChildProcess_Options
+
+```
+typedef struct NativeChildProcess_Options {
+    NativeChildProcess_IsolationMode isolationMode;
+    int64_t reserved;
+} NativeChildProcess_Options;
+```
+
+**Description**
+
+Defines a struct for the child process options.
+
+**Since**: 13
+
+**Parameters**
+
+| Name         | Description|
+| ----------- | ------------- |
+| isolationMode     | Process isolation mode. For details, see [NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode).|
+| reserved | Reserved field.|
 
 ## Enum Description
 
@@ -98,6 +192,22 @@ Enumerates the error codes used by the native child process module.
 | NCP_ERR_LIB_LOADING_FAILED          | The child process fails to load the dynamic library because the file does not exist or the corresponding method is not implemented or exported.                 |
 | NCP_ERR_CONNECTION_FAILED           | The child process fails to call the OnConnect method of the dynamic library. An invalid IPC object pointer may be returned.        |
 
+### NativeChildProcess_IsolationMode
+
+```
+enum NativeChildProcess_IsolationMode
+```
+
+**Description**
+
+Enumerates the isolation modes of a child process.
+
+**Since**: 13
+
+| Value                                | Description                                             |
+| ----------------------------------- | ----------------------------------------------- |
+| NCP_ISOLATION_MODE_NORMAL | Normal mode. The child process shares the data sandbox and network environment with the main process.|
+| NCP_ISOLATION_MODE_ISOLATED | Isolated mode. The child process does not share the data sandbox and network environment with the main process.|
 
 ## Function Description
 
@@ -134,6 +244,10 @@ The processing logic sequence is shown in the following pseudocode:
 	Child process:
 	8. The child process exits after the NativeChildProcess_MainProc() function is returned.
 
+> **NOTE**
+>
+> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
+
 **Since**: 12
 
 **Parameters**
@@ -142,6 +256,40 @@ The processing logic sequence is shown in the following pseudocode:
 | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | libName                  | Pointer to the name of the dynamic library file loaded in the child process. The value cannot be nullptr.                                                                                     |
 | onProcessStartedCallback | Pointer to the callback function for notifying the child process startup result. The value cannot be nullptr. For details, see [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted).|
+
+
+**Returns**
+
+Returns **NCP_NO_ERROR** if the operation is successful; returns an error code defined in [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) otherwise.
+
+### OH_Ability_StartNativeChildProcess
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
+    const char* entry, NativeChildProcess_Args args,
+    NativeChildProcess_Options options, int32_t *pid)
+```
+
+**Description**
+
+Starts a native child process, loads the specified dynamic library file, and calls the entry function. Arguments can be passed to the child process. The ArkTS basic runtime environment cannot be created in the child process.
+
+The specified dynamic library must implement and export the entry parameters of [NativeChildProcess_Args] (#nativechildprocess_args). For details, see [Native Child Process Development (C/C++) - Creating a Child Process That Supports Pass-by-Parameter](../../application-models/capi_nativechildprocess_development_guideline.md#creating-a-child-process-that-supports-pass-by-parameter).
+
+> **NOTE**
+>
+> This function is valid only for 2-in-1 devices and tablets.
+
+**Since**: 13
+
+**Parameters**
+
+| Name                      | Description|
+| ---------------------- | ---------------- |
+| entry                  | The symbol and entry function of the dynamic library called in the child process are separated by a colon (:), for example, **libentry.so:Main**. The value cannot be a null pointer.|
+| args | Arguments passed to the child process. For details, see [NativeChildProcess_Args](#nativechildprocess_args).|
+| options |  Startup configuration options of the child process. For details, see [NativeChildProcess_Options](#nativechildprocess_options).|
+| pid | ID of the child process to start.|
 
 
 **Returns**

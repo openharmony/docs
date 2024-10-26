@@ -21,7 +21,7 @@ if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
 }
 ```
 **需要权限**
-：ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)，该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 **示例：**
 
@@ -70,7 +70,7 @@ async function persistPermissionExample() {
 3.可以通过revokePermission接口（[ohos.fileshare.revokePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharerevokepermission11)）对已持久化的文件取消授权，同时更新应用存储的数据以删除最近访问数据。
 
 **需要权限**
-：ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)，该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 **示例：**
 
@@ -118,7 +118,7 @@ async function revokePermissionExample() {
 对于应用已经持久化的授权，应用每次启动时实际未加载到内存中，需要应用按需进行手动激活已持久化授权的权限，通过activatePermission接口（[ohos.fileshare.activatePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#fileshareactivatepermission11)）对已经持久化授权的权限进行使能操作，否则已经持久化授权的权限仍存在不能使用的情况。
 
 **需要权限**
-：ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)，该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 **示例：**
 

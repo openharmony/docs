@@ -16,7 +16,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
 
    ```ts
-   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+   import { hiAppEvent, hilog, hidebug } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
@@ -47,10 +47,20 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     });
    ```
 
-3. 点击IDE界面中的运行按钮，运行应用工程，资源泄漏检测服务连续3次检测到应用内存超基线，会上报应用内存泄漏事件。
+3. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄露。接口示例代码如下：
+
+   ```ts
+    Button("memoryleak").onClick(()=>{
+      // 在按钮点击函数中构造一个资源泄漏场景，触发资源泄漏事件，此处的泄漏大小为1M
+      hidebug.setAppResourceLimit("pss_memory", 1024, true);
+    })
+   ```
+
+4. 点击IDE界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。
    同一个应用，24小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启设备。
 
-4. 内存泄漏事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
+5. 内存泄漏事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS

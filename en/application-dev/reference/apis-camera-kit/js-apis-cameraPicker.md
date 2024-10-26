@@ -86,7 +86,7 @@ Defines the configuration information about the camera picker.
 | Name          | Type                              | Mandatory  | Description        |
 | -------------- | --------------------------------- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | Yes   | Camera position.  |
-| saveUri        | string                            | No   | URI for saving the configuration information. (Currently, custom URIs are not supported for recording.)|
+| saveUri        | string                            | No   | URI for saving the configuration information.|
 | videoDuration  | number                            | No   | Maximum recording duration.|
 
 

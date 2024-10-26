@@ -6,11 +6,15 @@
 
 - 图片解码
   
-  指将所支持格式的存档图片解码成统一的PixelMap，以便在应用或系统中进行图片显示或图片处理。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG。
+  指将所支持格式的存档图片解码成统一的PixelMap，以便在应用或系统中进行图片显示或图片处理。
 
 - PixelMap
   
   指图片解码后无压缩的位图，用于图片显示或图片处理。
+
+- Picture
+  
+  多图对象，包含主图与辅助图，用于多图对象的显示或处理。
 
 - 图片处理
   
@@ -18,7 +22,7 @@
 
 - 图片编码
   
-  指将PixelMap编码成不同格式的存档图片（当前仅支持JPEG、WebP和PNG），用于后续处理，如保存、传输等。
+  指将PixelMap编码成不同格式的存档图片，用于后续处理，如保存、传输等。
 
 图片开发的主要流程如下图所示。
 
@@ -54,8 +58,8 @@ Image Kit编解码支持多种图片格式，并采用了高效的算法和优�
 
 针对图片开发，有以下相关实例可供参考：
 
-- [图片显示及处理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
+- [图片显示及处理（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
 
-- [图片显示（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageShow)
+- [图片显示（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageShow)
 
-- [图片裁剪与分割（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/GamePuzzle)
+- [图片裁剪与分割（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/GamePuzzle)

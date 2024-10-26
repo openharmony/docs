@@ -98,7 +98,7 @@
     console.info("verify result is " + res);
     return res;
   }
-  async function main() {
+  function main() {
     let keyGenAlg = "SM2_256";
     let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
     let keyPair = generator.generateKeyPairSync();

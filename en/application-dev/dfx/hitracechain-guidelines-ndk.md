@@ -61,27 +61,24 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
             .height('100%')
         }
     }
-    ```
 
 2. Add the link of **libhitrace_ndk.z.so** to **CMakeLists.txt**.
 
+    ```
+   // CMakeLists.txt
+   # Minimum version of CMake.
+   cmake_minimum_required(VERSION 3.4.1)
+   project(MyApplication)
+   
+   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   
+   include_directories(${NATIVERENDER_ROOT_PATH}
+                       ${NATIVERENDER_ROOT_PATH}/include)
+   add_library(entry SHARED hello.cpp)
+   target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so)
    ```
-      // CMakeLists.txt
-      # Minimum version of CMake.
-      cmake_minimum_required(VERSION 3.4.1)
-      project(MyApplication)
 
-      set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-
-      include_directories(${NATIVERENDER_ROOT_PATH}
-                          ${NATIVERENDER_ROOT_PATH}/include)
-      add_library(entry SHARED hello.cpp)
-      target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so)
-   ```
-
-
-
-3. Include the hiTrace header file in the **hello.cpp** file.
+3. Include the hiTrace header file in the **hello.cpp** file. 
 
     ```c++
     #include "hitrace/trace.h"
@@ -94,7 +91,7 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
     #include "hitrace/trace.h"
     static napi_value Add(napi_env env, napi_callback_info info)
     {
-        // Start distributed tracing.
+        // Start distributed tracing. 
         OH_HiTrace_BeginChain("hitraceTest", HITRACE_FLAG_DEFAULT);
         // Stop distributed tracing. (This is for reference only. Set the start and stop points to match your case.)
         OH_HiTrace_EndChain();

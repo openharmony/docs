@@ -18,11 +18,15 @@
 
 SymbolSpan(value: Resource)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [Resource](ts-types.md#resource)| 是 | SymbolSpan组件的资源名，如 $r('sys.symbol.ohos_wifi')。 |
 
@@ -40,6 +44,8 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 
 设置SymbolSpan组件颜色。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -55,6 +61,8 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 fontSize(value: number | string | Resource)
 
 设置SymbolSpan组件大小。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -74,6 +82,8 @@ fontWeight(value: number | FontWeight | string)
 
 sys.symbol.ohos_lungs图标不支持设置fontWeight。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -82,13 +92,15 @@ sys.symbol.ohos_lungs图标不支持设置fontWeight。
 
 | 参数名 | 类型                                                         | 必填 | 说明                                               |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight) | 是   | SymbolSpan组件粗细。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | SymbolSpan组件粗细。<br/>默认值：FontWeight.Normal |
 
 ### renderingStrategy
 
 renderingStrategy(value: SymbolRenderingStrategy)
 
 设置SymbolSpan渲染策略。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -98,7 +110,7 @@ renderingStrategy(value: SymbolRenderingStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 是   | SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
+| value  | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明) | 是   | SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
 
 不同渲染策略效果可参考以下示意图。
 
@@ -110,6 +122,8 @@ effectStrategy(value: SymbolEffectStrategy)
 
 设置SymbolSpan动效策略。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -118,7 +132,23 @@ effectStrategy(value: SymbolEffectStrategy)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                       |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| value  | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 是   | SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
+| value  | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 是   | SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
+
+### attributeModifier<sup>12+</sup>
+
+attributeModifier(modifier: AttributeModifier\<SymbolSpanAttribute>)
+
+设置组件的动态属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| modifier  | [AttributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifiert)\<SymbolSpanAttribute> | 是   | 动态设置组件的属性。 |
 
 ## 事件
 

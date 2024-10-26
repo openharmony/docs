@@ -17,10 +17,10 @@ import Configuration from '@ohos.application.Configuration';
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-  | Name | Type | Readable | Writable | Description |
+  | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| language<sup>8+</sup> | string | Yes | Yes | Language of the application, for example, **zh**. |
-| colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#configurationconstantcolormode) | Yes | Yes | Color mode, which can be **COLOR_MODE_LIGHT** or **COLOR_MODE_DARK**. The default value is **COLOR_MODE_LIGHT**. |
+| language<sup>8+</sup> | string | Yes| Yes| Language of the application, for example, **zh**.|
+| colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#colormode) | Yes| Yes| Color mode, which can be **COLOR_MODE_LIGHT** or **COLOR_MODE_DARK**. The default value is **COLOR_MODE_LIGHT**.|
 
 For details about the fields, see the **ohos.application.Configuration.d.ts** file.
 

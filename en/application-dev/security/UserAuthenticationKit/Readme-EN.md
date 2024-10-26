@@ -1,4 +1,4 @@
-# User Authentication Kit (User Authentication Kit)
+# User Authentication Kit
 
 - [Introduction to User Authentication Kit](user-authentication-overview.md)
 - User Authentication Development

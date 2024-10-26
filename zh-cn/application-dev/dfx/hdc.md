@@ -1,6 +1,6 @@
 # hdc
 
-hdc（OpenHarmony Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与真实设备进行交互。
+hdc（OpenHarmony Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在windows/linux/mac系统上与设备进行交互。
 
 ## 环境准备
 
@@ -163,28 +163,29 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 - 如出现hdc list targets获取不到设备信息的情况，可通过任务管理器查看是否有hdc进程存在。若进程存在，则通过hdc kill -r命令杀掉该进程并重启hdc服务。
 
-> **说明：**
->
-> - 命令行中被[]修饰的参数表示可选参数。
-> - 命令行中的参数若是斜体，表示在使用时该参数需替换为具体的信息，例如：file send _local remote_命令中的local和remote，使用时需替换为本地待发送和远端待接收的文件路径。
-<!--DelEnd-->
 
 ## 开发指导
+> **说明：**
+>
+> - 命令行中被[ ]修饰的参数表示可选参数。
+> - 命令行中的参数若是斜体，表示在使用时该参数需替换为具体的信息。
+<!--DelEnd-->
 
 ### 全局option相关命令
 
 | Option | 说明 |
 | -------- | -------- |
-| -t [key] [command] | 指定连接唯一标识的目标设备，标识可通过命令hdc list targets查询 | 
-| help/-h | 打印hdc帮助信息 |
-| version/-v | 打印hdc版本信息 |
+| -h/help | 打印hdc帮助信息 |
+| -v/version | 打印hdc版本信息 |
+| -t [connect-key] [command] | 连接指定的目标设备，connect-key可通过hdc list targets查询 | 
 | -l [level] | 指定运行时日志等级，默认为LOG_INFO |
+| wait | 等待设备正常连接，用于检测设备是否连接并准备好接收指令 |
 | checkserver | 获取client-server版本 |
 
 1. 显示hdc相关的帮助信息，命令格式如下：
 
    ```shell
-   hdc -h
+   hdc -h/help
    ```
 
    **返回值：**
@@ -195,13 +196,13 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    **使用方法：**
 
    ```shell
-   hdc -h
+   hdc -h 或 hdc help
    ```
 
 2. 显示hdc的版本信息，命令格式如下：
 
    ```shell
-   hdc -v
+   hdc -v/version
    ```
 
    **返回值：**
@@ -212,20 +213,23 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    **使用方法：**
 
    ```shell
-   hdc -v
+   hdc -v 或 hdc version
    ```
 
-3. 连接设备时，若仅有一台，无需指定设备标识；若有多台，一次仅能连接一台，每次连接时需要指定连接设备的标识，命令格式如下：
+3. 连接单台设备时，执行命令无需指定设备标识符；连接了多台设备时，每次执行命令时需要指定目标设备的标识符，命令格式如下：
 
    ```shell
-   hdc -t [key] [command]
+   hdc -t [connect-key] [command]
    ```
 
    **参数：**
    | 参数名 | 说明 |
    | -------- | -------- |
-   | key | IP地址或USB序列号 |
+   | connect-key| 设备标识符 |
    | command | hdc支持的命令 |
+
+> **说明：**
+   > connect-key为每个设备唯一的标识符。如果通过usb连接，标识符为序列号；如果通过网络连接设备，标识符为“IP地址:端口号”；
 
    **返回值：**
    | 返回值 | 说明 |
@@ -241,12 +245,9 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    该方法需要与具体的操作命令搭配使用，下面以shell命令举例：
 
    ```shell
-   hdc list targets  // 获取设备信息
-   hdc -t [connect-key] shell // -t后面添加的key需要替换为查询到的某一个设备信息
+   hdc list targets  // 查询已连接的所有目标设备的connect-key
+   hdc -t [connect-key] shell // -t后面添加的connect-key需要替换为指定的设备标识符
    ```
-
-   > **说明：**
-   > 一台用于开发的电脑可连接多个设备，每个设备有唯一的标识。如果通过网络连接设备，标识为IP地址；如果通过usb连接，标识为USB序列号。该命令需要跟随具体的操作命令。
 
 4. 指定运行时日志等级，默认为LOG_INFO，命令格式如下：
 
@@ -272,7 +273,26 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    hdc -l 5 shell ls
    ```
 
-5. 获取client-server版本，命令格式如下：
+5. 等待设备正常连接，命令格式如下：
+
+   ```shell
+   hdc wait // 等待设备正常连接
+   hdc -t connect-key wait // 等待指定的设备正常连接，connect-key需要替换为指定的设备标识符
+   ```
+
+   **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | 无 | hdc wait命令执行后，识别到正常连接的设备后结束 | 
+
+   **使用方法：**
+
+   ```shell
+   hdc wait
+   hdc -t connect-key wait
+   ```
+
+6. 获取client-server版本，命令格式如下：
 
    ```shell
    hdc checkserver
@@ -318,8 +338,9 @@ hdc list targets -v
 
 | 命令 | 说明 |
 | -------- | -------- |
-| target mount | 读写模式挂载系统分区（user不可用） |
-| target boot | 重启目标设备，查看目标列表可用list targets命令 |
+| target mount | 以读写模式挂载系统分区（user不可用） |
+| target boot [-bootloader\|-recovery] | 重启目标设备，使用-bootloader参数重启后进入fastboot模式，使用-recovery参数重启后进入recovery模式 |
+| target boot [MODE] | 重启目标设备，加参数重启后进入相应的模式，其中MODE为/bin/begetctl命令中reboot支持的参数 |
 | smode [-r] | 授予设备端hdc后台服务进程root权限， 使用-r参数取消授权（user不可用） |
 | kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动 |
 | start [-r] | 启动hdc服务进程，使用-r参数触发服务进程重新启动 |
@@ -334,7 +355,7 @@ hdc list targets -v
    | 返回值 | 说明 |
    | -------- | -------- |
    | Mount finish | 挂载成功 |
-   | [Fail]具体失败信息 | 挂载失败 |
+   | [Fail]Mount failed | 挂载失败 |
 
    **使用方法：**
 
@@ -342,7 +363,29 @@ hdc list targets -v
    hdc target mount
    ```
 
-2. 授予设备端hdc后台服务进程root权限，命令格式如下：
+2. 重启目标设备，命令格式如下：
+
+   ```shell
+   target boot [-bootloader|-recovery]
+   target boot [MODE]
+   ```
+
+   **参数：**
+   | 参数名 | 说明 |
+   | -------- | -------- |
+   | 不加参数| 重启设备 |
+   | -bootloader| 重启后进入fastboot模式 |
+   | -recovery | 重启后进入recovery模式 |
+   | MODE | 重启后进入MODE模式，MODE为/bin/begetctl命令中reboot支持的参数, 可通过hdc shell "/bin/begetctl -h \| grep reboot"查看 |
+
+   **使用方法：**
+
+   ```shell
+   hdc target boot -bootloader // 重启后进入fastboot模式
+   hdc target boot -recovery  // 重启后进入recovery模式
+   hdc target boot shutdown  // 关机
+
+3. 授予设备端hdc后台服务进程root权限，命令格式如下：
 
    ```shell
    hdc smode [-r]
@@ -361,7 +404,7 @@ hdc list targets -v
    hdc smode -r  // 取消root权限
    ```
 
-3. 终止hdc服务进程，命令格式如下：
+4. 终止hdc服务进程，命令格式如下：
 
    ```shell
    hdc kill [-r]
@@ -380,7 +423,7 @@ hdc list targets -v
    hdc kill -r  // 重启并终止服务进程
    ```
 
-4. 启动hdc服务进程，命令格式如下：
+5. 启动hdc服务进程，命令格式如下：
 
    ```shell
    hdc start [-r]
@@ -405,11 +448,11 @@ hdc list targets -v
 | -------- | -------- |
 | fport ls | 列出全部转发端口转发任务 |
 | fport _localnode remotenode_ | 设置正向端口转发任务：监听“主机端口”，接收请求并进行转发， 转发到“设备端口” |
-| fport rm _localnode remotenode_ | 删除正向端口转发任务：取消指定的“主机端口”转发 |
 | rport _remotenode localnode_ | 设置反向端口转发任务：监听“设备端口”，接收请求并进行转发，转发到“主机端口” |
-| rport rm _remotenode localnode_ | 删除反向端口转发任务：取消指定的“设备端口”转发 |
-| tmode usb | 已连接设备切换为USB连接方式：设备端daemon进程重启，并首先选用USB连接方式 |
-| tmode port [port-number] | 已连接设备切换为网络连接方式：设备端daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择USB连接 |
+| fport rm _taskstr_ | 删除指定的端口转发任务|
+| tmode usb | 该命令不会实际操作设备连接通道，需要在设备设置界面通过USB调试开关进行设置 |
+| tmode port [port-number] | 打开设备网络连接通道：设备端daemon进程会重启，已建立的USB连接会中断，需要重新连接 |
+| tmode port close | 关闭设备无线连接通道：设备端daemon进程会重启，已建立的USB连接会中断，需要重新连接 |
 | tconn [IP]:[port] [-remove] | 指定连接设备：通过“IP地址：端口号”来指定连接的设备，使用-remove参数断开连接 |
 
 1. 列出全部转发端口转发任务，命令格式如下：
@@ -450,25 +493,8 @@ hdc list targets -v
    hdc fport tcp:1234 tcp:1080
    ```
 
-3. 删除正向端口转发任务，执行后将指定的“主机端口”转发数据到“设备端口”转发任务删除，命令格式如下：
 
-   ```shell
-   hdc fport rm localnode remotenode
-   ```
-
-   **返回值：**
-   | 返回值 | 说明 |
-   | -------- | -------- |
-   | Remove forward ruler success, ruler:tcp:XXXX tcp:XXXX | 端口转发任务删除正常 |
-   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | 端口转发任务删除失败，不存在指定的转发任务 |
-
-   **使用方法：**
-
-   ```shell
-   hdc fport rm tcp:1234 tcp:1080
-   ```
-
-4. 设置反向端口转发任务，执行后将设置指定的“设备端口”转发数据到“主机端口”转发任务，命令格式如下：
+3. 设置反向端口转发任务，执行后将设置指定的“设备端口”转发数据到“主机端口”转发任务，命令格式如下：
 
    ```shell
    hdc rport remotenode localnode
@@ -486,44 +512,45 @@ hdc list targets -v
    ```shell
    hdc rport tcp:1234 tcp:1080
    ```
-
-5. 删除反向端口转发任务，执行后将指定的“设备端口”转发数据到“主机端口”任务删除，命令格式如下：
+4. 删除端口转发任务，执行后将指定的转发任务删除，命令格式如下：
 
    ```shell
-   hdc rport rm remotenode localnode
+   hdc fport rm taskstr
    ```
+
+   **参数：**
+   | 参数 | 说明 |
+   | -------- | -------- |
+   | _taskstr_ | 端口转发任务，形如 tcp:XXXX tcp:XXXX | 
 
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
    | Remove forward ruler success, ruler:tcp:XXXX tcp:XXXX | 端口转发任务删除正常 |
-   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | 端口转发任务删除失败，不存在对应的转发任务 |
+   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | 端口转发任务删除失败，不存在指定的转发任务 |
 
    **使用方法：**
 
    ```shell
-   hdc rport rm tcp:1234 tcp:1080
+   hdc fport rm tcp:1234 tcp:1080
    ```
 
-6. 已连接设备切换为USB连接方式，命令格式如下：
+
+5. 打开设备USB连接通道，命令格式如下：
 
    ```shell
    hdc tmode usb
    ```
-
-   **返回值：**
-   | 返回值 | 说明 |
-   | -------- | -------- |
-   | 无 | 切换成功 |
-   | [Fail]ExecuteCommand need connect-key | 设备列表无网络连接方式设备，无法指定设备切换连接方式 |
 
    **使用方法：**
 
    ```shell
    hdc tmode usb
    ```
+   > **说明：**
+   > 该命令不会实际操作设备连接通道，需要在设备设置界面通过USB调试开关进行设置。
 
-7. 已连接设备切换为网络连接方式，命令格式如下：
+6. 打开设备网络连接通道，命令格式如下：
 
    ```shell
    hdc tmode port [port-number]
@@ -537,8 +564,8 @@ hdc list targets -v
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 切换成功 |
-   | [Fail]ExecuteCommand need connect-key | 切换失败，设备列表无设备，无法指定设备切换连接方式 |
+   | Set device run mode successful. | 打开成功 |
+   | [Fail]ExecuteCommand need connect-key | 打开失败，设备列表无设备，无法打开设备无线调试通道 |
    | [Fail]Incorrect port range | 端口号超出可设置范围（1~65536） |
 
    **使用方法：**
@@ -553,13 +580,28 @@ hdc list targets -v
    > 如不满足以上条件请勿使用该命令进行切换。
 
    > **说明：**
-   > 执行完毕后，远端daemon将会退出并重启，USB连接将会断开，默认启用TCP连接，且仅可通过TCP进行连接，如需恢复USB连接有以下两种方法：
-   >
-   > （1）执行hdc tconn [IP]:[port]命令进行TCP连接后，执行hdc tmode usb恢复。
-   >
-   > （2）通过恢复出厂设置恢复。
+   > 执行完毕后，远端daemon进程将会退出并重启，USB连接将会断开，需要重新连接。
 
-8. 指定连接的设备，命令格式如下：
+7. 关闭设备无线连接通道，命令格式如下：
+
+   ```shell
+   hdc tmode port close
+   ```
+
+   **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | [Fail]ExecuteCommand need connect-key | 设备列表无设备，无法执行命令 |
+
+   **使用方法：**
+
+   ```shell
+   hdc tmode port close
+   ```
+   > **说明：**
+   > 执行完毕后，远端daemon进程将会退出并重启，USB连接将会断开，需要重新连接。
+
+8. 通过TCP连接指定的设备，命令格式如下：
 
    ```shell
    hdc tconn [IP]:[port] [-remove]
@@ -568,7 +610,7 @@ hdc list targets -v
    **参数：**
    | 参数 | 参数说明 |
    | -------- | -------- |
-   | [IP]:[port]  | 设备IP地址与端口号，格式按照“IP地址：端口号“ |
+   | [IP]:[port]  | 设备的IP地址与端口号|
    | -remove | 【可选】断开指定设备的连接 |
 
    **返回值：**
@@ -589,20 +631,20 @@ hdc list targets -v
 
 | 命令 | 说明 |
 | -------- | -------- |
-| file send _local remote_ | 从本地发送文件至远端设备 |
-| file recv _remote local_ | 从远端设备发送文件至本地 |
+| file send _localpath remotepath_ | 从本地发送文件至远端设备 |
+| file recv _remotepath localpath_ | 从远端设备发送文件至本地 |
 
 1. 从本地发送文件至远端设备，命令格式如下：
 
    ```shell
-   hdc file send local remote
+   hdc file send localpath remotepath
    ```
 
    **参数：**
    | 参数名 | 说明 |
    | -------- | -------- |
-   | local | 本地待发送的文件路径 |
-   | remote | 远程待接收的文件路径 |
+   | _localpath_ | 本地待发送的文件路径 |
+   | _remotepath_ | 远程待接收的文件路径 |
 
    **返回值：**
 
@@ -617,14 +659,14 @@ hdc list targets -v
 2. 从远端设备发送文件至本地，命令格式如下：
 
    ```shell
-   hdc file recv remote local
+   hdc file recv remotepath localpath
    ```
 
    **参数：**
    | 参数名 | 说明 |
    | -------- | -------- |
-   | local | 本地待接收的文件路径 |
-   | remote | 远程待发送的文件路径 |
+   | _localpath_ | 本地待接收的文件路径 |
+   | _remotepath_ | 远程待发送的文件路径 |
 
    **返回值：**
 
@@ -640,7 +682,7 @@ hdc list targets -v
 
 | 命令 | 说明 |
 | -------- | -------- |
-| install _src_ | 安装指定的应用文件(.hap .hsp) |
+| install _src_ | 安装指定的应用文件 |
 | uninstall _packageName_ | 卸载指定的应用包package包名 |
 
 1. 安装APP package，命令格式如下：
@@ -659,7 +701,7 @@ hdc list targets -v
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 成功情况下无返回值 |
+   | AppMod finish | 成功情况下返回安装信息和AppMod finish |
    | 具体安装失败原因 | 失败情况下返回具体安装失败信息 |
 
    **使用方法：**
@@ -686,7 +728,7 @@ hdc list targets -v
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | 无 | 成功情况下无返回值 |
+   | AppMod finish | 成功情况下返回卸载信息和AppMod finish |
    | 具体卸载失败原因 | 失败情况下返回具体卸载失败信息 |
 
    **使用方法：**
@@ -701,7 +743,8 @@ hdc list targets -v
 
 | 命令 | 说明 |
 | -------- | -------- |
-| jpid | 显示可调试应用列表 | 
+| jpid | 显示设备上所有开启了JDWP调试协议的应用的PID |
+| track-jpid [-a\|-p]  | 实时显示设备上开启了JDWP调试协议的应用的PID和应用名，不加参数只显示debug的应用的进程，使用-a参数显示debug和release应用的进程，使用-p参数不显示debug和release的标签 |
 | hilog [options] | 打印设备端的日志信息，options表示hilog支持的参数，可通过hdc hilog -h查阅支持的参数列表  |
 | shell [command] | 交互命令，command表示需要执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表 |
 
@@ -728,7 +771,7 @@ hdc list targets -v
    hdc shell "hilog -r" // 清理hilog缓存日志
    ```
 
-2. 显示可调试应用列表，命令格式如下：
+2. 显示设备上所有开启了JDWP调试协议的进程的PID，命令格式如下：
 
    ```shell
    hdc jpid
@@ -737,8 +780,8 @@ hdc list targets -v
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | 应用名列表 | 可调试应用名列表 |
-   | [empty] | 无可调式应用 |
+   | 进程号列表 | 开启了JDWP调试协议的应用的PID |
+   | [empty] | 无开启了JDWP调试协议的进程 |
 
    **使用方法：**
 
@@ -746,7 +789,32 @@ hdc list targets -v
    hdc jpid
    ```
 
-3. 交互命令，命令格式如下：
+3. 实时显示设备上开启了JDWP调试协议的进程的PID和应用名，命令格式如下：
+
+   ```shell
+   track-jpid [-a|-p]
+   ```
+
+   **参数：**
+   | 参数 | 说明 |
+   | -------- | -------- |
+   | 不加参数 | 只显示debug的应用的进程号和包名/进程名 |
+   | -a | 显示debug和release应用的进程号和包名/进程名 |
+   | -p | 显示debug和release应用的进程号和包名/进程名，但不显示debug和release的标签 |
+
+   **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | 进程号和包名/进程名列表 | - |
+   | [empty] | 不加参数时表示无开启了JDWP调试协议的debug应用的进程，使用-a或-p参数时表示无开启了JDWP调试协议的进程 |
+
+   **使用方法：**
+
+   ```shell
+   hdc track-jpid
+   ```
+
+4. 交互命令，命令格式如下：
 
    ```shell
    hdc shell [command]
@@ -769,6 +837,30 @@ hdc list targets -v
    hdc shell ps -ef  
    hdc shell help -a // 查询全部可用命令
    ```
+
+### 安全相关命令
+
+| 命令 | 说明 |
+| -------- | -------- |
+| keygen FILE | 生成一个新的秘钥对，并将私钥和公钥分别保存到FILE和FILE.pub，其中文件名FILE可自定义 |
+
+1. 生成一个新的秘钥对，命令格式如下：
+
+   ```shell
+   hdc keygen FILE
+   ```
+
+   **参数：**
+   | 参数 | 说明 |
+   | -------- | -------- |
+   | FILE | FILE为自定义的文件名 |
+
+   **使用方法：**
+
+   ```shell
+   hdc keygen key // 在当前目录下生成key和key.pub文件
+   ```
+
 
 ## 常见场景
 
@@ -796,27 +888,20 @@ hdc shell //USB直连需要确认设备非处在tcp连接模式，直接连接�
 | -------- | -------- | -------- |
 | 网络连接 | PC、手机设备处于同一网络 | 连接同一WiFi或手机开启热点 |
 | 网络状态 | telnet IP:port正常，网速稳定 | 请选择稳定的网络连接方式 |
-| hdc环境变量 | 终端命令行输入hdc -h有回显帮助信息内容 | 参见环境准备章节 |
+| hdc环境变量 | 终端命令行输入hdc有回显帮助信息 | 参见环境准备章节 |
 
 **连接步骤**
 
 1. PC通过USB连接设备。
 
-2. 设置亮屏幕，执行以下命令：
 
-   ```shell
-   hdc shell “power-shell setmode 602”
-   ```
-
-   保持亮屏状态，避免熄屏导致 wifi断掉；如果此时设备断连，需要重新较快输入tconn连接指令
-
-3. 将设备通过USB模式切换至tcp模式，执行以下命令：
+2. 将设备通过USB模式切换至tcp模式，执行以下命令：
 
    ```shell
    hdc tmode port 8710  //port 后加指定端口号（可自行设置）
    ```
 
-4. 通过tcp连接设备（需要事先知道设备IP），执行以下命令：
+3. 通过tcp连接设备（需要事先知道设备IP），执行以下命令：
 
    ```shell
    hdc tconn IP:8710
@@ -824,15 +909,15 @@ hdc shell //USB直连需要确认设备非处在tcp连接模式，直接连接�
 
    IP可在手机查看设备侧的IP地址，端口号为上一步指定的，默认值为8710。
 
-5. 查看已连接设备，执行以下命令：
+4. 查看已连接设备，执行以下命令：
 
    ```shell
    hdc list targets
    ```
 
-   返回值为IP:port形式即为连接成功，单台设备可以正常使用hdc命令，多台设备需要-t指定设备使用hdc命令。
+   返回值为IP:port形式即为连接成功。
 
-6. （可选）TCP模式切换回USB模式,在已连接TCP模式状态下，执行以下命令：
+5. （可选）TCP模式切换回USB模式,在已连接TCP模式状态下，执行以下命令：
 
    ```shell
    hdc tmode usb
@@ -842,7 +927,7 @@ hdc shell //USB直连需要确认设备非处在tcp连接模式，直接连接�
 
 ### 远程连接场景
 
-远程连接结构如图所示。
+远程连接结构如图所示:
 
 ![远程连接结构图](figures/hdc_image_004.PNG)
 
@@ -881,9 +966,18 @@ hdc -l5 start
 
 | 平台 | 路径 | 备注 |
 | -------- | -------- | -------- |
-| Windows | %temp%\hdc.log | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc.log |
-| Linux | /tmp/hdc.log | - |
-| MacOS | $TMPDIR/hdc.log | - |
+| Windows | %temp%\hdc_logs | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc_logs |
+| Linux | /tmp/hdc_logs | - |
+| MacOS | $TMPDIR/hdc_logs | - |
+
+hdc_logs日志文件夹将存在以下类型日志：
+
+|日志类型 | 日志名称格式 | 日志用途 | 备注 |
+| -------- | -------- | -------- | -------- |
+| 实时日志 | hdc.log | 实时记录hdc server日志 | 每次重启hdc server，将会重命名原有日志并记录新的hdc.log|
+| 历史日志临时文件 | hdc-%Y%m%d-%H%M%S.log | 转储历史日志归档生成的中间文件 | 以时间`2024年9月19日16:18:57.921`为例，<br>对应时间格式为：`20240919-161857921`，<br>生成的日志临时文件名为：`hdc-20240919-161857921.log` |
+| 历史日志归档文件 | hdc-%Y%m%d-%H%M%S.log.tgz | 压缩存储历史日志 | 归档文件为`.tgz`类型压缩文件，可使用解压工具进行解压查看。<br>以历史日志临时文件名`hdc-20240919-161857921.log`为例，<br>对应的历史日志归档文件名为：`hdc-20240919-161857921.log.tgz`，<br>历史日志归档文件生成后，对应的历史日志临时文件将自动删除。 |
+| 实时日志缓存临时文件 | .hdc.cache.log | 实时日志产生的临时缓存 | |
 
 **设备端日志**
 
@@ -937,7 +1031,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
   - 设备开启USB调试模式。
   - 设备出现弹窗点击允许调试。
   - 如可通过TCP模式连接，可执行`hdc tmode usb`命令恢复USB连接。
-  - 设备恢复出厂设备。
+  - 设备恢复出厂设置。
 
 - 情况二：存在USB设备，但是驱动损坏，显示"HDC Device"⚠警告图标。
 
@@ -961,7 +1055,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
   可能存在以下原因，可参考排查：
 
-  - hdc SDK与设备不匹配: 如果设备更新到最新版本，可更新hdc（SDK）工具至最新版本。
+  - hdc或SDK版本与设备不匹配: 如果设备更新到最新版本，可更新hdc或SDK工具至最新版本。
   - 端口被占用：
 
     常见于hdc和hdc_std使用同一端口，同时运行时HDC_SERVER_PORT设置的端口互相冲突（未设置则使用默认端口8710，仍然会冲突），注意只运行其中一个。其他软件占用hdc默认端口也会导致该问题发生。
@@ -1033,7 +1127,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
   MacOS运行环境：建议使用MacOS 11及以上版本。
 
-  Windows运行环境：建议使用Windows10/Windows11 64位版本，如低版本缺失WinUSB库/驱动，请使用Zadig工具更新。对于符合设备，需要使用Zadig工具安装libusb-win32驱动。[Zadig链接](https://github.com/pbatard/libwdi/releases)
+  Windows运行环境：建议使用Windows10/Windows11 64位版本，如低版本缺失WinUSB库/驱动，请使用Zadig工具更新。对于符合设备，需要使用Zadig工具安装libusb-win32驱动。详情请见：[Zadig链接](https://github.com/pbatard/libwdi/releases)。
 
 - 运行方式不当：请使用命令行依照正确命令运行hdc工具，而非鼠标双击文件。
 
@@ -1041,5 +1135,5 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 1. 命令行执行`hdc list targets`查看返回值。
 2. 查看`设备管理`是否有`HDC Device`。
-3. 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录，不同平台目录位置存在差异，可参考[日志获取场景](#日志获取场景)）。
+3. 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录下hdc_logs文件夹中，不同平台目录位置存在差异，可参考[日志获取场景](#日志获取场景)）。
 4. 通过hdc.log日志定位相关问题。

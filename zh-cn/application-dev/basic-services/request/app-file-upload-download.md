@@ -17,10 +17,9 @@
 ```ts
 // 方式一:request.uploadFile
 // pages/xxx.ets
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -69,6 +68,10 @@ try {
 
 ```ts
 // 方式二:request.agent
+// pages/xxx.ets
+import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
 let cacheDir = context.cacheDir;
@@ -98,7 +101,7 @@ let config: request.agent.Config = {
 request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   task.start((err: BusinessError) => {
     if (err) {
-      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      console.error(`Failed to start the upload task, Code: ${err.code}  message: ${err.message}`);
       return;
     }
   });
@@ -109,7 +112,7 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.warn(`/Request upload completed`);
   })
 }).catch((err: BusinessError) => {
-  this.progress = `Failed to create a upload task, Code: ${err.code}, message: ${err.message}`;
+  console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -129,11 +132,10 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
 // 方式一:request.downloadFile
 // pages/xxx.ets
 // 将网络资源文件下载到应用文件目录并读取一段内容
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
-import buffer from '@ohos.buffer';
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
 
 // 获取应用文件路径
 let context = getContext(this) as common.UIAbilityContext;
@@ -165,11 +167,7 @@ try {
 // 方式二:request.agent
 // pages/xxx.ets
 // 将网络资源文件下载到应用文件目录并读取一段内容
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
-import buffer from '@ohos.buffer';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 
 let config: request.agent.Config = {
   action: request.agent.Action.DOWNLOAD,
@@ -181,7 +179,7 @@ let config: request.agent.Config = {
 request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   task.start((err: BusinessError) => {
     if (err) {
-      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      console.error(`Failed to start the upload task, Code: ${err.code}  message: ${err.message}`);
       return;
     }
   });
@@ -192,6 +190,6 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.warn(`/Request download completed`);
   })
 }).catch((err: BusinessError) => {
-  this.progress = `Failed to create a download task, Code: ${err.code}, message: ${err.message}`;
+  console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
 });
 ```

@@ -1,20 +1,23 @@
-# Performance Analysis Kit API Reference
+# Performance Analysis Kit
 
 - ArkTS API
   - [@ohos.faultLogger (FaultLogger)](js-apis-faultLogger.md)
   - [@ohos.hichecker (HiChecker)](js-apis-hichecker.md)
   - [@ohos.hidebug (HiDebug)](js-apis-hidebug.md)
   - [@ohos.hilog (HiLog)](js-apis-hilog.md)
-  - [@ohos.hiTraceChain (Distributed Call Chain Tracing)](js-apis-hitracechain.md)
-  - [@ohos.hiTraceMeter (Performance Tracing)](js-apis-hitracemeter.md)
-  - [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](js-apis-hiviewdfx-hiappevent.md)
-  - [@ohos.hiSysEvent (System Event Logging) (System API)](js-apis-hisysevent-sys.md)
-  - [@ohos.logLibrary (Log Library) (System API)](js-apis-loglibrary-sys.md)
+  - [@ohos.hiTraceChain (HiTraceChain)](js-apis-hitracechain.md)
+  - [@ohos.hiTraceMeter (HiTraceMeter)](js-apis-hitracemeter.md)
+  - [@ohos.hiviewdfx.hiAppEvent (HiAppEvent)](js-apis-hiviewdfx-hiappevent.md)
+  - [@ohos.hiviewdfx.jsLeakWatcher (JSLeakWatcher)](js-apis-jsleakwatcher.md)
+  <!--Del-->
+  - [@ohos.hiSysEvent (HiSysEvent)(System API)](js-apis-hisysevent-sys.md)
+  - [@ohos.logLibrary (LogLibrary)(System API)](js-apis-loglibrary-sys.md)
+  <!--DelEnd-->
   - APIs No Longer Maintained
-    - [@ohos.bytrace (Performance Tracing)](js-apis-bytrace.md)
-    - [@ohos.hiAppEvent (Application Event Logging)](js-apis-hiappevent.md)
+    - [@ohos.bytrace (ByTrace)](js-apis-bytrace.md)
+    - [@ohos.hiAppEvent (HiAppEvent)](js-apis-hiappevent.md)
 - C API
-  - Module
+  - Modules
     - [HiAppEvent](_hi_app_event.md)
     - [HiDebug](_hi_debug.md)
     - [HiLog](_hi_log.md)
@@ -35,12 +38,13 @@
     - [HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
+    - [HiTraceId](_hi_trace_id.md)
 - Error Codes
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
-  - [Application Event Logging Error Codes](errorcode-hiappevent.md)
+  - [HiAppEvent Error Codes](errorcode-hiappevent.md)
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
   - [HiDebug CPU Usage Error Codes](errorcode-hiviewdfx-hidebug-cpuusage.md)
+  <!--Del-->
   - [HiSysEvent Error Codes](errorcode-hisysevent-sys.md)
   - [Log Library Error Codes](errorcode-loglibrary-sys.md)
-
-<!--no_check-->
+  <!--DelEnd-->

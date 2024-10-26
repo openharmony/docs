@@ -166,21 +166,12 @@ The development process of NNRt consists of three phases: model construction, mo
     ```cpp
     #include <iostream>
     #include <cstdarg>
-    #include "hilog/log.h"
     #include "neural_network_runtime/neural_network_runtime.h"
     ```
 
 3. Defines auxiliary functions, such as log printing, input data setting, and data printing.
 
     ```cpp
-    #define LOG_DOMAIN 0xD002101
-    #define LOG_TAG "NNRt"
-    #define LOGD(...) OH_LOG_DEBUG(LOG_APP, __VA_ARGS__)
-    #define LOGI(...) OH_LOG_INFO(LOG_APP, __VA_ARGS__)
-    #define LOGW(...) OH_LOG_WARN(LOG_APP, __VA_ARGS__)
-    #define LOGE(...) OH_LOG_ERROR(LOG_APP, __VA_ARGS__)
-    #define LOGF(...) OH_LOG_FATAL(LOG_APP, __VA_ARGS__)
-
     // Macro for checking the return value
     #define CHECKNEQ(realRet, expectRet, retValue, ...) \
         do { \
@@ -286,110 +277,110 @@ The development process of NNRt consists of three phases: model construction, mo
     {
         // Create a model instance and construct a model.
         OH_NNModel* model = OH_NNModel_Construct();
-        CHECKEQ(model, nullptr, -1, "Create model failed.");
+        CHECKEQ(model, nullptr, OH_NN_FAILED, "Create model failed.");
 
         // Add the first input tensor of the float32 type for the Add operator. The tensor shape is [1, 2, 2, 3].
         NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         int32_t inputDims[4] = {1, 2, 2, 3};
-        returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        auto returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT32);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add first TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add first TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 0, OH_NN_TENSOR);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
         // Add the second input tensor of the float32 type for the Add operator. The tensor shape is [1, 2, 2, 3].
         tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT32);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add second TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add second TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 1, OH_NN_TENSOR);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
         // Add the parameter tensor of the int8 type for the Add operator. The parameter tensor is used to specify the type of the activation function.
         tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         int32_t activationDims = 1;
         returnCode = OH_NNTensorDesc_SetShape(tensorDesc, &activationDims, 1);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_INT8);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add second TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add second TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 2, OH_NN_ADD_ACTIVATIONTYPE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
         // Set the type of the activation function to OH_NN_FUSED_NONE, indicating that no activation function is added to the operator.
         int8_t activationValue = OH_NN_FUSED_NONE;
         returnCode = OH_NNModel_SetTensorData(model, 2, &activationValue, sizeof(int8_t));
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor data failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor data failed.");
 
         // Add the output tensor of the float32 type for the Add operator. The tensor shape is [1, 2, 2, 3].
         tensorDesc = OH_NNTensorDesc_Create();
-        CHECKEQ(tensorDesc, nullptr, -1, "Create TensorDesc failed.");
+        CHECKEQ(tensorDesc, nullptr, OH_NN_FAILED, "Create TensorDesc failed.");
 
         returnCode = OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc shape failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc shape failed.");
 
         returnCode = OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT32);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc data type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc data type failed.");
 
         returnCode = OH_NNTensorDesc_SetFormat(tensorDesc, OH_NN_FORMAT_NONE);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set TensorDesc format failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set TensorDesc format failed.");
 
         returnCode = OH_NNModel_AddTensorToModel(model, tensorDesc);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add forth TensorDesc to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add forth TensorDesc to model failed.");
 
         returnCode = OH_NNModel_SetTensorType(model, 3, OH_NN_TENSOR);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Set model tensor type failed.");
 
         // Specify index values of the input tensor, parameter tensor, and output tensor for the Add operator.
         uint32_t inputIndicesValues[2] = {0, 1};
         uint32_t paramIndicesValues = 2;
         uint32_t outputIndicesValues = 3;
-        OH_NN_UInt32Array paramIndices = {&paramIndicesValues, 1 * 4};
-        OH_NN_UInt32Array inputIndices = {inputIndicesValues, 2 * 4};
-        OH_NN_UInt32Array outputIndices = {&outputIndicesValues, 1 * 4};
+        OH_NN_UInt32Array paramIndices = {&paramIndicesValues, 1};
+        OH_NN_UInt32Array inputIndices = {inputIndicesValues, 2};
+        OH_NN_UInt32Array outputIndices = {&outputIndicesValues, 1};
 
         // Add the Add operator to the model instance.
         returnCode = OH_NNModel_AddOperation(model, OH_NN_OPS_ADD, &paramIndices, &inputIndices, &outputIndices);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Add operation to model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Add operation to model failed.");
 
         // Set the index values of the input tensor and output tensor for the model instance.
         returnCode = OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Specify model inputs and outputs failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Specify model inputs and outputs failed.");
 
         // Complete the model instance construction.
         returnCode = OH_NNModel_Finish(model);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Build model failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "Build model failed.");
 
         // Return the model instance.
         *pmodel = model;
@@ -429,32 +420,32 @@ The development process of NNRt consists of three phases: model construction, mo
     {
         // Create an OH_NNCompilation instance and pass the image composition model instance or the MindSpore Lite model instance to it.
         OH_NNCompilation* compilation = OH_NNCompilation_Construct(model);
-        CHECKEQ(compilation, nullptr, -1, "OH_NNCore_ConstructCompilationWithNNModel failed.");
+        CHECKEQ(compilation, nullptr, OH_NN_FAILED, "OH_NNCore_ConstructCompilationWithNNModel failed.");
 
         // Set compilation options, such as the compilation hardware, cache path, performance mode, computing priority, and whether to enable float16 low-precision computing.
         // Choose to perform model compilation on the first device.
-        returnCode = OH_NNCompilation_SetDevice(compilation, availableDevice[0]);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetDevice failed.");
+        auto returnCode = OH_NNCompilation_SetDevice(compilation, availableDevice[0]);
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetDevice failed.");
 
         // Have the model compilation result cached in the /data/local/tmp directory, with the version number set to 1.
         returnCode = OH_NNCompilation_SetCache(compilation, "/data/local/tmp", 1);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetCache failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetCache failed.");
 
         // Set the performance mode of the device.
         returnCode = OH_NNCompilation_SetPerformanceMode(compilation, OH_NN_PERFORMANCE_EXTREME);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetPerformanceMode failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetPerformanceMode failed.");
 
         // Set the inference priority.
         returnCode = OH_NNCompilation_SetPriority(compilation, OH_NN_PRIORITY_HIGH);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_SetPriority failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_SetPriority failed.");
 
         // Specify whether to enable FP16 computing.
         returnCode = OH_NNCompilation_EnableFloat16(compilation, false);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_EnableFloat16 failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_EnableFloat16 failed.");
 
         // Perform model building
         returnCode = OH_NNCompilation_Build(compilation);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNCompilation_Build failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNCompilation_Build failed.");
 
         *pCompilation = compilation;
         return OH_NN_SUCCESS;
@@ -469,7 +460,7 @@ The development process of NNRt consists of three phases: model construction, mo
     {
         // Create an executor based on the specified OH_NNCompilation instance.
         OH_NNExecutor *executor = OH_NNExecutor_Construct(compilation);
-        CHECKEQ(executor, nullptr, -1, "OH_NNExecutor_Construct failed.");
+        CHECKEQ(executor, nullptr, nullptr, "OH_NNExecutor_Construct failed.");
         return executor;
     }
     ```
@@ -483,25 +474,25 @@ The development process of NNRt consists of three phases: model construction, mo
         // Obtain information about the input and output tensors from the executor.
         // Obtain the number of input tensors.
         size_t inputCount = 0;
-        returnCode = OH_NNExecutor_GetInputCount(executor, &inputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNExecutor_GetInputCount failed.");
+        auto returnCode = OH_NNExecutor_GetInputCount(executor, &inputCount);
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNExecutor_GetInputCount failed.");
         std::vector<NN_TensorDesc*> inputTensorDescs;
         NN_TensorDesc* tensorDescTmp = nullptr;
         for (size_t i = 0; i < inputCount; ++i) {
             // Create the description of the input tensor.
             tensorDescTmp = OH_NNExecutor_CreateInputTensorDesc(executor, i);
-            CHECKEQ(tensorDescTmp, nullptr, -1, "OH_NNExecutor_CreateInputTensorDesc failed.");
+            CHECKEQ(tensorDescTmp, nullptr, OH_NN_FAILED, "OH_NNExecutor_CreateInputTensorDesc failed.");
             inputTensorDescs.emplace_back(tensorDescTmp);
         }
         // Obtain the number of output tensors.
         size_t outputCount = 0;
         returnCode = OH_NNExecutor_GetOutputCount(executor, &outputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNExecutor_GetOutputCount failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNExecutor_GetOutputCount failed.");
         std::vector<NN_TensorDesc*> outputTensorDescs;
         for (size_t i = 0; i < outputCount; ++i) {
             // Create the description of the output tensor.
             tensorDescTmp = OH_NNExecutor_CreateOutputTensorDesc(executor, i);
-            CHECKEQ(tensorDescTmp, nullptr, -1, "OH_NNExecutor_CreateOutputTensorDesc failed.");
+            CHECKEQ(tensorDescTmp, nullptr, OH_NN_FAILED, "OH_NNExecutor_CreateOutputTensorDesc failed.");
             outputTensorDescs.emplace_back(tensorDescTmp);
         }
 
@@ -511,24 +502,24 @@ The development process of NNRt consists of three phases: model construction, mo
         for (size_t i = 0; i < inputCount; ++i) {
             tensor = nullptr;
             tensor = OH_NNTensor_Create(availableDevice[0], inputTensorDescs[i]);
-            CHECKEQ(tensor, nullptr, -1, "OH_NNTensor_Create failed.");
+            CHECKEQ(tensor, nullptr, OH_NN_FAILED, "OH_NNTensor_Create failed.");
             inputTensors[i] = tensor;
         }
         NN_Tensor* outputTensors[outputCount];
         for (size_t i = 0; i < outputCount; ++i) {
             tensor = nullptr;
             tensor = OH_NNTensor_Create(availableDevice[0], outputTensorDescs[i]);
-            CHECKEQ(tensor, nullptr, -1, "OH_NNTensor_Create failed.");
+            CHECKEQ(tensor, nullptr, OH_NN_FAILED, "OH_NNTensor_Create failed.");
             outputTensors[i] = tensor;
         }
 
         // Set the data of the input tensor.
         returnCode = SetInputData(inputTensors, inputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "SetInputData failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "SetInputData failed.");
 
         // Perform inference
         returnCode = OH_NNExecutor_RunSync(executor, inputTensors, inputCount, outputTensors, outputCount);
-        CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNExecutor_RunSync failed.");
+        CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNExecutor_RunSync failed.");
 
         // Print the data of the output tensor.
         Print(outputTensors, outputCount);
@@ -536,15 +527,15 @@ The development process of NNRt consists of three phases: model construction, mo
         // Clear the input and output tensors and tensor description.
         for (size_t i = 0; i < inputCount; ++i) {
             returnCode = OH_NNTensor_Destroy(&inputTensors[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensor_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensor_Destroy failed.");
             returnCode = OH_NNTensorDesc_Destroy(&inputTensorDescs[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensorDesc_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensorDesc_Destroy failed.");
         }
         for (size_t i = 0; i < outputCount; ++i) {
             returnCode = OH_NNTensor_Destroy(&outputTensors[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensor_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensor_Destroy failed.");
             returnCode = OH_NNTensorDesc_Destroy(&outputTensorDescs[i]);
-            CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "OH_NNTensorDesc_Destroy failed.");
+            CHECKNEQ(returnCode, OH_NN_SUCCESS, OH_NN_FAILED, "OH_NNTensorDesc_Destroy failed.");
         }
 
         return OH_NN_SUCCESS;
@@ -555,7 +546,7 @@ The development process of NNRt consists of three phases: model construction, mo
 
     Steps 4 to 8 implement the model construction, compilation, and execution processes and encapsulates them into multiple functions to facilitate modular development. The following sample code shows how to apply these functions into a complete NNRt development process.
     ```cpp
-    int main()
+    int main(int argc, char** argv)
     {
         OH_NNModel* model = nullptr;
         OH_NNCompilation* compilation = nullptr;
@@ -563,7 +554,6 @@ The development process of NNRt consists of three phases: model construction, mo
         std::vector<size_t> availableDevices;
 
         // Construct a model.
-        OH_NNModel* model = nullptr;
         OH_NN_ReturnCode ret = BuildModel(&model);
         if (ret != OH_NN_SUCCESS) {
             std::cout << "BuildModel failed." << std::endl;

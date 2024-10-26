@@ -16,15 +16,19 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名  | 参数类型                                       | 必填 | 参数描述       |
+| 参数名  | 类型                                           | 必填 | 说明           |
 | ------- | ---------------------------------------------- | ---- | -------------- |
 | options | Array\<[SelectOption](#selectoption对象说明)\> | 是   | 设置下拉选项。 |
 
 ## SelectOption对象说明
 
-| 参数名 | 参数类型                            | 必填 | 参数描述       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                            | 必填 | 说明       |
 | ------ | ----------------------------------- | ---- | -------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -123,7 +127,7 @@ divider(options: Optional\<DividerOptions> | null)
 **参数：**
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| options  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12类型说明)> \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
+| options  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12对象说明)> \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px' , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
 
 ### font
 
@@ -139,7 +143,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>从API Version 12以后，<br/>如果设置controlSize的值为：controlSize.SMALL，size默认值是'14fp'，否则还是'16fp'。|
+| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_button1'),<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>API Version 12以后，如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。 |
 
 ### fontColor
 
@@ -153,9 +157,9 @@ fontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉按钮本身的文本颜色。<br/>默认值：'\#E5182431' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉按钮本身的文本颜色。<br/>默认值：`$r('sys.color.ohos_id_color_text_primary')`混合`$r('sys.color.ohos_id_alpha_content_primary')`的透明度。 |
 
 ### selectedOptionBgColor
 
@@ -169,9 +173,9 @@ selectedOptionBgColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的背景色。<br/>默认值：'\#33007DFF' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的背景色。<br/>默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
 
 ### selectedOptionFont
 
@@ -187,7 +191,7 @@ selectedOptionFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### selectedOptionFontColor
 
@@ -201,9 +205,9 @@ selectedOptionFontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                                |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的文本颜色。<br/>默认值：'\#ff007dff' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated') |
 
 ### optionBgColor
 
@@ -217,9 +221,9 @@ optionBgColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                          |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的背景色。<br/>默认值：'\#ffffffff' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的背景色。<br/>默认值：<br/>API version 11之前，默认值为Color.White。<br/>API version 11及之后，默认值为Color.Transparent。 |
 
 ### optionFont
 
@@ -235,7 +239,7 @@ optionFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### optionFontColor
 
@@ -249,9 +253,9 @@ optionFontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                            |
-| ------ | ------------------------------------------ | ---- | ----------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的文本颜色。<br/>默认值：'\#ff182431' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
 
 ### space<sup>10+</sup>
 
@@ -308,9 +312,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 设置下拉菜单项的宽度，不支持设置百分比。OptionWidthMode类型为枚举类型，OptionWidthMode决定下拉菜单是否继承下拉按钮宽度。
 
-当设置为undefined、null、负数时，属性不生效，菜单项宽度设为默认值，即菜单默认宽度为2栅格。
-
-当菜单项设置宽度小于最小宽度56vp时，菜单宽度回弹至2栅格。正常值范围大于等于0。
+当设置为异常值或小于最小宽度56vp时，属性不生效，菜单项宽度设为默认值，即菜单默认宽度为2栅格。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -320,7 +322,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11枚举说明) | 是   | 下拉菜单项的宽度。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 是   | 下拉菜单项的宽度。 |
 
 ### optionHeight<sup>11+</sup>
 
@@ -328,9 +330,9 @@ optionHeight(value: Dimension)
 
 设置下拉菜单显示的最大高度，不支持设置百分比。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。
 
-当设置为undefined、null、负数与零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
+当设置为异常值或零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
 
-正常值范围大于0。如果下拉菜单所有选项的实际高度没有设定的高度大，下拉菜单的高度按实际高度显示。
+如果下拉菜单所有选项的实际高度没有设定的高度大，下拉菜单的高度按实际高度显示。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -354,9 +356,9 @@ menuBackgroundColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                             |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单的背景色。<br/>默认值：Color.Transparent |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单的背景色。<br/>默认值：<br/>API version 11之前，默认值为$r('sys.color.ohos_id_color_card_bg')。<br/>API version 11及之后，默认值为Color.Transparent。 |
 
 ### menuBackgroundBlurStyle<sup>11+</sup>
 
@@ -378,7 +380,9 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                | 描述               |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                | 说明             |
 | ------------------- | ------------------ |
 | END<sup>10+</sup>   | 文字在前，箭头在后。 |
 | START<sup>10+</sup> | 箭头在前，文字在后。 |
@@ -387,7 +391,9 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称                | 描述               |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                | 说明             |
 | ------------------- | ------------------ |
 | START               | 按照语言方向起始端对齐。 |
 | CENTER              | 居中对齐。 |
@@ -397,14 +403,16 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名 | 类型                                         | 必填 | 说明                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。 |
 | icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。 |
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片内容。|
 | selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
 | index  | number | 是   | 下拉菜单项的索引。 |
-| triggerSelect  | (index: number, value: string) => void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
+| triggerSelect  | (index: number, value: string) :void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
 
 ## 事件
 
@@ -438,10 +446,10 @@ struct SelectExample {
   @State arrowPosition: ArrowPosition = ArrowPosition.END
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: $r("app.media.selecticon") },
-        { value: 'bbb', icon: $r("app.media.selecticon") },
-        { value: 'ccc', icon: $r("app.media.selecticon") },
-        { value: 'ddd', icon: $r("app.media.selecticon") }])
+      Select([{ value: 'aaa', icon: $r("app.media.selection") },
+        { value: 'bbb', icon: $r("app.media.selection") },
+        { value: 'ccc', icon: $r("app.media.selection") },
+        { value: 'ddd', icon: $r("app.media.selection") }])
         .selected(this.index)
         .value(this.text)
         .font({ size: 16, weight: 500 })

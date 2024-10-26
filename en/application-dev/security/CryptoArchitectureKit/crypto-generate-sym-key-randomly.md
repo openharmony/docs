@@ -1,4 +1,4 @@
-# Randomly Generating a Symmetric Key
+# Randomly Generating a Symmetric Key (ArkTS)
 
 
 This topic uses AES and SM4 as an example to describe how to generate a symmetric key and obtain the binary data.
@@ -84,7 +84,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-key-generat
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-  function testSyncGenerateAesKey() {
+  function testSyncGenerateSm4Key() {
     // Create a SymKeyGenerator instance.
     let symKeyGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
     // Use SymKeyGenerator to randomly generate a symmetric key.

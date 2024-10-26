@@ -19,6 +19,8 @@ StepperItem()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 ### prevLabel
@@ -78,7 +80,9 @@ status(value?: ItemState)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-|   名称    | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+|   名称    | 说明 |
 | -------- |-------- |
 | Normal |正常状态，右侧文本按钮正常显示，可点击进入下一个StepperItem。 |
 | Disabled |不可用状态，右侧文本按钮灰度显示，不可点击进入下一个StepperItem。 |

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides APIs related to MindSpore Lite model inference.
+Provides APIs related to MindSpore Lite model inference. The APIs in this module are non-thread-safe.
 
 **Since**: 9
 
@@ -28,7 +28,7 @@ Provides APIs related to MindSpore Lite model inference.
 | Name| Description|
 | -------- | -------- |
 | [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.|
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.|
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.|
 | [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) | Defines the operator information passed in a callback.|
 
 
@@ -50,10 +50,10 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_ModelHandle](#oh_ai_modelhandle) | Defines the pointer to a model object.|
 | [OH_AI_TrainCfgHandle](#oh_ai_traincfghandle) | Defines the pointer to a training configuration object.|
 | [OH_AI_TensorHandleArray](#oh_ai_tensorhandlearray) | Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.|
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.|
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.|
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | Defines the operator information passed in a callback.|
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | Defines the pointer to a callback.|
-| [OH_AI_Status](#oh_ai_status) | Defines MindSpore status codes.|
+| [OH_AI_Status](#oh_ai_status) | MindSpore status codes.|
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | Defines the handle of a tensor object.|
 | [OH_AI_ModelType](#oh_ai_modeltype) | Defines model file types.|
 | [OH_AI_DeviceType](#oh_ai_devicetype) | Defines the supported device types.|
@@ -73,7 +73,7 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_DataType](#oh_ai_datatype) {<br>OH_AI_DATATYPE_UNKNOWN = 0, OH_AI_DATATYPE_OBJECTTYPE_STRING = 12, OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14,<br>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29, OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30, OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32,<br>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37,<br>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38, OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39, OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42,<br>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44, OH_AI_DATATYPE_NUMBERTYPE_END = 46, OH_AI_DataTypeInvalid = INT32_MAX<br>} | Declares data types supported by MSTensor.|
 | [OH_AI_Format](#oh_ai_format) {<br>OH_AI_FORMAT_NCHW = 0, OH_AI_FORMAT_NHWC = 1, OH_AI_FORMAT_NHWC4 = 2, OH_AI_FORMAT_HWKC = 3,<br>OH_AI_FORMAT_HWCK = 4, OH_AI_FORMAT_KCHW = 5, OH_AI_FORMAT_CKHW = 6, OH_AI_FORMAT_KHWC = 7,<br>OH_AI_FORMAT_CHWK = 8, OH_AI_FORMAT_HW = 9, OH_AI_FORMAT_HW4 = 10, OH_AI_FORMAT_NC = 11,<br>OH_AI_FORMAT_NC4 = 12, OH_AI_FORMAT_NC4HW4 = 13, OH_AI_FORMAT_NCDHW = 15, OH_AI_FORMAT_NWC = 16,<br>OH_AI_FORMAT_NCW = 17<br>} | Declares data formats supported by MSTensor.|
 | [OH_AI_CompCode](#oh_ai_compcode) { <br>OH_AI_COMPCODE_CORE = 0x00000000u, <br>OH_AI_COMPCODE_MD = 0x10000000u, <br>OH_AI_COMPCODE_ME = 0x20000000u, <br>OH_AI_COMPCODE_MC = 0x30000000u, <br>OH_AI_COMPCODE_LITE = 0xF0000000u<br> } | Defines MindSpore component codes. 
-| [OH_AI_Status](#oh_ai_status) {<br>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br>} | Defines MindSpore status codes.|
+| [OH_AI_Status](#oh_ai_status) {<br>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br>} | MindSpore status codes.|
 | [OH_AI_ModelType](#oh_ai_modeltype) { OH_AI_MODELTYPE_MINDIR = 0, OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | Defines model file types.|
 | [OH_AI_DeviceType](#oh_ai_devicetype) {<br>OH_AI_DEVICETYPE_CPU = 0, OH_AI_DEVICETYPE_GPU, OH_AI_DEVICETYPE_KIRIN_NPU, OH_AI_DEVICETYPE_NNRT = 60,<br>OH_AI_DEVICETYPE_INVALID = 100<br>} | Defines the supported device types.|
 | [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) { OH_AI_NNRTDEVICE_OTHERS = 0, OH_AI_NNRTDEVICE_CPU = 1, OH_AI_NNRTDEVICE_GPU = 2, OH_AI_NNRTDEVICE_ACCELERATOR = 3 } | Defines NNRt device types.|
@@ -185,7 +185,7 @@ Provides APIs related to MindSpore Lite model inference.
 
 **Description**
 
-Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.
+Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.
 
 **Since**: 9
 
@@ -438,7 +438,7 @@ enum OH_AI_CompCode
 
 **Description**
 
-Defines MindSpore component codes.
+Defines MindSpore component codes. 
 
 **Since**: 9
 
@@ -1014,7 +1014,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.
 
->**NOTE**<br>Key value pairs currently supported include {"CachePath": "YourCachePath"}, {"CacheVersion": "YourCacheVersion"}, and {"QuantParam": "YourQuantConfig"}. Replace the actual value as required.
+Note: Currently, only 11 key-value pairs are supported, including: {"CachePath": "YourCachePath"}, {"CacheVersion": "YouCacheVersion"}, {"QuantBuffer": "YourQuantBuffer"}, {"ModelName": "YourModelName"}, {"isProfiling": "YourisProfiling"}, {"opLayout": "YouropLayout"}, {"InputDims": "YourInputDims"}, {"DynamicDims": "YourDynamicDims"}, {"QuantConfigData": "YourQuantConfigData"}, {"BandMode": "YourBandMode"}, {"NPU_FM_SHARED": "YourNPU_FM_SHARED"}. Replace them as required.
 
 **Since**: 10
 
@@ -1625,7 +1625,7 @@ Note that the same {\@Link OH_AI_ContextHandle} object can only be passed to {\@
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelBuildFromFile()
@@ -1653,7 +1653,7 @@ Note that the same {\@Link OH_AI_ContextHandle} object can only be passed to {\@
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelCreate()
@@ -1879,7 +1879,7 @@ Performs model inference.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelResize()
@@ -1905,7 +1905,7 @@ Adjusts the input tensor shapes of a built model.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelSetLearningRate()

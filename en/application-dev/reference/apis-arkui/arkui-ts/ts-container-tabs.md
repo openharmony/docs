@@ -1,6 +1,6 @@
 # Tabs
 
-The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
+The **Tabs** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
 >  **NOTE**
 >
@@ -11,7 +11,7 @@ The **\<Tabs>** component is a container component that allows users to switch b
 
 ## Child Components
 
-Custom components cannot be used as child components. Only the [\<TabContent>](ts-container-tabcontent.md) child component is allowed, with support for [if/else](../../../quick-start/arkts-rendering-control-ifelse.md) and [ForEach](../../../quick-start/arkts-rendering-control-foreach.md) rendering control. In addition, the **if/else** and **ForEach** statements support **\<TabContent>** components only, but not custom components.
+Custom components cannot be used as child components. Only the [TabContent](ts-container-tabcontent.md) child component is allowed, with support for [if/else](../../../quick-start/arkts-rendering-control-ifelse.md) and [ForEach](../../../quick-start/arkts-rendering-control-foreach.md) rendering control. In addition, the **if/else** and **ForEach** statements support **TabContent** components only, but not custom components.
 
 >  **NOTE**
 >
@@ -30,13 +30,13 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 | Name        | Type                             | Mandatory  | Description                                    |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
-| barPosition | [BarPosition](#barposition)| No   | Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**  |
-| index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). |
+| barPosition | [BarPosition](#barposition)| No   | Position of the **Tabs** component.<br>Default value: **BarPosition.Start**  |
+| index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br><br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **TabContent** subnodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | controller  | [TabsController](#tabscontroller) | No   | Tab controller.                              |
 
 ## BarPosition
 
-Enumerates the positions of the **\<Tabs>** component.
+Enumerates the positions of the **Tabs** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -44,8 +44,8 @@ Enumerates the positions of the **\<Tabs>** component.
 
 | Name   | Description                                      |
 | ----- | ---------------------------------------- |
-| Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container. |
-| End   | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container. |
+| Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container.|
+| End   | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container.|
 
 
 ## Attributes
@@ -62,11 +62,11 @@ Sets whether to use vertical tabs.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to use vertical tabs.<br>The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**<br>If set to have a height of **auto**, horizontal tabs auto-adapt the height to child components, which is calculated as follows: Tab bar height + Divider width + Tab content height + Top and bottom paddings + Top and bottom border widths.<br>If set to have a width of **auto**, vertical tabs auto-adapt the width to child components, which is calculated as follows: Tab bar width + Divider width + Tab content width + Left and right paddings + Left and right border widths.<br>To avoid animation jitter when switching between tabs, maintain a consistent size for child components on each tab. |
+| value  | boolean | Yes  | Whether to use vertical tabs.<br>The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**<br>If set to have a height of **auto**, horizontal tabs auto-adapt the height to child components, which is calculated as follows: Tab bar height + Divider width + Tab content height + Top and bottom paddings + Top and bottom border widths.<br>If set to have a width of **auto**, vertical tabs auto-adapt the width to child components, which is calculated as follows: Tab bar width + Divider width + Tab content width + Left and right paddings + Left and right border widths.<br>To avoid animation jitter when switching between tabs, maintain a consistent size for child components on each tab.|
 
 ### scrollable
 
@@ -78,11 +78,11 @@ Sets whether the tabs are scrollable.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the tabs are scrollable.<br>**true** (default): The tabs are scrollable.<br>**false**: The tabs are not scrollable. |
+| value  | boolean | Yes  | Whether the tabs are scrollable.<br>**true** (default): The tabs are scrollable.<br> **false**: The tabs are not scrollable.|
 
 ### barMode
 
@@ -94,44 +94,77 @@ Sets the tab bar layout mode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name               | Type                                                        | Mandatory | Description                                                        |
+| Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [BarMode](#barmode)                                  | Yes  | Layout mode.<br>Default value: **BarMode.Fixed**                                                |
-| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10) | No  | Layout style.<br>**NOTE**<br>This value is effective only when the tab bar is in scrollable mode. |
+| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10)| No  | Layout style.<br>**NOTE**<br>This value is effective only when the tab bar is in scrollable mode.|
+
+### barMode<sup>10+</sup>
+
+barMode(value: BarMode.Fixed)
+
+Sets the tab bar layout mode to **BarMode.Fixed**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                            | Mandatory| Description                                   |
+| -------- | -------------------------------- | ---- | ------------------------------------ |
+| value    | [BarMode.Fixed](#barmode)| Yes  | The width of each tab is determined by equally dividing the number of tabs by the bar width (or bar height in the vertical layout).  |
+
+### barMode<sup>10+</sup>
+
+barMode(value: BarMode.Scrollable, options: ScrollableBarModeOptions)
+
+Sets the tab bar layout mode to **BarMode.Scrollable**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                             | Mandatory| Description                                   |
+| -------- | --------------------------------- | ---- | ------------------------------------- |
+| value    | [BarMode.Scrollable](#barmode)| Yes  | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in horizontal layout, the total height exceeds the tab bar height.       |
+| options | [ScrollableBarModeOptions](#scrollablebarmodeoptions10)| Yes  | Layout style.|
 
 ### barWidth
 
 barWidth(value: Length)
 
-Sets the width of the tab bar. A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value.
+Sets the width of the tab bar. A value less than 0 or greater than the width of the **Tabs** component evaluates to the default value.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description                                                        |
+| Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Width of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is **96vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is the width of the **\<Tabs>** component. |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Width of the tab bar.<br>Default value:<br>If neither [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) nor [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) is set, and the **vertical** attribute is **false**, the default value is the width of the **Tabs** component.<br>If neither **SubTabBarStyle** nor **BottomTabBarStyle** is set, and the **vertical** attribute is **true**, the default value is 56 vp.<br>If **SubTabBarStyle** is set, and the **vertical** attribute is **false**, the default value is the width of the **Tabs** component.<br>If **SubTabBarStyle** is set, and the **vertical** attribute is **true**, the default value is 56 vp.<br>If **BottomTabBarStyle** is set, and the **vertical** attribute is **true**, the default value is 96 vp.<br>If **BottomTabBarStyle** is set, and the **vertical** attribute is **false**, the default value is the width of the **Tabs** component.|
 
 ### barHeight
 
 barHeight(value: Length)
 
-Sets the height of the tab bar. A value less than 0 or greater than the height of the **\<Tabs>** component evaluates to the default value.
+Sets the height of the tab bar. A value less than 0 or greater than the height of the **Tabs** component evaluates to the default value.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description                                                        |
+| Name| Type                                     | Mandatory| Description                                                        |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Height of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is 56 vp in versions earlier than API version 12 and 52 vp since API version 12. |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | Yes  | Height of the tab bar.<br>Default value:<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is 56 vp.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **Tabs** component.<br>If [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) is set, and the **vertical** attribute is **false**, the default value is 56 vp.<br>If **SubTabBarStyle** is set, and the **vertical** attribute is **true**, the default value is the height of the **Tabs** component.<br>If [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) is set, and the **vertical** attribute is **true**, the default value is the height of the **Tabs** component.<br>If **BottomTabBarStyle** is set, and the **vertical** attribute is **false**, the default value is 56 vp in versions earlier than API version 12 and 52 vp since API version 12.|
 
 ### animationDuration
 
@@ -143,11 +176,11 @@ Sets the length of time required to complete the tab switching animation, which 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value 0 ms is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value 300 ms is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value 0 ms is used when the tab bar is set to **BottomTabBarStyle**; and 300 ms is used when the tab bar is set to other styles. |
+| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value **0** is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value **300** is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value **0** is used when the tab bar is set to **BottomTabBarStyle**; the default value **300** is used when the tab bar is set to any other style.<br>Unit: ms|
 
 ### animationMode<sup>12+</sup>
 
@@ -161,25 +194,41 @@ Sets the animation mode for switching between tabs.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| mode  | Optional\<[AnimationMode](#animationmode12)\> | Yes  | Animation mode for switching between tabs.<br>The default value varies.<br>The default value is **AnimationMode::CONTENT_FIRST**, indicating that the content of the target page is loaded before the switching animation starts in the process of switching between tabs.|
+| mode  | Optional\<[AnimationMode](#animationmode12)\>| Yes  | Animation mode for switching between tabs.<br>The default value varies.<br>The default value is **AnimationMode.CONTENT_FIRST**, indicating that the content of the target page is loaded before the switching animation starts in the process of switching between tabs.|
 
-### divider<sup>10+</sup>
+### barPosition<sup>9+</sup>
 
-divider(value: DividerStyle | null)
+barPosition(value: BarPosition)
 
-Sets the divider style for the **\<TabBar>** and **\<TabContent>** components.
+Position of the **Tabs** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                     | Mandatory | Description                                                        |
+| Name| Type                              | Mandatory| Description                 |
+| ----- | ---------------------------------- | ---- | -------------------- |
+| value | [BarPosition](#barposition)| Yes | Position of the **Tabs** component.<br>Default value: **BarPosition.Start**  |
+
+### divider<sup>10+</sup>
+
+divider(value: DividerStyle | null)
+
+Sets the divider style for the **TabBar** and **TabContent** components.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                     | Mandatory| Description                                                        |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DividerStyle](#dividerstyle10) \| null | Yes  | Divider style. By default, the divider is not displayed.<br>**DividerStyle**: divider style.<br>**null**: The divider is not displayed. |
+| value  | [DividerStyle](#dividerstyle10) \| null | Yes  | Divider style. By default, the divider is not displayed.<br>**DividerStyle**: divider style.<br>**null**: The divider is not displayed.|
 
 ### fadingEdge<sup>10+</sup>
 
@@ -191,27 +240,27 @@ Sets whether the tab fades out when it exceeds the container width. It is recomm
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                              |
+| Name| Type   | Mandatory| Description                                              |
 | ------ | ------- | ---- | -------------------------------------------------- |
-| value  | boolean | Yes  | Whether the tab fades out when it exceeds the container width.<br>Default value: **true** |
+| value  | boolean | Yes  | Whether the tab fades out when it exceeds the container width.<br>Default value: **true**|
 
 ### barOverlap<sup>10+</sup>
 
 barOverlap(value: boolean)
 
-Sets whether the tab bar is superimposed on the **\<TabContent>** component after having its background blurred.
+Sets whether the tab bar is superimposed on the **TabContent** component after having its background blurred.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                                                        |
+| Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the tab bar is superimposed on the **\<TabContent>** component after having its background blurred.<br>Default value: **false** |
+| value  | boolean | Yes  | Whether the tab bar is superimposed on the **TabContent** component after having its background blurred.<br>Default value: **false**|
 
 ### barBackgroundColor<sup>10+</sup>
 
@@ -223,11 +272,11 @@ Background color of the tab bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                      | Mandatory | Description                                |
+| Name| Type                                      | Mandatory| Description                                |
 | ------ | ------------------------------------------ | ---- | ------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the tab bar.<br>Default value: transparent |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the tab bar.<br>Default value: **Color.Transparent**|
 
 ### barBackgroundBlurStyle<sup>11+</sup>
 
@@ -239,11 +288,11 @@ Sets the background blur style of the tab bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                        | Mandatory | Description                                    |
+| Name| Type                                        | Mandatory| Description                                    |
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
-| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | Yes  | Background blur style of the tab bar.<br>Default value: **NONE** |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the tab bar.<br>Default value: **BlurStyle.NONE**|
 
 ### barGridAlign<sup>10+</sup>
 
@@ -255,15 +304,15 @@ Sets the visible area of the tab bar in grid mode. For details, see **BarGridCol
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                   | Mandatory | Description                              |
+| Name| Type                                                   | Mandatory| Description                              |
 | ------ | ------------------------------------------------------- | ---- | ---------------------------------- |
-| value  | [BarGridColumnOptions](#bargridcolumnoptions10)  | Yes  | Visible area of the tab bar in grid mode. |
+| value  | [BarGridColumnOptions](#bargridcolumnoptions10) | Yes  | Visible area of the tab bar in grid mode.|
 
 ### edgeEffect<sup>12+</sup>
 
-edgeEffect(value: EdgeEffect)
+edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 
 Sets the edge effect used when the boundary of the scrolling area is reached.
 
@@ -271,11 +320,11 @@ Sets the edge effect used when the boundary of the scrolling area is reached.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                         | Mandatory | Description                                        |
+| Name| Type                                         | Mandatory| Description                                        |
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
-| value  | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Yes  | Effect used when the boundary of the scrolling area is reached.<br>Default value: **EdgeEffect.Spring** |
+| edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | Yes  | Effect used when the boundary of the scrolling area is reached.<br>Default value: **EdgeEffect.Spring**|
 
 ## DividerStyle<sup>10+</sup>
 
@@ -289,8 +338,8 @@ Describes the divider style.
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | strokeWidth | [Length](ts-types.md#length)             | Yes   | Width of the divider. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp          |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the divider.<br>Default value: **#33182431**               |
-| startMargin | [Length](ts-types.md#length)             | No   | Distance between the divider and the top of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp |
-| endMargin   | [Length](ts-types.md#length)             | No   | Distance between the divider and the bottom of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp |
+| startMargin | [Length](ts-types.md#length)             | No   | Distance between the divider and the top of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp|
+| endMargin   | [Length](ts-types.md#length)             | No   | Distance between the divider and the bottom of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp|
 
 ## BarGridColumnOptions<sup>10+</sup>
 
@@ -304,9 +353,9 @@ Implements a **BarGridColumnOptions** object for setting the visible area of the
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | margin | [Dimension](ts-types.md#dimension10)             | No   | Column margin in grid mode. It cannot be set in percentage.<br>Default value: **24.0**<br>Unit: vp                       |
 | gutter      | [Dimension](ts-types.md#dimension10) | No   | Column gutter (that is, gap between columns) in grid mode. It cannot be set in percentage.<br>Default value: **24.0**<br>Unit: vp                    |
-| sm | number            | No   | Number of columns occupied by a tab on a screen whose width is greater than or equal to 320 vp but less than 600 vp.<br>The value must be a non-negative even number. The default value is **-1**, indicating that the tab takes up the entire width of the tab bar. |
-| md   | number          | No   | Number of columns occupied by a tab on a screen whose width is greater than or equal to 600 vp but less than 800 vp.<br>The value must be a non-negative even number. The default value is **-1**, indicating that the tab takes up the entire width of the tab bar. |
-| lg   | number           | No   | Number of columns occupied by a tab on a screen whose width is greater than or equal to 840 vp but less than 1024 vp.<br>The value must be a non-negative even number. The default value is **-1**, indicating that the tab takes up the entire width of the tab bar. |
+| sm | number            | No   | Number of columns occupied by a tab on a screen whose width is greater than or equal to 320 vp but less than 600 vp.<br>The value must be a non-negative even number. The default value is **-1**, indicating that the tab takes up the entire width of the tab bar.|
+| md   | number          | No   | Number of columns occupied by a tab on a screen whose width is greater than or equal to 600 vp but less than 800 vp.<br>The value must be a non-negative even number. The default value is **-1**, indicating that the tab takes up the entire width of the tab bar.|
+| lg   | number           | No   | Number of columns occupied by a tab on a screen whose width is greater than or equal to 840 vp but less than 1024 vp.<br>The value must be a non-negative even number. The default value is **-1**, indicating that the tab takes up the entire width of the tab bar.|
 
 ## ScrollableBarModeOptions<sup>10+</sup>
 
@@ -319,7 +368,7 @@ Implements a **ScrollableBarModeOptions** object.
 | Name         | Type                                    | Mandatory  | Description                                      |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | margin | [Dimension](ts-types.md#dimension10)          | No   | Left and right margin of the tab bar in scrollable mode. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp                   |
-| nonScrollableLayoutStyle      | [LayoutStyle](#layoutstyle10)  | No   | Tab layout mode of the tab bar when not scrolling in scrollable mode.<br>Default value: **LayoutStyle.ALWAYS_CENTER**          |
+| nonScrollableLayoutStyle      | [LayoutStyle](#layoutstyle10) | No   | Tab layout mode of the tab bar when not scrolling in scrollable mode.<br>Default value: **LayoutStyle.ALWAYS_CENTER**          |
 
 ## BarMode
 
@@ -329,10 +378,10 @@ Enumerates layout modes of the tab bar.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name       | Value | Description                                      |
+| Name       | Value| Description                                      |
 | ---------- | -- | ---------------------------------------- |
-| Scrollable | 0  | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in horizontal layout, the total height exceeds the tab bar height. |
-| Fixed      | 1  | The width of each tab is determined by equally dividing the number of tabs by the bar width (or bar height in the vertical layout). |
+| Scrollable | 0  | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in horizontal layout, the total height exceeds the tab bar height.|
+| Fixed      | 1  | The width of each tab is determined by equally dividing the number of tabs by the bar width (or bar height in the vertical layout).|
 
 ## AnimationMode<sup>12+</sup>
 
@@ -344,9 +393,9 @@ Enumerates the animation modes for switching between tabs.
 
 | Name         | Value | Description                                      |
 | ------------- | -- | ---------------------------------------- |
-| CONTENT_FIRST | 0  | Load the content of the target page before starting the switching animation. |
-| ACTION_FIRST  | 1  | Start the switching animation before loading the content of the target page. For the settings to take effect, the height and width of tabs must be set to **auto**. |
-| NO_ANIMATION  | 2  | The switching animation is disabled. |
+| CONTENT_FIRST | 0  | Load the content of the target page before starting the switching animation.|
+| ACTION_FIRST  | 1  | Start the switching animation before loading the content of the target page. For the settings to take effect, the height and width of tabs must be set to **auto**.|
+| NO_ANIMATION  | 2  | The switching animation is disabled.|
 
 ## LayoutStyle<sup>10+</sup>
 
@@ -356,7 +405,7 @@ Enumerates the tab layout styles of the tab bar when not scrolling in scrollable
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Value | Description                                      |
+| Name        | Value| Description                                      |
 | ---------- | -- | ---------------------------------------- |
 | ALWAYS_CENTER | 0 | When the tab content exceeds the tab bar width, the tabs are scrollable.<br>Otherwise, the tabs are compactly centered and not scrollable.|
 | ALWAYS_AVERAGE_SPLIT | 1 | When the tab content exceeds the tab bar width, the tabs are scrollable.<br>Otherwise, the tabs are not scrollable, and the tab bar width is distributed evenly between all tabs.<br>This option is valid only in horizontal mode, and is equivalent to **LayoutStyle.ALWAYS_CENTER** otherwise.|
@@ -374,7 +423,7 @@ Triggered when a tab is switched.
 
 This event is triggered when any of the following conditions is met:
 
-1. The **\<TabContent>** component supports sliding, and the user slides on the tab bar.
+1. The **TabContent** component supports sliding, and the user slides on the tab bar.
 
 2. The [Controller](#tabscontroller) API is called.
 
@@ -386,11 +435,11 @@ This event is triggered when any of the following conditions is met:
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                  |
+| Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| index  | number | Yes  | Index of the active tab. The index starts from 0. |
+| index  | number | Yes  | Index of the active tab. The index starts from 0.|
 
 ### onTabBarClick<sup>10+</sup>
 
@@ -402,11 +451,11 @@ Triggered when a tab is clicked.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                |
+| Name| Type  | Mandatory| Description                                |
 | ------ | ------ | ---- | ------------------------------------ |
-| index  | number | Yes  | Index of the clicked tab. The index starts from 0. |
+| index  | number | Yes  | Index of the clicked tab. The index starts from 0.|
 
 ### onAnimationStart<sup>11+</sup>
 
@@ -418,13 +467,13 @@ Triggered when the tab switching animation starts. The **index** parameter indic
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                                                  | Mandatory | Description                                                        |
+| Name     | Type                                                  | Mandatory| Description                                                        |
 | ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index       | number                                                 | Yes  | Index of the currently displayed element.                                        |
 | targetIndex | number                                                 | Yes  | Index of the target element to switch to.                                    |
-| event       | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **\<Tabs>** along the main axis, and the hands-off velocity. |
+| event       | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Tabs** along the main axis, and the hands-off velocity.|
 
 ### onAnimationEnd<sup>11+</sup>
 
@@ -436,12 +485,12 @@ Triggered when the tab switching animation ends. This event is triggered when th
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                  | Mandatory | Description                                                        |
+| Name| Type                                                  | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. |
+| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
 
 ### onGestureSwipe<sup>11+</sup>
 
@@ -453,12 +502,12 @@ Triggered on a frame-by-frame basis when the tab is switched by a swipe.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                  | Mandatory | Description                                                        |
+| Name| Type                                                  | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](ts-types.md#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. |
+| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
 
 ### customContentTransition<sup>11+</sup>
 
@@ -468,13 +517,7 @@ Sets the custom tab switching animation.
 
 Instructions:
 
-1. When the custom tab switching animation is used, the default switching animation of the **\<Tabs>** component is disabled, and tabs cannot be switched through swiping.
-2. The value **undefined** means not to use the custom tab switching animation, in which case the default switching animation is used.
-3. The custom tab switching animation cannot be interrupted.
-4. Currently, the custom tab switching animation can be triggered only by clicking a tab or by calling the **TabsController.changeIndex()** API.
-5. When the custom tab switching animation is used, the **\<Tabs>** component supports all events except **onGestureSwipe**.
-6. Notes about the **onChange** and **onAnimationEnd** events: If the second custom animation is triggered during the execution of the first custom animation, the **onChange** and **onAnimationEnd** events of the first custom animation will be triggered when the second custom animation starts.
-7. When the custom animation is used, the stack layout is used for pages involved in the animation. If the **zIndex** attribute is not set for related pages, the **zIndex** values of all pages are the same. In this case, the pages are rendered in the order in which they are added to the component tree (that is, the sequence of page indexes). In light of this, to control the rendering levels of pages, set the **zIndex** attribute of the pages.
+1. When the custom tab switching animation is used, the default switching animation of the **Tabs** component is disabled, and tabs cannot be switched through swiping.<br>2. The value **undefined** means not to use the custom tab switching animation, in which case the default switching animation is used.<br>3. The custom tab switching animation cannot be interrupted.<br>4. Currently, the custom tab switching animation can be triggered only by clicking a tab or by calling the **TabsController.changeIndex()** API.<br>5. When the custom tab switching animation is used, the **Tabs** component supports all events except **onGestureSwipe**.<br>6. Notes about the **onChange** and **onAnimationEnd** events: If the second custom animation is triggered during the execution of the first custom animation, the **onChange** and **onAnimationEnd** events of the first custom animation will be triggered when the second custom animation starts.<br>7. When the custom animation is used, the stack layout is used for pages involved in the animation. If the **zIndex** attribute is not set for related pages, the **zIndex** values of all pages are the same. In this case, the pages are rendered in the order in which they are added to the component tree (that is, the sequence of page indexes). In light of this, to control the rendering levels of pages, set the **zIndex** attribute of the pages.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
@@ -482,18 +525,18 @@ Instructions:
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| from   | number | Yes  | Index of the currently displayed tab before the animation starts. |
-| to     | number | Yes  | Index of the target tab before the animation starts. |
+| from   | number | Yes  | Index of the currently displayed tab before the animation starts.|
+| to     | number | Yes  | Index of the target tab before the animation starts.|
 
-**Return value** 
+**Return value**
 
 | Type                                                        | Description                    |
 | ------------------------------------------------------------ | ------------------------ |
-| [TabContentAnimatedTransition](ts-types.md#tabcontentanimatedtransition11) \| undefined | Information about the custom tab switching animation. |
+| [TabContentAnimatedTransition](#tabcontentanimatedtransition11) \| undefined | Information about the custom tab switching animation.|
 
 ### onContentWillChange<sup>12+</sup>
 
@@ -503,7 +546,7 @@ Triggered when a new page is about to be displayed.
 
 Specifically, this event is triggered in the following cases:
 
-1. When the user swipes on the **\<TabContent>** component (provided that it supports swiping) to switch to a new page.
+1. When the user swipes on the **TabContent** component (provided that it supports swiping) to switch to a new page.
 
 2. When **TabsController.changeIndex** is called to switch to a new page.
 
@@ -517,23 +560,80 @@ Specifically, this event is triggered in the following cases:
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name      | Type  | Mandatory | Description                                      |
+| Name      | Type  | Mandatory| Description                                      |
 | ------------ | ------ | ---- | ------------------------------------------ |
-| currentIndex | number | Yes  | Index of the active tab. The index starts from 0. |
+| currentIndex | number | Yes  | Index of the active tab. The index starts from 0.|
 | comingIndex  | number | Yes  | Index of the new tab to be displayed.             |
 
-**Return value** 
+**Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | The value **true** means that the tab can switch to the new page.<br>The value **false** means that the tab cannot switch to the new page and will remain on the current page. |
+| boolean | The value **true** means that the tab can switch to the new page.<br>The value **false** means that the tab cannot switch to the new page and will remain on the current page.|
 
+## TabsAnimationEvent<sup>11+</sup>
+
+Describes the animation information of the **Tabs** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Type     | Read Only| Optional| Description                                      |
+| ------------- | ---------- | ---- | ---- | ------------------------ |
+| currentOffset | number | No| No| Offset of the currently displayed element relative to the start position of the **Tabs** component along the main axis.<br> Unit: vp<br>Default value: **0**|
+| targetOffset | number | No| No| Offset of the target element relative to the start position of the **Tabs** component along the main axis.<br> Unit: vp<br>Default value: **0**|
+| velocity | number | No| No| Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
+
+## TabContentAnimatedTransition<sup>11+</sup>
+
+Provides the information about the custom tab page switching animation.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Type        | Mandatory  | Description                                      |
+| ------------- | ---------------------- | ---- |---------------------- |
+| timeout | number | No| Timeout for the custom switching animation. The timer starts when the switching begins. If this timeframe passes without you calling the **finishTransition** API in [TabContentTransitionProxy](#tabcontenttransitionproxy11), the component will assume that the custom animation has ended and will proceed directly with subsequent operations. Unit: ms<br>Default value: **1000**|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | Yes| Content of the custom switching animation.|
+
+## TabContentTransitionProxy<sup>11+</sup>
+
+Implements the proxy object returned during the execution of the custom switching animation of the **Tabs** component. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **Tabs** component of the ending of the custom animation.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### Attributes
+
+| Name | Type    | Read Only| Optional| Description                        |
+| ----- | ------- | ---- | ---- | --------------------------- |
+| from | number | No| No| Index of the starting page of the custom animation.|
+| to | number | No| No| Index of the target tab to switch to.|
+
+### finishTransition
+
+finishTransition(): void
+
+Notifies the **Tabs** component that the custom animation has finished playing.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## TabsController
 
-Defines a tab controller, which is used to control switching of tabs. One **TabsController** cannot control multiple **\<Tabs>** components.
+Defines a tab controller, which is used to control switching of tabs. One **TabsController** cannot control multiple **Tabs** components.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -557,7 +657,7 @@ A constructor used to create a **TabsController** object.
 
 ### changeIndex
 
-changeIndex(value: number)
+changeIndex(value: number): void
 
 Switches to the specified tab.
 
@@ -569,7 +669,7 @@ Switches to the specified tab.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value | number | Yes   | Index of the tab. The value starts from 0.<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the maximum number, the default value **0** is used. |
+| value | number | Yes   | Index of the tab. The value starts from 0.<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the maximum number, the default value **0** is used.|
 
 ### preloadItems<sup>12+</sup>
 
@@ -579,17 +679,19 @@ Preloads child nodes. After this API is called, all specified child nodes will b
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| indices | Optional\<Array\<number>> | Yes | Array of indexes of the child nodes to preload.<br>The default value is an empty array. |
+| indices | Optional\<Array\<number>> | Yes| Array of indexes of the child nodes to preload.<br>The default value is an empty array.|
 
-**Return value** 
+**Return value**
 
 | Type                                                        | Description                    |
 | ------------------------------------------------------------ | ------------------------ |
-| Promise\<void> | Promise used to return the value. |
+| Promise\<void> | Promise used to return the value.|
 
 **Error codes**
 
@@ -597,13 +699,13 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID  | Error Message                                     |
 | --------   | -------------------------------------------- |
-| 401 | Parameter invalid. Possible causes: 1. The type of the parameter is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
 ## Example
 
 ### Example 1
 
-This example uses **onChange** to implement the linkage between **tabBar** and **\<TabContent>**.
+This example uses **onChange** to implement the linkage between **tabBar** and **TabContent**.
 
 ```ts
 // xxx.ets
@@ -894,7 +996,7 @@ struct TabsOpaque {
 
 ### Example 4
 
-This example uses **barOverlap** to specify whether the tab bar is superimposed on the **\<TabContent>** component after having its background blurred.
+This example uses **barOverlap** to specify whether the tab bar is superimposed on the **TabContent** component after having its background blurred.
 
 ```ts
 // xxx.ets

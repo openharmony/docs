@@ -80,7 +80,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   <!DOCTYPE html>
   <html>
   <head>
-      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width"/>
       <title>WindowEvent</title>
   </head>
   <body>
@@ -88,15 +88,21 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   <script type="text/javascript">
       function OpenNewWindow()
       {
+          var txt = '打开的窗口';
           let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          openedWindow.document.write("<p>这是我的窗口</p>");
+          openedWindow.document.write("<p>" + "<br><br>" + txt.fontsize(10) + "</p>");
           openedWindow.focus();
-
       }
   </script>
   </body>
   </html>
   ```
+
+**图1** 新窗口中打开页面效果图  
+
+![web-open-in-new-window](figures/web-open-in-new-window.png)
+
+  
 ## 相关实例
 
 针对创建新窗口，有以下相关实例可供参考：

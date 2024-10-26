@@ -1,4 +1,4 @@
-# Location Kit API Reference
+# Location Kit
 
 - ArkTS API
   - [@ohos.geoLocationManager (Geolocation Manager)](js-apis-geoLocationManager.md)

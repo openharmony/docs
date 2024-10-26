@@ -57,17 +57,14 @@ The process crash log is a type of fault log managed together with the app freez
 
 - Method 1: DevEco Studio
 
-    DevEco Studio collects process crash logs in **/data/log/faultlog/faultlogger/** and archives the logs in FaultLog. For details, see <!--RP1-->[DevEco Studio User Guide-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->. 
+    DevEco Studio collects process crash logs in **/data/log/faultlog/faultlogger/** and archives the logs in FaultLog. For details, see <!--RP1-->[DevEco Studio User Guide-FaultLog](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->. 
 
-- Method 2: FaultLogger APIs
+- Method 2: hiAppEvent APIs
 
-    The FaultLogger module provides APIs to query various fault information. For details, see [@ohos.faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md).
+    hiAppEvent provides APIs to subscribe to various fault logs. For details, see [Introduction to HiAppEvent](hiappevent-intro.md).
 
-- Method 3: hiAppEvent APIs
-
-    hiAppEvent provides APIs to subscribe to various fault information. For details, see [HiAppEvent](hiappevent-intro.md).
 <!--Del-->
-- Method 4: Shell
+- Method 3: Shell
 
     When a process crashes, you can find fault logs in **/data/log/faultlog/faultlogger/** on the device. The log files are named in the format of **jscrash-process name-process UID-time (seconds)**. They contain information such as the device name, system version, and process crash call stack.
 

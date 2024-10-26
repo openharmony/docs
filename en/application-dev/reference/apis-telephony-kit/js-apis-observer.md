@@ -270,6 +270,10 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
 
+>**NOTE**
+>
+>Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
+
 **System capability**: SystemCapability.Telephony.StateRegistry
 
 **Parameters**
@@ -305,6 +309,10 @@ observer.on('callStateChange', (data: observer.CallStateInfo) => {
 on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallStateInfo\>): void
 
 Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
+
+>**NOTE**
+>
+>Before using this API, you must declare the **ohos.permission.READ_CALL_LOG** permission (a system permission).
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 

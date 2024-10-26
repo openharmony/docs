@@ -1,4 +1,4 @@
-# Capi振动开发指导
+# 振动开发指导(C/C++)
 
 
 ## 场景介绍
@@ -42,6 +42,7 @@
          {
            "name": "ohos.permission.VIBRATE",
          },
+       ]
    ```
 
 3. CMakeLists.txt文件中引入动态依赖库。
@@ -127,3 +128,12 @@
        OH_Vibrator_Cancel(); // 停止马达振动。
    }
    ```
+   
+8. 在types/libentry路径下index.d.ts文件中引入Napi接口。
+
+   ```c
+   export const vibration_Test: () => number;
+   export const vibrationCustom_Test: () => number;
+   ```
+
+9. 编写Js用例调用接口。

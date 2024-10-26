@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供MindSpore Lite的模型推理相关接口。
+提供MindSpore Lite的模型推理相关接口，该模块下的接口是非线程安全的。
 
 **起始版本：** 9
 
@@ -28,7 +28,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | 张量数组结构体，用于存储张量数组指针和张量数组长度 |
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**MS_MAX_SHAPE_NUM**。 |
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) | 回调函数中传入的算子信息。 |
 
 
@@ -50,7 +50,7 @@
 | [OH_AI_ModelHandle](#oh_ai_modelhandle) | 指向模型对象的指针。 |
 | [OH_AI_TrainCfgHandle](#oh_ai_traincfghandle) | 指向训练配置对象的指针。 |
 | [OH_AI_TensorHandleArray](#oh_ai_tensorhandlearray) | 张量数组结构体，用于存储张量数组指针和张量数组长度 |
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**MS_MAX_SHAPE_NUM**。 |
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | 回调函数中传入的算子信息。 |
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | 回调函数指针。 |
 | [OH_AI_Status](#oh_ai_status) | MindSpore的状态码 |
@@ -185,7 +185,7 @@
 
 **描述**
 
-维度信息，最大的维度为**MS_MAX_SHAPE_NUM**。
+维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。
 
 **起始版本：** 9
 
@@ -1014,7 +1014,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 向设备信息中添加键/值对形式的扩展配置。只对NNRt设备信息有效。
 
-注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}，{"QuantBuffer": "YourQuantBuffer"}，{"ModelName": "YourModelName"}，{"isProfiling": "YourisProfiling"}，{"opLayout": "YouropLayout"}，{"InputDims": "YourInputDims"}，{"DynamicDims": "YourDynamicDims"} 八种键值对配置，用户根据使用情况替换具体的值。
+注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}，{"QuantBuffer": "YourQuantBuffer"}，{"ModelName": "YourModelName"}，{"isProfiling": "YourisProfiling"}，{"opLayout": "YouropLayout"}，{"InputDims": "YourInputDims"}，{"DynamicDims": "YourDynamicDims"}，{"QuantConfigData": "YourQuantConfigData"}，{"BandMode": "YourBandMode"}，{"NPU_FM_SHARED": "YourNPU_FM_SHARED"} 11种键值对配置，用户根据使用情况替换具体的值。
 
 **起始版本：** 10
 
@@ -1625,7 +1625,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuild (OH_AI_ModelHandle model, const void * m
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
 
 
 ### OH_AI_ModelBuildFromFile()
@@ -1653,7 +1653,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const 
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
 
 
 ### OH_AI_ModelCreate()
@@ -1879,7 +1879,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelPredict (OH_AI_ModelHandle model, const OH_AI_
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
 
 
 ### OH_AI_ModelResize()
@@ -1905,7 +1905,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelResize (OH_AI_ModelHandle model, const OH_AI_T
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
 
 
 ### OH_AI_ModelSetLearningRate()

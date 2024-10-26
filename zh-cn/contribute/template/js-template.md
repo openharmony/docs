@@ -93,12 +93,12 @@ ArrayList和LinkedList相比，ArrayList的随机访问效率更高。但由于A
 >    在使用AbilityContext的功能前，需要通过\[getContext()]\(链接到对应的接口说明文件中.md)先获取Context对象。
 >
 > ```js
->    import ability_featureAbility from '@ohos.ability.featureAbility';
->    let context = ability_featureAbility.getContext();
+>    import { featureAbility } from '@kit.AbilityKit';
+>    let context = featureAbility.getContext();
 > ```
 
 ```js
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 ## 属性
@@ -180,7 +180,7 @@ import call from '@ohos.telephony.call';
 
 | 参数名       | 类型                                          | 必填 | 说明                                                         |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| parameterOne | number \| string \| [CustomType](#classinterface) | 是   | 参数描述。给出取值范围、建议值。如果有固定格式，需要给出格式样例，尤其是URI。<br/>自定义类型需要进行建链说明。 |
+| parameterOne | number \| string \| [CustomType](#classinterface) | 是   | 参数描述（包括参数的含义与用途、什么场景下使用该参数、选取建议、参数间关联关系等）。<br/>参数取值说明（包括取值范围、单位、默认值、取值原则或建议值；边界值涉及限制/异常时，需讲明具体场景；如果有固定格式，需要给出格式样例，尤其是URI）。<br/>自定义类型需要进行建链说明。 |
 | callback     | Callback\<Array<[CustomType](#classinterface)>>   | 否   | 参数描述。可选参数需要说明不填写该参数的后果。<br/>如：不填该参数则取消该type对应的所有回调。<br/>callback写法参考总体写作说明第14项。 |
 
 **返回值**：（可选，如不涉及可删除）
@@ -288,7 +288,7 @@ import call from '@ohos.telephony.call';
 
 > *写作说明*
 >
-> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除。
+> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除“属性”小标题，直接写interface名称作为二级标题。
 
 ### Class/Interface中的方法
 

@@ -99,7 +99,7 @@ Unregisters the listener for location changes with the corresponding location re
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
-  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**
@@ -165,7 +165,7 @@ Unregisters the listener for location service status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
-  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**
@@ -234,7 +234,7 @@ Unregisters the listener for cached GNSS location reports.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
-  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**
@@ -302,7 +302,7 @@ Unregisters the listener for GNSS satellite status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Example**
 
@@ -368,7 +368,7 @@ Unregisters the listener for GNSS NMEA message change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
-  | callback | Callback&lt;string&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;string&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 
 **Example**

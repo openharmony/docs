@@ -14,6 +14,7 @@ Both the KV store and RDB store can be used as an EL5 database.
 The following classes are encapsulated to implement the data operations and transfer between the EL2 and EL5 databases:
 
 - **Mover** class: provides APIs for moving data from an EL2 database to an EL5 database after the screen is unlocked.
+
 - **Store** class: provides APIs for accessing and operating the currently operable database.
 
 - **SecretKeyObserver** class: provides APIs for obtaining the key status. After the key is destroyed, the EL5 database will be closed.
@@ -388,7 +389,7 @@ export default class EntryAbility extends UIAbility {
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
     let eContext = this.context.createModuleContext("entry");
@@ -407,7 +408,7 @@ export default class EntryAbility extends UIAbility {
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
@@ -836,7 +837,7 @@ export default class EntryAbility extends UIAbility {
       context: cContext,
       config: {
         name: 'cstore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "cstore.db"
     }
@@ -846,7 +847,7 @@ export default class EntryAbility extends UIAbility {
       context: eContext,
       config: {
         name: 'estore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "estore.db",
     }

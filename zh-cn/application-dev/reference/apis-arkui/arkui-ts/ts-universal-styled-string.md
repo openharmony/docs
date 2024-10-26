@@ -13,6 +13,7 @@
 * 当组件样式和属性字符串中的样式冲突时，冲突部分以属性字符串设置的样式为准，未冲突部分则生效组件的样式。
 * 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略Text组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
 * 不支持@State修饰。
+* 建议将StyledString定义为成员变量，从而避免应用退后台后被销毁。
 
 ## StyledString
 
@@ -35,7 +36,7 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 
 | 名称  |   类型   |   只读   |   可选   |   说明   |
 | ------ | ------ | ------ | ------ | -------------- |
-| length | number |  是   | 否   | 属性字符串字符的长度。<br/>**说明：** <br/>当属性字符串中包含图片时，其返回的长度按1计算。 |
+| length | number |  是   | 否   | 属性字符串字符的长度。<br/>**说明：** <br/>当属性字符串中包含图片或者CustomSpan时，其返回的长度按1计算。 |
 
 ### getString
 
@@ -104,7 +105,7 @@ subStyledString(start: number , length?: number): StyledString
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### getStyles
 
@@ -122,13 +123,43 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围属性字符串的下标。 |
 | length | number | 是   | 指定范围属性字符串的长度。 |
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 否   | 指定范围属性字符串样式的枚举值。 |
+| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 否   | 指定范围属性字符串样式的枚举值。 |
 
 **返回值：**
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
 | Array<[SpanStyle](#spanstyle对象说明)> | 各样式对象的数组。<br/>**说明：** <br/>当指定范围属性字符串未设置任何样式，则返回空数组。<br/>当start和length越界或者必填传入undefined时，会抛出异常；<br/>当styledKey传入异常值或undefined时，会抛出异常。<br/>当styledKey为CustomSpan时，返回的是创建CustomSpan时传入的样式对象，即修改该样式对象也会影响实际的显示效果。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+### fromHtml
+
+将HTML格式字符串转换成属性字符串，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>。仅支持将这三种标签中的style属性样式转换成对应的属性字符串样式。
+
+static fromHtml(html: string): Promise\<StyledString>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| html | string | 是   | html格式的字符串。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- |
+| [StyledString](#styledstring) | 属性字符串。 |
 
 **错误码**：
 
@@ -287,7 +318,7 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围开始位置的下标。 |
 | length | number | 是   | 指定范围的长度。 |
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 是   | 样式类型枚举值。 |
+| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型枚举值。 |
 
 **错误码**：
 
@@ -413,7 +444,7 @@ appendStyledString(other: StyledString): void
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | 否   | 设置属性字符串样式的开始位置。 |
 | length | number | 否   | 设置属性字符串样式的长度。 |
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 是   | 样式类型的枚举值。 |
+| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型的枚举值。 |
 | styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | 是   | 样式对象。 |
 
 ## SpanStyle对象说明
@@ -424,7 +455,7 @@ appendStyledString(other: StyledString): void
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | 是   | 匹配属性字符串样式的开始位置。 |
 | length | number | 是   | 匹配属性字符串样式的长度。 |
-| styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 是   | 样式类型的枚举值。 |
+| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型的枚举值。 |
 | styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | 是   | 样式对象。 |
 
 ## TextStyle
@@ -779,6 +810,16 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。<br/>**说明：** <br/>DrawContext的canvas方法获取的画布是Text组件的画布，绘制时不会超出Text组件的范围。 |
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
 
+### invalidate<sup>13+<sup>
+
+主动刷新使用CustomSpan的Text组件。
+
+invalidate(): void
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## CustomSpanMeasureInfo对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -869,9 +910,93 @@ constructor(value?: ParagraphStyleInterface)
 
 扩展信息不影响实际显示效果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+## StyledStringKey<sup>12+</sup>枚举说明
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
+| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
+| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
+| LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。|
+| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
+| BACKGROUND_COLOR<sup>13+</sup> | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle13)所属键。|
+| URL<sup>13+</sup> | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle13)所属键。|
+| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
+| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
+| CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
+| USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
+
+## BackgroundColorStyle<sup>13+</sup>
+
+文本背景颜色对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textBackgroundStyle  |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明)  |  是  |  是  | 获取属性字符串的文本背景颜色。<br />默认值：<br />{<br /> color: Color.Transparent,<br />  radius: 0<br />} |
+
+### constructor<sup>13+</sup>
+
+constructor(textBackgroundStyle: TextBackgroundStyle)
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| textBackgroundStyle |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 是   | 文本背景色设置项。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+
+## UrlStyle<sup>13+</sup>
+
+超链接对象说明。
+
+默认颜色、字号、字重分别是'#ff0a59f7'、'16fp'、'FontWeight.Regular'，若属性字符串设置TextStyle，则TextStyle优先级更高。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| url  | string |  是  |  是  | 获取属性字符串的超链接内容。 |
+
+### constructor<sup>13+</sup>
+
+constructor(url: string)
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| url | string | 是   | 超链接设置项。|
 
 ## 示例
 
@@ -932,7 +1057,6 @@ struct styled_string_demo1 {
         Column() {
           // 显示属性字符串
           Text(undefined, { controller: this.controller1 })
-          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
           Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
           Button('修改string1的值')
             .onClick(() => {
@@ -1040,7 +1164,7 @@ struct styled_string_demo1 {
 }
 ```
 
-![](figures/styledstring_1.jpeg)
+![](figures/styledstring_1.PNG)
 
 ### 示例2
 
@@ -1598,7 +1722,6 @@ struct Index {
 ```ts
 // xxx.ets
 import { drawing } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
 import { LengthMetrics } from '@kit.ArkUI'
 
 class MyCustomSpan extends CustomSpan {
@@ -1617,7 +1740,12 @@ class MyCustomSpan extends CustomSpan {
     let canvas = context.canvas;
 
     const brush = new drawing.Brush();
-    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 });
+    brush.setColor({
+      alpha: 255,
+      red: 0,
+      green: 74,
+      blue: 175
+    });
     const font = new drawing.Font();
     font.setSize(25);
     const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
@@ -1629,7 +1757,12 @@ class MyCustomSpan extends CustomSpan {
       bottom: options.lineBottom - 10
     });
 
-    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 });
+    brush.setColor({
+      alpha: 255,
+      red: 23,
+      green: 169,
+      blue: 141
+    });
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
     canvas.detachBrush();
@@ -1647,30 +1780,12 @@ class MyCustomSpan extends CustomSpan {
 @Entry
 @Component
 struct styled_string_demo6 {
-  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130, 10);
   customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
-  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40);
-  style2: MutableStyledString = new MutableStyledString(this.customSpan2);
-  style1: MutableStyledString = new MutableStyledString(this.customSpan1);
+  customSpan2: MyCustomSpan = new MyCustomSpan("World", 80, 40);
+  style: MutableStyledString = new MutableStyledString(this.customSpan1);
   textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController();
-  imagePixelMap: image.PixelMap | undefined = undefined;
   isPageShow: boolean = true;
-
-  private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-      desiredSize: { width: 50, height: 50 }
-    });
-    await imageSource.release();
-    return createPixelMap;
-  }
 
   async onPageShow() {
     if (!this.isPageShow) {
@@ -1678,7 +1793,7 @@ struct styled_string_demo6 {
     }
     this.isPageShow = false;
 
-    this.style1.appendStyledString(new MutableStyledString("文本绘制 示例代码 CustomSpan", [
+    this.style.appendStyledString(new MutableStyledString("文本绘制 示例代码 CustomSpan", [
       {
         start: 0,
         length: 5,
@@ -1696,15 +1811,14 @@ struct styled_string_demo6 {
       styledValue: new TextStyle({ fontColor: Color.Green, fontWeight: FontWeight.Bold })
     }
     ]))
-    this.style1.appendStyledString(new StyledString(this.customSpan3))
-    this.style1.appendStyledString(new StyledString("自定义绘制", [{
+    this.style.appendStyledString(new StyledString(this.customSpan2))
+    this.style.appendStyledString(new StyledString("自定义绘制", [{
       start: 0,
       length: 5,
       styledKey: StyledStringKey.FONT,
       styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
     }]))
-    this.textController.setStyledString(this.style1)
-    this.imagePixelMap = await this.getPixmapFromMedia($r('sys.media.ohos_ic_public_voice')).then()
+    this.textController.setStyledString(this.style)
   }
 
   build() {
@@ -1713,6 +1827,11 @@ struct styled_string_demo6 {
         Text(undefined, { controller: this.textController })
           .copyOption(CopyOptions.InApp)
           .fontSize(30)
+
+        Button("invalidate").onClick(() => {
+          this.customSpan1.setWord("你好")
+          this.customSpan1.invalidate()
+        })
       }
       .width('100%')
     }
@@ -1721,7 +1840,7 @@ struct styled_string_demo6 {
 }
 ```
 
-![](figures/styledstring_6.PNG)
+![](figures/styledstring_6.gif)
 
 ### 示例7
 

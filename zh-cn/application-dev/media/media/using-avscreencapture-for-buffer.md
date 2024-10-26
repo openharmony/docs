@@ -12,7 +12,11 @@
 
 开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL状态。
 
+屏幕录制过程中发生系统用户切换事件时，录屏将自动停止。因系统用户切换中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES状态。
+
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
+
+如果配置了采集麦克风音频数据，需对应配置麦克风权限ohos.permission.MICROPHONE和申请长时任务，配置方式请参见[向用户申请权限](../../security/AccessToken/request-user-authorization.md)、[申请长时任务](../../task-management/continuous-task.md)。
 
 ## 开发步骤及注意事项
 
@@ -22,7 +26,7 @@
 **在 CMake 脚本中链接动态库**
 
 ```c++
-target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
+target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffer.so libnative_media_core.so)
 ```
 
 1. 添加头文件。
@@ -32,6 +36,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include <multimedia/player_framework/native_avscreen_capture.h>
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <native_buffer/native_buffer.h>
     #include <fcntl.h>
     #include "string"
     #include "unistd.h"
@@ -55,8 +60,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     };
 
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -85,7 +90,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-5. 回调函数的设置，主要监听录屏过程中的错误事件的发生,音频流和视频流数据的产生事件。
+5. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件。
 
     ```c++
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
@@ -111,31 +116,14 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-8. 调用AcquireAudioBuffer()获取音频原始码流数据.
+8. 在回调OnBufferAvailable()中获取并处理音频视频原始码流数据。
 
     ```c++
-    OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
+    OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
+        OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData)
     ```
 
-9. 调用AcquireVideoBuffer()获取视频原始码流数据。
-
-    ```c++
-    OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
-    ```
-
-10. 调用ReleaseAudioBuffer()方法释放音频buffer。
-
-    ```c++
-    OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
-    ```
-
-11. 调用ReleaseVideoBuffer()释放视频数据。
-
-    ```c++
-    OH_AVScreenCapture_ReleaseVideoBuffer(capture);
-    ```
-
-12. 调用Release()方法销毁实例，释放资源。
+9. 调用Release()方法销毁实例，释放资源。
 
     ```c++
     OH_AVScreenCapture_Release(capture);
@@ -161,6 +149,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <multimedia/player_framework/native_avbuffer.h>
+#include <native_buffer/native_buffer.h>
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
@@ -177,9 +166,9 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理状态变更
     }
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
-        // 通话中断状态处理
-        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
+        stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+        // 录屏中断状态处理
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更
@@ -208,7 +197,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 从js端获取窗口id number[]
-    vector<int> windowIdsExclude = {};
+    std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     // 获取参数
@@ -228,9 +217,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     capture = OH_AVScreenCapture_Create();
     
     // 设置回调 
-    OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
-    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
-    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+    OH_AVScreenCapture_SetErrorCallback(capture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
 
     // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
@@ -247,7 +236,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720, .videoFrameHeight = 1080, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+        .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
     };
@@ -270,8 +259,20 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 
     // 开始录屏
     OH_AVScreenCapture_StartScreenCapture(capture);
+
     // mic开关设置
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
+
+    // 可选 豁免隐私窗口 需传递应用豁免子窗口和主窗口ID，传空数组取消豁免隐私窗口
+	// std::vector<int> windowIdsSkipPrivacy = {};
+    // OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
+    //     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
+
+    // 可选 调整录屏分辨率 需在启动后调用，分辨率有范围限制 可参考avcodec编解码能力
+    // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
+
+    // 可选 设置录屏时的最大帧率 需在启动后调用
+    // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
     sleep(10); // 录制10s
     // 结束录屏

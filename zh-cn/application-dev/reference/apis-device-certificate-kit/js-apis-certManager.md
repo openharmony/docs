@@ -94,7 +94,6 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | uri          | string         | 否  | 否  | 表示证书的唯一标识符。 |
 | certAlias          | string   | 否  | 否  | 表示证书的别名。 |
 | state          | boolean     | 否  | 否  | 表示证书的状态，true为启用状态、false为禁用状态。 |
-| issuerName          | string         | 否  | 否  | 表示证书的颁发者名称。 |
 | subjectName          | string   | 否  | 否  | 表示证书的使用者名称。 |
 
 ## Credential
@@ -211,7 +210,7 @@ try {
     if (err != null) {
       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
+      let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
       console.info('Succeeded in installing private certificate.');
     }
   });
@@ -269,7 +268,7 @@ let keystore: Uint8Array = new Uint8Array([
 let keystorePwd: string = "123456";
 try {
   certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
-    let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
+    let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
     console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
@@ -317,7 +316,7 @@ try {
     if (err != null) {
       console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult.credential == undefined) {
+      if (cmResult?.credential == undefined) {
         console.info('The result of getting private certificate is undefined.');
       } else {
         let list = cmResult.credential;
@@ -371,7 +370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
   certificateManager.getPrivateCertificate(uri).then((cmResult) => {
-    if (cmResult.credential == undefined) {
+    if (cmResult?.credential == undefined) {
       console.info('The result of getting private certificate is undefined.');
     } else {
       let list = cmResult.credential;
@@ -739,7 +738,7 @@ try {
     if (err != null) {
       console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult.outData != undefined) {
+      if (cmResult?.outData != undefined) {
         let signRes: Uint8Array = cmResult.outData;
         console.info('Succeeded in finishing.');
       } else {
@@ -849,7 +848,7 @@ let cmHandle: Uint8Array = new Uint8Array([
 try {
   /* 签名的finish操作 */
   certificateManager.finish(cmHandle).then((cmResult) => {
-    if (cmResult.outData != undefined) {
+    if (cmResult?.outData != undefined) {
       let signRes1: Uint8Array = cmResult.outData;
       console.info('Succeeded in finishing signature.');
     } else {
@@ -1016,7 +1015,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let uri: string = 'test'; /* 用户安装公共凭据返回的唯一标识符，此处省略 */
 try {
   certificateManager.getPublicCertificate(uri).then((cmResult) => {
-    if (cmResult.credential == undefined) {
+    if (cmResult?.credential == undefined) {
       console.info('The result of getting public certificate is undefined.');
     } else {
       let cred = cmResult.credential;
@@ -1115,7 +1114,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult.certList == undefined) {
+    if (cmResult?.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
     } else {
       let list = cmResult.certList;
@@ -1170,7 +1169,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let certUri: string = 'testUserCert'; /* 用户安装用户根CA证书返回的唯一标识符，此处省略 */
 try {
   certificateManager.getUserTrustedCertificate(certUri).then((cmResult) => {
-    if (cmResult.certInfo == undefined) {
+    if (cmResult?.certInfo == undefined) {
       console.info('The result of getting user trusted certificate is undefined.');
     } else {
       let cert = cmResult.certInfo;
@@ -1181,5 +1180,50 @@ try {
   })
 } catch (error) {
   console.error(`Failed to get user trusted certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+## certificateManager.getPrivateCertificates<sup>13+</sup>
+
+getPrivateCertificates(): Promise\<CMResult>
+
+表示获取应用安装的凭据列表，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**返回值**：
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示获取应用安装的凭据列表的结果，返回值[CMResult](#cmresult)对象中的credentialList属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 17500001 | Internal error. |
+
+**示例**：
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  certificateManager.getPrivateCertificates().then((cmResult) => {
+    if (cmResult?.credentialList == undefined) {
+      console.info('The result of getting all private certificates installed by the application is undefined.');
+    } else {
+      let list = cmResult.credentialList;
+      console.info('Succeeded in getting all private certificates installed by the application.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get all private certificates installed by the application. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
 }
 ```

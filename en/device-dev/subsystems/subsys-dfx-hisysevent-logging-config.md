@@ -6,7 +6,7 @@
 
 ### Function Introduction
 
-If HiSysEvent logging is required for a component, you need to define a YAML file and [configure the YAML file path](#verifying-the-yaml-file) in the **bundle.json** file. During compilation, the OpenHarmony compilation framework will use the Python compilation script to parse and verify all the YAML files configured in the **bundle.json** file. On completion, the compilation framework will summarize the configuration information in the YAML files and convert the information into a JSON file named **hisysevent.def**. After that, the compilation framework will put the JSON file to a specified path as the basis for the system to determine whether to log system events.
+If HiSysEvent logging is required for a component, you need to define a YAML file and [configure the YAML file path](#verifying-the-yaml-file) in the **bundle.json** file. During compilation, the OpenHarmony compilation framework will use the Python compilation script to parse and verify all the YAML files configured in the **bundle.json** file. On completion, the compilation framework will summarize the configuration information in the YAML files and convert the information into a zip file named **hisysevent.zip**. After that, the compilation framework will put the zip file to a specified path as the basis for the system to determine whether to log system events.
 
 
 ### Basic Concepts
@@ -156,18 +156,18 @@ In the **bundle.json** file, use the **hisysevent_config** attribute to specify 
 **Compiling YAML Files**
 
 - Perform full compilation.
-  - During full compilation of the system, the configurations in the YAML files of all components are summarized. After the compilation is complete, the **hisysevent.def** file will be generated in the specified directory.
+  - During full compilation of the system, the configurations in the YAML files of all components are summarized. After the compilation is complete, the **hisysevent.zip** file will be generated in the specified directory.
     
      ```
      cd *absolute path of the project's root directory*
      ./build --product-name <product name>
      ```
 
-  - To obtain the **hisysevent.def** file generated after full compilation, run the following commands:
+  - To obtain the **hisysevent.zip** file generated after full compilation, run the following commands:
     
      ```
-     cd absolute path of the project's root directory
-     find out -name hisysevent.def -type f
+     cd *absolute path of the project's root directory*
+     find out -name hisysevent.zip -type f
      ```
 
 - Single-file compilation:
@@ -184,11 +184,11 @@ In the **bundle.json** file, use the **hisysevent_config** attribute to specify 
   | Option| Description|
   | -------- | -------- |
   | --yaml-list | Paths of the YAML files to be compiled. If there are multiple YAML file paths, separate each of them with a space.|
-  | --def-path | Path of the **hisysevent.def** file generated after compilation.|
+  | --def-path | Path of the **hisysevent.zip** file generated after compilation.|
 
 
 ### Logging and Querying Events
 
-1. Push the **hisysevent.def** file to the **/system/etc/hiview/** directory of the device by using the [hdc_std tool](../subsystems/subsys-toolchain-hdc-guide.md).
+1. Decompress the **hisysevent.zip** file to obtain the **hisysevent.def** file, and then use the [hdc_std tool](../subsystems/subsys-toolchain-hdc-guide.md) to push the file to the **/data/system/hiview/unzip_configs/sys_event_def/** directory of the device.
 
 2. Trigger logging of the custom system events in the YAML file. Then, run [hisysevent -l](../subsystems/subsys-dfx-hisysevent-tool.md) to query historical system events to find out if the logging of the custom system events is successful.

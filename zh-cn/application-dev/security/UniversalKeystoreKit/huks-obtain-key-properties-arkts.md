@@ -2,11 +2,12 @@
 
 
 HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定密钥属性前，需要确保已在HUKS中生成或导入持久化存储的密钥。
-
+>**说明：**
+> 轻量级设备不支持获取密钥属性功能。
 
 ## 开发步骤
 
-1. 指定待查询的密钥别名keyAlias，密钥别名最大长度为64字节。
+1. 指定待查询的密钥别名keyAlias，密钥别名最大长度为128字节。
 
 2. 调用接口[getKeyItemProperties](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgetkeyitemproperties9)，传入参数keyAlias和options。
    options为预留参数，当前可传入空。

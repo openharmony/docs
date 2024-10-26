@@ -18,20 +18,20 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
 1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 2. Create a **documentSaveOptions** instance.
 
    ```ts
    // Create a documentSaveOptions instance.
    const documentSaveOptions = new picker.DocumentSaveOptions();
-   // Set the name of the file to save. This parameter is optional.
+   // (Optional) Name of the document to save.
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
-   // Set the types of the file to save. This parameter is optional.
-   documentSaveOptions.fileSuffixChoices = ['.png', '.txt', '.mp4']; 
+   // (Optional) Type of the document to save. The value is in ['Description|File name extensions'] format. To save all documents, use 'All files (*.*)|.*'. If there are multiple file name extensions, the first one is used by default.
+   documentSaveOptions.fileSuffixChoices = ['Document|.txt', '.pdf'];
    ```
 
 3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2) instance, and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3) to start the FilePicker page to save the document.
@@ -54,7 +54,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
 > - The URI cannot be directly used in the Picker callback to open the document. You need to define a global variable to save the URI.
 > - The permission for the URIs returned by [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3) of Picker is a temporary read/write permission. The temporary permission will be invalidated once the application exits.
 > - You can persist the temporary permission for a URI, which is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
-> - You can also directly save the documents to the **Download** folder. For details, see [Saving Files to Download ](#saving-files-to-download).
+> - You can also directly save the documents to the **Download** folder. For details, see [Saving Files to Download](#saving-files-to-download).
 
 4. After the application UI is returned from FilePicker, use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is returned after the document is opened.
 
@@ -78,10 +78,10 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
 1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. Create an **audioSaveOptions** instance.
@@ -93,7 +93,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; 
    ```
 
-3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-4) instance and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6) to start the FilePicker page to save the audio clip.
+3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6) to start the FilePicker page to save the audio clip.
    ```ts
    let uri: string = '';
    // Ensure that getContext(this) returns UIAbilityContext.
@@ -117,7 +117,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
 4. After the application UI is returned from FilePicker, use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
 
    ```ts
-   // Note that the permission specified by the mode parameter of fs.openSync() is fs.OpenMode.READ_WRITE.
+   // Note that the permission specified by the mode parameter of fs.openSync() is fileIo.OpenMode.READ_WRITE.
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
@@ -136,10 +136,10 @@ When using **save()**, you can set **pickerMode** to **DOWNLOAD**, which will tr
 1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   import common from '@ohos.app.ability.common';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
 2. Create a **documentSaveOptions** instance.

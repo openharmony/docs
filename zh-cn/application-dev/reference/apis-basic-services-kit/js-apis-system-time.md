@@ -195,7 +195,7 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明    |
 | -------- | -------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
 
 **错误码：**
 

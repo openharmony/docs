@@ -72,7 +72,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | selected             | boolean                                                            | 是   | 否   | 元素是否被选中。 |
 | startIndex           | number                                                             | 是   | 否   | 在屏幕上的第一个项目的列表索引。 |
 | text                 | string                                                             | 是   | 否   | 元素的文本。 |
-| textLengthLimit      | string                                                             | 是   | 否   | 元素文本的最大长度限制。 |
+| textLengthLimit      | number                                                             | 是   | 否   | 元素文本的最大长度限制。 |
 | textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | 是   | 否   | 文本被读取时的移动单位。 |
 | triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | 是   | 否   | 触发元素事件的动作。 |
 | type                 | [WindowType](#windowtype)                                          | 是   | 否   | 元素的窗口类型。 |
@@ -86,29 +86,33 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## FocusDirection
 
+type FocusDirection = 'up' | 'down' | 'left' | 'right' | 'forward' | 'backward'
+
 表示查询下一焦点元素的方向。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称       | 说明      |
+| 类型       | 说明      |
 | -------- | ------- |
-| up       | 表示向上查询。 |
-| down     | 表示向下查询。 |
-| left     | 表示向左查询。 |
-| right    | 表示向右查询。 |
-| forward  | 表示向前查询。 |
-| backward | 表示向后查询。 |
+| 'up'       | 表示向上查询。 |
+| 'down'     | 表示向下查询。 |
+| 'left'     | 表示向左查询。 |
+| 'right'    | 表示向右查询。 |
+| 'forward'  | 表示向前查询。 |
+| 'backward' | 表示向后查询。 |
 
 ## FocusType
+
+type FocusType = 'accessibility' | 'normal'
 
 表示查询焦点元素的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 说明          |
+| 类型            | 说明          |
 | ------------- | ----------- |
-| accessibility | 表示无障碍的焦点类型。 |
-| normal        | 表示普通的焦点类型。  |
+| 'accessibility' | 表示无障碍的焦点类型。 |
+| 'normal'        | 表示普通的焦点类型。  |
 
 ## Rect
 
@@ -125,14 +129,16 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## WindowType
 
+type WindowType = 'application' | 'system'
+
 表示窗口的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称          | 说明        |
+| 类型          | 说明        |
 | ----------- | --------- |
-| application | 表示应用窗口类型。 |
-| system      | 表示系统窗口类型。 |
+| 'application' | 表示应用窗口类型。 |
+| 'system'      | 表示系统窗口类型。 |
 
 ## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
@@ -164,7 +170,7 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -204,7 +210,7 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -254,7 +260,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -297,7 +303,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -343,7 +349,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -395,7 +401,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -438,7 +444,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -484,7 +490,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -536,7 +542,7 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -576,7 +582,7 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -619,7 +625,7 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -668,7 +674,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -714,7 +720,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -760,7 +766,7 @@ injectGestureSync(gesturePath: GesturePath): void
 
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003  | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -1039,7 +1045,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1128,7 +1134,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1174,7 +1180,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
@@ -1226,7 +1232,7 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1269,7 +1275,7 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1319,7 +1325,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1363,7 +1369,7 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1414,7 +1420,7 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1458,7 +1464,7 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

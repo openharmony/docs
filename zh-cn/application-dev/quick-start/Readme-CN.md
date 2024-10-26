@@ -14,8 +14,6 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
-      - [动态import](arkts-dynamic-import.md)
-      - [延迟加载（lazy import）](arkts-lazy-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
@@ -26,15 +24,20 @@
     - [app对象内部结构](app-structure.md)
     - [deviceConfig内部结构](deviceconfig-structure.md)
     - [module对象内部结构](module-structure.md)
+  - 典型场景的开发指导
+    - [集成态HSP](integrated-hsp.md)
+    - [HAR转HSP指导](har-to-hsp.md)
+    - [HSP转HAR指导](hsp-to-har.md)
+    - [创建应用静态快捷方式](typical-scenario-configuration.md)
+    - [创建应用分身](app-clone.md)
+    - [配置分层图标](layered-image.md)
 
 - [资源分类与访问](resource-categories-and-access.md)
 
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
-  - [方舟字节码基本原理](arkts-bytecode-fundamentals.md)
-  - [方舟字节码文件格式](arkts-bytecode-file-format.md)
-  - [方舟字节码函数命名规则](arkts-bytecode-function-name.md)
+  - [ArkTS语言规范](arkts-coding-style-guide.md)
   - 从TypeScript到ArkTS的适配指导
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
@@ -100,6 +103,7 @@
         - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
         - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
         - [getTarget接口：获取状态管理框架代理前的原始对象](arkts-new-getTarget.md)
+        - [makeObserved接口：将非观察数据变为可观察数据](arkts-new-makeObserved.md)
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

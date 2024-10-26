@@ -12,7 +12,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。<!--Del-->编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。<!--DelEnd-->
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
 
 ## 基本知识
 
@@ -174,15 +174,18 @@ let c: ColorSet = ColorSet.Black;
 
 ```typescript
 class Cat {
+  name: string = 'cat';
   // ...
 }
 class Dog {
+  name: string = 'dog';
   // ...
 }
 class Frog {
+  name: string = 'frog';
   // ...
 }
-type Animal = Cat | Dog | Frog | number
+type Animal = Cat | Dog | Frog | number;
 // Cat、Dog、Frog是一些类型（类或接口）
 
 let animal: Animal = new Cat();
@@ -199,7 +202,7 @@ class Cat { sleep () {}; meow () {} }
 class Dog { sleep () {}; bark () {} }
 class Frog { sleep () {}; leap () {} }
 
-type Animal = Cat | Dog | Frog
+type Animal = Cat | Dog | Frog;
 
 function foo(animal: Animal) {
   if (animal instanceof Frog) {
@@ -234,10 +237,10 @@ type NullableObject = Object | null;
 
 | 运算符| 说明                                                 |
 | -------- | ------------------------------------------------------------ |
-| `===`    | 如果两个操作数严格相等（不同类型的操作数是不相等的），则返回true。     |
-| `!==`    | 如果两个操作数严格不相等（不同类型的操作数是不相等的），则返回true。    |
-| `==`     | 如果两个操作数相等（尝试先转换不同类型的操作数，再进行比较），则返回true。 |
-| `!=`     | 如果两个操作数不相等（尝试先转换不同类型的操作数，再进行比较），则返回true。    |
+| `===`    | 如果两个操作数严格相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `!==`    | 如果两个操作数严格不相等（对于不同类型的操作数认为是不相等的），则返回true。 |
+| `==`     | 如果两个操作数相等，则返回true。 |
+| `!=`     | 如果两个操作数不相等，则返回true。    |
 | `>`      | 如果左操作数大于右操作数，则返回true。 |
 | `>=`     | 如果左操作数大于或等于右操作数，则返回true。 |
 | `<`      | 如果左操作数小于右操作数，则返回true。    |
@@ -469,7 +472,7 @@ while (true) {
 示例：
 
 ```typescript
-let x = 1
+let x = 1;
 label: while (true) {
   switch (x) {
     case 1:
@@ -489,7 +492,7 @@ label: while (true) {
 let sum = 0;
 for (let x = 0; x < 100; x++) {
   if (x % 2 == 0) {
-    continue
+    continue;
   }
   sum += x;
 }
@@ -610,8 +613,8 @@ function sum(...numbers: number[]): number {
   return res;
 }
 
-sum() // 返回0
-sum(1, 2, 3) // 返回6
+sum(); // 返回0
+sum(1, 2, 3); // 返回6
 ```
 
 ### 返回类型
@@ -736,8 +739,8 @@ foo('aa'); // OK，使用第二个定义
 
 ```typescript
 class Person {
-  name: string = ''
-  surname: string = ''
+  name: string = '';
+  surname: string = '';
   constructor (n: string, sn: string) {
     this.name = n;
     this.surname = sn;
@@ -759,8 +762,8 @@ console.log(p.fullName());
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p: Point = {x: 42, y: 42};
 ```
@@ -779,8 +782,8 @@ let p: Point = {x: 42, y: 42};
 
 ```typescript
 class Person {
-  name: string = ''
-  age: number = 0
+  name: string = '';
+  age: number = 0;
   constructor(n: string, a: number) {
     this.name = n;
     this.age = a;
@@ -805,7 +808,7 @@ p2.getName();
 
 ```typescript
 class Person {
-  static numberOfPersons = 0
+  static numberOfPersons = 0;
   constructor() {
      // ...
      Person.numberOfPersons++;
@@ -825,7 +828,7 @@ ArkTS要求所有字段在声明时或者构造函数中显式初始化。这和
 
 ```typescript
 class Person {
-  name: string // undefined
+  name: string; // undefined
   
   setName(n:string): void {
     this.name = n;
@@ -847,7 +850,7 @@ jack.getName().length; // 运行时异常：name is undefined
 
 ```typescript
 class Person {
-  name: string = ''
+  name: string = '';
   
   setName(n:string): void {
     this.name = n;
@@ -869,7 +872,7 @@ jack.getName().length; // 0, 没有运行时异常
 
 ```typescript
 class Person {
-  name?: string // 可能为`undefined`
+  name?: string; // 可能为`undefined`
 
   setName(n:string): void {
     this.name = n;
@@ -898,12 +901,12 @@ jack.getName()?.length; // 编译成功，没有运行时错误
 
 setter和getter可用于提供对对象属性的受控访问。
 
-在以下示例中，setter用于禁止将`age`属性设置为无效值：
+在以下示例中，setter用于禁止将`_age`属性设置为无效值：
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age: number = 0
+  name: string = '';
+  private _age: number = 0;
   get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
@@ -932,10 +935,11 @@ p.age = -42; // 设置无效age值会抛出错误
 
 ```typescript
 class RectangleSize {
-  private height: number = 0
-  private width: number = 0
+  private height: number = 0;
+  private width: number = 0;
   constructor(height: number, width: number) {
-    // ...
+    this.height = height;
+    this.width = width;
   }
   calculateArea(): number {
     return this.height * this.width;
@@ -985,14 +989,14 @@ class [extends BaseClassName] [implements listOfInterfaces] {
 
 ```typescript
 class Person {
-  name: string = ''
-  private _age = 0
+  name: string = '';
+  private _age = 0;
   get age(): number {
     return this._age;
   }
 }
 class Employee extends Person {
-  salary: number = 0
+  salary: number = 0;
   calculateTaxes(): number {
     return this.salary * 0.42;
   }
@@ -1019,8 +1023,8 @@ class MyDate implements DateInterface {
 
 ```typescript
 class RectangleSize {
-  protected height: number = 0
-  protected width: number = 0
+  protected height: number = 0;
+  protected width: number = 0;
 
   constructor (h: number, w: number) {
     this.height = h;
@@ -1059,7 +1063,7 @@ class RectangleSize {
   }
 }
 class Square extends RectangleSize {
-  private side: number = 0
+  private side: number = 0;
   area(): number {
     return this.side * this.side;
   }
@@ -1100,8 +1104,8 @@ constructor ([parameters]) {
 
 ```typescript
 class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
 }
 let p = new Point();
 ```
@@ -1158,8 +1162,8 @@ let c2 = new C('abc');    // OK，使用第二个签名
 
 ```typescript
 class C {
-  public x: string = ''
-  private y: string = ''
+  public x: string = '';
+  private y: string = '';
   set_y (new_y: string) {
     this.y = new_y; // OK，因为y在类本身中可以访问
   }
@@ -1175,8 +1179,8 @@ c.y = 'b'; // 编译时错误：'y'不可见
 
 ```typescript
 class Base {
-  protected x: string = ''
-  private y: string = ''
+  protected x: string = '';
+  private y: string = '';
 }
 class Derived extends Base {
   foo() {
@@ -1194,8 +1198,8 @@ class Derived extends Base {
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 let c: C = {n: 42, s: 'foo'};
@@ -1205,8 +1209,8 @@ ArkTS是静态类型语言，如上述示例所示，对象字面量只能在可
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 
 function foo(c: C) {}
@@ -1225,8 +1229,8 @@ function bar(): C {
 
 ```typescript
 class C {
-  n: number = 0
-  s: string = ''
+  n: number = 0;
+  s: string = '';
 }
 let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}];
 ```
@@ -1248,8 +1252,8 @@ map['John']; // 25
 
 ```typescript
 interface PersonInfo {
-  age: number
-  salary: number
+  age: number;
+  salary: number;
 }
 let map: Record<string, PersonInfo> = {
   'John': { age: 25, salary: 10},
@@ -1269,10 +1273,10 @@ let map: Record<string, PersonInfo> = {
 
 ```typescript
 interface Style {
-  color: string // 属性
+  color: string; // 属性
 }
 interface AreaSize {
-  calculateAreaSize(): number // 方法的声明
+  calculateAreaSize(): number; // 方法的声明
   someMethod(): void;     // 方法的声明
 }
 ```
@@ -1282,14 +1286,14 @@ interface AreaSize {
 ```typescript
 // 接口：
 interface AreaSize {
-  calculateAreaSize(): number // 方法的声明
+  calculateAreaSize(): number; // 方法的声明
   someMethod(): void;     // 方法的声明
 }
 
 // 实现：
 class RectangleSize implements AreaSize {
-  private width: number = 0
-  private height: number = 0
+  private width: number = 0;
+  private height: number = 0;
   someMethod(): void {
     console.log('someMethod called');
   }
@@ -1308,14 +1312,14 @@ class RectangleSize implements AreaSize {
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 ```
 
 ```typescript
 interface Style {
-  get color(): string
-  set color(x: string)
+  get color(): string;
+  set color(x: string);
 }
 ```
 
@@ -1323,21 +1327,21 @@ interface Style {
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  color: string = ''
+  color: string = '';
 }
 ```
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 class StyledRectangle implements Style {
-  private _color: string = ''
+  private _color: string = '';
   get color(): string { return this._color; }
   set color(x: string) { this._color = x; }
 }
@@ -1349,11 +1353,11 @@ class StyledRectangle implements Style {
 
 ```typescript
 interface Style {
-  color: string
+  color: string;
 }
 
 interface ExtendedStyle extends Style {
-  width: number
+  width: number;
 }
 ```
 
@@ -1395,7 +1399,7 @@ s.push(55); // 将会产生编译时错误
 
 ```typescript
 interface Hashable {
-  hash(): number
+  hash(): number;
 }
 class MyHashMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
@@ -1509,7 +1513,7 @@ function foo(a: A | null) {
 ```typescript
 class Person {
   // ...
-  nick: string | null = null
+  nick: string | null = null;
   getNick(): string {
     return this.nick ?? '';
   }
@@ -1522,7 +1526,7 @@ class Person {
 
 ```typescript
 class Person {
-  nick: string | null = null
+  nick: string | null = null;
   spouse?: Person
 
   setSpouse(spouse: Person): void {
@@ -1548,8 +1552,8 @@ class Person {
 
 ```typescript
 class Person {
-  nick: string | null = null
-  spouse?: Person
+  nick: string | null = null;
+  spouse?: Person;
 
   constructor(nick: string) {
     this.nick = nick;
@@ -1579,8 +1583,8 @@ p.spouse?.nick; // undefined
 
 ```typescript
 export class Point {
-  x: number = 0
-  y: number = 0
+  x: number = 0;
+  y: number = 0;
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
@@ -1666,25 +1670,13 @@ async function test() {
 }
 ```
 
-更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)。
+更多的使用动态import的业务场景和使用实例见[动态import](../arkts-utils/arkts-dynamic-import.md)。
 
 <!--RP1--><!--RP1End-->
 
 ### 顶层语句
 
-模块可以包含除return语句外的任何模块级语句。
-
-如果模块包含主函数（程序入口），则模块的顶层语句将在此函数函数体之前执行。否则，这些语句将在执行模块的其他功能之前执行。
-
-### 程序入口
-
-程序（应用）的入口是顶层主函数。主函数应具有空参数列表或只有`string[]`类型的参数。
-
-```typescript
-function main() {
-  console.log('this is the program entry');
-}
-```
+顶层语句是指在模块的最外层直接编写的语句，这些语句不被包裹在任何函数、类、块级作用域中。顶层语句包括变量声明、函数声明、表达式等。
 
 ## 关键字
 
@@ -1696,7 +1688,7 @@ function main() {
 
 ```typescript
 class A {
-  count: string = 'a'
+  count: string = 'a';
   m(i: string): void {
     this.count = i;
   }
@@ -1712,7 +1704,7 @@ class A {
 
 ```typescript
 class A {
-  n: number = 0
+  n: number = 0;
   f1(arg1: this) {} // 编译时错误，不支持this类型
   static f2(arg1: number) {
     this.n = arg1;  // 编译时错误，不支持在类的静态方法中使用this

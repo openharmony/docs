@@ -17,7 +17,7 @@ The **params** parameter in the event information is described as follows:
 | pid | number | Process ID of the application.|
 | uid | number | User ID of the application.|
 | type | string | Type of the address sanitizer error. For details, see the description of **type**.|
-| external_log | string[] | Path of the error log file.|
+| external_log | string[] | Path of the error log file. If the directory files exceed the threshold (for details, see **log_over_limit**), new log files may fail to be written. Therefore, delete the log files immediately after they are processed.|
 | log_over_limit | boolean | Whether the size of generated log files and existing log files exceeds the upper limit (5 MB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
 
 **type**:
@@ -34,7 +34,7 @@ The **params** parameter in the event information is described as follows:
 | heap-buffer-overflow | The heap buffer overflows.|
 | heap-use-after-free | The released heap memory is used.|
 | invalid-allocation-alignment | The alignment mode specified in memory allocation is invalid.|
-| memcpy-param-overlap | **memcpy()** does not support overlapping memory regions. |
+| memcpy-param-overlap | **memcpy()** does not support overlapping memory regions.|
 | new-delete-type-mismatch | The released memory size does not match the allocated memory size.|
 | stack-buffer-overflow | The stack buffer overflows.|
 | stack-buffer-underflow | The stack buffer underflows.|

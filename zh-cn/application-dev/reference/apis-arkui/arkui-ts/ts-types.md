@@ -491,7 +491,7 @@
 
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
-| SYSTEM   | 系统默认安全区域，包括状态栏、导航栏。   |
+| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
 | CUTOUT   | 设备的非安全区域，例如刘海屏或挖孔屏区域。 |
 | KEYBOARD | 软键盘区域。                               |
 
@@ -518,6 +518,8 @@
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -584,7 +586,7 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 | 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11对象说明)) => void | hover事件的回调。 |
+| HoverCallback | (isHover: boolean, event: HoverEvent) => void | hover事件的回调。 |
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 
@@ -601,13 +603,13 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 组件可见区域变化事件的回调类型。
 
-type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
+type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) => void;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称            | 类型                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isVisible：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
 ## StyledStringValue<sup>12+</sup>
 
@@ -628,17 +630,6 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | ImageAttachment | 图片样式。 |
 | CustomSpan | 自定义绘制Span样式。 |
 | UserDataSpan | UserDataSpan样式。 |
-
-## SubmitEvent<sup>11+</sup>
-
-定义用户提交事件。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称              | 类型       | 必填 | 描述                                               |
-| ----------------- | ---------- | ---- | -------------------------------------------------- |
-| keepEditableState | () => void | 是   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
-| text              | string     | 是   | 输入框文本内容。                                   |
 
 ## EnterKeyType枚举说明
 
@@ -726,7 +717,7 @@ getCaretOffset(): CaretOffset
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
-| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
+| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
 
 > **说明：**
 >
@@ -734,3 +725,48 @@ getCaretOffset(): CaretOffset
 > - 在Search组件中，返回的位置信息是相对Search组件中搜索图标的偏移值。
 > - 在Search组件中，不输入文本时，返回值中有相对Search组件的位置信息。
 > - 返回值中的位置信息是光标相对于可编辑组件的位置。
+
+## TextDecorationOptions<sup>12+</sup>对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| color  | &nbsp;[ResourceColor](#resourcecolor) | 否   | 设置文本装饰线颜色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## SelectionOptions<sup>12+</sup>对象说明
+
+setTextSelection选中文字时的配置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                            | 必填 | 说明             |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## CaretOffset<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型     | 描述             |
+| ----- | ------ | -------------- |
+| index | number | 光标所在位置的索引值。    |
+| x     | number | 光标相对输入框的x坐标位值，单位px。 |
+| y     | number | 光标相对输入框的y坐标位值，单位px。 |
+
+## InputCounterOptions<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名              | 类型    | 描述                                                         |
+| ------------------- | ------- | ------------------------------------------------------------ |
+| thresholdPercentage | number  | thresholdPercentage是可输入字符数占最大字符限制的百分比值。字符计数器显示的样式为当前输入字符数/最大字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。thresholdPercentage值的有效值区间为[1,100]，数值为小数时，向下取整，如果设置的number超出有效值区间内，不显示字符计数器。thresholdPercentage设置为undefined，显示字符计数器，但此参数不生效。 |
+| highlightBorder     | boolean | 如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。如果用户设置显示字符计数器同时thresholdPercentage参数数值在有效区间内，那么当输入字符数超过最大字符数时，边框和计数器下标将变成红色。如果此参数为true，则显示红色边框。计数器默认显示红色边框。 |

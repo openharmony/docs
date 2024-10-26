@@ -13,5 +13,5 @@ The **MediaControlExtensionAbility** module, inherited from [UIExtensionAbility]
 ## Modules to Import
 
 ```js
-import MediaControlExtensionAbility from '@ohos.app.ability.MediaControlExtensionAbility';
+import { MediaControlExtensionAbility } from '@kit.AVSessionKit';
 ```

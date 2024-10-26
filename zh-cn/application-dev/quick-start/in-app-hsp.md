@@ -5,7 +5,7 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 > 
 > 应用内HSP：在编译过程中与应用包名（bundleName）强耦合，只能给某个特定的应用使用。
 > 
-> 集成态HSP：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名。
+> [集成态HSP](integrated-hsp.md)：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名。
 
 ## 使用场景
 - 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够有效控制应用包大小。
@@ -17,14 +17,12 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 ## 约束限制
 
 - HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。HSP的版本号必须与HAP版本号一致。
-- HSP不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件与[ExtensionAbility](../application-models/extensionability-overview.md)组件。
+- HSP不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件，但支持[UIAbility](../application-models/uiability-overview.md)组件。
 - HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
-- 集成态HSP只支持[Stage模型](application-package-structure-stage.md)。
-- 集成态HSP需要API12及以上版本，使用标准化的OHMUrl格式。
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见<!--RP1-->[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)<!--RP1End-->，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见<!--RP1-->[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hsp-V5#section7717162312546)<!--RP1End-->，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 MyApplication
 ├── library
@@ -166,7 +164,7 @@ export { ResManager } from './src/main/ets/ResManager';
 介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
 ### 引用HSP中的接口
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见<!--RP2-->[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)<!--RP2End-->。
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见<!--RP2-->[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
@@ -181,7 +179,6 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -262,11 +259,11 @@ struct Index {
             .resourceManager
             .getStringValue(ResManager.getDesc())
             .then(value => {
-              Logger.info(TAG, `getStringValue is ${value}`);
+              console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;
             })
             .catch((err: BusinessError) => {
-              Logger.info(TAG, `getStringValue promise error is ${err}`);
+              console.error('getStringValue promise error is ' + err);
             });
         })
 
@@ -305,7 +302,6 @@ struct Index {
 ```ts
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -338,9 +334,8 @@ struct Index {
             url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
           }).then(() => {
             console.log('push page success');
-            Logger.info(TAG, 'push page success');
           }).catch((err: BusinessError) => {
-            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
           })
         })
       }
@@ -447,82 +442,3 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
     '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
     ```
 
-## 集成态HSP
-集成态HSP是应用内HSP的一种中间编译产物，目的就是解决使用方的bundleName和签名强耦合性。
-> **说明：** 
-> HSP只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
-
-#### 开发使用说明
-1. 创建方-集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
-
-    ```json
-    // created_party_project/build-profile.json5
-    {
-      "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
-            }
-          }
-        }
-      }
-    }
-    ```
-2. 创建方-集成态HSP-模块配置：修改模块级构建配置文件build-profile.json5，设置配置项integratedHsp为true，指定构建的HSP模块为集成态HSP。
-
-    ```json
-    // created_party_project/library/build-profile.json5
-    {
-      "apiType": "stageMode",
-      "buildOption": {
-        "arkOptions": {
-          "integratedHsp": true
-        }
-      }
-    }
-    ```
-
-3. 创建方-集成态HSP-打包配置（tgz包）。
-
-    3.1 配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)；
-
-    3.2 配置release模式；
-
-    ![](./figures/ide-release-setting.png)
-
-    3.3 选择library目录，Build -> Make Module 'libray'。
-
-4. 使用方-工程依赖配置:使用方主模块下oh-package.json5配置文件中添加依赖。
-
-    ```json
-    // user_project/entry/oh-package.json5
-      "dependencies": {
-        "hsp": "./lib/library-default.tgz"
-      }
-    ```
-
-5. 使用方-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
-
-    ```json
-    // user_project/build-profile.json5
-    {
-      "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
-            }
-          }
-        }
-      }
-    }
-    ```

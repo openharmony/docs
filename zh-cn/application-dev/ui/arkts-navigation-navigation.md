@@ -18,7 +18,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Auto)
   ```
@@ -34,7 +34,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Stack)
   ```
@@ -78,7 +78,7 @@ Navigation组件通过mode属性设置页面的显示模式。
             .backgroundColor('#FFFFFF')
   
           List({ space: 12 }) {
-            ForEach(this.arr, (item:string) => {
+            ForEach(this.arr, (item:number) => {
               ListItem() {
                 Text("NavRouter" + item)
                   .width("100%")
@@ -92,7 +92,7 @@ Navigation组件通过mode属性设置页面的显示模式。
                     this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
                   })
               }
-            }, (item:string):string => item)
+            }, (item:number) => item.toString())
           }
           .width("90%")
           .margin({ top: 12 })
@@ -188,7 +188,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Mini)
   ```
@@ -205,7 +205,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Full)
   ```
@@ -213,7 +213,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 ## 设置菜单栏
 
-菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt;和CustomBuilder两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt;和[CustomBuilder](../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **图5** 设置了3个图标的菜单栏  
 
@@ -222,7 +222,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -234,7 +234,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -248,7 +248,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -259,7 +259,7 @@ Navigation() {
 
 ## 设置工具栏
 
-工具栏位于Navigation组件的底部，开发者可以通过toolbarConfiguration属性进行设置。
+工具栏位于Navigation组件的底部，开发者可以通过[toolbarConfiguration](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#toolbarconfiguration10)属性进行设置。
 
 
   **图7** 工具栏  
@@ -270,7 +270,7 @@ Navigation() {
 let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
-  ...
+  // ...
 }
 .toolbarConfiguration(TooBar)
 ```
@@ -311,7 +311,7 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
 
     ```ts
     this.pageStack.pushPathByName('PageOne', "PageOne Param", (popInfo) => {
-    console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
+      console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
     });
     ```
 
@@ -320,9 +320,9 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
     ```ts
     this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
     .catch((error: BusinessError) => {
-        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
     }).then(() => {
-    console.error('Push destination succeed.');
+      console.info('Push destination succeed.');
     });
     ```
 
@@ -488,7 +488,7 @@ this.pageStack.setInterception({
 
 Navigation作为路由容器，其生命周期承载在NavDestination组件上，以组件事件的形式开放。
 
-其生命周期大致可分为三类，自定义组件生命周期、通用组件生命周期和自有生命周期（其中aboutToAppear和aboutToDisappear是[自定义组件的生命周期](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)。如果NavDestination外层包含自定义组件时则存在；OnAppear和OnDisappear是组件的[通用生命周期](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)，剩下的六个生命周期为NavDestination独有）。
+其生命周期大致可分为三类，自定义组件生命周期、通用组件生命周期和自有生命周期。其中，[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)和[aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)是自定义组件的生命周期(NavDestination外层包含的自定义组件)，[OnAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)和[OnDisappear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)是组件的通用生命周期。剩下的六个生命周期为NavDestination独有。
 
 生命周期时序如下图所示：
 
@@ -534,7 +534,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   ```
 - 页面状态监听
   
-  通过[@ohos.arkui.observer](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
+  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {
@@ -559,7 +559,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
 
 ## 页面转场
 
-Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（Dialog类型的页面默认无转场动画），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
+Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（API version 13之前，Dialog类型的页面默认无转场动画。从API version13开始，Dialog类型的页面支持系统转场动画。），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
 
 ### 关闭转场
 
@@ -588,21 +588,21 @@ Navigation默认提供了页面切换的转场动画，通过页面栈操作时�
 Navigation通过[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，通过如下三步可以定义一个自定义的转场动画。
 
 1. 构建一个自定义转场动画工具类CustomNavigationUtils，通过一个Map管理各个页面自定义动画对象CustomTransition，页面在创建的时候将自己的自定义转场动画对象注册进去，销毁的时候解注册；
-2. 实现一个转场协议对象[NavigationAnimatedTransition](..//reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11)，其中timeout属性表示转场结束的超时时间，默认为1000ms，tansition属性为自定义的转场动画方法，开发者要在这里实现自己的转场动画逻辑，系统会在转场开始时调用该方法，onTransitionEnd为转场结束时的回调。
+2. 实现一个转场协议对象[NavigationAnimatedTransition](..//reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11)，其中timeout属性表示转场结束的超时时间，默认为1000ms，transition属性为自定义的转场动画方法，开发者要在这里实现自己的转场动画逻辑，系统会在转场开始时调用该方法，onTransitionEnd为转场结束时的回调。
 3. 调用customNavContentTransition方法，返回实现的转场协议对象，如果返回undefined，则使用系统默认转场。
 
 具体示例代码可以参考[Navigation自定义转场示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)。
 
 ### 共享元素转场
 
-NavDestination之间切换时可以通过[geometryTransition](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md)实现共享元素转场。配置了共享元素转场的页面同时需要关闭系统默认的转场动画。
+NavDestination之间切换时可以通过[geometryTransition](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md#geometrytransition)实现共享元素转场。配置了共享元素转场的页面同时需要关闭系统默认的转场动画。
 1. 为需要实现共享元素转场的组件添加geometryTransition属性，id参数必须在两个NavDestination之间保持一致。
 
     ```ts
     // 起始页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
@@ -614,7 +614,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     // 目的页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
@@ -634,8 +634,8 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
         .height(40)
         .margin(20)
         .onClick(() => {
-            animateTo({ duration: 1000 }, () => {
-            this.pageStack.pushPath({ name: 'ToPage' }, false)
+            this.getUIContext()?.animateTo({ duration: 1000 }, () => {
+              this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })
     }
@@ -665,7 +665,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置router_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
+从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    
@@ -695,14 +695,14 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
     配置说明如下：
 
-    | 配置项 | 说明 |
-    |---|---|
-    | name | 跳转页面名称。|
-    | pageSourceFile | 跳转目标页在包内的路径，相对src目录的相对路径。|
-    | buildFunction | 跳转目标页的入口函数名称，必须以@Builder修饰。 |
-    | data | 应用自定义字段。可以通过配置项读取接口getConfigInRouteMap获取。|
+   | 配置项 | 说明 |
+   |---|---|
+   | name | 跳转页面名称。|
+   | pageSourceFile | 跳转目标页在包内的路径，相对src目录的相对路径。|
+   | buildFunction | 跳转目标页的入口函数名称，必须以@Builder修饰。 |
+   | data | 应用自定义字段。可以通过配置项读取接口getConfigInRouteMap获取。|
 
-3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和router_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。
+3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和route_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。
    
    ```ts
      // 跳转页面入口函数
@@ -725,7 +725,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
        }
      }
    ```
-4. 通过pushPathByName等路由接口进行页面跳转。(注意：此时Navigation中可以不用配置navDestination属性)
+4. 通过pushPathByName等路由接口进行页面跳转。(注意：此时Navigation中可以不用配置navDestination属性)。
    
    ```ts
      @Entry
@@ -752,5 +752,6 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 1. 定义页面跳转配置项。
    - 使用资源文件进行定义，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)在运行时对资源文件解析。
    - 在ets文件中配置路由加载配置项，一般包括路由页面名称（即pushPath等接口中页面的别名），文件所在模块名称（hsp/har的模块名），加载页面在模块内的路径（相对src目录的路径）。
-2. 加载目标跳转页面，通过[import](../quick-start/arkts-dynamic-import.md)将跳转目标页面所在的模块在运行时加载, 在模块加载完成后，调用模块中的方法，通过import在模块的方法中加载模块中显示的目标页面，并返回页面加载完成后定义的Builder函数。
-3. 触发页面跳转，在Navigation的[.navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)属性执行步骤2中加载的Builder函数，即可跳转到目标页面。
+2. 加载目标跳转页面，通过[动态import](../arkts-utils/arkts-dynamic-import.md)将跳转目标页面所在的模块在运行时加载, 在模块加载完成后，调用模块中的方法，通过import在模块的方法中加载模块中显示的目标页面，并返回页面加载完成后定义的Builder函数。
+3. 触发页面跳转，在Navigation的[navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)属性执行步骤2中加载的Builder函数，即可跳转到目标页面。
+<!--RP2--><!--RP2End-->

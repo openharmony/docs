@@ -47,9 +47,13 @@ create(options: AnimatorOptions): AnimatorResult
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例：** 
+
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
 
   ```ts
 import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
@@ -64,7 +68,7 @@ let options: AnimatorOptions = {
    begin: 200.0,
    end: 400.0
 };
-animator.create(options);
+animator.create(options);// 建议使用 UIContext.creatAnimator()接口
   ```
 
 ## AnimatorResult
@@ -93,7 +97,7 @@ reset(options: AnimatorOptions): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | The specified page is not found or the object property list is not obtained.|
 
 
@@ -387,6 +391,8 @@ onrepeat: () => void
 
 动画重复时回调。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -546,6 +552,10 @@ class DateT{
 
 ### 基于ArkTS扩展的声明式开发范式
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
+
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -560,8 +570,7 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    let _this = this
-    this.backAnimator = animator.create({
+    this.backAnimator = animator.create({// 建议使用 this.getUIContext.creatAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,
@@ -572,18 +581,18 @@ struct AnimatorTest {
       end: 200
     })
     this.backAnimator.onFinish = ()=> {
-      _this.flag = true
-      console.info(_this.TAG, 'backAnimator onfinish')
+      this.flag = true
+      console.info(this.TAG, 'backAnimator onfinish')
     }
     this.backAnimator.onRepeat = ()=> {
-      console.info(_this.TAG, 'backAnimator repeat')
+      console.info(this.TAG, 'backAnimator repeat')
     }
     this.backAnimator.onCancel = ()=> {
-      console.info(_this.TAG, 'backAnimator cancel')
+      console.info(this.TAG, 'backAnimator cancel')
     }
     this.backAnimator.onFrame = (value:number)=> {
-      _this.wid = value
-      _this.hei = value
+      this.wid = value
+      this.hei = value
     }
   }
 

@@ -21,10 +21,10 @@ The **OHOS::Media::OhosPixelMapInfo** struct defines the information about a pix
 
 | Name| Description| 
 | -------- | -------- |
-| [width](#width) | Image width, in pixels.| 
-| [height](#height) | Image height, in pixels.| 
-| [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Number of bytes of each pixel + Padding. In the case of other types of memory, the formula is as follows: Image width x Number of bytes of each pixel.| 
-| [pixelFormat](#pixelformat) | Pixel format.| 
+| uint32_t [width](#width) | Image width, in pixels. | 
+| uint32_t [height](#height) | Image height, in pixels. | 
+| uint32_t [rowSize](#rowsize) | Number of bytes per row. | 
+| int32_t [pixelFormat](#pixelformat) | Pixel format. | 
 
 
 ## Member Variable Description

@@ -9,13 +9,13 @@ When an app is uninstalled, the account data of the app will be automatically de
 1. Import the **appAccount** module.
 
    ```ts
-   import account_appAccount from '@ohos.account.appAccount';
+   import { appAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain an **AppAccountManager** instance.
 
    ```ts
-   const appAccountManager = account_appAccount.createAppAccountManager();
+   const appAccountManager = appAccount.createAppAccountManager();
    ```
 
 ## Creating an App Account
@@ -28,7 +28,7 @@ Create an app account for an application user.
 
    ```ts
    let name: string = "ZhangSan";
-   let options: account_appAccount.CreateAccountOptions = {
+   let options: appAccount.CreateAccountOptions = {
      customData: {
        age: '10'
      }
@@ -41,7 +41,7 @@ Create an app account for an application user.
    try {
      await appAccountManager.createAccount(name, options);
      console.log('createAccount successfully');
-   } catch (err: BusinessError) {
+   } catch (err) {
      console.log('createAccount failed, error: ' + JSON.stringify(err));
    }
    ```
@@ -59,7 +59,7 @@ Create an app account for an application user.
 2. Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9) to obtain the app account list.
 
    ```ts
-   appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
+   appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
        console.debug('getAllAccounts successfully, data: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
@@ -163,13 +163,13 @@ Create an app account for an application user.
    });
    ```
 
-## Deleting an App Account
+## Removing an App Account
 
-Delete the app account after the user logs out of the system.
+Remove the app account after the user logs out of the system.
 
 **Procedure**
 
-1. Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to delete the app account.
+1. Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to remove the app account.
 
    ```ts
    let name: string = 'Zhangsan';

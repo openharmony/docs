@@ -20,10 +20,10 @@ import { StartOptions } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type | Read-only | Mandatory | Description |
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant-sys.md#abilityconstantwindowmode) | number | No | No | Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications. |
-| windowFocused<sup>12+</sup> | boolean | No | No | Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**:<br>This property takes effect only on tablets and 2-in-1 devices.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1). |
+| [windowMode](js-apis-app-ability-abilityConstant-sys.md#windowmode) | number | No| Yes| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| windowFocused<sup>12+</sup> | boolean | No| Yes| Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**:<br>This property takes effect only on tablets and 2-in-1 devices.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).|
 
 **Example**
 

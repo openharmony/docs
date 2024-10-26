@@ -1,4 +1,4 @@
-# MindSpore Lite Kit API Reference
+# MindSpore Lite Kit
 
 - ArkTS API
   - [@ohos.ai.mindSporeLite (On-device AI Framework)](js-apis-mindSporeLite.md)

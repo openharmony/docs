@@ -136,10 +136,18 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 
 **Error codes**
 
-| ID| Error Message                |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| ID             | Error Message                                  |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+
+> **NOTE**
+> For details about the error codes, see [webSocket Error Codes](errorcode-net-http.md).
 
 **Example**
 
@@ -183,10 +191,18 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 **Error codes**
 
-| ID| Error Message                |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| ID             | Error Message                                  |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+
+> **NOTE**
+> For details about the error codes, see [webSocket Error Codes](errorcode-net-http.md).
 
 **Example**
 
@@ -244,10 +260,18 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 **Error codes**
 
-| ID| Error Message                |
-| ------- | ----------------------- |
-| 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| ID             | Error Message                                  |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+
+> **NOTE**
+> For details about the error codes, see [webSocket Error Codes](errorcode-net-http.md).
 
 **Example**
 
@@ -892,13 +916,13 @@ Defines the optional parameters carried in the request for establishing a WebSoc
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| header | Object | No  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| caPath<sup>11+</sup> | string | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only text certificates in PEM format are supported.|
-| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No  | Client certificate.|
-| proxy<sup>12+</sup> | ProxyConfiguration | No| Proxy configuration. By default, the system network proxy is used.|
-| protocol<sup>12+</sup> | string | No| Custom **Sec-WebSocket-Protocol** field. The default value is "".             |
+| Name| Type|  Read Only | Optional| Description                                                        |
+| ------ | ------ |------ | ---- | ------------------------------------------------------------ |
+| header | Object |  No |  Yes  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| caPath<sup>11+</sup> | string |  No |  Yes | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only text certificates in PEM format are supported.|
+| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) |   No |  Yes  | Client certificate.|
+| proxy<sup>12+</sup> | ProxyConfiguration |  No | Yes| Proxy configuration. By default, the system network proxy is used.|
+| protocol<sup>12+</sup> | string |  No | Yes| Custom **Sec-WebSocket-Protocol** field. The default value is "".             |
 
 ## ClientCert<sup>11+</sup>
 
@@ -913,16 +937,17 @@ Defines the client certificate type.
 | keyPassword | string | No  | Password of the certificate key file.|
 
 ## ProxyConfiguration<sup>12+</sup>
+type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 
 Represents the HTTP proxy configuration.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name   | Type  | Mandatory| Description                     |
-| ------ | ------ | --- |------------------------- |
-| 'system' | string | No |  The default network proxy is used.|
-| 'no-proxy' | string | No |  No network proxy is used.|
-| HttpProxy | Object | No | The specified network proxy is used.|
+|  Type  | Description                     |
+| ------  |------------------------- |
+| 'system'   |  The default network proxy is used.|
+| 'no-proxy' |  No network proxy is used.|
+| [HttpProxy](js-apis-net-connection.md#httpproxy10)  | The specified network proxy is used.|
 
 ## WebSocketCloseOptions
 
@@ -959,9 +984,7 @@ Enumerates the response headers sent by the server.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| [k:string]:string | The header data type is key-value pair.|
-| string[]  | The header data type is string.|
-| undefined | The header data type is **undefined**.|
+| {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
 
 ## Result Codes for Connection Closing
 

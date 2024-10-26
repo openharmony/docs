@@ -269,3 +269,130 @@ TextInput组件showError接口和showCounter接口。
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+
+## cl.arkui.6 非文本组件拖拽背板支持投影和圆角效果变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+拖拽时非文本组件背板新增支持投影和圆角效果。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+1. DragPreviewOptions的成员mode只支持DragPreviewMode类型；
+2. DragPreviewMode枚举类型支持AUTO, DISABLE_SCALE。
+
+变更后：
+1. DragPreviewOptions的成员mode新增可选类型Array\<DragPreviewMode\>；
+2. DragPreviewMode枚举类型新增支持ENABLE_DEFAULT_SHADOW, ENABLE_DEFAULT_RADIUS。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.25开始。
+
+**变更的接口/组件**
+
+DragPreviewOptions接口和DragPreviewMode枚举。
+
+**适配指导**
+
+**场景一**
+
+如果应用存在将DragPreviewOptions的成员mode赋值给其他变量的情况，则存在不兼容的风险。
+``` TypeScript
+let myDragPreviewOptions: DragPreviewOptions = { mode: DragPreviewMode.AUTO }
+Image('/resource/image.jpg')
+  .height(100)
+  .width(100)
+  .margin({ top: 10 })
+  .draggable(true)
+  .dragPreviewOptions(this.myDragPreviewOptions)
+
+// ...
+// 将myDragPreviewOptions.mode赋值给其他变量
+let myMode: DragPreviewMode = this.myDragPreviewOptions.mode
+```
+变更后会发生编译报错，需适配修改为：
+``` TypeScript
+let myDragPreviewOptions: DragPreviewOptions = { mode: DragPreviewMode.AUTO }
+Image('/resource/image.jpg')
+  .height(100)
+  .width(100)
+  .margin({ top: 10 })
+  .draggable(true)
+  .dragPreviewOptions(this.myDragPreviewOptions)
+
+// ...
+// 将myDragPreviewOptions.mode赋值给其他变量，需要扩展类型
+let myMode: DragPreviewMode | Array<DragPreviewMode> = this.myDragPreviewOptions.mode
+```
+
+**场景二**
+
+变更前mode只支持传递单个值：
+
+``` TypeScript
+Image('/resource/image.jpg')
+  .width('100%')
+  .margin({ top: 10 })
+  .draggable(true)
+  .dragPreviewOptions({ mode: DragPreviewMode.AUTO })
+```
+变更后mode可传递DragPreviewMode数组，同时指定多种效果。如下：
+``` TypeScript
+Image('/resource/image.jpg')
+  .width('80%')
+  .margin({ top: 10 })
+  .draggable(true)
+  .border({ radius: { topLeft: 1, topRight: 2, bottomLeft: 4, bottomRight: 8 } })
+  .dragPreviewOptions({ mode: [ DragPreviewMode.ENABLE_DEFAULT_SHADOW, DragPreviewMode.ENABLE_DEFAULT_RADIUS ] })
+
+```
+
+
+## cl.arkui.7 窗口hide接口支持范围变更，仅支持系统窗口和子窗口
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+主窗口调用hide接口会导致不可预期的后果。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：接口支持系统窗口和子窗口，针对主窗口调用hide接口可能会存在不可预期的问题。
+
+变更后：接口仅支持系统窗口和子窗口。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.25 版本开始。
+
+**变更的接口/组件**
+
+Window的hide接口。包含：
+hide(callback: AsyncCallback<void>): void;
+hide(): Promise<void>。
+
+**适配指导**
+
+hide()接口用来隐藏当前窗口，仅支持系统窗口和子窗口调用。若主窗口想实现最小化，请使用minimize()接口实现。

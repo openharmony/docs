@@ -34,8 +34,8 @@ type ActivityType = 'still' | 'relativeStill'
 
 | 类型 | 说明 |
 | -------- | -------- |
-| still | 绝对静止。 |
-| relativeStill | 相对静止。 |
+| 'still' | 绝对静止。 |
+| 'relativeStill' | 相对静止。 |
 
 ## ActivityEvent
 

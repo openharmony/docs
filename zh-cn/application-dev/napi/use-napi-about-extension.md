@@ -2,7 +2,7 @@
 
 ## 简介
 
-[扩展能力接口](../reference/native-lib/napi.md)进一步扩展了Node-API的功能，提供了一些额外的接口，用于在Node-API模块中与ArkTS进行更灵活的交互和定制，这些接口可以用于创建自定义ArkTS对象等场景。
+[扩展能力](napi-data-types-interfaces.md#扩展能力)接口进一步扩展了Node-API的功能，提供了一些额外的接口，用于在Node-API模块中与ArkTS进行更灵活的交互和定制，这些接口可以用于创建自定义ArkTS对象等场景。
 
 Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
 
@@ -13,7 +13,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_load_module | 用于在Node-API模块中将abc文件作为模块加载，返回模块的命名空间，适用于需要在运行时动态加载模块或资源的应用程序，从而实现灵活的扩展和定制。 |
-| napi_load_module_with_info | 用于在Node-API中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTs基础运行时环境](use-napi-ark-runtime.md)中使用 |
+| napi_load_module_with_info | 用于在Node-API中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTS基础运行时环境](use-napi-ark-runtime.md)中使用。 |
 | napi_module_register | 有些功能可能需要通过Node-API模块来实现以获得更好的性能，通过将这些功能实现为自定义模块并注册到ArkTS环境中，可以在一定程度上提高整体的性能。 |
 
 ### 使用示例
@@ -117,7 +117,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2
 
 #### napi_create_object_with_properties
 
-用于使用给定的napi_property_descriptor作为属性去创建一个ArkTS对象，并且descriptor的键名必须为string，且不可转为number。
+用给定的napi_property_descriptor作为属性去创建一个ArkTS对象，并且descriptor的键名必须为string，且不可转为number。
 
 cpp部分代码
 
@@ -241,8 +241,9 @@ static napi_value RunScriptPath(napi_env env, napi_callback_info info)
     napi_value returnValue = nullptr;
     if (value == nullptr || status != napi_ok) {
         napi_get_boolean(env, false, &returnValue);
+    } else {
+        napi_get_boolean(env, true, &returnValue);
     }
-    napi_get_boolean(env, true, &returnValue);
     return returnValue;
 }
 ```
@@ -270,7 +271,7 @@ try {
 
 test.js代码，将js代码编成.abc文件，步骤如下:
 
-1. 在sdK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
+1. 在SDK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
 2. 执行命令如es2abc.exe test.js  --output test.abc后便可生成test.abc文件
 
 放入指定路径中：/entry/resources/rawfile
@@ -317,51 +318,212 @@ add(1, 2);
 cpp部分代码
 
 ```cpp
+#include <bits/alltypes.h>
+#include <mutex>
+#include <unordered_set>
+#include <uv.h>
 #include "napi/native_api.h"
 
-// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作
-static void *DetachCb(napi_env env, void *nativeObject, void *hint)
+class Object {
+public:
+    Object() = default;
+    ~Object() = default;
+
+    static Object* GetInstance()
+    {
+        Object* instance = new Object();
+        return instance;
+    }
+
+    static napi_value GetAddress(napi_env env, napi_callback_info info)
+    {
+        napi_value thisVar = nullptr;
+        napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+        if (thisVar == nullptr) {
+            return nullptr;
+        }
+        void* object = nullptr;
+        napi_unwrap(env, thisVar, &object);
+        if (object == nullptr) {
+            return nullptr;
+        }
+        uint64_t addressVal = reinterpret_cast<uint64_t>(object);
+        napi_value address = nullptr;
+        napi_create_bigint_uint64(env, addressVal, &address);
+        return address;
+    }
+
+    // 获取数组大小
+    static napi_value GetSetSize(napi_env env, napi_callback_info info)
+    {
+        napi_value thisVar = nullptr;
+        napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+        if (thisVar == nullptr) {
+            return nullptr;
+        }
+        void* object = nullptr;
+        napi_unwrap(env, thisVar, &object);
+        if (object == nullptr) {
+            return nullptr;
+        }
+        std::lock_guard<std::mutex> lock(reinterpret_cast<Object*>(object)->numberSetMutex_);
+        uint32_t setSize = reinterpret_cast<Object*>(object)->numberSet_.size();
+        napi_value napiSize = nullptr;
+        napi_create_uint32(env, setSize, &napiSize);
+        return napiSize;
+    }
+
+    // 往数组里插入元素
+    static napi_value Store(napi_env env, napi_callback_info info)
+    {
+        size_t argc = 1;
+        napi_value args[1] = {nullptr};
+        napi_value thisVar = nullptr;
+        napi_get_cb_info(env, info, &argc, args, &thisVar, nullptr);
+        if (argc != 1) {
+            napi_throw_error(env, nullptr, "Store args number must be one.");
+            return nullptr;
+        }
+        napi_valuetype type = napi_undefined;
+        napi_typeof(env, args[0], &type);
+        if (type != napi_number) {
+            napi_throw_error(env, nullptr, "Store args is not number.");
+            return nullptr;
+        }
+        if (thisVar == nullptr) {
+            return nullptr;
+        }
+        uint32_t value = 0;
+        napi_get_value_uint32(env, args[0], &value);
+        void* object = nullptr;
+        napi_unwrap(env, thisVar, &object);
+        if (object == nullptr) {
+            return nullptr;
+        }
+        std::lock_guard<std::mutex> lock(reinterpret_cast<Object*>(object)->numberSetMutex_);
+        reinterpret_cast<Object *>(object)-> numberSet_.insert(value);
+        return nullptr;
+    }
+
+    // 删除数组元素
+    static napi_value Erase(napi_env env, napi_callback_info info)
+    {
+        size_t argc = 1;
+        napi_value args[1] = {nullptr};
+        napi_value thisVar = nullptr;
+        napi_get_cb_info(env, info, &argc, args, &thisVar, nullptr);
+        if (argc != 1) {
+            napi_throw_error(env, nullptr, "Erase args number must be one.");
+            return nullptr;
+        }
+        napi_valuetype type = napi_undefined;
+        napi_typeof(env, args[0], &type);
+        if (type != napi_number) {
+            napi_throw_error(env, nullptr, "Erase args is not number.");
+            return nullptr;
+        }
+        if (thisVar == nullptr) {
+            return nullptr;
+        }
+        uint32_t value = 0;
+        napi_get_value_uint32(env, args[0], &value);
+        void* object = nullptr;
+        napi_unwrap(env, thisVar, &object);
+        if (object == nullptr) {
+            return nullptr;
+        }
+        std::lock_guard<std::mutex> lock(reinterpret_cast<Object*>(object)->numberSetMutex_);
+        reinterpret_cast<Object *>(object)->numberSet_.erase(value);
+        return nullptr;
+    }
+
+    // 清空数组
+    static napi_value Clear(napi_env env, napi_callback_info info)
+    {
+        napi_value thisVar = nullptr;
+        napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+        if (thisVar == nullptr) {
+            return nullptr;
+        }
+        void* object = nullptr;
+        napi_unwrap(env, thisVar, &object);
+        if (object == nullptr) {
+            return nullptr;
+        }
+        std::lock_guard<std::mutex> lock(reinterpret_cast<Object*>(object)->numberSetMutex_);
+        reinterpret_cast<Object *>(object)->numberSet_.clear();
+        return nullptr;
+    }
+
+private:
+    Object(const Object &) = delete;
+    Object &operator=(const Object &) = delete;
+
+    std::unordered_set<uint32_t> numberSet_{};
+    std::mutex numberSetMutex_{};
+};
+
+void FinializeCallback(napi_env env, void *data, void *hint)
 {
-    OH_LOG_INFO(LOG_APP, "Node-API this is detach callback");
-    return nativeObject;
+    return;
+}
+
+// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作
+void* DetachCallback(napi_env env, void *value, void *hint)
+{
+    return value;
 }
 
 // 绑定回调，在反序列化时调用
-static napi_value AttachCb(napi_env env, void *nativeObject, void *hint)
+napi_value AttachCallback(napi_env env, void* value, void* hint)
 {
-    OH_LOG_INFO(LOG_APP, "Node-API this is attach callback");
     napi_value object = nullptr;
-    napi_value name = nullptr;
-    // hint: 一个指针，可以用于传递附加的信息给回调函数
-    // 在这里判断hint是否为空
-    if (hint != nullptr) {
-        // 将void*类型的nativeObject类型强转为napi_value的object
-        object = reinterpret_cast<napi_value>(nativeObject);
-        // 设置name属性
-        napi_create_string_utf8(env, "Leili", NAPI_AUTO_LENGTH, &name);
-    } else {
-        napi_create_object(env, &object);
-        // 设置name属性
-        napi_create_string_utf8(env, "Hanmeimei", NAPI_AUTO_LENGTH, &name);
-    }
-    // 将Native的值设置到Javascript object中
-    napi_set_named_property(env, object, "name", name);
+    napi_create_object(env, &object);
+    napi_property_descriptor desc[] = {
+        {"getAddress", nullptr, Object::GetAddress, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getSetSize", nullptr, Object::GetSetSize, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"store", nullptr, Object::Store, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"erase", nullptr, Object::Erase, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, object, sizeof(desc) / sizeof(desc[0]), desc);
+    // 将JS对象object和native对象value生命周期进行绑定
+    napi_wrap(env, object, value, FinializeCallback, nullptr, nullptr);
+    // JS对象携带native信息
+    napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, hint);
     return object;
 }
 
-static napi_value CoerceToNativeBindingObject(napi_env env, napi_callback_info info)
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
 {
-    // 创建一个Javascript object
-    napi_value object = nullptr;
-    napi_create_object(env, &object);
-    // 调用napi_coerce_to_native_binding_object给ArkTS Object携带Native信息
-    napi_status status = napi_coerce_to_native_binding_object(env, object, DetachCb, AttachCb,
-                                                              reinterpret_cast<void *>(object), nullptr);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_coerce_to_native_binding_object fail");
-        return nullptr;
-    }
-    return object;
+    napi_property_descriptor desc[] = {
+        {"getAddress", nullptr, Object::GetAddress, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"getSetSize", nullptr, Object::GetSetSize, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"store", nullptr, Object::Store, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"erase", nullptr, Object::Erase, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    auto object = Object::GetInstance();
+    napi_wrap(env, exports, reinterpret_cast<void*>(object), FinializeCallback, nullptr, nullptr);
+    napi_coerce_to_native_binding_object(env, exports, DetachCallback, AttachCallback, reinterpret_cast<void*>(object),
+                                         nullptr);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void*)0),
+    .reserved = { 0 },
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
 }
 ```
 
@@ -369,48 +531,81 @@ static napi_value CoerceToNativeBindingObject(napi_env env, napi_callback_info i
 
 ```ts
 // index.d.ts
-export const coerceToNativeBindingObject: () => Object | void;
+export const getAddress: () => number;
+export const getSetSize: () => number;
+export const store: (a: number) => void;
+export const erase: (a: number) => void;
+export const clear: () => void;
 ```
 
 ArkTS侧示例代码
 
 ```ts
 // index.ets
-// 需要加入worker模块，这是为了触发序列化
-import hilog from '@ohos.hilog'
-import worker from '@ohos.worker';
 import testNapi from 'libentry.so';
+import taskpool from '@ohos.taskpool';
 
-let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
-// 发送消息到worker线程
-wk.postMessage("test napi_coerce_to_native_binding_object");
-// 处理来自worker线程的消息
-wk.onmessage = (message) => {
-  hilog.info(0x0000, 'testTag', 'Test Node-API message from worker thread: %{public}s', JSON.stringify(message));
-};
-```
-
-```ts
-// worker.ts
-// 处理来自主线程的消息
-import worker from '@ohos.worker';
-import testNapi from 'libentry.so'
-import hilog from '@ohos.hilog'
-
-let parent = worker.workerPort;
-parent.onmessage = function(message) {
-  hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
-  // 发送消息到主线程
-  parent.postMessage(testNapi.coerceToNativeBindingObject());
+@Concurrent
+function getAddress() {
+  let address: number = testNapi.getAddress();
+  console.info("taskpool:: address is " + address);
 }
+
+@Concurrent
+function store(a:number, b:number, c:number) {
+  let size:number = testNapi.getSetSize();
+  console.info("set size is " + size + " before store");
+  testNapi.store(a);
+  testNapi.store(b);
+  testNapi.store(c);
+  size = testNapi.getSetSize();
+  console.info("set size is " + size + " after store");
+}
+
+@Concurrent
+function erase(a:number) {
+  let size:number = testNapi.getSetSize();
+  console.info("set size is " + size + " before erase");
+  testNapi.erase(a);
+  size = testNapi.getSetSize();
+  console.info("set size is " + size + " after erase");
+}
+
+@Concurrent
+function clear() {
+  let size:number = testNapi.getSetSize();
+  console.info("set size is " + size + " before clear");
+  testNapi.clear();
+  size = testNapi.getSetSize();
+  console.info("set size is " + size + " after clear");
+}
+
+let address:number = testNapi.getAddress();
+console.info("host thread address is " + address);
+
+let task1 = new taskpool.Task(getAddress);
+await taskpool.execute(task1);
+
+let task2 = new taskpool.Task(store, 1, 2, 3);
+await taskpool.execute(task2);
+
+let task3 = new taskpool.Task(store, 4, 5, 6);
+await taskpool.execute(task3);
+
+let task4 = new taskpool.Task(erase, 3);
+await taskpool.execute(task4);
+
+let task5 = new taskpool.Task(erase, 5);
+await taskpool.execute(task5);
+
+let task6 = new taskpool.Task(clear);
+await taskpool.execute(task6);
 ```
+
 **注意事项**
 
-对ArkTs对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A'。
+对ArkTS对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A。
 ![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
-
-worker相关开发配置和流程参考以下链接：
-[使用Worker进行线程间通信](../reference/apis-arkts/js-apis-worker.md)
 
 ## 事件循环
 
@@ -440,7 +635,7 @@ worker相关开发配置和流程参考以下链接：
 
 #### napi_create_ark_runtime、napi_destroy_ark_runtime
 
-[使用Node-API接口创建ArkTs运行时环境](use-napi-ark-runtime.md)
+[使用Node-API接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
 
 ## 序列化和反序列化
 
@@ -524,7 +719,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_call_threadsafe_function_with_priority | 将指定优先级和入队方式的任务投递到ArkTS线程。 |
+| napi_call_threadsafe_function_with_priority | 将指定优先级和入队方式的任务投递到ArkTS主线程。 |
 
 ### 使用示例
 
@@ -865,7 +1060,7 @@ static napi_value WrapSendable(napi_env env, napi_callback_info info) {
 
     const char* testStr = "test";
     napi_wrap_sendable(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr);
-    
+
     return nullptr;
 }
 ```
@@ -906,7 +1101,7 @@ static napi_value WrapSendableWithSize(napi_env env, napi_callback_info info) {
 
     const char* testStr = "test";
     napi_wrap_sendable_with_size(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, nullptr, 100);
-    
+
     return nullptr;
 }
 ```
@@ -951,7 +1146,7 @@ static napi_value UnwrapSendable(napi_env env, napi_callback_info info) {
     char* tmpTestStr = nullptr;
     napi_unwrap_sendable(env, obj, (void**)&tmpTestStr);
     OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
-    
+
     return nullptr;
 }
 ```
@@ -996,7 +1191,7 @@ static napi_value RemoveWrapSendable(napi_env env, napi_callback_info info) {
     char* tmpTestStr = nullptr;
     napi_remove_wrap_sendable(env, obj, (void**)&tmpTestStr);
     OH_LOG_INFO(LOG_APP, "native value is %{public}s", tmpTestStr);
-    
+
     return nullptr;
 }
 ```

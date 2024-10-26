@@ -50,7 +50,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -68,7 +70,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称 | 类型                  | 可读 | 可写 | 说明                                                         |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -86,7 +90,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -108,7 +114,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -126,7 +134,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称         | 值   | 说明               |
 | ------------ | ---- | ------------------ |
@@ -139,7 +149,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -180,7 +192,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -197,7 +211,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -215,7 +231,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -223,16 +241,18 @@ buffer数组，提供blob数据类型。
 | PSS_MGF_NAME_STR | 101 | 表示RSA算法中，使用PSS模式时，掩码生成算法（目前仅支持MGF1）。 |
 | PSS_MGF1_MD_STR | 102 | 表示RSA算法中，使用PSS模式时，MGF1掩码生成功能的消息摘要参数。 |
 | PSS_SALT_LEN_NUM | 103 | 表示RSA算法中，使用PSS模式时，盐值的长度，长度以字节为单位。 |
-| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数，值为1。 |
+| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数。 |
 | SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | 表示SM2算法中，用户身份标识字段。 |
 
 ## AsyKeySpec<sup>10+</sup>
 
-指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，所有bigint类型的密钥参数均采用大端写法，并使用正数。
+指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，除了RSA密钥采用小端写法外，其他bigint类型的密钥参数均采用大端写法，并使用正数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -247,7 +267,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -263,7 +285,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -278,7 +302,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -292,7 +318,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -304,7 +332,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -316,7 +346,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -331,7 +363,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -350,7 +384,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -365,7 +401,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -380,7 +418,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -396,7 +436,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -410,7 +452,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -425,7 +469,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -441,7 +487,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -455,7 +503,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -469,7 +519,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -484,7 +536,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -498,7 +552,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -512,7 +568,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -527,7 +585,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
@@ -543,7 +603,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -558,7 +620,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -573,7 +637,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -587,7 +653,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -599,7 +667,9 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -618,7 +688,7 @@ buffer数组，提供blob数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -641,7 +711,7 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -664,7 +734,9 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -683,7 +755,9 @@ getEncoded(): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key
 
 **返回值：**
 
@@ -727,7 +801,9 @@ clearMem(): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **示例：**
 
@@ -755,7 +831,9 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -801,7 +879,7 @@ getEncodedDer(format: string): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -841,7 +919,7 @@ getEncodedPem(format: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -899,7 +977,9 @@ clearMem(): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **示例：**
 
@@ -917,7 +997,9 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -962,7 +1044,7 @@ getEncodedDer(format: string): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1002,7 +1084,7 @@ getEncodedPem(format: string): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1072,7 +1154,9 @@ function TestPriKeyPkcs1ToPkcs8BySync1024() {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明           |
 | ------- | ------ | ---- | ---- | ------------ |
@@ -1089,7 +1173,9 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **参数：**
 
@@ -1129,7 +1215,9 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                           |
 | ------- | ------ | ---- | ---- | ------------------------------ |
@@ -1151,7 +1239,9 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **参数：**
 
@@ -1189,7 +1279,9 @@ generateSymKey(): Promise\<SymKey>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **返回值：**
 
@@ -1235,7 +1327,7 @@ generateSymKeySync(): SymKey
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -1273,7 +1365,9 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **参数：**
 
@@ -1323,7 +1417,9 @@ convertKey(key: DataBlob): Promise\<SymKey>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **参数：**
 
@@ -1386,7 +1482,7 @@ convertKeySync(key: DataBlob): SymKey
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
 **参数：**
 
@@ -1431,7 +1527,9 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1470,7 +1568,9 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                             |
 | ------- | ------ | ---- | ---- | -------------------------------- |
@@ -1484,7 +1584,9 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1524,7 +1626,9 @@ generateKeyPair(): Promise\<KeyPair>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -1564,7 +1668,7 @@ generateKeyPairSync(): KeyPair
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -1607,7 +1711,9 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1653,7 +1759,9 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1704,7 +1812,7 @@ convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1763,9 +1871,14 @@ convertPemKey(pubKey: string | null, priKey: string | null): Promise\<KeyPair>
 
 异步获取指定数据生成非对称密钥，通过Promise获取结果。
 
+> **说明：**
+> 1. 当调用convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、PEM编码格式，私钥应满足ASN.1语法、PKCS#8规范、PEM编码格式。
+> 2. convertPemKey方法中，公钥和私钥字符串数据为非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
+> 3. convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1834,9 +1947,12 @@ convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
 
 同步获取指定数据生成非对称密钥。
 
+> **说明：**
+> convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey12)接口说明。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1913,7 +2029,9 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -1978,7 +2096,9 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                       |
 | ------- | ------ | ---- | ---- | -------------------------- |
@@ -1994,7 +2114,9 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -2036,7 +2158,9 @@ generateKeyPair(): Promise\<KeyPair>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -2079,7 +2203,7 @@ generateKeyPairSync(): KeyPair
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -2127,7 +2251,9 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -2169,7 +2295,9 @@ generatePriKey(): Promise\<PriKey>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -2212,7 +2340,7 @@ generatePriKeySync(): PriKey
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -2257,7 +2385,9 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -2299,7 +2429,9 @@ generatePubKey(): Promise\<PubKey>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -2342,7 +2474,7 @@ generatePubKeySync(): PubKey
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **返回值：**
 
@@ -2389,7 +2521,9 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -2440,7 +2574,7 @@ static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -2483,7 +2617,7 @@ static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Ar
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -2542,7 +2676,9 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 **参数：**
 
@@ -2593,7 +2729,7 @@ static genCipherTextBySpec(spec: SM2CipherTextSpec, mode?: string): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2645,7 +2781,7 @@ static getCipherTextSpec(cipherText: DataBlob, mode?: string): SM2CipherTextSpec
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2693,7 +2829,9 @@ createCipher(transformation: string): Cipher
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2753,7 +2891,9 @@ try {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -2769,7 +2909,9 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2800,7 +2942,9 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2836,7 +2980,7 @@ initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2875,7 +3019,9 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2914,7 +3060,9 @@ update(data: DataBlob): Promise\<DataBlob>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2950,7 +3098,7 @@ updateSync(data: DataBlob): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -2988,7 +3136,9 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -3015,11 +3165,15 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
+function generateRandom(len: number) {
+  let rand = cryptoFramework.createRandom();
+  let generateRandSync = rand.generateRandomSync(len);
+  return generateRandSync;
+}
+
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataIv = new Uint8Array(arr);
-  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let ivBlob = generateRandom(12);
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
   let dataAad = new Uint8Array(arr);
   let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
   arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -3075,7 +3229,9 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -3107,11 +3263,15 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
+function generateRandom(len: number) {
+  let rand = cryptoFramework.createRandom();
+  let generateRandSync = rand.generateRandomSync(len);
+  return generateRandSync;
+}
+
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataIv = new Uint8Array(arr);
-  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let ivBlob = generateRandom(12);
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
   let dataAad = new Uint8Array(arr);
   let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
   arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -3157,7 +3317,7 @@ doFinalSync(data: DataBlob | null): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -3183,11 +3343,15 @@ doFinalSync(data: DataBlob | null): DataBlob
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
+function generateRandom(len: number) {
+  let rand = cryptoFramework.createRandom();
+  let generateRandSync = rand.generateRandomSync(len);
+  return generateRandSync;
+}
+
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataIv = new Uint8Array(arr);
-  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let ivBlob = generateRandom(12);
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
   let dataAad = new Uint8Array(arr);
   let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
   arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -3227,7 +3391,9 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -3263,7 +3429,9 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Cipher
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
 
 **参数：**
 
@@ -3305,7 +3473,9 @@ Sign实例生成。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3364,7 +3534,9 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -3380,7 +3552,9 @@ Sign类暂不支持重复init。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3409,7 +3583,9 @@ Sign类暂不支持重复init。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3443,7 +3619,7 @@ Sign类暂不支持重复initSync。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3479,7 +3655,9 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3516,7 +3694,9 @@ update(data: DataBlob): Promise\<void>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3558,7 +3738,7 @@ updateSync(data: DataBlob): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3590,7 +3770,9 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3617,7 +3799,9 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3649,7 +3833,7 @@ signSync(data: DataBlob | null): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3776,7 +3960,9 @@ setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3812,7 +3998,9 @@ getSignSpec(itemType: SignSpecItem): string | number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3854,7 +4042,9 @@ Verify实例生成。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3907,7 +4097,9 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -3921,7 +4113,9 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3948,7 +4142,9 @@ init(pubKey: PubKey): Promise\<void>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -3980,7 +4176,7 @@ initSync(pubKey: PubKey): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4021,7 +4217,9 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4057,7 +4255,9 @@ update(data: DataBlob): Promise\<void>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4098,7 +4298,7 @@ updateSync(data: DataBlob): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4130,7 +4330,9 @@ verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4158,7 +4360,9 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4191,7 +4395,7 @@ verifySync(data: DataBlob | null, signatureData: DataBlob): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4328,7 +4532,7 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4402,7 +4606,7 @@ recoverSync(signatureData: DataBlob): DataBlob | null
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4440,7 +4644,9 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4478,7 +4684,9 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
 
 **参数：**
 
@@ -4520,7 +4728,9 @@ KeyAgreement实例生成。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
 
 **参数：**
 
@@ -4559,7 +4769,9 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -4569,11 +4781,13 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob>): void
 
-基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
 
 **参数：**
 
@@ -4581,7 +4795,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 | -------- | ------------------------ | ---- | ---------------------- |
 | priKey   | [PriKey](#prikey)        | 是   | 设置密钥协商的私钥输入。 |
 | pubKey   | [PubKey](#pubkey)        | 是   | 设置密钥协商的公钥输入。 |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享秘密的回调。 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享密钥的回调。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4597,11 +4811,13 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 
 generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
-基于传入的私钥与公钥进行密钥协商，通过Promise返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过Promise返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
 
 **参数：**
 
@@ -4614,7 +4830,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | 共享秘密。 |
+| Promise\<[DataBlob](#datablob)> | 共享密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4630,11 +4846,11 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
 generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 
-基于传入的私钥与公钥进行密钥协商，通过同步返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过同步返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
 **参数：**
 
@@ -4647,7 +4863,7 @@ generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-|[DataBlob](#datablob) | 共享秘密。 |
+|[DataBlob](#datablob) | 共享密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4713,7 +4929,9 @@ createMd(algName: string): Md
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
 
 **参数：**
 
@@ -4758,7 +4976,9 @@ Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
 
 | 名称    | 类型   | 可读 | 可写 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
@@ -4772,11 +4992,15 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> 
+> - 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
 
 **参数：**
 
@@ -4801,11 +5025,15 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> 
+> - 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
@@ -4837,7 +5065,7 @@ updateSync(input: DataBlob): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
@@ -4863,9 +5091,15 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 通过注册回调函数返回Md的计算结果。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
@@ -4902,9 +5136,15 @@ digest(): Promise\<DataBlob>
 
 通过Promise返回Md的计算结果。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
 
 **返回值：**
 
@@ -4943,7 +5183,7 @@ digestSync(): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
 **返回值：**
 
@@ -4984,7 +5224,9 @@ getMdLength(): number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
 
 **返回值：**
 
@@ -5020,7 +5262,9 @@ createMac(algName: string): Mac
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5065,7 +5309,9 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 | 名称    | 类型   | 可读 | 可写 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
@@ -5083,7 +5329,9 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5108,7 +5356,9 @@ init(key: SymKey): Promise\<void>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5138,7 +5388,7 @@ initSync(key: SymKey): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5172,7 +5422,9 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5201,7 +5453,9 @@ update(input: DataBlob): Promise\<void>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5235,7 +5489,7 @@ updateSync(input: DataBlob): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5265,7 +5519,9 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **参数：**
 
@@ -5314,7 +5570,9 @@ doFinal(): Promise\<DataBlob>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **返回值：**
 
@@ -5359,7 +5617,7 @@ doFinalSync(): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
 **返回值：**
 
@@ -5406,7 +5664,9 @@ getMacLength(): number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
 
 **返回值：**
 
@@ -5463,7 +5723,9 @@ createRandom(): Random
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Rand
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
 
 **返回值**：
 
@@ -5500,7 +5762,9 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Rand
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
 
 | 名称    | 类型   | 可读 | 可写 | 说明                 |
 | ------- | ------ | ---- | ---- | -------------------- |
@@ -5512,9 +5776,15 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 异步生成指定长度的随机数，通过注册回调函数返回。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Rand
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
 
 **参数：**
 
@@ -5553,9 +5823,15 @@ generateRandom(len: number): Promise\<DataBlob>
 
 异步生成指定长度的随机数，通过Promise返回。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Rand
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
 
 **参数：**
 
@@ -5601,7 +5877,9 @@ generateRandomSync(len: number): DataBlob
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Rand
+
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
 
 **参数：**
 
@@ -5652,7 +5930,9 @@ setSeed(seed: DataBlob): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Rand
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
@@ -5695,7 +5975,9 @@ createKdf(algName: string): Kdf
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
 
 **参数：**
 
@@ -5734,7 +6016,9 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
@@ -5748,7 +6032,9 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
 
 **参数：**
 
@@ -5818,7 +6104,9 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
 
 **参数：**
 
@@ -5893,7 +6181,7 @@ generateSecretSync(params: KdfSpec): DataBlob
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
 **参数：**
 
