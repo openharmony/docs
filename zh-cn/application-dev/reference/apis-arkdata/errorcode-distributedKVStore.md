@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Over max  limits.
+Upper limit exceeded.
 
 **错误描述**
 
@@ -28,7 +28,7 @@ Over max  limits.
 
 **错误信息**
 
-Open existed database with changed options.
+The options configuration changes when the API is called to obtain a KV store.
 
 **错误描述**
 
@@ -68,7 +68,7 @@ Database corrupted.
 
 **错误信息**
 
-Not found.
+Data not found.
 
 **错误描述**
 

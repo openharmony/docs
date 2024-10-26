@@ -323,7 +323,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -392,7 +392,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -463,7 +463,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -532,7 +532,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -597,7 +597,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -671,7 +671,7 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 | ------------ | -------------------------------------- |
 | 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 202          | Permission verification failed, application which is not a system application uses system API.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
