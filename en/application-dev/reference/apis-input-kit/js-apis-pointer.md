@@ -330,7 +330,7 @@ Obtains the mouse pointer style. This API returns the result synchronously.
 
 | Name    | Type  | Mandatory| Description    |
 | -------- | ------ | ---- | -------- |
-| windowId | number | Yes  | Window ID.|
+| windowId | number | Yes  | Window ID.<br>The default value is **-1**, indicating the global mouse pointer style.|
 
 **Return value**
 
@@ -349,8 +349,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
+
+let windowId = -1;
 try {
-  let style: pointer.PointerStyle = pointer.getPointerStyleSync(-1);
+  let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
   console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
 } catch (error) {
   console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
