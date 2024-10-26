@@ -7,7 +7,7 @@ Defines APIs for querying the location switch status, and starting and stopping 
 
 \@kit LocationKit
 
-**Library**: libohlocation.so
+**Library**: liblocation_ndk.so
 
 **System capability**: SystemCapability.Location.Location.Core
 

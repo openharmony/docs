@@ -184,5 +184,3 @@ Provides functions such as event injection and status query.
 | [Input_Result](input.md#input_result) [OH_Input_RegisterDeviceListener](input.md#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | Registers a listener for device hot swap events. | 
 | [Input_Result](input.md#input_result) [OH_Input_UnregisterDeviceListener](input.md#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | Unregisters the listener for device hot swap events. | 
 | [Input_Result](input.md#input_result) [OH_Input_UnregisterDeviceListeners](input.md#oh_input_unregisterdevicelisteners) () | Unregisters the listener for all device hot swap events. | 
-
-<!--no_check-->

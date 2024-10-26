@@ -7,7 +7,7 @@ Defines common attributes of the location service.
 
 \@kit LocationKit
 
-**Library**: libohlocation.so
+**Library**: liblocation_ndk.so
 
 **System capability**: SystemCapability.Location.Location.Core
 

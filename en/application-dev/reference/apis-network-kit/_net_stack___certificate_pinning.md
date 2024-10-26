@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the certificate lock information structure.
+Defines the certificate pinning information structure.
 
 **Since**: 12
 

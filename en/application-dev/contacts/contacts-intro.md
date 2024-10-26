@@ -11,7 +11,7 @@ Using the Contacts Kit, you can manage contacts, including adding, deleting, mod
 
 The following capabilities are opened to all applications:
 
-- [Contact Selection with Picker](#contact-selection)
+- [Contact Selection with Picker](#contact-selection-with-picker)
 
 The following capabilities are restrictedly opened to third-party applications:
 
@@ -26,7 +26,7 @@ The following capabilities are restrictedly opened to third-party applications:
 - [Contact Selection](#contact-selection-restricted-permission)
 
 
-## Contact Selection
+## Contact Selection with Picker
 
 When you select a contact, the contact list is displayed in Picker mode to facilitate selection. You do not need to apply for permissions for using the API.
 

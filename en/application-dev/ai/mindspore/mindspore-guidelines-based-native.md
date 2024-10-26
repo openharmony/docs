@@ -376,7 +376,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
 
 #### Use N-APIs to encapsulate the C++ dynamic library into an ArkTS module.
 
-1. In **entry/src/main/cpp/types/libentry/Index.d.ts**, define the ArkTS API **runDemo ()**. The content is as follows:
+1. In **entry/src/main/cpp/types/libentry/Index.d.ts**, define the ArkTS API `runDemo()`. The content is as follows:
 
    ```ts
    export const runDemo: (a: number[], b:Object) => Array<number>;
@@ -477,5 +477,3 @@ console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
 <img src="figures/stepc1.png"  width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/stepc4.png" width="20%"/>
-
-

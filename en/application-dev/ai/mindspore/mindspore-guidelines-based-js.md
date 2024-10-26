@@ -31,7 +31,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 1. Select an image classification model.
 2. Use the MindSpore Lite inference model on the device to classify the selected images.
 
-## Environment Setup
+## Environment preparations
 
 Install DevEco Studio 4.1 or later, and update the SDK to API version 11 or later.
 
@@ -79,7 +79,7 @@ If you have other pre-trained models for image classification, convert the origi
    })
    ```
 
-2. Based on the input image size, call [@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtaining the image buffer, and standardizing the image.
+2. Based on the input image size, call [@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) and [@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to perform operations such as cropping the image, obtain the image buffer, and standardizing the image.
 
    ```ts
    import { image } from '@kit.ImageKit';
@@ -169,7 +169,7 @@ If you have other pre-trained models for image classification, convert the origi
    1. Create a context, and set parameters such as the number of runtime threads and device type.
    2. Load the model. In this example, the model is loaded from the memory.
    3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensors.
-   4. Perform model inference through the **predict** API.
+   4. Perform model inference through Call the **predict** API to perform model inference.
 
    ```ts
    // model.ets
@@ -299,3 +299,4 @@ Touch the **photo** button on the device screen, select an image, and touch **OK
 <img src="figures/step1.png" width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/step4.png" width="20%"/>
 
 
+<!--RP1--><!--RP1End-->
