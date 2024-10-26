@@ -5,7 +5,7 @@
 - 媒体开发者指导(ArkTS)
   - 播放
     - [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md)
-    - [使用AVPlayer接口播放视频(ArkTS)]( )
+    - [使用AVPlayer接口播放视频(ArkTS)](video-playerback.md)
   - 录制
     - [使用AVRecorder接口录制音频(ArkTS)](using-avrecorder-for-recording.md)
     - [使用AVRecorder接口录制视频(ArkTS)](video-recording.md)
@@ -23,8 +23,8 @@
 
 - 媒体开发者指导(C/C++)
   - 播放
-    - [使用AVPlayer接口播放音频(C/C++)](using-avplayer-for-playback.md)
-    - [使用AVPlayer接口播放视频(C/C++)](video-playerback.md)
+    - [使用AVPlayer接口播放音频(C/C++)](using-ndk-avplayer-for-playback.md)
+    - [使用AVPlayer接口播放视频(C/C++)]()
   - 录屏
     - [使用AVScreenCapture接口录屏取码流(C/C++)](using-avscreencapture-for-buffer.md)
     - [使用AVScreenCapture接口录屏写文件(C/C++)](using-avscreencapture-for-file.md)
