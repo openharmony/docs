@@ -31,7 +31,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 1. Select an image classification model.
 2. Use the MindSpore Lite inference model on the device to classify the selected images.
 
-## Environment preparations
+## Environment Setup
 
 Install DevEco Studio 4.1 or later, and update the SDK to API version 11 or later.
 
