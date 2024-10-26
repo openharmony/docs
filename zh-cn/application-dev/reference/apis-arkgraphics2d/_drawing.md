@@ -14112,7 +14112,7 @@ OH_Drawing_TextEncoding不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT
 | -------- | -------- |
 | str | 指向字符串的指针。 | 
 | OH_Drawing_Font | 指向字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| OH_Drawing_TextEncoding | 文本编码类型[OH_Drawing_TextEncoding](#oh_drawing_textencoding)。 | 
+| OH_Drawing_TextEncoding | 文本编码类型[OH_Drawing_TextEncoding](#oh_drawing_textencoding)。当前只有TEXT_ENCODING_UTF8生效，其余编码类型也会被视为TEXT_ENCODING_UTF8。 | 
 
 **返回：**
 
