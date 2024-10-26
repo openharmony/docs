@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定。可以包括通知内容、通知ID、通知的通道类型和通知发送时间等信息。
+通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)来进行指定。可以包括通知内容、通知ID、通知的通道类型和通知发送时间等信息。
 
 | **接口名** | **描述** |
 | -------- | -------- |

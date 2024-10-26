@@ -215,8 +215,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 201      | Permission denied.     |  
+| -------- | ----------------------------------- | 
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |

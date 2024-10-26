@@ -229,7 +229,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
   console.info(`removeStickyCommonEvent success`);
 }).catch ((err: BusinessError) => {
-  console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
@@ -269,12 +269,8 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
-  if (!err) {
-    console.info(`setStaticSubscriberState failed, err is null.`);
-    return;
-  }
-  if (err.code !== undefined && err.code != null) {
-    console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+  if (err) {
+    console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
     return;
   }
   console.info(`setStaticSubscriberState success`);
@@ -325,7 +321,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 commonEventManager.setStaticSubscriberState(false).then(() => {
   console.info(`setStaticSubscriberState success`);
 }).catch ((err: BusinessError) => {
-  console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
