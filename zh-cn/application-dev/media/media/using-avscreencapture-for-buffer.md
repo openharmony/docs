@@ -118,6 +118,75 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_Release(capture);
     ```
 
+## 提供PC录屏窗口选择界面规格说明
+基于录屏取码流接口提供了PC录屏窗口选择界面，为兼容已有的接口设计，目前支持三方应用在指定屏幕模式(OH_CAPTURE_SPECIFIED_SCREEN)、传一个窗口Id的指定窗口模式(OH_CAPTURE_SPECIFIED_WINDOW)下，PC弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+
+PC录屏窗口选择界面推荐在OH_CAPTURE_SPECIFIED_WINDOW模式下使用，需根据PC分辨率配置录屏的高度和宽度值并传入屏幕Id。（若有期望录制的某个窗口，可同时传入单个窗口Id）
+
+```c++
+// 根据PC分辨率在config_中配置录屏的宽度、高度
+config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+// 设置录屏模式为OH_CAPTURE_SPECIFIED_WINDOW，传入屏幕Id
+config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
+config_.videoInfo.videoCapInfo.displayId = 0;
+
+// (可选)若有期望录制的窗口，可传入单个窗口Id
+vector<int32_t> missionIds = {61}; // 表示弹出的Picker默认选中61号窗口
+config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
+config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+```
+
+另外，PC录屏窗口选择界面兼容以下几种模式的录屏：
+
+1. OH_CAPTURE_SPECIFIED_WINDOW模式，传入多个窗口Id；
+
+    PC不弹Picker选择界面，弹出隐私允许/不允许弹窗，可同时录制多个窗口；
+
+    ```c++
+    // 根据PC分辨率在config_中配置录屏的宽度、高度
+    config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+    config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+    // 设置录屏模式为OH_CAPTURE_SPECIFIED_WINDOW，传入屏幕Id
+    config_.captureMode = OH_CAPTURE_SPECIFIED_WINDOW;
+    config_.videoInfo.videoCapInfo.displayId = 0;
+
+    // 传入多个窗口Id
+    vector<int32_t> missionIds = {60，61}; // 表示期望同时录制60、61号窗口
+    config_.videoInfo.videoCapInfo.missionIDs = &missionIds[0];
+    config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.size());
+    ```
+
+2. OH_CAPTURE_SPECIFIED_SCREEN模式；
+
+    PC弹出Picker选择弹窗，传入的有效屏幕Id作为Picker弹窗上被选中的默认屏幕；
+
+    ```c++
+    // 根据PC分辨率在config_中配置录屏的宽度、高度
+    config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+    config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+    // 设置录屏模式为OH_CAPTURE_SPECIFIED_SCREEN，传入屏幕Id
+    config_.captureMode = OH_CAPTURE_SPECIFIED_SCREEN;
+    config_.videoInfo.videoCapInfo.displayId = 0;
+    ```
+
+3. OH_CAPTURE_HOME_SCREEN模式；
+
+    PC不弹Picker选择界面，弹出隐私允许/不允许弹窗；
+
+    ```c++
+    // 根据PC分辨率在config_中配置录屏的宽度、高度
+    config_.videoInfo.videoCapInfo.videoFrameWidth = 2880;
+    config_.videoInfo.videoCapInfo.videoFrameHeight = 1920;
+
+    // 设置录屏模式为OH_CAPTURE_HOME_SCREEN，传入屏幕Id
+    config_.captureMode = OH_CAPTURE_HOME_SCREEN;
+    config_.videoInfo.videoCapInfo.displayId = 0;
+    ```
+
 ## 详细说明
 针对[开发步骤及注意事项](#开发步骤及注意事项)中屏幕录制参数配置、回调函数设置、停止录屏服务实例步骤进一步详细说明。
 
