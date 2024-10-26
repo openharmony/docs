@@ -42,7 +42,7 @@
 | hashCode                      | string                                                   |   是  | 是  | 通知唯一标识。                                                               |
 | groupName<sup>8+</sup>         | string                                                   |   否  | 是  | 组通知名称。                                                                |
 | template<sup>8+</sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 是  | 通知模板。                                                                 |
-| distributedOption<sup>8+</sup> | [DistributedOptions](#distributedoptions)                |   否  | 是  | 分布式通知的选项。预留能力，暂未支持。                                                             |
+| distributedOption<sup>8+</sup> | [DistributedOptions](#distributedoptions8)                |   否  | 是  | 分布式通知的选项。预留能力，暂未支持。                                                             |
 | notificationFlags<sup>8+</sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 是  | 获取NotificationFlags。                                                  |
 | removalWantAgent<sup>9+</sup>  | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)            |   否  | 是  | 当移除通知时，通知将被重定向到的WantAgent实例。<br>当前不支持跳转UIAbility，只支持发布公共事件（即[actionType](../apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)取值为4）。                                          |
 | badgeNumber<sup>9+</sup>       | number                                                   |   否  | 是  | 应用程序图标上显示的通知数。当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。                                                        |
