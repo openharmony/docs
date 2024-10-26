@@ -364,10 +364,9 @@ Operation result. For details, see [Location_ResultCode](#location_resultcode).
 
 **LOCAION_SUCCESS**: The location function is stopped successfully.
 
-LOCATION_INVALID_PARAM:
-- The input parameter is a null pointer.
+LOCATION_INVALID_PARAM 1. The input parameter is a null pointer.
 
-- The input pointer is not the same as the pointer to **requestConfig** in [OH_Location_StartLocating](#oh_location_startlocating).
+1. The input pointer is not the same as the pointer to **requestConfig** in [OH_Location_StartLocating](#oh_location_startlocating).
 
    **LOCATION_PERMISSION_DENIED**: Permission verification has failed.
 
@@ -406,10 +405,9 @@ Operation result. For details, see [Location_ResultCode](#location_resultcode).
 
 **LOCAION_SUCCESS**: The additional location information is successfully obtained.
 
-LOCATION_INVALID_PARAM:
-- The input parameter **location** or **additionalInfo** is a null pointer.
+LOCATION_INVALID_PARAM 1. The input parameter **location** or **additionalInfo** is a null pointer.
 
-- The value of the input parameter **length** is too small, that is, the memory size of **additionalInfo** is too small, which is unable to save the complete additional information.
+1. The value of the input parameter **length** is too small, that is, the memory size of **additionalInfo** is too small, which is unable to save the complete additional information.
 
 
 ### OH_LocationInfo_GetBasicInfo()

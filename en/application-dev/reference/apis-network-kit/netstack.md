@@ -26,7 +26,7 @@ Provides C APIs for the network protocol stack module.
 | Name| Description|
 | -------- | -------- |
 | [NetStack_CertBlob](_net_stack___cert_blob.md) | Certificate data structure.|
-| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | Data structure of the certificate lock information.|
+| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | Data structure of the certificate pinning information.|
 | [NetStack_Certificates](_net_stack___certificates.md) | Data structure of the certificate information.|
 | [WebSocket_CloseResult](_web_socket___close_result.md) | Parameters for the connection closure received by the WebSocket client. |
 | [WebSocket_CloseOption](_web_socket___close_option.md) | Parameters for the proactive connection closure initiated by the WebSocket client. |
@@ -65,7 +65,7 @@ Provides C APIs for the network protocol stack module.
 | [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | Sends data from the client to the server. |
 | [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | Lets the WebSocket client proactively close the connection. |
 | [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | Releases the context and resources of the WebSocket connection. |
-| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate lock information.|
+| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate pinning information.|
 | [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Obtains certificate information.|
 | [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Releases the certificate content.|
 
@@ -239,7 +239,7 @@ enum NetStack_CertificatePinningKind
 
 **Description**
 
-Enumerates certificate lock types.
+Enumerates certificate pinning types.
 
 **Since**: 12
 
@@ -329,7 +329,7 @@ int32_t OH_NetStack_GetPinSetForHostName (const char * hostname, NetStack_Certif
 
 **Description**
 
-Obtains the certificate lock information.
+Obtains the certificate pinning information.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -340,7 +340,7 @@ Obtains the certificate lock information.
 | Name    | Description                          |
 | -------- | ------------------------------ |
 | hostname | Host name.                      |
-| pin      | Structure of the certificate lock information.|
+| pin      | Structure of the certificate pinning information.|
 
 **Returns**
 

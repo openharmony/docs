@@ -30,7 +30,6 @@ Defines a listener for device hot swap events.
 Input_DeviceAddedCallback Input_DeviceListener::deviceAddedCallback
 ```
 **Description**
-
 Defines a callback used to receive device insertion events.
 
 
@@ -40,7 +39,4 @@ Defines a callback used to receive device insertion events.
 Input_DeviceRemovedCallback Input_DeviceListener::deviceRemovedCallback
 ```
 **Description**
-
 Defines a callback used to receive device removal events.
-
-<!--no_check-->
