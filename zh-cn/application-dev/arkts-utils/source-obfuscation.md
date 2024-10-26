@@ -279,9 +279,11 @@ firstName
 lastName
 ```
 
-**注意**：
+> **注意**：
 
-该选项在开启`-enable-property-obfuscation`时生效
+> - 该选项在开启`-enable-property-obfuscation`时生效
+
+> - 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
 
 **哪些属性名应该被保留?**
 
@@ -379,6 +381,10 @@ export namespace Ns {
   export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
 }
 ```
+
+> **注意**
+
+> `-keep-global-name`指定的白名单作用于全局。即代码中出现多个顶层作用域名称或者导出名称，只要与`-keep-global-name`配置的白名单名称相同，均不会被混淆。
 
 **哪些顶层作用域的名称应该被保留?**
 
