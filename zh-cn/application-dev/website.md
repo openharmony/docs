@@ -767,7 +767,7 @@
           - [语言测试](internationalization/linguistic-testing.md)
   - 系统<!--system-->
     - 安全<!--system-security-->
-      - 访问控制<!--access-control-->
+      - 程序访问控制<!--access-control-->
         - [访问控制概述](security/AccessToken/access-token-overview.md)
         - 应用权限管控<!--app-permission-mgmt-->
           - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
