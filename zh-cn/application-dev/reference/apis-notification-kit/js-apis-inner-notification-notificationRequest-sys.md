@@ -25,7 +25,7 @@
 | creatorInstanceKey<sup>12+</sup>       | number |   是  | 是  | 创建者实例键值。 <br>**系统接口**：此接口为系统接口。|
 | agentBundle<sup>12+</sup>       | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) |   是  | 是  | 创建通知的代理包信息。 <br>**系统接口**：此接口为系统接口。|
 
-## DistributedOptions
+## DistributedOptions<sup>8+</sup>
 
 描述分布式选项。
 
@@ -33,7 +33,7 @@
 
 | 名称                   | 类型            | 必填 | 说明                               |
 | ---------------------- | -------------- | ---- | ---------------------------------- |
-| remindType<sup>8+</sup>             | number         | 否   | 通知的提醒方式。<br>**系统接口**: 此接口为系统接口。  |
+| remindType             | number         | 否   | 通知的提醒方式。<br>**系统接口**: 此接口为系统接口。  |
 
 
 ## NotificationFilter<sup>11+</sup>

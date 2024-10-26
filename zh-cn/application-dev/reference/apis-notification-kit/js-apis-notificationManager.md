@@ -1615,6 +1615,8 @@ notificationManager.isDistributedEnabled().then((data: boolean) => {
 
 ## SlotLevel
 
+通知级别。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                              | 值          | 说明               |
@@ -1627,6 +1629,8 @@ notificationManager.isDistributedEnabled().then((data: boolean) => {
 
 
 ## SlotType
+
+通知渠道类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
