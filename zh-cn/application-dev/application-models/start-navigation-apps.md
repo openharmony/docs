@@ -170,7 +170,7 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
         | destinationName      | string | 否   | 终点名称   |
         | destinationLatitude  | number | 是   | 终点纬度   |
         | destinationLongitude | number | 是   | 终点经度   |
-        | destinationPoiId     | string | 否   | 终点POI ID |
+        | destinationPoiId     | string | 否   | 终点POI ID，当前仅支持花瓣地图和高德地图获取此参数|
 
     - 位置搜索场景
     
