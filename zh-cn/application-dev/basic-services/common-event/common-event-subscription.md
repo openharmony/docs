@@ -7,7 +7,7 @@
 
 例如，某应用希望在其运行期间收到电量过低的事件，并根据该事件降低其运行功耗，那么该应用便可动态订阅电量过低事件，收到该事件后关闭一些非必要的任务来降低功耗。
 
-订阅部分系统公共事件需要先[申请权限](../../security/AccessToken/determine-application-mode.md)，订阅这些事件所需要的权限请见[公共事件权限列表](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#support)。
+订阅部分系统公共事件需要先[申请权限](../../security/AccessToken/determine-application-mode.md)，订阅这些事件所需要的权限请见[公共事件权限列表](../../reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md)。
 
 
 ## 接口说明

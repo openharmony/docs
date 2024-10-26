@@ -47,7 +47,7 @@ getCode(callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                   | 必填 | 说明               |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<number\> | 是   | 公共事件代码。 |
+| callback | AsyncCallback\<number\> | 是   | 回调函数。返回公共事件代码。 |
 
 **示例：**
 
@@ -127,7 +127,7 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
 | code     | number               | 是   | 公共事件的代码。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
 **示例：**
 
@@ -224,7 +224,7 @@ getData(callback: AsyncCallback\<string>): void
 
 | 参数名   | 类型                   | 必填 | 说明                 |
 | -------- | ---------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<string> | 是   | 公共事件的数据。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数。返回公共事件的数据。 |
 
 **示例：**
 
@@ -304,7 +304,7 @@ setData(data: string, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
 | data     | string               | 是   | 公共事件的数据。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
 **示例：**
 
@@ -403,7 +403,7 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ---------------------- |
 | code     | number               | 是   | 公共事件的代码。   |
 | data     | string               | 是   | 公共事件的数据。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
 **示例：**
 
@@ -647,7 +647,7 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 取消当前的有序公共事件。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
 **示例：**
 
@@ -731,7 +731,7 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
 **示例：**
 
@@ -867,7 +867,7 @@ getAbortCommonEventSync(): boolean
 
 | 类型              | 说明                               |
 | ----------------- | ---------------------------------- |
-| boolean | 表示当前有序公共事件是否取消的状态。 |
+| boolean | 返回true表示当前有序公共事件处于中止状态；false表示当前有序公共事件没有处于中止状态。 |
 
 **示例：**
 
@@ -890,7 +890,7 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                   |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | AsyncCallback\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | 是   | 表示订阅者的订阅信息。 |
+| callback | AsyncCallback\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | 是   | 回调函数。返回订阅者的订阅信息。 |
 
 **示例：**
 
@@ -967,7 +967,7 @@ finishCommonEvent(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                  | 必填 | 说明                              |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示有序公共事件结束后的回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。表示被指定的回调方法。 |
 
 **示例：**
 

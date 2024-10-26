@@ -507,7 +507,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise<Array<BundleOption\>> | 返回允许通知的应用程序列表。 | 
+| Promise<Array<[BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)\>> | 返回允许通知的应用程序列表。 | 
 
 **错误码：**
 
@@ -2688,7 +2688,6 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
-| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
 | 2300007  | Network unreachable.                              |
@@ -2770,7 +2769,6 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
-| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
 | 2300007  | Network unreachable.                              |
@@ -2847,7 +2845,6 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
-| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
 | 2300007  | Network unreachable.                              |
