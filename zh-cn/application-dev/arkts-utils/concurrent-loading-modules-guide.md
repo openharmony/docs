@@ -2,7 +2,7 @@
 
 在应用启动过程中，会有多个业务模块需要加载，例如地图类应用的定位、打车、导航等不同的模块，如果全部在主线程初始化，则会严重影响冷启动耗时。此时需要在不同子线程并行化加载这些模块功能，降低启动耗时。
 
-通过使用ArkTS提供的TaskPool能力，可以将不同业务初始化任务移到子线程中，业务模块通过下沉C++实现成[NativeBinding对象](transferabled-object.md)、或者在ArkTS层定义[Sendable对象](sendable-overview.md)，就可以将初始化的模块返回主线程调用，实现如下。
+通过使用ArkTS提供的TaskPool能力，可以将不同业务初始化任务移到子线程中，业务模块通过下沉C++实现成[NativeBinding对象](transferabled-object.md)、或者在ArkTS层定义[Sendable对象](arkts-sendable.md)，就可以将初始化的模块返回主线程调用，实现如下。
 
 1. 各业务功能（SDK）模块定义（这里以Sendable对象为例）。
    计算器业务模块定义如下：
