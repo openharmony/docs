@@ -1066,7 +1066,7 @@ Error: verify code signature failed.
 	// 执行结果2：verify codesign success。说明包已签名
 	```
 
-* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)。
+* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)。
 
 
 ### 9568257 验证pkcs7文件失败      
