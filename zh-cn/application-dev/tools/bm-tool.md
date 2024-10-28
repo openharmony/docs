@@ -435,7 +435,7 @@ bm dump-overlay -b com.ohos.app -m feature
 bm dump-target-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 ```
 
-**表16** dump-overlay命令列表
+**表16** dump-target-overlay命令列表
 | 命令 | 是否必选 |描述 |
 | -------- | -------- | -------- |
 | -h | 否，默认输出帮助信息 | 显示dump-target-overlay支持的命令信息。 |
