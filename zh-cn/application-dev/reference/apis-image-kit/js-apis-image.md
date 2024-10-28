@@ -4664,9 +4664,10 @@ createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 
 以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 7700301  | Decode failed.         |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types; 3.Parameter verification failed. |
+| 7700301  | Decode failed.                                               |
 
 **示例：**
 
@@ -5498,7 +5499,7 @@ packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 | 参数名           | 类型                                                 | 必填 | 说明                 |
 | ---------------- | ---------------------------------------------------- | ---- | -------------------- |
 | picture | [Picture](#picture13)                           | 是   | 打包的Picture对象。 |
-| option           | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+| options          | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
 
 **返回值：**
 
@@ -5851,7 +5852,7 @@ createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureTy
 
 通过ArrayBuffer图片数据、辅助图尺寸、辅助图类型创建AuxiliaryPicture实例。
 
-**系统能力：** SystemCapability.Multimedia.Image.
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
