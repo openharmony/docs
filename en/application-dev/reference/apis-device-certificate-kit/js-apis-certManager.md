@@ -137,7 +137,7 @@ Represents the result returned.
 | certInfo?          | [CertInfo](#certinfo) | Yes  | Yes  | Detailed certificate information.|
 | credentialList?          | Array<[CredentialAbstract](#credentialabstract)> | Yes  | Yes  | Brief credential information.|
 | credential?         | [Credential](#credential) | Yes  | Yes  | Detailed credential information.|
-| appUidList?        | Array<string>     | Yes  | Yes  | List of authorized applications.|
+| appUidList?        | Array\<string>     | Yes  | Yes  | List of authorized applications.|
 | uri?         | string    | Yes  | Yes  | Unique identifier of the certificate or credential.|
 | outData?         | Uint8Array    | Yes  | Yes  | Signature generated.|
 
