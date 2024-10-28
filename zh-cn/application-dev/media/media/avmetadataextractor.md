@@ -1,4 +1,4 @@
-# 获取音视频元数据
+# 使用AVMetadataExtractor提取音视频元数据信息(ArkTS)
 
 使用AVMetadataExtractor可以实现从原始媒体资源中获取元数据，本开发指导将以获取一个音频资源的元数据作为示例，向开发者讲解AVMetadataExtractor元数据相关功能。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
 
