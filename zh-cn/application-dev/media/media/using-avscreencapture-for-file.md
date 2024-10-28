@@ -1,4 +1,4 @@
-# 使用AVScreenCapture录屏保存到文件(C/C++)
+# 使用AVScreenCapture接口录屏写文件(C/C++)
 
 屏幕录制主要为主屏幕录屏功能。
 
