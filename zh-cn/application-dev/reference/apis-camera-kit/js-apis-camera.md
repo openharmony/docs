@@ -1292,7 +1292,7 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 
 | 名称   | 值    | 说明          |
 |------|------|-------------|
-| HVC  | 0    | 视频编码类型HVC。  |
+| AVC  | 0    | 视频编码类型AVC。  |
 | HEVC | 1 | 视频编码类型HEVC。 |
 
 ## CameraInput
@@ -2777,9 +2777,10 @@ enableMirror(enabled: boolean): void
 
 | 错误码ID    | 错误信息                                           |
 | -------- |------------------------------------------------|
-| 202      | Not System Application.                             |
 | 7400101  | Parameter missing or parameter type incorrect. |
 | 7400103  | Session not config.                    |
+| 7400201  | Camera service fatal error.            |
+
 
 **示例：**
 
@@ -2838,9 +2839,9 @@ setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
 
 **参数：**
 
-| 参数名        | 类型                                  | 说明                |
-| ------------- |-------------------------------------| ------------        |
-| codecType     | [VideoCodecType](#videocodectype13) | 获取动态照片短视频编码类型  |
+| 参数名        | 类型                                  | 必填 |  说明                |
+| ------------- |-------------------------------------|-------| ------------        |
+| codecType     | [VideoCodecType](#videocodectype13) |  是    |获取动态照片短视频编码类型  |
 
 **错误码：**
 
