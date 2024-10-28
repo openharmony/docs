@@ -184,18 +184,6 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### constructor<sup>12+</sup>
-
-constructor()
-
-SymbolEffect的构造函数，无动效。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ## ScaleSymbolEffect<sup>12+</sup>对象说明
 
 ScaleSymbolEffect继承自父类SymbolEffect。
@@ -405,10 +393,6 @@ ReplaceSymbolEffect的构造函数，替换动效。
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
-
-### constructor<sup>12+</sup>
-
-constructor()
 
 PulseSymbolEffect的构造函数，脉冲动效。
 
