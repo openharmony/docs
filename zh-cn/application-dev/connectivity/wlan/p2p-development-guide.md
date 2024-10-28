@@ -123,7 +123,7 @@ let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
 					groupName:"",
 					goBand:0,
 				}
-				// 执行P2P连接
+				// 执行P2P连接，作为GO时不能主动发起连接
 				wifiManager.p2pConnect(config);
 			}
 		}
