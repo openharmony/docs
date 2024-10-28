@@ -439,11 +439,14 @@
 
 **申请流程**：
 
-1. 通过弹窗申请前台位置权限。存在两种允许情况：
+1. 在“module.json5”配置文件中[声明权限](declare-permissions.md)。
+
+   由于在申请后台权限前，必须先申请前台位置权限，因此开发者在配置时，应同时配置后台位置权限ohos.permission.LOCATION_IN_BACKGROUND和前台位置权限。前台位置权限的申请有两种允许情况：
    - 申请前台模糊位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)。
    - 申请前台精确位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)和[ohos.permission.LOCATION](#ohospermissionlocation)。
-2. 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
-3. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
+2. 应用需通过弹窗向用户申请对应的前台位置权限。
+3. 当用户点击弹窗授予前台位置权限后，应用应通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
+4. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
 
    设置路径：
    <!--RP1-->
