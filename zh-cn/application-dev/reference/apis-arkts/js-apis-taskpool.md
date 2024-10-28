@@ -1106,7 +1106,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 > **说明：**
 >
-> 需搭配[@Sendable装饰器](../../arkts-utils/sendable-overview.md#sendable装饰器)使用，否则会抛异常。
+> 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器)使用，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1116,7 +1116,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 | 参数名    | 类型                      | 必填 | 说明                                          |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[Sendable支持的数据类型](../../arkts-utils/sendable-overview.md#sendable支持的数据类型)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/sendable-overview.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
 
 **错误码：**
 
