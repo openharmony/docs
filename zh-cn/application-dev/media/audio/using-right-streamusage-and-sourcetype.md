@@ -15,16 +15,15 @@
 | 音频流使用类型（StreamUsage） | 适用场景 |
 | ---------- | ---------- |
 | STREAM_USAGE_MUSIC | 适用于播放音乐，同样适用于其他媒体场景，如[使用SoundPool](../media/using-soundpool-for-playback.md)播放简短音效等。 |
-| STREAM_USAGE_MOVIE |  适用于播放短视频、电影、电视剧等各类视频内容。 | 
-| STREAM_USAGE_AUDIOBOOK | 适用于播放有声读物、新闻、播客等。| 
-| STREAM_USAGE_GAME | 适用于游戏内配乐、配音，后台音乐不会被打断；游戏内语音，建议使用VOICE_COMMUNICATION。 | 
+| STREAM_USAGE_MOVIE |  适用于播放短视频、电影、电视剧等各类视频内容。 |
+| STREAM_USAGE_AUDIOBOOK | 适用于播放有声读物、新闻、播客等。|
+| STREAM_USAGE_GAME | 适用于游戏内配乐、配音，后台音乐不会被打断；游戏内语音，建议使用VOICE_COMMUNICATION。 |
 | STREAM_USAGE_NAVIGATION | 适用于导航场景的语音播报功能。 |
-| STREAM_USAGE_VOICE_MESSAGE | 适用于播放语音短消息。 | 
-| STREAM_USAGE_VOICE_COMMUNICATION | 适用于VoIP语音通话。 | 
-| STREAM_USAGE_ALARM | 适用于播放闹铃。 | 
-| STREAM_USAGE_RINGTONE | 适用于VoIP来电响铃等。 | 
+| STREAM_USAGE_VOICE_MESSAGE | 适用于播放语音短消息。 |
+| STREAM_USAGE_VOICE_COMMUNICATION | 适用于VoIP语音通话。 |
+| STREAM_USAGE_ALARM | 适用于播放闹铃。 |
+| STREAM_USAGE_RINGTONE | 适用于VoIP来电响铃等。 |
 | STREAM_USAGE_NOTIFICATION | 适用于播放通知音、提示音。 |
-
 
 ### 录制流类型
 
@@ -35,7 +34,6 @@
 | SOURCE_TYPE_MIC | 适用于普通录音。|
 | SOURCE_TYPE_VOICE_COMMUNICATION | 适用于VoIP语音通话。 |
 | SOURCE_TYPE_VOICE_MESSAGE | 适用于录制语音短消息。 |
-
 
 ## 流类型对音频业务的影响
 
@@ -97,7 +95,6 @@
    可以在调用[createAudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiocreateaudiorenderer8)以获取音频渲染器时，传入对应的[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)。
 
    createAudioRenderer的参数options类型为AudioRendererOptions，包含AudioRendererInfo渲染器信息，使用AudioRendererInfo.usage可指定StreamUsage音频流类型。
-  
 
 - **[使用AVPlayer开发音频播放功能(ArkTS)](../media/using-avplayer-for-playback.md)**：
   
@@ -105,7 +102,7 @@
 
   > **说明：**
   > 在设置AVPlayer的audioRendererInfo属性时，只允许在initialized状态下设置。
-  > 
+  >
   > 如果应用未主动设置该属性，AVPlayer将进行默认处理。当媒体源包含视频时，usage的默认值为STREAM_USAGE_MOVIE；否则，usage的默认值为STREAM_USAGE_MUSIC。
 
 - **[使用AVPlayer开发音频播放功能(C/C++)](../media/using-ndk-avplayer-for-playerback.md)**：
