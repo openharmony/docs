@@ -195,7 +195,7 @@ startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildPr
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. The API cannot be called in a child process. |
-| 16000062  | The number of child processes exceeds the upper limit. |
+| 16000062  | The number of native child process exceeds upper bound. |
 
 **示例：**
 
