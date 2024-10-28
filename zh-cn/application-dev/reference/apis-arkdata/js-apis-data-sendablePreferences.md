@@ -53,7 +53,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 | 类型                                    | 说明                               |
 | --------------------------------------- | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/sendable-overview.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
+| Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 
@@ -111,7 +111,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 | 类型                        | 说明                  |
 | --------------------------- | --------------------- |
-| [Preferences](#preferences) | 返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/sendable-overview.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
+| [Preferences](#preferences) | 返回Preferences实例。<br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 
@@ -317,7 +317,7 @@ Preferences实例配置选项。
 
 ## Preferences
 
-Preferences继承自[ISendable](../../arkts-utils/sendable-overview.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，提供获取和修改存储数据的接口。
+Preferences继承自[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，提供获取和修改存储数据的接口。
 
 下列接口都需先使用[sendablePreferences.getPreferences](#sendablepreferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
 
@@ -336,13 +336,13 @@ get(key: string, defValue: lang.ISendable): Promise&lt;lang.ISendable&gt;
 | 参数名   | 类型                    | 必填 | 说明  |
 | -------- | ----------------------- | ---- |--------|
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。  |
-| defValue | [lang.ISendable](../../arkts-utils/sendable-overview.md#isendable) | 是   | 默认返回值。 |
+| defValue | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 是   | 默认返回值。 |
 
 **返回值：**
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| Promise&lt;[lang.ISendable](../../arkts-utils/sendable-overview.md#isendable)&gt; | Promise对象，返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/sendable-overview.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。|
+| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。|
 
 **错误码：**
 
@@ -383,13 +383,13 @@ getSync(key: string, defValue: lang.ISendable): lang.ISendable
 | 参数名   | 类型                    | 必填 | 说明            |
 | -------- | ----------------------- | ---- |---------------------|
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。  |
-| defValue | [lang.ISendable](../../arkts-utils/sendable-overview.md#isendable) | 是   | 默认返回值。 |
+| defValue | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 是   | 默认返回值。 |
 
 **返回值：**
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| [lang.ISendable](../../arkts-utils/sendable-overview.md#isendable) | 返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/sendable-overview.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。|
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回键对应的值。 <br>该实例继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。|
 
 **错误码：**
 
@@ -421,7 +421,7 @@ getAll(): Promise&lt;lang.ISendable&gt;
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;[lang.ISendable](../../arkts-utils/sendable-overview.md#isendable)&gt; | Promise对象，返回含有所有键值数据。 <br>该对象继承[ISendable](../../arkts-utils/sendable-overview.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。  |
+| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise对象，返回含有所有键值数据。 <br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。  |
 
 **错误码：**
 
@@ -461,7 +461,7 @@ getAllSync(): lang.ISendable
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| [lang.ISendable](../../arkts-utils/sendable-overview.md#isendable) | 返回含有所有键值数据。<br>该对象继承[ISendable](../../arkts-utils/sendable-overview.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 返回含有所有键值数据。<br>该对象继承[ISendable](../../arkts-utils/arkts-sendable.md#isendable)，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 
@@ -501,7 +501,7 @@ put(key: string, value: lang.ISendable): Promise&lt;void&gt;
 | 参数名 | 类型                    | 必填 | 说明                         |
 | ------ | ----------------------- | ---- |--------------------------|
 | key    | string                  | 是   | 要修改的存储的Key，不能为空。  |
-| value  | [lang.ISendable](../../arkts-utils/sendable-overview.md#isendable) | 是   | 存储的新值。 |
+| value  | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 是   | 存储的新值。 |
 
 **返回值：**
 
@@ -550,7 +550,7 @@ putSync(key: string, value: lang.ISendable): void
 | 参数名 | 类型                    | 必填 | 说明                                                         |
 | ------ | ----------------------- | ---- | ------------------------ |
 | key    | string                  | 是   | 要修改的存储的Key，不能为空。 |
-| value  | [lang.ISendable](../../arkts-utils/sendable-overview.md#isendable) | 是   | 存储的新值。 |
+| value  | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | 是   | 存储的新值。 |
 
 **错误码：**
 
@@ -933,7 +933,7 @@ on(type: 'dataChange', keys: Array&lt;string&gt;, callback: Callback&lt;lang.ISe
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件类型，固定值'dataChange'，表示精确的数据变更。           |
 | keys     | Array&lt;string&gt;                                          | 是   | 需要订阅的key集合。                                          |
-| callback | callback: Callback&lt;[lang.ISendable](../../arkts-utils/sendable-overview.md#isendable)&gt; | 是   | 回调函数。回调支持返回多个键值对，其中键为发生变更的订阅key，值为变更后的数据：支持number、string、boolean、bigint以及可序列化的object。 |
+| callback | callback: Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | 是   | 回调函数。回调支持返回多个键值对，其中键为发生变更的订阅key，值为变更后的数据：支持number、string、boolean、bigint以及可序列化的object。 |
 
 **错误码：**
 
@@ -1067,7 +1067,7 @@ off(type: 'dataChange', keys: Array&lt;string&gt;, callback?: Callback&lt;lang.I
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件类型，固定值'dataChange'，表示精确的数据变更。           |
 | keys     | Array&lt;string&gt;                                          | 是   | 需要取消订阅的key集合，当keys为空数组时，表示取消订阅全部key；当keys为非空数组时，表示只取消订阅key集合中的key。 |
-| callback | Callback&lt;[lang.ISendable](../../arkts-utils/sendable-overview.md#isendable)&gt; | 否   | 需要取消的回调函数，若callback不填写，表示所有的callback都需要处理；若callback填写，表示只处理该callback。 |
+| callback | Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | 否   | 需要取消的回调函数，若callback不填写，表示所有的callback都需要处理；若callback填写，表示只处理该callback。 |
 
 **错误码：**
 

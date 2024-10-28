@@ -319,7 +319,7 @@
             - [SharedArrayBuffer对象](arkts-utils/shared-arraybuffer-object.md)
             - [Transferable对象（NativeBinding对象）](arkts-utils/transferabled-object.md)
             - Sendable对象<!--sendable-object-->
-              - [Sendable对象简介](arkts-utils/sendable-overview.md)
+              - [Sendable对象简介](arkts-utils/arkts-sendable.md)
               - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
               - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
               - [ASON解析与生成](arkts-utils/ason-parsing-generation.md)

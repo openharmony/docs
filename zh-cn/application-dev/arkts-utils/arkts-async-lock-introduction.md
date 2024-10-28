@@ -12,7 +12,7 @@
 
 ## 使用示例
 
-为了解决[@Sendable共享对象](sendable-overview.md)在不同线程修改共享变量导致的竞争问题，可以采用异步锁进行数据保护。示例如下：
+为了解决[@Sendable共享对象](arkts-sendable.md)在不同线程修改共享变量导致的竞争问题，可以采用异步锁进行数据保护。示例如下：
 
 ```ts
 import { ArkTSUtils, taskpool } from '@kit.ArkTS';
