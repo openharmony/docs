@@ -6776,6 +6776,31 @@ receiver.on('imageArrival', () => {
 })
 ```
 
+### off<sup>13+</sup>
+
+off(type: 'imageArrival', callback: AsyncCallback\<void>): void
+
+释放buffer时移除注册回调。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                     |
+| -------- | -------------------- |----|----------------------------------------|
+| type     | string               | 是  | 注册事件的类型，固定为'imageArrival'，释放buffer时触发。 |
+| callback | AsyncCallback\<void> | 否  | 移除的回调函数。         |
+
+**示例：**
+
+```ts
+let callbackFunc = ()=>{
+    // do something
+}
+receover.on('imageArrival', callbackFunc)
+receiver.off('imageArrival', callbackFunc)
+```
+
 ### release<sup>9+</sup>
 
 release(callback: AsyncCallback\<void>): void
@@ -7090,6 +7115,31 @@ creator.on('imageRelease', (err: BusinessError) => {
     console.info('Succeeded in getting imageRelease callback.');
   }
 })
+```
+
+### off<sup>13+</sup>
+
+off(type: 'imageRelease', callback: AsyncCallback\<void>): void
+
+释放buffer时，移除注册的回调函数。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 参数名        | 类型                     | 必填 | 说明                                         |
+| ------------- | -------------------------|----|--------------------------------------------|
+| type          | string                   | 是  | 监听事件类型，如'imageRelease'。                    |
+| callback      | AsyncCallback\<void>     | 否  | 将被移除的回调函数。 |
+
+**示例：**
+
+```ts
+let callbackFunc = ()=>{
+    // do something
+}
+creator.on('imageRelease', callbackFunc)
+creator.off('imageRelease', callbackFunc)
 ```
 
 ### release<sup>9+</sup>
