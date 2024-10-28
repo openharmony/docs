@@ -31,7 +31,7 @@ Web(value: WebOptions)
 
 | 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value        | [WebOptions](#weboptions11)   | 是    | 定义Web选项。 |
+| value        | [WebOptions](#weboptions8)   | 是    | 定义Web选项。 |
 
 **示例：**
 
@@ -232,7 +232,7 @@ Web组件指定共享渲染进程。
    </html>
    ```
 
-## WebOptions<sup>11+</sup>
+## WebOptions<sup>8+</sup>
 
 通过[接口](#接口)定义Web选项。
 
@@ -244,6 +244,7 @@ Web组件指定共享渲染进程。
 | controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
+| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
 
 ## 属性
 
@@ -789,8 +790,8 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   
     build() {
       Column() {
-        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
-        Button(this.btnMsg)
+        // 通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
           .onClick(() => {
             if(this.isShow){
               this.isShow = false;
@@ -871,7 +872,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   
     build() {
       Column() {
-        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        // 通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
         Button(this.btnMsg)
           .onClick(() => {
             if(this.isShow){
@@ -1688,7 +1689,7 @@ allowWindowOpenMethod(flag: boolean)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -1719,7 +1720,7 @@ allowWindowOpenMethod(flag: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
-          //需要使能multiWindowAccess
+          // 需要使能multiWindowAccess
           .multiWindowAccess(true)
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
@@ -1731,9 +1732,9 @@ allowWindowOpenMethod(flag: boolean)
               builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
-            //将新窗口对应WebviewController返回给Web内核。
-            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
-            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 将新窗口对应WebviewController返回给Web内核。
+            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
             event.handler.setWebController(popController);
           })
       }
@@ -2453,6 +2454,48 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
   </html>
   ```
 
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | onAdsBlocked的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+          }
+        })
+      }
+    }
+  }
+  ```
+
 ### keyboardAvoidMode<sup>12+</sup>
 
 keyboardAvoidMode(mode: WebKeyboardAvoidMode)
@@ -2539,7 +2582,7 @@ struct WebComponent {
 
   onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
     let items = menuItems.filter((menuItem) => {
-        //过滤用户需要的系统按键
+      // 过滤用户需要的系统按键
       return (
         menuItem.id.equals(TextMenuItemId.CUT) ||
         menuItem.id.equals(TextMenuItemId.COPY) ||
@@ -2556,31 +2599,31 @@ struct WebComponent {
       id: TextMenuItemId.of('customItem2'),
       icon: $r('app.media.icon')
     };
-    items.push(customItem1);//在选项列表后添加新选项
-    items.unshift(customItem2);//在选项列表前添加选项
+    items.push(customItem1);// 在选项列表后添加新选项
+    items.unshift(customItem2);// 在选项列表前添加选项
 
     return items;
   }
 
   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
     if (menuItem.id.equals(TextMenuItemId.CUT)) {
-      //用户自定义行为
+      // 用户自定义行为
       console.log("拦截 id：CUT")
-      return true; //返回true不执行系统回调
+      return true; // 返回true不执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      //用户自定义行为
+      // 用户自定义行为
       console.log("不拦截 id：COPY")
-      return false; //返回false执行系统回调
+      return false; // 返回false执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
-      //用户自定义行为
+      // 用户自定义行为
       console.log("拦截 id：customItem1")
-      return true;//用户自定义菜单选项返回true、false无影响，推荐返回true
+      return true;// 用户自定义菜单选项返回true、false无影响，推荐返回true
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
-      //用户自定义行为
+      // 用户自定义行为
       console.log("拦截 id：app.string.customItem2")
       return true;
     }
-    return false;//返回默认值false
+    return false;// 返回默认值false
   }
 
   @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
@@ -4135,7 +4178,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationrequestevent12)\> | 是 | 当需要用户提供的SSL客户端证书时触发的回调。  |
+| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationevent12)\> | 是 | 当需要用户提供的SSL客户端证书时触发的回调。  |
 
   **示例：**
 
@@ -4234,7 +4277,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
        async grantAppPm(callback: (message: string) => void) {
          let message = '';
          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-         //注：com.example.myapplication需要写实际应用名称
+         // 注：com.example.myapplication需要写实际应用名称
          try {
            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
@@ -4247,7 +4290,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
            console.error('getBundleInfoForSelf failed: %{public}s', message);
          }
 
-         //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+         // 注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
          await abilityContext.startAbilityForResult(
            {
@@ -4255,13 +4298,13 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
              abilityName: "MainAbility",
              uri: "requestAuthorize",
              parameters: {
-               appUid: this.appUid, //传入申请应用的appUid
+               appUid: this.appUid, // 传入申请应用的appUid
              }
            } as Want)
            .then((data: common.AbilityResult) => {
              if (!data.resultCode && data.want) {
                if (data.want.parameters) {
-                 this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
+                 this.authUri = data.want.parameters.authUri as string; // 授权成功后获取返回的authUri
                }
              }
            })
@@ -4275,24 +4318,24 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
      @Component
      struct WebComponent {
        controller: webview.WebviewController = new webview.WebviewController();
-       @State message: string = 'Hello World' //message主要是调试观察使用
+       @State message: string = 'Hello World' // message主要是调试观察使用
        certManager = CertManagerService.getInstance();
 
        build() {
          Row() {
            Column() {
              Row() {
-               //第一步：需要先进行授权，获取到uri
+               // 第一步：需要先进行授权，获取到uri
                Button('GrantApp')
                  .onClick(() => {
                    this.certManager.grantAppPm((data) => {
                      this.message = data;
                    });
                  })
-               //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+               // 第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
                Button("ClientCertAuth")
                  .onClick(() => {
-                   this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+                   this.controller.loadUrl('https://www.example2.com'); // 支持双向认证的服务器网站
                  })
              }
 
@@ -4417,11 +4460,11 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
         video: {width: 500, height: 500},
         audio: true
       };
-      //获取video摄像头区域
+      // 获取video摄像头区域
       let video = document.getElementById("video");
-      //返回的Promise对象
+      // 返回的Promise对象
       let promise = navigator.mediaDevices.getUserMedia(constraints);
-      //then()异步，调用MediaStream对象作为参数
+      // then()异步，调用MediaStream对象作为参数
       promise.then(function (MediaStream) {
         video.srcObject = MediaStream;
         video.play();
@@ -4466,11 +4509,11 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     @State showMenu: boolean = false;
 
     @Builder
-    //构建自定义菜单及触发功能接口
+    // 构建自定义菜单及触发功能接口
     MenuBuilder() {
-      //以垂直列表形式显示的菜单。
+      // 以垂直列表形式显示的菜单。
       Menu() {
-        //展示菜单Menu中具体的item菜单项。
+        // 展示菜单Menu中具体的item菜单项。
         MenuItem({
           content: '复制图片',
         })
@@ -4538,7 +4581,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
-          //触发自定义弹窗
+          // 触发自定义弹窗
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
@@ -4579,7 +4622,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
   <body>
     <h1>onContextMenuShow</h1>
     <a href="http://www.example.com" style="font-size:27px">链接www.example.com</a>
-    //rawfile下放任意一张图片命名为example.png
+    // rawfile下放任意一张图片命名为example.png
     <div><img src="example.png"></div>
     <p>选中文字鼠标右键弹出菜单</p>
   </body>
@@ -4879,7 +4922,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -4910,7 +4953,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
-          //需要使能multiWindowAccess
+          // 需要使能multiWindowAccess
           .multiWindowAccess(true)
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
@@ -4922,9 +4965,9 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
               builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
-            //将新窗口对应WebviewController返回给Web内核。
-            //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
-            //若不调用event.handler.setWebController接口，会造成render进程阻塞。
+            // 将新窗口对应WebviewController返回给Web内核。
+            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
+            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
             event.handler.setWebController(popController);
           })
       }
@@ -5035,7 +5078,7 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
     build() {
       Column() {
-        //在网页中点击提交之后，点击refresh按钮可以重新提交时的触发函数。
+        // 在网页中点击提交之后，点击refresh按钮可以重新提交时的触发函数。
         Button('refresh')
           .onClick(() => {
             try {
@@ -6634,48 +6677,6 @@ close(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-### onAdsBlocked<sup>12+</sup>
-
-onAdsBlocked(callback: OnAdsBlockedCallback)
-
-一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | 是 | onAdsBlocked的回调。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    @State totalAdsBlockCounts: number = 0;
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'https://www.example.com', controller: this.controller })
-        .onAdsBlocked((details: AdsBlockedDetails) => {
-          if (details) {
-            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
-            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
-            this.totalAdsBlockCounts += adList.length;
-            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
-          }
-        })
-      }
-    }
-  }
-  ```
-
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -7697,6 +7698,8 @@ getPreviewWidth(): number
 
 获取预览图的宽。
 
+**系统能力：** SystemCapability.Web.Webview.Core
+
 **返回值：**
 
 | 类型     | 说明       |
@@ -7708,6 +7711,8 @@ getPreviewWidth(): number
 getPreviewHeight(): number
 
 获取预览图的高。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -8930,7 +8935,7 @@ Web组件进入全屏时触发的回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 参数名     | 类型                                 | 必填   | 说明           |
+| 名称     | 类型                                 | 必填   | 说明           |
 | ------- | ------------------------------------ | ---- | -------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是    | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)        | 是    | 错误码。           |
@@ -9131,10 +9136,10 @@ onOverrideUrlLoading的回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-|------|------|------|------|------|
-|  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
-|  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
+| 名称 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+|  enable  | boolean | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
+|  shouldOverlay | boolean | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
@@ -9517,7 +9522,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
 
-## OnClientAuthenticationRequestEvent<sup>12+</sup>
+## OnClientAuthenticationEvent<sup>12+</sup>
 
 定义当需要用户提供SSL客户端证书时触发回调。
 
