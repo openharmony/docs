@@ -131,16 +131,17 @@ Actor模型不同角色之间并不共享内存，生产者线程和UI线程都�
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
+
 // 跨线程并发任务
 @Concurrent
-async function produce(): Promise<number>{
+async function produce(): Promise<number> {
   // 添加生产相关逻辑
   console.info("producing...");
   return Math.random();
 }
 
 class Consumer {
-  public consume(value : Object) {
+  public consume(value: Object) {
     // 添加消费相关逻辑
     console.info("consuming value: " + value);
   }
@@ -164,9 +165,9 @@ struct Index {
           let consumer: Consumer = new Consumer();
           for (let index: number = 0; index < 10; index++) {
             // 执行生产异步并发任务
-            taskpool.execute(produceTask).then((res : Object) => {
+            taskpool.execute(produceTask).then((res: Object) => {
               consumer.consume(res);
-            }).catch((e : Error) => {
+            }).catch((e: Error) => {
               console.error(e.message);
             })
           }
