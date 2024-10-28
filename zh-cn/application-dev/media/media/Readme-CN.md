@@ -5,28 +5,25 @@
 - 媒体开发者指导(ArkTS)
   - 播放
     - [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md)
-    - [使用AVPlayer接口播放视频(ArkTS)](video-playerback.md)
+    - [使用AVPlayer接口播放视频(ArkTS)](video-playback.md)
   - 录制
     - [使用AVRecorder接口录制音频(ArkTS)](using-avrecorder-for-recording.md)
     - [使用AVRecorder接口录制视频(ArkTS)](video-recording.md)
+  - 字幕
+    - [使用AVPlayer接口添加视频外挂字幕(ArkTS)](video-subtitle.md)
   - 媒体信息查询
-    - [使用AVMetadataExtractor提取音视频元数据信息(ArkTS)]( )
-    - [使用AVImageGenerator提取视频指定时间图像(ArkTS)]( )
+    - [使用AVMetadataExtractor提取音视频元数据信息(ArkTS)](avmetadataextractor.md)
+    - [使用AVImageGenerator提取视频指定时间图像(ArkTS)](avimagegenerator.md)
   - 录屏
     - [使用AVScreenCaptureRecorder接口录屏写文件(ArkTS)](using-avscreencapture-ArkTs.md)
   - 音频池
     - [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)
   - 视频转码
     - [使用AVTranscoder接口转码(ArkTS)](using-avtranscoder-for-transcodering.md)
-- 媒体最佳实践(ArkTS)
-  - [短视频滑动播放开发指导(ArkTS)]( )
 
 - 媒体开发者指导(C/C++)
   - 播放
-    - [使用AVPlayer接口播放音频(C/C++)](using-ndk-avplayer-for-playback.md)
-    - [使用AVPlayer接口播放视频(C/C++)]()
+    - [使用AVPlayer接口播放音频(C/C++)](using-ndk-avplayer-for-playerback.md)
   - 录屏
     - [使用AVScreenCapture接口录屏取码流(C/C++)](using-avscreencapture-for-buffer.md)
     - [使用AVScreenCapture接口录屏写文件(C/C++)](using-avscreencapture-for-file.md)
-- 媒体最佳实践(C/C++)
-  - [ ]( )
