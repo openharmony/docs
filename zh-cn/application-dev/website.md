@@ -124,12 +124,15 @@
             - [UIAbility组件基本用法](application-models/uiability-usage.md)
             - [UIAbility组件与UI的数据同步](application-models/uiability-data-sync-with-ui.md)
             - [启动应用内的UIAbility组件](application-models/uiability-intra-device-interaction.md)
+            - [UIAbility备份恢复](application-models/ability-recover-guideline.md)
           - [ExtensionAbility组件](application-models/extensionability-overview.md)
             <!--Del-->
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
+            - [UIServiceExtension（仅对系统应用开放）](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
             - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)  
             <!--DelEnd-->
+            - [UIServiceExtension](application-models/uiserviceextension.md)
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
           - [AbilityStage组件容器](application-models/abilitystage.md)
           - [应用上下文Context](application-models/application-context-stage.md)
@@ -137,6 +140,7 @@
             - [Want概述](application-models/want-overview.md)
             - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
             - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
+            - [常见action与entities（不推荐使用）](application-models/actions-entities.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
           <!--Del-->
@@ -148,7 +152,7 @@
           - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
-          - 指向性跳转<!--directional-redirection-->
+          - 拉起指定应用<!--directional-redirection-->
             - [（可选）使用canOpenLink判断应用是否可访问](application-models/canopenlink.md)
             - [使用Deep Linking实现应用间跳转](application-models/deep-linking-startup.md)
             <!--Del-->
@@ -156,10 +160,13 @@
             <!--DelEnd-->
             - [显式Want跳转切换应用链接跳转适配指导](application-models/uiability-startup-adjust.md)
             - [应用链接说明](application-models/app-uri-config.md)
-          - 通用意图跳转<!--common-intent-redirection-->
-            - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
-            - [拉起图片编辑类应用编辑图片](application-models/photoEditorExtensionAbility.md)
-            - [通过startAbility拉起文件处理类应用](application-models/file-processing-apps-startup.md)
+          - [拉起指定类型的应用](application-models/start-intent-panel.md)
+            - [拉起导航类应用（startAbilityByType）](application-models/start-navigation-apps.md)
+            - [拉起邮件类应用（startAbilityByType）](application-models/start-email-apps.md)
+            - [拉起邮件类应用（mailto方式）](application-models/start-email-apps-by-mailto.md)
+            - [拉起金融类应用（startAbilityByType）](application-models/start-finance-apps.md)
+            - [拉起图片编辑类应用（startAbilityByType）](application-models/photoEditorExtensionAbility.md)
+            - [拉起文件处理类应用（startAbility）](application-models/file-processing-apps-startup.md)
           - [拉起系统应用](application-models/system-app-startup.md)
         - [进程模型](application-models/process-model-stage.md)
         - [线程模型](application-models/thread-model-stage.md)
