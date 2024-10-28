@@ -4787,7 +4787,7 @@ async function example() {
 
 dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
 
-从该人像相册中移除指定图片。
+从该人像相册或合影相册中中移除指定图片。
 
 **系统接口**：此接口为系统接口。
 
@@ -5215,6 +5215,47 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
     console.error(`setVideoEnhancementAttr fail with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### dismiss<sup>13+</sup>
+
+dismiss(): void
+
+删除合影相册。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 14000011 | System inner fail.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('dismissDemo');
+  try {
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.GROUP_PHOTO);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+
+    let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+    albumChangeRequest.dismiss();
+    await phAccessHelper.applyChanges(albumChangeRequest);
+    console.info('dismiss successfully');
+  } catch (err) {
+    console.error(`dismissDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5706,6 +5747,7 @@ async function example() {
 | HIGHLIGHT<sup>12+</sup>           | 4104       | 时刻相册。**系统接口**：此接口为系统接口。         |
 | HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | 时刻建议相册。**系统接口**：此接口为系统接口。         |
 | CLOUD_ENHANCEMENT<sup>13+</sup> | 1032     | AI云增强相册。**系统接口**：此接口为系统接口。         |
+| GROUP_PHOTO<sup>13+</sup>         | 4103       | 合影相册。**系统接口**：此接口为系统接口。         |
 
 ## RequestPhotoType<sup>11+</sup>
 
