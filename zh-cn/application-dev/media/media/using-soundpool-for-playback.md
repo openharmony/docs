@@ -1,4 +1,4 @@
-# 使用SoundPool开发音频播放功能
+# 使用SoundPool接口播放短音频(ArkTS)
 
 使用SoundPool（音频池）提供的接口，可以实现低时延短音播放。
 
