@@ -7739,12 +7739,12 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称                        | 值                    | 说明                                |
-| --------------------------- | --------------------- | ----------------------------------- |
-| X_IN_ORIGINAL<sup>13+</sup> | "XInOriginal"         | 水印裁剪图左上角在原始图中的X坐标。 |
-| Y_IN_ORIGINAL<sup>13+</sup> | "YInOriginal"         | 水印裁剪图左上角在原始图中的Y坐标。 |
-| WIDTH<sup>13+</sup>         | "FragmentImageWidth"  | 水印裁剪图的宽。                    |
-| HEIGHT<sup>13+</sup>        | "FragmentImageHeight" | 水印裁剪图的高。                    |
+| 名称          | 值                    | 说明                                |
+| ------------- | --------------------- | ----------------------------------- |
+| X_IN_ORIGINAL | "XInOriginal"         | 水印裁剪图左上角在原始图中的X坐标。 |
+| Y_IN_ORIGINAL | "YInOriginal"         | 水印裁剪图左上角在原始图中的Y坐标。 |
+| WIDTH         | "FragmentImageWidth"  | 水印裁剪图的宽。                    |
+| HEIGHT        | "FragmentImageHeight" | 水印裁剪图的高。                    |
 
 ## ImageFormat<sup>9+</sup>
 
