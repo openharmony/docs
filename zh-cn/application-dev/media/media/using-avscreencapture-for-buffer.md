@@ -1,4 +1,4 @@
-# 使用AVScreenCapture录屏取原始码流(C/C++)
+# 使用AVScreenCapture接口录屏取码流(C/C++)
 
 屏幕录制主要为主屏幕录屏功能。
 
