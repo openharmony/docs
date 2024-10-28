@@ -42,6 +42,8 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 
 ### 属性
 
+**装饰器类型：** @Observed
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -182,7 +184,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 ### 属性
 
-| 属性    | 类型                                                         | 必填 | 描述       |
+| 名称    | 类型                                                         | 必填 | 描述       |
 | ------- | ------------------------------------------------------------ | ---- | ---------- |
 | buttons | [ItemRestriction](#itemrestriction)\<[SegmentButtonTextItem](#segmentbuttontextitem)> | 是   | 按钮信息。 |
 
@@ -198,7 +200,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 ### 属性
 
-| 属性     | 类型                                              | 必填 | 描述                          |
+| 名称      | 类型                                              | 必填 | 描述                          |
 | -------- | ------------------------------------------------- | ---- | ----------------------------- |
 | buttons  | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | 是   | 按钮信息。                    |
 | multiply | boolean                                           | 否   | 是否可以多选，默认值：false。 |
@@ -215,7 +217,7 @@ type ItemRestriction\<T> = [T, T, T?, T?, T?]
 
 | 类型                                      | 说明                              |
 | ----------------------------------------- | --------------------------------- |
-| ItemRestriction\<T\> = [T, T, T?, T?, T?] | 表示包含2~5个相同类型元素的元组。 |
+|[T, T, T?, T?, T?] | 表示包含2~5个相同类型元素的元组。 |
 
 >**说明：**
 >
@@ -252,6 +254,8 @@ type ItemRestriction\<T> = [T, T, T?, T?, T?]
 ## SegmentButtonItemOptionsArray
 
 用于保存按钮信息的数组。
+
+**装饰器类型：** @Observed
 
 >**说明：**
 >
@@ -354,7 +358,7 @@ unshift(...items: SegmentButtonItemArray): number
 **参数：**
 
 
-| 名称  | 类型                                              | 必填 | 说明                 |
+| 参数名  | 类型                                              | 必填 | 说明                 |
 | ----- | ------------------------------------------------- | ---- | -------------------- |
 | items | [SegmentButtonItemArray](#segmentbuttonitemarray) | 是   | 添加的按钮信息数组。 |
 
@@ -440,7 +444,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型      | 必填 | 描述                          |
+| 名称 | 类型      | 必填 | 说明                        |
 | ---- | --------- | ---- | ----------------------------- |
 | type | 'capsule' | 是   | 类型为单选类/多选类分段按钮。 |
 
@@ -452,7 +456,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                   | 必填 | 描述       |
+| 名称 | 类型                                   | 必填 | 说明      |
 | ---- | -------------------------------------- | ---- | ---------- |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是   | 按钮文本。 |
 
@@ -464,7 +468,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性         | 类型                                   | 必填 | 描述                 |
+|名称      | 类型                                   | 必填 | 说明               |
 | ------------ | -------------------------------------- | ---- | -------------------- |
 | icon         | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中态的按钮图标。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。   |
@@ -496,6 +500,8 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 ## SegmentButtonItemOptions
 
 分段按钮中按钮的选项。
+
+**装饰器类型：** @Observed
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -536,7 +542,7 @@ SegmentButtonItemOptions的构造参数。
 
 ### 属性
 
-| 名称         | 类型                                   | 必填 | 描述                 |
+| 名称         | 类型                                   | 必填 | 说明              |
 | ------------ | -------------------------------------- | ---- | -------------------- |
 | icon         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态的按钮图标。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。   |
