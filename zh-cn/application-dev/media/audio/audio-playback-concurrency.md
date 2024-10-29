@@ -16,9 +16,41 @@
 
 - 在启动播放或录制操作前，应根据音频的具体用途，选择并[使用合适的音频流类型](using-right-streamusage-and-sourcetype.md)，即准确设置[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)或[SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)。
 
-- 在播放或录制的过程中，需[监听音频焦点事件](#处理音频焦点事件)，并在接收到音频焦点中断事件（[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)）时，采取相应的处理措施。
+- 在播放或录制的过程中，需[监听音频焦点事件](#处理音频焦点变化)，并在接收到音频焦点中断事件（[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)）时，采取相应的处理措施。
 
 - 若应用程序有意主动管理音频焦点，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)相关的接口进行操作。
+
+### 申请音频焦点
+
+**当应用开始播放或录制音频时，系统将自动为相应的音频流申请音频焦点。**
+
+例如，应用[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，当调用AudioRenderer的[start](../../reference/apis-audio-kit/js-apis-audio.md#start8)时，系统会自动为应用请求音频焦点。
+
+若音频焦点请求成功，音频流将正常启动；反之，若音频焦点请求被拒绝，音频流将无法开始播放或录制。
+
+建议应用主动[监听音频焦点事件](#处理音频焦点变化)，一旦音频焦点请求被拒绝，应用将接收到[音频焦点事件（InterruptEvent）](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)。
+
+**特殊场景：**
+
+1. **短音播放**：若应用[使用SoundPool开发音频播放功能](../media/using-soundpool-for-playback.md)，且[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)指定为Music、Movie、AudioBook等类型，播放短音，则其申请焦点时默认为并发模式，不会影响其他音频。
+
+2. **静音播放**：若应用以静音状态开始播放音频（或视频），并且希望静音阶段不影响其他音频，当后续解除静音的时候，再以正常策略申请音频焦点，则可以调用静音并发播放模式的相关接口。具体可参考：
+
+   - [使用AVPlayer开发音频播放功能](../media/using-avplayer-for-playback.md)，可以调用[setMediaMuted](../../reference/apis-media-kit/js-apis-media.md#setmediamuted12)函数。
+
+   - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，可调用[setSilentModeAndMixWithOthers](../../reference/apis-audio-kit/js-apis-audio.md#setsilentmodeandmixwithothers12)函数。
+
+   - [使用OHAudio开发音频播放功能](using-ohaudio-for-playback.md)，可调用[OH_AudioRenderer_SetSilentModeAndMixWithOthers](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_setsilentmodeandmixwithothers)函数。
+
+### 释放音频焦点
+
+**当应用结束播放或录制音频时，系统会自动为相应的音频流释放音频焦点。**
+
+例如，应用[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，当调用AudioRenderer的[pause](../../reference/apis-audio-kit/js-apis-audio.md#pause8)、[stop](../../reference/apis-audio-kit/js-apis-audio.md#stop8)、[release](../../reference/apis-audio-kit/js-apis-audio.md#release8)等时，系统会为其释放音频焦点。
+
+当音频流释放音频焦点时，若存在受其影响的其他音频流（如音量被调低或被暂停的流），将触发恢复操作。
+
+若应用不希望在音频流停止时立即释放音频焦点，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)的相关接口，实现音频焦点释放的延迟效果。
 
 ### 音频焦点策略
 
@@ -60,43 +92,11 @@
 
 - 若[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)，则可以调用[OH_AudioStreamBuilder_SetRendererInterruptMode](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrendererinterruptmode)函数进行设置。
 
-### 申请音频焦点
-
-**当应用开始播放或录制音频时，系统将自动为相应的音频流申请音频焦点。**
-
-例如，应用[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，当调用AudioRenderer的[start](../../reference/apis-audio-kit/js-apis-audio.md#start8)时，系统会自动为应用请求音频焦点。
-
-若音频焦点请求成功，音频流将正常启动；反之，若音频焦点请求被拒绝，音频流将无法开始播放或录制。
-
-建议应用主动[监听音频焦点事件](#处理音频焦点事件)，一旦音频焦点请求被拒绝，应用将接收到[音频焦点事件（InterruptEvent）](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)。
-
-**特殊场景：**
-
-1. **短音播放**：若应用[使用SoundPool开发音频播放功能](../media/using-soundpool-for-playback.md)，且[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)指定为Music、Movie、AudioBook等类型，播放短音，则其申请焦点时默认为并发模式，不会影响其他音频。
-
-2. **静音播放**：若应用以静音状态开始播放音频（或视频），并且希望静音阶段不影响其他音频，当后续解除静音的时候，再以正常策略申请音频焦点，则可以调用静音并发播放模式的相关接口。具体可参考：
-
-   - [使用AVPlayer开发音频播放功能](../media/using-avplayer-for-playback.md)，可以调用[setMediaMuted](../../reference/apis-media-kit/js-apis-media.md#setmediamuted12)函数。
-
-   - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，可调用[setSilentModeAndMixWithOthers](../../reference/apis-audio-kit/js-apis-audio.md#setsilentmodeandmixwithothers12)函数。
-
-   - [使用OHAudio开发音频播放功能](using-ohaudio-for-playback.md)，可调用[OH_AudioRenderer_SetSilentModeAndMixWithOthers](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_setsilentmodeandmixwithothers)函数。
-
-### 释放音频焦点
-
-**当应用结束播放或录制音频时，系统会自动为相应的音频流释放音频焦点。**
-
-例如，应用[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，当调用AudioRenderer的[pause](../../reference/apis-audio-kit/js-apis-audio.md#pause8)、[stop](../../reference/apis-audio-kit/js-apis-audio.md#stop8)、[release](../../reference/apis-audio-kit/js-apis-audio.md#release8)等时，系统会为其释放音频焦点。
-
-当音频流释放音频焦点时，若存在受其影响的其他音频流（如音量被调低或被暂停的流），将触发恢复操作。
-
-若应用程序希望避免在音频流停止时立即释放音频焦点，可使用[音频会话（AudioSession）](#使用audiosession管理音频焦点)的相关接口，实现音频焦点释放的延迟效果。
-
 ### 处理音频焦点变化
 
 在应用播放或录制音频的过程中，若有其他音频流申请焦点，系统会根据[焦点策略](#音频焦点策略)进行焦点处理。若判定本音频流的焦点有变化，需要执行暂停、继续、降低音量、恢复音量等操作，则系统会自动执行一些必要的操作，并通过[音频焦点事件（InterruptEvent）](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)通知应用。
 
-因此，为了维持应用和系统的状态一致性，保证良好的用户体验，推荐应用[监听音频焦点事件](#处理音频焦点事件)，并在焦点发生变化时，根据[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)做出必要的响应。
+因此，为了维持应用和系统的状态一致性，保证良好的用户体验，推荐应用监听音频焦点事件，并在焦点发生变化时，根据[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)做出必要的响应。
 
 **使用不同方式开发时，如何监听音频焦点事件：**
 
@@ -112,39 +112,37 @@
 
 - 若[使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)，可以调用[OH_AudioStreamBuilder_SetCapturerCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setcapturercallback)接口，监听音频焦点事件[OH_AudioCapturer_OnInterruptEvent](../../reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md#oh_audiocapturer_oninterruptevent)。
 
-### 处理音频焦点事件
-
 应用在收到音频焦点事件（[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)）时，需要根据其中信息，做出相应的处理，以保持应用与系统状态一致，带给用户良好的音频体验。
 
 在音频焦点事件中，应用应重点关注两个信息：打断类型（InterruptForceType）和打断提示（InterruptHint）。
 
-**打断类型（[InterruptForceType](../../reference/apis-audio-kit/js-apis-audio.md#interruptforcetype9)）：**
+- 打断类型（[InterruptForceType](../../reference/apis-audio-kit/js-apis-audio.md#interruptforcetype9)）：
 
-InterruptForceType参数提示应用该焦点变化是否已由系统强制操作：
+  InterruptForceType参数提示应用该焦点变化是否已由系统强制操作：
 
-- 强制打断类型（INTERRUPT_FORCE）：由系统进行操作，强制执行。应用需要做一些必要的处理，例如更新状态、更新界面显示等。
+  - 强制打断类型（INTERRUPT_FORCE）：由系统进行操作，强制执行。应用需要做一些必要的处理，例如更新状态、更新界面显示等。
 
-- 共享打断类型（INTERRUPT_SHARE）：由应用进行操作，应用可以选择响应或忽略，系统不会干涉。
+  - 共享打断类型（INTERRUPT_SHARE）：由应用进行操作，应用可以选择响应或忽略，系统不会干涉。
 
-系统默认优先采用强制打断类型（INTERRUPT_FORCE），应用无法更改。
+  系统默认优先采用强制打断类型（INTERRUPT_FORCE），应用无法更改。
 
-> **注意：**
-> 对于一些系统无法强制执行的操作（例如INTERRUPT_HINT_RESUME），会采用共享打断类型（INTERRUPT_SHARE）。
+  > **注意：**
+  > 对于一些系统无法强制执行的操作（例如INTERRUPT_HINT_RESUME），会采用共享打断类型（INTERRUPT_SHARE）。
 
-**打断提示（[InterruptHint](../../reference/apis-audio-kit/js-apis-audio.md#interrupthint)）：**
+- 打断提示（[InterruptHint](../../reference/apis-audio-kit/js-apis-audio.md#interrupthint)）：
 
-InterruptHint参数用于提示应用音频流的状态：
+  InterruptHint参数用于提示应用音频流的状态：
 
-- 继续（INTERRUPT_HINT_RESUME）：音频流可恢复播放或录制，仅会接收到PAUSE（暂停提示）之后收到。
+  - 继续（INTERRUPT_HINT_RESUME）：音频流可恢复播放或录制，仅会接收到PAUSE（暂停提示）之后收到。
 
-    此操作无法由系统强制执行，其对应的InterruptForceType一定为INTERRUPT_SHARE类型。
+      此操作无法由系统强制执行，其对应的InterruptForceType一定为INTERRUPT_SHARE类型。
 
-- 暂停（INTERRUPT_HINT_PAUSE）：音频暂停，暂时失去音频焦点。后续待焦点可用时，会再收到INTERRUPT_HINT_RESUME。
-- 停止（INTERRUPT_HINT_STOP）：音频停止，彻底失去音频焦点。
-- 降低音量（INTERRUPT_HINT_DUCK）：音频降低音量播放，而不会停止。默认降低至正常音量的20%。
-- 恢复音量（INTERRUPT_HINT_UNDUCK）：音频恢复正常音量。
+  - 暂停（INTERRUPT_HINT_PAUSE）：音频暂停，暂时失去音频焦点。后续待焦点可用时，会再收到INTERRUPT_HINT_RESUME。
+  - 停止（INTERRUPT_HINT_STOP）：音频停止，彻底失去音频焦点。
+  - 降低音量（INTERRUPT_HINT_DUCK）：音频降低音量播放，而不会停止。默认降低至正常音量的20%。
+  - 恢复音量（INTERRUPT_HINT_UNDUCK）：音频恢复正常音量。
 
-### 处理音频焦点示例
+**处理音频焦点示例:**
 
 为了带给用户更好的音频体验，针对不同的音频焦点事件内容，应用需要做出相应的处理操作。此处以[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考。
 
@@ -298,7 +296,7 @@ async function onAudioInterrupt(): Promise<void> {
    > **注意：**
    > 当AudioSession因超时而停用时，被其压低音量（Duck）的音频会触发恢复音量（Unduck）操作，被其暂停（Pause）的音频流会触发停止（Stop）操作。
 
-### 典型场景
+## 典型场景
 
 以下列举一些典型的焦点适配场景。
 
