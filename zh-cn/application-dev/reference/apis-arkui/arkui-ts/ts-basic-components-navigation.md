@@ -1669,6 +1669,7 @@ struct NavigationExample {
 
   registerInterception() {
     this.pageInfos.setInterception({
+      // 页面跳转前拦截，允许操作栈，在当前跳转中生效。
       willShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
                  operation: NavigationOperation, animated: boolean) => {
         if (!this.isUseInterception) {
@@ -1678,13 +1679,14 @@ struct NavigationExample {
           console.log("target page is navigation home");
           return;
         }
-        // redirect target page.Change pageTwo to pageOne.
+        // 重定向目标页面，更改为pageTwo页面到pageOne页面。
         let target: NavDestinationContext = to as NavDestinationContext;
         if (target.pathInfo.name === 'pageTwo') {
           target.pathStack.pop();
           target.pathStack.pushPathByName('pageOne', null);
         }
       },
+      // 页面跳转后回调，在该回调中操作栈在下一次跳转中刷新。
       didShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
                 operation: NavigationOperation, isAnimated: boolean) => {
         if (!this.isUseInterception) {
@@ -1701,6 +1703,7 @@ struct NavigationExample {
           console.log(`current transition is to ${(to as NavDestinationContext).pathInfo.name}`);
         }
       },
+      // Navigation单双栏显示状态发生变更时触发该回调。
       modeChange: (mode: NavigationMode) => {
         if (!this.isUseInterception) {
           return;
