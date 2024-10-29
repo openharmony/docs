@@ -1222,9 +1222,11 @@
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
-      - [处理音频焦点事件](media/audio/audio-playback-concurrency.md)
-      - [音频并发策略扩展(ArkTS)](media/audio/audio-session-management.md)
-      - [音频并发策略扩展(C/C++)](media/audio/using-ohaudio-for-session.md)
+      - [使用合适的音频类型](media/audio/using-right-streamusage-and-sourcetype.md)
+      - [音频焦点和音频会话介绍](media/audio/audio-playback-concurrency.md)
+      - 音频焦点管理<!--audio-session-->
+        - [音频会话管理(ArkTS)](media/audio/audio-session-management.md)
+        - [音频会话管理(C/C++)](media/audio/using-ohaudio-for-session.md)
       - 音频播放<!--audio-playback-->
         - [音频播放开发概述](media/audio/audio-playback-overview.md)
         - [使用AudioRenderer开发音频播放功能](media/audio/using-audiorenderer-for-playback.md)
