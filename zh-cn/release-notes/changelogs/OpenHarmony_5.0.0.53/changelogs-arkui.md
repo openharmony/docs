@@ -96,3 +96,37 @@ struct barHeightTest {
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.3 sharedTransition在id入参为undefined或空字符串时的行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+sharedTransition的id从非空字符串变为空字符串或undefined时，无法实现清空共享元素转场id的效果。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：sharedTransition的id从非空字符串变为空字符串或undefined时，会维持之前的有效id值。
+
+变更后：sharedTransition的id从非空字符串变为空字符串或undefined时，会将共享元素转场id置为空字符串，达到取消sharedTransition匹配的效果。
+
+**起始API Level**
+
+API 7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.53版本开始。
+
+**变更的接口/组件**
+
+common.d.ts文件的sharedTransition接口
+
+**适配指导**
+
+如果同一组件sharedTransition的id需要保持不变，应维持原状，而非将其更改为空字符串或undefined。若需清空sharedTransition的id，可将sharedTransition的id设置为空字符串或undefined来实现。
