@@ -16,7 +16,7 @@ Defines the information about a preinstalled application that can be restored af
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name            | Type                          | Readable| Writable| Description                  |
+| Name            | Type                          | Read-Only| Optional| Description                  |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | bundleName       | string                         | Yes  | No  | Bundle name.      |
 | moduleName       | string                         | Yes  | No  | Module name.|

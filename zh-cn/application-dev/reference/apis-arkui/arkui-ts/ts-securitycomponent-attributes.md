@@ -500,7 +500,7 @@ constraintSize(value: ConstraintSizeOptions): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | HORIZONTAL | 0 | 安全控件上图标和文字分布的方向为水平排列。 |
 | VERTICAL | 1 | 安全控件上图标和文字分布的方向为垂直排列。 |

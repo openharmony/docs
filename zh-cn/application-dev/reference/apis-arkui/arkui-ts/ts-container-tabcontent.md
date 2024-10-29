@@ -325,7 +325,7 @@ id(value: string): SubTabBarStyle
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 描述                     |
+| 名称       | 说明               |
 | ---------- | ------------------------ |
 | INDICATOR | 使用下划线模式。     |
 | BOARD   | 使用背板模式。     |
@@ -570,7 +570,7 @@ iconStyle(style: TabBarIconStyle): BottomTabBarStyle
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 描述                                       |
+| 名称         | 说明                                     |
 | ----------  | ---------------------------------------- |
 | AUTO        | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
 | VERTICAL    | 页签内容上下排布。 |
@@ -635,17 +635,18 @@ struct TabContentExample {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder tabBuilder(index: number) {
     Column() {
-      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+      Image(this.selectedIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
         .height(24)
         .margin({ bottom: 4 })
         .objectFit(ImageFit.Contain)
       Text(`Tab${index + 1}`)
-        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(10)
         .fontWeight(500)
         .lineHeight(14)
@@ -718,7 +719,15 @@ struct TabContentExample {
       .vertical(false)
       .barHeight(56)
       .onChange((index: number) => {
+        // currentIndex控制TabContent显示页签
         this.currentIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        // selectedIndex控制自定义TabBar内Image和Text颜色切换
+        this.selectedIndex = targetIndex
       })
       .width(360)
       .height(190)
@@ -741,17 +750,18 @@ struct TabContentExample {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder tabBuilder(index: number) {
     Column() {
-      Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
+      Image(this.selectedIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
         .height(24)
         .margin({ bottom: 4 })
         .objectFit(ImageFit.Contain)
       Text('Tab')
-        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(10)
         .fontWeight(500)
         .lineHeight(14)
@@ -774,7 +784,15 @@ struct TabContentExample {
       .barWidth(96)
       .barHeight(414)
       .onChange((index: number) => {
+        // currentIndex控制TabContent显示页签
         this.currentIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        // selectedIndex控制自定义TabBar内Image和Text颜色切换
+        this.selectedIndex = targetIndex
       })
       .width(96)
       .height(414)

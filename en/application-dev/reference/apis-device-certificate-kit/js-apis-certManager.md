@@ -94,7 +94,6 @@ Represents brief information about a certificate.
 | uri          | string         | No | No | Unique identifier of the certificate.|
 | certAlias          | string   | No | No | Alias of the certificate.|
 | state          | boolean     | No | No | Certificate state. The value **true** indicates that the certificate is enabled, and **false** means the opposite.|
-| issuerName          | string         | No | No | Issuer of the certificate.|
 | subjectName          | string   | No | No | User of the certificate.|
 
 ## Credential

@@ -30,12 +30,20 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 @Entry
 @Component
 struct AccessRestrictions {
-  @Builder buildTest() {
+  @Builder
+  buildTest() {
     Text("Parent builder")
   }
+
   build() {
     Column() {
-      ComponentsChild({state_value: "Hello", prop_value: "Hello", provide_value: "Hello", builder_value: this.buildTest, regular_value: "Hello"})
+      ComponentsChild({
+        state_value: "Hello",
+        prop_value: "Hello",
+        provide_value: "Hello",
+        builder_value: this.buildTest,
+        regular_value: "Hello"
+      })
     }
     .width('100%')
   }
@@ -48,9 +56,12 @@ struct ComponentsChild {
   @Provide private provide_value: string = "Hello";
   @BuilderParam private builder_value: () => void = this.buildTest;
   private regular_value: string = "Hello";
-  @Builder buildTest() {
+
+  @Builder
+  buildTest() {
     Text("Child builder")
   }
+
   build() {
     Column() {
       Text("Hello")

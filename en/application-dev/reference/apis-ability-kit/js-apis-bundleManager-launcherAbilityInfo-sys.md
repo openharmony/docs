@@ -14,7 +14,7 @@ The **LauncherAbilityInfo** module defines the ability information of the home s
 
 **System API**: This is a system API.
 
-| Name           | Type                                                       | Readable| Writable| Description                                |
+| Name           | Type                                                       | Read-Only| Optional| Description                                |
 | --------------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------ |
 | applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | Yes  | No  | Application information of the launcher ability.|
 | elementName     | [ElementName](js-apis-bundleManager-elementName.md)         | Yes  | No  | Element name of the launcher ability.   |

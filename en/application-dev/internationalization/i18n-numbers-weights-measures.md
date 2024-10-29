@@ -30,7 +30,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
 
 4. Obtain **NumberOptions** and view the configuration of formatting options.
    ```ts
-   let options: intl.NumberOptions = formattedNumber.resolvedOptions();
+   let options: intl.NumberOptions = numberFormat.resolvedOptions();
    ```
 
 **Number Formatting Options**

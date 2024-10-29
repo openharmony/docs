@@ -1,16 +1,17 @@
-# @ohos.data.sendablePreferences (Shared Preferences)
+# @ohos.data.sendablePreferences (Shared User Preferences)
 
 
 The **sendablePreferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
 
 In the KV pairs, the key must be a string, and the value can be a number, a string, a Boolean value, a bigint, or a serializable object.
 
+The default encryption level of the shared user preferences is EL2, and the persistent files are stored in the corresponding **el2/** directory. Generally, the data in the **el2/** directory can be accessed only after at least one successful unlock operation (by PIN, fingerprint, or facial authentication) upon the start of the device. Avoid direct access to preferences data without the screen unlock operation. For details about how to modify the encryption level, see [Obtaining and Modifying Encryption Levels](../../../application-dev/application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - Preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use preferences in multi-process scenarios.
+> - The shared user preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use it in multi-process scenarios.
 
 ## Modules to Import
 

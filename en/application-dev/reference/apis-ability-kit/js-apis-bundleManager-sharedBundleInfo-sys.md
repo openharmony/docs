@@ -16,7 +16,7 @@ Defines the shared bundle information.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name            | Type                          | Readable| Writable| Description                  |
+| Name            | Type                          | Read-Only| Optional| Description                  |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | name             | string                         | Yes  | No  | Name of the shared bundle.      |
 | compatiblePolicy | bundleManager.CompatiblePolicy | Yes  | No  | Compatibility type of the shared bundle.|
@@ -30,7 +30,7 @@ Defines the shared module information.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name         | Type  | Readable| Writable| Description                      |
+| Name         | Type  | Read-Only| Optional| Description                      |
 | ------------- | ------ | ---- | ---- | -------------------------- |
 | name          | string | Yes  | No  | Module name of the shared bundle.          |
 | versionCode   | number | Yes  | No  | Version number of the shared bundle.          |

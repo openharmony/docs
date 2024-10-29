@@ -19,14 +19,14 @@ Declares the APIs of **NativeGesture**.
 
 ### Structs
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md) | Defines a struct for the gesture APIs. | 
 
 
 ### Types
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | typedef uint32_t [ArkUI_GestureEventActionTypeMask](_ark_u_i___native_module.md#arkui_gestureeventactiontypemask) | Defines a set of gesture event types. | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) | Defines a set of gesture directions. | 
@@ -36,11 +36,11 @@ Declares the APIs of **NativeGesture**.
 
 ### Enums
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | [ArkUI_GestureEventActionType](_ark_u_i___native_module.md#arkui_gestureeventactiontype) { [GESTURE_EVENT_ACTION_ACCEPT](_ark_u_i___native_module.md) = 0x01, [GESTURE_EVENT_ACTION_UPDATE](_ark_u_i___native_module.md) = 0x02, [GESTURE_EVENT_ACTION_END](_ark_u_i___native_module.md) = 0x04, [GESTURE_EVENT_ACTION_CANCEL](_ark_u_i___native_module.md) = 0x08 } | Enumerates gesture event types. | 
 | [ArkUI_GesturePriority](_ark_u_i___native_module.md#arkui_gesturepriority) { [NORMAL](_ark_u_i___native_module.md) = 0, [PRIORITY](_ark_u_i___native_module.md) = 1, [PARALLEL](_ark_u_i___native_module.md) = 2 } | Enumerates gesture event modes. | 
-| [ArkUI_GroupGestureMode](_ark_u_i___native_module.md#arkui_groupgesturemode) { **SEQUENTIAL_GROUP** = 0, [PARALLEL_GROUP](_ark_u_i___native_module.md) = 1, [EXCLUSIVE_GROUP](_ark_u_i___native_module.md) = 2 } | Enumerates gesture group modes. | 
+| [ArkUI_GroupGestureMode](_ark_u_i___native_module.md#arkui_groupgesturemode) { [SEQUENTIAL_GROUP](_ark_u_i___native_module.md) = 0, [PARALLEL_GROUP](_ark_u_i___native_module.md) = 1, [EXCLUSIVE_GROUP](_ark_u_i___native_module.md) = 2 } | Enumerates gesture group modes. | 
 | [ArkUI_GestureDirection](_ark_u_i___native_module.md#arkui_gesturedirection) {<br>[GESTURE_DIRECTION_ALL](_ark_u_i___native_module.md) = 0b1111, [GESTURE_DIRECTION_HORIZONTAL](_ark_u_i___native_module.md) = 0b0011, [GESTURE_DIRECTION_VERTICAL](_ark_u_i___native_module.md) = 0b1100, [GESTURE_DIRECTION_LEFT](_ark_u_i___native_module.md) = 0b0001,<br>[GESTURE_DIRECTION_RIGHT](_ark_u_i___native_module.md) = 0b0010, [GESTURE_DIRECTION_UP](_ark_u_i___native_module.md) = 0b0100, [GESTURE_DIRECTION_DOWN](_ark_u_i___native_module.md) = 0b1000, [GESTURE_DIRECTION_NONE](_ark_u_i___native_module.md) = 0<br>} | Enumerates gesture directions. | 
 | [ArkUI_GestureMask](_ark_u_i___native_module.md#arkui_gesturemask) { [NORMAL_GESTURE_MASK](_ark_u_i___native_module.md) = 0, [IGNORE_INTERNAL_GESTURE_MASK](_ark_u_i___native_module.md) } | Enumerates gesture masking modes. | 
 | [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype) {<br>[TAP_GESTURE](_ark_u_i___native_module.md) = 0, [LONG_PRESS_GESTURE](_ark_u_i___native_module.md), [PAN_GESTURE](_ark_u_i___native_module.md), [PINCH_GESTURE](_ark_u_i___native_module.md),<br>[ROTATION_GESTURE](_ark_u_i___native_module.md), [SWIPE_GESTURE](_ark_u_i___native_module.md), [GROUP_GESTURE](_ark_u_i___native_module.md)<br>} | Enumerates gesture types. | 
@@ -50,7 +50,7 @@ Declares the APIs of **NativeGesture**.
 
 ### Callback
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | bool [OH_ArkUI_GestureInterruptInfo_GetSystemFlag](_ark_u_i___native_module.md#oh_arkui_gestureinterruptinfo_getsystemflag) (const ArkUI_GestureInterruptInfo \*event) | Checks whether a gesture is a built-in gesture of the component. | 
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](_ark_u_i___native_module.md#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | Returns the pointer to interrupted gesture recognizer. | 
@@ -76,14 +76,14 @@ Declares the APIs of **NativeGesture**.
 | int32_t [OH_ArkUI_SetGestureRecognizerEnableState](_ark_u_i___native_module.md#oh_arkui_setgesturerecognizerenablestate) (ArkUI_GestureRecognizer \*recognizer, bool enabled) | Sets the enabled state of a gesture recognizer. | 
 | bool [OH_ArkUI_GetGestureRecognizerEnableState](_ark_u_i___native_module.md#oh_arkui_getgesturerecognizerenablestate) (ArkUI_GestureRecognizer \*recognizer) | Obtains the enabled state of a gesture recognizer. | 
 | int32_t [OH_ArkUI_GetGestureRecognizerState](_ark_u_i___native_module.md#oh_arkui_getgesturerecognizerstate) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureRecognizerState](_ark_u_i___native_module.md#arkui_gesturerecognizerstate) \*state) | Obtains the state of a gesture recognizer. | 
-| int32_t [OH_ArkUI_GetGestureEventTargetInfo](_ark_u_i___native_module.md#oh_arkui_getgestureeventtargetinfo) (ArkUI_GestureRecognizer \*recognizer, ArkUI_GestureEventTargetInfo \*\*info) | Obtains the information about a gesture event target. | 
-| int32_t [OH_ArkUI_GestureEventTargetInfo_IsScrollBegin](_ark_u_i___native_module.md#oh_arkui_gestureeventtargetinfo_isscrollbegin) (ArkUI_GestureEventTargetInfo \*info, bool \*ret) | Obtains whether this scroll container is scrolled to the top. | 
-| int32_t [OH_ArkUI_GestureEventTargetInfo_IsScrollEnd](_ark_u_i___native_module.md#oh_arkui_gestureeventtargetinfo_isscrollend) (ArkUI_GestureEventTargetInfo \*info, bool \*ret) | Obtains whether this scroll container is scrolled to the bottom. | 
+| int32_t [OH_ArkUI_GetGestureEventTargetInfo](_ark_u_i___native_module.md#oh_arkui_getgestureeventtargetinfo) (ArkUI_GestureRecognizer \*recognizer, ArkUI_GestureEventTargetInfo \*\*info) | Obtains the information about a gesture event target.  | 
+| int32_t [OH_ArkUI_GestureEventTargetInfo_IsScrollBegin](_ark_u_i___native_module.md#oh_arkui_gestureeventtargetinfo_isscrollbegin) (ArkUI_GestureEventTargetInfo \*info, bool \*ret) | Obtains whether this scroll container is scrolled to the top.  | 
+| int32_t [OH_ArkUI_GestureEventTargetInfo_IsScrollEnd](_ark_u_i___native_module.md#oh_arkui_gestureeventtargetinfo_isscrollend) (ArkUI_GestureEventTargetInfo \*info, bool \*ret) | Obtains whether this scroll container is scrolled to the bottom.  | 
 | int32_t [OH_ArkUI_GetPanGestureDirectionMask](_ark_u_i___native_module.md#oh_arkui_getpangesturedirectionmask) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) \*directionMask) | Obtains the direction of a pan gesture. | 
 | bool [OH_ArkUI_IsBuiltInGesture](_ark_u_i___native_module.md#oh_arkui_isbuiltingesture) (ArkUI_GestureRecognizer \*recognizer) | Obtains whether a gesture is a built-in gesture. | 
 | int32_t [OH_ArkUI_GetGestureTag](_ark_u_i___native_module.md#oh_arkui_getgesturetag) (ArkUI_GestureRecognizer \*recognizer, char \*buffer, int32_t bufferSize, int32_t \*result) | Obtains the tag of a gesture recognizer. | 
 | int32_t [OH_ArkUI_GetGestureBindNodeId](_ark_u_i___native_module.md#oh_arkui_getgesturebindnodeid) (ArkUI_GestureRecognizer \*recognizer, char \*nodeId, int32_t size, int32_t \*result) | Obtains the ID of the component linked to a gesture recognizer. | 
 | bool [OH_ArkUI_IsGestureRecognizerValid](_ark_u_i___native_module.md#oh_arkui_isgesturerecognizervalid) (ArkUI_GestureRecognizer \*recognizer) | Obtains whether a gesture recognizer is valid. | 
-| void \* [OH_ArkUI_ParallelInnerGestureEvent_GetUserData](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getuserdata) (ArkUI_ParallelInnerGestureEvent \*event) | Obtains custom data in the parallel internal gesture event. | 
-| ArkUI_GestureRecognizer \* [OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getcurrentrecognizer) (ArkUI_ParallelInnerGestureEvent \*event) | Obtains the current gesture recognizer in a parallel internal gesture event. | 
-| int32_t [OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getconflictrecognizers) (ArkUI_ParallelInnerGestureEvent \*event, [ArkUI_GestureRecognizerHandleArray](_ark_u_i___native_module.md#arkui_gesturerecognizerhandlearray) \*array, int32_t \*size) | Obtains the conflicting gesture recognizers in a parallel internal gesture event. | 
+| void \* [OH_ArkUI_ParallelInnerGestureEvent_GetUserData](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getuserdata) (ArkUI_ParallelInnerGestureEvent \*event) | Obtains custom data in the parallel internal gesture event.  | 
+| ArkUI_GestureRecognizer \* [OH_ArkUI_ParallelInnerGestureEvent_GetCurrentRecognizer](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getcurrentrecognizer) (ArkUI_ParallelInnerGestureEvent \*event) | Obtains the current gesture recognizer in a parallel internal gesture event.  | 
+| int32_t [OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers](_ark_u_i___native_module.md#oh_arkui_parallelinnergestureevent_getconflictrecognizers) (ArkUI_ParallelInnerGestureEvent \*event, [ArkUI_GestureRecognizerHandleArray](_ark_u_i___native_module.md#arkui_gesturerecognizerhandlearray) \*array, int32_t \*size) | Obtains the conflicting gesture recognizers in a parallel internal gesture event.  | 

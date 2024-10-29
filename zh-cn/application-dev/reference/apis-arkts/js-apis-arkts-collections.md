@@ -37,7 +37,7 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 
 文档中存在泛型的使用，涉及以下泛型标记符：
 
-- T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
+- T：Type，支持[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
 
 ### 属性
 
@@ -165,7 +165,7 @@ let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，原Array保持不�
 
 文档中存在泛型的使用，涉及以下泛型标记符：
 
-- T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
+- T：Type，支持[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -1414,7 +1414,7 @@ console.info("Element at index 1: ", array[1]);
 - K：Key，键
 - V：Value，值
 
-K和V类型都需为[Sendable类型](../../arkts-utils/arkts-sendable.md)。
+K和V类型都需为[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
 
 ### 属性
 
@@ -1917,7 +1917,7 @@ for (let key of keys) {
 
 文档中存在泛型的使用，涉及以下泛型标记符：
 
-- T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
+- T：Type，支持[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
 
 ### 属性
 
@@ -3945,7 +3945,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+| toIndex   | number | 是   | 范围终止索引，包含本索引值。       |
 
 **返回值：**
 

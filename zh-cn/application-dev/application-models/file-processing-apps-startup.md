@@ -18,12 +18,12 @@
 | 参数名称 | 类型   | 是否必填 | 说明                                                                                                                                                                                   |
 |----------|--------|----------|----------|
 | uri      | string | 是       | 表示待打开文件的URI路径，一般配合type使用。<br />uri格式为：file:\/\/bundleName\/path<br />- file：文件URI的标志。<br />- bundleName：该文件资源的属主。<br />- path：文件资源在应用沙箱中的路径。 |
-| type     | string | 否       | 表示打开文件的类型，推荐使用[UTD类型](../database/uniform-data-type-descriptors.md)，比如：'general.plain-text'、'general.image'。目前也可以兼容使用[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)，如：'text/xml' 、 'image/*'等。<br>**说明：** type为可选字段，如果不传type，系统会尝试根据uri后缀名判断文件类型进行匹配；如果传入type，必须确保与uri的文件类型一致，否则会导致无法匹配到合适的应用。文件后缀与文件类型的映射关系参见[Uniform Type Descriptor(UTD)预置列表](../database/uniform-data-type-list.md)。
+| type     | string | 否       | 表示打开文件的类型，推荐使用[UTD类型](../database/uniform-data-type-descriptors.md)，比如：'general.plain-text'、'general.image'。目前也可以兼容使用[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)，如：'text/xml' 、 'image/*'等。<br>**说明：** <br>1. type为可选字段，如果不传type，系统会尝试根据uri后缀名判断文件类型进行匹配；如果传入type，必须确保与uri的文件类型一致，否则会导致无法匹配到合适的应用。文件后缀与文件类型的映射关系参见[Uniform Type Descriptor(UTD)预置列表](../database/uniform-data-type-list.md)。<br>2. 不支持传\*/\*。
 | parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。                                                                                                                                                                                       |
 | flags | number | 否 | 表示处理方式，文件打开场景请参考表3。                                                                                                                                                                                       |
 
 
-**表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
+**表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)相关参数说明
 
 
 | 参数名称                              | 类型    | 说明                                                                                                                                                                |
@@ -31,7 +31,7 @@
 | ability.params.stream                 | string  | 指示携带的文件URI要授权给目标方，用于待打开的文件存在其他文件依赖的场景。例如打开本地html文件依赖本地其余资源文件的场景等。对应的value必须是string类型的文件URI数组。文件URI的获取参考表1中uri参数。 |
 | ohos.ability.params.showDefaultPicker | string | 表示是否强制展示文件打开方式的选择弹框。<br>- false：表示由系统策略或默认应用设置决定直接拉起文件打开应用还是展示弹框。<br>- true：表示始终展示弹框。缺省为false。                                                                            |
 
-**表3** [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags)相关参数说明
+**表3** [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)相关参数说明
 
 | 参数名称                       | 值         | 说明                       |
 |--------------------------------|------------|----------------------------|

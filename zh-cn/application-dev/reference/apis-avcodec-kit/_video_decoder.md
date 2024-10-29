@@ -420,7 +420,7 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 | -------- | -------- |
 | codec | 指向视频解码器实例的指针。  | 
 | callback | 所有回调函数的集合，请参见[OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 调用者执行回调所依赖的数据。  | 
 
 **返回：**
 
@@ -501,7 +501,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  |
 | index | 输出buffer对应的索引值。 由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 |
-| renderTimestampNs | 输出buffer被发送到surface的时间戳，单位是纳秒。  |
+| renderTimestampNs | 输出buffer被发送到surface的时间戳，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。  |
 
 **返回：**
 
@@ -722,7 +722,7 @@ OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec *codec)
 ```
 **描述**
 
-停止解码器，释放输入输出buffer。停止后，可以通过调用OH_VideoDecoder_Start接口重新进入Executing状态。
+停止解码器，释放输入输出buffer。停止后，可以通过调用OH_VideoDecoder_Start接口重新进入Running状态。
 
 需要注意的是，如果编解码器特定数据以前已输入到解码器，则需要再次输入。
 
@@ -778,7 +778,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 调用者执行回调所依赖的数据。  | 
 
 **返回：**
 

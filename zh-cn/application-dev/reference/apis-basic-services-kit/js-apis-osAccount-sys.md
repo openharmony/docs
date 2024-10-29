@@ -5407,7 +5407,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称           | 值 | 说明      |
 | ------------- | ------ | --------- |
 | AUTH_SUB_TYPE | 1      | 认证子类型。 |
-| REMAIN_TIMES  | 2      | 剩余时间。   |
+| REMAIN_TIMES  | 2      | 剩余次数。   |
 | FREEZING_TIME | 3      | 冻结时间。   |
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
 | SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |

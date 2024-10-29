@@ -76,46 +76,44 @@
           let tempDir = this.context.getApplicationContext().tempDir;
           let fileName = 'file' + Date.now();
           let tmpFile = tempDir + '/' + fileName;
+          let imgMap: Record<string, number> = {};
+
+          class FormDataClass {
+            text: string = 'Image: Bear' + fileName;
+            loaded: boolean = true;
+            // 卡片需要显示图片场景, 必须和下列字段formImages 中的key fileName 相同。
+            imgName: string = fileName;
+            // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), fileName 对应 fd
+            formImages: Record<string, number> = imgMap;
+          }
 
           let httpRequest = http.createHttp()
           let data = await httpRequest.request(netFile);
           if (data?.responseCode == http.ResponseCode.OK) {
-            let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-            try{
-              let writeLen: number = await fileIo.write(imgFile.fd, data.result as ArrayBuffer);
-              hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
-            } catch (err) {
-              hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
-            } finally {
-              fileIo.closeSync(imgFile);
-            };
-
-            hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
-            let imgMap: Record<string, number> = {};
             try {
-              let file = fileIo.openSync(tmpFile);
-              imgMap[fileName] = file.fd;
+              let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+              imgMap[fileName] = imgFile.fd;
+              try{
+                let writeLen: number = await fileIo.write(imgFile.fd, data.result as ArrayBuffer);
+                hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
+                hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
+                try {
+                  let formData = new FormDataClass();
+                  let formInfo = formBindingData.createFormBindingData(formData);
+                  await formProvider.updateForm(formId, formInfo);
+                  hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'FormAbility updateForm success.');
+                } catch (error) {
+                  hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
+                }
+              } catch (err) {
+                hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
+              } finally {
+                fileIo.closeSync(imgFile);
+              };
             } catch (e) {
               hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
             }
 
-            class FormDataClass {
-              text: string = 'Image: Bear' + fileName;
-              loaded: boolean = true;
-              // 卡片需要显示图片场景, 必须和下列字段formImages 中的key fileName 相同。
-              imgName: string = fileName;
-              // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), fileName 对应 fd
-              formImages: Record<string, number> = imgMap;
-            }
-
-            let formData = new FormDataClass();
-            let formInfo = formBindingData.createFormBindingData(formData);
-            try {
-              await formProvider.updateForm(formId, formInfo);
-              hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'FormAbility updateForm success.');
-            } catch (error) {
-              hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
-            }
           } else {
             hilog.error(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed`);
             let param: Record<string, string> = {
@@ -126,7 +124,6 @@
           }
           httpRequest.destroy();
         }
-        //...
       }
       ```
 
@@ -189,3 +186,5 @@
 > - Image组件通过入参(memory://fileName)中的(memory://)标识来进行远端内存图片显示，其中fileName需要和EntryFormAbility传递对象('formImages': {key: fd})中的key相对应。
 >
 > - Image组件通过传入的参数是否有变化来决定是否刷新图片，因此EntryFormAbility每次传递过来的imgName都需要不同，连续传递两个相同的imgName时，图片不会刷新。
+>
+> - 在卡片上展示的图片，大小需要控制在2MB以内。

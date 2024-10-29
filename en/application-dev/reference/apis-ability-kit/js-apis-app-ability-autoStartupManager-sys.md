@@ -109,7 +109,7 @@ Sets an application component to automatically start upon system boot. This API 
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -158,7 +158,7 @@ Sets an application component to automatically start upon system boot. This API 
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -205,7 +205,7 @@ Cancels the auto-startup setting for an application component. This API uses an 
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
@@ -254,7 +254,7 @@ Cancels the auto-startup setting for an application component. This API uses a p
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 16000004 | Can not start invisible component.           |
+| 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 

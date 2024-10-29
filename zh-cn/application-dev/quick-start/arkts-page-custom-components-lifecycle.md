@@ -127,9 +127,9 @@ struct MyComponent {
       }
       // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
       Button('delete Child')
-      .margin(20)
-      .backgroundColor(this.btnColor)
-      .onClick(() => {
+        .margin(20)
+        .backgroundColor(this.btnColor)
+        .onClick(() => {
         this.showChild = false;
       })
       // push到page页面，执行onPageHide
@@ -138,7 +138,6 @@ struct MyComponent {
           router.pushUrl({ url: 'pages/page' });
         })
     }
-
   }
 }
 
@@ -147,7 +146,7 @@ struct Child {
   @State title: string = 'Hello World';
   // 组件生命周期
   aboutToDisappear() {
-    console.info('[lifeCycle] Child aboutToDisappear')
+    console.info('[lifeCycle] Child aboutToDisappear');
   }
 
   // 组件生命周期
@@ -157,7 +156,7 @@ struct Child {
 
   // 组件生命周期
   aboutToAppear() {
-    console.info('[lifeCycle] Child aboutToAppear')
+    console.info('[lifeCycle] Child aboutToAppear');
   }
 
   build() {

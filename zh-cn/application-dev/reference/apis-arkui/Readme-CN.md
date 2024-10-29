@@ -237,6 +237,7 @@
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
+    - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
     <!--DelEnd-->
   - 图片与视频
     - [Image](arkui-ts/ts-basic-components-image.md)
@@ -372,18 +373,18 @@
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
-    - [SVG](arkui-ts/ts-basic-svg.md)
+    - [SVG标签说明](arkui-ts/ts-basic-svg.md)
     <!--Del-->
     - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
     <!--DelEnd-->
-    <!--Del-->
+  <!--Del-->
   - 其他类别
     - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
     - [IsolatedComponent (系统接口)](arkui-ts/ts-container-isolated-component-sys.md)
     - [RemoteWindow (系统接口)](arkui-ts/ts-basic-components-remotewindow-sys.md)
     - [PluginComponent (系统接口)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
     - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
-    <!--DelEnd-->
+  <!--DelEnd-->
   - 已停止维护的组件与接口
     <!--Del-->
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
@@ -400,10 +401,10 @@
 - C API
   - 模块
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
+    - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
-    - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [OH_DisplayManager](_o_h___display_manager.md)
   - 头文件
     - [drag_and_drop.h](drag__and__drop_8h.md)
@@ -412,6 +413,7 @@
     - [native_dialog.h](native__dialog_8h.md)
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
+    - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
     - [native_node.h](native__node_8h.md)
     - [native_node_napi.h](native__node__napi_8h.md)
@@ -421,7 +423,6 @@
     - [ui_input_event.h](ui__input__event_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
-    - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
     - [oh_display_info.h](oh__display__info_8h.md)
     - [oh_display_manager.h](oh__display__manager_8h.md)
   - 结构体

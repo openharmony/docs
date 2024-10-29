@@ -271,6 +271,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 可选 调整录屏分辨率 需在启动后调用，分辨率有范围限制 可参考avcodec编解码能力
     // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
 
+    // 可选 设置录屏时的最大帧率 需在启动后调用
+    // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
+
     sleep(10); // 录制10s
     // 结束录屏
     OH_AVScreenCapture_StopScreenCapture(capture);

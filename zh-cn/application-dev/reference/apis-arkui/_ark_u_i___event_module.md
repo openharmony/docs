@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so | 
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so |  
 
 
 ### 类型定义
@@ -417,6 +417,7 @@ float OH_ArkUI_PointerEvent_GetDisplayXByIndex (const ArkUI_UIInputEvent * event
 
 返回当前带有指向性的输入事件相对于当前屏幕左上角的X坐标，如果参数异常则返回0.0f。
 
+
 ### OH_ArkUI_PointerEvent_GetDisplayY()
 
 ```
@@ -531,7 +532,6 @@ int64_t OH_ArkUI_PointerEvent_GetHistoryEventTime (const ArkUI_UIInputEvent * ev
 **返回：**
 
 返回UI输入事件发生的时间，如果参数异常则返回0。
-
 
 ### OH_ArkUI_PointerEvent_GetHistoryPointerCount()
 

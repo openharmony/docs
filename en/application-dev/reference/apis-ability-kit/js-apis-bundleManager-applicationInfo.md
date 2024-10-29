@@ -10,7 +10,7 @@ The **ApplicationInfo** module defines the application information. A third-part
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                      | Type                                                        | Readable| Writable| Description                                                        |
+| Name                      | Type                                                        | Read-Only| Optional| Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                       | string                                                       | Yes  | No  | Application name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                |
 | description                | string                                                       | Yes  | No  | Description of the application, for example, "description": $string: mainability_description". For details, see the description of the **descriptionResource** field below.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -51,7 +51,7 @@ Describes the multi-app mode.
 
 **Parameters**
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | multiAppModeType<sup>12+</sup> | bundleManager.MultiAppModeType | Yes| No|  Type of the multi-app mode. |
 | maxCount<sup>12+</sup> | number  | Yes| No|  Maximum number of accounts that can log in to the application at the same time. |
@@ -64,7 +64,7 @@ Describes the metadata of a module.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | moduleName<sup>10+</sup>| string         | Yes  | No  | Module name.  |
 | metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | Yes  | No  | Metadata list of the module.|

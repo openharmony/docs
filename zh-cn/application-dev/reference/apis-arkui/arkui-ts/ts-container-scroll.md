@@ -215,7 +215,7 @@ initialOffset(value: OffsetOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 描述                     |
+| 名称       | 说明                   |
 | ---------- | ------------------------ |
 | Horizontal | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | Vertical   | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -446,7 +446,7 @@ Scroll滚动前触发的回调。
 | xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
 | yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
-| scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12枚举说明) | 是 | 当前滚动操作的来源。 |
+| scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12) | 是 | 当前滚动操作的来源。 |
 
 **返回值：** 
 
@@ -750,9 +750,9 @@ getItemIndex(x: number, y: number): number
 
 | 名称   | 类型   | 必填   | 说明              |
 | ----- | ------ | ------ | ----------------- |
-| duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
-| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)<sup>9+ </sup> | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease。 |
-| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false。<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画。|
+| duration | number | 否 | 设置滚动时长。<br/>默认值：1000<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
+| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9) | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease |
+| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画。 |
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 
@@ -760,7 +760,7 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                             |
+| 名称     | 说明                           |
 | ------ | ------------------------------ |
 | START   | 首部对齐。指定item首部与List首部对齐。  |
 | CENTER | 居中对齐。指定item主轴方向居中对齐于List。        |
@@ -811,6 +811,7 @@ getItemIndex(x: number, y: number): number
 
 ## 示例
 ### 示例1
+该示例展示了Scroll组件部分属性和scroller控制器的使用。
 
 ```ts
 // xxx.ets
@@ -895,6 +896,7 @@ struct ScrollExample {
 ![zh-cn_image_0000001174104386](figures/zh-cn_image_0000001174104386.gif)
 
 ### 示例2
+该示例使用onScrollFrameBegin事件实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
 
@@ -969,6 +971,7 @@ struct NestedScroll {
 ![NestedScroll](figures/NestedScroll.gif)
 
 ### 示例3
+该示例使用nestedScroll属性实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
 @Entry
 @Component
@@ -1032,6 +1035,7 @@ struct StickyNestedScroll {
 ```
 ![NestedScroll2](figures/NestedScroll2.gif)
 ### 示例4
+该示例实现了Scroll组件的限位滚动。
 ```ts
 @Entry
 @Component
@@ -1064,6 +1068,7 @@ struct Index {
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
 
 ### 示例5
+该示例通过scroller控制器的Fling接口触发Scroll组件的惯性滚动。
 ```ts
 @Entry
 @Component
@@ -1235,10 +1240,10 @@ struct ListExample {
 ![ScrollEdgeAtVelocity](figures/getItemIndex_list.gif)
 
 ### 示例8
+该示例实现了Scroll组件开启边缘渐隐效果并设置边缘渐隐长度
 
 ```ts
 // xxx.ets
-//该示例实现了Scroll组件开启边缘渐隐效果并设置边缘渐隐长度
 import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component

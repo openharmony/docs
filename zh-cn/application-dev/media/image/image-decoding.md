@@ -33,16 +33,16 @@
       该方法需要先导入\@kit.CoreFileKit模块。
 
       ```ts
-      import { fileIo } from '@kit.CoreFileKit';
+      import { fileIo as fs } from '@kit.CoreFileKit';
       ```
 
-      然后调用fileIo.openSync()获取文件描述符。
+      然后调用fs.openSync()获取文件描述符。
   
       ```ts
       // Stage模型参考如下代码
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
-      const file : fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
+      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
 
@@ -254,3 +254,6 @@
 - [图片编辑（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
 
 - [图片编辑（JS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+
+<!--RP1-->
+<!--RP1End-->
