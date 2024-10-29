@@ -554,7 +554,7 @@ scrollPage(value:   ScrollPageOptions)
 
 | 参数名 | 类型                                           | 必填 | 说明       |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12对象说明) | 是   | 设置翻页模式。 |
+| value  | [ScrollPageOptions](#scrollpageoptions14对象说明) | 是   | 设置翻页模式。 |
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -777,9 +777,9 @@ getItemIndex(x: number, y: number): number
 | ----- | ------ | ------ | ----------------- |
 | extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
 
-## ScrollPageOptions<sup>12+</sup>对象说明
+## ScrollPageOptions<sup>14+</sup>对象说明
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
