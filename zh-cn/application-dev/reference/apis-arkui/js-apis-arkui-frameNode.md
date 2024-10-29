@@ -772,7 +772,7 @@ dispose(): void
 >
 > FrameNode对象调用dispose后，由于不对应任何实体FrameNode节点，在调用部分查询接口(getPositionToParent、getPositionToScreen、getPositionToWindow、getPositionToParentWithTransform、getPositionToScreenWithTransform、getPositionToWindowWithTransform、getMeasuredSize、getLayoutPosition、getUserConfigBorderWidth、getUserConfigPadding、getUserConfigMargin、getUserConfigSize)的时候会导致应用出现jscrash。
 >
-> 通过[getUniqueId](#getuniqueid12)可以判断当前FrameNode是否对应一个实体FrameNode节点。当UniquedId大于0时表示该对象对应一个实体FrameNode节点。
+> 通过[getUniqueId](#getuniqueid12)可以判断当前FrameNode是否对应一个实体FrameNode节点。当UniqueId大于0时表示该对象对应一个实体FrameNode节点。
 
 **示例：**
 

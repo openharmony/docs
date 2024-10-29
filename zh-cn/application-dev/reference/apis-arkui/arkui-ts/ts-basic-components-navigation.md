@@ -348,7 +348,7 @@ navDestination(builder: (name: string, param: unknown) => void)
 
 | 参数名  | 类型                                   | 必填 | 说明                     |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：Navdestination页面详细参数。 |
+| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：NavDestination页面详细参数。 |
 
 ### navBarWidthRange<sup>10+</sup>
 
