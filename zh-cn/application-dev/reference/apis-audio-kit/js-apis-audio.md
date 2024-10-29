@@ -5362,7 +5362,7 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
 
 type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
 
-回调函数类型，用于音频渲染器的数据写入。
+回调函数类型，用于音频渲染器的数据写入，在回调函数外请勿再操作ArrayBuffer指向数据。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
