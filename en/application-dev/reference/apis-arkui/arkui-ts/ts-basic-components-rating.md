@@ -1,6 +1,6 @@
 # Rating
 
-The **\<Rating>** component provides a rating bar.
+The **Rating** component provides a rating bar.
 
 >  **NOTE**
 >
@@ -14,18 +14,19 @@ Not supported
 
 ## APIs
 
-Rating(options?: { rating: number, indicator?: boolean })
+Rating(options?: RatingOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name   | Type| Mandatory| Description                                                    |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| rating    | number   | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>A value less than 0 evaluates to the value **0**. A value greater than the value of **stars** evaluates to the value of **stars**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
-| indicator | boolean  | No  | Whether the component is used only as an indicator.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
+| Name| Type                                     | Mandatory| Description          |
+| ------ | ----------------------------------------- | ---- | -------------- |
+| rating | [RatingOptions](#ratingoptions13) | No  | Rating bar options.|
 
 ## Attributes
 
@@ -33,7 +34,7 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 stars(value: number)
 
-Total number of ratings. A value less than or equal to 0 evaluates to the default value.
+Sets the total number of ratings (stars). If the value set is less than or equal to 0, the default value is used.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -67,7 +68,7 @@ Sets the step for rating. A value less than 0.1 evaluates to the default value.
 
 ### starStyle
 
-starStyle(value: { backgroundUri: string, foregroundUri: string, secondaryUri?: string })
+starStyle(options: StarStyleOptions)
 
 Sets the star style. For details about the supported image types, see [Image](ts-basic-components-image.md).
 
@@ -83,13 +84,13 @@ By default, the image is loaded in asynchronous mode. Synchronous loading is not
 
 **Parameters**
 
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Yes  | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
+| Name | Type                                           | Mandatory| Description                                                        |
+| ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [StarStyleOptions](#starstyleoptions13) | Yes  | Star style.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **Rating** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
 
 >  **NOTE**
 >
->  The drawing area of each rating image is [width/stars, height], wherein **width** and **height** indicate the width and height of the **\<Rating>** component, respectively.
+>  The drawing area of each rating image is [width/stars, height], wherein **width** and **height** indicate the width and height of the **Rating** component, respectively.
 >
 >  To specify the drawing area as a square, you are advised to customize the width and height in this format: [height * stars, height], width = height * stars.
 
@@ -98,6 +99,8 @@ By default, the image is loaded in asynchronous mode. Synchronous loading is not
 contentModifier(modifier: ContentModifier\<RatingConfiguration>)
 
 Creates a content modifier.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -141,14 +144,44 @@ Triggered when the rating value changes.
 
 You need a custom class to implement the **ContentModifier** API.
 
-| Name | Type   |    Default Value     |  Description             |
-| ------ | ------ | ------ |-------------------------------- |
-| rating | number | 0 |Value to rate.|
-| indicator | boolean | false | Whether the component is used only as an indicator.|
-| stars | number | 5 |Total number of ratings.|
-| stepSize | number | 0.5 |Step of an operation.|
-| triggerChange | Callback\<number> | - |Triggered when the rating value changes.|
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   |    Read Only   |    Optional     |  Description             |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| rating | number | No| No|Value to rate.<br>Default value: **0**|
+| indicator | boolean | No| No| Whether the component is used only as an indicator.<br>Default value: **false**|
+| stars | number | No| No|Total number of ratings.<br>Default value: **5**|
+| stepSize | number | No| No|Step of an operation.<br>Default value: **0.5**|
+| triggerChange | Callback\<number> | No| No|Callback triggered when the rating value changes.|
+
+## RatingOptions<sup>13+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type   | Mandatory| Description                                                        |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| rating    | number  | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of **stars** are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| indicator | boolean | No  | Whether the component is used only as an indicator.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
+
+## StarStyleOptions<sup>13+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Type  | Mandatory| Description                                                        |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| backgroundUri | string | Yes  | Image path for the unselected star. You can use the default system image or a custom image.  |
+| foregroundUri | string | Yes  | Image path for the selected star. You can use the default system image or a custom image.    |
+| secondaryUri  | string | No  | Image path for the partially selected star. You can use the default system image or a custom image.|
 
 ## Example
 
@@ -407,14 +440,14 @@ struct ratingExample {
             }
           }).margin({top : 5})
 
-        Button(this.ratingStars < 5 ? "ratingStars + 1, ratingStars = " + this.ratingStars : "Maximum value of ratingStars: 5")
+        Button(this.ratingStars < 5 ? "ratingStars + 1, ratingStars =" + this.ratingStars : "Maximum value of ratingStars: 5")
           .onClick((event) => {
             if (this.ratingStars < 5) {
               this.ratingStars += 1
             }
           }).margin({top : 5})
 
-        Button(this.ratingStars > 0 ? "ratingStars - 1, ratingStars = " + this.ratingStars : "Values less than or equal to 0 are handled as 5")
+        Button(this.ratingStars > 0 ? "ratingStars - 1, ratingStars =" + this.ratingStars : "Values less than or equal to 0 are handled as 5")
           .onClick((event) => {
             if (this.ratingStars > 0) {
               this.ratingStars -= 1

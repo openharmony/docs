@@ -1,6 +1,6 @@
 # Gauge
 
-The **\<Gauge>** component is used to display data in a ring chart.
+The **Gauge** component is used to display data in a ring chart.
 
 
 >  **NOTE**
@@ -14,16 +14,16 @@ This component can contain only one child component.
 
 > **NOTE**
 >
-> You are advised to use the **\<Text>** component to build the current value and auxiliary text.
+> You are advised to use the **Text** component to build the current value and auxiliary text.
 >
-> If the width and height of a child component are in percentage, the reference range is the rectangle whose outer ring is used as the inscribed circle.
+> If the width and height of the child component are in percentage, the reference range is the rectangle that has the outer ring as its inscribed circle.
 
 
 ## APIs
 
-Gauge(options:{value: number, min?: number, max?: number})
+Gauge(options: GaugeOptions)
 
-Creates a **\<Gauge>** component.
+Creates a **Gauge** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -33,11 +33,23 @@ Creates a **\<Gauge>** component.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes | Current value of the gauge, that is, the position to which the indicator points in the gauge. It is used as the initial value of the gauge when it is created.<br>**NOTE**<br>If the value is not within the range defined by the **min** and **max** parameters, the value of **min** is used. |
-| min | number | No | Minimum value of the current data segment.<br>Default value: **0** |
-| max | number | No | Maximum value of the current data segment.<br>Default value: **100**<br>**NOTE**<br>If the value of **max** is less than that of **min**, the default values **0** and **100** are used.<br>The values of **max** and **min** can be negative numbers. |
+| options |  [GaugeOptions](#gaugeoptions14)| Yes| Settings of the **Gauge** component.|
+
+## GaugeOptions<sup>14+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Current value of the gauge, that is, the position to which the indicator points in the gauge. It is used as the initial value of the gauge when it is created.<br>**NOTE**<br>If the value is not within the range defined by the **min** and **max** parameters, the value of **min** is used.|
+| min | number | No| Minimum value of the current data segment.<br>Default value: **0**|
+| max | number | No| Maximum value of the current data segment.<br>Default value: **100**<br>**NOTE**<br>If the value of **max** is less than that of **min**, the default values **0** and **100** are used.<br>The values of **max** and **min** can be negative numbers.|
 
 ## Attributes
 
@@ -55,11 +67,11 @@ Sets the value of the gauge.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Value of the gauge. It can be dynamically changed.<br>Default value: **0** |
+| value  | number | Yes  | Value of the gauge. It can be dynamically changed.<br>Default value: **0**|
 
 ### startAngle
 
@@ -73,17 +85,17 @@ Sets the start angle of the gauge.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| angle  | number | Yes  | Start angle of the gauge. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0** |
+| angle  | number | Yes  | Start angle of the gauge. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**|
 
 ### endAngle
 
 endAngle(angle: number)
 
-Sets the end angle of the gauge. Ensure an appropriate difference between the start angle and end angle. If this difference is too small, the drawn chart may be abnormal. You are advised to use a monochrome ring to set the **value** attribute of the **\<Gauge>**. You can also use **setTimeout** to delay value loading.
+Sets the end angle of the gauge. Ensure an appropriate difference between the start angle and end angle. If this difference is too small, the drawn chart may be abnormal. You are advised to use a monochrome ring to set the **value** attribute of the **Gauge**. You can also use **setTimeout** to delay value loading.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -91,15 +103,15 @@ Sets the end angle of the gauge. Ensure an appropriate difference between the st
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| angle  | number | Yes  | End angle of the gauge. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360** |
+| angle  | number | Yes  | End angle of the gauge. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**|
 
 ### colors
 
-colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient | number]>)
+colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGradient, number]>)
 
 Sets the colors of the gauge.
 
@@ -119,11 +131,11 @@ A ring of the gradient type contains a maximum of nine color segments. If there 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                        |
+| Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| number]&gt; | Yes  | Colors of the gauge. You can set colors for individual segments.<br>Default value in API version 9: **Color.Black**<br>Default value in API version 11:<br>If no color is passed or the passed array is empty, the ring will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color is passed but the color value is invalid, the ring will be in the color of 0xFFE84026. |
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \, number]&gt; | Yes  | Colors of the gauge. You can set colors for individual segments.<br>Default value in API version 9: **Color.Black**<br>Default value in API version 11:<br>If no color is passed or the passed array is empty, the ring will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color is passed but the color value is invalid, the ring will be in the color of 0xFFE84026.|
 
 ### strokeWidth
 
@@ -137,11 +149,11 @@ Sets the stroke width of the gauge.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                        | Mandatory | Description                                                        |
+| Name| Type                        | Mandatory| Description                                                        |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| length | [Length](ts-types.md#length) | Yes  | Stroke width of the gauge.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage. |
+| length | [Length](ts-types.md#length) | Yes  | Stroke width of the gauge.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage.|
 
 ### description<sup>11+</sup>
 
@@ -153,11 +165,11 @@ Sets the description of the gauge.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                       | Mandatory | Description                                                        |
+| Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Description.<br>**NOTE**<br>You need to customize the content – text or imagery recommended – in @Builder.<br>If the width and height of the custom content are in percentage, the reference range is a rectangle whose area is 44.4% x 25.4% of the ring diameter (28.6% x 28.6% for imagery), 0 vp away from the bottom of the ring, and centered horizontally.<br>If this parameter is set to null, no description is displayed.<br>If this parameter is not set, what's displayed is subject to the maximum and minimum value settings.<br>If either or both of the maximum and minimum values are set, they are displayed.<br>If neither maximum nor minimum values are set, no description is displayed.<br>The maximum and minimum values are displayed at the bottom of the ring and cannot be relocated. They may be blocked by the ring if the ring's start and end angles are not set properly. |
+| value  | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Description.<br>**NOTE**<br>You need to customize the content – text or imagery recommended – in @Builder.<br>If the width and height of the custom content are in percentage, the reference range is a rectangle that is 44.4% of the diameter of the ring horizontally and 25.4% vertically (for images, it is 28.6% both horizontally and vertically), positioned 0 vp away from the bottom of the ring and centered horizontally.<br>If this parameter is set to null, no description is displayed.<br>If this parameter is not set, what's displayed is subject to the maximum and minimum value settings.<br>If either or both of the maximum and minimum values are set, they are displayed.<br>If neither maximum nor minimum values are set, no description is displayed.<br>The maximum and minimum values are displayed at the bottom of the ring and cannot be relocated. They may be blocked by the ring if the ring's start and end angles are not set properly.|
 
 ### trackShadow<sup>11+</sup>
 
@@ -169,11 +181,11 @@ Sets the shadow style of the gauge.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                               | Mandatory | Description                                                        |
+| Name| Type                                               | Mandatory| Description                                                        |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [GaugeShadowOptions](#gaugeshadowoptions11)  | Yes  | Shadow style.<br>**NOTE**<br>The shadow color is the same as the ring color.<br>If this attribute is set to **null**, the shadow effect is disabled. |
+| value  | [GaugeShadowOptions](#gaugeshadowoptions11) | Yes  | Shadow style.<br>**NOTE**<br>The shadow color is the same as the ring color.<br>If this attribute is set to **null**, the shadow effect is disabled.|
 
 ### indicator<sup>11+</sup>
 
@@ -181,13 +193,15 @@ indicator(value: GaugeIndicatorOptions)
 
 Sets the indicator style of the gauge.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                     | Mandatory | Description                                                 |
+| Name| Type                                                     | Mandatory| Description                                                 |
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| value  | [GaugeIndicatorOptions](#gaugeindicatoroptions11)  | Yes  | Indicator style.<br>**NOTE**<br>If this attribute is set to **null**, no indicator is displayed. |
+| value  | [GaugeIndicatorOptions](#gaugeindicatoroptions11) | Yes  | Indicator style.<br>**NOTE**<br>If this attribute is set to **null**, no indicator is displayed.|
 
 ### privacySensitive<sup>12+</sup>
 
@@ -195,11 +209,15 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 Sets whether to enable privacy mode.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                     | Mandatory | Description                                                 |
+| Name| Type                                                     | Mandatory| Description                                                 |
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | isPrivacySensitiveMode  | [Optional\<boolean\>] | Yes  | Whether to enable privacy mode. In privacy mode, the gauge indicator points to **0**, the maximum and minimum values are masked, and the scale range is displayed in gray or the background color.<br>**NOTE**<br>If this parameter is set to **null**, privacy mode is disabled.<br>[Enabling privacy mode requires widget framework support.](./ts-universal-attributes-obscured.md) |
 
@@ -209,13 +227,15 @@ contentModifier(modifier: ContentModifier\<GaugeConfiguration>)
 
 Creates a content modifier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                            |
+| Name| Type                                         | Mandatory| Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<GaugeConfiguration>](#gaugeconfiguration12) | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
+| modifier  | [ContentModifier\<GaugeConfiguration>](#gaugeconfiguration12)| Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
 ## GaugeShadowOptions<sup>11+</sup>
 
@@ -227,20 +247,26 @@ Inherits from [MultiShadowOptions](ts-types.md#multishadowoptions10) and has all
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name         | Type | Mandatory | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
-| icon | [Resource](ts-types.md#resource) | No | Image path of the icon.<br>**NOTE**<br>If this parameter is not set, the default triangle style indicator is used.<br>Icons in SVG format are supported. If icons in other formats are used, the default triangle style indicator is used. |
-| space | [Dimension](ts-types.md#dimension10) | No | Distance between the indicator and the outer edge of the ring. The value cannot be in percentage.<br>Default value: **8**<br>Unit: vp<br>**NOTE**<br> For the default triangle style indicator, the distance is the amount of space between the triangle and the outer edge of the ring.<br> If this parameter is set to a value less than 0, the default value will be used.<br>If this parameter is set to a value greater than the ring radius, the default value will be used.|
+| icon | [ResourceStr](ts-types.md#resourcestr) | No| Image path of the icon.<br>**NOTE**<br>If this parameter is not set, the default triangle style indicator is used.<br>Icons in SVG format are supported. If icons in other formats are used, the default triangle style indicator is used.|
+| space | [Dimension](ts-types.md#dimension10) | No| Distance between the indicator and the outer edge of the ring. The value cannot be in percentage.<br>Default value: **8**<br>Unit: vp<br>**NOTE**<br> For the default triangle style indicator, the distance is the amount of space between the triangle and the outer edge of the ring.<br> If this parameter is set to a value less than 0, the default value will be used.<br>If this parameter is set to a value greater than the ring radius, the default value will be used.|
 
 ## GaugeConfiguration<sup>12+</sup>
 
 You need a custom class to implement the **ContentModifier** API.
 
-| Name | Type   | Description             |
-| ------ | ------ | ---------------- |
-| value | number | Current value. |
-| min | number | Minimum value of the current data segment. |
-| max | number | Maximum value of the current data segment. |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type   | Mandatory| Description             |
+| ------ | ------ | ----| ---------------- |
+| value | number | Yes| Current value.|
+| min | number | Yes| Minimum value of the current data segment.|
+| max | number | Yes| Maximum value of the current data segment.|
 
 
 ## Example
@@ -645,12 +671,12 @@ struct refreshExample {
 
       Column({ space: 20 }) {
         Row({ space: 20 }) {
-          Button ('Increase').onClick () => {
+          Button('Increase').onClick () => {
             if (this.gaugeValue < this.gaugeMax) {
               this.gaugeValue += 1
             }
           })
-          Button ('Decrease').onClick () => {
+          Button('Decrease').onClick () => {
             if (this.gaugeValue > this.gaugeMin) {
               this.gaugeValue -= 1
             }
