@@ -10,7 +10,7 @@
 
 通过动态加载传入表达式作为入参时，模块路径参数书写有误。
 ``` typescript
-  import(module).then(m=>{m.foo();}).catch(e=>{console.log(e)})
+  import(module).then(m=>{m.foo();}).catch((e: Error)=>{console.info(e.message)});
 ```
 
 **定位方法:**
@@ -80,20 +80,49 @@ ets在模块化静态编译阶段，会预解析模块间依赖关系。ets文�
 加载so失败后，不显式抛出加载失败的js异常。开发者可以通过导出对象是否为undefined判断so的加载状态。
 
 **加载失败具体表现**  
+
 | 加载类型 | ts/js模块 | 系统库so或应用so |
 | -------- | -------- | -------- |
 | 静态加载 | 虚拟机自动抛出异常，进程退出 | 无异常抛出，加载到的对象为undefined |
 | 动态加载 | 不主动抛出异常，走到reject分支，开发者可以调用catch方法来捕获这个错误 | 不主动抛出异常，依然进入resolve分支，开发者可以在resolve分支中检查模块导出变量是否为undefined |
+ 
+**示例1：系统库so或应用so静态加载失败**
 
-**示例代码**  
 ```
-import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
-if (testNapi == undeined) {
-    hilog.error(0x0000, 'testTag', 'load libentry.so failed.');
+if (testNapi == undefined) {
+  console.error('load libentry.so failed.');
 }
 ```
 
+执行结果
+```
+load libentry.so failed.
+```
+
+**示例2：系统库so或应用so动态加载失败**
+
+```
+import('libentry.so')
+  .then(m => {
+    if (typeof m.default === 'undefined') {
+      console.warn(`load libentry.so failed.`);
+    } else {
+      console.info('load libentry.so success:', m);
+    }
+    return m;
+  })
+  .catch((e: Error) => {
+    console.error('load libentry.so error:', e);
+  });
+```
+
+执行结果
+```
+load libentry.so failed.
+```
+
 **so加载失败可能的原因、定位方式以及解决方法**  
+
 参考([Node-API常见问题](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/use-napi-faqs.md))文档
