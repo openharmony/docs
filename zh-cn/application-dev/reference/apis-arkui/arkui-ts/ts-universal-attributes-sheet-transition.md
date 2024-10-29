@@ -524,7 +524,7 @@ struct ListenKeyboardHeightChange {
               .fontSize(20)
               .width('45%')
 
-            Button("cancle")
+            Button("cancel")
               .margin(10)
               .fontSize(20)
               .width('45%')
