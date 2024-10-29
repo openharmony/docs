@@ -586,7 +586,7 @@ finishAnimation(callback?: () => void)
 
 ### left
 
-left(value: Length)
+left(value: Length): T
 
 导航点左侧相对于Swiper的位置。
 
@@ -604,7 +604,7 @@ left(value: Length)
 
 ### top
 
-top(value: Length)
+top(value: Length): T
 
 导航点顶部相对于Swiper的位置。
 
@@ -622,7 +622,7 @@ top(value: Length)
 
 ### right
 
-right(value: Length)
+right(value: Length): T
 
 导航点右侧相对于Swiper的位置。
 
@@ -640,7 +640,7 @@ right(value: Length)
 
 ### bottom
 
-bottom(value: Length)
+bottom(value: Length): T
 
 导航点底部相对于Swiper的位置。
 
@@ -658,7 +658,7 @@ bottom(value: Length)
 
 ### start<sup>12+</sup>
 
-start(value: LengthMetrics)
+start(value: LengthMetrics): T
 
 在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离。
 
@@ -676,7 +676,7 @@ start(value: LengthMetrics)
 
 ### end<sup>12+</sup>
 
-end(value: LengthMetrics)
+end(value: LengthMetrics): T
 
 在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。
 
@@ -726,7 +726,7 @@ static digit(): DigitIndicator
 
 ### itemWidth
 
-itemWidth(value: Length)
+itemWidth(value: Length): T
 
 Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
@@ -744,7 +744,7 @@ Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
 ### itemHeight
 
-itemHeight(value: Length)
+itemHeight(value: Length): T
 
 Swiper组件圆点导航指示器的高，不支持设置百分比。
 
@@ -762,7 +762,7 @@ Swiper组件圆点导航指示器的高，不支持设置百分比。
 
 ### selectedItemWidth
 
-selectedItemWidth(value: Length)
+selectedItemWidth(value: Length): T
 
 选中Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
@@ -780,7 +780,7 @@ selectedItemWidth(value: Length)
 
 ### selectedItemHeight
 
-selectedItemHeight(value: Length)
+selectedItemHeight(value: Length): T
 
 选中Swiper组件圆点导航指示器的高，不支持设置百分比。
 
@@ -798,7 +798,7 @@ selectedItemHeight(value: Length)
 
 ### mask
 
-mask(value: boolean)
+mask(value: boolean): T
 
 是否显示Swiper组件圆点导航指示器的蒙版样式。
 
@@ -816,7 +816,7 @@ mask(value: boolean)
 
 ### color
 
-color(value: ResourceColor)
+color(value: ResourceColor): T
 
 Swiper组件圆点导航指示器的颜色。
 
@@ -834,7 +834,7 @@ Swiper组件圆点导航指示器的颜色。
 
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: ResourceColor): T
 
 选中Swiper组件圆点导航指示器的颜色。
 
@@ -852,7 +852,7 @@ selectedColor(value: ResourceColor)
 
 ### maxDisplayCount<sup>12+</sup>
 
-maxDisplayCount(maxDisplayCount: number)
+maxDisplayCount(maxDisplayCount: number): T
 
 圆点导航点指示器样式下，导航点显示个数最大值。
 
@@ -898,7 +898,7 @@ DotIndicator的构造函数。
 
 ### fontColor
 
-fontColor(value: ResourceColor)
+fontColor(value: ResourceColor): T
 
 Swiper组件数字导航点的字体颜色。
 
@@ -916,7 +916,7 @@ Swiper组件数字导航点的字体颜色。
 
 ### selectedFontColor
 
-selectedFontColor(value: ResourceColor)
+selectedFontColor(value: ResourceColor): T
 
 选中Swiper组件数字导航点的字体颜色。
 
@@ -934,7 +934,7 @@ selectedFontColor(value: ResourceColor)
 
 ### digitFont
 
-digitFont(value: Font)
+digitFont(value: Font): T
 
 Swiper组件数字导航点的字体样式。
 
@@ -952,7 +952,7 @@ Swiper组件数字导航点的字体样式。
 
 ### selectedDigitFont
 
-selectedDigitFont(value: Font)
+selectedDigitFont(value: Font): T
 
 选中Swiper组件数字导航点的字体样式。
 

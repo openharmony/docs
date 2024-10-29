@@ -6,6 +6,12 @@ ChipGroup高级组件，提供操作块群组，用于对文件或者资源内�
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 导入模块
+
+```typescript
+import { ChipSize, ChipGroup } from '@kit.ArkUI'
+```
+
 ## 子组件
 
 无
@@ -39,7 +45,7 @@ ChipGroup({
 | multiple        | boolean                                         | 否   | true：支持多个chip被选中；false：只能是单个chip被选中。<br/>默认值：false<br/>为undefined时，multiple走默认值。                     |
 | chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | 左右内边距，和chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>为undefined时，chipGroupSpace走默认值。 |
 | chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | chipGroup的上下内边距，以便控制整体高度。参考[ChipGroupPaddingOptions](#chipgrouppaddingoptions)类型。<br/>为undefined时，chipGroupPadding走默认值。 |
-| onChange        | (selectedIndexes: Array&lt;number&gt;) => void  | 否   | chip状态改变时候的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
+| onChange        | Callback\<Array\<number>>  | 否   | chip状态改变时候的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
 | suffix          | ()=>void                                        | 否   | 最右侧的builder，由使用者自定义，使用时候需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
 
 > **说明：**

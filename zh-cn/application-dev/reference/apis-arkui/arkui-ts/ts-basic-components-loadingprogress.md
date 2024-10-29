@@ -95,7 +95,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 | 名称  | 类型    |    只读    |    可选    |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| enableloading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true |
+| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true |
 
 ## 示例
 

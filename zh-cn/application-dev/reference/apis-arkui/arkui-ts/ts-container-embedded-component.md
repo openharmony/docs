@@ -24,9 +24,11 @@ EmbeddedComponent(loader: Want, type: EmbeddedType)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                | 参数类型                                                   | 必填 | 参数描述                             |
+| 参数名                | 类型                          | 必填 |说明   |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | loader                | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 要加载的EmbeddedUIExtensionAbility。 |
 | type                  | [EmbeddedType](ts-appendix-enums.md#embeddedtype)                              | 是   | 提供方的类型。                       |
@@ -53,11 +55,13 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名   | 类型   | 说明                                                                                     |
-| -------  | ------ | ---------------------------------------------------------------------------------------- |
-| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | 回调函数，入参用于接收EmbeddedUIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo)。 |
+| 参数名   | 类型   | 必填 | 说明     |
+| -------  | ------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | 是 | 回调函数，入参用于接收EmbeddedUIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo)。 |
 
 > **说明：**
 >
@@ -72,11 +76,13 @@ onError(callback: ErrorCallback)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 类型                                                                         | 说明      |
-| ------ | ---------------------------------------------------------------------------- | --------- |
-| callback    | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 回调函数，入参用于接收异常信息，类型为[BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror)，可通过参数中的`code`、`name`和`message`获取错误信息并做处理。 |
+| 参数名 | 类型                                                                         | 必填                                                                       | 说明      |
+| ------ | ---------------------------------------------------------------------------- | --------- | --------- |
+| callback    | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是 | 回调函数，入参用于接收异常信息，类型为[BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror)，可通过参数中的`code`、`name`和`message`获取错误信息并做处理。 |
 
 > **说明：**
 >
@@ -93,10 +99,14 @@ onError(callback: ErrorCallback)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 属性名  | 类型   | 说明                                                 |
-| ------- | ------ | ---------------------------------------------------  |
-| code    | number | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
-| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+| 名称 | 类型                                                       | 必填 | 说明                                                 |
+| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
 ## 示例
 
