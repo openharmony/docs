@@ -44,7 +44,7 @@ The APIs related to the native node must be called in the main thread.
 | int32_t(\* [registerNodeCustomEvent](#registernodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType, int32_t targetId, void \*userData) | Registers a custom event for a node. When the event is triggered, the value is returned through the entry point function registered by **registerNodeCustomEventReceiver**. | 
 | void(\* [unregisterNodeCustomEvent](#unregisternodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType) | Unregisters a custom event for a node. | 
 | void(\* [registerNodeCustomEventReceiver](#registernodecustomeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | Registers a unified entry point function for custom node event callbacks. | 
-|  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | Unregisters the unified entry point function for custom node event callbacks. | 
+|  void(\* [unregisterNodeCustomEventReceiver](#unregisternodecustomeventreceiver) )() | Unregisters the unified entry point function for custom node event callbacks. | 
 | int32_t(\* [setMeasuredSize](#setmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t width, int32_t height) | Sets the width and height for a component after the measurement. | 
 | int32_t(\* [setLayoutPosition](#setlayoutposition) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t positionX, int32_t positionY) | Sets the position for a component. | 
 | [ArkUI_IntSize](_ark_u_i___int_size.md)(\* [getMeasuredSize](#getmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | Obtains the width and height of a component after measurement. | 
@@ -415,7 +415,7 @@ Mounts this component to a parent node, with the mount position after the specif
 | -------- | -------- |
 | parent | Pointer to the parent node. | 
 | child | Pointer to the child node. | 
-| sibling | Pointer to the sibling node after which the target node is to be inserted. If the value is null, the node is inserted at the start of the parent node. | 
+| sibling | Pointer to the sibling node after which the target node is to be inserted. If the value is null, the node is inserted at the end of the parent node. | 
 
 **Returns**
 
@@ -591,7 +591,7 @@ Registers an event for the specified node.
 | node | Target node. | 
 | eventType | Type of the event to register. | 
 | targetId | Custom event ID, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. | 
-| userData | Custom event parameter, which is passed in the callback of **ArkUI_NodeEvent** when the event is triggered. | 
+| userData | Custom event parameter, which is passed in the callback of [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) when the event is triggered. | 
 
 **Returns**
 
@@ -641,14 +641,15 @@ Removes all child nodes from the parent component.
 
 Returns **0** if the operation is successful; returns **401** if a parameter error occurs.
 
-### unregisterNodeEventReceiver
+### unregisterNodeCustomEventReceiver
 
 ```
-void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
+void(* ArkUI_NativeNodeAPI_1::unregisterNodeCustomEventReceiver) ()
 ```
 **Description**
 
-Unregisters this event receiver.
+Unregisters the unified entry point function for custom node event callbacks.
+
 
 ### unregisterNodeEventReceiver
 
