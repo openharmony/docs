@@ -72,6 +72,55 @@ constructor()
 let documentPicker = new picker.DocumentViewPicker(); // 不推荐使用无参构造，会出现概率性拉起失败问题
 ```
 
+### constructor<sup>13+</sup>
+
+constructor(context: Context, window: window.Window)
+
+应用自行创建窗口中，可用通过该构造函数创建DocumentViewPicker对象。一般场景推荐使用constructor(context: Context)方法创建DocumentViewPicker对象。
+
+**参数：**
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| window  | [window.Window](../apis-arkui/js-apis-window.md#window)  | 是   | 应用创建的窗口实例。 |
+
+> **说明：**
+>
+> 当前仅支持手机
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { picker } from '@kit.CoreFileKit';
+import { window } from '@kit.ArkUI';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            let context = getContext(this) as common.Context; // 请确保getContext(this)返回结果为UIAbilityContext
+            let windowClass: window.Window | undefined = undefined;
+            windowClass = window.findWindow('test'); // 请确保window已创建，此处的'test'为window创建时的name参数
+            let documentPicker = new picker.DocumentViewPicker(context, windowClass);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### select
 
 select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
