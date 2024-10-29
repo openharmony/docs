@@ -11,7 +11,7 @@
 
 **变更影响**
 
-该变更为不兼容变更。
+该变更为兼容变更。
 
 变更前：
 关系型数据管理[@ohos.data.relationalStore.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.relationalStore.d.ts)中getRdbStore接口如果发生加密方式变更（从加密变非加密或者相反），会返回14800011。
@@ -26,7 +26,7 @@ API 12
 
 **变更发生版本**
 
-从OpenHarmony 5.0.1.11 版本开始。
+从OpenHarmony 5.0.1.1 版本开始。
 
 **变更的接口/组件**
 
