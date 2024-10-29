@@ -1898,7 +1898,7 @@ async function seqRunner()
 ## 其他说明
 
 ### 序列化支持类型
-序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。详情可见[TaskPool和Worker支持的序列化类型](../../arkts-utils/interthread-communication-overview.md)。
+序列化支持类型包括：目前支持的数据类型有[普通对象](../../arkts-utils/normal-object.md)、[ArrayBuffer对象](../../arkts-utils/arraybuffer-object.md)、[SharedArrayBuffer对象](../../arkts-utils/shared-arraybuffer-object.md)、[Transferable对象（NativeBinding对象）](../../arkts-utils/transferabled-object.md)、[Sendable对象](../../arkts-utils/arkts-sendable.md)五种。
 
 ### 简单使用
 

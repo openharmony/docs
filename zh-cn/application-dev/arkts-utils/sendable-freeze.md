@@ -9,7 +9,7 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
    ```ts
    // helper.ts
    export function freezeObj(obj: any) {
-     Object.freeze(obj)
+     Object.freeze(obj);
    }
    ```
 
@@ -17,7 +17,7 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
 
    ```ts
    // Index.ets
-   import { freezeObj } from './helper'
+   import { freezeObj } from './helper';
    import { worker } from '@kit.ArkTS';
     
    @Sendable
@@ -25,7 +25,7 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
      // 一些配置属性与方法
      init() {
        // 初始化相关逻辑
-       freezeObj(this) // 初始化完成后冻结当前对象
+       freezeObj(this); // 初始化完成后冻结当前对象
      }
    }
     
@@ -56,7 +56,7 @@ Sendable对象支持冻结操作，冻结后的对象变成只读对象，不能
    ```ts
    // Worker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
-   import { GlobalConfig } from '../pages/Index'
+   import { GlobalConfig } from '../pages/Index';
    
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    workerPort.onmessage = (e: MessageEvents) => {
