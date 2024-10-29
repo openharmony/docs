@@ -311,7 +311,7 @@
           - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
           - [TaskPool简介](arkts-utils/taskpool-introduction.md)
           - [Worker简介](arkts-utils/worker-introduction.md)
-          - [TaskPool与Worker对比](arkts-utils/taskpool-vs-worker.md)
+          - [TaskPool与Worker对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
         - 并发线程间通信<!--interthead-communication-->
           - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
           - 线程间通信对象<!--interthead-communication-object-->
@@ -338,9 +338,9 @@
           - [应用多线程开发概述](arkts-utils/multithread-develop-overview.md)
           - 耗时任务并发场景<!--time-consuming-task-->
             - [耗时任务并发场景简介](arkts-utils/time-consuming-task-overview.md)
-            - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
-            - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
-            - [同步任务开发指导](arkts-utils/sync-task-development.md)
+            - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
+            - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
+            - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
           - 长时任务并发场景<!--long-time-task-->
             - [长时任务并发场景简介](arkts-utils/long-time-task-overview.md)
             - [长时任务开发指导（TaskPool）](arkts-utils/long-time-task-guide.md)

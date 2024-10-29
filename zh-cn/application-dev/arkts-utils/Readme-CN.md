@@ -20,7 +20,7 @@
         - [多线程并发概述](multi-thread-concurrency-overview.md)
         - [TaskPool简介](taskpool-introduction.md)
         - [Worker简介](worker-introduction.md)
-        - [TaskPool与Worker对比](taskpool-vs-worker.md)
+        - [TaskPool与Worker对比 (TaskPool和Worker)](taskpool-vs-worker.md)
     - 并发线程间通信
         - [ArkTS线程间通信概述](interthread-communication-overview.md)
         - 线程间通信对象
@@ -47,9 +47,9 @@
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景
             - [耗时任务并发场景简介](time-consuming-task-overview.md)
-            - [CPU密集型任务开发指导](cpu-intensive-task-development.md)
-            - [I/O密集型任务开发指导](io-intensive-task-development.md)
-            - [同步任务开发指导](sync-task-development.md)
+            - [CPU密集型任务开发指导 (TaskPool和Worker)](cpu-intensive-task-development.md)
+            - [I/O密集型任务开发指导 (TaskPool)](io-intensive-task-development.md)
+            - [同步任务开发指导 (TaskPool和Worker)](sync-task-development.md)
         - 长时任务并发场景
             - [长时任务并发场景简介](long-time-task-overview.md)
             - [长时任务开发指导（TaskPool）](long-time-task-guide.md)
