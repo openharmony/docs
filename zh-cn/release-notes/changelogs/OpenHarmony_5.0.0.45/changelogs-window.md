@@ -37,16 +37,8 @@
 
 **适配指导**
 
-drawableRect字段从API 11开始提供
+drawableRect字段从API 11开始提供。
 
-本次变更在API 13开始生效，应用如果依赖drawableRect，可以通过api版本信息来保持兼容，实例如下：
-```ts
-try {
-  let properties = windowClass.getWindowProperties();
-  if (deviceInfo.sdkApiVersion >= 13) {
-    console.info(`use drawableRect here. ${properties.drawableRect}`);
-  }
-} catch (exception) {
-  console.error(`Failed to obtain the window properties. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
+在API 11、API 12中，不建议使用该字段进行布局，可以基于windowRect进行布局。
+
+在API 13及之后的版本，建议使用该字段进行布局，可以获得精准的布局效果。
