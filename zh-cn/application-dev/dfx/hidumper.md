@@ -124,7 +124,18 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-renderservice-fps.png)
 
-9. 获取Faultlog模块生成的崩溃历史信息。
+9. 为开发者提供使设备不自动息屏的能力。-t参数使设备不自动息屏，-f参数使设备恢复自动息屏，或者设备重启使设备恢复自动息屏。
+
+   ```
+   hidumper -s 3301 -a -t
+   hidumper -s 3301 -a -f
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-3301.png)
+
+10. 获取Faultlog模块生成的崩溃历史信息。
 
    ```
    hidumper -e 
@@ -134,7 +145,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-e.png)
 
-10. 获取网络信息；如果指定了进程的pid，则只获取该进程的网络流量使用信息。
+11. 获取网络信息；如果指定了进程的pid，则只获取该进程的网络流量使用信息。
 
     ```
     hidumper --net
@@ -144,7 +155,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-net.png)
 
-11. 获取进程信息，包括进程、线程的列表等信息。
+12. 获取进程信息，包括进程、线程的列表等信息。
 
     ```
     hidumper -p
@@ -154,7 +165,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-p.png)
 
-12. 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，指定pid则统计对应进程的IPC数据。--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。
+13. 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，指定pid则统计对应进程的IPC数据。--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。
 
     ```
     hidumper --ipc pid --start-stat
@@ -166,7 +177,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-ipc.png)
 
-13. 导出指定进程内存信息的详细使用情况。
+14. 导出指定进程内存信息的详细使用情况。
 
     ```
     hidumper --mem-smaps pid [-v]
@@ -190,7 +201,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-mem-smaps.png)
 
-14. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出;如果指定--leakobj，则获取泄露对象的列表。(仅限debug版本使用)
+15. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出;如果指定--leakobj，则获取泄露对象的列表。(仅限debug版本使用)
 
     ```
     hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]
