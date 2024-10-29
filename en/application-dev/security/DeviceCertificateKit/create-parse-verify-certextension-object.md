@@ -6,7 +6,7 @@ This topic walks you through on how to create a certificate extension (**CertExt
 
 ## How to Develop
 
-1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
+1. Import the [cert](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
    ```ts
    import { cert } from '@kit.DeviceCertificateKit';
    ```
@@ -14,8 +14,7 @@ This topic walks you through on how to create a certificate extension (**CertExt
 2. Use [cert.createCertExtension](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertextension10) to create a **CertExtension** object.
 
 3. Use [CertExtension.getEntry](../../reference/apis-device-certificate-kit/js-apis-cert.md#getentry10) to obtain the certificate extension of the specified OID.
-     
-
+   
 4. Use [CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10) to check whether the certificate is a CA certificate.
 
 ```ts
