@@ -2695,11 +2695,9 @@ avPlayer.off('trackInfoUpdate')
 
 ### on('amplitudeUpdate')<sup>13+</sup>
 
-on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
+on(type: 'amplitudeUpdate', callback: Callback\<Array\<Number>>): void
 
 订阅音频最大电平值，音频资源播放时定时上报。
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2708,7 +2706,7 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
-| callback | Callback\<Array\<number>> | 是   | 音频最大电平值更新事件回调方法。 |
+| callback | Callback\<Array\<Number>> | 是   | 音频最大电平值更新事件回调方法。 |
 
 **示例：**
 
@@ -2720,11 +2718,9 @@ avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
 
 ### off('amplitudeUpdate')<sup>13+</sup>
 
-off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
+off(type: 'amplitudeUpdate', callback?: Callback\<Array\<Number>>): void
 
 取消订阅获取音频最大电平值事件。
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2733,7 +2729,7 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
-| callback | Callback\<Array\<number>> | 否   | 取消音频最大电平值更新事件回调方法。 |
+| callback | Callback\<Array\<Number>> | 否   | 取消音频最大电平值更新事件回调方法。 |
 
 **示例：**
 
@@ -7602,8 +7598,8 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
-| preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
-| preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
+| preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
