@@ -133,7 +133,7 @@ flyInFlyOutEffect(degree: number, flyMode: FlyMode): Filter
 filter.flyInFlyOutEffect(0.5, uiEffect.FlyMode.TOP)
 ```
 
-### distort
+### distort<sup>14+</sup>
 distort(distortionK: number): Filter
 
 将透镜畸变效果添加至组件上。
@@ -145,8 +145,10 @@ distort(distortionK: number): Filter
 **参数：**
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
-| distortionK  | number         | 是   | 畸变系数，表示透镜畸变的程度，取值范围为[-1, 1]。<br/>大于0时，效果为枕形畸变；小于0时，效果为桶形畸变。越靠近0时，畸变程度越小，等于0时，没有畸变效果。<br/>超出取值范围形变不会出现效果。|
+| distortionK  | number         | 是   | 畸变系数，表示透镜畸变的程度，取值范围为[-1, 1]。畸变系数设置小于-1的值时，按值为-1处理；设置大于1的值时，按值为1处理。|
 
+![zh-ch_image_Add_Distort.png](./figures/zh-ch_image_Add_Distort.png)
+如上图是对图片组件分别设置畸变参数为-1，0，0.5，1的绘制结果。畸变参数小于0时，效果为桶形畸变；大于0时，效果为枕形畸变；越接近0时，畸变程度越小，等于0时，没有畸变效果。
 
 **返回值：**
 
@@ -154,10 +156,19 @@ distort(distortionK: number): Filter
 | ----------------- | --------------------------------- |
 | [Filter](#filter) | 返回挂载了透镜畸变效果的Filter。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-filter.distort(0.5)
+filter.distort(-0.5)
 ```
 
 ## TileMode
