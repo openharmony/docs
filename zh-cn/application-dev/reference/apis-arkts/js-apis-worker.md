@@ -118,10 +118,71 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+// Worker.ets
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-let buffer = new ArrayBuffer(8);
-workerInstance.postMessage(buffer, [buffer]);
+// 创建worker线程中与主线程通信的对象
+const workerPort = worker.workerPort
+
+// worker线程接收主线程信息
+workerPort.onmessage = (e: MessageEvents): void => {
+  // data：主线程发送的信息
+  let data: number = e.data;
+  // 往收到的buffer里写入数据
+  const view = new Int8Array(data).fill(3);
+  // worker线程向主线程发送信息
+  workerPort.postMessage(view);
+}
+
+// worker线程发生error的回调
+workerPort.onerror = (err: ErrorEvent) => {
+  console.log("worker.ets onerror" + err.message);
+}
+```
+```ts
+// Index.ets
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            // 主线程中创建Worker对象
+            const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+            // 主线程向worker线程传递信息
+            const buffer = new ArrayBuffer(8);
+            workerInstance.postMessage(buffer);
+            // 主线程接收worker线程信息
+            workerInstance.onmessage = (e: MessageEvents): void => {
+              // data：worker线程发送的信息
+              let data: number = e.data;
+              console.info("main thread data is  " + data);
+              // 销毁Worker对象
+              workerInstance.terminate();
+            }
+            // 在调用terminate后，执行onexit
+            workerInstance.onexit = (code) => {
+              console.log("main thread terminate");
+            }
+
+            workerInstance.onerror = (err: ErrorEvent) => {
+              console.log("main error message " + err.message);
+            }
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
 ```
 
 ### postMessage<sup>9+</sup>
