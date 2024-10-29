@@ -53,6 +53,8 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 ## ToolBarOption
 
+**装饰器类型：**\@Observed
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                 | 类型                                                        | 必填 | 说明                                                                                                           |

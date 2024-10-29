@@ -2306,6 +2306,14 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 | ------------------------------------------------------------ | ------------------------------------------------ |
 | [componentUtils.ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
 
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 100001 | UI execution context not found. |
+
 **示例：**
 
 ```ts
