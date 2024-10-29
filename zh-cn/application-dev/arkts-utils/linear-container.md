@@ -27,37 +27,6 @@ ArrayList进行增、删、改、查操作的常用API如下：
 | 删除元素 | 通过removeByRange(fromIndex: number, toIndex:number)删除指定范围内的元素。 |
 
 
-## Vector
-
-> **说明**：
->
-> API version 9开始，该接口不再维护，推荐使用[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)。
-
-[Vector](../reference/apis-arkts/js-apis-vector.md)是指连续存储结构，可用来构造全局的数组对象。Vector依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为10，并支持动态扩容，每次扩容大小为原始容量的2倍。
-
-Vector和[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)相似，都是基于数组实现，但Vector提供了更多操作数组的接口。Vector在支持操作符访问的基础上，还增加了get/set接口，提供更为完善的校验及容错机制，满足用户不同场景下的需求。
-
-Vector进行增、删、改、查操作的常用API如下：
-
-| 操作 | 描述 |
-| --------- | ------- |
-| 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
-| 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
-| 访问元素 | 通过vec\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
-| 访问元素 | 通过get(index: number)获取指定index位置对应的元素。 |
-| 访问元素 | 通过getLastElement()获取最后一个元素。 |
-| 访问元素 | 通过getIndexOf(element:T)获取第一个匹配到元素的位置。 |
-| 访问元素 | 通过getLastIndexOf(element:T)获取最后一个匹配到元素的位置。 |
-| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Vector的元素。 |
-| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
-| 修改元素 | 通过vec\[index]=xxx修改指定index位置对应的value值。 |
-| 修改元素 | 通过set(index:number,element:T)修改指定index位置的元素值为element。 |
-| 修改元素 | 通过setLength(newSize:number)设置Vector的长度大小。 |
-| 删除元素 | 通过removeByIndex(index:number)删除index位置对应的value值。 |
-| 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
-| 删除元素 | 通过removeByRange(fromIndex:number,toIndex:number)删除指定范围内的元素。 |
-
-
 ## List
 
 [List](../reference/apis-arkts/js-apis-list.md)可用来构造一个单向链表对象，即只能通过头结点开始访问到尾节点。List依据泛型定义，在内存中的存储位置可以是不连续的。
@@ -193,6 +162,38 @@ Stack进行增、删、改、查操作的常用API如下：
 | 访问元素 | 通过locate(element: T)获取元素对应的位置。 |
 | 修改元素 | 通过forEach(callbackFn:(value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object)对栈内元素进行修改操作。 |
 | 删除元素 | 通过pop()对栈顶进行出栈操作并删除。 |
+
+
+## Vector
+
+> **说明**：
+>
+> API version 9开始，该接口不再维护，推荐使用[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)。
+
+[Vector](../reference/apis-arkts/js-apis-vector.md)是指连续存储结构，可用来构造全局的数组对象。Vector依据泛型定义，要求存储位置是一片连续的内存空间，初始容量大小为10，并支持动态扩容，每次扩容大小为原始容量的2倍。
+
+Vector和[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)相似，都是基于数组实现，但Vector提供了更多操作数组的接口。Vector在支持操作符访问的基础上，还增加了get/set接口，提供更为完善的校验及容错机制，满足用户不同场景下的需求。
+
+Vector进行增、删、改、查操作的常用API如下：
+
+| 操作 | 描述 |
+| --------- | ------- |
+| 增加元素 | 通过add(element: T)函数每次在数组尾部增加一个元素。 |
+| 增加元素 | 通过insert(element: T, index: number)在指定位置插入一个元素。 |
+| 访问元素 | 通过vec\[index]获取指定index对应的value值，通过指令获取保证访问速度。 |
+| 访问元素 | 通过get(index: number)获取指定index位置对应的元素。 |
+| 访问元素 | 通过getLastElement()获取最后一个元素。 |
+| 访问元素 | 通过getIndexOf(element:T)获取第一个匹配到元素的位置。 |
+| 访问元素 | 通过getLastIndexOf(element:T)获取最后一个匹配到元素的位置。 |
+| 访问元素 | 通过forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object)访问整个Vector的元素。 |
+| 访问元素 | 通过\[Symbol.iterator]():IterableIterator&lt;T&gt;迭代器进行数据访问。 |
+| 修改元素 | 通过vec\[index]=xxx修改指定index位置对应的value值。 |
+| 修改元素 | 通过set(index:number,element:T)修改指定index位置的元素值为element。 |
+| 修改元素 | 通过setLength(newSize:number)设置Vector的长度大小。 |
+| 删除元素 | 通过removeByIndex(index:number)删除index位置对应的value值。 |
+| 删除元素 | 通过remove(element:T)删除第一个匹配到的元素。 |
+| 删除元素 | 通过removeByRange(fromIndex:number,toIndex:number)删除指定范围内的元素。 |
+
 
 
 ## 线性容器的使用
