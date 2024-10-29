@@ -50,6 +50,52 @@
 
 - 不建议在\@Watch函数中调用async await，因为\@Watch设计的用途是为了快速的计算，异步行为可能会导致重新渲染速度的性能问题。
 
+- \@Watch参数为必选，且参数类型必须是string，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+@State @Watch() num: number = 10;
+@State @Watch(change) num: number = 10;
+
+// 正确写法
+@State @Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+```
+
+- \@Watch内的参数必须是声明的方法名，否则编译期会报错。
+
+```ts
+// 错误写法，没有对应名称的函数，编译报错
+@State @Watch('change') num: number = 10;
+onChange() {
+  console.log(`xxx`);
+}
+
+// 正确写法
+@State @Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+```
+
+- 常规变量不能被\@Watch装饰，否则编译期会报错。
+
+```ts
+//错误写法
+@Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+
+// 正确写法
+@State @Watch('change') num: number = 10;
+change() {
+  console.log(`xxx`);
+}
+```
+
 
 ## 使用场景
 

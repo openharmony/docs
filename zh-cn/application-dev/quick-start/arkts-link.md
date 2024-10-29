@@ -15,11 +15,6 @@
 \@Link装饰的变量与其父组件中的数据源共享相同的值。
 
 
-## 限制条件
-
-- \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件中使用。
-
-
 ## 装饰器使用规则说明
 
 | \@Link变量装饰器                                             | 说明                                                         |
@@ -131,6 +126,157 @@ struct ParentComponent {
 3. \@Link的更新：当子组件中\@Link更新后，处理步骤如下（以父组件为\@State为例）：
    1. \@Link更新后，调用父组件的\@State包装类的set方法，将更新后的数值同步回父组件。
    2. 子组件\@Link和父组件\@State分别遍历依赖的系统组件，进行对应的UI的更新。以此实现子组件\@Link同步回父组件\@State。
+
+
+## 限制条件
+
+1. \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件中使用。
+
+2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+@Link count: number = 10;
+
+// 正确写法
+@Link count: number;
+```
+
+3. \@Link装饰的变量的类型要和数据源类型保持一致，否则框架会抛出运行时错误。
+
+【反例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+class Cousin {
+  name: string = 'Hello';
+}
+
+@Component
+struct Child {
+  // 错误写法，@Link与@State数据源类型不一致
+  @Link test: Cousin;
+
+  build() {
+    Text(this.test.name)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 错误写法，@Link与@State数据源类型不一致
+      Child({test: new Cousin()})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+@Component
+struct Child {
+  // 正确写法
+  @Link test: Info;
+
+  build() {
+    Text(this.test.info)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 正确写法
+      Child({test: this.info})
+    }
+  }
+}
+```
+
+4. \@Link装饰的变量仅能被状态变量初始化，不能用常量初始化，编译期会有warn告警，运行时会抛出is not callable运行时错误。
+
+【反例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+@Component
+struct Child {
+  @Link msg: string;
+  @Link info: string;
+
+  build() {
+    Text(this.msg + this.info)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State message: string = 'Hello';
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 错误写法，常规变量不能初始化@Link
+      Child({msg: 'World', info: this.info.info})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+class Info {
+  info: string = 'Hello';
+}
+
+@Component
+struct Child {
+  @Link msg: string;
+  @Link info: Info;
+
+  build() {
+    Text(this.msg + this.info.info)
+  }
+}
+
+@Entry
+@Component
+struct LinkExample {
+  @State message: string = 'Hello';
+  @State info: Info = new Info();
+
+  build() {
+    Column() {
+      // 正确写法
+      Child({msg: this.message, info: this.info})
+    }
+  }
+}
+```
+
+5. \@Link不支持装饰Function类型的变量，框架会抛出运行时错误。
 
 
 ## 使用场景
