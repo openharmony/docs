@@ -1658,6 +1658,8 @@ class MyAbility extends UIAbility {
 
 ## ContentType
 
+通知内容类型。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification

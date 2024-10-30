@@ -92,7 +92,7 @@ Invalid userId.
 ##  1500007 IPC请求发送失败
 
 **错误信息**
-Failed to send the message.
+Failed to send the message to the common event service.
 
 **错误描述**
 `IPC`发送请求失败。
@@ -103,10 +103,10 @@ Failed to send the message.
 **处理步骤**
 请勿频繁建立链接，稍后重新尝试。
 
-##  1500008 读取数据失败
+##  1500008 公共事件服务端初始化失败
 
 **错误信息**
-Failed to read the data.
+Failed to initialize the common event service.
 
 **错误描述**
 服务端发生错误。
@@ -117,10 +117,10 @@ Failed to read the data.
 **处理步骤**
 稍后重新尝试。
 
-##  1500009 系统错误
+##  1500009 获取系统参数失败
 
 **错误信息**
-System error.
+Failed to obtain system parameters.
 
 **错误描述**
 处理业务时系统发生异常，如获取系统当前时间失败。
