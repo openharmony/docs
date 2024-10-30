@@ -93,7 +93,9 @@ DDK_RetCode OH_DDK_CreateAshmem(const uint8_t *name, uint32_t size, DDK_Ashmem *
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_INVALID_PARAMETER](#ddk_retcode) 表示入参name为空指针，size的大小为0或者入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示创建共享内存失败或者创建结构体DDK_Ashmem失败。
 
 
 ### OH_DDK_MapAshmem()
@@ -116,7 +118,10 @@ DDK_RetCode OH_DDK_MapAshmem(DDK_Ashmem *ashmem, const uint8_t ashmemMapType);
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_NULL_PTR](#ddk_retcode) 表示入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示共享内存的文件描述符无效。
+- [DDK_INVALID_OPERATION](#ddk_retcode) 表示调用接口MapAshmem失败。
 
 
 ### OH_DDK_UnmapAshmem()
@@ -138,8 +143,9 @@ DDK_RetCode OH_DDK_UnmapAshmem(DDK_Ashmem *ashmem);
 
 **返回:**
 
-成功返回0，否则返回负数。
-
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_NULL_PTR](#ddk_retcode) 表示入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示共享内存的文件描述符无效。
 
 ### OH_DDK_DestoryAshmem()
 
@@ -160,4 +166,6 @@ DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem);
 
 **返回:**
 
-成功返回0，否则返回负数。
+- [DK_SUCCESS](#ddk_retcode) 表示调用接口成功。
+- [DDK_NULL_PTR](#ddk_retcode) 表示入参ashmem为空指针。
+- [DDK_FAILURE](#ddk_retcode) 表示共享内存的文件描述符无效。
