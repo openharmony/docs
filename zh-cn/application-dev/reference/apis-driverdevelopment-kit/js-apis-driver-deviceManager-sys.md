@@ -118,6 +118,8 @@ try {
 
 设备详细信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
 | 名称              | 类型      | 必填  | 说明          |
@@ -129,6 +131,8 @@ try {
 ## USBDeviceInfo
 
 USB设备详细信息，继承自[DeviceInfo](#deviceinfo)。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
@@ -142,6 +146,8 @@ USB设备详细信息，继承自[DeviceInfo](#deviceinfo)。
 
 USB设备接口描述符。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
 | 名称               | 类型     | 必填  | 说明     |
@@ -154,6 +160,8 @@ USB设备接口描述符。
 ## DriverInfo
 
 驱动详细信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
@@ -169,6 +177,8 @@ USB设备接口描述符。
 ## USBDriverInfo
 
 USB设备驱动详细信息，继承自[DriverInfo](#driverinfo)。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
