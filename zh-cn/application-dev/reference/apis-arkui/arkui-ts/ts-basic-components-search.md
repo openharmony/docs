@@ -631,7 +631,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### onSubmit
 
-onSubmit(callback: (value: string) => void)
+onSubmit(callback: SearchSubmitCallback)
 
 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
 
@@ -641,9 +641,9 @@ onSubmit(callback: (value: string) => void)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                         |
-| ------ | ------ | ---- | ---------------------------- |
-| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+| 参数名 | 类型    | 必填 | 说明                          |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | [SearchSubmitCallback](#searchsubmitcallback14) | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调。 |
 
 ### onChange
 
@@ -894,6 +894,23 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
 >
 >  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
+
+## SearchSubmitCallback<sup>14+</sup>
+
+type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
+
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| searchContent | string             | 是   | 当前搜索框中输入的文本内容。 |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。    |
 
 ##  示例
 
