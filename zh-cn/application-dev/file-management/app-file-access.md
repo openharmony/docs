@@ -32,6 +32,10 @@
 | OpenMode | 设置文件打开标签 | 属性 | - | - | 
 | Filter | 设置文件过滤配置项 | 类型 | - | - | 
 
+> **注意：**
+>
+> 使用基础文件操作接口时，耗时较长的操作，例如：read、write等，建议使用异步接口，避免应用崩溃。
+
 ## 开发示例
 
 在对应用文件开始访问前，开发者需要[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。以从UIAbilityContext获取HAP级别的文件路径为例进行说明，UIAbilityContext的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
