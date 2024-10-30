@@ -963,3 +963,16 @@ AppAbility
 报错内容为 `Cannot read properties of undefined (reading 'has')`
 
 **解决方案：** 将SDK更新至最低4.1.6.3版本。
+
+#### HAP与HSP依赖相同的本地源码HAR模块，可能会出现的问题
+
+* 若开启文件名混淆，会出现以下问题：
+  * 问题一：单例功能异常问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现相同的文件名被混淆成不同文件名的情况。
+  * 问题二：接口调用失败问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现不同的文件名被混淆成相同的文件名的情况。
+* 若开启`-enable-export-obfuscation`和`-enable-toplevel-obfuscation`选项，在应用运行时会出现加载接口失败的问题。
+原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的接口在HAP与HSP中被混淆成不同的名称。
+
+**解决方案：**
+1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
+2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+
