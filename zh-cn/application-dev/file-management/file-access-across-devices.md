@@ -29,7 +29,7 @@
      // 向文件中写入内容
      fs.writeSync(file.fd, 'content');
      // 关闭文件
-     fs.closeSync(file.fd)
+     fs.closeSync(file.fd);
    } catch (error) {
    let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
@@ -84,11 +84,11 @@
        // 打印读取到的文件数据
        let buf = buffer.from(arrayBuffer, 0, num);
        console.info('read result: ' + buf.toString());
-     } catch (error: BusinessError) {
+     } catch (error) {
        let err: BusinessError = error as BusinessError;
        console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
      }
-   }).catch((error: BusinessError) => {
+   }).catch((error) => {
      let err: BusinessError = error as BusinessError;
      console.error(`Failed to connectDfs Code: ${err.code}, message: ${err.message}`);
    });
@@ -109,7 +109,7 @@
    // 取消公共文件目录挂载
    fs.disconnectDfs(networkId).then(() => {
      console.info("Success to disconnectDfs");
-   }).catch((error) => {
+   }).catch((error: BusinessError) => {
      let err: BusinessError = error as BusinessError;
      console.error(`Failed to disconnectDfs Code: ${err.code}, message: ${err.message}`)
    })
