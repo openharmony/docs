@@ -321,6 +321,8 @@ uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert,
 
 2305027 - 证书不受信任.
 
+2305069 - 证书验证时发生错误调用或无效的参数.
+
 ### OH_NetStack_GetPinSetForHostName()
 
 ```

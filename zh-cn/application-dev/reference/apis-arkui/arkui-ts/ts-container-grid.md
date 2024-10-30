@@ -1182,8 +1182,8 @@ struct GridExample {
 ### 示例5
 
 1.  设置属性editMode\(true\)设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。
-2.  在[onItemDragStart](#事件)回调中设置拖拽过程中显示的图片。
-3.  在[onItemDrop](#事件)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#事件)中完成交换数组位置逻辑。
+2.  在[onItemDragStart](#onitemdragstart8)回调中设置拖拽过程中显示的图片。
+3.  在[onItemDrop](#onitemdrop8)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#onitemdrop8)中完成交换数组位置逻辑。
 
 > **说明：** 
 >

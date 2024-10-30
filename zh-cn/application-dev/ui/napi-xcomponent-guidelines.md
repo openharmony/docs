@@ -1151,107 +1151,108 @@ Native侧
     
     ```typescript
     import nativeRender from 'libnativerender.so'
+    
     //重写XComponentController
     class MyXComponentController extends XComponentController {
-        onSurfaceCreated(surfaceId: string): void {
+      onSurfaceCreated(surfaceId: string): void {
         console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
         nativeRender.SetSurfaceId(BigInt(surfaceId));
-        }
-        onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+      }
+    
+      onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
         console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
         nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight)
-        }
-        onSurfaceDestroyed(surfaceId: string): void {
+      }
+    
+      onSurfaceDestroyed(surfaceId: string): void {
         console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`)
         nativeRender.DestroySurface(BigInt(surfaceId))
-        }
+      }
     }
     
     @Entry
     @Component
     struct Index {
-        @State currentStatus: string = "index";
-        xComponentController: XComponentController = new MyXComponentController();
-        build() {
+      @State currentStatus: string = "index";
+      xComponentController: XComponentController = new MyXComponentController();
+    
+      build() {
         Column() {
-            //...
-            //在xxx.ets 中定义 XComponent
-            Column({ space: 10 }) {
+          //...
+          //在xxx.ets 中定义 XComponent
+          Column({ space: 10 }) {
             XComponent({
-                type: XComponentType.SURFACE,
-                controller: this.xComponentController
+              type: XComponentType.SURFACE,
+              controller: this.xComponentController
             })
             Text(this.currentStatus)
-                .fontSize('24fp')
-                .fontWeight(500)
-            }
-            .onClick(() => {
+              .fontSize('24fp')
+              .fontWeight(500)
+          }
+          .onClick(() => {
             let surfaceId = this.xComponentController.getXComponentSurfaceId()
             nativeRender.ChangeColor(BigInt(surfaceId))
             let hasChangeColor: boolean = false;
             if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-                hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+              hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
             }
             if (hasChangeColor) {
-                this.currentStatus = "change color";
+              this.currentStatus = "change color";
             }
-            })
-            //...
-            Row() {
+          })
+    
+          //...
+          Row() {
             Button('Draw Star')
-                .fontSize('16fp')
-                .fontWeight(500)
-                .margin({ bottom: 24 })
-                .onClick(() => {
+              .fontSize('16fp')
+              .fontWeight(500)
+              .margin({ bottom: 24 })
+              .onClick(() => {
                 let surfaceId = this.xComponentController.getXComponentSurfaceId()
                 nativeRender.DrawPattern(BigInt(surfaceId))
                 let hasDraw: boolean = false;
                 if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-                    hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+                  hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
                 }
                 if (hasDraw) {
-                    this.currentStatus = "draw star"
+                  this.currentStatus = "draw star"
                 }
-                })
-                .width('53.6%')
-                .height(40)
-            }
-            .width('100%')
-            .justifyContent(FlexAlign.Center)
-            .alignItems(VerticalAlign.Bottom)
-            .layoutWeight(1)
+              })
+              .width('53.6%')
+              .height(40)
+          }
+          .width('100%')
+          .justifyContent(FlexAlign.Center)
+          .alignItems(VerticalAlign.Bottom)
+          .layoutWeight(1)
         }
         .width('100%')
         .height('100%')
-        }
+      }
     }
     ```
     
 2. Node-API模块注册，具体使用请参考[Native API在应用工程中的使用指导](../napi/napi-guidelines.md)。
 
     ```typescript
+    #include <hilog/log.h>
+    #include "common/common.h"
+    #include "manager/plugin_manager.h"
     namespace NativeXComponentSample {
-    //在napi_init.cpp文件中，Init方法注册接口函数，从而将封装的C++方法传递出来，供ArkTS侧调用
+    // 在napi_init.cpp文件中，Init方法注册接口函数，从而将封装的C++方法传递出来，供ArkTS侧调用
     EXTERN_C_START
-    static napi_value Init(napi_env env, napi_value exports)
-    {
+    static napi_value Init(napi_env env, napi_value exports) {
         // ...
         // 向ArkTS侧暴露接口SetSurfaceId(),ChangeSurface(),DestroySurface(),
-        //DrawPattern(),ChangeColor(),GetXComponentStatus()
+        // DrawPattern(),ChangeColor(),GetXComponentStatus()
         napi_property_descriptor desc[] = {
-            {"SetSurfaceId", nullptr, PluginManager::SetSurfaceId,
-                nullptr, nullptr, nullptr, napi_default, nullptr},
-            {"ChangeSurface", nullptr, PluginManager::ChangeSurface,
-                nullptr, nullptr, nullptr, napi_default, nullptr},
-            {"DestroySurface", nullptr, PluginManager::DestroySurface,
-                nullptr, nullptr, nullptr, napi_default, nullptr},
-            {"DrawPattern", nullptr, PluginManager::DrawPattern,
-                nullptr, nullptr, nullptr, napi_default, nullptr},
-            {"ChangeColor", nullptr, PluginManager::ChangeColor,
-                nullptr, nullptr, nullptr, napi_default, nullptr},
-            {"GetXComponentStatus", nullptr, PluginManager::GetXComponentStatus,
-                nullptr, nullptr, nullptr, napi_default, nullptr}
-        };
+            {"SetSurfaceId", nullptr, PluginManager::SetSurfaceId, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"ChangeSurface", nullptr, PluginManager::ChangeSurface, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"DestroySurface", nullptr, PluginManager::DestroySurface, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"DrawPattern", nullptr, PluginManager::DrawPattern, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"ChangeColor", nullptr, PluginManager::ChangeColor, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"GetXComponentStatus", nullptr, PluginManager::GetXComponentStatus, nullptr, nullptr, nullptr, napi_default,
+             nullptr}};
         if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
             return nullptr;
@@ -1260,24 +1261,22 @@ Native侧
     }
     EXTERN_C_END
     // 编写接口的描述信息，根据实际需要可以修改对应参数
-    static napi_module nativerenderModule = {
-        .nm_version = 1,
-        .nm_flags = 0,
-        .nm_filename = nullptr,
-        // 入口函数
-        .nm_register_func = Init,
-        // 模块名称
-        .nm_modname = "nativerender",
-        .nm_priv = ((void*)0),
-        .reserved = { 0 } };
+    static napi_module nativerenderModule = {.nm_version = 1,
+                                             .nm_flags = 0,
+                                             .nm_filename = nullptr,
+                                             // 入口函数
+                                             .nm_register_func = Init,
+                                             // 模块名称
+                                             .nm_modname = "nativerender",
+                                             .nm_priv = ((void *)0),
+                                             .reserved = {0}};
     } // namespace NativeXComponentSample
     // __attribute__((constructor))修饰的方法由系统自动调用，使用Node-API接口napi_module_register()传入模块描述信息进行模块注册
-    extern "C" __attribute__((constructor)) void RegisterModule(void)
-    {
+    extern "C" __attribute__((constructor)) void RegisterModule(void) {
         napi_module_register(&NativeXComponentSample::nativerenderModule);
     }
     ```
-
+    
 3. 上述注册的六个函数在native侧具体实现。
 
     ```cpp
@@ -1285,21 +1284,21 @@ Native侧
     class PluginManager {
     public:
         ~PluginManager();
-        static PluginRender* GetPluginRender(int64_t& id);
+        static PluginRender *GetPluginRender(int64_t &id);
         static napi_value ChangeColor(napi_env env, napi_callback_info info);
         static napi_value DrawPattern(napi_env env, napi_callback_info info);
         static napi_value SetSurfaceId(napi_env env, napi_callback_info info);
         static napi_value ChangeSurface(napi_env env, napi_callback_info info);
         static napi_value DestroySurface(napi_env env, napi_callback_info info);
         static napi_value GetXComponentStatus(napi_env env, napi_callback_info info);
+    
     public:
-        static std::unordered_map<int64_t, PluginRender*> pluginRenderMap_;
-        static std::unordered_map<int64_t, OHNativeWindow*> windowMap_;
+        static std::unordered_map<int64_t, PluginRender *> pluginRenderMap_;
+        static std::unordered_map<int64_t, OHNativeWindow *> windowMap_;
     };
     
     // 解析从ArkTS侧传入的surfaceId
-    int64_t ParseId(napi_env env, napi_callback_info info)
-    {
+    int64_t ParseId(napi_env env, napi_callback_info info) {
         if ((env == nullptr) || (info == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ParseId", "env or info is null");
             return -1;
@@ -1320,8 +1319,7 @@ Native侧
     }
     
     // 设置SurfaceId，基于SurfaceId完成对NativeWindow的初始化
-    napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
-    {
+    napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info) {
         int64_t surfaceId = ParseId(env, info);
         OHNativeWindow *nativeWindow;
         PluginRender *pluginRender;
@@ -1336,17 +1334,15 @@ Native侧
         pluginRender->InitNativeWindow(nativeWindow);
         return nullptr;
     }
-    void PluginRender::InitNativeWindow(OHNativeWindow *window)
-    {
+    void PluginRender::InitNativeWindow(OHNativeWindow *window) {
         eglCore_->EglContextInit(window); // 参考Native XComponent场景 EglContextInit的实现
     }
     
     // 根据传入的surfaceId、width、height实现surface大小的变动
-    napi_value PluginManager::ChangeSurface(napi_env env, napi_callback_info info)
-    {
+    napi_value PluginManager::ChangeSurface(napi_env env, napi_callback_info info) {
         if ((env == nullptr) || (info == nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                            "ChangeSurface: OnLoad env or info is null");
+                         "ChangeSurface: OnLoad env or info is null");
             return nullptr;
         }
         int64_t surfaceId = 0;
@@ -1355,7 +1351,7 @@ Native侧
     
         if (napi_ok != napi_get_cb_info(env, info, &argc, args, nullptr, nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                            "ChangeSurface: GetContext napi_get_cb_info failed");
+                         "ChangeSurface: GetContext napi_get_cb_info failed");
         }
         bool lossless = true;
         int index = 0;
@@ -1379,8 +1375,7 @@ Native侧
         return nullptr;
     }
     
-    void PluginRender::UpdateNativeWindowSize(int width, int height)
-    {
+    void PluginRender::UpdateNativeWindowSize(int width, int height) {
         eglCore_->UpdateSize(width, height); // 参考Native XComponent场景 UpdateSize的实现
         if (!hasChangeColor_ && !hasDraw_) {
             eglCore_->Background(); // 参考Native XComponent场景 Background的实现
@@ -1388,8 +1383,7 @@ Native侧
     }
     
     // 销毁surface
-    napi_value PluginManager::DestroySurface(napi_env env, napi_callback_info info)
-    {
+    napi_value PluginManager::DestroySurface(napi_env env, napi_callback_info info) {
         int64_t surfaceId = ParseId(env, info);
         auto pluginRenderMapIter = pluginRenderMap_.find(surfaceId);
         if (pluginRenderMapIter != pluginRenderMap_.end()) {
@@ -1405,8 +1399,7 @@ Native侧
     }
     
     // 实现EGL绘画逻辑
-    napi_value PluginManager::DrawPattern(napi_env env, napi_callback_info info)
-    {
+    napi_value PluginManager::DrawPattern(napi_env env, napi_callback_info info) {
         int64_t surfaceId = ParseId(env, info);
         auto pluginRender = GetPluginRender(surfaceId);
         if (pluginRender == nullptr) {
@@ -1416,21 +1409,18 @@ Native侧
         pluginRender->DrawPattern();
         return nullptr;
     }
-    PluginRender* PluginManager::GetPluginRender(int64_t& id)
-    {
+    PluginRender *PluginManager::GetPluginRender(int64_t &id) {
         if (pluginRenderMap_.find(id) != pluginRenderMap_.end()) {
             return pluginRenderMap_[id];
         }
         return nullptr;
     }
-    void PluginRender::DrawPattern()
-    {
+    void PluginRender::DrawPattern() {
         eglCore_->Draw(hasDraw_); // 参考Native XComponent场景 Draw实现
     }
     
     // 实现改变绘制图形颜色的功能
-    napi_value PluginManager::ChangeColor(napi_env env, napi_callback_info info)
-    {
+    napi_value PluginManager::ChangeColor(napi_env env, napi_callback_info info) {
         int64_t surfaceId = ParseId(env, info);
         auto pluginRender = GetPluginRender(surfaceId);
         if (pluginRender == nullptr) {
@@ -1440,19 +1430,15 @@ Native侧
         pluginRender->ChangeColor(); // 参考Native XComponent场景 ChangeColor实现
         return nullptr;
     }
-    void PluginRender::ChangeColor()
-    {
-        eglCore_->ChangeColor(hasChangeColor_);
-    }
+    void PluginRender::ChangeColor() { eglCore_->ChangeColor(hasChangeColor_); }
     
     // 获得xcomponent状态，并返回至ArkTS侧
-    napi_value PluginManager::GetXComponentStatus(napi_env env, napi_callback_info info)
-    {
+    napi_value PluginManager::GetXComponentStatus(napi_env env, napi_callback_info info) {
         int64_t surfaceId = ParseId(env, info);
         auto pluginRender = GetPluginRender(surfaceId);
         if (pluginRender == nullptr) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                            "GetXComponentStatus: Get pluginRender failed");
+                         "GetXComponentStatus: Get pluginRender failed");
             return nullptr;
         }
         napi_value hasDraw;
@@ -1460,46 +1446,40 @@ Native侧
         napi_status ret = napi_create_int32(env, pluginRender->HasDraw(), &(hasDraw));
         if (ret != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                            "GetXComponentStatus: napi_create_int32 hasDraw_ error");
+                         "GetXComponentStatus: napi_create_int32 hasDraw_ error");
             return nullptr;
         }
         ret = napi_create_int32(env, pluginRender->HasChangedColor(), &(hasChangeColor));
         if (ret != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                            "GetXComponentStatus: napi_create_int32 hasChangeColor_ error");
+                         "GetXComponentStatus: napi_create_int32 hasChangeColor_ error");
             return nullptr;
         }
         napi_value obj;
         ret = napi_create_object(env, &obj);
         if (ret != napi_ok) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN,
-                            "PluginManager", "GetXComponentStatus: napi_create_object error");
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
+                         "GetXComponentStatus: napi_create_object error");
             return nullptr;
         }
         ret = napi_set_named_property(env, obj, "hasDraw", hasDraw);
         if (ret != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                            "GetXComponentStatus: napi_set_named_property hasDraw error");
+                         "GetXComponentStatus: napi_set_named_property hasDraw error");
             return nullptr;
         }
         ret = napi_set_named_property(env, obj, "hasChangeColor", hasChangeColor);
         if (ret != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                            "GetXComponentStatus: napi_set_named_property hasChangeColor error");
+                         "GetXComponentStatus: napi_set_named_property hasChangeColor error");
             return nullptr;
         }
         return obj;
     }
-    int32_t PluginRender::HasDraw()
-    {
-        return hasDraw_;
-    }
-    int32_t PluginRender::HasChangedColor()
-    {
-        return hasChangeColor_;
-    }
+    int32_t PluginRender::HasDraw() { return hasDraw_; }
+    int32_t PluginRender::HasChangedColor() { return hasChangeColor_; }
     ```
-
+    
 4. 配置具体的CMakeLists，使用CMake工具链将C++源代码编译成动态链接库文件。
 
     ```cmake
@@ -1636,9 +1616,9 @@ function myComponent() {
 针对Native XComponent的使用，有以下相关实例可供参考：
 
 - [XComponent3D（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent3D)
-- [Native XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
+- [Native XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent)
 - [OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
 
 针对ArkTS XComponent的使用，有以下相关实例可供参考：
 
-- [XComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent#/openharmony/applications_app_samples/blob/master/code/BasicFeature/Native/XComponent)
+- [ArkTSXComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)

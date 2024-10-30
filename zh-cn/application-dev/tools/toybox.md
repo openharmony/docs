@@ -4,24 +4,26 @@ toybox 是一个轻量级的Linux命令行工具集合，它将常用的Linux命
 
 ## 前置条件
 
-### 使用方法1：
+### 使用方法1
 
 - 正常连接设备
 - 使用hdc shell进入命令行执行模式
 
-### 使用方法2：
+### 使用方法2
 
 - 应用沙箱内运行
 
 
 ## 命令行说明
 
-toybox的执行方式有两种
+toybox的执行方式有两种：
+
 - toybox [command] [arguments...]
+
 - 直接执行 [command] [arguments...]
 
 其中 [command] 可被替换为toybox支持的任意命令（可通过输入不带参数的toybox命令查询）。
-[arguments...] 为[command]所需要的参数
+[arguments...] 为[command]所需要的参数。
 
 <!--RP1-->
 <!--RP1End-->
@@ -204,13 +206,13 @@ toybox的执行方式有两种
 | sntp    | SNTP客户端。<br />usage: sntp [-saSdDqm] [-r SHIFT] [-m ADDRESS] [-p PORT] [SERVER] |
 | telnet  | 连接telnet服务器。<br />usage: telnet HOST [PORT] |
 | traceroute/traceroute6 | 跟踪报文到HOST的路径。traceroute6自带-6选项。<br />usage: traceroute [-46FUIldnvr] [-f 1ST_TTL] [-m MAXTTL] [-p PORT] [-q PROBES] [-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-g GATEWAY] [-i IFACE] [-z PAUSE_MSEC] HOST [BYTES]<br />usage: traceroute6 [-dnrv] [-m MAXTTL] [-p PORT] [-q PROBES][-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-i IFACE] HOST [BYTES] |
-| wget    | 从网络上下载资源。<br />usage: wget [OPTIONS]... [URL] |
+| wget    | 从网络上下载资源。<br />usage: wget -O filename URL |
 
 ### 文件操作
 
 | 命令 | 说明 |
 | :- | :- |
-| awk       | awk是一个处理文本的工具，可对文档内容进行筛选、分析。<br />usage: awk [-F sepstring] [-v assignment]... program [argument...]<br />&emsp;awk [-F sepstring] -f progfile [-v assignment]... [argument...] |
+| awk       | awk是一个处理文本的工具，可对文档内容进行筛选、分析。<br />usage: awk [-F sepstring] [-v assignment]... program [argument...]<br />&emsp;or:&emsp;awk [-F sepstring] -f progfile [-f progfile]... [-v assignment]... [argument...] |
 | base64    | 通过base64算法进行加密/解密。<br />usage: base64 [-di] [-w COLUMNS] [FILE...] |
 | basename  | 返回删除后缀的路径名的非目录部分。<br />usage: basename [-a] [-s SUFFIX] NAME... \| NAME [SUFFIX] |
 | bunzip2   | 解压bz格式的文件。<br />usage: bunzip2 [-cftkv] [FILE...] |

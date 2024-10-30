@@ -56,6 +56,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 
    ```ts
    import resourceManager from '@ohos.resourceManager';
+   import { common } from '@kit.AbilityKit';
 
    let context = getContext(this) as common.UIAbilityContext;
    let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
@@ -147,71 +148,81 @@ import { common } from '@kit.AbilityKit';
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private avConfig: media.AVTranscoderConfig = {
-     audioBitrate: 100000, // Audio bit rate.
-     audioCodec: media.CodecMimeType.AUDIO_AAC,
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
-     videoBitrate: 200000, // Video bit rate.
-     videoCodec: media.CodecMimeType.VIDEO_AVC,
-     videoFrameWidth: 640, // Video frame width.
-     videoFrameHeight: 480, // Video frame height.
-   }
+    audioBitrate: 100000, // Audio bit rate.
+    audioCodec: media.CodecMimeType.AUDIO_AAC,
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+    videoBitrate: 200000, // Video bit rate.
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
+    videoFrameWidth: 640, // Video frame width.
+    videoFrameHeight: 480, // Video frame height.
+  }
 
   // Set AVTranscoder callback functions.
   setAVTranscoderCallback() {
-    if (this.avTranscoder != undefined) {
-      // Callback function for the completion of transcoding.
-      this.avTranscoder.on('complete', async () => {
-        console.log(`AVTranscoder is completed`);
-        await this.releaseTranscoderingProcess();
-      })
-      // Callback function for errors.
-      this.avTranscoder.on('error', (err: BusinessError) => {
-        console.error(`AVTranscoder failed, code is ${err.code}, message is ${err.message}`);
-      })
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) {
+        // Callback function for the completion of transcoding.
+        this.avTranscoder.on('complete', async () => {
+          console.log(`AVTranscoder is completed`);
+          await this.releaseTranscoderingProcess();
+        })
+        // Callback function for errors.
+        this.avTranscoder.on('error', (err: BusinessError) => {
+          console.error(`AVTranscoder failed, code is ${err.code}, message is ${err.message}`);
+        })
+      }
     }
   }
 
   // Process of starting transcoding.
   async startTranscoderingProcess() {
-    if (this.avTranscoder != undefined) {
-      await this.avTranscoder.release();
-      this.avTranscoder = undefined;
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) {
+        await this.avTranscoder.release();
+        this.avTranscoder = undefined;
+      }
+      // 1. Create an avTranscoder instance.
+      this.avTranscoder = await media.createAVTranscoder();
+      this.setAVTranscoderCallback();
+      // 2. Obtain the source file FD and output file FD and assign them to avTranscoder. For details, see the FilePicker document.
+      let context = getContext(this) as common.UIAbilityContext;
+      let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+      this.avTranscoder.fdSrc = fileDescriptor;
+      this.avTranscoder.fdDst = 55;
+      // 3. Set transcoding parameters to complete the preparations.
+      await this.avTranscoder.prepare(this.avConfig);
+      // 4. Start transcoding.
+      await this.avTranscoder.start();
     }
-    // 1. Create an avTranscoder instance.
-    this.avTranscoder = await media.createAVTranscoder();
-    this.setAVTranscoderCallback();
-    // 2. Obtain the source file FD and output file FD and assign them to avTranscoder. For details, see the FilePicker document.
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
-    this.avTranscoder.fdSrc = fileDescriptor;
-    this.avTranscoder.fdDst = 55;
-    // 3. Set transcoding parameters to complete the preparations.
-    await this.avTranscoder.prepare(this.avConfig);
-    // 4. Start transcoding.
-    await this.avTranscoder.start();
   }
 
   // Process of pausing transcoding.
   async pauseTranscoderingProcess() {
-    if (this.avTranscoder != undefined) { // It is reasonable to call pause only after start is called and returns a value.
-      await this.avTranscoder.pause();
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) { // It is reasonable to call pause only after start is called and returns a value.
+        await this.avTranscoder.pause();
+      }
     }
   }
 
   // Resume the transcoding process.
   async resumeTranscoderingProcess() {
-    if (this.avTranscoder != undefined) { // It is reasonable to call resume only after pause is called and returns a value.
-      await this.avTranscoder.resume();
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) { // It is reasonable to call resume only after pause is called and returns a value.
+        await this.avTranscoder.resume();
+      }
     }
   }
 
   // Release the transcoding process.
   async releaseTranscoderingProcess() {
-    if (this.avTranscoder != undefined) {
-      // 1. Release the avTranscoder instance.
-      await this.avTranscoder.release();
-      this.avTranscoder = undefined;
-      // 2. Close the FD of the output file.
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) {
+        // 1. Release the avTranscoder instance.
+        await this.avTranscoder.release();
+        this.avTranscoder = undefined;
+        // 2. Close the FD of the output file.
+      }
     }
   }
 

@@ -185,7 +185,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The specified bundleName is invalid. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
 
 **Example**
@@ -241,7 +241,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The specified bundleName is invalid. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 | 18500008 | Internal error. |
 
 **Example**
@@ -290,10 +290,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10).
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10).
 
 **Example**
 
@@ -340,10 +340,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied. |
 | 202      | Not system application. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 18500001 | The bundle is not exist or no patch has applied. |
-| 18500009 | The application has a apply quick fix task that is being processed. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
+| 18500009 | The application has an ongoing quick fix task. |
 
-If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_quick_fix_revoke_result10). The table below lists the possible error codes and messages.
 
 **Example**
 
@@ -359,5 +359,3 @@ quickFixManager.revokeQuickFix(bundleName).then(() => {
   console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
 });
 ```
-
- <!--no_check--> 

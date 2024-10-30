@@ -12,7 +12,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。<!--Del-->编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。<!--DelEnd-->
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
 
 ## 基本知识
 
@@ -1670,7 +1670,7 @@ async function test() {
 }
 ```
 
-更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)。
+更多的使用动态import的业务场景和使用实例见[动态import](../arkts-utils/arkts-dynamic-import.md)。
 
 <!--RP1--><!--RP1End-->
 
@@ -1728,6 +1728,6 @@ function foo(arg1: number) {
 
 ### ArkUI示例
 
-[MVVM应用示例](arkts-mvvm.md#mvvm应用示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
+[MVVM代码示例](arkts-mvvm.md#代码示例)提供了一个完整的基于ArkUI的应用程序，以展示其GUI编程功能。
 
 有关ArkUI功能的更多详细信息，请参见ArkUI[基本语法概述](arkts-basic-syntax-overview.md)。

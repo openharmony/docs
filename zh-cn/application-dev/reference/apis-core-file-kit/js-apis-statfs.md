@@ -13,7 +13,7 @@
 import statfs from '@ohos.statfs';
 ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
@@ -45,7 +45,7 @@ getFreeBytes(path:string):Promise&lt;number&gt;
   });
   ```
 
-## statfs.getFreeBytes
+## Statfs.getFreeBytes
 
 getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -76,7 +76,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string): Promise&lt;number&gt;
 
@@ -108,7 +108,7 @@ getTotalBytes(path: string): Promise&lt;number&gt;
   });
   ```
 
-## statfs.getTotalBytes
+## Statfs.getTotalBytes
 
 getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 

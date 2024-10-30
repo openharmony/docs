@@ -550,7 +550,7 @@ enableAutoFill(value: boolean)
 
 passwordRules(value: string)
 
-定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
+定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。<!--RP1--><!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -953,6 +953,17 @@ enableHapticFeedback(isEnabled: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
 
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ### cancelButton<sup>14+</sup>
 
 cancelButton(value: CancelButtonSymbolOptions)
@@ -968,7 +979,6 @@ cancelButton(value: CancelButtonSymbolOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
-
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1076,7 +1086,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEve
 
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
+| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
 | event<sup>11+</sup> | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
 
 ### onEditChanged<sup>(deprecated)</sup>

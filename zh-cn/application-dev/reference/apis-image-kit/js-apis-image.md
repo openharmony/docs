@@ -322,7 +322,11 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
-从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。使用Promise形式返回。
+
+> **说明：**
+> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
+> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -331,7 +335,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region8)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 区域信息。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -367,7 +371,11 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
-从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+以同步方式，根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。
+
+> **说明：**
+> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
+> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -376,7 +384,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region8)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 区域信息。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -1303,7 +1311,7 @@ async function Demo() {
 readPixels(area: PositionArea): Promise\<void>
 
 读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。使用Promise形式返回。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1442,7 +1450,7 @@ async function Demo() {
 readPixelsSync(area: PositionArea): void
 
 以同步方式读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1486,7 +1494,7 @@ async function Demo() {
 writePixels(area: PositionArea): Promise\<void>
 
 读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用Promise形式返回。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1563,7 +1571,7 @@ async function Demo() {
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用callback形式返回。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1639,7 +1647,7 @@ async function Demo() {
 writePixelsSync(area: PositionArea): void
 
 以同步方式读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -3584,7 +3592,7 @@ async function Demo() {
 
 convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
-YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
+YUV和RGB类型互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -3592,7 +3600,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 | 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
-| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 目标像素格式，用于YUV和RGB格式互转。目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。 |
+| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 目标像素格式，用于YUV和RGB类型互转。目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。 |
 
 **返回值：**
 
@@ -4656,9 +4664,10 @@ createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 
 以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
 
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 7700301  | Decode failed.         |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types; 3.Parameter verification failed. |
+| 7700301  | Decode failed.                                               |
 
 **示例：**
 
@@ -5490,7 +5499,7 @@ packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 | 参数名           | 类型                                                 | 必填 | 说明                 |
 | ---------------- | ---------------------------------------------------- | ---- | -------------------- |
 | picture | [Picture](#picture13)                           | 是   | 打包的Picture对象。 |
-| option           | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+| options          | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
 
 **返回值：**
 
@@ -5843,7 +5852,7 @@ createAuxiliaryPicture(buffer: ArrayBuffer, size: Size, type: AuxiliaryPictureTy
 
 通过ArrayBuffer图片数据、辅助图尺寸、辅助图类型创建AuxiliaryPicture实例。
 
-**系统能力：** SystemCapability.Multimedia.Image.
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -6258,7 +6267,7 @@ async function Release() {
 
 ## Metadata<sup>13+</sup>
 
-图像元数据类，用于存储图像的元数据。
+图像元数据类，用于存储图像的元数据。目前支持的元数据类型可参考[MetadataType](#metadatatype13)。
 
 ### 属性
 
@@ -6268,7 +6277,7 @@ async function Release() {
 
 getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
 
-获取图像中属性的值，此方法使用promise返回记录数组中的属性值。
+获取图像中属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](#propertykey7)和[FragmentMapPropertyKey](#fragmentmappropertykey13)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -6327,7 +6336,7 @@ async function GetProperties() {
 
 setProperties(records: Record\<string, string | null>): Promise\<void>
 
-批量设置图片元数据中的指定属性的值，用Promise形式不返回结果。
+批量设置图片元数据中的指定属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](#propertykey7)和[FragmentMapPropertyKey](#fragmentmappropertykey13)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -6390,7 +6399,7 @@ async function SetProperties() {
 
 getAllProperties(): Promise\<Record<string, string | null>>
 
-获取图片中所有元数据的属性和值，用Promise形式返回结果。
+获取图片中所有元数据的属性和值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](#propertykey7)和[FragmentMapPropertyKey](#fragmentmappropertykey13)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -6635,7 +6644,7 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取最新的图片，并使用callback返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -6665,7 +6674,7 @@ readLatestImage(): Promise\<Image>
 
 从ImageReceiver读取最新的图片，并使用promise返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -6693,7 +6702,7 @@ readNextImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取下一张图片，并使用callback返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -6723,7 +6732,7 @@ readNextImage(): Promise\<Image>
 
 从ImageReceiver读取下一张图片，并使用promise返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -7402,7 +7411,7 @@ img.release().then(() => {
 | 名称              | 值   | 说明               |
 | ----------------- | ---- | ------------------ |
 | EXIF_METADATA     | 1    | exif数据。         |
-| FRAGMENT_METADATA | 2    | 水印裁切图元数据。 |
+| FRAGMENT_METADATA | 2    | 水印裁剪图元数据。 |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -7725,6 +7734,19 @@ PixelMap的初始化选项。
 | CLOUD_ENHANCEMENT_MODE <sup>12+</sup> | "HwMnoteCloudEnhancementMode" | **读写能力：** 可读写<br>云增强模式。 |
 | WIND_SNAPSHOT_MODE <sup>12+</sup> | "HwMnoteWindSnapshotMode" | **读写能力：** 只读<br>运动快拍模式。 |
 
+## FragmentMapPropertyKey<sup>13+</sup>
+
+枚举，水印裁剪图图片信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值                    | 说明                                |
+| ------------- | --------------------- | ----------------------------------- |
+| X_IN_ORIGINAL | "XInOriginal"         | 水印裁剪图左上角在原始图中的X坐标。 |
+| Y_IN_ORIGINAL | "YInOriginal"         | 水印裁剪图左上角在原始图中的Y坐标。 |
+| WIDTH         | "FragmentImageWidth"  | 水印裁剪图的宽。                    |
+| HEIGHT        | "FragmentImageHeight" | 水印裁剪图的高。                    |
+
 ## ImageFormat<sup>9+</sup>
 
 枚举，图片格式。
@@ -7758,7 +7780,7 @@ PixelMap的初始化选项。
 | 名称          | 类型                             | 只读 | 可选 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
 | componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
-| rowStride     | number                           | 是   | 否   | 行距。       |
+| rowStride     | number                           | 是   | 否   | 行距。读取相机预览流数据时，需要考虑按stride进行读取，具体用法见[ArkTS双路预览示例](../../media/camera/camera-dual-channel-preview.md)。       |
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
 

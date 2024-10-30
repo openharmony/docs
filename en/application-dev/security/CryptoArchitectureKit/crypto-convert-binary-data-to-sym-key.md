@@ -1,7 +1,7 @@
 # Converting Binary Data into a Symmetric Key (ArkTS)
 
 
-This topic uses 3DES and HMAC as an example to describe how to convert binary data into a symmetric key. That is, convert a piece of external or internal binary data into a key object for subsequent operations, such as encryption and decryption.
+This topic uses 3DES and HMAC as an example to describe how to convert binary data into a symmetric key (**SymKey**). That is, convert a piece of external or internal binary data into a key object for subsequent operations, such as encryption and decryption.
 
 
 ## Converting Binary Data into a 3DES Key

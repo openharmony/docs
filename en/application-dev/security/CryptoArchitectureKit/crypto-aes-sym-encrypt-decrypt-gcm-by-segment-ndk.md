@@ -20,7 +20,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 2. Use [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'AES128|GCM|PKCS7'** to create a **Cipher** instance. The key type is **AES128**, block cipher mode is **GCM**, and the padding mode is **PKCS7**.
 
-3. Use [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create) to create a symmetric cipher parameter instance, and use [OH_CryptoSymCipherParams_SetParams](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set cipher parameters.
+3. Use [OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create) to create a symmetric cipher parameter instance, and use [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set cipher parameters.
 
 4. Use [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**) and the encryption parameter instance (**OH_CryptoSymCipherParams**) corresponding to the GCM mode.
 
@@ -33,16 +33,16 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
       If a stream cipher mode (CTR or OFB) is used, the ciphertext length is usually the same as the plaintext length.
 
-5. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
+6. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
    
    - If data has been passed in by **OH_CryptoSymCipher_Update()**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
    - The output of **OH_CryptoSymCipher_Final** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
-6. Use [OH_CryptoSymCipherParams_SetParams](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set **authTag** as the authentication information for decryption.
+7. Use [OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam) to set **authTag** as the authentication information for decryption.
    
    In GCM mode, extract the last 16 bytes from the encrypted data as the authentication information for initializing the **Cipher** instance in decryption. In the example, **authTag** is of 16 bytes.
 
-7. Use [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), and [OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy) to destroy the instances created.
+8. Use [OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy), [OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy), and [OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy) to destroy the instances created.
 
 **Decryption**
 
@@ -61,6 +61,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
 
 #define OH_CRYPTO_GCM_TAG_LEN 16
+#define OH_CRYPTO_MAX_TEST_DATA_LEN 128
 static OH_Crypto_ErrCode doTestAesGcmSeg()
 {
     OH_CryptoSymKeyGenerator *genCtx = nullptr;
@@ -68,13 +69,13 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     OH_CryptoSymCipher *decCtx = nullptr;
     OH_CryptoSymKey *keyCtx = nullptr;
     OH_CryptoSymCipherParams *params = nullptr;
-    
-    uint8_t plainText[] = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
-    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
-    
-    uint8_t aad[8] = {0};
+
+    char *plainText = const_cast<char *>("aaaaa.....bbbbb.....ccccc.....ddddd.....eee");
+    Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
+
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tagArr[16] = {0};
-    uint8_t iv[12] = {0};
+    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv is generated from an array of secure random numbers.
     Crypto_DataBlob tag = {.data = nullptr, .len = 0};
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadBlob = {.data = aad, .len = sizeof(aad)};
@@ -83,11 +84,11 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     Crypto_DataBlob tagInit = {.data = tagArr, .len = sizeof(tagArr)};
     int32_t cipherLen = 0;
     int blockSize = 20;
-    int32_t randomLen = sizeof(plainText);
+    int32_t randomLen = strlen(plainText);
     int cnt = randomLen / blockSize;
     int rem = randomLen % blockSize;
-    uint8_t cipherText[sizeof(plainText) + 16] = {0};
-    Crypto_DataBlob cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
+    Crypto_DataBlob cipherBlob;
     
     // Generate a key.
     OH_Crypto_ErrCode ret;
@@ -147,15 +148,15 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
         memcpy(&cipherText[cipherLen], outUpdate.data, outUpdate.len);
         cipherLen += outUpdate.len;
     }
-    cipherBlob.len = cipherLen;
     ret = OH_CryptoSymCipher_Final(encCtx, nullptr, &tag);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
 
     // Decrypt data.
-    msgBlob.data -= sizeof(plainText) - rem;
-    msgBlob.len = sizeof(plainText);
+    cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    msgBlob.data -= strlen(plainText) - rem;
+    msgBlob.len = strlen(plainText);
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;

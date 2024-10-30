@@ -541,6 +541,17 @@ enableHapticFeedback(isEnabled: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
 
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ## IconOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -563,6 +574,7 @@ enableHapticFeedback(isEnabled: boolean)
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
+| autoDisable<sup>14+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 

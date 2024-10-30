@@ -70,7 +70,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 | timestamp                             | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。 |
 | stopPropagation                       | () => void                               | 阻塞事件冒泡传递。                  |
 | intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | 按键对应的意图。       |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 <br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | unicode<sup>14+</sup>                              | number                                   | 按键的unicode码值。支持范围为非空格的基本拉丁字符：0x0021-0x007E，不支持字符为0。组合键场景下，返回当前keyEvent对应按键的unicode码值。 <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 **错误码**：

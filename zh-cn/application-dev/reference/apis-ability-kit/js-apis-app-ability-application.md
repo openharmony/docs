@@ -27,7 +27,7 @@ createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| context | [Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md) | 是 | 表示应用上下文。 | 
+| context | [Context](js-apis-inner-application-context.md) | 是 | 表示应用上下文。 |
 | moduleName | string | 是 | 表示应用模块名。 |
 
 **返回值：**
@@ -54,14 +54,61 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let moduleContext: common.Context;
     try {
-      application.createModuleContext(this.context,'entry').then((data: Context)=>{
+      application.createModuleContext(this.context, 'entry').then((data: Context) => {
         moduleContext = data;
         console.info('createBundleContext success!');
-      }).catch((error : BusinessError)=>{
-        console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+      }).catch((error: BusinessError) => {
+        let code: number = (error as BusinessError).code;
+        let message: string = (error as BusinessError).message;
+        console.error(`createModuleContext failed, error.code: ${code}, error.message: ${message}`);
       })
     } catch (error) {
-      console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`createModuleContext failed, error.code: ${code}, error.message: ${message}`);
+    }
+  }
+}
+```
+
+## application.getApplicationContext<sup>14+</sup>
+
+getApplicationContext(): ApplicationContext
+
+获取应用程序上下文。
+
+**元服务API：** 从API version 14开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                |
+| ------------------------------------------------------------ | ------------------- |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { UIAbility, application } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(): void {
+    try {
+      let applicationContext = application.getApplicationContext();
+    } catch (error) {
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`getApplicationContext failed, error.code: ${code}, error.message: ${message}`);
     }
   }
 }

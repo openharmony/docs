@@ -34,6 +34,6 @@
 
 | 算法/摘要算法/填充模式 | 备注 | API级别 |
 | -------- | -------- | -------- |
-| RSA/SHA1/PKCS1_V1_5<br/>RSA/SHA256/PKCS1_V1_5 | - | 12+ |
-| RSA/SHA1/PSS<br/>RSA/SHA256/PSS | - | 12+ |
-| RSA/SHA1/ISO_IEC_9796_2<br/>RSA/SHA256/ISO_IEC_9796_2 | - | 12+ |
+| RSA/SHA256/PKCS1_V1_5 | - | 12+ |
+| RSA/SHA256/PSS | - | 12+ |
+| RSA/SHA1/ISO_IEC_9796_2 | 数据最小长度=密钥长度-22字节 | 12+ |

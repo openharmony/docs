@@ -164,7 +164,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE）时需要该权限。
 
 **参数：**
 
@@ -215,7 +215,7 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE）时需要该权限。
 
 **参数：**
 
@@ -893,9 +893,9 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明      |
 | :--------------------- |:--|:--------|
 | CONCURRENCY_DEFAULT | 0 | 默认使用系统策略。     |
-| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它正在播放应用进行混音。     |
-| CONCURRENCY_DUCK_OTHERS | 2 | 后来播放应用压低正在播放应用的音量。 |
-| CONCURRENCY_PAUSE_OTHERS | 3 | 后来播放应用暂停正在播放应用。 |
+| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它音频并发。     |
+| CONCURRENCY_DUCK_OTHERS | 2 | 压低其他音频的音量。 |
+| CONCURRENCY_PAUSE_OTHERS | 3 | 暂停其他音频。 |
 
 ## AudioSessionDeactivatedReason<sup>12+</sup>
 
@@ -906,7 +906,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明     |
 | :--------------------- |:--|:-------|
 | DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
-| DEACTIVATED_TIMEOUT | 1 | 应用停流后超时。    |
+| DEACTIVATED_TIMEOUT | 1 | 音频会话等待超时。    |
 
 ## AudioSessionStrategy<sup>12+</sup>
 
@@ -1510,6 +1510,8 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 设置指定音量流静音，使用callback方式异步返回结果。
 
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
+
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
@@ -1542,6 +1544,8 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 设置指定音量流静音，使用Promise方式异步返回结果。
+
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -6212,7 +6216,7 @@ audioRenderer.getBufferSize().then((data: number) => {
 
 getAudioTime(callback: AsyncCallback\<number>): void
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用callback方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6236,7 +6240,7 @@ audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise\<number>
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用Promise方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6262,7 +6266,7 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从 1970 年 1 月 1 日开始），同步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -8297,7 +8301,7 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 
 getAudioTime(callback: AsyncCallback<number\>): void
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用callback方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8321,7 +8325,7 @@ audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise<number\>
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用Promise方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8347,7 +8351,7 @@ audioCapturer.getAudioTime().then((audioTime: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从1970年1月1日开始），单位为纳秒，同步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

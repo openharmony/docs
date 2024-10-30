@@ -45,6 +45,10 @@ backgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置组件的背景色。 |
 
+>  **说明：**
+>
+>  当通过[backgroundBlurStyle](#backgroundblurstyle9)中的inactiveColor指定背景色时，不建议再通过backgroundColor设置背景色。
+
 ## backgroundImage
 
 backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
@@ -141,6 +145,10 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 | value                 | [BlurStyle](#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。                                               |
 
+>  **说明：**
+>
+>  当通过backgroundBlurStyle中的inactiveColor指定背景色时，不建议再通过[backgroundColor](#backgroundcolor)设置背景色。
+
 ## backdropBlur
 
 backdropBlur(value: number, options?: BlurOptions)
@@ -195,7 +203,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 | color        | [ResourceColor](ts-types.md#resourcecolor)         |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
-| policy<sup>13+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：ALWAYS_ACTIVE |
+| policy<sup>13+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
 | inactiveColor<sup>13+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
 ## backgroundImageResizable<sup>12+</sup>
@@ -226,7 +234,7 @@ backgroundImageResizable(value: ResizableOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy<sup>13+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：ALWAYS_ACTIVE |
+| policy<sup>13+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
 | inactiveColor<sup>13+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
 

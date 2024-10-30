@@ -121,6 +121,8 @@
 
 ## Curve
 
+插值曲线，动效请参考<!--RP1-->[贝塞尔曲线](../../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -487,15 +489,13 @@
 
 ## ImageSize
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 说明                                  |
 | ------- | ----------------------------------- |
-| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| Auto    | 默认值，保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
+| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| Auto    | 默认值，保持原图的比例不变。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
 | FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## GradientDirection

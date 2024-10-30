@@ -53,6 +53,8 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
    > 
    > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
+   > 
+   > In addition, the audio renderer information (if required) must be set only when the AVPlayer is in the initialized state, that is, before **prepare()** is called for the first time. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0. If the default value of **usage** does not meet the requirements, configure [audio.AudioRendererInfo](../../reference/apis-audio-kit/js-apis-audio.md#audiorendererinfo8).
 
 4. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the volume.
 
@@ -68,7 +70,7 @@ Refer to the sample code below to play a complete piece of music. In this exampl
 
 ```ts
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -97,6 +99,10 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
           console.info('AVPlayer state initialized called.');
+          this.avPlayer.audioRendererInfo = {
+            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+            rendererFlags: 0
+          }
           avPlayer.prepare();
           break;
         case 'prepared': // This state is reported upon a successful callback of prepare().
@@ -158,7 +164,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/01.mp3';
     // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
-    let file = await fileIo.open(path);
+    let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.url = fdPath;
@@ -195,7 +201,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -206,11 +212,11 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // Obtain the size of the file to be played.
-    this.fileSize = fileIo.statSync(path).size;
+    this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.dataSrc = src;
@@ -230,7 +236,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf);
+        num = fs.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -240,7 +246,7 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // The seek operation is not supported.
@@ -258,3 +264,6 @@ export class AVPlayerDemo {
   }
 }
 ```
+
+<!--RP1-->
+<!--RP1End-->

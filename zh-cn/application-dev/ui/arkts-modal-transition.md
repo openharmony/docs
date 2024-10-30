@@ -45,7 +45,9 @@
      .bindContentCover(this.isPresent, this.MyBuilder(), {
                modalTransition: ModalTransition.NONE,
                onDisappear: () => {
-                 this.isPresent = !this.isPresent;
+                 if (this.isPresent) {
+                   this.isPresent = !this.isPresent;
+                 }
                }
              })
      .onClick(() => {
@@ -56,8 +58,6 @@
 
 
 完整示例代码和效果如下。
-
-
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -221,7 +221,9 @@ struct BindContentCoverDemo {
           .bindContentCover(this.isPresent, this.MyBuilder(), {
             modalTransition: ModalTransition.DEFAULT,
             onDisappear: () => {
-              this.isPresent = !this.isPresent;
+              if (this.isPresent) {
+                this.isPresent = !this.isPresent;
+              }
             }
           })
           .onClick(() => {

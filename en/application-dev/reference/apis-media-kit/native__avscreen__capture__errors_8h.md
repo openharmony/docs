@@ -7,6 +7,8 @@ The **native_avscreen_capture_errors.h** file declares the error codes generated
 
 **Library**: libnative_avscreen_capture.so
 
+**File to include**: <multimedia/player_framework/native_avscreen_capture_errors.h>
+
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
 **Since**: 10

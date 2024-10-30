@@ -29,6 +29,47 @@ import { wallpaper } from '@kit.BasicServicesKit';
 | VIDEO | 2 |视频资源。 |
 | PACKAGE | 3 |包资源。 |
 
+## FoldState<sup>14+</sup>
+
+定义设备的折展状态枚举类型。
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| NORMAL | 0 |设备默认状态。 |
+| UNFOLD_1 | 1 |一次展开态。 |
+| UNFOLD_2 | 2 |二次展开态。 |
+
+## RotateState<sup>14+</sup>
+
+定义设备的横竖屏状态枚举类型。
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| PORT | 0 |设备默认为竖屏状态。 |
+| LAND | 1 |横屏状态。 |
+
+## WallpaperInfo<sup>14+</sup>
+
+定义壁纸的信息结构。
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+| 名称 | 类型 | 说明 |
+| -------- | -------- |  -------- |
+| [FoldState](#foldstate14) | enum | 表示设备的折展状态。 |
+| [RotateState](#rotatestate14) | enum | 表示设备的横竖屏状态。 |
+| source | string | 表示壁纸资源uri，只支持应用沙箱目录。 |
+
 ## wallpaper.setVideo<sup>10+</sup>
 
 setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
@@ -71,7 +112,7 @@ try {
             console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
             return;
         }
-        console.log(`success to setVideo.`);
+        console.info(`success to setVideo.`);
     });
 } catch (error) {
     console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
@@ -122,7 +163,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
 try {
     wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-        console.log(`success to setVideo.`);
+        console.info(`success to setVideo.`);
     }).catch((error: BusinessError) => {
         console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
     });
@@ -173,7 +214,7 @@ try {
             console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
             return;
         }
-        console.log(`success to setCustomWallpaper.`);
+        console.info(`success to setCustomWallpaper.`);
     });
 } catch (error) {
     console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
@@ -224,7 +265,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
 try {
     wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-        console.log(`success to setCustomWallpaper.`);
+        console.info(`success to setCustomWallpaper.`);
     }).catch((error: BusinessError) => {
         console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
     });
@@ -264,7 +305,7 @@ on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceTyp
 ```ts
 try {
     let listener = (wallpaperType: wallpaper.WallpaperType, resourceType: wallpaper.WallpaperResourceType): void => {
-        console.log(`wallpaper color changed.`);
+        console.info(`wallpaper color changed.`);
     };
     wallpaper.on('wallpaperChange', listener);
 } catch (error) {
@@ -302,7 +343,7 @@ off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceT
 
 ```ts
 let listener = (wallpaperType: wallpaper.WallpaperType, resourceType: wallpaper.WallpaperResourceType): void => {
-    console.log(`wallpaper color changed.`);
+    console.info(`wallpaper color changed.`);
 };
 try {
     wallpaper.on('wallpaperChange', listener);
@@ -361,7 +402,7 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 ```ts
 try {
     let colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
-    console.log(`success to getColorsSync: ${JSON.stringify(colors)}`);
+    console.info(`success to getColorsSync: ${JSON.stringify(colors)}`);
 } catch (error) {
     console.error(`failed to getColorsSync because: ${JSON.stringify(error)}`);
 }
@@ -466,7 +507,7 @@ wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessErro
         console.error(`failed to restore because: ${JSON.stringify(error)}`);
         return;
     }
-    console.log(`success to restore.`);
+    console.info(`success to restore.`);
 });
 ```
 
@@ -510,7 +551,7 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
  
 wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-    console.log(`success to restore.`);
+    console.info(`success to restore.`);
   }).catch((error: BusinessError) => {
     console.error(`failed to restore because: ${JSON.stringify(error)}`);
 });
@@ -559,7 +600,7 @@ wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (err
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
         return;
      }
-    console.log(`success to setImage.`);
+    console.info(`success to setImage.`);
 });
   
 // source类型为image.PixelMap
@@ -576,7 +617,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
             console.error(`failed to setImage because: ${JSON.stringify(error)}`);
             return;
         }
-        console.log(`success to setImage.`);
+        console.info(`success to setImage.`);
     });
 }).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
@@ -627,7 +668,7 @@ import { image } from '@kit.ImageKit';
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-    console.log(`success to setImage.`);
+    console.info(`success to setImage.`);
 }).catch((error: BusinessError) => {
     console.error(`failed to setImage because: ${JSON.stringify(error)}`);
 });
@@ -642,7 +683,7 @@ let opts: image.DecodingOptions = {
 };
 imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
     wallpaper.setImage(pixelMap, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
-        console.log(`success to setImage.`);
+        console.info(`success to setImage.`);
     }).catch((error: BusinessError) => {
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
     });
@@ -691,10 +732,9 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessErr
         console.error(`failed to getImage because: ${JSON.stringify(error)}`);
         return;
     }
-    console.log(`success to getImage: ${JSON.stringify(data)}`);
+    console.info(`success to getImage: ${JSON.stringify(data)}`);
 });
 ```
-
 
 ## wallpaper.getImage<sup>9+</sup>
 
@@ -737,13 +777,126 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
-    console.log(`success to getImage: ${JSON.stringify(data)}`);
+    console.info(`success to getImage: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`failed to getImage because: ${JSON.stringify(error)}`);
 });
 ```
+## wallpaper.getCorrespondWallpaper<sup>14+</sup>
 
+getCorrespondWallpaper(wallpaperType:WallpaperType, foldState:FoldState, rotateState:RotateState): Promise&lt;image.PixelMap&gt;
 
+获取指定壁纸类型、折展态、横竖屏的壁纸图片的像素图，如果指定的壁纸不存在，会逐步降级匹配，unfolded-land -> unfolded-port ->normal-port。使用promise异步回调。
+
+**需要权限**：ohos.permission.GET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
+| foldState | [FoldState](#foldstate14) | 是 | 折展状态类型。 |
+| rotateState | [RotateState](#rotatestate14) | 是 | 横竖屏状态类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wallpaper } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+wallpaper.getCorrespondWallpaper(wallpaper.WallpaperType.WALLPAPER_SYSTEM,wallpaper.FoldState.NORMAL,wallpaper.RotateState.PORT).then((data:image.PixelMap) => {
+  console.info(`success to getCorrespondWallpaper: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+  console.error(`failed to getCorrespondWallpaper because: ${JSON.stringify(error)}`);
+});
+```
+
+## wallpaper.setAllWallpapers<sup>14+</sup>
+
+setAllWallpapers(wallpaperInfos: Array\<WallpaperInfo>\, wallpaperType: WallpaperType): Promise&lt;void&gt;
+
+将所有指定资源（包括折展状态、横竖屏转态、资源路径,其中NORMAL-PORT为必选）设置为指定类型的壁纸。使用promise异步回调。
+
+**需要权限**：ohos.permission.SET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| wallpaperInfos | Array<[WallpaperInfo](#wallpaperinfo14)> | 是 | 所有壁纸的信息结构。 |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed: a.The path to the incoming image is incorrect. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wallpaper } from '@kit.BasicServicesKit';
+
+let wallpaperInfos: Array<wallpaper.WallpaperInfo>
+wallpaperInfos = [
+  {
+    foldState: wallpaper.FoldState.NORMAL,
+    rotateState: wallpaper.RotateState.PORT,
+    source: '/data/storage/el2/base/haps/entry/files/normal.jpeg'
+  },
+  {
+    foldState: wallpaper.FoldState.UNFOLD_1,
+    rotateState: wallpaper.RotateState.LAND,
+    source: '/data/storage/el2/base/haps/entry/files/unfold_1.jpeg'
+  },
+  {
+    foldState: wallpaper.FoldState.UNFOLD_2,
+    rotateState: wallpaper.RotateState.PORT,
+    source: '/data/storage/el2/base/haps/entry/files/unfold_2.jpeg'
+  }
+];
+wallpaper.setAllWallpapers(wallpaperInfos, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
+  console.info(`success to setAllWallpapers.`);
+}).catch((error: BusinessError) => {
+  console.error(`failed to setAllWallpapers because: ${JSON.stringify(error)}`);
+});
+```
 
 ## wallpaper.getPixelMap<sup>(deprecated)</sup>
 
@@ -779,7 +932,7 @@ wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: Business
         console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
         return;
     }
-    console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
+    console.info(`success to getPixelMap : ${JSON.stringify(data)}`);
   });
 ```
 
@@ -818,7 +971,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
-    console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
+    console.info(`success to getPixelMap : ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
 });

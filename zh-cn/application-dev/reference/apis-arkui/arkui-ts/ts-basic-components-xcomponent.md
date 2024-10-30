@@ -30,7 +30,7 @@ XComponent(options: XComponentOptions)
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
-该接口不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
+该接口从API version 12开始不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -480,9 +480,11 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 图像AI分析功能使用示例。
 
+<!--Del-->
 > **说明：**
 >
 > 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
+<!--DelEnd-->
 
 ```ts
 // xxx.ets
@@ -579,6 +581,7 @@ struct XComponentExample {
   }
 }
 ```
+<!--RP1--><!--RP1End-->
 
 ### 示例2
 

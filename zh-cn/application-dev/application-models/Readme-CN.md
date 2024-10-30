@@ -15,13 +15,13 @@
       - [启动应用内的UIAbility组件](uiability-intra-device-interaction.md)
       - [UIAbility备份恢复](ability-recover-guideline.md)
     - [ExtensionAbility组件](extensionability-overview.md)
-      - [UIServiceExtension](uiserviceextension.md)
       <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
       - [UIServiceExtension（仅对系统应用开放）](uiserviceextension-sys.md)
       - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       - [AutoFillExtensionAbility（仅对系统应用开放）](autofillextensionablility-guide.md)
       <!--DelEnd-->
+      - [UIServiceExtension](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)

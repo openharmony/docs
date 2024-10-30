@@ -1190,8 +1190,8 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器的对象。 |
 
 **错误码：**
-
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|

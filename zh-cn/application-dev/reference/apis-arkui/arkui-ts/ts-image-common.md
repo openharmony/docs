@@ -25,8 +25,8 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述           |
-| -------- | -------------- |
+| 名称     | 说明           |
+| -------- | -------- |
 | SUBJECT | 主体识别功能。 |
 | TEXT | 文字识别功能。 |
 | OBJECT_LOOKUP | 对象查找功能。 |

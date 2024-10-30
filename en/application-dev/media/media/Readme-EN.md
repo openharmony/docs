@@ -11,7 +11,7 @@
   - [Video Playback](video-playback.md)
   - [Adding External Subtitles to Videos](video-subtitle.md)
   - [Video Recording](video-recording.md)
-  - [Using AVScreenCaptureRecorder to Capture Screens and Save Them to a File (ArkTs)](using-avscreencapture-ArkTs.md)
+  - [Using AVScreenCaptureRecorder to Capture Screens and Save Them to a File (ArkTS)](using-avscreencapture-ArkTs.md)
   - [Using AVScreenCapture to Obtain Original Streams (C/C++)](using-avscreencapture-for-buffer.md)
   - [Using AVScreenCapture to Save Recordings in Files (C/C++)](using-avscreencapture-for-file.md)
   - [Obtaining Video Thumbnails](avimagegenerator.md)
