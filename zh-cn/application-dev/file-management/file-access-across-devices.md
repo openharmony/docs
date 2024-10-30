@@ -88,7 +88,7 @@
        let err: BusinessError = error as BusinessError;
        console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
      }
-   }).catch((error) => {
+   }).catch((error: BusinessError) => {
      let err: BusinessError = error as BusinessError;
      console.error(`Failed to connectDfs Code: ${err.code}, message: ${err.message}`);
    });
