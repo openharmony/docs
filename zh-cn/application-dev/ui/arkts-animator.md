@@ -2,6 +2,8 @@
 
 通过返回应用onFrame逐帧回调的方式，让开发者在应用侧的每一帧都可以设置属性值，从而实现设置了该属性值对应组件的动画效果。接口的详细介绍请查看[@ohos.animator (动画)](../reference/apis-arkui/js-apis-animator.md)。
 
+相比于属性动画，开发者可感知动画的过程，实时修改UI侧的值，具有事件可实时响应、可暂停的优点，但性能上不如属性动画。在属性动画符合要求时更推荐使用属性动画的接口实现，可参照[实现属性动画](./arkts-attribute-animation-apis.md)。
+
 
 ## 使用animator实现动画效果
 
