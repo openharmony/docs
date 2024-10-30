@@ -64,6 +64,16 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | 是    | 快捷键选项。                 |
 | callback   | Callback&lt;HotkeyOptions&gt; | 是    | 回调函数，当满足条件的全局组合按键输入事件发生时，异步上报组合按键数据。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[inputconsumer错误码](errorcode-inputconsumer.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 4200002  | Parameter error. The hotkey has been used by the system. You can call the [inputConsumer.getAllSystemHotkeys](#inputconsumergetallsystemhotkeys13) interface to query all system hotkeys. |
+| 4200003  | Parameter error. The hotkey has been subscribed to by another. |
+
 **示例：** 
 
 ```js
@@ -99,6 +109,14 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。        |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | 是    | 快捷键选项。             |
 | callback   | Callback&lt;HotkeyOptions&gt; | 否    | 需要取消订阅的回调函数。若不填，则取消当前应用全局快捷键选项已订阅的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：** 
 
