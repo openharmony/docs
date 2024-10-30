@@ -18,6 +18,8 @@
    > - 如果设置fdSrc，可以使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。也可以通过应用沙箱路径访问对应资源（必须确保资源可用），参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
    >
    > - 如果设置dataSrc，必须正确设置dataSrc中的callback属性，确保callback被调用时能正确读取到对应资源，使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
+   >
+   > - 不同AVMetadataExtractor或者[AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avmetadataextractor11)实例，如果需要操作同一资源，需要多次打开文件描述符，不要共用同一文件描述符。
 
 3. 获取元数据：调用fetchMetadata()，可以获取到一个AVMetadata对象，通过访问该对象的各个属性，可以获取到元数据。
 
