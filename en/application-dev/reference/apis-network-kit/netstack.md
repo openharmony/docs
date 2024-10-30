@@ -321,6 +321,8 @@ Verifies the certificate chain.
 
 **2305027**: The certificate is untrusted.
 
+**2305069**: A call error occurred during certificate verification or the parameter is invalid.
+
 ### OH_NetStack_GetPinSetForHostName()
 
 ```
@@ -375,7 +377,7 @@ Obtains the certificate information.
 
 **0**: Success.
 
-**401**: Incorrect parameter settings.
+**401**: Parameter error.
 
 **2305999**: Memory error.
 
