@@ -4738,6 +4738,8 @@ PhotoAsset的成员类型。
 | BURST_KEY<sup>12+</sup>   | 'burst_key'               | 一组连拍照片的唯一标识：uuid。 |
 | LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | LCD图片的宽高，值为width:height拼接而成的字符串。|
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | THUMB图片的宽高，值为width:height拼接而成的字符串。|
+| DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | 大图浏览时间，值为拍摄时对应时区的时间的字符串，不会跟随时区变化。|
+| DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | 拍摄日期（文件拍照时间距1970年1月1日的毫秒数值）。|
 
 ## AlbumKeys
 
