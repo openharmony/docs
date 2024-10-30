@@ -1,13 +1,13 @@
 # ArkData子系统Changelog
 
-## cl.arkdata.1 关系型数据管理[@ohos.data.relationalStore.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.relationalStore.d.ts)中getRdbStore加密方式变更返回错误码变更
+## cl.arkdata.1 关系型数据管理@ohos.data.relationalStore.d.ts中getRdbStore加密方式变更返回错误码变更
 **访问级别**
 
 公开接口
 
 **变更原因**
 
-加密方式变更不是数据库损坏，不应该返回损坏错误码。
+当前接口getRdbStore的config参数中加密参数（encrypt）如果和实际加密方式不一致会抛数据库损坏错误码（14800011），行为不正确。
 
 **变更影响**
 
@@ -22,7 +22,7 @@
 
 **起始API Level**
 
-API 12
+API 9
 
 **变更发生版本**
 
