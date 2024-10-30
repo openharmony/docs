@@ -127,6 +127,8 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 
 **System capability**: SystemCapability.Communication.NetStack
 
+**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails.
+
 **Parameters**
 
 | Name  | Type                    | Mandatory| Description                        |
@@ -180,6 +182,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
+
+**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails.
 
 **Parameters**
 
@@ -244,6 +248,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
+
+**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails.
 
 **Parameters**
 
