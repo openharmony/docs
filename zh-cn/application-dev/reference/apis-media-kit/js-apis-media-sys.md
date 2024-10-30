@@ -114,7 +114,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 | 参数名    | 类型   | 必填 | 说明                                                          |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
-| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。            |
+| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
 
 **错误码：**
 
