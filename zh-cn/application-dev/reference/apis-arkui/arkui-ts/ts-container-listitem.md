@@ -56,7 +56,7 @@ sticky(value: Sticky)
 
 设置ListItem吸顶效果。
 
-从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#属性)。
+从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#sticky9)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
