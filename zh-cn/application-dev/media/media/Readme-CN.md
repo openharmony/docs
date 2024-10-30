@@ -6,6 +6,7 @@
   - 播放
     - [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md)
     - [使用AVPlayer接口播放视频(ArkTS)](video-playback.md)
+    - [流媒体播放开发指导(ArkTS)](streaming-media-playback-development-guide.md)
   - 录制
     - [使用AVRecorder接口录制音频(ArkTS)](using-avrecorder-for-recording.md)
     - [使用AVRecorder接口录制视频(ArkTS)](video-recording.md)
@@ -20,8 +21,6 @@
     - [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)
   - 视频转码
     - [使用AVTranscoder接口转码(ArkTS)](using-avtranscoder-for-transcodering.md)
-- 媒体最佳实践(ArkTS)
-  - [流媒体播放开发指导(ArkTS)](streaming-media-playback-development-guide.md)
 
 - 媒体开发者指导(C/C++)
   - 播放
