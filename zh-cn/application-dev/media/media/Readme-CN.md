@@ -20,6 +20,8 @@
     - [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)
   - 视频转码
     - [使用AVTranscoder接口转码(ArkTS)](using-avtranscoder-for-transcodering.md)
+- 媒体最佳实践(ArkTS)
+  - [流媒体播放开发指导(ArkTS)](streaming-media-playback-development-guide.md)
 
 - 媒体开发者指导(C/C++)
   - 播放
