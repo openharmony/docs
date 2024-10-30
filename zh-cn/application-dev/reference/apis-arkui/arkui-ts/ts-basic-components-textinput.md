@@ -1025,7 +1025,7 @@ enableHapticFeedback(isEnabled: boolean)
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 
-### cancelButton<sup>14+</sup>
+## cancelButton<sup>14+</sup>
 
 cancelButton(value: CancelButtonSymbolOptions)
 
