@@ -398,11 +398,16 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 
 constructor(context: Context)
 
+创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
+**参数：**
+| 参数名  | 类型    | 必填 | 说明                                                         |
+| ------- | ------- | ---- | ------------------------------------------------------------ |
+| context | Context| 是   | 应用上下文（仅支持UIAbilityContext）。Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 
 **示例：**
 
@@ -435,11 +440,11 @@ struct Index {
 
 constructor()
 
+创建AudioViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
-
-创建AudioViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
 
 **示例：**
 
