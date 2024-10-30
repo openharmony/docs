@@ -40,7 +40,7 @@
 
 **举例**：环境要求
 
-使用本工具前，开发者需要先获取[hdc工具](../application-dev/dfx/hdc.md)，执行hdc shell。
+使用本工具前，开发者需要先获取[hdc工具](./../application-dev/dfx/hdc.md)，执行hdc shell。
 
 
 ## 命令列表
