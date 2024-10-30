@@ -25,7 +25,6 @@ import settings from '@ohos.settings';
 |-----------------------------| ------ | ---- | ---- | ------------------------------------------------------------ |
 | DEVICE_SHARED<sup>11+</sup> | string | 是   | 是   | 设备属性共享域                                          |
 | USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域                                           |
-| USER_SECURITY<sup>11+</sup> | string | 是   | 是   | 用户安全属性域                                           |
 
 ## date(暂不支持)
 
