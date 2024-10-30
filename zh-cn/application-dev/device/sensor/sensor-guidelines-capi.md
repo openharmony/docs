@@ -28,16 +28,13 @@
 | OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t *length) | 获取传感器数据。<br/>数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下：<br/>1.SENSOR_TYPE_ACCELEROMETER:data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位m/s²；<br/>2.SENSOR_TYPE_GYROSCOPE:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s；<br/>3.SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，单位lux；从API Version 12开始，将返回两个额外的数据，其中data[1]表示色温，单位kelvin；data[2]表示红外亮度，单位cd/m²；<br/> 4.SENSOR_TYPE_MAGNETIC_FIELD:data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉； <br/>5.SENSOR_TYPE_BAROMETER:data[0]表示气压值，单位hPa；<br/>6.SENSOR_TYPE_HALL:data[0]表示皮套吸合状态，0表示打开，大于0表示吸附；<br/>7.SENSOR_TYPE_PROXIMITY:data[0]表示接近状态，0表示接近，大于0表示远离；<br/>8.SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位度；<br/>9.SENSOR_TYPE_GRAVITY:data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位m/s²；<br/>10.SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位度，data[3]表示旋转向量元素；<br/>11.SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示计步检测状态，1表示检测到了步数变化；<br/>12.SENSOR_TYPE_PEDOMETER:data[0]表示步数；<br/>13.SENSOR_TYPE_HEART_RATE:data[0]表示心率数值。 |
 | OH_Sensor_CreateSubscriptionId(void)                         | 创建一个Sensor_SubscriptionId 实例。                         |
 | OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id)   | 销毁Sensor_SubscriptionId 实例并回收内存。                   |
-| OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId *id, Sensor_Type *sensorType) | 获取传感器类型。                                             |
 | OH_SensorSubscriptionId_SetType(Sensor_SubscriptionId* id, const Sensor_Type sensorType) | 设置传感器类型。                                             |
 | OH_Sensor_CreateSubscriptionAttribute(void)                  | 创建Sensor_SubscriptionAttribute实例。                       |
 | OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *attribute) | 销毁Sensor_SubscriptionAttribute实例并回收内存。             |
 | OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAttribute* attribute, const int64_t samplingInterval) | 设置传感器数据上报间隔。                                     |
-| OH_SensorSubscriptionAttribute_GetSamplingInterval(Sensor_SubscriptionAttribute* attribute, int64_t *samplingInterval) | 获取传感器数据上报间隔。                                     |
 | OH_Sensor_CreateSubscriber(void)                             | 创建一个Sensor_Subscriber实例。                              |
 | OH_Sensor_DestroySubscriber(Sensor_Subscriber *subscriber)   | 销毁Sensor_Subscriber实例并回收内存。                        |
 | OH_SensorSubscriber_SetCallback(Sensor_Subscriber* subscriber, const Sensor_EventCallback callback) | 设置一个回调函数来上报传感器数据。                           |
-| OH_SensorSubscriber_GetCallback(Sensor_Subscriber* subscriber, Sensor_EventCallback *callback) | 获取用于上报传感器数据的回调函数。                           |
 
 
 ## 开发步骤
@@ -48,7 +45,7 @@
 
    ![输入图片说明](figures/004.png)
 
-2. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
+2. 配置加速度传感器权限，具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
    ```json
    "requestPermissions": [
@@ -66,7 +63,7 @@
    target_link_libraries(entry PUBLIC libohsensor.so)
    ```
 
-4. 导入模块。
+4. 在napi_init.cpp文件中编码，首先导入模块。
 
    ```c
    #include "sensors/oh_sensor.h"
@@ -136,7 +133,7 @@
            return nullptr;
        }
        Sensor_Info **sensors = OH_Sensor_CreateInfos(count); // 用给定的数字创建一个实例数组。
-       if (ret != SENSOR_SUCCESS) {
+       if (sensor == nullptr) {
            return nullptr;
        }        
        ret = OH_Sensor_GetInfos(sensors, &count); // 获取设备上所有传感器的信息。 
@@ -231,11 +228,26 @@
    }
    ```
    
-9. 在types/libentry路径下index.d.ts文件中引入Napi接口。
+9. 在Init函数中补充接口。
+
+   ```c
+   static napi_value Init(napi_env env, napi_value exports)
+      {
+          napi_property_descriptor desc[] = {
+              { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
+              { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
+          };
+          napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+          return exports;
+      }
+      EXTERN_C_END
+   ```
+
+10. 在types/libentry路径下index.d.ts文件中引入Napi接口。
 
    ```c
    export const getSensorInfos: () => number;
    export const subscriber: () => number;
    ```
 
-10. 编写Js用例调用接口。
+   
