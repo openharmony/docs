@@ -2693,7 +2693,7 @@ avPlayer.off('trackInfoUpdate')
 
 ### on('amplitudeUpdate')<sup>13+</sup>
 
-on(type: 'amplitudeUpdate', callback: Callback\<Array\<Number>>): void
+on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 
 订阅音频最大电平值，音频资源播放时定时上报。
 
@@ -2704,7 +2704,7 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<Number>>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
-| callback | Callback\<Array\<Number>> | 是   | 音频最大电平值更新事件回调方法。 |
+| callback | Callback\<Array\<number>> | 是   | 音频最大电平值更新事件回调方法。 |
 
 **示例：**
 
@@ -2716,7 +2716,7 @@ avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
 
 ### off('amplitudeUpdate')<sup>13+</sup>
 
-off(type: 'amplitudeUpdate', callback?: Callback\<Array\<Number>>): void
+off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 
 取消订阅获取音频最大电平值事件。
 
@@ -2727,7 +2727,7 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<Number>>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
-| callback | Callback\<Array\<Number>> | 否   | 取消音频最大电平值更新事件回调方法。 |
+| callback | Callback\<Array\<number>> | 否   | 取消音频最大电平值更新事件回调方法。 |
 
 **示例：**
 
