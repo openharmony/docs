@@ -32,6 +32,8 @@ Media Kit（媒体服务）提供了[AVPlayer](#avplayer)、[SoundPool](#soundpo
 
 - 编码格式：比如h264/h265
 
+详细流媒体开发流程请参考[流媒体播放开发指导](streaming-media-playback-development-guide.md)。
+
 ## AVPlayer
 
 AVPlayer主要工作是将Audio/Video媒体资源（比如mp4/mp3/mkv/mpeg-ts等）转码为可供渲染的图像和可听见的音频模拟信号，并通过输出设备进行播放。
