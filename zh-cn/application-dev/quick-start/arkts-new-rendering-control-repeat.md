@@ -509,6 +509,72 @@ struct RepeatVirtualScroll2T {
 
 ![Repeat-VirtualScroll-2T-Demo](./figures/Repeat-VirtualScroll-2T-Demo.gif)
 
+### Repeat嵌套
+
+Repeat支持嵌套使用。示例代码：
+
+```ts
+// Repeat嵌套
+@Entry
+@ComponentV2
+struct RepeatNest {
+  @Local outerList: string[] = [];
+  @Local innerList: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 20; i++) {
+      this.outerList.push(i.toString());
+      this.innerList.push(i);
+    }
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      Text('Repeat virtualScroll嵌套')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+      List() {
+        Repeat<string>(this.outerList)
+          .each((obj) => {
+            ListItem() {
+              Column() {
+                Text('outerList item: ' + obj.item)
+                  .fontSize(30)
+                List() {
+                  Repeat<number>(this.innerList)
+                    .each((subObj) => {
+                      ListItem() {
+                        Text('innerList item: ' + subObj.item)
+                          .fontSize(20)
+                      }
+                    })
+                    .key((item) => "innerList_" + item)
+                }
+                .width('80%')
+                .border({ width: 1 })
+                .backgroundColor(Color.Orange)
+              }
+              .height('30%')
+              .backgroundColor(Color.Pink)
+            }
+            .border({ width: 1 })
+          })
+          .key((item) => "outerList_" + item)
+      }
+      .width('80%')
+      .border({ width: 1 })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('90%')
+    .height('80%')
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Nest](./figures/Repeat-Nest.png)
+
 ## 常见问题
 
 ### 屏幕外的列表数据发生变化时，保证滚动条位置不变
