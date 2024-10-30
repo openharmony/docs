@@ -550,7 +550,7 @@ enableAutoFill(value: boolean)
 
 passwordRules(value: string)
 
-定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
+定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。<!--RP1--><!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -953,11 +953,22 @@ enableHapticFeedback(isEnabled: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
 
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                          | 描述                                                         |
+| 名称                          | 说明                                                     |
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Password                      | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -1024,6 +1035,23 @@ enableHapticFeedback(isEnabled: boolean)
 | onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
+
+### cancelButton<sup>14+</sup>
+
+cancelButton(value: CancelButtonSymbolOptions)
+
+设置右侧清除按钮样式。不支持内联模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -1058,7 +1086,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEve
 
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
+| enterKey            | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
 | event<sup>11+</sup> | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
 
 ### onEditChanged<sup>(deprecated)</sup>
@@ -2222,3 +2250,27 @@ struct TextInputExample {
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
 
+### 示例16
+cancelButton属性接口使用示例。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ClearNodeExample {
+  @State text: string = ''
+  symbolModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular)
+
+  build() {
+    Column() {
+      TextInput({ text: this.text, placeholder: 'input your word...' })
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: this.symbolModifier
+        })
+    }
+  }
+}
+```
+
+![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)

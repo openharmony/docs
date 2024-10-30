@@ -308,9 +308,15 @@ No matching ability is found.
 
 隐式启动无法查找到匹配的Ability。
 
+**可能原因**
+
+1. 隐式启动的参数配置有误。
+2. 指定的HAP包未安装。
+
 **处理步骤**
 
-修改隐式启动的匹配项。
+1. 确保隐式启动的参数配置正确。
+2. 确保对应的HAP包已安装。
 
 ## 16000050 内部错误
 
@@ -803,15 +809,15 @@ The APP_INSTANCE_KEY is invalid.
 
 **错误描述**
 
-指定的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)不存在时，返回该错误码。
+指定的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)不存在时，返回该错误码。
 
 **可能原因**
 
-应用的实例中不存在该[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)指定的实例。
+应用的实例中不存在该[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)指定的实例。
 
 **处理步骤**
 
-确保传入的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)是一个有效值。
+确保传入的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)是一个有效值。
 
 ## 16000077 应用的实例数量已达到上限
 
@@ -859,7 +865,7 @@ The APP_INSTANCE_KEY cannot be specified.
 
 **错误描述**
 
-[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)不支持同时指定。当指定[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)的同时指定[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)，返回该错误码。
+[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)不支持同时指定。当指定[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)的同时指定[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)，返回该错误码。
 
 **可能原因**
 
@@ -867,7 +873,7 @@ The APP_INSTANCE_KEY cannot be specified.
 
 **处理步骤**
 
-参数[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)只支持二选一。
+参数[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)只支持二选一。
 
 ## 16000080 不支持创建新实例
 
@@ -877,7 +883,7 @@ Creating an instance is not supported.
 
 **错误描述**
 
-只允许应用使用[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)创建自己的实例，不允许应用间启动时为其他应用创建实例。否则，返回该错误码。
+只允许应用使用[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)创建自己的实例，不允许应用间启动时为其他应用创建实例。否则，返回该错误码。
 
 **可能原因**
 
@@ -885,7 +891,7 @@ Creating an instance is not supported.
 
 **处理步骤**
 
-删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)。
+删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 

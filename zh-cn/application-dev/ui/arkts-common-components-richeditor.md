@@ -31,7 +31,7 @@ RichEditor(this.options)
 RichEditor(options: RichEditorStyledStringOptions)
 ```
 
-其中RichEditorStyledStringOptions是富文本组件初始化选项。
+其中RichEditorStyledStringOptions是富文本组件初始化选项。属性字符串的使用方法请参考[属性字符串（StyledString/MutableStyledString）](arkts-styled-string.md)。
 
 ```ts
 mutableStyledString: MutableStyledString = new MutableStyledString("创建使用属性字符串构建的RichEditor组件。",
@@ -548,8 +548,8 @@ Button('addImageSpan', {
   
 ![alt text](figures/richeditor_image_add_image.gif)
 
-## 添加builder内容
-通过[addBuilderSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addbuilderspan11)添加builder内容。
+## 添加@Builder装饰器修饰的内容
+通过[addBuilderSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addbuilderspan11)添加@Builder装饰器修饰的内容。
   
 其中value是builder内容；options是builder选项，可通过[RichEditorBuilderSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
   

@@ -1340,6 +1340,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer *capturer, 
 **描述**
 获取输入音频流时间戳和位置信息。
 
+该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
+
 **起始版本：** 10
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
@@ -2233,6 +2235,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 **描述**
 获取输出音频流时间戳和位置信息。
 
+该接口可以获取到音频通道实际播放位置（framePosition）以及播放到该位置时的时间戳（timestamp），时间戳单位为纳秒。
+
+该接口一般用来实现音画同步，建议频率不要太频繁，可以每分钟一次，最好不要低200ms一次。频繁调用可能会带来功耗问题，因此在能保证音画同步效果的情况下，不需要频繁的查询时间戳。
+
 **起始版本：** 10
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
@@ -3100,6 +3106,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuild
 | -------- | -------- |
 | builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。  | 
 | audioCapturer | 指向输入音频流实例的指针，将被用来接收函数创建的结果。  | 
+
+**需要权限：**
+
+ohos.permission.MICROPHONE
 
 **返回：**
 

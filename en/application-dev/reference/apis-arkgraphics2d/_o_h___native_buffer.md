@@ -611,6 +611,10 @@ OH_NativeBuffer* OH_NativeBuffer_Alloc (const OH_NativeBuffer_Config* config)
 
 Creates an **OH_NativeBuffer** instance based on an **OH_NativeBuffer_Config** struct. A new **OH_NativeBuffer** instance is created each time this function is called.
 
+This function must be used in pair with **OH_NativeBuffer_Unreference**. Otherwise, memory leak occurs.
+
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -635,6 +639,8 @@ int32_t OH_NativeBuffer_FromNativeWindowBuffer (OHNativeWindowBuffer *nativeWind
 **Description**
 
 Converts an **OHNativeWindowBuffer** instance to an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -662,6 +668,8 @@ int32_t OH_NativeBuffer_GetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_
 
 Obtains the color space of an **OH_NativeBuffer** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 12
@@ -688,6 +696,8 @@ void OH_NativeBuffer_GetConfig (OH_NativeBuffer *buffer, OH_NativeBuffer_Config*
 
 Obtains the attributes of an **OH_NativeBuffer** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -709,6 +719,8 @@ int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 **Description**
 
 Obtains the metadata value of an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -738,6 +750,8 @@ uint32_t OH_NativeBuffer_GetSeqNum (OH_NativeBuffer *buffer)
 
 Obtains the sequence number of an **OH_NativeBuffer** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -762,6 +776,10 @@ int32_t OH_NativeBuffer_Map (OH_NativeBuffer *buffer, void **virAddr )
 **Description**
 
 Maps the ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.
+
+This function must be used in pair with **OH_NativeBuffer_Unmap**.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -788,6 +806,8 @@ int32_t OH_NativeBuffer_MapPlanes (OH_NativeBuffer *buffer, void **virAddr, OH_N
 **Description**
 
 Maps the multi-channel ION memory corresponding to an **OH_NativeBuffer** instance to the process address space.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -816,6 +836,10 @@ int32_t OH_NativeBuffer_Reference (OH_NativeBuffer *buffer)
 
 Increases the reference count of an **OH_NativeBuffer** instance by 1.
 
+This function must be used in pair with **OH_NativeBuffer_Unreference**. Otherwise, memory leak occurs.
+
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -840,6 +864,8 @@ int32_t OH_NativeBuffer_SetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_
 **Description**
 
 Sets the color space for an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -866,6 +892,8 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 **Description**
 
 Sets a metadata value for an **OH_NativeBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
@@ -895,6 +923,8 @@ int32_t OH_NativeBuffer_Unmap (OH_NativeBuffer *buffer)
 
 Unmaps the ION memory corresponding to an **OH_NativeBuffer** instance from the process address space.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 
 **Since**: 9
@@ -919,6 +949,8 @@ int32_t OH_NativeBuffer_Unreference (OH_NativeBuffer *buffer)
 **Description**
 
 Decreases the reference count of an **OH_NativeBuffer** instance by 1 and, when the reference count reaches 0, destroys the instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeBuffer
 

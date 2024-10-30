@@ -15,7 +15,7 @@
 
 > **说明：**
 >
-> 由于[Actor模型](actor-model-development-samples.md#actor并发模型对比内存共享并发模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可以通过共享模块导出单例解决该问题。
+> 由于[Actor模型](multi-thread-concurrency-overview.md#actor模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可以通过共享模块导出单例解决该问题。
 
 1. 定义并发函数，内部调用同步方法。
 
@@ -61,7 +61,7 @@ export default class Handle {
 ```
 
 
-如下示例中业务使用TaskPool调用相关同步方法的代码，首先定义并发函数func，需要注意必须使用[@Concurrent装饰器](../arkts-utils/arkts-concurrent.md#concurrent装饰器声明并校验并发函数)装饰该函数；其次定义函数asyncGet，该函数功能为创建任务，执行对应任务并打印其返回的结果；最后在主线程调用函数asyncGet，观察其执行过程。
+如下示例中业务使用TaskPool调用相关同步方法的代码，首先定义并发函数func，需要注意必须使用[@Concurrent装饰器](taskpool-introduction.md#concurrent装饰器)装饰该函数；其次定义函数asyncGet，该函数功能为创建任务，执行对应任务并打印其返回的结果；最后在主线程调用函数asyncGet，观察其执行过程。
 
 
 ```ts

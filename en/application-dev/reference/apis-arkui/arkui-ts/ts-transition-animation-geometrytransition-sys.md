@@ -1,6 +1,6 @@
 # Implicit Shared Element Transition (geometryTransition) (System API)
 
-**GeometryTransition** is used to create a smooth, seamless transition between views. By specifying the frame and position of the in and out components through **GeometryTransition**, you can create a spatial linkage between the transition effects (such as opacity and scale) defined through the **transition** mechanism. In this way, you can guide the visual focus from the previous view (out component) to the new view (in component).
+**geometryTransition** is used to create a smooth, seamless transition between views. By specifying the frame and position of the in and out components through **geometryTransition**, you can create a spatial linkage between the transition effects (such as opacity and scale) defined through the **transition** mechanism. In this way, you can guide the visual focus from the previous view (out component) to the new view (in component).
 
 > **NOTE**
 >

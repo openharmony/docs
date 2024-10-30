@@ -1331,7 +1331,7 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
 
@@ -1518,7 +1518,7 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 

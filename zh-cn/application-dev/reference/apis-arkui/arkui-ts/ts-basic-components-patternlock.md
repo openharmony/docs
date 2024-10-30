@@ -320,7 +320,7 @@ struct PatternLockExample {
         })
         .onPatternComplete((input: Array<number>) => {
           // 输入的密码长度小于5时，提示重新输入
-          if (input === null || input === undefined || input.length < 5) {
+          if (input.length < 5) {
             this.message = 'The password length needs to be greater than 5, please enter again.'
             return
           }

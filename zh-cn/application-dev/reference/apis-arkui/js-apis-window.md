@@ -317,15 +317,14 @@ import { window } from '@kit.ArkUI';
 
 窗口最大化时的布局枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：**  SystemCapability.Window.SessionManager
 
 | 名称       | 值   | 说明                          |
 | ---------- | ---- | ----------------------------- |
-| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的沉浸式布局。       |
-| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了沉浸式布局会退出沉浸式布局。             |
-| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局。   |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的沉浸式布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了沉浸式布局会退出沉浸式布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入沉浸式布局，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -1777,6 +1776,68 @@ try {
 }
 ```
 
+### setTitleAndDockHoverShown<sup>14+</sup>
+
+setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolean): Promise&lt;void&gt;
+
+设置主窗口进入全屏沉浸式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
+
+**系统能力**：SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isTitleHoverShown    | boolean | 否   | 是否显示窗口标题栏。<br>true表示显示窗口标题栏；false表示不显示窗口标题栏。默认值是true。</br> |
+| isDockHoverShown    | boolean | 否   | 是否显示dock栏。<br>true表示显示dock栏；false表示不显示dock栏。默认值是true。</br> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 加载主窗口对应的页面。
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // 获取应用主窗口。
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // 调用maximize接口，设置窗口进入全屏沉浸式。
+          mainWindow.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
+          // 调用setTitleAndDockHoverShown接口，隐藏标题栏和dock栏。
+          mainWindow.setTitleAndDockHoverShown(false, false);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+      });
+    });
+  }
+}
+```
+
 ### setWindowLayoutFullScreen<sup>9+</sup>
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
@@ -1925,7 +1986,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1995,7 +2056,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 设置主窗口三键导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5321,6 +5382,77 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### restore<sup>14+</sup>
+
+restore(): Promise&lt;void&gt;
+
+将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。  
+此接口仅在多窗层叠布局效果下生效，仅在主窗口为最小化状态且UIAbility生命周期为onForeground时生效，仅2in1设备可用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 801          | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002      | This window state is abnormal.                               |
+| 1300003      | This window manager service works abnormally.                |
+| 1300004      | Unauthorized operation.                                      |
+
+**示例**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // 获取应用主窗口。
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // 调用minimize, 使主窗缩小。
+          mainWindow.minimize();
+          //设置延时函数延时5秒钟后对主窗进行恢复。
+          setTimeout(()=>{
+              //调用restore()函数对主窗进行恢复。
+              let promise = mainWindow.restore();
+              promise.then(() => {
+                  console.info('Succeeded in restoring the window.');
+              }).catch((err: BusinessError) => {
+                  console.error(`Failed to restore the window. Cause code: ${err.code}, 
+                  message: ${err.message}`);
+              });
+          },5000);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+      });
+    });
+  }
+}
+```
+
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
@@ -5629,6 +5761,84 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setSubWindowModal<sup>14+</sup>
+
+setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void&gt;
+
+设置子窗的模态类型，使用Promise异步回调。
+
+当子窗口模态类型为模窗口子窗时，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
+
+当子窗口模态类型为模应用子窗时，其父级窗口与该应用其他实例的窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
+
+此接口仅支持设置子窗口模态类型，当需要禁用子窗口模态属性时，建议使用[setSubWindowModal<sup>12+</sup>](#setsubwindowmodal12)。
+
+子窗口之外的窗口调用该接口时，会报错。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。当前仅支持设置为true。 |
+| modalityType | [ModalityType](#modalitytype14) | 是   | 子窗口模态类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let promise = windowClass.setSubWindowModal(true, window.ModalityType.WINDOW_MODALITY);
+        promise.then(() => {
+          console.info('Succeeded in setting subwindow modal');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set subwindow modal. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
 ### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
@@ -5853,7 +6063,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](#subwindowoptions12) | 是   | 子窗口参数。  |
 
 **返回值：**
 
@@ -5950,6 +6160,94 @@ export default class EntryAbility extends UIAbility {
           }
       });
     });
+  }
+}
+```
+
+### setWindowTopmost<sup>14+</sup>
+
+setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
+
+应用主窗口调用，实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。<br>
+应用可通过自定义快捷键实现主窗口的置顶和取消置顶。<br>
+此接口仅支持2in1设备。
+
+**系统能力：** SystemCapability.Window.SessionManager<br>
+**需要权限：** ohos.permission.WINDOW_TOPMOST
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isWindowTopmost | boolean | 是   | 设置主窗口置顶，true为置顶，false为取消置顶。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.  |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const context = (getContext(this) as common.UIAbilityContext);
+let windowClass: window.Window | undefined;
+let keyUpEventAry: string[] = [];
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Button("窗口置顶")
+        .onClick(() => {
+          try {
+            let promiseCtx = window.getLastWindow(context);
+            promiseCtx.then((data) => {
+              windowClass = data;
+              //  true:窗口置顶，false:取消窗口置顶
+              let isWindowTopmost: boolean = true;
+              let promiseTopmost = windowClass.setWindowTopmost(isWindowTopmost);
+              promiseTopmost.then(() => {
+                console.info('Succeeded in setting the main window to be topmost.');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            })
+          } catch (exception) {
+            console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`)
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEvent((event) => {
+      if(event) {
+        if(event.type === KeyType.Down) {
+          keyUpEventAry = [];
+        }
+        if(event.type === KeyType.Up) {
+          keyUpEventAry.push(event.keyText);
+          // 自定义快捷键 ctrl+T 执行主窗口置顶、取消置顶的操作
+          if(windowClass && keyUpEventAry.includes('KEYCODE_CTRL_LEFT') && keyUpEventAry.includes('KEYCODE_T')) {
+            let isWindowTopmost: boolean = false;
+            windowClass.setWindowTopmost(isWindowTopmost);
+          }
+        }
+      }
+    })
   }
 }
 ```
@@ -6168,6 +6466,140 @@ struct Index {
 }
 ```
 
+### setGestureBackEnabled<sup>14+<sup>
+
+setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
+
+设置当前窗口是否禁用返回手势功能，仅主窗全屏模式下生效，2in1设备下不生效。
+禁用返回手势功能后，当前应用会禁用手势热区，侧滑返回功能失效；切换到其他应用或者回到桌面后，手势热区恢复，侧滑返回功能正常。
+开启返回手势功能后，当前应用会恢复手势热区，侧滑返回功能正常。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名     | 类型       | 必填     | 说明                                           |
+| ---------- | --------- | -------- | --------------------------------------------- |
+| enabled    | boolean   | 是       | true时开启返回手势功能，false时禁用返回手势功能。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      
+      // 设置当前窗口禁用返回手势功能
+      try {
+        let gestureBackEnabled: boolean = false;
+        let promise = windowClass.setGestureBackEnabled(gestureBackEnabled);
+        promise.then(() => {
+          console.info(`Succeeded in setting gesture back disabled`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set gesture back disabled, Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch(exception) {
+        console.error(`Failed to set gesture back disabled, Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### isGestureBackEnabled<sup>14+<sup>
+
+isGestureBackEnabled(): boolean
+
+获取当前窗口是否禁用返回手势功能，仅主窗全屏模式下生效，2in1设备不生效。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型                | 说明                                           |
+| ------------------- | --------------------------------------------- |
+| boolean             | 是否已经禁用返回手势。true表示未禁用返回手势功能，false表示已禁用返回手势功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      
+      // 获取当前窗口是否禁用返回手势功能
+      try {
+        let gestureBackEnabled: boolean = windowClass.isGestureBackEnabled();
+        console.info(`Succeeded in obtaining gesture back enabled status: ${gestureBackEnabled}`);
+      } catch (exception) {
+        console.error(`Failed to get gesture back enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
 ### setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
@@ -6251,7 +6683,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 > **说明：**
 >
@@ -7051,7 +7483,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用callback异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 > **说明：**
 >
@@ -7107,7 +7539,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 设置主窗口三键导航栏、状态栏、底部导航条的可见模式，状态栏与底部导航条通过status控制、三键导航栏通过navigation控制，使用Promise异步回调。从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
 
-子窗口调用后不生效。
+调用生效后返回并不表示三键导航栏、状态栏和底部导航条的显示或隐藏已完成。子窗口调用后不生效。
 
 > **说明：**
 >
@@ -8287,14 +8719,27 @@ WindowStage生命周期。
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| SHOWN      | 1      | 切到前台。 |
-| ACTIVE     | 2      | 获焦状态。 |
-| INACTIVE   | 3      | 失焦状态。 |
-| HIDDEN     | 4      | 切到后台。 |
-| RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如从多任务列表中，点击应用后返回到前台的状态。 |
+| SHOWN      | 1      | 切到前台，例如点击应用图标启动，无论是首次启动还是从后台启动均会触发。 |
+| ACTIVE     | 2      | 获焦状态，例如应用窗口处理点击事件后的状态、应用启动后的状态。 |
+| INACTIVE   | 3      | 失焦状态，例如打开新应用或点击其他窗口后，原获焦窗口的状态。 |
+| HIDDEN     | 4      | 切到后台，例如应用上滑退出、应用窗口关闭。 |
+| RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如应用打开后，可以与用户交互的状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
-## SubWindowOptions<sup>11+</sup>
+## ModalityType<sup>14+</sup>
+
+子窗口模态类型枚举。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+| 名称                 | 值      | 说明       |
+| -------------------- | ------ | ---------- |
+| WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要其父级窗口不响应用户操作时，可选此参数。 |
+| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
+
+## SubWindowOptions<sup>12+</sup>
 
 子窗口创建参数。
 
@@ -8304,9 +8749,10 @@ WindowStage生命周期。
 
 | 名称      | 类型  | 只读 | 可选 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title    | string | 否 | 否 | 子窗口标题。       |
-| decorEnabled | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
-| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
+| title<sup>12+</sup>    | string | 否 | 否 | 子窗口标题。       |
+| decorEnabled<sup>12+</sup> | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
+| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，false表示子窗口禁用模态属性。不设置，则默认为false。       |
+| modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。       |
 
 ## WindowStage<sup>9+</sup>
 
@@ -8609,7 +9055,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](#subwindowoptions12) | 是   | 子窗口参数。  |
 
 **返回值：**
 
@@ -9296,6 +9742,115 @@ export default class EntryAbility extends UIAbility {
       windowStage.off('windowStageEvent');
     } catch (exception) {
       console.error(`Failed to disable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+### on('windowStageClose')<sup>14+</sup>
+
+on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
+
+开启点击主窗三键区的关闭按钮监听事件，仅在2in1设备中生效。点击主窗口的三键区域的关闭键时触发该回调函数，将不执行注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonpreparetoterminate10)生命周期回调函数。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即开启主窗三键区的关闭按钮监听。|
+| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击主窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前主窗是否继续关闭，true表示不关闭，false表示关闭。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      windowStage.on('windowStageClose', () => {
+        console.info('Succeeded in enabling the listener for window stage close event.');
+        return false;
+      });
+    } catch (exception) {
+      console.error(`Failed to enable the listener for window stage close event. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+### off('windowStageClose')<sup>14+</sup>
+
+off(eventType: 'windowStageClose', callback?: Callback&lt;void&gt;): void
+
+关闭主窗口关闭事件的监听，仅在2in1设备中生效。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即关闭主窗口关闭事件的监听。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击主窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前主窗是否继续关闭，true表示不关闭，false表示关闭。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有主窗口关闭的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    const callback = () => {
+      // ...
+      return false;
+    }
+    try {
+      windowStage.on('windowStageClose', callback);
+      windowStage.off('windowStageClose', callback);
+      windowStage.off('windowStageClose');
+    } catch (exception) {
+      console.error(`Failed to disable the listener for window stage close changes. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };

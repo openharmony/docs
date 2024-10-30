@@ -32,18 +32,16 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 
 **装饰器类型**：@Component
 
-**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
 
-| 名称                       | 类型                                                                | 必填 | 参数描述                       |
+| 名称                       | 类型                                                                | 必填 | 说明                       |
 |--------------------------|-------------------------------------------------------------------|------|----------------------------|
-| recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | 否  | 最近图片配置参数信息。                |
-| onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | 否  | 最近图片查询结果回调函数。              |
-| onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | 是  | 选择最近图片回调函数。                |
-| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | 否  | 最近图片查询结果回调函数，并且返回该照片的相关信息。 |
+| recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | 否  | 最近图片配置参数信息。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                |
+| onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | 否  | 最近图片查询结果回调函数。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。              |
+| onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | 是  | 选择最近图片回调函数。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                |
+| onRecentPhotoCheckInfo   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | 否  | 最近图片查询结果回调函数，并且返回该照片的相关信息。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## RecentPhotoOptions
 
@@ -67,10 +65,10 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称          | 类型     | 必填  | 说明                                                        |
-|-------------|--------|-------|-----------------------------------------------------------|
-| datetaken   | number | 否    | 最近图片/视频的拍摄时间，单位为毫秒。（距1970年一月一日的毫秒数值）。                     |
-| identifier  | string | 否    | 最近图片/视频的名称hash值，用于辅助应用区分最新图片组件将要显示的图片/视频与之前曾显示过的图片/视频是否为同一个。 |
+| 名称         | 类型     | 必填  | 说明                                                        |
+|------------|--------|-------|-----------------------------------------------------------|
+| dateTaken  | number | 否    | 最近图片/视频的拍摄时间，单位为毫秒。（距1970年一月一日的毫秒数值）。                     |
+| identifier | string | 否    | 最近图片/视频的名称hash值，用于辅助应用区分最新图片组件将要显示的图片/视频与之前曾显示过的图片/视频是否为同一个。 |
 
 ## RecentPhotoCheckResultCallback
 

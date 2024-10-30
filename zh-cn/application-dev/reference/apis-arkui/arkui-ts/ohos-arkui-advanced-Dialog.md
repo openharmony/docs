@@ -137,7 +137,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
 | 名称                | 类型                                                         | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 加载弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Controller         | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 加载弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | content             | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 加载弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -163,7 +163,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 弹出框辅助文本。                                             |
 | localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否   | 弹出框内容区内边距。                                         |
 | contentAreaPadding  | [Padding](ts-types.md#padding)                               | 否   | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
-| buttons             | Array<[ButtonOptions](#buttonoptions)>                       | 否   | 弹出框操作区按钮，最多支持4个按钮。                          |
+| buttons             | [ButtonOptions](#buttonoptions)[]                     | 否   | 弹出框操作区按钮，最多支持4个按钮。                          |
 | theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
 | themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。 |
 

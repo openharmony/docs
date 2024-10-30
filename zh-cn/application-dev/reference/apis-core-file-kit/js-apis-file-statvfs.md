@@ -12,7 +12,7 @@
 import { statfs } from '@kit.CoreFileKit';
 ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string):Promise&lt;number&gt;
 
@@ -51,7 +51,7 @@ getFreeSize(path:string):Promise&lt;number&gt;
   });
   ```
 
-## statvfs.getFreeSize
+## statfs.getFreeSize
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
@@ -87,7 +87,7 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statvfs.getFreeSizeSync<sup>10+</sup>
+## statfs.getFreeSizeSync<sup>10+</sup>
 
 getFreeSizeSync(path:string): number
 
@@ -122,7 +122,7 @@ getFreeSizeSync(path:string): number
   console.info("getFreeSizeSync succeed, Size: " + number);
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
@@ -161,7 +161,7 @@ getTotalSize(path: string): Promise&lt;number&gt;
   });
   ```
 
-## statvfs.getTotalSize
+## statfs.getTotalSize
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
@@ -197,7 +197,7 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
   });
   ```
 
-## statvfs.getTotalSizeSync<sup>10+</sup>
+## statfs.getTotalSizeSync<sup>10+</sup>
 
 getTotalSizeSync(path: string): number
 

@@ -252,7 +252,7 @@ export default class EntryAbility extends UIAbility {
 
 #### 故障Ability的重启恢复标记
 
-发生故障的Ability再次重新启动时，在调度onCreate生命周期里，参数want的parameters成员会有[ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)标记数据，并且值为true。
+发生故障的Ability再次重新启动时，在调度onCreate生命周期里，参数want的parameters成员会有[ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)标记数据，并且值为true。
 
 ```ts
 import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';

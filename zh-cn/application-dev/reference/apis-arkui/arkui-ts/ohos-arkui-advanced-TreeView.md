@@ -54,7 +54,7 @@ TreeView({ treeController: TreeController })
 ### addNode
 
 
-addNode(nodeParam?: NodeParam): void
+addNode(nodeParam?: NodeParam): TreeController
 
 点击某个节点后，调用该方法可以触发新增孩子节点。
 
@@ -67,6 +67,11 @@ addNode(nodeParam?: NodeParam): void
 | -------- | -------- | -------- | -------- |
 | nodeParam | [NodeParam](#nodeparam) | 否 | 节点信息。 |
 
+**返回值：** 
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [TreeController](#treecontroller) | 树视图组件的控制器。 |
 
 ### removeNode
 
@@ -236,13 +241,13 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明 |
-| -------- | -------- |
-| NODE_CLICK | 监听节点点击事件。 |
-| NODE_ADD | 监听节点增加事件。 |
-| NODE_DELETE | 监听节点删除事件。 |
-| NODE_MODIFY | 监听节点修改事件。 |
-| NODE_MOVE | 监听节点移动事件。 |
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NODE_CLICK | "NodeClick" | 监听节点点击事件。 |
+| NODE_ADD | "NodeAdd" | 监听节点增加事件。 |
+| NODE_DELETE | "NodeDelete" | 监听节点删除事件。 |
+| NODE_MODIFY | "NodeModify" | 监听节点修改事件。 |
+| NODE_MOVE | "NodeMove" | 监听节点移动事件。 |
 
 ## CallbackParam
 

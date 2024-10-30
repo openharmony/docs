@@ -42,18 +42,20 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 |
 | swiperContent | ()&nbsp;=&gt;&nbsp;void | 是 | \@BuilderParam | 页签列表关联的页面内容构造器。 |
 
-## TabTitleBarMenuItem
+> **说明：**
+> 
+> 入参对象不可为undefined，即`TabTitleBar(undefined)`。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+## TabTitleBarMenuItem
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
-| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。 |
-| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。 |
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 |
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## TabTitleBarTabItem
 

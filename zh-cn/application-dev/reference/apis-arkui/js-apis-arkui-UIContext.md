@@ -217,6 +217,15 @@ struct AnimateToExample {
   @State heightSize: number = 100
   @State rotateAngle: number = 0
   private flag: boolean = true
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+  }
 
   build() {
     Column() {
@@ -226,7 +235,7 @@ struct AnimateToExample {
         .margin(30)
         .onClick(() => {
           if (this.flag) {
-            uiContext.animateTo({
+            this.uiContext?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 3,
@@ -239,28 +248,37 @@ struct AnimateToExample {
               this.heightSize = 60
             })
           } else {
-            uiContext.animateTo({}, () => {
+            this.uiContext?.animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
             })
           }
           this.flag = !this.flag
         })
-      Button('change rotate angle')
+      Button('stop rotating')
         .margin(50)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
-        .onClick(() => {
-          uiContext.animateTo({
+        .onAppear(() => {
+          // 组件出现时开始做动画
+          this.uiContext?.animateTo({
             duration: 1200,
             curve: Curve.Friction,
             delay: 500,
             iterations: -1, // 设置-1表示动画无限循环
             playMode: PlayMode.Alternate,
-            onFinish: () => {
-              console.info('play end')
+            expectedFrameRateRange: {
+              min: 10,
+              max: 120,
+              expected: 60,
             }
           }, () => {
             this.rotateAngle = 90
+          })
+        })
+        .onClick(() => {
+          this.uiContext?.animateTo({ duration: 0 }, () => {
+            // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
+            this.rotateAngle = 0
           })
         })
     }.width('100%').margin({ top: 5 })
@@ -2468,6 +2486,14 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 | 类型                                                         | 说明                                             |
 | ------------------------------------------------------------ | ------------------------------------------------ |
 | [componentUtils.ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 100001 | UI execution context not found. |
 
 **示例：**
 

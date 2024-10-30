@@ -16,7 +16,7 @@ The **AbilityConstant** module defines the enums of the window types in the UIAb
 import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
-## AbilityConstant.WindowMode
+## WindowMode
 
 Enumerates the window modes in which an ability can be displayed at startup. It can be used in **startAbility()** to specify the window mode when the ability is started.
 

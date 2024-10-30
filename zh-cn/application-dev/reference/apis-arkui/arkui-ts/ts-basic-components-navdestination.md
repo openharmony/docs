@@ -48,7 +48,7 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 
 | 参数名 | 类型                                                         | 必填 | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ---------- |
-| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavDestinationCommonTitle](#navdestinationcommontitle)&nbsp;\|&nbsp;[NavDestinationCustomTitle](#navdestinationcustomtitle) | 是   | 页面标题。 |
+| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavDestinationCommonTitle](#navdestinationcommontitle)&nbsp;\|&nbsp;[NavDestinationCustomTitle](#navdestinationcustomtitle)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 是   | 页面标题。 |
 | options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11) | 否   | 标题栏选项。 |
 
 ### hideTitleBar
@@ -69,7 +69,7 @@ hideTitleBar(value: boolean)
 
 ### hideTitleBar<sup>14+</sup>
 
-hideTitleBar(value: boolean, animated: boolean)
+hideTitleBar(hide: boolean, animated: boolean)
 
 设置是否隐藏标题栏，设置是否使用动画显隐标题栏。
 
@@ -81,7 +81,7 @@ hideTitleBar(value: boolean, animated: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
+| hide  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
 | animated  | boolean | 是   | 设置是否使用动画显隐标题栏。<br/>默认值：false<br/>true: 使用动画显示隐藏标题栏。<br/>false: 不使用动画显示隐藏标题栏。 |
 
 ### toolbarConfiguration<sup>14+</sup>
@@ -109,7 +109,7 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 ### hideToolBar<sup>14+</sup>
 
-hideToolBar(value: boolean, animated?: boolean)
+hideToolBar(hide: boolean, animated?: boolean)
 
 设置是否隐藏工具栏，设置是否使用动画显隐工具栏。
 
@@ -121,7 +121,7 @@ hideToolBar(value: boolean, animated?: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否隐藏工具栏。<br/>默认值：false<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
+| hide  | boolean | 是   | 是否隐藏工具栏。<br/>默认值：false<br/>true: 隐藏工具栏。<br/>false: 显示工具栏。 |
 | animated  | boolean | 否   | 设置是否使用动画显隐工具栏。<br/>默认值：false<br/>true: 使用动画显示隐藏工具栏。<br/>false: 不使用动画显示隐藏工具栏。 |
 
 ### mode <sup>11+</sup>

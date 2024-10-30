@@ -114,7 +114,7 @@ class Parent {
 this.parent.child = new Child(5)
 this.parent.count = 5
 
-// ClassA没有被@Observed装饰，其属性的变化观察不到
+// Child没有被@Observed装饰，其属性的变化观察不到
 this.parent.child.num = 5
 ```
 

@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.inputConsumer (Input Consumer) (System API)
+# @ohos.multimodalInput.inputConsumer-sys (Input Consumer) (System API)
 
 The **inputConsumer** module implements listening for combination key events.
 
@@ -179,6 +179,7 @@ Represents combination key options.
 | finalKey             | number  | Yes   |  No| Final key. This parameter is mandatory. A callback is triggered by the final key.<br>For example, in the combination keys **Ctrl+Alt+A**, **A** is called the final key.|
 | isFinalKeyDown       | boolean | Yes   |  No| Whether the final key is pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.|
 | finalKeyDownDuration | number  | Yes   |  No| Duration for pressing a key, in μs.<br>If the value of this field is **0**, a callback is triggered immediately.<br>If the value of this field is greater than **0** and **isFinalKeyDown** is **true**, a callback is triggered when the key keeps being pressed after the specified duration expires. If **isFinalKeyDown** is **false**, a callback is triggered when the key is released before the specified duration expires.  |
+| isRepeat<sup>13+</sup>  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
 ## shieldMode<sup>11+</sup>
 

@@ -1,4 +1,4 @@
-# 代码混淆
+# ArkGuard源码混淆工具
 
 ## 代码混淆简介
 
@@ -334,9 +334,11 @@ firstName
 lastName
 ```
 
-**注意**：
-
-该选项在开启`-enable-property-obfuscation`时生效
+> **注意**：
+>
+> - 该选项在开启`-enable-property-obfuscation`时生效
+>
+> - 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
 
 **哪些属性名应该被保留?**
 
@@ -347,24 +349,24 @@ lastName
 ```
 var obj = {x0: 0, x1: 0, x2: 0};
 for (var i = 0; i <= 2; i++) {
-    console.log(obj['x' + i]);  // x0, x1, x2 应该被保留
+    console.info(obj['x' + i]);  // x0, x1, x2 应该被保留
 }
 
 Object.defineProperty(obj, 'y', {});  // y 应该被保留
-console.log(obj.y);
+console.info(obj.y);
 
 obj.s = 0;
 let key = 's';
-console.log(obj[key]);        // s 应该被保留
+console.info(obj[key]);        // s 应该被保留
 
 obj.u = 0;
-console.log(obj.u);           // u 可以被正确地混淆
+console.info(obj.u);           // u 可以被正确地混淆
 
 obj.t = 0;
-console.log(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
+console.info(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
 
 obj['v'] = 0;
-console.log(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
+console.info(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
 ```
 
 对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
@@ -435,6 +437,10 @@ export namespace Ns {
 }
 ```
 
+> **注意**
+>
+> `-keep-global-name`指定的白名单作用于全局。即代码中出现多个顶层作用域名称或者导出名称，只要与`-keep-global-name`配置的白名单名称相同，均不会被混淆。
+
 **哪些顶层作用域的名称应该被保留?**
 
 在JavaScript中全局变量是`globalThis`的属性。如果在代码中使用`globalThis`去访问全局变量，那么该变量名应该被保留。
@@ -443,13 +449,13 @@ export namespace Ns {
 
 ```
 var a = 0;
-console.log(globalThis.a);  // a 应该被保留
+console.info(globalThis.a);  // a 应该被保留
 
 function foo(){}
 globalThis.foo();           // foo 应该被保留
 
 var c = 0;
-console.log(c);             // c 可以被正确地混淆
+console.info(c);             // c 可以被正确地混淆
 
 function bar(){}
 bar();                      // bar 可以被正确地混淆
@@ -790,21 +796,21 @@ end-for
 
 1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
 2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。
-    1. [-enable-toplevel-obfuscation](#混淆选项)为顶层作用域名称混淆开关。
-    2. [-enable-property-obfuscation](#混淆选项)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](#保留选项)来保留指定的属性名称。
-    3. [-enable-export-obfuscation](#混淆选项)为导出名称混淆，一般与1、2选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](#保留选项)来指定保留导出/导入名称。
-    4. [-enable-filename-obfuscation](#混淆选项)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径，需要使用[-keep-file-name](#保留选项)来保留这些文件路径及名称。
+    1.[-enable-toplevel-obfuscation](#混淆选项)为顶层作用域名称混淆开关。
+    2.[-enable-property-obfuscation](#混淆选项)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](#保留选项)来保留指定的属性名称。
+    3.[-enable-export-obfuscation](#混淆选项)为导出名称混淆，一般与1、2选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](#保留选项)来指定保留导出/导入名称。
+    4.[-enable-filename-obfuscation](#混淆选项)为文件名混淆，配置白名单的主要场景为动态import或运行时直接加载的文件路径，需要使用[-keep-file-name](#保留选项)来保留这些文件路径及名称。
 3. 参考FAQ中的[常见报错案例](#常见报错案例)，若是相似场景可参考对应的解决方法快速解决。
 4. 若常见案例中未找到相似案例，建议依据各项配置功能正向定位（若不需要相应功能，可删除对应配置项）。
 5. 应用运行时崩溃分析方法：
-    1. 打开应用运行日志或者点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
-    2. 应用运行时崩溃栈中的行号为[编译产物](#如何查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据崩溃栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置进白名单中。
+    1.打开应用运行日志或者点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
+    2.应用运行时崩溃栈中的行号为[编译产物](#如何查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据崩溃栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置进白名单中。
 6. 应用在运行时未崩溃但出现功能异常的分析方法（比如白屏）：
-    1. 打开应用运行日志：选择HiLog，检索与功能异常直接相关的日志，定位问题发生的上下文。
-    2. 定位异常代码段：通过分析日志，找到导致功能异常的具体代码块。
-    3. 增强日志输出：在疑似异常的功能代码中，对处理的数据字段增加日志记录。
-    4. 分析并确定关键字段：通过对新增日志输出的分析，识别是否由于混淆导致该字段的数据异常。
-    5. 配置白名单保护关键字段：将确认在混淆后对应用功能产生直接影响的关键字段添加到白名单中。
+    1.打开应用运行日志：选择HiLog，检索与功能异常直接相关的日志，定位问题发生的上下文。
+    2.定位异常代码段：通过分析日志，找到导致功能异常的具体代码块。
+    3.增强日志输出：在疑似异常的功能代码中，对处理的数据字段增加日志记录。
+    4.分析并确定关键字段：通过对新增日志输出的分析，识别是否由于混淆导致该字段的数据异常。
+    5.配置白名单保护关键字段：将确认在混淆后对应用功能产生直接影响的关键字段添加到白名单中。
 
 ### 常见报错案例
 

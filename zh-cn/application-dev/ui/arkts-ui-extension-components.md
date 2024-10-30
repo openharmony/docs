@@ -127,7 +127,7 @@ UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionA
 
 使用模式
 
-- CreateModalUIExtension全屏模态模式：CreateModalUIExtension是一个内部类接口，该接口不对外开放，由系统应用通过开发NAPI或者组件的方式使用该接口实现跨进程的拉起。在该模式下，创建全屏模态页面覆盖在应用上，不允许使用方应用的组件、窗口遮挡UIExtension，不可调节组件大小。
+- CreateModalUIExtension全屏模态模式：CreateModalUIExtension是一个内部类接口，该接口不对外开放，由系统应用通过开发Node-API或者组件的方式使用该接口实现跨进程的拉起。在该模式下，创建全屏模态页面覆盖在应用上，不允许使用方应用的组件、窗口遮挡UIExtension，不可调节组件大小。
 
 - UIExtensionComponent组件模式：只允许系统应用使用，可以通过ArkTS声明式范式在应用中使用。以组件的方式集成在应用中使用，能够实现和其他组件类似的交互效果。
 

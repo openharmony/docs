@@ -51,6 +51,13 @@ struct WebComponent {
 
 将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面 ，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
 
+加载本地html文件时引用本地css样式文件可以通过下面方法实现。
+
+```html
+<link rel="stylesheet" href="resource://rawfile/xxx.css">
+<link rel="stylesheet" href="file:///data/storage/el2/base/haps/entry/cache/xxx.css">// 加载沙箱路径下的本地css文件。
+```
+
 - 将资源文件放置在应用的resources/rawfile目录下。
 
     **图1** 资源文件路径  
@@ -198,8 +205,6 @@ struct WebComponent {
 
 Web组件可以通过[loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata)接口实现加载HTML格式的文本数据。当开发者不需要加载整个页面，只需要显示一些页面片段时，可通过此功能来快速加载页面。
 
-
-
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -227,6 +232,28 @@ struct WebComponent {
         })
       // 组件创建时，加载www.example.com
       Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+Web组件可以通过data url方式直接加载HTML字符串。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  htmlStr: string = "data:text/html, <html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>";
+
+  build() {
+    Column() {
+      // 组件创建时，加载htmlStr
+      Web({ src: this.htmlStr, controller: this.controller })
     }
   }
 }

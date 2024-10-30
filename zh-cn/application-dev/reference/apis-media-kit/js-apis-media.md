@@ -4424,7 +4424,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -6847,7 +6847,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | permission denied     |
 
 **示例：**
 
@@ -7494,6 +7494,8 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 创建流媒体预下载媒体来源实例方法。
 
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **参数：**
@@ -7600,8 +7602,8 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
-| preferredAudioLanguage | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
-| preferredSubtitleLanguage | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
+| preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
+| preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
@@ -7923,6 +7925,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 201      | permission denied.     |
 | 5400103  | IO error. Return by ErrorCallback. |
 | 5400105  | Service died. Return by ErrorCallback. |
 

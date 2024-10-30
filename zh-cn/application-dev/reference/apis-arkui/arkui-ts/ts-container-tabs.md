@@ -42,8 +42,8 @@ Tabs页签位置枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 描述                                       |
-| ----- | ---------------------------------------- |
+| 名称  | 说明                                                         |
+| ----- | ------------------------------------------------------------ |
 | Start | vertical属性方法设置为true时，页签位于容器左侧；vertical属性方法设置为false时，页签位于容器顶部。 |
 | End   | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 |
 
@@ -294,6 +294,23 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
 
+### barBackgroundBlurStyle<sup>13+</sup>
+
+barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
+
+为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
+| options | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 是   | 背景模糊选项。   
+
 ### barGridAlign<sup>10+</sup>
 
 barGridAlign(value: BarGridColumnOptions)
@@ -325,6 +342,22 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | 参数名 | 类型                                          | 必填 | 说明                                         |
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
+
+### barBackgroundEffect<sup>13+</sup>
+
+barBackgroundEffect(options: BackgroundEffectOptions)
+
+设置TabBar背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                       |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| options | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 是   | 设置TabBar背景属性包括：模糊半径，亮度，饱和度，颜色等。 |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -757,20 +790,21 @@ struct TabsExample {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
-        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(16)
-        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
         .lineHeight(22)
         .margin({ top: 17, bottom: 7 })
       Divider()
         .strokeWidth(2)
         .color('#007DFF')
-        .opacity(this.currentIndex === index ? 1 : 0)
+        .opacity(this.selectedIndex === index ? 1 : 0)
     }.width('100%')
   }
 
@@ -799,7 +833,15 @@ struct TabsExample {
       .barHeight(56)
       .animationDuration(400)
       .onChange((index: number) => {
+        // currentIndex控制TabContent显示页签
         this.currentIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        // selectedIndex控制自定义TabBar内Image和Text颜色切换
+        this.selectedIndex = targetIndex
       })
       .width(360)
       .height(296)

@@ -94,6 +94,7 @@ static napi_value Init(napi_env env, napi_value exports){
     napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
+}
 EXTERN_C_END
     
 static napi_module demoModule = {
@@ -151,6 +152,7 @@ static napi_value Init(napi_env env, napi_value exports){
     napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
+}
 EXTERN_C_END
     
 static napi_module demoModule = {
@@ -614,6 +616,244 @@ uv_queue_work(loop, work, [](uv_work_t* req) {
 });
 ```
 
+此外，使用`uv_queue_work`需要注意如下几点：
+
+1. libuv中`uv_queue_work`的工作流程为：将`work_cb`挂在线程池中执行，然后将`after_work_cb`挂在回调队列wq中，然后触发一次fd事件；loop所在线程接收到fd事件，便会执行对应的after_work_cb。`uv_queue_work`调用完后，并不代表其中的任何一个任务执行完，仅代表将work_cb插入到异步线程池的任务队列中。
+2. `uv_queue_work`仅限于在loop所在的线程中调用，这样不会有多线程安全问题。不建议使用如下用法：A线程获取到B线程的loop，并通过`uv_queue_work`的方式，把回调放在B线程中执行。
+3. 为了避免低效的异步任务提交，请不要使用将work_cb实现为空任务，并将任务在after_work_cb中执行的方式调用`uv_queue_work`提交异步任务，请使用`napi_send_event`接口。
+
+`napi_send_event`函数的声明为：
+
+```cpp
+napi_status napi_send_event(napi_env env, const std::function<void()> cb, napi_event_priority priority);
+```
+
+#### libuv timer使用规范
+
+使用libuv timer需要遵守如下约定：
+
+1. 请不要在多个线程中使用libuv的接口（uv_timer_start、uv_timer_stop和uv_timer_again）同时操作同一个loop的timer heap，否则将导致崩溃，如果想要使用libuv的接口操作定时器，请**保持在与当前env绑定的loop所在线程上操作**；
+2. 如因业务需求往指定线程抛定时器，请使用`uv_async_send`线程安全函数实现。
+
+##### 错误使用timer示例
+
+以下错误示例中，由于在多个线程操作同一个loop的timer heap，崩溃率极高。
+
+ArkTS侧：
+
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so'
+
+function waitforRunner(): number {
+    "use concurrent"
+    hilog.info(0xff, "testTag", "executed");
+    return 0;
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("TimerTest")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+            let i: number = 20;
+            while (i--) {
+              setTimeout(waitforRunner, 200);
+              testNapi.testTimer();
+          }
+        }).margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+Native C++侧：
+
+```cpp
+#include <napi/native_api.h>
+#include <uv.h>
+#define LOG_DOMAIN 0x0202
+#define LOG_TAG "MyTag"
+#include "hilog/log.h"
+#include <thread>
+#include <unistd.h>
+
+static napi_value TestTimer(napi_env env, napi_callback_info info) {
+    uv_loop_t* loop = nullptr;
+    uv_timer_t* timer = new uv_timer_t;
+    
+    napi_get_uv_event_loop(env, &loop);
+    uv_timer_init(loop, timer);
+    std::thread t1([&loop, &timer](){
+        uv_timer_start(timer, [](uv_timer_t* timer){
+            uv_timer_stop(timer);
+        }, 1000, 0);
+    });
+    
+    t1.detach();
+    return 0;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports) {
+    napi_property_descriptor desc[] = {
+        {"testTimer", nullptr, TestTimer, nullptr, nullptr, nullptr, napi_default, nullptr},
+    };
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+    
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+    napi_module_register(&demoModule);
+}
+```
+
+在index.d.ts增加如下代码：
+
+```typescript
+export const testTimer:() => number;
+```
+
+##### 正确使用timer示例
+
+**场景一：** 在上述场景中，需保证在native主线程上进行timer的相关操作。将上述TestTimer函数的代码做如下修改，便可以避免崩溃发生。
+
+```cpp
+static napi_value TestTimer(napi_env env, napi_callback_info info) {
+    uv_loop_t* loop = nullptr;
+    uv_timer_t* timer = new uv_timer_t;
+    
+    napi_get_uv_event_loop(env, &loop);
+    uv_timer_init(loop, timer);
+    uv_timer_start(timer, [](uv_timer_t* timer){
+        uv_timer_stop(timer);
+    }, 1000, 0);
+
+    return 0;
+}
+```
+
+**场景二：** 如果需要在指定的子线程抛定时器，请使用线程安全函数`uv_async_send`实现。
+
+ArkTS测：
+
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so'
+
+function waitforRunner(): number {
+    "use concurrent"
+    hilog.info(0xff, "testTag", "executed");
+    return 0;
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("TestTimerAsync")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.testTimerAsync();  // 初始化async句柄
+        }).margin(20)
+          
+          Button("TestTimerAsyncSend")
+          .width('40%')
+          .fontSize('14fp')
+          .onClick(() => {
+              testNapi.testTimerAsyncSend();  // 子线程调用uv_async_send执行timer_cb
+        }).margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+Native C++测：
+
+```c++
+#include <napi/native_api.h>
+#include <uv.h>
+#define LOG_DOMAIN 0x0202
+#define LOG_TAG "MyTag"
+#include "hilog/log.h"
+#include <thread>
+#include <unistd.h>
+uv_async_t* async = new uv_async_t;
+
+// 执行创建定时器操作
+void timer_cb(uv_async_t* handle) {
+    auto loop = handle->loop;
+    uv_timer_t* timer = new uv_timer_t;
+    uv_timer_init(loop, timer);
+    
+    uv_timer_start(timer, [](uv_timer_t* timer){
+        uv_timer_stop(timer);
+    }, 1000, 0);
+}
+
+// 初始化async句柄，绑定对应的回调函数
+static napi_value TestTimerAsync(napi_env env, napi_callback_info info) {
+    uv_loop_t* loop = nullptr;
+	napi_get_uv_event_loop(env, &loop);
+    uv_async_init(loop, async, timer_cb);
+    return 0;
+}
+
+static napi_value TestTimerAsyncSend(napi_env env, napi_callback_info info) {
+    std::thread t([](){
+        uv_async_send(async);  // 在任意子线程中调用uv_async_send，通知主线程调用与async绑定的timer_cb
+    });
+    t.detach();
+    return 0;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports) {
+    napi_property_descriptor desc[] = {
+        {"testTimerAsync", nullptr, TestTimerAsync, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testTimerAsyncSend", nullptr, TestTimerAsyncSend, nullptr, nullptr, nullptr, napi_default, nullptr},
+    };
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+    
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+    napi_module_register(&demoModule);
+}
+```
+
 ### 线程间通信
 
 上面简单介绍了一些libuv中的基本概念，在这里我们将着重介绍libuv中的线程间通信。
@@ -639,9 +879,11 @@ int uv_async_send(uv_async_t* handle)
   handle：线程间通信句柄。
 
   返回：成功，返回0。失败，返回错误码。
-
-**提示1：** uv_async_t从调用`uv_async_init`开始后就一直处于活跃状态，除非用`uv_close`将其关闭。
-**提示2：** uv_async_t的执行顺序严格按照`uv_async_init`的顺序，而非通过`uv_async_send`的顺序来执行的。因此按照初始化的顺序来管理好时序问题是必要的。
+> 说明
+>
+> 1. uv_async_t从调用`uv_async_init`开始后就一直处于活跃状态，除非用`uv_close`将其关闭。
+>
+> 2. uv_async_t的执行顺序严格按照`uv_async_init`的顺序，而非通过`uv_async_send`的顺序来执行的。因此按照初始化的顺序来管理好时序问题是必要的。
 
 ![线程间通信原理](./figures/libuv-image-1.png)
 

@@ -1014,7 +1014,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.
 
-Note: Currently, only eight key-value pairs are supported, including: {"CachePath": "YourCachePath"}, {"CacheVersion": "YouCacheVersion"}, {"QuantBuffer": "YourQuantBuffer"}, {"ModelName": "YourModelName"}, {"isProfiling": "YourisProfiling"}, {"opLayout": "YouropLayout"}, {"InputDims": "YourInputDims"} and {"DynamicDims": "YourDynamicDims"}. Replace them as required.
+Note: Currently, only 11 key-value pairs are supported, including: {"CachePath": "YourCachePath"}, {"CacheVersion": "YouCacheVersion"}, {"QuantBuffer": "YourQuantBuffer"}, {"ModelName": "YourModelName"}, {"isProfiling": "YourisProfiling"}, {"opLayout": "YouropLayout"}, {"InputDims": "YourInputDims"}, {"DynamicDims": "YourDynamicDims"}, {"QuantConfigData": "YourQuantConfigData"}, {"BandMode": "YourBandMode"}, {"NPU_FM_SHARED": "YourNPU_FM_SHARED"}. Replace them as required.
 
 **Since**: 10
 
