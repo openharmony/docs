@@ -734,7 +734,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 | --------   | -------------------------------------------- |
 | 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
-### setTabBarTranslate<sup>14+</sup>
+### setTabBarTranslate<sup>13+</sup>
 
 setTabBarTranslate(translate: TranslateOptions): void
 
@@ -745,7 +745,7 @@ setTabBarTranslate(translate: TranslateOptions): void
 > 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarTranslate接口设置的TabBar平移距离会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarTranslate接口。
 >
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -755,7 +755,7 @@ setTabBarTranslate(translate: TranslateOptions): void
 | ----- | ------ | ---- | ---------------------------------------- |
 | translate | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 是 | 设置TabBar的平移距离。 |
 
-### setTabBarOpacity<sup>14+</sup>
+### setTabBarOpacity<sup>13+</sup>
 
 setTabBarOpacity(opacity: number): void
 
@@ -766,7 +766,7 @@ setTabBarOpacity(opacity: number): void
 > 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarOpacity接口设置的TabBar不透明度会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarOpacity接口。
 >
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
