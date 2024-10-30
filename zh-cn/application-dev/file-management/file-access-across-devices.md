@@ -30,7 +30,8 @@
      fs.writeSync(file.fd, 'content');
      // 关闭文件
      fs.closeSync(file.fd);
-   } catch (error) {
+   } catch (error: BusinessError) {
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    } 
    ```
@@ -83,7 +84,8 @@
        // 打印读取到的文件数据
        let buf = buffer.from(arrayBuffer, 0, num);
        console.info('read result: ' + buf.toString());
-     } catch (error) {
+     } catch (error: BusinessError) {
+       let err: BusinessError = error as BusinessError;
        console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
      }
    }).catch((error: BusinessError) => {
