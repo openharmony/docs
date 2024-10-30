@@ -31,7 +31,7 @@
      // 关闭文件
      fs.closeSync(file.fd);
    } catch (error) {
-   let err: BusinessError = error as BusinessError;
+     let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    } 
    ```
