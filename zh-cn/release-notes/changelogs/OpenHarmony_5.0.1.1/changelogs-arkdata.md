@@ -11,7 +11,7 @@
 
 **变更影响**
 
-该变更为兼容变更。
+该变更为兼容性变更。
 
 变更前：
 关系型数据管理[@ohos.data.relationalStore.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.relationalStore.d.ts)中getRdbStore接口如果发生加密方式变更（从加密变非加密或者相反），会返回14800011。
@@ -32,9 +32,9 @@ API 12
 
 [@ohos.data.relationalStore.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.relationalStore.d.ts)中如下接口：
 
-1. function getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback<RdbStore>): void;
+1. function getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<RdbStore\>): void;
 
-2. function getRdbStore(context: Context, config: StoreConfig): Promise<RdbStore>;
+2. function getRdbStore(context: Context, config: StoreConfig): Promise\<RdbStore\>;
 
 **适配指导**
 
