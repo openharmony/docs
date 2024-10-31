@@ -14,7 +14,7 @@ Sendable对象可以在不同并发实例间通过引用传递。通过引用传
 ```ts
 // Index.ets
 import { taskpool } from '@kit.ArkTS';
-import { testTypeA, testTypeB, Test } from './sendable'
+import { testTypeA, testTypeB, Test } from './sendable';
 import { BusinessError, emitter } from '@kit.BasicServicesKit';
  
 // 在并发函数中模拟数据处理
@@ -113,8 +113,8 @@ export class Test {
 
 ```ts
 // Index.ets
-import { taskpool, ArkTSUtils } from '@kit.ArkTS'
-import { SendableTestClass, ISendable } from './sendable'
+import { taskpool, ArkTSUtils } from '@kit.ArkTS';
+import { SendableTestClass, ISendable } from './sendable';
  
 // 在并发函数中模拟数据处理
 @Concurrent
