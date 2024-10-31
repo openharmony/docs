@@ -31,11 +31,11 @@
 
 | 接口名                                                       | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback\<void\>): void              | 发送文本或数据SMS消息。                                                      |
+| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback\<void\>): void              | 发送文本或数据SMS消息。需要配置ohos.permission.SEND_MESSAGES权限，该权限仅系统应用可申请。      |
 | createMessage(pdu: Array\<number\>, specification: string, callback: AsyncCallback\<ShortMessage\>): void | 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。 |
 | getDefaultSmsSlotId(callback: AsyncCallback\<number\>): void   | 获取用于发送短信的默认SIM卡。                                                |
-| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
-| getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | 根据指定的插槽ID获取短信服务中心地址。                                  |
+| <!--DelRow-->setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
+| <!--DelRow-->getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | 根据指定的插槽ID获取短信服务中心地址。                                  |
 
 <!--Del-->
 ## 开发步骤（仅供系统应用使用）
@@ -76,7 +76,7 @@ sms.sendShortMessage(options, (err: BusinessError) => {
 
 ## 开发步骤
 
-若需要在应用内实现跳转到短信编辑的功能，并且需要携带编辑内容和收件人号码，可以通过调用元能力 startAbility 接口指定号码并跳转到发送短信页面的方式实现。
+发送短信的接口需要系统权限才可调用，三方应用如果有发送短信需求，需要在应用内实现跳转到短信编辑的功能，并且需要携带编辑内容和收件人号码，可以通过调用元能力startAbility接口指定号码并跳转到发送短信页面的方式实现。
 
 ```ts
 // 示例代码
