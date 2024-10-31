@@ -21,7 +21,7 @@
 
 ## 接口说明
 
-详细接口见[接口文档](../../reference/apis-basic-services-kit/oh__pasteboard_8h.md)。
+详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)。
 
 | 接口名称                                                     | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
