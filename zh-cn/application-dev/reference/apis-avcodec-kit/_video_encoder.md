@@ -42,7 +42,7 @@ VideoEncoder模块提供用于视频编码的接口。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_VideoEncoder_CreateByMime](#oh_videoencoder_createbymime) (const char \*mime) | 根据MIME类型创建视频编码器实例，推荐使用。  |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_VideoEncoder_CreateByMime](#oh_videoencoder_createbymime) (const char \*mime) | 根据[MIME](_codec_base.md#媒体编解码格式)类型创建视频编码器实例，推荐使用。  |
 | [OH_AVCodec](_codec_base.md#oh_avcodec) \* [OH_VideoEncoder_CreateByName](#oh_videoencoder_createbyname) (const char \*name) | 根据视频编码器名称创建视频编码器实例。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Destroy](#oh_videoencoder_destroy) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清理编码器内部资源，销毁编码器实例。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_SetCallback](#oh_videoencoder_setcallback) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置OH_AVCodecCallback回调函数，让应用可以响应视频编码器生成的事件。（API11废弃）  |
@@ -222,6 +222,8 @@ OH_AVCodec* OH_VideoEncoder_CreateByName (const char *name)
 **描述**
 根据视频编码器名称创建视频编码器实例。使用此接口的前提是知道编码器的确切名称，编码器的名称可以通过能力查询获取。
 
+详情请参见：[获取支持的编解码能力](../../media/avcodec/obtain-supported-codecs.md#创建指定名称的编解码器)。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
 **起始版本：** 9
@@ -316,6 +318,8 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 **描述**
 将处理后的index对应的OH_AVBuffer退回给编码器。调用者使用完需要及时调用此接口释放输出缓存区，否则会阻塞编码流程。
 
+详情请参见：[视频编码](../../media/avcodec/video-encoding.md) “Surface模式的步骤-14或Buffer模式步骤-10”。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
 **起始版本：** 11
@@ -381,7 +385,7 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec *codec)
 **描述**
 获取编码器输出数据的OH_AVFormat信息。
 
-需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者通过调用接口OH_AVFormat_Destroy()释放。
+需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
