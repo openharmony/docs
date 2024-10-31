@@ -430,11 +430,27 @@ Picker的颜色模式。
 ```ts
 // xxx.ets
 import {
-  PhotoPickerComponent, PickerController, PickerOptions,
-  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
-  MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
-  ItemsDeletedCallback, ExceedMaxSeletedCallback, CurrentAlbumDeletedCallback
+  PhotoPickerComponent,
+  PickerController,
+  PickerOptions,
+  DataType,
+  BaseItemInfo,
+  ItemInfo,
+  PhotoBrowserInfo,
+  AnimatorParams,
+  MaxSelected,
+  ItemType,
+  ClickType,
+  PickerOrientation,
+  SelectMode,
+  PickerColorMode,
+  ReminderMode,
+  MaxCountType,
+  PhotoBrowserRange,
+  PhotoBrowserUIElement,
+  ItemsDeletedCallback,
+  ExceedMaxSelectedCallback,
+  CurrentAlbumDeletedCallback
 } from '@ohos.file.PhotoPickerComponent';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
@@ -446,8 +462,10 @@ struct PickerDemo {
   @State selectUris: Array<string> = new Array<string>();
   @State currentUri: string = '';
   @State isBrowserShow: boolean = false;
-  private selectedItemsDeletedCallback: ItemsDeletedCallback = (baseItemInfos: Array<BaseItemInfo>) => this.onSelectedItemsDeleted(recentPhotoExists);
-  private exceedMaxSeletedCallback: ExceedMaxSeletedCallback = (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(recentPhotoInfo);
+  private selectedItemsDeletedCallback: ItemsDeletedCallback =
+    (baseItemInfos: Array<BaseItemInfo>) => this.onSelectedItemsDeleted(baseItemInfos);
+  private exceedMaxSeletedCallback: ExceedMaxSelectedCallback =
+    (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(exceedMaxCountType);
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
 
   aboutToAppear() {
@@ -458,7 +476,7 @@ struct PickerDemo {
     this.pickerOptions.photoBrowserCheckboxPosition = [0.5, 0.5];
     // 其他属性.....
   }
-  
+
   private onSelect(uri: string): void {
     // 添加
     if (uri) {
@@ -474,10 +492,10 @@ struct PickerDemo {
       })
     }
   }
-  
+
   private onItemClicked(itemInfo: ItemInfo, clickType: ClickType): boolean {
     if (!itemInfo) {
-       return false;
+      return false;
     }
     let type: ItemType | undefined = itemInfo.itemType;
     let uri: string | undefined = itemInfo.uri;
@@ -495,7 +513,7 @@ struct PickerDemo {
       } else {
         if (uri) {
           this.selectUris = this.selectUris.filter((item: string) => {
-          return item != uri;
+            return item != uri;
           });
           this.pickerOptions.preselectedUris = [...this.selectUris];
         }
@@ -503,19 +521,19 @@ struct PickerDemo {
       return true;
     }
   }
-  
+
   private onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
     // 进入大图的回调
     this.isBrowserShow = true;
     return true;
   }
-  
+
   private onExitPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
     // 退出大图的回调
     this.isBrowserShow = false;
     return true;
   }
-  
+
   private onPickerControllerReady(): void {
     // 接收到该回调后，便可通过pickerController相关接口向picker发送数据，在此之前不生效。
     let elements: number[] = [PhotoBrowserUIElement.BACK_BUTTON];
@@ -560,14 +578,15 @@ struct PickerDemo {
           pickerOptions: this.pickerOptions,
           // onSelect: (uri: string): void => this.onSelect(uri),
           // onDeselect: (uri: string): void => this.onDeselect(uri),
-          onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo, clickType), // 该接口可替代上面两个接口
+          onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo,
+            clickType), // 该接口可替代上面两个接口
           onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
           onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
           onPickerControllerReady: (): void => this.onPickerControllerReady(),
           onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
-          onSelectedItemsDeleted?: this.selectedItemsDeletedCallback,
-          onExceedMaxSelected?: this.exceedMaxSeletedCallback,
-          onCurrentAlbumDeleted?: this.currentAlbumDeletedCallback,
+          onSelectedItemsDeleted: this.selectedItemsDeletedCallback,
+          onExceedMaxSelected: this.exceedMaxSeletedCallback,
+          onCurrentAlbumDeleted: this.currentAlbumDeletedCallback,
           pickerController: this.pickerController,
         }).height('60%').width('100%')
 
@@ -576,8 +595,13 @@ struct PickerDemo {
           Row() {
             ForEach(this.selectUris, (uri: string) => {
               if (uri === this.currentUri) {
-                Image(uri).height('10%').width('10%').onClick(() => {
-                }).borderWidth(1).borderColor('red')
+                Image(uri)
+                  .height('10%')
+                  .width('10%')
+                  .onClick(() => {
+                  })
+                  .borderWidth(1)
+                  .borderColor('red')
               } else {
                 Image(uri).height('10%').width('10%').onClick(() => {
                   this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
