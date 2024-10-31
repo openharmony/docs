@@ -3,7 +3,7 @@
 Dynamic import is a powerful feature that allows for conditional loading and partial reflection, which improves the page load time. You can use it to dynamically load HSP modules, HAR, ohpm packages, and native libraries. Better yet, HAR modules can be decoupled when only variables are dynamically imported between the modules.
 
 ## When to Use
-Unlike [static import](introduction-to-arkts.md#static-import), static import allows you to load a module conditionally or on demand. The following are some cases where you might want to use dynamic import:
+Unlike [static import](introduction-to-arkts.md#static-import), dynamic import allows you to load a module conditionally or on demand. The following are some cases where you might want to use dynamic import:
 
 * The statically imported module significantly slows the loading of your code, and there is a low likelihood that you will need the module, or you will not need it until a later time.
 * The statically imported modules occupy a large amount of system memory and are unlikely to be used.
