@@ -2681,11 +2681,11 @@ struct BackComponent {
       .layoutWeight(9)
       Column() {}
       .height('100%')
-      .backgroundColor("17A98D")
+      .backgroundColor("#17A98D")
       .layoutWeight(9)
       Column() {}
       .height('100%')
-      .backgroundColor("FFC000")
+      .backgroundColor("#FFC000")
       .layoutWeight(9)
     }
     .height('100%')
