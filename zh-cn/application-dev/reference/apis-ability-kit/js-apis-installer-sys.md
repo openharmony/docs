@@ -211,6 +211,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -298,6 +299,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -389,6 +391,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -651,6 +654,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -713,6 +717,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -776,6 +781,7 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 ```ts
@@ -1328,6 +1334,7 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
 | 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
