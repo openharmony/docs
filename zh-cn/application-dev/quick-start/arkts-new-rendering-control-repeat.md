@@ -4,7 +4,6 @@
 >
 >Repeat从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
 
