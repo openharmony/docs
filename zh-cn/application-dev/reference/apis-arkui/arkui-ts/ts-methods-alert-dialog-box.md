@@ -447,7 +447,6 @@ AlertDialog显示动画持续3秒，退出动画持续100毫秒
 
 ```ts
 // xxx.ets
-import { router } from '@kit.ArkUI';
 @Entry
 @Component
 struct AlertDialogExample {
