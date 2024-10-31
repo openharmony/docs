@@ -8,7 +8,7 @@
     - [使用AVPlayer播放视频(ArkTS)](video-playback.md)
     - [使用AVPlayer添加视频外挂字幕(ArkTS)](video-subtitle.md)
     - [使用SoundPool播放短音频(ArkTS)](using-soundpool-for-playback.md)
-    - [流媒体播放开发指导(ArkTS)](streaming-media-playback-development-guide.md)
+    - [使用AVPlayer开发流媒体播放功能(ArkTS)](streaming-media-playback-development-guide.md)
   - 录制
     - [使用AVRecorder录制音频(ArkTS)](using-avrecorder-for-recording.md)
     - [使用AVRecorder录制视频(ArkTS)](video-recording.md)
