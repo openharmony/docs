@@ -221,7 +221,7 @@ export {value, test};
     }
     ```
 
-2. 在使用json5的模块中，对build-profile.json5进行配置：：
+2. 在使用json5的模块中，对build-profile.json5进行配置：
 
     ```json
     {
