@@ -1,4 +1,4 @@
-# 使用AVPlayer接口播放视频(ArkTS)
+# 使用AVPlayer播放视频(ArkTS)
 
 当前提供两种视频播放开发的方案：
 
