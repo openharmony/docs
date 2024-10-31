@@ -6,7 +6,6 @@
 >
 >从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Local装饰器。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -264,7 +263,7 @@ struct Index {
   }
   @Component
   struct CompB {
-    @Local message: string = "Hello World"; // 错误用法
+    @Local message: string = "Hello World"; // 错误用法，编译时报错
     build() {
     }
   }
@@ -282,7 +281,7 @@ struct Index {
   @ComponentV2
   struct CompB {
     build() {
-      CompA({ message: "Hello" }) // 错误用法
+      CompA({ message: "Hello" }) // 错误用法，编译时报错
     }
   }
   ```

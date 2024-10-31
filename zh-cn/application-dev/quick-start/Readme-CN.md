@@ -62,7 +62,7 @@
     - [@Require装饰器：校验构造传参](arkts-require.md)
   - 状态管理
     - [状态管理概述](arkts-state-management-overview.md)
-    - 状态管理（V1稳定版）
+    - 状态管理（V1）
       - 管理组件拥有的状态
         - [\@State装饰器：组件内状态](arkts-state.md)
         - [\@Prop装饰器：父子单向同步](arkts-prop.md)
@@ -84,7 +84,7 @@
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
-    - 状态管理（V2试用版）
+    - 状态管理（V2）
       - V2所属装饰器
         - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
         - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
