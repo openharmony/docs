@@ -7,9 +7,7 @@
 
 | 权限名 | 说明 | 授权方式 | 
 | -------- | -------- | -------- |
-| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。<br/>如需同时录制音频，需要申请该权限。 | user_grant | 
-| ohos.permission.WRITE_MEDIA | 允许应用读写用户外部存储中的媒体文件信息（可选）。<br/>如需录制音视频并写入外部存储，需要申请该权限。 | user_grant | 
-| ohos.permission.READ_MEDIA | 允许应用读取用户外部存储中的媒体文件信息（可选）。<br/>如需访问外部存储中的媒体资源，需要申请该权限。 | user_grant | 
+| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。<br/>如需录制音频，需要申请该权限。 | user_grant | 
 | ohos.permission.INTERNET| 允许应用访问网络（可选）。<br/>如需访问在线媒体资源，需要申请该权限。  | user_grant | 
 
 
