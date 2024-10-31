@@ -5920,6 +5920,39 @@ struct WebComponent {
 }
 ```
 
+### getDefaultUserAgent<sup>14+</sup>
+
+static getDefaultUserAgent(): string
+
+获取默认用户代理。
+
+此接口只允许在UI线程调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getDefaultUserAgent')
+        .onClick(() => {
+          webview.WebviewController.getDefaultUserAgent();
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### enableAdsBlock<sup>12+</sup>
 
 enableAdsBlock(enable: boolean): void
