@@ -265,3 +265,53 @@ workerPort.onmessage = (e: MessageEvents) => {
     };
 }
 ```
+
+## napi_get_uv_event_loop接口错误码说明
+
+在OpenHarmony中，对使用非法的napi_env作为`napi_get_uv_event_loop`入参的行为加入了额外的参数校验，这一行为将直接反映到该接口的返回值上。该接口返回值详情如下：
+
+1. 当env且（或）loop为nullptr时，返回`napi_invalid_arg`。
+2. 当env为有效的napi_env且loop为合法指针，返回`napi_ok`。
+3. 当env不是有效的napi_env（如已释放的env），返回`napi_generic_failure`。
+
+常见错误场景示例如下：
+
+```c++
+napi_value NapiInvalidArg(napi_env env, napi_callback_info)
+{
+    napi_status status = napi_ok;
+    status = napi_get_uv_event_loop(env, nullptr); // loop为nullptr, napi_invalid_arg
+    if (status == napi_ok) {
+        // do something
+    }
+
+    uv_loop_s* loop = nullptr;
+    status = napi_get_uv_event_loop(nullptr, &loop); // env为nullptr, napi_invalid_arg
+    if (status == napi_ok) {
+        // do something
+    }
+
+    status = napi_get_uv_event_loop(nullptr, nullptr); // env, loop均为nullptr, napi_invalid_arg
+    if (status == napi_ok) {
+        // do something
+    }
+
+    return nullptr;
+}
+
+napi_value NapiGenericFailure(napi_env env, napi_callback_info)
+{
+    std::thread([]() {
+        napi_env env = nullptr;
+        napi_create_ark_runtime(&env); // 通常情况下，需要对该接口返回值进行判断
+        // napi_destroy_ark_runtime 会将指针置空，拷贝一份用以构造问题场景
+        napi_env copiedEnv = env;
+        napi_destroy_ark_runtime(&env);
+        uv_loop_s* loop = nullptr;
+        napi_status status = napi_get_uv_event_loop(copiedEnv, &loop); // env无效, napi_generic_failure
+        if (status == napi_ok) {
+            // do something
+        }
+    }).detach();;
+}
+```
