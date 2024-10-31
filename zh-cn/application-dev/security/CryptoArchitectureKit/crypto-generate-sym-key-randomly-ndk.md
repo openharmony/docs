@@ -1,7 +1,7 @@
 # 随机生成对称密钥(C/C++)
 
 
-以AES和SM4为例，随机生成对称密钥（OH_CryptoSymKey）.
+以AES和SM4为例，随机生成对称密钥（OH_CryptoSymKey）。
 
 对称密钥对象可用于后续加解密操作。
 
