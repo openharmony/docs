@@ -53,7 +53,7 @@
        flag = true;
        console.info("worker:: res is  " + res);
      }
-     // 给Worke线程发送消息
+     // 给Worker线程发送消息
      ss.postMessage("hello world");
      while (!flag) {
        await promiseCase();
