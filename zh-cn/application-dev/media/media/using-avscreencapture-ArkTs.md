@@ -1,4 +1,4 @@
-# 使用AVScreenCaptureRecorder接口录屏写文件(ArkTS)
+# 使用AVScreenCaptureRecorder录屏写文件(ArkTS)
 
 屏幕录制主要为主屏幕录屏功能。
 
