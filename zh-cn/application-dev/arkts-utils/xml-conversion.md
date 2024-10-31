@@ -22,7 +22,7 @@ XML解析及转换需要确保传入的XML数据符合标准格式。
    import { convertxml } from '@kit.ArkTS';
    ```
 
-2. 输入待转换的XML，设置转换选项。
+2. 输入待转换的XML，设置转换选项，支持的转换选项及含义具体可见[ConvertOptions](../reference/apis-arkts/js-apis-convertxml.md#convertoptions)。
 
    ```ts
    let xml: string =
