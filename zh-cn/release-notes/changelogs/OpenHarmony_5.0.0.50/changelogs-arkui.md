@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 showCounter接口布局变更
+## cl.arkui.1 TextInput组件在非标准字体场景下showCounter接口布局变更
 
 **访问级别**
 
@@ -16,9 +16,9 @@
 
 变更前：在设置showCounter后，TextInput组件的下侧Margin大小为固定的22vp，showCounter的垂直偏移量为字体高度。
 
-变更后：在设置showCounter后，TextInput组件的下侧Margin大小为16vp加上showCounter的字体高度，showCounter的垂直偏移量为8vp。
+变更后：在设置showCounter后，标准字体下，TextInput组件的下侧Margin以及垂直偏移量和变更前保持一致。非标准字体设置下，TextInput组件的下侧Margin大小为16vp加上showCounter的字体高度，垂直偏移量为8vp。
 
-变更前后对比效果，如下图所示：
+设置非标准字体时，变更前后对比效果如下图所示：
 | 变更前 | 变更后 |
 |---------|---------|
 |![超长错误文本变更前样式](figures/textInputBeforeModi.png)|![超长错误文本变更后样式](figures/textInputAfterModi.png)|
