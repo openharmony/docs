@@ -1819,6 +1819,163 @@ avSession.stopCasting(myToken).then(() => {
 });
 ```
 
+## avSession.startDeviceLogging<sup>13+</sup>
+
+startDeviceLogging(url: string, maxSize?: number): Promise\<void>
+
+开始将设备日志写入文件。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                  |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| url | string                   | 是   | 目标文件描述符（打开文件的唯一标识）。 |
+| maxSize | number                   | 否   | 写入最大日志大小（以KB为单位）。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象。当设备日志写入文件成功时，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        | Not System App. |
+| 401        | Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 6600101    | Session service exception. |
+| 6600102    | The session does not exist. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
+
+let file = await fileIo.open("filePath");
+let url = file.fd.toString();
+avSession.startDeviceLogging(url, 2048).then(() => {
+  console.info('startDeviceLogging successfully');
+}).catch((err: BusinessError) => {
+  console.error(`startDeviceLogging BusinessError: code: ${err.code}, message: ${err.message}`);
+})
+```
+
+## avSession.stopDeviceLogging<sup>13+</sup>
+
+stopDeviceLogging(): Promise\<void>
+
+停止当前设备日志写入。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口。
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象。当停止当前设备日志写入，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        | Not System App. |
+| 6600101    | Session service exception. |
+| 6600102    | The session does not exist. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avSession.stopDeviceLogging().then(() => {
+  console.info('stopCasting successfully');
+}).catch((err: BusinessError) => {
+  console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## avSession.on('deviceLogEvent')<sup>13+</sup>
+
+on(type: 'deviceLogEvent', callback: Callback\<DeviceLogEventCode>): void
+
+监听日志事件的回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'deviceLogEvent'`。 |
+| callback | (callback: [DeviceLogEventCode](#devicelogeventcode13)) => void        | 是   | 回调函数，参数DeviceLogEventCode是当前设备日志返回值。                      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        | Not System App. |
+| 401        | Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 6600101    | Session service exception. |
+| 6600102    | The session does not exist. |
+
+**示例：**
+
+```ts
+avSession.on('deviceLogEvent', (eventCode: avSession.DeviceLogEventCode) => {
+  console.info(`on deviceLogEvent code : ${eventCode}`);
+});
+```
+
+## avSession.off('deviceLogEvent')<sup>13+</sup>
+
+off(type: 'deviceLogEvent', callback?: Callback\<DeviceLogEventCode>): void
+
+取消监听日志事件的回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'deviceLogEvent'`。 |
+| callback | (callback: [DeviceLogEventCode](#devicelogeventcode13)) => void        | 否  | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        | Not System App. |
+| 401        | Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 6600101    | Session service exception. |
+| 6600102    | The session does not exist. |
+
+**示例：**
+
+```ts
+avSession.off('deviceLogEvent');
+```
+
 ## AVCastController<sup>10+</sup>
 
 在投播建立后，调用[avSession.getAVCastController](js-apis-avsession.md#getavcastcontroller10)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
@@ -2016,13 +2173,12 @@ aVCastController.off('videoSizeChange');
 
 播放设备的相关信息。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
 | ipAddress | string | 否   | 播放设备的ip地址。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast     |
 | providerId | number | 否   | 播放设备提供商。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
 | authenticationStatus<sup>11+</sup> | number | 否   | 播放设备是否可信。默认为0。0代表设备不可信，1代表设备可信。<br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| networkId<sup>13+</sup> | string | 否   | 播放设备的网络ID。 <br/>此接口为系统接口。<br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## AVSessionDescriptor
 
@@ -2041,3 +2197,16 @@ aVCastController.off('videoSizeChange');
 | isActive     | boolean             | 是 | 是 | 会话是否被激活。<br>true：已被激活。 <br>false：没有被激活。                                      |
 | isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话。 <br>true：是最新的会话。<br>false：不是最新的会话。                |
 | outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息   |
+
+## DeviceLogEventCode<sup>13+</sup>
+
+设备日志事件返回值的枚举。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**系统接口：** 该接口为系统接口。
+
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ----------- |
+| DEVICE_LOG_FULL       | 1    | 日志已满。    |
+| DEVICE_LOG_EXCEPTION       | 2    | 日写入异常。 |

@@ -1,6 +1,6 @@
 # LocationButton
 
-The **\<LocationButton>** security component allows you to obtain temporary precise location permission from the user by their touching the button, eliminating the need for a permission request dialog box.
+The *LocationButton** security component allows you to obtain temporary precise location permission from the user by their touching the button, eliminating the need for a permission request dialog box.
 
 > **NOTE**
 >

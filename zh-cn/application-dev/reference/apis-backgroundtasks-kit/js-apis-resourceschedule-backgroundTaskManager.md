@@ -729,6 +729,7 @@ export default class EntryAbility extends UIAbility {
 | LOCATION                | 4    | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| VOIP<sup>13+</sup> | 8    | 音视频通话。                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>

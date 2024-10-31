@@ -12,7 +12,7 @@ ArkUI provides the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)
 
 Each item in the **Grid** container corresponds to a **GridItem** component, as shown below.
 
-**Figure 1** Relationship between \<Grid> and \<GridItem> components
+**Figure 1** Relationship between Grid and GridItem components
 
 ![en-us_image_0000001511900472](figures/en-us_image_0000001511900472.png)
 

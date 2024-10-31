@@ -71,7 +71,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -132,8 +132,6 @@ fontColor(value: ResourceColor)
 
 设置字体颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -146,11 +144,9 @@ fontColor(value: ResourceColor)
 
 ### fontSize
 
-fontSize(value: number | string | Resource)
+fontSize(value: Length)
 
 设置字体大小。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -158,17 +154,15 @@ fontSize(value: number | string | Resource)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
 fontStyle(value: FontStyle)
 
 设置字体样式。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -186,8 +180,6 @@ fontWeight(value: number | FontWeight | string)
 
 设置文本的字体粗细，设置过大可能会在不同字体下有截断。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -196,15 +188,13 @@ fontWeight(value: number | FontWeight | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
 
 ### fontFamily
 
-fontFamily(value: string | Resource)
+fontFamily(value: ResourceStr)
 
 设置字体列表。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -212,9 +202,9 @@ fontFamily(value: string | Resource)
 
 **参数：** 
 
-| 参数名 | 类型                                                 | 必填 | 说明                                                         |
-| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| 参数名 | 类型                                   | 必填 | 说明                                                         |
+| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -776,6 +766,33 @@ enablePreviewText(enable: boolean)
 > ]
 > ```
 
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+设置是否开启触控反馈。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -1055,7 +1072,7 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 值  | 描述 |
+| 名称   | 值  | 说明 |
 | ------ | ----- | ------ |
 | NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
 | NUMBER   | 2 | 纯数字输入模式。      |
@@ -1072,7 +1089,7 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 值   | 描述                                                         |
+| 名称                       | 值   | 说明                                                         |
 | -------------------------- | ---- | ------------------------------------------------------------ |
 | USER_NAME                  | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
 | PASSWORD                   | 1    | 【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。 |
@@ -1268,16 +1285,19 @@ enterKeyType属性接口使用示例。
 @Entry
 @Component
 struct TextInputExample {
-  @State Text: string = ''
-  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State text: string = ''
+  @State enterTypes: Array<EnterKeyType> =
+    [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next,
+      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
+
   build() {
     Column({ space: 20 }) {
-      TextArea({ placeholder: '请输入用户名', text: this.Text })
+      TextArea({ placeholder: '请输入用户名', text: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((enterKey: EnterKeyType) => {
           console.log("trigger area onsubmit" + enterKey);
@@ -1598,49 +1618,48 @@ struct TextAreaExample {
 
 ### 示例13
 
-lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+lineBreakStrategy使用示例，展示了lineBreakStrategy设置不同挡位的效果。
 
 ```ts
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextAreaExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextArea({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }.padding({ top: 10 })
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.PNG)
+![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.gif)
 
 ### 示例14
 
-该实例展示输入框支持插入和删除回调。
+该示例展示输入框支持插入和删除回调。
 
 ```ts
 // xxx.ets

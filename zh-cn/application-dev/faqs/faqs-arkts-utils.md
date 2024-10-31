@@ -385,7 +385,7 @@ Native侧建议使用FFRT线程池，pthread暂无限制。
 
 **参考链接**
 
-1. [可共享对象](../arkts-utils/serialization-support-types.md)
+1. [可共享对象](../arkts-utils/arkts-sendable.md)
 
 ## 在多线程并发场景中，如何实现安全访问同一块共享内存？(API 10)
 
@@ -543,7 +543,7 @@ ArkTS层接口的异步如果不涉及I/O操作，则异步任务会在主线程
 ##  在ArkTS的主线程中使用await会堵塞主线程吗？（API 10）
 
 比如如下代码在主线程中执行：  
-``const response = await reqeust.buildCall().execute<string>();``  
+`const response = await reqeust.buildCall().execute<string>();`  
 这种写法会导致主线程堵塞吗？
 
 **解决方案**
@@ -663,69 +663,6 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 **参考链接**
 
 1. [TaskPool和Worker的对比 (TaskPool和Worker)](../arkts-utils/taskpool-vs-worker.md)
-
-
-##  ArkTS 应用运行时出现模块化加载相关的异常报错提示，可能导致报错原因以及解决方法
-
-**报错与定位方法**
-
-1. "Cannot find dynamic-import module 'xxxx'" 报错表示当前加载的模块未被编译到当前应用包内
-
-报错原因: 通过动态加载传入表达式作为入参时，模块路径参数书写有误。
-``` typescript
-  import(module).then(m=>{m.foo();}).catch(e=>{console.log(e)})
-```
-
-定位方法: 将待加载module路径信息打印出来，评估模块路径是否计算有误。
-
-2. "Cannot find module 'xxxx' , which is application Entry Point" 报错表示拉起应用abc时，执行入口文件查找失败
-
-报错原因: 应用拉起时，应用入口文件模块查找失败。
-
-定位方法:
-(1) 打开应用工程级编译构建文件: entry > src/main/module.json5
-
-([OpenHarmony工程管理介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-project-overview-0000001218440650-V3))
-module.json5部分参数示例如下:
-```
-{
-  "module": {
-    "name": "entry",
-    "type": "entry",
-    ...
-    "abilities": [
-      {
-        "name": "EntryAbility", // 模块名称
-        "srcEntry": "./ets/entryability/EntryAbility.ts",  // 标明src目录相对工程根目录的相对路径
-        "description": "$string:EntryAbility_desc",
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
-        "exported": true,
-        "skills": [
-          {
-            "entities": [
-              "entity.system.home"
-            ],
-            "actions": [
-              "action.system.home"
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-(2) 其中，"abilities":"srcEntry" 参数标记了该应用拉起的入口文件。如报错入口文件加载失败，请检查module.json5内的"srcEntry"参数是否书写正确。
-
-3. "No export named 'xxxx' which exported by 'xxxx'" 报错表示加载应用hap或har包内so时，该模块内未查找到特定对象
-
-报错原因: ets在模块化静态编译阶段，会预解析模块间依赖关系。ets文件内的导入变量名书写错误时，ide编译器与应用编译阶段均会报错提示。但目前对于应用内native C++模块的依赖关系检测会在运行阶段。
-
-定位方法:
-检查应用内so是否存在报错提示的导出变量，与加载应用内so导入变量处进行比较，不一致则适配修改。
 
 ## taskpool线程中是否可以使用emitter.on等长时间监听接口
 

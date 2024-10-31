@@ -7,6 +7,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 ## 使用限制
 
 - LazyForEach必须在容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
+- 容器组件内使用LazyForEach的时候，只能包含一个LazyForEach。以List为例，同时包含ListItem、ForEach、LazyForEach的情形是不推荐的；同时包含多个LazyForEach也是不推荐的。
 - LazyForEach在每次迭代中，必须创建且只允许创建一个子组件；即LazyForEach的子组件生成函数有且只有一个根组件。
 - 生成的子组件必须是允许包含在LazyForEach父容器组件中的子组件。
 - 允许LazyForEach包含在if/else条件渲染语句中，也允许LazyForEach中出现if/else条件渲染语句。
@@ -1163,7 +1164,7 @@ struct MyComponent {
 使用该接口时有如下注意事项。
 
 1. onDatasetChange与其它操作数据的接口不能混用。
-2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不总是一一对应的,而且不能是负数。  
+2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，operations中的index跟操作Datasource中的index不总是一一对应的,而且不能是负数。  
 第一个例子清楚地显示了这一点:
 ```ts
 // 修改之前的数组
@@ -1705,7 +1706,7 @@ struct Parent {
   }
   ```
 
-  在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。
+  在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。要保证`reloadData`方法重建数据项，必须保证数据项能生成新的key。这里用了`item + index.toString()`保证被删除数据项后面的数据项都被重建。如果用`item + Data.now().toString()`替代，那么所有数据项都生成新的key，导致所有数据项都被重建。这种方法，效果是一样的，只是性能略差。
 
   **图13**  修复LazyForEach删除数据非预期  
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
@@ -1930,6 +1931,7 @@ struct Parent {
     }
   }
   
+  // @Observed类装饰器 和 @ObjectLink 用于在涉及嵌套对象或数组的场景中进行双向数据同步
   @Observed
   class StringData {
     message: string;
@@ -1943,6 +1945,7 @@ struct Parent {
   @Entry
   @Component
   struct MyComponent {
+    // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
     @State data: MyDataSource = new MyDataSource();
   
     aboutToAppear() {
@@ -2247,6 +2250,7 @@ struct Parent {
             ChildComponent({data: item})
           }
           .onClick(() => {
+            // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
             item.message = new NestedString(item.message.message + '0');
           })
         }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
@@ -2305,7 +2309,6 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-      // 写法2：listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
     })
   }
 
@@ -2454,7 +2457,6 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-      // 写法2：listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
     })
   }
 
@@ -2525,6 +2527,7 @@ class MyDataSource extends BasicDataSource {
     for (let i = totalCount; i < totalCount + batch; i++) {
       this.dataArray.push(`Hello ${i}`)
     }
+    // 替换 notifyDataReload
     this.notifyDatasetChange([{type:DataOperationType.ADD, index: totalCount-1, count:batch}])
   }
 }

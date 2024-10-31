@@ -469,7 +469,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 值 | 描述                                   |
+| 名称   | 值 | 说明                                 |
 | ------ |------| -------------------------------------- |
 | DEFAULT  |  0  | 使用Grid的默认对齐方式。 |
 | STRETCH |  1  | 以一行中的最高的GridItem作为其他GridItem的高度。 |
@@ -488,7 +488,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   |枚举值| 描述                                   |
+| 名称   |值| 说明                                 |
 | ------ |------| -------------------------------------- |
 | Row  |  0  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
 | Column |  1  | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
@@ -1161,8 +1161,8 @@ struct GridExample {
 ### 示例5
 
 1.  设置属性editMode\(true\)设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。
-2.  在[onItemDragStart](#事件)回调中设置拖拽过程中显示的图片。
-3.  在[onItemDrop](#事件)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#事件)中完成交换数组位置逻辑。
+2.  在[onItemDragStart](#onitemdragstart8)回调中设置拖拽过程中显示的图片。
+3.  在[onItemDrop](#onitemdrop8)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#onitemdrop8)中完成交换数组位置逻辑。
 
 > **说明：** 
 >

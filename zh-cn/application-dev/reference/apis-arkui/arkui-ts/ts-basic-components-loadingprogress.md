@@ -91,9 +91,11 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
-| ------ | ------ | ------ |-------------------------------- |
-| enableloading | boolean | true |LoadingProgress动画是否显示。<br/>默认值：true。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    |    只读    |    可选    |  说明              |
+| ------ | ------ | ------ |-------------------------------- |-------------------------------- |
+| enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true |
 
 ## 示例
 

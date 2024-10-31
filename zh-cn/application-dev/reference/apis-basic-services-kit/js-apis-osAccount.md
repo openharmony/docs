@@ -673,42 +673,6 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
-
-checkOsAccountVerified(): Promise&lt;boolean&gt;
-
-检查当前系统账号是否已验证。使用Promise异步回调。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**返回值：**
-
-| 类型                   | 说明                                                               |
-| ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示当前账号已验证；返回false表示当前账号未验证。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息             |
-| -------- | ------------------- |
-| 12300001 | The system service works abnormally. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
-  try {
-    accountManager.checkOsAccountVerified().then((isVerified: boolean) => {
-      console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
-    }).catch((err: BusinessError) => {
-      console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
-    });
-  } catch (err) {
-    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
-  }
-  ```
-
 ### getOsAccountCount<sup>9+</sup>
 
 getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
@@ -1956,7 +1920,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9)。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverifieddeprecated)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 

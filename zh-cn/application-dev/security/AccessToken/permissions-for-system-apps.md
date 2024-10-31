@@ -1351,7 +1351,7 @@
 
 ### ohos.permission.ACCESS_BOOSTER_SERVICE
 
-允许系统服务或系统应用调用网络增强服务中的网络质量感知，网络场景预测、或网络加速等功能接口。
+允许系统服务或系统应用调用网络增强服务中的网络质量感知、网络场景预测、网络加速等功能接口。
 
 **权限级别**：system_basic
 
@@ -2529,7 +2529,7 @@
 
 ### ohos.permission.SET_ADVANCED_SECURITY_MODE
 
-允许应用修改高级安全模式配置。
+允许应用修改坚盾守护模式配置。
 
 权限级别: system_core
 
@@ -2627,7 +2627,7 @@
 
 ### ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
-允许系统应用打开高级安全模式配置界面。
+允许系统应用打开坚盾守护模式配置界面。
 
 **权限级别**：system_basic
 
@@ -3636,6 +3636,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.CAMERA_BACKGROUND
+
+允许系统应用在后台使用相机。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ## system_grant，不允许ACL跨级申请
 

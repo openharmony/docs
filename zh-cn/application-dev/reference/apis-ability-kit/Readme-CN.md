@@ -133,7 +133,7 @@
       <!--Del-->
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver(系统接口)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
-      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys)
+      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys.md)
       - [AbilityRunningInfo(系统接口)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AbilityStateData(系统接口)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver(系统接口)](js-apis-inner-application-appForegroundStateObserver-sys.md)
@@ -243,14 +243,19 @@
 - C API
   - 模块
     - [AbilityAccessControl](_ability_access_control.md)
+    - [AbilityRuntime](_ability_runtime.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件
     - [ability_access_control.h](ability__access__control_8h.md)
+    - [ability_runtime_common.h](ability__runtime__common_8h.md)
+    - [application_context.h](application__context_8h.md)
+    - [context_constant.h](context__constant_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
   - 结构体
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
+    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
 - 错误码
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

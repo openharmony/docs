@@ -11,6 +11,7 @@ Its functions include:
 - Subscribing to traffic change events by NIC or UID
 
 > **NOTE**
+
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics.md).
 
 The following describes the development procedure specific to each application scenario.
@@ -35,8 +36,8 @@ For the complete list of APIs and example code, see [Traffic Management](../refe
 | getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                                       | Obtains the real-time uplink data traffic of the specified socket.                                                                                  |
 | <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void;            | Subscribes to traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).               |
 | <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;          | Unsubscribes from traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).             |
-| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise<UidNetStatsInfo>;                      | Obtains the traffic statistics of all applications on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
-| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise<NetStatsInfoSequence>; | Obtains the traffic statistics of the specified application on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md). |
+| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>;                      | Obtains the traffic statistics of all applications on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
+| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence>; | Obtains the traffic statistics of the specified application on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md). |
 
 ## Obtaining Real-Time Traffic Data by NIC or UID
 

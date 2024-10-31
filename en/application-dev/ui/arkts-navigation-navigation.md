@@ -4,7 +4,7 @@ The [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation
 
 The **Navigation** component consists of the navigation page (**NavBar**) and subpage (**NavDestination**). The navigation page consists of the title bar (including the menu bar), content area, and toolbar. It can be hidden through the [hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9) attribute. The navigation page does not exist in the page stack, and switching between this page and its subpages, as well as switching between subpages, can be implemented through routing.
 
-In API version 9, you need to combine the **Navigation** component and the [\<NavRouter>](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) component to implement page navigation. Since API version 10, you are advised to use the [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) component for the same purpose.
+In API version 9, you need to combine the **Navigation** component and the [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) component to implement page navigation. Since API version 10, you are advised to use the [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) component for the same purpose.
 
 
 ## Setting the Page Display Mode
@@ -419,7 +419,7 @@ this.pageStack.setInterception({
 
 - Standard mode
 
-  By default, subpages in the **\<NavDestination>** component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. The lifecycle of a standard type **NavDestination** follows the changes in its position in the **NavPathStack**.
+  By default, subpages in the **NavDestination** component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. The lifecycle of a standard type **NavDestination** follows the changes in its position in the **NavPathStack**.
 
 - Dialog mode
   

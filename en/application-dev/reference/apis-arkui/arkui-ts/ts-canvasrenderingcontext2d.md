@@ -3501,7 +3501,7 @@ struct ImageAnalyzerExample {
 
 | Type     | Description                 |
 | ------- | ------------------- |
-| inherit | The text direction is inherited from the **\<canvas>** component. |
+| inherit | The text direction is inherited from the **Canvas** component. |
 | ltr     | The text direction is from left to right.              |
 | rtl     | The text direction is from right to left.              |
 

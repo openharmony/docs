@@ -3427,6 +3427,58 @@ promise.then(() => {
 });
 ```
 
+### requestFocus<sup>13+</sup>
+
+requestFocus(isFocused: boolean): Promise&lt;void&gt;
+
+支持当前窗口主动请求获焦/失焦，使用Promise异步回调。调用成功即返回，该接口返回值不代表最终获焦/失焦生效结果。可使用[on('windowEvent')](js-apis-window.md#onwindowevent10)监听窗口获焦/失焦状态。
+
+获焦请求发送后，窗口获焦结果受到窗口可获焦属性及窗口可见状态的限制。获焦成功的窗口需满足以下约束：1.窗口支持获焦；2.窗口可见（窗口已显示，未销毁且未退至后台）。
+
+失焦请求发送后，窗口无条件失焦。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| isFocused | boolean | 是   | 是否获取焦点，true表示请求获焦，false表示请求失焦。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let isFocused: boolean = true;
+let promise = windowClass.requestFocus(isFocused);
+promise.then(() => {
+  console.info('Succeeded in requesting focus.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## SubWindowOptions<sup>11+</sup>
 
 子窗口创建参数。
@@ -3793,50 +3845,3 @@ try {
   console.error(`HideWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}` );
 }
 ```
-
-## ExtensionWindowAttribute<sup>12+</sup>
-
-扩展窗口的属性枚举。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 名称      | 值 | 说明         |
-| ---------- | ----- | ----------- |
-| SYSTEM_WINDOW  | 0 | 系统窗口。|
-| SUB_WINDOW  | 1 | 子窗口。|
-
-## SystemWindowOptions<sup>12+</sup>
-
-系统窗口的创建参数。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 参数名 | 类型                      | 只读  |可选 | 说明       |
-| ------ | ------------------------- | ---- | ---- |---------- |
-| windowType   | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。无默认类型，不配置会导致窗口创建失败。 |
-
-## ExtensionWindowConfig<sup>12+</sup>
-
-创建扩展窗口时需要配置的参数。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-| 参数名 | 类型                      | 只读  |可选 | 说明       |
-| ------ | ------------------------- | ---- | ---- |---------- |
-| windowName   | string | 否 | 否  | 窗口名。 |
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
-| windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形区域。 |
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
-| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |

@@ -253,7 +253,7 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 
 **废弃版本：** 12
 
-**替代接口：**[OH_AVPlayerOnError](#oh_avplayeronerror)
+**替代接口：**[OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback)
 
 **参数:**
 
@@ -1450,6 +1450,7 @@ OH_AVErrCode OH_AVPlayer_SetVideoSurface (OH_AVPlayer *player, OHNativeWindow *w
 ```
 **描述**
 设置播放画面窗口。
+此函数必须在**SetSource**之后，**Prepare**之前调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

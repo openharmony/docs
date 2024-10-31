@@ -591,7 +591,7 @@ struct Parent {
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@Link装饰的变量是Object类型、且通过a.b(this.object)形式调用修改对象的属性时，this.object的Proxy对象代理属性会被破坏，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改Child组件中的this.score.value时，UI不会刷新。
+在build方法内，当@Link装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改Child组件中的this.score.value时，UI不会刷新。
 
 【反例】
 
@@ -626,7 +626,7 @@ struct Parent {
 
 @Component
 struct Child {
-  @Prop score: Score;
+  @Link score: Score;
 
   changeScore2(score:Score) {
     score.value += 2;
@@ -712,4 +712,71 @@ struct Child {
   }
 }
 ```
+
+### \@State放在build后定义时初始化\@Link报错
+
+当\@State变量放在build函数后定义，用来初始化\@Link变量时，会被识别为常量，而\@Link变量不能被常量初始化，所以会造成编译报错。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      child({ count: this.count })
+      Button(`click times: ${this.count}`)
+        .onClick(() => {
+          this.count += 1;
+        })
+    }
+  }
+  // 在build函数之后定义@State变量
+  @State count: number = 0;
+}
+
+@Component
+struct child {
+  @Link count: number;
+
+  build() {
+    Text(`cout: ${this.count}`).fontSize(30)
+  }
+}
+```
+
+![State-After-Build](figures/State-After-Build.png)
+
+正确的写法，可以把\@State变量放在build函数前定义。
+
+【正例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State count: number = 0;
+
+  build() {
+    Column() {
+      child({ count: this.count })
+      Button(`click times: ${this.count}`)
+        .onClick(() => {
+          this.count += 1;
+        })
+    }
+  }
+}
+
+@Component
+struct child {
+  @Link count: number;
+
+  build() {
+    Text(`cout: ${this.count}`).fontSize(30)
+  }
+}
+```
+
 <!--no_check-->

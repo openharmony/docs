@@ -477,7 +477,7 @@ In the preceding example:
 
 In the following example, when **CustomWidget** executes **this.builder()** to create the child component **CustomWidgetChild**, **this** points to **HomePage**. As such, the \@Provide decorated variable of **CustomWidget** cannot be found, and an error is thrown. In light of this, exercise caution with **this** when using \@BuilderParam.
 
-[Incorrect Example]
+Negative example:
 
 ```ts
 class Tmp {
@@ -537,7 +537,7 @@ struct CustomWidgetChild {
 }
 ```
 
-[Correct Example]
+Positive example:
 
 ```ts
 class Tmp {

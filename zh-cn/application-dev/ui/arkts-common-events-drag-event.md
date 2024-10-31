@@ -39,6 +39,27 @@
 
 更多用法参考[拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)。
 
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)支持相关get方法获取拖拽行为的相关信息，下表列出了get方法在对应拖拽回调中是否能返回有效数据。
+| 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop | onDragEnd |
+| - | - | - | - | - | - | - |
+| getData         |   |   |   |   | 支持 |   |
+| getSummary      |   | 支持 | 支持 | 支持 | 支持 |   |
+| getResult       |   |   |   |   |   | 支持 |
+| getPreviewRect  |   |   |   |   | 支持 |   |
+| getVelocity/X/Y |   | 支持 | 支持 | 支持 | 支持 |   |
+| getWindowX/Y    | 支持 | 支持 | 支持 | 支持 | 支持 |   |
+| getDisplayX/Y   | 支持 | 支持 | 支持 | 支持 | 支持 |   |
+| getX/Y          | 支持 | 支持 | 支持 | 支持 | 支持 |   |
+| behavior        |   |   |   |   |   | 支持 |
+
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)支持相关set方法向系统传递信息，这些信息部分会影响系统对UI或数据的处理方式。下表列出了set方法应该在回调的哪个阶段执行才会被系统接受并处理。
+| 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop |
+| - | - | - | - | - | - |
+| useCustomDropAnimation |   |   |   |   | 支持 |
+| setData                | 支持 |   |   |   |   |
+| setResult              | 支持，可通过set failed或cancel来阻止拖拽发起 | 支持，不作为最终结果传递给onDragEnd | 支持，不作为最终结果传递给onDragEnd | 支持，不作为最终结果传递给onDragEnd  | 支持，作为最终结果传递给onDragEnd |
+| behavior               |   | 支持 | 支持 | 支持 | 支持 |
+
 ## 拖拽背板图
 
 拖拽移动过程中显示的拖拽背板图，并非是组件本身，其是用户拖动数据的表示，开发者可以将其设置为任意可显示的图像。其中onDragStart 回调返回的customBuilder或pixelmap可以设置拖拽移动过程中的背板图，浮起图默认使用组件本身的截图；dragpreview属性设置的customBuilder或pixelmap可以设置浮起和拖拽过程的背板图；如果开发者没有配置背板图，则系统会默认取组件本身的截图作为浮起及拖拽过程中的背板图。
@@ -58,7 +79,7 @@
 
 1. 组件使能拖拽。
 
-* 设置draggable属性为true，并设置onDragStart回调，回调中可以通过UDMF设置拖拽的数据，并返回自定义拖拽背板图；
+   设置draggable属性为true，并设置onDragStart回调，回调中可以通过UDMF设置拖拽的数据，并返回自定义拖拽背板图；
 
     ```ts
     import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
@@ -82,7 +103,7 @@
         })
     ```
 
-* 手势场景触发拖拽抵赖底层绑定的长按手势，若开发者在被拖拽组件上也绑定长按手势，则会与底层的长按手势发生竞争，导致拖拽失败。可以用并行手势解决解决此类问题，如下：
+   手势场景触发拖拽依赖底层绑定的长按手势，若开发者在被拖拽组件上也绑定长按手势，则会与底层的长按手势发生竞争，导致拖拽失败。可以用并行手势解决此类问题，如下：
 
     ```ts
     .parallelGesture(LongPressGesture().onAction(() => {
@@ -92,7 +113,7 @@
 
 2. 自定义拖拽背板图。
    
-  * 自定义拖拽背板图的pixmap可以通过设置[onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12)函数在长按50ms时触发的回调中前提准备；
+   自定义拖拽背板图的pixmap可以通过设置[onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12)函数在长按50ms时触发的回调中前提准备；
    
     ```ts
     .onPreDrag((status: PreDragStatus) => {
@@ -102,7 +123,7 @@
     })
     ```
    
-   * 具体pixmap的生成可以调用[componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder)函数；
+   具体pixmap的生成可以调用[componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder)函数；
 
       ```ts
       @Builder
@@ -115,7 +136,7 @@
           }
         }
         private getComponentSnapshot(): void {
-        componentSnapshot.createFromBuilder(()=>{this.pixelMapBuilder()},
+        this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
         (error: Error, pixmap: image.PixelMap) => {
             if(error){
               console.log("error: " + JSON.stringify(error))
@@ -153,13 +174,13 @@
 
 4. 拖拽过程显示角标样式。
 
-* 可以通过设置[allowDrop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)定义接收的数据类型影响角标显示，当拖拽数据是定义允许落入的数据类型时，显示COPY角标；当拖拽数据不在定义允许落入的数据类型范围时，显示FORBIDDEN角标；未设置allowDrop时，显示MOVE角标。如下代码表示只接收UnifiedData中定义的HYPERLINK和PLAIN\_TEXT类型的数据，其他数据类型将禁止落入；
+   可以通过设置[allowDrop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)定义接收的数据类型影响角标显示，当拖拽数据是定义允许落入的数据类型时，显示COPY角标；当拖拽数据不在定义允许落入的数据类型范围时，显示FORBIDDEN角标；未设置allowDrop时，显示MOVE角标。如下代码表示只接收UnifiedData中定义的HYPERLINK和PLAIN\_TEXT类型的数据，其他数据类型将禁止落入；
 
     ```ts
     .allowDrop([uniformTypeDescriptor.UniformDataType.HYPERLINK, uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
     ```
 
-* 此外在实现onDrop回调的情况下还可以通过在onDragMove中设置[DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10枚举说明)为DROP\_ENABLED，并设置[DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10)为COPY或MOVE控制角标显示。如下代码将移动时的角标强制设置为MOVE；
+   此外在实现onDrop回调的情况下还可以通过在onDragMove中设置[DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10枚举说明)为DROP\_ENABLED，并设置[DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10)为COPY或MOVE控制角标显示。如下代码将移动时的角标强制设置为MOVE；
 
     ```ts
     .onDragMove((event) => {
@@ -170,7 +191,7 @@
 
 5. 拖拽数据的接收。
 
-* 需要设置onDrop回调，并在回调中处理拖拽数据，显示设置拖拽结果
+   需要设置onDrop回调，并在回调中处理拖拽数据，显示设置拖拽结果
 
     ```ts
     .onDrop((dragEvent?: DragEvent) => {
@@ -187,7 +208,7 @@
     })
     ```
 
-* 数据的传递是通过UDMF实现的，在数据较大时可能存在时延，因此在首次获取数据失败时建议加1500ms的延迟重试机制：
+   数据的传递是通过UDMF实现的，在数据较大时可能存在时延，因此在首次获取数据失败时建议加1500ms的延迟重试机制：
 
     ```ts
     getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent) => void) {
@@ -239,7 +260,7 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
 
 1. 组件多选拖拽使能。
 
-* 创建GridItem子组件并绑定onDragStart函数。同时设置GridItem组件的状态是可选中的；
+   创建GridItem子组件并绑定onDragStart函数。同时设置GridItem组件的状态是可选中的。
 
     ```ts
     Grid() {
@@ -258,13 +279,13 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
     }
     ```
 
-* 多选拖拽功能默认为关闭状态，使用多选拖拽需要在[dragPreviewOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)接口中的DragInteractionOptions参数中设置isMultiSelectionEnabled为true，表示当前组件是否多选。DragInteractionOptions也有支持组件浮起前默认效果的参数defaultAnimationBeforeLifting，设置该参数为true后组件在浮起前会有一个默认缩小动效。
+   多选拖拽功能默认为关闭状态，使用多选拖拽需要在[dragPreviewOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)接口中的DragInteractionOptions参数中设置isMultiSelectionEnabled为true，表示当前组件是否多选。DragInteractionOptions也有支持组件浮起前默认效果的参数defaultAnimationBeforeLifting，设置该参数为true后组件在浮起前会有一个默认缩小动效。
 
     ```ts
     .dragPreviewOptions({isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
     ```
 
-* 为了保证选中状态，需要设置GridItem子组件selected状态为true。例如，可以通过[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)的调用去设置特定的组件为选中的状态。
+   为了保证选中状态，需要设置GridItem子组件selected状态为true。例如，可以通过[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)的调用去设置特定的组件为选中的状态。
 
     ```ts
     .selected(this.isSelectedGrid[idx])
@@ -275,7 +296,7 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
 
 2. 多选拖拽性能优化。
 
-* 多选拖拽情况下，多选会有聚拢的动画效果，聚拢效果触发时，会给当前屏幕内显示的选中组件截图，当选中组件过多，会导致很高的性能开销。多选拖拽支持从dragPreview中获取截图来作为聚拢动效的截图，以节省性能。
+   多选拖拽情况下，多选会有聚拢的动画效果，聚拢效果触发时，会给当前屏幕内显示的选中组件截图，当选中组件过多，会导致很高的性能开销。多选拖拽支持从dragPreview中获取截图来作为聚拢动效的截图，以节省性能。
 
     ```ts
     .dragPreview({
@@ -283,7 +304,7 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
     })
     ```
 
-* 截图的获取可以在选中组件时通过调用componentSnapshot中的get方法获取。如下通过获取组件对应id的方法进行截图。
+   截图的获取可以在选中组件时通过调用componentSnapshot中的get方法获取。如下通过获取组件对应id的方法进行截图。
 
     ```ts
     @State previewData: DragItemInfo[] = []
@@ -292,7 +313,7 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
         this.isSelectedGrid[idx] = !this.isSelectedGrid[idx]
         if (this.isSelectedGrid[idx]) {
             let gridItemName = 'grid' + idx
-            componentSnapshot.get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+            this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
                 this.pixmap = pixmap
                 this.previewData[idx] = {
                     pixelMap:this.pixmap
@@ -344,11 +365,11 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
 
 ## 完整示例
 
-### 通用拖拽适配案例
+### 通用拖拽适配
 
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction, componentSnapshot } from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
@@ -399,7 +420,7 @@ struct Index {
   }
   // 调用componentSnapshot中的createFromBuilder接口截取自定义builder的截图
   private getComponentSnapshot(): void {
-    componentSnapshot.createFromBuilder(()=>{this.pixelMapBuilder()},
+    this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
       (error: Error, pixmap: image.PixelMap) => {
         if(error){
           console.log("error: " + JSON.stringify(error))
@@ -504,10 +525,9 @@ struct Index {
 
 ```
 
-### 多选拖拽适配案例
+### 多选拖拽适配
 
 ```ts
-import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
@@ -574,7 +594,7 @@ struct GridEts {
               this.numberBadge++;
               let gridItemName = 'grid' + idx
               // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
-              componentSnapshot.get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
                 this.pixmap = pixmap
                 this.previewData[idx] = {
                   pixelMap:this.pixmap
@@ -598,3 +618,4 @@ struct GridEts {
   }
 }
 ```
+<!--RP1--><!--RP1End-->

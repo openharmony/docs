@@ -14,7 +14,7 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
-## wantConstant.Flags
+## Flags
 
 Flags说明。用于表示处理Want的方式。
 

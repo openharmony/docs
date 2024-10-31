@@ -11,7 +11,7 @@ Styled strings are string objects that facilitate the flexible application of te
 ## Rules of Use
 
 * If a styled string conflicts with the current style settings in a component, the style set in the styled string takes effect.
-* If a styled string conflicts with the child components in [Text](./ts-basic-components-text.md), the style set in the styled string is applied to the **Text** component, and style settings of the child components, including [\<Span>](./ts-basic-components-span.md), are ignored.
+* If a styled string conflicts with the child components in [Text](./ts-basic-components-text.md), the style set in the styled string is applied to the **Text** component, and style settings of the child components, including [Span](./ts-basic-components-span.md), are ignored.
 * @State is not supported.
 
 ## StyledString
@@ -140,7 +140,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 ### fromHtml
 
-Converts an HTML-formatted string into a styled string. Currently, the conversion supports the following HTML tags: **\<p>**, **\<span>**, **\<img>**. Only the styles defined by the **style** attributes of these tags can be converted into corresponding styles in styled strings.
+Converts an HTML-formatted string into a styled string. Currently, the conversion supports the following HTML tags: **\<p>**, **Span**, **\<img>**. Only the styles defined by the **style** attributes of these tags can be converted into corresponding styles in styled strings.
 
 static fromHtml(html: string): Promise\<StyledString>
 

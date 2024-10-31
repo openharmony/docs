@@ -1,6 +1,6 @@
 # shortcutInfo (System API)
 
-The **shortcutInfo** module defines shortcut information configured in the configuration file. For the FA model, the shortcut information is configured in the [config.json](../../quick-start/application-configuration-file-overview-fa.md) file. For the stage model, the information is configured in the configuration file under **resources/base/profile** in the development view.
+The shortcutInfo module defines shortcut information configured in the configuration file. For the FA model, the shortcut information is configured in the [config.json](../../quick-start/application-configuration-file-overview-fa.md) file. For the stage model, the information is configured in the configuration file under **resources/base/profile** in the development view.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ The **shortcutInfo** module defines shortcut information configured in the confi
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name                     | Type  | Readable| Writable| Description                |
+| Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | Yes  | No  | Target bundle of the shortcut.|
 | targetClass               | string | Yes  | No  | Target class required by the shortcut.|

@@ -32,12 +32,12 @@ import { inputMethod } from '@kit.IMEKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法包名。|
-| id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法唯一标识。|
-| label<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称。|
-| labelId<sup>10+</sup>    | number | 是 | 否 | 非必填。输入法对外显示名称资源号。|
-| icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
-| iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
-| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。预留字段，当前无具体含义，暂不支持使用。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
+| id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法扩展在应用内唯一标识，与name一起组成输入法扩展的全局唯一标识。|
+| label<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法对外显示名称。|
+| labelId<sup>10+</sup>    | number | 是 | 是 | 非必填。输入法对外显示名称资源号。|
+| icon<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
+| iconId<sup>9+</sup>    | number | 是 | 是 | 非必填。输入法图标资源号。 |
+| extra<sup>9+</sup>    | object | 否 | 是 | 输入法扩展信息。预留字段，当前无具体含义，暂不支持使用。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>说明：从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
@@ -706,7 +706,7 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 是 | 是 | 输入法enter键类型。|
+| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | 输入法enter键类型。|
 
 ## InputAttribute<sup>10+</sup>
 
@@ -716,8 +716,8 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 是 | 是 | 文本输入类型。|
-| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 是 | 是 | Enter键功能类型。|
+| textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 否 | 否 | 文本输入类型。|
+| enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 否 | 否 | Enter键功能类型。|
 
 ## TextConfig<sup>10+</sup>
 
@@ -727,10 +727,10 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 否 | 是 | 编辑框属性。|
-| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 否 | 光标信息。|
-| selection<sup>10+</sup>  | [Range](#range10) | 否 | 否 | 文本选中的范围。|
-| windowId<sup>10+</sup>  | number | 否 | 否 | 编辑框所在的窗口Id。|
+| inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 否 | 否 | 编辑框属性。|
+| cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 是 | 光标信息。|
+| selection<sup>10+</sup>  | [Range](#range10) | 否 | 是 | 文本选中的范围。|
+| windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id。|
 
 ## CursorInfo<sup>10+</sup>
 
@@ -740,10 +740,10 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| left  | number | 是 | 是 | 光标的left坐标。|
-| top  | number | 是 | 是 | 光标的top坐标。|
-| width  | number | 是 | 是 | 光标的宽度。|
-| height  | number | 是 | 是 | 光标的高度。|
+| left  | number | 否 | 否 | 光标的left坐标。|
+| top  | number | 否 | 否 | 光标的top坐标。|
+| width  | number | 否 | 否 | 光标的宽度。|
+| height  | number | 否 | 否 | 光标的高度。|
 
 ## Range<sup>10+</sup>
 
@@ -753,8 +753,8 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
-| end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
+| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。|
+| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。|
 
 ## Movement<sup>10+</sup>
 
@@ -764,7 +764,7 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
+| direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
 
 ## InputWindowInfo<sup>10+</sup>
 
@@ -774,11 +774,11 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| name  | string | 是 | 是 | 输入法窗口的名称。|
-| left  | number | 是 | 是 | 输入法窗口左上顶点的横坐标，单位为px。|
-| top  | number | 是 | 是 | 输入法窗口左上顶点的纵坐标，单位为px。|
-| width  | number | 是 | 是 | 输入法窗口的宽度，单位为px。|
-| height  | number | 是 | 是 | 输入法窗口的高度，单位为px。|
+| name  | string | 否 | 否 | 输入法窗口的名称。|
+| left  | number | 否 | 否 | 输入法窗口左上顶点的横坐标，单位为px。|
+| top  | number | 否 | 否 | 输入法窗口左上顶点的纵坐标，单位为px。|
+| width  | number | 否 | 否 | 输入法窗口的宽度，单位为px。|
+| height  | number | 否 | 否 | 输入法窗口的高度，单位为px。|
 
 ## InputMethodController
 
@@ -2723,6 +2723,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
   id: 'propertyId',
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2777,6 +2779,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
   id: 'propertyId',
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {

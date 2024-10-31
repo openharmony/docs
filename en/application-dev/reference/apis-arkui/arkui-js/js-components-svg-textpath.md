@@ -8,7 +8,7 @@ The **\<textPath>** component is used to draw text along the path.
 >
 >  - This component can have **\<tspan>** components nested for segmenting.
 >
->  - This component can only be nested in the **\<text>** component.
+>  - This component can only be nested in the **Text** component.
 
 ## Required Permissions
 

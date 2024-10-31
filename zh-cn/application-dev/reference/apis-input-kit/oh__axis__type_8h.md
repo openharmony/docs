@@ -3,7 +3,7 @@
 
 ## 概述
 
-输入设备的轴事件结构和枚举。 \@kit InputKit
+输入设备的轴事件结构和枚举。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -21,9 +21,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [InputEvent_AxisType](input.md#inputevent_axistype)[InputEvent_AxisType](input.md#inputevent_axistype) | 输入设备的轴类型。  | 
-| typedef enum [InputEvent_AxisEventType](input.md#inputevent_axiseventtype)[InputEvent_AxisEventType](input.md#inputevent_axiseventtype) | 输入设备的轴事件类型。  | 
-| typedef enum [InputEvent_AxisAction](input.md#inputevent_axisaction)[InputEvent_AxisAction](input.md#inputevent_axisaction) | 轴事件动作。  | 
+| typedef enum [InputEvent_AxisType](input.md#inputevent_axistype) [InputEvent_AxisType](input.md#inputevent_axistype) | 输入设备的轴类型。  | 
+| typedef enum [InputEvent_AxisEventType](input.md#inputevent_axiseventtype) [InputEvent_AxisEventType](input.md#inputevent_axiseventtype) | 输入设备的轴事件类型。  | 
+| typedef enum [InputEvent_AxisAction](input.md#inputevent_axisaction) [InputEvent_AxisAction](input.md#inputevent_axisaction) | 轴事件动作。  | 
 
 
 ### 枚举

@@ -2,6 +2,8 @@
 
 TextClock组件通过文本将当前系统时间显示在设备上。支持不同时区的时间显示，最高精度到秒级。
 
+在组件不可见时时间变动将停止，组件的可见状态基于[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)处理，可见阈值ratios大于0即视为可见状态。
+
 >**说明：**
 >
 >该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -30,7 +32,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)和[文本通用属性](ts-universal-attributes-text-style.md)的fontColor、fontSize、fontStyle、fontWeight、fontFamily外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### format
 
@@ -102,7 +104,7 @@ fontColor(value: ResourceColor)
 
 设置字体颜色。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +122,7 @@ fontSize(value: Length)
 
 设置字体大小。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -138,7 +140,7 @@ fontStyle(value: FontStyle)
 
 设置字体样式。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -156,7 +158,7 @@ fontWeight(value: number | FontWeight | string)
 
 设置文本的字体粗细，设置过大可能会在不同字体下有截断。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -174,7 +176,7 @@ fontFamily(value: ResourceStr)
 
 设置字体列表。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -313,6 +315,8 @@ controller: TextClockController = new TextClockController();
 constructor()
 
 TextClockController的构造函数。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

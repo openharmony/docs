@@ -138,7 +138,7 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-        // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
       overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
@@ -459,99 +459,6 @@ struct Parent {
 }
 ```
 
-### Using \@Builder Functions Together with the Decorators in V2
-
-Call the global @Builder and local @Builder in the @ComponentV2 decorated custom component to change related variables, triggering UI re-renders.
-
-```ts
-@ObservedV2
-class Info {
-  @Trace name: string = '';
-  @Trace age: number = 0;
-}
-
-@Builder
-function overBuilder(param: Info) {
-  Column() {
-    Text('Global @Builder name :${param.name}`)
-      .fontSize(30)
-      .fontWeight(FontWeight.Bold)
-    Text('Global @Builder age :${param.age}`)
-      .fontSize(30)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-
-@ComponentV2
-struct ChildPage {
-  @Require @Param childInfo: Info;
-  build() {
-    overBuilder({name: this.childInfo.name, age: this.childInfo.age})
-  }
-}
-
-@Entry
-@ComponentV2
-struct ParentPage {
-  info1: Info = { name: "Tom", age: 25 };
-  @Local info2: Info = { name: "Tom", age: 25 };
-
-  @Builder
-  privateBuilder() {
-    Column() {
-      Text('Local @Builder name :${this.info1.name}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      Text('Local @Builder age :${this.info1.age}`)
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-
-  build() {
-    Column() {
-      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      this.privateBuilder() // Call the local @Builder.
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      overBuilder({ name: this.info2.name, age: this.info2.age}) // Call the global @Builder.
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      ChildPage ({childInfo: this.info1}) // Call the custom component.
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-      ChildPage ({childInfo: this.info2}) // Call the custom component.
-      Line()
-        .width('100%')
-        .height(10)
-        .backgroundColor('#000000').margin(10)
-      Button("change info1&info2")
-        .onClick(() => {
-          this.info1 = { name: "Cat", age: 18} // Text1 is not re-rendered because no decorator is used to listen for value changes.
-          this.info2 = { name: "Cat", age: 18} // Text2 is re-rendered because a decorator is used to listen for value changes.
-        })
-    }
-  }
-}
-```
-
 ## FAQs
 
 ### Two or More Parameters Are Used in the \@Builder
@@ -668,79 +575,6 @@ struct Parent {
         this.objParam.num_value = 1;
       })
     }
-  }
-}
-```
-
-### Component Used in the \@Builder Function Is Not Added to a Root Node
-
-When using the **if** statement in the \@Builder function, if the created component is not added to the **Column** or **Row** root node, the component cannot be created.
-
-[Incorrect Example]
-
-```ts
-const showComponent: boolean = true;
-@Builder function OverlayNode() {
-  // The Text component is not created without adding it to the Column or Row root node.
-  if (showComponent) {
-      Text("This is overlayNode Blue page")
-        .fontSize(20)
-        .fontColor(Color.Blue)
-        .height(100)
-        .textAlign(TextAlign.End)
-    } else {
-      Text("This is overlayNode Red page")
-        .fontSize(20)
-        .fontColor(Color.Red)
-    }
-}
-
-@Entry
-@Component
-struct OverlayExample {
-
-  build() {
-    RelativeContainer() {
-      Text('Hello World')
-        .overlay(OverlayNode(), { align: Alignment.Center})
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-
-[Correct Example]
-
-```ts
-const showComponent: boolean = true;
-@Builder function OverlayNode() {
-  Column() {
-    if (showComponent) {
-      Text("This is overlayNode Blue page")
-        .fontSize(20)
-        .fontColor(Color.Blue)
-        .height(100)
-        .textAlign(TextAlign.End)
-    } else {
-      Text("This is overlayNode Red page")
-        .fontSize(20)
-        .fontColor(Color.Red)
-    }
-  }
-}
-
-@Entry
-@Component
-struct OverlayExample {
-
-  build() {
-    RelativeContainer() {
-      Text('Hello World')
-        .overlay(OverlayNode(), { align: Alignment.Center})
-    }
-    .height('100%')
-    .width('100%')
   }
 }
 ```

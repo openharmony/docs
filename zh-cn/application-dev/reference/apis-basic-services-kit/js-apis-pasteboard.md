@@ -1348,7 +1348,7 @@ removeRecordAt(index: number): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
 
@@ -1486,7 +1486,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
 
@@ -1601,7 +1601,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 | -------- | -------- |
 | 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
 
@@ -1643,7 +1643,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 | -------- | -------- |
 | 12900003 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
 
@@ -1791,7 +1791,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
 
@@ -2151,7 +2151,7 @@ hasDataType(mimeType: string): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401 | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 12900005 | Request timed out. |
 
 **示例：**
@@ -2501,4 +2501,66 @@ try {
 } catch (err) {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
+```
+
+### Pattern<sup>13+</sup>
+剪贴板支持检测的模式类型。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 名称                               | 值  | 说明                                                                                  |
+| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
+| URL                              | 0   | URL类型。                                                              |
+| NUMBER                        | 1   | 数字类型。                                                    |
+| EMAIL_ADDRESS | 2   | 邮箱地址类型。 |
+
+### detectPatterns<sup>13+</sup>
+
+detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
+
+检测**本地**剪贴板中存在的模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| patterns | [Array&lt;Pattern&gt;](#pattern13) | 是 | 	需要在剪贴板中检测的模式。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { pasteboard } from '@kit.BasicServicesKit'
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+let patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
+
+systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
+    if (patterns.sort().join('')==data.sort().join('')) {
+      console.info('All needed patterns detected, next get data');
+      try {
+        let result: pasteboard.PasteData = systemPasteboard.getDataSync();
+        console.info('Succeeded in getting PasteData.');
+      } catch (err) {
+        console.error('Failed to get PasteData. Cause:' + err.message);
+      };
+    } else {
+      console.info("Not all needed patterns detected, no need to get data.");
+    }
+});
 ```

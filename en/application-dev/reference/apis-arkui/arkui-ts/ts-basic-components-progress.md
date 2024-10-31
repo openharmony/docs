@@ -1,6 +1,6 @@
 # Progress
 
-The **\<Progress>** component represents a progress indicator that displays the progress of content loading or an operation.
+The **Progress** component represents a progress indicator that displays the progress of content loading or an operation.
 
 >  **NOTE**
 >
@@ -113,7 +113,7 @@ Sets the foreground color of the progress indicator.
 
 backgroundColor(value: ResourceColor)
 
-Sets the background color of the progress indicator. The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md#backgroundcolor) applies to the background of the progress indicator instead of the entire **\<Progress>** component.
+Sets the background color of the progress indicator. The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md#backgroundcolor) applies to the background of the progress indicator instead of the entire **Progress** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -194,7 +194,7 @@ Sets whether to enable privacy mode.
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | No | Border color.<br>Default value:<br>API version 10: **'\#33006cde'**<br>API version 11 or later: **'\#33007dff'** |
 | borderWidth | [Length](ts-types.md#length) | No | Border width. It cannot be set in percentage.<br>Default value: **1vp** |
 | content | string | No | Text content, which can be customized . |
-| font | [Font](ts-types.md#font) | No | Text style.<br>Default value:<br>- Font size (cannot be set in percentage): **12fp**<br>- Other attributes: following the settings of the **\<Text>** component.|
+| font | [Font](ts-types.md#font) | No | Text style.<br>Default value:<br>- Font size (cannot be set in percentage): **12fp**<br>- Other attributes: following the settings of the **Text** component.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No | Font color.<br>Default value: **'\#ff182431'** |
 | enableScanEffect | boolean | No | Whether to enable the scan effect.<br>Default value: **false** |
 | showDefaultPercentage | boolean | No | Whether to show the percentage of the current progress. This attribute does not take effect when the **content** attribute is set.<br>Default value: **false** |

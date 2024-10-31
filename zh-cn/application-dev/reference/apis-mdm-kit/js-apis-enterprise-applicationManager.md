@@ -172,7 +172,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-以同步方法指定设备管理应用添加开机自启动应用名单。
+以同步方法指定设备管理应用添加开机自启动应用名单。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -224,7 +224,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-以同步方法指定设备管理应用删除开机自启动应用名单。
+以同步方法指定设备管理应用删除开机自启动应用名单。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -276,7 +276,7 @@ try {
 
 getAutoStartApps(admin: Want): Array\<Want>
 
-以同步方法指定设备管理应用查询开机自启动应用名单。
+以同步方法指定设备管理应用查询开机自启动应用名单。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 

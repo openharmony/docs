@@ -116,7 +116,7 @@ struct Index {
     if (this.selectedIndex < 0) {
       return;
     }
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -201,7 +201,7 @@ export default struct  Post {
     .onClick(() => {
       this.selecteIndex = -1;
       this.selecteIndex = this.index;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 350,
         curve: Curve.Friction
       }, () => {
@@ -330,7 +330,7 @@ struct ExpandPage {
     .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
     .position({ x: this.AnimationProperties.positionX, y: this.AnimationProperties.positionY })
     .onClick(() => {
-      animateTo({ curve: curves.springMotion(0.6, 0.9),
+      this.getUIContext()?.animateTo({ curve: curves.springMotion(0.6, 0.9),
         onFinish: () => {
           if (this.nodeController != undefined) {
             // 执行回调，折叠态节点获取卡片组件
@@ -1427,7 +1427,7 @@ struct Index {
       if (this.targetInfo.scale != 0 && this.targetInfo.clipWidth != 0 && this.targetInfo.clipHeight != 0 && !this.isAnimating) {
         this.isAnimating = true;
         // 用于一镜到底的模态页的属性动画
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 1000,
           curve: Curve.Friction,
           onFinish: () => {
@@ -1443,13 +1443,13 @@ struct Index {
           this.clipHeight = this.targetInfo.clipHeight;
           // 修正因半模态高度和缩放导致的高度差
           this.translateY = this.targetInfo.translateY +
-            (px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
-              - px2vp(WindowUtils.navigationIndicatorHeight_px) - px2vp(WindowUtils.topAvoidAreaHeight_px));
+            (this.getUIContext().px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
+              - this.getUIContext().px2vp(WindowUtils.navigationIndicatorHeight_px) - this.getUIContext().px2vp(WindowUtils.topAvoidAreaHeight_px));
           // 修正因缩放导致的圆角差异
           this.radius = this.sheetRadius / this.scaleValue
         })
         // 原图从透明到出现的动画
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 2000,
           curve: Curve.Friction,
         }, () => {
@@ -1476,15 +1476,15 @@ struct Index {
     let itemTranslateY: number = 0;
 
     if (isUseWidthScale) {
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
       itemClipWidth = '100%';
-      itemClipHeight = px2vp((itemInfo.height) / itemScale);
-      itemTranslateY = px2vp(itemInfo.top - ((vp2px(itemClipHeight) - vp2px(itemClipHeight) * itemScale) / 2));
+      itemClipHeight = this.getUIContext().px2vp((itemInfo.height) / itemScale);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - ((this.getUIContext().vp2px(itemClipHeight) - this.getUIContext().vp2px(itemClipHeight) * itemScale) / 2));
     } else {
-      itemTranslateY = px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
       itemClipHeight = '100%';
-      itemClipWidth = px2vp((itemInfo.width) / itemScale);
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
+      itemClipWidth = this.getUIContext().px2vp((itemInfo.width) / itemScale);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
     }
 
     return {
@@ -1946,7 +1946,7 @@ struct IfElseGeometryTransition {
       }
     }
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         curve: curves.springMotion()
       }, () => {
         this.isShow = !this.isShow;
@@ -1988,7 +1988,7 @@ struct Index {
 
   private onAvatarClicked(index: number): void {
     this.selectedIndex = index;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -1998,7 +1998,7 @@ struct Index {
   }
 
   private onPersonalPageBack(index: number): void {
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -2118,3 +2118,4 @@ export default struct  Post {
 针对共享元素转场开发，有以下相关实例可供参考：
 
 - [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
+<!--RP1--><!--RP1End-->

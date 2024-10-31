@@ -1,4 +1,4 @@
-# Telephony Kit API Reference
+# Telephony Kit
 
 - ArkTS API
   - [@ohos.telephony.call (Call)](js-apis-call.md)

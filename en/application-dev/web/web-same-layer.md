@@ -1,6 +1,6 @@
 # Rendering and Drawing Video and Button Components at the Same Layer
 
-With the same-layer rendering feature of ArkWeb, you can render and draw native components at the same layer as the **\<Web>** component for your application. For details about the components that support same-layer rendering, see [NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype).
+With the same-layer rendering feature of ArkWeb, you can render and draw native components at the same layer as the **Web** component for your application. For details about the components that support same-layer rendering, see [NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype).
 
 - To start with, add the Internet permission to the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
   
@@ -23,15 +23,15 @@ The following constraints apply when same-layer rendering is used:
 
 - The maximum height of tags at the same layer is 8192 px, and the maximum texture size is 8192 px.
 
-- Only one nesting level is supported for the **\<Web>** component. If multiple nesting levels are detected, an error message is displayed.
+- Only one nesting level is supported for the **Web** component. If multiple nesting levels are detected, an error message is displayed.
 
 - The touchscreen events supported in the region for same-layer rendering include swiping, taping, scaling, and long pressing, while dragging is not supported.
 
-- When same-layer rendering is enabled, web pages opened by the **\<Web>** component do not support the pinch gesture or scale APIs, including [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin), and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout).
+- When same-layer rendering is enabled, web pages opened by the **Web** component do not support the pinch gesture or scale APIs, including [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin), and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout).
 
 - The region for same-layer rendering does not support mouse, keyboard, and touchpad events.
 
-- When same-layer rendering is enabled, web pages opened by the **\<Web>** component do not support the unified rendering mode [RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode).
+- When same-layer rendering is enabled, web pages opened by the **Web** component do not support the unified rendering mode [RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode).
 
 
 ## Drawing the XComponent+AVPlayer and Button Components
@@ -433,9 +433,9 @@ ArkWeb will follow the W3C standard behavior and will not identify it as a tag a
 
 ## Drawing the TextInput Component and Synchronizing Position Information Returned During Same-Layer Element Updates to the Component
 
-The same-layer elements are updated as a result of scrolling, scaling, or any other behavior that may cause a re-layout. The positions of same-layer elements are based on the **\<Web>** component coordinate system. For web page scaling that does not change the element size, only the position changes, and the width and height remain at the initial values.
+The same-layer elements are updated as a result of scrolling, scaling, or any other behavior that may cause a re-layout. The positions of same-layer elements are based on the **Web** component coordinate system. For web page scaling that does not change the element size, only the position changes, and the width and height remain at the initial values.
 
-For components that require location information, such as **\<TextInput>** and **\<TextArea>**, you need to synchronize the location information reported by the same-layer elements to the components in real time.
+For components that require location information, such as **TextInput** and **TextArea**, you need to synchronize the location information reported by the same-layer elements to the components in real time.
 
 - Complete sample code on the application side:
 

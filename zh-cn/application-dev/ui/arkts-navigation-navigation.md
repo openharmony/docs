@@ -18,7 +18,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Auto)
   ```
@@ -34,7 +34,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Stack)
   ```
@@ -78,7 +78,7 @@ Navigation组件通过mode属性设置页面的显示模式。
             .backgroundColor('#FFFFFF')
   
           List({ space: 12 }) {
-            ForEach(this.arr, (item:string) => {
+            ForEach(this.arr, (item:number) => {
               ListItem() {
                 Text("NavRouter" + item)
                   .width("100%")
@@ -92,7 +92,7 @@ Navigation组件通过mode属性设置页面的显示模式。
                     this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
                   })
               }
-            }, (item:string):string => item)
+            }, (item:number) => item.toString())
           }
           .width("90%")
           .margin({ top: 12 })
@@ -188,7 +188,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Mini)
   ```
@@ -205,7 +205,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Full)
   ```
@@ -222,7 +222,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -234,7 +234,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -248,7 +248,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -270,7 +270,7 @@ Navigation() {
 let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
-  ...
+  // ...
 }
 .toolbarConfiguration(TooBar)
 ```
@@ -311,7 +311,7 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
 
     ```ts
     this.pageStack.pushPathByName('PageOne', "PageOne Param", (popInfo) => {
-    console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
+      console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
     });
     ```
 
@@ -320,9 +320,9 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
     ```ts
     this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
     .catch((error: BusinessError) => {
-        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
     }).then(() => {
-    console.error('Push destination succeed.');
+      console.info('Push destination succeed.');
     });
     ```
 
@@ -602,7 +602,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     // 起始页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
@@ -614,7 +614,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     // 目的页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
@@ -634,8 +634,8 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
         .height(40)
         .margin(20)
         .onClick(() => {
-            animateTo({ duration: 1000 }, () => {
-            this.pageStack.pushPath({ name: 'ToPage' }, false)
+            this.getUIContext()?.animateTo({ duration: 1000 }, () => {
+              this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })
     }
@@ -665,7 +665,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置router_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
+从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    
@@ -702,7 +702,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
    | buildFunction | 跳转目标页的入口函数名称，必须以@Builder修饰。 |
    | data | 应用自定义字段。可以通过配置项读取接口getConfigInRouteMap获取。|
 
-3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和router_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。
+3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和route_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。
    
    ```ts
      // 跳转页面入口函数
@@ -752,6 +752,6 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 1. 定义页面跳转配置项。
    - 使用资源文件进行定义，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)在运行时对资源文件解析。
    - 在ets文件中配置路由加载配置项，一般包括路由页面名称（即pushPath等接口中页面的别名），文件所在模块名称（hsp/har的模块名），加载页面在模块内的路径（相对src目录的路径）。
-2. 加载目标跳转页面，通过[动态import](../quick-start/arkts-dynamic-import.md)将跳转目标页面所在的模块在运行时加载, 在模块加载完成后，调用模块中的方法，通过import在模块的方法中加载模块中显示的目标页面，并返回页面加载完成后定义的Builder函数。
+2. 加载目标跳转页面，通过[动态import](../arkts-utils/arkts-dynamic-import.md)将跳转目标页面所在的模块在运行时加载, 在模块加载完成后，调用模块中的方法，通过import在模块的方法中加载模块中显示的目标页面，并返回页面加载完成后定义的Builder函数。
 3. 触发页面跳转，在Navigation的[navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)属性执行步骤2中加载的Builder函数，即可跳转到目标页面。
 <!--RP2--><!--RP2End-->

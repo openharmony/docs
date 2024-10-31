@@ -348,12 +348,12 @@
     }
 
     private async getPixmapFromMedia(resource: Resource) {
-      let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
         bundleName: resource.bundleName,
         moduleName: resource.moduleName,
         id: resource.id
       })
-      let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength))
       let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
         desiredPixelFormat: image.PixelMapFormat.RGBA_8888
       })

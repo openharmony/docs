@@ -568,7 +568,11 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-Kills all the processes where the application is located. This API uses a promise to return the result. It can be called only by the main thread.
+Kills all processes of this application. The application will not go through the normal lifecycle when exiting. This API uses a promise to return the result. It can be called only by the main thread.
+
+> **NOTE**
+>
+> This API is used to forcibly exit an application in abnormal scenarios. To exit an application in the normal state, call [terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -606,7 +610,11 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-Kills all the processes where the application is located. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Kills all processes of this application. The application will not go through the normal lifecycle when exiting. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+
+> **NOTE**
+>
+> This API is used to forcibly exit an application in abnormal scenarios. To exit an application in the normal state, call [terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -657,7 +665,7 @@ Sets the color mode for the application. It can be called only by the main threa
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
 
 **Error codes**
 
@@ -1006,3 +1014,49 @@ export default class MyAbility extends UIAbility {
   }
 }
 ```
+
+
+## ApplicationContext.setFontSizeScale<sup>13+</sup>
+
+setFontSizeScale(fontSizeScale: number): void
+
+Sets the scale ratio for the font size of this application. It can be called only by the main thread.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description                |
+| ------ | ------------- | ---- | -------------------- |
+| fontSizeScale | number | Yes  | Font scale ratio. The value is a non-negative number. When the application's [fontSizeScale](../../quick-start/app-configuration-file.md#configuration) is set to **followSystem** and the value set here exceeds the value of [fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration), the value of [fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration tag) takes effect.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class MyAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        return;
+      }
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.setFontSizeScale(2);
+    });
+  }
+}
+```
+
+ <!--no_check--> 

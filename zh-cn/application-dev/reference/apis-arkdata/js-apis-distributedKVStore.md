@@ -132,6 +132,12 @@ import { distributedKVStore } from '@kit.ArkData';
 ## SecurityLevel
 
 数据库的安全级别枚举。
+> **说明**：
+>
+> 在单设备使用场景下，KV数据库支持修改securityLevel开库参数进行安全等级升级。数据库安全等级升级操作需要注意以下几点：
+> * 该操作不支持需要进行跨设备同步的数据库，不同安全等级的数据库之间不能进行数据同步，需要跨设备同步的数据库如果要升级安全等级，建议重新创建更高安全等级的数据库。
+> * 该操作需在关闭当前数据库之后，通过修改securityLevel开库参数重新设置数据库的安全等级，再进行开库操作。
+> * 该操作只支持升级，不支持降级。例如支持S2->S3的升级，不支持S3->S2的降级。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -422,7 +428,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+    securityLevel: distributedKVStore.SecurityLevel.S3,
   };
   kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
@@ -491,7 +497,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+    securityLevel: distributedKVStore.SecurityLevel.S3,
   };
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
     console.info("Succeeded in getting KVStore");
@@ -542,7 +548,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -611,7 +617,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -672,7 +678,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -742,7 +748,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {

@@ -1,7 +1,7 @@
 # Text Display (Text/Span)
 
 
-The **\<Text>** component is used to display a piece of textual information. For details, see [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md).
+The **Text** component is used to display a piece of textual information. For details, see [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md).
 
 
 ## Creating Text
@@ -38,11 +38,11 @@ You can create text in either of the following ways:
 
 ## Adding Child Components
 
-The [\<Span>](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) component can only act as a child of the [\<Text>](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) and [\<RichEditor>](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md) components. You can add one or more **\<Span>** child components to a **\<Text>** component to display a piece of information, such as the product description and statement of commitment.
+The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) component can only act as a child of the [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) and [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md) components. You can add one or more **Span** child components to a **Text** component to display a piece of information, such as the product description and statement of commitment.
 
-- Creating a \<Span> Component
+- Creating a Span Component
 
-  The **\<Span>** component works only when included in a **\<Text>** component. If both the **\<Span>** and **\<Text>** components have text configured, the text of the **\<Span>** overwrites that of the **\<Text>** component.
+  The **Span** component works only when included in a **Text** component. If both the **Span** and **Text** components have text configured, the text of the **Span** overwrites that of the **Text** component.
 
 
   ```ts
@@ -91,7 +91,7 @@ The [\<Span>](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) comp
 
 - Adding Events
 
-  The **\<Span>** component does not have size information. Therefore, only an **onClick** event can be added for this component.
+  The **Span** component does not have size information. Therefore, only an **onClick** event can be added for this component.
 
 
   ```ts
@@ -330,7 +330,7 @@ The [\<Span>](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) comp
 
 ## Adding Events
 
-The **\<Text>** component supports the [universal events](../reference/arkui-ts/ts-universal-events-click.md). It can be bound to the **onClick**, **onTouch**, or other events to respond to user operations.
+The **Text** component supports the [universal events](../reference/arkui-ts/ts-universal-events-click.md). It can be bound to the **onClick**, **onTouch**, or other events to respond to user operations.
 
 
 ```ts

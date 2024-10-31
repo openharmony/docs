@@ -159,7 +159,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region7)  | 是   | 裁剪的尺寸。                         |
+| region                 | [Region](../apis-image-kit/js-apis-image.md#region8)  | 是   | 裁剪的尺寸。                         |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -1302,7 +1302,7 @@ crop(region: image.Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/js-apis-image.md#region7) | 是   | 裁剪的尺寸。|
+| region | [Region](../apis-image-kit/js-apis-image.md#region8) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
@@ -1343,7 +1343,7 @@ cropSync(region: image.Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/js-apis-image.md#region7)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](../apis-image-kit/js-apis-image.md#region8)   | 是   | 裁剪的尺寸。                  |
 
 **错误码：**
 
@@ -1849,6 +1849,8 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
+
 let size: image.Size = {
     height: 8192,
     width: 8
@@ -1971,6 +1973,7 @@ getComponent是线程不安全的。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2008,6 +2011,7 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2058,6 +2062,7 @@ getReceivingSurfaceId(): Promise\<string>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2089,6 +2094,7 @@ readLatestImage(): Promise\<Image>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2120,6 +2126,7 @@ readNextImage(): Promise\<Image>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2152,6 +2159,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2182,6 +2190,7 @@ release是线程不安全的。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,

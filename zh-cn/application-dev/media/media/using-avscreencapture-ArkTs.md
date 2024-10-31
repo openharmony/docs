@@ -1,4 +1,4 @@
-# 使用AVScreenCaptureRecorder录屏保存到文件(ArkTs)
+# 使用AVScreenCaptureRecorder录屏保存到文件(ArkTS)
 
 屏幕录制主要为主屏幕录屏功能。
 
@@ -123,7 +123,7 @@
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见窗口管理首页
+6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口API](../../reference/apis-arkui/js-apis-window.md#windowproperties)
 
     ```javascript
     let windowIDs = [57, 86];
@@ -184,18 +184,18 @@ export class AVScreenCaptureDemo {
       // failed
         return;
     }
-    this.screenCapture.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
+    this.screenCapture?.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
       switch (infoType) {
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_STARTED:
           console.info("录屏成功开始后会收到的回调");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_CANCELED:
-          this.screenCapture.release();
+          this.screenCapture?.release();
           this.screenCapture = undefined;
           console.info("不允许使用录屏功能");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_STOPPED_BY_USER:
-          this.screenCapture.release();
+          this.screenCapture?.release();
           this.screenCapture = undefined;
           console.info("通过录屏胶囊结束录屏，底层录制会停止");
           break;
@@ -228,16 +228,16 @@ export class AVScreenCaptureDemo {
           break;
       }
     })
-    this.screenCapture.on('error', (err) => {
+    this.screenCapture?.on('error', (err) => {
       console.info("处理异常情况");
     })
-    await this.screenCapture.init(this.captureConfig);
+    await this.screenCapture?.init(this.captureConfig);
     
     // 豁免隐私窗口
     let windowIDs = [57, 86];
-    await screenCapture.skipPrivacyMode(windowIDs);
+    await this.screenCapture?.skipPrivacyMode(windowIDs);
     
-    await this.screenCapture.startRecording();
+    await this.screenCapture?.startRecording();
   }
 
   // 可以主动调用stopRecording方法来停止录屏。
@@ -246,15 +246,12 @@ export class AVScreenCaptureDemo {
       // Error
       return;
     }
-    await this.screenCapture.stopRecording();
+    await this.screenCapture?.stopRecording();
     
     // 调用release()方法销毁实例，释放资源。
-    await screenCapture.release().then(() => {
-      console.info('Succeeded in releasing screenCapture');  
-    }).catch((err: BusinessError) => {
-      console.info('Failed to release screenCapture, error:' + err.message);
-    })
+    await this.screenCapture?.release();
 
     // 最后需要关闭创建的录屏文件fd, fs.close(fd);
   }
+}
 ```

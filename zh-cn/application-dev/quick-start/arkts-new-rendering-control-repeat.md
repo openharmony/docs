@@ -653,7 +653,7 @@ export struct RepeatTemplateSingle {
 
 当数据源总长度很大时，会使用懒加载的方式先加载一部分数据，为了使Repeat显示正确的滚动条样式，需要将数据总长度赋值给totalCount，即数据源全部加载完成前，totalCount大于array.length。
 
-在Repeat组件初始化时，应用必须提供足够的数据项用于渲染。在父组件容器滚动过程中，应用需要在渲染之前进行后续数据项的请求逻辑，保证应用在列表滑动的过程中不会出现空白，直到数据源全部加载完成。
+totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
 上述规范可以通过实现父组件List/Grid的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)属性的回调函数完成。示例代码如下：
 

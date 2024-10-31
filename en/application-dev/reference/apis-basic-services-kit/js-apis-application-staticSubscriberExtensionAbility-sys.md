@@ -13,7 +13,7 @@ The **StaticSubscriberExtensionAbility** module provides Extension abilities for
 ## Modules to Import
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+import { StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
 ## Attributes
@@ -44,11 +44,10 @@ Callback of the common event of a static subscriber.
 
 **Example**
   ```ts
-  import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-  import CommonEventManager from '@ohos.commonEventManager';
+  import { commonEventManager, StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
 
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-        onReceiveEvent(event: CommonEventManager.CommonEventData) {
+        onReceiveEvent(event: commonEventManager.CommonEventData) {
             console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
         }
     }

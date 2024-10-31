@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines the certificate lock information.
+Defines the certificate pinning information structure.
 
 **Since**: 12
 
@@ -15,8 +15,8 @@ Defines the certificate lock information.
 
 ### Member Variables
 
-| Name                                       | Description           |
+| Name| Description|
 | -------- | -------- |
-| [kind](netstack.md#kind) | Certificate lock type |
-| [hashAlgorithm](netstack.md#hashAlgorithm) | Hash algorithm |
-| [publicKeyHash](netstack.md#publicKeyHash) | Hash value |
+| [kind](netstack.md#kind) | Certificate lock type.|
+| [hashAlgorithm](netstack.md#hashAlgorithm) | Hash algorithm|
+| [publicKeyHash](netstack.md#publicKeyHash) | Hash value.|

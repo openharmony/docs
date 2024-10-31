@@ -26,7 +26,7 @@ libace_napi.z.so
 
 ## 已从Node-API组件标准库中导出的符号列表
 
-从Node-API标准库导出的接口，其使用方法及行为同Node.js一致。相关接口声明及参数约束请参考[Node-API](https://nodejs.org/docs/latest-v8.x/api/n-api.html)文档。
+从Node-API标准库导出的接口，其使用方法及行为基于[Node.js](https://nodejs.org/docs/latest-v8.x/api/n-api.html)，并进行了部分[能力拓展](#node-api组件扩展的符号列表)。
 
 |符号类型|符号名|说明|起始支持API版本|
 | --- | --- | --- | --- |
@@ -165,6 +165,7 @@ libace_napi.z.so
 |FUNC|napi_get_all_property_names|获取一个数组，其中包含此对象过滤后的属性名称。|10|
 |FUNC|napi_detach_arraybuffer|分离给定`ArrayBuffer`的底层数据。|10|
 |FUNC|napi_is_detached_arraybuffer|判断给定的`ArrayBuffer`是否已被分离过。|10|
+|FUNC|napi_run_script|将给定对象作为js代码运行。当前接口实际为空实现，可使用系统拓展接口`napi_run_script_path`接口，提升安全性。|10|
 |FUNC|napi_set_instance_data|绑定与当前运行的环境相关联的数据项。|11|
 |FUNC|napi_get_instance_data|检索与当前运行的环境相关联的数据项。|11|
 |FUNC|napi_add_env_cleanup_hook|注册环境清理钩子函数。|11|
@@ -179,7 +180,6 @@ libace_napi.z.so
 
 |符号类型|符号名|说明|
 | --- | --- | --- |
-|FUNC|napi_run_script|将给定对象作为js代码运行。|
 |FUNC|napi_adjust_external_memory|调整js `Object`持有的外部内存。|
 
 ## Node-API组件扩展的符号列表

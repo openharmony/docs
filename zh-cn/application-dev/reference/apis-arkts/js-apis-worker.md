@@ -118,10 +118,71 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+// Worker.ets
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-let buffer = new ArrayBuffer(8);
-workerInstance.postMessage(buffer, [buffer]);
+// 创建worker线程中与主线程通信的对象
+const workerPort = worker.workerPort
+
+// worker线程接收主线程信息
+workerPort.onmessage = (e: MessageEvents): void => {
+  // data：主线程发送的信息
+  let data: number = e.data;
+  // 往收到的buffer里写入数据
+  const view = new Int8Array(data).fill(3);
+  // worker线程向主线程发送信息
+  workerPort.postMessage(view);
+}
+
+// worker线程发生error的回调
+workerPort.onerror = (err: ErrorEvent) => {
+  console.log("worker.ets onerror" + err.message);
+}
+```
+```ts
+// Index.ets
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            // 主线程中创建Worker对象
+            const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+            // 主线程向worker线程传递信息
+            const buffer = new ArrayBuffer(8);
+            workerInstance.postMessage(buffer);
+            // 主线程接收worker线程信息
+            workerInstance.onmessage = (e: MessageEvents): void => {
+              // data：worker线程发送的信息
+              let data: number = e.data;
+              console.info("main thread data is  " + data);
+              // 销毁Worker对象
+              workerInstance.terminate();
+            }
+            // 在调用terminate后，执行onexit
+            workerInstance.onexit = (code) => {
+              console.log("main thread terminate");
+            }
+
+            workerInstance.onerror = (err: ErrorEvent) => {
+              console.log("main error message " + err.message);
+            }
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
 ```
 
 ### postMessage<sup>9+</sup>
@@ -177,7 +238,7 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
 | transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
 
 **错误码：**
@@ -1088,7 +1149,7 @@ Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| message   | Object	     | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
 | transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。默认值为空数组。 |
 
 **错误码：**
@@ -1430,72 +1491,7 @@ workerPort.onerror = (err: ErrorEvent) => {
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | 是   | 否   | 线程间传递的数据。 |
 
-## RestrictedWorker<sup>11+</sup>
-
-RestrictedWorker类继承[ThreadWorker<sup>9+</sup>](#threadworker9)，具有ThreadWorker中所有的方法。
-RestrictedWorker主要作用是提供受限的Worker线程运行环境，该线程运行环境中只允许导入Worker模块，不允许导入其他API。
-
-### constructor<sup>11+</sup>
-
-constructor(scriptURL: string, options?: WorkerOptions)
-
-RestrictedWorker构造函数。使用以下方法前，均需先构造RestrictedWorker实例。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名    | 类型                            | 必填 | 说明                                                         |
-| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker线程文件的路径，路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
-| options   | [WorkerOptions](#workeroptions) | 否   | RestrictedWorker构造的选项。                                           |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure. |
-| 10200007 | The worker file patch is invalid path. |
-
-**示例：**
-
-此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
-
-受限的Worker线程文件只允许导入Worker模块，不允许导入任何其他API，以下为示例代码：
-
-```ts
-import { worker } from '@kit.ArkTS';
-
-// 主要说明以下两种场景：
-
-// 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
-const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
-
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.RestrictedWorker('phone/ets/ThreadFile/workers/worker.ets');
-```
-
-```ts
-// 受限worker线程文件
-import { worker, MessageEvents } from '@kit.ArkTS';
-
-//import { process } from '@kit.ArkTS'; // 受限Worker线程内不允许导入除了worker之外的API。
-
-const workerPort = worker.workerPort;
-
-workerPort.onmessage = (e : MessageEvents) : void => {
-  console.info("worker:: This is worker thread.")
-  //console.info("worker:: worker tid: " + process.tid) // 执行process.tid，主线程会有对应的TypeError报出。
-}
-```
-
 ## Worker<sup>(deprecated)</sup>
-
 
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
 

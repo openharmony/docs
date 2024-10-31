@@ -11,13 +11,13 @@
 
 3. 整合UX设计和一多能力，默认提供统一的标题显示、页面切换和单双栏适配能力；
 
-4. 基于通用UIBuilder能力，由开发者决定页面别名和页面UI对应关系，提供更加灵活的页面配置能力；
+4. 基于通用[UIBuilder](../quick-start/arkts-builder.md)能力，由开发者决定页面别名和页面UI对应关系，提供更加灵活的页面配置能力；
 
 5. 基于组件属性动效和共享元素动效能力，将页面切换动效转换为组件属性动效实现，提供更加丰富和灵活的切换动效；
 
 6. 开放了页面栈对象，开发者可以继承，能更好的管理页面显示。
 
-## 能力对标
+## 能力对比
 
 | 业务场景                                      | Navigation                            | Router                                 |
 | --------------------------------------------- | ------------------------------------- | -------------------------------------- |
@@ -97,7 +97,7 @@ struct Index {
               url: 'pages/pageOne' // 目标url
               }, router.RouterMode.Standard, (err) => {
                 if (err) {
-                  console.error(Invoke pushUrl failed, code is ${err.code}, message is ${err.message});
+                  console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
                   return;
                 }
                 console.info('Invoke pushUrl succeeded.');
@@ -115,7 +115,7 @@ struct Index {
 // pageOne.ets
 import { router } from '@kit.ArkUI';
 
-@entry
+@Entry
 @Component
 struct pageOne {
   @State message: string = 'This is pageOne';
@@ -258,7 +258,7 @@ struct Index {
   build() {
     // 设置NavPathStack并传入Navigation
     Navigation(this.pathStack) {
-        ...
+        // ...
     }.width('100%').height('100%')
     .title("Navigation")
     .mode(NavigationMode.Stack)
@@ -281,7 +281,7 @@ this.pathStack.replacePath({ name: 'pageOne' })
 this.pathStack.clear()
 
 // 获取页面栈大小
-let size = this.pathStack.size()
+let size: number = this.pathStack.size()
 
 // 删除栈中name为PageOne的所有页面
 this.pathStack.removeByName("pageOne")
@@ -300,7 +300,7 @@ this.pathStack.getParamByName("pageOne")
 
 // 获取PageOne页面的索引集合
 this.pathStack.getIndexByName("pageOne")
-...
+// ...
 ```
 
 Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的页面栈对象NavPathStack，可以通过如下几种方式获取：
@@ -313,12 +313,11 @@ Router作为全局通用模块，可以在任意页面中调用，Navigation作�
 @Component
 struct Index {
   // Navigation创建一个Provide修饰的NavPathStack
- @Provide('pathStack') pathStack: NavPathStack
+ @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
 
   build() {
     Navigation(this.pathStack) {
-        ...
-      }.width('100%').height('100%')
+        // ...
     }
     .title("Navigation")
     .mode(NavigationMode.Stack)
@@ -333,7 +332,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -349,7 +348,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack
@@ -373,10 +372,8 @@ struct Index {
 
   build() {
     Navigation(this.pathStack) {
-        ...
-      }.width('100%').height('100%')
-    }
-    .title("Navigation")
+      // ...
+    }.title("Navigation")
     .mode(NavigationMode.Stack)
   }
 }
@@ -389,7 +386,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -464,7 +461,7 @@ struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .onWillAppear(()=>{
     })
@@ -577,7 +574,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    export struct PageInHSP {
      build() {
        NavDestination() {
-           ...
+           // ...
        }
      }
    }
@@ -683,11 +680,11 @@ Navigation同样可以通过在observer中实现注册监听。
 
 ```ts
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    ...
+    // ...
     windowStage.getMainWindow((err: BusinessError, data) => {
-      ...
+      // ...
       windowClass = data;
       // 获取UIContext实例。
       let uiContext: UIContext = windowClass.getUIContext();

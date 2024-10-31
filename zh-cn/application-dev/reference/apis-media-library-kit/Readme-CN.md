@@ -21,6 +21,7 @@
     - [media_asset_capi.h](media__asset__capi_8h.md)
     - [media_asset_change_request_capi.h](media__asset__change__request__capi_8h.md)
     - [media_asset_manager_capi.h](media__asset__manager__capi_8h.md)
+    - [moving_photo_capi.h](moving__photo__capi_8h.md)
   - 结构体
     - [MediaLibrary_RequestId](_media_library___request_id.md)
     - [MediaLibrary_RequestOptions](_media_library___request_options.md)

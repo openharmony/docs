@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for the proxy object.
+Defines a proxy object.
 
 **Since**: 12
 

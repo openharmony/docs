@@ -665,7 +665,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -1011,6 +1011,50 @@ export default class MyAbility extends UIAbility {
       let message = (error as BusinessError).message;
       console.error(`setSupportedProcessCache fail, code: ${code}, msg: ${message}`);
     }
+  }
+}
+```
+
+
+## ApplicationContext.setFontSizeScale<sup>13+</sup>
+
+setFontSizeScale(fontSizeScale: number): void
+
+设置应用字体大小缩放比例。仅支持主线程调用。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| fontSizeScale | number | 是   | 表示字体缩放比例，取值为非负数。当应用字体[跟随系统](../../quick-start/app-configuration-file.md#configuration标签)且该字段取值超过[fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration标签)取值时，实际生效值为[fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration标签)取值。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class MyAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        return;
+      }
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.setFontSizeScale(2);
+    });
   }
 }
 ```

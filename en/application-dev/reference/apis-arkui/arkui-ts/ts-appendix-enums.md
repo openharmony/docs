@@ -866,7 +866,7 @@ Defines the menu display policy.
 | SHOW    | 2    | The menu is always displayed.                    |
 
 ## EmbeddedType<sup>12+</sup>
-Enumerates the types of the providers that can be started by the **\<EmbeddedComponent>**.
+Enumerates the types of the providers that can be started by the **EmbeddedComponent**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

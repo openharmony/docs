@@ -1,8 +1,10 @@
-# 通过startAbility拉起文件处理类应用
+# 拉起文件处理类应用（startAbility）
 
 ## 使用场景
 
-开发者可以通过调用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，由系统从已安装的应用中寻找符合要求的应用来实现打开特定文件的意图，例如：浏览器下应用下载PDF文件，可以调用此接口选择文件处理应用打开此PDF文件。开发者需要在请求中设置待打开文件的URI路径（[uri](#接口关键参数说明)）、文件格式（[type](#接口关键参数说明)）等字段，以便系统能够识别，直接拉起文件打开应用或弹出一个选择框，让用户选择合适的应用来打开文件，效果示意如下图所示。
+开发者可以通过调用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，由系统从已安装的应用中寻找符合要求的应用，打开特定文件。
+
+例如，浏览器下应用下载PDF文件，可以调用此接口选择文件处理应用打开此PDF文件。开发者需要在请求中设置待打开文件的URI路径（[uri](#接口关键参数说明)）、文件格式（[type](#接口关键参数说明)）等字段，以便系统能够识别，直接拉起文件打开应用或弹出一个选择框，让用户选择合适的应用来打开文件，效果示意如下图所示。
 
 图1 效果示意图<br>
 ![](figures/file-open.jpeg)
@@ -20,7 +22,7 @@
 | parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。         |
 | flags | number | 否 | 表示处理方式，文件打开场景请参考表3。                                                                                                                                                                                       |
 
-**表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
+**表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)相关参数说明
 
 
 | 参数名称                              | 类型    | 说明                                                                                                                                                                |
@@ -28,7 +30,7 @@
 | ability.params.stream                 | string  | 指示携带的文件URI要授权给目标方，用于待打开的文件存在其他文件依赖的场景。例如打开本地html文件依赖本地其余资源文件的场景等。对应的value必须是string类型的文件URI数组。文件URI的获取参考表1中uri参数。 |
 | ohos.ability.params.showDefaultPicker | string | 表示在系统仅找到一个应用打开文件的场景下，是否需要展示选择文件打开方式的弹框来给用户选择。<br>- false：表示由系统策略或默认应用设置决定直接拉起文件打开应用还是展示弹框。<br>- true：表示始终展示弹框。缺省为false。                                                                            |
 
-**表3** [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags)相关参数说明
+**表3** [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)相关参数说明
 
 | 参数名称                       | 值         | 说明                       |
 |--------------------------------|------------|----------------------------|

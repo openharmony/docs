@@ -93,15 +93,20 @@
 - C API
   - Modules
     - [OsAccount](_os_account.md)
+    - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
     - [TimeService](_time_service.md)
     - [CommonEvent](capi-common-event.md)
   - Header Files
-    - [os_account.h](os__account_8h.md)
-    - [os_account_common.h](os__account__common_8h.md)
-    - [time_service.h](time__service_8h.md)
+    - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
+    - [oh_pasteboard.h](oh__pasteboard_8h.md)
+    - [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md)
+    - [os_account.h](os__account_8h.md)
+    - [os_account_common.h](os__account__common_8h.md)
+    - [ohprint.h](ohprint_8h.md)
+    - [time_service.h](time__service_8h.md)
 - Error Codes
   - [USB Error Codes](errorcode-usb.md)
   - [Running Lock Error Codes](errorcode-runninglock.md)

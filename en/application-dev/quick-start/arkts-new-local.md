@@ -506,7 +506,7 @@ struct Index {
 }
 ```
 
-In the preceding example, each time you click **Button('change to self')**, the same constant of the **Array** type is assigned to a state variable of the same type, triggering re-rendering. This is because in state management V2, a proxy is added to Date, Map, Set, and Array that use state variable decorators such as @Trace and @Local to observe changes invoked by APIs. 
+In the preceding example, each time you click Button('change to self'), the same constant of the **Array** type is assigned to a state variable of the same type, triggering re-rendering. This is because in state management V2, a proxy is added to Date, Map, Set, and Array that use state variable decorators such as @Trace and @Local to observe changes invoked by APIs. 
 **dataObjFromList** is of a **Proxy** type but **list[0]** is of an **Array** type. As a result, when **list[0]** is assigned to **dataObjFromList**, the value changes trigger re-rendering. 
 To avoid unnecessary value changes and re-renders, use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original value and determine whether the original and new values are the same. If they are the same, do not perform value changes.
 

@@ -966,7 +966,7 @@ router.replaceNamedRoute({
 
 back(options?: RouterOptions ): void
 
-返回上一页面或指定的页面。
+返回上一页面或指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -988,7 +988,7 @@ router.back({url:'pages/detail'});
 
 back(index: number, params?: Object): void;
 
-返回指定的页面。
+返回指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1238,7 +1238,7 @@ getParams(): Object
 
 **示例：**
 
-```
+```ts
 router.getParams();
 ```
 
@@ -1283,7 +1283,7 @@ router.getParams();
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | name   | string | 是   | 表示目标命名路由页面的name。                                 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 <br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
 
 ## 完整示例
 
@@ -1319,6 +1319,10 @@ export default {
 
 ### 基于TS扩展的声明式开发范式
 
+> **说明：**
+> 
+> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import { router } from '@kit.ArkUI';
@@ -1352,6 +1356,7 @@ struct Index {
       params: new routerParams('这是第一页的值' ,[12, 45, 78])
     }
     try {
+      // 建议使用this.getUIContext().getRouter().pushUrl()
       await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
@@ -1406,6 +1411,7 @@ class routerParams {
 @Component
 struct Second {
   private content: string = "这是第二页"
+  // 建议使用this.getUIContext().getRouter().getParams()
   @State text: string = (router.getParams() as routerParams).text
   @State data: object = (router.getParams() as routerParams).data
   @State secondData: string = ''

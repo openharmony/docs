@@ -20,7 +20,7 @@
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 
-- 以下以生成3DES密钥为例：
+以下以生成3DES密钥为例：
 
   ```c++
   #include "CryptoArchitectureKit/crypto_common.h"
@@ -67,11 +67,12 @@
 
 4. 调用[OH_CryptoSymKey_GetKeyData](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkey_getkeydata)，获取密钥对象的二进制数据。
 
-- 以下以生成HMAC密钥为例：
+以下以生成HMAC密钥为例：
 
   ```c++
   #include "CryptoArchitectureKit/crypto_common.h"
   #include "CryptoArchitectureKit/crypto_sym_key.h"
+  #include <string.h>
 
   static OH_Crypto_ErrCode testConvertHmacKey() {
       const char *algName = "HMAC";
@@ -79,8 +80,9 @@
       OH_CryptoSymKey *convertKeyCtx = nullptr;
       Crypto_DataBlob out = {.data = nullptr, .len = 0};
       OH_Crypto_ErrCode ret;
-      uint8_t arr[] = "12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh";
-      Crypto_DataBlob convertBlob = {.data = arr, .len = sizeof(arr)};
+
+      char *arr = const_cast<char *>("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh");
+      Crypto_DataBlob convertBlob = {.data = (uint8_t *)(arr), .len = strlen(arr)};
       ret = OH_CryptoSymKeyGenerator_Create(algName, &ctx);
       if (ret != CRYPTO_SUCCESS) {
           return ret;

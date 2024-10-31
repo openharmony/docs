@@ -1,14 +1,12 @@
-
-
 # High-Performance WaterFlow Development
 
 ## Background
 
-The waterfall layout is a popular layout for presenting images and frequently seen in shopping and information applications. It is implemented using the [\<WaterFlow>](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) component in ArkUI. This document discusses how to improve the **\<WaterFlow>** performance, with practical examples.
+The waterfall layout is a popular layout for presenting images and frequently seen in shopping and information applications. It is implemented using the [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) component in ArkUI. This document discusses how to improve the **WaterFlow** performance, with practical examples.
 
 ## Using Lazy Loading
 
-Below shows the basic usage of the **\<WaterFlow>** component.
+Below shows the basic usage of the **WaterFlow** component.
 
 ```ts
   build() {
@@ -40,15 +38,15 @@ Below shows the basic usage of the **\<WaterFlow>** component.
   }
 ```
 
-In the sample code, [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is used for lazy loading. During the layout of the **\<WaterFlow>** component, the **\<FlowItem>** components are created as needed based on the visible area; those that extend beyond the visible area are destroyed to reduce memory usage.
+In the sample code, [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is used for lazy loading. During the layout of the **WaterFlow** component, the **FlowItem** components are created as needed based on the visible area; those that extend beyond the visible area are destroyed to reduce memory usage.
 
-Considering that **\<Image>** components are loaded asynchronously by default, you are advised to set the height for **\<FlowItem>** components based on the image size, to avoid layout re-render caused by **\<FlowItem>** components' changing heights to accommodate images.
+Considering that **Image** components are loaded asynchronously by default, you are advised to set the height for **FlowItem** components based on the image size, to avoid layout re-render caused by **FlowItem** components' changing heights to accommodate images.
 
 ## Implementing Infinite Scrolling
 
-In the example, the fixed number of **\<FlowItem>** components results in failure to achieve infinite scrolling.
+In the example, the fixed number of **FlowItem** components results in failure to achieve infinite scrolling.
 
-To implement infinite scrolling with the capabilities provided by the **\<WaterFlow>** component, you can new data to the **LazyForEach** data source during **onReachEnd**, and set the footer to the loading-new-data style (by using the [\<LoadingProgress>](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) component).
+To implement infinite scrolling with the capabilities provided by the **WaterFlow** component, you can new data to the **LazyForEach** data source during **onReachEnd**, and set the footer to the loading-new-data style (by using the [\<LoadingProgress>](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) component).
 
 ```ts
   build() {
@@ -94,9 +92,9 @@ To implement infinite scrolling with the capabilities provided by the **\<WaterF
   }
 ```
 
-To add new data, you must add an item to the end of the data. Do not directly modify the data array and use **onDataReloaded()** of **LazyForEach** to instruct the **\<WaterFlow>** component to reload data.
+To add new data, you must add an item to the end of the data. Do not directly modify the data array and use **onDataReloaded()** of **LazyForEach** to instruct the **WaterFlow** component to reload data.
 
-Because the heights of the child components in **\<WaterFlow>** vary, and the position of a lower child component depends on its upper one, reloading all data in **\<WaterFlow>** will trigger waterfall layout recalculation, causing frame freezing. In comparison, if you add new data by adding an item to the end of the data and then call **notifyDataAdd(this.dataArray.length - 1)**, the **\<WaterFlow>** component loads new data, without processing existing data repeatedly.
+Because the heights of the child components in **WaterFlow** vary, and the position of a lower child component depends on its upper one, reloading all data in **WaterFlow** will trigger waterfall layout recalculation, causing frame freezing. In comparison, if you add new data by adding an item to the end of the data and then call **notifyDataAdd(this.dataArray.length - 1)**, the **WaterFlow** component loads new data, without processing existing data repeatedly.
 
 ![](figures/waterflow-perf-demo1.gif)
 
@@ -143,7 +141,7 @@ To create a smooth scrolling experience, you need to adjust the time for adding 
   }
 ```
 
-In this example, the quantity of data items left till the end is determined in **onAppear** of **\<FlowItem>**, and new data is added in advance to implement stutter-free infinite scrolling.
+In this example, the quantity of data items left till the end is determined in **onAppear** of **FlowItem**, and new data is added in advance to implement stutter-free infinite scrolling.
 
 ![](figures/waterflow-perf-demo2.gif)
 
@@ -151,7 +149,7 @@ In this example, the quantity of data items left till the end is determined in *
 
 Now that we have a waterfall that scrolls infinitely without explicitly waiting for more data, we can further optimize its performance by making the components reusable.
 
-During scrolling, **\<FlowItem>** and its child component are frequently created and destroyed. By encapsulating the component in **\<FlowItem>** into a custom component and decorating it with the **@Reusable** decorator, you make the component reusable, reducing the overhead of repeatedly creating and destroying nodes in the ArkUI framework. For details about component reuse, see [Best Practices for Component Reuse](component-recycle.md).
+During scrolling, **FlowItem** and its child component are frequently created and destroyed. By encapsulating the component in **FlowItem** into a custom component and decorating it with the **@Reusable** decorator, you make the component reusable, reducing the overhead of repeatedly creating and destroying nodes in the ArkUI framework. For details about component reuse, see [Best Practices for Component Reuse](component-recycle.md).
 
 ```ts
   build() {
@@ -208,4 +206,4 @@ struct ResuableFlowItem {
 
 ## Takeaway
 
-To achieve the optimal performance in infinite scrolling, you can use **\<WaterFlow>** with the **LazyForEach** rendering control syntax, ahead-of-time data addition, and component reuse.
+To achieve the optimal performance in infinite scrolling, you can use **WaterFlow** with the **LazyForEach** rendering control syntax, ahead-of-time data addition, and component reuse.

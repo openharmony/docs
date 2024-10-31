@@ -12,7 +12,7 @@
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
-    "icon": "$media:app_icon",
+    "icon": "$media:layered-image",
     "label": "$string:app_name",
     "description": "$string:description_application",
     "minAPIVersion": 9,
@@ -52,7 +52,7 @@ app.json5配置文件包含以下标签。
 | bundleName | 标识应用的Bundle名称，用于标识应用的唯一性。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字、下划线和符号“.”组成，且必须以字母开头。<br/>-&nbsp;字符串最小长度为7字节，最大长度128字节。<br/>-&nbsp;推荐采用反域名形式命名（如“com.example.demo”，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。<br/>对于随系统源码编译的应用，建议命名为“com.ohos.demo”形式，其中的ohos标识系统应用。 | 字符串 | 该标签不可缺省。 |
 | bundleType| 标识应用的Bundle类型，用于区分应用或者原子化服务。支持的取值如下：<br/>-&nbsp;app：当前Bundle为应用。<br/>-&nbsp;atomicService：当前Bundle为原子化服务。<br/>-&nbsp;shared：当前Bundle为共享库应用，预留字段。<br/>-&nbsp;appService：当前Bundle为系统级共享库应用，仅供系统应用使用。 | 字符串| 该标签可缺省，缺省值为app。 |
 | debug | 标识应用是否可调试。<br/>-&nbsp;true：可调试，一般用于开发阶段。<br/>-&nbsp;false：不可调试，一般用于发布阶段。 | 布尔值 | 由IDE编译构建时生成。该标签可缺省，缺省值为false。 |
-| icon | 标识[应用的图标](../application-models/application-component-configuration-stage.md)，取值为图标资源文件的索引。 | 字符串 | 该标签不可缺省。 |
+| [icon](#icon标签) | 标识[应用的图标](../application-models/application-component-configuration-stage.md)，取值为图标资源文件的索引。 | 字符串 | 该标签不可缺省。 |
 | label | 标识[应用的名称](../application-models/application-component-configuration-stage.md)，取值为字符串资源的索引，字符串长度不超过63字节。 | 字符串 | 该标签不可缺省。 |
 | description | 标识应用的描述信息。取值为长度不超过255字节的字符串，内容为描述信息的字符串资源索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | vendor | 标识对应用开发厂商的描述，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -78,7 +78,39 @@ app.json5配置文件包含以下标签。
 | maxChildProcess | 标识当前应用自身可创建的子进程的最大个数，取值范围为0到512，0表示不限制，当应用有多个模块时，以entry模块的配置为准。 | 数值 | 该标签可缺省，缺省时使用系统配置的默认值。 |
 | [multiAppMode](#multiappmode标签) | 标识当前应用配置的多开模式。仅bundleType为app的应用的entry或feature模块配置有效，存在多个模块时，以entry模块的配置为准。 | 对象 | 该标签可缺省，缺省值为空。 |
 | cloudFileSyncEnabled | 标识当前应用是否启用端云文件同步能力。 <br/>-&nbsp;true：当前应用启用端云文件同步能力。<br/>-&nbsp;false：当前应用不启用端云文件同步能力。 | 布尔值 | 该标签可缺省，缺省值为false。  |
-| configuration | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，跟随系统默认设定。 |
+| [configuration](#configuration标签) | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，缺省时configuration使用跟随系统默认设定。 |
+
+## icon标签
+
+此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)和对分层图标配置文件的索引。
+
+支持分层图标的配置，具体方式如下：
+
+1. 将图标的前景资源和背景资源放在AppScope/resources/base/media目录下。
+
+2. 在上述media目录下创建一个json文件（例如：layered-image.json），在文件中引用前景资源和背景资源，详见[图标资源规范](https://developer.huawei.com/consumer/cn/doc/design-guides/application-icon-0000001953444009#section634668113212)。
+
+分层图标资源文件示例：
+
+```json
+{
+  "layered-image"：
+    {
+      "background":"$media:background", //背景资源
+      "foreground":"$media:foreground" //前景资源 
+    }    
+}
+```
+
+icon标签示例：
+
+```json
+{
+  "app":{
+    "icon":"$media:layered-image"
+  }
+}
+```
 
 ## appEnvironments标签
 
@@ -115,7 +147,7 @@ appEnvironments标签示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | multiAppModeType          | 标识应用多开模式类型，支持的取值如下：<br/>-&nbsp;multiInstance：多实例模式。<br/>-&nbsp;appClone：应用分身模式。 | 字符串  | 该标签不可缺省。 |
-| maxCount         | 标识最大允许的应用多开个数，支持的取值如下：<br/>-&nbsp;multiInstance模式：取值范围1\~10。<br/>-&nbsp;appClone模式：取值范围1\~5。<br/>注意：在appClone模式下，maxCount在应用更新时不允许减小。      | 数值  | 该标签不可缺省。 |
+| maxCount         | 标识最大允许的应用多开个数，支持的取值如下：<br/>-&nbsp;multiInstance模式：取值范围1\~10。<br/>-&nbsp;appClone模式：取值范围1\~5。      | 数值  | 该标签不可缺省。 |
 
 multiAppMode标签示例：
 

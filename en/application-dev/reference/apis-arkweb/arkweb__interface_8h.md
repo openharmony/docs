@@ -3,7 +3,7 @@
 
 ## Overview
 
-Declares ArkWeb APIs for obtaining native APIs and the basic native API types.
+The **arkweb_interface.h** file provides ArkWeb APIs for obtaining native APIs and the basic native API types.
 
 **Library**: libohweb.so
 
@@ -21,18 +21,18 @@ Declares ArkWeb APIs for obtaining native APIs and the basic native API types.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) | Defines the basic native API types. | 
+| struct&nbsp;&nbsp;[ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) | Defines the basic Native API types. | 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) {<br>[ARKWEB_NATIVE_COMPONENT](_web.md), [ARKWEB_NATIVE_CONTROLLER](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE_PORT](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE](_web.md),<br>[ARKWEB_NATIVE_COOKIE_MANAGER](_web.md)<br>} | Enumerates the native API types. | 
+| [ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) { [ARKWEB_NATIVE_COMPONENT](_web.md), [ARKWEB_NATIVE_CONTROLLER](_web.md) } | Enumerates the Native API types. | 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) \* [OH_ArkWeb_GetNativeAPI](_web.md#oh_arkweb_getnativeapi) ([ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) type) | Obtains the native API struct corresponding to the API type passed in. | 
+| [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md) \* [OH_ArkWeb_GetNativeAPI](_web.md#oh_arkweb_getnativeapi) ([ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) type) | Obtains the corresponding Native API struct based on the transferred API type. | 

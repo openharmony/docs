@@ -63,7 +63,7 @@ struct MyComponent {
 }
 ```
 
-Preferable: Directly use the **transition** API to animate the opacity when the **\<Text>** component appears or disappears.
+Preferable: Directly use the **transition** API to animate the opacity when the **Text** component appears or disappears.
 
 ```typescript
 @Entry
@@ -298,7 +298,7 @@ struct MyComponent {
 }
 ```
 
-Before the first **animateTo** call, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered four times for its property changes.
+Before the first **animateTo** call, the **textWidth** property is modified. Therefore, the **Row** component needs to be re-rendered. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **Row** component needs to be re-rendered again and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, the **color** property is modified. Therefore, the **Row** component needs to be re-rendered again. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **Row** component needs to be re-rendered again to generate a background color animation. In sum, the **Row** component is re-rendered four times for its property changes.
 In this example, the state variable **textHeight** irrelevant to the animation is also modified. If the state change is not needed, it should be avoided to reduce redundant re-renders.
 
 Preferable: Update state variables in a unified manner.
@@ -338,7 +338,7 @@ struct MyComponent {
 }
 ```
 
-Before the first **animateTo** call, no dirty state variable or dirty node needs to be updated, and no re-render is required. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered twice for its property changes.
+Before the first **animateTo** call, no dirty state variable or dirty node needs to be updated, and no re-render is required. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **Row** component needs to be re-rendered and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **Row** component needs to be re-rendered again to generate a background color animation. In sum, the **Row** component is re-rendered twice for its property changes.
 
 Preferable 2: Explicitly specify the initial values of all properties that require animation before **animateTo**, update the values to the node, and then animate the properties.
 
@@ -376,4 +376,6 @@ struct MyComponent {
 }
 ```
 
-Before the first **animateTo** call, the **textWidth** and **color** properties are modified. Therefore, the **\<Row>** component needs to be re-rendered. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **\<Row>** component needs to be re-rendered again to generate a background color animation. In sum, the **\<Row>** component is re-rendered three times for its property changes.
+Before the first **animateTo** call, the **textWidth** and **color** properties are modified. Therefore, the **Row** component needs to be re-rendered. In the animation closure of the first **animateTo**, the **textWidth** property is modified. Therefore, the **Row** component needs to be re-rendered again and compared with the last rendering result to generate a width and height animation. Before the second **animateTo** call, because no additional statement is executed, there is no dirty state variable or dirty node that needs to be updated, and no re-render is required. In the animation closure of the second **animateTo** call, the **color** property is modified. Therefore, the **Row** component needs to be re-rendered again to generate a background color animation. In sum, the **Row** component is re-rendered three times for its property changes.
+
+<!--no_check-->

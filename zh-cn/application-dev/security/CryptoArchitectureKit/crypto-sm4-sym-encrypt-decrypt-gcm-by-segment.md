@@ -49,11 +49,16 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
+
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12);
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -145,11 +150,15 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12); // 12 bytes
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -212,16 +221,16 @@
     let decryptBlob: cryptoFramework.DataBlob = { data: decryptText };
     return decryptBlob;
   }
-  async function genSymKeyByData(symKeyData: Uint8Array) {
+  function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
     let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
-    let symKey = await sm4Generator.convertKey(symKeyBlob);
-    console.info('convertKey success');
+    let symKey = sm4Generator.convertKeySync(symKeyBlob);
+    console.info('convertKeySync success');
     return symKey;
   }
-  async function main() {
+  function main() {
     let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
-    let symKey = await genSymKeyByData(keyData);
+    let symKey = genSymKeyByData(keyData);
     let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 假设信息总共43字节，根据utf-8解码后，也是43字节
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessageUpdateBySegment(symKey, plainText);

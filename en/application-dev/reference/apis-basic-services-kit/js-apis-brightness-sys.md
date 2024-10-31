@@ -28,7 +28,7 @@ Sets the screen brightness.
 
 | Name| Type  | Mandatory| Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | Yes  | Brightness value. The value ranges from 0 to 255.|
+| value  | number | Yes  | Brightness value. Value range: 0 to 255. The value of this parameter must be a number.|
 
 **Error codes**
 
@@ -36,7 +36,9 @@ For details about the error codes, see [Screen Brightness Error Codes](errorcode
 
 | ID  | Error Message   |
 |---------|---------|
-| 4700101 | If connecting to the service failed. |
+| 4700101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -62,8 +64,8 @@ Sets the screen brightness. This API is used for continuous brightness adjustmen
 
 | Name| Type  | Mandatory| Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| value  | number | Yes  | Brightness value. The value ranges from 0 to 255.|
-| continuous  | boolean | Yes  | Whether to enable continuous brightness adjustment.|
+| value  | number | Yes  | Brightness value. Value range: 0 to 255. The value of this parameter must be a number.|
+| continuous  | boolean | Yes  | Whether the luminance adjustment is continuous. The value of this parameter must be of the Boolean type.|
 
 **Error codes**
 
@@ -71,7 +73,9 @@ For details about the error codes, see [Screen Brightness Error Codes](errorcode
 
 | ID  | Error Message   |
 |---------|---------|
-| 4700101 | If connecting to the service failed. |
+| 4700101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 

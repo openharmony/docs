@@ -256,7 +256,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
 | decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线置，默认初始的Decoration。             |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 字体色，默认为白色。                         |
-| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。                          |
+| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。 目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
 | fontFamilies  | Array\<string>                                       | 是 | 是 | 字体族名称列表，默认为系统字体。                    |
@@ -286,7 +286,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fontFamilies   | Array\<string>                                       | 是   | 是 | 字体类型，默认为系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
-| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。                                                      |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                             |
 | fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为物理像素px。                             |
 | height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
 | leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
@@ -340,7 +340,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。
+同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -618,6 +618,26 @@ getLongestLine(): number
 
 ```ts
 let longestLine = paragraph.getLongestLine();
+```
+
+### getLongestLineWithIndent<sup>13+</sup>
+
+getLongestLineWithIndent(): number
+
+获取文本最长一行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | ------------- |
+| number | 最长一行的宽度（该宽度包含当前行缩进的宽度），浮点数，单位为物理像素px。|
+
+**示例：**
+
+```ts
+let longestLineWithIndent = paragraph.getLongestLineWithIndent();
 ```
 
 ### getMinIntrinsicWidth
@@ -1385,7 +1405,7 @@ addSymbol(symbolId: number): void
 
 | 参数名    | 类型    | 必填 | 说明                                                        |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。|
+| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位及其对应的symbol名称请参阅以下链接中 JSON 文件的 value 字段和 name 字段： [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json)|
 
 **示例：**
 

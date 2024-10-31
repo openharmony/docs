@@ -13,7 +13,7 @@ You can bind to each component different gesture events and design the logic for
 
 **gesture** is a frequently used API for binding a gesture to a component.
 
-For example, you can use it to bind the tap gesture to the **\<Text>** component.
+For example, you can use it to bind the tap gesture to the **Text** component.
 
 
 ```ts
@@ -49,7 +49,7 @@ The **priorityGesture** API binds gestures that are preferentially recognized to
 
 By default, the child component preferentially recognizes the gesture specified by **gesture**, and the parent component preferentially recognizes the gesture specified by **priorityGesture** (if set).
 
-In the following example, the parent component **\<Column>** and child component **\<Text>** are both bound to the tap gesture. As the **\<Column>** is bound to the gesture through **priorityGesture**, the tap gesture recognized by the parent component is preferentially responded to.
+In the following example, the parent component **Column** and child component **Text** are both bound to the tap gesture. As the **Column** is bound to the gesture through **priorityGesture**, the tap gesture recognized by the parent component is preferentially responded to.
 
 
 

@@ -988,7 +988,7 @@ struct Index {
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@State装饰的变量是Object类型、且通过a.b(this.object)形式调用修改对象的属性时，this.object的Proxy对象代理属性会被破坏，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
+在build方法内，当@State装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
 
 【反例】
 
@@ -1081,3 +1081,57 @@ struct Index {
   }
 }
 ```
+
+### 自定义组件外改变状态变量
+
+开发者可以在aboutToAppear中注册箭头函数，并以此来改变组件中的状态变量。但需要注意的是在aboutToDisappear中将之前注册的函数置空，否则会因为箭头函数捕获了自定义组件的this实例，导致自定义组件无法被释放，从而造成内存泄漏。
+
+```ts
+class Model {
+  private callback: Function | undefined = () => {}
+
+  add(callback: () => void): void {
+    this.callback = callback;
+  }
+
+  delete(): void {
+    this.callback = undefined;
+  }
+
+  call(): void {
+    if (this.callback) {
+      this.callback();
+    }
+  }
+}
+
+let model: Model = new Model();
+
+@Entry
+@Component
+struct Test {
+  @State count: number = 10;
+
+  aboutToAppear(): void {
+    model.add(() => {
+      this.count++;
+    })
+  }
+
+  build() {
+    Column() {
+      Text(`count值: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call();
+        })
+    }
+  }
+
+  aboutToDisappear(): void {
+    model.delete();
+  }
+}
+```
+
+此外，也可以使用[LocalStorage](./arkts-localstorage.md#自定义组件外改变状态变量)的方式在自定义组件外改变状态变量。

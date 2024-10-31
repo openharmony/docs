@@ -1,6 +1,6 @@
 # RemoteWindow (System API)
 
-**\<RemoteWindow>** is a component used to control the application window, providing the component animator and application window animation linkage during application startup and exit.
+**RemoteWindow** is a component used to control the application window, providing the component animator and application window animation linkage during application startup and exit.
 
 >  **NOTE**
 >  
@@ -16,7 +16,7 @@ Not supported
 
 RemoteWindow(target: WindowAnimationTarget)
 
-Creates a **\<RemoteWindow>** through a window animation object.
+Creates a **RemoteWindow** through a window animation object.
 
 **Parameters**
 
@@ -56,8 +56,8 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
-The **\<RemoteWindow>** component needs to receive the **WindowAnimationTarget** object from the **WindowAnimationController** object set by [windowAnimationManager](../js-apis-windowAnimationManager-sys.md). You can create a **RemoteWindowExample.ets** file as an example to encapsulate the **\<RemoteWindow>** component and the passed **WindowAnimationTarget** object.
-The **\<RemoteWindow>** component can be used only in the system application Launcher. Therefore, you can place the **RemoteWindowExample** component in the **build** function of the **EntryView.ets** page of Launcher, compile Launcher, and push the Launcher installation package to the device system.
+The **RemoteWindow** component needs to receive the **WindowAnimationTarget** object from the **WindowAnimationController** object set by [windowAnimationManager](../js-apis-windowAnimationManager-sys.md). You can create a **RemoteWindowExample.ets** file as an example to encapsulate the **RemoteWindow** component and the passed **WindowAnimationTarget** object.
+The **RemoteWindow** component can be used only in the system application Launcher. Therefore, you can place the **RemoteWindowExample** component in the **build** function of the **EntryView.ets** page of Launcher, compile Launcher, and push the Launcher installation package to the device system.
 
 ```ts
 // WindowAnimationControllerImpl.ets file

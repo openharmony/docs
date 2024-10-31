@@ -1,4 +1,4 @@
-# \@Track Decorator: Updating Class Object Properties
+# \@Track Decorator: Class Object Property-level Update
 
 
 \@Track is a decorator used to decorate properties of class objects. When a property decorated by \@Track changes, only the UI associated with the property is updated.
@@ -20,8 +20,6 @@
 | ------------------ | -------------------- |
 | Decorator parameters  | None.|
 | Allowed variable types| Non-static properties of class objects.|
-
-
 
 ## Observed Changes and Behavior
 
@@ -116,7 +114,7 @@ Text 4 is rendered
 - Whenever possible, avoid any combination of class objects that contain \@Track and those that do not in, for example, union types and class inheritance.
 
 
-## Use Scenarios
+## Usage Scenarios
 
 ### \@Track and Custom Component Updates
 
@@ -177,4 +175,4 @@ Processing steps:
 
 1. The click event **Text.onClick** of the **AddLog** custom component increases the value of **info**.
 
-2. In response to the change of the \@State decorated variable **log**, the \@Track decorated property **logInfo** is updated, and the **\<Text>** component is re-rendered.
+2. In response to the change of the \@State decorated variable **log**, the \@Track decorated property **logInfo** is updated, and the **Text** component is re-rendered.

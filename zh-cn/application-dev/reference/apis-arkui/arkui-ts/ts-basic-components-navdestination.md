@@ -48,7 +48,7 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 
 | 参数名 | 类型                                                         | 必填 | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ---------- |
-| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavDestinationCommonTitle](#navdestinationcommontitle)&nbsp;\|&nbsp;[NavDestinationCustomTitle](#navdestinationcustomtitle) | 是   | 页面标题。 |
+| value  | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavDestinationCommonTitle](#navdestinationcommontitle)&nbsp;\|&nbsp;[NavDestinationCustomTitle](#navdestinationcustomtitle)  | 是   | 页面标题。 |
 | options<sup>12+</sup> | [NavigationTitleOptions](ts-basic-components-navigation.md#navigationtitleoptions11) | 否   | 标题栏选项。 |
 
 ### hideTitleBar
@@ -176,7 +176,9 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述                                       |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明                                     |
 | ---- | ---------------------------------------- |
 | STANDARD | 标准模式的NavDestination。                       |
 | DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期，不支持系统转场动画。    |
@@ -324,7 +326,7 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | ----  | ---   | ---- |----- |
 | name  | string | 是 | 页面名称。|
 | pageSourceFile| string | 是 | 页面在当前包中的路径。|
-| data | object | 是 | 页面自定义字段信息。|
+| data | Object | 是 | 页面自定义字段信息。|
 
 ## 示例
 

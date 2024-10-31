@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-**\<tab-bar>** is a child component of **[\<tabs>](js-components-container-tabs.md)** and is used to provide the area to display tab labels. Its child components are horizontally arranged.
+**\<tab-bar>** is a child component of **[Tabs](js-components-container-tabs.md)** and is used to provide the area to display tab labels. Its child components are horizontally arranged.
 
 ## Required Permissions
 

@@ -6,7 +6,7 @@
 >
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  
->  - 自定义组件无获焦能力，当设置[focusable](#focusable)、[enabled](ts-universal-attributes-enable.md#enabled)等属性为false时，也不影响其子组件的获焦
+>  - 自定义组件无获焦能力，当设置[focusable](#focusable)、[enabled](ts-universal-attributes-enable.md#enabled)等属性为false，或者设置[visibility](ts-universal-attributes-visibility.md#visibility)属性为Hidden、None时，也不影响其子组件的获焦
 >  
 >  - 组件主动获取焦点不受窗口焦点的控制。
 >  
@@ -378,13 +378,15 @@ struct FocusableExample {
 
 ### 示例2
 
+> **说明：**
+> 
+> 直接使用focusControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12)获取绑定实例的focusControl。
+
 focusControl.requestFocus示例代码：
 
 使用focusControl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
-import { promptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct RequestFocusExample {
@@ -433,11 +435,12 @@ struct RequestFocusExample {
         Button("RequestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
+            // 建议使用this.getUIContext().getFocusController().requestFocus()
             let res = focusControl.requestFocus(this.selectId)      // 使选中的this.selectId的组件获焦
             if (res) {
-              promptAction.showToast({message: 'Request success'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request success'})
             } else {
-              promptAction.showToast({message: 'Request failed'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request failed'})
             }
           })
       }

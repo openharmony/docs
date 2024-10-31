@@ -15,7 +15,7 @@ Image classification can be used to recognize objects in images and is widely us
 1. Select an image classification model.
 2. Use the MindSpore Lite inference model on the device to classify the selected images.
 
-## Environment Preparation
+## Environment Setup
 
 Install DevEco Studio 4.1 or later, and update the SDK to API version 11 or later.
 
@@ -36,22 +36,22 @@ If you have other pre-trained models for image classification, convert the origi
 1. Call [@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) to pick up the desired image in the album.
 
    ```ts
-   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let uris: Array<string> = [];
    
    // Create an image picker instance.
-   let photoSelectOptions = new picker.PhotoSelectOptions();
+   let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    
    // Set the media file type to IMAGE and set the maximum number of media files that can be selected.
-   photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
    photoSelectOptions.maxSelectNumber = 1;
    
    // Create an album picker instance and call select() to open the album page for file selection. After file selection is done, the result set is returned through photoSelectResult.
-   let photoPicker = new picker.PhotoViewPicker();
+   let photoPicker = new photoAccessHelper.PhotoViewPicker();
    photoPicker.select(photoSelectOptions, async (
-     err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
+     err: BusinessError, photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
      if (err) {
        console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
        return;
@@ -376,7 +376,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to impl
 
 #### Use N-APIs to encapsulate the C++ dynamic library into an ArkTS module.
 
-1. In **entry/src/main/cpp/types/libentry/Index.d.ts**, define the ArkTS API **runDemo ()**. The content is as follows:
+1. In **entry/src/main/cpp/types/libentry/Index.d.ts**, define the ArkTS API `runDemo()`. The content is as follows:
 
    ```ts
    export const runDemo: (a: number[], b:Object) => Array<number>;
@@ -407,10 +407,14 @@ let maxIndex: number = 0;
 let maxArray: Array<number> = [];
 let maxIndexArray: Array<number> = [];
 
-// Call the runDemo function of C++. Assume that the image buffer is stored in float32View after preprocessing.
+// Call the runDemo function of C++. The buffer data of the input image is stored in float32View after preprocessing. For details, see Image Input and Preprocessing.
 console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
 let output: Array<number> = msliteNapi.runDemo(Array.from(float32View), resMgr);
 // Obtain the maximum number of categories.
+this.max = 0;
+this.maxIndex = 0;
+this.maxArray = [];
+this.maxIndexArray = [];
 let newArray = output.filter(value => value !== max);
 for (let n = 0; n < 5; n++) {
   max = output[0];

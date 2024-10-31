@@ -127,6 +127,8 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **系统能力**：SystemCapability.Communication.NetStack
 
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                         |
@@ -180,6 +182,8 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
+
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -244,6 +248,8 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
+
+**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -947,7 +953,7 @@ type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 | ------  |------------------------- |
 | 'system'   |  使用系统默认网络代理。 |
 | 'no-proxy' |  不使用网络代理。 |
-| HttpProxy  | 使用指定的网络代理。 |
+| [HttpProxy](js-apis-net-connection.md#httpproxy10)  | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 
@@ -984,9 +990,7 @@ type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [k:string]:string | header数据类型为键值对 |
-| string[]  | header数据类型为字符串 |
-| undefined | header数据类型为undefined |
+| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined |
 
 ## close错误码说明
 

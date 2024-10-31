@@ -23,7 +23,7 @@ Visibility is one of the universal component attributes provided by ArkUI. You c
 | Hidden  | The component is invisible, but still takes up space in the layout.  |
 | None    | The component is invisible, and does not take up space in the layout.|
 
-For details about the visibility attribute, see [Visibility](../reference/arkui-ts/ts-universal-attributes-visibility.md).
+For details about the visibility attribute, see [Visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md).
 
 ### Mechanism Differences
 
@@ -146,7 +146,7 @@ By comparing the performance data, we can learn that, regarding components that 
 
 ### When Conditional Rendering Is Preferred
 
-Conditional rendering applies in the cold start phase for components that do not need to be displayed initially when the application loads and draws the home page. In the examples below, there are invisible 1000 **\<Text>** components at initial render.
+Conditional rendering applies in the cold start phase for components that do not need to be displayed initially when the application loads and draws the home page. In the examples below, there are invisible 1000 **Text** components at initial render.
 
 **Nonexample**
 
@@ -240,7 +240,7 @@ By comparing the performance data, we can learn that, regarding components that 
 
 ### Conditional Rendering and Container Restrictions
 
-If only some components need to be switched between visibility states and the conditions for rendering change frequently, you can combine conditional rendering with container restrictions to precisely control the component render scope. The following exemplifies the effect of container restrictions in this usage scenario: A **\<Column>** component is used to hold 1000 **\<Text>** components, and one of the **\<Text>** components is controlled with conditional rendering.
+If only some components need to be switched between visibility states and the conditions for rendering change frequently, you can combine conditional rendering with container restrictions to precisely control the component render scope. The following exemplifies the effect of container restrictions in this usage scenario: A **Column** component is used to hold 1000 **Text** components, and one of the **Text** components is controlled with conditional rendering.
 
 **Nonexample**
 
@@ -327,17 +327,17 @@ struct RenderControlWithStack {
 
 **Effect Comparison**
 
-Perform the same steps for the preceding example and nonexample: Click the button to hide the initially visible **\<Text>** component, and then click the button again to show the component. Make sure the interval between showing and hiding the components is long enough for the page rendering to be complete.
+Perform the same steps for the preceding example and nonexample: Click the button to hide the initially visible **Text** component, and then click the button again to show the component. Make sure the interval between showing and hiding the components is long enough for the page rendering to be complete.
 
-The **\<Text>** component in the container is contained in the **if** condition. Once the evaluation result of the **if** condition changes, the component is created or destroyed. In this case, the layout of the **\<Column>** container is affected, and all components in the container, including the **ForEach** module, are re-rendered. As a result, the main thread spends a long time in UI re-rendering.
+The **Text** component in the container is contained in the **if** condition. Once the evaluation result of the **if** condition changes, the component is created or destroyed. In this case, the layout of the **Column** container is affected, and all components in the container, including the **ForEach** module, are re-rendered. As a result, the main thread spends a long time in UI re-rendering.
 
-The following figure shows the performance data when no container is used to limit the component render scope. The **\<Column>** component is marked as a dirty area, and **ForEach** takes 13 ms.
+The following figure shows the performance data when no container is used to limit the component render scope. The **Column** component is marked as a dirty area, and **ForEach** takes 13 ms.
 
 ![img](./figures/RenderControlWithoutStack.png) 
 
-If a **\<Stack>** component is used to wrap the **\<Text>** component contained in the **if** condition, then only the **\<Text>** component is re-rendered when the evaluation result of the **if** condition changes. This way, the UI re-rendering time of the main thread is reduced.
+If a **Stack** component is used to wrap the **Text** component contained in the **if** condition, then only the **Text** component is re-rendered when the evaluation result of the **if** condition changes. This way, the UI re-rendering time of the main thread is reduced.
 
-The following figure shows the performance data when a container is used to limit the component render scope. The **\<Column>** component is not marked as a dirty area, and no time is spent for **ForEach**.
+The following figure shows the performance data when a container is used to limit the component render scope. The **Column** component is not marked as a dirty area, and no time is spent for **ForEach**.
 
 ![img](./figures/RenderControlWithStack.png) 
 
@@ -374,7 +374,7 @@ struct IfWithoutReusable {
 }
 ```
 
-The **MockComplexSubBranch** consists of three **\<Flex>** container components and 200 **\<Text>** components. It is used to simulate a complex subtree structure. The code snippet is as follows:
+The **MockComplexSubBranch** consists of three **Flex** container components and 200 **Text** components. It is used to simulate a complex subtree structure. The code snippet is as follows:
 
 ```ts
 @Component
@@ -469,7 +469,7 @@ export struct MockComplexSubBranch {
 
 **Effect Comparison**
 
-Perform the same steps for the preceding example and nonexample: Click the button to change alignment of the **\<Text>** component in the **\<Flex>** container along the main axis. Make sure the interval between alignment switching is long enough for the page rendering to be complete.
+Perform the same steps for the preceding example and nonexample: Click the button to change alignment of the **Text** component in the **Flex** container along the main axis. Make sure the interval between alignment switching is long enough for the page rendering to be complete.
 
 The subtree structure of the **MockComplexSubBranch** component in each branch is complex. In this case, when the button is repeatedly clicked to change the branch, a large number of components are destroyed and created. As a result, if components are not reused, UI re-rendering can be significantly time-consuming. As shown below, the rendering of the application **Index** page takes 180 ms.
 

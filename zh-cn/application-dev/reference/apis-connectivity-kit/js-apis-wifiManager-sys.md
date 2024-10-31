@@ -1793,7 +1793,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 
-	wifiManager.getP2pGroups((err, data) => {
+	wifiManager.getP2pGroups((err, data:wifiManager.WifiP2pGroupInfo) => {
     if (err) {
         console.error("get P2P groups error");
         return;
@@ -1886,7 +1886,7 @@ setDeviceName(devName: string): void
 
 ## wifiManager.on('streamChange')<sup>9+</sup>
 
-on(type: "streamChange", callback: Callback&lt;number&gt;): void
+on(type: 'streamChange', callback: Callback&lt;number&gt;): void
 
 注册WIFI流变更事件。
 
@@ -1917,7 +1917,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
 ## wifiManager.off('streamChange')<sup>9+</sup>
 
-off(type: "streamChange", callback?: Callback&lt;number&gt;): void
+off(type: 'streamChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI流变更事件。
 
@@ -1963,7 +1963,7 @@ wifi.off("streamChange", recvStreamChangeFunc);
 ```
 ## wifiManager.on('deviceConfigChange')<sup>9+</sup>
 
-on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
+on(type: 'deviceConfigChange', callback: Callback&lt;number&gt;): void
 
 注册WIFI设备配置更改事件。
 
@@ -1994,7 +1994,7 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 
 ## wifiManager.off('deviceConfigChange')<sup>9+</sup>
 
-off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
+off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI设备配置更改事件。
 
@@ -2041,7 +2041,7 @@ wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
 
 ## wifiManager.on('hotspotStaJoin')<sup>9+</sup>
 
-on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaJoin', callback: Callback&lt;StationInfo&gt;): void
 
 注册wifi热点sta加入事件。
 
@@ -2072,7 +2072,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
-off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;): void
 
 取消注册wifi热点sta加入事件。
 
@@ -2119,7 +2119,7 @@ wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ## wifiManager.on('hotspotStaLeave')<sup>9+</sup>
 
-on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaLeave', callback: Callback&lt;StationInfo&gt;): void
 
 注册wifi热点sta离开事件。
 
@@ -2150,7 +2150,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
-off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;): void
 
 取消注册wifi热点sta离开事件。
 

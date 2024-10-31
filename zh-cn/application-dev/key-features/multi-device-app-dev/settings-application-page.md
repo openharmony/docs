@@ -21,7 +21,7 @@
 
 开发者可以使用Row、Column、[RowSplit](../../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md)等基础的组件，实现分栏显示的效果，但是需要较多的开发工作量。方舟开发框架在API 9重构了[Navigation组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)，开发者可以通过配置Navigation组件的属性，控制其按照单栏或双栏的效果进行显示。
 
-Navigation组件由Navbar和Content两部分区域组成，Navigation组件支持Stack、Split以及Auto三种模式。Stack及Split模式下Navigation组件的表现如下图所示。
+Navigation组件由NavBar和Content两部分区域组成，Navigation组件支持Stack、Split以及Auto三种模式。Stack及Split模式下Navigation组件的表现如下图所示。
 
 * Stack模式
 
@@ -495,3 +495,6 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 针对“设置”应用页面，有以下相关实例可以参考：
 
 - [典型页面场景：设置应用页面（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+
+<!--RP1-->
+<!--RP1End-->

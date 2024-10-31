@@ -88,7 +88,7 @@ childrenMainSize(value: ChildrenMainSize)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值  | 描述               |
+| 名称 | 值  | 说明             |
 | ---- | ---- | ------------------ |
 | NONE | 0 | 无样式。           |
 | CARD | 1 | 显示默认卡片样式。 |
@@ -96,6 +96,10 @@ childrenMainSize(value: ChildrenMainSize)
 
 
 ## 示例
+
+### 示例1
+
+该示例展示了ListItemGroup的header吸顶和footer吸底的效果。
 
 ```ts
 // xxx.ets
@@ -173,7 +177,9 @@ interface TimeTable {
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_listitemgroup.gif)
 
-- 示例2
+### 示例2
+
+该示例展示了ListItemGroup的卡片样式效果。
 
 ```ts
 // xxx.ets

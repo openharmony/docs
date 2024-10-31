@@ -578,8 +578,8 @@ Provides the text span information.
 | value                         | string                                   | Yes   | Text span content.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | textStyle                     | [RichEditorTextStyleResult](#richeditortextstyleresult) | Yes   | Text span style.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offsetInSpan                  | [number, number]                         | Yes   | Start and end positions of the valid content in the text span.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | No   | Content of the **\<SymbolSpan>** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
-| symbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | No   | Style of the **\<SymbolSpan>** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | No   | Content of the **SymbolSpan** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| symbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | No   | Style of the **SymbolSpan** component.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | No  | Paragraph style.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | previewText<sup>12+</sup>      | string                                   | No   | Content of the preview text.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 

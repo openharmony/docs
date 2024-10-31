@@ -181,19 +181,19 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
       List({ space: 4 }) {
         ListItem() {
           Button("First").onClick(() => {
-            router.pushUrl(this.FurL)
+            this.getUIContext().getRouter().pushUrl(this.FurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Second").onClick(() => {
-            router.pushUrl(this.SurL)
+            this.getUIContext().getRouter().pushUrl(this.SurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Third").onClick(() => {
-            router.pushUrl(this.TurL)
+            this.getUIContext().getRouter().pushUrl(this.TurL)
           })
             .width('100%')
         }

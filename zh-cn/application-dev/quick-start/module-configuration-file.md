@@ -32,7 +32,7 @@
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
-        "icon": "$media:icon",
+        "icon": "$media:layered_image",
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
@@ -49,6 +49,10 @@
         ],
         "continueType": [
           "continueType1"
+        ],
+        "continueBundleName": [
+          "com.example.myapplication1",
+          "com.example.myapplication2"
         ]
       }
     ],
@@ -108,7 +112,7 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，确保该名称在整个应用中唯一。取值为长度不超过128字节的字符串（当前DevEco新建Module时，name最大长度31字节。后续DevEco版本支持name长度最大128字节），不支持中文。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度31字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -150,7 +154,6 @@ module.json5配置文件包含以下标签。
 | 平板 | tablet | - |
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
-| 运动表 | litewearable | - |
 | 车机 | car | - |
 | 2in1 | 2in1 | 融合了屏幕触控和键鼠操作的二合一设备。 |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
@@ -311,6 +314,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | excludeFromDock | 标识当前UIAbility组件是否支持从dock区域隐藏图标。<br/>-&nbsp;true：表示在dock区域隐藏。<br/>-&nbsp;false：表示不能在dock区域隐藏。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
 | continueType | 标识当前UIAbility组件的跨端迁移类型。 | 字符串数组 | 该标签可缺省，缺省值为当前组件的名称。 |
+| continueBundleName | 标识当前应用支持跨端迁移的其它应用名称列表。<br/>**说明：**<br/>不能配置为本应用包名，仅为了做异包名迁移使用。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 
 abilities示例：
 
@@ -322,7 +326,7 @@ abilities示例：
     "srcEntry": "./ets/entryability/EntryAbility.ets",
     "launchType":"singleton",
     "description": "$string:description_main_ability",
-    "icon": "$media:icon",
+    "icon": "$media:layered_image",
     "label": "Login",
     "permissions": [],
     "metadata": [],
@@ -363,6 +367,10 @@ abilities示例：
     "continueType": [
       "continueType1",
       "continueType2"
+    ],
+    "continueBundleName": [
+      "com.example.myapplication1",
+      "com.example.myapplication2"
     ]
   }]
 }
@@ -377,9 +385,9 @@ abilities示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| actions | 标识能够接收的Action值集合，取值通常为系统预定义的action值，也允许自定义。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| entities | 标识能够接收的Entity值的集合。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| actions | 标识能够接收的Action值集合，取值通常为系统预定义的action值，也允许自定义。<br>一个skill中不建议配置多个action，否则可能导致无法匹配预期场景。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| entities | 标识能够接收的Entity值的集合。<br>一个skill中不建议配置多个entity，否则可能导致无法匹配预期场景。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。数组允许的最大数量为512。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（不超过255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | domainVerify | 标识是否开启域名校验。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
@@ -453,7 +461,7 @@ skills示例：
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。<br/>**说明：**<br/>该标签在type为form时，不可缺省，且必须存在一个name为ohos.extension.form的对象值，其对应的resource值不能缺省，为卡片的二级资源引用。 | 对象 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前ExtensionAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | extensionProcessMode | 标识当前ExtensionAbility组件的多进程实例模型,当前只对UIExtensionAbility以及从UIExtensionAbility扩展的ExtensionAbility生效。<br/>-&nbsp;instance：表示该ExtensionAbility每个实例一个进程。<br/>-&nbsp;type：表示该ExtensionAbility实例都运行在同一个进程里，与其他ExtensionAbility分离进程。<br/>-&nbsp;bundle：表示该ExtensionAbility实例都运行在应用统一进程里，与其他配置了bundle模型的ExtensionAbility共进程。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| dataGroupIds | 标识当前ExtensionAbility组件的dataGroupId集合。如果当前ExtensionAbility组件所在的应用在<!--Del-->[<!--DelEnd-->HarmonyAppProvision配置文件<!--Del-->](../security/app-provision-structure.md#bundle-info对象内部结构)<!--DelEnd-->的data-group-ids字段中也声明了某个dataGroupId，那么当前ExtensionAbility组件可以和应用共享这一个dataGroupId生成的目录，所以ExtensionAbility组件的dataGroupId需要是应用的HarmonyAppProvision配置文件的data-group-ids字段里配置的才能生效。 且该字段仅在当前ExtensionAbility组件存在独立的沙箱目录时生效。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| dataGroupIds | 标识当前ExtensionAbility组件的dataGroupId集合，暂不支持。如果当前ExtensionAbility组件所在的应用在应用市场申请的证书里groupIds也申请了某个dataGroupId，那么当前ExtensionAbility组件可以和应用共享这一个dataGroupId生成的目录，所以ExtensionAbility组件的dataGroupId需要是应用的证书中groupIds字段里配置的才能生效。 且该字段仅在当前ExtensionAbility组件存在独立的沙箱目录时生效。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 
 extensionAbilities示例：
 
@@ -581,7 +589,7 @@ metadata中指定shortcut信息，其中：
 | 属性名称 | 含义 | 类型  | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | bundleName | 表示快捷方式的目标包名。 | 字符串 | 该标签不可缺省。 |
-| moduleName | 表示快捷方式的目标模块名。 | 字符串 | 该标签不可缺省。 |
+| moduleName | 表示快捷方式的目标模块名。 | 字符串 | 该标签可缺省。 |
 | abilityName| 表示快捷方式的目标组件名。 | 字符串 | 该标签不可缺省。 |
 | parameters | 表示拉起快捷方式时的自定义数据，仅支持配置字符串类型的数据。其中键值均最大支持1024长度的字符串。 | 对象 | 该标签可缺省。 |
 
@@ -881,10 +889,10 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | name          | 标识跳转页面的名称。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。       |
-| pageSourceFile| 标识页面在模块内的路径。取值为长度不超过31字节的字符串。 | 字符串 | 该标签不可缺省。  |
+| pageSourceFile| 标识页面在模块内的路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。  |
 | buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。   |
 | [data](#data标签)  | 标识字符串类型的自定义数据。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
-| [customData](#customdata标签)  | 标识任意类型的自定义数据，总长度不超过4096。  | 对象   | 该标签可缺省，缺省值为空。   |
+| [customData](#customdata标签)  | 标识任意类型的自定义数据，总长度不超过4096字节。  | 对象   | 该标签可缺省，缺省值为空。   |
 
 示例如下：
 

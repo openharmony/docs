@@ -18,11 +18,11 @@ aspectRatio(value: number)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 指定当前组件的宽高比，aspectRatio = width/height。<br/>API version 9及以前，默认值为：1.0。<br/>API version 10：无默认值。<br/>**说明：**<br/>该属性在不设置值或者设置非法值时不生效。<br/>例如，Row只设置宽度且没有子组件，aspectRatio不设置值或者设置成负数时，此时Row高度为0。 |
+| value  | number | 是   | 指定当前组件的宽高比，aspectRatio = width/height。同时设置width、height和aspectRatio，height不生效，通过width和aspectRatio计算宽高。设置aspectRatio属性后，组件宽高会受父组件内容区大小限制。<br/>API version 9及以前，默认值为：1.0。<br/>API version 10：无默认值。<br/>**说明：**<br/>该属性在不设置值或者设置非法值时不生效。<br/>例如，Row只设置宽度且没有子组件，aspectRatio不设置值或者设置成负数时，此时Row高度为0。 |
 
 ## displayPriority
 
@@ -36,7 +36,7 @@ displayPriority(value: number)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -54,11 +54,11 @@ pixelRound(value: PixelRoundPolicy)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | 是 | 指定当前组件边界取整策略。<br/>**说明：**<br/>该属性用于因浮点数绘制产生视觉异常的场景。|
+| value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | 是 | 指定当前组件边界取整策略。<br/>**说明：**<br/>该属性用于因浮点数绘制产生视觉异常的场景。<br/>当前像素取整规则是：<br/>在水平方向上，对组件的左右边界到屏幕左边框的距离取整。<br/>在竖直方向上，对组件的上下边界到屏幕上边框的距离取整。<br/>在计算出上下左右边界取整后的位置后，才能确定组件最终的宽和高。因此，取整结果不仅和组件的宽高有关，也与组件的位置有关。即使设置组件的宽高相同，由于以浮点数描述的组件位置不同，舍入后组件的最终宽高也可能不同。|
 
 ## 示例
 

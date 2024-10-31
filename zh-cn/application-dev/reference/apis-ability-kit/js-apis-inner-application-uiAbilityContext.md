@@ -1282,7 +1282,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#continuestate10) | 是 | 流转状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -1324,7 +1324,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | 是 | 流转状态。 |
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#continuestate10) | 是 | 流转状态。 |
 
 **返回值：**
 
@@ -1670,7 +1670,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[通过startAbilityByType接口拉起垂类面板](../../application-models/start-intent-panel.md#匹配规则)。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
@@ -1729,7 +1729,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[通过startAbilityByType接口拉起垂类面板](../../application-models/start-intent-panel.md#匹配规则)。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 
@@ -1781,9 +1781,9 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。仅支持在主线程调用。
+显示当前Ability。使用Promise异步回调。仅在2in1设备上生效。仅支持在主线程调用。
 
-调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM。
+调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#processmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1878,9 +1878,9 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。仅支持在主线程调用。
+隐藏当前Ability。使用Promise异步回调。仅在2in1设备上生效。仅支持在主线程调用。
 
-调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM。
+调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#processmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1974,7 +1974,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-将处于前台的Ability移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--> 该接口仅适用于deviceTypes为“default”的设备。<!--RP1End-->
+将处于前台的Ability移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--><!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2187,49 +2187,39 @@ const TAG: string = '[openLinkDemo]';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'I am caller';
-
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('start browser', { type: ButtonType.Capsule, stateEffect: true })
-          .width('87%')
-          .height('5%')
-          .margin({ bottom: '12vp' })
-          .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
-            let link: string = 'https://www.example.com';
-            let openLinkOptions: OpenLinkOptions = {
-              appLinkingOnly: true,
-              parameters: { demo_key: 'demo_value' }
-            };
+    RelativeContainer() {
+      Button("Call StartAbilityForResult")
+        .onClick(() => {
+          let context = getContext(this) as common.UIAbilityContext;
+          let link: string = 'https://www.example.com';
+          let openLinkOptions: OpenLinkOptions = {
+            appLinkingOnly: true,
+            parameters: { demo_key: 'demo_value' }
+          };
 
-            try {
-              context.openLink(
-                link,
-                openLinkOptions,
-                (err, result) => {
-                  hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
-                }
-              ).then(() => {
-                hilog.info(DOMAIN, TAG, `open link success.`);
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
-              });
-            }
-            catch (e) {
-              hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
-            }
-          })
-      }
-      .width('100%')
+          try {
+            context.openLink(
+              link,
+              openLinkOptions,
+              (err, result) => {
+                hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
+              }
+            ).then(() => {
+              hilog.info(DOMAIN, TAG, `open link success.`);
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
+            });
+          }
+          catch (e) {
+            hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
+          }
+        })
     }
     .height('100%')
+    .width('100%')
   }
 }
 ```

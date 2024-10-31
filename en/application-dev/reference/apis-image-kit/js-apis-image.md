@@ -4974,7 +4974,7 @@ receiver.getReceivingSurfaceId().then((id: string) => {
 
 ### readLatestImage<sup>9+</sup>
 
-readLatestImage(callback: AsyncCallback\<Image>): void
+readLatestImage(callback: AsyncCallbackImage): void
 
 Reads the latest image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
 
@@ -5004,7 +5004,7 @@ receiver.readLatestImage((err: BusinessError, img: image.Image) => {
 
 ### readLatestImage<sup>9+</sup>
 
-readLatestImage(): Promise\<Image>
+readLatestImage(): PromiseImage
 
 Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
 
@@ -5032,7 +5032,7 @@ receiver.readLatestImage().then((img: image.Image) => {
 
 ### readNextImage<sup>9+</sup>
 
-readNextImage(callback: AsyncCallback\<Image>): void
+readNextImage(callback: AsyncCallbackImage): void
 
 Reads the next image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
 
@@ -5062,7 +5062,7 @@ receiver.readNextImage((err: BusinessError, img: image.Image) => {
 
 ### readNextImage<sup>9+</sup>
 
-readNextImage(): Promise\<Image>
+readNextImage(): PromiseImage
 
 Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
 
@@ -5259,7 +5259,7 @@ Before calling any APIs in **ImageCreator**, you must create an [ImageCreator](#
 
 ### dequeueImage<sup>9+</sup>
 
-dequeueImage(callback: AsyncCallback\<Image>): void
+dequeueImage(callback: AsyncCallbackImage): void
 
 Obtains an image buffer from the idle queue and writes image data into it. This API uses an asynchronous callback to return the result.
 
@@ -5287,7 +5287,7 @@ creator.dequeueImage((err: BusinessError, img: image.Image) => {
 
 ### dequeueImage<sup>9+</sup>
 
-dequeueImage(): Promise\<Image>
+dequeueImage(): PromiseImage
 
 Obtains an image buffer from the idle queue and writes image data into it. This API uses a promise to return the result.
 

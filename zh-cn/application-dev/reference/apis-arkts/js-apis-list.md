@@ -8,7 +8,7 @@ List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，�
 >
 > 在List中使用\[index\]的方式虽然能够获取对应位置的元素，但这会导致未定义结果。推荐使用get()方法。
 
-**推荐使用场景：** 当需要频繁的插入删除时，推荐使用List高效操作。
+**推荐使用场景：** 当需要频繁的插入删除元素，并且需要使用单向链表时，推荐使用List高效操作。
 
 文档中存在泛型的使用，涉及以下泛型标记符：<br>
 - T：Type，类
@@ -849,10 +849,6 @@ let result = list.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

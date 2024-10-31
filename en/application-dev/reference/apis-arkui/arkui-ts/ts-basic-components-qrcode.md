@@ -1,12 +1,12 @@
 # QRCode
 
-The **\<QRCode>** component is used to display a QR code.
+The **QRCode** component is used to display a QR code.
 
 >  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > 
-> The pixel count of the **\<QRCode>** component is subject to the content. If the component size is not large enough, the content may fail to be displayed. In this case, you need to resize the component.
+> The pixel count of the **QRCode** component is subject to the content. If the component size is not large enough, the content may fail to be displayed. In this case, you need to resize the component.
 
 
 ## Child Components

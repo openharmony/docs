@@ -332,7 +332,7 @@ getParent(): FrameNode | null;
 
   getPositionToWindow(): Position
 
-获取FrameNode相对于窗口的位置偏移。
+获取FrameNode相对于窗口的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -342,7 +342,7 @@ getParent(): FrameNode | null;
 
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -353,7 +353,7 @@ getParent(): FrameNode | null;
 
 getPositionToParent(): Position
 
-获取FrameNode相对于父组件的位置偏移。
+获取FrameNode相对于父组件的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -363,7 +363,7 @@ getPositionToParent(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -373,7 +373,7 @@ getPositionToParent(): Position
 
   getPositionToScreen(): Position
 
-获取FrameNode相对于屏幕的位置偏移。
+获取FrameNode相对于屏幕的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -383,7 +383,7 @@ getPositionToParent(): Position
 
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -394,7 +394,7 @@ getPositionToParent(): Position
 
 getPositionToParentWithTransform(): Position
 
-获取FrameNode相对于父组件带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于父组件带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -404,7 +404,7 @@ getPositionToParentWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -414,7 +414,7 @@ getPositionToParentWithTransform(): Position
 
 getPositionToWindowWithTransform(): Position
 
-获取FrameNode相对于窗口带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于窗口带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -424,7 +424,7 @@ getPositionToWindowWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -434,7 +434,7 @@ getPositionToWindowWithTransform(): Position
 
 getPositionToScreenWithTransform(): Position
 
-获取FrameNode相对于屏幕带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于屏幕带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -444,7 +444,7 @@ getPositionToScreenWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -476,7 +476,7 @@ getMeasuredSize(): Size
 
 getLayoutPosition(): Position
 
-获取FrameNode布局后相对于父组件的位置偏移。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
+获取FrameNode布局后相对于父组件的位置偏移，单位为PX。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -486,7 +486,7 @@ getLayoutPosition(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点布局后相对于父组件的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点布局后相对于父组件的位置偏移，单位为PX。 |
 
 **示例：**
 
@@ -762,11 +762,17 @@ getCustomProperty(name: string): Object | undefined
 
 dispose(): void
 
-立即释放当前FrameNode。
+立即解除当前FrameNode对象对实体FrameNode节点的引用关系。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+>
+> FrameNode对象调用dispose后，由于不对应任何实体FrameNode节点，在调用部分查询接口(getPositionToParent、getPositionToScreen、getPositionToWindow、getPositionToParentWithTransform、getPositionToScreenWithTransform、getPositionToWindowWithTransform、getMeasuredSize、getLayoutPosition、getUserConfigBorderWidth、getUserConfigPadding、getUserConfigMargin、getUserConfigSize)的时候会导致应用出现jscrash。
+>
+> 通过[getUniqueId](#getuniqueid12)可以判断当前FrameNode是否对应一个实体FrameNode节点。当UniqueId大于0时表示该对象对应一个实体FrameNode节点。
 
 **示例：**
 
@@ -1354,6 +1360,8 @@ TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的Fram
 ## typeNode<sup>12+</sup>
 
 typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础接口进行自定义的挂载，使用占位容器进行显示。
+
+使用typeNode创建Text、Image、Select、Toggle节点时，当传入的[UIContext](./js-apis-arkui-UIContext.md)对应的UI实例销毁后，调用该接口会返回一个无效的FrameNode节点，无法正常挂载和显示。
 
 **示例：**
 

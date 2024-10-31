@@ -74,7 +74,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
     }
     ```
 
-4. EmbeddedUIExtensionAbility的[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy)中加载了入口页面文件pages/Index.ets内容如下：
+4. EmbeddedUIExtensionAbility的[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate)中加载了入口页面文件pages/extension.ets内容如下：
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -130,7 +130,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的页面中通过[EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)容器加载自己应用内的[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)。此外，EmbeddedUIExtensionAbility在[want](../reference/apis-ability-kit/js-apis-app-ability-want.md).parameters中新增了两个字段ohos.extension.processMode.hostSpecified和ohos.extension.processMode.hostInstance。
 - ohos.extension.processMode.hostSpecified控制非首次启动的EmbeddedUIExtensionAbility是否运行在同[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的进程中，参数是进程名称。例如，"ohos.extension.processMode.hostSpecified"： "com.ohos.inentexecutedemo:share"。  
 - ohos.extension.processMode.hostInstance控制启动的EmbeddedUIExtensionAbility是否按照独立进程启动，传入false时，按照UIExtensionAbility的进程模型启动，入参true的时候，不管被拉起的UIExtensionAbility配置的是什么进程模型，都会新增一个进程，例如，"ohos.extension.processMode.hostInstance": "true"。
- 
+
 ohos.extension.processMode.hostSpecified和ohos.extension.processMode.hostInstance同时配置时，hostSpecified优先，会运行在指定的进程中。
 如在首页文件：pages/Index.ets中添加如下内容：
 ```ts

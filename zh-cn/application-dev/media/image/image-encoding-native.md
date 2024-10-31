@@ -2,7 +2,7 @@
 
 开发者可以调用本模块的Native API接口，完成图片编码，即将PixelMap压缩成不同格式的存档图片。
 
-当前支持编码为JPEG、WebP 和 PNG 格式。
+当前支持编码为JPEG、WebP、PNG和 HEIF(不同硬件设备支持情况不同)格式。
 
 **适用场景**
 

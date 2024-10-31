@@ -355,7 +355,7 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
   }
   ```
 
-- The EmbeddedUIExtensionAbility to start by the **\<EmbeddedComponent>** is implemented in the **ets/extensionAbility/ExampleEmbeddedAbility** file. The file content is as follows:
+- The EmbeddedUIExtensionAbility to start by the **EmbeddedComponent** is implemented in the **ets/extensionAbility/ExampleEmbeddedAbility** file. The file content is as follows:
 
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';

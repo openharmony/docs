@@ -104,7 +104,7 @@
 | int32_t [OH_PixelMap_CreatePixelMap](#oh_pixelmap_createpixelmap) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, napi_value \*res) | 创建**PixelMap**对象。  | 
 | int32_t [OH_PixelMap_CreatePixelMapWithStride](#oh_pixelmap_createpixelmapwithstride) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, int32_t rowStride, napi_value \*res) | 创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。pixelmap内存在RGBA格式下，默认为DMA内存（图片512\*512以上）。  | 
 | int32_t [OH_PixelMap_CreateAlphaPixelMap](#oh_pixelmap_createalphapixelmap) (napi_env env, napi_value source, napi_value \*alpha) | 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的**PixelMap**对象。  | 
-| [NativePixelMap](#nativepixelmap) \* [OH_PixelMap_InitNativePixelMap](#oh_pixelmap_initnativepixelmap) (napi_env env, napi_value source) | 初始化**PixelMap**对象数据。  | 
+| [NativePixelMap](#nativepixelmap) \* [OH_PixelMap_InitNativePixelMap](#oh_pixelmap_initnativepixelmap) (napi_env env, napi_value source) | 初始化**NativePixelMap**对象。  | 
 | int32_t [OH_PixelMap_GetBytesNumberPerRow](#oh_pixelmap_getbytesnumberperrow) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*num) | 获取**PixelMap**对象每行字节数。  | 
 | int32_t [OH_PixelMap_GetIsEditable](#oh_pixelmap_getiseditable) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*editable) | 获取**PixelMap**对象是否可编辑的状态。  | 
 | int32_t [OH_PixelMap_IsSupportAlpha](#oh_pixelmap_issupportalpha) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*alpha) | 获取**PixelMap**对象是否支持Alpha通道。  | 
@@ -2479,7 +2479,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap**数据设置项。  | 
+| source | 应用层的 **PixelMap** 对象。  | 
 | alpha | alpha通道的指针。  | 
 
 **返回：**
@@ -2990,7 +2990,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap** 对象。  |
+| source | 应用层的 **PixelMap** 对象。  |
 
 **返回：**
 

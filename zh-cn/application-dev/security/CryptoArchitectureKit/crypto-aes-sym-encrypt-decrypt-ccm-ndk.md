@@ -27,13 +27,15 @@
 5. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（明文）。
    
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
-   - CCM模式不支持分段加解密。
+   > **说明：**
+   > CCM模式不支持分段加解密。
 
 6. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。
    - 由于已使用update传入数据，此处data传入null。
    - final输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
 
 7. 使用[OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create)创建Params，使用[OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置authTag，作为解密的认证信息。
+   
    在CCM模式下，需要从加密后的数据中取出末尾12字节，作为解密时初始化的认证信息。示例中authTag恰好为12字节。
 
 8. 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy)销毁各对象。
@@ -52,6 +54,7 @@
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTestAesCcm()
 {
@@ -64,16 +67,15 @@ static OH_Crypto_ErrCode doTestAesCcm()
     Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
 
-    uint8_t aad[8] = {0};
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tag[12] = {0};
-    uint8_t iv[7] = {0};
+    uint8_t iv[7] = {1, 2, 4, 12, 3, 4, 2}; // iv使用安全随机数生成
     Crypto_DataBlob ivData = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadData = {.data = aad, .len = sizeof(aad)};
     Crypto_DataBlob tagData = {.data = tag, .len = sizeof(tag)};
     Crypto_DataBlob tagOutPut = {.data = nullptr, .len = 0};
-    uint8_t plainText[] = "this is test!";
-    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = 13};
-
+    char *plainText = const_cast<char *>("this is test!");
+    Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
     // 生成对称密钥
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("AES128", &genCtx);
