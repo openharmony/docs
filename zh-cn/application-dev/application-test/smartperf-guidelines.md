@@ -716,7 +716,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    >
    >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
    >
-##### 输出和查看采集结果
+#### 输出和查看采集结果
 
 输出和查看采集结果前，需先执行上述的采集命令。
 
