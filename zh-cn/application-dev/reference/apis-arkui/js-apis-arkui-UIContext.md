@@ -2185,13 +2185,13 @@ getMaxFontScale(): number
 uiContext.getMaxFontScale()
 ```
 
-### bindTabsToScrollable<sup>14+</sup>
+### bindTabsToScrollable<sup>13+</sup>
 
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
 绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2259,13 +2259,13 @@ struct TabsExample {
         }
         .width('100%')
         .height('100%')
-        .barOverlap(true)
-        .clip(true)
+        .barOverlap(true) // 使TabBar叠加在TabContent上，当TabBar向上或向下隐藏后，原位置处不为空白
+        .clip(true) // 对超出Tabs组件范围的子组件进行裁剪，防止TabBar向上或向下隐藏后误触TabBar
       }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'scroller联动多个TabsController'))
 
       TabContent() {
         Scroll(this.parentScroller) {
-            List({ space: 20, initialIndex: 0, scroller: this.listScroller }) {
+            List({ space: 20, initialIndex: 0, scroller: this.childScroller }) {
               ForEach(this.arr, (item: string) => {
                 ListItem() {
                   Text(item)
@@ -2293,21 +2293,21 @@ struct TabsExample {
     }
     .width('100%')
     .height('100%')
-    .barOverlap(true)
-    .clip(true)
+    .barOverlap(true) // 使TabBar叠加在TabContent上，当TabBar向上或向下隐藏后，原位置处不为空白
+    .clip(true) // 对超出Tabs组件范围的子组件进行裁剪，防止TabBar向上或向下隐藏后误触TabBar
   }
 }
 ```
 
 ![bindTabsToScrollable](figures/bindTabsToScrollable.gif)
 
-### unbindTabsFromScrollable<sup>14+</sup>
+### unbindTabsFromScrollable<sup>13+</sup>
 
 unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void;
 
 解除Tabs组件和可滚动容器组件的绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2320,15 +2320,15 @@ unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): vo
 
 **示例：**
 
-参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### bindTabsToNestedScrollable<sup>14+</sup>
+### bindTabsToNestedScrollable<sup>13+</sup>
 
 bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
 绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2342,15 +2342,15 @@ bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scrol
 
 **示例：**
 
-参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### unbindTabsFromNestedScrollable<sup>14+</sup>
+### unbindTabsFromNestedScrollable<sup>13+</sup>
 
 unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
 解除Tabs组件和嵌套的可滚动容器组件的绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2364,7 +2364,7 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 **示例：**
 
-参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
 ## Font
 
