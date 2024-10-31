@@ -17,7 +17,7 @@
     - [使用AVMetadataExtractor提取音视频元数据信息(ArkTS)](avmetadataextractor.md)
     - [使用AVImageGenerator提取视频指定时间图像(ArkTS)](avimagegenerator.md)
   - 视频转码
-    - [使用AVTranscoder转码(ArkTS)](using-avtranscoder-for-transcodering.md)
+    - [使用AVTranscoder实现视频转码(ArkTS)](using-avtranscoder-for-transcodering.md)
 
 - 媒体开发者指导(C/C++)
   - 播放
