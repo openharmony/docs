@@ -342,7 +342,7 @@ setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<voi
 | 参数名 | 类型          | 必填 | 说明                                                 |
 | ------ | ------------- | ---- | ---------------------------------------------------- |
 | enable | boolean       | 是   | 表示静态订阅事件使能状态。 true：使能 false：去使能。|
-| events | array\<string> | 否   | 表示记录事件名称。                                   |
+| events | Array\<string> | 否   | 表示记录事件名称。                                   |
 
 **返回值：**
 
