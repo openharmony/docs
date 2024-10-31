@@ -26,7 +26,7 @@ import { NavPushPathHelper } from '@kit.ArkUI'
 
 ### constructor
 
-constructor(navPathStack: NavPathStack): void
+constructor(navPathStack: NavPathStack)
 
 NavPushPathHelper的构造函数。
 
@@ -36,7 +36,7 @@ NavPushPathHelper的构造函数。
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   |  说明         |
 | ---- | ----------------------------- | ---- | -------------------- |
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是    | [Navigation](ts-basic-components-navigation.md)路由栈。 |
 
@@ -52,7 +52,7 @@ pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<vo
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                 |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
@@ -84,7 +84,7 @@ pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Pr
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                  |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
@@ -116,7 +116,7 @@ pushPathByName(moduleName: string, name: string, param: Object, animated?: boole
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
@@ -149,7 +149,7 @@ pushPathByName(moduleName: string, name: string, param: Object, onPop: Callback\
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
@@ -183,7 +183,7 @@ pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Prom
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
@@ -219,7 +219,7 @@ pushDestination(moduleName: string, info: NavPathInfo, options?: NavigationOptio
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                  |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
@@ -255,7 +255,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, animated?
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
@@ -292,7 +292,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, onPop: Ca
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 参数名    | 类型      | 必填   | 说明                  |
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
@@ -330,7 +330,7 @@ replacePath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名  | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | 新栈顶页面参数信息 |
@@ -362,7 +362,7 @@ replacePath(moduleName: string, info: NavPathInfo, options?: NavigationOptions):
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 描述                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
@@ -394,7 +394,7 @@ replacePathByName(moduleName: string, name: string, param: Object, animated?: bo
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 参数名    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
