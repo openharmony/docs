@@ -53,6 +53,7 @@
     - [在线短视频流畅切换](performance-quick-switch-short-video.md)
     - [合理使用缓存提升性能](reasonable_using_cache_improve_performance.md)
     - [滑动白块问题解决指导](resolve_sliding_white_blocks.md)
+    - [在线视频播放卡顿优化实践](online_video_playback_lags_practice.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
