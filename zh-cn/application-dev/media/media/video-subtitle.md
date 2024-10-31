@@ -1,4 +1,4 @@
-# 使用AVPlayer接口添加视频外挂字幕(ArkTS)
+# 使用AVPlayer添加视频外挂字幕(ArkTS)
 
 当前仅支持视频播放前设置外挂字幕。
 
