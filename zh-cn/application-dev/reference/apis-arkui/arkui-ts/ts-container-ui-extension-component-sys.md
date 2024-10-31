@@ -166,7 +166,7 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 | isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false。 |
 | placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
 | dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI。 |
-| areaChangePlaceholder<sup>13+<sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>       | 否   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
+| areaChangePlaceholder<sup>14+<sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>       | 否   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
 
 ## DpiFollowStrategy<sup>12+</sup>
 
