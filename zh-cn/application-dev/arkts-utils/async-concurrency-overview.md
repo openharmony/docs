@@ -58,7 +58,7 @@ async function myAsyncFunction(): Promise<string> {
     }, 3000);
   });
   console.info(result); // 输出： Hello, world!
-  return result
+  return result;
 }
 
 @Entry
