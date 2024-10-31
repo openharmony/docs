@@ -20,7 +20,7 @@ import { ArkTSUtils, taskpool } from '@kit.ArkTS';
 @Sendable
 export class A {
   private count_: number = 0;
-  lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
+  lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
 
   public async getCount(): Promise<number> {
     return this.lock_.lockAsync(() => {
@@ -57,7 +57,7 @@ struct Index {
         })
         .onClick(async () => {
           let a: A = new A();
-          await taskpool.execute(printCount, a)
+          await taskpool.execute(printCount, a);
         })
     }
     .height('100%')
