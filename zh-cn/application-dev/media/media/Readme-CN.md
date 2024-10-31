@@ -6,19 +6,16 @@
   - 播放
     - [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md)
     - [使用AVPlayer接口播放视频(ArkTS)](video-playback.md)
+    - [使用AVPlayer接口添加视频外挂字幕(ArkTS)](video-subtitle.md)
+    - [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)
     - [流媒体播放开发指导(ArkTS)](streaming-media-playback-development-guide.md)
   - 录制
     - [使用AVRecorder接口录制音频(ArkTS)](using-avrecorder-for-recording.md)
     - [使用AVRecorder接口录制视频(ArkTS)](video-recording.md)
-  - 字幕
-    - [使用AVPlayer接口添加视频外挂字幕(ArkTS)](video-subtitle.md)
+    - [使用AVScreenCaptureRecorder接口录屏写文件(ArkTS)](using-avscreencapture-ArkTs.md)
   - 媒体信息查询
     - [使用AVMetadataExtractor提取音视频元数据信息(ArkTS)](avmetadataextractor.md)
     - [使用AVImageGenerator提取视频指定时间图像(ArkTS)](avimagegenerator.md)
-  - 录屏
-    - [使用AVScreenCaptureRecorder接口录屏写文件(ArkTS)](using-avscreencapture-ArkTs.md)
-  - 音频池
-    - [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)
   - 视频转码
     - [使用AVTranscoder接口转码(ArkTS)](using-avtranscoder-for-transcodering.md)
 
