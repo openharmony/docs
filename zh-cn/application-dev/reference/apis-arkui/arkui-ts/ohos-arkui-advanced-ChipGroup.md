@@ -60,23 +60,21 @@ ChipGroup({
 
 ChipGroupItemOptions定义每个chip的非共通属性。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                           | 必填 | 说明                              |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
-| prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
-| prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 前缀SymbolGlyph图标属性。             |
-| label        | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
+| prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 前缀SymbolGlyph图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| label        | [LabelOptions](#labeloptions) | 是   | 文本属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                            |
 | suffixIcon<sup>(deprecated)</sup>   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。<br/>**说明：** 从API version 12开始支持，从API version 14开始废弃，建议使用suffixImageIcon替代。|
-| suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 后缀SymbolGlyph图标属性。             |
-| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。  |
-| suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | 否 | 后缀Image图标属性。 |
-| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsuffixsymbolglyphoptions14) | 否 | 后缀Symbol图标属性。|
-| closeOptions<sup>14+</sup> | [CloseOptions](ohos-arkui-advanced-Chip.md#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。 |
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | ChipGroup中Chip项无障碍描述。|
-| accessibilityLevel<sup>14+</sup> | string | 否 | ChipGroup中Chip项无障碍重要性。<br>默认值："auto"。|
+| suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 后缀SymbolGlyph图标属性。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| suffixImageIcon<sup>14+</sup> | [SuffixImageIconOptions](#suffiximageiconoptions14) | 否 | 后缀Image图标属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsuffixsymbolglyphoptions14) | 否 | 后缀Symbol图标属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| closeOptions<sup>14+</sup> | [CloseOptions](ohos-arkui-advanced-Chip.md#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | ChipGroup中Chip项无障碍描述。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityLevel<sup>14+</sup> | string | 否 | ChipGroup中Chip项无障碍重要性。<br>默认值："auto"。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 
 >**说明：**
@@ -185,17 +183,15 @@ ChipGroup尾部图标选项类型。
 
 尾部builder接口定义，针对背板大小及颜色设置限制。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                            | 必填 | 说明                                    |
 | -------- | --------------                 | ---- | ------------------------------           |
-| icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon。<br/>chip大小是ChipSize.SMALL时，suffix默认值：{width: 16,height: 16}。<br/>chip大小是ChipSize.NORMAL时，suffix默认值：{width: 24,height: 24}。</br> 如果想动态修改size，那么必须在引入[IconGroupSuffix](#icongroupsuffix)时，使用[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)类型。                       |
-| action   | Callback\<void>        | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。            |
-| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标无障碍文本属性。|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标无障碍描述。|
-| accessibilityLevel<sup>14+</sup> | string | 否 | 尾部图标无障碍重要性。<br>默认值："auto"。|
+| icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon。<br/>chip大小是ChipSize.SMALL时，suffix默认值：{width: 16,height: 16}。<br/>chip大小是ChipSize.NORMAL时，suffix默认值：{width: 24,height: 24}。</br> 如果想动态修改size，那么必须在引入[IconGroupSuffix](#icongroupsuffix)时，使用[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)类型。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                       |
+| action   | Callback\<void>        | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标无障碍文本属性。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 尾部图标无障碍描述。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityLevel<sup>14+</sup> | string | 否 | 尾部图标无障碍重要性。<br>默认值："auto"。<br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 ## IconOptions
 
