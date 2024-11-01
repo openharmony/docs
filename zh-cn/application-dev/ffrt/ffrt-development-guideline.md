@@ -61,7 +61,7 @@ Function Flow编程模型是一种基于任务和数据驱动的并发编程模�
 | ffrt_skip(ffrt_task_handle_t handle)     | 跳过指定任务。 |
 | ffrt_wait_deps(const ffrt_deps_t* deps)    | 等待依赖的任务完成，当前任务开始执行。 |
 | ffrt_loop_create(ffrt_queue_t queue)    | 创建loop对象。 |
-| ffrt_loop_destory(ffrt_loop_t loop)    | 销毁loop对象。 |
+| ffrt_loop_destroy(ffrt_loop_t loop)    | 销毁loop对象。 |
 | ffrt_loop_run(ffrt_loop_t loop)    | 启动loop循环。 |
 | ffrt_loop_stop(ffrt_loop_t loop)    | 停止loop循环。 |
 | ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void* data, ffrt_poller_cb cb)    | 管理LOOP上的监听事件。 |
@@ -1918,7 +1918,7 @@ int main(int narg, char** argv)
 loop is not null.
 ```
 
-#### ffrt_loop_destory
+#### ffrt_loop_destroy
 <hr/>
 销毁loop对象。
 

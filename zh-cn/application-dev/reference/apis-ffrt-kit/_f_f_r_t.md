@@ -80,7 +80,7 @@ FFRT（Function Flow运行时）是支持Function Flow编程模型的软件运�
 | FFRT_C_API int [ffrt_cond_timedwait](#ffrt_cond_timedwait) ([ffrt_cond_t](ffrt__cond__t.md)\* cond, [ffrt_mutex_t](ffrt__mutex__t.md)\* mutex, const struct timespec\* time_point) | 条件变量超时等待函数，条件变量不满足时阻塞当前任务，超时等待返回. | 
 | FFRT_C_API int [ffrt_cond_destroy](#ffrt_cond_destroy) ([ffrt_cond_t](ffrt__cond__t.md)\* cond) | 销毁条件变量。 | 
 | FFRT_C_API ffrt_loop_t [ffrt_loop_create](#ffrt_loop_create) (ffrt_queue_t queue) | 创建loop队列。 | 
-| FFRT_C_API int [ffrt_loop_destory](#ffrt_loop_destory) (ffrt_loop_t loop) | 销毁loop队对象。 | 
+| FFRT_C_API int [ffrt_loop_destroy](#ffrt_loop_destroy) (ffrt_loop_t loop) | 销毁loop队对象。 | 
 | FFRT_C_API int [ffrt_loop_run](#ffrt_loop_run) (ffrt_loop_t loop) | 开启loop循环。 | 
 | FFRT_C_API void [ffrt_loop_stop](#ffrt_loop_stop) (ffrt_loop_t loop) | 停止loop循环。 | 
 | FFRT_C_API int [ffrt_loop_epoll_ctl](#ffrt_loop_epoll_ctl) (ffrt_loop_t loop, int op, int fd, uint32_t events, void\* data, [ffrt_poller_cb](#ffrt_poller_cb) cb) | 管理loop上的监听事件。 | 
@@ -542,10 +542,10 @@ FFRT_C_API ffrt_loop_t ffrt_loop_create (ffrt_queue_t queue)
 创建成功返回ffrt_loop_t对象，失败返回空指针。
 
 
-### ffrt_loop_destory()
+### ffrt_loop_destroy()
 
 ```
-FFRT_C_API int ffrt_loop_destory (ffrt_loop_t loop)
+FFRT_C_API int ffrt_loop_destroy (ffrt_loop_t loop)
 ```
 
 **描述**
