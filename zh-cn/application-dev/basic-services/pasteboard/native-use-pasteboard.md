@@ -21,6 +21,8 @@
 
 ## 接口说明
 
+详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)。
+
 | 接口名称                                                     | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
 | OH_PasteboardObserver* OH_PasteboardObserver_Create()        | 创建一个剪贴板数据变更观察者对象。                      |
