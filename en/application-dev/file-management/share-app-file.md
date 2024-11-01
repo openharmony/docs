@@ -2,7 +2,7 @@
 
 An application can share a file with another application based on the file descriptor (FD) or uniform resource identifier (URI) of the file.
 
-- URI-based file sharing: You can use [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) to specify the read or read/write permission on the file for the target application (application with which the file is shared). The target application can call [fs.open](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopen) to open the file based on the URI and perform read and write operations. Currently, only temporary authorization is supported. The permission on the shared file is revoked once the target application exits.
+- URI-based file sharing: You can use [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) to specify the read or read/write permission on the file for the target application (application with which the file is shared). The target application can call [fs.open](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopen) to open the file based on the URI and perform read and write operations. Currently, only temporary authorization is supported. The permission on the shared file is revoked once the target application exits.
 
 - FD-based sharing: You can use **open()** of the ohos.file.fs module to specify the read or read/write permission on the file for the target application. After parsing the FD in **Want**, the target application can read or write the file by using **read()** or **write()** API of ohos.file.fs based on the permission granted.
 
@@ -96,7 +96,7 @@ Before sharing an application file, you need to [obtain the application file pat
 ## Using a Shared File
 
 In the [**module.json5** file](../quick-start/module-configuration-file.md) of the target application, set **actions** to **ohos.want.action.sendData** to allow the application to receive files shared by others and set **uris** to the type of the URI to receive. In the following example, the target application receives only .txt files with **scheme** of **file**.
-  
+
 ```json
 {
   "module": {

@@ -14,7 +14,7 @@ The user can add a domain account to a device so that the domain account user ca
    import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. Obtain an **AccountManager** instance of the system account.
+3. Obtain an **AccountManager** instance for system accounts.
 
    ```ts
    let osAccountMgr = osAccount.getAccountManager();
