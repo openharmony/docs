@@ -224,6 +224,8 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+>
+> 如需传入cookies，请开发者自行在参数options中添加。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -330,6 +332,8 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+>
+> 如需传入cookies，请开发者自行在参数options中添加。
 
 **需要权限**：ohos.permission.INTERNET
 
