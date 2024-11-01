@@ -949,7 +949,7 @@ import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
 hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
 ```
 
-## hidebug.getGraphicsMemory<sup>13+</sup>
+## hidebug.getGraphicsMemory<sup>14+</sup>
 
 getGraphicsMemory(): Promise&lt;number&gt;
 
@@ -982,7 +982,7 @@ hidebug.getGraphicsMemory().then((ret: number) => {
 })
 ```
 
-## hidebug.getGraphicsMemorySync<sup>13+</sup>
+## hidebug.getGraphicsMemorySync<sup>14+</sup>
 
 getGraphicsMemorySync(): number
 
