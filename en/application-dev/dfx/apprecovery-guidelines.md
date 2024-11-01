@@ -252,7 +252,7 @@ export default class EntryAbility extends UIAbility {
 
 #### Restart Flag for the Failed Ability
 
-If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
+If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
 
 ```ts
 import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';
