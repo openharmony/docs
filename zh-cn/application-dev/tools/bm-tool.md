@@ -72,6 +72,8 @@ bm install [-h] [-p filePath] [-u userId] [-r] [-w waitingTime] [-s hspDirPath]
 ```bash
 # 安装一个hap
 bm install -p /data/app/ohos.app.hap
+# 指定路径安装，目录下可包含多个HAP、HSP，不需要考虑安装顺序问题
+bm install -p /data/app/appdir
 # 覆盖安装一个hap
 bm install -p /data/app/ohos.app.hap -r
 # 安装一个应用间共享库
