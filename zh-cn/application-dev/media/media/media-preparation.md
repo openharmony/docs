@@ -2,7 +2,7 @@
 
 媒体应用开发的主要流程包含开发准备、音视频播放、音视频录制、元数据信息提取、录屏等。
 
-在开发媒体应用时，需要先申请媒体相关权限，确保应用拥有访问媒体文件及其他功能的权限，开发每种应用需要的权限在对应的开发指导中给出。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。
+在开发媒体应用时，需要先申请相关权限，确保应用拥有访问媒体文件及其他功能的权限。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。
 
 所需权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
 
