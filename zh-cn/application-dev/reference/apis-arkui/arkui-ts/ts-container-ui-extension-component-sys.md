@@ -18,7 +18,7 @@ UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。�
 
 必须显示设置组件宽高为非0有效值。
 
-不支持scroll到边界、传递上层scroll继续滑动的场景。当UIExtensionComponent组件使用方和扩展Ability都支持内容滚动（包括且不限于[Scroll](ts-container-scroll.md)、[Swiper](ts-container-swiper.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)等滚动容器）时，通过手势滚动会导致UIExtensionComponent内外同时响应。内外手势同时滚动场景的规避方法可参考[示例2](#示例2)。
+不支持滚动到边界后，传递至上层继续滚动的场景。当UIExtensionComponent组件使用方和扩展Ability都支持内容滚动（包括但不限于[Scroll](ts-container-scroll.md)、[Swiper](ts-container-swiper.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)等滚动容器）时，通过手势滚动会导致UIExtensionComponent内外同时响应。内外手势同时滚动场景的规避方法可参考[示例2](#示例2)。
 
 
 ## 子组件
