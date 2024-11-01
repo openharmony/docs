@@ -8,7 +8,7 @@
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
-- [LineTypeset](#lineTypeset)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildLineTypeset)接口构建而成。
+- [LineTypeset](#linetypeset14)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset14)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -1009,17 +1009,17 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
-## LineTypeset
+## LineTypeset<sup>14+</sup>
 
 保存着文本内容以及样式的载体，可以用于计算单行排版信息。
 
-下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildLineTypeset)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset14)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
 
-### getLineBreak
+### getLineBreak<sup>14+</sup>
 
 getLineBreak(startIndex: number, width: number): number
 
-计算在限定屏幕宽度width(单位物理像素px)的情况下，从文本下标startIndex（从0开始计数）处开始可以排版多少个字符。
+计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1027,17 +1027,22 @@ getLineBreak(startIndex: number, width: number): number
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
-| startIndex | number | 是 | 开始计算排版的起始位置，整数，从0开始计数，计算时包含startIndex位置对应的字符。|
-| width | number | 是   | 可用于排版的宽度，浮点数，单位为物理像素px。|
-另外入参应该满足以下条件:
-1. startIndex取值范围[0, 文本字符总数)。
-2. width应大于0。
+| startIndex | number | 是 | 开始计算排版的起始位置（包括起始位置）。取值范围需要为[0,文本字符总数）的整数，参数非法时抛出异常。|
+| width | number | 是   | 可用于排版的宽度，大于0的浮点数，单位为物理像素px。|
 
 **返回值：**
 
 | 类型         | 说明                         |
 | ------------ | --------------------------- |
-| number | 从起始位置开始计算，在固定宽度限制下可以参与排版的字符总数，整数。|
+| number | 返回在限定排版宽度的情况下，从指定位置处开始可以排版的字符总数，取值为整数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1047,11 +1052,11 @@ let width = 100.0;
 let count = lineTypeset.getLineBreak(startIndex, width);
 ```
 
-### createLine
+### createLine<sup>14+</sup>
 
 createLine(startIndex: number, count: number): TextLine
 
-根据文本[startIndex, startIndex + count)区间字符生成TextLine对象。 
+根据指定的排版区间生成文本行对象。 
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1059,19 +1064,22 @@ createLine(startIndex: number, count: number): TextLine
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
-| startIndex | number | 是 | 开始计算排版的起始位置，整数。|
-| count | number | 是   | 使用[startIndex, startIndex + count)区间字符生成TextLine对象，整数。|
-另外入参应满足以下条件: 
-1. startIndex取值范围为[0, 文本字符总数)。
-2. count取值范围为[0, 文本字符总数]。 当count为0时表示使用的字符区间为[startIndex, 文本结尾]。
-3. startIndex + count <= 文本字符总数。
-可以先调用getLineBreak方法获取合理的count值。
+| startIndex | number | 是 | 开始计算排版的起始位置，整数，取值范围为[0, 文本字符总数)。|
+| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak14)获得合理的可用于进行排版的字符总数。|
 
 **返回值：**
 
 | 类型         | 说明                         |
 | ------------ | --------------------------- |
-| TextLine\<[TextLine](#textline)> | 根据文本区间字符生成的TextLine对象。|
+| [TextLine](#textline) | 根据文本区间字符生成的TextLine对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1467,7 +1475,7 @@ struct Index {
 }
 ```
 
-### buildLineTypeset
+### buildLineTypeset<sup>14+</sup>
 
 buildLineTypeset(): LineTypeset
 
@@ -1479,17 +1487,16 @@ buildLineTypeset(): LineTypeset
 
 | 类型                     | 说明                           |
 | ------------------------ | ------------------------------ |
-| [LineTypeset](#lineTypeset)  | 可用于行排版的LineTypeset对象。|
+| [LineTypeset](#linetypeset14)  | 可用于行排版的LineTypeset对象。|
 
 **示例：**
 
 ```ts
-import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit';
+import { text } from '@kit.ArkGraphics2D'
 
-function Text() {
+function test() {
   let myParagraphStyle: text.ParagraphStyle = {
-    align: 3,
+    align: text.TextAlign.JUSTIFY,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1500,7 +1507,7 @@ function Text() {
 @Entry
 @Component
 struct Index {
-  fun: Function = Text;
+  fun: Function = test;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1563,8 +1570,7 @@ struct Index {
 
 描述段落基础文本行结构的载体。
 
-下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset)类的[createLine()](#createline)接口获取到TextLine对象实例，再通过此实例调用对应方法。
-
+下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset14)类的[createLine()](#createline14)接口获取到TextLine对象实例，再通过此实例调用对应方法。
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -1606,7 +1612,7 @@ struct Index {
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。[LineTypeset](#linetypeset)类的[creatLine](#createline)方法创建的TextLine对象属于一个内部临时Paragraph对象, 通过该方法创建的TextLine对象调用getTextRange()方法返回的索引区间属于该内部临时Paragraph对象。
+获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset14)类的[creatLine](#createline14)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline14)方法时会自动销毁。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
