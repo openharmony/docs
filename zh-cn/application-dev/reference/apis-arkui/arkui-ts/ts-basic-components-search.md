@@ -631,7 +631,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### onSubmit
 
-onSubmit(callback: SearchSubmitCallback)
+onSubmit(callback: (value: string) => void)
 
 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
 
@@ -641,9 +641,25 @@ onSubmit(callback: SearchSubmitCallback)
 
 **参数：** 
 
+| 参数名 | 类型   | 必填 | 说明                         |
+| ------ | ------ | ---- | ---------------------------- |
+| value  | string | 是   | 当前搜索框中输入的文本内容。 |
+
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: SearchSubmitCallback)
+
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调事件，提交事件时提供保持Search编辑状态的方法。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| callback | [SearchSubmitCallback](#searchsubmitcallback14) | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调。 |
+| callback | [SearchSubmitCallback](#searchsubmitcallback14) | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调事件。 |
 
 ### onChange
 
