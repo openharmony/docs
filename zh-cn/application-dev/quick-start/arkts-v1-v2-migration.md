@@ -1,34 +1,33 @@
-# V1-V2迁移指导
+# V1->V2迁移指导
 
 ## 概述
-ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同步到UI界面，实现数据驱动的UI刷新，使开发者能够专注于UI界面的实现和设计，无需关注数据状态变化带来的UI更新。
+ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同步到UI界面，实现数据驱动的UI刷新，使开发者能更加够专注于UI界面的实现和设计。
 
-在状态管理框架的演进过程中，先后推出了状态管理V1和V2两个版本。V1强调组件层级的状态管理，而V2则增强了对数据对象的深度观察与管理能力，不再局限于组件层级。通过V2，开发者能够更灵活地控制数据和状态，实现更高效的UI刷新。具体V1和V2的区别可以参见详细说明（TODO: 超链接）。
+在状态管理框架的演进过程中，先后推出了状态管理V1和V2两个版本。V1强调组件层级的状态管理，而V2则增强了对数据对象的深度观察与管理能力，不再局限于组件层级。通过V2，开发者能够更灵活地控制数据和状态，实现更高效的UI刷新。具体V1和V2的区别可以参见[状态管理概述](./arkts-state-management-overview.md)。
 
 ## V1V2使用指引
 1. V2是V1的增强版本，为开发者提供更多功能和灵活性。
-2. 对于新开发的应用，建议直接使用V2版本。
-3. 对于已经使用V1的应用，如果V1的功能和性能已能满足需求，则不必立即切换到V2。但建议开发者尽早规划向V2的迁移，以便未来实现平滑过渡和改进。
-4. 对于需要在现阶段混用V1和V2的场景，请参阅混用文档（TODO：超链接），请避免违反混用文档规定的场景，引发不确定性。
-5. 编译器、工具链、IDE对某些不推荐的误用和混用场景会进行校验，但开发者可能通过特殊手段绕过这些校验。强烈建议开发者遵循混用文档（TODO：超链接）的指导，避免文档明确禁止的混用。
+2. 对于新开发的应用，建议直接使用V2版本范式来进行开发。
+3. 对于已经使用V1的应用，如果V1的功能和性能已能满足需求，则不必立即切换到V2。如果开发者在开发过程中受限于V1不能深度观察等特性，则建议开发者尽早规划向V2的迁移，以便未来实现平滑过渡和改进。
+4. 对于需要在现阶段混用V1和V2的场景，请参阅[混用文档](./arkts-custom-component-mixed-scenarios.md)。编译器、工具链、IDE对某些不推荐的误用和混用场景会进行校验，虽然开发者可能可以通过特殊手段绕过这些校验，但还是强烈建议开发者遵循[混用文档](./arkts-custom-component-mixed-scenarios.md)的指导，避免因双重代理等问题给应用带来不确定性。
 
-## 本文档的目的
+## 迁移指南的目的
 1. 对希望将现有V1应用迁移到V2的开发者，提供系统化的模板和指导，帮助完成V1到V2的迁移。
-2. 对希望逐步将V1应用过渡到V2的开发者，提供参考，结合本迁移文档与混用文档，可以帮助开发者实现逐步改造。
+2. 对希望逐步将V1应用过渡到V2的开发者，提供参考，结合本迁移文档与[混用文档](./arkts-custom-component-mixed-scenarios.md)，可以帮助开发者实现逐步改造。
 3. 尚未开始开发应用但已熟悉V1状态管理规则的开发者，可以参考本迁移文档及V2各个装饰器和接口的文档，开始使用V2进行应用开发。
 
-## 迁移方法简表
-| 迁移方法简表           | 旧装饰器名                | 迁移后名                  | 说明 |
-|------------------------|--------------------------|--------------------------|------|
-| @Observed              | @ObservedV2              | 可观察对象，表明一个可观察对象 |
-| @Track                 | @Trace                   | 新装饰器只有 @Trace 装饰的属性才被精确跟踪观察，老装饰器 @Track 为精确观察，不装饰为粗略观察 |
-| @Component             | @ComponentV2             | 新装饰器组件 |
-| @State                 | @Local 没有接收父组件数据时 | @Param @Once 接收了父组件参数 | @State 接收父组件参数时，仅接收初始值 |
-| @Prop                  | @Param                   | 当输入参数为对象时，旧装饰器为拷贝，新装饰器为引用，需要注意本组件的功能是否需要拷贝，如果需要拷贝，则需要拷贝后使用 |
-| @Link                  | @Param @Twoway 语法糖    | @Param @Twoway 为语法糖，使用比 @Param + @Event 更简洁而已 |
-| @ObjectLink            | @Param                   | 直接兼容，但无输入限制 |
-| @Provide               | @Provider                | 兼容 |
-| @Consume               | @Consumer                | 兼容 |
+## V1V2能力对比及迁移简表
+| V1装饰器名                | V2装饰器名                  | 说明 |
+|------------------------|--------------------------|--------------------------|
+| \@Observed              | \@ObservedV2              | 表明当前对象为可观察对象。但两者能力并不相同。 <br/>\@Observed可观察第一层的属性，需要搭配\@ObjectLink使用才能生效。 <br/>\@ObservedV2本身无观察能力，仅代表当前class可被观察，如果要观察其属性，需要搭配\@Trace使用。  |
+| \@Track                 | \@Trace                   | V1装饰器\@Track为精确观察，不使用则无法做到类属性的精准观察。 <br/>V2\@Trace装饰的属性可以被精确跟踪观察。|
+| \@Component             | \@ComponentV2             | \@Component为搭配V1状态变量使用的自定义组件装饰器。<br/>@ComponentV2为搭配V2状态变量使用的自定义组件装饰器。 |
+|\@State                 | 无外部初始化：@Local<br/>外部初始化一次：\@Param\@Once | \@State和\@Local类似都是数据源的概念，在不需要外部传入初始化时，可直接迁移。如果需要外部传入初始化，则可以迁移为\@Param\@Once，详情见[@State->@Local](#state-local)。 |
+| \@Prop                  | \@Param                   | \@Prop和\@Param类似都是自定义组件参数的概念。当输入参数为复杂类型时，\@Prop为深拷贝，\@Param为引用。 |
+| \@Link                  | \@Param\@Event    | \@Link是框架自己封装实现的双向同步，对于V2开发者可以通过@Param@Event自己实现双向同步。 |
+| \@ObjectLink            | \@Param                   | 直接兼容，但无输入限制。 |
+| \@Provide               | \@Provider                | 兼容。 |
+| \@Consume               | \@Consumer                | 兼容。 |
 
 
 ## 各装饰器迁移示例
@@ -36,24 +35,25 @@ ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同
 ### @State->@Local
 
 #### 迁移规则
-在V1 中，@State装饰器用于管理组件内部的数据状态，其功能类似于 V2中的@Local，但两者在观察能力和初始化规则上存在明显差异。针对不同的使用场景，迁移策略如下：
+在V1中，\@State装饰器用于装饰组件内部的状态变量，在V2中提供了\@Local作为其替代能力，但两者在观察能力和初始化规则上存在明显差异。针对不同的使用场景，迁移策略如下：
 
-- 简单类型：对于简单类型的变量，可以直接将@State替换为@Local。
-- 复杂类型：V1中的@State可以观察复杂对象的第一层属性变化，而V2中的@Local只能观察对象自身的变化。如果需要追踪对象内部的属性变化，可以结合使用@ObservedV2和@Trace。
-- 外部初始化：V1 中，@State支持从外部传递初始值，但在V2中，@Local禁止外部初始化。若需要从外部传递初始值，可以使用@Param 和@Once装饰器来实现类似的效果。
+- 简单类型：对于简单类型的变量，可以直接将\@State替换为\@Local。
+- 复杂类型：V1中的@State可以观察复杂对象的第一层属性变化，而V2中的\@Local只能观察对象自身的变化。如果需要追踪对象内部的属性变化，可以结合使用\@ObservedV2和\@Trace。
+- 外部初始化：V1中，\@State支持从外部传递初始值，但在V2中，\@Local禁止外部初始化。若需要从外部传递初始值，可以使用\@Param和\@Once装饰器来实现类似的效果。
 
 #### 示例
 
-##### 简单类型
+**简单类型**
+
 对于简单类型变量，V1的@State可以直接替换为替换为V2的@Local。
 
-V1实现：
+V1：
 
 ```ts
 @Entry
 @Component
 struct Child {
-  @State val: number = 10
+  @State val: number = 10;
   build(){
     Text(this.val.toString())
   }
@@ -66,21 +66,22 @@ V2迁移策略：直接替换。
 @Entry
 @ComponentV2
 struct Child {
-  @Local val: number = 10
+  @Local val: number = 10;
   build(){
     Text(this.val.toString())
   }
 }
 ```
 
-##### 复杂类型
+**复杂类型**
+
 V1的@State能够观察复杂对象的第一层属性变化，但V2的@Local无法观察对象内部变化。为了解决这个问题，需要在类上添加@ObservedV2，并在需要观察的属性上添加@Trace。这样，框架就能追踪对象内部的属性变化。
 
-V1实现：
+V1：
 
 ```ts
 class Child {
-  public value: number = 10;
+  value: number = 10;
 }
 
 @Component
@@ -92,7 +93,9 @@ struct example {
       Text(this.child.value.toString())
       // @State可以观察第一层变化
       Button('value+1')
-        .onClick(()=>{this.child.value++})
+        .onClick(() => {
+          this.child.value++;
+        })
     }
   }
 }
@@ -115,14 +118,17 @@ struct example {
       Text(this.child.value.toString())
       // @Local只能观察自身，需要给Child加上@ObservedV2和@Trace
       Button('value+1')
-        .onClick(()=>{this.child.value++})
+        .onClick(() => {
+          this.child.value++;
+        })
     }
   }
 }
 ```
 
-##### 外部初始化状态变量
-V1的@State变量可以从外部初始化，V2的@Local禁止外部初始化。为实现类似功能，需要用@Param和@Once代替@State，允许外部传入初始值，并确保该值只初始化一次。
+**外部初始化状态变量**
+
+V1的@State变量可以从外部初始化，V2的@Local禁止外部初始化。为实现类似功能，需要用@Param和@Once代替@State，允许外部传入初始值，并确保该值只初始化时同步一次。
 
 V1实现：
 
@@ -170,7 +176,7 @@ struct Parent {
 }
 ```
 
-### @Link -> @Param/Event
+### @Link -> @Param/@Event
 
 #### 迁移规则
 在V1中，@Link允许父组件和子组件之间进行双向数据绑定。迁移到V2时，可以用@Param和@Event模拟双向同步。@Param实现父到子的单向传递，子组件再通过@Event回调函数触发父组件的状态更新。
@@ -188,7 +194,9 @@ struct Child {
     Column(){
       Text("child: " + this.val.toString())
       Button("+1")
-        .onClick(()=>this.val++)
+        .onClick(() => {
+          this.val++;
+        })
     }
   }
 }
@@ -218,7 +226,9 @@ struct Child {
     Column(){
       Text("child: " + this.val.toString())
       Button("+1")
-        .onClick(()=>this.addOne())
+        .onClick(()=> { 
+          this.addOne();
+        })
     }
   }
 }
@@ -242,14 +252,14 @@ struct Parent {
 在V1中，@Prop装饰器用于从父组件传递参数给子组件，这些参数在子组件中可以被直接修改。在V2中，@Param取代了@Prop的作用，但@Param是只读的，子组件不能直接修改参数的值。因此，根据场景的不同，有几种迁移策略：
 
 - 简单类型：对于简单类型的参数，可以直接将@Prop替换@Param。
-- 子组件修改变量：如果子组件需要修改传入的参数，可以使用@Once 来允许子组件对该参数进行本地化修改。
 - 复杂类型：如果传递的是复杂对象且需要严格的单向数据绑定，可以对对象进行深拷贝，防止子组件修改父组件的数据。
+- 子组件修改变量：如果子组件需要修改传入的参数，可以使用@Once来允许子组件对在本地修改该变量。但需要注意，如果使用了\@Once，则代表当前子组件只会被初始化一次，后续并没有父组件到子组件的同步能力。
 
 #### 示例
 
-##### 简单类型
+**简单类型**
 
-对于简单类型变量，V1的@Prop可以直接替换为替换为V2的@Param。
+对于简单类型变量，V1的@Prop可以直接替换为V2的@Param。
 
 V1实现：
 
@@ -294,71 +304,14 @@ struct Parent {
   }
 }
 ```
+**复杂类型的单项数据传递**
 
-##### 子组件修改变量
-在V1中，子组件可以修改@Prop的变量，然而在V2中，@Param是只读的。如果子组件需要修改传入的值，可以使用@Param和@Once允许子组件在本地修改。
-
-V1实现：
-
-```ts
-@Component
-struct Child {
-  // @Prop可以直接修改变量值
-  @Prop value: number;
-  build() {
-    Column(){
-      Text(this.value.toString())
-      Button("+1")
-        .onClick(()=>this.value++)
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  build() {
-    Column(){
-      Child({ value: 30 })
-    }
-  }
-}
-```
-
-V2迁移策略：使用@Param和@Once
-
-```ts
-@ComponentV2
-struct Child {
-  // @Param搭配@Once使用，可以在本地修改@Param变量
-  @Param @Once value: number = 0;
-  build() {
-    Column(){
-      Text(this.value.toString())
-      Button("+1")
-        .onClick(()=>this.value++)
-    }
-  }
-}
-
-@Entry
-@ComponentV2
-struct Parent {
-  build() {
-    Column(){
-      Child({ value: 30 })
-    }
-  }
-}
-```
-
-##### 复杂类型的单项数据传递
 在V2中，传递复杂类型时，如果希望实现严格的单向数据绑定，防止子组件修改父组件的数据，需要在使用@Param传递复杂对象时进行深拷贝以避免传递对象的引用。
 
 V1实现：
 
 ```ts
-class Fruit{
+class Fruit {
   apple: number = 5;
   orange: number = 10;
 }
@@ -369,12 +322,16 @@ struct Child {
   @Prop fruit: Fruit;
   build() {
     Column() {
-      Text("child apple: "+this.fruit.apple.toString())
-      Text("child orange: "+this.fruit.orange.toString())
+      Text("child apple: "+ this.fruit.apple.toString())
+      Text("child orange: "+ this.fruit.orange.toString())
       Button("apple+1")
-        .onClick(()=>this.fruit.apple++)
+        .onClick(() => {
+          this.fruit.apple++;
+        })
       Button("orange+1")
-        .onClick(()=>this.fruit.orange++)
+        .onClick(() => {
+          this.fruit.orange++;
+        })
     }
   }
 }
@@ -418,9 +375,13 @@ struct Child {
       Text(this.fruit.apple.toString())
       Text(this.fruit.orange.toString())
       Button("apple+1")
-        .onClick(()=>this.fruit.apple++)
+        .onClick( ()=> {
+          this.fruit.apple++;
+        })
       Button("orange+1")
-        .onClick(()=>this.fruit.orange++)
+        .onClick(() => {
+          this.fruit.orange++;
+        })
     }
   }
 }
@@ -440,17 +401,79 @@ struct Parent {
 }
 ```
 
+**子组件修改变量**
+
+在V1中，子组件可以修改@Prop的变量，然而在V2中，@Param是只读的。如果子组件需要修改传入的值，可以使用@Param和@Once允许子组件在本地修改。
+
+V1实现：
+
+```ts
+@Component
+struct Child {
+  // @Prop可以直接修改变量值
+  @Prop value: number;
+  build() {
+    Column(){
+      Text(this.value.toString())
+      Button("+1")
+        .onClick(()=> {
+          this.value++;
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  build() {
+    Column(){
+      Child({ value: 30 })
+    }
+  }
+}
+```
+
+V2迁移策略：使用@Param和@Once
+
+```ts
+@ComponentV2
+struct Child {
+  // @Param搭配@Once使用，可以在本地修改@Param变量
+  @Param @Once value: number = 0;
+  build() {
+    Column(){
+      Text(this.value.toString())
+      Button("+1")
+        .onClick(() => {
+          this.value++;
+        })
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+  build() {
+    Column(){
+      Child({ value: 30 })
+    }
+  }
+}
+```
+
 ### @ObjectLink/@Observed/@Track -> @ObservedV2/@Trace
 #### 迁移规则
-在V1中，@Observed与@ObjectLink装饰器用于观察类对象及其嵌套属性的变化，但V1只能直接观察对象的第一层属性。对于嵌套对象的属性，必须通过自定义组件和@ObjectLink实现监控。此外，V1中提供了@Track装饰器来实现对属性级别变化的精确控制。
+在V1中，@Observed与@ObjectLink装饰器用于观察类对象及其嵌套属性的变化，但V1只能直接观察对象的第一层属性。对于嵌套对象的属性，必须通过自定义组件和@ObjectLink实现观察。此外，V1中提供了@Track装饰器来实现对属性级别变化的精确控制。
 
-在V2中，@ObservedV2与@Trace结合使用，可以高效地实现类对象及其嵌套属性的深度监控，省去了对自定义组件的依赖，简化了开发流程。同时，@Trace装饰器还具备精确更新的能力，替代了V1中的@Track，从而实现更高效的UI刷新控制。根据不同的场景，有以下迁移策略：
+在V2中，@ObservedV2与@Trace结合使用，可以高效地实现类对象及其嵌套属性的深度观察，省去了对自定义组件的依赖，简化了开发流程。同时，@Trace装饰器还具备精确更新的能力，替代了V1中的@Track，从而实现更高效的UI刷新控制。根据不同的场景，有以下迁移策略：
 
-- 嵌套对象的属性观察：V1中需要通过自定义组件和@ObjectLink监控嵌套属性，V2中则可以使用@ObservedV2和@Trace直接观察嵌套对象，简化了代码结构。
+- 嵌套对象的属性观察：V1中需要通过自定义组件和@ObjectLink观察嵌套属性，V2中则可以使用@ObservedV2和@Trace直接观察嵌套对象，简化了代码结构。
 - 类属性的精确更新：V1中的@Track可以用V2中的@Trace取代，@Trace可以同时观察和精确更新属性变化，使代码更简洁高效。
 
 #### 示例
-##### 嵌套对象属性观察方法
+**嵌套对象属性观察方法**
 
 在V1中，无法直接观察嵌套对象的属性变化，只能观察到第一层属性的变化。必须通过创建自定义组件并使用@ObjectLink来实现对嵌套属性的观察。V2中使用@ObservedV2和@Trace，可以直接对嵌套对象的属性进行深度观察，减少复杂度。
 
@@ -486,7 +509,9 @@ struct AddressView {
     Column() {
       Text(`City: ${this.address.city}`)
       Button("city +a")
-        .onClick(()=>this.address.city += "a")
+        .onClick(() => {
+          this.address.city += "a";
+        })
     }
   }
 }
@@ -541,12 +566,14 @@ struct UserProfile {
       // 通过@ObservedV2和@Trace可以直接观察嵌套属性
       Text(`City: ${this.user.address.city}`)
       Button("city +a")
-        .onClick(()=>this.user.address.city += "a")
+        .onClick(() => {
+          this.user.address.city += "a";
+        })
     }
   }
 }
 ```
-##### 类属性变化观测
+**类属性变化观测**
 
 在V1中，@Observed用于观察类实例及其属性的变化，@Track则用于对属性级别的变化优化，使得只有被@Track装饰的属性触发UI更新。在V2中，@Trace结合了观察和更新属性级别变化的能力，搭配@ObservedV2实现高效的UI更新。
 
@@ -574,7 +601,9 @@ struct UserProfile {
       Text(`Name: ${this.user.name}`)
       Text(`Age: ${this.user.age}`)
       Button("increase age")
-        .onClick(()=>this.user.age++)
+        .onClick(() => {
+          this.user.age++;
+        })
     }
   }
 }
@@ -604,7 +633,9 @@ struct UserProfile {
       Text(`Name: ${this.user.name}`)
       Text(`Age: ${this.user.age}`)
       Button("Increase age")
-        .onClick(()=>this.user.age++)
+        .onClick(() => {
+          this.user.age++;
+        })
     }
   }
 }
@@ -612,21 +643,24 @@ struct UserProfile {
 
 ### @Provide/@Consume -> @Provider/@Consumer
 #### 迁移规则
-在V1中，@Provide和@Consume用于父子组件之间的数据共享，可以通过alias或属性名匹配，同时@Consume必须依赖父组件的@Provide，不允许本地初始化。而V2中，@Provider和@Consumer增强了这些特性，使数据共享更加灵活。根据不同的场景，有以下迁移策略：
+V1的@Provide/@Consume和V2@Provider/@Consumer定位和作用大体类似，基本可以实现丝滑替换，但是有以下细微差距，开发者可根据自己代码实现来参考是否需要调整：
+在V1中，@Provide和@Consume用于父子组件之间的数据共享，可以通过alias（别名）或属性名匹配，同时@Consume必须依赖父组件的@Provide，不允许本地初始化。而V2中，@Provider和@Consumer增强了这些特性，使数据共享更加灵活。根据不同的场景，有以下迁移策略：
 
+- V1中\@Provide/\@Consume在没有指定alias的情况下，可以直接使用。V2中\@Provider/\@Consumer是标准装饰器，且参数可选，所以不管有无指定alias后面需要必须跟随“()”。
 - alias和属性名匹配规则：V1中，@Provide和@Consume可以通过alias或属性名匹配；V2中，alias是唯一的匹配key，指定alias后只能通过alias匹配。
 - 本地初始化支持：V1中，@Consume不允许本地初始化，必须依赖父组件；V2中，@Consumer支持本地初始化，当找不到对应的@Provider时使用本地默认值。
 - 从父组件初始化：V1中，@Provide可以直接从父组件初始化；V2中，@Provider不支持外部初始化，需用@Param和@Once接受初始值并赋给 @Provider。
 - 重载支持：V1中，@Provide默认不支持重载，需设置 allowOverride；V2中，@Provider默认支持重载，@Consumer会向上查找最近的@Provider。
 #### 示例
-##### alias和属性名匹配规则
+**alias和属性名匹配规则**
+
 在V1中，@Provide和@Consume的匹配既可以通过alias，也可以通过属性名。在V2中，alias成为唯一的key，如果在@Consumer中制定了alias，只能通过alias而非属性名进行匹配。
 
 V1实现:
 
 ```ts
 @Component
-struct Child{
+struct Child {
   // alias和属性名都为key，alias和属性名都可以匹配
   @Consume('text') childMessage: string;
   @Consume message: string;
@@ -640,7 +674,7 @@ struct Child{
 
 @Entry
 @Component
-struct Parent{
+struct Parent {
   @Provide('text') message: string = "Hello World";
   build(){
     Column(){
@@ -654,7 +688,7 @@ V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属�
 
 ```ts
 @ComponentV2
-struct Child{
+struct Child {
   // alias是唯一匹配的key，有alias情况下无法通过属性名匹配
   @Consumer('text') childMessage: string = "default";
   @Consumer() message: string = "default";
@@ -668,7 +702,7 @@ struct Child{
 
 @Entry
 @ComponentV2
-struct Parent{
+struct Parent {
   @Provider('text') message: string = "Hello World";
   build(){
     Column(){
@@ -678,14 +712,15 @@ struct Parent{
 }
 ```
 
-##### V1的@Consume不支持本地初始化，V2支持
+**V1的@Consume不支持本地初始化，V2支持**
+
 V1中，@Consume不允许本地初始化变量，必须依赖父组件的@Provide，否则会抛出异常。迁移到V2后，@Consumer允许本地初始化，当找不到对应的@Provider，会使用本地默认值。
 
 V1实现：
 
 ```ts
 @Component
-struct Child{
+struct Child {
   // @Consume禁止本地初始化，当找不到对应的@Provide时抛出异常
   @Consume message: string;
   build(){
@@ -695,7 +730,7 @@ struct Child{
 
 @Entry
 @Component
-struct Parent{
+struct Parent {
   @Provide message: string = "Hello World";
   build(){
     Column(){
@@ -709,7 +744,7 @@ V2迁移策略：@Consumer可以本地初始化
 
 ```ts
 @ComponentV2
-struct Child{
+struct Child {
   // @Consumer允许本地初始化，当找不到@Provider的时候使用本地默认值
   @Consumer() message: string = "Hello World";
   build(){
@@ -719,7 +754,7 @@ struct Child{
 
 @Entry
 @ComponentV2
-struct Parent{
+struct Parent {
   build(){
     Column(){
       Child()
@@ -728,7 +763,8 @@ struct Parent{
 }
 ```
 
-##### V1的@Provide可以从父组件初始化，V2不支持
+**V1的@Provide可以从父组件初始化，V2不支持**
+
 在V1中，@Provide允许从父组件初始化，可以直接通过组件参数传递初始值。在V2中，@Provider禁止从外部初始化。为实现相同功能，可以在子组件中使用@Param @Once接受初始值，然后将其赋值给@Provider变量。
 
 V1实现：
@@ -757,7 +793,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：使用@Param接受，再赋值给@Provider
+V2迁移策略：使用@Param接受初始值，再赋值给@Provider
 
 ```ts
 @Entry
@@ -774,7 +810,7 @@ struct Parent {
 
 @ComponentV2
 struct Child {
-  @Param @Once initialValue:number = 0;
+  @Param @Once initialValue: number = 0;
   @Provider() childValue: number = this.initialValue;
   build() {
     Column(){
@@ -784,7 +820,8 @@ struct Child {
 }
 ```
 
-##### V1的@Provide默认不支持重载，V2默认支持
+**V1的@Provide默认不支持重载，V2默认支持**
+
 在V1中，@Provide默认不支持重载，无法覆盖上层组件的同名@Provide。若需支持重载，必须设置allowOverride。在V2中，@Provider默认支持重载，@Consumer会向上查找最近的@Provider，无需额外设置。
 
 V1实现:
@@ -853,12 +890,13 @@ struct Child {
 
 ### @Watch -> @Monitor
 #### 迁移规则
-在V1中，@Watch用于监听状态变量的变化，并在变量变化时触发指定回调函数。在V2中，@Monitor 替代了@Watch，可以更灵活地监听变量的变化，并获取变量变化前后的值。具体的迁移策略如下：
+在V1中，\@Watch用于监听状态变量的变化，并在变量变化时触发指定回调函数。在V2中，\@Monitor替代了\@Watch，可以更灵活地监听变量的变化，并获取变量变化前后的值。具体的迁移策略如下：
 
 - 单变量监听：对于简单的场景，可以直接用@Monitor替换@Watch，效果一致。
-- 多变量监听：V1的@Watch 每次只能监听一个变量，且无法获取变化前的值。在V2中，@Monitor 支持同时监听多个变量，并可以访问变量变化前后的状态。
+- 多变量监听：V1的@Watch无法获取变化前的值。在V2中，\@Monitor支持同时监听多个变量，并可以访问变量变化前后的状态。
 #### 示例
-##### 单变量监听
+**单变量监听**
+
 对于简单案例，V1的@Watch可以直接替换为替换为V2的@Monitor。
 
 V1实现：
@@ -869,14 +907,16 @@ V1实现：
 struct watchExample {
   @State @Watch('onAppleChange') apple: number = 0;
   onAppleChange(): void {
-    console.log("apple count changed to "+this.apple)
+    console.log("apple count changed to "+this.apple);
   }
 
   build() {
     Column(){
       Text(`apple count: ${this.apple}`)
       Button("add apple")
-        .onClick(()=> this.apple++)
+        .onClick(() => {
+          this.apple++;
+        })
     }
   }
 }
@@ -891,20 +931,23 @@ struct monitorExample {
   @Local apple: number = 0;
   @Monitor('apple')
   onFruitChange(monitor: IMonitor) {
-    console.log(`apple changed from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+    console.log(`apple changed from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
     Column(){
       Text(`apple count: ${this.apple}`)
       Button("add apple")
-        .onClick(()=> this.apple++)
+        .onClick(()=> {
+          this.apple++;
+        })
     }
   }
 }
 ```
 
-##### 多变量监听
+**多变量监听**
+
 在V1中，每个@Watch回调函数只能监听一个变量，且无法获取变化前的值。迁移到V2后，可以使用一个@Monitor同时监听多个变量以及获取监听变量的变化前后的值。
 
 V1实现：
@@ -917,10 +960,10 @@ struct watchExample {
   @State @Watch('onOrangeChange') orange: number = 0;
   // @Watch 回调，只能监听单个变量，不能获取变化前的值
   onAppleChange(): void {
-    console.log("apple count changed to "+this.apple)
+    console.log("apple count changed to "+this.apple);
   }
   onOrangeChange(): void {
-    console.log("orange count changed to "+this.orange)
+    console.log("orange count changed to "+this.orange);
   }
 
   build() {
@@ -928,9 +971,13 @@ struct watchExample {
       Text(`apple count: ${this.apple}`)
       Text(`orange count: ${this.orange}`)
       Button("add apple")
-        .onClick(()=> this.apple++)
+        .onClick(() => {
+          this.apple++;
+        })
       Button("add orange")
-        .onClick(()=> this.orange++)
+        .onClick(() => {
+          this.orange++;
+        })
     }
   }
 }
@@ -944,22 +991,400 @@ V2迁移策略：同时监听多个变量，以及获取变化前的值
 struct monitorExample {
   @Local apple: number = 0;
   @Local orange: number = 0;
-  // @Monitor 回调，支持监听多个变量，可以获取变化前的值
+
+  // @Monitor回调，支持监听多个变量，可以获取变化前的值
   @Monitor('apple','orange')
   onFruitChange(monitor: IMonitor) {
     monitor.dirty.forEach((name: string) => {
-      console.log(`${name} changed from ${monitor.value(name)?.before} to ${monitor.value(name)?.now}`)
-    })
+      console.log(`${name} changed from ${monitor.value(name)?.before} to ${monitor.value(name)?.now}`);
+    });
   }
 
   build() {
-    Column(){
+    Column() {
       Text(`apple count: ${this.apple}`)
       Text(`orange count: ${this.orange}`)
       Button("add apple")
-        .onClick(()=> this.apple++)
+        .onClick(() => {
+          this.apple++;
+        })
       Button("add orange")
-        .onClick(()=> this.orange++)
+        .onClick(() => {
+          this.orange++;
+        })
+    }
+  }
+}
+```
+### @Computed
+#### 迁移规则
+V1中并没有提供计算属性的概念，所以对于UI中的冗余计算，并没有办法可以减少重复计算。V2针对该场景，提供了@Computed装饰器，可以帮助开发者减少重复计算。
+
+V1：
+在下面的例子中，每次改变`lastName`都会触发Text组件的刷新，每次Text组件的刷新，都需要重复计算`this.lastName + ' ' + this.firstName`。
+```
+@Entry
+@Component
+struct Index {
+  @State firstName: string = 'Li';
+  @State lastName: string = 'Hua';
+
+  build() {
+    Column() {
+      Text(this.lastName + ' ' + this.firstName)
+      Text(this.lastName + ' ' + this.firstName)
+      Button('changed lastName').onClick(() => {
+        this.lastName += 'a';
+      })
+
+    }
+  }
+}
+```
+
+V2:
+使用V2中的\@Computed，每次改变`lastName`仅会触发一次计算。
+
+```
+@Entry
+@ComponentV2
+struct Index {
+  @Local firstName: string = 'Li';
+  @Local lastName: string = 'Hua';
+
+  @Computed
+  get fullName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  build() {
+    Column() {
+      Text(this.fullName)
+      Text(this.fullName)
+      Button('changed lastName').onClick(() => {
+        this.lastName += 'a';
+      })
+    }
+  }
+}
+```
+### LocalStorage->全局@ObservedV2/@Trace
+#### 迁移规则
+LocalStorage的目的是为了实现页面间的状态变量共享。之所以提供这个能力，是因为V1状态变量和View层耦合，无法由开发者自主地实现页面间状态变量的共享。
+对于状态管理V2，状态变量的观察能力内嵌到数据本身，不再和View层耦合，所以对于状态管理V2，不再需要类似LocalStorage的能力，可以使用全局@ObservedV2/@Trace，由开发者自己import和export，自己实现状态变量的页面间共享。
+
+V1:
+通过windowStage.[loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)和[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口实现页面间的状态变量共享。
+```
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  para:Record<string, number> = { 'count': 47 };
+  storage: LocalStorage = new LocalStorage(this.para);
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Page1', this.storage);
+  }
+}
+```
+
+```
+// Page1.ets
+import { router } from '@kit.ArkUI';
+
+// 通过getShared接口获取stage共享的LocalStorage实例
+@Entry(LocalStorage.getShared())
+@Component
+struct Page1 {
+  @LocalStorageLink('count') count: number = 0;
+  build() {
+    Column() {
+      Text(`${this.count}`)
+        .fontSize(50)
+      Button('push to Page2')
+        .onClick(() => {
+          router.pushUrl({url: 'pages/Page2'});
+        })
+    }
+  }
+}
+```
+
+```
+// Page2.ets
+// 通过getShared接口获取stage共享的LocalStorage实例
+@Entry(LocalStorage.getShared())
+@Component
+struct Page2 {
+  @LocalStorageLink('count') count: number = 0;
+  build() {
+    Column() {
+      Text(`${this.count}`)
+        .fontSize(50)
+    }
+  }
+}
+```
+V2:
+- 声明\@ObservedV2装饰的MyStorage类，并import需要使用的页面中。
+- 声明被\@Trace的属性作为页面间共享的可观察的数据。
+
+```
+// storage.ets
+@ObservedV2
+export class MyStorage {
+  static singleton_: MyStorage;
+  static instance() {
+    if(!MyStorage.singleton_) {
+      MyStorage.singleton_ = new MyStorage();
+    };
+    return MyStorage.singleton_;
+  }
+  @Trace count: number = 47;
+}
+```
+
+```
+// Page1.ets
+import { router } from '@kit.ArkUI';
+import { MyStorage } from './storage';
+
+@Entry
+@ComponentV2
+struct Page1 {
+  storage: MyStorage = MyStorage.instance();
+  build() {
+    Column() {
+      Text(`${this.storage.count}`)
+        .fontSize(50)
+      Button('push to Page2')
+        .onClick(() => {
+          router.pushUrl({url: 'pages/Page2'});
+        })
+    }
+  }
+}
+```
+
+```
+// Page2.ets
+import { MyStorage } from './storage';
+
+@Entry
+@ComponentV2
+struct Page2 {
+  storage: MyStorage = MyStorage.instance();
+    build() {
+      Column() {
+        Text(`${this.storage.count}`)
+          .fontSize(50)
+      }
+    }
+}
+```
+### AppStorage->AppStorageV2
+上一小节中，对于全局的@ObserveV2/@Trace的改造并不适合跨Ability的数据共享，该场景可以使用AppStorageV2来替换。
+V1:
+AppStorage是和应用进程绑定了，可以跨Ability实现数据共享。
+如下面示例所示：
+
+```
+// EntryAbility Index.ets
+import { common, Want } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  @StorageLink('count') count: number = 0;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  build() {
+    Column() {
+      Text(`EntryAbility count: ${this.count}`)
+        .fontSize(50)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('Jump to EntryAbility1').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'EntryAbility1'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
+```
+// EntryAbility1 Index1.ets
+import { common, Want } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index1 {
+  @StorageLink('count') count: number = 0;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.count}`)
+        .fontSize(50)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('Jump to EntryAbility').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'EntryAbility'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+V2:
+可以使用AppStorageV2实现跨Ability共享。
+如下面示例：
+
+```
+import { common, Want } from '@kit.AbilityKit';
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+export class MyStorage {
+  @Trace count: number = 0
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.storage.count}`)
+        .fontSize(50)
+        .onClick(() => {
+          this.storage.count++;
+        })
+      Button('Jump to EntryAbility1').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'EntryAbility1'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+
+```
+
+```
+import { common, Want } from '@kit.AbilityKit';
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+export class MyStorage {
+  @Trace count: number = 0
+}
+
+@Entry
+@ComponentV2
+struct Index1 {
+  @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+    build() {
+      Column() {
+        Text(`EntryAbility1 count: ${this.storage.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.storage.count++;
+          })
+        Button('Jump to EntryAbility').onClick(() => {
+          let wantInfo: Want = {
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility'
+          };
+          this.context.startAbility(wantInfo);
+        })
+      }
+    }
+}
+```
+
+## 存量迁移场景
+对于已经使用开发V1的大型应用，一般不太可能做到一次性的从V1迁移到V2，而是分批次和分组件的部分迁移，这就必然会带来V1和V2的混用。
+
+这种场景，一般是父组件是状态管理V1，而迁移的子组件为状态管理V2。为了模拟这种场景，我们举出下面的示例：
+- 父组件是\@Component，数据源是\@LocalStorageLink。
+- 子组件是\@ComponentV2，使用\@Param接受数据源的数据。
+
+这种情况，我们可以通过以下策略进行迁移：
+- 声明一个\@ObservedV2装饰的class来封装V1的数据。
+- 在\@Component和\@ComponentV2，定义一个桥接的\@ComponentV1自定义组件。
+- 在桥接层：
+    - V1->V2的数据同步，可通过\@Watch的监听触发\@ObservedV2装饰的class的属性的赋值。
+    - V2->V1的数据同步，可通过在\@ObservedV2装饰的class里声明Monitor，通过LocalStorage的API反向通知给V1状态变量。
+
+具体示例如下：
+```
+let storage: LocalStorage = new LocalStorage();
+
+@ObservedV2
+class V1StorageData {
+  @Trace title: string = 'V1OldComponent'
+  @Monitor('title')
+  onStrChange(monitor: IMonitor) {
+    monitor.dirty.forEach((path: string) => {
+      console.log(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+      if (path === 'title') {
+        storage.setOrCreate('title', this.title);
+      }
+    })
+  }
+}
+let v1Data: V1StorageData = new V1StorageData();
+
+@Entry(storage)
+@Component
+struct V1OldComponent {
+  @LocalStorageLink('title') title: string = 'V1OldComponent';
+
+  build() {
+    Column() {
+      Text(`V1OldComponent: ${this.title}`)
+        .fontSize(20)
+        .onClick(() => {
+          this.title = 'new value from V1OldComponent';
+        })
+      Bridge()
+    }
+  }
+}
+
+
+@Component
+struct Bridge {
+  @LocalStorageLink('title')@Watch('titleWatch') title: string = 'Bridge';
+  titleWatch() {
+    v1Data.title = this.title;
+  }
+
+  build() {
+    NewV2Component()
+  }
+}
+@ComponentV2
+struct NewV2Component {
+  build() {
+    Column() {
+      Text(`NewV2Component: ${v1Data.title}`)
+        .fontSize(20)
+        .onClick(() => {
+          v1Data.title = 'NewV2Component';
+        })
     }
   }
 }
