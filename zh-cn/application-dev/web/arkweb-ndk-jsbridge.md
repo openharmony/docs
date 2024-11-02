@@ -1,24 +1,26 @@
 # 应用侧与前端页面的相互调用(C/C++)
 
-本指导适用于ArkWeb应用侧与前端网页通信场景，开发者可根据应用架构选择使用ArkWeb native接口完成业务通信机制（以下简称JSBridge）。
+本指导适用于ArkWeb应用侧与前端网页通信场景，开发者可根据应用架构选择使用ArkWeb Native接口完成业务通信机制（以下简称Native JSBridge）。
 
 ## 适用的应用架构
 
-应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)实现JSBridge功能。
+应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)实现JSBridge功能。
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
-  上图为具有普适性的小程序一般架构，其中逻辑层需要应用自带JavaScript运行时，本身已存在C++环境，通过native接口可直接在C++环境中完成与视图层（ArkWeb作为渲染器）的通信，无需再返回ArkTS环境调用JSBridge相关接口。
+  上图展示了具有普遍适用性的小程序的通用架构。在这一架构中，逻辑层依赖于应用程序自带的JavaScript运行时，该运行时在一个已有的C++环境中运行。通过Native接口，逻辑层能够直接在C++环境中与视图层（其中ArkWeb充当渲染器）进行通信，无需回退至ArkTS环境使用ArkTs JSBridge接口，如左图所示。
+
+  左图是使用ArkTS JSBridge接口构建小程序的方案，应用需要先调用到ArkTS环境，再调用到C++环境，如左图红框所示。右图是使用Native JSBridge接口构建小程序的方案，不需要ArkTS环境和C++环境的切换，执行效率更高。
 
   ![arkweb_jsbridge_diff](figures/arkweb_jsbridge_diff.png)
 
-  native JSBridge方案可以解决ArkTS环境的冗余切换，同时允许回调在非UI线程上报，避免造成UI阻塞。
+  Native JSBridge方案可以解决ArkTS环境的冗余切换，同时允许回调在非UI线程上报，避免造成UI阻塞。
 
-## 使用native接口实现JSBridge通信
+## 使用Native接口实现JSBridge通信
 
-### native侧ArkWeb绑定
+### 使用Native接口绑定ArkWeb
 
-* ArkWeb组件声明在ArkTS侧，需要用户自定义一个标识webTag，并将webTag通过Node-API传至应用C++侧，后续ArkWeb native接口使用，均需webTag作为对应组件的唯一标识。
+* ArkWeb组件声明在ArkTS侧，需要用户自定义一个标识webTag，并将webTag通过Node-API传至应用Native侧，后续ArkWeb Native接口使用，均需webTag作为对应组件的唯一标识。
 
 * ArkTS侧
 
@@ -45,7 +47,7 @@
       size_t argc = 1;
       napi_value args[1] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -55,12 +57,12 @@
 
       // 将webTag保存在实例对象中
       jsbridge_object_ptr = std::make_shared<JSBridgeObject>(webTagValue);
-  ...
+      // ...
   ```
 
-### native侧API结构体获取
+### 使用Native接口获取API结构体
 
-ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)函数指针结构体。其中[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/ts-basic-components-web.md)。
+ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)函数指针结构体。其中[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/ts-basic-components-web.md)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -70,7 +72,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   component = reinterpret_cast<ArkWeb_ComponentAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_COMPONENT));
   ```
 
-### native侧组件生命周期回调注册
+### Native侧注册组件生命周期回调
 
 通过[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)注册组件生命周期回调，在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。
 
@@ -135,9 +137,11 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
 
 ### 完整示例
 
-* 前端页面代码`entry/src/main/resources/rawfile/runJS.html`
+* 前端页面代码
 
   ```html
+  <!-- entry/src/main/resources/rawfile/runJS.html -->
+  <!-- runJS.html -->
   <!DOCTYPE html>
   <html lang="en-gb">
   <head>
@@ -211,9 +215,10 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   </html>
   ```
 
-* ArkTS侧代码`entry/src/main/ets/pages/Index.ets`
+* ArkTS侧代码
 
   ```javascript
+  // entry/src/main/ets/pages/Index.ets
   import testNapi from 'libentry.so';
   import { webview } from '@kit.ArkWeb';
 
@@ -267,9 +272,10 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   }
   ```
 
-* Node-API侧暴露ArkTS接口`entry/src/main/cpp/types/libentry/index.d.ts`
+* Node-API侧暴露ArkTS接口
 
   ```javascript
+  // entry/src/main/cpp/types/libentry/index.d.ts
   export const nativeWebInit: (webName: string) => void;
   export const runJavaScript: (webName: string, jsCode: string) => void;
   ```
@@ -303,9 +309,10 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   target_link_libraries(entry PUBLIC libace_napi.z.so ${hilog-lib} libohweb.so)
   ```
 
-* Node-API层代码`entry/src/main/cpp/hello.cpp`
+* Node-API层代码
 
   ```c++
+  // entry/src/main/cpp/hello.cpp
   #include "napi/native_api.h"
   #include <bits/alltypes.h>
   #include <memory>
@@ -322,7 +329,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   static ArkWeb_ControllerAPI *controller = nullptr;
   static ArkWeb_ComponentAPI *component = nullptr;
 
-  // 发送JS脚本到H5侧执行，执行结果的回调。
+  // 发送JS脚本到H5侧执行，该方法为执行结果的回调。
   static void RunJavaScriptCallback(const char *webTag, const char *result, void *userData) {
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk RunJavaScriptCallback webTag:%{public}s", webTag);
       if (!userData) {
@@ -478,7 +485,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       size_t argc = 1;
       napi_value args[1] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -505,7 +512,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -555,9 +562,10 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
   ```
 
-* Native侧业务代码`entry/src/main/cpp/jsbridge_object.h`、`entry/src/main/cpp/jsbridge_object.cpp`
+* Native侧业务代码
 
   ```c++
+  // entry/src/main/cpp/jsbridge_object.h
   #include "web/arkweb_type.h"
   #include <string>
 
@@ -580,6 +588,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   ```
 
   ```c++
+  // entry/src/main/cpp/jsbridge_object.cpp
   #include "jsbridge_object.h"
 
   #include "hilog/log.h"
