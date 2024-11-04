@@ -201,7 +201,7 @@ bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
   **禁用命令参数列表**
 
-| 参数 | 参数 |
+| 参数 | 参数说明 |
 | -------- | -------- | 
 | -h | 帮助信息。 | 
 | -n | 必选参数，禁用指定Bundle名称的应用。 |
