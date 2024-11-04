@@ -1,6 +1,6 @@
 # @ohos.secureElement (SE Management)
 
-The **secureElement** module provides APIs for managing secure elements (SEs). SEs include the Embedded SE (eSE) and SIM on a device. The SE service mentioned in this topic is an **SEService** instance. For details, see [newSEService](#secureelementnewseservice).
+The **secureElement** module provides APIs for managing secure elements (SEs). SEs include the Embedded SE (eSE) and SIM on a device. The SE service mentioned in this topic is an **SEService** instance. For details, see [newSEService](#omapinewseservice).
 
 The instances of the following types are mentioned in this topic:
 
@@ -20,7 +20,7 @@ The instances of the following types are mentioned in this topic:
 import { omapi } from '@kit.ConnectivityKit';
 ```
 
-## secureElement.ServiceState
+## ServiceState
 
 Enumerates the SE service stats.
 
@@ -31,7 +31,7 @@ Enumerates the SE service stats.
 | DISCONNECTED | 0    | The SE service is disconnected.|
 | CONNECTED    | 1    | The SE service is connected.|
 
-## secureElement.newSEService
+## omapi.newSEService
 
 newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService
 
@@ -40,7 +40,7 @@ Creates an **SEService** instance for connecting to all available SEs in the sys
 The returned **SEService** instance is available only when **true** is returned by the specified callback or [isConnected](#seserviceisconnected).
 
 > **NOTE**
-> This API is supported since API version 10 and deprecated since API version 12. Use [createService](#secureelementcreateservice12) instead.
+> This API is supported since API version 10 and deprecated since API version 12. Use [createService](#omapicreateservice12) instead.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -49,7 +49,7 @@ The returned **SEService** instance is available only when **true** is returned 
 | **Name**| **Type**                                            | **Mandatory**| **Description**            |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
 | type       | string                                               | Yes     | Type of the SE service to create. It has a fixed value of **'serviceState'**.     |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback used to return the SE service state.|
+| callback   | Callback<[ServiceState](#servicestate)> | Yes     | Callback used to return the SE service state.|
 
 **Return value**
 
@@ -90,7 +90,7 @@ function secureElementDemo() {
 }
 ```
 
-## secureElement.createService<sup>12+</sup>
+## omapi.createService<sup>12+</sup>
 
 createService(): Promise\<SEService>;
 
@@ -139,7 +139,7 @@ function secureElementDemo() {
 
 ## SEService
 
-**SEService** indicates the connection service used to connect to all available SEs in the system. You can use [createService](#secureelementcreateservice12) to create an **SEService** instance.
+**SEService** indicates the connection service used to connect to all available SEs in the system. You can use [createService](#omapicreateservice12) to create an **SEService** instance.
 
 ### SEService.getReaders
 

@@ -50,11 +50,11 @@ To enable NFC tages to be read without starting an application, declare NFC-rela
     }
 }
 ```
-> **NOTE**
+> **NOTE**<br>
 >
-> - The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
-> - The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
-> - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
+>- The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
+>- The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
+>- The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
 
 ## **Modules to Import**
 
@@ -131,6 +131,7 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 Obtains an **NfcATag** object, which allows access to the tags that use the NFC-A technology.
 
 > **NOTE**
+>
 > This API is supported since API version 7 and deprecated since API version 9. Use [tag.getNfcA](#taggetnfca9) instead.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
@@ -540,7 +541,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
+Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API can be called only by an application running in the foreground and must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 

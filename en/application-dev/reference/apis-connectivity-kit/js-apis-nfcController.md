@@ -27,7 +27,7 @@ Enumerates the NFC states.
 | STATE_ON | 3      | NFC is open (ON).|
 | STATE_TURNING_OFF | 4      | NFC is turning off.|
 
-## controller.isNfcAvailable<sup>(deprecated)</sup>
+## nfcController.isNfcAvailable<sup>(deprecated)</sup>
 
 isNfcAvailable(): boolean
 
@@ -45,14 +45,14 @@ Checks whether the device supports NFC.
 | boolean | Returns **true** if the device supports NFC; returns **false** otherwise.|
 
 
-## controller.openNfc<sup>(deprecated)</sup>
+## nfcController.openNfc<sup>(deprecated)</sup>
 
 openNfc(): boolean
 
 Opens NFC.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [enableNfc](#controllerenablenfc9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [enableNfc](#nfccontrollerenablenfc9) instead.
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only for system applications)
 
@@ -64,7 +64,7 @@ Opens NFC.
 | -------- | -------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-## controller.enableNfc<sup>9+</sup>
+## nfcController.enableNfc<sup>9+</sup>
 
 enableNfc(): void
 
@@ -84,14 +84,14 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 |801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
-## controller.closeNfc<sup>(deprecated)</sup>
+## nfcController.closeNfc<sup>(deprecated)</sup>
 
 closeNfc(): boolean
 
 Closes NFC.
 
 > **NOTE**
-> This API is supported since API version 7 and deprecated since API version 9. Use [disableNfc](#controllerdisablenfc9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. Use [disableNfc](#nfccontrollerdisablenfc9) instead.
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only for system applications)
 
@@ -103,7 +103,7 @@ Closes NFC.
 | -------- | ------------------------------------------- |
 | boolean  | Returns **true** if the operation is successful; returns **false** otherwise.|
 
-## controller.disableNfc<sup>9+</sup>
+## nfcController.disableNfc<sup>9+</sup>
 
 disableNfc(): void
 
@@ -123,7 +123,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 |801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
-## controller.isNfcOpen
+## nfcController.isNfcOpen
 
 isNfcOpen(): boolean
 
@@ -139,7 +139,7 @@ Checks whether NFC is open.
 | -------- | ----------------------------------- |
 | boolean  | Returns **true** if NFC is open; returns **false** otherwise.|
 
-## controller.getNfcState
+## nfcController.getNfcState
 
 getNfcState(): [NfcState](#nfcstate)
 
@@ -155,7 +155,7 @@ Obtains the NFC state.
 | -------- | ---------------------- |
 | [NfcState](#nfcstate) | NFC state obtained. For details, see [NfcState](#nfcstate).|
 
-## controller.on('nfcStateChange')
+## nfcController.on('nfcStateChange')
 
 on(type: 'nfcStateChange', callback: Callback&lt;[NfcState](#nfcstate)&gt;): void
 
@@ -166,13 +166,13 @@ Subscribes to NFC state changes. A callback will be invoked to return the NFC st
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
-  
+ 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type to subscribe to. The value is **nfcStateChange**.|
 | callback | Callback&lt;[NfcState](#nfcstate)&gt; | Yes| Callback used to return the NFC state.|
 
-## controller.off('nfcStateChange')
+## nfcController.off('nfcStateChange')
 
 off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): void
 

@@ -720,7 +720,7 @@ try {
 
 ## bluetoothManager.on('bluetoothDeviceFind')<sup>(deprecated)</sup>
 
-on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
+on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Subscribes to the Bluetooth device discovery events.
 
@@ -766,7 +766,7 @@ try {
 
 ## bluetoothManager.off('bluetoothDeviceFind')<sup>(deprecated)</sup>
 
-off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;): void
+off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Unsubscribes from the Bluetooth device discovery events.
 
@@ -812,7 +812,7 @@ try {
 
 ## bluetoothManager.on('pinRequired')<sup>(deprecated)</sup>
 
-on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
+on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
 Subscribes to the pairing request events of the remote Bluetooth device.
 
@@ -858,7 +858,7 @@ try {
 
 ## bluetoothManager.off('pinRequired')<sup>(deprecated)</sup>
 
-off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
+off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 Unsubscribes from the pairing request events of the remote Bluetooth device.
 
@@ -905,7 +905,7 @@ try {
 
 ## bluetoothManager.on('bondStateChange')<sup>(deprecated)</sup>
 
-on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
+on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 Subscribes to the Bluetooth pairing state changes.
 
@@ -951,7 +951,7 @@ try {
 
 ## bluetoothManager.off('bondStateChange')<sup>(deprecated)</sup>
 
-off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
+off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 
 Unsubscribes from the Bluetooth pairing state changes.
 
@@ -998,7 +998,7 @@ try {
 
 ## bluetoothManager.on('stateChange')<sup>(deprecated)</sup>
 
-on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
+on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
 Subscribes to Bluetooth state events.
 
@@ -1044,7 +1044,7 @@ try {
 
 ## bluetoothManager.off('stateChange')<sup>(deprecated)</sup>
 
-off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
+off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 Unsubscribes from Bluetooth state events.
 
@@ -1416,7 +1416,7 @@ try {
 
 ## bluetoothManager.on('sppRead')<sup>(deprecated)</sup>
 
-on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
+on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
 Subscribes to the SPP read request events.
 
@@ -1471,7 +1471,7 @@ try {
 
 ## bluetoothManager.off('sppRead')<sup>(deprecated)</sup>
 
-off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
+off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
 Unsubscribes from the SPP read request events.
 
@@ -1558,7 +1558,7 @@ try {
 ```
 
 
-## bluetoothManager.BLE
+## BLE
 
 Provides APIs for operating and managing Bluetooth.
 
@@ -1771,7 +1771,7 @@ try {
 
 ### on('BLEDeviceFind')<sup>(deprecated)</sup>
 
-on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
+on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Subscribe to the BLE device discovery events.
 
@@ -1817,7 +1817,7 @@ try {
 
 ### off('BLEDeviceFind')<sup>(deprecated)</sup>
 
-off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
+off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Unsubscribes from the BLE device discovery events.
 
@@ -2065,7 +2065,7 @@ try {
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the A2DP connection state changes.
 
@@ -2114,7 +2114,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the A2DP connection state changes.
 
@@ -2315,7 +2315,7 @@ try {
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the HFP connection state changes.
 
@@ -2361,7 +2361,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the HFP connection state changes.
 
@@ -2411,7 +2411,7 @@ Before using an API of **HidHostProfile**, you need to create an instance of thi
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the HidHost connection state changes.
 
@@ -2456,7 +2456,7 @@ hidHost.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the HidHost connection state changes.
 
@@ -2512,7 +2512,7 @@ Before using an API of **PanProfile**, you need to create an instance of this cl
 
 ### on('connectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the PAN connection state changes.
 
@@ -2557,7 +2557,7 @@ panProfile.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the PAN connection state changes.
 
@@ -3002,7 +3002,7 @@ try {
 
 ### on('characteristicRead')<sup>(deprecated)</sup>
 
-on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadRequest&gt;): void
+on(type: 'characteristicRead', callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
 Subscribes to the characteristic read request events.
 
@@ -3059,7 +3059,7 @@ gattServer.on("characteristicRead", ReadCharacteristicReq);
 
 ### off('characteristicRead')<sup>(deprecated)</sup>
 
-off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadRequest&gt;): void
+off(type: 'characteristicRead', callback?: Callback&lt;CharacteristicReadRequest&gt;): void
 
 Unsubscribes from the characteristic read request events.
 
@@ -3102,7 +3102,7 @@ gattServer.off("characteristicRead");
 
 ### on('characteristicWrite')<sup>(deprecated)</sup>
 
-on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteRequest&gt;): void
+on(type: 'characteristicWrite', callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 Subscribes to the characteristic write request events.
 
@@ -3162,7 +3162,7 @@ gattServer.on("characteristicWrite", WriteCharacteristicReq);
 
 ### off('characteristicWrite')<sup>(deprecated)</sup>
 
-off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
+off(type: 'characteristicWrite', callback?: Callback&lt;CharacteristicWriteRequest&gt;): void
 
 Unsubscribes from the characteristic write request events.
 
@@ -3205,7 +3205,7 @@ gattServer.off("characteristicWrite");
 
 ### on('descriptorRead')<sup>(deprecated)</sup>
 
-on(type: "descriptorRead", callback: Callback&lt;DescriptorReadRequest&gt;): void
+on(type: 'descriptorRead', callback: Callback&lt;DescriptorReadRequest&gt;): void
 
 Subscribes to the descriptor read request events.
 
@@ -3262,7 +3262,7 @@ gattServer.on("descriptorRead", ReadDescriptorReq);
 
 ### off('descriptorRead')<sup>(deprecated)</sup>
 
-off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadRequest&gt;): void
+off(type: 'descriptorRead', callback?: Callback&lt;DescriptorReadRequest&gt;): void
 
 Unsubscribes from the descriptor read request events.
 
@@ -3305,7 +3305,7 @@ gattServer.off("descriptorRead");
 
 ### on('descriptorWrite')<sup>(deprecated)</sup>
 
-on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteRequest&gt;): void
+on(type: 'descriptorWrite', callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
 Subscribes to the descriptor write request events.
 
@@ -3365,7 +3365,7 @@ gattServer.on("descriptorWrite", WriteDescriptorReq);
 
 ### off('descriptorWrite')<sup>(deprecated)</sup>
 
-off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteRequest&gt;): void
+off(type: 'descriptorWrite', callback?: Callback&lt;DescriptorWriteRequest&gt;): void
 
 Unsubscribes from the descriptor write request events.
 
@@ -3408,7 +3408,7 @@ gattServer.off("descriptorWrite");
 
 ### on('connectStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
+on(type: 'connectStateChange', callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state changes.
 
@@ -3455,7 +3455,7 @@ gattServer.on("connectStateChange", Connected);
 
 ### off('connectStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
+off(type: 'connectStateChange', callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state changes.
 
@@ -4210,7 +4210,7 @@ try {
 
 ### on('BLECharacteristicChange')<sup>(deprecated)</sup>
 
-on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
+on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
 Subscribes to the BLE characteristic changes. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
 
@@ -4257,7 +4257,7 @@ try {
 
 ### off('BLECharacteristicChange')<sup>(deprecated)</sup>
 
-off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
+off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt;): void
 
 Unsubscribes from the BLE characteristic changes.
 
@@ -4299,7 +4299,7 @@ try {
 
 ### on('BLEConnectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
+on(type: 'BLEConnectionStateChange', callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state changes.
 
@@ -4345,7 +4345,7 @@ try {
 
 ### off('BLEConnectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
+off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state changes.
 
@@ -4739,7 +4739,6 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 | deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
-| descriptorUuid     | string | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
