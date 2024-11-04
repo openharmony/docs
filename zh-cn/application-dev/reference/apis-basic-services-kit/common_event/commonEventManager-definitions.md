@@ -765,7 +765,7 @@
 
 ### COMMON_EVENT_WIFI_POWER_STATE
 
-Wi-Fi状态变化。
+Wi-Fi状态变化，0：WLAN正在关闭，1：WLAN已关闭，2：WLAN正在使能，3：WLAN已启动。
 
 当Wi-Fi状态发生变化时（如启用、禁用Wi-Fi），将会触发事件通知服务发布该系统公共事件。
 
@@ -833,7 +833,7 @@ Wi-Fi状态变化。
 
 ### COMMON_EVENT_WIFI_HOTSPOT_STATE
 
-表示Wi-Fi热点状态变化。
+表示Wi-Fi热点状态变化，2：AP正在使能，3：AP已启动，4：AP正在关闭，5：AP已关闭。
 
 当Wi-Fi热点状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
@@ -901,7 +901,7 @@ Wi-Fi状态变化。
 
 ### COMMON_EVENT_WIFI_P2P_STATE_CHANGED
 
-表示Wi-Fi P2P状态变化。
+表示Wi-Fi P2P状态变化, 2：P2P正在使能，3：P2P已启动，4：P2P正在关闭，5：P2P已关闭。
 
 当Wi-Fi P2P状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
