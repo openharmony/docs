@@ -1088,7 +1088,7 @@ async function example() {
 ### grantPhotoAssetsReadPermission<sup>14+</sup>
 grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
-版本迭代权限继承时，调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
+<!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
