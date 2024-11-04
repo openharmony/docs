@@ -127,13 +127,13 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 <!--Del-->
 **（Linux可选）开启非root用户USB设备操作权限**
 
-- （临时权限）设置USB设备操作权限最大化
+- （临时权限）设置USB设备操作权限最大化:
 
    ```shell
    sudo chmod -R 777 /dev/bus/usb/
    ```
 
-- （永久权限）永久修改USB设备权限
+- （永久权限）永久修改USB设备权限:
 
    1. 使用lsusb找出USB设备的vendorID和productID。
 
