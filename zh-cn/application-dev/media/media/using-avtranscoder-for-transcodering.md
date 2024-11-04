@@ -1,4 +1,4 @@
-# 使用AVTranscoder开发视频转码功能
+# 使用AVTranscoder实现视频转码(ArkTS)
 
 使用AVTranscoder可以实现视频转码功能，本开发指导将以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，向开发者讲解AVTranscoder视频转码相关功能。
 
