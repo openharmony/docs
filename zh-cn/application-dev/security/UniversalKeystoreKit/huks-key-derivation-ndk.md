@@ -78,6 +78,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t DERIVE_KEY_SIZE_32 = 32;
+static const uint32_t DERIVE_KEY_SIZE_256 = 256;
 static struct OH_Huks_Blob g_deriveKeyAlias = {
     (uint32_t)strlen("test_derive"),
     (uint8_t *)"test_derive"
@@ -121,10 +122,10 @@ static struct OH_Huks_Param g_hkdfFinishParams[] = {
         .blob = g_deriveKeyAlias
     }, {
         .tag =  OH_HUKS_TAG_ALGORITHM,
-        .uint32Param = OH_HUKS_ALG_HKDF
+        .uint32Param = OH_HUKS_ALG_AES
     }, {
         .tag =  OH_HUKS_TAG_KEY_SIZE,
-        .uint32Param = DERIVE_KEY_SIZE_32
+        .uint32Param = DERIVE_KEY_SIZE_256
     }, {
         .tag =  OH_HUKS_TAG_PURPOSE,
         .uint32Param = OH_HUKS_KEY_PURPOSE_DERIVE

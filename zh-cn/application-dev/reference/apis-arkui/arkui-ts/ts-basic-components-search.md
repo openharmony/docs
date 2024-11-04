@@ -26,6 +26,8 @@ Search(options?: SearchOptions)
 
 ## SearchOptions<sup>14+</sup>对象说明
 
+Search初始化参数。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -33,7 +35,7 @@ Search(options?: SearchOptions)
 | 参数名      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
+| placeholder | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置无输入时的提示文本。                                     |
 | icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
 | controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
 
@@ -651,15 +653,15 @@ onSubmit(callback: Callback\<string>)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 说明                          |
-| ------ | ------- | ---- | ----------------------------- |
-| callback | Callback\<string> | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调。 |
+| 参数名 | 类型   | 必填 | 说明                         |
+| ------ | ------ | ---- | ---------------------------- |
+| callback  | Callback\<string> | 是   | 搜索提交回调，其返回值为当前搜索框中输入的文本内容。 |
 
 ### onSubmit<sup>14+</sup>
 
 onSubmit(callback: SearchSubmitCallback)
 
-点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调事件，提交事件时提供保持Search编辑状态的方法。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -669,7 +671,7 @@ onSubmit(callback: SearchSubmitCallback)
 
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| callback | [SearchSubmitCallback](#searchsubmitcallback14) | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调。 |
+| callback | [SearchSubmitCallback](#searchsubmitcallback14) | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调事件。 |
 
 ### onChange
 
@@ -701,7 +703,7 @@ onCopy(callback:Callback\<string>)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 复制回调，其参为复制的文本内容。 |
+| callback | Callback\<string> | 是   | 复制回调，其返回值为复制的文本内容。 |
 
 ### onCut
 
@@ -717,7 +719,7 @@ onCut(callback:Callback\<string>)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 剪切回调，其参为剪切的文本内容。 |
+| callback | Callback\<string> | 是   | 剪切回调，其返回值为剪切的文本内容。 |
 
 ### onPaste
 

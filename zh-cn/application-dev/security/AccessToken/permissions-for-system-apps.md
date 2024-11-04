@@ -1531,7 +1531,7 @@
 
 ### ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-允许应用发送代理通知
+允许应用发送代理通知。
 
 **权限级别**：system_core
 

@@ -4383,11 +4383,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
-  onDataPrepared(data: image.Picture) {
-    if (data === undefined) {
-      console.error('Error occurred when preparing data');
-      return;
-    }
+  onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
     console.info('on image data prepared');
   }
 }
@@ -4512,12 +4508,7 @@ import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
   onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
-    if (data === undefined) {
-      console.error('Error occurred when preparing data');
-      return;
-    }
-    // 自定义对ImageSource的处理逻辑
-    console.info('on image data prepared, photo quality is ' + map['quality']);
+    console.info('on image data prepared');
   }
 }
 ```

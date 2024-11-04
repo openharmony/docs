@@ -189,7 +189,7 @@ struct Parent {
    1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法
    2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
-2. 属性更新：当\@Observed装饰的class属性改变时，会走到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
 
 ## 限制条件

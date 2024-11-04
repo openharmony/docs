@@ -1732,6 +1732,45 @@ try {
 }
 ```
 
+### getGlobalRect<sup>13+</sup>
+
+getGlobalRect(): Rect
+
+获取窗口在屏幕上的真实显示区域，同步接口。
+
+在某些设备上，窗口显示时可能经过了缩放，此接口可以获取缩放后窗口在屏幕上的真实位置和大小。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| [Rect](#rect7) | 四元组分别表示距离屏幕左上角的x坐标、距离屏幕左上角的y坐标、缩放后的窗口宽度和缩放后的窗口高度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  let rect = windowClass.getGlobalRect();
+  console.info(`Succeeded in getting window rect: ` + JSON.stringify(rect));
+} catch (exception) {
+  console.error(`Failed to get window rect. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### getWindowAvoidArea<sup>9+</sup>
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea

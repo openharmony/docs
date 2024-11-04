@@ -564,7 +564,7 @@ passwordRules(value: string)
 
 ### cancelButton<sup>11+</sup>
 
-cancelButton(value: CancelButtonOptions)
+cancelButton(options: CancelButtonOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
 
@@ -1118,7 +1118,7 @@ onEditChange(callback:Callback\<boolean>)
 
 | 参数名    | 类型    | 必填 | 说明                 |
 | --------- | ------- | ---- | -------------------- |
-| callback | Callback\<boolean> | 是   | 输入状态变化回调，其参为true表示正在输入。 |
+| callback | Callback\<boolean> | 是   | 输入状态变化回调，返回值为true表示正在输入。 |
 
 ### onCopy<sup>8+</sup>
 
@@ -1134,7 +1134,7 @@ onCopy(callback:Callback\<string>)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 复制回调，其参为复制的文本内容。 |
+| callback | Callback\<string> | 是   | 复制回调，其返回值为复制的文本内容。 |
 
 ### onCut<sup>8+</sup>
 
@@ -1150,7 +1150,7 @@ onCut(callback:Callback\<string>)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 剪切回调，其参为剪切的文本内容。 |
+| callback | Callback\<string> | 是   | 剪切回调，其返回值为剪切的文本内容。 |
 
 ### onPaste<sup>8+</sup>
 
@@ -1398,6 +1398,8 @@ keepEditableState(): void
 
 type OnPasteCallback = (content: string, event: PasteEvent) => void
 
+粘贴回调。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1412,6 +1414,8 @@ type OnPasteCallback = (content: string, event: PasteEvent) => void
 ## OnSubmitCallback<sup>14+</sup>对象说明
 
 type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
+
+提交回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1428,6 +1432,8 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 
 type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: number) => void
 
+文本选择变化回调或光标位置变化回调。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1442,6 +1448,8 @@ type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: numb
 ## OnContentScrollCallback<sup>14+</sup>对象说明
 
 type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => void
+
+文本内容滚动回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
