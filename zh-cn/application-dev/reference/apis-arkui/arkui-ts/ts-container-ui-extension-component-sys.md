@@ -636,6 +636,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```ts
 // 扩展Ability入口页面文件extension.ets
 @Entry
+@Component
 struct Extension {
   @StorageLink('message') storageLink: string = '';
   private scroller: Scroller = new Scroller();
