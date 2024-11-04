@@ -36,6 +36,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
            callbackData, CallJs, &callbackData->tsfn);
    
        // 创建一个异步任务
+       // ExecuteWork会执行在一个由libuv创建的非JS线程上，此处使用napi_create_async_work是为了模拟在非JS线程场景使用napi_call_threadsafe_function接口向JS线程提交任务
        napi_create_async_work(env, nullptr, resourceName, ExecuteWork, WorkComplete, callbackData,
            &callbackData->work);
    
@@ -127,7 +128,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
    ```
 
 5. 模块初始化以及ArkTS侧调用接口。
-   ```
+   ```c++
    // 模块初始化
    static napi_value Init(napi_env env, napi_value exports) {
        CallbackData *callbackData = new CallbackData(); // 可在线程退出时释放
