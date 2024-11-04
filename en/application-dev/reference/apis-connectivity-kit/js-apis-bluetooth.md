@@ -298,7 +298,7 @@ Obtains the class of the remote Bluetooth device.
 
 | Type                         | Description      |
 | --------------------------- | -------- |
-| [DeviceClass](#deviceclass8deprecated) | Class of the remote device obtained.|
+| [DeviceClass](#deviceclassdeprecated) | Class of the remote device obtained.|
 
 **Example**
 
@@ -333,7 +333,7 @@ let devices : Array<string> = bluetooth.getPairedDevices();
 ```
 
 
-## bluetooth.setBluetoothScanMode<sup>8+</sup><sup>(deprecated)</sup>
+## bluetooth.setBluetoothScanMode<sup>(deprecated)</sup>
 
 setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 
@@ -350,7 +350,7 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 
 | Name     | Type                   | Mandatory  | Description                          |
 | -------- | --------------------- | ---- | ---------------------------- |
-| mode     | [ScanMode](#scanmode8deprecated) | Yes   | Bluetooth scan mode to set.                     |
+| mode     | [ScanMode](#scanmodedeprecated) | Yes   | Bluetooth scan mode to set.                     |
 | duration | number                | Yes   | Duration (in ms) in which the device can be discovered. The value **0** indicates unlimited time.|
 
 **Return value**
@@ -385,7 +385,7 @@ Obtains the Bluetooth scan mode.
 
 | Type                   | Description     |
 | --------------------- | ------- |
-| [ScanMode](#scanmode8deprecated) | Bluetooth scan mode to set.|
+| [ScanMode](#scanmodedeprecated) | Bluetooth scan mode to set.|
 
 **Example**
 
@@ -491,7 +491,7 @@ bluetooth.on("pinRequired", onReceivePinRequiredEvent);
 
 ## bluetooth.on('bluetoothDeviceFind')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: "bluetoothDeviceFind", callback: Callback&lt;Array&lt;string&gt;&gt;): void
+on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Subscribes to the Bluetooth device discovery events.
 
@@ -525,7 +525,7 @@ bluetooth.on('bluetoothDeviceFind', onReceiveEvent);
 
 ## bluetooth.off('bluetoothDeviceFind')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "bluetoothDeviceFind", callback?: Callback&lt;Array&lt;string&gt;&gt;): void
+off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
 Unsubscribes from the Bluetooth device discovery events.
 
@@ -560,7 +560,7 @@ bluetooth.off('bluetoothDeviceFind', onReceiveEvent);
 
 ## bluetooth.on('pinRequired')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: "pinRequired", callback: Callback&lt;PinRequiredParam&gt;): void
+on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
 Subscribes to the pairing request events of the remote Bluetooth device.
 
@@ -576,7 +576,7 @@ Subscribes to the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.    |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam8deprecated)&gt; | Yes   | Callback used to return the pairing request. You need to implement this callback.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | Yes   | Callback used to return the pairing request. You need to implement this callback.|
 
 **Return value**
 
@@ -594,7 +594,7 @@ bluetooth.on('pinRequired', onReceiveEvent);
 
 ## bluetooth.off('pinRequired')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "pinRequired", callback?: Callback&lt;PinRequiredParam&gt;): void
+off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 Unsubscribes from the pairing request events of the remote Bluetooth device.
 
@@ -610,7 +610,7 @@ Unsubscribes from the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.            |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam8deprecated)&gt; | No   | Callback to unregister. The input parameter is the pairing request parameter. If this parameter is not set, this API unregisters all callbacks for **type**.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparamdeprecated)&gt; | No   | Callback to unregister. The input parameter is the pairing request parameter. If this parameter is not set, this API unregisters all callbacks for **type**.|
 
 **Return value**
 
@@ -627,9 +627,9 @@ bluetooth.off('pinRequired', onReceiveEvent);
 ```
 
 
-## bluetooth.on('bondStateChange')<sup>8+</sup><sup>(deprecated)</sup>
+## bluetooth.on('bondStateChange')<sup>(deprecated)</sup>
 
-on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
+on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 Subscribes to the Bluetooth pairing state changes.
 
@@ -645,7 +645,7 @@ Subscribes to the Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondStateParam](#bondstateparam8deprecated)&gt; | Yes   | Callback used to return the pairing state. You need to implement this callback.   |
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | Yes   | Callback used to return the pairing state. You need to implement this callback.   |
 
 **Return value**
 
@@ -663,7 +663,7 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 
 ## bluetooth.off('bondStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
+off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 
 Unsubscribes from the Bluetooth pairing state changes.
 
@@ -679,7 +679,7 @@ Unsubscribes from the Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.    |
-| callback | Callback&lt;[BondStateParam](#bondstateparam8deprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for **type**.|
+| callback | Callback&lt;[BondStateParam](#bondstateparamdeprecated)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for **type**.|
 
 **Return value**
 
@@ -698,7 +698,7 @@ bluetooth.off('bondStateChange', onReceiveEvent);
 
 ## bluetooth.on('stateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
+on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
 Subscribes to the Bluetooth connection state changes.
 
@@ -732,7 +732,7 @@ bluetooth.on('stateChange', onReceiveEvent);
 
 ## bluetooth.off('stateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
+off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 Unsubscribes from the Bluetooth connection state changes.
 
@@ -783,7 +783,7 @@ Creates a server listening socket.
 | Name     | Type                         | Mandatory  | Description                     |
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | Yes   | Name of the service.                 |
-| option   | [SppOption](#sppoption8deprecated)     | Yes   | Serial port profile (SPP) listening configuration.             |
+| option   | [SppOption](#sppoptiondeprecated)     | Yes   | Serial port profile (SPP) listening configuration.             |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the server socket ID.|
 
 **Example**
@@ -847,7 +847,7 @@ bluetooth.sppAccept(serverNumber, acceptClientSocket);
 ```
 
 
-## bluetooth.sppConnect<sup>8+</sup><sup>(deprecated)</sup>
+## bluetooth.sppConnect<sup>(deprecated)</sup>
 
 sppConnect(device: string, option: SppOption, callback: AsyncCallback&lt;number&gt;): void
 
@@ -865,7 +865,7 @@ Initiates an SPP connection to a remote device from the client.
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | device   | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
-| option   | [SppOption](#sppoption8deprecated)     | Yes   | Configuration for connecting to the SPP client.                 |
+| option   | [SppOption](#sppoptiondeprecated)     | Yes   | Configuration for connecting to the SPP client.                 |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.       |
 
 **Example**
@@ -1004,7 +1004,7 @@ if (ret) {
 
 ## bluetooth.on('sppRead')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: "sppRead", clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
+on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. Use [bluetoothManager.on('sppRead')](js-apis-bluetoothManager.md#bluetoothmanageronsppreaddeprecated) instead.
@@ -1048,7 +1048,7 @@ bluetooth.on('sppRead', clientNumber, dataRead);
 
 ## bluetooth.off('sppRead')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "sppRead", clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
+off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt;): void
 
 Unsubscribes from the SPP read request events.
 
@@ -1101,7 +1101,7 @@ Obtains a profile object.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| profileId | [ProfileId](#profileid8deprecated) | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
+| profileId | [ProfileId](#profileiddeprecated) | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -1116,7 +1116,7 @@ let a2dpSrc : bluetooth.A2dpSourceProfile = bluetooth.getProfile(bluetooth.Profi
 ```
 
 
-## bluetooth.BLE
+## BLE
 
 ### createGattServer<sup>(deprecated)</sup>
 
@@ -1272,7 +1272,7 @@ bluetooth.BLE.stopBLEScan();
 
 ### on('BLEDeviceFind')<sup>(deprecated)</sup>
 
-on(type: "BLEDeviceFind", callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
+on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Subscribe to the BLE device discovery events.
 
@@ -1306,7 +1306,7 @@ bluetooth.BLE.on('BLEDeviceFind', onReceiveEvent);
 
 ### off('BLEDeviceFind')<sup>(deprecated)</sup>
 
-off(type: "BLEDeviceFind", callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
+off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
 Unsubscribes from the BLE device discovery events.
 
@@ -1475,7 +1475,7 @@ let ret : boolean = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 
 ### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the A2DP connection state changes.
 
@@ -1489,7 +1489,7 @@ Subscribes to the A2DP connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | Yes   | Callback used to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -1508,7 +1508,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the A2DP connection state changes.
 
@@ -1522,7 +1522,7 @@ Unsubscribes from the A2DP connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | No   | Callback to unregister.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No   | Callback to unregister.                              |
 
 **Return value**
 
@@ -1561,7 +1561,7 @@ Obtains the playing state of a device.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [PlayingState](#playingstate8deprecated) | Playing state of the remote device obtained.|
+| [PlayingState](#playingstatedeprecated) | Playing state of the remote device obtained.|
 
 **Example**
 
@@ -1646,7 +1646,7 @@ let ret : boolean = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 
 ### on('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+on(type: 'connectionStateChange', callback: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Subscribes to the HFP connection state changes.
 
@@ -1659,8 +1659,8 @@ Subscribes to the HFP connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | Yes   | Callback used to return the HFP connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -1680,7 +1680,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup><sup>(deprecated)</sup>
 
-off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt;): void
 
 Unsubscribes from the HFP connection state changes.
 
@@ -1693,8 +1693,8 @@ Unsubscribes from the HFP connection state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam8deprecated)&gt; | No   | Callback to unregister.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No   | Callback to unregister.                              |
 
 **Return value**
 
@@ -2032,7 +2032,7 @@ if (ret) {
 
 ### on('characteristicRead')<sup>(deprecated)</sup>
 
-on(type: "characteristicRead", callback: Callback&lt;CharacteristicReadReq&gt;): void
+on(type: 'characteristicRead', callback: Callback&lt;CharacteristicReadReq&gt;): void
 
 Subscribes to the characteristic read request events.
 
@@ -2084,7 +2084,7 @@ gattServer.on("characteristicRead", ReadCharacteristicReq);
 
 ### off('characteristicRead')<sup>(deprecated)</sup>
 
-off(type: "characteristicRead", callback?: Callback&lt;CharacteristicReadReq&gt;): void
+off(type: 'characteristicRead', callback?: Callback&lt;CharacteristicReadReq&gt;): void
 
 Unsubscribes from the characteristic read request events.
 
@@ -2116,7 +2116,7 @@ gattServer.off("characteristicRead");
 
 ### on('characteristicWrite')<sup>(deprecated)</sup>
 
-on(type: "characteristicWrite", callback: Callback&lt;CharacteristicWriteReq&gt;): void
+on(type: 'characteristicWrite', callback: Callback&lt;CharacteristicWriteReq&gt;): void
 
 Subscribes to the characteristic write request events.
 
@@ -2171,7 +2171,7 @@ gattServer.on("characteristicWrite", WriteCharacteristicReq);
 
 ### off('characteristicWrite')<sup>(deprecated)</sup>
 
-off(type: "characteristicWrite", callback?: Callback&lt;CharacteristicWriteReq&gt;): void
+off(type: 'characteristicWrite', callback?: Callback&lt;CharacteristicWriteReq&gt;): void
 
 Unsubscribes from the characteristic write request events.
 
@@ -2203,7 +2203,7 @@ gattServer.off("characteristicWrite");
 
 ### on('descriptorRead')<sup>(deprecated)</sup>
 
-on(type: "descriptorRead", callback: Callback&lt;DescriptorReadReq&gt;): void
+on(type: 'descriptorRead', callback: Callback&lt;DescriptorReadReq&gt;): void
 
 Subscribes to the descriptor read request events.
 
@@ -2219,7 +2219,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreqdeprecated)&gt; | Yes   | Callback used to return a descriptor read request event from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreqdeprecated)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.       |
 
 **Return value**
 
@@ -2255,7 +2255,7 @@ gattServer.on("descriptorRead", ReadDescriptorReq);
 
 ### off('descriptorRead')<sup>(deprecated)</sup>
 
-off(type: "descriptorRead", callback?: Callback&lt;DescriptorReadReq&gt;): void
+off(type: 'descriptorRead', callback?: Callback&lt;DescriptorReadReq&gt;): void
 
 Unsubscribes from the descriptor read request events.
 
@@ -2287,7 +2287,7 @@ gattServer.off("descriptorRead");
 
 ### on('descriptorWrite')<sup>(deprecated)</sup>
 
-on(type: "descriptorWrite", callback: Callback&lt;DescriptorWriteReq&gt;): void
+on(type: 'descriptorWrite', callback: Callback&lt;DescriptorWriteReq&gt;): void
 
 Subscribes to the descriptor write request events.
 
@@ -2303,7 +2303,7 @@ Subscribes to the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereqdeprecated)&gt; | Yes   | Callback used to return a descriptor write request from the GATT client.        |
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereqdeprecated)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.        |
 
 **Return value**
 
@@ -2341,7 +2341,7 @@ gattServer.on("descriptorWrite", WriteDescriptorReq);
 
 ### off('descriptorWrite')<sup>(deprecated)</sup>
 
-off(type: "descriptorWrite", callback?: Callback&lt;DescriptorWriteReq&gt;): void
+off(type: 'descriptorWrite', callback?: Callback&lt;DescriptorWriteReq&gt;): void
 
 Unsubscribes from the descriptor write request events.
 
@@ -2373,7 +2373,7 @@ gattServer.off("descriptorWrite");
 
 ### on('connectStateChange')<sup>(deprecated)</sup>
 
-on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
+on(type: 'connectStateChange', callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state changes.
 
@@ -2410,7 +2410,7 @@ gattServer.on("connectStateChange", Connected);
 
 ### off('connectStateChange')<sup>(deprecated)</sup>
 
-off(type: "connectStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
+off(type: 'connectStateChange', callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state changes.
 
@@ -2977,7 +2977,7 @@ device.setNotifyCharacteristicChanged(characteristic, false);
 
 ### on('BLECharacteristicChange')<sup>(deprecated)</sup>
 
-on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
+on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
 Subscribes to the BLE characteristic changes. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** method is called.
 
@@ -3014,7 +3014,7 @@ device.on('BLECharacteristicChange', CharacteristicChange);
 
 ### off('BLECharacteristicChange')<sup>(deprecated)</sup>
 
-off(type: "BLECharacteristicChange", callback?: Callback&lt;BLECharacteristic&gt;): void
+off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt;): void
 
 Unsubscribes from the BLE characteristic changes.
 
@@ -3046,7 +3046,7 @@ device.off('BLECharacteristicChange');
 
 ### on('BLEConnectionStateChange')<sup>(deprecated)</sup>
 
-on(type: "BLEConnectionStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
+on(type: 'BLEConnectionStateChange', callback: Callback&lt;BLEConnectChangedState&gt;): void
 
 Subscribes to the BLE connection state changes.
 
@@ -3082,7 +3082,7 @@ device.on('BLEConnectionStateChange', ConnectStateChanged);
 
 ### off('BLEConnectionStateChange')<sup>(deprecated)</sup>
 
-off(type: "BLEConnectionStateChange", callback?: Callback&lt;BLEConnectChangedState&gt;): void
+off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectChangedState&gt;): void
 
 Unsubscribes from the BLE connection state changes.
 
@@ -3244,7 +3244,7 @@ gattClient.getRssiValue().then((data : number) => {
 })
 ```
 
-## ScanMode<sup>8+</sup><sup>(deprecated)</sup>
+## ScanMode<sup>(deprecated)</sup>
 
 Enumerates the scan modes.
 
@@ -3262,7 +3262,7 @@ Enumerates the scan modes.
 | SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE | 4    | General connectable and discoverable mode.|
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | Limited connectable and discoverable mode.|
 
-## BondState<sup>8+</sup><sup>(deprecated)</sup>
+## BondState<sup>(deprecated)</sup>
 
 Enumerates the pairing states.
 
@@ -3278,7 +3278,7 @@ Enumerates the pairing states.
 | BOND_STATE_BONDED  | 2    | Paired.  |
 
 
-## SppOption<sup>8+</sup><sup>(deprecated)</sup>
+## SppOption<sup>(deprecated)</sup>
 
 Defines the SPP configuration parameters.
 
@@ -3291,10 +3291,10 @@ Defines the SPP configuration parameters.
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | Yes   | Yes   | UUID of the SPP.|
 | secure | boolean             | Yes   | Yes   | Whether it is a secure channel.   |
-| type   | [SppType](#spptype8deprecated) | Yes   | Yes   | Type of the SPP link.   |
+| type   | [SppType](#spptypedeprecated) | Yes   | Yes   | Type of the SPP link.   |
 
 
-## SppType<sup>8+</sup><sup>(deprecated)</sup>
+## SppType<sup>(deprecated)</sup>
 
 Enumerates the SPP link types.
 
@@ -3408,7 +3408,6 @@ Defines the parameters of the **CharacteristicWriteReq** event received by the s
 | deviceId           | string | Yes   | No   | Address of the remote device that sends the **CharacteristicWriteReq** event, for example, XX:XX:XX:XX:XX:XX.|
 | transId            | number | Yes   | No   | Transmission ID of the write request. The response returned by the server must use the same transmission ID.      |
 | offset             | number | Yes   | No   | Start position for writing the characteristic value. For example, **k** means to write from the kth byte. The response returned by the server must use the same offset.|
-| descriptorUuid     | string | Yes   | No   | UUID of the descriptor, for example, **00002902-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid | string | Yes   | No   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | serviceUuid        | string | Yes   | No   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
@@ -3665,7 +3664,7 @@ Defines the service data contained in an advertisement packet.
 | serviceValue | ArrayBuffer | Yes   | Yes   | Service data.   |
 
 
-## PinRequiredParam<sup>8+</sup><sup>(deprecated)</sup>
+## PinRequiredParam<sup>(deprecated)</sup>
 
 Defines the pairing request parameters.
 
@@ -3680,7 +3679,7 @@ Defines the pairing request parameters.
 | pinCode  | string | Yes   | No   | Key for the device pairing.  |
 
 
-## BondStateParam<sup>8+</sup><sup>(deprecated)</sup>
+## BondStateParam<sup>(deprecated)</sup>
 
 Defines the pairing state parameters.
 
@@ -3695,7 +3694,7 @@ Defines the pairing state parameters.
 | state    | BondState   | Yes   | No   | State of the device.|
 
 
-## StateChangeParam<sup>8+</sup><sup>(deprecated)</sup>
+## StateChangeParam<sup>(deprecated)</sup>
 
 Defines the profile state change parameters.
 
@@ -3710,7 +3709,7 @@ Defines the profile state change parameters.
 | state    | [ProfileConnectionState](#profileconnectionstatedeprecated) | Yes  | No  | Profile connection state of the device.|
 
 
-## DeviceClass<sup>8+</sup><sup>(deprecated)</sup>
+## DeviceClass<sup>(deprecated)</sup>
 
 Defines the class of a Bluetooth device.
 
@@ -3721,13 +3720,13 @@ Defines the class of a Bluetooth device.
 
 | Name             | Type                               | Readable  | Writable  | Description              |
 | --------------- | ----------------------------------- | ---- | ---- | ---------------- |
-| majorClass      | [MajorClass](#majorclass8deprecated)           | Yes   | No   | Major classes of Bluetooth devices.  |
-| majorMinorClass | [MajorMinorClass](#majorminorclass8deprecated) | Yes   | No   | Major and minor classes of Bluetooth devices.|
+| majorClass      | [MajorClass](#majorclassdeprecated)           | Yes   | No   | Major classes of Bluetooth devices.  |
+| majorMinorClass | [MajorMinorClass](#majorminorclassdeprecated) | Yes   | No   | Major and minor classes of Bluetooth devices.|
 | classOfDevice   | number                              | Yes   | No   | Class of the device.         |
 
 
 
-## MajorClass<sup>8+</sup><sup>(deprecated)</sup>
+## MajorClass<sup>(deprecated)</sup>
 
 Enumerates the major classes of Bluetooth devices.
 
@@ -3751,7 +3750,7 @@ Enumerates the major classes of Bluetooth devices.
 | MAJOR_UNCATEGORIZED | 0x1F00 | Unclassified device.  |
 
 
-## MajorMinorClass<sup>8+</sup><sup>(deprecated)</sup>
+## MajorMinorClass<sup>(deprecated)</sup>
 
 Enumerates the major and minor classes of Bluetooth devices.
 
@@ -3850,7 +3849,7 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
 
 
-## PlayingState<sup>8+</sup><sup>(deprecated)</sup>
+## PlayingState<sup>(deprecated)</sup>
 
 Enumerates the A2DP playing states.
 
@@ -3865,7 +3864,7 @@ Enumerates the A2DP playing states.
 | STATE_PLAYING     | 0x0001 | Playing.|
 
 
-## ProfileId<sup>8+</sup><sup>(deprecated)</sup>
+## ProfileId<sup>(deprecated)</sup>
 
 Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOST** and **PROFILE_PAN_NETWORK**.
 
