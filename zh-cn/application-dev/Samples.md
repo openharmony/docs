@@ -975,7 +975,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/FileManagement/FileManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/FileManagement/FileManager)
 
 #### 选择并查看文档与媒体文件
 
