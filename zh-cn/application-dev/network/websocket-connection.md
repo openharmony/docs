@@ -88,4 +88,4 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
 
 针对WebSocket连接的开发，有以下相关实例可供参考：
 
-- [WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)
+- [WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Connectivity/WebSocket)

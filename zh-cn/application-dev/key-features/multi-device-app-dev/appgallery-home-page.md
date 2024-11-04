@@ -384,7 +384,7 @@ export default struct Home {
 
 针对应用市场应用开发，有以下相关实例可以参考：
 
-- 应用市场开发：[典型页面场景：应用市场首页（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket)
+- 应用市场开发：[典型页面场景：应用市场首页（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/SuperFeature/MultiDeviceAppDev/AppMarket)
 
 
 

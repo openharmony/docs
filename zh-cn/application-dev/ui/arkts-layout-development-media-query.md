@@ -274,4 +274,4 @@ struct MediaQueryExample {
 
 针对媒体查询开发，有以下相关实例可供参考：
 
-- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)
+- [横竖屏切换（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/UI/ArkTsComponentCollection/MediaQuery)

@@ -103,7 +103,7 @@ position、offset等属性影响了布局容器相对于自身或其他组件的
 
 针对布局开发，有以下相关实例可供参考：
 
-- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
 
 - [ArkUI常用布局容器对齐方式（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/OHLayoutAlign)
 

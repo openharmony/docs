@@ -209,7 +209,7 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 
 针对OHAudio开发音频录制，有以下相关实例可供参考：
 
-- [OHAudio录制和播放](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/OHAudio)
+- [OHAudio录制和播放](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/DocsSample/Media/Audio/OHAudio)
 
 <!--RP1-->
 <!--RP1End-->

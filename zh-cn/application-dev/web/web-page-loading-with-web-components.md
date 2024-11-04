@@ -417,4 +417,4 @@ struct Index {
 
 针对Web组件开发，有以下相关实例可供参考：
 
-- [浏览器（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)
+- [浏览器（ArkTS）（Full SDK）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Web/Browser)

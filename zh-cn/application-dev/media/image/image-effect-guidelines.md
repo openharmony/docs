@@ -422,4 +422,4 @@ target_link_libraries(entry PUBLIC
 
 针对ImageEffect的开发，有以下相关实例可供参考：
 
-- [ImageEffect（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageEffect)
+- [ImageEffect（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Media/ImageEffect)
