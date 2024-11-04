@@ -450,9 +450,6 @@ uitest dumpLayout -p /data/local/tmp/1.json
 |---------|------|-----------------|
 | point_x | 是      | 点击x坐标点。 |
 | point_y | 是       | 点击y坐标点。 |
-| point_x   | 是      | 点击x坐标点。 |
-| point_y   | 是       | 点击y坐标点。 |
-
 
 ```shell
 ## 执行点击事件。
