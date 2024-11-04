@@ -442,7 +442,7 @@ uitest dumpLayout -p /data/local/tmp/1.json
 | drag   | 是    | 模拟拖拽操作。     | 
 | dircFling   | 是    | 模拟指定方向滑动操作。     |
 | inputText   | 是    | 模拟输入框输入文本操作。     |
-| keyEvent   | 是    | 模拟实体按键事件(如:键盘,电源键,返回上一级,返回桌面等),以及组合按键操作。     | 
+| keyEvent   | 是    | 模拟实体按键事件(如：键盘,电源键,返回上一级,返回桌面等)，以及组合按键操作。     | 
 
 
 #### uiInput click使用示例
