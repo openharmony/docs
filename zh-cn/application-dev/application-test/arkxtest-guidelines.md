@@ -20,17 +20,11 @@
 
   ![](figures/TestFlow.PNG)
 
-
 ### UI测试框架
 
   图3.UI测试框架主要功能
 
   ![](figures/Uitest.PNG)
-
-
-## 约束与限制
-
-- UI测试框架的能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
 
 ## 环境准备
 
@@ -38,7 +32,7 @@
 
 - 自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
 
-- 脚本执行需要PC连接硬件设备，如<!--RP1-->开发板<!--RP1End-->等。
+- 脚本执行需要PC连接硬件设备等。
 
 ### 搭建环境
 
@@ -49,8 +43,10 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ### 新建测试脚本
 
 <!--RP2-->
-1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
-2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
+在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
+
+在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
+
 <!--RP2End-->
 
 ### 编写单元测试脚本
@@ -101,84 +97,84 @@ export default function abilityTest() {
 
 ### 编写UI测试脚本
 
-本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
+本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
 1.编写Index.ets页面代码， 作为被测示例demo。
 
-```ts
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World'
+ ```ts
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Hello World'
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Text("Next")
-          .fontSize(50)
-          .margin({top:20})
-          .fontWeight(FontWeight.Bold)
-        Text("after click")
-          .fontSize(50)
-          .margin({top:20})
-          .fontWeight(FontWeight.Bold)
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+          Text("Next")
+            .fontSize(50)
+            .margin({top:20})
+            .fontWeight(FontWeight.Bold)
+          Text("after click")
+            .fontSize(50)
+            .margin({top:20})
+            .fontWeight(FontWeight.Bold)
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
-}
-```
+ ```
 
 2.在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
-```ts
-import { describe, it, expect } from '@ohos/hypium';
-// 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-import { UIAbility, Want } from '@kit.AbilityKit';
+ ```ts
+  import { describe, it, expect } from '@ohos/hypium';
+  // 导入测试依赖kit
+  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+  import { UIAbility, Want } from '@kit.AbilityKit';
 
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-function sleep(time: number) {
-  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
-}
-export default function abilityTest() {
-  describe('ActsAbilityTest', () => {
-    it('testUiExample',0, async (done: Function) => {
-      console.info("uitest: TestUiExample begin");
-      //start tested ability
-      const want: Want = {
-        bundleName: bundleName,
-        abilityName: 'EntryAbility'
-      }
-      await delegator.startAbility(want);
-      await sleep(1000);
-      //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
-      //ui test code
-      //init driver
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      //find button on text 'Next'
-      let button = await driver.findComponent(ON.text('Next'));
-      //click button
-      await button.click();
-      await driver.delayMs(1000);
-      //check text
-      await driver.assertComponentExist(ON.text('after click'));
-      await driver.pressBack();
-      done();
+  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+  function sleep(time: number) {
+    return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+  }
+  export default function abilityTest() {
+    describe('ActsAbilityTest', () => {
+       it('testUiExample',0, async (done: Function) => {
+          console.info("uitest: TestUiExample begin");
+          //start tested ability
+          const want: Want = {
+             bundleName: bundleName,
+             abilityName: 'EntryAbility'
+          }
+          await delegator.startAbility(want);
+          await sleep(1000);
+          //check top display ability
+          await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
+             console.info("get top ability");
+             expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
+          })
+          //ui test code
+          //init driver
+          let driver = Driver.create();
+          await driver.delayMs(1000);
+          //find button on text 'Next'
+          let button = await driver.findComponent(ON.text('Next'));
+          //click button
+          await button.click();
+          await driver.delayMs(1000);
+          //check text
+          await driver.assertComponentExist(ON.text('after click'));
+          await driver.pressBack();
+          done();
+       })
     })
-  })
-}
-```
+  }
+ ```
 
 ## 执行测试脚本
 
@@ -202,7 +198,7 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5)下各章节内的覆盖率统计模式。。
 
 ### CMD执行
 
@@ -237,11 +233,11 @@ export default function abilityTest() {
 | size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small        
 | stress       | 指定要执行用例的执行次数                                    |  正整数                                         | -s stress 1000                            |
 
-**cmd窗口执行test命令**
+**在cmd窗口执行test命令**
 
-- 参数配置和命令基于Stage模型
-- 打开cmd窗口
-- 执行 aa test 命令
+> **说明：**
+>
+>参数配置和命令均是基于Stage模型。
 
 
 示例代码1：执行所有测试用例。
@@ -314,24 +310,24 @@ export default function abilityTest() {
 
 - cmd模式执行过程,会打印如下相关日志信息。
 
-```
-OHOS_REPORT_STATUS: class=testStop
-OHOS_REPORT_STATUS: current=1
-OHOS_REPORT_STATUS: id=JS
-OHOS_REPORT_STATUS: numtests=447
-OHOS_REPORT_STATUS: stream=
-OHOS_REPORT_STATUS: test=stop_0
-OHOS_REPORT_STATUS_CODE: 1
+ ```
+  OHOS_REPORT_STATUS: class=testStop
+  OHOS_REPORT_STATUS: current=1
+  OHOS_REPORT_STATUS: id=JS
+  OHOS_REPORT_STATUS: numtests=447
+  OHOS_REPORT_STATUS: stream=
+  OHOS_REPORT_STATUS: test=stop_0
+  OHOS_REPORT_STATUS_CODE: 1
 
-OHOS_REPORT_STATUS: class=testStop
-OHOS_REPORT_STATUS: current=1
-OHOS_REPORT_STATUS: id=JS
-OHOS_REPORT_STATUS: numtests=447
-OHOS_REPORT_STATUS: stream=
-OHOS_REPORT_STATUS: test=stop_0
-OHOS_REPORT_STATUS_CODE: 0
-OHOS_REPORT_STATUS: consuming=4
-```
+  OHOS_REPORT_STATUS: class=testStop
+  OHOS_REPORT_STATUS: current=1
+  OHOS_REPORT_STATUS: id=JS
+  OHOS_REPORT_STATUS: numtests=447
+  OHOS_REPORT_STATUS: stream=
+  OHOS_REPORT_STATUS: test=stop_0
+  OHOS_REPORT_STATUS_CODE: 0
+  OHOS_REPORT_STATUS: consuming=4
+ ```
 
 | 日志输出字段               | 日志输出字段含义       |
 | -------           | -------------------------|
@@ -346,14 +342,15 @@ OHOS_REPORT_STATUS: consuming=4
 
 - cmd执行完成后,会打印如下相关日志信息。
 
-```
-OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
-OHOS_REPORT_CODE: 0
+ ```
+  OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
+  OHOS_REPORT_CODE: 0
 
-OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
-OHOS_REPORT_STATUS: taskconsuming=16029
+  OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
+  OHOS_REPORT_STATUS: taskconsuming=16029
 
-```
+ ```
+
 | 日志输出字段               | 日志输出字段含义           |
 | ------------------| -------------------------|
 | run    | 当前测试包用例总数。 |
@@ -363,10 +360,14 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 | Ignore | 当前未执行用例个数。 |
 | taskconsuming| 执行当前测试用例总耗时（ms）。 |
 
+> **说明：**
+>
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
 ## 录制用户操作
+
 ### 使用录制功能
+
 > 将当前界面操作记录到/data/local/tmp/layout/record.csv，结束录制操作使用Ctrl+C结束录制
 
 ```shell  
