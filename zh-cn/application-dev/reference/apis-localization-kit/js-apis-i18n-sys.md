@@ -24,7 +24,7 @@ static setSystemLanguage(language: string): void
 
 设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
 
-若设置系统语言后，需要[监听事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED，可以[订阅](../apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)该事件。
+若要监听系统语言变化，可以[监听事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED
 
 **系统接口**：此接口为系统接口。
 
