@@ -614,7 +614,7 @@ typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
 **描述**
 图像序列编码选项。
 
-**起始版本：** 12
+**起始版本：** 13
 
 
 ### OH_PictureMetadata
