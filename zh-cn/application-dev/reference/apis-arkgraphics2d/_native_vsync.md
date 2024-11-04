@@ -80,7 +80,7 @@ VSync回调函数类型。
 
 | 名称 | 描述 |
 | -------- | -------- |
-| timestamp | VSync时间戳。 |
+| timestamp | VSync使用CLOCK_MONOTONIC获取的系统时间戳, 单位为纳秒。 |
 | data | 用户自定义数据。 |
 
 
