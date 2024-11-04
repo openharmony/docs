@@ -556,7 +556,7 @@ struct NavigationContentMsgStack {
 3. 再次点击`change flag`，改变`flag`为true：
     - `ChildComponent`从复用池中重新加入到组件树上。
     - 回调aboutToReuse生命周期，将当前最新的`count`值同步给子组件。`desc`是通过@State->@Link同步的，所以无需开发者手动在aboutToReuse中赋值。
-    - 设置ChildComponent为active状态，并且刷新在inactive时没有刷新的组件，在当前例子中，就是Text(ChildComponent desc: ${this.desc})，并回调@Watch('descChange')。
+    - 设置ChildComponent为active状态，并且刷新在inactive时没有刷新的组件，在当前例子中，就是Text(ChildComponent desc: ${this.desc})。
 
 
 ```ts
@@ -722,8 +722,8 @@ class MyDataSource extends BasicDataSource {
 @Component({freezeWhenInactive: true})
 struct ChildComponent {
   @Link @Watch('descChange') desc: string;
-  item: string = ''
-  index: number = 0;
+  @State item: string = ''
+  @State index: number = 0;
   descChange() {
     console.info(`ChildComponent messageChange ${this.desc}`);
   }
