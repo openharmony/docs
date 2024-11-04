@@ -122,64 +122,6 @@ static OH_Crypto_ErrCode doAsymEccCovert()
 }
 ```
 
-## 指定PKCS8二进制数据转换ECC私钥
-
-对应的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)。
-
-获取ECC公钥或私钥二进制数据，封装成[Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob)再转为ECC密钥格式。示例如下：
-
-1. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'ECC256'，创建密钥算法为ECC、密钥长度为256位的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
-
-2. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)获取公钥数据字节流，获取密钥对象的二进制数据。
-
-3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，将上述生成的二进制密钥数据转为非对称密钥对象（OH_CryptoKeyPair）。
-
-```c++
-#include "CryptoArchitectureKit/crypto_common.h"
-#include "CryptoArchitectureKit/crypto_asym_key.h"
-
-static OH_Crypto_ErrCode doAsymEccCovert() 
-{
-   OH_CryptoAsymKeyGenerator *ctx = nullptr;
-   OH_CryptoKeyPair *keyPair = nullptr;
-   OH_Crypto_ErrCode ret;
-
-   ret = OH_CryptoAsymKeyGenerator_Create("ECC256", &ctx);
-   if (ret != CRYPTO_SUCCESS) {
-      return ret;
-   }
-
-   ret = OH_CryptoAsymKeyGenerator_Generate(ctx, &keyPair);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(ctx);
-      return ret;
-   }
-
-   OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
-   Crypto_DataBlob retBlob = { .data = nullptr, .len = 0 };
-   ret = OH_CryptoPubKey_Encode(pubKey, CRYPTO_DER, nullptr, &retBlob);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(ctx);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      return ret;
-   }
-
-   OH_CryptoKeyPair *dupKeyPair = nullptr;
-   ret = OH_CryptoAsymKeyGenerator_Convert(ctx, CRYPTO_DER, &retBlob, nullptr, &dupKeyPair);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(ctx);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      return ret;
-   }
-
-   OH_Crypto_FreeDataBlob(&retBlob);
-   OH_CryptoAsymKeyGenerator_Destroy(ctx);
-   OH_CryptoKeyPair_Destroy(keyPair);
-   OH_CryptoKeyPair_Destroy(dupKeyPair);
-   return ret;
-}
-```
-
 ## 指定二进制数据转换SM2密钥对
 
 对应的算法规格请查看[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)。

@@ -17,7 +17,7 @@
 2. 调用[OH_CryptoVerify_Init](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_init)，使用公钥（OH_CryptoPubKey）初始化Verify实例。
 
 3. 调用[OH_CryptoVerify_Update](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_update)，传入待验证的数据。
-   当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
+   当前单次update长度没有限制，开发者可以根据数据量判断如何调用update，如果数据量较小，可以直接调用OH_CryptoVerify_Final接口一次性传入。
 
    - 当待签名的数据较短时，可以在init完成后直接调用[OH_CryptoVerify_Final](../../reference/apis-crypto-architecture-kit/_crypto_signature_api.md#oh_cryptoverify_final)。
    - 当数据量较大时，可以多次调用update，即[分段验签](crypto-rsa-sign-sig-verify-pkcs1-by-segment-ndk.md)。

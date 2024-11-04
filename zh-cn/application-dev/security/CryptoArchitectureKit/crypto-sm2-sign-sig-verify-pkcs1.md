@@ -18,7 +18,7 @@
 4. 调用[Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3)，传入待签名的数据。
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
-5. 调用[Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2)，生成数据签名。
+5. 调用[Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1)，生成数据签名。
 
 
 **验签**
@@ -31,7 +31,7 @@
 3. 调用[Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5)，传入待验证的数据。
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
-4. 调用[Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2)，对数据进行验签。
+4. 调用[Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1)，对数据进行验签。
 
 
 - 异步方法示例：
