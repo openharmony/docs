@@ -3,12 +3,14 @@
 本开发指导将介绍如何使用AVPlayer开发流媒体播放功能，以完整地播放一个流媒体视频作为示例，实现端到端播放流媒体资源。
 当前指导仅介绍如何实现流媒体播放功能，本地音视频播放等其他场景，请参考[视频播放](using-avplayer-for-playback.md)。
 
-## 支持的流媒体格式
-- HLS, 如: http://xxxx/index.m3u8
-- Dash, 如: http://xxxx.mpd
-- Http, 如: http://xxxx.mp4
-- Https, 如: https://xxxx.mp4
-- HTTP-FLV,  如: http://xxxx.flv
+## 流媒体支持的格式
+### HTTP/HTTPS
+| 流媒体协议类型 | 典型链接 | 网络点播 | 网络直播 | 字幕 | 内容保护 | 元数据 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+| HLS | https://xxxx/index.m3u8 | 支持 | 支持 | srt/vtt | 支持 | 支持 |
+| DASH | https://xxxx.mpd | 支持 |  | srt/vtt/webvtt | 支持 | 支持 |
+| HTTP/HTTPS | https://xxxx.mp4 | 支持 |  | srt/vtt |  | 支持 |
+| HTTP-FLV | https://xxxx.flv | 支持 | 支持 | srt/vtt |  | 支持 |
 
 ## 流媒体播放流程
 创建AVPlayer，设置播放资源和窗口，设置播放参数（音量/倍速/缩放模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。在进行应用开发的过程中，开发者可以通过AVPlayer的state属性主动获取当前状态或使用on('stateChange')方法监听状态变化。如果应用在视频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。
@@ -36,7 +38,7 @@
    > 
    > - 使用网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
    > 
-   > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
+   > - 需要使用支持的播放格式与协议。
    > 
 
 4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
@@ -59,8 +61,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export class AVPlayerDemo {
   private count: number = 0;
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作
-  private fileSize: number = -1;
-  private fd: number = 0;
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // seek操作结果回调函数
@@ -93,28 +93,9 @@ export class AVPlayerDemo {
           break;
         case 'playing': // play成功调用后触发该状态机上报
           console.info('AVPlayer state playing called.');
-          if (this.count !== 0) {
-            if (this.isSeek) {
-              console.info('AVPlayer start to seek.');
-              avPlayer.seek(avPlayer.duration); //seek到音频末尾
-            } else {
-              // 当播放模式不支持seek操作时继续播放到结尾
-              console.info('AVPlayer wait to play end.');
-            }
-          } else {
-            setTimeout(() => {
-              console.info('AVPlayer playing wait to pause');
-              avPlayer.pause(); // 播放3s后调用暂停接口暂停播放
-            }, 3000)
-          }
-          this.count++;
           break;
         case 'paused': // pause成功调用后触发该状态机上报
           console.info('AVPlayer state paused called.');
-          setTimeout(() => {
-              console.info('AVPlayer paused wait to play again');
-              avPlayer.play(); // 暂停3s后再次调用播放接口开始播放
-            }, 3000)
           break;
         case 'completed': // 播放结束后触发该状态机上报
           console.info('AVPlayer state completed called.');
@@ -132,10 +113,14 @@ export class AVPlayerDemo {
           break;
       }
     })
+    // 获取流媒体缓冲状态和缓冲进度
+    avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : number) => {
+      console.info(`AVPlayer bufferingUpdate, infoType is ${infoType}, value is ${value}.`);
+    })
   }
 
   // 以下demo为通过url设置网络地址来实现播放流媒体HLS点播视频
-  async avPlayerLiveDemo() {
+  async avPlayerVodDemo() {
     // 创建avPlayer实例对象
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // 创建状态机变化回调函数
@@ -172,4 +157,4 @@ export class AVPlayerDemo {
 ```
 
 ## 异常场景说明
-- 使用avPlayer播放流媒体过程中断网：流媒体模块会跟据返回的错误码、服务器请求失败的响应时间等因素综合处理。当服务器请求失败响应时间小于3秒时，重连的时间小于10 * 服务器请求失败响应时间，即可重新播放；当服务器请求失败响应时间大于等于3秒时，重连的时间需要小于30秒，即可重新播放。
+- 使用avPlayer播放流媒体过程中断网：流媒体模块会根据返回的错误码、服务器请求失败的响应时间、请求次数等因素综合处理。若错误码类型属于不进行请求重试的类型，会向应用上报对应的错误码。若错误码类型需要进行请求重试，会在30s内进行至多10次的请求重试。若请求重试次数超过10次，或重试总时长超过30秒，会上向应用上报对应的错误码。若请求重试成功，则继续播放。
