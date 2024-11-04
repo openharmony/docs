@@ -116,7 +116,7 @@ mark(value: MarkStyle)
 | ------ | --------------------------------- | ---- | -------------------- |
 | value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
 
-### checkboxShape<sup>12</sup>
+### checkboxShape<sup>12+</sup>
 
 checkboxShape(value: CheckBoxShape)
 
