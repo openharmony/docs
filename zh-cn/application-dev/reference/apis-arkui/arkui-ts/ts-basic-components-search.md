@@ -12,13 +12,23 @@
 
 ## 接口
 
-Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })
+Search(options?: SearchOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
+
+| 参数名      | 类型         | 必填 | 说明        |
+| ----------- | ------------- | ---- | ------------- |
+| options       | [SearchOptions](#searchoptions14对象说明)| 否   | 搜索框组件初始化选项 |
+
+## SearchOptions<sup>14+</sup>对象说明
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
@@ -631,11 +641,27 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### onSubmit
 
-onSubmit(callback: SearchSubmitCallback)
+onSubmit(callback: Callback\<string>)
 
 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                          |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | Callback\<string> | 是   | 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时的回调。 |
+
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: SearchSubmitCallback)
+
+点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -663,7 +689,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 ### onCopy
 
-onCopy(callback: (value: string) => void)
+onCopy(callback:Callback\<string>)
 
 进行复制操作时，触发该回调。
 
@@ -673,13 +699,13 @@ onCopy(callback: (value: string) => void)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | 是   | 复制的文本内容。 |
+| 参数名    | 类型    | 必填 | 说明             |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | 是   | 复制回调，其参为复制的文本内容。 |
 
 ### onCut
 
-onCut(callback: (value: string) => void)
+onCut(callback:Callback\<string>)
 
 进行剪切操作时，触发该回调。
 
@@ -689,13 +715,13 @@ onCut(callback: (value: string) => void)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | 是   | 剪切的文本内容。 |
+| 参数名    | 类型    | 必填 | 说明             |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | 是   | 剪切回调，其参为剪切的文本内容。 |
 
 ### onPaste
 
-onPaste(callback: (value: string, event: PasteEvent) => void)
+onPaste(callback:OnPasteCallback )
 
 进行粘贴操作时，触发该回调。
 
@@ -704,15 +730,13 @@ onPaste(callback: (value: string, event: PasteEvent) => void)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| value               | string                                                       | 是   | 粘贴的文本内容。       |
-| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
+| callback | [OnPasteCallback](ts-basic-components-textinput#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
@@ -724,12 +748,11 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 | 参数名         | 类型   | 必填 | 说明                                              |
 | -------------- | ------ | ---- | ------------------------------------------------- |
-| selectionStart | number | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 是   | 文本选择区域结束位置。                            |
+| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
+onContentScroll(callback: OnContentScrollCallback)
 
 文本内容滚动时，触发该回调。
 
@@ -741,8 +764,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
-| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
+| callback | [OnContentScrollCallback](ts-basic-components-textinput#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
 
 ### onEditChange<sup>12+</sup>
 
