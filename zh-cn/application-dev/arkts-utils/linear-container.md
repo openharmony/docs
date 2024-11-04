@@ -92,7 +92,7 @@ LinkedList和[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)相比，�
 
 Deque依据泛型定义，要求存储位置是一片连续的内存空间，其初始容量大小为8，并支持动态扩容，每次扩容大小为原始容量的2倍。Deque底层采用循环队列实现，入队及出队操作效率都比较高。
 
-Deque和[Queue](../reference/apis-arkts/js-apis-queue.md)相比，Queue的特点是先进先出，只能在头部删除元素，尾部增加元素。
+Deque和[Queue](../reference/apis-arkts/js-apis-queue.md)相比，Deque允许在两端执行增删元素的操作，Queue只能在头部删除元素，尾部增加元素。
 
 Deque和[Vector](../reference/apis-arkts/js-apis-vector.md)相比，它们都支持在两端增删元素，但Deque不能进行中间插入的操作。对头部元素的插入删除效率高于Vector，而Vector访问元素的效率高于Deque。
 
