@@ -31,7 +31,7 @@ HDF扩展驱动框架为外设扩展驱动开发，提供稳定统一的外设�
 ### 模块功能 
 
 - 扩展外设应用：查询驱动并绑定驱动，自定义驱动与设备之间的通信方式以及数据处理方式等，即[外设扩展驱动客户端](externaldevice-guidelines.md)。
-- 外设扩展驱动（应用）：基于DDK能力开发的专业专用外设扩展驱动或外设扩展增强驱动，即[外设扩展驱动服务端](driverextensionability.md)。
+- 外设扩展驱动（应用）：基于DDK能力开发的专业专用外设扩展驱动或外设扩展增强驱动，即[外设扩展驱动](driverextensionability.md)。
 - 扩展外设管理服务（Driver Extension SA）：扩展设备管理，驱动包全生命周期管理等。
 - AMS ：用于拉起和关闭扩展驱动能力DriverExtensionAbility。
 
