@@ -444,7 +444,7 @@ uitest dumpLayout -p /data/local/tmp/1.json
 | keyEvent   | 是    | 模拟实体按键事件(如：键盘,电源键,返回上一级,返回桌面等)，以及组合按键操作。     | 
 
 
-#### uiInput click使用示例
+#### uiInput click/doubleClick/longClick使用示例
 
 | 配置参数    | 必填 | 描述            |
 |---------|------|-----------------|
