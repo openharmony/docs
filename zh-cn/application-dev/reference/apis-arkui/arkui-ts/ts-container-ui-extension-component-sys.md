@@ -18,7 +18,7 @@ UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。�
 
 必须显示设置组件宽高为非0有效值。
 
-不支持滚动到边界后，传递至上层继续滚动的场景。当UIExtensionComponent组件使用方和扩展Ability都支持内容滚动（包括但不限于[Scroll](ts-container-scroll.md)、[Swiper](ts-container-swiper.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)等滚动容器）时，通过手势滚动会导致UIExtensionComponent内外同时响应。内外手势同时滚动场景的规避方法可参考[示例2](#示例2)。
+不支持滚动到边界后，传递至上层继续滚动的场景。当UIExtensionComponent组件使用方和扩展Ability都支持内容滚动时，通过手势滚动会导致UIExtensionComponent内外同时响应，包括但不限于[Scroll](ts-container-scroll.md)、[Swiper](ts-container-swiper.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)等滚动容器。内外手势同时滚动场景的规避方法可参考[示例2](#示例2)。
 
 
 ## 子组件
@@ -515,9 +515,9 @@ function func1(data: Record<string, Object>): Record<string, Object> {
 
 本示例展示了当UIExtensionComponent组件使用方和扩展的Ability同时使用[Scroll](ts-container-scroll.md)容器的场景，通过对UIExtensionComponent设置手势拦截处理，实现当UIExtensionComponent内部滚动时，外部组件不响应滚动。
 
-手势使用方式：
-1. 组件内部滚动：手指在组件内部进行滚动操作；
-2. 组件外部滚动：拖动外部滚动条进行滚动。
+手势使用方式：  
+组件内部滚动：手指在组件内部进行滚动操作；  
+组件外部滚动：拖动外部滚动条进行滚动。
 
 实际运行时需先在设备中安装bundleName为"com.example.uiextensionprovider"，abilityName为"UIExtensionProvider"的Ability扩展。
 
