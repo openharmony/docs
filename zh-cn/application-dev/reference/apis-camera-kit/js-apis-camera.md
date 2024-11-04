@@ -3294,6 +3294,17 @@ function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation :
 | captureId  | number | 否   | 否   | 拍照的ID。 |
 | frameCount | number | 否   | 否   | 帧数。    |
 
+## AutoDeviceSwitchStatus<sup>13+</sup>
+
+自动切换镜头状态信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称       | 类型      | 只读 | 可选 | 说明                      |
+| ---------- |---------| ---- | ---- |-------------------------|
+| isDeviceSwitched  | boolean | 否   | 否   | 自动切换镜头是否成功。             |
+| isDeviceCapabilityChanged | boolean  | 否   | 否   | 自动切换镜头成功后，其镜头能力值是否发生改变。 |
+
 ## VideoOutput
 
 录像会话中使用的输出信息，继承[CameraOutput](#cameraoutput)。
@@ -7683,6 +7694,102 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 }
 ```
 
+## AutoDeviceSwitchQuery<sup>13+</sup>
+
+自动切换镜头查询类，用于查询设备是否支持自动切换镜头。
+
+### isAutoDeviceSwitchSupported<sup>13+</sup>
+
+isAutoDeviceSwitchSupported(): boolean
+
+查询设备是否支持自动切换镜头能力。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明          |
+| ----------------------------------------------- |-------------|
+| boolean               | 是否支持自动切换镜头。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103         |  Session not config.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isAutoDeviceSwitchSupported(session: camera.PhotoSession): boolean {
+  let isSupported = false;
+  try {
+    isSupported = session.isAutoDeviceSwitchSupported();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The isAutoDeviceSwitchSupported call failed, error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+## AutoDeviceSwitch<sup>13+</sup>
+
+AutoDeviceSwitch extends [AutoDeviceSwitchQuery](#autodeviceswitchquery13)
+
+自动切换镜头类，继承自[AutoDeviceSwitchQuery](#autodeviceswitchquery13)，用于使能或去使能自动切换镜头。
+
+使用建议：自动切换镜头功能由系统自动完成输入设备切换、会话配置和参数接续，
+如系统发现镜头切换时，两颗镜头的变焦范围不一致，则会通过[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)中的isDeviceCapabilityChanged字段告知应用，
+但仍需要应用自己处理UX的变更（如变焦范围的调整，需要重新通过[getZoomRatioRange](#getzoomratiorange11)接口获取数据并更新UX），
+因此更适用于极简UX交换的场景。
+
+### enableAutoDeviceSwitch<sup>13+</sup>
+
+enableAutoDeviceSwitch(enabled: boolean): void
+
+使能或去使能自动切换镜头。可以先通过[isAutoDeviceSwitchSupported](#isautodeviceswitchsupported13)获取当前设备是否支持自动切换镜头。
+
+> **说明：**
+> 该接口仅用于有多个前置镜头的折叠设备，在不同的折叠状态下可自动切换到当前可使用的前置镜头。无法实现前后置镜头的切换。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型  | 必填 | 说明  |
+| ----------- |---------------------- |---| -------------------------- |
+| enabled | boolean  | 是 | 使能或去使能自动切换镜头。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400102         |  The colorSpace does not match the format.     |
+| 7400103         |  Session not config.                           |
+| 7400201         |  Camera service fatal error.                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableAutoDeviceSwitch(session: camera.PhotoSession, isEnable: boolean): void {
+  try {
+    session.enableAutoDeviceSwitch(isEnable);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The enableAutoDeviceSwitch call failed, error code: ${err.code}`);
+  }
+}
+```
+
 ## PreconfigType<sup>12+</sup>
 
 枚举，提供预配置的类型。
@@ -7710,7 +7817,7 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12)
+PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
 
 普通拍照模式会话类，提供了对闪光灯、曝光、对焦、变焦、色彩空间的操作。
 
@@ -7976,9 +8083,69 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 }
 ```
 
+### on('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+on(type: 'autoDeviceSwitchStatusChange', callback: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+监听相机自动切换镜头状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                                   | 必填 | 说明                                                     |
+| -------- |----------------------------------------------------------------------| ---- |--------------------------------------------------------|
+| type     | string                                                               | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 是   | 回调函数，用于获取当前自动切换镜头的状态。                                  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, autoDeviceSwitchStatus: camera.AutoDeviceSwitchStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isDeviceSwitched: ${autoDeviceSwitchStatus.isDeviceSwitched}, isDeviceCapabilityChanged: ${autoDeviceSwitchStatus.isDeviceCapabilityChanged}`);
+}
+
+function registerAutoDeviceSwitchStatus(photoSession: camera.PhotoSession): void {
+  photoSession.on('autoDeviceSwitchStatusChange', callback);
+}
+```
+
+### off('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+注销监听相机自动切换镜头状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                           | 必填 | 说明                       |
+| -------- |----------------------------------------------| ---- | ------------------------ |
+| type     | string                                       | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。|
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
+  photoSession.off('autoDeviceSwitchStatusChange');
+}
+```
+
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12)
+VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
 
 普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间的操作。
 
@@ -8241,6 +8408,66 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 ```ts
 function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
   videoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### on('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+on(type: 'autoDeviceSwitchStatusChange', callback: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+监听相机自动切换镜头状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                                   | 必填 | 说明                       |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。|
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 是   | 回调函数，用于获取当前自动切换镜头的状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, autoDeviceSwitchStatus: camera.AutoDeviceSwitchStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isDeviceSwitched: ${autoDeviceSwitchStatus.isDeviceSwitched}, isDeviceCapabilityChanged: ${autoDeviceSwitchStatus.isDeviceCapabilityChanged}`);
+}
+
+function registerAutoDeviceSwitchStatus(videoSession: camera.VideoSession): void {
+  videoSession.on('autoDeviceSwitchStatusChange', callback);
+}
+```
+
+### off('autoDeviceSwitchStatusChange')<sup>13+</sup>
+
+off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSwitchStatus\>): void
+
+注销监听相机自动切换镜头状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                           | 必填 | 说明                       |
+| -------- |----------------------------------------------| ---- | ------------------------ |
+| type     | string                                       | 是   | 监听事件，固定为'autoDeviceSwitchStatusChange'，session创建成功可监听。|
+| callback | AsyncCallback\<[AutoDeviceSwitchStatus](#autodeviceswitchstatus13)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
+  videoSession.off('autoDeviceSwitchStatusChange');
 }
 ```
 
