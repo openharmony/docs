@@ -914,7 +914,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 ### onSubmit<sup>11+</sup>
 
-onSubmit(callback: TextAreaSubmitCallback)
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)
 
 按下软键盘输入法回车键触发该回调。
 
@@ -924,9 +924,25 @@ onSubmit(callback: TextAreaSubmitCallback)
 
 **参数：** 
 
+| 参数名   | 类型                                             | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
+
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: TextAreaSubmitCallback)
+
+按下软键盘输入法回车键触发该回调事件，提交事件时提供保持TextArea编辑状态的方法。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名 | 类型    | 必填 | 说明                          |
 | ------ | ------- | ---- | ----------------------------- |
-| callback | [TextAreaSubmitCallback](#textareasubmitcallback14) | 是   | 按下软键盘输入法回车键时的回调。 |
+| callback | [TextAreaSubmitCallback](#textareasubmitcallback14) | 是   | 按下软键盘输入法回车键时的回调事件。 |
 
 ### onWillInsert<sup>12+</sup>
 
