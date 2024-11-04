@@ -3649,6 +3649,18 @@
 
 **起始版本**：13
 
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+允许系统应用订阅备份框架开始恢复的事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
