@@ -1505,7 +1505,7 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 选择曲目完成的Promise返回值。 |
+| Promise\<void> | 选择轨道完成的Promise返回值。 |
 
 **错误码：**
 
@@ -1545,7 +1545,7 @@ avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 
 deselectTrack(index: number): Promise\<void>
 
-使用AVPlayer播放多音轨视频时取消指定音轨播放，通过Promise获取返回值。
+使用AVPlayer播放多音轨视频时取消指定音视频轨道播放，通过Promise获取返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
