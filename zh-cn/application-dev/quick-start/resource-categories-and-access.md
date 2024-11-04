@@ -576,7 +576,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
   }
 }
 ```
-包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
