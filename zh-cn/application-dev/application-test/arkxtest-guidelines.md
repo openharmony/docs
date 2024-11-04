@@ -368,7 +368,7 @@ export default function abilityTest() {
 
 **命令列表**
 | 命令            | 配置参数   |描述                              |
-|---------------|---------------------------------|
+|---------------|---------------------------------|---------------------------------|
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名, 只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
 | dumpLayout      |[-p] <-i | -a>|支持在daemon运行时执行uitest dumpLayout。<br>-p：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br>-i：不过滤不可见控件,也不做窗口合并。<br>-a：额外增加 BackgroundColor, Content, FontColor, FontSize, extraAttrs 这几个属性数据。 默认属性数据不存在。<br>-a 和 -i不可同时使用。 |  【用中文写】
