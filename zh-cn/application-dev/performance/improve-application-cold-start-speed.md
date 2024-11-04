@@ -10,7 +10,7 @@
 
 >**说明：**
 >
->关于本文中示例，可参考：[提升应用冷启动速度示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Ability/Performance/Startup)。
+>关于本文中示例，可参考：[提升应用冷启动速度示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/DocsSample/Ability/Performance/Startup)。
 
 ## 1、缩短应用进程创建&初始化阶段耗时
 

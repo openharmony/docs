@@ -359,4 +359,4 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
 针对媒体会话控制方开发，有以下相关实例可供参考：
 
-- [媒体会话——控制方（仅对系统应用开放）（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/AVSession/MediaController)
+- [媒体会话——控制方（仅对系统应用开放）（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/Media/AVSession/MediaController)

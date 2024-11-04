@@ -163,4 +163,4 @@ function getShareFile() {
 
 针对应用文件分享，有以下相关实例可供参考：
 
-- [文件分享与访问（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/SandboxShare)
+- [文件分享与访问（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/FileManagement/FileShare/SandboxShare)

@@ -151,5 +151,5 @@ function createLightPromise() : Promise<Light> {
 ## 相关实例
 
 对于模型、相机和光源更加综合的使用可以参考以下实例：
-- [3D引擎接口示例（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/Graphics3d) 
+- [3D引擎接口示例（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Graphics/Graphics3d) 
 
