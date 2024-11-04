@@ -15,15 +15,15 @@ hiperf [options] COMMAND [args for command]
 ```
 
 - [options]
-  - 可选的参数
-  - 主要是一些调试命令,如打开log等
+  - 可选的参数。
+  - 主要是一些调试命令,如打开log等。
 
 - COMMAND
-  - 必选参数
-  - 子功能的名字,如list,recrod,stat,dump,report 等等
+  - 必选参数。
+  - 子功能的名字,如list,recrod,stat,dump,report 等等。
 
 - [args for command]
-  - 子功能的参数
+  - 子功能的参数。
 
 ## 命令帮助
 
