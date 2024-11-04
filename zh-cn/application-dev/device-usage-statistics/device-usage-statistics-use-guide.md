@@ -28,7 +28,7 @@ import { usageStatistics } from '@kit.BackgroundTasksKit'
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 |function isIdleStateSync(bundleName: string): boolean; | 判断指定Bundle Name的应用当前是否是空闲状态，同步接口。 |
 | function queryModuleUsageRecords(callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 查询FA使用记录，返回不超过1000条FA使用记录。 |
-| function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000|
+| function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000。|
 | function queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 | function setAppGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
@@ -363,7 +363,7 @@ import { usageStatistics } from '@kit.BackgroundTasksKit'
     });
     ```
 
-13. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限
+13. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
