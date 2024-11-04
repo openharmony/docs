@@ -536,14 +536,6 @@ Capability of obtaining video thumbnails
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
-## SystemCapability.Multimedia.Media.AVTranscoder
-
-Capability of obtaining video transcoding
-
-| Default | Tablet | Lite Wearable|
-|---------|--------|--------------|
-| Yes      | Yes     | No           |
-
 ## SystemCapability.Multimedia.AVSession.Core
 
 Basic media session capability
