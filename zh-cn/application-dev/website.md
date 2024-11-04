@@ -1624,6 +1624,8 @@
         - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
         - [在线短视频流畅切换 ](performance/performance-quick-switch-short-video.md)
         - [相机分段式拍照性能提升实践](performance/performance-camera-shot2see.md)
+        - [在线视频播放卡顿优化实践](performance/online_video_playback_lags_practice.md)
+        - [音画同步最佳实践](performance/audio-video-synchronization.md)
     - 性能工具
         - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
         - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
