@@ -18,6 +18,9 @@ UIExtensionComponent用于支持在本页面内嵌入其他应用提供的UI。�
 
 必须显示设置组件宽高为非0有效值。
 
+不支持滚动到边界后，传递至上层继续滚动的场景。当UIExtensionComponent组件使用方和扩展Ability都支持内容滚动时，通过手势滚动会导致UIExtensionComponent内外同时响应，包括但不限于[Scroll](ts-container-scroll.md)、[Swiper](ts-container-swiper.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)等滚动容器。内外手势同时滚动场景的规避方法可参考[示例2](#示例2)。
+
+
 ## 子组件
 
 无
@@ -282,6 +285,8 @@ off(type: 'syncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 
 ## 示例
 
+### 示例1
+
 本示例仅展示组件使用的方法和扩展的Ability，实际运行需在设备中安装bundleName为"com.example.uiextensionprovider"，abilityName为"UIExtensionProvider"的Ability扩展。
 
 ```ts
@@ -537,4 +542,163 @@ function func1(data: Record<string, Object>): Record<string, Object> {
   return data;
 }
 
+```
+
+### 示例2
+
+本示例展示了当UIExtensionComponent组件使用方和扩展的Ability同时使用[Scroll](ts-container-scroll.md)容器的场景，通过对UIExtensionComponent设置手势拦截处理，实现当UIExtensionComponent内部滚动时，外部组件不响应滚动。
+
+手势使用方式：  
+组件内部滚动：手指在组件内部进行滚动操作；  
+组件外部滚动：拖动外部滚动条进行滚动。
+
+实际运行时需先在设备中安装bundleName为"com.example.uiextensionprovider"，abilityName为"UIExtensionProvider"的Ability扩展。
+
+```ts
+// 组件使用示例
+@Entry
+@Component
+struct Second {
+  @State message1: string = 'Hello World 1'
+  @State message2: string = 'Hello World 2'
+  @State message3: string = 'Hello World 3'
+  @State visible: Visibility = Visibility.Hidden
+  @State wid: number = 300
+  @State hei: number = 300
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6]
+
+  build() {
+    Column() {
+      // 可滚动的容器组件
+      Scroll(this.scroller) {
+        Column() {
+          Text(this.message1).fontSize(30)
+          Text(this.message2).fontSize(30)
+          Text(this.message3).fontSize(30)
+
+          // 重复设置组件，构造滚动内容
+          ForEach(this.arr, (item: number) => {
+            UIExtensionComponent({
+                bundleName: "com.example.newdemo",
+                abilityName: "UIExtensionProvider",
+                parameters: {
+                  "ability.want.params.uiExtensionType": "sys/commonUI"
+                }
+              })
+              .width(this.wid)
+              .height(this.hei)
+               // 设置手势拦截，UEC外部组件不响应滚动
+              .gesture(PanGesture().onActionStart(() => {
+                console.info('UIExtensionComponent PanGesture onAction')
+              }))
+              .border({ width: 5, color: Color.Blue })
+              .onReceive((data) => {
+                console.info('Lee onReceive, for test')
+                this.message3 = JSON.stringify(data['data'])
+              })
+              .onTerminated((info) => {
+                console.info('onTerminated: code =' + info.code + ', want = ' + JSON.stringify(info.want));
+              })
+              .onRemoteReady((proxy) => {
+                console.info('onRemoteReady, for test')
+              })
+            }, (item: string) => item)
+        }
+        .width('100%')
+      }
+      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+      .scrollBar(BarState.On) // 滚动条常驻显示
+      .scrollBarColor(Color.Gray) // 滚动条颜色
+      .scrollBarWidth(10) // 滚动条宽度
+      .friction(0.6)
+      .edgeEffect(EdgeEffect.None)
+      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
+        console.info(xOffset + ' ' + yOffset)
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge')
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop')
+      })
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// 扩展入口文件UIExtensionProvider.ts
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+
+const TAG: string = '[UIExtAbility]'
+export default class UIExtAbility extends UIExtensionAbility {
+  
+  onCreate() {
+    console.log(TAG, `UIExtAbility onCreate`)
+  }
+
+  onForeground() {
+    console.log(TAG, `UIExtAbility onForeground`)
+  }
+
+  onBackground() {
+    console.log(TAG, `UIExtAbility onBackground`)
+  }
+
+  onDestroy() {
+    console.log(TAG, `UIExtAbility onDestroy`)
+  }
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
+    let param: Record<string, UIExtensionContentSession> = {
+      'session': session
+    };
+    let storage: LocalStorage = new LocalStorage(param);
+    session.loadContent('pages/extension', storage);
+  }
+
+  onSessionDestroy(session: UIExtensionContentSession) {
+    console.log(TAG, `UIExtAbility onSessionDestroy`)
+  }
+}
+```
+
+```ts
+// 扩展Ability入口页面文件extension.ets
+@Entry
+@Component
+struct Extension {
+  @StorageLink('message') storageLink: string = '';
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+  build() {
+    Column() {
+      // 可滚动的容器组件
+      Scroll(this.scroller) {
+        Column() {
+          Text('Test demo')
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+          // 重复设置组件，构造滚动内容
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(Color.Pink)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }
+      }
+
+    }
+    .height('100%')
+  }
+}
 ```
