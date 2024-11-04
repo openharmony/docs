@@ -2,18 +2,16 @@
 
 ## 概述
 
-精确的音视频同步是媒体播放的关键性能指标之一。通常来说，录音设备上同时录制的音频和视频在播放设备（例如手机，电视，媒体播放器）上播放的时候也需要做到同步。目前手机播放器在输出设备为蓝牙耳机时会出现严重音视频不同步现象，严重影响用户体验。   
-本文旨在指导第三方视频播放应用正确获取并使用音频相关信息来保证播放时的音视频同步。    
+精确的音视频同步是媒体播放的关键性能指标之一。通常来说，录音设备上同时录制的音频和视频在播放设备（例如手机，电视，媒体播放器）上播放的时候也需要做到同步，播放时的音视频不同步现象会严重影响用户体验。本文旨在指导第三方视频播放应用正确获取并使用音频相关信息来保证播放时的音视频同步。    
 >**说明：**
 >- 如果开发者使用自研播放器引擎而非AVPlayer，也可以参考该解决方案思路实现优化。    
 
 
-| 缩略语     | 英文全名                                                      | 中文解释                                                         |
-| ------------ | :----------------------------------------------------------- | ------------------------------------------------------------ |
-| PTS | Presentation Time Stamp                                               | 送显时间戳 |
-| DTS | Decoding Time Stamp                                                   | 解码时间戳                         |
-- PTS（送显时间戳）指音视频数据在播放时应该显示给用户的时间戳。它表示解码后的音视频数据在播放时应该出现在屏幕上或传递给音频输出设备的时间点。PTS用于控制音视频的播放顺序和时序，以确保音视频在正确的时间点进行显示或播放。
-- DTS（解码时间戳）指音视频数据在解码器中开始解码的时间戳。它表示解码器应该从输入数据流中读取和解码的特定时间点。DTS用于控制解码器的解码顺序，确保音视频数据按照正确的顺序解码。  
+| 缩略语     | 英文全名            | 中文解释               |详细解释                           |
+| ------------ | :-------------------------------- | ------------------------ |---------------- |
+| PTS | Presentation Time Stamp                                               | 送显时间戳 |指音视频数据在播放时应该显示给用户的时间戳。它表示解码后的音视频数据在播放时应该出现在屏幕上或传递给音频输出设备的时间点。PTS用于控制音视频的播放顺序和时序，以确保音视频在正确的时间点进行显示或播放。 |
+| DTS | Decoding Time Stamp                                                   | 解码时间戳                         |指音视频数据在解码器中开始解码的时间戳。它表示解码器应该从输入数据流中读取和解码的特定时间点。DTS用于控制解码器的解码顺序，确保音视频数据按照正确的顺序解码。 |
+
 
 | 帧     | 解释                                                      |
 | ------------ | :-----------------------------------------------------------|
@@ -72,88 +70,94 @@
 
 ### 开发步骤
 
-1、收到视频帧的时候，通过调用[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口获取音频渲染位置等信息。
-```c++
-// get audio render position
-int64_t framePosition = 0;
-int64_t timestamp = 0;
-int32_t ret = OH_AudioRenderer_GetTimestamp(audioRenderer, CLOCK_MONOTONIC, &framePosition, ×tamp);
-AVCODEC_SAMPLE_LOGI("VD framePosition: %{public}ld, nowTimeStamp: %{public}ld", framePosition, nowTimeStamp);
-audioTimeStamp = timestamp;
-```
+1. 收到视频帧的时候，通过调用[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口获取音频渲染位置等信息。
 
->**说明：**
->- [OH_AudioRenderer_Start()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_start)接口执行后到真正写入硬件有一定延迟，因此该接口在调用[OH_AudioRenderer_Start()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_start)接口之后过一会才会拿到有效值，期间音频未发声时建议画面帧先按照正常速度播放，后续再逐步追赶音频位置从而提升用户看到画面的起播时延。 
->- 当framePosition和timestamp以稳定的速度前进后，建议调用[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口的频率不要太频繁。推荐200ms一次，可以每分钟一次，最好不要低于200ms一次。频繁调用可能会带来功耗问题，因此在能保证音画同步效果的情况下，不需要频繁的查询时间戳。 
->- [OH_AudioRenderer_Flush()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_flush)接口执行后，framePosition返回值会重新（从0）开始计算。  
->- [OH_AudioRenderer_GetFramesWritten()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_getframeswritten) 接口在Flush时候不会清空，该接口和[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口并不建议配合使用。 
->- 音频设备切换过程中[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口返回的framePosition和timestamp保证不会倒退，但由于新设备写入有时延，会出现短暂时间内音频进度无增长，建议画面帧保持流畅播放不要产生卡顿。  
->- [OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口获取的是实际写到硬件的采样帧数，不受倍速影响。对AudioRender设置了倍速的场景下，播放进度计算需要特殊处理，系统保证应用设置完倍速接口后，新写入AudioRender的采样点才会做倍速处理。
+    ```c++
+    // get audio render position
+    int64_t framePosition = 0;
+    int64_t timestamp = 0;
+    int32_t ret = OH_AudioRenderer_GetTimestamp(audioRenderer, CLOCK_MONOTONIC, &framePosition, ×tamp);
+    AVCODEC_SAMPLE_LOGI("VD framePosition: %{public}ld, nowTimeStamp: %{public}ld", framePosition, nowTimeStamp);
+    audioTimeStamp = timestamp;
+    ```
 
-2、音频启动前暂不做音画同步，视频帧直接送显。  
-音频未启动前，timestamp和framePostion返回结果为0。为避免出现卡顿等问题，暂不同步，视频帧直接送显。
-```c++
-// audio render getTimeStamp error, render it
-if (ret != AUDIOSTREAM_SUCCESS || (timestamp == 0) || (framePosition == 0)) {
-    // first frame, render without wait
-    videoDecoder->FreeOutputBuffer(bufferInfo.bufferIndex, true);
+    >**说明：**
+    >- [OH_AudioRenderer_Start()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_start)接口执行后到真正写入硬件有一定延迟，因此该接口在调用[OH_AudioRenderer_Start()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_start)接口之后过一会才会拿到有效值，期间音频未发声时建议画面帧先按照正常速度播放，后续再逐步追赶音频位置从而提升用户看到画面的起播时延。 
+    >- 当framePosition和timestamp以稳定的速度前进后，建议调用[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口的频率不要太频繁。推荐200ms一次，可以每分钟一次，最好不要低于200ms一次。频繁调用可能会带来功耗问题，因此在能保证音画同步效果的情况下，不需要频繁的查询时间戳。 
+    >- [OH_AudioRenderer_Flush()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_flush)接口执行后，framePosition返回值会重新（从0）开始计算。  
+    >- [OH_AudioRenderer_GetFramesWritten()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_getframeswritten) 接口在Flush时候不会清空，该接口和[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口并不建议配合使用。 
+    >- 音频设备切换过程中[OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口返回的framePosition和timestamp保证不会倒退，但由于新设备写入有时延，会出现短暂时间内音频进度无增长，建议画面帧保持流畅播放不要产生卡顿。  
+    >- [OH_AudioRenderer_GetTimestamp()](../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_gettimestamp)接口获取的是实际写到硬件的采样帧数，不受倍速影响。对AudioRender设置了倍速的场景下，播放进度计算需要特殊处理，系统保证应用设置完倍速接口后，新写入AudioRender的采样点才会做倍速处理。
 
-    std::this_thread::sleep_until(lastPushTime + std::chrono::microseconds(sampleInfo.frameInterval));
+
+2. 音频启动前暂不做音画同步，视频帧直接送显。  
+
+   音频未启动前，timestamp和framePostion返回结果为0。为避免出现卡顿等问题，暂不同步，视频帧直接送显。
+    ```c++
+    // audio render getTimeStamp error, render it
+    if (ret != AUDIOSTREAM_SUCCESS || (timestamp == 0) || (framePosition == 0)) {
+        // first frame, render without wait
+        videoDecoder->FreeOutputBuffer(bufferInfo.bufferIndex, true);
+
+        std::this_thread::sleep_until(lastPushTime + std::chrono::microseconds(sampleInfo.frameInterval));
+        lastPushTime = std::chrono::system_clock::now();
+        continue;
+    }
+    ```
+3. 根据视频帧pts和音频渲染位置计算延迟。  
+
+    - audioPlayedTime: 音频帧期望渲染时间。
+    - videoPlayedTime: 视频帧期望送显时间。
+    - waitTimeUs : 视频帧相对于音频帧延迟时间。
+
+    ```c++
+    // after seek, audio render flush, framePosition = 0, then writtenSampleCnt = 0
+    int64_t latency = (writtenSampleCnt - framePosition) * 1000 * 1000 / sampleInfo.audioSampleRate;
+    AVCODEC_SAMPLE_LOGI("VD latency: %{public}ld writtenSampleCnt: %{public}ld", latency, writtenSampleCnt);
+
+    nowTimeStamp = getCurrentTime();
+    int64_t anchordiff = (nowTimeStamp - audioTimeStamp) / 1000;
+
+    int64_t audioPlayedTime = audioBufferPts - latency + anchordiff; // us, audio buffer accelerate render time
+    int64_t videoPlayedTime = bufferInfo.attr.pts;                   // us, video buffer expected render time
+
+    // audio render timestamp and now timestamp diff
+    int64_t waitTimeUs = videoPlayedTime - audioPlayedTime;
+    ```
+
+4. 根据业务延迟做音画同步策略。  
+
+    - [ , -40ms) 视频帧较晚时，丢弃此帧。
+    - [-40ms, 0ms) 视频帧直接送显。
+    - [0ms, ) 视频帧较早，根据业务需要选择渐进同步。
+
+    ```c++
+    // video buffer is too late, drop it
+    if (waitTimeUs < WAIT_TIME_US_THRESHOLD_WARNING) {
+        dropFrame = true;
+        AVCODEC_SAMPLE_LOGE("VD buffer is too late");
+
+    } else {
+        AVCODEC_SAMPLE_LOGE("VD buffer is too early waitTimeUs: %{public}ld", waitTimeUs);
+        // [0, ), render it with waitTimeUs, max 1s
+        // [-40, 0), render it
+        if (waitTimeUs > WAIT_TIME_US_THRESHOLD) {
+            waitTimeUs = WAIT_TIME_US_THRESHOLD;
+        }
+        // per frame render time reduced by 33ms
+        if (waitTimeUs > sampleInfo.frameInterval + PER_SINK_TIME_THRESHOLD) {
+            waitTimeUs = sampleInfo.frameInterval + PER_SINK_TIME_THRESHOLD;
+            AVCODEC_SAMPLE_LOGE("VD buffer is too early and reduced 33ms, waitTimeUs: %{public}ld", waitTimeUs);
+        }
+    }
+    ```
+5. 进行音画渐进同步。    
+
+   视频帧较早时，等待一段时间送显。   
+    ```c++
+    if (waitTimeUs > 0) {
+        std::this_thread::sleep_for(std::chrono::microseconds(waitTimeUs));
+    }
     lastPushTime = std::chrono::system_clock::now();
-    continue;
-}
-```
-3、根据视频帧pts和音频渲染位置计算延迟。    
-- audioPlayedTime: 音频帧期望渲染时间。
-- videoPlayedTime: 视频帧期望送显时间。
-- waitTimeUs : 视频帧相对于音频帧延迟时间。
-
-```c++
-// after seek, audio render flush, framePosition = 0, then writtenSampleCnt = 0
-int64_t latency = (writtenSampleCnt - framePosition) * 1000 * 1000 / sampleInfo.audioSampleRate;
-AVCODEC_SAMPLE_LOGI("VD latency: %{public}ld writtenSampleCnt: %{public}ld", latency, writtenSampleCnt);
-
-nowTimeStamp = getCurrentTime();
-int64_t anchordiff = (nowTimeStamp - audioTimeStamp) / 1000;
-
-int64_t audioPlayedTime = audioBufferPts - latency + anchordiff; // us, audio buffer accelerate render time
-int64_t videoPlayedTime = bufferInfo.attr.pts;                   // us, video buffer expected render time
-
-// audio render timestamp and now timestamp diff
-int64_t waitTimeUs = videoPlayedTime - audioPlayedTime;
-```
-
-4、根据业务延迟做音画同步策略。
-- [ , -40ms) 视频帧较晚时，丢弃此帧。
-- [-40ms, 0ms) 视频帧直接送显。
-- [0ms, ) 视频帧较早，根据业务需要选择渐进同步。
-
-```c++
-// video buffer is too late, drop it
-if (waitTimeUs < WAIT_TIME_US_THRESHOLD_WARNING) {
-    dropFrame = true;
-    AVCODEC_SAMPLE_LOGE("VD buffer is too late");
-
-} else {
-    AVCODEC_SAMPLE_LOGE("VD buffer is too early waitTimeUs: %{public}ld", waitTimeUs);
-    // [0, ), render it with waitTimeUs, max 1s
-    // [-40, 0), render it
-    if (waitTimeUs > WAIT_TIME_US_THRESHOLD) {
-        waitTimeUs = WAIT_TIME_US_THRESHOLD;
-    }
-    // per frame render time reduced by 33ms
-    if (waitTimeUs > sampleInfo.frameInterval + PER_SINK_TIME_THRESHOLD) {
-        waitTimeUs = sampleInfo.frameInterval + PER_SINK_TIME_THRESHOLD;
-        AVCODEC_SAMPLE_LOGE("VD buffer is too early and reduced 33ms, waitTimeUs: %{public}ld", waitTimeUs);
-    }
-}
-```
-5、进行音画渐进同步。  
-视频帧较早时，等待一段时间送显。
-```c++
-if (waitTimeUs > 0) {
-    std::this_thread::sleep_for(std::chrono::microseconds(waitTimeUs));
-}
-lastPushTime = std::chrono::system_clock::now();
-ret = videoDecoder->FreeOutputBuffer(bufferInfo.bufferIndex, !dropFrame);
-```
+    ret = videoDecoder->FreeOutputBuffer(bufferInfo.bufferIndex, !dropFrame);
+    ```
