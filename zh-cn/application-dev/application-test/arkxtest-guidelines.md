@@ -430,7 +430,6 @@ uitest dumpLayout -p /data/local/tmp/1.json
  ```
 ### 注入UI模拟操作
 
-**uiInput命令列表**
 | 命令   | 必填 | 描述              | 
 |------|------|-----------------|
 | help   | 是    | uiInput命令相关帮助信息。 |
@@ -447,7 +446,6 @@ uitest dumpLayout -p /data/local/tmp/1.json
 
 #### uiInput click使用示例
 
-**命令参数列表**
 | 配置参数    | 必填 | 描述            |
 |---------|------|-----------------|
 | point_x | 是      | 点击x坐标点。 |
@@ -469,7 +467,6 @@ uitest uiInput longClick 100 100
 
 #### uiInput fling/swipe/drag使用示例
 
-**命令参数列表**
 | 配置参数  | 必填             | 描述               |      
 |------|------------------|-----------------|
 | from_x   | 是                | 滑动起点x坐标。 | 
@@ -493,7 +490,6 @@ uitest uiInput drag 10 10 100 100 500
 
 #### uiInput dircFling使用示例
 
-**命令参数列表**
 | 配置参数             | 必填       | 描述 |
 |-------------------|-------------|----------|
 | direction         | 否 | 滑动方向，取值范围：[0,1,2,3]，默认值为0。<br> 0代表向左滑动，1代表向右滑动，2代表向上滑动，3代表向下滑动。    | 
@@ -514,7 +510,6 @@ uitest uiInput dircFling 3
 
 #### uiInput inputText使用示例
 
-**命令参数列表**
 | 配置参数             | 必填       | 描述 |       
 |------|------------------|----------|
 | point_x   | 是                | 输入框x坐标点。 | 
@@ -528,7 +523,6 @@ uitest uiInput inputText 100 100 hello
 
 #### uiInput keyEvent使用示例
 
-**命令参数列表**
 | 配置参数             | 必填       | 描述 |                
 |------|------|----------|
 | keyID   | 是    | 实体按键对应ID。 | 
@@ -549,7 +543,6 @@ uitest uiInput keyEvent 2072 2038
 # 显示帮助信息
 uitest --version
 ```
-
 
 <!--Del-->
 ## 相关实例
