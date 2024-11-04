@@ -796,7 +796,7 @@ async function Demo() {
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA 类型时，固定按照BGRA_8888格式从PixelMap读取。使用callback形式返回。
+当像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
