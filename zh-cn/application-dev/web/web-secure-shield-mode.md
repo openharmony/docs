@@ -44,7 +44,7 @@
 
 - 排查是否有在线显示PDF的功能场景，坚盾守护模式开启下无法在线显示PDF，例如通过loadUrl接口加载pdf链接等场景。
 
-- 排查HTML页面是否存在<math>标签嵌入的MathML语法，坚盾守护模式下，MathML语法不能正常解析，导致显示异常。
+- 排查HTML页面是否存在\<math>标签嵌入的MathML语法，坚盾守护模式下，MathML语法不能正常解析，导致显示异常。
 
 - 排查前端代码是否存在SpeechRecognition（语言识别）、SpeechSynthesis（语音合成）等接口调用，坚盾守护模式下，相关接口无法调用。
 
