@@ -84,4 +84,4 @@ audio模块下的接口支持PCM编码，包括AudioRenderer、AudioCapturer、T
 
 针对Audio Kit开发，有以下相关实例可供参考：
 
-- [音频管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)
+- [音频管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Media/Audio)

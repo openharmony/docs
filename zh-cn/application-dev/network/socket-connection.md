@@ -872,4 +872,4 @@ tlsServer.off('connect');
 
 针对 Socket 连接开发，有以下相关实例可供参考：
 
-- [网络管理-Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
+- [网络管理-Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Connectivity/Socket)

@@ -1,4 +1,3 @@
-
 # 使用HiDumper命令行工具优化性能
 
 ## 简介
@@ -236,7 +235,7 @@ hdc shell hidumper --mem [pid]
 
 ## HiDumper查看CPU信息
 
-在应用开发中，经常会遇到需要大量计算的场景，HiDumper提供了查看CPU使用率的功能，方便开发者进行性能优化。下面将以[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)为例，展示如何使用HiDumper查看CPU信息。 
+在应用开发中，经常会遇到需要大量计算的场景，HiDumper提供了查看CPU使用率的功能，方便开发者进行性能优化。下面将以[Chat](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/Solutions/IM/Chat)为例，展示如何使用HiDumper查看CPU信息。 
 
 1. 编译项目、安装并打开Chat应用，运行以下hidumper命令获取当前应用的Pid。
     ```
