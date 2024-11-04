@@ -6046,7 +6046,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
                 }
                 let ret = this.nodeController.postEvent(event.touchEvent)
                 if (event.result) {
-                  event.result.setGestureEventResult(ret);
+                  event.result.setGestureEventResult(ret, true);
                 }
                 console.log("embedId = " + event.embedId);
                 console.log("touchType = " + this.eventType);
@@ -7460,15 +7460,16 @@ grant(config: ScreenCaptureConfig): void
 
 ### setGestureEventResult<sup>12+</sup>
 
-setGestureEventResult(result: boolean): void
+setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
-| 参数名     | 类型   | 必填   | 说明    |
-| ------- | ------ | ---- | ------- |
-| result | boolean | 是    | 是否消费该手势事件。 |
+| 参数名          | 类型 | 必填  | 说明             |
+| --------------- | -------- | ----  |------- |
+| result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
+| stopPropagation<sup>14+</sup>| boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
 
 **示例：**
 
