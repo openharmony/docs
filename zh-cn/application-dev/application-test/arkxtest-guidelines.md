@@ -371,9 +371,9 @@ export default function abilityTest() {
 |---------------|---------------------------------|---------------------------------|
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名, 只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
-| dumpLayout      |[-p] <-i | -a>|支持在daemon运行时执行uitest dumpLayout。<br>-p：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br>-i：不过滤不可见控件,也不做窗口合并。<br>-a：额外增加 BackgroundColor, Content, FontColor, FontSize, extraAttrs 这几个属性数据。 默认属性数据不存在。<br>-a 和 -i不可同时使用。 |  【用中文写】
-| uiRecord        | uiRecord <record | read>|录制Ui操作。  <br>record：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录。《》制。                      |
-| uiInput       | <help | click | doubleClick | longClick | fling | swipe | drag | dircFling | inputText | keyEvent>|注入UI模拟操作。                       |
+| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行uitest dumpLayout。<br>-p：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br>-i：不过滤不可见控件,也不做窗口合并。<br>-a：额外增加 BackgroundColor, Content, FontColor, FontSize, extraAttrs 这几个属性数据。<br>默认属性数据不存在。<br>-a 和 -i不可同时使用。 |  【用中文写】
+| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br>record：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。                      |
+| uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>|注入UI模拟操作。                       |
 | --version | --version|获取当前工具版本信息。                     |
 
 ### 截图使用示例
