@@ -5550,56 +5550,6 @@ async function Packing() {
 }
 ```
 
-### packing<sup>13+</sup>
-
-packing(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence): Promise\<ArrayBuffer>
-
-将多个pixelmap编码成gif数据，使用Promise形式返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-**参数：**
-
-| 参数名           | 类型                                                      | 必填 | 说明                   |
-| ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
-| pixelmapSequence | Array\<[PixelMap](#pixelmap7)>                            | 是   | 待编码的PixelMap序列。 |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence13) | 是   | 动图编码参数。         |
-
-**返回值：**
-
-| 类型                  | 说明                            |
-| --------------------- | ------------------------------- |
-| Promise\<ArrayBuffer> | Promise对象，返回编码后的数据。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import image from "@ohos.multimedia.image";
-
-const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
-const context = getContext();
-const resourceMgr = context.resourceManager;
-// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3,  // 指定GIF编码中的帧数为3
-  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
-  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-  loopCount: 0 // 指定GIF编码中循环次数为无限循环
-};
-let Packer = image.createImagePacker();
-Packer.packing(pixelMapList, ops)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packing.');
-  })
-```
-
 ### release
 
 release(callback: AsyncCallback\<void>): void
@@ -5894,60 +5844,6 @@ async function PackToFile() {
     });
   }
 }
-```
-
-### packToFile<sup>13+</sup>
-
-packToFile(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptionsForSequence): Promise\<void>
-
-指定编码参数，将多个PixelMap编码成gif文件。使用Promise形式返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-**参数：**
-
-| 参数名           | 类型                                                      | 必填 | 说明                   |
-| ---------------- | --------------------------------------------------------- | ---- | ---------------------- |
-| pixelmapSequence | Array<[PixelMap](#pixelmap7)>                             | 是   | 待编码的PixelMap序列。 |
-| fd               | number                                                    | 是   | 文件描述符。           |
-| options          | [PackingOptionsForSequence](#packingoptionsforsequence13) | 是   | 动图编码参数。         |
-
-**返回值：**
-
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
-import image from "@ohos.multimedia.image";
-
-const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
-const context = getContext();
-const resourceMgr = context.resourceManager;
-// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
-let path: string = context.cacheDir + '/result.gif';
-let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3,  // 指定GIF编码中的帧数为3
-  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
-  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-  loopCount: 0 // 指定GIF编码中循环次数为无限循环
-};
-let Packer = image.createImagePacker();
-Packer.packToFile(pixelMapList, file.fd, ops)
-  .then(() => {
-    console.info('Succeeded in packToFileMultiFrames.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packToFileMultiFrames.');
-  })
 ```
 
 ## image.createAuxiliaryPicture<sup>13+</sup>
@@ -7672,19 +7568,6 @@ PixelMap的初始化选项。
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
 | needsPackProperties<sup>12+</sup> | boolean | 否   | 是   | 是否需要编码图片属性信息，例如EXIF。默认值为false。 |
-
-## PackingOptionsForSequence<sup>13+</sup>
-
-描述图像序列打包的选项。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-| 名称          | 类型           | 只读 | 可选 | 说明                                                         |
-| ------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| frameCount    | number         | 否   | 否   | GIF编码中指定的帧数。                                        |
-| delayTimeList | Array\<number> | 否   | 否   | GIF编码中设定输出图片每一帧的延迟时间，如果不是0，则此字段指定在继续处理数据流之前等待的百分之一秒数。<br>如果长度小于frameCount，则缺失的部分将用delayTimeList最后一个值填充。 |
-| disposalTypes | Array\<number> | 否   | 是   | GIF编码中设定输出图片帧过渡模式的参数，取值范围为[0，3]。<br>0：不需要任何操作；<br>1：保持图形不变；<br>2：恢复背景色；<br>3：恢复到之前的状态。 |
-| loopCount     | number         | 否   | 是   | GIF编码中设定输出图片循环播放次数的参数，取值范围为[0，65535]。<br>0表示无限循环；如果没有此字段，则表示不循环播放。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
