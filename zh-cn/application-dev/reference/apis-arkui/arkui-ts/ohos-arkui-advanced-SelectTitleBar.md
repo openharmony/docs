@@ -63,6 +63,8 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 ## 示例
 
+下拉菜单标题栏组件下拉菜单中的项目、左侧的返回箭头、右侧菜单项目列表使用展示。
+
 ```ts
 import { SelectTitleBar, promptAction } from '@kit.ArkUI'
 

@@ -74,6 +74,8 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ## 示例
 
+页签型标题栏左侧页签项目列表，右侧菜单项目列表使用展示。
+
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
