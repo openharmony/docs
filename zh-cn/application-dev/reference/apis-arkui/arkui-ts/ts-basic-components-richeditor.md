@@ -285,7 +285,7 @@ enterKeyType(value: EnterKeyType)
 
 enableKeyboardOnFocus(isEnabled: boolean)
 
-设置RichEditor通过点击以外的方式获焦时，是否绑定输入法。
+设置RichEditor通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -296,7 +296,7 @@ enableKeyboardOnFocus(isEnabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ## 事件
 

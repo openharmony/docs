@@ -308,7 +308,7 @@ style(value: TextContentStyle)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置TextArea通过点击以外的方式获焦时，是否绑定输入法。
+设置TextArea通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -320,7 +320,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
