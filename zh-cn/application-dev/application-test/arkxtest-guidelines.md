@@ -494,7 +494,6 @@ uitest uiInput drag 10 10 100 100 500
 | stepLength        | 否        | 拖拽终点x坐标。默认值: 滑动距离/50。 |
 
 ```shell  
-hdc shell uitest uiInput dircFling 2 
 ## 执行左滑操作
 uitest uiInput dircFling 0 500
 ## 执行向右滑动操作
