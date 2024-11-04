@@ -40,6 +40,13 @@
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
+- C APIs<!--connectivity-c-->
+  - Modules<!--connectivity-module-->
+    - [Bluetooth](_bluetooth.md)
+    - [Wifi](_wifi.md)
+  - Header Files<!--connectivity-headerfile-->
+    - [oh_bluetooth.h](oh__bluetooth_8h.md)
+    - [oh_wifi.h](oh__wifi_8h.md)
 - Error Codes
   - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
   - [Wi-Fi Error Codes](errorcode-wifi.md)
