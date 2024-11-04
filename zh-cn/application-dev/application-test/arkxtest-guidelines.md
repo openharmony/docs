@@ -453,7 +453,7 @@ uitest dumpLayout -p /data/local/tmp/1.json
 
 ```shell
 ## 执行点击事件。
- uitest uiInput click 100 100
+uitest uiInput click 100 100
 
 ## 执行双击事件。
 uitest uiInput doubleClick 100 100
