@@ -152,12 +152,12 @@ struct Index {
 
 ```javascript
 {
-  "module": {
-    ...
+  "module": { 
+    // ...
     "abilities": [
       {
         "name": "EntryAbility",
-        ...
+        // 后台模式类型
         "backgroundModes": [
           "location"
         ]
@@ -327,7 +327,7 @@ export struct LongTermTaskView {
 
 - 数据传输中使用高效率的数据格式和解析方法，减少任务执行时间。
 
-更多长时任务的使用限制和注意事项可以参考[长时任务约束与限制](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/task-management/continuous-task.md/)。
+更多短时任务的使用限制和注意事项可以参考[短时任务约束与限制](../task-management/transient-task.md#约束与限制)。
 
 ## 延迟任务
 
@@ -356,3 +356,5 @@ export struct LongTermTaskView {
 | 长时任务 | 长时间运行在后台、用户可感知的任务                                                       | 应用不会被挂起直到取消任务，任务结束不取消应用进程会被终止                                                                                                          | 数据传输、音频播放、录音、定位导航、蓝牙、WLAN 相关、多设备互联、音视频通话、计算任务 |
 | 延迟任务 | 实时性要求不高、可延迟执行的任务，满足条件后放入执行队列，系统会根据内存、功耗等统一调度 | 应用退到后台时挂起，满足任务设定条件时由系统统一调度拉起应用，创建 Extension 进程执行任务；单次回调最长运行 2 分钟，如果超时不取消，系统会终止对应的 Extension 进程 | 软件更新、信息收集、数据处理等                                                        |
 | 代理提醒 | 系统代理应用做出相应提醒                                                                 | 应用挂起或进程终止，满足条件后系统会代理应用做相应的提醒                                                                                                            | 闹钟、倒计时、日历                                                                    |
+
+<!--no_check-->
