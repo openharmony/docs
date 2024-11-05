@@ -96,6 +96,10 @@
 
    createAudioRenderer的参数options类型为AudioRendererOptions，包含AudioRendererInfo渲染器信息，使用AudioRendererInfo.usage可指定StreamUsage音频流类型。
 
+- **[使用OHAudio开发音频播放功能](using-ohaudio-for-playback.md)**：
+  
+  可以在调用[OH_AudioStreamBuilder_SetRendererInfo](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)指定音频流类型。
+
 - **[使用AVPlayer开发音频播放功能(ArkTS)](../media/using-avplayer-for-playback.md)**：
   
   可以通过设置AVPlayer的[属性](../../reference/apis-media-kit/js-apis-media.md#属性)audioRendererInfo来实现。AVPlayer.audioRendererInfo的类型为audio.AudioRendererInfo。使用AudioRendererInfo.usage可指定[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)音频流类型。

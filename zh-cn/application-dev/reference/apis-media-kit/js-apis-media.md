@@ -719,7 +719,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
-| 5400106  | Unsupport format.     |
+| 5400106  | Unsupported format.     |
 
 **示例：**
 
@@ -866,7 +866,7 @@ prepare(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **示例：**
 
@@ -905,7 +905,7 @@ prepare(): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **示例：**
 
@@ -1488,7 +1488,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
-使用AVPlayer播放多音轨视频时选择指定音轨播放，通过Promise获取返回值。
+使用AVPlayer播放多音视频轨资源时，选择指定轨道播放，通过Promise获取返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1498,14 +1498,14 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
-| mode   | [SwitchMode](#switchmode12) | 否   | 切换视频轨模式，默认为SMOOTH模式，仅支持DASH协议，**仅在视频资源播放时设置**。 |
+| index | number | 是   | 多音视频资源的轨道索引，可通过[getTrackDescription](#gettrackdescription9-1)接口获取当前资源的所有轨道信息[MediaDescription](#mediadescription8)。 |
+| mode   | [SwitchMode](#switchmode12) | 否   | 切换视频轨道模式，默认为SMOOTH模式，**仅在DASH协议网络流视频轨切换时生效**，其他场景当前暂不支持。 |
 
 **返回值：**
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 选择曲目完成的Promise返回值。 |
+| Promise\<void> | 选择轨道完成的Promise返回值。 |
 
 **错误码：**
 
@@ -1545,7 +1545,7 @@ avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 
 deselectTrack(index: number): Promise\<void>
 
-使用AVPlayer播放多音轨视频时取消指定音轨播放，通过Promise获取返回值。
+使用AVPlayer播放多音轨视频时取消指定音视频轨道播放，通过Promise获取返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1555,7 +1555,7 @@ deselectTrack(index: number): Promise\<void>
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
+| index | number | 是   | 多音视频资源的轨道索引，来自[getTrackDescription](#gettrackdescription9-1)接口所获取的轨道信息[MediaDescription](#mediadescription8)。 |
 
 **返回值：**
 
@@ -1816,7 +1816,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-选择要播放的指定比特率，仅对**HLS协议网络流**有效，默认情况下，播放器会根据网络连接速度选择合适的比特率，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#onbitratedone9)事件确认是否生效。
+设置比特率，以播放所指定比特率的流媒体资源，当前仅对**HLS/DASH协议网络流**有效。默认情况下，AVPlayer会根据网络连接速度选择合适的比特率。只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#onbitratedone9)事件确认是否生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1826,7 +1826,7 @@ setBitrate(bitrate: number): void
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | 是   | 指定比特率，可以通过[availableBitrates](#onavailablebitrates9)事件获得当前HLS协议流可用的比特率，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最小和最接近的比特率。如果通过availableBitrates事件获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
+| bitrate | number | 是   | 指定比特率，须通过[availableBitrates](#onavailablebitrates9)事件获得当前HLS/DASH协议网络流可用的比特率列表，如果用户指定的比特率不在此列表中，则播放器将从可用比特率列表中选择最接近的比特率。如果通过availableBitrates事件获得的比特率列表长度为0，则不支持指定比特率，也不会产生bitrateDone回调。 |
 
 **示例：**
 
@@ -1885,7 +1885,7 @@ avPlayer.off('bitrateDone')
 
 on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
-监听HLS协议流可用的比特率列表，只会在切换prepared状态后上报。
+监听HLS/DASH协议网络流可用的比特率列表，只会在切换prepared状态后上报。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1895,8 +1895,8 @@ on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | HLS协议可用比特率上报事件回调类型，支持的事件：'availableBitrates'，只会在prepared之后上报一次。 |
-| callback | Callback\<Array\<number>> | 是   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
+| type     | string   | 是   | HLS/DASH协议网络流可用比特率上报事件回调类型，支持的事件：'availableBitrates'，只会在prepared之后上报一次。 |
+| callback | Callback\<Array\<number>> | 是   | HLS/DASH协议网络流可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。 |
 
 **示例：**
 
@@ -1910,7 +1910,7 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 
 off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
-取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
+取消监听HLS/DASH协议网络流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1920,8 +1920,8 @@ off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | HLS协议可用比特率上报事件回调类型，取消注册的事件：'availableBitrates'。 |
-| callback | Callback\<Array\<number>> | 否   | HLS协议可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。<br/>从API version 12开始支持此参数。 |
+| type   | string | 是   | HLS/DASH协议网络流可用比特率上报事件回调类型，取消注册的事件：'availableBitrates'。 |
+| callback | Callback\<Array\<number>> | 否   | HLS/DASH协议网络流可用比特率上报事件回调方法，使用数组存放支持的比特率。如果数组长度为0，则不支持指定比特率。<br/>从API version 12开始支持此参数。 |
 
 **示例：**
 
@@ -4185,7 +4185,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.             |
 | 5400104  | Time out.              |
 | 5400105  | Service died.          |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.    |
 | 5400107  | Audio interrupted.     |
 
 **示例：**
@@ -4848,7 +4848,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.              |
 | 5400104  | Time out.            |
 | 5400105  | Service died.           |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.      |
 
 **示例：**
 
@@ -7596,8 +7596,8 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
-| preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 

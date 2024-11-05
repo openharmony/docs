@@ -155,17 +155,17 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 类型                                                     | 必填 | 说明                                                         |
-| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 弹出框控制器。                                               |
-| contentBuilder      | () => void                                                   | 是   | 弹出框内容。                                                 |
-| primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 弹出框标题。                                                 |
-| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 弹出框辅助文本。                                             |
-| localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否   | 弹出框内容区内边距。                                         |
-| contentAreaPadding  | [Padding](ts-types.md#padding)                               | 否   | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
-| buttons             | [ButtonOptions](#buttonoptions)[]                     | 否   | 弹出框操作区按钮，最多支持4个按钮。                          |
-| theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
-| themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | 自定义弹窗深浅色模式。 |
+| 名称                | 类型                                                     | 必填 | 装饰器类型 | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | -  | 弹出框控制器。                                               |
+| contentBuilder      | () => void                                                   | 是   | @BuilderParam | 弹出框内容。                                                 |
+| primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框标题。                                                 |
+| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -  | 弹出框辅助文本。                                             |
+| localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否   | -  | 弹出框内容区内边距。                                         |
+| contentAreaPadding  | [Padding](ts-types.md#padding)                               | 否   | -  | 弹出框内容区内边距。设置了localizedContentAreaPadding属性时该属性不生效。|
+| buttons             | [ButtonOptions](#buttonoptions)[]                     | 否   | -  | 弹出框操作区按钮，最多支持4个按钮。                          |
+| theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -  | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
+| themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否 | - | 自定义弹窗深浅色模式。 |
 
 
 ## ButtonOptions

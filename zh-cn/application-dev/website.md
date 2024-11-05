@@ -1300,12 +1300,14 @@
       - [Camera Kit简介](media/camera/camera-overview.md)
       - [开发准备](media/camera/camera-preparation.md)
       - 相机开发指导(ArkTS)<!--camera-dev-arkts-->
+        - [相机管理(ArkTS)](media/camera/camera-device-management.md)
         - [设备输入(ArkTS)](media/camera/camera-device-input.md)
         - [会话管理(ArkTS)](media/camera/camera-session-management.md)
         - [预览(ArkTS)](media/camera/camera-preview.md)
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
         - [录像(ArkTS)](media/camera/camera-recording.md)
         - [元数据(ArkTS)](media/camera/camera-metadata.md)
+        - [手电筒使用(ArkTS)](media/camera/camera-torch-use.md)
         - [适配不同折叠状态的摄像头变更(ArkTS)](media/camera/camera-foldable-display.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
@@ -1327,6 +1329,7 @@
         - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
         <!--DelEnd-->
       - 相机开发指导(C/C++)<!--camera-dev-native-->
+        - [相机管理(C/C++)](media/camera/native-camera-device-management.md)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
         - [会话管理(C/C++)](media/camera/native-camera-session-management.md)
         - [预览(C/C++)](media/camera/native-camera-preview.md)
@@ -1335,6 +1338,7 @@
         - [录像(C/C++)](media/camera/native-camera-recording.md)
         - [录像流二次处理(C/C++)](media/camera/native-camera-recording-imageReceiver.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
+        - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
       - 相机最佳实践(C/C++)<!--camera-best-practices-native-->
         - [拍照实现方案(C/C++)](media/camera/native-camera-shooting-case.md)
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
@@ -1541,7 +1545,6 @@
           - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
-          - [非ArkTS线程调用ArkTS函数](napi/use-uv-queue-work.md)
           - [使用Node-API接口创建ArkTs运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
@@ -1638,6 +1641,8 @@
         - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
         - [在线短视频流畅切换 ](performance/performance-quick-switch-short-video.md)
         - [相机分段式拍照性能提升实践](performance/performance-camera-shot2see.md)
+        - [在线视频播放卡顿优化实践](performance/online_video_playback_lags_practice.md)
+        - [音画同步最佳实践](performance/audio-video-synchronization.md)
     - 性能工具
         - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
         - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)

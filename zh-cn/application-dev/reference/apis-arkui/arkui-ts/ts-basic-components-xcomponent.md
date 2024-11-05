@@ -482,7 +482,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 <!--Del-->
 > **说明：**
 >
-> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Native/NdkXComponent)
 <!--DelEnd-->
 ```ts
 // xxx.ets

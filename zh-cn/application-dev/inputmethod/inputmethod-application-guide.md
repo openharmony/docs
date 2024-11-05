@@ -378,4 +378,4 @@
 
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
-- [轻量级输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
+- [轻量级输入法](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Solutions/InputMethod/KikaInput)
