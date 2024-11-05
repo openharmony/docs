@@ -744,27 +744,7 @@ ID of the task being executed.
 
 ##### Example
 
-```{.c}
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    static int x = 0;
-    int* xf = &x;
-    void* data = xf;
-    uint64_t timeout1 = 20;
-
-    ffrt::submit([=]() {
-    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
-    ffrt_timer_cb cb;
-    ffrt_timer_start(taskQos, timeout1, data, cb, false);
-    ffrt_usleep(200);
-    }, {}, {});
-    ffrt::wait();
-    return 0;
-}
-
-```
+N/A
 
 #### ffrt_this_task_update_qos
 
@@ -821,7 +801,27 @@ N/A
 
 ##### Example
 
-N/A
+```{.c}
+#include "ffrt.h"
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+
+    ffrt::submit([=]() {
+    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_cb cb;
+    ffrt_timer_start(taskQos, timeout1, data, cb, false);
+    ffrt_usleep(200);
+    }, {}, {});
+    ffrt::wait();
+    return 0;
+} 
+
+```
 
 ### Serial Queue
 
