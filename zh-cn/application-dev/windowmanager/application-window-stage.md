@@ -52,7 +52,7 @@
 
 ## 设置应用主窗口
 
-在`Stage`模型下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件](../quick-start/module-configuration-file.md#abilities标签)。
+在`Stage`模型下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件中的abilities标签](../quick-start/module-configuration-file.md#abilities标签)。
 
 ### 开发步骤
 
@@ -457,13 +457,13 @@ export default class EntryAbility extends UIAbility {
 <!--RP2-->
 ## 设置悬浮窗<!--RP2End-->
 
-悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上；开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
+悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上，开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
 
 
 ### 开发步骤
 
 <!--RP1-->
-**前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
+**前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[system_basic等级应用申请权限的方式](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 <!--RP1End-->
 
 1. 创建悬浮窗。
