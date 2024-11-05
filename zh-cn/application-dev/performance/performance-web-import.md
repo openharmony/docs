@@ -146,26 +146,37 @@ webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2)
 | additionalHeaders | Array\<WebHeader> | url的附加HTTP请求头。 |
 
 使用方法如下：
-```javascript
+```typescript
 // src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
-  // ...
+import { webview } from '@kit.ArkWeb';
 
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    // ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .onPageEnd((event) => {
-        //  ...
-        // 在确定即将跳转的页面时开启预加载
-        this.controller.prefetchPage('https://www.example.com/nextpage');
-      })
-    Button('下一页')
-      .onClick(() => {
-        // ...
-        // 跳转下一页
-        this.controller.loadUrl('https://www.example.com/nextpage');
-      })
+
+  build() {
+    Column() {
+       // ...
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .onPageEnd((event) => {
+          //  ...
+          // 在确定即将跳转的页面时开启预加载，url请替换真实地址
+          this.controller.prefetchPage('https://www.example.com/nextpage');
+        })
+        .width('100%')
+        .height('80%')
+
+      Button('下一页')
+        .onClick(() => {
+          // ...
+          // 跳转下一页
+          this.controller.loadUrl('https://www.example.com/nextpage');
+        })
+    }
+  }
+}
 ```
 
 ### 预渲染优化
@@ -193,17 +204,21 @@ import webview from '@ohos.web.webview';
     ```typescript
     // 载体Ability
     // EntryAbility.ets
-    import {createNWeb} from "../pages/common"
-   
-    onWindowStageCreate(windowStage: window.WindowStage): void {
-      windowStage.loadContent('pages/Index', (err, data) => {
-        // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-        createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-        if (err.code) {
-          return;
-        }
-      });
+    import {createNWeb} from "../pages/common";
+    import { UIAbility } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    export default class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: window.WindowStage): void {
+        windowStage.loadContent('pages/Index', (err, data) => {
+          // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建
+          createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
+          if (err.code) {
+            return;
+          }
+        });
+      }
     }
+   
     ```
 2. 创建NodeContainer和对应的NodeController，渲染后台ArkWeb组件
 
@@ -583,7 +598,7 @@ struct WebComponent {
 }
 ```
 
-前端页面代码：
+加载的html文件：
 ```html
 <!DOCTYPE html>
 <html>
@@ -869,6 +884,8 @@ JSBridge优化方案适用于ArkWeb应用侧与前端网页通信场景，开发
 步骤1.只注册同步函数
 ```typescript
 import webview from '@ohos.web.webview';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 // 定义ETS侧对象及函数
 class TestObj {
   test(testStr:string): string {
@@ -1874,40 +1891,60 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 
 入口页提前进行Web组件的初始化和预连接
 
-```javascript
+```typescript
 // src/main/ets/pages/WebInitialized.ets
 
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
+import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// ...
-Button('进入网页')
-  .onClick(() => {
-     hilog.info(0x0001, "WebPerformance", "InitializedWeb");
-     router.pushUrl({ url: 'pages/WebBrowser' });
-  })
-// ...
-aboutToAppear() {
-  webview.WebviewController.initializeWebEngine();
-  webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear() {
+    webview.WebviewController.initializeWebEngine();
+    webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+  }
+
+  build() {
+    Column() {
+      Button('进入网页')
+        .onClick(() => {
+          hilog.info(0x0001, "WebPerformance", "InitializedWeb");
+          router.pushUrl({ url: 'pages/WebBrowser' });
+        })
+    }
+  }
 }
 ```
 Web页加载的同时使用prefetchPage预加载下一页
 ```javascript
 // src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  // ...
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    // ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .domStorageAccess(true)
-      .onPageEnd((event) => {
-         if (event) {
-           hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
-           this.controller.prefetchPage('https://www.example.com/nextpage');
-         }
-      })
+
+  build() {
+    Column() {
+       // ...
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .domStorageAccess(true)
+        .onPageEnd((event) => {
+           if (event) {
+             hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
+             this.controller.prefetchPage('https://www.example.com/nextpage');
+           }
+        })
+    }
+  }
+}
 ```
 
 ### 数据对比
@@ -1923,4 +1960,6 @@ import webview from '@ohos.web.webview';
 从Web首页内点击跳转下一页按钮到Web组件触发OnPageEnd事件，表示页面间跳转完成。对比优化前后时延可以得出，使用预加载下一页方法可以减少平均40~50ms左右的跳转时间。
 
 ![跳转完成时延](./figures/web-route-time-chart.png)
+
+<!--no_check-->
 
