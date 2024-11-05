@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供访问系统剪贴板的接口、数据结构、枚举类型。 引用文件：&lt;database/pasteboard/oh_pasteboard.h&gt;
+提供访问系统剪贴板的接口、数据结构、枚举类型。 
 
 **库：** libpasteboard.so
 

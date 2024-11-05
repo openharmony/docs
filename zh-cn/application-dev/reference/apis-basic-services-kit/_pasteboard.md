@@ -15,8 +15,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_pasteboard.h](oh__pasteboard_8h.md) | 提供访问系统剪贴板的接口、数据结构、枚举类型。 <br>引用文件：&lt;database/pasteboard/oh_pasteboard.h&gt;  <br>**库：** libpasteboard.so| 
-| [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md) | 声明剪贴板框架错误码信息。 <br>引用文件：&lt;database/pasteboard/oh_pasteboard_err_code.h&gt;  <br>**库：** libpasteboard.so| 
+| [oh_pasteboard.h](oh__pasteboard_8h.md) | 提供访问系统剪贴板的接口、数据结构、枚举类型。 | 
+| [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md) | 声明剪贴板框架错误码信息。 | 
 
 
 ### 类型定义
