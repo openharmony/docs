@@ -79,10 +79,9 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
+      let ability: UIAbility = await delegator.getCurrentTopAbility();
+      console.info("get top ability");
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       done();
     })
   })
@@ -148,10 +147,9 @@ export default function abilityTest() {
           await delegator.startAbility(want);
           await sleep(1000);
           //check top display ability
-          await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-             console.info("get top ability");
-             expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-          })
+          let ability = await delegator.getCurrentTopAbility();
+          console.info("get top ability");
+          expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
           //ui test code
           //init driver
           let driver = Driver.create();
