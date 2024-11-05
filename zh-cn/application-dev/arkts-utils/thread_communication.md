@@ -235,4 +235,4 @@ try {
 
 针对线程间通信开发，有以下相关实例可供参考：
 
-[线程间通信（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/ThreadCommunication)
+[线程间通信（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Performance/PerformanceLibrary/feature/ThreadCommunication)
