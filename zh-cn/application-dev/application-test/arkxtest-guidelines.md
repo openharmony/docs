@@ -356,7 +356,7 @@ export default function abilityTest() {
 >
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
-## 基于shell命令的Uitest测试
+## 基于shell命令测试
 
 在开发过程中，若需要快速进行截屏、 录屏、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
 
