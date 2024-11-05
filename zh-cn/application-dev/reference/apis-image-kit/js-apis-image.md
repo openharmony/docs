@@ -6779,7 +6779,7 @@ receiver.on('imageArrival', () => {
 
 ### off<sup>13+</sup>
 
-off(type: 'imageArrival', callback: AsyncCallback\<void>): void
+off(type: 'imageArrival', callback?: AsyncCallback\<void>): void
 
 释放buffer时移除注册回调。
 
@@ -7120,7 +7120,7 @@ creator.on('imageRelease', (err: BusinessError) => {
 
 ### off<sup>13+</sup>
 
-off(type: 'imageRelease', callback: AsyncCallback\<void>): void
+off(type: 'imageRelease', callback?: AsyncCallback\<void>): void
 
 释放buffer时，移除注册的回调函数。
 
