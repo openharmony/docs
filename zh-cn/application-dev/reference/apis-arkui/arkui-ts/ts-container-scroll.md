@@ -542,7 +542,7 @@ fling(velocity: number): void
 
 ### scrollPage<sup>9+</sup>
 
-scrollPage(value: { next: boolean }): void
+scrollPage(value: { next: boolean })
 
 滚动到下一页或者上一页。
 

@@ -314,7 +314,7 @@ barState(state: BarState)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| state | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -388,7 +388,7 @@ aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalu
 | ------ | ------------------------------------------- | ---- | -------------------- |
 | callback | Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\> | 是   | [RichEditorInsertValue](#richeditorinsertvalue)为输入法将要输入内容信息。<br/>true:组件执行添加内容操作。<br/>false:组件不执行添加内容操作<br/>输入法输入内容前的回调。|
 
-### onDidIMEInput
+### onDidIMEInputsup>12+</sup>
 
 onDidIMEInput(callback:Callback\<TextRange>)
 
