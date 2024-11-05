@@ -1049,6 +1049,8 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取最新的一张图片。
 
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
+
 **起始版本：** 10
 
 **参数:**
@@ -1097,6 +1099,8 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 ```
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取下一张图片。
+
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
 
 **起始版本：** 10
 

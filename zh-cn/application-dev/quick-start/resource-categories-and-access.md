@@ -327,12 +327,12 @@ string资源配置attr属性示例如下：
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过[createModuleContext(bundleName, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过[createBundleContext(bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 
 - 通过```"$r"```或```"$rawfile"```访问资源。具体操作如下：
 
@@ -541,11 +541,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 1、对应的overlay资源包需要放在对应应用安装路径下，通过hdc install的方式安装。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
 
-2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
+2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().bundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
 
 - 静态overlay配置方式
 
-包内overlay资源包中的配置文件module.json5中支持的字段：
+包内overlay资源包中的配置文件app.json5中支持的字段：
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -554,7 +554,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-  },
+  }
+}
+```
+包内overlay资源包中的配置文件module.json5中支持的字段：
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -570,8 +574,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
   }
 }
 ```
-<!--Del-->
-包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -582,7 +585,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
     "targetPariority": 1,
-  },
+  }
+}
+```
+包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -619,4 +626,4 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Resource/ResourceManager)

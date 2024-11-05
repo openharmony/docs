@@ -403,4 +403,4 @@
 
 针对媒体会话提供方开发，有以下相关实例可供参考：
 
-- [媒体会话——提供方（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaProvider)
+- [媒体会话——提供方（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Media/AVSession/MediaProvider)

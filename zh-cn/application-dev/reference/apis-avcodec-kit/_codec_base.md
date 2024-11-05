@@ -436,7 +436,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | OH_AVCodec实例。  | 
-| errorCode | 特定错误代码。  | 
+| errorCode | 特定错误代码。在不同场景下返回的错误码不同，详情可见方法描述中的表格。  | 
 | userData | 用户执行回调所依赖的数据。  |
 
 

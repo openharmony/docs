@@ -355,4 +355,4 @@ libnative_display_soloist.so
 
 针对可变帧率的开发，有以下相关实例可供参考：
 
-- [DisplaySoloist分级管控（API12）（C/C++）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySoloist)
+- [DisplaySoloist分级管控（API12）（C/C++）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Graphics/DisplaySoloist)
