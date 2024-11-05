@@ -105,7 +105,7 @@
         hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
       }
     }
-    ...    
+    // ...    
   }
   ```
 
