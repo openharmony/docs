@@ -74,7 +74,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 ## 示例
 
-该示例实现了设置页签型标题栏左侧页签项目列表，右侧菜单项目列表。
+该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'
