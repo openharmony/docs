@@ -60,7 +60,7 @@ FormAbility生命周期接口如下：
 | 接口名 | 描述 |
 | -------- | -------- |
 | onCreate(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData | 卡片提供方接收创建卡片的通知接口。 |
-| onCastToNormal(formId:&nbsp;string):&nbsp;void | 卡片提供方接收临时卡片转常态卡片的通知接口 |
+| onCastToNormal(formId:&nbsp;string):&nbsp;void | 卡片提供方接收临时卡片转常态卡片的通知接口。 |
 | onUpdate(formId:&nbsp;string):&nbsp;void | 卡片提供方接收更新卡片的通知接口。 |
 | onVisibilityChange(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void | 卡片提供方接收修改可见性的通知接口。 |
 | onEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void | 卡片提供方接收处理卡片事件的通知接口。 |
@@ -107,7 +107,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
 
 ### 实现卡片生命周期接口
 
-创建FA模型的卡片，需实现卡片的生命周期接口。先参考<!--RP1-->[IDE开发服务卡片指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->生成服务卡片模板。
+创建FA模型的卡片，需实现卡片的生命周期接口。先参考<!--RP1-->[创建服务卡片](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->生成服务卡片模板。
 
 1. 在form.ts中，导入相关模块
    
@@ -266,16 +266,16 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
   | -------- | -------- | -------- | -------- |
   | name | 表示JS&nbsp;Component的名字。该标签不可缺省，默认值为default。 | 字符串 | 否 |
   | pages | 表示JS&nbsp;Component的页面用于列举JS&nbsp;Component中每个页面的路由信息[页面路径+页面名称]。该标签不可缺省，取值为数组，数组第一个元素代表JS&nbsp;FA首页。 | 数组 | 否 |
-  | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省 |
-  | type | 表示JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为“normal” |
-  | mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空 |
+  | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省。 |
+  | type | 表示JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为“normal” 。|
+  | mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空。 |
 
   配置示例如下：
 
   
   ```json
   "js": [
-    ...
+    // ...
     {
       "name": "widget",
       "pages": [
@@ -314,7 +314,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
   
   ```json
   "abilities": [
-    ...
+    // ...
     {
       "name": ".FormAbility",
       "srcPath": "FormAbility",
@@ -343,7 +343,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
         }
       ]
     },
-    ...
+    // ...
   ]
   ```
 
@@ -388,7 +388,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
   }
 }
 
-...
+// ...
   onCreate(want: Want) {
     hilog.info(domain, TAG, 'FormAbility onCreate');
     if (want.parameters) {
@@ -409,7 +409,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
   },
-...
+// ...
 
 let deleteFormInfo = async (formId: string, context: featureAbility.Context): Promise<void> => {
   try {
@@ -423,7 +423,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
   }
 };
 
-...
+// ...
     // 适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
   onDestroy(formId: string) {
     // 删除卡片实例数据
@@ -432,10 +432,10 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
     deleteFormInfo(formId, this.context);
   }
-...
+// ...
 ```
 
-具体的持久化方法可以参考[数据管理开发指导](../database/app-data-persistence-overview.md)。
+具体的持久化方法可以参考[应用数据持久化概述](../database/app-data-persistence-overview.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
