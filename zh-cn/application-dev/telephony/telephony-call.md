@@ -34,8 +34,8 @@
 |                                  接口名                                             | 描述                                                         |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | hasVoiceCapability(): boolean;                                                      | 判断是否具有语音功能。                                        |
-|<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | 拨号。该接口为系统接口。                                      |
-| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | 转到拨号屏幕，显示被叫号码。                                  |
+|<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | 拨号。该接口为系统接口。                                      |
+| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void;                 | 转到拨号屏幕，显示被叫号码。                                  |
 
 observer模块为开发者提供订阅和取消订阅通话业务状态的功能。具体API说明详见[接口文档](../reference/apis-telephony-kit/js-apis-observer.md)。
 
