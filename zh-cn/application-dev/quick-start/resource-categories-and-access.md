@@ -541,7 +541,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 1、对应的overlay资源包需要放在对应应用安装路径下，通过hdc install的方式安装。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
 
-2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
+2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().bundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
 
 - 静态overlay配置方式
 
