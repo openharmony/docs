@@ -99,15 +99,15 @@ struct AddLog {
 在上面的示例中：
 
 1. 类LogTrack中的属性均被@Track装饰器装饰，点击按钮"change logTrack.str1"，此时UINode1刷新，UINode2不刷新，只有一条日志输出，避免了冗余刷新。
-```ts
-Text 1 is rendered
-```
+    ```ts
+    Text 1 is rendered
+    ```
 
 2. 类logNotTrack中的属性均未被@Track装饰器装饰，点击按钮"change logNotTrack.str1"，此时UINode3、UINode4均会刷新，有两条日志输出，存在冗余刷新。
-```ts
-Text 3 is rendered
-Text 4 is rendered
-```
+    ```ts
+    Text 3 is rendered
+    Text 4 is rendered
+    ```
 
 ## 限制条件
 

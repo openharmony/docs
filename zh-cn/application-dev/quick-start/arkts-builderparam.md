@@ -296,7 +296,7 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      ChildPage({ message: this.label}){  // 使用全部@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
+      ChildPage({ message: this.label}){  // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
         Column() {
           overBuilder();
         }
