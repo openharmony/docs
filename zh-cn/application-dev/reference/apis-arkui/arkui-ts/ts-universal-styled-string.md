@@ -139,7 +139,7 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### fromHtml
 
@@ -169,7 +169,7 @@ static fromHtml(html: string): Promise\<StyledString>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ## MutableStyledString
 
@@ -206,7 +206,7 @@ replaceString(start: number , length: number , other: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### insertString
 
@@ -231,7 +231,7 @@ insertString(start: number , other: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### removeString
 
@@ -258,7 +258,7 @@ removeString(start: number , length: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### replaceStyle
 
@@ -282,7 +282,7 @@ replaceStyle(spanStyle: SpanStyle): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### setStyle
 
@@ -336,7 +336,7 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### removeStyles
 
@@ -365,7 +365,7 @@ removeStyles(start: number , length: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### clearStyles
 
@@ -403,7 +403,7 @@ replaceStyledString(start: number , length: number , other: StyledString): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### insertStyledString
 
@@ -428,7 +428,7 @@ insertStyledString(start: number , other: StyledString): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### appendStyledString
 

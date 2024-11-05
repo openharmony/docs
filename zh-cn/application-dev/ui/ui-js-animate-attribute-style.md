@@ -86,7 +86,7 @@ text {
 ![zh-cn_image_0000001217168141](figures/zh-cn_image_0000001217168141.gif)
 
 
-> **说明：**
+> **说明：** 
 > - animation取值不区分先后，duration （动画执行时间）/ delay （动画延迟执行时间）按照出现的先后顺序解析。
 >
 > - 必须设置animation-duration样式，否则时长为0则不会有动画效果。当设置animation-fill-mode属性为forwards时，组件直接展示最后一帧的样式。

@@ -1192,6 +1192,8 @@ setInterception(interception: NavigationInterception): void
 
 constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: boolean)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名    | 类型      | 必填   | 说明                   |
