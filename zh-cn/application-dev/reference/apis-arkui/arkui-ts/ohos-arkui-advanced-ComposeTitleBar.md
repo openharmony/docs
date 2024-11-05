@@ -23,7 +23,6 @@ import { ComposeTitleBar } from '@kit.ArkUI'
 ## 属性
 不支持[通用属性](ts-universal-attributes-size.md)
 
-
 ## ComposeTitleBar
 
 ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array&lt;ComposeTitleBarMenuItem&gt;})
@@ -33,8 +32,6 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
