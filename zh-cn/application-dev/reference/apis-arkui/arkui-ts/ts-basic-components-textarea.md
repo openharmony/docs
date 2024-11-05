@@ -803,6 +803,8 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
 
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
