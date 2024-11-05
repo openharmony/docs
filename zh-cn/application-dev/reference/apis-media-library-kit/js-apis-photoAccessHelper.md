@@ -1085,6 +1085,59 @@ async function example() {
 }
 ```
 
+### grantPhotoAssetsReadPermission<sup>14+</sup>
+grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+<!--RP1--><!--RP1End-->调用接口给未授权的uri进行授权，返回已创建并授予保存权限的uri列表。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| srcFileUris | Array&lt;string&gt; | 是 | 需进行授权的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：** 仅支持处理图片、视频uri。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回已授权的uri列表。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+  console.info('grantPhotoAssetsReadPermissionSDemo.');
+
+  try {
+    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    // 获取需要进行授权的图片/视频uri
+    let srcFileUris: Array<string> = [
+      'file://fileUriDemo1' // 实际场景请使用真实的uri
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.grantPhotoAssetsReadPermission(srcFileUris);
+    console.info('grantPhotoAssetsReadPermissionsuccess, data is ' + desFileUris);
+  } catch (err) {
+    console.error('grantPhotoAssetsReadPermissionfailed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
