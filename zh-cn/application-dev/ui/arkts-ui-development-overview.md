@@ -97,7 +97,7 @@
 | 主题设置       | 介绍了应用级和页面级的主题设置能力。       | <!--RP1--><!--RP1End-->-&nbsp;[设置主题换肤](theme_skinning.md) |
 | Stage模型下ArkUI全局接口开发       | 介绍了如何使用UIContext中对应的接口获取与实例绑定的对象。       | -&nbsp;[Stage模型下ArkUI全局接口开发指导](arkts-global-interface.md) |
 | 跨进程拉起页面 | 介绍了全屏方式拉起原子化服务的方法。 | - [全屏启动原子化服务组件](arkts-FullScreenComponent.md) |
-| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[添加交互事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|
+| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[监听组件事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|
 
 ## 通用规则
 

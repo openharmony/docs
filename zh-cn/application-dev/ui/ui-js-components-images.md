@@ -1,6 +1,6 @@
 # image开发指导
 
-image是图片组件，用来渲染展示图片。具体用法请参考[image](../reference/apis-arkui/arkui-js/js-components-basic-image.md)。
+image是图片组件，用来渲染展示图片。具体用法请参考[image API](../reference/apis-arkui/arkui-js/js-components-basic-image.md)。
 
 
 ## 创建image组件

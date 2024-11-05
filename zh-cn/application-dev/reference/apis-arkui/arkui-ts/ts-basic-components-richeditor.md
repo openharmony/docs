@@ -389,7 +389,7 @@ aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalu
 | ------ | ------------------------------------------- | ---- | -------------------- |
 | callback | Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\> | 是   | [RichEditorInsertValue](#richeditorinsertvalue)为输入法将要输入内容信息。<br/>true:组件执行添加内容操作。<br/>false:组件不执行添加内容操作<br/>输入法输入内容前的回调。|
 
-### onDidIMEInputsup>12+</sup>
+### onDidIMEInput<sup>12+</sup>
 
 onDidIMEInput(callback:Callback\<TextRange>)
 

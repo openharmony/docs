@@ -30,7 +30,7 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 **参数**：
 
-| 名称    | 类型                              | 必填 | 装饰器类型 | 说明                    |
+| 参数名   | 类型                              | 必填 | 装饰器类型 | 说明                    |
 | ------- | --------------------------------- | ---- | ---------- | ----------------------- |
 | options | [CounterOptions](#counteroptions) | 是   | @Prop      | 定义counter组件的类型。 |
 

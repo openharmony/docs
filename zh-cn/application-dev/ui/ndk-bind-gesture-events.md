@@ -98,14 +98,14 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
 
 ## 组合手势
 
-组合手势由多种单一手势组合而成，通过在GroupGesture中使用不同的ArkUI_GroupGestureMode来声明该组合手势的类型，支持顺序识别、并行识别、互斥识别三种类型。
+组合手势由多种单一手势组合而成，通过在GroupGesture中使用不同的[ArkUI_GroupGestureMode](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_groupgesturemode)来声明该组合手势的类型，支持顺序识别、并行识别、互斥识别三种类型。
 
 ArkUI_GroupGestureMode枚举类，用于声明该组合手势的类型。顺序识别SEQUENTIAL_GROUP，并行识别PARALLEL_GROUP，互斥识别EXCLUSIVE_GROUP。
 
 
 ### 顺序识别
 
-顺序识别组合手势对应的ArkUI_GroupGestureMode为SEQUENTIAL_GROUP。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，后续手势识别均失败。顺序识别手势组仅有最后一个手势可以响应GESTURE_EVENT_ACTION_END。
+顺序识别组合手势对应的ArkUI_GroupGestureMode为SEQUENTIAL_GROUP。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，后续手势识别均失败。顺序识别手势组仅有最后一个手势可以响应[GESTURE_EVENT_ACTION_END](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_gestureeventactiontype)。
 
 以顺序识别长按和滑动手势为例：
 
