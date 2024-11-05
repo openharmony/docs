@@ -792,18 +792,18 @@ For other OPS functions:
 
       After step 4 is complete, the ADM framework calls Rk3568PcmPointer to cyclically write CirBuf and calculate the pointer.
 
-         ```
-           
-            dma_chn = dmaRtd->dmaChn[DMA_TX_CHANNEL];
-            buf_size = data->renderBufInfo.cirBufSize;
-            dmaengine_tx_status(dma_chn, dmaRtd->cookie[DMA_TX_CHANNEL], &dma_state);
-            if (dma_state.residue) {
-                currentPointer = buf_size - dma_state.residue;
-                *pointer = BytesToFrames(data->pcmInfo.frameSize, currentPointer);
-            } else {
-                *pointer = 0;
-            }
-         ```
+   ```
+     
+      dma_chn = dmaRtd->dmaChn[DMA_TX_CHANNEL];
+      buf_size = data->renderBufInfo.cirBufSize;
+      dmaengine_tx_status(dma_chn, dmaRtd->cookie[DMA_TX_CHANNEL], &dma_state);
+      if (dma_state.residue) {
+          currentPointer = buf_size - dma_state.residue;
+          *pointer = BytesToFrames(data->pcmInfo.frameSize, currentPointer);
+      } else {
+          *pointer = 0;
+      }
+   ```
 
 6. Rk3568DmaPause
 
@@ -883,7 +883,7 @@ The camera driver framework is stored in **drivers_peripheral**, and the source 
 The camera .hcs file is configurable for each chipset. Therefore, it is placed in the chipset-related repository. The following takes RK3568 as an example. The repository name is **vendor_hihope**, and the source code directory is **vendor/hihope/rk3568/hdf_config/uhdf/camera**.
 
     ├── hdi_impl
-    │   └── camera_host_config.hcs
+    │   └── camera_host_config.hcs
     └── pipeline_core
         ├── config.hcs
         ├── ipp_algo_config.hcs
@@ -892,33 +892,33 @@ The code repository related to the camera chipset of RK3568 is **device_hihope**
 ```
 ├── BUILD.gn
 ├── demo
-│   └── include
-│       └── project_camera_demo.h
+│   └── include
+│       └── project_camera_demo.h
 ├── device_manager
-│   ├── BUILD.gn
-│   ├── include
-│   │   ├── imx600.h
-│   │   ├── project_hardware.h
-│   │   └── rkispv5.h
-│   └── src
-│       ├── imx600.cpp
-│       └── rkispv5.cpp
+│   ├── BUILD.gn
+│   ├── include
+│   │   ├── imx600.h
+│   │   ├── project_hardware.h
+│   │   └── rkispv5.h
+│   └── src
+│       ├── imx600.cpp
+│       └── rkispv5.cpp
 ├── driver_adapter
-│   └── test
-│       ├── BUILD.gn
-│       ├── unittest
-│       │   ├── include
-│       │   │   └── utest_v4l2_dev.h
-│       │   └── src
-│       │       └── utest_v4l2_dev.cpp
-│       └── v4l2_test
-│           └── include
-│               └── project_v4l2_main.h
+│   └── test
+│       ├── BUILD.gn
+│       ├── unittest
+│       │   ├── include
+│       │   │   └── utest_v4l2_dev.h
+│       │   └── src
+│       │       └── utest_v4l2_dev.cpp
+│       └── v4l2_test
+│           └── include
+│               └── project_v4l2_main.h
 └── pipeline_core
     ├── BUILD.gn
     └── src
         ├── ipp_algo_example
-        │   └── ipp_algo_example.c
+        │   └── ipp_algo_example.c
         └── node
             ├── rk_codec_node.cpp
             └── rk_codec_node.h     
@@ -1098,7 +1098,7 @@ Three code compilation paths **chipset_build_deps**, **camera_device_manager_dep
 
 ####  Framework Adaptation
 
-        ![dayu200-camera-01.png](figures/dayu200/dayu200-camera-01.png)
+![dayu200-camera-01.png](figures/dayu200/dayu200-camera-01.png)
 ​      
 
 Take V4l2 as an example. The pipeline connection mode is to configure the connection in the HCS configuration file. The data source is called SourceNode, including hardware device control and data stream transfer.
@@ -1122,7 +1122,7 @@ The following directories are added:
 
 ```
   ├── hdi_impl
-  │   └── camera_host_config.hcs
+  │   └── camera_host_config.hcs
   └── pipeline_core
       ├── config.hcs
       ├── ipp_algo_config.hcs
@@ -1221,9 +1221,9 @@ The platform contains the platform common code, such as the Linux standard v4l2 
 
       drivers/peripheral/camera/hal/adapter/platform
       ├── mpp
-      │   └── src
-      │       ├── device_manager
-      │       └── pipeline_core
+      │   └── src
+      │       ├── device_manager
+      │       └── pipeline_core
       └── v4l2
           └── src
               ├── device_manager
@@ -1246,13 +1246,13 @@ Nodes in the **platform** directory are hardware modules **v4l2_source_node** an
                 RetCode Stop(const int32_t streamId) override;
           RetCode GetDeviceController();
                 void SetBufferCallback() override;
-          RetCode ProvideBuffers(std::shared_ptr<FrameSpec> frameSpec) override;
+          RetCode ProvideBuffers(std::shared_ptr\<FrameSpec> frameSpec) override;
             
       private:
                 std::mutex                              requestLock_;
           std::map<int32_t, std::list<int32_t>>   captureRequests_ = {};
-                std::shared_ptr<SensorController>       sensorController_ = nullptr;
-          std::shared_ptr<IDeviceManager>     deviceManager_ = nullptr;
+                std::shared_ptr\<SensorController>       sensorController_ = nullptr;
+          std::shared_ptr\<IDeviceManager>     deviceManager_ = nullptr;
             };
       } // namespace OHOS::Camera
 
@@ -1637,7 +1637,7 @@ Add the compilation of **rk_codec_node.cpp** and related dependent libraries to 
  Main APIs of the **openharmony/device/board/hihope/rk3568/camera/src/pipeline_core/node/rk_codec_node.cpp** file:
 
 
-       void RKCodecNode::DeliverBuffer(std::shared_ptr<IBuffer>& buffer)
+       void RKCodecNode::DeliverBuffer(std::shared_ptr\<IBuffer>& buffer)
         {
             if (buffer == nullptr) {
                 CAMERA_LOGE("RKCodecNode::DeliverBuffer frameSpec is null");
@@ -1712,7 +1712,7 @@ V4L2AllocBuffer error:ioctl VIDIOC_QUERYBUF failed: Not a tty
 
 ```
 
-    RetCode HosV4L2Buffers::V4L2AllocBuffer(int fd, const std::shared_ptr<FrameSpec>& frameSpec)
+    RetCode HosV4L2Buffers::V4L2AllocBuffer(int fd, const std::shared_ptr\<FrameSpec>& frameSpec)
     {
         struct v4l2_buffer buf = {};
         struct v4l2_plane planes[1] = {};
@@ -1840,7 +1840,7 @@ struct v4l2_buffer {
 
         static constexpr uint32_t nalBit = 0x1F;
         #define NAL_TYPE(value)             ((value) & nalBit)
-        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr<IBuffer>& buffer)
+        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr\<IBuffer>& buffer)
         {
             size_t nalType = 0;
             size_t idx = 0;
