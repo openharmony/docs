@@ -2548,7 +2548,7 @@ In practice, you may not use pure functions in certain scenarios, with the follo
 ### Suggestion 5: C++ APIs recommended
 
 * The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
-* For details about how to download C++ APIs, see [FFRT C++ APIs] (https://gitee.com/wangyulie/resourceschedule_ffrt/tree/master/interfaces/kits).
+* For details about how to download C++ APIs, see [FFRT C++ APIs] (https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits).
 
 ## Constraints
 
