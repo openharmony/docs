@@ -206,6 +206,8 @@ struct Index {
 因此会扩散影响到容器外ForEach中的Text渲染：
 
 ```typescript
+const IMAGE_TOTAL_NUM: number = 10; // 图片总数
+
 @Entry
 @Component
 struct StackExample {
@@ -213,7 +215,7 @@ struct StackExample {
   private data: number[] = [];
 
   aboutToAppear() {
-    for (let i: number = 0; i < Constants.IMAGE_TOTAL_NUM; i++) {
+    for (let i: number = 0; i < IMAGE_TOTAL_NUM; i++) {
       this.data.push(i);
     }
   }
@@ -245,6 +247,8 @@ struct StackExample {
 建议：指定Stack宽高，此时Stack组件作为布局计算的边界，内部的变化不会扩散到父容器，进而减少兄弟节点的刷新。
 
 ```typescript
+const IMAGE_TOTAL_NUM: number = 10; // 图片总数
+
 @Entry
 @Component
 struct StackExample2 {
@@ -277,6 +281,7 @@ struct StackExample2 {
       }, (item: number) => item.toString())
     }
   }
+}
 ```
 **效果对比**
 

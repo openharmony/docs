@@ -10,11 +10,13 @@
 ## ResourceManager的getXXXSync接口
 
 ResourceManager通过getXXXSync接口获取资源的方式有两种：通过resource对象```resourceManager.getStringSync($r('app.string.test'))```和通过id```resourceManager.getStringSync($r('app.string.test').id)```。
-下面以[getStringSync](../reference/apis-localization-kit/js-apis-resource-manager.md)为例，测试一下这两种参数在方法中的使用是否会有耗时区别。
+下面以[getStringSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)为例，测试一下这两种参数在方法中的使用是否会有耗时区别。
 
 ### 通过resource对象获取
 
 ```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @Component
 struct Index {
@@ -46,6 +48,8 @@ struct Index {
 ### 通过id获取
 
 ```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
 @Entry
 @Component
 struct Index {

@@ -107,7 +107,7 @@ export default class EntryAbility extends UIAbility {
 
 在应用启动流程中，系统会执行AbilityStage的生命周期回调函数。因此，不建议在这些回调函数中执行耗时过长的操作，耗时操作建议通过异步任务延迟处理或者放到其他线程执行。
 
-在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[AbilityStage组件容器](../application-models/abilitystage.md)
+在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[AbilityStage组件容器](../application-models/abilitystage.md)。
 
 以下为示例代码：
 
