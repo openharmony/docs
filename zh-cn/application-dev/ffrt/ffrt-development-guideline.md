@@ -2548,7 +2548,7 @@ libffrt.z.so
 ### 建议5: 推荐使用C++接口
 
 * FFRT的C++接口是基于C接口实现，在使用API接口时可以手动添加C++相关头文件后配套使用。
-* 相关C++接口下载参考：[FFRT C++接口](https://gitee.com/wangyulie/resourceschedule_ffrt/tree/master/interfaces/kits)
+* 相关C++接口下载参考：[FFRT C++接口](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits)
 
 
 
