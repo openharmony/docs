@@ -26,21 +26,15 @@
 
   ![](figures/Uitest.PNG)
 
-## 环境准备
-
-### 环境要求
-
-- 自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
-
-- 脚本执行需要PC连接硬件设备等。
+## 基于ArkTS编写和执行测试
 
 ### 搭建环境
 
 DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
 
-## 新建和编写测试脚本
+### 新建和编写测试脚本
 
-### 新建测试脚本
+#### 新建测试脚本
 
 <!--RP2-->
 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
@@ -49,7 +43,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 <!--RP2End-->
 
-### 编写单元测试脚本
+#### 编写单元测试脚本
 
 本章节主要描述单元测试框架支持能力，以及能力的使用方法, 具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
 
@@ -95,7 +89,7 @@ export default function abilityTest() {
 }
 ```
 
-### 编写UI测试脚本
+#### 编写UI测试脚本
 
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
@@ -176,11 +170,11 @@ export default function abilityTest() {
   }
  ```
 
-## 执行测试脚本
+### 执行测试脚本
 
-### DevEco Studio执行
+#### 在DevEco Studio执行
 
-通过点击按钮执行，当前支持以下执行方式：
+脚本执行需要连接硬件设备。通过点击按钮执行，当前支持以下执行方式：
 
 1、测试包级别执行，即执行测试包内的全部用例。
 
@@ -198,11 +192,11 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5)下各章节内的覆盖率统计模式。。
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5)下各章节内的覆盖率统计模式。
 
-### CMD执行
+#### 在CMD执行
 
-将应用测试包安装到测试设备上，在cmd窗口中执行aa命令，完成对用例测试。
+脚本执行需要连接硬件设备，将应用测试包安装到测试设备上，在cmd窗口中执行aa命令，完成对用例测试。
 
 > **说明：**
 >
@@ -364,33 +358,51 @@ export default function abilityTest() {
 >
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
-## 基于shell命令对UiTest的扩展操作
+## 基于shell命令的Uitest测试
+
+在开发过程中，若需要快速进行截屏、 录屏、注入UI模拟操作、获取控件数等操作，可以使用shell命令，更方便完成相应测试。
+
+> **说明：**
+>
+> 使用cmd的方式，需要配置好hdc相关的环境变量。
 
 **命令列表**
 | 命令            | 配置参数   |描述                              |
 |---------------|---------------------------------|---------------------------------|
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名, 只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
-| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行uitest dumpLayout。<br>- -p：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br>- -i：不过滤不可见控件,也不做窗口合并。<br>- -a：额外增加 BackgroundColor, Content, FontColor, FontSize, extraAttrs 这几个属性数据。<br>默认属性数据不存在。<br>- -a 和 -i不可同时使用。 |  【用中文写】
-| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br>- record：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br>- read：读取并且打印录制数据。<br>各参数代表的含义请参考【】。|
-| uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考【】。                       |
+| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br>- -p：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br>- -i：不过滤不可见控件,也不做窗口合并。<br>- 111：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br>默认：不保存上述属性数据。<br>- -a 和 -i不可同时使用。 |
+| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br>- record：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br>- read：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
+| uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
+| start-daemon|start-daemon| 拉起uitest测试进程。 |
 
 ### 截图使用示例
 
 ```bash
-uitest screenCap -p /data/local/tmp/1.png
+# 存储路径：/data/local/tmp，文件名：时间戳 + .png。
+hdc shell uitest screenCap
+# 指定存储路径和文件名,存放在/data/local/tmp/下。
+hdc shell uitest screenCap -p /data/local/tmp/1.png
 ```
 
 ### 获取控件树使用示例
 
 ```bash
-uitest dumpLayout -p /data/local/tmp/1.json
+hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 ```
 
 ### 用户录制操作
 
-- record 数据
+```bash
+# 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
+hdc shell uitest uiRecord record
+# 读取并打印录制数据。
+hdc shell uitest uiRecord rea
+```
+
+以下举例为：record数据中包含的字段及字段含义，仅供参考
+
  ```
  {
 	 "ABILITY": "com.ohos.launcher.MainAbility", // 前台应用界面
@@ -428,6 +440,7 @@ uitest dumpLayout -p /data/local/tmp/1.json
 	 "fingerNumber": "1" //手指数量
  }
  ```
+
 ### 注入UI模拟操作
 
 | 命令   | 必填 | 描述              | 
@@ -436,8 +449,8 @@ uitest dumpLayout -p /data/local/tmp/1.json
 | click   | 是    | 模拟单击操作。      | 
 | doubleClick   | 是    | 模拟双击操作。      | 
 | longClick   | 是    | 模拟长按操作。     | 
-| fling   | 是    | 模拟快滑操作。     | 
-| swipe   | 是    | 模拟慢滑操作。     | 
+| fling   | 是    | 模拟快滑操作。<br>快滑是指：模拟的滑动是惯性滑动，即滑动具有惯性，会在一段时间内持续滑动。     | 
+| swipe   | 是    | 模拟慢滑操作。 <br>慢滑是指：模拟的滑动是非惯性滑动，即滑动不具有惯性，会随需即停。      | 
 | drag   | 是    | 模拟拖拽操作。     | 
 | dircFling   | 是    | 模拟指定方向滑动操作。     |
 | inputText   | 是    | 模拟输入框输入文本操作。     |
@@ -452,17 +465,17 @@ uitest dumpLayout -p /data/local/tmp/1.json
 | point_y | 是       | 点击y坐标点。 |
 
 ```shell
-## 执行点击事件。
-uitest uiInput click 100 100
+# 执行单机事件。
+hdc shell uitest uiInput click 100 100
 
-## 执行双击事件。
-uitest uiInput doubleClick 100 100
+# 执行双击事件。
+hdc shell uitest uiInput doubleClick 100 100
 
-## 执行长按事件。
-uitest uiInput longClick 100 100
+# 执行长按事件。
+hdc shell uitest uiInput longClick 100 100
 ```
 
-#### uiInput fling/swipe/drag使用示例
+#### uiInput fling使用示例
 
 | 配置参数  | 必填             | 描述               |      
 |------|------------------|-----------------|
@@ -471,18 +484,30 @@ uitest uiInput longClick 100 100
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
 | swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
-| stepLength_   | 否 | 滑动步长。默认值: 滑动距离/50。 | 
+| stepLength_   | 否 | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 | 
 
 
 ```shell  
-## 执行快滑操作。
-uitest uiInput fling 10 10 200 200 500 
+# 执行快滑操作，stepLength_缺省。
+hdc shell uitest uiInput fling 10 10 200 200 500 
+``` 
 
-## 执行慢滑操作。
-uitest uiInput swipe 10 10 200 200 500
+#### uiInput swipe/drag使用示例
 
-## 执行拖拽操作。 
-uitest uiInput drag 10 10 100 100 500 
+| 配置参数  | 必填             | 描述               |      
+|------|------------------|-----------------|
+| from_x   | 是                | 滑动起点x坐标。 | 
+| from_y   | 是                | 滑动起点y坐标。 | 
+| to_x   | 是                | 滑动终点x坐标。 |
+| to_y   | 是                | 滑动终点y坐标。 |
+| swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
+
+```shell  
+# 执行慢滑操作。
+hdc shell uitest uiInput swipe 10 10 200 200 500
+
+# 执行拖拽操作。 
+hdc shell uitest uiInput drag 10 10 100 100 500 
 ```
 
 #### uiInput dircFling使用示例
@@ -491,17 +516,17 @@ uitest uiInput drag 10 10 100 100 500
 |-------------------|-------------|----------|
 | direction         | 否 | 滑动方向，取值范围：[0,1,2,3]，默认值为0。<br> 0代表向左滑动，1代表向右滑动，2代表向上滑动，3代表向下滑动。    | 
 | swipeVelocityPps_ | 否| 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。    | 
-| stepLength        | 否        | 拖拽终点x坐标。默认值: 滑动距离/50。 |
+| stepLength        | 否        | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 |
 
 ```shell  
-## 执行左滑操作
-uitest uiInput dircFling 0 500
-## 执行向右滑动操作
-uitest uiInput dircFling 1 600
-## 执行向上滑动操作。
-uitest uiInput dircFling 2 
-## 执行向下滑动操作。
-uitest uiInput dircFling 3
+# 执行左滑操作
+hdc shell uitest uiInput dircFling 0 500
+# 执行向右滑动操作
+hdc shell uitest uiInput dircFling 1 600
+# 执行向上滑动操作。
+hdc shell uitest uiInput dircFling 2 
+# 执行向下滑动操作。
+hdc shell uitest uiInput dircFling 3
 ```
 
 #### uiInput inputText使用示例
@@ -513,32 +538,43 @@ uitest uiInput dircFling 3
 | text   | 是                | 输入文本内容。  |
 
 ```shell  
-## 执行输入框输入操作。
-uitest uiInput inputText 100 100 hello 
+# 执行输入框输入操作。
+hdc shell uitest uiInput inputText 100 100 hello 
 ```
 
 #### uiInput keyEvent使用示例
 
 | 配置参数             | 必填       | 描述 |                
 |------|------|----------|
-| keyID   | 是    | 实体按键对应ID。 | 
+| keyID1   | 是    | 实体按键对应ID。 | 
 | keyID2    | 否    | 实体按键对应ID。 |
+| keyID3    | 否    | 实体按键对应ID。 |
+
+>**说明**
+>
+> 最多支持传入是三个键值，键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)。
 
 ```shell  
-## 执行执行返回主页操作。
-uitest uiInput keyEvent Home
-## 执行返回主页操作。
-uitest uiInput keyEvent Back
-## 执行组合键粘贴操作。
-uitest uiInput keyEvent 2072 2038
+# 执行执行返回主页操作。
+hdc shell uitest uiInput keyEvent Home
+# 执行返回主页操作。
+hdc shell uitest uiInput keyEvent Back
+# 执行组合键粘贴操作。
+hdc shell uitest uiInput keyEvent 2072 2038
 ```
 
 ### 版本命令
 
 ```bash
-# 显示帮助信息
-uitest --version
+# 显示版本信息
+hdc shell uitest --version
 ```
+### 拉起uitest测试进程
+
+```shell  
+hdc shell uitest start-daemon
+```
+
 
 <!--Del-->
 ## 相关实例
