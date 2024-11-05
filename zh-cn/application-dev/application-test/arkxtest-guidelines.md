@@ -563,10 +563,9 @@ hdc shell uitest uiInput keyEvent Back
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
 
-### 版本命令
+### 获取版本信息
 
 ```bash
-# 显示版本信息
 hdc shell uitest --version
 ```
 ### 拉起uitest测试进程
