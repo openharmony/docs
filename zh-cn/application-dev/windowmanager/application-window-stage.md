@@ -603,8 +603,8 @@ export default class EntryAbility extends UIAbility {
 
 针对window开发（Stage模型），有以下相关实例可供参考：
 
-- [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+- [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SuperFeature/MultiDeviceAppDev/Settings)
 
-- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
+- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/WindowManagement/WindowRatio)
 
-- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)
+- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/WindowManagement/WindowManage)
