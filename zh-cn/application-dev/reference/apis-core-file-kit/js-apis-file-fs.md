@@ -5763,6 +5763,8 @@ open接口flags参数常量。文件打开标签。
 
 文件可读流，需要先通过[fs.createReadStream](#fscreatereadstream12)方法来构建一个ReadStream实例。
 
+**规格**：ReadStream读到的数据为解码后的字符串，其编码格式当前仅支持'utf-8'。
+
 ### 属性
 
 | 名称     | 类型   | 只读   | 可写   | 说明                                       |
