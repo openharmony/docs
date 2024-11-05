@@ -38,7 +38,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
 1. 使用List+Swiper实现Tabs页面切换。
 
    ```ts
-   ...
    List() {
      ForEach(this.arrayTitle, (title: Title, index: number) => {
        ListItem() {
@@ -53,7 +52,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
              this.selectIndex = index;
            }
          })
-         ...
        }
      })
    }
@@ -75,13 +73,11 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
      }
    })
    .cachedCount(0) // 此处设置cachedCount为0，便于性能对比，实际开发中可按需设置
-   ...
    ```
 
 2. 使用Swiper组件实现轮播图，使用WaterFlow组件实现瀑布流加载数据，并给自定义组件设置reuseId，用于组件复用。
 
    ```ts
-   ...
    Scroll(this.scroller) {
      Column({ space: 2 }) {
        SwiperBuilder({images: this.images})
@@ -101,7 +97,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
            .width('100%')
          }, (item: string) => item)
        }
-       ...
        .nestedScroll({ // 设置嵌套滑动属性
          scrollForward: NestedScrollMode.PARENT_FIRST,
          scrollBackward: NestedScrollMode.SELF_FIRST
@@ -109,7 +104,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
      }
    }.width('100%')
    .height('100%')
-   ...
    ```
 
 3. 实现瀑布流的子组件。
@@ -119,10 +113,10 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
    @Reusable
    @Component
    export struct FlowItemComp {
-     ...
+     // ...
    
      build() {
-       ...
+       // ...
      }
      // 通过aboutToReuse接口刷新复用后的数据
      aboutToReuse(params: ESObject): void {
@@ -144,13 +138,11 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
 1. 使用List+Swiper实现Tabs页面切换。
 
    ```ts
-   ...
    Swiper(this.swiperController) {
      LazyForEach(this.array, () => {
        TabNode()
      }, (title: string) => title)
    }
-   ...
    ```
 
 2. 继承NodeController，实现makeNode，用于组件的创建或刷新，并在组件隐藏时（aboutToDisappear）回收组件。
@@ -158,7 +150,7 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
    ```ts
    export class NodeItem extends NodeController {
      private callback: UpdaterCallback | null = null;
-     ...
+     // 变量声明
      // 父类方法，用于创建子组件
      makeNode(uiContext: UIContext): FrameNode | null {
        if (!this.node) {
@@ -175,7 +167,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
      aboutToDisappear(): void {
        NodePool.getInstance().recycleNode(this.type, this);
      }
-     ...
    }
    ```
 
@@ -184,7 +175,7 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
     ```ts
     export class NodePool {
       private static instance: NodePool;
-      ...
+      // ...
     
       private constructor() {
         this.nodePool = new HashMap();
@@ -198,14 +189,12 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
         }
         return NodePool.instance;
       }
-      ...
     }
     ```
 
 4. 添加getNode方法，根据传入的type参数，获取对应的Node组件，如果未找到，则重新创建
 
     ```ts
-      ...
       // 获取Node组件，如果存在type类型的Node组件，则直接使用，否则重新创建
       public getNode(type: string, data: ESObject, builder: WrappedBuilder<ESObject>): NodeItem | undefined {
         let node: NodeItem | undefined = this.nodePool.get(type)?.pop();
@@ -222,7 +211,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
         }
         return node;
       }
-      ...
     ```
 
 5. 实现recycleNode方法，回收Node组件
@@ -242,7 +230,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
 6. 使用NodeContainer占位轮播图组件和瀑布流子组件的位置，在最外层的Swiper切换时，会根据LazyForEach的懒加载机制回收页面，此时会触发NodeItem中的aboutToDisappear方法，将组件回收到复用池中。而新加载的页面则可以通过自定义的组件复用池获取可用的子组件，如果未获取到对应type类型的组件，则会重新创建新的组件，否则直接获取之前回收的子组件进行复用。
 
    ```ts
-   ...
    @Builder
    function FlowItemBuilder(data: ESObject) {
      FlowItemNode({
@@ -259,7 +246,8 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
    
    @Component
    export struct TabNode {
-     ...
+     // 变量声明
+     // ...
      build() {
        Scroll(this.scroller) {
          Column({ space: 2 }) {
@@ -282,7 +270,6 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
                .width('100%')
              }, (item: string) => item)
            }
-       ...
      }
    }
    ```
