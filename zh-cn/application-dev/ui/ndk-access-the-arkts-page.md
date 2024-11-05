@@ -167,9 +167,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    Native实现。
    ```cpp
    // entry/src/main/cpp/napi_init.cpp
-   
-   #include "NativeEntry.h"
    #include "napi/native_api.h"
+   #include "NativeEntry.h"
    
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {

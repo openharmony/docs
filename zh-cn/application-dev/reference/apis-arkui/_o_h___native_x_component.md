@@ -16,8 +16,8 @@
 
 | 名称                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native&nbsp;XComponent的API。<br/>**引用文件：** &lt;ace/xcomponent/native_interface_xcomponent.h&gt;<br>**库：** libace_ndk.z.so |
-| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。<br/>**引用文件：** &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**库：** libace_ndk.z.so |
+| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native&nbsp;XComponent的API。 |
+| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。 |
 
 
 ### 结构体
