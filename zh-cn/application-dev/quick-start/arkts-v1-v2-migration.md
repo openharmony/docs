@@ -1313,9 +1313,179 @@ struct Index1 {
     }
 }
 ```
+### Environment->调用Ability接口直接获取系统环境变量
+V1中，开发者可以通过Environment来获取环境变量，但Environment获取的结果无法直接使用，需要配合AppStorage才能得到对应环境变量的值。
+在切换V2的过程中，开发者无需再通过Environment来获取环境变量，可以直接通过[UIAbilityContext的config属性](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#属性)获取系统环境变量。
+V1:
+以`languageCode`为例。
+```
+// 将设备languageCode存入AppStorage中
+Environment.envProp('languageCode', 'en');
+
+@Entry
+@Component
+struct Index {
+  @StorageProp('languageCode') languageCode: string = 'en';
+  build() {
+    Row() {
+      Column() {
+        // 输出当前设备的languageCode
+        Text(this.languageCode)
+      }
+    }
+  }
+}
+```
+
+V2:
+封装Env类型来传递多个系统环境变量。
+
+```
+// Env.ts
+import { ConfigurationConstant } from '@kit.AbilityKit';
+
+export class Env {
+  language: string | undefined;
+  colorMode: ConfigurationConstant.ColorMode | undefined;
+  fontSizeScale: number | undefined;
+  fontWeightScale: number | undefined;
+}
+
+export let env: Env = new Env();
+```
+在`onCreate`里获得需要的系统环境变量：
+```
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { env } from '../pages/Env';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    env.language = this.context.config.language;
+    env.colorMode = this.context.config.colorMode;
+    env.fontSizeScale = this.context.config.fontSizeScale;
+    env.fontWeightScale = this.context.config.fontWeightScale;
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index');
+  }
+}
+
+```
+在页面中获得当前Env的值。
+```
+// Index.ets
+import { env } from '../pages/Env';
+
+@Entry
+@ComponentV2
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        // 输出当前设备的环境变量
+        Text(`languageCode: ${env.language}`).fontSize(20)
+        Text(`colorMode: ${env.colorMode}`).fontSize(20)
+        Text(`fontSizeScale: ${env.fontSizeScale}`).fontSize(20)
+        Text(`fontWeightScale: ${env.fontWeightScale}`).fontSize(20)
+      }
+    }
+  }
+}
+```
+
+### PersistentStorage->PersistenceV2
+v1中PersistentStorage提供了持久化UI数据的能力，而V2则提供了更加方便使用的PersistenceV2接口来替代它。
+- PersistentStorage持久化的触发时机依赖AppStorage的观察能力，且与AppStorage耦合，开发者无法自主选择写入或读取持久化数据的时机。
+- PersistentStorage使用序列化和反序列化，并没有传入类型，所以在持久化后，会丢失其类型，且对象的属性方法不能持久化。
+
+对于PersistenceV2：
+- 与PersistenceV2关联的\@ObservedV2对象，其\@Trace属性的变化，会触发整个关联对象的自动持久化。
+- 开发者也可以调用[PersistenceV2.save](./arkts-new-persistencev2.md#save手动持久化数据)和[PersistenceV2.connect](./arkts-new-persistencev2.md#connect创建或获取储存的数据)接口来手动触发持久化写入和读取。
+
+V1:
+
+```
+PersistentStorage.persistProp('aProp', 47);
+
+@Entry
+@Component
+struct Index {
+  @StorageLink('aProp') aProp: number = 48;
+
+  build() {
+    Row() {
+      Column() {
+        // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+        Text(`${this.aProp}`)
+          .onClick(() => {
+            this.aProp += 1;
+          })
+      }
+    }
+  }
+}
+```
+
+V2:
+
+下面的案例展示了：
+- 对标V1的`PersistentStorage`能力：`aProp`的改变自动触发`PersistenceV2`的持久化。
+- 对比V1的`PersistentStorage`能力增强：`bProp`是非状态变量，其变化不能被观察和监听，但是开发者仍然可以主动调用[PersistenceV2.save](./arkts-new-persistencev2.md#save手动持久化数据)接口，进行持久化。
+    - 点击`aProp`，UI刷新。
+    - 点击`bProp`，UI没有刷新。
+    - 点击`save storage`，触发`PersistentStorage`链接数据的落盘。
+    - 退出重启应用，Text组件显示的`aProp`和`bProp`为上次改变的值。
+```
+import { PersistenceV2 } from '@kit.ArkUI';
+// 数据中心
+@ObservedV2
+class Storage {
+  @Trace aProp: number = 0;
+  bProp: number = 10;
+}
+
+// 接受序列化失败的回调
+PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
+  console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
+});
+
+@Entry
+@ComponentV2
+struct Page1 {
+  // 在PersistenceV2中创建一个key为Sample的键值对（如果存在，则返回PersistenceV2中的数据），并且和prop关联
+  @Local storage: Storage = PersistenceV2.connect(Storage, () => new Storage())!;
+
+  build() {
+    Column() {
+      Text(`@Trace aProp: ${this.storage.aProp}`)
+        .fontSize(30)
+        .onClick(() => {
+          this.storage.aProp++;
+        })
+
+      Text(`bProp:: ${this.storage.bProp}`)
+        .fontSize(30)
+        .onClick(() => {
+          // 页面不刷新，但是bProp的值改变了
+          this.storage.bProp++;
+        })
+
+      Button('save storage')
+        .onClick(() => {
+          // 和V1不同，PersistenceV2不依赖状态变量的观察能力，开发者可以主动持久化
+          PersistenceV2.save(Storage);
+        })
+    }
+  }
+}
+```
+
 
 ## 存量迁移场景
-对于已经使用开发V1的大型应用，一般不太可能做到一次性的从V1迁移到V2，而是分批次和分组件的部分迁移，这就必然会带来V1和V2的混用。
+对于已经使用V1开发的大型应用，一般不太可能做到一次性的从V1迁移到V2，而是分批次和分组件的部分迁移，这就必然会带来V1和V2的混用。
 
 这种场景，一般是父组件是状态管理V1，而迁移的子组件为状态管理V2。为了模拟这种场景，我们举出下面的示例：
 - 父组件是\@Component，数据源是\@LocalStorageLink。
@@ -1323,7 +1493,7 @@ struct Index1 {
 
 这种情况，我们可以通过以下策略进行迁移：
 - 声明一个\@ObservedV2装饰的class来封装V1的数据。
-- 在\@Component和\@ComponentV2，定义一个桥接的\@ComponentV1自定义组件。
+- 在\@Component和\@ComponentV2之间，定义一个桥接的\@Component自定义组件。
 - 在桥接层：
     - V1->V2的数据同步，可通过\@Watch的监听触发\@ObservedV2装饰的class的属性的赋值。
     - V2->V1的数据同步，可通过在\@ObservedV2装饰的class里声明Monitor，通过LocalStorage的API反向通知给V1状态变量。
