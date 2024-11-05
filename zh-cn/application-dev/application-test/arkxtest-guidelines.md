@@ -358,7 +358,7 @@ export default function abilityTest() {
 
 ## 基于shell命令的Uitest测试
 
-在开发过程中，若需要快速进行截屏、 录屏、注入UI模拟操作、获取控件数等操作，可以使用shell命令，更方便完成相应测试。
+在开发过程中，若需要快速进行截屏、 录屏、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
 
 > **说明：**
 >
@@ -369,8 +369,8 @@ export default function abilityTest() {
 |---------------|---------------------------------|---------------------------------|
 | help          | help|  显示uitest工具能够支持的命令信息。            |
 | screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名, 只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
-| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br>- -p：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br>- -i：不过滤不可见控件,也不做窗口合并。<br>- 111：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br>默认：不保存上述属性数据。<br>- -a 和 -i不可同时使用。 |
-| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br>- record：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br>- read：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
+| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件,也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
+| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
 | uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
 | start-daemon|start-daemon| 拉起uitest测试进程。 |
@@ -396,7 +396,7 @@ hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 # 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
 hdc shell uitest uiRecord record
 # 读取并打印录制数据。
-hdc shell uitest uiRecord rea
+hdc shell uitest uiRecord read
 ```
 
 以下举例为：record数据中包含的字段及字段含义，仅供参考
@@ -447,8 +447,8 @@ hdc shell uitest uiRecord rea
 | click   | 是    | 模拟单击操作。      | 
 | doubleClick   | 是    | 模拟双击操作。      | 
 | longClick   | 是    | 模拟长按操作。     | 
-| fling   | 是    | 模拟快滑操作。<br>快滑是指：模拟的滑动是惯性滑动，即滑动具有惯性，会在一段时间内持续滑动。     | 
-| swipe   | 是    | 模拟慢滑操作。 <br>慢滑是指：模拟的滑动是非惯性滑动，即滑动不具有惯性，会随需即停。      | 
+| fling   | 是    | 模拟快滑操作。   | 
+| swipe   | 是    | 模拟慢滑操作。     | 
 | drag   | 是    | 模拟拖拽操作。     | 
 | dircFling   | 是    | 模拟指定方向滑动操作。     |
 | inputText   | 是    | 模拟输入框输入文本操作。     |
@@ -463,7 +463,7 @@ hdc shell uitest uiRecord rea
 | point_y | 是       | 点击y坐标点。 |
 
 ```shell
-# 执行单机事件。
+# 执行单击事件。
 hdc shell uitest uiInput click 100 100
 
 # 执行双击事件。
@@ -482,7 +482,7 @@ hdc shell uitest uiInput longClick 100 100
 | to_x   | 是                | 滑动终点x坐标。 |
 | to_y   | 是                | 滑动终点y坐标。 |
 | swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
-| stepLength_   | 否 | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 | 
+| stepLength_   | 否 | 滑动步长。默认值: 滑动距离/50。<br>  **为实现更好的模拟效果，推荐参数缺省/使用默认值。**  | 
 
 
 ```shell  
@@ -544,7 +544,7 @@ hdc shell uitest uiInput inputText 100 100 hello
 
 | 配置参数             | 必填       | 描述 |                
 |------|------|----------|
-| keyID1   | 是    | 实体按键对应ID。 | 
+| keyID1   | 是    | 实体按键对应ID，取值范围：KeyCode/Back/Home/Power。<br>当取Back/Home/Power时，不支持输入组合键。 | 
 | keyID2    | 否    | 实体按键对应ID。 |
 | keyID3    | 否    | 实体按键对应ID。 |
 
