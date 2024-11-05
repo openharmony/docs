@@ -9,7 +9,7 @@
 **错误示例**
 
 ```cpp
-static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+static napi_value IncorrectDemo1(napi_env env, napi_callback_info info) {
     // argc 未正确的初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
     size_t argc;
     napi_value argv[10] = {nullptr};
@@ -143,6 +143,10 @@ if (status != napi_ok) {
 
 使用uv_queue_work方法，不会走Node-API框架，此时需要开发者自己合理使用napi_handle_scope来管理napi_value的生命周期。
 
+> **说明**
+>
+> 本规则旨在强调napi_value生命周期情况，若只想往JS线程抛任务，**不推荐**使用uv_queue_work方法。如有抛任务的需要，请使用[napi_threadsafe_function系列](./use-napi-thread-safety.md)接口。
+
 **正确示例**：
 
 ```cpp
@@ -154,8 +158,12 @@ void callbackTest(CallbackContext* context)
     context->retData = 1;
     work->data = (void*)context;
     uv_queue_work(
-        loop, work, [](uv_work_t* work) {},
-        // using callback function back to JS thread
+        loop, work,
+        // 请注意，uv_queue_work会创建一个线程并执行该回调函数，若开发者只想往JS线程抛任务，不推荐使用uv_queue_work，以避免冗余的线程创建
+        [](uv_work_t* work) {
+            // 执行一些业务逻辑
+        },
+        // 该回调会执行在loop所在的JS线程上
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
             napi_handle_scope scope = nullptr;

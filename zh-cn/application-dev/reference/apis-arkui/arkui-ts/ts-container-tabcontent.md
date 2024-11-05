@@ -287,7 +287,7 @@ padding(padding: LocalizedPadding): SubTabBarStyle
 
 id(value: string): SubTabBarStyle
 
-设置子页签的[id](ts-universal-attributes-component-id.md#属性)。
+设置子页签的[id](ts-universal-attributes-component-id.md#id)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -297,7 +297,7 @@ id(value: string): SubTabBarStyle
 
 | 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | string | 是   | 子页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| value | string | 是   | 子页签的[id](ts-universal-attributes-component-id.md#id)。 |
 
 **返回值：**
 
@@ -523,7 +523,7 @@ id(value: string): BottomTabBarStyle
 
 | 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | string | 是   | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| value | string | 是   | 设置底部页签的[id](ts-universal-attributes-component-id.md#id)。 |
 
 **返回值：**
 

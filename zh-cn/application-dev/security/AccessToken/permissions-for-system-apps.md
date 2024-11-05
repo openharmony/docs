@@ -1531,7 +1531,7 @@
 
 ### ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-允许应用发送代理通知
+允许应用发送代理通知。
 
 **权限级别**：system_core
 
@@ -4211,6 +4211,18 @@
 
 **起始版本**：12
 
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+允许应用/服务在后台发起用户身份认证请求。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
@@ -4518,3 +4530,17 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+允许应用获取屏幕图像。
+
+应用获取此权限后，可进行截屏、录屏等操作。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：14

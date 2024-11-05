@@ -18,4 +18,4 @@
 | -------------------- | --------------------- | --- | ------------------------------------------ |
 | bundleNames          | Array<string\>         | 否  | 应用Bundle名称。                              |
 | userId               | number                | 否  | 用户ID。                                      |
-| deviceType<sup>12+</sup>           | string                | 否  | 设备类型。                                    |
+| deviceType<sup>12+</sup>           | string                | 否  | 设备类型。根据[设备信息](../apis-basic-services-kit/js-apis-device-info.md)获取。                                    |

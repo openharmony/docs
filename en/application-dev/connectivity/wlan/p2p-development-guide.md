@@ -41,9 +41,9 @@ The following table describes the APIs used in this topic.
 Example:
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
-// Create a P2P group. To use the current device as the GO, set:
+// Create a P2P group. To use the current device as the group owner (GO), set:
 // netId: The value -1 means to create a temporary P2P group. When a device in the group is to be connected next time, GO negotiation and WPS session negotiation must be performed again.
 // The value -2 means to create a persistent group. The device in the group can be reconnected without GO negotiation or WPS session negotiation.
 
@@ -88,7 +88,7 @@ For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-conn
 Example:
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
   
 let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
 	console.info("p2p connection change receive event: " + JSON.stringify(result));
@@ -125,7 +125,7 @@ let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
 					groupName:"",
 					goBand:0,
 				}
-				// Set up a P2P connection.
+				// Set up a P2P connection. The GO cannot initiate connections.
 				wifiManager.p2pConnect(config);
 			}
 		}

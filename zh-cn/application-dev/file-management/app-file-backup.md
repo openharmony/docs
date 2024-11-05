@@ -59,13 +59,13 @@ async function getLocalCapabilities(): Promise<void> {
 | 属性名称       | 数据类型 | 必填 | 含义                   |
 | -------------- | -------- | ---- | ---------------------- |
 | bundleInfos    | 数组     | 是   | 应用信息列表           |
-| &nbsp;&nbsp;&nbsp;&nbsp; allToBackup    | 布尔值   | 是   | 是否允许备份恢复       |
-| &nbsp;&nbsp;&nbsp;&nbsp; extensionName  | 字符串   | 是   | 应用的扩展名           |
-| &nbsp;&nbsp;&nbsp;&nbsp; name           | 字符串   | 是   | 应用的包名             |
-| &nbsp;&nbsp;&nbsp;&nbsp; needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装 |
-| &nbsp;&nbsp;&nbsp;&nbsp; spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小 |
-| &nbsp;&nbsp;&nbsp;&nbsp; versionCode    | 数值     | 是   | 应用的版本号           |
-| &nbsp;&nbsp;&nbsp;&nbsp; versionName    | 字符串   | 是   | 应用的版本名称         |
+| allToBackup    | 布尔值   | 是   | 是否允许备份恢复       |
+| extensionName  | 字符串   | 是   | 应用的扩展名           |
+| name           | 字符串   | 是   | 应用的包名             |
+| needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装 |
+| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小 |
+| versionCode    | 数值     | 是   | 应用的版本号           |
+| versionName    | 字符串   | 是   | 应用的版本名称         |
 | deviceType     | 字符串   | 是   | 设备类型               |
 | systemFullName | 字符串   | 是   | 设备版本               |
 

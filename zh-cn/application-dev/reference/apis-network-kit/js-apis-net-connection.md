@@ -240,6 +240,8 @@ cat server.pem \
 ```json
 {
   "network-security-config": {
+    "trust-global-user-ca": false,
+    "trust-current-user-ca": false,
     "domain-config": [
       {
         "domains": [
@@ -301,6 +303,10 @@ cat server.pem \
 可包含0或者1个base-config
 
 必须包含1个domain-config
+
+**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true**
+
+**trust-current-user-ca: 是否信任当前用户安装的证书，默认true**
 
 **base-config(object:指示应用程序范围的安全配置)**
 
@@ -565,7 +571,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
@@ -620,7 +626,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
 
@@ -781,7 +787,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
@@ -835,7 +841,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
 
@@ -890,7 +896,7 @@ let connectionproperties: connection.ConnectionProperties;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   netHandle = connection.getDefaultNetSync();
@@ -939,7 +945,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
@@ -995,7 +1001,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
@@ -1051,7 +1057,7 @@ let getNetCapabilitiesSync: connection.NetCapabilities;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
 
@@ -2201,7 +2207,7 @@ interface Data {
 
   connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+    // 当前没有已连接的网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -2294,7 +2300,7 @@ interface Data {
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -2375,7 +2381,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";
@@ -2430,7 +2436,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";
@@ -2477,7 +2483,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";
@@ -2532,7 +2538,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
+    // 当前没有已连接的网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
   let host = "xxxx";

@@ -439,7 +439,7 @@ passwordIcon(value: PasswordIcon)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置TextInput通过点击以外的方式获焦时，是否绑定输入法。
+设置TextInput通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -451,7 +451,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -550,7 +550,7 @@ enableAutoFill(value: boolean)
 
 passwordRules(value: string)
 
-定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
+定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。<!--RP1--><!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -964,6 +964,21 @@ enableHapticFeedback(isEnabled: boolean)
 > ]
 > ```
 
+### cancelButton<sup>14+</sup>
+
+cancelButton(value: CancelButtonSymbolOptions)
+
+设置右侧清除按钮样式。不支持内联模式。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1036,21 +1051,6 @@ enableHapticFeedback(isEnabled: boolean)
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 
-### cancelButton<sup>14+</sup>
-
-cancelButton(value: CancelButtonSymbolOptions)
-
-设置右侧清除按钮样式。不支持内联模式。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12对象说明) | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 
 ## 事件
 
@@ -1061,6 +1061,8 @@ cancelButton(value: CancelButtonSymbolOptions)
 onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
+
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

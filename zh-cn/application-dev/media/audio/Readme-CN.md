@@ -2,11 +2,10 @@
 
 - [Audio Kit简介](audio-kit-intro.md)
 - [使用合适的音频类型](using-right-streamusage-and-sourcetype.md)
+- [音频焦点和音频会话介绍](audio-playback-concurrency.md)
 - 音频焦点管理
-  - [音频焦点和音频会话介绍](audio-playback-concurrency.md)
   - [音频会话管理(ArkTS)](audio-session-management.md)
   - [音频会话管理(C/C++)](using-ohaudio-for-session.md)
-
 - 音频播放
   - [音频播放开发概述](audio-playback-overview.md)
   - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)

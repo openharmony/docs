@@ -15,10 +15,10 @@ convertXml模块未实现parentKey属性，生成的object中不具有parentKey�
 该变更为不兼容性变更。
 
 变更前：
-convertToJSObject接口对xml字符串的入参进行解析时，无法正确设置parentKey属性的值。
+convertToJSObject接口对xml字符串的入参进行解析时，未支持设置parentKey属性的值。
 
 变更后：
-convertToJSObject接口对xml字符串的入参进行解析时，可以正确设置parentKey属性的值。
+convertToJSObject接口对xml字符串的入参进行解析时，可以支持正确设置parentKey属性的值。
 
 **起始API Level**
 
@@ -35,7 +35,7 @@ convertToJSObject(xml: string, options?: ConvertOptions): Object;
 
 **适配指导**
 
-变更：convertToJSObject接口对xml字符串的入参进行解析时，可以正确设置parentKey属性的值。
+变更：convertToJSObject接口对xml字符串的入参进行解析时，可以支持正确设置parentKey属性的值。
 
 ```ts
 import { convertxml } from '@kit.ArkTS';
@@ -69,8 +69,9 @@ let result: ESObject = conv.convertToJSObject(xml, options);
 // 变更后：result的值实际为（新增parentKey属性）： {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_parent":"note","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text","_text":"Play"}]}]}]}
 
 // 对于开发者使用场景来说，不影响开发者使用。
-// 获取title标签的parentKey属性：result1["_elements"][0]["_elements"][0]._parent
-// 获取title标签的nameKey属性：result1["_elements"][0]["_elements"][0]._name
+// 获取title标签的parentKey属性的方法是：result1["_elements"][0]["_elements"][0]._parent 
+// 变更前：获取title标签的parentKey属性为：undefined
+// 变更后：获取title标签的parentKey属性为实际值：note
 ```
 
 ## cl.arkts.2 util.TextEncoder模块utf-16le和utf-16be编码数据行为变更

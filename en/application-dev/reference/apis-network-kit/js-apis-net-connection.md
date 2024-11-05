@@ -225,6 +225,10 @@ cat server.pem \
 
 The original certificate file is preset in the application. Currently, certificate files in the **.crt** and **.pem** formats are supported.
 
+**NOTE**
+
+Currently, certificate pinning has been enabled for the ohos.net.http and Image components, and the hash values of all certificates in the certificate chain are matched. If any certificate is updated on the server, the verification fails. Therefore, if any certificate on the server has been updated, upgrade the application to the latest version as soon as possible. Otherwise, network connection may fail.
+
 **Preset JSON configuration file:**
 
 The mapping between preset certificates and network servers is configured in a JSON configuration file.
@@ -561,7 +565,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
@@ -616,7 +620,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
 
@@ -777,7 +781,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
@@ -831,7 +835,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
 
@@ -886,7 +890,7 @@ let connectionproperties: connection.ConnectionProperties;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   netHandle = connection.getDefaultNetSync();
@@ -935,7 +939,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
@@ -991,7 +995,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
@@ -1047,7 +1051,7 @@ let getNetCapabilitiesSync: connection.NetCapabilities;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
 
@@ -2197,7 +2201,7 @@ interface Data {
 
   connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -2290,7 +2294,7 @@ interface Data {
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
@@ -2371,7 +2375,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   let host = "xxxx";
@@ -2426,7 +2430,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   let host = "xxxx";
@@ -2473,7 +2477,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   let host = "xxxx";
@@ -2528,7 +2532,7 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    // If no network is connected, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   let host = "xxxx";

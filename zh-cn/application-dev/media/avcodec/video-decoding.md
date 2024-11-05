@@ -71,7 +71,7 @@
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoDecoder_Start接口之后，解码器立即进入Running子状态。
    - 对于处于Executing状态的解码器，可以调用OH_VideoDecoder_Flush接口返回到Flushed子状态。
-   - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+   - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1)标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
 7. 使用完解码器后，必须调用OH_VideoDecoder_Destroy接口销毁解码器实例。使解码器进入Released状态。
 
@@ -299,7 +299,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
     ```
 
-7. 设置surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+7. 设置surface。
+
+    本例中的nativeWindow，有两种方式获取：
+    1. 如果解码后直接显示，则从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)；
+    2. 如果解码后接OpenGL后处理，则从NativeImage获取，获取方式请参考 [NativeImage](../../graphics/native-image-guidelines.md)。
 
     Surface模式，调用者可以在解码过程中执行该步骤，即动态切换surface。
 
@@ -487,6 +491,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    >
 
 14. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
@@ -526,7 +533,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 15. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
-    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_Prepare接口和OH_VideoDecoder_SetSurface接口重新配置。
+    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_SetSurface接口和OH_VideoDecoder_Prepare接口重新配置。
+    
     ```c++
     // 重置解码器videoDec
     int32_t ret = OH_VideoDecoder_Reset(videoDec);
@@ -538,13 +546,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 解码器重新就绪
-    ret = OH_VideoDecoder_Prepare(videoDec);
+    // Surface模式重新配置surface，而Buffer模式不需要配置surface
+    ret = OH_VideoDecoder_SetSurface(videoDec, window);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // Surface模式重新配置surface，而Buffer模式不需要配置surface
-    ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    // 解码器重新就绪
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

@@ -4011,5 +4011,5 @@ try {
 | windowName   | string | 否 | 否  | 窗口名。 |
 | windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
 | windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形区域。 |
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions12) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
 | systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |

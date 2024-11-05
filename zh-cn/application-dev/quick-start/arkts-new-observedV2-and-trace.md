@@ -6,7 +6,6 @@
 >
 >\@ObservedV2与\@Trace装饰器从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -244,6 +243,16 @@ struct Index {
       // id未被@Trace装饰，用在UI中不会触发UI刷新
       Text(`${this.person.id}`) // 当id变化时不会刷新
     }
+  }
+}
+```
+
+- \@ObservedV2仅能装饰class，无法装饰自定义组件。
+
+```ts
+@ObservedV2 // 错误用法，编译时报错
+struct Index {
+  build() {
   }
 }
 ```

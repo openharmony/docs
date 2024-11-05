@@ -163,30 +163,31 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State sheetHeight:number = 300;
+  @State isShow: boolean = false
+  @State isShow2: boolean = false
+  @State sheetHeight: number = 300;
 
-  @Builder myBuilder() {
+  @Builder
+  myBuilder() {
     Column() {
       Button("change height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = 500;
         })
 
       Button("Set Illegal height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = -1;
         })
 
       Button("close modal 1")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
     }
@@ -203,12 +204,20 @@ struct SheetTransitionExample {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          height: this.sheetHeight, 
+          height: this.sheetHeight,
           backgroundColor: Color.Green,
-          onWillAppear: () => {console.log("BindSheet onWillAppear.")}, 
-          onAppear: () => {console.log("BindSheet onAppear.")}, 
-          onWillDisappear: () => {console.log("BindSheet onWillDisappear.")}, 
-          onDisappear: () => {console.log("BindSheet onDisappear.")}
+          onWillAppear: () => {
+            console.log("BindSheet onWillAppear.")
+          },
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onWillDisappear: () => {
+            console.log("BindSheet onWillDisappear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
         })
     }
     .justifyContent(FlexAlign.Center)
@@ -222,15 +231,17 @@ struct SheetTransitionExample {
 
 ### 示例2
 
-使用bindSheet的detents属性设置三个不同高度的档位
+使用bindSheet的detents属性设置三个不同高度的档位。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @Builder myBuilder() {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
     Column() {
       Button("content1")
         .margin(10)
@@ -251,12 +262,12 @@ struct SheetTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(),{
-          detents:[SheetSize.MEDIUM,SheetSize.LARGE,200],
-          backgroundColor:Color.Gray,
-          blurStyle:BlurStyle.Thick,
-          showClose:true,
-          title:{title:"title", subtitle:"subtitle"},
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -270,11 +281,10 @@ struct SheetTransitionExample {
 
 ### 示例3
 
-bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
+bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型。
 
 ```ts
 // xxx.ets
-
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
@@ -331,11 +341,10 @@ struct SheetTransitionExample {
 
 ### 示例4
 
-bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss
+bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss。
 
 ```ts
 // xxx.ets
-
 @Entry
 @Component
 struct bindSheetExample {
@@ -385,15 +394,14 @@ struct bindSheetExample {
 
 ### 示例5
 
+bindSheet设置scrollSizeMode。
+
 ```ts
 // xxx.ets
-// bindSheet设置scrollSizeMode
-
 @Entry
 @Component
 struct Index {
   @State isShow: boolean = false;
-
 
   @Builder
   myBuilder() {
@@ -411,18 +419,18 @@ struct Index {
 
   build() {
     Column() {
-        Button('BindSheet')
-          .onClick(()=>{
-            this.isShow = true;
-          })
-          .bindSheet($$this.isShow, this.myBuilder(), {
-            detents: [300, 600, 900],
-            uiContext: this.getUIContext(),
-            mode: SheetMode.OVERLAY,
-            scrollSizeMode: ScrollSizeMode.CONTINUOUS,
-            backgroundColor: Color.Orange,
-            title: {title: 'Title', subtitle: 'Subtitle'}
-          })
+      Button('BindSheet')
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [300, 600, 900],
+          uiContext: this.getUIContext(),
+          mode: SheetMode.OVERLAY,
+          scrollSizeMode: ScrollSizeMode.CONTINUOUS,
+          backgroundColor: Color.Orange,
+          title: { title: 'Title', subtitle: 'Subtitle' }
+        })
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
@@ -439,12 +447,14 @@ struct Index {
 ![zh-cn_sheet](figures/zh-cn_sheet5_rtl.gif)
 
 ### 示例6
+
+在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动。
+
 ```ts
+//xxx.ets
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//xxx.ets
-//在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动
 @Entry
 @Component
 struct ListenKeyboardHeightChange {
@@ -454,10 +464,9 @@ struct ListenKeyboardHeightChange {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
   @State scrollHeight: number = 0;
   @State keyBoardChange: boolean = false;
-  
   windowClass: window.Window | undefined = undefined;
-  
-  aboutToAppear() : void {
+
+  aboutToAppear(): void {
     try {
       window.getLastWindow(getContext(this), (err: BusinessError, data) => {
         const errCode: number = err.code;
@@ -490,7 +499,6 @@ struct ListenKeyboardHeightChange {
       this.keyBoardChange = true;
     }
   }
-
   //当滚动组件高度变化时，根据标志位触发滚动
   sizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => {
     if (this.keyBoardChange) {
@@ -499,7 +507,8 @@ struct ListenKeyboardHeightChange {
     }
   }
 
-  @Builder myBuilder() {
+  @Builder
+  myBuilder() {
     Scroll(this.scroller) {
       Column() {
         ForEach(this.arr, (item: number) => {
@@ -513,18 +522,18 @@ struct ListenKeyboardHeightChange {
               .textAlign(TextAlign.Center)
               .margin({ top: 5 })
           }
-        }, (item:number) => item.toString())
+        }, (item: number) => item.toString())
 
         TextInput().height('100')
 
-        Flex({alignItems: ItemAlign.End}) {
+        Flex({ alignItems: ItemAlign.End }) {
           Row() {
             Button("click")
               .margin(10)
               .fontSize(20)
               .width('45%')
 
-            Button("cancle")
+            Button("cancel")
               .margin(10)
               .fontSize(20)
               .width('45%')
@@ -545,13 +554,13 @@ struct ListenKeyboardHeightChange {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(),{
-          detents:[SheetSize.MEDIUM,SheetSize.LARGE,200],
-          backgroundColor:Color.Gray,
-          blurStyle:BlurStyle.Thick,
-          showClose:true,
-          title:{title:"title", subtitle:"subtitle"},
-          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY;
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
+          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -559,5 +568,4 @@ struct ListenKeyboardHeightChange {
     .height('100%')
   }
 }
-
 ```

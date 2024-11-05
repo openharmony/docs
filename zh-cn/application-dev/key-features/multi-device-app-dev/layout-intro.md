@@ -17,11 +17,27 @@
 
 - 自适应布局常常需要借助[Row组件](../../reference/apis-arkui/arkui-ts/ts-container-row.md)、[Column组件](../../reference/apis-arkui/arkui-ts/ts-container-column.md)或[Flex组件](../../reference/apis-arkui/arkui-ts/ts-container-flex.md)实现。
   
-  ![image-20220922185907892](figures/image-20220922185907892.png)
+  | 容器组件 | 组件说明                     | 拉伸能力                                              | 均分能力                                            | 占比能力                                               |
+  | -------- | ---------------------------- | ----------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------ |
+  | Row      | 沿水平方向布局子组件的容器   | 增加Blank子组件                                       | 将组件justifyContent属性设置为FlexAlign.SpaceEvenly | 通过百分比设置子组件宽高，或配置子组件layoutWeight属性 |
+  | Column   | 沿垂直方向布局子组件的容器   | 增加Blank子组件                                       | 将组件justifyContent属性设置为FlexAlign.SpaceEvenly | 通过百分比设置子组件宽高，或配置子组件layoutWeight属性 |
+  | Flex     | 使用弹性方式布局子组件的容器 | 增加Blank子组件，或配置子组件flexGrow和flexShrink属性 | 将组件justifyContent属性设置为FlexAlign.SpaceEvenly | 通过百分比设置子组件宽高，或配置子组件layoutWeight属性 |
+
+  | 容器组件 | 组件说明                     | 缩放能力                | 延伸能力         | 隐藏能力                      | 折行能力                                |
+  | -------- | ---------------------------- | ----------------------- | ---------------- | ----------------------------- | --------------------------------------- |
+  | Row      | 沿水平方向布局子组件的容器   | 配置组件aspectRatio属性 | 增加Scroll父组件 | 配置子组件displayPriority属性 | —                                       |
+  | Column   | 沿垂直方向布局子组件的容器   | 配置组件aspectRatio属性 | 增加Scroll父组件 | 配置子组件displayPriority属性 | —                                       |
+  | Flex     | 使用弹性方式布局子组件的容器 | 配置组件aspectRatio属性 | —                | 配置子组件displayPriority属性 | 将组件wrap属性，<br>设置为FlexWrap.Wrap |
   
 - 响应式布局常常与[GridRow组件](../../reference/apis-arkui/arkui-ts/ts-container-gridrow.md)、[Grid组件](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[List组件](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Swiper组件](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)或[Tabs组件](../../reference/apis-arkui/arkui-ts/ts-container-tabs.md)搭配使用。
   
-  ![image-20220922190217247](figures/image-20220922190217247.png)
+  | 容器组件 | 组件说明                                                     | 响应式布局                                                   |
+  | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | GridRow  | 使用断点和栅格方式布局子组件的容器。<br>需配合GridCol子组件使用。 | 栅格组件自身具有响应式布局能力。                             |
+  | Grid     | 使用“行”和“列”分割的单元格方式布局子组件的网格容器。<br>需配合GridItem子组件使用。 | 需配合断点使用，通过改变不同断点下的rowsTemplate和columnsTemplate等属性，实现不同的布局效果。 |
+  | List     | 包含一系列相同宽度列表项的容器。<br>需配合ListItem子组件使用。 | 需配合断点使用，通过改变不同断点下的lanes等属性，实现不同的布局效果。 |
+  | Swiper   | 轮播展示子组件的容器。                                       | 需配合断点使用，通过改变不同断点下的displayCount和indicator等属性，实现不同的布局效果。 |
+  | Tabs     | 使用页签控制内容切换的容器，每个页签对应一个内容视图。<br>需配合TabContent子组件使用。 | 需配合断点使用，通过改变不同断点下的vertical和barPosition等属性，实现不同的布局效果。 |
   
   
 

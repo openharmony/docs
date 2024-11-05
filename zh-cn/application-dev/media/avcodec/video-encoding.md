@@ -68,7 +68,7 @@
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoEncoder_Start接口之后，编码器立即进入Running子状态。
    - 对于处于Executing状态的编码器，可以调用OH_VideoEncoder_Flush接口返回到Flushed子状态。
-   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1)标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
 7. 使用完编码器后，必须调用OH_VideoEncoder_Destroy接口销毁编码器实例。使编码器进入Released状态。
 

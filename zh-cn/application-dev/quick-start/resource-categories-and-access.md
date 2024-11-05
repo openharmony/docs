@@ -4,7 +4,7 @@
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者可以在[应用UX设计关于资源的介绍](https://docs.openharmony.cn/pages/v4.1/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源。
+- 系统资源：开发者可以在[应用UX设计关于资源的介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的系统图标资源。
 
 
 ## 资源分类
@@ -380,7 +380,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-开发者可以在[应用UX设计关于资源的介绍](https://docs.openharmony.cn/pages/v4.1/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源，获取到图标资源后可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)进步对图标设置。
+开发者可以在[应用UX设计关于资源的介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源，获取到图标资源后可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)对图标颜色等进一步设置。
 
 对于系统资源，可以通过```“$r('sys.type.resource_name')”```的形式访问。其中，sys表示系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”、“symbol”；resource_name为资源名称。
 
@@ -543,7 +543,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 1、对应的overlay资源包需要放在对应应用安装路径下，通过hdc install的方式安装。如应用com.example.overlay的安装路径：data/app/el1/bundle/public/com.example.overlay/。
 
-2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().BundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
+2、应用通过[addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10)，实现资源覆盖；通过[removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10)，实现overlay删除。overlay资源路径需经过元能力的getContext().bundleCodeDir获取此应用对应的沙箱根目录，由应用的沙箱根目录+overlay资源包名称组成。如：let path = getContext().bundleCodeDir + "overlay资源包名称"，其对应沙箱路径为：/data/storage/el1/bundle/overlay资源包名称。
 
 - 静态overlay配置方式
 

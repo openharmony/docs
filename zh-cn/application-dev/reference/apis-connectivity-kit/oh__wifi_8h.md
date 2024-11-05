@@ -5,7 +5,7 @@
 
 定义查询WIFI开关状态的接口。
 
-**库：** libwifi.so
+**库：** libwifi_ndk.so
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 

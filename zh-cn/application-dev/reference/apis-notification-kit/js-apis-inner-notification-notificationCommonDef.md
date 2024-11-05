@@ -12,6 +12,5 @@
 
 | 名称   | 类型   | 只读 | 可选 | 说明   |
 | ------ | ------ | ----| -- |  ------ |
-| bundle | string | 否  | 否 | 应用的包信息。 |
-| uid    | number | 否  | 是 | 用户ID，默认为0。 |
-
+| bundle | string | 否  | 否 | 应用程序的名称。 |
+| uid    | number | 否  | 是 | 应用程序的UID。从[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获取，默认为0。 |

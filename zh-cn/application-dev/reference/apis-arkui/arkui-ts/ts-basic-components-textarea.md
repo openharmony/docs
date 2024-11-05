@@ -298,7 +298,7 @@ style(value: TextContentStyle)
 
 enableKeyboardOnFocus(value: boolean)
 
-设置TextArea通过点击以外的方式获焦时，是否绑定输入法。
+设置TextArea通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 从API version 10开始，获焦默认绑定输入法。
 
@@ -310,7 +310,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -803,6 +803,8 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
 
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -916,7 +918,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)
 
-按下输入法回车键触发该回调。
+按下软键盘输入法回车键触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -927,6 +929,22 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)
 | 参数名   | 类型                                             | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
+
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: TextAreaSubmitCallback)
+
+按下软键盘输入法回车键触发该回调事件，提交事件时提供保持TextArea编辑状态的方法。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                          |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | [TextAreaSubmitCallback](#textareasubmitcallback14) | 是   | 按下软键盘输入法回车键时的回调事件。 |
 
 ### onWillInsert<sup>12+</sup>
 
@@ -1112,6 +1130,23 @@ stopEditing(): void
 | NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
 | DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
 | FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
+
+## TextAreaSubmitCallback<sup>14+</sup>
+
+type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) => void
+
+软键盘按下回车键时的回调事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enterKeyType | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。 |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。         |
 
 ## 示例
 

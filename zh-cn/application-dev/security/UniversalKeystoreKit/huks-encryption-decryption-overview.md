@@ -30,11 +30,12 @@
 
 | 算法/分组模式/填充模式 | 备注 | API级别 |
 | -------- | -------- | -------- |
-| AES/GCM/NoPadding | - | 8+ |
+| AES/GCM/NoPadding | 加密：Nonce参数必选<br/>解密：Nonce、AEAD参数必选 | 8+ |
 | AES/CBC/NoPadding<br/>AES/CTR/NoPadding | IV参数必选 | 11+ |
 | DES/ECB/NoPadding | - | 12+ |
 | DES/CBC/NoPadding | IV参数必选 | 12+ |
 | 3DES/ECB/NoPadding | - | 12+ |
 | 3DES/CBC/NoPadding | IV参数必选 | 12+ |
+| RSA/ECB/NoPadding | - | 12+ |
 | RSA/ECB/PKCS1_V1_5 | - | 12+ |
 | RSA/ECB/OAEP | 摘要算法SHA256 | 12+ |

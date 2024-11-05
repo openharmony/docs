@@ -1,4 +1,4 @@
-# 代码混淆
+# ArkGuard源码混淆工具
 
 ## 代码混淆简介
 
@@ -34,7 +34,7 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 混淆开启后，默认使能对参数名和局部变量名的混淆，无需选项配置。顶层作用域名称混淆、属性名称的混淆、导出名称混淆、文件名混淆打开可能会导致运行时错误，这些混淆功能通过混淆配置选项来开启/关闭它们。
 
-创建一个新工程的时候，配置文件build-profile.json5中会自动生成以下内容:
+创建一个模块的时候，模块级`build-profile.json5`中会自动生成以下内容:
 
 ```
 "arkOptions": {
@@ -334,9 +334,11 @@ firstName
 lastName
 ```
 
-**注意**：
-
-该选项在开启`-enable-property-obfuscation`时生效
+> **注意**：
+>
+> - 该选项在开启`-enable-property-obfuscation`时生效
+>
+> - 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
 
 **哪些属性名应该被保留?**
 
@@ -347,24 +349,24 @@ lastName
 ```
 var obj = {x0: 0, x1: 0, x2: 0};
 for (var i = 0; i <= 2; i++) {
-    console.log(obj['x' + i]);  // x0, x1, x2 应该被保留
+    console.info(obj['x' + i]);  // x0, x1, x2 应该被保留
 }
 
 Object.defineProperty(obj, 'y', {});  // y 应该被保留
-console.log(obj.y);
+console.info(obj.y);
 
 obj.s = 0;
 let key = 's';
-console.log(obj[key]);        // s 应该被保留
+console.info(obj[key]);        // s 应该被保留
 
 obj.u = 0;
-console.log(obj.u);           // u 可以被正确地混淆
+console.info(obj.u);           // u 可以被正确地混淆
 
 obj.t = 0;
-console.log(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
+console.info(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
 
 obj['v'] = 0;
-console.log(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
+console.info(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
 ```
 
 对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
@@ -435,6 +437,10 @@ export namespace Ns {
 }
 ```
 
+> **注意**
+>
+> `-keep-global-name`指定的白名单作用于全局。即代码中出现多个顶层作用域名称或者导出名称，只要与`-keep-global-name`配置的白名单名称相同，均不会被混淆。
+
 **哪些顶层作用域的名称应该被保留?**
 
 在JavaScript中全局变量是`globalThis`的属性。如果在代码中使用`globalThis`去访问全局变量，那么该变量名应该被保留。
@@ -443,13 +449,13 @@ export namespace Ns {
 
 ```
 var a = 0;
-console.log(globalThis.a);  // a 应该被保留
+console.info(globalThis.a);  // a 应该被保留
 
 function foo(){}
 globalThis.foo();           // foo 应该被保留
 
 var c = 0;
-console.log(c);             // c 可以被正确地混淆
+console.info(c);             // c 可以被正确地混淆
 
 function bar(){}
 bar();                      // bar 可以被正确地混淆
@@ -505,11 +511,11 @@ export class exportClass {}
 
 #### -keep-dts *filepath*
 
-保留指定绝对路径的`.d.ts`文件中的名称。这里的文件路径也可以是一个目录，这种情况下目录中所有`.d.ts`文件中的名称都会被保留。
+指定路径的`.d.ts`文件中的名称（例如变量名、类名、属性名等）会被添加至`-keep-global-name`和`-keep-property-name`白名单中。请注意，`filepath`仅支持绝对路径，并且可以指定为一个目录。在这种情况下，该目录中所有`.d.ts`文件中的名称都将被保留。
 
 #### -keep *filepath*
 
-保留指定相对路径中的所有名称(例如变量名、类名、属性名等)不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
+保留指定相对路径中的所有名称（例如变量名、类名、属性名等）不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
 路径仅支持相对路径，`./`与`../`为相对于混淆配置文件所在目录，支持使用路径类通配符。
 
 ```
@@ -957,3 +963,16 @@ AppAbility
 报错内容为 `Cannot read properties of undefined (reading 'has')`
 
 **解决方案：** 将SDK更新至最低4.1.6.3版本。
+
+#### HAP与HSP依赖相同的本地源码HAR模块，可能会出现的问题
+
+* 若开启文件名混淆，会出现以下问题：
+  * 问题一：单例功能异常问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现相同的文件名被混淆成不同文件名的情况。
+  * 问题二：接口调用失败问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现不同的文件名被混淆成相同的文件名的情况。
+* 若开启`-enable-export-obfuscation`和`-enable-toplevel-obfuscation`选项，在应用运行时会出现加载接口失败的问题。
+原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的接口在HAP与HSP中被混淆成不同的名称。
+
+**解决方案：**
+1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
+2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+

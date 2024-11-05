@@ -12,7 +12,7 @@ Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}; {DistributionOSName} {Distribut
 | OSName             | 基础操作系统名称 | 通过系统参数const.ohos.fullname解析得到。|
 | OSVersion          | 基础操作系统名称 | 通过系统参数const.ohos.fullname解析得到。|
 | DistributionOSName          | 发行版操作系统版本 | 通过系统参数<!--RP1-->const.product.os.dist.name<!--RP1End-->得到。|
-| DistributionOSVersion          | 发行版操作系统版本 | 通过系统参数<!--RP2-->const.product.os.dist.version<!--RP2End-->解析版本号得到。|
+| DistributionOSVersion          | 发行版操作系统版本 | 通过系统参数const.product.os.dist.apiname解析版本号得到，如果const.product.os.dist.apiname为空，通过系统参数const.product.os.dist.version解析版本号得到。|
 | ArkWeb VersionCode | ArkWeb版本号       |- |
 | Mobile（可选）     | 是否是手机设备     |- |
 

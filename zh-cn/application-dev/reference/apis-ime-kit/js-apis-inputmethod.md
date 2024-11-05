@@ -32,7 +32,7 @@ import { inputMethod } from '@kit.IMEKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法包名。|
-| id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法唯一标识。|
+| id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法扩展在应用内唯一标识，与name一起组成输入法扩展的全局唯一标识。|
 | label<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法对外显示名称。|
 | labelId<sup>10+</sup>    | number | 是 | 是 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 是 | 非必填。输入法图标数据，可以通过iconId查询获取。预留字段，暂不支持使用。|
@@ -2723,6 +2723,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
   id: 'propertyId',
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2777,6 +2779,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
   id: 'propertyId',
+  packageName: 'com.example.kikakeyboard',
+  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {

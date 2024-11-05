@@ -20,11 +20,15 @@
 
 - [SoundPool](../media/using-soundpool-for-playback.md)：低时延的短音播放ArkTS/JS API，适用于播放急促简短的音效，如相机快门音效、按键音效、游戏射击音效等。
 
-## 开发音频播放应用须知
+## 后台播放或熄屏播放开发须知
 
 应用如果要实现后台播放或熄屏播放，需要同时满足：
 
-1. 使用媒体会话功能注册到系统内统一管理，否则在应用进入后台时，播放将被强制停止。具体参考[AVSession Kit开发指导](../avsession/avsession-overview.md)。
+1. 使用媒体会话（AVSession）功能注册到系统内统一管理。具体参考[AVSession Kit开发指导](../avsession/avsession-overview.md)。
+
+    注意：若应用没有注册AVSession，且应用进入后台，则系统会对其音频行为做强制管控，主要包括：
+    - 应用在进入后台时，其正在播放的音频流将被强制停止或被强制静音。
+    - 应用在后台状态启动音频流时，该音频流会被禁止启动或被强制静音。
 
 2. 申请长时任务避免进入挂起（Suspend）状态。具体参考[长时任务开发指导](../../task-management/continuous-task.md)。
 

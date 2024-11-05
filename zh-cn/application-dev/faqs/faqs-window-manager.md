@@ -255,7 +255,7 @@ struct ScreenTest {
 
 **解决措施**
 
-旋转涉及window和display两个Kit，处于不同进程。由于旋转完后display的更新时间早于window的更新时间(display旋转时直接宽高互换，提前可预知；window要等arkui布局完成才知道窗口大小，耗时长)，故在display触发变化时获取窗口信息会存在时序问题（窗口信息还未更新完成，此时使用Window实例获取到的还是原来的宽高）。应用可以监听在display触发变化时通过display接口获取width/height/orientation信息。
+旋转涉及[@ohos.window](../reference/apis-arkui/js-apis-window.md)和[@ohos.display](../reference/apis-arkui/js-apis-display.md)两个模块，处于不同进程。由于旋转完后display的更新时间早于window的更新时间（display旋转时直接宽高互换，提前可预知；window要等ArkUI布局完成才能确定窗口大小，耗时长），故在display触发变化时获取窗口信息会存在时序问题（窗口信息还未更新完成，此时使用Window实例获取到的还是原来的宽高）。应用可以通过display.on('change')接口监听显示设备变化，在callback中通过Display实例获取屏幕的width、height、orientation等信息。
  
 **错误示例**
 
@@ -269,6 +269,7 @@ display.on('change', async (data) => {
   let windowProperties = windowClass.getWindowProperties();
   console.info('Width: ' + windowProperties.windowRect.width +
     ', height: ' + windowProperties.windowRect.height);
+  // 请确保已获取到相关Window实例，即windowClass
   windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
 });
 ```
@@ -277,11 +278,11 @@ display.on('change', async (data) => {
 
 ```ts
 display.on('change', (data) => {
-  console.info('Succeeded in enabling the listener for display changes. Type: ' +
-    JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
+  console.info('Succeeded in enabling the listener for display changes. Data: ' +
+  JSON.stringify(data));
   let newDisplay: display.Display = display.getDefaultDisplaySync();
   console.info('Orientation: ' + newDisplay.orientation + 'width: ' +
-    newDisplay.width + ', height: ' + newDisplay.height);
+  newDisplay.width + ', height: ' + newDisplay.height);
 });
 ```
 
@@ -289,11 +290,12 @@ display.on('change', (data) => {
 
 [display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
 
-## 如何同时获取屏幕方向orientation和avoidAreaChange信息(API 10)
+## 如何同时获取屏幕方向orientation和系统规避区avoidAreaChange信息(API 10)
 
-可以通过监听[windowClass.on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)事件同时获取屏幕方向orientation和avoidAreaChange信息。
+可以通过[on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)接口监听窗口系统规避区域的变化，在callback中获取avoidAreaChange信息，并通过Display实例获取屏幕方向orientation等信息。
 
 ```ts
+// 请确保已获取到相关Window实例，即windowClass
 windowClass.on('avoidAreaChange', async (data) => {
   console.info('Succeeded in enabling the listener for avoid area changes. Type: ' +
     JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));

@@ -85,8 +85,10 @@ Provides the C APIs of the network connection module for network management.
 | [OH_NetConn_GetAddrInfo](#oh_netconn_getaddrinfo) (char \*host, char \*serv, struct addrinfo \*hint, struct addrinfo \*\*res, int32_t netId) | Obtains the DNS result using **netId**.| 
 | [OH_NetConn_FreeDnsResult](#oh_netconn_freednsresult) (struct addrinfo \*res) | Releases the DNS query result.| 
 | [OH_NetConn_GetAllNets](#oh_netconn_getallnets) ([NetConn_NetHandleList](_net_conn___net_handle_list.md) \*netHandleList) | Obtains all activated data networks.| 
-| [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | Registers a custom DNS resolver.| 
-| [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver) (void) | Unregisters a custom DNS resolver.| 
+| [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver-deprecated) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | Registers a custom DNS resolver.|
+| [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver-deprecated) (void) | Unregisters a custom DNS resolver.|
+| [OH_NetConn_RegisterDnsResolver](#oh_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | Registers a custom DNS resolver.| 
+| [OH_NetConn_UnregisterDnsResolver](#oh_netconn_unregisterdnsresolver) (void) | Unregisters a custom DNS resolver.| 
 | [OH_NetConn_BindSocket](#oh_netconn_bindsocket) (int32_t socketFd, [NetConn_NetHandle](_net_conn___net_handle.md) \*netHandle) | Binds a socket to the specified network.|
 | [OH_NetConn_SetAppHttpProxy](#oh_netconn_setapphttpproxy) ([NetConn_HttpProxy](_net_conn___http_proxy.md) \*httpProxy) | Sets the application-level HTTP proxy information.|
 | [OH_NetConn_RegisterAppHttpProxyCallback](#oh_netconn_registerapphttpproxycallback) ([OH_NetConn_AppHttpProxyChange](#oh_netconn_apphttpproxychange) appHttpProxyChange, uint32_t \*callbackId) | Registers a listener for application-level proxy changes.|
@@ -667,7 +669,7 @@ Checks whether metering is enabled for the default data network.
 ohos.permission.GET_NETWORK_INFO
 
 
-### OHOS_NetConn_RegisterDnsResolver()
+### OHOS_NetConn_RegisterDnsResolver() <sup>(deprecated)</sup>
 
 ```
 int32_t OHOS_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
@@ -680,6 +682,10 @@ Registers a custom DNS resolver.
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Since**: 11
+
+**Deprecated from**: 13
+
+**Substitute API**: [OH_NetConn_RegisterDnsResolver](#oh_netconn_registerdnsresolver)
 
 **Parameters**
 
@@ -704,7 +710,7 @@ Registers a custom DNS resolver.
 ohos.permission.INTERNET
 
 
-### OHOS_NetConn_UnregisterDnsResolver()
+### OHOS_NetConn_UnregisterDnsResolver() <sup>(deprecated)</sup>
 
 ```
 int32_t OHOS_NetConn_UnregisterDnsResolver (void )
@@ -717,6 +723,78 @@ Unregisters a custom DNS resolver.
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Since**: 11
+
+**Deprecated from**: 13
+
+**Substitute API**: [OH_NetConn_UnregisterDnsResolver](#oh_netconn_unregisterdnsresolver)
+
+**Returns**
+
+**0**: success.
+
+**201**: no permission.
+
+**401**: parameter error.
+
+**2100002**: failed to connect to the service.
+
+**2100003**: internal error.
+
+**Required permissions**:
+
+ohos.permission.INTERNET
+
+
+### OH_NetConn_RegisterDnsResolver()
+
+```
+int32_t OH_NetConn_RegisterDnsResolver (OH_NetConn_CustomDnsResolver resolver)
+```
+
+**Description**
+
+Registers a custom DNS resolver.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| resolver | Pointer to the custom DNS resolver.| 
+
+**Returns**
+
+**0**: success.
+
+**201**: no permission.
+
+**401**: parameter error.
+
+**2100002**: failed to connect to the service.
+
+**2100003**: internal error.
+
+**Required permissions**:
+
+ohos.permission.INTERNET
+
+
+### OH_NetConn_UnregisterDnsResolver()
+
+```
+int32_t OH_NetConn_UnregisterDnsResolver (void )
+```
+
+**Description**
+
+Unregisters a custom DNS resolver.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Since**: 13
 
 **Returns**
 

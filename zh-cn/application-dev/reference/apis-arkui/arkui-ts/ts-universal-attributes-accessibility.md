@@ -133,15 +133,15 @@ accessibilityVirtualNode(builder: CustomBuilder)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 无障碍虚拟子节点，使开发者可以对自绘制组件传入一个自定义的CustomBuilder，该CustomBuilder中的组件在后端仅做布局不做显示，辅助应用获取无障碍节点信息时会返回CustomBuilder中的节点信息。 |
 
-## accessibilityChecked<sup>14+</sup>
+## accessibilityChecked<sup>13+</sup>
 
 accessibilityChecked(isCheck: boolean)
 
 无障碍节点是否选中的状态维护，用于支持多选的情况使用。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,17 +149,17 @@ accessibilityChecked(isCheck: boolean)
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| isCheck | boolean | 是   | 用于表示组件是否被检查。<br/>支持的值为:<br/>true:当前组件被选中。<br/>false:当前组件未被选中。<br/>undefined:由组件自行确定选中状态。<br/>默认值:undefined。<br/>**说明：**<br/>1. 使用该接口设置true或false后，会默认修改该组件的checkable属性为true。<br/>2. 使用该接口设置true或false后，如果需要同时使用accessibilitySelected接口则需要将accessibilitySelected接口的参数设置为undefined。 |
+| isCheck | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为:<br/>true:当前组件被选中。<br/>false:当前组件未被选中。<br/>undefined:由组件自行确定选中状态。<br/>默认值:undefined。<br/>**说明：**<br/>1. 使用该接口设置true或false后，会默认修改该组件的checkable属性为true。<br/>2. 使用该接口设置true或false后，如果需要同时使用accessibilitySelected接口则需要将accessibilitySelected接口的参数设置为undefined。 |
 
-## accessibilitySelected<sup>14+</sup>
+## accessibilitySelected<sup>13+</sup>
 
 accessibilitySelected(isSelect: boolean)
 
 无障碍节点是否选中的状态维护，用于支持单选的情况使用。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

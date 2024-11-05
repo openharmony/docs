@@ -16,6 +16,8 @@
 >  **说明：**
 >
 >  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+>
+>  Tabs子组件TabContent显示之后不会销毁，若需要页面懒加载和释放，可以参考[示例12](#示例12)。
 
 
 ## 接口
@@ -294,13 +296,13 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
 
-### barBackgroundBlurStyle<sup>14+</sup>
+### barBackgroundBlurStyle<sup>13+</sup>
 
 barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
 
 为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -343,13 +345,13 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
-### barBackgroundEffect<sup>14+</sup>
+### barBackgroundEffect<sup>13+</sup>
 
 barBackgroundEffect(options: BackgroundEffectOptions)
 
 设置TabBar背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -734,7 +736,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 | --------   | -------------------------------------------- |
 | 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
-### setTabBarTranslate<sup>14+</sup>
+### setTabBarTranslate<sup>13+</sup>
 
 setTabBarTranslate(translate: TranslateOptions): void
 
@@ -745,7 +747,7 @@ setTabBarTranslate(translate: TranslateOptions): void
 > 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarTranslate接口设置的TabBar平移距离会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarTranslate接口。
 >
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -755,7 +757,7 @@ setTabBarTranslate(translate: TranslateOptions): void
 | ----- | ------ | ---- | ---------------------------------------- |
 | translate | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 是 | 设置TabBar的平移距离。 |
 
-### setTabBarOpacity<sup>14+</sup>
+### setTabBarOpacity<sup>13+</sup>
 
 setTabBarOpacity(opacity: number): void
 
@@ -766,7 +768,7 @@ setTabBarOpacity(opacity: number): void
 > 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarOpacity接口设置的TabBar不透明度会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarOpacity接口。
 >
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1543,7 +1545,43 @@ struct TabsExample {
 本示例通过onChange、onAnimationStart、onAnimationEnd、onGestureSwipe等接口实现了自定义TabBar的切换动画。
 
 ```ts
+// EntryAbility.ets
+import { Configuration, UIAbility } from '@kit.AbilityKit'
+import { i18n } from '@kit.LocalizationKit'
+import { CommonUtil } from '../common/CommonUtil'
+
+export default class EntryAbility extends UIAbility {
+  onConfigurationUpdate(newConfig: Configuration): void {
+    // 监听系统配置变化
+    if (newConfig.language) {
+      CommonUtil.setIsRTL(i18n.isRTL(newConfig.language))
+    }
+  }
+}
+```
+
+```ts
+// CommonUtil.ets
+import { i18n, intl } from '@kit.LocalizationKit'
+
+export class CommonUtil {
+  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language)
+
+  public static setIsRTL(isRTL: boolean): void {
+    CommonUtil.isRTL = isRTL
+  }
+
+  public static getIsRTL(): boolean {
+    return CommonUtil.isRTL
+  }
+}
+```
+
+```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+import { CommonUtil } from '../common/CommonUtil'
+
 @Entry
 @Component
 struct TabsExample {
@@ -1565,10 +1603,6 @@ struct TabsExample {
         .id(index.toString())
         .onAreaChange((oldValue: Area, newValue: Area) => {
           this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
-          if (this.currentIndex === index && !this.isStartAnimateTo) {
-            this.indicatorLeftMargin = this.textInfos[index][0]
-            this.indicatorWidth = this.textInfos[index][1]
-          }
         })
     }.width('100%')
   }
@@ -1594,6 +1628,9 @@ struct TabsExample {
       }
       .onAreaChange((oldValue: Area, newValue: Area)=> {
         this.tabsWidth = newValue.width as number
+        if (!this.isStartAnimateTo) {
+          this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+        }
       })
       .barWidth('100%')
       .barHeight(56)
@@ -1618,23 +1655,22 @@ struct TabsExample {
         // 在页面跟手滑动过程中，逐帧触发该回调。
         let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
         this.currentIndex = currentIndicatorInfo.index
-        this.indicatorLeftMargin = currentIndicatorInfo.left
-        this.indicatorWidth = currentIndicatorInfo.width
+        this.setIndicatorAttr(currentIndicatorInfo.left, currentIndicatorInfo.width)
       })
 
       Column()
         .height(2)
         .width(this.indicatorWidth)
-        .margin({ left: this.indicatorLeftMargin, top:48})
+        .margin({ start: LengthMetrics.vp(this.indicatorLeftMargin), top: LengthMetrics.vp(48) })
         .backgroundColor('#007DFF')
     }.width('100%')
   }
 
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
     let nextIndex = index
-    if (index > 0 && event.currentOffset > 0) {
+    if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
       nextIndex--
-    } else if (index < 3 && event.currentOffset < 0) {
+    } else if (index < 3 && (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
       nextIndex++
     }
     let indexInfo = this.textInfos[index]
@@ -1658,9 +1694,17 @@ struct TabsExample {
         console.info('play end')
       }
     }, () => {
-      this.indicatorLeftMargin = leftMargin
-      this.indicatorWidth = width
+      this.setIndicatorAttr(leftMargin, width)
     })
+  }
+
+  private setIndicatorAttr(leftMargin: number, width: number) {
+    this.indicatorWidth = width
+    if (CommonUtil.getIsRTL()) {
+      this.indicatorLeftMargin = this.tabsWidth - leftMargin - width
+    } else {
+      this.indicatorLeftMargin = leftMargin
+    }
   }
 }
 ```
@@ -1795,3 +1839,108 @@ struct TabsExample {
 ```
 
 ![tabs11](figures/tabs11.gif)
+
+### 示例12
+
+本示例通过使用自定义TabBar与Swiper配合LazyForEach实现页面懒加载和释放。
+
+```ts
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): number {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct TabsSwiperExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  private list: number[] = []
+  private tabsController: TabsController = new TabsController()
+  private swiperController: SwiperController = new SwiperController()
+  private swiperData: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    for (let i = 0; i <= 9; i++) {
+      this.list.push(i);
+    }
+    this.swiperData = new MyDataSource(this.list)
+  }
+
+  @Builder tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.currentIndex === index ? 1 : 0)
+    }.width('20%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
+        ForEach(this.list, (index: number) =>{
+          TabContent().tabBar(this.tabBuilder(index, '页签 ' + this.list[index]))
+        })
+      }
+      .onTabBarClick((index: number) => {
+        this.currentIndex = index
+        this.swiperController.changeIndex(index, true)
+      })
+      .barMode(BarMode.Scrollable)
+      .backgroundColor('#F1F3F5')
+      .height(56)
+      .width('100%')
+
+      Swiper(this.swiperController) {
+        LazyForEach(this.swiperData, (item: string) => {
+          Text(item.toString())
+            .onAppear(()=>{
+              console.info('onAppear ' + item.toString())
+            })
+            .onDisAppear(()=>{
+              console.info('onDisAppear ' + item.toString())
+            })
+            .width('100%')
+            .height('100%')
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .loop(false)
+      .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
+        this.currentIndex = targetIndex
+        this.tabsController.changeIndex(targetIndex)
+      })
+    }
+  }
+}
+```
+
+![tabs12](figures/tabs12.gif)

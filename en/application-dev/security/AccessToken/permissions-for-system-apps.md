@@ -3979,6 +3979,18 @@ Currently, this permission is available only for 2-in-1 device applications.
 
 **Valid since**: 13
 
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+Allows an application or a service to initiate user identity authentication from the background.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -4532,3 +4544,17 @@ Allows an application to save images and videos to the user's directory within u
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+Allows an application to capture screen information.
+
+With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14

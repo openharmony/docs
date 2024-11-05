@@ -109,7 +109,7 @@
 
 ![](./figures//trace_taskpool_callback.png) 
 
-从图中可以看到，主线程阻塞耗时明显减少，同时在右上角出现了新的trace，__H:Deserialize__，这个trace表示在反序列化taskpool线程返回的数据。依然存在一定耗时(17ms) 容易出现丢帧等问题。针对跨线程的序列化耗时问题，系统提供了[@Sendable](../arkts-utils/arkts-sendable.md)装饰器来实现内存共享。可以在返回的类对象ModelDetailVO上使用@Sendable装饰器，继续优化性能。
+从图中可以看到，主线程阻塞耗时明显减少，同时在右上角出现了新的trace，__H:Deserialize__，这个trace表示在反序列化taskpool线程返回的数据。依然存在一定耗时(17ms) 容易出现丢帧等问题。针对跨线程的序列化耗时问题，系统提供了[@Sendable装饰器](../arkts-utils/arkts-sendable.md#sendable装饰器)来实现内存共享。可以在返回的类对象ModelDetailVO上使用@Sendable装饰器，继续优化性能。
 
 #### 优化思路：可以使用@Sendable装饰器提升数据传输和同步效率
 多线程存在线程间通信耗时问题，如果涉及数据较大的情况，可以使用[@Sendable](../arkts-utils/arkts-sendable.md)。

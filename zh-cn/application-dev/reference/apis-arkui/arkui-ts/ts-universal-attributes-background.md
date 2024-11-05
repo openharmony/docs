@@ -45,6 +45,10 @@ backgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置组件的背景色。 |
 
+>  **说明：**
+>
+>  当通过[backgroundBlurStyle](#backgroundblurstyle9)中的inactiveColor指定背景色时，不建议再通过backgroundColor设置背景色。
+
 ## backgroundImage
 
 backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
@@ -140,6 +144,10 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [BlurStyle](#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。                                               |
+
+>  **说明：**
+>
+>  当通过backgroundBlurStyle中的inactiveColor指定背景色时，不建议再通过[backgroundColor](#backgroundcolor)设置背景色。
 
 ## backdropBlur
 

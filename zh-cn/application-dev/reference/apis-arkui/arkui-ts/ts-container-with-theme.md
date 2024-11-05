@@ -14,9 +14,13 @@ WithTheme组件用于设置应用局部页面自定义主题风格，可设置�
 
 WithTheme(options: WithThemeOptions)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                            | 参数类型                                  | 必填  | 参数描述          |
+| 参数名                            | 类型                                  | 必填  | 说明     |
 |--------------------------------|---------------------------------------|-----|---------------|
 | options | [WithThemeOptions](#withthemeoptions) | 是   | 设置作用域内组件配色。 |
 
@@ -29,13 +33,14 @@ WithTheme(options: WithThemeOptions)
 不支持[通用事件](ts-universal-events-click.md)。
 
 ## WithThemeOptions
+
 设置WithTheme作用域内组件缺省样式及深浅色模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名                    | 参数类型                                                    | 必填 | 参数描述                                                             |
+| 名称        | 类型                               | 必填 | 说明                |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
 | theme     | [CustomTheme](../js-apis-arkui-theme.md#customtheme)    | 否   | 用于自定义WithTheme作用域内组件缺省配色。 </br> 默认值：undefined，缺省样式跟随系统token默认样式。<br/> |
 | colorMode | [ThemeColorMode](#themecolormode10枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.System。<br/>       |
@@ -46,7 +51,7 @@ WithTheme(options: WithThemeOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述         |
+| 名称     | 说明       |
 | ------ | ---------- |
 | SYSTEM | 跟随系统深浅色模式。 |
 | LIGHT  | 固定使用浅色模式。  |

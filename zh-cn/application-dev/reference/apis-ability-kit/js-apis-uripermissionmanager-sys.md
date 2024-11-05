@@ -20,7 +20,7 @@ import { uriPermissionManager } from '@kit.AbilityKit';
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
 
-授权URI给指定应用。使用callback异步回调。
+授权URI给指定应用，目标应用退出后权限将被回收。使用callback异步回调。
 
 允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
 **系统API**：该接口为系统接口，三方应用不支持调用。
@@ -79,7 +79,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 
 grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: string): Promise&lt;number&gt;
 
-授权URI给指定应用。使用Promise异步回调。
+授权URI给指定应用，目标应用退出后权限将被回收。使用Promise异步回调。
 
 允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
 **系统API**：该接口为系统接口，三方应用不支持调用。

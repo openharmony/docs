@@ -586,7 +586,7 @@ finishAnimation(callback?: () => void)
 
 ### left
 
-left(value: Length)
+left(value: Length): T
 
 导航点左侧相对于Swiper的位置。
 
@@ -604,7 +604,7 @@ left(value: Length)
 
 ### top
 
-top(value: Length)
+top(value: Length): T
 
 导航点顶部相对于Swiper的位置。
 
@@ -622,7 +622,7 @@ top(value: Length)
 
 ### right
 
-right(value: Length)
+right(value: Length): T
 
 导航点右侧相对于Swiper的位置。
 
@@ -640,7 +640,7 @@ right(value: Length)
 
 ### bottom
 
-bottom(value: Length)
+bottom(value: Length): T
 
 导航点底部相对于Swiper的位置。
 
@@ -658,7 +658,7 @@ bottom(value: Length)
 
 ### start<sup>12+</sup>
 
-start(value: LengthMetrics)
+start(value: LengthMetrics): T
 
 在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离。
 
@@ -676,7 +676,7 @@ start(value: LengthMetrics)
 
 ### end<sup>12+</sup>
 
-end(value: LengthMetrics)
+end(value: LengthMetrics): T
 
 在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。
 
@@ -726,7 +726,7 @@ static digit(): DigitIndicator
 
 ### itemWidth
 
-itemWidth(value: Length)
+itemWidth(value: Length): DotIndicator
 
 Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
@@ -742,9 +742,15 @@ Swiper组件圆点导航指示器的宽，不支持设置百分比。
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### itemHeight
 
-itemHeight(value: Length)
+itemHeight(value: Length): DotIndicator
 
 Swiper组件圆点导航指示器的高，不支持设置百分比。
 
@@ -760,9 +766,15 @@ Swiper组件圆点导航指示器的高，不支持设置百分比。
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### selectedItemWidth
 
-selectedItemWidth(value: Length)
+selectedItemWidth(value: Length): DotIndicator
 
 选中Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
@@ -778,9 +790,15 @@ selectedItemWidth(value: Length)
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：12<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### selectedItemHeight
 
-selectedItemHeight(value: Length)
+selectedItemHeight(value: Length): DotIndicator
 
 选中Swiper组件圆点导航指示器的高，不支持设置百分比。
 
@@ -796,9 +814,15 @@ selectedItemHeight(value: Length)
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### mask
 
-mask(value: boolean)
+mask(value: boolean): DotIndicator
 
 是否显示Swiper组件圆点导航指示器的蒙版样式。
 
@@ -814,9 +838,15 @@ mask(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### color
 
-color(value: ResourceColor)
+color(value: ResourceColor): DotIndicator
 
 Swiper组件圆点导航指示器的颜色。
 
@@ -832,9 +862,15 @@ Swiper组件圆点导航指示器的颜色。
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: ResourceColor): DotIndicator
 
 选中Swiper组件圆点导航指示器的颜色。
 
@@ -850,9 +886,15 @@ selectedColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
 
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
 ### maxDisplayCount<sup>12+</sup>
 
-maxDisplayCount(maxDisplayCount: number)
+maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 圆点导航点指示器样式下，导航点显示个数最大值。
 
@@ -865,6 +907,12 @@ maxDisplayCount(maxDisplayCount: number)
 | 参数名          | 类型   | 必填 | 说明                                                         |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
 | maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。 |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
 
 ### constructor
 
@@ -898,7 +946,7 @@ DotIndicator的构造函数。
 
 ### fontColor
 
-fontColor(value: ResourceColor)
+fontColor(value: ResourceColor): DigitIndicator
 
 Swiper组件数字导航点的字体颜色。
 
@@ -914,9 +962,15 @@ Swiper组件数字导航点的字体颜色。
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
 
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
 ### selectedFontColor
 
-selectedFontColor(value: ResourceColor)
+selectedFontColor(value: ResourceColor): DigitIndicator
 
 选中Swiper组件数字导航点的字体颜色。
 
@@ -932,9 +986,15 @@ selectedFontColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
 
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
 ### digitFont
 
-digitFont(value: Font)
+digitFont(value: Font): DigitIndicator
 
 Swiper组件数字导航点的字体样式。
 
@@ -950,9 +1010,15 @@ Swiper组件数字导航点的字体样式。
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Font](ts-types.md#font) | 是   | 设置Swiper组件数字导航点的字体样式。<br/>默认值：<br/>{&nbsp;size:&nbsp;14,&nbsp;weight:&nbsp;FontWeight.Normal&nbsp;} |
 
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
 ### selectedDigitFont
 
-selectedDigitFont(value: Font)
+selectedDigitFont(value: Font): DigitIndicator
 
 选中Swiper组件数字导航点的字体样式。
 
@@ -971,6 +1037,12 @@ selectedDigitFont(value: Font)
 >**说明：**
 >
 > 按组翻页时，数字导航点显示的子节点数量，不包括占位节点。
+
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
 
 ### constructor
 
@@ -1423,7 +1495,7 @@ struct SwiperExample {
 ![swiper](figures/swiper-digit.gif)
 
 ### 示例3
-该示例通过dislayCount属性实现了按组翻页的效果。
+该示例通过displayCount属性实现了按组翻页的效果。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {

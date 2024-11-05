@@ -1658,6 +1658,8 @@ class MyAbility extends UIAbility {
 
 ## ContentType
 
+通知内容类型。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
@@ -1674,6 +1676,8 @@ class MyAbility extends UIAbility {
 
 ## SlotLevel
 
+通知级别。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称                              | 值          | 说明               |
@@ -1686,6 +1690,8 @@ class MyAbility extends UIAbility {
 
 
 ## SlotType
+
+通知渠道类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

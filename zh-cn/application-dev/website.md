@@ -15,10 +15,6 @@
         - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
-        - [动态import](quick-start/arkts-dynamic-import.md)
-        - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
-        - [HAR转HSP指导](quick-start/har-to-hsp.md)
-        - [HSP转HAP指导](quick-start/hsp-to-har.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -29,13 +25,18 @@
       - [app对象内部结构](quick-start/app-structure.md)
       - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
       - [module对象内部结构](quick-start/module-structure.md)
+    - 典型场景的开发指导
+      - [集成态HSP](quick-start/integrated-hsp.md)
+      - [HAR转HSP指导](quick-start/har-to-hsp.md)
+      - [HSP转HAR指导](quick-start/hsp-to-har.md)
+      - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
+      - [创建应用分身](quick-start/app-clone.md)
+      - [配置分层图标](quick-start/layered-image.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
     - [ArkTS语言介绍](quick-start/introduction-to-arkts.md)
-    - [方舟字节码基本原理](quick-start/arkts-bytecode-fundamentals.md)
-    - [方舟字节码文件格式](quick-start/arkts-bytecode-file-format.md)
-    - [方舟字节码函数命名规则](quick-start/arkts-bytecode-function-name.md)
+    - [ArkTS编程规范](quick-start/arkts-coding-style-guide.md)
     - 从TypeScript到ArkTS的适配指导<!--typescript-to-arkts-migration-->
       - [ArkTS语法适配背景](quick-start/arkts-migration-background.md)
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
@@ -124,12 +125,15 @@
             - [UIAbility组件基本用法](application-models/uiability-usage.md)
             - [UIAbility组件与UI的数据同步](application-models/uiability-data-sync-with-ui.md)
             - [启动应用内的UIAbility组件](application-models/uiability-intra-device-interaction.md)
+            - [UIAbility备份恢复](application-models/ability-recover-guideline.md)
           - [ExtensionAbility组件](application-models/extensionability-overview.md)
             <!--Del-->
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
+            - [UIServiceExtension（仅对系统应用开放）](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
             - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)  
             <!--DelEnd-->
+            - [UIServiceExtension](application-models/uiserviceextension.md)
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
           - [AbilityStage组件容器](application-models/abilitystage.md)
           - [应用上下文Context](application-models/application-context-stage.md)
@@ -137,6 +141,7 @@
             - [Want概述](application-models/want-overview.md)
             - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
             - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
+            - [常见action与entities（不推荐使用）](application-models/actions-entities.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
           <!--Del-->
@@ -148,7 +153,7 @@
           - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
-          - 指向性跳转<!--directional-redirection-->
+          - 拉起指定应用<!--directional-redirection-->
             - [（可选）使用canOpenLink判断应用是否可访问](application-models/canopenlink.md)
             - [使用Deep Linking实现应用间跳转](application-models/deep-linking-startup.md)
             <!--Del-->
@@ -156,10 +161,13 @@
             <!--DelEnd-->
             - [显式Want跳转切换应用链接跳转适配指导](application-models/uiability-startup-adjust.md)
             - [应用链接说明](application-models/app-uri-config.md)
-          - 通用意图跳转<!--common-intent-redirection-->
-            - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
-            - [拉起图片编辑类应用编辑图片](application-models/photoEditorExtensionAbility.md)
-            - [通过startAbility拉起文件处理类应用](application-models/file-processing-apps-startup.md)
+          - [拉起指定类型的应用](application-models/start-intent-panel.md)
+            - [拉起导航类应用（startAbilityByType）](application-models/start-navigation-apps.md)
+            - [拉起邮件类应用（startAbilityByType）](application-models/start-email-apps.md)
+            - [拉起邮件类应用（mailto方式）](application-models/start-email-apps-by-mailto.md)
+            - [拉起金融类应用（startAbilityByType）](application-models/start-finance-apps.md)
+            - [拉起图片编辑类应用（startAbilityByType）](application-models/photoEditorExtensionAbility.md)
+            - [拉起文件处理类应用（startAbility）](application-models/file-processing-apps-startup.md)
           - [拉起系统应用](application-models/system-app-startup.md)
         - [进程模型](application-models/process-model-stage.md)
         - [线程模型](application-models/thread-model-stage.md)
@@ -284,45 +292,89 @@
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
-      - [ArkTS简介](arkts-utils/arkts-commonlibrary-overview.md)
-      - 并发<!--concurrency-->
+      - [ArkTS简介](arkts-utils/arkts-overview.md)
+      - ArkTS基础类库<!--arkts-utils-->
+        - [ArkTS基础类库概述](arkts-utils/arkts-utils-overview.md)
+        - XML生成、解析与转换<!--xml-generation-parsing-conversion-->
+          - [XML概述](arkts-utils/xml-overview.md)
+          - [XML生成](arkts-utils/xml-generation.md)
+          - [XML解析](arkts-utils/xml-parsing.md)
+          - [XML转换](arkts-utils/xml-conversion.md)
+        - [Buffer介绍](arkts-utils/buffer.md)
+        - ArkTS容器类库<!--containers-->
+          - [容器类库概述](arkts-utils/container-overview.md)
+          - [线性容器](arkts-utils/linear-container.md)
+          - [非线性容器](arkts-utils/nonlinear-container.md)
+      - ArkTS并发<!--arkts-concurrency-->
         - [并发概述](arkts-utils/concurrency-overview.md)
-        - 使用异步并发能力进行开发<!--asynchronous-concurrency-->
-          - [异步并发概述 (Promise和async/await)](arkts-utils/async-concurrency-overview.md)
-          - [单次I/O任务开发指导 (Promise和async/await)](arkts-utils/single-io-development.md)
-        - 使用多线程并发能力进行开发<!--multithreaded-concurrency-->
-          - [多线程并发概述 (TaskPool和Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [异步并发](arkts-utils/async-concurrency-overview.md)
+        - 多线程并发<!--multithread-concurrency-->
+          - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
           - [TaskPool简介](arkts-utils/taskpool-introduction.md)
           - [Worker简介](arkts-utils/worker-introduction.md)
-          - [TaskPool和Worker的对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
-          - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
-          - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
-          - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
-        - 附录<!--appendixes-->
-          - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
-          - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
-          - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
-          - [Sendable开发指导](arkts-utils/arkts-sendable.md)
-          - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
-          - [ArkTS异步锁](arkts-utils/arkts-async-lock-introduction.md)
-          - [ArkTS容器集 (ArkTS Collections)](arkts-utils/arkts-collections-introduction.md)
-          - [共享模块开发指导](arkts-utils/arkts-sendable-module.md)
-          - [ArkTS Collections与原生API方法的行为差异对比](arkts-utils/arkts-collections-vs-native-api-comparison.md)
-      - 容器类库<!--containers-->
-        - [容器类库概述](arkts-utils/container-overview.md)
-        - [线性容器](arkts-utils/linear-container.md)
-        - [非线性容器](arkts-utils/nonlinear-container.md)
-      - XML生成、解析与转换<!--xml-generation-parsing-conversion-->
-        - [XML概述](arkts-utils/xml-overview.md)
-        - [XML生成](arkts-utils/xml-generation.md)
-        - [XML解析](arkts-utils/xml-parsing.md)
-        - [XML转换](arkts-utils/xml-conversion.md)
-      - [代码混淆](arkts-utils/source-obfuscation.md)
-      - 内存管理<!--(arkts-memory-management-->
-        - [GC介绍](arkts-utils/gc-introduction.md)
-      - 模块加载
-        - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
-
+          - [TaskPool与Worker对比](arkts-utils/taskpool-vs-worker.md)
+        - 并发线程间通信<!--interthead-communication-->
+          - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
+          - 线程间通信对象<!--interthead-communication-object-->
+            - [普通对象](arkts-utils/normal-object.md)
+            - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
+            - [SharedArrayBuffer对象](arkts-utils/shared-arraybuffer-object.md)
+            - [Transferable对象（NativeBinding对象）](arkts-utils/transferabled-object.md)
+            - Sendable对象<!--sendable-object-->
+              - [Sendable对象简介](arkts-utils/arkts-sendable.md)
+              - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
+              - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
+              - [ASON解析与生成](arkts-utils/ason-parsing-generation.md)
+              - [共享容器](arkts-utils/arkts-collections-introduction.md)
+              - [共享模块](arkts-utils/arkts-sendable-module.md)
+              - [Sendable对象冻结](arkts-utils/sendable-freeze.md)
+              - [Sendable使用场景](arkts-utils/sendable-guide.md)
+          - 线程间通信场景<!--interthead-communication-guide-->
+            - [使用TaskPool执行独立的耗时任务](arkts-utils/independent-time-consuming-task.md)
+            - [使用TaskPool执行多个耗时任务](arkts-utils/multi-time-consuming-tasks.md)
+            - [TaskPool任务与主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
+            - [Worker和主线程的即时消息通信](arkts-utils/worker-communicates-with-mainthread.md)
+            - [Worker同步调用主线程的接口](arkts-utils/worker-invoke-mainthread-interface.md)
+        - 应用多线程开发<!--multithread-develop-guide-->
+          - [应用多线程开发概述](arkts-utils/multithread-develop-overview.md)
+          - 耗时任务并发场景<!--time-consuming-task-->
+            - [耗时任务并发场景简介](arkts-utils/time-consuming-task-overview.md)
+            - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
+            - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
+            - [同步任务开发指导](arkts-utils/sync-task-development.md)
+          - 长时任务并发场景<!--long-time-task-->
+            - [长时任务并发场景简介](arkts-utils/long-time-task-overview.md)
+            - [长时任务开发指导（TaskPool）](arkts-utils/long-time-task-guide.md)
+          - 常驻任务并发场景<!--resident-task-->
+            - [常驻任务并发场景简介](arkts-utils/resident-task-overview.md)
+            - [常驻任务开发指导（Worker）](arkts-utils/resident-task-guide.md)
+          - 应用多线程开发实践案例<!--multithread-develop-case-->
+            - [批量数据写数据库场景](arkts-utils/batch-database-operations-guide.md)
+            - [业务模块并发加载场景](arkts-utils/concurrent-loading-modules-guide.md)
+            - [全局配置项功能场景](arkts-utils/global-configuration-guide.md)
+            - [ArkUI数据更新场景](arkts-utils/makeobserved-sendable.md)
+            - [C++线程间数据共享场景](arkts-utils/native-interthread-shared.md)
+      - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
+      - ArkTS运行时<!--arkts-runtime-->
+        - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
+        - [GC垃圾回收](arkts-utils/gc-introduction.md)
+        - ArkTS模块化<!--arkts-runtime-module-->
+          - [模块化运行简介](arkts-utils/module-principle.md)
+          - [动态加载](arkts-utils/arkts-dynamic-import.md)
+          - [延迟加载（lazy import）](arkts-utils/arkts-lazy-import.md)
+          - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
+          - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
+      - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
+        - [ArkTS编译工具链概述](arkts-utils/compilation-tool-chain-overview.md)
+        - 方舟字节码<!--arkts-bytecode-->
+          - [方舟字节码概述](arkts-utils/arkts-bytecode-overview.md)
+          - [方舟字节码文件格式](arkts-utils/arkts-bytecode-file-format.md)
+          - [方舟字节码基本原理](arkts-utils/arkts-bytecode-fundamentals.md)
+          - [方舟字节码函数命名规则](arkts-utils/arkts-bytecode-function-name.md)
+          - [编译期自定义修改方舟字节码](arkts-utils/customize-bytecode-during-compilation.md)
+        - [Disassembler反汇编工具](arkts-utils/tool-disassembler.md)
+        - [ArkGuard源码混淆工具](arkts-utils/source-obfuscation.md)
+        - [在build-profile.json5中配置arkOptions](arkts-utils/arkoptions-guide.md)
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
       - UI开发 (ArkTS声明式开发范式)<!--arkts-ui-development-->
@@ -543,7 +595,7 @@
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
         - [使用Web组件的广告过滤功能](web/web-adsblock.md)
-        - [高级安全模式](web/web-advanced-security-mode.md)
+        - [坚盾守护模式](web/web-secure-shield-mode.md)
       - 管理网页加载与浏览记录<!--web-manage-loading-browsing-->
         - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
         - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
@@ -657,10 +709,11 @@
       - [服务卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
-      - [实现一个输入法应用](inputmethod/inputmethod_application_guide.md)
-      - [在自绘编辑框中使用输入法](inputmethod/custom_input_box_guide.md)
-      - [切换输入法应用](inputmethod/switch_inputmehod_guide.md)
-      - [输入法子类型开发指南](inputmethod/input_method_subtype_guide.md)
+      - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
+      - [在自绘编辑框中使用输入法](inputmethod/use-inputmethod-in-custom-edit-box.md)
+      - [切换输入法应用](inputmethod/switch-inputmehod-guide.md)
+      - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
+      - [自绘编辑框开发指导 (C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC与RPC通信概述](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
@@ -1451,7 +1504,6 @@
           - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
-          - [非ArkTS线程调用ArkTS函数](napi/use-uv-queue-work.md)
           - [使用Node-API接口创建ArkTs运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)

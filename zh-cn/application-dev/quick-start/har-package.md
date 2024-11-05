@@ -110,7 +110,7 @@ HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ```
 
-### 资源
+### 导出资源
 在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
 - AppScope（仅API9的Stage模型支持）。
 - HAP包自身模块。
