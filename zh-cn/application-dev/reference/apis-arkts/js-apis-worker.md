@@ -2406,7 +2406,7 @@ workerPort.onerror = (err: ErrorEvent) => {
     console.log("worker.ets onerror");
 }
 ```
-在应用级build-profile.json5配置文件添加如下配置:
+在模块级entry/build-profile.json5配置文件添加如下配置:
 ```json
   "buildOption": {
     "sourceOption": {
@@ -2484,7 +2484,7 @@ workerPort.onerror = (err: ErrorEvent) => {
   console.log("worker.ets onerror" + err.message);
 }
 ```
-在应用级build-profile.json5配置文件添加如下配置:
+在模块级entry/build-profile.json5配置文件添加如下配置:
 ```json
   "buildOption": {
     "sourceOption": {
