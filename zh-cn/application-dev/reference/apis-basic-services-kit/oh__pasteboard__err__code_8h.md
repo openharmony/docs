@@ -6,6 +6,8 @@
 
 **库：** libpasteboard.so
 
+**引用文件：** <database/pasteboard/oh_pasteboard_err_code.h>
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **起始版本：** 13
