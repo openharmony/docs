@@ -263,7 +263,8 @@ function loadCallback() {
 function finishPlayCallback() {
   // 播放完成回调
   soundPool.on('playFinished', () => {
-    console.info("recive play finished message");
+    console.info("receive
+     play finished message");
     // 可进行下次播放
   })
 }
