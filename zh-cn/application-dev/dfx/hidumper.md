@@ -2,7 +2,7 @@
 
 HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮助使用者分析，定位问题。
 
-## 前置条件
+## 环境要求
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
 
@@ -42,7 +42,177 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    ![](figures/hidumper-h.png)
 
-2. 获取设备中指定pid的内存信息。
+2. 列出系统信息集群。
+
+   ```
+   hidumper -lc
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-lc.PNG)
+
+3. 列出系统能力。
+   ```
+   hidumper -ls
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-ls.PNG)
+
+4. 获取系统信息集群详细信息。
+   ```
+   hidumper -c
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-c.PNG)
+
+5. 获取所有系统能力详细信息，命令格式如下：
+
+   ```
+   hidumper -s
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-s.png)
+
+
+6. 执行单个系统能力的特定选项。
+   
+   获取RenderService的使用帮助，命令格式如下：
+
+   ```
+   hidumper -s RenderService -a "h" 
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-renderservice-h.png)
+
+   获取对应surface的刷新帧率，可以使用以下命令，返回值为surface刷新帧对应的时间戳。
+
+   ```
+   hidumper -s RenderService -a "surface_name fps" 
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-renderservice-fps.png)
+
+   为开发者提供使设备不自动息屏的能力。-t参数使设备不自动息屏，-f参数使设备恢复自动息屏，或者设备重启使设备恢复自动息屏。
+
+   ```
+   hidumper -s 3301 -a -t
+   hidumper -s 3301 -a -f
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-3301.png)
+
+7. 获取Faultlog模块生成的崩溃历史信息。
+
+   ```
+   hidumper -e 
+   ```
+
+   **使用样例：**
+
+    ![](figures/hidumper-e.png)
+
+8. 获取网络信息；如果指定了进程的pid，则只获取该进程的网络流量使用信息。
+
+    ```
+    hidumper --net
+    ```
+
+    **使用样例：**
+
+    ![](figures/hidumper-net.png)
+
+    ```
+    hidumper --net 1
+    ```
+
+    **使用样例：**
+
+    ![](figures/hidumper-net-1.PNG)
+
+
+9. 获取存储信息。如果指定了进程的pid，则只输出该进程的io信息。
+
+   ```
+   hidumper --storage
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-storage.PNG)
+
+   ```
+   hidumper --storage 1
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-storage-1.png)
+
+
+10. 获取进程信息，包括进程、线程的列表等信息。
+
+    ```
+    hidumper -p
+    ```
+
+    **使用样例：**
+
+    ![](figures/hidumper-p.png)
+
+11. 获取CPU使用率，根据进程和类别分类展示。
+
+   ```
+   hidumper --cpuusage
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-cpuusage.png)
+
+   获取pid的类别使用率，命令格式如下：
+
+   ```
+   hidumper --cpuusage pid
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-cpuusage-pid.png)
+
+12. 获取CPU每个核的真实频率。
+
+    ```
+    hidumper --cpufreq
+    ```
+
+    **使用样例：**
+
+    ![](figures/hidumper-cpufreq.PNG)
+
+13. 获取设备中所有pid的内存信息。
+
+   ```
+   hidumper --mem
+   ```
+
+   **使用样例：**
+
+   ![](figures/hidumper-mem.png)
+
+   获取设备中指定pid的内存信息。
 
    ```
    hidumper --mem pid
@@ -54,118 +224,17 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
    **Graph字段统计方式为：计算/proc/process_dmabuf_info节点下该进程使用的内存大小。**
    
-3. 获取设备中所有pid的内存信息。
-
-   ```
-   hidumper --mem
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-mem.png)
-
-4. 获取CPU使用率，根据进程和类别分类展示。
-
-   ```
-   hidumper --cpuusage
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-cpuusage.png)
-
-5. 获取pid的类别使用率，命令格式如下：
-
-   ```
-   hidumper --cpuusage pid
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-cpuusage-pid.png)
-
-6. 列出系统能力
-   ```
-   hidumper -ls
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-ls.PNG)
-
-7. 获取所有系统能力详细信息，命令格式如下：
-
-   ```
-   hidumper -s
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-s.png)
-
-
-   获取RenderService的使用帮助，命令格式如下：
-
-   ```
-   hidumper -s RenderService -a "h" 
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-renderservice-h.png)
-
-8. 获取对应surface的刷新帧率，可以使用以下命令，返回值为surface刷新帧对应的时间戳。
-
-   ```
-   hidumper -s RenderService -a "surface_name fps" 
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-renderservice-fps.png)
-
-9. 为开发者提供使设备不自动息屏的能力。-t参数使设备不自动息屏，-f参数使设备恢复自动息屏，或者设备重启使设备恢复自动息屏。
-
-   ```
-   hidumper -s 3301 -a -t
-   hidumper -s 3301 -a -f
-   ```
-
-   **使用样例：**
-
-   ![](figures/hidumper-3301.png)
-
-10. 获取Faultlog模块生成的崩溃历史信息。
-
-   ```
-   hidumper -e 
-   ```
-
-   **使用样例：**
-
-    ![](figures/hidumper-e.png)
-
-11. 获取网络信息；如果指定了进程的pid，则只获取该进程的网络流量使用信息。
+14. 保存命令输出到/data/log/hidumper下的压缩文件。
 
     ```
-    hidumper --net
+    hidumper --zip
     ```
 
     **使用样例：**
 
-    ![](figures/hidumper-net.png)
+    ![](figures/hidumper-zip.PNG)
 
-12. 获取进程信息，包括进程、线程的列表等信息。
-
-    ```
-    hidumper -p
-    ```
-
-    **使用样例：**
-
-    ![](figures/hidumper-p.png)
-
-13. 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，指定pid则统计对应进程的IPC数据。--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。
+15. 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，指定pid则统计对应进程的IPC数据。--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。
 
     ```
     hidumper --ipc pid --start-stat
@@ -177,7 +246,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-ipc.png)
 
-14. 导出指定进程内存信息的详细使用情况。
+16. 导出指定进程内存信息的详细使用情况。
 
     ```
     hidumper --mem-smaps pid [-v]
@@ -201,7 +270,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
     ![](figures/hidumper-mem-smaps.png)
 
-15. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出;如果指定--leakobj，则获取泄露对象的列表。(仅限debug版本使用)
+17. 运行  **hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]**  pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出;如果指定--leakobj，则获取泄露对象的列表。(仅限debug版本使用)
 
     ```
     hidumper --mem-jsheap pid [-T tid] [--gc] [--leakobj]
