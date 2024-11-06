@@ -111,6 +111,7 @@
 
 
 ```ts
+@Entry
 @Component
  struct TopArea {
    build() {
@@ -131,6 +132,7 @@
 
 
 ```ts
+@Entry
 @Component
  struct TopArea {
    build() {
@@ -169,6 +171,7 @@
 
 
 ```ts
+@Entry
 @Component
  struct TopArea {
    build() {
@@ -217,6 +220,7 @@
 
 
 ```ts
+@Entry
 @Component
  struct BottomArea {
    build() {
@@ -266,6 +270,7 @@
 
 
 ```ts
+@Entry
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -298,6 +303,7 @@ struct MessageBubble {
 
 
 ```ts
+@Entry
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -335,6 +341,7 @@ struct MessageBubble {
 
 
 ```ts
+@Entry
 @Component
 struct MessageBubble {
   private content: string = "Introduction"
@@ -383,6 +390,7 @@ struct MessageBubble {
 
 
 ```ts
+@Entry
 @Component
  struct MessageBubble {
    private isReceived:boolean = true// 通过标志位，判断是发送or接收场景，进而使用不同的样式
@@ -540,7 +548,7 @@ struct Conversation {
 
 
 ```ts
-@Entry
+ @Entry
  @Component
  struct Conversation {
    build() {
