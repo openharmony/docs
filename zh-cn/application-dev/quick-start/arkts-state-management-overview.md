@@ -206,9 +206,13 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 | \@State      | 无外部初始化：@Local<br/>外部初始化一次：\@Param\@Once | \@State和\@Local类似都是数据源的概念，区别是\@State可以外部传入初始化，而\@Local无法外部传入初始化。 |
 | \@Prop       | \@Param                                                | \@Prop和\@Param类似都是自定义组件参数的概念。当输入参数为复杂类型时，\@Prop为深拷贝，\@Param为引用。 |
 | \@Link       | \@Param\@Event                                         | \@Link是框架自己封装实现的双向同步，对于V2开发者可以通过@Param@Event自己实现双向同步。 |
-| \@ObjectLink | \@Param                                                | 直接兼容，但无输入限制。                                     |
+| \@ObjectLink            | \@Param                   | 直接兼容，\@ObjectLink需要被@Observed装饰的class的实例初始化，\@Param没有此限制。 |
 | \@Provide    | \@Provider                                             | 兼容。                                                       |
 | \@Consume    | \@Consumer                                             | 兼容。                                                       |
-| \@Watch      | \@Monitor                                              | \@Watch能够监听变量本身及其一层属性的变化，且每次变化时都会触发一次。\@Monitor可深度监听多个变量，且事件中多次变化时，仅会以最终的结果判断是否触发。 |
+| \@Watch               | \@Monitor                | \@Watch用于监听V1状态变量的变化，具有监听状态变量本身和其第一层属性变化的能力。状态变量可观察到的变化会触发其\@Watch监听事件。<br/>\@Monitor用于监听V2状态变量的变化，搭配\@Trace使用，可有深层监听的能力。状态变量在一次事件中多次变化时，仅会以最终的结果判断是否触发\@Monitor监听事件。 |
+| LocalStorage               | 全局\@ObservedV2\@Trace   | 兼容。 |
+| AppStorage               | AppStorageV2   | 兼容。 |
+| Environment       | 调用Ability接口获取系统环境变量   | Environment获取环境变量能力和AppStorage耦合。在V2中可直接调用Ability接口获取系统环境变量。 |
+| PersistentStorage     | PersistenceV2   | PersistentStorage持久化能力和AppStorage耦合，PersistenceV2持久化能力可独立使用。 |
 
 有关V1向V2的迁移可参考[迁移指导](./arkts-v1-v2-migration.md)，有关V1与V2的混用可参考[混用文档](./arkts-custom-component-mixed-scenarios.md)。
