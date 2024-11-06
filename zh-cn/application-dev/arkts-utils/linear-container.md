@@ -206,45 +206,45 @@ Vector进行增、删、改、查操作的常用API如下：
 import { ArrayList } from '@kit.ArkTS'; // 导入ArrayList模块
 
 let arrayList1: ArrayList<string> = new ArrayList();
-arrayList1.add('a');
+arrayList1.add('a'); // 增加一个值为'a'的元素
 let arrayList2: ArrayList<number> = new ArrayList();
-arrayList2.add(1); // 增加元素
-console.info(`result: ${arrayList2[0]}`); // 访问元素
-arrayList1[0] = 'one'; // 修改元素
-console.info(`result: ${arrayList1[0]}`);
+arrayList2.add(1); // 增加一个值为1的元素
+console.info(`result: ${arrayList2[0]}`); // 访问索引为0的元素。输出：result: 1
+arrayList1[0] = 'one'; // 修改索引为0的元素
+console.info(`result: ${arrayList1[0]}`); // 输出：result: one
 
 // Deque
 import { Deque } from '@kit.ArkTS'; // 导入Deque模块
 
 let deque1: Deque<string> = new Deque();
-deque1.insertFront('a');
+deque1.insertFront('a'); // 头部增加一个值为'a'的元素
 let deque2: Deque<number> = new Deque();
-deque2.insertFront(1); // 增加元素
-console.info(`result: ${deque1[0]}`); // 访问元素
-deque1[0] = 'one'; // 修改元素
-console.info(`result: ${deque2[0]}`);
+deque2.insertFront(1); // 头部增加一个值为1的元素
+console.info(`result: ${deque2.getFirst()}`); // 访问队列首部的元素。输出：result: 1
+deque1.insertEnd('one'); // 尾部增加一个值为'one'的元素
+console.info(`result: ${deque1.getLast()}`); // 访问队列尾部的元素。输出：result: one
 
 // Stack
 import { Stack } from '@kit.ArkTS'; // 导入Stack模块
 
 let stack1: Stack<string> = new Stack();
-stack1.push('a');
+stack1.push('a'); // 向栈里增加一个值为'a'的元素
 let stack2: Stack<number> = new Stack();
-stack2.push(1); // 增加元素
-console.info(`result: ${stack1[0]}`); // 访问元素
-stack2.pop(); // 删除栈顶元素并返回该删除元素
-console.info(`result: ${stack2.length}`);
+stack2.push(1); // 向栈里增加一个值为1的元素
+console.info(`result: ${stack1.peek()}`); // 访问栈顶元素。输出：result: a
+console.info(`result: ${stack2.pop()}`); // 删除栈顶元素并返回该删除元素。输出：result: 1
+console.info(`result: ${stack2.length}`); // 输出：result: 0
 
 // List
 import { List } from '@kit.ArkTS'; // 导入List模块
 
 let list1: List<string> = new List();
-list1.add('a');
+list1.add('a'); // 增加一个值为'a'的元素
 let list2: List<number> = new List();
-list2.add(1);
+list2.insert(0, 0); // 在0号位置插入（增加）一个值为0的元素
 let list3: List<Array<number>> = new List();
 let b2 = [1, 2, 3];
-list3.add(b2); // 增加元素
-console.info(`result: ${list1[0]}`); // 访问元素
-console.info(`result: ${list3.get(0)}`); // 访问元素
+list3.add(b2); // 增加一个Array类型的元素
+console.info(`result: ${list1[0]}`); // 访问索引为0的元素。输出：result: a
+console.info(`result: ${list3.get(0)}`); // 访问索引为0的元素。输出：result: 1,2,3
 ```
