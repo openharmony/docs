@@ -180,9 +180,9 @@ hdc shell运行时，仅支持pidof/ps/watch/xargs。<br />
 | pwd       | 打印工作（当前）目录。<br />usage: pwd [-L\|-P] |
 | readahead | 将文件预加载到磁盘缓存中。<br />usage: readahead FILE... |
 | readlink  | 如果没有选项，则显示symlink指向什么，如果不是symlink则返回错误。<br />usage: readlink FILE... |
-| realpath  | 显示规范绝对路径名<br />usage: realpath FILE... |
-| rev       | 当没有给定文件时，使用标准输入设备反向输出每一行。<br />usage: rev [FILE...] |
-| rm        | 从文件系统中删除每个参数。<br />usage: rm [-fiRrv] FILE... |
+| realpath  | 显示规范绝对路径名。<br />usage: realpath FILE... |
+| rev       | 逆向输出每一行。<br />usage: rev [FILE...] |
+| rm        | 删除文件。<br />usage: rm [-fiRrv] FILE... |
 | rmdir     | 删除一个或多个目录。<br />usage: rmdir [-p] [dirname...] |
 | sed       | 流编辑器。将编辑脚本应用于输入行。<br />usage: sed [-inrszE] [-e SCRIPT]...\|SCRIPT [-f SCRIPT\_FILE]... [FILE...] |
 | seq       | 从头到尾按递增计数。省略参数默认值为1。使用两个参数作为第一个和最后一个。参数可以是负数或浮点数。<br />usage: seq [-w\|-f fmt\_str] [-s sep\_str] [first] [increment] last |
