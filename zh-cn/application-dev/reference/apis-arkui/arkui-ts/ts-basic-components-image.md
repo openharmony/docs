@@ -129,6 +129,24 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的填充效果。<br/>默认值：ImageFit.Cover |
 
+### imageMatrix<sup>16+</sup>
+
+imageMatrix(matrix: ImageMatrix)
+
+设置图片的变换矩阵。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明           |
+| ------ | --------------------------------------------------- | ---- | -------------- |
+| matrix  | [ImageMatrix](../js-apis-matrix4.md#matrix4transit) | 是   | 图片的变换矩阵。|
+
 ### objectRepeat
 
 objectRepeat(value: ImageRepeat)
