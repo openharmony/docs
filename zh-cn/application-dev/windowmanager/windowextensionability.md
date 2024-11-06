@@ -104,6 +104,8 @@ struct Index {
         UIExtensionComponent({
           abilityName: "WindowExtAbility",
           bundleName: "com.example.WindowExtAbility"})
+          .width(500)
+          .height(500)
       }
       .width('100%')
     }
