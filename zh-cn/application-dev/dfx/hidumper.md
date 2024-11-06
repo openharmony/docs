@@ -36,13 +36,13 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 1. 查看帮助命令。
 
-   ```
-   hidumper -h
-   ```
+    ```
+    hidumper -h
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
-   ```
+    ```
     $ hidumper -h
     usage:
     -h                          |help text for the tool
@@ -65,15 +65,15 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     --mem-jsheap pid [-T tid] [--gc] [--leakobj]  |triggerGC, dumpHeapSnapshot and dumpLeakList under pid and tid
     --ipc pid ARG               |ipc load statistic; pid must be specified or set to -a dump all processes. ARG must be one of --start-stat | --stop-stat | --stat
     --cpuusage [pid]            |dump cpu usage by processes and category; if PID is specified, dump category usage of specified pid
-   ```
+    ```
 
 2. 列出系统信息集群。
 
-   ```
-   hidumper -lc
-   ```
+    ```
+    hidumper -lc
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper -lc
@@ -82,11 +82,12 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     ```
 
 3. 列出系统能力。
-   ```
-   hidumper -ls
-   ```
 
-   **使用样例：**
+    ```
+    hidumper -ls
+    ```
+
+    **使用样例：**
 
     ```
     $ hidumper -ls
@@ -104,14 +105,15 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     ```
 
 4. 获取系统信息集群详细信息。
-   ```
-   hidumper -c
-   ```
-
-   **使用样例：**
 
     ```
-    $ hidumper -c base
+    hidumper -c
+    ```
+
+    **使用样例：**
+
+    ```
+    $ hidumper -c
 
     -------------------------------[base]-------------------------------
 
@@ -121,12 +123,13 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     ```
 
 5. 获取"base"或者"system"信息集群详细信息。
-   ```
-   hidumper -c base
-   hidumper -c system
-   ```
 
-   **使用样例：**
+    ```
+    hidumper -c base
+    hidumper -c system
+    ```
+
+    **使用样例：**
 
     ```
     $ hidumper -c base
@@ -153,11 +156,11 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 6. 获取所有系统能力详细信息，命令格式如下：
 
-   ```
-   hidumper -s
-   ```
+    ```
+    hidumper -s
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper -s
@@ -180,12 +183,12 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 7. 获取一个或多个系统能力详细信息，命令格式如下：
 
-   ```
-   hidumper -s [SA0]
-   hidumper -s [SA0] [SA1]
-   ```
+    ```
+    hidumper -s [SA0]
+    hidumper -s [SA0] [SA1]
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper -s 4606
@@ -228,13 +231,13 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 8. 执行单个系统能力的特定选项。
    
-   获取RenderService的使用帮助，命令格式如下：
+    获取RenderService的使用帮助，命令格式如下：
 
-   ```
-   hidumper -s RenderService -a "h" 
-   ```
+    ```
+    hidumper -s RenderService -a "h" 
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper -s RenderService -a "h"
@@ -270,13 +273,13 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     flushJankStatsRs|flush rs jank stats hisysevent
     ```
 
-   获取对应surface的刷新帧率，可以使用以下命令，返回值为surface刷新帧对应的时间戳。
+    获取对应surface的刷新帧率，可以使用以下命令，返回值为surface刷新帧对应的时间戳。
 
-   ```
-   hidumper -s RenderService -a "surface_name fps" 
-   ```
+    ```
+    hidumper -s RenderService -a "surface_name fps" 
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper -s RenderService -a "surface_name fps"
@@ -289,14 +292,14 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     -- The recently fps records info of screens:
     ```
 
-   为开发者提供使设备不自动息屏的能力。-t参数使设备不自动息屏，-f参数使设备恢复自动息屏，或者设备重启使设备恢复自动息屏。
+    为开发者提供使设备不自动息屏的能力。-t参数使设备不自动息屏，-f参数使设备恢复自动息屏，或者设备重启使设备恢复自动息屏。
 
-   ```
-   hidumper -s 3301 -a -t
-   hidumper -s 3301 -a -f
-   ```
+    ```
+    hidumper -s 3301 -a -t
+    hidumper -s 3301 -a -f
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper -s 3301 -a -t
@@ -315,11 +318,11 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 9. 获取Faultlog模块生成的崩溃历史信息。
 
-   ```
-   hidumper -e 
-   ```
+    ```
+    hidumper -e 
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper -e
@@ -367,12 +370,12 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 
 11. 获取存储信息。如果指定了进程的pid，则只输出该进程的io信息。
 
-   ```
-   hidumper --storage pid
-   hidumper --storage
-   ```
+    ```
+    hidumper --storage pid
+    hidumper --storage
+    ```
 
-   **使用样例：**
+    **使用样例：**
 
     ```
     $ hidumper --storage 1
