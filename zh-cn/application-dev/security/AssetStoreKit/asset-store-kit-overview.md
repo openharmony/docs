@@ -41,6 +41,12 @@ Asset Store Kit（关键资产存储开发套件）包含了关键资产存储�
 
   ASSET对部分属性会进行完整性保护，这部分属性名称以"DATA_LABEL_CRITICAL"开头，写入后不支持更新。
 
+* 关键资产删除时机
+  1. 业务主动调用remove删除关键资产时，删除符合条件的数据。详见删除关键资产[ArkTS](asset-js-remove.md)、[C/C++](asset-native-remove.md)开发指导。
+  2. 应用卸载时，清除该应用存储在ASSET中的数据。[IS_PERSISTENT](../../reference/apis-asset-store-kit/js-apis-asset.md#tag)属性设置为true的数据将保留。
+  3. 系统子用户删除时，清除该用户下ASSET中所有数据。
+  4. 设备恢复出厂设置时，清除ASSET中所有数据。
+
 ## 与相关Kit的关系
 
 关键资产存储服务仅提供短敏感数据（不超过1KB）的安全存储能力，如业务希望对超长的数据提供保护时，请考虑使用[通用密钥库系统](../UniversalKeystoreKit/huks-overview.md)或[加解密算法库框架](../CryptoArchitectureKit/crypto-architecture-kit-intro.md)保护您的数据。
