@@ -8,7 +8,7 @@
 
 ## 常用的音频流类型及其适用场景
 
-### 播放流
+### 播放音频流类型
 
 下表中列举常用的播放音频流类型，由[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)定义。
 
@@ -25,7 +25,7 @@
 | STREAM_USAGE_RINGTONE | 适用于VoIP来电响铃等。 |
 | STREAM_USAGE_NOTIFICATION | 适用于播放通知音、提示音。 |
 
-### 录制流类型
+### 录制音频流类型
 
 下表中列举常用的录制音频流类型，由[SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)定义。
 
@@ -117,7 +117,7 @@
   
   可以在调用[createSoundPool](../../reference/apis-media-kit/js-apis-media.md#mediacreatesoundpool10)接口时，传入对应的[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)指定音频流类型。
 
-常见的设置播放录制流类型的方法有：
+常见的设置录制音频流类型的方法有：
 
 - **[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)**：
   
