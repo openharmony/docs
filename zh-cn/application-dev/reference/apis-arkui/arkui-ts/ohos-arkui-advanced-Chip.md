@@ -58,7 +58,7 @@ ChipOptions定义chip的样式及具体式样参数。
 | direction | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | Chip组件无障碍描述。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| accessibilityLevel<sup>14+</sup> | string | 否 | Chip组件无障碍重要性。<br>默认值："auto"。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| accessibilityLevel<sup>14+</sup> | string | 否 | Chip组件无障碍重要性。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | 否 | Chip组件选中态类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
