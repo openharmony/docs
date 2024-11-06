@@ -45,7 +45,7 @@
    })
    ```
 
-3. 设置资源：设置属性fdSrc
+3. 设置资源：设置属性fdSrc。
    > **说明：**
    >
    > 下面代码示例中的fdSrc仅作示意使用，开发者需根据实际情况，确认资源有效性并设置：
@@ -64,7 +64,7 @@
    this.avTranscoder.fdSrc = fileDescriptor;
    ```
 
-4. 设置资源：设置属性fdDst
+4. 设置资源：设置属性fdDst。
    > **说明：**
    >
    > - 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
