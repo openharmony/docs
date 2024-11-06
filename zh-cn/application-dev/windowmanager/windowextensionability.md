@@ -38,7 +38,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
    ```ts
     import { WindowExtensionAbility, window } from '@kit.ArkUI';
     import { Want } from '@kit.AbilityKit';
-    import {BusinessError} from '@kit.BasicServiceKit'
+    import {BusinessError} from '@kit.BasicServiceKit';
 
     export default class WindowExtAbility extends WindowExtensionAbility {
         onWindowReady(window: window.Window) {
