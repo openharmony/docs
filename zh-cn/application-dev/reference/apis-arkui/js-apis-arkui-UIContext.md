@@ -6846,6 +6846,74 @@ struct RequestExample {
 }
 ```
 
+### activate<sup>14+</sup>
+
+activate(isActive: boolean, atuoInactive?: boolean): void
+
+设置当前容器组件走焦态，是否可以不按TAB直接方向键走焦。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| isActive| boolean| 是 | 设置是否进入/退出走焦态。 |
+| atuoInactive | boolean | 否 | 设置点击事件是否能退出走焦态。|
+
+```ts
+@Entry
+@Component
+struct ActivateExample {
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('Button1')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+          .id("testButton")
+
+        Divider()
+          .vertical(false)
+          .width("80%")
+          .backgroundColor(Color.Black)
+          .height(10)
+
+        Button('Button2')
+          .width(200)
+          .height(70)
+
+        Button('Button3')
+          .width(200)
+          .height(70)
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .onFocus(() => { 
+        this.getUIContext().getFocusController().activate(true, false)   
+    }) 
+    .onBlur(() => { 
+        this.getUIContext().getFocusController().activate(false)
+    }) 
+  }
+}
+```
+
+
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
 
