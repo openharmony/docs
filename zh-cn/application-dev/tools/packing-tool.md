@@ -257,7 +257,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 示例：
 
 ```
-java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true]
+java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>]
 ```
 
 **表10** 参数含义及规范
