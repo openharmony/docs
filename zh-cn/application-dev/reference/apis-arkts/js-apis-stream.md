@@ -1118,7 +1118,7 @@ push(chunk:  Uint8Array | string | null, encoding?: string): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 可读流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区已满。 |
+| boolean | 可读流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区已满。输入null时，固定返回false表示推送结束，没有数据块可推送。 |
 
 **错误码：**
 
