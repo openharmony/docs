@@ -527,7 +527,7 @@ The corresponding **runtimeOnly** configuration is as follows:
   ```
 You do not need to set **runtimeOnly** when dynamically importing APIs with variables.
 
-### Decoupling Between HAR modules with Dynamic Import
+### Decoupling Between HAR Modules with Dynamic Import
 When an application contains multiple HAR modules, and the dependency between the modules are complex, configuring their dependencies in DevEco Studio can be challenging and, if not handled carefully, can lead to cyclic dependencies. To simplify dependency management, if only variables are dynamically imported between HAR modules, you can convert dependency between HAR modules into dependency between HAR modules and HAP/HSP modules. In this way, the HAR modules are decoupled. The figure shows the dependency graph before dependency conversion.
 
 ![Cyclic dependency between HAR modules before dependency conversion](figures/dynamicimport1.png)

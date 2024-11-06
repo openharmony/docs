@@ -49,7 +49,7 @@ This kit provides the following capabilities:
 
 ## Relationship with Other Kits
 
-- [ArkTS Kit](../arkts-utils/arkts-overview.md): [Multithreaded concurrency (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md) in ArkTS Kit needs to use Emitter in this kit for inter-thread communication.
+- ArkTS Kit: [Multithreaded concurrency (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md) in ArkTS Kit needs to use Emitter in this kit for inter-thread communication.
 
 - [Ability Kit](../application-models/abilitykit-overview.md): Common events in this kit are required for inter-process communication in Ability Kit.
 
