@@ -165,6 +165,16 @@ requestFocus(key: string): void
 >
 >  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
+### activate<sup>14+</sup>
+
+activate(): void
+
+若设置此选项可使页面无需按TAB，主动进入/退出走焦态。
+
+>  **说明：**
+>
+>  详细介绍请参见[activate](../js-apis-arkui-UIContext.md#activate14)。
+
 ## FocusBoxStyle<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -220,6 +230,7 @@ focusScopeId(id: string, isGroup?: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。 |
 | isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。|
+| arrowStepOut  | boolean | 否   | 设置方向键走焦能否跳出当前焦点组 |
 
 ## 示例
 
