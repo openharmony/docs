@@ -122,7 +122,7 @@
    }
    ```
 
-2. 在构造函数中绑定ArkJS与C++对象
+2. 在构造函数中绑定ArkTS与C++对象
 
    ```cpp
    napi_value MyObject::New(napi_env env, napi_callback_info info)
