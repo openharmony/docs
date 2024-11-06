@@ -739,27 +739,7 @@ uint64_t ffrt_this_task_get_id();
 
 ##### 样例
 
-```{.c}
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    static int x = 0;
-    int* xf = &x;
-    void* data = xf;
-    uint64_t timeout1 = 20;
-
-    ffrt::submit([=]() {
-    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
-    ffrt_timer_cb cb;
-    ffrt_timer_start(taskQos, timeout1, data, cb, false);
-    ffrt_usleep(200);
-    }, {}, {});
-    ffrt::wait();
-    return 0;
-}
-
-```
+* 忽略。
 
 #### ffrt_this_task_update_qos
 
@@ -818,7 +798,27 @@ ffrt_qos_t ffrt_this_task_get_qos();
 
 ##### 样例
 
-* 忽略。
+```{.c}
+#include "ffrt.h"
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+
+    ffrt::submit([=]() {
+    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_cb cb;
+    ffrt_timer_start(taskQos, timeout1, data, cb, false);
+    ffrt_usleep(200);
+    }, {}, {});
+    ffrt::wait();
+    return 0;
+} 
+
+```
 
 ### 串行队列
 <hr />
@@ -2547,8 +2547,8 @@ libffrt.z.so
 
 ### 建议5: 推荐使用C++接口
 
-* FFRT的C++接口是基于C接口实现，在使用API接口时可以手动添加C++相关头文件后配套使用。
-* 相关C++接口下载参考：[FFRT C++接口](https://gitee.com/wangyulie/resourceschedule_ffrt/tree/master/interfaces/kits)
+* FFRT的C++接口是基于C接口实现，在使用API接口时可以手动添加C++相关头文件后配套使用。 
+* 相关C++接口下载参考：[FFRT C++接口](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits)
 
 
 
