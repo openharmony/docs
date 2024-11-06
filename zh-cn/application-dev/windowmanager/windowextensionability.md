@@ -1,3 +1,4 @@
+
 # WindowExtensionAbility（仅对系统应用开放）
 
 
@@ -38,15 +39,15 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
    ```ts
     import { WindowExtensionAbility, window } from '@kit.ArkUI';
     import { Want } from '@kit.AbilityKit';
+    import {BusinessError} from '@kit.BasicServiceKit'
 
     export default class WindowExtAbility extends WindowExtensionAbility {
         onWindowReady(window: window.Window) {
-            window.loadContent('WindowExtAbility/pages/index1').then(() => {
-                window.getProperties().then((pro) => {
-                    console.info("WindowExtension " + JSON.stringify(pro));
-                })
-                window.show();
-            })
+            window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
+              let pro = window.getWindowProperties();
+              console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+              window.showWindow();
+            });
         }
 
         onConnect(want: Want) {
@@ -100,9 +101,9 @@ struct Index {
   build() {
     Row() {
       Column() {
-        AbilityComponent({want:{abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"}})
-          .width(500)
-          .height(500)
+        UIExtensionComponent({
+          abilityName: "WindowExtAbility",
+          bundleName: "com.example.WindowExtAbility"})
       }
       .width('100%')
     }
