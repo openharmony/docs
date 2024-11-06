@@ -4531,6 +4531,42 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+允许应用创建或删除恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+允许应用使用恢复密钥重设锁屏密码或恢复用户数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+允许应用获取恢复密钥的简要信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.CUSTOM_SCREEN_CAPTURE
 
 允许应用获取屏幕图像。
