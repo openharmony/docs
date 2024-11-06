@@ -17,7 +17,7 @@
 
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [native_interface_accessibility.h](native__interface__accessibility_8h.md) | 声明用于访问Native&nbsp;Accessibility的API。<br/>**引用文件：** &lt;ace/accessibility/native_interface_accessibility.h&gt;<br>**库：** libace_ndk.z.so |
+| [native_interface_accessibility.h](native__interface__accessibility_8h.md) | 声明用于访问Native&nbsp;Accessibility的API。 |
 
 ### 类型定义
 

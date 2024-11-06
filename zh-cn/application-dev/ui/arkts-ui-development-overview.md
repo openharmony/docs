@@ -45,7 +45,7 @@
 
 - 性能优越
   - 声明式UI前端和UI后端分层：UI后端采用C++语言构建，提供对应前端的基础组件、布局、动效、交互事件、组件状态管理和渲染管线。
-  - 语言编译器和运行时的优化：统一字节码、高效FFI-Foreign Function Interface、AOT-Ahead Of Time、引擎极小化、类型优化等。
+  - 语言编译器和运行时的优化：统一字节码、高效FFI（Foreign Function Interface）、AOT（Ahead Of Time）、引擎极小化、类型优化等。
 
 - 生态容易快速推进
   能够借力主流语言生态快速推进，语言相对中立友好，有相应的标准组织可以逐步演进。
