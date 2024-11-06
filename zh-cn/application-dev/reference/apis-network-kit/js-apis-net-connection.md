@@ -240,8 +240,6 @@ cat server.pem \
 ```json
 {
   "network-security-config": {
-    "trust-global-user-ca": false,
-    "trust-current-user-ca": false,
     "domain-config": [
       {
         "domains": [
@@ -261,7 +259,9 @@ cat server.pem \
         }
       }
     ]
-  }
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
 }
 ```
 
