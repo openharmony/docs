@@ -37,7 +37,6 @@
 
 import webview from '@ohos.web.webview';
 
-...
   aboutToAppear() {
     // 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
     webview.WebviewController.initializeWebEngine();
@@ -68,32 +67,43 @@ webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2)
 @ohos.web.webview提供prefetchPage方法实现在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。  
 参数：
 
-| 参数名               | 类型               | 说明             |
-|-------------------|------------------|----------------|
-| url               | string           | 预加载的url。       |
-| additionalHeaders | Array<WebHeader> | url的附加HTTP请求头。 |
+| 参数名               | 类型                | 说明             |
+|-------------------|-------------------|----------------|
+| url               | string            | 预加载的url。       |
+| additionalHeaders | Array\<WebHeader> | url的附加HTTP请求头。 |
 
 使用方法如下：
-```javascript
-// ../src/main/ets/pages/WebBrowser.ets
+```typescript
+// src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
-...
+import { webview } from '@kit.ArkWeb';
 
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .onPageEnd((event) => {
-         ...
-         // 在确定即将跳转的页面时开启预加载
-         this.controller.prefetchPage('https://www.example.com/nextpage');
-      })
-    Button('下一页')
-      .onClick(() => {
-         ...
-         // 跳转下一页
-         this.controller.loadUrl('https://www.example.com/nextpage');
-      })
+
+  build() {
+    Column() {
+      // ...
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .onPageEnd((event) => {
+          //  ...
+          // 在确定即将跳转的页面时开启预加载，url请替换真实地址
+          this.controller.prefetchPage('https://www.example.com/nextpage');
+        })
+        .width('100%')
+        .height('80%')
+
+      Button('下一页')
+        .onClick(() => {
+          // ...
+          // 跳转下一页
+          this.controller.loadUrl('https://www.example.com/nextpage');
+        })
+    }
+  }
+}
 ```
 
 ## 性能分析
@@ -108,7 +118,6 @@ import webview from '@ohos.web.webview';
 ```javascript
 // ../src/main/ets/pages/WebUninitialized.ets
 
-...
 Button('进入网页')
   .onClick(() => {
     hilog.info(0x0001, "WebPerformance", "UnInitializedWeb");
@@ -119,7 +128,6 @@ Web页使用Web组件加载指定网页
 ```javascript
 // ../src/main/ets/pages/WebBrowser.ets
 
-...
 Web({ src: 'https://www.example.com', controller: this.controller })
   .domStorageAccess(true)
   .onPageEnd((event) => {
@@ -133,40 +141,60 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 
 入口页提前进行Web组件的初始化和预连接
 
-```javascript
+```typescript
 // ../src/main/ets/pages/WebInitialized.ets
+  
+import { webview } from '@kit.ArkWeb';
+import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-import webview from '@ohos.web.webview';
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
 
-...
-Button('进入网页')
-  .onClick(() => {
-     hilog.info(0x0001, "WebPerformance", "InitializedWeb");
-     router.pushUrl({ url: 'pages/WebBrowser' });
-  })
-...
-aboutToAppear() {
-  webview.WebviewController.initializeWebEngine();
-  webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+  aboutToAppear() {
+    webview.WebviewController.initializeWebEngine();
+    webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+  }
+
+  build() {
+    Column() {
+      Button('进入网页')
+        .onClick(() => {
+          hilog.info(0x0001, "WebPerformance", "InitializedWeb");
+          router.pushUrl({ url: 'pages/WebBrowser' });
+        })
+    }
+  }
 }
 ```
 Web页加载的同时使用prefetchPage预加载下一页
-```javascript
+```typescript
 // ../src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-...
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .domStorageAccess(true)
-      .onPageEnd((event) => {
-         if (event) {
-           hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
-           this.controller.prefetchPage('https://www.example.com/nextpage');
-         }
-      })
+
+  build() {
+    Column() {
+      // ...
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .domStorageAccess(true)
+        .onPageEnd((event) => {
+          if (event) {
+            hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
+            this.controller.prefetchPage('https://www.example.com/nextpage');
+          }
+        })
+    }
+  }
+}
 ```
 
 ### 数据对比
@@ -182,3 +210,5 @@ import webview from '@ohos.web.webview';
 从Web首页内点击跳转下一页按钮到Web组件触发OnPageEnd事件，表示页面间跳转完成。对比优化前后时延可以得出，使用预加载下一页方法可以减少平均40~50ms左右的跳转时间。
 
 ![跳转完成时延](./figures/web-route-time-chart.png)
+
+<!--no_check-->
