@@ -82,7 +82,7 @@
 | isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。false表示不可保存。|
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
