@@ -122,7 +122,7 @@ To obtain input data of an image from a camera, you must request the **ohos.perm
 
 ### Calling the Native APIs
 
-For details about the APIs, see [Image API Reference](../../reference/apis-image-kit/image.md).
+For details about the APIs, see [Image](../../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 
