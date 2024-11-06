@@ -31,7 +31,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 
 | Type                            | Description                                                                   |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<[PixelMap](#pixelmap)> | Promise used to return the **PixelMap** object.<br>If the size of the created pixel map exceeds that of the original image, the pixel map size of the original image is returned.|
+| Promise\<[PixelMap](#pixelmap)> | Promise used to return the **PixelMap** object.<br>If the size of the created PixelMap exceeds that of the original image, the PixelMap size of the original image is returned.|
 
 **Example**
 
@@ -40,7 +40,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     sendableImage.createPixelMap(color, opts).then((pixelMap: sendableImage.PixelMap) => {
         console.info('Succeeded in creating pixelmap.');
@@ -159,7 +159,7 @@ Creates a **PixelMap** object from a surface ID.
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region7)  | Yes  | Size of the image after cropping.                        |
+| region                 | [Region](../apis-image-kit/js-apis-image.md#region8)  | Yes  | Size of the image after cropping.                        |
 
 **Return value**
 | Type                            | Description                 |
@@ -227,7 +227,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let pixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
     return pixelMap;
@@ -268,7 +268,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
@@ -310,7 +310,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
     let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
@@ -320,7 +320,7 @@ async function Demo() {
 
 ## PixelMap
 
-Provides APIs to read or write image data and obtain image information. Before calling any API in **PixelMap**, you must use [createPixelMap](#sendableimagecreatepixelmap) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
+Provides APIs to read or write image data and obtain image information. Before calling any API in **PixelMap**, you must use [createPixelMap](#sendableimagecreatepixelmap) to create a **PixelMap** object. Currently, the maximum size of a serialized PixelMap is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
 The **PixelMap** object under **sendableImage** supports the **sendable** attribute and sharing of the worker thread. The [Convert](#sendableimageconverttopixelmap) API can be used to convert a **PixelMap** object in **sendableImage** to a **PixelMap** object in **image**, and vise versa. After the conversion, the APIs of the original object cannot be called. Otherwise, error 501 is reported. When processing a **PixelMap** object across threads, you need to consider the multithreaded problem.
 
@@ -339,7 +339,7 @@ Before calling any API in **PixelMap**, you must use [sendableImage.createPixelM
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result. If the pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result. If the PixelMap is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -363,7 +363,7 @@ Reads the pixels of this image and writes the data to an ArrayBuffer. This API u
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
             console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
@@ -405,7 +405,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     if (pixelMap != undefined) {
         pixelMap.readPixelsToBufferSync(readBuffer);
     }
@@ -626,7 +626,7 @@ Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object.
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let bufferArr: Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
@@ -672,7 +672,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
     let bufferArr : Uint8Array = new Uint8Array(color);
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
@@ -864,7 +864,7 @@ async function Demo() {
 
 opacitySync(rate: number): void
 
-Sets the opacity rate for this pixel map and initializes the pixel map.
+Sets the opacity rate for this PixelMap and initializes the PixelMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1302,7 +1302,7 @@ Crops this image based on a given size. This API uses a promise to return the re
 
 | Name| Type              | Mandatory| Description       |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/js-apis-image.md#region7) | Yes  | Size of the image after cropping.|
+| region | [Region](../apis-image-kit/js-apis-image.md#region8) | Yes  | Size of the image after cropping.|
 
 **Return value**
 
@@ -1343,7 +1343,7 @@ Crops this image based on a given size. This API returns the result synchronousl
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/js-apis-image.md#region7)   | Yes  | Size of the image after cropping.                 |
+| region   | [Region](../apis-image-kit/js-apis-image.md#region8)   | Yes  | Size of the image after cropping.                 |
 
 **Error codes**
 
@@ -1812,7 +1812,7 @@ Creates an **ImageSource** instance based on buffers.
 **Example**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(buf);
 ```
 
@@ -1849,6 +1849,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { image } from '@kit.ImageKit';
+
 let size: image.Size = {
     height: 8192,
     width: 8
@@ -1971,6 +1973,7 @@ The thread that runs **getComponent** is insecure.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2008,6 +2011,7 @@ The corresponding resources must be released before another image arrives. The t
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2058,6 +2062,7 @@ Obtains a surface ID for the camera or other components. This API uses a promise
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2089,6 +2094,7 @@ Reads the latest image from the **ImageReceiver** instance. This API uses a prom
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2120,6 +2126,7 @@ Reads the next image from the **ImageReceiver** instance. This API uses a promis
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2152,6 +2159,7 @@ Listens for image arrival events.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2182,6 +2190,7 @@ The thread that runs **release** is insecure.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
