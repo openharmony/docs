@@ -1,6 +1,6 @@
 # Using Image_NativeModule for PixelMap Operations
 
-You can use the **Pixelmap** class to create a pixel map, obtain its width, height, pixel format, alpha type, and row stride, operate the pixel map, and release **Pixelmap** instances.
+You can use the **Pixelmap** class to create, operation and release a PixelMap, and obtain its width, height, pixel format, alpha type, and row stride.
 
 ## How to Develop
 
@@ -96,7 +96,7 @@ Create a **Pixelmap** instance after parameter initialization, read and write pi
           OH_PixelmapImageInfo_Release(imageInfo);
           OH_LOG_INFO(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest GetImageInfo success, width: %{public}d, height: %{public}d, rowStride: %{public}d, pixelFormat: %{public}d, alphaType: %{public}d.", width, height, rowStride, pixelFormat, alphaType);
 
-          // Set the opacity rate to enable the pixel map to achieve the corresponding opacity effect.
+          // Set the opacity rate to enable the image to achieve the corresponding opacity effect.
           errCode = OH_PixelmapNative_Opacity(pixelmap, 0.5);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePixelmapNativeCTest pixelmapTest OH_PixelmapNative_Opacity failed, errCode: %{public}d.", errCode);
