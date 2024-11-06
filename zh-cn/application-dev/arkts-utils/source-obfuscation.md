@@ -2,9 +2,12 @@
 
 ## 代码混淆简介
 
-针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。  
-DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本的Stage模型、[编译模式为release](#说明)时自动进行代码混淆，其仅对参数名和局部变量名进行混淆。  
-**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，如果在模块配置文件build-profile.json5开启代码混淆，混淆规则配置文件obfuscation-rules.txt中默认开启-enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐选项，开发者可进一步在obfuscation-rules.txt文件中更改配置。**
+针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。 
+
+>**说明：** 
+>
+> 1. 在 DevEco Studio5.0.3.600之前，新建工程的默认设置是开启代码混淆功能，它会自动对 API10及更高版本的 Stage 模型进行代码混淆。此操作仅适用于以[release模式](#说明)编译的代码，并且混淆仅限于参数名和局部变量名。
+> 2. 在 DevEco Studio5.0.3.600及之后，新建工程的默认设置已更改为关闭代码混淆功能。如果开发者希望开启代码混淆，需要将模块的`build-profile.json5`文件中的`ruleOptions.enable`字段的值设置为 true。此外，混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。需要注意的是，开启这四项规则可能会导致应用在运行时崩溃，因此建议开发者参考[排查指南](#如何排查功能异常)来修正应用功能。
 
 ### 使用约束
 
@@ -68,10 +71,6 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 当构建HAP、HSP和HAR的时候，最终的混淆规则是当前构建模块的ruleOptions.files属性，依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。  
 如果构建的是HAR，HAR包中的obfuscation.txt是自身的consumerFiles属性， 依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。构建HAP、HSP不会生成obfuscation.txt。详细合并的策略可以查看[混淆规则合并策略](#混淆规则合并策略)。
-
-**规则变更提醒**
-
-从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，即`"enable": false`；混淆规则配置文件obfuscation-rules.txt中默认开启enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐的选项。这四项规则开启可能会引发应用运行时崩溃，建议阅读[排查指南](#如何排查功能异常)来修正应用功能。
 
 ### 混淆规则配置文件
 
@@ -427,10 +426,34 @@ entry
 
 **哪些文件名应该被保留?**
 
+1.在使用`require`引入文件路径时，由于`ArkTS`不支持[CommonJS](../arkts-utils/module-principle.md#commonjs模块)语法，因此这种情况下路径应该被保留。
+
 ```
-const module1 = require('./file1')   // ArkTS不支持CommonJS语法，这种路径引用应该被保留
-const moduleName = './file2'
-const module2 = import(moduleName)    // 动态引用方式无法识别moduleName是否是路径，应该被保留
+const module1 = require('./file1')   // file1 应该被保留
+```
+
+2.对于动态引用方式，由于无法识别`import`函数中的参数是否为路径，因此这种情况下路径应该被保留。
+
+```
+const moduleName = './file2'         // file2 应该被保留
+const module2 = import(moduleName)
+```
+
+3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给路由的路径应该被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与上述第二种动态引用场景一致。而若采用系统路由表进行跳转，则需要将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
+
+```
+  {
+    "routerMap": [
+      {
+        "name": "PageOne",
+        "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // 路径都应该被保留
+        "buildFunction": "PageOneBuilder",
+        "data": {
+          "description" : "this is PageOne"
+        }
+      }
+    ]
+  }
 ```
 
 #### `-keep-comments` [,identifiers,...]

@@ -23,7 +23,7 @@ The following table describes the APIs for accessing SEs.
 ## How to Develop
 
 ### Accessing an SE
-1. Import the **secureElement** module.
+1. Import modules.
 2. Check whether the device supports SEs.
 3. Access an SE and read or write data.
    

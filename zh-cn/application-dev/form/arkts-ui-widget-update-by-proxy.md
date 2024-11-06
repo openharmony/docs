@@ -159,7 +159,7 @@
   }
   ```
 
-- 在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板<!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd-->，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。当订阅的持久化数据更新时，系统会自动更新卡片数据。
+- 在[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板<!--Del-->[<!--DelEnd-->addTemplate<!--Del-->](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#addtemplate10)<!--DelEnd-->，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#proxydata10)，并通过[FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。当订阅的持久化数据更新时，系统会自动更新卡片数据。
 
   > **说明：**
   >

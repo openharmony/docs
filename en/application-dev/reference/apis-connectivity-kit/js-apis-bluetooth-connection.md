@@ -637,11 +637,14 @@ try {
 ```
 
 
-## connection.setLocalName
+## connection.setLocalName<sup>(deprecated)</sup>
 
 setLocalName(name: string): void
 
 Sets the name of the local Bluetooth device.
+
+> **NOTE**<br>
+> This API is supported since API version 10 and deprecated since API version 12. No substitute is provided.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
