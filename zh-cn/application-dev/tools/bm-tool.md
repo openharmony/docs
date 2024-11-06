@@ -333,7 +333,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## 共享库依赖关系查询命令
 
-显示指定应用和指定模块依赖的共享库信息
+显示指定应用和指定模块依赖的共享库信息。
 ```bash
 bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
@@ -354,7 +354,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## 应用执行编译AOT命令
 
-应用执行编译AOT命令
+应用执行编译AOT命令。
 ```bash
 bm compile [-h] [-m mode] [-r bundleName]
 ```
@@ -376,7 +376,7 @@ bm compile -m partial com.example.myapplication
 
 ## 拷贝ap文件命令
 
-拷贝ap文件到指定应用的/data/local/pgo路径
+拷贝ap文件到指定应用的/data/local/pgo路径。
 
 ```bash
 bm copy-ap [-h] [-a] [-n bundleName]
@@ -399,7 +399,7 @@ bm copy-ap -n com.example.myapplication
 
 ## 查询overlay应用信息命令
 
-打印overlay应用的overlayModuleInfo
+打印overlay应用的overlayModuleInfo。
 ```bash
 bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId] [-t targetModuleName]
 ```
@@ -480,7 +480,7 @@ HAP包未经签名认证。
 **处理步骤**
 
 1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。在连接设备后，重新为应用进行签名。
-2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP1-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP1End-->。
+2. 使用手动签名，请参考<!--RP1-->[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section297715173233)<!--RP1End-->。
 <br></br>
 
 ### 9568347 解析本地so文件失败
@@ -681,7 +681,7 @@ Error: signature verification failed due to not trusted app source.
 
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
+	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 		```
 		//UDID获取命令
 		hdc shell bm get -u

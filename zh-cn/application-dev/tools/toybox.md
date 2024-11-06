@@ -269,7 +269,7 @@ toybox的执行方式有两种
 | pwd       | 打印工作（当前）目录。<br />usage: pwd [-L \| -P] |
 | readahead | 将文件预加载到磁盘缓存中。<br />usage: readahead FILE... |
 | readlink  | 如果没有选项，则显示symlink指向什么，如果不是symlink则返回错误。<br />usage: readlink FILE... |
-| realpath  | 显示规范绝对路径名<br />usage: realpath FILE... |
+| realpath  | 显示规范绝对路径名。<br />usage: realpath FILE... |
 | rev       | 逆向输出每一行。<br />usage: rev [FILE...] |
 | rm        | 删除文件。<br />usage: rm [-fiRrv] FILE... |
 | rmdir     | 删除一个或多个目录。<br />usage: rmdir [-p] [dirname...] |
