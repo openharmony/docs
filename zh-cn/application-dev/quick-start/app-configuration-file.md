@@ -150,7 +150,7 @@ appEnvironments标签示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| multiAppModeType          | 标识应用多开模式类型，支持的取值如下：<br/>-&nbsp;multiInstance：多实例模式。常驻进程不支持该字段。<br/>-&nbsp;appClone：应用分身模式。 | 字符串  | 该标签不可缺省。 |
+| multiAppModeType          | 标识应用多开模式类型，支持的取值如下：<br/>-&nbsp;multiInstance：多实例模式。<br/>**说明：**<br/>-&nbsp;常驻进程不支持该字段。<br/>-&nbsp;该字段仅支持2in1设备。<br/>-&nbsp;appClone：应用分身模式。 | 字符串  | 该标签不可缺省。 |
 | maxCount         | 标识最大允许的应用多开个数，支持的取值如下：<br/>-&nbsp;multiInstance模式：取值范围1\~10。<br/>-&nbsp;appClone模式：取值范围1\~5。      | 数值  | 该标签不可缺省。 |
 
 multiAppMode标签示例：
