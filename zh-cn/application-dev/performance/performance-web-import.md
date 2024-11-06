@@ -683,7 +683,7 @@ struct Index {
           .javaScriptAccess(true)
           .fileAccess(true)
           .onControllerAttached(() => {
-            console.info(this.controller.getWebId());
+            console.info(`${this.controller.getWebId()}`);
           })
       }.height('80%')
     }
