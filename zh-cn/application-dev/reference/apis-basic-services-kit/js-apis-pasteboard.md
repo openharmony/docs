@@ -89,6 +89,53 @@ createData(mimeType: string, value: ValueType): PasteData
  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
+## pasteboard.createData<sup>14+</sup>
+
+createData(data: Record&lt;string, ValueType&gt;): PasteData
+
+构建一个包含多个类型数据的剪贴板内容对象。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型                                             | 必填 | 说明                                                                                                                                                                                                                                                                                          |
+| -------- |------------------------------------------------| -------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| data | Record&lt;string, [ValueType](#valuetype9)&gt; | 是 | Record的key为剪贴板数据对应的MIME类型。可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型。也可以是自定义的MIME类型，可自定义此参数值，mimeType长度不能超过1024字节。<br/>Record的value为key中指定MIME类型对应的自定义数据。<br/>Record中的首个key-value指定的MIME类型，会作为剪贴板内容对象中首个PasteDataRecord的默认MIME类型，非默认类型的数据在粘贴时只能使用[getData](#getdata14)接口读取。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) |  剪贴板内容对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例1：**
+
+```ts
+let pasteData: pasteboard.PasteData = pasteboard.createData({
+    'text/plain': 'hello',
+    'app/xml': new ArrayBuffer(256),
+});
+```
+
+**示例2：**
+
+```ts
+let record: Record<string, pasteboard.ValueType> = {};
+record[pasteboard.MIMETYPE_TEXT_PLAIN] = 'hello';
+record[pasteboard.MIMETYPE_TEXT_URI] = 'dataability:///com.example.myapplication1/user.txt';
+let pasteData: pasteboard.PasteData = pasteboard.createData(record);
+```
 
 ## pasteboard.createRecord<sup>9+</sup>
 
@@ -477,6 +524,137 @@ toPlainText(): string
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 let data: string = record.toPlainText();
 console.info(`Succeeded in converting to text. Data: ${data}`);
+```
+
+### addEntry<sup>14+</sup>
+
+addEntry(type: string, value: ValueType): void
+
+往一个PasteDataRecord中额外添加一种样式的自定义数据。此方式添加的MIME类型都不是Record的默认类型，粘贴时只能使用[getData](#getdata14)接口读取对应数据。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明                |
+|-------| -------- | -------- |-------------------|
+| type  | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
+| value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+record.addEntry(pasteboard.MIMETYPE_TEXT_HTML, html);
+```
+
+### getValidTypes<sup>14+</sup>
+
+getValidTypes(types: Array&lt;string&gt;): Array&lt;string&gt;
+
+根据传入的MIME类型，返回传入的MIME类型和剪贴板中数据的MIME类型的交集。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名   | 类型 | 说明             |
+|-------| -------- |----------------|
+| types | Array&lt;string&gt; | MIME类型列表。 |
+
+**返回值：**
+
+| 类型 | 说明                                   |
+| -------- |--------------------------------------|
+| Array&lt;string&gt; | 传入的MIME类型和剪贴板中数据的MIME类型的交集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+record.addEntry(pasteboard.MIMETYPE_TEXT_HTML, html);
+let types: string[] = record.getValidTypes([
+    pasteboard.MIMETYPE_TEXT_PLAIN,
+    pasteboard.MIMETYPE_TEXT_HTML,
+    pasteboard.MIMETYPE_TEXT_URI,
+    pasteboard.MIMETYPE_TEXT_WANT,
+    pasteboard.MIMETYPE_PIXELMAP
+]);
+```
+
+### getData<sup>14+</sup>
+
+getData(type: string): Promise&lt;ValueType&gt;
+
+从PasteDataRecord中获取指定MIME类型的自定义数据。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名  | 类型     | 说明       |
+|------|--------|----------|
+| type | string | MIME类型。 |
+
+**返回值：**
+
+| 类型                                      | 说明                                                                                                                   |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| Promise&lt;[ValueType](#valuetype9)&gt; | Promise对象，返回PasteDataRecord中指定MIME类型的自定义数据。<br/>PasteDataRecord中包含多个MIME类型数据时，非PasteDataRecord的默认MIME类型的数据只能通过本接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
+record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+record.addEntry(pasteboard.MIMETYPE_TEXT_HTML, html);
+record.getData(pasteboard.MIMETYPE_TEXT_PLAIN).then((value: pasteboard.ValueType) => {
+    let textPlainContent = value as string;
+    console.info('Success to get text/plain value. value is: ' + textPlainContent);
+}).catch((err: BusinessError) => {
+    console.error('Failed to get text/plain value. Cause: ' + err.message);
+});
+record.getData(pasteboard.MIMETYPE_TEXT_URI).then((value: pasteboard.ValueType) => {
+    let uri = value as string;
+    console.info('Success to get text/uri value. value is: ' + uri);
+}).catch((err: BusinessError) => {
+    console.error('Failed to get text/uri value. Cause: ' + err.message);
+});
 ```
 
 ### convertToText<sup>(deprecated)</sup>
