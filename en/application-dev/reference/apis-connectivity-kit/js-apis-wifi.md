@@ -225,7 +225,7 @@ Adds the configuration of an untrusted network. This API uses a promise to retur
 
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the operation is successful; the value **false** means the opposite.|
 
 **Example**
 ```ts
@@ -328,7 +328,7 @@ Removes the configuration of an untrusted network. This API uses a promise to re
 
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the operation is successful; the value **false** means the opposite.|
 
 **Example**
 
@@ -489,7 +489,7 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getLinkedInfo((err, data) => {
+wifi.getLinkedInfo((err, data:wifi.WifiLinkedInfo) => {
     if (err) {
         console.error("get linked info error");
         return;
@@ -737,7 +737,7 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pLinkedInfo((err, data) => {
+wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
    if (err) {
        console.error("get p2p linked info error");
        return;
@@ -787,7 +787,7 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getCurrentGroup((err, data) => {
+wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
    if (err) {
        console.error("get current P2P group error");
        return;
@@ -837,7 +837,7 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pPeerDevices((err, data) => {
+wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
    if (err) {
        console.error("get P2P peer devices error");
        return;
@@ -1006,7 +1006,7 @@ import wifi from '@ohos.wifi';
 
 let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
-    wifi.getP2pLinkedInfo((err, data) => {
+    wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
         if (err) {
             console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
             return;
@@ -1023,7 +1023,7 @@ wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
 let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
-    wifi.getP2pPeerDevices((err, data) => {
+    wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
         if (err) {
             console.error('failed to get peer devices: ' + JSON.stringify(err));
             return;
@@ -1050,7 +1050,7 @@ wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 let recvP2pPersistentGroupChangeFunc = () => {
     console.info("p2p persistent group change receive event");
 
-    wifi.getCurrentGroup((err, data) => {
+    wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
         if (err) {
             console.error('failed to get current group: ' + JSON.stringify(err));
             return;
@@ -1172,7 +1172,7 @@ Represents the P2P group information.
 
 ## wifi.on('wifiStateChange')<sup>7+</sup>
 
-on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to WLAN state changes.
 
@@ -1199,7 +1199,7 @@ Subscribes to WLAN state changes.
 
 ## wifi.off('wifiStateChange')<sup>7+</sup>
 
-off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from WLAN state changes.
 
@@ -1232,7 +1232,7 @@ wifi.off("wifiStateChange", recvPowerNotifyFunc);
 
 ## wifi.on('wifiConnectionChange')<sup>7+</sup>
 
-on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiConnectionChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to WLAN connection state changes.
 
@@ -1257,7 +1257,7 @@ Subscribes to WLAN connection state changes.
 
 ## wifi.off('wifiConnectionChange')<sup>7+</sup>
 
-off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from WLAN connection state changes.
 
@@ -1289,7 +1289,7 @@ wifi.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
 
-on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiScanStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to WLAN scan state changes.
 
@@ -1314,7 +1314,7 @@ Subscribes to WLAN scan state changes.
 
 ## wifi.off('wifiScanStateChange')<sup>7+</sup>
 
-off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from WLAN scan state changes.
 
@@ -1346,7 +1346,7 @@ wifi.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
 
 ## wifi.on('wifiRssiChange')<sup>7+</sup>
 
-on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to RSSI changes.
 
@@ -1364,7 +1364,7 @@ Subscribes to RSSI changes.
 
 ## wifi.off('wifiRssiChange')<sup>7+</sup>
 
-off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from RSSI changes.
 
@@ -1398,7 +1398,7 @@ wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
 
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
-on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to hotspot state changes.
 
@@ -1439,7 +1439,7 @@ wifi.off("hotspotStateChange", recvHotspotStateChangeFunc);
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
 
-off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from hotspot state changes.
 
@@ -1458,7 +1458,7 @@ Unsubscribes from hotspot state changes.
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
 
-on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'p2pStateChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to P2P state changes.
 
@@ -1485,7 +1485,7 @@ Subscribes to P2P state changes.
 
 ## wifi.off('p2pStateChange')<sup>8+</sup>
 
-off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from P2P state changes.
 
@@ -1517,7 +1517,7 @@ wifi.off("p2pStateChange", recvP2pStateChangeFunc);
 
 ## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
-on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
+on(type: 'p2pConnectionChange', callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
 Subscribes to P2P connection state changes.
 
@@ -1535,7 +1535,7 @@ Subscribes to P2P connection state changes.
 
 ## wifi.off('p2pConnectionChange')<sup>8+</sup>
 
-off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
+off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
 Unsubscribes from P2P connection state changes.
 
@@ -1567,7 +1567,7 @@ wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
 
-on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
+on(type: 'p2pDeviceChange', callback: Callback&lt;WifiP2pDevice&gt;): void
 
 Subscribes to P2P device state changes.
 
@@ -1585,7 +1585,7 @@ Subscribes to P2P device state changes.
 
 ## wifi.off('p2pDeviceChange')<sup>8+</sup>
 
-off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
+off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 Unsubscribes from P2P device state changes.
 
@@ -1617,7 +1617,7 @@ wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
 
-on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
+on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 Subscribes to P2P peer device state changes.
 
@@ -1635,7 +1635,7 @@ Subscribes to P2P peer device state changes.
 
 ## wifi.off('p2pPeerDeviceChange')<sup>8+</sup>
 
-off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): void
+off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): void
 
 Unsubscribes from P2P peer device state changes.
 
@@ -1667,7 +1667,7 @@ wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
 
-on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
+on(type: 'p2pPersistentGroupChange', callback: Callback&lt;void&gt;): void
 
 Subscribes to P2P persistent group state changes.
 
@@ -1685,7 +1685,7 @@ Subscribes to P2P persistent group state changes.
 
 ## wifi.off('p2pPersistentGroupChange')<sup>8+</sup>
 
-off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
+off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;): void
 
 Unsubscribes from P2P persistent group state changes.
 
@@ -1718,7 +1718,7 @@ wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
 
-on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
+on(type: 'p2pDiscoveryChange', callback: Callback&lt;number&gt;): void
 
 Subscribes to P2P device discovery state changes.
 
@@ -1743,7 +1743,7 @@ Subscribes to P2P device discovery state changes.
 
 ## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
 
-off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
+off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from P2P device discovery state changes.
 
