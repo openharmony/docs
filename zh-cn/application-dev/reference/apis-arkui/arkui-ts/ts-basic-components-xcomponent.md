@@ -1,6 +1,6 @@
 # XComponent
 
-提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。
+提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >
@@ -531,7 +531,7 @@ struct XComponentExample {
         })
       Button('start AI analyze')
         .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config);
+          this.xComponentController.startImageAnalyzer(this.config)
             .then(() => {
               console.log("analysis complete");
             })
@@ -557,10 +557,10 @@ struct XComponentExample {
           nativeRender.DrawPattern(BigInt(surfaceId));
           let hasDraw: boolean = false;
           if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
           }
           if (hasDraw) {
-              this.currentStatus = "draw star";
+            this.currentStatus = "draw star";
           }
         })
       XComponent({
@@ -571,7 +571,7 @@ struct XComponentExample {
         .width(this.xcWidth)
         .height(this.xcHeight)
         .enableAnalyzer(true)
-      Test(this.currentStatus)
+      Text(this.currentStatus)
         .fontSize('24fp')
         .fontWeight(500)
     }
