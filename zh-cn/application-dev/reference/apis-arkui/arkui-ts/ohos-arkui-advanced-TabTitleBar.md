@@ -34,8 +34,6 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | 是 | - | 左侧页签项目列表，定义标题栏左侧的页签项目。 |
@@ -73,6 +71,8 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
+
+该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'

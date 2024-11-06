@@ -62,6 +62,8 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
+ 
+该示例实现了简单的下拉菜单标题栏，带有返回箭头的下拉菜单标题栏和带有右侧菜单项目列表的下拉菜单标题栏。
 
 ```ts
 import { SelectTitleBar, promptAction } from '@kit.ArkUI'
