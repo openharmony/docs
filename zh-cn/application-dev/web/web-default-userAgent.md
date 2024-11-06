@@ -18,7 +18,7 @@ Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}) AppleWebKit/537.36 (KHTML, like
 
 Mozilla/5.0 (Phone; OpenHarmony <!--RP2-->4.1<!--RP2End-->) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile
 
-建议通过ArkWeb关键字识别是否是OpenHarmony设备以及web内核是否为ArkWeb，同时可以通过deviceType识别设备类型用于不同设备上的页面显示
+建议通过ArkWeb关键字识别是否是OpenHarmony设备以及web内核是否为ArkWeb，同时可以通过deviceType识别设备类型用于不同设备上的页面显示。
 
 ## 使用场景
 
