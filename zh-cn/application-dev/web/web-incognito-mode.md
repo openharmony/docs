@@ -1,7 +1,7 @@
 # 使用隐私模式 
 
 
-开发者在创建Web组件时，可以将可选参数[incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#接口)设置为'true'，来开启Web组件的隐私模式。 当使用隐私模式时，浏览网页时的cookies、 cache data 等数据不会保存在本地的持久化文件，当隐私模式的Web组件被销毁时，cookies、 cache data等数据将不被记录下来。
+开发者在创建Web组件时，可以将可选参数[incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#incognitomode)设置为true，来开启Web组件的隐私模式。 当使用隐私模式时，浏览网页时的Cookie、 Cache Data等数据不会保存在本地的持久化文件，当隐私模式的Web组件被销毁时，Cookie、 Cache Data等数据将不被记录下来。
 
 - 创建隐私模式的[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)。
  

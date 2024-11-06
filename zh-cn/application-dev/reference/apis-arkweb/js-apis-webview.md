@@ -1740,6 +1740,10 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
+> **说明：**
+>
+> 离屏组件不会触发runJavaScript接口。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -9134,6 +9138,14 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 获取指定url对应cookie的值。
 
+> **说明：**
+>
+> 系统会自动清理过期的cookie，对于同名key的数据，新数据将会覆盖前一个数据。
+> 
+> 为了获取可正常使用的cookie值，fetchCookieSync需传入完整链接。
+> 
+> fetchCookieSync用于获取所有的cookie值，每条cookie值之间会通过"; "进行分隔，但无法单独获取某一条特定的cookie值。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -9435,13 +9447,15 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-为指定url设置cookie的值。
+为指定url设置单个cookie的值。
 
 > **说明：**
 >
->configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
-
->同步cookie的时机建议在Web组件加载之前完成。
+> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>
+> 同步cookie的时机建议在Web组件加载之前完成。
+>
+> 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9480,7 +9494,7 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 仅支持设置单个cookie值。
+            // configCookieSync每次仅支持设置单个cookie值。
             webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

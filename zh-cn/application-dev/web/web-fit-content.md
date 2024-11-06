@@ -56,7 +56,7 @@ struct WebHeightPage {
 }
 ```
 
-```
+```html
 <!--fit_content.html-->
 <!DOCTYPE html>
 <html>
