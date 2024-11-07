@@ -289,7 +289,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
+  >- 使用该命令采集时需进入被测应用内。
 
 - 采集1次整机GPU频率和负载
  
@@ -373,8 +373,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
-  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）
+  >- 使用该命令采集时需进入被测应用内。
+  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）。
 
 - 采集2次截图
 
@@ -394,13 +394,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 截图采集是2秒截取一次
+  >- 截图采集是2秒截取一次。
   >
-  >- 截图报告存放路径为：data/local/tmp/capture
+  >- 截图报告存放路径为：data/local/tmp/capture。
   >
-  >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图
+  >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图。
   >
-  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\
+  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\。
 
 - 采集2次网络速率
 
@@ -440,8 +440,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内，滑动或切换页面
-  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率
+  >- 使用该命令采集时需进入被测应用内，滑动或切换页面。
+  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率。
 
  
 - 采集10次指定图层帧率
@@ -464,11 +464,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- DisplayNode 是指定的图层名
+  >- DisplayNode 是指定的图层名。
   >
-  >- 使用该命令采集时，需在传入的图层上操作页面
+  >- 使用该命令采集时，需在传入的图层上操作页面。
   >
-  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）
+  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）。
 
 - 采集1次DDR信息
 
@@ -630,7 +630,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
+  >- 使用该命令采集时需进入被测应用内。
 
 - 采集当前界面fps
 
@@ -652,9 +652,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数
+  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数。
   >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
+  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
 
 - fps分段采集
 
@@ -684,9 +684,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集
+  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集。
   >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
+  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
 
 ##### 执行启停采集命令
 
@@ -708,14 +708,14 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    ```
    >**说明**
    >
-   >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -r -d -net -snapshot
+   >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -r -d -net -snapshot。
    >
-   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot
+   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot。
    >
-   >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令
+   >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令。
    >
-   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
-   >
+   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\。
+
 #### 输出和查看采集结果
 
 输出和查看采集结果前，需先执行上述的采集命令。
@@ -818,9 +818,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 采集前先进入应用内，在命令回车后切换应用内页面，等待打印采集结果
+  >- 采集前先进入应用内，在命令回车后切换应用内页面，等待打印采集结果。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
   - 应用的完成时延
 
@@ -832,9 +832,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 采集前先进入应用内，在命令回车后切换应用内页面，等待打印采集结果
+  >- 采集前先进入应用内，在命令回车后切换应用内页面，等待打印采集结果。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
   - vilidator用于获取应用页面的帧率
 
@@ -844,9 +844,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 执行命令后需滑动或切换当前页面，等待10s后打印采集结果
+  >- 执行命令后需滑动或切换当前页面，等待10s后打印采集结果。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
 ### 其他采集
 
@@ -875,9 +875,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率
+  >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv 
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
   - 获取设备信息
 
@@ -905,9 +905,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该命令需单独采集，采集结果不写入data.csv 
+  >- 该命令需单独采集，采集结果不写入data.csv。 
 
-  - 启动一个进程来监听start和stop命令的socket消息
+  - 启动一个进程来监听start和stop命令的socket消息。
 
   ```
    # SP_daemon -server
@@ -921,9 +921,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 可执行pidof SP_daemon查看进程id
+  >- 可执行pidof SP_daemon查看进程id。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
   - 清除SP_daemon进程ID
 
@@ -940,9 +940,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 可执行pidof SP_daemon查看进程id
+  >- 可执行pidof SP_daemon查看进程id。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
   - vilidator用于获取当前页面帧率
 
@@ -967,9 +967,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该条命令里的10表示采集的次数（一秒采集一次），可以设置为其他正整数
+  >- 该条命令里的10表示采集的次数（一秒采集一次），可以设置为其他正整数。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
   - 启动一个进程来监听editor工具的socket消息
 
@@ -983,7 +983,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该命令需单独采集，采集结果不写入data.csv。
 
   - 获取电池电量
 
@@ -994,6 +994,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- recordTime表示时间戳，recordPower表示当前时刻的电量
+  >- recordTime表示时间戳，recordPower表示当前时刻的电量。
   >
-  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地
+  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地。

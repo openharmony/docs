@@ -137,7 +137,7 @@ async function testPromise1(args1: number, args2: number): Promise<number> {
 @Concurrent
 async function testPromise2(args1: number, args2: number): Promise<number> {
   return await new Promise<number>((testFuncA, testFuncB)=>{
-    testFuncA(args1 + args2)
+    testFuncA(args1 + args2);
   });
 }
 
@@ -169,34 +169,34 @@ async function testConcurrentFunc() {
   let task6: taskpool.Task = new taskpool.Task(testPromise5);
 
   taskpool.execute(task1).then((d:object)=>{
-    console.info("task1 res is: " + d)
+    console.info("task1 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task1 catch e: " + e)
+    console.info("task1 catch e: " + e);
   })
   taskpool.execute(task2).then((d:object)=>{
-    console.info("task2 res is: " + d)
+    console.info("task2 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task2 catch e: " + e)
+    console.info("task2 catch e: " + e);
   })
   taskpool.execute(task3).then((d:object)=>{
-    console.info("task3 res is: " + d)
+    console.info("task3 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task3 catch e: " + e)
+    console.info("task3 catch e: " + e);
   })
   taskpool.execute(task4).then((d:object)=>{
-    console.info("task4 res is: " + d)
+    console.info("task4 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task4 catch e: " + e)
+    console.info("task4 catch e: " + e);
   })
   taskpool.execute(task5).then((d:object)=>{
-    console.info("task5 res is: " + d)
+    console.info("task5 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task5 catch e: " + e)
+    console.info("task5 catch e: " + e);
   })
   taskpool.execute(task6).then((d:object)=>{
-    console.info("task6 res is: " + d)
+    console.info("task6 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task6 catch e: " + e)
+    console.info("task6 catch e: " + e);
   })
 }
 
@@ -359,19 +359,19 @@ async function testConcurrentFunc() {
   let task3: taskpool.Task = new taskpool.Task(testPromiseError2);
 
   taskpool.execute(task1).then((d:object)=>{
-    console.info("task1 res is: " + d)
+    console.info("task1 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task1 catch e: " + e)
+    console.info("task1 catch e: " + e);
   })
   taskpool.execute(task2).then((d:object)=>{
-    console.info("task2 res is: " + d)
+    console.info("task2 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task2 catch e: " + e)
+    console.info("task2 catch e: " + e);
   })
   taskpool.execute(task3).then((d:object)=>{
-    console.info("task3 res is: " + d)
+    console.info("task3 res is: " + d);
   }).catch((e:object)=>{
-    console.info("task3 catch e: " + e)
+    console.info("task3 catch e: " + e);
   })
 }
 

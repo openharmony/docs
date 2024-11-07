@@ -11,7 +11,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型                                   | 必填 | 说明 |
+| 名称 | 类型                                   | 必填 | 说明 |
 | ------ | ------------------------------------------ | ---- | -------- |
 | width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
@@ -139,19 +139,17 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 
 ### 属性
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型              | 只读   | 可选  | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| CUT  | [TextMenuItemId](#textmenuitemid12) |  是  |  是 | 默认裁剪。 |
-| COPY  | [TextMenuItemId](#textmenuitemid12) |  是  |  是  | 默认复制。 |
-| PASTE | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 默认粘贴。 |
-| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 默认全选。 |
-| COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 互通服务。 |
-| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是   | 拍摄输入。 |
-| AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 可对选中的文本进行润色、摘要提取、排版等。该菜单项依赖大模型能力，否则不生效。|
+| CUT  | [TextMenuItemId](#textmenuitemid12) |  是  |  是 | 默认裁剪。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| COPY  | [TextMenuItemId](#textmenuitemid12) |  是  |  是  | 默认复制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PASTE | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 默认粘贴。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SELECT_ALL   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 默认全选。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 互通服务。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是   | 拍摄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 可对选中的文本进行润色、摘要提取、排版等。该菜单项依赖大模型能力，否则不生效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ### of
 
@@ -172,7 +170,7 @@ static of(id: ResourceStr): TextMenuItemId
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | [TextMenuItemId](#textmenuitemid12) | TextMenuItemId的对象。 |
 
 ### equals
@@ -180,6 +178,8 @@ static of(id: ResourceStr): TextMenuItemId
 equals(id: TextMenuItemId): boolean
 
 判断TextMenuItemId是否相等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -192,7 +192,7 @@ equals(id: TextMenuItemId): boolean
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | boolean | 两个TextMenuItemId是否相等。 |
 
 ## TextMenuItem<sup>12+</sup>对象说明
@@ -201,7 +201,7 @@ equals(id: TextMenuItemId): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型                              | 必填 | 说明   |
+| 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | content | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单名称。 |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
@@ -232,7 +232,7 @@ onCreateMenu(menuItems: Array\<TextMenuItem>): Array\<TextMenuItem>
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | Array\<[TextMenuItem](#textmenuitem12对象说明)> | 设置的菜单项。<br/>**说明：** <br/>不返回系统默认菜单项的图标。 |
 
 ### onMenuItemClick<sup>12+</sup>
@@ -255,7 +255,7 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | boolean | 菜单项的执行逻辑。<br/>返回为true，拦截系统默认逻辑，仅执行自定义逻辑。<br/>返回为false，先执行自定义逻辑，再执行系统逻辑。 |
 
 ## TextRange<sup>12+</sup>
@@ -359,7 +359,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型  | 必填 | 说明  |
+| 名称 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
 | types   | [TextDataDetectorType](ts-text-common.md#textdatadetectortype11枚举说明)[] | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
@@ -538,13 +538,13 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### getCaretOffset<sup>10+</sup>
+### getCaretOffset<sup>12+</sup>
 
 getCaretOffset(): number
 
 返回当前光标所在位置。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -554,13 +554,13 @@ getCaretOffset(): number
 | ------ | --------- |
 | number | 当前光标所在位置。 |
 
-### setCaretOffset<sup>10+</sup>
+### setCaretOffset<sup>12+</sup>
 
 setCaretOffset(offset: number): boolean
 
 设置光标位置。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -578,7 +578,7 @@ setCaretOffset(offset: number): boolean
 
 ### getPreviewText<sup>12+</sup>
 
-getPreviewText(): PreviewText
+getPreviewText?(): PreviewText
 
 获取预上屏信息。
 

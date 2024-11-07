@@ -5587,7 +5587,7 @@ onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
 onControllerAttached(callback: () => void)
 
-当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，且禁止在该事件回调前调用Web组件相关的接口，否则会抛出js-error异常。
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](js-apis-webview.md#zoomin)、[zoomOut](js-apis-webview.md#zoomout)等，可以使用[loadUrl](js-apis-webview.md#loadurl)、[getWebId](js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
@@ -6046,7 +6046,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
                 }
                 let ret = this.nodeController.postEvent(event.touchEvent)
                 if (event.result) {
-                  event.result.setGestureEventResult(ret);
+                  event.result.setGestureEventResult(ret, true);
                 }
                 console.log("embedId = " + event.embedId);
                 console.log("touchType = " + this.eventType);
@@ -7460,15 +7460,16 @@ grant(config: ScreenCaptureConfig): void
 
 ### setGestureEventResult<sup>12+</sup>
 
-setGestureEventResult(result: boolean): void
+setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
-| 参数名     | 类型   | 必填   | 说明    |
-| ------- | ------ | ---- | ------- |
-| result | boolean | 是    | 是否消费该手势事件。 |
+| 参数名          | 类型 | 必填  | 说明             |
+| --------------- | -------- | ----  |------- |
+| result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
+| stopPropagation<sup>14+</sup>| boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
 
 **示例：**
 

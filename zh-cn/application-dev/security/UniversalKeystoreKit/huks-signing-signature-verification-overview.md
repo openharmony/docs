@@ -15,15 +15,15 @@
 **标准设备规格**
 | 算法/摘要算法/填充模式 | 备注 | API级别 | <!--DelCol4-->是否必选规格 |
 | -------- | -------- | -------- | -------- |
-| <!--DelRow-->RSA/MD5/PKCS1_V1_5<br/>RSA/SHA1/PKCS1_V1_5<br/>RSA/SHA224/PKCS1_V1_5<br/>RSA/SHA224/PSS | 对于PSS模式，salt长度支持设置为摘要长度和最大长度（最大长度=密钥长度-摘要长度-2），对应枚举值详见[HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10) 。| 8+ | 否 |
+| <!--DelRow-->RSA/MD5/PKCS1_V1_5<br/>RSA/SHA1/PKCS1_V1_5<br/>RSA/SHA224/PKCS1_V1_5<br/>RSA/SHA224/PSS | 对于PSS模式，salt长度支持设置为摘要长度和最大长度（最大长度=密钥长度-摘要长度-2），对应枚举值详见[HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10)。| 8+ | 否 |
 | RSA/SHA256/PKCS1_V1_5<br/>RSA/SHA384/PKCS1_V1_5<br/>RSA/SHA512/PKCS1_V1_5<br/>RSA/SHA256/PSS<br/>RSA/SHA384/PSS<br/>RSA/SHA512/PSS | 对于PSS模式，salt长度支持设置为摘要长度和最大长度（最大长度=密钥长度-摘要长度-2），对应枚举值详见[HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10)。 | 8+ | 是 |
-| RSA/NoDigest/PKCS1_V1_5 | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE | 9+ | 是 |
+| RSA/NoDigest/PKCS1_V1_5 | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 是 |
 | <!--DelRow-->DSA/SHA1<br/>DSA/SHA224<br/>DSA/SHA256<br/>DSA/SHA384<br/>DSA/SHA512 | - | 8+ | 否 |
-| <!--DelRow-->DSA/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE | 9+ | 否 |
+| <!--DelRow-->DSA/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
 | <!--DelRow-->ECC/SHA1<br/>ECC/SHA224 | - | 8+ | 否 |
 | ECC/SHA256<br/>ECC/SHA384<br/>ECC/SHA512 | - | 8+ | 是 |
-| <!--DelRow-->ECC/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE | 9+ | 否 |
-| ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE | 8+ | 是 |
+| <!--DelRow-->ECC/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
+| ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 8+ | 是 |
 | SM2/SM3 | - | 9+ | 是 |
 
 **轻设备设备规格**

@@ -35,6 +35,7 @@ ECDH（Elliptic Curve Diffie–Hellman key exchange），算法库框架提供�
 | ECC | ECC_BrainPoolP384t1 | 11+ | 
 | ECC | ECC_BrainPoolP512r1 | 11+ | 
 | ECC | ECC_BrainPoolP512t1 | 11+ | 
+| ECC | ECC_Secp256k1 | 14+ | 
 | ECC | ECC | 10+ | 
 
 

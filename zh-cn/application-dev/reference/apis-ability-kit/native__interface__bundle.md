@@ -33,3 +33,4 @@
 | [OH_NativeBundle_GetAppId](_bundle.md#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
 | [OH_NativeBundle_GetAppIdentifier](_bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
 | [OH_NativeBundle_GetMainElementName](_bundle.md#oh_nativebundle_getmainelementname) | 获取自身应用入口的信息。 |
+| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |

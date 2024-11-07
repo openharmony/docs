@@ -731,3 +731,42 @@ struct SetSample {
   }
 }
 ```
+
+## 常见问题
+
+### \@StorageProp本地更改值后，无法通过AppStorage接口更新
+
+```ts
+AppStorage.setOrCreate('PropA', false);
+
+@Entry
+@Component
+struct Index {
+  @StorageProp('PropA') @Watch('onChange') propA: boolean = false;
+
+  onChange() {
+    console.log(`propA change`);
+  }
+
+  aboutToAppear(): void {
+    this.propA = true;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.propA}`)
+      Button('change')
+        .onClick(() => {
+          AppStorage.setOrCreate('PropA', false);
+          console.log(`PropA: ${this.propA}`);
+        })
+    }
+  }
+}
+```
+
+上述示例，在点击事件之前，PropA的值已经在本地被更改为true，而AppStorage中存的值仍为false。当点击事件通过setOrCreate接口尝试更新PropA的值为false时，由于AppStorage中的值为false，两者相等，不会触发更新同步，因此@StorageProp的值仍为true。
+
+如果想要实现二者同步，有两种方式：
+（1）将\@StorageProp更改为\@StorageLink。
+（2）本地更改值的方式变为使用AppStorage.setOrCreate('PropA', true)的方式。

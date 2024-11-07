@@ -25,7 +25,7 @@ static OH_Crypto_ErrCode doTestEccDataCovert()
     Crypto_DataBlob returnBlob = { .data = nullptr, .len = 0 };
     OH_Crypto_ErrCode ret = CRYPTO_INVALID_PARAMS;
 
-    ret = HcfAsyKeyGeneratorCreate("ECC_BrainPoolP256r1", &generator);
+    ret = OH_CryptoAsymKeyGenerator_Create("ECC_BrainPoolP256r1", &generator);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
@@ -48,7 +48,7 @@ static OH_Crypto_ErrCode doTestEccDataCovert()
     }
 
     OH_CryptoPubKey *pubKey = OH_CryptoKeyPair_GetPubKey(keyPair);
-    ret = OH_CryptoPubKey_Encode(pubKey, CRYPTO_DER, "X509|UNCOMPRESSED", &returnBlob);
+    ret = OH_CryptoPubKey_Encode(pubKey, CRYPTO_DER, "X509|COMPRESSED", &returnBlob);
     if (ret != CRYPTO_SUCCESS) {
         OH_CryptoAsymKeyGenerator_Destroy(generator);
         OH_CryptoKeyPair_Destroy(keyPair);

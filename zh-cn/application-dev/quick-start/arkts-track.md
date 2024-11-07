@@ -11,7 +11,7 @@
 
 ## 概述
 
-\@Track是class对象的属性装饰器。当一个class对象是状态变量时，@Track装饰的属性发生变化，只会触发该属性关联的UI更新；而未被标记的属性不能在UI中使用。
+\@Track是class对象的属性装饰器。当一个class对象是状态变量时，@Track装饰的属性发生变化，只会触发该属性关联的UI更新；而未被标记的属性不能在UI中使用，如果使用，会发生运行时报错。
 
 
 ## 装饰器说明
@@ -99,15 +99,15 @@ struct AddLog {
 在上面的示例中：
 
 1. 类LogTrack中的属性均被@Track装饰器装饰，点击按钮"change logTrack.str1"，此时UINode1刷新，UINode2不刷新，只有一条日志输出，避免了冗余刷新。
-```ts
-Text 1 is rendered
-```
+    ```ts
+    Text 1 is rendered
+    ```
 
 2. 类logNotTrack中的属性均未被@Track装饰器装饰，点击按钮"change logNotTrack.str1"，此时UINode3、UINode4均会刷新，有两条日志输出，存在冗余刷新。
-```ts
-Text 3 is rendered
-Text 4 is rendered
-```
+    ```ts
+    Text 3 is rendered
+    Text 4 is rendered
+    ```
 
 ## 限制条件
 
