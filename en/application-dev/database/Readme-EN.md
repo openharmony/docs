@@ -3,7 +3,7 @@
 - [Introduction to ArkData](data-mgmt-overview.md)
 - Unified Data Definition
   - [Unified Data Definition Overview](unified-data-definition-overview.md)
-  - [Uniform Data Types](uniform-data-type-descriptors.md)
+  - [UTDs](uniform-data-type-descriptors.md)
   - [Uniform Data Structs](uniform-data-structure.md)
 - Application Data Persistence
   - [Application Data Persistence Overview](app-data-persistence-overview.md)
