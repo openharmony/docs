@@ -136,8 +136,8 @@
     }
     if (kvStore !== undefined) {
       kvStore = kvStore as distributedKVStore.SingleKVStore;
-        //进行后续操作
-        //...
+      //进行后续操作
+      //...
     }
     ```
 
@@ -240,6 +240,7 @@
         // 请确保获取到键值数据库实例后，再进行相关数据操作
         kvStore = undefined;
         store = undefined;
+        kvManager = kvManager as distributedKVStore.KVManager;
         kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
           if (err) {
             console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
@@ -254,8 +255,8 @@
     }
     if (kvStore !== undefined) {
       kvStore = kvStore as distributedKVStore.SingleKVStore;
-        //进行后续操作
-        //...
+      //进行后续操作
+      //...
     }
     ```
 
@@ -285,6 +286,7 @@
         // 请确保获取到键值数据库实例后，再进行相关数据操作
         kvStore = undefined;
         store = undefined;
+        kvManager = kvManager as distributedKVStore.KVManager;
         kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError) => {
           if (err != undefined) {
             console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
@@ -299,7 +301,7 @@
     }
     if (kvStore !== undefined) {
       kvStore = kvStore as distributedKVStore.SingleKVStore;
-        //进行后续操作
-        //...
+      //进行后续操作
+      //...
     }
     ```
