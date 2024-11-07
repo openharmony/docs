@@ -550,10 +550,10 @@ struct Conversation {
 
 
 ```ts
-import { globalMessageList,globalMessageItem} from "../data/globalMessageList";//将globalMessageList、globalMessageItem文件export后导入；
-import { MessageItem } from "./MessageItem";//将文件MessageItem去除@entry作为组件export后导入；
-import { BottomArea } from "./BottomArea";//将文件BottomArea去除@entry作为组件export后导入；
-import {TopArea } from "./TopArea";//将文件TopArea去除@entry作为组件export后导入；
+import { globalMessageList,globalMessageItem} from "../data/globalMessageList"; //将globalMessageList、globalMessageItem文件export后导入；
+import { MessageItem } from "./MessageItem"; //将文件MessageItem去除@entry作为组件export后导入；
+import { BottomArea } from "./BottomArea"; //将文件BottomArea去除@entry作为组件export后导入；
+import {TopArea } from "./TopArea"; //将文件TopArea去除@entry作为组件export后导入；
  @Entry
  @Component
  struct Conversation {
