@@ -31,16 +31,4 @@
 
 ## 限制条件
 
-在将\@Component装饰的自定义组件与\@ComponentV2装饰的自定义组件混合使用时，以下情况的变量传递是不允许的：
-
-- \@ComponentV2装饰的自定义组件中的非状态变量接收来自父组件传递的变量。
-
-- 将\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp等装饰的对象类型的变量传递给\@ComponentV2装饰的自定义组件里的\@Param、\@Event等装饰的变量。
-
-- 将被\@Local、\@Param、\@Event、\@Provider、\@Consumer等装饰的Array、Set、Map、Date类型的变量传递给\@Component装饰的自定义组件里的@State、\@Prop、\@ObjectLink、\@Provide等装饰的变量。
-
-- 在\@Component装饰的自定义组件里被@Link修饰的变量，接收来自\@ComponentV2装饰的父组件传递的变量。
-
-- 在\@Component装饰的自定义组件中使用\@State、\@Prop、\@Link、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp装饰被\@ObservedV2装饰的类。
-
-- 在\@ComponentV2装饰的自定义组件中使用\@Local、\@Param、\@Event、\@Provider()、\@Consumer()装饰被\@Observed装饰的类。
+在将\@Component装饰的自定义组件与\@ComponentV2装饰的自定义组件混合使用时，可参考[混用文档](./arkts-custom-component-mixed-scenarios.md)。

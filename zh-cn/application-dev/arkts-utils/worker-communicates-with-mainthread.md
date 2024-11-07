@@ -32,11 +32,11 @@
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1)
+         resolve(1);
        }, 100)
      }).then(undefined, (error: BusinessError) => {
      })
-     return p
+     return p;
    }
    
    async function postMessageTest() {

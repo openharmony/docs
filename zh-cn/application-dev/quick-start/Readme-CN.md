@@ -104,8 +104,9 @@
         - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
         - [getTarget接口：获取状态管理框架代理前的原始对象](arkts-new-getTarget.md)
         - [makeObserved接口：将非观察数据变为可观察数据](arkts-new-makeObserved.md)
-    - V1->V2迁移指南
+    - V1V2混用和迁移指导
       - [自定义组件混用场景指导](arkts-custom-component-mixed-scenarios.md)
+      - [V1->V2迁移指导](arkts-v1-v2-migration.md)
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

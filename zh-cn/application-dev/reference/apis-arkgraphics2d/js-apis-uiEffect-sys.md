@@ -133,7 +133,7 @@ flyInFlyOutEffect(degree: number, flyMode: FlyMode): Filter
 filter.flyInFlyOutEffect(0.5, uiEffect.FlyMode.TOP)
 ```
 
-### distort<sup>14+</sup>
+### distort<sup>13+</sup>
 distort(distortionK: number): Filter
 
 将透镜畸变效果添加至组件上。
@@ -163,7 +163,6 @@ distort(distortionK: number): Filter
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

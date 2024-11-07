@@ -841,7 +841,7 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
 
 获取应用gpu显存大小。
 
-**起始版本：** 13
+**起始版本：** 14
 
 **参数:**
 

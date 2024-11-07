@@ -1,4 +1,4 @@
-# 使用AVPlayer开发音频播放功能(C/C++)
+# 使用AVPlayer播放音频(C/C++)
 
 使用[AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer)可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
 

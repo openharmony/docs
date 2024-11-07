@@ -9,7 +9,7 @@ OH_ImageNative is the image object struct encapsulated at the native layer. The 
 | Field Type| Field Name| Field Description|Operation Function| Function Description|
 | -------- | -------- | -------- | -------- | -------- |
 | Image_Size| imageSize | Image size.|[OH_ImageNative_GetImageSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getimagesize) | Obtains the image size of an **OH_ImageNative** object.|
-| uint32_t | types |Component type.|[OH_ImageNative_GetComponentTypes](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getcomponenttypes) | Obtains the component types of an **OH_ImageNative** object.|
+| uint32_t | types |Component type, which is used to describe the image's color component.|[OH_ImageNative_GetComponentTypes](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getcomponenttypes) | Obtains the component types of an **OH_ImageNative** object.|
 | OH_NativeBuffer | nativeBuffer | Component buffer.|[OH_ImageNative_GetByteBuffer](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getbytebuffer) | Obtains the buffer corresponding to a component type in an **OH_ImageNative** object.|
 | size_t | bufferSize | Buffer size.| [OH_ImageNative_GetBufferSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getbuffersize) | Obtains the size of the buffer corresponding to a component type in an **OH_ImageNative** object.|
 | int32_t | rowStride | Row stride.| [OH_ImageNative_GetRowStride](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getrowstride) | Obtains the row stride corresponding to a component type in an **OH_ImageNative** object.|
@@ -24,9 +24,9 @@ OH_ImagePackerNative is the image packer struct encapsulated at the native layer
 | Field Type| Field Name| Field Description|Operation Function| Function Description|
 | -------- | -------- | -------- | -------- | -------- |
 | OH_ImageSourceNative | imageSource | Image source.| [OH_ImagePackerNative_PackToDataFromImageSource](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtodatafromimagesource) | Encodes an image source into data in a given format.|
-|OH_PixelmapNative | pixelmap | Pixel map at the native layer.| [OH_ImagePackerNative_PackToDataFromPixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtodatafrompixelmap) | Encodes a pixel map into data in a given format.|
+|OH_PixelmapNative | pixelmap | PixelMap at the native layer.| [OH_ImagePackerNative_PackToDataFromPixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtodatafrompixelmap) | Encodes a PixelMap into data in a given format.|
 |int32_t | imagesourceFd | File descriptor of an image source.| [OH_ImagePackerNative_PackToFileFromImageSource](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtofilefromimagesource) | Encodes an image source into a file.|
-|int32_t | pixelmapFd | File descriptor of a pixel map.| [OH_ImagePackerNative_PackToFileFromPixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtofilefrompixelmap) | Encodes a pixel map into a file.|
+|int32_t | pixelmapFd | File descriptor of a PixelMap.| [OH_ImagePackerNative_PackToFileFromPixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtofilefrompixelmap) | Encodes a PixelMap into a file.|
 
 You can run [OH_ImagePackerNative_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_create) to create an **OH_ImagePackerNative** object.
 
@@ -71,7 +71,7 @@ The table below describes the content and operation mode of the OH_ImageReceiver
 
 ## OH_ImageReceiverOptions Struct
 
-OH_ImageReceiverOptions is the image receiver option struct encapsulated at the native layer. This struct is used to transfer parameters for creating an **OH_ImageReceiverNative** object.
+OH_ImageReceiverOptions is the image receiver option setter struct encapsulated at the native layer. It is used to pass parameters during the creation of an **OH_ImageReceiverNative** object.
 The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
 You can run [OH_ImageReceiverOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_create) to create an **OH_ImageReceiverOptions** object.
@@ -128,7 +128,7 @@ The table below describes the content and operation mode of the OH_ImageSource_I
 
 ## OH_DecodingOptions Struct
 
-OH_DecodingOptions is the decoding options struct encapsulated at the native layer. This struct is used to set decoding options and is passed in as an input parameter for creating a pixel map. For details, see [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmap).
+OH_DecodingOptions is the decoding options struct encapsulated at the native layer. This struct is used to set decoding options and is passed in as an input parameter for creating a PixelMap. For details, see [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmap).
 
 The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
@@ -154,7 +154,7 @@ The table below describes the content and operation mode of the OH_DecodingOptio
 
 ## OH_PixelmapNative Struct
 
-OH_PixelmapNative is an uncompressed pixel map format struct encapsulated at the native layer after images are decoded.
+OH_PixelmapNative is an uncompressed PixelMap format struct encapsulated at the native layer after images are decoded.
 
 You can run [OH_PixelmapNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_createpixelmap) to create an **OH_PixelmapNative** object. By default, the BGRA_8888 format is used to process data.
 
@@ -164,18 +164,18 @@ The table below describes the content and operation mode of the OH_PixelmapNativ
 | Field Type| Field Name| Field Description|Operation Function| Function Description|
 | -------- | -------- | -------- | -------- | -------- |
 | uint8_t | data | Image pixel data.| [OH_PixelmapNative_ReadPixels](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_readpixels)	| Reads the image pixel data and writes the data to an ArrayBuffer.|
-| uint8_t | data | Image pixel data.| [OH_PixelmapNative_WritePixels](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_writepixels)	| Reads the image pixel data in the buffer and writes the data to a pixel map.|
+| uint8_t | data | Image pixel data.| [OH_PixelmapNative_WritePixels](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_writepixels)	| Reads the image pixel data in the buffer and writes the data to a PixelMap.|
 | OH_Pixelmap_ImageInfo | imageInfo | Image information.| [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo)	| Obtains the image information.|
-| float | alphaRate | Opacity rate.| [OH_PixelmapNative_Opacity](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_opacity)	| Sets the opacity rate to enable the pixel map to achieve the corresponding opacity effect.|
+| float | alphaRate | Opacity rate.| [OH_PixelmapNative_Opacity](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_opacity)	| Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect.|
 |float, float, | scaleX, scaleY | Scale ratios along the X axis and Y axis, respectively.|[OH_PixelmapNative_Scale](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_scale)	| Scales an image based on a given width and height.|
 | float, float| x, y | Distances to translate along the X axis and Y axis, respectively.| [OH_PixelmapNative_Translate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_translate)	| Translates an image based on given coordinates.|
 | float | angle | Rotation angle.|[OH_PixelmapNative_Rotate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_rotate) | Rotates an image based on a given angle.|
 | bool, bool | shouldFilpHorizontally, shouldFilpVertically | Whether to flip horizontally or vertically| [OH_PixelmapNative_Flip](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_flip)	| Flips an image based on a given angle.|
-| Image_Region | region | Cropping region.| [OH_PixelmapNative_Crop](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_crop)	| Crops an image based on a given size.|
+| Image_Region | region | Cropping region.| [OH_PixelmapNative_Crop](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_crop)	| Crops a PixelMap based on a given size.|
 
 ## OH_Pixelmap_InitializationOptions Struct
 
-OH_Pixelmap_InitializationOptions is the initialization option struct encapsulated at the native layer. It is used to set the initialization parameters for a pixel map.
+OH_Pixelmap_InitializationOptions is the initialization option struct encapsulated at the native layer. It is used to set the initialization parameters for a PixelMap.
 
 You can run [OH_PixelmapInitializationOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapinitializationoptions_create) to create an **OH_Pixelmap_InitializationOptions** object.
 
@@ -209,4 +209,4 @@ The table below describes the content and operation mode of the OH_Pixelmap_Imag
 | uint32_t | rowStride | Row stride.| [OH_PixelmapImageInfo_GetRowStride](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getrowstride)	| Obtains the row stride.|
 | int32_t | pixelFormat| Pixel format.| [OH_PixelmapImageInfo_GetPixelFormat](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getpixelformat)	|Obtains the pixel format.|
 | int32_t | alphaType | Alpha type.| [OH_PixelmapImageInfo_GetAlphaType](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getalphatype)	|Obtains the alpha type.|
-| bool | isHdr | Dynamic range.| [OH_PixelmapImageInfo_GetDynamicRange](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getdynamicrange)	|Obtains the dynamic range of a pixel map.|
+| bool | isHdr | Dynamic range.| [OH_PixelmapImageInfo_GetDynamicRange](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getdynamicrange)	|Obtains the dynamic range of a PixelMap.|
