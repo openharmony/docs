@@ -5326,50 +5326,13 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
 | supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
-### packing
+### packToData<sup>13+</sup>
 
-packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
-
-图片压缩或重新打包，使用callback形式返回结果。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-**参数：**
-
-| 参数名   | 类型                               | 必填 | 说明                               |
-| -------- | ---------------------------------- | ---- | ---------------------------------- |
-| source   | [ImageSource](#imagesource)        | 是   | 打包的图片源。                     |
-| option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                      |
-| callback | AsyncCallback\<ArrayBuffer>        | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const context: Context = getContext();
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
-  if (err) {
-    console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in packing the image.');
-  }
-})
-```
-
-### packing
-
-packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
+packToData(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -5379,6 +5342,22 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 | ------ | ------------------------------- | ---- | -------------- |
 | source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
 | option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | If the parameter is invalid. |
+| 62980096| The operation failed.              |
+| 62980101 | The image data is abnormal. |
+| 62980106 | The image is too large. |
+| 62980113 | Unknown image format. |
+| 62980119 | If encoder occur error during encoding.             |
+| 62980120 | Add pixelmap out of range. |
+| 62980172 | Failed to encode icc. |
+| 62980252 | Failed to create surface. |
 
 **返回值：**
 
@@ -5396,7 +5375,7 @@ const context: Context = getContext();
 let filePath: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-imagePackerApi.packing(imageSourceApi, packOpts)
+imagePackerApi.packToData(imageSourceApi, packOpts)
   .then((data: ArrayBuffer) => {
     console.info('Succeeded in packing the image.');
   }).catch((error: BusinessError) => {
@@ -5404,52 +5383,13 @@ imagePackerApi.packing(imageSourceApi, packOpts)
   })
 ```
 
-### packing<sup>8+</sup>
+### packToData<sup>13+</sup>
 
-packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
-
-图片压缩或重新打包，使用callback形式返回结果。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
-
-**参数：**
-
-| 参数名   | 类型                            | 必填 | 说明                               |
-| -------- | ------------------------------- | ---- | ---------------------------------- |
-| source   | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap资源。               |
-| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
-| callback | AsyncCallback\<ArrayBuffer>     | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
-    if (err) {
-      console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in packing the image.');
-    }
-  })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
-})
-```
-
-### packing<sup>8+</sup>
-
-packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
+packToData(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -5466,6 +5406,22 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 | --------------------- | -------------------------------------------- |
 | Promise\<ArrayBuffer> | Promise对象，返回压缩或打包后的数据。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | If the parameter is invalid. |
+| 62980096| The operation failed.              |
+| 62980101 | The image data is abnormal. |
+| 62980106 | The image is too large. |
+| 62980113 | Unknown image format. |
+| 62980119 | If encoder occur error during encoding.             |
+| 62980120 | Add pixelmap out of range. |
+| 62980172 | Failed to encode icc. |
+| 62980252 | Failed to create surface. |
+
 **示例：**
 
 ```ts
@@ -5475,7 +5431,7 @@ const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buf
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  imagePackerApi.packing(pixelMap, packOpts)
+  imagePackerApi.packToData(pixelMap, packOpts)
     .then((data: ArrayBuffer) => {
       console.info('Succeeded in packing the image.');
     }).catch((error: BusinessError) => {
@@ -5600,6 +5556,182 @@ Packer.packing(pixelMapList, ops)
   })
 ```
 
+### packing<sup>(deprecated)</sup>
+
+packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
+
+图片压缩或重新打包，使用callback形式返回结果。
+
+> **说明：**
+>
+> 从API version 6开始支持，从API version 13开始废弃，建议使用[packToData](#packtodata13)代替。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                               |
+| -------- | ---------------------------------- | ---- | ---------------------------------- |
+| source   | [ImageSource](#imagesource)        | 是   | 打包的图片源。                     |
+| option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                      |
+| callback | AsyncCallback\<ArrayBuffer>        | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const context: Context = getContext();
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
+let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+  if (err) {
+    console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in packing the image.');
+  }
+})
+```
+
+### packing<sup>(deprecated)</sup>
+
+packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
+
+图片压缩或重新打包，使用Promise形式返回结果。
+
+> **说明：**
+>
+> 从API version 6开始支持，从API version 13开始废弃，建议使用[packToData](#packtodata13)代替。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明           |
+| ------ | ------------------------------- | ---- | -------------- |
+| source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
+| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+
+**返回值：**
+
+| 类型                         | 说明                                          |
+| ---------------------------- | --------------------------------------------- |
+| Promise\<ArrayBuffer>        | Promise对象，返回压缩或打包后的数据。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const context: Context = getContext();
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
+let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+imagePackerApi.packing(imageSourceApi, packOpts)
+  .then((data: ArrayBuffer) => {
+    console.info('Succeeded in packing the image.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+  })
+```
+
+### packing<sup>(deprecated)</sup>
+
+packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
+
+图片压缩或重新打包，使用callback形式返回结果。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 13开始废弃，建议使用[packToData](#packtodata13)代替。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                               |
+| -------- | ------------------------------- | ---- | ---------------------------------- |
+| source   | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap资源。               |
+| option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
+| callback | AsyncCallback\<ArrayBuffer>     | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+    if (err) {
+      console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in packing the image.');
+    }
+  })
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
+})
+```
+
+### packing<sup>(deprecated)</sup>
+
+packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
+
+图片压缩或重新打包，使用Promise形式返回结果。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 13开始废弃，建议使用[packToData](#packtodata13)代替。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明               |
+| ------ | ------------------------------- | ---- | ------------------ |
+| source | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap源。 |
+| option | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
+
+**返回值：**
+
+| 类型                  | 说明                                         |
+| --------------------- | -------------------------------------------- |
+| Promise\<ArrayBuffer> | Promise对象，返回压缩或打包后的数据。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  imagePackerApi.packing(pixelMap, packOpts)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing the image.');
+    }).catch((error: BusinessError) => {
+    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+  })
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
+})
+```
+
 ### release
 
 release(callback: AsyncCallback\<void>): void
@@ -5675,6 +5807,22 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 | options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
 | callback | AsyncCallback\<void>            | 是   | 回调函数，当打包进文件成功，err为undefined，否则为错误对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| The operation failed.              |
+| 62980101 | The image data is abnormal. |
+| 62980106 | The image is too large. |
+| 62980113 | Unknown image format. |
+| 62980115 | If the parameter is invalid. |
+| 62980119 | If encoder occur error during encoding.             |
+| 62980120 | Add pixelmap out of range. |
+| 62980172 | Failed to encode icc. |
+| 62980252 | Failed to create surface. |
+
 **示例：**
 
 ```ts
@@ -5720,6 +5868,22 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 | -------------- | --------------------------------- |
 | Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| The operation failed.              |
+| 62980101 | The image data is abnormal. |
+| 62980106 | The image is too large. |
+| 62980113 | Unknown image format. |
+| 62980115 | If the parameter is invalid. |
+| 62980119 | If encoder occur error during encoding.             |
+| 62980120 | Add pixelmap out of range. |
+| 62980172 | Failed to encode icc. |
+| 62980252 | Failed to create surface. |
+
 **示例：**
 
 ```ts
@@ -5757,6 +5921,22 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 | fd       | number                          | 是   | 文件描述符。                   |
 | options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
 | callback | AsyncCallback\<void>            | 是   | 回调函数，当打包图片进文件成功，err为undefined，否则为错误对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| The operation failed.              |
+| 62980101 | The image data is abnormal. |
+| 62980106 | The image is too large. |
+| 62980113 | Unknown image format. |
+| 62980115 | If the parameter is invalid. |
+| 62980119 | If encoder occur error during encoding.             |
+| 62980120 | Add pixelmap out of range. |
+| 62980172 | Failed to encode icc. |
+| 62980252 | Failed to create surface. |
 
 **示例：**
 
@@ -5803,6 +5983,22 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
 | Promise\<void> |  Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980096| The operation failed.              |
+| 62980101 | The image data is abnormal. |
+| 62980106 | The image is too large. |
+| 62980113 | Unknown image format. |
+| 62980115 | If the parameter is invalid. |
+| 62980119 | If encoder occur error during encoding.             |
+| 62980120 | Add pixelmap out of range. |
+| 62980172 | Failed to encode icc. |
+| 62980252 | Failed to create surface. |
 
 **示例：**
 
