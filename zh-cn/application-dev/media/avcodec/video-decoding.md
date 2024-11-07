@@ -12,7 +12,7 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
-每一种解码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
 <!--RP1--><!--RP1End-->
 
@@ -58,15 +58,15 @@
 
 1. 有两种方式可以使解码器进入Initialized状态：
    - 初始创建解码器实例时，解码器处于Initialized状态。
-   - 任何状态下调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
+   - 任何状态下，调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoDecoder_Configure接口配置解码器，配置成功后解码器进入Configured状态。
-3. Configured状态下调用OH_VideoDecoder_Prepare接口进入Prepared状态。
-4. Prepared状态调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
+3. Configured状态下，调用OH_VideoDecoder_Prepare接口进入Prepared状态。
+4. Prepared状态下，调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
    - 处于Executing状态时，调用OH_VideoDecoder_Stop接口可以使解码器返回到Prepared状态。
 
 5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
-   - Error状态下可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
+   - Error状态下，可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
 
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoDecoder_Start接口之后，解码器立即进入Running子状态。
