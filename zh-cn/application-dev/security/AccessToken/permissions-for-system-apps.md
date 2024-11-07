@@ -4223,6 +4223,42 @@
 
 **起始版本**：13
 
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+允许应用创建或删除恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+允许应用使用恢复密钥重设锁屏密码或恢复用户数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+允许应用获取恢复密钥的简要信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
