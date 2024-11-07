@@ -66,7 +66,7 @@ Enables listening for global combination key events. This API uses an asynchrono
 
 **Error codes**:
 
-For details about the error codes, see [ohos.i18n Error Codes](errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Input Consumer Error Codes](errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code | Error Message            |
 | ---- | --------------------- |
