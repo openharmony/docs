@@ -1413,7 +1413,8 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1483,8 +1484,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | P2P module error. |
-| 2801001  | Wi-Fi STA disabled. |
+| 2801000  | Operation failed. |
 
 ## wifiManager.getCurrentGroup<sup>9+</sup>
 
