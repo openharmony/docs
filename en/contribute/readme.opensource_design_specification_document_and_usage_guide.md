@@ -2,11 +2,12 @@
 
 ## Introduction
 
-To facilitate the tracking of third-party open-source software's original upstream information, the OpenHarmony community mandates the following in the *Third-Party Open Source Software Introduction Guide*:
+In order to better trace the original upstream information of third-party open-source software, the OpenHarmony community requires in the [“Third-Party Open Source Software Introduction Guidelines”](introducing-open-source-software.md):
 
-> New open-source software introduced must provide a `README.OpenSource` file at its root directory, accurately detailing the software name, license, license file location, version, corresponding upstream community address, software maintainer (Owner), functional description, and the reason for inclusion.
+> Newly introduced open-source software must provide a `README.OpenSource` file in its root directory. This file should accurately describe the following: software name, license type, location of the license file, software version, the upstream community address corresponding to this version, software maintainer (Owner), functional description, and dependencies.
 
-However, community developers often find the requirements and standards for writing `README.OpenSource` files unclear, particularly when managing scenarios involving multiple licenses or multiple open-source software entries. This document serves as a final optimized design specification and usage guide for OpenHarmony project’s `README.OpenSource` files. By **retaining the existing metadata field structure**, this guide addresses the issue of multiple licenses possibly corresponding to the same license file, ensuring compatibility with engineering-level parsing and minimizing impact on existing `README.OpenSource` files.
+However, when actually writing the `README.OpenSource` file, community developers often face issues due to insufficiently clear specifications and filling requirements. This is especially true when dealing with complex scenarios like multiple licenses and multiple open-source software. As a result, the file contents may not conform to standards. Therefore, this document aims to provide a clearer and more understandable set of design specifications and usage guidelines for the `README.OpenSource` file in the OpenHarmony project. **While maintaining the original metadata field structure**, we will address the issue where multiple licenses may share the same license file, to meet the needs of engineering parsing, while ensuring that the current `README.OpenSource` file remains unaffected.
+
 
 ## Scope
 
