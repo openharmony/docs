@@ -11,6 +11,9 @@ API version 12及之后，系统为提升用户隐私安全保护能力，剪贴
 | getData( callback: AsyncCallback&lt;PasteData&gt;): void | 读取系统剪贴板内容，使用callback异步回调。 |
 | getData(): Promise&lt;PasteData&gt; | 读取系统剪贴板内容，使用Promise异步回调。 |
 | getDataSync(): PasteData | 读取系统剪贴板内容, 此接口为同步接口。 |
+| getUnifiedData(): Promise\<udc.UnifiedData\> | 从系统剪贴板中读取统一数据对象的数。 |
+| getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据对象的数据，此接口为同步接口。 |
+| OH_UdmfData * OH_Pasteboard_GetData (OH_Pasteboard *pasteboard, int *status) | 获取剪贴板中的数据。 |
 
 ## 访问剪贴板内容
 
@@ -32,12 +35,19 @@ API version 12及之后，系统为提升用户隐私安全保护能力，剪贴
     ```ts
     "requestPermissions": [
       {
-      "name": "ohos.permission.READ_PASTEBOARD",
-      }
-    ]
+        "name": "ohos.permission.READ_PASTEBOARD",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+          "when": "inuse"
+        },
+        "reason": "$string:module_desc",
+      },
+    ],
     ```
 
-    2.在调用getData接口之前增加用户授权弹窗。
+    2.在调用getData接口之前增加用户授权弹窗，不要删除build代码。
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { abilityAccessCtrl, common, Permissions, UIAbility, bundleManager } from '@kit.AbilityKit';
