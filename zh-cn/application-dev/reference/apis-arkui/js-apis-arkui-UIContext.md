@@ -6861,13 +6861,21 @@ activate(isActive: boolean, atuoInactive?: boolean): void
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
 | isActive| boolean| 是 | 设置是否进入/退出焦点激活态。 |
-| atuoInactive | boolean | 否 | 设置焦点激活态退出逻辑。为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制|
+| autoInactive | boolean | 否 | 设置焦点激活态退出逻辑。为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制|
 
 ```ts
 // 该示例表示在页面加载完成时进入焦点激活态，可按方向键在button间走焦
 @Entry
 @Component
 struct ActivateExample {
+  aboutToAppear() {
+    this.getUIContext().getFocusController().activate(true, false)
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getFocusController().activate(false)
+  }
+
   build() {
     Row() {
       Button('Button1')
@@ -6886,12 +6894,6 @@ struct ActivateExample {
     .padding(10)
     .justifyContent(FlexAlign.SpaceBetween)
     .width(800)
-    .onAppear(()=>{
-      this.getUIContext().getFocusController().activate(true, false)
-    })
-    .onDisAppear(()=>{
-      this.getUIContext().getFocusController().activate(false)
-    })
   }
 }
 ```
