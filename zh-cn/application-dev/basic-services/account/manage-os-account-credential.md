@@ -78,7 +78,7 @@
 
 具体开发实例如下：
 
-1. 调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
+调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
 
    ```ts
    let challenge: Uint8Array = await userIDM.openSession();
