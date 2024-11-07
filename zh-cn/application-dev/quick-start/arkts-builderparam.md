@@ -491,7 +491,8 @@ struct ParentPage {
   build() {
     Column() {
       ChildPage({
-        customChangeThisBuilderParam: this.componentBuilder // 此处传递参数导致
+        // 当前写法this指向ChildPage组件内
+        customChangeThisBuilderParam: this.componentBuilder
       })
       Button('点击改变label内容')
         .onClick(() => {
@@ -503,6 +504,7 @@ struct ParentPage {
 ```
 
 使用箭头函数的形式把\@Builder传递进自定义组件ChildPage中，当前this指向会停留在父组件ParentPage里，所以在父组件里改变label的值，自定义组件ChildPage会感知到并重新渲染UI。
+把@Builder改为@LocalBuilder也能实现动态渲染UI功能。
 
 【正例】
 
