@@ -20,15 +20,15 @@ import { StartOptions } from '@kit.AbilityKit';
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| windowMode<sup>12+<sup> | number | No| Yes| Window mode when the ability is started. For details, see [WindowMode](./js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode12).|
+| windowMode<sup>12+<sup> | number | No| Yes| Window mode when the ability is started. For details, see [WindowMode](./js-apis-app-ability-abilityConstant.md#windowmode12).|
 | displayId | number | No| Yes| Display ID mode. The default value is **0**, indicating the current display.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | withAnimation<sup>11+</sup> | boolean | No| Yes| Whether the ability has the animation effect.|
 | windowLeft<sup>11+</sup> | number | No| Yes| Left position of the window.|
 | windowTop<sup>11+</sup> | number | No| Yes| Top position of the window.|
 | windowWidth<sup>11+</sup> | number | No| Yes| Width of the window.|
 | windowHeight<sup>11+</sup> | number | No| Yes| Height of the window.|
-| processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) | No| Yes| Process mode.<br>**Constraints**:<br>This property takes effect only on tablets.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
-| startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#contextconstantstartupvisibility12) | Yes| No| Visibility of the ability after it is started.<br>**Constraints**:<br>This property takes effect only on tablets.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
+| processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#processmode12) | No| Yes| Process mode.<br>**Constraints**:<br>1. This property takes effect only on tablets.<br>2. This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>3. **processMode** and **startupVisibility** must be set in pair.|
+| startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#startupvisibility12) | Yes| No| Visibility of the ability after it is started.<br>**Constraints**:<br>1. This property takes effect only on tablets.<br>2. This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>3. **processMode** and **startupVisibility** must be set in pair.|
 
 **Example**
 

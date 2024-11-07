@@ -384,7 +384,9 @@
     - [UIExtensionComponent (System API)](arkui-ts/ts-container-ui-extension-component-sys.md)
   <!--DelEnd-->
   - Components and APIs No Longer Maintained
+    <!--Del-->
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
+    <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
     - [Click Control](arkui-ts/ts-universal-attributes-click.md)

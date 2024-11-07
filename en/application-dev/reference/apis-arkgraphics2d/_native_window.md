@@ -46,7 +46,7 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description| 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation-1) {<br>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS, SET_SOURCE_TYPE,GET_SOURCE_TYPE,SET_APP_FRAMEWORK_TYPE,GET_APP_FRAMEWORK_TYPE<br>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.|
+| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS, SET_SOURCE_TYPE,GET_SOURCE_TYPE,SET_APP_FRAMEWORK_TYPE,GET_APP_FRAMEWORK_TYPE<br/>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.|
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | Enumerates the scaling modes.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
 | [OHScalingModeV2](#ohscalingmodev2-1) {<br>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br>OH_SCALING_MODE_SCALE_FIT_V2<br>} | Enumerates the rendering scaling modes. | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br>} | Enumerates the HDR metadata keys.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
@@ -246,6 +246,7 @@ Enumerates the error codes.
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | The EGL environment is abnormal.  | 
 | NATIVE_ERROR_EGL_API_FAILED  | Failed to call the EGL APIs.  | 
 
+
 ### NativeWindowOperation
 
 ```
@@ -277,13 +278,13 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 | SET_TRANSFORM | Setting the transform for the local window buffer.<br>Variable argument in the function: [Input] int32_t transform.| 
 | GET_TRANSFORM | Obtaining the transform of the local window buffer.<br>Variable argument in the function: [Output] int32_t *transform.| 
 | SET_UI_TIMESTAMP | Setting the UI timestamp for the local window buffer.<br>Variable argument in the function: [Input] uint64_t uiTimestamp.| 
-| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | Obtaining the memory queue size.<br>Variable argument in the function: [Output] int32_t \*size.<br>This value is supported since API version 12.| 
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | Obtaining the memory queue size.<br>Variable argument in the function: [Output] int32_t \*size.<br/>This value is available since API version 12.| 
 | SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | Setting the brightness of HDR white points.<br>Variable arguments in the function: [Input] float brightness. The value range is [0.0f, 1.0f].| 
 | SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | Setting the brightness of SDR white points.<br>Variable arguments in the function: [Input] float brightness. The value range is [0.0f, 1.0f].| 
-| SET_SOURCE_TYPE<sup>12+</sup> | Setting the source of content displayed in the local window.<br>Variable argument in the function: [Input] int32_t sourceType. For details about the available options, see [OHSurfaceSource](#ohsurfacesource-1).|
-| GET_SOURCE_TYPE<sup>12+</sup> | Obtaining the source of content displayed in the local window.<br>Variable argument in the function: [Output] int32_t \*sourceType. For details about the available options, see [OHSurfaceSource](#ohsurfacesource-1).|
-| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | Setting the application framework name of the local window.<br>Variable argument in the function: [Input] char\* frameworkType. A maximum of 64 bytes are supported.|
-| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | Obtaining the application framework name of the local window.<br>Variable argument in the function: [Output] char\* frameworkType.|
+| SET_SOURCE_TYPE<sup>12+</sup> | Setting the source of content displayed in the local window.<br>Variable argument in the function: [Input] int32_t sourceType. For details about the available options, see [OHSurfaceSource](#ohsurfacesource).| 
+| GET_SOURCE_TYPE<sup>12+</sup> | Obtaining the source of content displayed in the local window.<br>Variable argument in the function: [Output] int32_t \*sourceType. For details about the available options, see [OHSurfaceSource](#ohsurfacesource).| 
+| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | Setting the application framework name of the local window.<br>Variable argument in the function: [Input] char\* frameworkType. A maximum of 64 bytes are supported.| 
+| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | Obtaining the application framework name of the local window.<br>Variable argument in the function: [Output] char\* frameworkType.| 
 
 ### OHHDRMetadataKey
 
@@ -371,6 +372,8 @@ int32_t OH_NativeWindow_SetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 
 Sets the color space for an **OHNativeWindow** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 12
@@ -396,6 +399,8 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 **Description**
 
 Sets a metadata value for an **OHNativeWindow** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -424,6 +429,8 @@ int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 
 Obtains the color space of an **OHNativeWindow** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 12
@@ -449,6 +456,8 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 **Description**
 
 Obtains the metadata value of an **OHNativeWindow** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -478,6 +487,8 @@ int32_t OH_NativeWindow_WriteToParcel (OHNativeWindow *window, OHIPCParcel *parc
 
 Writes an **OHNativeWindow** instance to an **OHIPCParcel** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 12
@@ -503,6 +514,8 @@ int32_t OH_NativeWindow_ReadFromParcel (OHIPCParcel *parcel, OHNativeWindow **wi
 **Description**
 
 Reads an **OHNativeWindow** instance from an **OHIPCParcel** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -531,6 +544,10 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2 (OHNativeWindow *window, OHNative
 
 Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance. The difference between this function and **OH_NativeWindow_GetLastFlushedBuffer** lies in the matrix.
 
+This function must be used in pair with **OH_NativeWindow_NativeObjectUnreference**. Otherwise, memory leak occurs.
+
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 12
@@ -557,6 +574,8 @@ void OH_NativeWindow_SetBufferHold (OHNativeWindow *window)
 ```
 **Description**
 Buffers a frame in advance and holds it for the interval of a frame to offset the possible loss of subsequent oversized frames.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -608,6 +627,10 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer (
 **Description**
 
 Creates an **OHNativeWindowBuffer** instance. A new **OHNativeWindowBuffer** instance is created each time this function is called.
+
+This function must be used in pair with **OH_NativeWindow_DestroyNativeWindowBuffer**. Otherwise, memory leak occurs.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -662,6 +685,13 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId (uint64_t surfaceId, OHN
 **Description**
 
 Creates an **OHNativeWindow** instance based on a surface ID.
+This function must be used in pair with **OH_NativeWindow_DestroyNativeWindow**. Otherwise, memory leak occurs.
+
+If **OHNativeWindow** needs to be released concurrently, call **OH_NativeWindow_NativeObjectReference** and **OH_NativeWindow_NativeObjectUnreference** to increase or decrease the reference count by 1 for **OHNativeWindow**.
+
+The surface obtained by using the surface ID must be created in the current process, but not in a different process.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -689,6 +719,8 @@ void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow* window)
 
 Decreases the reference count of an **OHNativeWindow** instance by 1 and when the reference count reaches 0, destroys the instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 8
@@ -710,6 +742,8 @@ void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer* buffer)
 
 Decreases the reference count of an **OHNativeWindowBuffer** instance by 1 and when the reference count reaches 0, destroys the instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 8
@@ -730,6 +764,8 @@ BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer* b
 **Description**
 
 Obtains the pointer to a **BufferHandle** of an **OHNativeWindowBuffer** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -788,6 +824,8 @@ int32_t OH_NativeWindow_GetNativeObjectMagic (void *obj)
 
 Obtains the magic ID of a native object.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 8
@@ -812,6 +850,8 @@ int32_t OH_NativeWindow_GetSurfaceId (OHNativeWindow *window, uint64_t *surfaceI
 **Description**
 
 Obtains a surface ID through an **OHNativeWindow**.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -839,6 +879,10 @@ int32_t OH_NativeWindow_NativeObjectReference (void *obj)
 
 Adds the reference count of a native object.
 
+This function must be used in pair with **OH_NativeWindow_NativeObjectUnreference**. Otherwise, memory leak occurs.
+
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 8
@@ -863,6 +907,8 @@ int32_t OH_NativeWindow_NativeObjectUnreference (void *obj)
 **Description**
 
 Decreases the reference count of a native object and when the reference count reaches 0, destroys this object.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -889,6 +935,8 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow *window, OHNativ
 
 Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWindow** instance, without filling in any content. The **OHNativeWindowBuffer** can be used for a new request.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 8
@@ -913,6 +961,10 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer (OHNativeWindow *window, OHNati
 **Description**
 
 Attaches an **OHNativeWindowBuffer** to an **OHNativeWindow** instance.
+
+This function must be used in pair with **OH_NativeWindow_NativeWindowDetachBuffer**. Otherwise, memory management disorder may occur.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -940,6 +992,8 @@ int32_t OH_NativeWindow_NativeWindowDetachBuffer (OHNativeWindow *window, OHNati
 
 Detaches an **OHNativeWindowBuffer** from an **OHNativeWindow** instance.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 12
@@ -965,6 +1019,10 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 **Description**
 
 Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.
+
+The system will close **fenFd**. You do not need to close it.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -994,6 +1052,8 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,
 
 Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.
 
+This function is not thread-safe.
+
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **Since**: 8
@@ -1004,7 +1064,7 @@ Sets or obtains the attributes of an **OHNativeWindow** instance, including the 
 | -------- | -------- |
 | window | Pointer to an **OHNativeWindow** instance.| 
 | code | Operation code. For details, see [NativeWindowOperation](#nativewindowoperation).| 
-| ... | Variable argument, which must correspond to the operation code.| 
+| ... | Variable argument, which must be the same as the data type corresponding to the operation code. The number of input parameters must be the same as that of the operation code. Otherwise, undefined behavior may occur.| 
 
 **Returns**
 
@@ -1020,6 +1080,14 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *window, OHNat
 **Description**
 
 Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.
+
+Before calling this function, you must call **SET_BUFFER_GEOMETRY** to set the width and height of **OHNativeWindow**.
+
+This function must be used in pair with **OH_NativeWindow_NativeWindowFlushBuffer**. Otherwise, memory leak occurs.
+
+When **fenceFd** is used up, you must close it.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -1135,6 +1203,8 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2 (OHNativeWindow* window, OH
 ```
 **Description**
 Sets a rendering scaling mode for an **OHNativeWindow** instance.
+
+This function is not thread-safe.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
 

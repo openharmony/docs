@@ -1,4 +1,4 @@
-# Common Text Component APIs
+# Text Component Common APIs
 
 >**NOTE**
 >
@@ -22,7 +22,7 @@ Implements a **LayoutManager** object.
 > After the text content is changed, you must wait for the layout to be completed before you can obtain the most up-to-date layout information.
 
 ### Objects to Import
-The following uses the **\<Text>** component as an example.
+The following uses the **Text** component as an example.
 ```
 controller: TextController = new TextController()
 let layoutManager: LayoutManager = this.controller.getLayoutManager();
@@ -293,9 +293,10 @@ Defines the direction for deleting text.
 
 | Name| Type | Mandatory| Description |
 | ------ | -------- | ---- | ------------------------------------------- |
-| types   | [TextDataDetectorType[]](ts-text-common.md#textdatadetectortype11) | Yes  | Entity types for text recognition. Values **null** and **[]** indicate that all types of entities can be recognized.|
+| types   | [TextDataDetectorType](ts-text-common.md#textdatadetectortype11)[] | Yes  | Entity types for text recognition. Values **null** and **[]** indicate that all types of entities can be recognized.|
 | onDetectResultUpdate   | (result: string) => void | No  | Callback invoked when text recognition succeeds.<br>- **result**: text recognition result, in JSON format.|
-
+| color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | No  | Entity color when text recognition succeeds.<br>Default value: **'#ff007dff'**|
+| decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface)| No  | Style of the entity decorative line when text recognition succeeds.<br>Default value:<br>{<br> type: TextDecorationType.Underline,<br> color: consistent with the entity color,<br> style: TextDecorationStyle.SOLID <br>} |
 ## PreviewText<sup>12+</sup>
 
 Preview text.
@@ -308,3 +309,56 @@ Preview text.
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | offset | number | Yes  | Start position of the preview text.|
 | value    | string         | Yes  | Content of the preview text.        |
+
+## FontSettingOptions<sup>12+</sup>
+
+Defines the font settings.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type                                            | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enableVariableFontWeight | boolean | No  | Whether to support variable font weight adjustment.|
+
+## OnDidChangeCallback<sup>12+</sup>
+
+type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
+
+Represents the callback invoked after text changes.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -- | -- | -- | -- |
+| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | Yes| Range of the text to be changed.|
+| rangeAfter | [TextRange](ts-universal-attributes-text-style.md#textrange12) | Yes| Range of the text added.|
+
+## StyledStringChangedListener<sup>12+</sup>
+
+Defines the listener for changes of the styled string text content.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -- | -- | -- | -- |
+| onWillChange | Callback<[StyledStringChangeValue](ts-basic-components-richeditor.md#styledstringchangevalue12), boolean> | No| Callback invoked when text is about to change.|
+| onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | No| Callback invoked when text is changed.|
+
+## StyledStringChangeValue<sup>12+</sup>
+
+Describes the text changes of the styled string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -- | -- | -- | -- |
+| range | TextRange | Yes| Range of the styled string to be replaced in the original string.|
+| replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | Yes| Styled string used for replacement.|

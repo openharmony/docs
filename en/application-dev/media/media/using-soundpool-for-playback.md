@@ -68,12 +68,12 @@ During application development, you must subscribe to playback state changes and
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
    
     let soundID: number;
     let uri: string;
     async function load() {
-      await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+      await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
         console.info("file fd: " + file.fd);
         uri = 'fd://' + (file.fd).toString()
       }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
@@ -210,7 +210,7 @@ The following sample code implements low-latency playback using **SoundPool**.
 ```ts
 import { audio } from '@kit.AudioKit';
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
@@ -236,7 +236,7 @@ async function create() {
   finishPlayCallback();
   setErrorCallback();
   // Load a sound.
-  await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+  await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
     uri = 'fd://' + (file.fd).toString()
   }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.

@@ -781,7 +781,7 @@ struct pageTwoStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack()
-        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'Hello World'
+        // 如果绑定的LocalStorage中没有PropB,显示本地初始化的值 'Hello World'
         Text(`${this.PropB}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -810,7 +810,7 @@ struct pageThreeStack {
       Column() {
         NavigationContentMsgStack()
 
-        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'pageThreeStack'
+        // 如果绑定的LocalStorage中没有PropC,显示本地初始化的值 'pageThreeStack'
         Text(`${this.PropC}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1043,6 +1043,39 @@ struct LocalSetSample {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+### 自定义组件外改变状态变量
+
+```ts
+let storage = new LocalStorage();
+storage.setOrCreate('count', 47);
+
+class Model {
+  storage: LocalStorage = storage;
+
+  call(propName: string, value: number) {
+    this.storage.setOrCreate<number>(propName, value);
+  }
+}
+
+let model: Model = new Model();
+
+@Entry({ storage: storage })
+@Component
+struct Test {
+  @LocalStorageLink('count') count: number = 0;
+
+  build() {
+    Column() {
+      Text(`count值: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call('count', this.count + 1);
+        })
+    }
   }
 }
 ```

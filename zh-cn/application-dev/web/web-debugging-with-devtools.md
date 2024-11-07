@@ -60,14 +60,18 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
 
 4. 在电脑端Chrome浏览器地址栏中输入chrome://inspect/\#devices，页面识别到设备后，就可以开始页面调试。调试效果如下：
 
-     **图1** 页面调试效果图  
+     **图1** 识别设备成功效果图
+
+     ![debug-succeed](figures/debug-succeed.png)
+
+     **图2** 页面调试效果图  
 
      ![debug-effect](figures/debug-effect.png)
 
 
 5. 多应用调试请在调试地址内Devices中的configure添加多个端口号以同时调试多个应用：
 
-     **图2** 添加端口号效果图  
+     **图3** 添加端口号效果图  
 
      ![debug-effect](figures/debug-domains.png)
 
@@ -150,6 +154,28 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
 7. mac/linux便捷脚本，请复制以下信息建立sh文件，请自行注意chmod以及格式转换，开启调试应用后执行：
    ```
    #!/bin/bash
+
+   # Get current fport rule list
+   CURRENT_FPORT_LIST=$(hdc fport ls)
+
+   # Delete the existing fport rule one by one
+   while IFS= read -r line; do
+       # Extract the taskline
+       IFS=' ' read -ra parts <<< "$line"
+       taskline="${parts[1]} ${parts[2]}"
+   
+       # Delete the corresponding fport rule
+       echo "Removing forward rule for $taskline"
+       hdc fport rm $taskline
+       result=$?
+   
+       if [ $result -eq 0 ]; then
+           echo "Remove forward rule success, taskline:$taskline"
+       else
+           echo "Failed to remove forward rule, taskline:$taskline"
+       fi
+   
+   done <<< "$CURRENT_FPORT_LIST"
 
    # Initial port number
    INITIAL_PORT=9222

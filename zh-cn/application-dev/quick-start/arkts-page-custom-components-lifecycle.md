@@ -6,7 +6,7 @@
 
 - 自定义组件：\@Component装饰的UI单元，可以组合多个系统组件实现UI的复用，可以调用组件的生命周期。
 
-- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，[@Entry](arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
+- 页面：即应用的UI页面。可以由一个或者多个自定义组件组成，@Entry装饰的自定义组件为页面的入口组件，即页面的根节点，一个页面有且仅能有一个\@Entry。只有被\@Entry装饰的组件才可以调用页面的生命周期。
 
 
 页面生命周期，即被\@Entry装饰的组件生命周期，提供以下生命周期接口：
@@ -127,9 +127,9 @@ struct MyComponent {
       }
       // this.showChild为false，删除Child子组件，执行Child aboutToDisappear
       Button('delete Child')
-      .margin(20)
-      .backgroundColor(this.btnColor)
-      .onClick(() => {
+        .margin(20)
+        .backgroundColor(this.btnColor)
+        .onClick(() => {
         this.showChild = false;
       })
       // push到page页面，执行onPageHide
@@ -138,7 +138,6 @@ struct MyComponent {
           router.pushUrl({ url: 'pages/page' });
         })
     }
-
   }
 }
 
@@ -147,7 +146,7 @@ struct Child {
   @State title: string = 'Hello World';
   // 组件生命周期
   aboutToDisappear() {
-    console.info('[lifeCycle] Child aboutToDisappear')
+    console.info('[lifeCycle] Child aboutToDisappear');
   }
 
   // 组件生命周期
@@ -157,7 +156,7 @@ struct Child {
 
   // 组件生命周期
   aboutToAppear() {
-    console.info('[lifeCycle] Child aboutToAppear')
+    console.info('[lifeCycle] Child aboutToAppear');
   }
 
   build() {

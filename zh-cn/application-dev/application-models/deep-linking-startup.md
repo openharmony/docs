@@ -24,14 +24,16 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
         // ...
         "skills": [
           {
+            "actions": [
+              // actions不能为空，actions为空会造成目标方匹配失败
+              "ohos.want.action.viewData"
+            ],
             "uris": [
               {
                 // scheme必选，可以自定义，以link为例，需要替换为实际的scheme
                 "scheme": "link",
                 // host必选，配置待匹配的域名
-                "host": "www.example.com",
-                // path可选，为了避免匹配到多个应用，建议配置该字段
-                "path": "path1"
+                "host": "www.example.com"
               }
             ]
           }

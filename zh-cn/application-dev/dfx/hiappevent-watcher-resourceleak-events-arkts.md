@@ -48,13 +48,33 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 3. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄露。接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”。接口示例代码如下：
 
    ```ts
-    Button("memoryleak").onClick(()=>{
-      // 在按钮点击函数中构造一个资源泄漏场景，触发资源泄漏事件，此处的泄漏大小为1M
-      hidebug.setAppResourceLimit("pss_memory", 1024, true);
-    })
+    import hidebug from "@ohos.hidebug";
+
+    @Entry
+    @Component
+    struct Index {
+    @State leakedArray: string[][] = [];
+
+    build() {
+      Column() {
+        Row() {
+          Column() {
+            Button("pss leak")
+              .onClick(() => {
+                hidebug.setAppResourceLimit("pss_memory", 1024, true);
+                for (let i = 0; i < 20 * 1024; i++) {
+                  this.leakedArray.push(new Array(1).fill("leak"));
+                }
+              })
+          }
+        }
+        .height('100%')
+        .width('100%')
+      }
+    }
    ```
 
 4. 点击IDE界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。
@@ -65,5 +85,5 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```text
    HiAppEvent onReceive: domain=OS
    HiAppEvent eventName=RESOURCE_OVERLIMIT
-   HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"params":{"bundle_name":"com.example.myapplication","bundle_version"::"1.0.0","memory":{"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936},"pid":20731,"resource_type":"pss_memory","time":1502348798106,"uid":20010044}}
+   HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"params":{"bundle_name":"com.example.myapplication","bundle_version":"1.0.0","memory":{"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936},"pid":20731,"resource_type":"pss_memory","time":1502348798106,"uid":20010044,"external_log": ["/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572401_6808.log", "/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572412_6808.log"], "log_over_limit": false}}
    ```

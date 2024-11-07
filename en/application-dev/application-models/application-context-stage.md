@@ -3,7 +3,7 @@
 
 ## Overview
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode) (encryption level). It also provides basic methods such as **createBundleContext()** and [getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md), and ServiceExtensionContext.
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) (encryption level). It also provides basic methods such as **createBundleContext()** and [getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md), and ServiceExtensionContext.
 
 - The figure below illustrates the inheritance relationship of contexts. 
 
@@ -26,7 +26,7 @@
       }
     }
     ```
-     
+    
      > **NOTE**
      >
      > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
@@ -219,7 +219,7 @@ The application file paths obtained by the preceding contexts are different.
 
 Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection.
 
-In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. For details about the permissions required for a specific encryption level, see [AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode) in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. For details about the permissions required for a specific encryption level, see [AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
 
 <ul>
 <li>EL1: For private files, such as alarms and wallpapers, the application can place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password.</li>
@@ -310,7 +310,7 @@ struct Page_Context {
 ### Obtaining the Context of Other Modules in the Current Application
 
 Call [createModuleContext(moduleName:string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
-  
+
   ```ts
   import { common } from '@kit.AbilityKit';
   import { promptAction } from '@kit.ArkUI';

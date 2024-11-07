@@ -9,14 +9,16 @@ The **app.ability.WantAgent** module provides APIs for creating and comparing **
 ## Modules to Import
 
 ```ts
-import { WantAgent } from '@kit.AbilityKit';
+import { wantAgent } from '@kit.AbilityKit';
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
+
+Third-party applications can set only their own abilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -71,7 +73,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -92,11 +94,13 @@ try {
 }
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 Obtains a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
+
+Third-party applications can set only their own abilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -155,7 +159,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -173,7 +177,7 @@ try {
 
 
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
@@ -232,7 +236,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -266,7 +270,7 @@ try {
 }
 ```
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
@@ -330,7 +334,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -359,7 +363,7 @@ try {
 }
 ```
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
@@ -418,7 +422,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -452,7 +456,7 @@ try {
 }
 ```
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent): Promise\<number\>
 
@@ -516,7 +520,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -546,7 +550,7 @@ try {
 }
 ```
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
@@ -605,7 +609,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -639,7 +643,7 @@ try {
 }
 ```
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent): Promise\<void\>
 
@@ -703,7 +707,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -733,7 +737,7 @@ try {
 }
 ```
 
-## WantAgent.trigger
+## wantAgent.trigger
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<CompleteData\>): void
 
@@ -795,7 +799,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -829,7 +833,7 @@ try {
 }
 ```
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
@@ -844,7 +848,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | WantAgent                | Yes  |  The second **WantAgent** object.                          |
+| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
 | callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
 **Error codes**
@@ -888,7 +892,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -923,7 +927,7 @@ try {
 }
 ```
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
@@ -938,7 +942,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
 | agent      | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | WantAgent | Yes  |  The second **WantAgent** object.|
+| otherAgent | WantAgent | Yes  | The second **WantAgent** object.|
 
 **Return value**
 
@@ -987,7 +991,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1018,7 +1022,7 @@ try {
 }
 ```
 
-## WantAgent.getOperationType
+## wantAgent.getOperationType
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
@@ -1078,7 +1082,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1112,7 +1116,7 @@ try {
 }
 ```
 
-## WantAgent.getOperationType
+## wantAgent.getOperationType
 
 getOperationType(agent: WantAgent): Promise\<number>
 
@@ -1179,7 +1183,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };

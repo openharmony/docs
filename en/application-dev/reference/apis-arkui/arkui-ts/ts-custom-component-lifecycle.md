@@ -1,6 +1,6 @@
 # Custom Component Lifecycle
 
-The lifecycle callbacks of a custom component are used to notify users of the lifecycle of the component. These callbacks are private and are invoked by the development framework at a specified time at runtime. They cannot be manually invoked from applications.
+The lifecycle callbacks of a custom component are used to notify users of the lifecycle of the component. These callbacks are private and are invoked by the development framework at a specified time at runtime. They cannot be manually invoked from applications. Do not reuse the same custom component node across multiple windows, as otherwise its lifecycle may become disrupted.
 
 >**NOTE**
 >
@@ -12,7 +12,7 @@ The lifecycle callbacks of a custom component are used to notify users of the li
 
 aboutToAppear?(): void
 
-Invoked after a new instance of the custom component is created and before its **build()** function is executed. You can change state variables in **aboutToAppear**. The change will take effect when you execute the **build()** function next time.
+Invoked after a new instance of the custom component is created and before its **build()** function is executed. You can change state variables in **aboutToAppear**. The change will take effect when you execute the **build()** function next time. The **aboutToAppear** lifecycle callback of a custom component with a custom layout is invoked during the layout process.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,11 +26,13 @@ onDidBuild?(): void
 
 Invoked after the **build()** function of the custom component is executed. Do not change state variables or use functions (such as **animateTo**) in **onDidBuild**. Otherwise, unstable UI performance may result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void
 
-Invoked before the destructor of the custom component is consumed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
+Invoked when this component is about to disappear. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -62,7 +64,7 @@ Invoked each time the page is hidden, for example, during page redirection or wh
 
 onBackPress?(): void | boolean
 
-Invoked when the user clicks the Back button. It works only for the custom components decorated by @Entry. The value **true** means that the page executes its own return logic instead of the , and **false** (default) means that the default return logic is used.
+Invoked when the user clicks the Back button. It works only for the custom components decorated by @Entry. The value **true** means that the page executes its own return logic, and **false** (default) means that the default return logic is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -171,6 +173,74 @@ struct Child {
 }
 ```
 
+## aboutToRecycle<sup>10+</sup>
+
+aboutToRecycle?(): void
+
+Invoked when this reusable component is about to be added from the component tree to the reuse cache.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+// xxx.ets
+export class Message {
+  value: string | undefined;
+
+  constructor(value: string) {
+    this.value = value;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State switch: boolean = true;
+
+  build() {
+    Column() {
+      Button('Hello World')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switch = !this.switch;
+        })
+      if (this.switch) {
+        Child({ message: new Message('Child') })
+      }
+    }
+    .height("100%")
+    .width('100%')
+  }
+}
+
+@Reusable
+@Component
+struct Child {
+  @State message: Message = new Message('AboutToReuse');
+
+  aboutToReuse(params: Record<string, ESObject>) {
+    console.info("Reuse Child");
+    this.message = params.message as Message;
+  }
+
+  aboutToRecycle() {
+    // This is where you can release memory-intensive content or other non-essential resource references to avoid continuous memory usage that could lead to memory leaks.
+    console.info("The child enters the recycle pool.");
+  }
+
+  build() {
+    Column() {
+      Text(this.message.value)
+        .fontSize(20)
+    }
+    .borderWidth(2)
+    .height(100)
+  }
+}
+```
+
 ## onWillApplyTheme<sup>12+</sup>
 
 onWillApplyTheme?(theme: Theme): void
@@ -233,7 +303,7 @@ struct IndexComponent {
       .height('25%')
       .borderRadius('10vp')
       .backgroundColor($r('sys.color.background_primary'))
-      
+
       // The color style configured in onWillApplyTheme is applied.
       Column() {
         Text('onWillApplyTheme')

@@ -13,7 +13,6 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 - 当备份恢复时，所有待备份文件及目录的路径不得超过4095字节，否则将导致未定义行为。
 - 当备份目录时，应用进程必须拥有读取该目录及其所有子目录的权限（DAC中的`r`），否则将导致备份失败。
 - 当备份文件时，应用进程必须拥有搜索该文件所有祖父级目录的权限（DAC中的`x`），否则将导致备份失败。
-- 当启动模式标签["launchType"为"singleton"](../quick-start/module-configuration-file.md#abilities标签)时不支持备份恢复。
 
 ## 开发步骤
 
@@ -172,4 +171,4 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 针对应用接入数据的备份与恢复，有以下相关实例可供参考：
 
-- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)
+- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/FileManagement/FileBackupExtension)

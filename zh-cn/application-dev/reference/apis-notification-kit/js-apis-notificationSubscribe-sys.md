@@ -192,7 +192,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
-订阅通知并指定订阅信息。使用Promise异步回调。
+订阅本应用的通知并指定订阅信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -215,8 +215,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 201      | Permission denied.     |  
+| -------- | ----------------------------------- | 
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
@@ -543,7 +542,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 | 参数名     | 类型       | 必填 | 说明       |
 | -------- | ---------- | ---- | ---------- |
-| hashCode | string | 是   | 通知唯一ID。 |
+| hashCode | string | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **返回值：**
@@ -875,6 +874,7 @@ let removeAllCallback = (err: BusinessError) => {
     console.info("removeAll success");
   }
 }
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```

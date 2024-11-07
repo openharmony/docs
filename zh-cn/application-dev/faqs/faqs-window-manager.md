@@ -143,9 +143,9 @@ try {
 
 ## 如何监听窗口大小的变化(API 9)
 
-**解决措施**
+获取窗口实例对象后，可以通过[window.on('windowSizeChange')](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7)方法实现对窗口尺寸大小变化的监听。
 
-获取窗口实例对象后，可以通过窗口的on('windowSizeChange')方法实现对窗口尺寸大小变化的监听
+需要注意的是，在window侧如果窗口大小没发生变化，此监听不会被触发。如直接旋转180度的情况下，窗口大小并没有改变，此时不会通知回调。在这种情况下，应用可以通过监听[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)事件，在callback中通过display接口来获取窗口尺寸大小。
 
 ```
 try {
@@ -156,10 +156,6 @@ try {
     console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
 }
 ```
-
-**参考链接**
-
-[window.on\("windowSizeChange"\)](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7)
 
 ## 如何监听当前屏幕的横竖屏状态(API 10)
 
@@ -254,6 +250,61 @@ struct ScreenTest {
 
 [设置窗口的显示方向属性](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9)  
 [开启显示设备变化的监听](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## 在display.on('change')监听回调中，无法使用Window实例获取更新后的窗口大小(API 10)
+
+**解决措施**
+
+旋转涉及[@ohos.window](../reference/apis-arkui/js-apis-window.md)和[@ohos.display](../reference/apis-arkui/js-apis-display.md)两个模块，处于不同进程。由于旋转完后display的更新时间早于window的更新时间（display旋转时直接宽高互换，提前可预知；window要等ArkUI布局完成才能确定窗口大小，耗时长），故在display触发变化时获取窗口信息会存在时序问题（窗口信息还未更新完成，此时使用Window实例获取到的还是原来的宽高）。应用可以通过display.on('change')接口监听显示设备变化，在callback中通过Display实例获取屏幕的width、height、orientation等信息。
+ 
+**错误示例**
+
+```ts
+// display先更新
+display.on('change', async (data) => {
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation);
+  let windowClass: window.Window = await window.getLastWindow(this.context);
+  // window后更新，获取到的还是原来的宽高
+  let windowProperties = windowClass.getWindowProperties();
+  console.info('Width: ' + windowProperties.windowRect.width +
+    ', height: ' + windowProperties.windowRect.height);
+  // 请确保已获取到相关Window实例，即windowClass
+  windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
+});
+```
+
+**正确示例**
+
+```ts
+display.on('change', (data) => {
+  console.info('Succeeded in enabling the listener for display changes. Data: ' +
+  JSON.stringify(data));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation + 'width: ' +
+  newDisplay.width + ', height: ' + newDisplay.height);
+});
+```
+
+**参考链接**
+
+[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## 如何同时获取屏幕方向orientation和系统规避区avoidAreaChange信息(API 10)
+
+可以通过[on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)接口监听窗口系统规避区域的变化，在callback中获取avoidAreaChange信息，并通过Display实例获取屏幕方向orientation等信息。
+
+```ts
+// 请确保已获取到相关Window实例，即windowClass
+windowClass.on('avoidAreaChange', async (data) => {
+  console.info('Succeeded in enabling the listener for avoid area changes. Type: ' +
+    JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation);
+  let windowClass: window.Window = await window.getLastWindow(this.context);
+  windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
+});
+```
 
 <!--no_check-->
 

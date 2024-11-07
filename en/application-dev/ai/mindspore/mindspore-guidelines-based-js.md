@@ -31,7 +31,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 1. Select an image classification model.
 2. Use the MindSpore Lite inference model on the device to classify the selected images.
 
-## Environment Setup
+## Environment preparations
 
 Install DevEco Studio 4.1 or later, and update the SDK to API version 11 or later.
 
@@ -52,22 +52,22 @@ If you have other pre-trained models for image classification, convert the origi
 1. Call [@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) to pick up the desired image in the album.
 
    ```ts
-   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let uris: Array<string> = [];
    
    // Create an image picker instance.
-   let photoSelectOptions = new picker.PhotoSelectOptions();
+   let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    
    // Set the media file type to IMAGE and set the maximum number of media files that can be selected.
-   photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
    photoSelectOptions.maxSelectNumber = 1;
    
    // Create an album picker instance and call select() to open the album page for file selection. After file selection is done, the result set is returned through photoSelectResult.
-   let photoPicker = new picker.PhotoViewPicker();
+   let photoPicker = new photoAccessHelper.PhotoViewPicker();
    photoPicker.select(photoSelectOptions, async (
-     err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
+     err: BusinessError, photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
      if (err) {
        console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
        return;
@@ -169,7 +169,7 @@ If you have other pre-trained models for image classification, convert the origi
    1. Create a context, and set parameters such as the number of runtime threads and device type.
    2. Load the model. In this example, the model is loaded from the memory.
    3. Load data. Before executing a model, you need to obtain the model input and then fill data in the input tensors.
-   4. Perform model inference through the **predict** API.
+   4. Perform model inference through Call the **predict** API to perform model inference.
 
    ```ts
    // model.ets
@@ -219,7 +219,7 @@ let maxIndex: number = 0;
 let maxArray: Array<number> = [];
 let maxIndexArray: Array<number> = [];
 
-// Assume that the image buffer is stored in float32View after preprocessing.
+// The buffer data of the input image is stored in float32View after preprocessing. For details, see Image Input and Preprocessing.
 let inputs: ArrayBuffer[] = [float32View.buffer];
 let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
 resMgr.getRawFileContent(modelName).then(modelBuffer => {
@@ -235,6 +235,10 @@ resMgr.getRawFileContent(modelName).then(modelBuffer => {
       }
       console.info('MS_LITE_LOG: ' + printStr);
       // Obtain the maximum number of categories.
+      this.max = 0;
+      this.maxIndex = 0;
+      this.maxArray = [];
+      this.maxIndexArray = [];
       let newArray = out.filter(value => value !== max)
       for (let n = 0; n < 5; n++) {
         max = out[0];
@@ -293,3 +297,6 @@ resMgr.getRawFileContent(modelName).then(modelBuffer => {
 Touch the **photo** button on the device screen, select an image, and touch **OK**. The top 4 categories of the image are displayed below the image.
 
 <img src="figures/step1.png" width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/step4.png" width="20%"/>
+
+
+<!--RP1--><!--RP1End-->

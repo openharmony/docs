@@ -37,11 +37,9 @@ HashMap进行增、删、改、查操作的常用API如下：
 
 [HashSet](../reference/apis-arkts/js-apis-hashset.md)可用来存储一系列值的集合，存储元素中value是唯一的。
 
-HashSet依据泛型定义，集合中通过value的hash值确定其存储位置，从而快速找到该值。HashSet初始容量大小为16，支持动态扩容，每次扩容大小为原始容量的2倍。value的类型满足ECMA标准中要求的类型。HashSet底层数据结构基于HashTable实现，冲突策略采用链地址法。
+HashSet依据泛型定义，集合中通过value的hash值确定其存储位置，从而快速找到该值。HashSet初始容量大小为16，支持动态扩容，每次扩容大小为原始容量的2倍。value的类型满足ECMA标准中要求的类型。HashSet基于[HashMap](../reference/apis-arkts/js-apis-hashmap.md)实现，只对value对象进行处理。底层数据结构与HashMap一致。
 
-HashSet基于[HashMap](../reference/apis-arkts/js-apis-hashmap.md)实现。在HashSet中，只对value对象进行处理。
-
-HashSet和[TreeSet](../reference/apis-arkts/js-apis-treeset.md)相比，HashSet中的数据无序存放，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
+HashSet和[TreeSet](../reference/apis-arkts/js-apis-treeset.md)相比，HashSet中的数据无序存放，即不能由用户指定排序方式，而TreeSet是有序存放，能够依照用户给定的排序函数对元素进行排序。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
 
 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
@@ -94,7 +92,7 @@ TreeMap进行增、删、改、查操作的常用API如下：
 
 TreeSet依据泛型定义，集合中的value值是有序的，TreeSet的底层是一棵二叉树，可以通过树的二叉查找快速的找到该value值，value的类型满足ECMA标准中要求的类型。TreeSet中的值是有序存储的。TreeSet底层基于红黑树实现，可以进行快速的插入和删除。
 
-TreeSet基于[TreeMap](../reference/apis-arkts/js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一且有序。
+TreeSet基于[TreeMap](../reference/apis-arkts/js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一，且能够依照用户给定的排序函数对元素进行排序。
 
 TreeSet和[HashSet](../reference/apis-arkts/js-apis-hashset.md)相比，HashSet中的数据无序存放，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
 

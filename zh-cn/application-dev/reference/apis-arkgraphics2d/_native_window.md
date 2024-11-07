@@ -260,23 +260,23 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形， 函数中的可变参数是 [输入] int32_t width，[输入] int32_t height。 | 
-| GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形， 函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 | 
-| GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format。 | 
-| SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format。 | 
-| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] uint64_t \*usage。 | 
-| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] uint64_t usage。 | 
-| SET_STRIDE | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride。 | 
-| GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride。 | 
-| SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。 | 
-| GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔， 函数中的可变参数是 [输出] int32_t \*interval。 | 
-| SET_TIMEOUT | 设置请求本地窗口缓冲区的超时等待时间， 函数中的可变参数是 [输入] int32_t timeout。 | 
-| GET_TIMEOUT | 获取请求本地窗口缓冲区的超时等待时间， 函数中的可变参数是 [输出] int32_t \*timeout。 | 
-| SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间， 函数中的可变参数是 [输入] int32_t colorGamut。 | 
-| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间， 函数中的可变参数是 [out int32_t \*colorGamut]。 | 
-| SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform。 | 
-| GET_TRANSFORM | 获取本地窗口缓冲区变换， 函数中的可变参数是 [输出] int32_t \*transform。 | 
-| SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳， 函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
+| SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形，函数中的可变参数是 [输入] int32_t width，[输入] int32_t height。 | 
+| GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形，函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 | 
+| GET_FORMAT | 获取本地窗口缓冲区格式，函数中的可变参数是 [输出] int32_t \*format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
+| SET_FORMAT | 设置本地窗口缓冲区格式，函数中的可变参数是 [输入] int32_t format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
+| GET_USAGE | 获取本地窗口读写方式，函数中的可变参数是 [输出] uint64_t \*usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
+| SET_USAGE | 设置本地窗口缓冲区读写方式，函数中的可变参数是 [输入] uint64_t usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
+| SET_STRIDE | 设置本地窗口缓冲区步幅，函数中的可变参数是 [输入] int32_t stride，单位为Byte。 | 
+| GET_STRIDE | 获取本地窗口缓冲区步幅，函数中的可变参数是 [输出] int32_t \*stride，单位为Byte。 | 
+| SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔，函数中的可变参数是 [输入] int32_t interval。 | 
+| GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔，函数中的可变参数是 [输出] int32_t \*interval。 | 
+| SET_TIMEOUT | 设置请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输入] int32_t timeout，单位为毫秒。 | 
+| GET_TIMEOUT | 获取请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输出] int32_t \*timeout，单位为毫秒。 | 
+| SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间，函数中的可变参数是 [输入] int32_t colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
+| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间，函数中的可变参数是 [out int32_t \*colorGamut]，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
+| SET_TRANSFORM | 设置本地窗口缓冲区变换，函数中的可变参数是 [输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
+| GET_TRANSFORM | 获取本地窗口缓冲区变换，函数中的可变参数是 [输出] int32_t \*transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
+| SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳，函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
 | GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size。<br/>从API version 12开始支持此枚举。 | 
 | SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
 | SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
@@ -1034,7 +1034,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针。 | 
 | code | 表示操作码，详见[NativeWindowOperation](#nativewindowoperation)。 | 
-| ... | 可变参数，必须与操作码一一对应。 | 
+| ... | 可变参数，必须与操作码对应的数据类型保持一致，且入参数量严格按照操作码提示传入，否则会存在未定义行为。 | 
 
 **返回：**
 

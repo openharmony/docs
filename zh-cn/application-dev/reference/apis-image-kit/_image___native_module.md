@@ -692,6 +692,9 @@ enum PIXEL_FORMAT
 | PIXEL_FORMAT_RGBA_F16 | RGBA_F16格式 | 
 | PIXEL_FORMAT_NV21 | NV21格式 | 
 | PIXEL_FORMAT_NV12 | NV12格式 | 
+| PIXEL_FORMAT_RGBA_1010102 | RGBA_1010102 格式 | 
+| PIXEL_FORMAT_YCBCR_P010 | YCBCR_P010 格式 | 
+| PIXEL_FORMAT_YCRCB_P010 | YCRCB_P010 格式 | 
 
 
 ### OH_Pixelmap_HdrMetadataKey
@@ -1558,6 +1561,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage (OH_ImageReceiverNative *
 **描述**
 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。
 
+**注意**：此接口需要在[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调后调用，才能正常的接收到数据。并且此接口返回的[OH_ImageNative](#oh_imagenative)使用完毕后需要调用[OH_ImageNative_Release](#oh_imagenative_release)方法释放，释放后才可以继续接收新的数据。
+
 **起始版本：** 12
 
 **参数:**
@@ -1583,6 +1588,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage (OH_ImageReceiverNative * r
 ```
 **描述**
 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。
+
+**注意**：此接口需要在[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调后调用，才能正常的接收到数据。并且此接口返回的[OH_ImageNative](#oh_imagenative)使用完毕后需要调用[OH_ImageNative_Release](#oh_imagenative_release)方法释放，释放后才可以继续接收新的数据。
 
 **起始版本：** 12
 

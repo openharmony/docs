@@ -314,7 +314,7 @@ navDestination(builder: (name: string, param: unknown) => void)
 
 | 参数名  | 类型                                   | 必填 | 说明                     |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：Navdestination页面详细参数。 |
+| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：NavDestination页面详细参数。 |
 
 ### navBarWidthRange<sup>10+</sup>
 
@@ -1165,6 +1165,19 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
+| param | unknown | 是    | NavDestination页面详细参数。 |
+| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
+| isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
+
+### 属性
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型      | 必填   | 说明                   |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
@@ -1374,7 +1387,7 @@ Navigation首页名字。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
+| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#edgeeffect)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
 | Mini | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。                                |
 | Full | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。                                |
 
@@ -1619,6 +1632,7 @@ struct NavigationExample {
 
   registerInterception() {
     this.pageInfos.setInterception({
+      // 页面跳转前拦截，允许操作栈，在当前跳转中生效。
       willShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
                  operation: NavigationOperation, animated: boolean) => {
         if (!this.isUseInterception) {
@@ -1628,13 +1642,14 @@ struct NavigationExample {
           console.log("target page is navigation home");
           return;
         }
-        // redirect target page.Change pageTwo to pageOne.
+        // 重定向目标页面，更改为pageTwo页面到pageOne页面。
         let target: NavDestinationContext = to as NavDestinationContext;
         if (target.pathInfo.name === 'pageTwo') {
           target.pathStack.pop();
           target.pathStack.pushPathByName('pageOne', null);
         }
       },
+      // 页面跳转后回调，在该回调中操作栈在下一次跳转中刷新。
       didShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
                 operation: NavigationOperation, isAnimated: boolean) => {
         if (!this.isUseInterception) {
@@ -1651,6 +1666,7 @@ struct NavigationExample {
           console.log(`current transition is to ${(to as NavDestinationContext).pathInfo.name}`);
         }
       },
+      // Navigation单双栏显示状态发生变更时触发该回调。
       modeChange: (mode: NavigationMode) => {
         if (!this.isUseInterception) {
           return;
@@ -2175,7 +2191,7 @@ export struct PageTwo {
 }
 ```
 ```ts
-// CustomNavigationUtils.ts
+// CustomNavigationUtils.ets
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -2628,11 +2644,11 @@ struct BackComponent {
       .layoutWeight(9)
       Column() {}
       .height('100%')
-      .backgroundColor("17A98D")
+      .backgroundColor("#17A98D")
       .layoutWeight(9)
       Column() {}
       .height('100%')
-      .backgroundColor("FFC000")
+      .backgroundColor("#FFC000")
       .layoutWeight(9)
     }
     .height('100%')

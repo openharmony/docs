@@ -39,13 +39,9 @@ import { request } from '@kit.BasicServicesKit';
 | ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | 存储空间不足。 |
 | ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | 网络重定向过多导致的错误。 |
 | ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | 无法识别的HTTP代码。 |
-| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | 未知错误。 |
+| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | 未知错误。（例如API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成ERROR_UNKNOWN错误。） |
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | 网络未连接。 |
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | 网络类型不匹配。 |
-
-> **说明：**
->
-> API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成ERROR_UNKNOWN错误。
 
 ### 下载任务暂停原因
 下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的pausedReason字段取值。
@@ -74,11 +70,11 @@ import { request } from '@kit.BasicServicesKit';
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
-上传，异步方法，使用promise形式返回结果。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
+上传，异步方法，使用promise形式返回结果，支持HTTP协议。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
@@ -92,7 +88,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | 使用Promise方式，异步返回上传任务。 |
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | 使用Promise方式，异步返回上传任务UploadTask的Promise对象。 |
 
 **错误码：**
 
@@ -137,11 +133,11 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
-上传，异步方法，使用callback形式返回结果。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
+上传，异步方法，使用callback形式返回结果，支持HTTP协议。通过[on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9)可获取任务上传时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
@@ -149,7 +145,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。当上传成功，err为undefined，data为获取到的UploadTask对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -205,7 +201,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
@@ -217,7 +213,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[UploadTask](#uploadtask)&gt; | 使用Promise方式，异步返回上传任务。 |
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | 使用Promise方式，异步返回上传任务UploadTask的Promise对象。 |
 
 **错误码：**
 
@@ -260,14 +256,14 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
-  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。当上传成功，err为undefined，data为获取到的UploadTask对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -313,21 +309,21 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 >
 > 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'progress'（上传的进度信息）。 |
-  | callback | function | 是 | 上传进度的回调函数。 |
+  | type | string | 是 | 订阅的事件类型，取值为'progress'（上传任务的进度信息）。 |
+  | callback | function | 是 | 上传任务进度的回调函数，返回已上传文件大小和上传文件总大小。 |
 
   回调函数的参数
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| uploadedSize | number | 是 | 当前已上传文件大小，单位为B。 |
-| totalSize | number | 是 | 上传文件的总大小，单位为B。 |
+| uploadedSize | number | 是 | 当前已上传文件大小，单位为字节。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为字节。 |
 
 **错误码：**
 
@@ -361,7 +357,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应）。 |
-  | callback | function | 是 | HTTP&nbsp;Response事件的回调函数。 |
+  | callback | function | 是 | HTTP&nbsp;Response事件的回调函数，返回响应请求内容。 |
 
   回调函数的参数：
 
@@ -394,20 +390,15 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 订阅上传任务完成或失败事件，异步方法，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | 是 | 上传任务完成或失败的回调函数。 |
+  | type | string | 是 | 订阅上传任务的回调类型，支持的事件包括：`'complete'`\|`'fail'`。<br/>\-`'complete'`:表示上传任务完成。 <br/>\-`'fail'`:表示上传任务失败。 
+  | callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | 是 | 上传任务完成或失败的回调函数。返回上传任务的任务状态信息。 |
 
-  回调函数的参数
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
 
 **错误码：**
 
@@ -443,15 +434,21 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 取消订阅上传任务进度事件。
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
-  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
+回调函数的参数
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uploadedSize | number | 是 | 当前已上传文件大小，单位为字节。 |
+| totalSize | number | 是 | 上传文件的总大小，单位为字节。 |
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
@@ -485,7 +482,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 取消订阅上传任务HTTP响应事件。
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
@@ -526,7 +523,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 取消订阅上传任务完成或失败事件。
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
@@ -593,13 +590,13 @@ delete(): Promise&lt;boolean&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 使用Promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
+  | Promise&lt;boolean&gt; | 使用Promise方式异步回调，返回true表示移除上传任务成功；返回false表示移除上传任务失败。 |
 
 **错误码：**
 
@@ -633,13 +630,13 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示异步返回移除任务成功；返回false表示异步返回移除任务失败。 |
 
 **错误码：**
 
@@ -679,13 +676,13 @@ remove(): Promise&lt;boolean&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 使用Promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
+  | Promise&lt;boolean&gt; | 使用Promise方式异步回调，返回true表示移除上传任务成功；返回false表示移除上传任务失败。 |
 
 **错误码：**
 
@@ -718,13 +715,13 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Upload
+**系统能力**：SystemCapability.MiscServices.Upload
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示异步返回移除任务成功；返回false表示异步返回移除任务失败。 |
 
 **错误码：**
 
@@ -753,7 +750,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## UploadConfig<sup>6+</sup>
 上传任务的配置信息。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -767,7 +764,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
-上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
+上传任务的任务信息，是[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -777,7 +774,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息。此处推荐使用[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
 | message | string | 是 | 上传任务结果描述信息                                                                                                                                |
 
-其中，responseCode 包含的返回码值如下：
+其中，responseCode包含的返回码值如下：
 
 | 返回码 | 具体信息                               |
 |-----|------------------------------------|
@@ -811,7 +808,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 ## RequestData
 [UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -822,11 +819,11 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
-下载，异步方法，使用promise形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
+下载，异步方法，使用promise形式返回结果，支持HTTP协议。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -839,11 +836,11 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 使用Promise方式，异步返回返回下载任务。 |
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 使用Promise方式，异步返回下载任务DownloadTask的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -879,11 +876,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
-下载，异步方法，使用callback形式返回结果。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
+下载，异步方法，使用callback形式返回结果，支持HTTP协议。通过[on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7)可获取任务下载时的状态信息，包括任务完成、暂停或移除。通过[on('fail')<sup>7+</sup>](#onfail7)可获取任务下载时的错误信息。
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -891,11 +888,11 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 回调函数，异步返回下载任务。 |
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 回调函数。当下载任务成功，err为undefined，data为获取到的DownloadTask对象；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -945,7 +942,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -957,7 +954,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 使用Promise方式，异步返回返回下载任务。 |
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 使用Promise方式，异步返回下载任务DownloadTask的Promise对象。 |
 
 **错误码：**
 
@@ -994,14 +991,14 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
-  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 回调函数，异步返回下载任务。 |
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 回调函数。当下载任务成功，err为undefined，data为获取到的DownloadTask对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -1041,21 +1038,21 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 >
 > 当应用处于后台时，为满足功耗性能要求，不支持调用此接口进行回调。
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'progress'（下载的进度信息）。 |
-  | callback | function | 是 | 下载任务进度的回调函数。 |
+  | callback | function | 是 | 下载任务进度的回调函数，返回已上传文件大小和上传文件总大小。 |
 
   回调函数的参数：
 
 | 参数名 | 类型 | 必填 | 说明                                                                      |
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
-| receivedSize | number | 是 | 当前下载的进度，单位为B。                                                           |
-| totalSize | number | 是 | 下载文件的总大小，单位为B。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+| receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
+| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
 
 **错误码：**
 
@@ -1093,14 +1090,21 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
 取消订阅下载任务进度事件。
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
-  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
+  
+  回调函数的参数：
+
+| 参数名 | 类型 | 必填 | 说明                                                                      |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
+| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
 
 **错误码：**
 
@@ -1197,11 +1201,11 @@ try {
 
 ### off('complete'|'pause'|'remove')<sup>7+</sup>
 
-off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
+off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 
 取消订阅下载任务相关的事件。
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -1281,7 +1285,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 订阅下载任务失败事件，异步方法，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -1332,7 +1336,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
 取消订阅下载任务失败事件。
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
@@ -1386,13 +1390,13 @@ delete(): Promise&lt;boolean&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 使用promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
+  | Promise&lt;boolean&gt; | 使用promise方式异步回调，返回true表示移除下载任务成功；返回false表示移除下载任务失败。 |
 
 **错误码：**
 
@@ -1437,13 +1441,13 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示异步返回移除任务是否成功；返回false表示异步返回移除任务失败。 |
 
 **错误码：**
 
@@ -1486,17 +1490,17 @@ try {
 
 getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
-查询下载任务，异步方法，使用promise形式返回DownloadInfo里的信息。
+查询下载任务的信息，异步方法，使用promise形式返回DownloadInfo里的信息。
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  使用promise方式，异步返回下载任务信息。 |
+  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  使用promise方式，异步返回下载任务信息DownloadInfo的Promise对象。 |
 
 **错误码：**
 
@@ -1541,13 +1545,13 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 回调函数，异步返回下载任务信息。 |
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 回调函数。当查询下载任务操作成功，err为undefined，data为获取到的DownloadInfo对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -1590,17 +1594,17 @@ try {
 
 getTaskMimeType(): Promise&lt;string&gt;
 
-查询下载的任务的 MimeType (HTTP中表示资源的媒体类型)，异步方法，使用promise形式返回结果。
+查询下载的任务的MimeType(HTTP中表示资源的媒体类型)，异步方法，使用promise形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;string&gt; | 使用promise方式，异步返回下载任务的MimeType。 |
+  | Promise&lt;string&gt; | 使用promise方式，异步返回下载任务的MimeType的Promise对象。 |
 
 **错误码：**
 
@@ -1645,13 +1649,13 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，异步返回下载任务的MimeType。 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当查询下载任务MimeType成功，err为undefined，data为获取到的下载任务的MimeType对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -1698,13 +1702,13 @@ suspend(): Promise&lt;boolean&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 使用promise方式，异步返回暂停下载任务是否成功。 |
+  | Promise&lt;boolean&gt; | 使用promise方式异步回调，返回true表示暂停下载任务成功；返回false表示暂停下载任务失败。 |
 
 **错误码：**
 
@@ -1749,13 +1753,13 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回暂停下载任务是否成功。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示暂停下载任务成功；返回false表示暂停下载任务失败。 |
 
 **错误码：**
 
@@ -1802,13 +1806,13 @@ restore(): Promise&lt;boolean&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 使用promise方式，异步返回重新启动暂停的下载任务是否成功。 |
+  | Promise&lt;boolean&gt; | 使用promise方式异步回调，返回true表示重新启动已暂停的下载任务成功；返回false表示重新启动下载任务失败。 |
 
 **错误码：**
 
@@ -1853,13 +1857,13 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回重新启动暂停的下载任务是否成功。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示重新启动已暂停的下载任务成功；返回false表示重新启动下载任务失败。 |
 
 **错误码：**
 
@@ -1910,13 +1914,13 @@ remove(): Promise&lt;boolean&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 使用promise方式，异步返回移除任务是否成功。 |
+  | Promise&lt;boolean&gt; | 使用promise方式异步回调，返回true表示移除下载任务成功；返回false表示移除下载任务失败。 |
 
 **错误码：**
 
@@ -1949,13 +1953,13 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示移除下载任务成功；返回false表示移除下载任务失败。 |
 
 **错误码：**
 
@@ -1990,13 +1994,13 @@ query(): Promise&lt;DownloadInfo&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 使用promise方式，异步返回下载任务信息。 |
+  | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | 使用promise方式，异步返回下载任务信息DownloadInfo的Promise对象。 |
 
 **错误码：**
 
@@ -2029,13 +2033,13 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 回调函数，异步返回下载任务信息。 |
+  | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 回调函数。当查询下载任务成功，err为undefined，data为获取到的DownloadInfo对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -2062,7 +2066,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
 queryMimeType(): Promise&lt;string&gt;
 
-查询下载的任务的 MimeType，异步方法，使用promise形式返回结果。
+查询下载的任务的MimeType，异步方法，使用promise形式返回结果。
 
 > **说明：**
 >
@@ -2070,13 +2074,13 @@ queryMimeType(): Promise&lt;string&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;string&gt; | 使用promise方式，异步返回下载任务的MimeType。 |
+  | Promise&lt;string&gt; | 使用promise方式，异步返回下载任务的MimeType的Promise对象。 |
 
 **错误码：**
 
@@ -2101,7 +2105,7 @@ queryMimeType(): Promise&lt;string&gt;
 
 queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
-查询下载的任务的 MimeType，异步方法，使用callback形式返回结果。
+查询下载的任务的MimeType，异步方法，使用callback形式返回结果。
 
 > **说明：**
 >
@@ -2109,13 +2113,13 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，异步返回下载任务的MimeType。 |
+  | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当查询下载任务的MimeType成功，err为undefined，data为获取到的任务MimeType对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -2150,13 +2154,13 @@ pause(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 使用promise方式，异步返回暂停下载任务是否成功。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2189,13 +2193,13 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，异步返回暂停下载任务是否成功。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当暂停下载任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2230,13 +2234,13 @@ resume(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 使用promise方式，异步返回重新启动暂停的下载任务是否成功。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2269,13 +2273,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，异步返回重新启动暂停的下载任务是否成功。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当重新启动已暂停的下载任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2301,7 +2305,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## DownloadConfig
 下载任务的配置信息。
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2319,7 +2323,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## DownloadInfo<sup>7+</sup>
 下载任务信息，[getTaskInfo<sup>9+</sup>](#gettaskinfo9)接口的回调参数。
 
-**系统能力**: SystemCapability.MiscServices.Download
+**系统能力**：SystemCapability.MiscServices.Download
 
 | 名称 | 类型 |必填 |  说明 |
 | -------- | -------- | -------- | -------- |
@@ -2331,9 +2335,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | status | number |是| 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
 | targetURI | string |是| 下载文件的URI。 |
 | downloadTitle | string |是| 下载任务名称。 |
-| downloadTotalBytes | number |是| 下载的文件的总大小（int&nbsp;bytes）。 |
+| downloadTotalBytes | number |是| 下载的文件的总大小，单位为字节。 |
 | description | string |是| 待下载任务的描述信息。 |
-| downloadedBytes | number |是| 实时下载大小（int&nbsp;&nbsp;bytes）。 |
+| downloadedBytes | number |是| 实时下载大小，单位为字节。 |
 
 ## Action<sup>10+</sup>  
 
@@ -2341,7 +2345,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
@@ -2355,7 +2359,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
@@ -2369,7 +2373,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
@@ -2387,7 +2391,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 <!--Del-->
 事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。<!--DelEnd-->
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 | 说明        |
 | -------- | ------- |-----------|
@@ -2398,7 +2402,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2413,7 +2417,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2424,7 +2428,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## Config<sup>10+</sup> 
 上传/下载任务的配置信息。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2459,7 +2463,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
@@ -2479,14 +2483,14 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明                                                                  |
 | -------- | -------- | -------- |---------------------------------------------------------------------|
 | state | [State](#state10) | 是 | 任务当前的状态。                                                            |
 | index | number | 是 | 任务中当前正在处理的文件索引。                                                     |
-| processed | number | 是 | 任务中当前文件的已处理数据大小，单位为B。                                               |
-| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为B。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，sizes 为 -1。 |
+| processed | number | 是 | 任务中当前文件的已处理数据大小，单位为字节。                                               |
+| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，sizes 为 -1。 |
 | extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。                                     |
 
 
@@ -2496,7 +2500,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 | 说明                                                                             |
 | -------- | -------- |--------------------------------------------------------------------------------|
@@ -2518,7 +2522,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## Filter<sup>10+</sup>
 过滤条件。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2531,7 +2535,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## TaskInfo<sup>10+</sup> 
 查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2561,7 +2565,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2578,7 +2582,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -2588,13 +2592,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ### on('progress')<sup>10+</sup>
 
-on(event: 'progress', callback: (progress: Progress) =&gt; void): void
+on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
 订阅任务进度的事件，异步方法，使用callback形式返回结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -2664,13 +2668,13 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 ### on('completed')<sup>10+</sup>
 
-on(event: 'completed', callback: (progress: Progress) =&gt; void): void
+on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
 订阅任务完成事件，异步方法，使用callback形式返回结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -2740,13 +2744,13 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 ### on('failed')<sup>10+</sup>
 
-on(event: 'failed', callback: (progress: Progress) =&gt; void): void
+on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
-订阅任务失败事件，异步方法，使用callback形式返回结果。
+订阅任务失败事件，异步方法，使用callback形式返回结果。可通过调用[request.agent.show<sup>10+</sup>](#requestagentshow10-1)查看错误原因。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -2816,11 +2820,11 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 ### on('pause')<sup>11+</sup>
 
-on(event: 'pause', callback: (progress: Progress) =&gt; void): void
+on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
 订阅任务暂停事件，异步方法，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -2890,11 +2894,11 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
 ### on('resume')<sup>11+</sup>
 
-on(event: 'resume', callback: (progress: Progress) =&gt; void): void
+on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
 订阅任务恢复事件，异步方法，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -2964,11 +2968,11 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
 ### on('remove')<sup>11+</sup>
 
-on(event: 'remove', callback: (progress: Progress) =&gt; void): void
+on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): void
 
 订阅任务删除事件，异步方法，使用callback形式返回结果。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3044,7 +3048,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3114,13 +3118,13 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 ### off('progress')<sup>10+</sup>
 
-off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
+off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 取消订阅任务进度事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3198,13 +3202,13 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 ### off('completed')<sup>10+</sup>
 
-off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
+off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 取消订阅任务完成事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3282,13 +3286,13 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 ### off('failed')<sup>10+</sup>
 
-off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
+off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 取消订阅任务失败事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3366,11 +3370,11 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 ### off('pause')<sup>11+</sup>
 
-off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
+off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 取消订阅任务暂停事件。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3448,11 +3452,11 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
 ### off('resume')<sup>11+</sup>
 
-off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
+off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 取消订阅任务恢复事件。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3530,11 +3534,11 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 ### off('remove')<sup>11+</sup>
 
-off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
+off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void): void
 
 取消订阅任务删除事件。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3618,7 +3622,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -3706,13 +3710,13 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，开启任务成功，err为undefined，否则为错误对象。 |
+  | callback | function | 是 | 回调函数。当开启任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3774,14 +3778,14 @@ start(callback: AsyncCallback&lt;void&gt;): void
 start(): Promise&lt;void&gt;
 
 以下状态的任务可以被启动：
-1. 刚被 request.agent.create 接口创建的任务
-2. 使用 request.agent.create 接口创建的已经失败或者停止的下载任务
+1. 刚被request.agent.create 接口创建的任务
+2. 使用request.agent.create 接口创建的已经失败或者停止的下载任务
 
 **需要权限**：ohos.permission.INTERNET
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **返回值：** 
 
@@ -3848,13 +3852,13 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 暂停任务，可以暂停正在等待/正在运行/正在重试的任务。使用callback异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，暂停任务成功，err为undefined，否则为错误对象。 |
+  | callback | function | 是 | 回调函数。当暂停任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3914,7 +3918,7 @@ pause(): Promise&lt;void&gt;
 
 暂停任务，可以暂停正在等待/正在运行/正在重试的任务。使用Promise异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **返回值：** 
 
@@ -3980,13 +3984,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，重新启动任务成功，err为undefined，否则为错误对象 |
+  | callback | function | 是 | 回调函数。当重新启动任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -4051,7 +4055,7 @@ resume(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.INTERNET
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **返回值：** 
 
@@ -4120,13 +4124,13 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，停止任务成功，err为undefined，否则为错误对象 |
+  | callback | function | 是 | 回调函数。当停止任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -4189,7 +4193,7 @@ stop(): Promise&lt;void&gt;
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **返回值：** 
 
@@ -4251,14 +4255,14 @@ stop(): Promise&lt;void&gt;
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
-创建要上传或下载的任务，并将其排入队列。使用callback异步回调。
+创建要上传或下载的任务，并将其排入队列。支持HTTP协议，使用callback异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -4266,7 +4270,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   | -------- | -------- | -------- | -------- |
   | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数，返回创建任务的配置信息。 |
+  | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数。当创建上传或下载任务成功，err为undefined，data为获取到的Task对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -4334,14 +4338,14 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-创建要上传或下载的任务，并将其排入队列。使用Promise异步回调。
+创建要上传或下载的任务，并将其排入队列。支持HTTP协议，使用Promise异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -4422,7 +4426,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
 根据任务id查询任务。使用Promise异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -4468,14 +4472,14 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，删除指定任务成功，err为undefined，否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当删除指定任务成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -4510,7 +4514,7 @@ remove(id: string): Promise&lt;void&gt;
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -4553,14 +4557,14 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 根据任务id查询任务的详细信息。使用callback异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数。当查询任务操作成功，err为undefined，data为查询到的任务TaskInfo信息；否则为错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
@@ -4592,7 +4596,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
 根据任务id查询任务的详细信息。使用Promise异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -4604,7 +4608,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息TaskInfo的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
@@ -4634,7 +4638,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
 根据任务id和token查询任务的详细信息。使用callback异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -4642,7 +4646,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | -------- | -------- | -------- | -------- |
   | id | string | 是 | 任务id。 |
   | token | string | 是 | 任务查询token。 |
-  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
+  | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数。当查询任务操作成功，err为undefined，data为查询到的任务TaskInfo信息；否则为错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
@@ -4674,7 +4678,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
 根据任务id和token查询任务的详细信息。使用Promise异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
@@ -4687,7 +4691,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+| Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息TaskInfo的Promise对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
@@ -4716,13 +4720,13 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 根据默认[Filter](#filter10)过滤条件查找任务id。使用callback异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。当根据过滤条件查找任务成功，err为undefined，data为满足条件的任务id；否则为错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
@@ -4752,14 +4756,14 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 根据[Filter](#filter10)过滤条件查找任务id。使用callback异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | filter | [Filter](#filter10) | 是 | 过滤条件。 |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。当根据过滤条件查找任务成功，err为undefined，data为满足条件的任务id；否则为错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
@@ -4794,7 +4798,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
 根据[Filter](#filter10)过滤条件查找任务id。使用Promise异步回调。
 
-**系统能力**: SystemCapability.Request.FileTransferAgent
+**系统能力**：SystemCapability.Request.FileTransferAgent
 
 **参数：**
 

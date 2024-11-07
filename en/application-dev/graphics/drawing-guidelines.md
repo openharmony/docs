@@ -439,11 +439,16 @@ The following describes how to use the two types of APIs to implement text drawi
 5. **Release the variables.**
 
     ```c++
+    // Destroy the typography when it is no longer needed.
     OH_Drawing_DestroyTypography(typography);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTypographyHandler(handler);
+    // Destroy the font collection when it is no longer needed.
     OH_Drawing_DestroyFontCollection(fontCollection);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTextStyle(txtStyle);
     OH_Drawing_DestroyTextStyle(txtStyle2);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     ```
 

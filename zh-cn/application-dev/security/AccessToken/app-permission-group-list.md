@@ -150,7 +150,7 @@
 
 - 读写媒体库图片或视频：
 
-  - 推荐方案（无需申请权限）：使用[Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)读取媒体库的图片与视频；使用[保存控件](../../media/medialibrary/photoAccessHelper-savebutton.md)保存媒体库的图片与视频。
+  - 推荐方案（无需申请权限）：使用[Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)读取媒体库的图片与视频；使用[保存控件](../../media/medialibrary/photoAccessHelper-savebutton.md#安全控件保存)保存媒体库的图片与视频。
   - 受限使用方案：申请受限权限<!--RP5-->[ohos.permission.READ_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionread_imagevideo)或[ohos.permission.WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionwrite_imagevideo)<!--RP5End-->读取媒体库的图片与视频。
 
 - 读取媒体库音频文件：

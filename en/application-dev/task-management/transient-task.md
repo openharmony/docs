@@ -19,7 +19,7 @@ An application is suspended after it runs in the background for a short period o
   **Figure 1** Quota calculation for transient tasks
   
   ![transient-task](figures/transient-task.png)
-  
+
   > **NOTE**
   >
   > The application shall proactively cancel a transient task when it is finished. Otherwise, the time frame allowed for the application to run in the background will be affected.
@@ -32,11 +32,11 @@ The table below lists the main APIs used for transient task development. For det
 
 **Table 1** Main APIs for transient tasks
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo | Requests a transient task. |
-| getRemainingDelayTime(requestId: number): Promise&lt;number&gt; | Obtains the remaining time of a transient task. |
-| cancelSuspendDelay(requestId: number): void | Cancels a transient task. |
+| requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo | Requests a transient task.|
+| getRemainingDelayTime(requestId: number): Promise&lt;number&gt; | Obtains the remaining time of a transient task.|
+| cancelSuspendDelay(requestId: number): void | Cancels a transient task.|
 
 
 ## How to Develop

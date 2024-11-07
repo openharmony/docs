@@ -97,7 +97,7 @@ The **WorkInfo** parameter is used to set conditions for triggering task schedul
 
 - At least one condition must be set, including the network type, charging type, storage status, battery status, and timing status.
 
-- For repeated tasks, **repeatCycleTime** must be at least 20 minutes. When **isRepeat** is set, you must set **repeatCycleTime** or **repeatCount**.
+- For repeated tasks, **repeatCycleTime** must be at least 2 hours. When **isRepeat** is set, you must set **repeatCycleTime** or **repeatCount**.
 
 The table below lists the APIs used for developing deferred task scheduling callbacks. For details about more APIs and their usage, see [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md).
 

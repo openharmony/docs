@@ -70,6 +70,8 @@ Obtains the default active data network. This API uses an asynchronous callback 
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -112,6 +114,8 @@ Obtains the default active data network. This API uses a promise to return the r
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                        |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
@@ -148,6 +152,8 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                        |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
@@ -165,7 +171,7 @@ let netHandle = connection.getDefaultNetSync();
 
 ## connection.setAppHttpProxy<sup>11+</sup>
 
-setAppHttpProxy(httpProxy: HttpProxy): void;
+setAppHttpProxy(httpProxy: HttpProxy): void
 
 Sets the application-level HTTP proxy configuration of the network.
 
@@ -178,6 +184,8 @@ Sets the application-level HTTP proxy configuration of the network.
 | httpProxy | [HttpProxy](#httpproxy10)                                      | Yes  | Application-level HTTP proxy configuration.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                      |
 | ------- | -----------------------------  |
@@ -350,6 +358,8 @@ This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
 | 2100002  | Failed to connect to the service.            |
@@ -372,7 +382,7 @@ connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy
 
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
-getDefaultHttpProxy(): Promise\<HttpProxy>;
+getDefaultHttpProxy(): Promise\<HttpProxy>
 
 Obtains the default HTTP proxy configuration of the network.
 If the global proxy is set, the global HTTP proxy configuration is returned. If [setAppNet](#connectionsetappnet9) is used to bind the application to the network specified by [NetHandle](#nethandle), the HTTP proxy configuration of this network is returned. In other cases, the HTTP proxy configuration of the default network is returned.
@@ -387,6 +397,8 @@ This API uses a promise to return the result.
 | Promise<[HttpProxy](#httpproxy10)> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -422,6 +434,8 @@ Obtains information about the network bound to an application. This API uses an 
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 401     | Parameter error.                 |
@@ -445,7 +459,7 @@ connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
 
 ## connection.getAppNet<sup>9+</sup>
 
-getAppNet(): Promise\<NetHandle>;
+getAppNet(): Promise\<NetHandle>
 
 Obtains information about the network bound to an application. This API uses a promise to return the result.
 
@@ -458,6 +472,8 @@ Obtains information about the network bound to an application. This API uses a p
 | Promise\<[NetHandle](#nethandle)> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
@@ -493,6 +509,8 @@ Obtains information about the network bound to an application. This API returns 
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 2100002 | Failed to connect to the service.|
@@ -525,6 +543,8 @@ Binds an application to the specified network, so that the application can acces
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -541,7 +561,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
     return;
   }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
@@ -556,7 +576,7 @@ connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle)
 
 ## connection.setAppNet<sup>9+</sup>
 
-setAppNet(netHandle: NetHandle): Promise\<void>;
+setAppNet(netHandle: NetHandle): Promise\<void>
 
 Binds an application to the specified network, so that the application can access the external network only through this network. This API uses a promise to return the result.
 
@@ -578,6 +598,8 @@ Binds an application to the specified network, so that the application can acces
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -594,7 +616,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
@@ -621,6 +644,8 @@ Obtains the list of all connected networks. This API uses an asynchronous callba
 | callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | Yes| Callback used to return the result. If the list of all connected networks is obtained successfully, **error** is **undefined** and **data** is the list of activated data networks. Otherwise, **error** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
@@ -662,6 +687,8 @@ Obtains the list of all connected networks. This API uses a promise to return th
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -696,6 +723,8 @@ Obtains the list of all connected networks. This API returns the result synchron
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -729,6 +758,8 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -745,7 +776,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
     if (error) {
@@ -781,6 +813,8 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -796,7 +830,8 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -828,6 +863,8 @@ Obtains network connection information based on the specified **netHandle**.
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -847,7 +884,8 @@ let connectionproperties: connection.ConnectionProperties;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   netHandle = connection.getDefaultNetSync();
   connectionproperties = connection.getConnectionPropertiesSync(netHandle);
@@ -876,6 +914,8 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -892,7 +932,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
     if (error) {
@@ -930,6 +971,8 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -945,7 +988,8 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -979,6 +1023,8 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -998,9 +1044,10 @@ let getNetCapabilitiesSync: connection.NetCapabilities;
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
-  netHandle = connection.getDefaultNetSync();
+
   getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
   console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
 })
@@ -1023,6 +1070,8 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** indicates the data traffic usage is metered.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
@@ -1061,11 +1110,13 @@ Checks whether the data traffic usage on the current network is metered. This AP
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                        |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
 | 2100002 | Failed to connect to the service.|
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.           |
 
 **Example**
 
@@ -1095,11 +1146,13 @@ Checks whether the data traffic usage on the current network is metered. This AP
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                        |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
 | 2100002 | Failed to connect to the service.|
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.           |
 
 **Example**
 
@@ -1127,10 +1180,12 @@ Checks whether the default data network is activated. This API uses an asynchron
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                         |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                 |
+| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 
@@ -1163,6 +1218,8 @@ Checks whether the default data network is activated. This API uses a promise to
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the default data network is activated.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
@@ -1198,6 +1255,8 @@ Checks whether the default data network is activated. This API returns the resul
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -1232,6 +1291,8 @@ Reports connection of the data network to the network management module. This AP
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
@@ -1255,7 +1316,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 ## connection.reportNetConnected
 
-reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
+reportNetConnected(netHandle: NetHandle): Promise\<void\>
 
 Reports connection of the data network to the network management module. This API uses a promise to return the result.
 
@@ -1276,13 +1337,15 @@ Reports connection of the data network to the network management module. This AP
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -1314,6 +1377,8 @@ Reports disconnection of the data network to the network management module. This
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the network status is reported successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
@@ -1358,13 +1423,15 @@ Reports disconnection of the data network to the network management module. This
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -1397,13 +1464,15 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -1422,7 +1491,7 @@ connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.Ne
 
 ## connection.getAddressesByName
 
-getAddressesByName(host: string): Promise\<Array\<NetAddress>>
+getAddressesByName(host: string): Promise\<Array\<NetAddress\>\>
 
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
@@ -1443,6 +1512,8 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 | Promise\<Array\<[NetAddress](#netaddress)>> | Promise used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
@@ -1466,7 +1537,7 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
 
 addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<void\>): void
 
-Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses an asynchronous callback to return the result.
+Adds custom DNS rules for the specified host of the current application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1482,13 +1553,15 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -1509,7 +1582,7 @@ connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: Busin
 
 addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 
-Adds the mapping between a custom host and the corresponding IP address for the current application. This API uses a promise to return the result.
+Adds custom DNS rules for the specified host of the current application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1530,13 +1603,15 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -1569,6 +1644,8 @@ Removes the custom DNS rules of the specified host from the current application.
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the DNS rules are removed successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
+
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
@@ -1617,13 +1694,15 @@ Removes the custom DNS rules of the specified host from the current application.
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -1656,7 +1735,9 @@ Removes all custom DNS rules from the current application. This API uses an asyn
 
 **Error codes**
 
-| ID| Error Message                         |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                          |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
 | 401     | Parameter error.                  |
@@ -1697,12 +1778,14 @@ Removes all custom DNS rules from the current application. This API uses a promi
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -1747,13 +1830,15 @@ Registers a listener for network status changes.
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Failed to connect to the service.|
-| 2100003 | System internal error.         |
-| 2101008 | The callback already exists.     |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID|                       Error Message                      |
+| ------- | ---------------------------------------------------- |
+| 201     | Permission denied.                                   |
+| 401     | Parameter error.                                     |
+| 2100002 | Failed to connect to the service.                    |
+| 2100003 | System internal error.                               |
+| 2101008 | The callback already exists.                         |
 | 2101022 | The number of requests exceeded the maximum allowed. |
 
 **Example**
@@ -1786,12 +1871,14 @@ Unregisters the listener for network status changes.
 
 **Error codes**
 
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
 | ID| Error Message                         |
 | ------- | --------------------------------- |
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exist.      |
+| 2101007 | The callback does not exists.      |
 
 **Example**
 
@@ -1809,9 +1896,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
-Registers a listener for **netAvailable** events.
-
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+Registers a listener for **netAvailable** events. Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1853,9 +1938,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 
-Registers a listener for **netBlockStatusChange** events. This API uses an asynchronous callback to return the result.
-
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+Registers a listener for **netBlockStatusChange** events. Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1864,7 +1947,7 @@ Registers a listener for **netBlockStatusChange** events. This API uses an async
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
-| callback | Callback<[NetBlockStatusInfo](#netblockstatusinfo11)> | Yes  | Callback used to return the result.  |
+| callback | Callback<[NetBlockStatusInfo](#netblockstatusinfo11)>        | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1895,9 +1978,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 
-Registers a listener for **netCapabilitiesChange** events.
-
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+Registers a listener for **netCapabilitiesChange** events. Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1908,7 +1989,7 @@ Registers a listener for **netCapabilitiesChange** events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that the network capabilities have changed.|
-| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo10)> | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
+| callback | Callback<[NetCapabilityInfo](#netcapabilityinfo10)>          | Yes  | Callback used to return the network handle (**netHandle**) and capability information (**netCap**).|
 
 **Example**
 
@@ -1939,9 +2020,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netConnectionPropertiesChange', callback: Callback\<NetConnectionPropertyInfo\>): void
 
-Registers a listener for **netConnectionPropertiesChange** events.
-
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+Registers a listener for **netConnectionPropertiesChange** events. Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -1950,7 +2029,7 @@ Registers a listener for **netConnectionPropertiesChange** events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
-| callback | Callback<[NetConnectionPropertyInfo](#netconnectionpropertyinfo11)> | Yes  | Callback used to return the result.  |
+| callback | Callback<[NetConnectionPropertyInfo](#netconnectionpropertyinfo11)> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1981,9 +2060,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
-Registers a listener for **netLost** events.
-
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+Registers a listener for **netLost** events. Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2025,9 +2102,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
-Registers a listener for **netUnavailable** events.
-
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+Registers a listener for **netUnavailable** events. Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2096,12 +2171,14 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -2167,7 +2244,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 ### bindSocket<sup>9+</sup>
 
-bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
+bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void\>
 
 Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses a promise to return the result.
 
@@ -2187,12 +2264,14 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -2207,7 +2286,8 @@ interface Data {
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
@@ -2252,7 +2332,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 ### getAddressesByName
 
-getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
+getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>\>\): void
 
 Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
 
@@ -2269,13 +2349,15 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -2285,7 +2367,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
@@ -2322,13 +2405,15 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -2337,7 +2422,8 @@ import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
@@ -2365,13 +2451,15 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -2381,7 +2469,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
@@ -2418,13 +2507,15 @@ Resolves the host name by using the corresponding network to obtain the first IP
 
 **Error codes**
 
-| ID| Error Message                       |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100001 | Invalid parameter value.                |
-| 2100002 | Failed to connect to the service.       |
-| 2100003 | System internal error.         |
+For details about the error codes, see [Network Connection Management Error Codes](errorcode-net-connection.md).
+
+| ID| Error Message                         |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **Example**
 
@@ -2432,8 +2523,9 @@ Resolves the host name by using the corresponding network to obtain the first IP
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-if (netHandle.netId == 0) {
-    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  if (netHandle.netId == 0) {
+    // If there is no default network, the obtained netid of netHandler is 0, which is abnormal. You can add specific processing based on the service requirements.
+    return;
   }
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
@@ -2507,10 +2599,10 @@ Provides an instance that bears data network capabilities.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                    | Type                               | Mandatory | Description                                                        |
-| ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| netHandle         | [NetHandle](#nethandle) |  Yes | Handle of the data network.                               |
-| netCap |  [NetCapabilities](#netcapabilities)       |  Yes |  Network transmission capabilities and bearer types of the data network.|
+| Name                   | Type                                | Mandatory | Description                                                        |
+| ----------------------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| netHandle               | [NetHandle](#nethandle)              |  Yes | Handle of the data network.                                               |
+| netCap                  |  [NetCapabilities](#netcapabilities) |  Yes |  Network transmission capabilities and bearer types of the data network.                           |
 
 ## NetCapabilities
 
@@ -2533,10 +2625,10 @@ Defines the network connection properties.
 
 ### Attributes
 
-| Name                | Type                                  | Mandatory|  Description           |
-| -------------------- | ------------------------------------- | ---- |---------------- |
-| netHandle            | [NetHandle](#nethandle)                             | Yes  |Data network handle.      |
-| connectionProperties | [ConnectionProperties](#connectionproperties)                  | Yes  |Network connection properties.|
+| Name                |                          Type                       | Mandatory|         Description          |
+| -------------------- | --------------------------------------------------- | ---- |----------------------- |
+| netHandle            | [NetHandle](#nethandle)                             | Yes  |Data network handle.|
+| connectionProperties | [ConnectionProperties](#connectionproperties)       | Yes  |Network connection properties.          |
 
 ## NetBlockStatusInfo<sup>11+</sup>
 
@@ -2546,10 +2638,10 @@ Obtains the network block status information.
 
 ### Attributes
 
-| Name                | Type                                  | Mandatory|  Description           |
-| -------------------- | ------------------------------------- | ---- |---------------- |
-| netHandle            | [NetHandle](#nethandle)                             | Yes  |Data network handle.  |
-| blocked | boolean                  | Yes  |Whether the current network is blocked.|
+| Name                | Type                                 | Mandatory|            Description           |
+| -------------------- | ------------------------------------- | --- |--------------------------- |
+| netHandle            | [NetHandle](#nethandle)               | Yes  |Data network handle.  |
+| blocked              | boolean                               | Yes  |Whether the current network is blocked.|
 
 ## ConnectionProperties
 
@@ -2557,14 +2649,14 @@ Defines the network connection properties.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name          | Type                              | Mandatory|  Description            |
-| ------------- | ---------------------------------- | ----|---------------- |
-| interfaceName | string                             | Yes|Network interface card (NIC) name.      |
-| domains       | string                             | Yes|Domain. The default value is **""**.|
-| linkAddresses | Array\<[LinkAddress](#linkaddress)> | Yes|Link information.      |
-| routes        | Array\<[RouteInfo](#routeinfo)>     | Yes|Route information.      |
-| dnses     | Array\<[NetAddress](#netaddress)> | Yes|Network address. For details, see [NetAddress](#netaddress).|
-| mtu           | number                             | Yes|Maximum transmission unit (MTU).  |
+| Name         |                Type                | Mandatory|               Description                    |
+| ------------- | ----------------------------------- | ----|--------------------------------------- |
+| interfaceName | string                              | Yes|Network interface card (NIC) name.                               |
+| domains       | string                              | Yes|Domain name.                                   |
+| linkAddresses | Array\<[LinkAddress](#linkaddress)> | Yes|Link information.                               |
+| routes        | Array\<[RouteInfo](#routeinfo)>     | Yes|Route information.                               |
+| dnses         | Array\<[NetAddress](#netaddress)>   | Yes|Network address. For details, see [NetAddress](#netaddress).|
+| mtu           | number                              | Yes|Maximum transmission unit (MTU).                           |
 
 ## RouteInfo
 
@@ -2572,8 +2664,8 @@ Defines network route information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name          | Type                       | Mandatory|Description            |
-| -------------- | --------------------------- | --- |---------------- |
+| Name          | Type                       | Mandatory|     Description     |
+| -------------- | --------------------------- | --- |-------------- |
 | interface      | string                      | Yes|NIC name.      |
 | destination    | [LinkAddress](#linkaddress) | Yes|Destination address.      |
 | gateway        | [NetAddress](#netaddress)   | Yes|Gateway address.      |
@@ -2586,10 +2678,10 @@ Defines network link information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name       | Type                     | Mandatory|Description                |
-| ------------ | ----------------------- |---- |-------------------- |
-| address      | [NetAddress](#netaddress) | Yes| Link address.          |
-| prefixLength | number                    | Yes|Length of the link address prefix.|
+| Name        |           Type           | Mandatory|        Description        |
+| ------------ | ------------------------- |---- |-------------------- |
+| address      | [NetAddress](#netaddress) | Yes | Link address.          |
+| prefixLength | number                    | Yes |Length of the link address prefix. |
 
 ## NetAddress
 
@@ -2599,8 +2691,8 @@ Defines a network address.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-|  Name  | Type  |Mandatory|                                        Description                                                |
-| ------- | ------ | -- |------------------------------------------------------------------------------------------- |
-| address | string | Yes|Network address.<br>**Atomic service API**: This API can be used in atomic services since API version 12.            |
-| family  | number | No|Address family identifier. The value is **1** for IPv4 and **2** for IPv6. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| port    | number | No|Port number. The value ranges from **0** to **65535**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+|  Name  | Type  |Mandatory|            Description             |
+| ------- | ------ | -- |---------------------------- |
+| address | string | Yes|Network address.                      |
+| family  | number | No|Address family identifier. The value is **1** for IPv4 and **2** for IPv6. The default value is **1**.|
+| port    | number | No|Port number. The value ranges from **0** to **65535**.  |

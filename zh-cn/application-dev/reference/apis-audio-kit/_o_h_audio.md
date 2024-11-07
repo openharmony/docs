@@ -316,7 +316,7 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 **描述**
 该函数指针将指向用于写入音频数据的回调函数。
 
-该函数类似于 [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata) 函数指针。但具有返回值，用于标识音频数据回调结果。 该函数的返回结果表示填充到缓冲区的数据是否有效。如果结果无效，用户填写的数据将不被播放。
+该函数类似于 [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata) 函数指针。但具有返回值，用于标识音频数据回调结果。 该函数的返回结果表示填充到缓冲区的数据是否有效。如果结果无效，用户填写的数据将不被播放。回调函数结束后，音频服务会把audioData指针数据放入队列里等待播放，因此请勿在回调外再次更改audioData指向的数据, 且务必保证往audioData填满audioDataSize长度的待播放数据, 否则会导致音频服务播放杂音。参数audioDataSize可以通过[OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#OH_AudioStreamBuilder_SetFrameSizeInCallback)设置。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1340,6 +1340,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer *capturer, 
 **描述**
 获取输入音频流时间戳和位置信息。
 
+该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
+
 **起始版本：** 10
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
@@ -2233,6 +2235,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 **描述**
 获取输出音频流时间戳和位置信息。
 
+该接口可以获取到音频通道实际播放位置（framePosition）以及播放到该位置时的时间戳（timestamp），时间戳单位为纳秒。
+
+该接口一般用来实现音画同步，建议频率不要太频繁，可以每分钟一次，最好不要低200ms一次。频繁调用可能会带来功耗问题，因此在能保证音画同步效果的情况下，不需要频繁的查询时间戳。
+
 **起始版本：** 10
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
@@ -3100,6 +3106,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuild
 | -------- | -------- |
 | builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。  | 
 | audioCapturer | 指向输入音频流实例的指针，将被用来接收函数创建的结果。  | 
+
+**需要权限：**
+
+ohos.permission.MICROPHONE
 
 **返回：**
 

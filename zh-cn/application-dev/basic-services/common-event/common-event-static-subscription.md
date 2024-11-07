@@ -42,7 +42,7 @@
    ```json
    {
      "module": {
-   	...
+   	// ...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
@@ -60,7 +60,7 @@
            ]
          }
        ],
-   	...
+   	// ...
      }
    }
    ```
@@ -98,7 +98,7 @@
    - permission：订阅者要求的发布者需要具备的权限，对于发布了目标事件但不具备permission中声明的权限的发布者将被视为非法事件不予发布。
    - events：订阅的目标事件列表。
 
-4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)在设备上的路径为`/system/variant/phone/base/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装时会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
+4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)。预置配置文件在设备上的路径为`/system/variant/phone/base/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装时会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
 
    - `bundleName`字段配置为应用的Bundle名称。
    - `app_signature`字段配置为应用的指纹信息。指纹信息的配置请参见[应用特权配置指南](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)，或者通过[bm工具](../../tools/bm-tool.md)获取并填写该应用的`appId`。
@@ -106,7 +106,7 @@
 
    ```json
    [
-     ...
+     // ...
      {
        "bundleName": "com.samples.stageprocessthread", // Bundle名称
        "app_signature": ["****"], // 指纹信息
@@ -123,5 +123,5 @@
 
 针对StaticSubscriberExtensionAbility开发，可参考如下实例：
 
-- [静态订阅（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
+- [静态订阅（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/SystemFeature/ApplicationModels/StaticSubscriber)
 

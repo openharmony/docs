@@ -41,7 +41,7 @@ create(colorSpaceName: colorSpaceManager.ColorSpace): ColorSpaceManager
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
-| [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的可共享的色彩管理实例。<br>该实例继承ISendable，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。                 |
+| [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的可共享的色彩管理实例。<br>该实例继承ISendable，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。                 |
 
 **错误码：**
 
@@ -79,7 +79,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 
 | 类型                | 说明                     |
 | ------------------ | ------------------------ |
-| [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的可共享的色彩管理实例。<br>色域类型定义为[colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)枚举值`CUSTOM`。<br>该实例继承ISendable，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。 |
+| [ColorSpaceManager](#colorspacemanager)  | 返回当前创建的可共享的色彩管理实例。<br>色域类型定义为[colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md#colorspace)枚举值`CUSTOM`。<br>该实例继承ISendable，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。 |
 
 **错误码：**
 

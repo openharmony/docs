@@ -1282,7 +1282,7 @@ Sets the mission continuation state of this ability. This API uses an asynchrono
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#continuestate10) | Yes| Mission continuation state.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1324,7 +1324,7 @@ Sets the mission continuation state of this ability. This API uses a promise to 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#abilityconstantcontinuestate10) | Yes| Mission continuation state.|
+| state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#continuestate10) | Yes| Mission continuation state.|
 
 **Return value**
 
@@ -1670,7 +1670,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
+| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md).|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
@@ -1729,7 +1729,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
+| type | string | Yes| Type of the UIExtensionAbility to start. For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md).|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 
@@ -1781,9 +1781,9 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-Shows the current ability. This API uses a promise to return the result. It takes effect only on tablets. It can be called only by the main thread.
+Shows the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
 
-To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
+Before calling this API, ensure that the application has been added to the status bar.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1878,9 +1878,9 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-Hides the current ability. This API uses a promise to return the result. It takes effect only on tablets. It can be called only by the main thread.
+Hides the current ability. This API uses a promise to return the result. It takes effect only on 2-in-1 devices and tablets. It can be called only by the main thread.
 
-To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** or **ATTACH_TO_STATUS_BAR_ITEM**.
+Before calling this API, ensure that the application has been added to the status bar.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2187,49 +2187,39 @@ const TAG: string = '[openLinkDemo]';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'I am caller';
-
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('start browser', { type: ButtonType.Capsule, stateEffect: true })
-          .width('87%')
-          .height('5%')
-          .margin({ bottom: '12vp' })
-          .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
-            let link: string = 'https://www.example.com';
-            let openLinkOptions: OpenLinkOptions = {
-              appLinkingOnly: true,
-              parameters: { demo_key: 'demo_value' }
-            };
+    RelativeContainer() {
+      Button("Call StartAbilityForResult")
+        .onClick(() => {
+          let context = getContext(this) as common.UIAbilityContext;
+          let link: string = 'https://www.example.com';
+          let openLinkOptions: OpenLinkOptions = {
+            appLinkingOnly: true,
+            parameters: { demo_key: 'demo_value' }
+          };
 
-            try {
-              context.openLink(
-                link,
-                openLinkOptions,
-                (err, result) => {
-                  hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
-                }
-              ).then(() => {
-                hilog.info(DOMAIN, TAG, `open link success.`);
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
-              });
-            }
-            catch (e) {
-              hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
-            }
-          })
-      }
-      .width('100%')
+          try {
+            context.openLink(
+              link,
+              openLinkOptions,
+              (err, result) => {
+                hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
+              }
+            ).then(() => {
+              hilog.info(DOMAIN, TAG, `open link success.`);
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
+            });
+          }
+          catch (e) {
+            hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
+          }
+        })
     }
     .height('100%')
+    .width('100%')
   }
 }
 ```
@@ -2380,3 +2370,5 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+ <!--no_check--> 

@@ -205,7 +205,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
+  >- 使用该命令采集时需进入被测应用内。
 
   - 采集1次整机GPU频率和负载
  
@@ -307,8 +307,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
-  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）
+  >- 使用该命令采集时需进入被测应用内。
+  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）。
 
   - 采集2次截图
 
@@ -328,13 +328,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 截图采集是2秒截取一次
+  >- 截图采集是2秒截取一次。
   >
-  >- 截图报告存放路径为：data/local/tmp/capture
+  >- 截图报告存放路径为：data/local/tmp/capture。
   >
-  >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图
+  >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图。
   >
-  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\
+  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\。
 
   - 采集2次网络速率
 
@@ -374,9 +374,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内，滑动或切换页面
-  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率
-  >
+  >- 使用该命令采集时需进入被测应用内，滑动或切换页面。
+  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率。
+
  
   - 采集10次指定图层帧率
 
@@ -398,11 +398,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- DisplayNode 是指定的图层名
+  >- DisplayNode 是指定的图层名。
   >
-  >- 使用该命令采集时，需在传入的图层上操作页面
+  >- 使用该命令采集时，需在传入的图层上操作页面。
   >
-  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）
+  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）。
 
   - 采集1次DDR信息
 
@@ -525,8 +525,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
-  >
+  >- 使用该命令采集时需进入被测应用内。
 
   - 采集当前界面fps
 
@@ -548,8 +547,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
-  >
+  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
 
   - fps分段采集
 
@@ -579,9 +577,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该段打印里100表示采集的次数，可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集
+  >- 该段打印里100表示采集的次数，可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集。
   >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
+  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
 
   - 启停服务
 
@@ -602,14 +600,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -p -r -d -net -snapshot
+  >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -p -r -d -net -snapshot。
   >
-  >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
+  >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot。
   >
-  >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令
+  >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令。
   >
-  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D:\
-  >
+  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D:\。
 
   - 获取屏幕分辨率
 
@@ -621,9 +618,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率
+  >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率。
   >
-  >- 该命令需单独采集，采集结果不写入data.csv 
+  >- 该命令需单独采集，采集结果不写入data.csv 。
 
 #### 输出和查看采集结果
 输出和查看采集结果前，需先执行上述的采集命令。

@@ -23,7 +23,7 @@
 | flags | number | 否 | 表示处理方式，文件打开场景请参考表3。                                                                                                                                                                                       |
 
 
-**表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
+**表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)相关参数说明
 
 
 | 参数名称                              | 类型    | 说明                                                                                                                                                                |
@@ -31,7 +31,7 @@
 | ability.params.stream                 | string  | 指示携带的文件URI要授权给目标方，用于待打开的文件存在其他文件依赖的场景。例如打开本地html文件依赖本地其余资源文件的场景等。对应的value必须是string类型的文件URI数组。文件URI的获取参考表1中uri参数。 |
 | ohos.ability.params.showDefaultPicker | string | 表示是否强制展示文件打开方式的选择弹框。<br>- false：表示由系统策略或默认应用设置决定直接拉起文件打开应用还是展示弹框。<br>- true：表示始终展示弹框。缺省为false。                                                                            |
 
-**表3** [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags)相关参数说明
+**表3** [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)相关参数说明
 
 | 参数名称                       | 值         | 说明                       |
 |--------------------------------|------------|----------------------------|
@@ -124,7 +124,7 @@
 
 ### 目标方接入步骤
 
-1. 声明文件打开能力
+1. 声明文件打开能力。
 
     支持打开文件的应用需要在[module.json5](../quick-start/module-configuration-file.md)配置文件中声明文件打开能力。其中uris字段表示接收URI的类型，其中scheme固定为file。type字段表示支持打开的文件类型（参见[UTD类型](../database/uniform-data-type-descriptors.md)（推荐）或[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)），如下举例中类型为txt文件。
 

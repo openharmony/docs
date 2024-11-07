@@ -81,11 +81,11 @@ The following figure shows the application file directory structure. The path of
 
 The read and write operations performed on an application sandbox directory are eventually performed on the files in the physical directory after address conversion. The following table lists their mappings.
 
-In the physical paths, <\USERID> has a fixed value of **100**, and <\EXTENSIONPATH> is moduleName-extensionName. For details about the application running in an independent Extension sandbox, see [ExtensionAbility Component](../application-models/extensionability-overview.md).
+In the physical paths, \<USERID> has a fixed value of **100**, and \<EXTENSIONPATH> is moduleName-extensionName. For details about the application running in an independent Extension sandbox, see [ExtensionAbility Component](../application-models/extensionability-overview.md).
 
 | Application Sandbox Path| Physical Path|
 | -------- | -------- |
-| /data/storage/el1/bundle | Application installation package directory:<br>**/data/app/el1/bundle/public/&lt;PACKAGENAME&gt; **|
+| /data/storage/el1/bundle | Application installation package directory:<br>**/data/app/el1/bundle/public/&lt;PACKAGENAME&gt;**|
 | /data/storage/el1/base | Application directory of encryption level 1.<br>- Application running in a non-independent sandbox: **/data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt;**<br>- Extension application running in an independent sandbox: **/data/app/el1/&lt;USERID&gt;/base/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt;**|
 | /data/storage/el2/base | Application directory of encryption level 2.<br>- Application running in a non-independent sandbox: **/data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt;**<br>- Extension application running in an independent sandbox: **/data/app/el2/&lt;USERID&gt;/base/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt;**|
 | /data/storage/el1/database | Database directory of the application under **el1/**.<br>- Application running in a non-independent sandbox: **/data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt;**<br>- Extension application running in an independent sandbox: **/data/app/el1/&lt;USERID&gt;/database/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt;**|

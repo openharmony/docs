@@ -1118,7 +1118,7 @@ struct SwiperExample {
 ![swiper](figures/swiper-digit.gif)
 
 ### 示例3
-该示例通过dislayCount属性实现了按组翻页的效果。
+该示例通过displayCount属性实现了按组翻页的效果。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {

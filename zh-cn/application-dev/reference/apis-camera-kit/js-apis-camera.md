@@ -2123,7 +2123,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 
 ```ts
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let previewRotation: camera.ImageRotation;
+  let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     previewRotation = previewOutput.getPreviewRotation(imageRotation);
     console.log(`Preview rotation is: ${previewRotation}`);
@@ -2132,7 +2132,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
     let err = error as BusinessError;
     console.error(`The previewOutput.getPreviewRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return previewRotation;
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
@@ -3239,7 +3239,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 
 ```ts
 function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
-  let photoRotation: camera.ImageRotation;
+  let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     photoRotation = photoOutput.getPhotoRotation(deviceDegree);
     console.log(`Photo rotation is: ${photoRotation}`);
@@ -3248,7 +3248,7 @@ function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : 
     let err = error as BusinessError;
     console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return photoRotation;
 }
 ```
 
@@ -3637,7 +3637,7 @@ function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<camera.F
 
 setFrameRate(minFps: number, maxFps: number): void
 
-设置预览流帧率范围，设置的范围必须在支持的帧率范围内。
+设置录像流帧率范围，设置的范围必须在支持的帧率范围内。
 
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12-1)查询支持的帧率范围。
 
@@ -3770,7 +3770,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 
 ```ts
 function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation;
+  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     videoRotation = videoOutput.getVideoRotation(deviceDegree);
     console.log(`Video rotation is: ${videoRotation}`);
@@ -3779,7 +3779,7 @@ function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : 
     let err = error as BusinessError;
     console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return videoRotation;
 }
 ```
 
@@ -8253,8 +8253,8 @@ SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#
 
 > **说明：**
 >
-> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式开放给人脸识别、银行等有安全诉求的应用，需要结合安全TA使用，支持同时出普通预览流和安全流的业务场景。
-> 安全TA：可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。
+> 通过[createSession](#createsession11)接口传入[SceneMode](#scenemode11)为SECURE_PHOTO模式创建一个安全模式的会话。该模式开放给人脸识别、银行等有安全诉求的应用，需要结合<!--RP1-->安全TA<!--RP1End-->使用，支持同时出普通预览流和安全流的业务场景。<!--RP2-->
+> <br>安全TA：可用于图片处理，它具备验证服务器下发数据的验签能力、图片签名、解析及组装tlv逻辑的能力，还具备密钥读取、创建及操作能力。<!--RP2End-->
 
 ### addSecureOutput<sup>12+</sup>
 

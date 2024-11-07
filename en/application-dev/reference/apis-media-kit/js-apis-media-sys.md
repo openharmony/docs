@@ -165,8 +165,9 @@ Enumerates the color formats supported by the video thumbnail.
 | RGB_888        | 5    | RGB_888.                |
 
 ## AvPlayer<sup>9+</sup>
-
-A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an **AVPlayer** instance.
+> **NOTE**
+> 
+> A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an [AVPlayer](js-apis-media.md#avplayer9) instance.
 
 ### setPlaybackRange<sup>12+</sup>
 

@@ -14,9 +14,9 @@
 
 - 支持应用根据实际使用场景动态设置迁移状态（默认迁移状态为 **ACTIVE** 激活状态）。例如，编辑类应用在编辑文本的页面下才需要迁移，其他页面不需要迁移，则可以通过[setMissionContinueState](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)进行控制。
 
-- 支持应用动态选择是否进行页面栈恢复（默认进行页面栈信息恢复）。例如，应用希望自定义迁移到其他设备后显示的页面，则可以通过[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)进行控制。
+- 支持应用动态选择是否进行页面栈恢复（默认进行页面栈信息恢复）。例如，应用希望自定义迁移到其他设备后显示的页面，则可以通过[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)进行控制。
 
-- 支持应用动态选择迁移成功后是否退出迁移源端应用（默认迁移成功后退出迁移源端应用）。可以通过[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)进行控制。
+- 支持应用动态选择迁移成功后是否退出迁移源端应用（默认迁移成功后退出迁移源端应用）。可以通过[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)进行控制。
 
   > **说明：**
   >
@@ -70,7 +70,7 @@
     - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
     - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。
 
-    - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
+    - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
 
     &nbsp;
     `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
@@ -272,7 +272,7 @@
 > **说明：**
 >
 > 1. 当前仅支持router路由的页面栈自动恢复，暂不支持navigation路由的页面栈自动恢复。
-> 2. 若应用使用navigation路由，可以设置不进行默认页面栈迁移（配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)参数为`false`），并将需要迁移的页面（或页面栈）信息保存在want中传递，然后在目标端手动加载指定页面。
+> 2. 若应用使用navigation路由，可以设置不进行默认页面栈迁移（配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)参数为`false`），并将需要迁移的页面（或页面栈）信息保存在want中传递，然后在目标端手动加载指定页面。
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的迁移默认恢复页面栈。开发者需要在[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)执行完成前，调用[restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#restore)，向系统传入当前的窗口上下文，用于页面栈的加载恢复。如果在异步回调中执行该接口，会导致在应用拉起时页面有概率加载失败。
 
@@ -292,7 +292,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-如果应用不想通过系统自动恢复页面栈，可以通过配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)参数为`false`关闭该功能。开发者需要在[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)中，指定迁移后进入的页面。不指定迁移后进入的页面，会导致迁移拉起后显示空白页面。
+如果应用不想通过系统自动恢复页面栈，可以通过配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)参数为`false`关闭该功能。开发者需要在[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)中，指定迁移后进入的页面。不指定迁移后进入的页面，会导致迁移拉起后显示空白页面。
 
 例如，`UIAbility`在对端恢复时不需要按照源端页面栈进行恢复，而是需要恢复到指定页面`Page_MigrationAbilityThird`。
 
@@ -327,7 +327,7 @@ export default class MigrationAbility extends UIAbility {
 
 ### 按需退出
 
-[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的迁移默认迁移结束后退出源端应用。如果应用希望迁移后源端应用继续运行，或需要进行其他操作（如，保存草稿、清理资源等）后再自行触发退出，不想在迁移后立即自动退出源端应用，可以通过配置[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)参数为`false`设置源端迁移后不退出。
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的迁移默认迁移结束后退出源端应用。如果应用希望迁移后源端应用继续运行，或需要进行其他操作（如，保存草稿、清理资源等）后再自行触发退出，不想在迁移后立即自动退出源端应用，可以通过配置[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)参数为`false`设置源端迁移后不退出。
 
 示例：`UIAbility`设置迁移成功后，源端不需要退出迁移应用。
 
@@ -997,4 +997,4 @@ export default class MigrationAbility extends UIAbility {
 
 针对跨端迁移的开发，有以下相关实例可供参考：
 
-[跨端迁移随手记（ArkTS）（Public SDK）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedJotNote)
+[跨端迁移随手记（ArkTS）（Public SDK）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/SuperFeature/DistributedAppDev/DistributedJotNote)

@@ -882,7 +882,7 @@ Describes the preset vibration.
 | type     | 'preset' |  Yes | The value **preset** means vibration with the specified effect.|
 | effectId | string   |  Yes | Preset vibration effect ID.            |
 | count    | number   |  No | Number of repeated vibrations. The default value is **1**. This parameter is optional.|
-| intensity<sup>12+</sup> | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional.|
+| intensity<sup>12+</sup> | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional. If vibration intensity adjustment is not supported, the default vibration intensity will be used.|
 
 ## VibrateFromFile<sup>10+</sup>
 

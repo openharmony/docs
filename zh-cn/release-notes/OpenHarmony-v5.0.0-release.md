@@ -29,7 +29,7 @@ OpenHarmony 5.0.0 Release版本标准系统能力持续完善。相比OpenHarmon
 
 - 进一步增强了组件自定义能力，新增组件modifier、ContentModifier和DrawModifier，支持基于已有组件新增属性、自定义组件内容和完全自绘制。
 
-- 开放了自定义节点和Native的渲染节点。[自定义节点](https://gitee.com/OpenHarmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined.md)是指具备底层实体节点的部分基础能力的节点对象，这些节点能够通过自定义占位节点与原生组件进行混合显示。自定义节点可以具备单个节点的测算布局、设置基础属性、设置事件监听、自定义绘制渲染内容的自定义能力。包括FrameNode、RenderNode、BuilderNode三类对象。详细如下：
+- 开放了自定义节点和Native的渲染节点。[自定义节点](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined.md)是指具备底层实体节点的部分基础能力的节点对象，这些节点能够通过自定义占位节点与原生组件进行混合显示。自定义节点可以具备单个节点的测算布局、设置基础属性、设置事件监听、自定义绘制渲染内容的自定义能力。包括FrameNode、RenderNode、BuilderNode三类对象。详细如下：
   - BuilderNode：提供能够挂载原生组件的自定义节点BuilderNode。
   - FrameNode：提供自定义节点FrameNode，表示组件树的实体节点。NodeController可通过BuilderNode持有的FrameNode将其挂载到NodeContainer上，也可通过FrameNode获取RenderNode，挂载到其他FrameNode上。
   - RenderNode：提供自绘制渲染节点RenderNode，支持在Native侧完成自定义绘制需求。
@@ -607,10 +607,11 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| 全量代码（标准、轻量和小型系统）        | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/code-v5.0.0-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/code-v5.0.0-Release.tar.gz.sha256) | 41.8 GB |
 | Hi3861解决方案（二进制）        | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_pegasus.tar.gz.sha256) | 27.1 MB |
 | Hi3516解决方案-LiteOS（二进制） | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 328.3 MB |
 | Hi3516解决方案-Linux（二进制）  | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 220.4 MB |
-| RK3568标准系统解决方案（二进制）        | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 519.7 MB |
+| RK3568标准系统解决方案（二进制）        | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32_20240929.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32_20240929.tar.gz.sha256) | 519.7 MB |
 | 标准系统Public SDK包（Mac）             | 5.0.0.71 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
 | 标准系统Public SDK包（Mac-M1）             | 5.0.0.71  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
 | 标准系统Public SDK包（Windows/Linux）   | 5.0.0.71   | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.5 GB |

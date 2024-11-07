@@ -44,12 +44,12 @@ The application is not enabled the data protection under lock screen.
 
 **Possible Causes**
 
-1. The **ohos.permission.PROTECT_SCREEN_LOCK_DATA** permission is not configured in the [module.json5 file](../../../application-dev/quick-start/module-configuration-file.md#requestpermissions) to enable the feature of protecting sensitive data on the lock screen.
+1. The **ohos.permission.PROTECT_SCREEN_LOCK_DATA** permission is not configured in through [requestpermissions](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file) to enable sensitive data access management on the lock screen.
 2. The device does not support sensitive data access management on the lock screen.
 
 **Solution**
 
-Configure the **ohos.permission.PROTECT_SCREEN_LOCK_DATA** permission in the [module.json5 file](../../../application-dev/quick-start/module-configuration-file.md#requestpermissions) to enable the feature of protecting sensitive data on the lock screen.
+Configure the **ohos.permission.PROTECT_SCREEN_LOCK_DATA** permission through [requestpermissions](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file) to enable sensitive data access management on the lock screen.
 
 
 ## 29300004 Permission to Access Sensitive Data on the Lock Screen Has Been Revoked

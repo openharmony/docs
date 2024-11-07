@@ -12,8 +12,6 @@ The following figure shows the effect of **PasteButton** component.
 
 ## Constraints
 
-- The temporary authorization for reading data from the pasteboard remains valid until data is written to the pasteboard (for example, the user copies new data).
-
 - The temporary authorization will be automatically revoked when the screen turns off, the app switches to the background, or the app exits.
 
 - During the authorization period, there is no limit on the number of API calls.
@@ -32,7 +30,7 @@ The following procedure implements the following: After **Paste** is tapped, the
 
 2. Add the text boxes and **PasteButton** component.
    
-   The **PasteButton** component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options.<br>
+   **PasteButton** is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is mandatory. The icon and text cannot be customized. You can only select from the existing options.
 
    When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
 
@@ -50,18 +48,20 @@ The following procedure implements the following: After **Paste** is tapped, the
        Row() {
          Column({ space: 10 }) {
            TextInput({placeholder: 'Please enter the verification code.', text: this.message})
-           PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
-             if (PasteButtonOnClickResult.SUCCESS === result) {
-               pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
-                 if (err) {
-                   console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
-                   return;
-                 }
-                 // The content to paste is '123456'.
-                 this.message = pasteData.getPrimaryText();
-               });
-             }
-           })
+           PasteButton()
+             .padding({top: 12, bottom: 12, left: 24, right: 24})
+             .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
+               if (PasteButtonOnClickResult.SUCCESS === result) {
+                 pasteboard.getSystemPasteboard().getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+                   if (err) {
+                     console.error(`Failed to get paste data. Code is ${err.code}, message is ${err.message}`);
+                     return;
+                   }
+                   // The content to paste is '123456'.
+                   this.message = pasteData.getPrimaryText();
+                 });
+               }
+             })
          }
          .width('100%')
        }

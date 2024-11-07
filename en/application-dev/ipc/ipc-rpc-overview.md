@@ -19,7 +19,7 @@ The server registers system abilities (SAs) with the system ability manager (SAM
 
 In the following, proxy represents the service requester, and stub represents the service provider.
 
-![IPC & RPC communication mechanisms](figures/IPC_RPC_communication.PNG)
+![IPC & RPC communication mechanisms](figures/IPC_RPC_communication.png)
 
 
 ## Constraints

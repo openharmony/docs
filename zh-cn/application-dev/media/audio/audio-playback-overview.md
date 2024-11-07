@@ -14,17 +14,21 @@
 
 - [TonePlayer](using-toneplayer-for-playback.md)：拨号和回铃音播放ArkTS/JS API，只能在固定的类型范围内选择播放内容，无需输入媒体资源或音频数据，适用于拨号盘按键和通话回铃音的特定场景。该功能当前仅对系统应用开放。<!--DelEnd-->
 
-除上述方式外，也可以通过Media Kit实现音频播放。
+除上述方式外，也可以通过Media Kit中的AVPlayer和SoundPool实现音频播放。
 
 - [AVPlayer](../media/using-avplayer-for-playback.md)：用于音频播放的ArkTS/JS API，集成了流媒体和本地资源解析、媒体资源解封装、音频解码和音频输出功能。可用于直接播放mp3、m4a等格式的音频文件，不支持直接播放PCM格式文件。
 
 - [SoundPool](../media/using-soundpool-for-playback.md)：低时延的短音播放ArkTS/JS API，适用于播放急促简短的音效，如相机快门音效、按键音效、游戏射击音效等。
 
-## 开发音频播放应用须知
+## 后台播放或熄屏播放开发须知
 
 应用如果要实现后台播放或熄屏播放，需要同时满足：
 
-1. 使用媒体会话功能注册到系统内统一管理，否则在应用进入后台时，播放将被强制停止。具体参考[AVSession Kit开发指导](../avsession/avsession-overview.md)。
+1. 使用媒体会话（AVSession）功能注册到系统内统一管理。具体参考[AVSession Kit开发指导](../avsession/avsession-overview.md)。
+
+    注意，如果应用没有注册AVSession，且应用进入后台，系统会对其音频行为做强制管控，主要包括：
+    - 应用在进入后台时，其正在播放的音频流将被强制停止或被强制静音。
+    - 应用在后台状态启动音频流时，该音频流会被禁止启动或被强制静音。
 
 2. 申请长时任务避免进入挂起（Suspend）状态。具体参考[长时任务开发指导](../../task-management/continuous-task.md)。
 

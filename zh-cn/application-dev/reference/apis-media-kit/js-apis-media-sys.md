@@ -114,7 +114,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 | 参数名    | 类型   | 必填 | 说明                                                          |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
-| choice    | string | 是   | 用户的选择内容，“取消”为“false”，“确定”为“true“。            |
+| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
 
 **错误码：**
 
@@ -127,14 +127,24 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+class JsonData {
+  public choice: string = 'true'
+  public displayId: number | null = -1
+  public missionId: number | null = -1
+}
 let sessionId: number = 0; // 替换成拉起此进程的sessionId
-let choice: string = 'false'; // 替换成用户的选择内容
 
 try {
-    await media.reportAVScreenCaptureUserChoice(sessionId, choice);
+  const jsonData: JsonData = {
+    choice: 'true',  // 替换成用户的选择内容
+    displayId: -1,   // 替换成用户选择的屏幕Id
+    missionId: -1,   // 替换成用户选择的窗口Id
+  }
+  await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
-    console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
+  console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
 }
 ```
 

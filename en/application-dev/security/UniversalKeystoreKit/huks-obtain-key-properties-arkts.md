@@ -2,7 +2,8 @@
 
 
 This topic describes how to obtain properties of a key. Before the operation, ensure that the key exists in HUKS.
-
+>**NOTE**<br>
+> The mini-system devices do not support the operation for obtaining key properties.
 
 ## How to Develop
 

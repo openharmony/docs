@@ -1,10 +1,11 @@
 # @ohos.app.ability.wantAgent (WantAgent模块)
 
-app.ability.WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
+app.ability.WantAgent是一个封装了[Want](./js-apis-app-ability-want.md)对象的类，允许应用程序能够在未来的某个时间点执行该Want。该模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取包名等功能。
+WantAgent的一个典型应用场景是通知处理。例如，当用户点击通知时，会触发WantAgent的[trigger](#wantagenttrigger)接口，并拉起目标应用。具体使用请参考[通知模块](../../notification/notification-with-wantagent.md)。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -17,6 +18,8 @@ import { wantAgent } from '@kit.AbilityKit';
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
+
+三方应用只能设置自己应用的Ability。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -97,6 +100,8 @@ try {
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
+
+三方应用只能设置自己应用的Ability。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1209,7 +1214,7 @@ try {
 }
 ```
 
-## wantAgentFlags
+## WantAgentFlags
 
 表示使用WantAgent类型的枚举。
 
@@ -1250,7 +1255,7 @@ try {
 
 
 
-## CompleteData 
+## CompleteData
 
 表示主动激发WantAgent返回的数据。
 

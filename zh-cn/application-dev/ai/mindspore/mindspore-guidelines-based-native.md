@@ -407,7 +407,7 @@ let maxIndex: number = 0;
 let maxArray: Array<number> = [];
 let maxIndexArray: Array<number> = [];
 
-// 调用c++的runDemo方法，假设图像预处理后的buffer数据保存在float32View
+// 调用c++的runDemo方法，完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
 console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
 let output: Array<number> = msliteNapi.runDemo(Array.from(float32View), resMgr);
 // 取分类占比的最大值
@@ -482,5 +482,5 @@ console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
 
 针对使用MindSpore Lite进行图像分类应用的开发，有以下相关实例可供参考：
 
-- [基于Native接口的MindSpore Lite应用开发（C/C++）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteCDemo)
+- [基于Native接口的MindSpore Lite应用开发（C/C++）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/DocsSample/ApplicationModels/MindSporeLiteCDemo)
 

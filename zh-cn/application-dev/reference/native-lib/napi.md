@@ -26,7 +26,7 @@ libace_napi.z.so
 
 ## 已从Node-API组件标准库中导出的符号列表
 
-从Node-API标准库导出的接口，其使用方法及行为同Node.js一致。相关接口声明及参数约束请参考[Node-API](https://nodejs.org/docs/latest-v8.x/api/n-api.html)文档。
+从Node-API标准库导出的接口，其使用方法及行为基于[Node.js](https://nodejs.org/docs/latest-v8.x/api/n-api.html)，并进行了部分[能力拓展](#node-api组件扩展的符号列表)。
 
 |符号类型|符号名|说明|起始支持API版本|
 | --- | --- | --- | --- |

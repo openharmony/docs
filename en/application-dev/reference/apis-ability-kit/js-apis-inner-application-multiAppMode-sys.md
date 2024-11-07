@@ -1,9 +1,9 @@
- # MultiAppMode (System API)
+# MultiAppMode (System API)
 
 The MultiAppMode module defines whether an application supports the multi-app mode.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
@@ -16,7 +16,7 @@ The MultiAppMode module defines whether an application supports the multi-app mo
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
 | NOT_SUPPORTED | The application does not support the multi-app mode.|
 | APP_CLONE | The application supports the app-clone mode.|

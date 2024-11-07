@@ -55,6 +55,7 @@ N/A
 If **sendData** is not executed in the task pool or the read and write operations on the same attribute are performed by two independent threads after data is returned, no adaptation is required.
 
 If **sendData** is executed in the task pool or the host thread and its subthread read and write the same attribute after data is returned, a lock must be used (imported from @arkts.utils).
+
 Current code:
 
 ```

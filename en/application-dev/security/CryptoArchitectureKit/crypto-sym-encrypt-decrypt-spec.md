@@ -29,7 +29,7 @@ The AES encryption and decryption can be implemented based a string parameter. W
   
   - If the cipher block mode is CFB and padding mode is **NoPadding** for a 256-bit AES key, the string parameter is **AES256|CFB|NoPadding**.
 
-  | Cipher Mode | Key Length (Bit) | Padding Mode | API Version |
+  | Cipher Mode| Key Length (Bit)| Padding Mode| API Version|
   | -------- | -------- | -------- | -------- |
   | ECB | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
   | CBC | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
@@ -67,7 +67,7 @@ The 3DES encryption and decryption can be implemented based a string parameter. 
   
   - If the cipher block mode is OFB and padding mode is **NoPadding** for a 192-bit 3DES key, the string parameter is **3DES192|OFB|NoPadding**.
 
-  | Cipher Mode | Key Length (Bit) | Padding Mode | API Version |
+  | Cipher Mode| Key Length (Bit)| Padding Mode| API Version|
   | -------- | -------- | -------- | -------- |
   | ECB | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ |
   | CBC | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ |
@@ -101,7 +101,7 @@ The SM4 encryption and decryption can be implemented based a string parameter. W
 
   - If the cipher block mode is GCM and padding mode is **NoPadding** for a 128-bit SM4 key, the string parameter is **SM4_128|GCM|NoPadding**.
 
-  | Cipher Mode | Key Length (Bit) | Padding Mode | API Version |
+  | Cipher Mode| Key Length (Bit)| Padding Mode| API Version|
   | -------- | -------- | -------- | -------- |
   | ECB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |
   | CBC | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |

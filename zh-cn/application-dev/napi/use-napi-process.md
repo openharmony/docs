@@ -16,7 +16,7 @@
 
 - 在DevEco Studio中**New &gt; Create Project**，选择**Native C++**模板，点击**Next**，选择API版本，设置好工程名称，点击**Finish**，创建得到新工程。
 
-- 创建工程后工程结构可以分两部分，cpp部分和ets部分，工程结构具体介绍可见<!--RP1-->[C++工程目录结构](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-0000001546098578-V5#section181711599584)<!--RP1End-->。
+- 创建工程后工程结构可以分两部分，cpp部分和ets部分，工程结构具体介绍可见<!--RP1-->[C++工程目录结构](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-V5)<!--RP1End-->。
 
 
 ## Native侧方法的实现

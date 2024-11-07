@@ -18,8 +18,6 @@
         - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
-        - [动态import](quick-start/arkts-dynamic-import.md)
-        - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -41,9 +39,7 @@
   - 学习ArkTS语言<!--learning-arkts-->
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
     - [ArkTS语言介绍](quick-start/introduction-to-arkts.md)
-    - [方舟字节码基本原理](quick-start/arkts-bytecode-fundamentals.md)
-    - [方舟字节码文件格式](quick-start/arkts-bytecode-file-format.md)
-    - [方舟字节码函数命名规则](quick-start/arkts-bytecode-function-name.md)
+    - [ArkTS编程规范](quick-start/arkts-coding-style-guide.md)
     - 从TypeScript到ArkTS的适配指导<!--typescript-to-arkts-migration-->
       - [ArkTS语法适配背景](quick-start/arkts-migration-background.md)
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
@@ -295,44 +291,89 @@
       - [RelationalStore开发指导 (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF开发指导 (C/C++)](database/native-unified-data-management-framework-guidelines.md)
     - ArkTS（方舟编程语言）<!--arkts-->
-      - [ArkTS简介](arkts-utils/arkts-commonlibrary-overview.md)
-      - 并发<!--concurrency-->
+      - [ArkTS简介](arkts-utils/arkts-overview.md)
+      - ArkTS基础类库<!--arkts-utils-->
+        - [ArkTS基础类库概述](arkts-utils/arkts-utils-overview.md)
+        - XML生成、解析与转换<!--xml-generation-parsing-conversion-->
+          - [XML概述](arkts-utils/xml-overview.md)
+          - [XML生成](arkts-utils/xml-generation.md)
+          - [XML解析](arkts-utils/xml-parsing.md)
+          - [XML转换](arkts-utils/xml-conversion.md)
+        - [Buffer介绍](arkts-utils/buffer.md)
+        - ArkTS容器类库<!--containers-->
+          - [容器类库概述](arkts-utils/container-overview.md)
+          - [线性容器](arkts-utils/linear-container.md)
+          - [非线性容器](arkts-utils/nonlinear-container.md)
+      - ArkTS并发<!--arkts-concurrency-->
         - [并发概述](arkts-utils/concurrency-overview.md)
-        - 使用异步并发能力进行开发<!--asynchronous-concurrency-->
-          - [异步并发概述 (Promise和async/await)](arkts-utils/async-concurrency-overview.md)
-          - [单次I/O任务开发指导 (Promise和async/await)](arkts-utils/single-io-development.md)
-        - 使用多线程并发能力进行开发<!--multithreaded-concurrency-->
-          - [多线程并发概述 (TaskPool和Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [异步并发](arkts-utils/async-concurrency-overview.md)
+        - 多线程并发<!--multithread-concurrency-->
+          - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
           - [TaskPool简介](arkts-utils/taskpool-introduction.md)
           - [Worker简介](arkts-utils/worker-introduction.md)
-          - [TaskPool和Worker的对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
-          - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
-          - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
-          - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
-        - 附录<!--appendixes-->
-          - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
-          - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
-          - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
-          - [Sendable开发指导](arkts-utils/arkts-sendable.md)
-          - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
-          - [ArkTS异步锁](arkts-utils/arkts-async-lock-introduction.md)
-          - [ArkTS容器集 (ArkTS Collections)](arkts-utils/arkts-collections-introduction.md)
-          - [共享模块开发指导](arkts-utils/arkts-sendable-module.md)
-          - [ArkTS Collections与原生API方法的行为差异对比](arkts-utils/arkts-collections-vs-native-api-comparison.md)
-      - 容器类库<!--containers-->
-        - [容器类库概述](arkts-utils/container-overview.md)
-        - [线性容器](arkts-utils/linear-container.md)
-        - [非线性容器](arkts-utils/nonlinear-container.md)
-      - XML生成、解析与转换<!--xml-generation-parsing-conversion-->
-        - [XML概述](arkts-utils/xml-overview.md)
-        - [XML生成](arkts-utils/xml-generation.md)
-        - [XML解析](arkts-utils/xml-parsing.md)
-        - [XML转换](arkts-utils/xml-conversion.md)
-      - [代码混淆](arkts-utils/source-obfuscation.md)
-      - 内存管理<!--(arkts-memory-management-->
-        - [GC介绍](arkts-utils/gc-introduction.md)
-      - 模块加载
-        - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
+          - [TaskPool与Worker对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
+        - 并发线程间通信<!--interthead-communication-->
+          - [ArkTS线程间通信概述](arkts-utils/interthread-communication-overview.md)
+          - 线程间通信对象<!--interthead-communication-object-->
+            - [普通对象](arkts-utils/normal-object.md)
+            - [ArrayBuffer对象](arkts-utils/arraybuffer-object.md)
+            - [SharedArrayBuffer对象](arkts-utils/shared-arraybuffer-object.md)
+            - [Transferable对象（NativeBinding对象）](arkts-utils/transferabled-object.md)
+            - Sendable对象<!--sendable-object-->
+              - [Sendable对象简介](arkts-utils/arkts-sendable.md)
+              - [Sendable使用规则与约束](arkts-utils/sendable-constraints.md)
+              - [异步锁](arkts-utils/arkts-async-lock-introduction.md)
+              - [ASON解析与生成](arkts-utils/ason-parsing-generation.md)
+              - [共享容器](arkts-utils/arkts-collections-introduction.md)
+              - [共享模块](arkts-utils/arkts-sendable-module.md)
+              - [Sendable对象冻结](arkts-utils/sendable-freeze.md)
+              - [Sendable使用场景](arkts-utils/sendable-guide.md)
+          - 线程间通信场景<!--interthead-communication-guide-->
+            - [使用TaskPool执行独立的耗时任务](arkts-utils/independent-time-consuming-task.md)
+            - [使用TaskPool执行多个耗时任务](arkts-utils/multi-time-consuming-tasks.md)
+            - [TaskPool任务与主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
+            - [Worker和主线程的即时消息通信](arkts-utils/worker-communicates-with-mainthread.md)
+            - [Worker同步调用主线程的接口](arkts-utils/worker-invoke-mainthread-interface.md)
+        - 应用多线程开发<!--multithread-develop-guide-->
+          - [应用多线程开发概述](arkts-utils/multithread-develop-overview.md)
+          - 耗时任务并发场景<!--time-consuming-task-->
+            - [耗时任务并发场景简介](arkts-utils/time-consuming-task-overview.md)
+            - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
+            - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
+            - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
+          - 长时任务并发场景<!--long-time-task-->
+            - [长时任务并发场景简介](arkts-utils/long-time-task-overview.md)
+            - [长时任务开发指导（TaskPool）](arkts-utils/long-time-task-guide.md)
+          - 常驻任务并发场景<!--resident-task-->
+            - [常驻任务并发场景简介](arkts-utils/resident-task-overview.md)
+            - [常驻任务开发指导（Worker）](arkts-utils/resident-task-guide.md)
+          - 应用多线程开发实践案例<!--multithread-develop-case-->
+            - [批量数据写数据库场景](arkts-utils/batch-database-operations-guide.md)
+            - [业务模块并发加载场景](arkts-utils/concurrent-loading-modules-guide.md)
+            - [全局配置项功能场景](arkts-utils/global-configuration-guide.md)
+            - [ArkUI数据更新场景](arkts-utils/makeobserved-sendable.md)
+            - [C++线程间数据共享场景](arkts-utils/native-interthread-shared.md)
+      - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
+      - ArkTS运行时<!--arkts-runtime-->
+        - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
+        - [GC垃圾回收](arkts-utils/gc-introduction.md)
+        - ArkTS模块化<!--arkts-runtime-module-->
+          - [模块化运行简介](arkts-utils/module-principle.md)
+          - [动态加载](arkts-utils/arkts-dynamic-import.md)
+          - [延迟加载（lazy import）](arkts-utils/arkts-lazy-import.md)
+          - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
+          - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
+      - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
+        - [ArkTS编译工具链概述](arkts-utils/compilation-tool-chain-overview.md)
+        - 方舟字节码<!--arkts-bytecode-->
+          - [方舟字节码概述](arkts-utils/arkts-bytecode-overview.md)
+          - [方舟字节码文件格式](arkts-utils/arkts-bytecode-file-format.md)
+          - [方舟字节码基本原理](arkts-utils/arkts-bytecode-fundamentals.md)
+          - [方舟字节码函数命名规则](arkts-utils/arkts-bytecode-function-name.md)
+          - [编译期自定义修改方舟字节码](arkts-utils/customize-bytecode-during-compilation.md)
+        - [Disassembler反汇编工具](arkts-utils/tool-disassembler.md)
+        - [ArkGuard源码混淆工具](arkts-utils/source-obfuscation.md)
+        - [在build-profile.json5中配置arkOptions](arkts-utils/arkoptions-guide.md)
 
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
@@ -358,7 +399,6 @@
             - [切换按钮 (Toggle)](ui/arkts-common-components-switch.md)
             - [进度条 (Progress)](ui/arkts-common-components-progress-indicator.md)
             - [显示图片 (Image)](ui/arkts-graphics-display.md)
-            - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
             - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
             - [自定义渲染 (XComponent)](ui/napi-xcomponent-guidelines.md)
           - 添加气泡和菜单<!--arkts-add-popup-menu-->
@@ -436,6 +476,7 @@
         - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
           - [设置主题换肤](ui/theme_skinning.md)
+        - [Stage模型下ArkUI全局接口开发指导](ui/arkts-global-interface.md)
         <!--Del-->
         - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
         <!--DelEnd-->
@@ -546,6 +587,9 @@
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
         - [使用运动和方向传感器](web/web-sensor.md)
+      - Web渲染和布局<!--web-render-layout--->
+        - [Web渲染模式](web/web-render-mode.md)
+        - [使用Web组件大小自适应页面内容布局](web/web-fit-content.md)
       - 在应用中使用前端页面JavaScript<!--web-use-frontend-page-js-->
         - [应用侧调用前端页面函数](web/web-in-app-frontend-page-function-invoking.md)
         - [前端页面调用应用侧函数](web/web-in-page-app-function-invoking.md)
@@ -558,7 +602,7 @@
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
         - [使用Web组件的广告过滤功能](web/web-adsblock.md)
-        - [高级安全模式](web/web-advanced-security-mode.md)
+        - [坚盾守护模式](web/web-secure-shield-mode.md)
       - 管理网页加载与浏览记录<!--web-manage-loading-browsing-->
         - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
         - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
@@ -1147,8 +1191,8 @@
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
-          - [hisysevent](dfx/hisysevent.md)
         <!--Del-->
+          - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-kit-->
@@ -1178,9 +1222,11 @@
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
-      - [处理音频焦点事件](media/audio/audio-playback-concurrency.md)
-      - [音频并发策略扩展(ArkTS)](media/audio/audio-session-management.md)
-      - [音频并发策略扩展(C/C++)](media/audio/using-ohaudio-for-session.md)
+      - [使用合适的音频类型](media/audio/using-right-streamusage-and-sourcetype.md)
+      - [音频焦点和音频会话介绍](media/audio/audio-playback-concurrency.md)
+      - 音频焦点管理<!--audio-session-->
+        - [音频会话管理(ArkTS)](media/audio/audio-session-management.md)
+        - [音频会话管理(C/C++)](media/audio/using-ohaudio-for-session.md)
       - 音频播放<!--audio-playback-->
         - [音频播放开发概述](media/audio/audio-playback-overview.md)
         - [使用AudioRenderer开发音频播放功能](media/audio/using-audiorenderer-for-playback.md)
@@ -1245,18 +1291,21 @@
       - [Camera Kit简介](media/camera/camera-overview.md)
       - [开发准备](media/camera/camera-preparation.md)
       - 相机开发指导(ArkTS)<!--camera-dev-arkts-->
+        - [相机管理(ArkTS)](media/camera/camera-device-management.md)
         - [设备输入(ArkTS)](media/camera/camera-device-input.md)
         - [会话管理(ArkTS)](media/camera/camera-session-management.md)
         - [预览(ArkTS)](media/camera/camera-preview.md)
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
         - [录像(ArkTS)](media/camera/camera-recording.md)
         - [元数据(ArkTS)](media/camera/camera-metadata.md)
+        - [手电筒使用(ArkTS)](media/camera/camera-torch-use.md)
         - [适配不同折叠状态的摄像头变更(ArkTS)](media/camera/camera-foldable-display.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
         <!--DelEnd-->
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
         - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
+        - [相机基础动效(ArkTS)](media/camera/camera-animation.md)
         <!--Del-->
         - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
@@ -1271,6 +1320,7 @@
         - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
         <!--DelEnd-->
       - 相机开发指导(C/C++)<!--camera-dev-native-->
+        - [相机管理(C/C++)](media/camera/native-camera-device-management.md)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
         - [会话管理(C/C++)](media/camera/native-camera-session-management.md)
         - [预览(C/C++)](media/camera/native-camera-preview.md)
@@ -1279,6 +1329,7 @@
         - [录像(C/C++)](media/camera/native-camera-recording.md)
         - [录像流二次处理(C/C++)](media/camera/native-camera-recording-imageReceiver.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
+        - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
       - 相机最佳实践(C/C++)<!--camera-best-practices-native-->
         - [拍照实现方案(C/C++)](media/camera/native-camera-shooting-case.md)
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
@@ -1315,26 +1366,33 @@
         - [使用Image完成图片编码](media/image/image-encoding-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
-      - 音频播放和录制<!--audio-playback-recording-->
-        - [使用AVPlayer开发音频播放功能(ArkTS)](media/media/using-avplayer-for-playback.md)
-        - [使用AVPlayer开发音频播放功能(C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
-        - [使用SoundPool开发音频播放功能](media/media/using-soundpool-for-playback.md)
-        - [使用AVRecorder开发音频录制功能](media/media/using-avrecorder-for-recording.md)
-        - [获取音视频元数据](media/media/avmetadataextractor.md)
-      - 视频播放和录制<!--video-playback-recording-->
-        - [视频播放](media/media/video-playback.md)
-        - [添加视频外挂字幕](media/media/video-subtitle.md)
-        - [视频录制](media/media/video-recording.md)
-        - [使用AVScreenCaptureRecorder录屏保存到文件(ArkTS)](media/media/using-avscreencapture-ArkTs.md)
-        - [使用AVScreenCapture录屏取原始码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
-        - [使用AVScreenCapture录屏保存到文件(C/C++)](media/media/using-avscreencapture-for-file.md)
-        - [获取视频缩略图](media/media/avimagegenerator.md)
-      - 视频转码
-        - [使用AVTranscoder开发视频转码功能](media/media/using-avtranscoder-for-transcodering.md)
+      - [开发准备](media/media/media-preparation.md)
+      - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
+        - 播放<!--media-playback-arkts-->
+          - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
+          - [使用AVPlayer播放视频(ArkTS)](media/media/video-playback.md)
+          - [使用AVPlayer播放流媒体(ArkTS)](media/media/streaming-media-playback-development-guide.md)
+          - [使用AVPlayer添加视频外挂字幕(ArkTS)](media/media/video-subtitle.md)
+          - [使用SoundPool播放短音频(ArkTS)](media/media/using-soundpool-for-playback.md)
+        - 录制<!--media-recording-arkts-->
+          - [使用AVRecorder录制音频(ArkTS)](media/media/using-avrecorder-for-recording.md)
+          - [使用AVRecorder录制视频(ArkTS)](media/media/video-recording.md)
+          - [使用AVScreenCaptureRecorder录屏写文件(ArkTS)](media/media/using-avscreencapture-ArkTs.md)
+        - 媒体信息查询<!--media-info-arkts-->
+          - [使用AVMetadataExtractor提取音视频元数据信息(ArkTS)](media/media/avmetadataextractor.md)
+          - [使用AVImageGenerator提取视频指定时间图像(ArkTS)](media/media/avimagegenerator.md)
+        - 视频转码<!--media-transcoder-arkts-->
+          - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
+      - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
+        - 播放<!--media-playback-c-->
+          - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
+        - 录屏<!--media-recording-c-->
+          - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
+          - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
     - Media Library Kit（媒体文件管理服务）<!--medialibrary-kit-->
       - [Media Library Kit 简介](media/medialibrary/photoAccessHelper-overview.md)
       - [使用Picker选择媒体库资源](media/medialibrary/photoAccessHelper-photoviewpicker.md)
-      - [使用安全控件保存媒体库资源](media/medialibrary/photoAccessHelper-savebutton.md)
+      - [保存媒体库资源](media/medialibrary/photoAccessHelper-savebutton.md)
       - 动态照片<!--movingphoto-->
         - [访问和管理动态照片资源](media/medialibrary/photoAccessHelper-movingphoto.md)
         - [使用MovingPhotoView播放动态照片](media/medialibrary/movingphotoview-guidelines.md)
@@ -1451,7 +1509,7 @@
       - C/C++标准库<!--c-cpp-->
         - [C/C++标准库机制概述](napi/c-cpp-overview.md)
         - [fdsan使用指导](napi/fdsan.md)
-      - 使用Node-API实现跨语言交互
+      - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
         - [Node-API简介](napi/napi-introduction.md)
         - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
         - [Node-API开发规范](napi/napi-guidelines.md)
@@ -1481,7 +1539,6 @@
           - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
-          - [非ArkTS线程调用ArkTS函数](napi/use-uv-queue-work.md)
           - [使用Node-API接口创建ArkTS运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
@@ -1525,6 +1582,74 @@
       - [OpenHarmony ABI](napi/ohos-abi.md)
       - [CPU特性](napi/cpu-features.md)
       - [使用Neon指令扩展](napi/neon-guide.md)
+  <!--Del-->
+  - 性能
+    - [性能优化概览 ](performance/performance-overview.md)
+    - [应用开发性能优化入门引导 ](performance/application-performance-optimization-guidance.md)
+    - [应用性能优化常见问题解决指导 ](performance/performance-optimization-practical-guidance.md)
+    - ArkTS高性能编程
+        - [高效并发编程](performance/efficient-concurrent-programming.md)
+        - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+        - [多线程能力场景化](performance/multi_thread_capability.md)
+        - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
+        - [避免开发过程中的冗余操作](performance/avoiding-redundant-operations.md)
+        - [使用AOT进行性能优化](performance/performance-optimization-using-aot.md)
+        - [延迟加载Lazy-Import使用指导](performance/Lazy-Import-Instructions.md)
+    - 减少卡顿丢帧
+        - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+        - [组件复用使用指导](performance/component-recycle.md)
+        - [组件复用性能优化指导](performance/component_recycle_case.md)
+        - [组件复用总览](performance/component-reuse-overview.md)
+        - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
+        - [Swiper高性能开发指导](performance/swiper_optimization.md)
+        - [合理进行状态管理](performance/proper_state_management.md)
+        - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
+        - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
+        - [合理使用动画](performance/reasonable-using-animation.md)
+        - [合理使用多线程共享内存](performance/thread_memory_shared.md)
+        - [Grid高性能开发指导](performance/grid_optimization.md)
+        - [合理使用自定义组件冻结功能](performance/custom_component_freeze.md)
+        - [避免在滑动场景的高频回调接口中处理耗时操作](performance/avoid_high_frequency_callback_execute_lengthy_operation.md)
+        - [合理使用系统接口](performance/reasonable_using_system_interfaces.md)
+        - [避免在主线程中执行耗时操作](performance/avoid_time_consuming_operations_in_mainthread.md)
+        - [图像模糊动效优化：静态模糊与动态模糊的性能对比解析](performance/fuzzy_scene_performance_optimization.md)
+        - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](performance/native_drawing_substitute_canvas.md)
+    - 提升应用启动和响应速度
+        - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
+        - [提升应用响应速度](performance/improve-application-response.md)
+        - [Flex布局性能提升使用指导](performance/flex-development-performance-boost.md)
+        - [优化布局性能](performance/reduce-view-nesting-levels.md)
+        - [合理选择条件渲染和显隐控制](performance/proper-choice-between-if-and-visibility.md)
+        - [文件上传下载性能提升指导](performance/improve-file-upload-and-download-performance.md)
+        - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
+        - [列表场景性能提升实践](performance/list-perf-improvment.md)
+        - [动效能力实践](performance/animation_practice.md)
+        - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
+        - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
+        - [合理使用缓存提升性能](performance/reasonable_using_cache_improve_performance.md)
+        - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
+        - [Web组件开发性能提升指导](performance/performance-web-import.md)
+        - [使用同层渲染在Webview上渲染原生组件](performance/webview-render-app-components.md)
+        - [减小应用包大小](performance/reduce-package-size.md)
+        - [全局自定义组件复用实现](performance/node_custom_component_reusable_pool.md)
+        - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
+        - [在线短视频流畅切换 ](performance/performance-quick-switch-short-video.md)
+        - [相机分段式拍照性能提升实践](performance/performance-camera-shot2see.md)
+        - [在线视频播放卡顿优化实践](performance/online_video_playback_lags_practice.md)
+        - [音画同步最佳实践](performance/audio-video-synchronization.md)
+    - 性能工具
+        - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
+        - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
+        - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
+        - [常用trace使用指导](performance/common-trace-using-instructions.md)
+        - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
+        - [应用滑动场景帧率问题分析实践](performance/long-frame-optimization.md)
+        - [时延类性能问题分析实践](performance/delay_related_performance.md)
+        - [Web性能问题分析案例](performance/web-analyse.md)
+        - [应用性能问题分析指导](performance/application-performance-guide.md)
+        - [页面布局检查器ArkUI Inspector](performance/arkUI-inspector.md)
+        - [跨线程序列化耗时点分析](performance/cross-thread-serialization-time-consumption-analysis.md)
+  <!--DelEnd-->
 
 - API参考
   - API参考概述<!--ref-overview-api-->
@@ -1666,7 +1791,7 @@
             <!--Del-->
             - [AbilityFirstFrameStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateData-sys.md)
             - [AbilityFirstFrameStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
-            - [AbilityForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityForegroundStateObserver-sys)
+            - [AbilityForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityForegroundStateObserver-sys.md)
             - [AbilityRunningInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo-sys.md)
             - [AbilityStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityStateData-sys.md)
             - [AppForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-appForegroundStateObserver-sys.md)
@@ -1959,6 +2084,7 @@
           - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
+          - [@ohos.screenshot (屏幕截图)](reference/apis-arkui/js-apis-screenshot.md)
           <!--Del-->
           - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](reference/apis-arkui/js-apis-windowAnimationManager-sys.md)
           - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)
@@ -2787,22 +2913,22 @@
           - [@ohos.security.cryptoFramework (加解密算法库框架)](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)
           - 已停止维护的接口<!--crypto-architecture-arkts-dep-->
             - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
-        - C API
-          - 模块
+        - C API<!--crypto-architecture-c-->
+          - 模块<!--crypto-architecture-module-->
             - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)
             - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)
             - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)
             - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)
             - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)
             - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
-          - 头文件
+          - 头文件<!--crypto-architecture-headerfile-->
             - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)
             - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)
             - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)
             - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)
             - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
             - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
-          - 结构体
+          - 结构体<!--crypto-architecture-struct-->
             - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)  
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)

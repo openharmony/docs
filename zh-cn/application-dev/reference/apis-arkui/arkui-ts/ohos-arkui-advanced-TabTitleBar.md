@@ -42,6 +42,10 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 |
 | swiperContent | ()&nbsp;=&gt;&nbsp;void | 是 | \@BuilderParam | 页签列表关联的页面内容构造器。 |
 
+> **说明：**
+> 
+> 入参对象不可为undefined，即`TabTitleBar(undefined)`。
+
 ## TabTitleBarMenuItem
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -49,7 +53,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
-| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。 |
+| isEnabled | boolean | 否 | 是否启用。默认禁用。true：启用，false：禁用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 |
 
 ## TabTitleBarTabItem
@@ -66,6 +70,8 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
+
+该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'

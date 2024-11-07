@@ -1,6 +1,6 @@
 # @ohos.net.networkSecurity (Network Security)
 
-The **networkSecurity** module provides the network security verification capability. Specifically, it provides APIs for applications to verify the certificate chains in use.
+The **networkSecurity** module provides the network security verification capability. Specifically, it provides APIs for applications to verify the certificates in use.
 
 > **NOTE**
 >
@@ -70,7 +70,7 @@ Defines the certificate data.
 
 certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
-Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate chain passed by the application.
+Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate passed by the application.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -78,8 +78,8 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 | Name| Type    | Mandatory| Description                  |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | Yes  | Certificate chain to be verified.      |
-| caCert | CertBlob | No  | Custom CA certificate chain.|
+| cert   | CertBlob | Yes  | Certificate to be verified.      |
+| caCert | CertBlob | No  | Custom CA certificate.|
 
 **Return values:**
 
@@ -104,10 +104,11 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
-| 2305069  | Call invalid.                                        |
+| 2305069  | Invalid certificate verification context.            |
 
 > **NOTE**
 > 
@@ -149,7 +150,7 @@ networkSecurity.certVerification(cert, caCert)
 
 certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
-Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate chain passed by the application.
+Obtains the preset CA certificate and custom CA certificate from the certificate management module, and verifies the certificate passed by the application.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -157,14 +158,14 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 
 | Name| Type    | Mandatory| Description                  |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | Yes | Certificate chain to be verified.      |
-| caCert | CertBlob | No  | Custom CA certificate chain.|
+| cert   | CertBlob | Yes | Certificate to be verified.      |
+| caCert | CertBlob | No  | Custom CA certificate.|
 
 **Return values:**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Certificate chain verification result. The value **0** indicates that the certificate verification is successful, and a non-0 value indicates that the verification has failed.|
+| number | Certificate verification result. The value **0** indicates that the certificate verification is successful, and a non-0 value indicates that the verification has failed.|
 
 **Error codes**
 
@@ -183,9 +184,11 @@ Obtains the preset CA certificate and custom CA certificate from the certificate
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Invalid certificate verification context.            |
 
 > **NOTE**
 >

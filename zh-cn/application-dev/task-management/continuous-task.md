@@ -18,7 +18,7 @@
 | 参数名 | 描述 | 配置项 | 场景举例 |
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐。<br>支持在原子化服务中使用。 |
+| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐，投播。<br>支持在原子化服务中使用。 |
 | AUDIO_RECORDING | 录制 | audioRecording | 录音机在后台录音。 |
 | LOCATION | 定位导航 | location | 导航类应用后台导航。 |
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
@@ -150,7 +150,7 @@
           wants: [
             {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "MainAbility"
             }
           ],
           // 指定点击通知栏消息后的动作是拉起ability
@@ -502,4 +502,4 @@
 
 针对长时任务开发，有以下相关实例可供参考：
 
-- [长时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+- [长时任务（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/TaskManagement/ContinuousTask)

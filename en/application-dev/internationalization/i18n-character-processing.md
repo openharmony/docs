@@ -16,37 +16,37 @@ These functions are implemented by APIs of the **Unicode** class. For example, y
 1. Import the **i18n** module.
 
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Obtain the character attribute.
 
    ```ts
-   let isDigit: boolean = I18n.Unicode.isDigit(char: string);
+   let isDigit: boolean = i18n.Unicode.isDigit(char: string);
    ```
 
 3. Obtain the character type. The following code snippet uses the common type as an example. For details, see the **getType** API reference.
 
    ```ts
-   let type = I18n.Unicode.getType(char: string);
+   let type = i18n.Unicode.getType(char: string);
    ```
 
 **Development Example**
 ```ts
 // Import the i18n module.
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // Check whether the input character is a digit.
-let isDigit = I18n.Unicode.isDigit('1'); // isDigit: true
+let isDigit = i18n.Unicode.isDigit('1'); // isDigit: true
 
 // Check whether a character is of the RTL language.
-let isRTL = I18n.Unicode.isRTL('a'); // isRTL: false
+let isRTL = i18n.Unicode.isRTL('a'); // isRTL: false
 
 // Check whether a character is an ideographic character.
-let isIdeograph = I18n.Unicode.isIdeograph ('华'); //isIdeograph: true
+let isIdeograph = i18n.Unicode.isIdeograph('Hua'); // isIdeograph: true
 
 // Obtain the character type.
-let type = I18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
+let type = i18n.Unicode.getType('a'); // type: U_LOWERCASE_LETTER
 ```
 
 
@@ -59,13 +59,13 @@ Transliteration means to use content with similar pronunciation in the local lan
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Create a **Transliterator** object to obtain the transliteration list.
    ```ts
-   let transliterator: I18n.Transliterator = I18n.Transliterator.getInstance(id: string);  // Pass in a valid ID to create a Transliterator object.
-   let ids: string[] = I18n.Transliterator.getAvailableIDs();  // Obtain the list of IDs supported by the Transliterator object.
+   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance(id: string);  // Pass in a valid ID to create a Transliterator object.
+   let ids: string[] = i18n.Transliterator.getAvailableIDs();  // Obtain the list of IDs supported by the Transliterator object.
    ```
 
 3. Transliterate text.
@@ -77,14 +77,14 @@ Transliteration means to use content with similar pronunciation in the local lan
 **Development Example**
 ```ts
 // Import the i18n module.
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // Transliterate the text into the Latn format.
-let transliterator = I18n.Transliterator.getInstance('Any-Latn');
+let transliterator = i18n.Transliterator.getInstance('Any-Latn');
 let res = transliterator.transform("中国"); // res = "zhōng guó"
 
 // Obtain the list of IDs supported by the Transliterator object.
-let ids = I18n.Transliterator.getAvailableIDs(); ids: ['ASCII-Latin', 'Accents-Any', ...]
+let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
 ```
 
 
@@ -94,12 +94,12 @@ Character normalization means to the standardize characters according to the spe
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n'
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Create a **Normalizer** object. Pass in the text normalization paradigm to create a **Normalizer** object. The text normalization paradigm can be NFC, NFD, NFKC, or NFKD. For details, see [Unicode Normalization Forms](https://www.unicode.org/reports/tr15/#Norm_Forms).
    ```ts
-   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(mode: NormalizerMode);
+   let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(mode: NormalizerMode);
    ```
 
 3. Normalize the text.
@@ -110,10 +110,10 @@ Character normalization means to the standardize characters according to the spe
 **Development Example**
 ```ts
 // Import the i18n module.
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // Normalize characters in the NFC form.
-let normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+let normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
 let normalizedText = normalizer.normalize('\u1E9B\u0323'); // normalizedText: \u1E9B\u0323
 ```
 
@@ -124,14 +124,14 @@ Line wrapping means to obtain the text break position based on the specified tex
 
 1. Import the **i18n** module.
    ```ts
-   import I18n from '@ohos.i18n'
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Create a **BreakIterator** object.
    Pass a valid locale to create a **BreakIterator** object. This object wraps lines based on the rules specified by the locale.
 
    ```ts
-   let iterator: I18n.BreakIterator = I18n.getLineInstance(locale: string);
+   let iterator: i18n.BreakIterator = i18n.getLineInstance(locale: string);
    ```
 
 3. Set the text to be processed.
@@ -152,10 +152,10 @@ Line wrapping means to obtain the text break position based on the specified tex
 **Development Example**
 ```ts
 // Import the i18n module.
-import I18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // Create a BreakIterator object.
-let iterator = I18n.getLineInstance('en-GB');
+let iterator = i18n.getLineInstance('en-GB');
 
 // Set the text to be processed.
 iterator.setLineBreakText('Apple is my favorite fruit.');
@@ -167,10 +167,11 @@ let firstPos = iterator.first(); // firstPos: 0
 let nextPos = iterator.next(2); // nextPos: 9
 
 // Check whether a position is a break point.
-let isBoundary = iterator.isBoundary(9); isBoundary: true
+let isBoundary = iterator.isBoundary(9); // isBoundary: true
 
 // Obtain the text processed by BreakIterator.
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 ```
+<!--RP1--><!--RP1End-->
 
- <!--no_check--> 
+<!--no_check-->

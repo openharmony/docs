@@ -14,7 +14,7 @@
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | 是 | 否 | 用户传入的权限。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| authResults | Array&lt;number&gt; | 是 | 否 | 相应请求权限的结果：<br>- -1：未授权，表示权限已设置，无需弹窗，需要用户在"设置"中修改。<br>- 0：已授权。<br>- 2：未授权，表示请求无效，可能原因有：<br>  -未在设置文件中声明目标权限。<br>  -权限名非法。<br>  -部分权限存在特殊申请条件，在申请对应权限时未满足其指定的条件，见[ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation)与[ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location) <br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| authResults | Array&lt;number&gt; | 是 | 否 | 相应请求权限的结果：<br>- -1：未授权。①dialogShownResults返回为true，表示用户首次申请；②dialogShownResults返回为false，表示权限已设置，无需弹窗，需要用户在"设置"中修改。<br>- 0：已授权。<br>- 2：未授权，表示请求无效，可能原因有：<br>  -未在设置文件中声明目标权限。<br>  -权限名非法。<br>  -部分权限存在特殊申请条件，在申请对应权限时未满足其指定的条件，见[ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation)与[ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location) <br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dialogShownResults<sup>12+</sup> | Array&lt;boolean&gt; | 是 | 是 | 此权限申请是否有弹窗：<br>- true：有弹窗。<br>- false：无弹窗。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 使用说明

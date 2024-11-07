@@ -1,7 +1,7 @@
 # Key Derivation (ArkTS)
 
 
-This topic walks you through on how to perform key derivation using HKDF and PBKDF. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
+This topic walks you through on how to derive a 256-bit key using HKDF. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
 
 ## How to Develop

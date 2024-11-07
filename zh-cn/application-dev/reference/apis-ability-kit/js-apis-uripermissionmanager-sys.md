@@ -34,7 +34,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | 是 | URI的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权URI的应用包名 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回0表示有权限，返回-1表示无权限。 | 
 
@@ -93,7 +93,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | uri | string | 是 | 指向文件的URI，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
-  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | 是 | URI的读权限或写权限。 | 
+  | flag | [wantConstant.Flags](js-apis-app-ability-wantConstant.md#flags) | 是 | URI的读权限或写权限。 | 
   | targetBundleName | string | 是 | 被授权URI的应用包名 |  
 
 **返回值：**

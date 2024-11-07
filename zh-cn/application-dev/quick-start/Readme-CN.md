@@ -14,8 +14,6 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
-      - [动态import](arkts-dynamic-import.md)
-      - [延迟加载（lazy import）](arkts-lazy-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
@@ -39,9 +37,7 @@
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
-  - [方舟字节码基本原理](arkts-bytecode-fundamentals.md)
-  - [方舟字节码文件格式](arkts-bytecode-file-format.md)
-  - [方舟字节码函数命名规则](arkts-bytecode-function-name.md)
+  - [ArkTS语言规范](arkts-coding-style-guide.md)
   - 从TypeScript到ArkTS的适配指导
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)

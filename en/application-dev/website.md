@@ -832,8 +832,11 @@
             - [Key Agreement Using ECDH](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
             - [Key Agreement Using X25519](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
             - [Key Agreement Using DH](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
-        - [MD Operation (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
-        - [MD Operation (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+        - MD Operations<!--crypto-generate-message-->
+          - [MD Overview and Algorithm Specifications](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
+          - MD Generation Development<!--crypto-generate-message-digest-dev-->
+            - [MD Operations (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+            - [MD Operations (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
         - [MAC Operation](security/CryptoArchitectureKit/crypto-compute-mac.md)
         - [Random Number Generation](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - Key Derivation<!--crypto-key-derivation-->
@@ -843,7 +846,9 @@
       - Data Protection Kit<!--data-protection-kit-->
         - DLP Service<!--dlp-->
           - [Introduction to the DLP Service](security/DataProtectionKit/dlp-overview.md)
+          <!--Del-->
           - [DLP Service Development](security/DataProtectionKit/dlp-guidelines.md)
+          <!--DelEnd-->
       - Device Certificate Kit<!--device-certificate-kit-->
         - [Introduction to Device Certificate Kit](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - Certificate Framework<!--certificate-framework-->

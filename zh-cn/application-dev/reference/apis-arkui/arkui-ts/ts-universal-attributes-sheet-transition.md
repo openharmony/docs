@@ -49,7 +49,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>从API version 12开始，底部弹窗横屏时该属性设置生效。<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。<br />面板可跟手滑动切换档位，松手后是否滑动至目标档位有两个判断条件：速度和距离。速度超过阈值，则执行滑动至与手速方向一致的目标档位；速度小于阈值，则引入距离判断条件，当位移距离>当前位置与目标位置的1/2，滑动至与手速方向一致的目标档位，位移距离当前位置与目标位置的1/2，返回至当前档位。速度阈值：1000，距离阈值：50%。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同屏幕宽度所支持的显示类型：<br/>1. 宽度 < 600vp：底部。<br/>2. 600vp <= 宽度 < 840vp：底部、居中。<br/>3. 宽度 >= 840vp：底部、居中、跟手。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的dentents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的detents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -153,30 +153,31 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State sheetHeight:number = 300;
+  @State isShow: boolean = false
+  @State isShow2: boolean = false
+  @State sheetHeight: number = 300;
 
-  @Builder myBuilder() {
+  @Builder
+  myBuilder() {
     Column() {
       Button("change height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = 500;
         })
 
       Button("Set Illegal height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = -1;
         })
 
       Button("close modal 1")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
     }
@@ -193,12 +194,20 @@ struct SheetTransitionExample {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          height: this.sheetHeight, 
+          height: this.sheetHeight,
           backgroundColor: Color.Green,
-          onWillAppear: () => {console.log("BindSheet onWillAppear.")}, 
-          onAppear: () => {console.log("BindSheet onAppear.")}, 
-          onWillDisappear: () => {console.log("BindSheet onWillDisappear.")}, 
-          onDisappear: () => {console.log("BindSheet onDisappear.")}
+          onWillAppear: () => {
+            console.log("BindSheet onWillAppear.")
+          },
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onWillDisappear: () => {
+            console.log("BindSheet onWillDisappear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
         })
     }
     .justifyContent(FlexAlign.Center)
@@ -212,15 +221,17 @@ struct SheetTransitionExample {
 
 ### 示例2
 
-使用bindSheet的detents属性设置三个不同高度的档位
+使用bindSheet的detents属性设置三个不同高度的档位。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @Builder myBuilder() {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
     Column() {
       Button("content1")
         .margin(10)
@@ -241,12 +252,12 @@ struct SheetTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(),{
-          detents:[SheetSize.MEDIUM,SheetSize.LARGE,200],
-          backgroundColor:Color.Gray,
-          blurStyle:BlurStyle.Thick,
-          showClose:true,
-          title:{title:"title", subtitle:"subtitle"},
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -260,11 +271,10 @@ struct SheetTransitionExample {
 
 ### 示例3
 
-bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
+bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型。
 
 ```ts
 // xxx.ets
-
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
@@ -321,11 +331,10 @@ struct SheetTransitionExample {
 
 ### 示例4
 
-bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss
+bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss。
 
 ```ts
 // xxx.ets
-
 @Entry
 @Component
 struct bindSheetExample {
@@ -375,15 +384,14 @@ struct bindSheetExample {
 
 ### 示例5
 
+bindSheet设置scrollSizeMode。
+
 ```ts
 // xxx.ets
-// bindSheet设置scrollSizeMode
-
 @Entry
 @Component
 struct Index {
   @State isShow: boolean = false;
-
 
   @Builder
   myBuilder() {
@@ -401,18 +409,18 @@ struct Index {
 
   build() {
     Column() {
-        Button('BindSheet')
-          .onClick(()=>{
-            this.isShow = true;
-          })
-          .bindSheet($$this.isShow, this.myBuilder(), {
-            detents: [300, 600, 900],
-            uiContext: this.getUIContext(),
-            mode: SheetMode.OVERLAY,
-            scrollSizeMode: ScrollSizeMode.CONTINUOUS,
-            backgroundColor: Color.Orange,
-            title: {title: 'Title', subtitle: 'Subtitle'}
-          })
+      Button('BindSheet')
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [300, 600, 900],
+          uiContext: this.getUIContext(),
+          mode: SheetMode.OVERLAY,
+          scrollSizeMode: ScrollSizeMode.CONTINUOUS,
+          backgroundColor: Color.Orange,
+          title: { title: 'Title', subtitle: 'Subtitle' }
+        })
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')

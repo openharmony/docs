@@ -30,7 +30,7 @@ XComponent(options: XComponentOptions)
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
-该接口不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
+该接口从API version 12开始不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -457,64 +457,89 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 ### 示例1
 
 图像AI分析功能使用示例。
-
+<!--Del-->
+> **说明：**
+>
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Native/NdkXComponent)
+<!--DelEnd-->
 ```ts
 // xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit';
+import nativeRender from 'libnativerender.so';
 
 class CustomXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {
-    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
   }
 
   onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
   }
 
   onSurfaceDestroyed(surfaceId: string): void {
-    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`)
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
   }
 }
 
 @Entry
 @Component
 struct XComponentExample {
-  xComponentController: XComponentController = new CustomXComponentController()
+  xComponentController: XComponentController = new CustomXComponentController();
   private config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
-  }
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  };
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
-  }
-  @State xcWidth: string = "320px"
-  @State xcHeight: string = "480px"
+  };
+  @State xcWidth: string = "320px";
+  @State xcHeight: string = "480px";
+  @State currentStatus: string = "index";
 
   build() {
     Column({ space: 5 }) {
       Button("change size")
         .onClick(() => {
-          this.xcWidth = "640px"
-          this.xcHeight = "720px"
+          this.xcWidth = "640px";
+          this.xcHeight = "720px";
         })
       Button('start AI analyze')
         .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
+          this.xComponentController.startImageAnalyzer(this.config);
             .then(() => {
-              console.log("analysis complete")
+              console.log("analysis complete");
             })
             .catch((error: BusinessError) => {
-              console.log("error code: " + error.code)
+              console.log("error code: " + error.code);
             })
         })
       Button('stop AI analyze')
         .onClick(() => {
-          this.xComponentController.stopImageAnalyzer()
+          this.xComponentController.stopImageAnalyzer();
         })
       Button('get analyzer types')
         .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes()
+          this.aiController.getImageAnalyzerSupportTypes();
+        })
+      Button('Draw Star')
+        .fontSize('16fp')
+        .fontWeight(500)
+        .margin({ bottom: 24 })
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          this.xComponentController.getXComponentSurfaceRect();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+          let hasDraw: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+          }
+          if (hasDraw) {
+              this.currentStatus = "draw star";
+          }
         })
       XComponent({
         type: XComponentType.SURFACE,
@@ -523,11 +548,16 @@ struct XComponentExample {
       })
         .width(this.xcWidth)
         .height(this.xcHeight)
+        .enableAnalyzer(true)
+      Test(this.currentStatus)
+        .fontSize('24fp')
+        .fontWeight(500)
     }
     .width("100%")
   }
 }
 ```
+<!--RP1--><!--RP1End-->
 
 ### 示例2
 

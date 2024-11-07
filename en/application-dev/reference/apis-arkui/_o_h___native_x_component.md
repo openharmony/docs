@@ -1008,7 +1008,7 @@ int32_t OH_NativeXComponent_GetTouchPointTiltY (OH_NativeXComponent * component,
 
 **Description**
 
-Obtains the angle between the X-Z plane of the ArkUI XComponent touch point and the x-axis.
+Obtains the angle between the X-Z plane of the ArkUI XComponent touch point and the y-axis.
 
 **Parameters**
 

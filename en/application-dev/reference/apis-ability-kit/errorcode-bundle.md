@@ -1027,25 +1027,6 @@ The ability specified by **want** in the **ShortcutInfo** struct does not exist,
 
 Check the validity of **want** in the **ShortcutInfo** struct.
 
-## 17700068  Maximum Number of Application Clones Is Reduced During an Update 
-
-**Error Message**
-
-Failed to install the HAP because the maximum count of clone app cannot be reduced.
-
-**Description**
-
-If the multi-app mode is **appClone**, the value of **maxCount** cannot be decreased during an update.
-
-**Possible Causes**
-
- The maximum number of application clones is reduced during the update of an application.
-
-**Solution**
-
-1. Check whether the application to update supports clones.
-2. Check whether the maximum number of clones supported by the application is reduced after the update.
-
 ## 17700069 AppClone Instance Cannot Be Created For an Application in Multi-app Mode Not Set To appClone
 
 **Error Message**

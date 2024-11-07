@@ -142,6 +142,8 @@ baselineOffset(value: number | string)
 
 设置文本基线的偏移量，设置该值为百分比时，按默认值显示。
 
+正数内容向上偏移，负数向下偏移。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。

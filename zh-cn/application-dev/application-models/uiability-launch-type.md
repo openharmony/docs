@@ -213,7 +213,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
 
 针对UIAbility组件启动模式，有以下相关实例可供参考：
 
-- [Ability的启动模式（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/AbilityStartMode)
+- [Ability的启动模式（ArkTS）(API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/ApplicationModels/AbilityStartMode)
 
 <!--RP1-->
 <!--RP1End-->

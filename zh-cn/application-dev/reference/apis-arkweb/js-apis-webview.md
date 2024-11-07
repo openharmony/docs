@@ -22,7 +22,9 @@ import { webview } from '@kit.ArkWeb';
 
 once(type: string, callback: Callback\<void\>): void
 
-订阅一次指定类型Web事件的回调。
+订阅一次指定类型Web事件的回调，Web事件的类型目前仅支持"webInited"，在Web引擎初始化完成时触发。
+
+当应用中开始加载第一个Web组件时，Web引擎初始化，且后续再在同一应用中继续加载其他Web组件时不会再触发once接口。当应用销毁最后一个Web组件时，若再加载第一个Web组件，应用重新进入Web引擎初始化流程。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -67,13 +69,21 @@ struct WebComponent {
 
 ## WebMessagePort
 
-通过WebMessagePort可以进行消息的发送以及接收。
+通过WebMessagePort可以进行消息的发送以及接收，发送[WebMessageType](#webmessagetype10)/[WebMessage](#webmessage)类型消息给HTML5侧。
+
+### 属性
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType<sup>10+</sup> | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)，默认false不使用。   |
 
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
 
-发送消息。完整示例代码参考[postMessage](#postmessage)。
+发送[WebMessage](#webmessage)类型消息给HTML5侧，必须先调用[onMessageEvent](#onmessageevent)，否则会发送失败。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -127,7 +137,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-注册回调函数，接收HTML侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
+在应用侧的消息端口上注册回调函数，接收HTML5侧发送过来的[WebMessage](#webmessage)类型消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -188,19 +198,11 @@ struct WebComponent {
 }
 ```
 
-### isExtentionType<sup>10+</sup>
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
-
 ### postMessageEventExt<sup>10+</sup>
 
 postMessageEventExt(message: WebMessageExt): void
 
-发送消息。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+发送[WebMessageType](#webmessagetype10)类型消息给HTML5侧，必须先调用[onMessageEventExt](#onmessageeventext10)，否则会发送失败。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -223,7 +225,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。
+在应用侧的消息端口上注册回调函数，接收HTML5侧发送过来的[WebMessageType](#webmessagetype10)类型消息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -535,7 +537,7 @@ function postStringToApp() {
 
 close(): void
 
-关闭该消息端口。在使用close前，请先使用[createWebMessagePorts](#createwebmessageports)创建消息端口。
+不需要发送消息时关闭该消息端口。在使用close前，请先使用[createWebMessagePorts](#createwebmessageports)创建消息端口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -594,7 +596,11 @@ constructor(webTag?: string)
 
 > **说明：**
 >
-> webTag是需要开发者自定义的一个标记，即开发者给web的一个字符串形式参数，用来做标记。
+> 不传参：new webview.WebviewController()表示构造函数为空，不使用C API时不需要传参。
+> 
+> 传参且参数是合法字符串：new webview.WebviewController("xxx")，用于开发者区分多实例，并调用对应实例下的方法。
+> 
+> 传入参数为空：new webview.WebviewController("")或new webview.WebviewController(undefined)，该场景下参数无意义，无法区分多个实例，直接返回undefined，需要开发者判断返回值是否正常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -602,7 +608,7 @@ constructor(webTag?: string)
 
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
-| webTag   | string | 否   | 指定了 Web 组件的名称，默认为 Empty。 |
+| webTag   | string | 否   | 指定了 Web 组件的名称。 |
 
 **示例：**
 
@@ -5553,6 +5559,7 @@ import { webview } from '@kit.ArkWeb';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("EntryAbility onCreate");
+        webview.WebviewController.initializeWebEngine();
         webview.WebviewController.warmupServiceWorker("https://www.example.com");
         AppStorage.setOrCreate("abilityWant", want);
     }
@@ -5563,7 +5570,9 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。<!--RP1End-->
+<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
+<!--RP1End-->
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6035,7 +6044,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。 |
+| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
 
 **错误码：**
 
@@ -6082,9 +6091,9 @@ static getRenderProcessMode(): RenderProcessMode
 
 **返回值：**
 
-| 类型                                                         | 说明                   |
-| ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| 渲染子进程模式类型。 |
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [RenderProcessMode](#renderprocessmode12) | 渲染子进程模式类型。调用[getRenderProcessMode()](#getrenderprocessmode12)获取当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。 |
 
 
 **示例：**
@@ -6587,7 +6596,7 @@ struct WebComponent {
 }
 ```
 
-## getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
+### getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
 
 getLastJavascriptProxyCallingFrameUrl(): string
 
@@ -8675,7 +8684,7 @@ setBackForwardCacheOptions(options: BackForwardCacheOptions): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | 是   | 用来控制web组件前进后退缓存相关选项。|
+| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | 是   | 用来控制Web组件前进后退缓存相关选项。|
 
 **错误码：**
 
@@ -15472,7 +15481,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
-前进后退缓存相关设置对象，用来控制web组件前进后退缓存相关选项。
+前进后退缓存相关设置对象，用来控制Web组件前进后退缓存相关选项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

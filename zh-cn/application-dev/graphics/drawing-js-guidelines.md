@@ -41,7 +41,7 @@ import { common2D, drawing } from '@kit.ArkGraphics2D'
 
 以下步骤描述了如何使用@ohos.graphics.drawing模块的画布画笔绘制基本的2D图形和文字：
 
-1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。`RenderNode`中包含树结构的操作，以及对绘制属性的操作。
+1. **创建RenderNode子类**。创建`RenderNode`子类`MyRenderNode`，并在其中定义绘图函数。`RenderNode`中包含树结构的操作，以及对绘制属性的操作，其中`draw`方法会在`RenderNode`进行绘制时被调用，更多细节请参考[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)。
 
     ```js
     // 创建一个MyRenderNode类，并构建Path形状。

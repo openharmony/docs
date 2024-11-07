@@ -2,14 +2,14 @@
 
 - ArkTS APIs
   - [@ohos.reminderAgentManager (Reminder Agent Management)](js-apis-reminderAgentManager.md)
-  - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager.md) 
+  - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management)](js-apis-resourceschedule-backgroundTaskManager.md)
   - [@ohos.resourceschedule.workScheduler (Deferred Task Scheduling)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](js-apis-WorkSchedulerExtensionAbility.md)
   <!--Del-->
   - [@ohos.reminderAgentManager (Reminder Agent Management) (System API)](js-apis-reminderAgentManager-sys.md)
   - [@ohos.resourceschedule.backgroundTaskManager (Background Task Management) (System API)](js-apis-resourceschedule-backgroundTaskManager-sys.md)
   - [@ohos.resourceschedule.deviceStandby (Device Standby) (System API)](js-apis-resourceschedule-deviceStandby-sys.md)
-  - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics) (System API)](js-apis-resourceschedule-deviceUsageStatistics-sys.md) 
+  - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics) (System API)](js-apis-resourceschedule-deviceUsageStatistics-sys.md)
   <!--DelEnd-->
   - application
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)

@@ -26,7 +26,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -63,8 +63,8 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。  |
-| options  | [InitializationOptions](#initializationoptions8) | 是   | 属性。                     |
+| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
 **示例：**
@@ -185,7 +185,11 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
-从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。使用Promise形式返回。
+
+> **说明：**
+> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
+> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -194,7 +198,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 区域信息。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -230,7 +234,11 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
-从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+以同步方式，根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。
+
+> **说明：**
+> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
+> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -239,7 +247,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 区域信息。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -280,7 +288,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -639,7 +647,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，通过回调函数返回。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -718,8 +726,8 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 Promise 形式返回。
+读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -787,8 +795,8 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 callback 形式返回。
+读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
+当像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -857,8 +865,8 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-以同步方式读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。
+以同步方式读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -901,8 +909,8 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 Promise 形式返回。
+读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -978,8 +986,8 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 callback 形式返回。
+读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1054,8 +1062,8 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方式读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。
+以同步方式读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1962,8 +1970,8 @@ translateSync(x: number, y: number): void
 
 | 参数名   | 类型                 | 必填 | 说明                            |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | 是   | 宽度的缩放倍数。|
-| y        | number               | 是   | 高度的缩放倍数。|
+| x        | number               | 是   | 区域横坐标。|
+| y        | number               | 是   | 区域纵坐标。|
 
 **错误码：**
 
@@ -2246,7 +2254,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
 | callback | AsyncCallback\<void> | 是   |  回调函数。当对图片进行裁剪成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -2285,7 +2293,7 @@ crop(region: Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](#region7) | 是   | 裁剪的尺寸。|
+| region | [Region](#region8) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
@@ -2325,7 +2333,7 @@ cropSync(region: Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
 
 **错误码：**
 
@@ -2717,15 +2725,15 @@ import taskpool from '@ohos.taskpool';
 @Concurrent
 // 子线程方法
 async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
-  // 创建 imageSource
+  // 创建imageSource。
   const imageSource = image.createImageSource(rawFileDescriptor);
-  // 创建 pixelMap
+  // 创建pixelMap。
   const pixelMap = imageSource.createPixelMapSync();
-  // 释放 imageSource
+  // 释放imageSource。
   imageSource.release();
-  // 使 pixelMap 在跨线程传输完成后，断开原线程的引用。
+  // 使pixelMap在跨线程传输完成后，断开原线程的引用。
   pixelMap.setTransferDetached(true);
-  // 返回 pixelMap 给主线程
+  // 返回pixelMap给主线程。
   return pixelMap;
 }
 
@@ -2736,13 +2744,13 @@ struct Demo {
   // 主线程方法
   private loadImageFromThread(): void {
     const resourceMgr = getContext(this).resourceManager;
-    // 此处‘example.jpg’ 仅作示例，请开发者自行替换，否则 imageSource 创建失败会导致后续无法正常执行。
+    // 此处‘example.jpg’仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
         if (pixelMap) {
           this.pixelMap = pixelMap as PixelMap;
           console.log('Succeeded in creating pixelMap.');
-          // 主线程释放 pixelMap。由于子线程返回 pixelMap 时已调用 setTransferDetached，所以此处能够立即释放 pixelMap。
+          // 主线程释放pixelMap。由于子线程返回pixelMap时已调用setTransferDetached，所以此处能够立即释放pixelMap。
           this.pixelMap.release();
         } else {
           console.error('Failed to create pixelMap.');
@@ -3000,7 +3008,7 @@ async function Demo() {
 
 convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
-YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
+YUV和RGB类型互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -3008,7 +3016,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 | 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
-| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。 |
+| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 目标像素格式，用于YUV和RGB类型互转。目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。 |
 
 **返回值：**
 
@@ -3024,7 +3032,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 | ------- | --------------------------------------------|
 | 62980111 | The image source data is incomplete. |
 | 62980115 | Invalid input parameter.              |
-| 62980178 | Failed to create the PixelMap|
+| 62980178 | Failed to create the pixelmap. |
 | 62980274 | The conversion failed |
 | 62980276 | The type to be converted is an unsupported target pixel format|
 
@@ -3034,11 +3042,14 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (pixelMap != undefined) {
-  let targetPixelFormat = image.PixelFormat.NV12  
+  // 设置目标像素格式为NV12
+  let targetPixelFormat = image.PixelMapFormat.NV12;
   pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
-    console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
+    // pixelMap转换成NV12格式成功
+    console.info('PixelMapFormat convert Succeeded');
   }).catch((error: BusinessError) => {
-    console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+    // pixelMap转换成NV12格式失败
+    console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);
   })
 }
 ```
@@ -5179,7 +5190,7 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取最新的图片，并使用callback返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -5209,7 +5220,7 @@ readLatestImage(): Promise\<Image>
 
 从ImageReceiver读取最新的图片，并使用promise返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -5237,7 +5248,7 @@ readNextImage(callback: AsyncCallback\<Image>): void
 
 从ImageReceiver读取下一张图片，并使用callback返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -5267,7 +5278,7 @@ readNextImage(): Promise\<Image>
 
 从ImageReceiver读取下一张图片，并使用promise返回结果。
 
-**注意**：此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
+**注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image9)对象使用完毕后需要调用[release](#release9-4)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -5695,7 +5706,7 @@ creator.release().then(() => {
 
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
+| clipRect | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。                                |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
 | timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](#getimageproperty11)接口读取相关的EXIF信息。|
@@ -5838,7 +5849,7 @@ img.release().then(() => {
 | pixels | ArrayBuffer        | 否 |   否   | 像素。                                                       |
 | offset | number             | 否 |   否  |  偏移量。                                                     |
 | stride | number             | 否 |   否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
-| region | [Region](#region7) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
+| region | [Region](#region8) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
@@ -5968,14 +5979,14 @@ PixelMap的初始化选项。
 | rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
 | desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredRegion      | [Region](#region7)                 | 否   | 是   | 解码区域。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| desiredRegion      | [Region](#region8)                 | 否   | 是   | 解码区域。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
 | desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围，默认值为SDR。<br>通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持设置此属性，默认解码为SDR内容。<br>如果平台不支持HDR，设置无效，默认解码为SDR内容。 |
 
-## Region<sup>7+</sup>
+## Region<sup>8+</sup>
 
 表示区域信息。
 

@@ -507,7 +507,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise<Array<BundleOption\>> | 返回允许通知的应用程序列表。 | 
+| Promise<Array<[BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)\>> | 返回允许通知的应用程序列表。 | 
 
 **错误码：**
 
@@ -612,7 +612,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 类型               | 说明                                                |
 | ------------------ | --------------------------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -717,7 +717,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -927,7 +927,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -1449,7 +1449,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
@@ -2687,6 +2687,9 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2764,6 +2767,9 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2836,6 +2842,9 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 

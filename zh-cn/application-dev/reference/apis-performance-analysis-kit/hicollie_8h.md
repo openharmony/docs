@@ -9,6 +9,8 @@
 
 **系统能力：** SystemCapability.HiviewDFX.HiCollie
 
+**引用文件：** &lt;hicollie/hicollie.h&gt;
+
 **起始版本：** 12
 
 **相关模块：**[HiCollie](_hi_hicollie.md)
