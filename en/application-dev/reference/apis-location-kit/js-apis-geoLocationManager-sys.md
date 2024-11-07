@@ -32,11 +32,9 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, 
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
-To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
+To access the device location information when running in the background, an application needs to request for a continuous task of the LOCATION type. In this way, the system continues to report device location information after your application moves to the background. For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
 A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
-
-For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
@@ -382,7 +380,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.enableLocation().then(() => {
           console.log('promise, enableLocation succeed');
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -788,7 +786,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.getLocatingRequiredData(config).then((result) => {
           console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {

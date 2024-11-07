@@ -15,10 +15,10 @@ Provides C APIs for the network protocol stack module.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.| 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.| 
-| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module.| 
-| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module.| 
+| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.<br>**File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module. **File to include**:  \<network\/netstack\/net_ssl\/net_ssl_c_type.h\>| 
+| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module. **File to include**: \<network\/netstack\/net_websocket.h\>| 
+| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module. **File to include**: \<network\/net_websocket_type.h\>| 
 
 
 ### Structs
