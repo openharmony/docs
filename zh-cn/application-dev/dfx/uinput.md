@@ -25,6 +25,10 @@ uinput <option> <command> <arg> ...
 | -P       | --touchpad | 注入触控板事件。|
 | -?       | --help     | 帮助命令。      | 
 
+> **说明：**
+>
+> 命令中与坐标相关的参数，单位均为[px(屏幕物理像素单位)](../reference/apis-arkui/arkui-ts/ts-pixel-units.md)。
+
 ## 帮助命令
 
 显示uinput工具能够支持的命令信息。
@@ -154,12 +158,14 @@ uinput -M -b 100 150 0 10 10
 ```bash
 uinput -M -s <number>
 uinput --mouse --scroll <number>
+
+number鼠标滚动刻度数，一个刻度是15。
 ```
 
 **使用示例**
 ```bash
-# 鼠标滚轴向后滚动100。(实测没有效果)
-uinput -M -s 100
+# 鼠标滚轴向后滚动三个刻度。
+uinput -M -s 45
 ```
 
 ### 鼠标拖拽事件
