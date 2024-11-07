@@ -86,7 +86,7 @@ for (let i = 0; i < wordArray.length; i++) {
     let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
 }
 
-// 汉字音译去声调
+// 汉语音译去声调
 let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
 let result = transliter.transform('中国'); // result: zhong guo
 
