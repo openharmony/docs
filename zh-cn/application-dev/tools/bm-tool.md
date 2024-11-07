@@ -39,20 +39,19 @@ bm help
 ## 安装命令
 
 ```bash
-bm install [-h] [-p filePath] [-u userId] [-r] [-w waitingTime] [-s hspDirPath]
+bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 ```
 
   **安装命令参数列表**
 
 
-| 参数 | 参数说明 | 
-| -------- | -------- | 
-| -h | 帮助信息。 | 
-| -p | 必选参数，指定路径和多个HAP同时安装。 | 
-| -u | 可选参数，给指定用户安装一个HAP。默认安装到当前所有用户上。| 
-| -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 | 
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h | 帮助信息。 |
+| -p | 必选参数，指定路径和多个HAP同时安装。 |
+| -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 |
 | -s | 根据场景判断，安装应用间HSP时为必选参数，其他场景为可选参数。安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。 |
-| -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s。 | 
+| -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s。 |
 
 
 示例：
@@ -65,26 +64,25 @@ bm install -p /data/app/ohos.app.hap -r
 bm install -s xxx.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
-# 指定用户安装一个hap,等待时间为10s
-bm install -p /data/app/ohos.app.hap -u 100 -w 10
+# 安装一个hap,等待时间为10s
+bm install -p /data/app/ohos.app.hap -w 10
 ```
 
 ## 卸载命令
 
 ```bash
-bm uninstall [-h] [-n bundleName] [-m moduleName] [-u userId] [-k] [-s] [-v versionCode]
+bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 ```
 
   **卸载命令参数列表**
 
-| 参数 | 参数说明 | 
-| -------- | -------- | 
-| -h | 帮助信息。 | 
-| -n | 必选参数，指定Bundle名称卸载应用。| 
-| -m | 可选参数，指定卸载应用的一个模块。默认卸载所有模块。 | 
-| -u | 可选参数，指定用户卸载应用。默认卸载当前所有用户下该应用。 | 
-| -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 | 
-| -s | 根据场景判断，安装应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。| 
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h | 帮助信息。 |
+| -n | 必选参数，指定Bundle名称卸载应用。|
+| -m | 可选参数，指定卸载应用的一个模块。默认卸载所有模块。 |
+| -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 |
+| -s | 根据场景判断，安装应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
 | -v | 可选参数，指定共享包的版本号。默认卸载同包名的所有共享包。 |
 
 
@@ -101,27 +99,24 @@ bm uninstall -n com.ohos.example -s
 bm uninstall -n com.ohos.example -s -v 100001
 # 卸载一个应用，并保留用户数据
 bm uninstall -n com.ohos.app -k
-# 指定用户卸载应用的一个模块
-bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 
 ```
 
 
 ## 查询应用信息命令
 
 ```bash
-bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-u userId] [-d deviceId]
+bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 ```
 
   **查询命令参数列表**
 
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
-| -a | 可选参数，查询系统已经安装的所有应用。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
+| -a | 可选参数，查询系统已经安装的所有应用。 |
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
-| -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 | 
-| -u | 可选参数，查询指定用户下指定Bundle名称的详细信息。默认查询当前设备上的所有用户。 | 
+| -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
 
 
 示例：
@@ -130,9 +125,9 @@ bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-u userId] [-d deviceId]
 # 显示所有已安装的Bundle名称
 bm dump -a
 # 查询该应用的详细信息
-bm dump -n com.ohos.app -u 100
+bm dump -n com.ohos.app
 # 查询该应用的快捷方式信息
-bm dump -s -n com.ohos.app -u 100
+bm dump -s -n com.ohos.app
 # 查询跨设备应用信息
 bm dump -n com.ohos.app -d xxxxx
 ```
@@ -140,26 +135,25 @@ bm dump -n com.ohos.app -d xxxxx
 ## 清理命令
 
 ```bash
-bm clean [-h] [-c] [-n bundleName] [-d] [-u userId] [-i appIndex]
+bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
 ```
 **清理命令参数列表**
 
-| 参数 | 参数说明 | 
-| -------- | --------- | 
+| 参数 | 参数说明 |
+| -------- | --------- |
 | -h | 帮助信息。 |
 | -c&nbsp;-n | -n为必选参数，-c为可选参数。清除指定Bundle名称的缓存数据。 |
 | -d&nbsp;-n | -n为必选参数，-d为可选参数。清除指定Bundle名称的数据目录。 |
-| -i | 可选参数，清除分身应用的数据目录。默认为0。| 
-| -u | 可选参数，清除指定用户下Bundle名称的缓存数据。默认为当时活跃用户。 | 
+| -i | 可选参数，清除分身应用的数据目录。默认为0。|
 
 
 示例：
 
 ```bash
 # 清理该应用下的缓存数据
-bm clean -c -n com.ohos.app -u 100
+bm clean -c -n com.ohos.app
 # 清理该应用下的用户数据
-bm clean -d -n com.ohos.app -u 100
+bm clean -d -n com.ohos.app
 // 执行结果
 clean bundle data files successfully.
 ```
@@ -168,25 +162,24 @@ clean bundle data files successfully.
 ## 使能命令
 
 ```bash
-bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
+bm enable [-h] [-n bundleName] [-a abilityName]
 ```
 
 
   **使能命令参数列表**
 
 | 参数 | 参数说明 |
-| -------- | -------- | 
+| -------- | -------- |
 | -h | 帮助信息。 |
 | -n | 必选参数，使能指定Bundle名称的应用。 |
 | -a | 可选参数，使能指定Bundle名称下的元能力模块。 |
-| -u | 可选参数，使能指定用户和Bundle名称的应用。默认为当前活跃用户。 |
 
 
 示例：
 
 ```bash
 # 使能该应用
-bm enable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
+bm enable -n com.ohos.app -a com.ohos.app.EntryAbility
 // 执行结果
 enable bundle successfully.
 ```
@@ -195,25 +188,24 @@ enable bundle successfully.
 ## 禁用命令
 
 ```bash
-bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
+bm disable [-h] [-n bundleName] [-a abilityName]
 ```
 
 
   **禁用命令参数列表**
 
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -n | 必选参数，禁用指定Bundle名称的应用。 |
 | -a | 可选参数，禁用指定Bundle名称下的元能力模块。 |
-| -u | 可选参数，禁用指定用户和Bundle名称下的应用。默认为当前活跃用户。| 
 
 
 示例：
 
 ```bash
 # 禁用该应用
-bm disable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
+bm disable -n com.ohos.app -a com.ohos.app.EntryAbility
 // 执行结果
 disable bundle successfully.
 ```
@@ -229,8 +221,8 @@ bm get [-h] [-u]
   **获取udid命令参数列表**
 
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h |帮助信息。 | 
+| -------- | -------- |
+| -h |帮助信息。 |
 | -u | 必选参数，获取设备的udid。|
 
 
@@ -248,15 +240,15 @@ udid of current device is :
 ## 快速修复命令
 
 ```bash
-bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName] 
+bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName]
 ```
 
 注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
 
   **快速修复命令参数列表**
 |   参数  | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -a&nbsp;-f | -a为可选参数，指定-a后，-f为必选参数。执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
 | -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数，未指定-q。根据包名查询补丁信息。 |
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
@@ -271,16 +263,16 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 # 根据包名查询补丁包信息
 bm quickfix -q -b com.ohos.app
 // 执行结果
-// Information as follows:            
-// ApplicationQuickFixInfo:           
-//  bundle name: com.ohos.app 
-//  bundle version code: xxx     
-//  bundle version name: xxx       
-//  patch version code: x            
-//  patch version name:              
-//  cpu abi:                          
-//  native library path:             
-//  type:                            
+// Information as follows:
+// ApplicationQuickFixInfo:
+//  bundle name: com.ohos.app
+//  bundle version code: xxx
+//  bundle version name: xxx
+//  patch version code: x
+//  patch version name:
+//  cpu abi:
+//  native library path:
+//  type:
 # 快速修复补丁安装
 bm quickfix -a -f /data/app/
 // 执行结果
@@ -300,8 +292,8 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
   **共享库查询命令参数列表**
 
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -a | 可选参数，查询系统中已安装所有共享库。|
 | -n | 可选参数，查询指定共享库包名的详细信息。|
 | -m | 可选参数，查询指定共享库包名和模块名的详细信息。|
@@ -327,8 +319,8 @@ bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 
   **共享库依赖关系查询命令参数列表**
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -n | 必选参数，查询指定共享库包名的详细信息。|
 | -m | 可选参数，查询指定应用指定模块依赖的共享库信息。|
 
@@ -348,8 +340,8 @@ bm compile [-h] [-m mode] [-r bundleName]
   **compile命令参数列表**
 
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -a | 可选参数，编译所有应用。|
 | -m | 可选参数，可选值为partial或者full。根据包名编译应用。|
 | -r | 可选参数，移除应用的结果。|
@@ -372,8 +364,8 @@ bm copy-ap [-h] [-a] [-n bundleName]
 **copy-ap命令参数列表**
 
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -a | 可选参数，默认所有包相关ap文件。拷贝所有包相关ap文件。|
 | -n | 可选参数，默认当前应用包名。根据包名拷贝对应包相关的ap文件。|
 
@@ -388,17 +380,16 @@ bm copy-ap -n com.example.myapplication
 
 打印overlay应用的overlayModuleInfo
 ```bash
-bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId] [-t targetModuleName]
+bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName]
 ```
 
 **dump-overlay命令参数列表**
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -b | 必选参数，获取指定应用的所有OverlayModuleInfo信息。|
 | -m | 可选参数，默认当前应用主模块名。根据指定的包名和module名查询OverlayModuleInfo信息。|
 | -t | 可选参数，根据指定的包名和目标module名查询OverlayModuleInfo信息。|
-| -u | 可选参数，默认为当前活跃用户。根据指定的包名、目标module名和用户查询OverlayModuleInfo信息。 |
 
 示例：
 
@@ -418,16 +409,15 @@ bm dump-overlay -b com.ohos.app -m feature
 查询目标应用的所有关联overlay应用的overlayModuleInfo信息。
 
 ```bash
-bm dump-target-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
+bm dump-target-overlay [-h] [-b bundleName] [-m moduleName]
 ```
 
 **dump-target-overlay命令参数列表**
 | 参数 | 参数说明 |
-| -------- | -------- | 
-| -h | 帮助信息。 | 
+| -------- | -------- |
+| -h | 帮助信息。 |
 | -b | 必选参数，获取指定应用的所有OverlayBundleInfo信息。|
 | -m | 可选参数，默认当前应用主模块名。根据指定的包名和module名查询OverlayBundleInfo信息。|
-| -u | 可选参数，默认为当前活跃用户。根据指定的包名、目标module名和用户查询OverlayBundleInfo信息。 |
 
 示例：
 
@@ -532,7 +522,7 @@ Error: install parse profile prop check error.
       keytool -printcert -file xxx.cer
       ```
     d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
-    
+
     如SHA256值为下图（仅作为格式示意，内容以实际为准）：
     ![示例图](figures/zh-cn_image_0000001635921233.png)
 
@@ -561,9 +551,9 @@ Error: install parse profile prop check error.
 4. 将修改后的install_list_capability.json文件重新推到设备上，并重启设备。
 
     ```
-    hdc shell mount -o rw,remount / 
-    hdc file send install_list_capability.json /system/etc/app/install_list_capability.json 
-    hdc shell chmod 644 /system/etc/app/install_list_capability.json 
+    hdc shell mount -o rw,remount /
+    hdc file send install_list_capability.json /system/etc/app/install_list_capability.json
+    hdc shell chmod 644 /system/etc/app/install_list_capability.json
     hdc shell reboot
     ```
 5. 设备重启后，重新安装新的应用即可。
@@ -851,21 +841,21 @@ Error: install debug type not same.
 **处理步骤**
 
 1. 卸载已安装的应用，重新安装新应用。
-   
+
 
 ### 9568296 包类型错误
 **错误信息**
 
 Error: install failed due to error bundle type.
 
-**错误描述**    
+**错误描述**
 
 bundleType错误导致应用安装失败。
 
 **可能原因**
 
 新安装应用的bundleType与已安装的有相同bundleName应用不一致。
-       
+
 **处理步骤**
 
 * 方法一：卸载已安装的应用，重新安装新应用。
@@ -948,7 +938,7 @@ Error: isolationMode does not match the system.
 
 **处理步骤**
 
-1. 按照设备的隔离模式配置HAP配置文件isolationMode属性。  
+1. 按照设备的隔离模式配置HAP配置文件isolationMode属性。
 	```
 	//查询设备persist.bms.supportIsolationMode值，若返回errNum is:106说明没配置
 	hdc shell
@@ -981,7 +971,7 @@ uri不满足格式规范。
 	```
 
 
-### 9568310 兼容策略不同      
+### 9568310 兼容策略不同
 **错误信息**
 
 Error: compatible policy not same.
@@ -999,7 +989,7 @@ Error: compatible policy not same.
 1. 卸载已安装相同包名hap包，再安装新包。
 
 
-### 9568391 包管理服务已停止      
+### 9568391 包管理服务已停止
 **错误信息**
 
 Error: bundle manager service is died.
@@ -1017,7 +1007,7 @@ Error: bundle manager service is died.
 1. 预置应用请参考OTA升级。
 
 
-### 9568393 验证代码签名失败      
+### 9568393 验证代码签名失败
 **错误信息**
 
 Error: verify code signature failed.
@@ -1046,7 +1036,7 @@ Error: verify code signature failed.
 * 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)。
 
 
-### 9568257 验证pkcs7文件失败      
+### 9568257 验证pkcs7文件失败
 **错误信息**
 
 Error: fail to verify pkcs7 file.
@@ -1064,7 +1054,7 @@ Error: fail to verify pkcs7 file.
 1. 在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
 ![示例图](figures/zh-cn_image_9868257_1.png)
 
-### 9568401 调试包仅支持运行在开发者模式设备      
+### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
 
 Error: debug bundle can only be installed in developer mode.
@@ -1083,7 +1073,7 @@ Error: debug bundle can only be installed in developer mode.
 2. USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，点击“允许”。
 3. 启动调试或运行应用。
 
-### 9568386 卸载找不到资源      
+### 9568386 卸载找不到资源
 **错误信息**
 
 Error: uninstall missing installed bundle.
@@ -1102,7 +1092,7 @@ Error: uninstall missing installed bundle.
 2. 重新安装。
 
 
-### 9568284 安装版本不匹配      
+### 9568284 安装版本不匹配
 **错误信息**
 
 Error: install version not compatible.
@@ -1124,7 +1114,7 @@ Error: install version not compatible.
 1. 卸载版本信息不匹配的HAP，再安装HSP。
 2. 修改HSP版本信息与HAP一致，再安装HSP。
 
-### 9568287 安装包entry模块数量不合规      
+### 9568287 安装包entry模块数量不合规
 **错误信息**
 
 Error: install invalid number of entry hap.
@@ -1142,7 +1132,7 @@ Error: install invalid number of entry hap.
 1. 保留一个entry模块，其余entry模块修改为feature（修改module.json5中type字段）。
 
 
-### 9568281 安装包vendor不一致      
+### 9568281 安装包vendor不一致
 **错误信息**
 
 Error: install vendor not same.
@@ -1161,7 +1151,7 @@ app.json5文件中app的vendor字段配置不一致。
 2. 若包含集成态HSP，要求集成态HSP与使用方HAP的vendor字段保持一致。
 
 
-### 9568279 安装版本名不一致      
+### 9568279 安装版本名不一致
 **错误信息**
 
 Error: install version name not same.
@@ -1184,7 +1174,7 @@ Error: install version name not same.
 * 场景二：对其HSP和HAP的包名、版本号、sdk版本号、releaseType使其一致。
 
 
-### 9568274 安装服务错误      
+### 9568274 安装服务错误
 **错误信息**
 
 Error: install installd service error.
@@ -1202,7 +1192,7 @@ Error: install installd service error.
 1. 清除缓存，重启设备。
 
 
-### 9568314 安装应用间共享库失败      
+### 9568314 安装应用间共享库失败
 **错误信息**
 
 Error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
@@ -1220,7 +1210,7 @@ Error: Failed to install the HSP because installing a shared bundle specified by
 1. 安装应用间HSP时使用“hdc install -s ***”指令。
 
 
-### 9568359 安装设置selinux失败      
+### 9568359 安装设置selinux失败
 **错误信息**
 
 Error: installd set selinux label failed.
@@ -1235,13 +1225,13 @@ Error: installd set selinux label failed.
 
 **处理步骤**
 
-1. 确认签名文件p7b中apl字段是否有误。                                   
+1. 确认签名文件p7b中apl字段是否有误。
 ![示例图](figures/zh-cn_image_9568359.png)
 2. 若apl字段有误，修改UnsgnedReleasedProfileTemplate.json文件中apl字段，并重新签名。
 ![示例图](figures/zh-cn_image_9568359_2.png)
 
 
-### 9568403 安装加密校验失败      
+### 9568403 安装加密校验失败
 **错误信息**
 
 Error: check encryption failed.
