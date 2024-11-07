@@ -310,9 +310,9 @@ OH_AVFormat_Destroy(format);
 
 ### 查询编解码档次和级别支持情况
 
-编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的开启与关闭情况。以H.264为例，存在基本档次、主档次和高档次，参考OH_AVCProfile。
+编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的开启与关闭情况。以H.264为例，存在基本档次、主档次和高档次，参考[OH_AVCProfile](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcprofile-1)。
 
-级别是对编解码器所需的处理能力和储存空间的划分。以H.264为例，存在1到6.2的20个级别，参考OH_AVCLevel。
+级别是对编解码器所需的处理能力和储存空间的划分。以H.264为例，存在1到6.2的20个级别，参考[OH_AVCLevel](../../reference/apis-avcodec-kit/_codec_base.md#oh_avclevel-1)。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -352,10 +352,10 @@ OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
 // 3.（可选）基于支持的最大级别做业务逻辑区分
 switch (maxLevel) {
    case AVC_LEVEL_31:
-      // ...
+      // level 3.1-3.2宽、高最大可配1280x720
       break;
    case AVC_LEVEL_51:
-      // ...
+      // level 4.0-5.1宽、高最大可配1920x1080
       break;
    default:
       // ...
@@ -545,7 +545,7 @@ OH_AVFormat_Destroy(format);
 
 ### 设置正确的视频像素格式信息
 
-视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考OH_AVPixelFormat。
+视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考[OH_AVPixelFormat](../../reference/apis-avcodec-kit/_core.md#oh_avpixelformat-1)。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -578,8 +578,7 @@ if (!isMatched) {
 
 ### 查询编解码特性支持情况并获取特性属性信息
 
-编解码特性是指仅在特定编解码场景中使用的可选特性，参考OH_AVCapabilityFeature。
-
+编解码特性是指仅在特定编解码场景中使用的可选特性，参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1)。
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性 |
