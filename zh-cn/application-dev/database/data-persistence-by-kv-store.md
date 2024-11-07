@@ -95,8 +95,8 @@
       console.info('Succeeded in creating KVManager.');
       // 继续创建获取数据库
     } catch (e) {
-        let error = e as BusinessError;
-        console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
     }
     if (kvManager !== undefined) {
       kvManager = kvManager as distributedKVStore.KVManager;
