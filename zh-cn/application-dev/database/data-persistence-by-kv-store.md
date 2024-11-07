@@ -67,7 +67,7 @@
       }
     }
     if (kvManager !== undefined) {
-        kvManager = kvManager as distributedKVStore.KVManager;
+      kvManager = kvManager as distributedKVStore.KVManager;
       //进行后续操作
       //...
     }
