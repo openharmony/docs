@@ -146,7 +146,7 @@
                     // 允许打开uri中以file://协议开头标识的本地文件
                     "scheme": "file", // 必填，声明协议类型为文件
                     "type": "general.plain-text", // 必填，表示支持打开的文件类型
-                    "linkFeature": "FileOpen" // 必填，表示此URI的功能为文件打开
+                    "linkFeature": "FileOpen" // 必填且大小写敏感，表示此URI的功能为文件打开
                 }
                 // ...
                 ]
