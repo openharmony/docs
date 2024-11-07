@@ -5783,6 +5783,44 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
+### setWindowTitleMoveEnabled<sup>14+</sup>
+
+setWindowTitleMoveEnabled(enabled: boolean): void
+
+禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，仅对2in1设备生效，当禁用标题栏默认移动窗口功能时，可使用[startMoving()](#startMoving14)在应用热区中发起拖拽移动。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型     | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| enabled    | boolean | 是   | 是否禁止标题栏默认移动窗口和双击最大化，true为不禁止，false为禁止。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
+
+**示例：**
+
+```ts
+try {
+  let enabled = false;
+  windowClass.setWindowTitleMoveEnabled(enabled);
+} catch (exception) {
+  console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setSubWindowModal<sup>12+</sup>
 
 setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
