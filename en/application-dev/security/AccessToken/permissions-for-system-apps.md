@@ -4237,6 +4237,42 @@ Allows an application to access Super Hub.
 
 **Valid since**: 12
 
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+Allows an application to create or remove the recovery key.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+Allows an application to utilize the recovery key to reset the lock screen password or restore user data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+Allows an application to obtain brief information of the recovery key.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
@@ -4544,42 +4580,6 @@ Allows an application to save images and videos to the user's directory within u
 **Enable via ACL**: true
 
 **Valid since**: 12
-
-### ohos.permission.MANAGE_RECOVERY_KEY
-
-Allows an application to create or remove the recovery key.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 14
-
-### ohos.permission.UTILIZE_RECOVERY_KEY
-
-Allows an application to utilize the recovery key to reset the lock screen password or restore user data.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 14
-
-### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
-
-Allows an application to obtain brief information of the recovery key.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 14
 
 ### ohos.permission.CUSTOM_SCREEN_CAPTURE
 
