@@ -25,10 +25,14 @@ ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同
 |\@State                 | 无外部初始化：@Local<br/>外部初始化一次：\@Param\@Once | \@State和\@Local类似都是数据源的概念，在不需要外部传入初始化时，可直接迁移。如果需要外部传入初始化，则可以迁移为\@Param\@Once，详情见[@State->@Local](#state-local)。 |
 | \@Prop                  | \@Param                   | \@Prop和\@Param类似都是自定义组件参数的概念。当输入参数为复杂类型时，\@Prop为深拷贝，\@Param为引用。 |
 | \@Link                  | \@Param\@Event    | \@Link是框架自己封装实现的双向同步，对于V2开发者可以通过@Param@Event自己实现双向同步。 |
-| \@ObjectLink            | \@Param                   | 直接兼容，但无输入限制。 |
+| \@ObjectLink            | \@Param                   | 直接兼容，\@ObjectLink需要被@Observed装饰的class的实例初始化，\@Param没有此限制。 |
 | \@Provide               | \@Provider                | 兼容。 |
 | \@Consume               | \@Consumer                | 兼容。 |
-
+| \@Watch               | \@Monitor                | \@Watch用于监听V1状态变量的变化，具有监听状态变量本身和其第一层属性变化的能力。状态变量可观察到的变化会触发其\@Watch监听事件。<br/>\@Monitor用于监听V2状态变量的变化，搭配\@Trace使用，可有深层监听的能力。状态变量在一次事件中多次变化时，仅会以最终的结果判断是否触发\@Monitor监听事件。 |
+| LocalStorage               | 全局\@ObservedV2\@Trace   | 兼容。 |
+| AppStorage               | AppStorageV2   | 兼容。 |
+| Environment       | 调用Ability接口获取系统环境变量   | Environment获取环境变量能力和AppStorage耦合。在V2中可直接调用Ability接口获取系统环境变量。 |
+| PersistentStorage     | PersistenceV2   | PersistentStorage持久化能力和AppStorage耦合，PersistenceV2持久化能力可独立使用。 |
 
 ## 各装饰器迁移示例
 
@@ -1073,6 +1077,9 @@ struct Index {
 LocalStorage的目的是为了实现页面间的状态变量共享。之所以提供这个能力，是因为V1状态变量和View层耦合，无法由开发者自主地实现页面间状态变量的共享。
 对于状态管理V2，状态变量的观察能力内嵌到数据本身，不再和View层耦合，所以对于状态管理V2，不再需要类似LocalStorage的能力，可以使用全局@ObservedV2/@Trace，由开发者自己import和export，自己实现状态变量的页面间共享。
 
+#### 示例
+**基本场景**
+
 V1:
 通过windowStage.[loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)和[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口实现页面间的状态变量共享。
 ```
@@ -1184,6 +1191,342 @@ struct Page2 {
     }
 }
 ```
+
+**自定义组件接收LocalStorage实例场景**
+
+为了配合Navigation的场景，LocalStorage支持作为自定义组件的入参，传递给以当前自定义组件为根节点的所有子自定义组件。
+对于该场景，V2可以采用多个全局\@ObservedV2/\@Trace实例来替代。
+
+V1:
+```
+let localStorageA: LocalStorage = new LocalStorage();
+localStorageA.setOrCreate('PropA', 'PropA');
+
+let localStorageB: LocalStorage = new LocalStorage();
+localStorageB.setOrCreate('PropB', 'PropB');
+
+let localStorageC: LocalStorage = new LocalStorage();
+localStorageC.setOrCreate('PropC', 'PropC');
+
+@Entry
+@Component
+struct MyNavigationTestStack {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      // 传递不同的LocalStorage实例
+      pageOneStack({}, localStorageA)
+    } else if (name === 'pageTwo') {
+      pageTwoStack({}, localStorageB)
+    } else if (name === 'pageThree') {
+      pageThreeStack({}, localStorageC)
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+      .borderWidth(1)
+    }
+  }
+}
+
+@Component
+struct pageOneStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+
+  build() {
+    NavDestination() {
+      Column() {
+        // 显示'PropA'
+        NavigationContentMsgStack()
+        // 显示'PropA'
+        Text(`${this.PropA}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageTwoStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+  build() {
+    NavDestination() {
+      Column() {
+        // 显示'Hello'，当前LocalStorage实例localStorageB没有PropA对应的值，使用本地默认值'Hello'
+        NavigationContentMsgStack()
+        // 显示'PropB'
+        Text(`${this.PropB}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageThree', null);
+          })
+
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageThreeStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @LocalStorageLink('PropC') PropC: string = 'pageThreeStack';
+
+  build() {
+    NavDestination() {
+      Column() {
+        // 显示'Hello'，当前LocalStorage实例localStorageC没有PropA对应的值，使用本地默认值'Hello'
+        NavigationContentMsgStack()
+        // 显示'PropC'
+        Text(`${this.PropC}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageOne', null);
+          })
+
+      }.width('100%').height('100%')
+    }.title('pageThree')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct NavigationContentMsgStack {
+  @LocalStorageLink('PropA') PropA: string = 'Hello';
+
+  build() {
+    Column() {
+      Text(`${this.PropA}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+```
+V2：
+
+声明\@ObservedV2装饰的class代替LocalStorage。其中LocalStorage的key可以用\@Trace装饰的属性代替。
+```
+// storage.ets
+@ObservedV2
+export class MyStorageA {
+  @Trace propA: string = 'Hello';
+  constructor(propA?: string) {
+      this.propA = propA? propA : this.propA;
+  }
+}
+
+@ObservedV2
+export class MyStorageB extends MyStorageA {
+  @Trace propB: string = 'Hello';
+  constructor(propB: string) {
+    super();
+    this.propB = propB;
+  }
+}
+
+@ObservedV2
+export class MyStorageC extends MyStorageA {
+  @Trace propC: string = 'Hello';
+  constructor(propC: string) {
+    super();
+    this.propC = propC;
+  }
+}
+```
+
+在`pageOneStack`、`pageTwoStack`和`pageThreeStack`组件内分别创建`MyStorageA`、`MyStorageB`、`MyStorageC`的实例，并通过\@Param传递给其子组件`NavigationContentMsgStack`，从而实现类似LocalStorage实例在子组件树上共享的能力。
+
+```
+// Index.ets
+import { MyStorageA, MyStorageB, MyStorageC } from './storage';
+
+@Entry
+@ComponentV2
+struct MyNavigationTestStack {
+   pageInfo: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneStack()
+    } else if (name === 'pageTwo') {
+      pageTwoStack()
+    } else if (name === 'pageThree') {
+      pageThreeStack()
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); //将name指定的NavDestination页面信息入栈
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+      .borderWidth(1)
+    }
+  }
+}
+
+@ComponentV2
+struct pageOneStack {
+  pageInfo: NavPathStack = new NavPathStack();
+  @Local storageA: MyStorageA = new MyStorageA('PropA');
+
+  build() {
+    NavDestination() {
+      Column() {
+        // 显示'PropA'
+        NavigationContentMsgStack({storage: this.storageA})
+        // 显示'PropA'
+        Text(`${this.storageA.propA}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
+    })
+  }
+}
+
+@ComponentV2
+struct pageTwoStack {
+  pageInfo: NavPathStack = new NavPathStack();
+  @Local storageB: MyStorageB = new MyStorageB('PropB');
+
+  build() {
+    NavDestination() {
+      Column() {
+        // 显示'Hello'
+        NavigationContentMsgStack({ storage: this.storageB })
+        // 显示'PropB'
+        Text(`${this.storageB.propB}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageThree', null);
+          })
+
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
+    })
+  }
+}
+
+@ComponentV2
+struct pageThreeStack {
+  pageInfo: NavPathStack = new NavPathStack();
+  @Local storageC: MyStorageC = new MyStorageC("PropC");
+
+  build() {
+    NavDestination() {
+      Column() {
+        // 显示'Hello'
+        NavigationContentMsgStack({ storage: this.storageC })
+        // 显示'PropC'
+        Text(`${this.storageC.propC}`)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageOne', null);
+          })
+
+      }.width('100%').height('100%')
+    }.title('pageThree')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
+    })
+  }
+}
+
+@ComponentV2
+struct NavigationContentMsgStack {
+  @Require@Param storage: MyStorageA;
+
+  build() {
+    Column() {
+      Text(`${this.storage.propA}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+```
+
 ### AppStorage->AppStorageV2
 上一小节中，对于全局的@ObserveV2/@Trace的改造并不适合跨Ability的数据共享，该场景可以使用AppStorageV2来替换。
 V1:
