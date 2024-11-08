@@ -43,6 +43,7 @@
 | [OH_AudioDevice_Type](_o_h_audio.md#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备类型。 | 
 | [OH_AudioDevice_Flag](_o_h_audio.md#oh_audiodevice_flag) {<br/>AUDIO_DEVICE_FLAG_NONE = 0,<br/>AUDIO_DEVICE_FLAG_OUTPUT = 1,<br/>AUDIO_DEVICE_FLAG_INPUT = 2,<br/>AUDIO_DEVICE_FLAG_ALL = 3<br/>} | 定义音频设备标志。 | 
 | [OH_AudioDevice_Usage](_o_h_audio.md#oh_audiodevice_usage) {<br/>AUDIO_DEVICE_USAGE_MEDIA_OUTPUT = 1, <br/>AUDIO_DEVICE_USAGE_MEDIA_INPUT = 2, <br/>AUDIO_DEVICE_USAGE_MEDIA_ALL = 3, <br/>AUDIO_DEVICE_USAGE_CALL_OUTPUT = 4,<br/>AUDIO_DEVICE_USAGE_CALL_INPUT = 8, <br/>AUDIO_DEVICE_USAGE_CALL_ALL = 12<br/>} | 定义可获取的设备种类。  | 
+| [OH_AudioDevice_BlockStatus](_o_h_audio.md#oh_audiodevice_blockstatus) { <br/>AUDIO_DEVICE_UNBLOCKED = 0, <br/>AUDIO_DEVICE_BLOCKED = 1 } | 声明音频设备的堵塞状态。默认情况下，音频设备被视为未堵塞。 | 
 
 
 ### 函数
