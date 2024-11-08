@@ -215,38 +215,38 @@ PlainArray进行增、删、改、查操作的常用API如下：
 import { HashMap } from '@kit.ArkTS'; // 导入HashMap模块
 
 let hashMap1: HashMap<string, number> = new HashMap();
-hashMap1.set('a', 123);
+hashMap1.set('a', 123); // 增加一个键为'a'，值为123的元素
 let hashMap2: HashMap<number, number> = new HashMap();
-hashMap2.set(4, 123); // 增加元素
-console.info(`result: ${hashMap2.hasKey(4)}`); // 判断是否含有某元素
-console.info(`result: ${hashMap1.get('a')}`); // 访问元素
+hashMap2.set(4, 123); // 增加一个键为4，值为123的元素
+console.info(`result: ${hashMap2.hasKey(4)}`); // 判断是否含有键为4的元素。输出：result: true
+console.info(`result: ${hashMap1.get('a')}`); // 访问键为'a'的元素。输出：result: 123
 
 // TreeMap
 import { TreeMap } from '@kit.ArkTS'; // 导入TreeMap模块
 
 let treeMap: TreeMap<string, number> = new TreeMap();
-treeMap.set('a', 123);
-treeMap.set('6', 356); // 增加元素
-console.info(`result: ${treeMap.get('a')}`); // 访问元素
-console.info(`result: ${treeMap.getFirstKey()}`); // 访问首元素
-console.info(`result: ${treeMap.getLastKey()}`); // 访问尾元素
+treeMap.set('a', 123); // 增加一个键为'a'，值为123的元素
+treeMap.set('6', 356); // 增加一个键为'6'，值为356的元素
+console.info(`result: ${treeMap.get('a')}`); // 访问键为'a'的元素。输出：result: 123
+console.info(`result: ${treeMap.getFirstKey()}`); // 访问首元素。输出：result: 6
+console.info(`result: ${treeMap.getLastKey()}`); // 访问尾元素。输出：result: a
 
 // LightWeightMap
 import { LightWeightMap } from '@kit.ArkTS'; // 导入LightWeightMap模块
 
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
-lightWeightMap.set('x', 123);
-lightWeightMap.set('8', 356); // 增加元素
-console.info(`result: ${lightWeightMap.get('a')}`); // 访问元素
-console.info(`result: ${lightWeightMap.get('x')}`); // 访问元素
-console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // 访问元素
+lightWeightMap.set('x', 123); // 增加一个键为'x'，值为123的元素
+lightWeightMap.set('8', 356); // 增加一个键为'8'，值为356的元素
+console.info(`result: ${lightWeightMap.get('a')}`); // 访问键为'a'的元素。输出：result: undefined
+console.info(`result: ${lightWeightMap.get('x')}`); // 访问键为'x'的元素，获取其值。输出：result: 123
+console.info(`result: ${lightWeightMap.getIndexOfKey('8')}`); // 访问键为'8'的元素，获取其索引。输出：result: 0
 
 // PlainArray
 import { PlainArray } from '@kit.ArkTS'; // 导入PlainArray模块
 
 let plainArray: PlainArray<string> = new PlainArray();
-plainArray.add(1, 'sdd');
-plainArray.add(2, 'sff'); // 增加元素
-console.info(`result: ${plainArray.get(1)}`); // 访问元素
-console.info(`result: ${plainArray.getKeyAt(1)}`); // 访问元素
+plainArray.add(1, 'sdd'); // 增加一个键为1，值为'sdd'的元素
+plainArray.add(2, 'sff'); // 增加一个键为2，值为'sff'的元素
+console.info(`result: ${plainArray.get(1)}`); // 访问键为1的元素，获取值。输出：result: sdd
+console.info(`result: ${plainArray.getKeyAt(1)}`); // 访问索引为1的元素，获取键。输出：result: 2
 ```
