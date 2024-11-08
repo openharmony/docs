@@ -1463,7 +1463,7 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
-只支持在悬浮窗调用。
+仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
 
 **系统能力：** SystemCapability.Window.SessionManager
