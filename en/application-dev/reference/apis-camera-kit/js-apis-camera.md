@@ -554,7 +554,7 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 
 createPreviewOutput(surfaceId: string): PreviewOutput
 
-Creates a **PreviewOutput** instance without configuration. This API returns the result synchronously. It must be used together with [Preconfig](#preconfig12).
+Creates a **PreviewOutput** instance without configuration. This API returns the result synchronously. It must be used together with [preconfig](#preconfig12).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -748,7 +748,7 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 createVideoOutput(surfaceId: string): VideoOutput
 
-Creates a **VideoOutput** instance without configuration. This API returns the result synchronously. It must be used together with [Preconfig](#preconfig12).
+Creates a **VideoOutput** instance without configuration. This API returns the result synchronously. It must be used together with [preconfig](#preconfig12-1).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -894,7 +894,7 @@ Creates a **Session** instance with a given scene mode. This API returns the res
 
 | Name  | Type             | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
-| mode     | SceneMode        | Yes  | Scene mode.|
+| mode     | SceneMode        | Yes  | Scene mode. |
 
 **Return value**
 
@@ -1085,7 +1085,7 @@ Checks whether a flashlight mode is supported.
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | Yes| Flashlight mode.|
+| mode | [TorchMode](#torchmode11) | Yes| Flashlight mode. |
 
 **Return value**
 
@@ -1138,7 +1138,7 @@ Sets the flashlight mode.
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | Yes| Flashlight mode.|
+| mode | [TorchMode](#torchmode11) | Yes| Flashlight mode. |
 
 **Error codes**
 
@@ -2000,7 +2000,7 @@ Sets a frame rate range for preview streams. The range must be within the suppor
 
 > **NOTE**
 >
-> This API is valid only in [VideoSession](#videosession11) mode.
+> This API is valid only in [PhotoSession](#photosession11) or [VideoSession](#videosession11) mode.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2009,7 +2009,7 @@ Sets a frame rate range for preview streams. The range must be within the suppor
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | minFps   | number        | Yes  | Minimum frame rate.|
-| maxFps   | number        | Yes  | Maximum frame rate.|
+| maxFps   | number        | Yes  | Maximum frame rate. |
 
 **Error codes**
 
@@ -2093,7 +2093,7 @@ function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profi
 
 ### getPreviewRotation<sup>12+</sup>
 
-getPreviewRotation(imageRotation: ImageRotation): ImageRotation
+getPreviewRotation(displayRotation: number): ImageRotation
 
 Obtains the preview rotation degree.
 
@@ -2107,7 +2107,7 @@ Obtains the preview rotation degree.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | Yes  | Screen display compensation angle (the angle required for rotating the image counterclockwise from the device's natural orientation to the screen orientation during image display).|
+| displayRotation | number  | Yes  | Screen rotation angle of the display. It is obtained by calling [display.getDefaultDisplaySync](../apis-arkui/js-apis-display.md#displaygetdefaultdisplaysync9).|
 
 **Return value**
 
@@ -2128,7 +2128,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 ```ts
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let previewRotation: camera.ImageRotation;
+  let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     previewRotation = previewOutput.getPreviewRotation(imageRotation);
     console.log(`Preview rotation is: ${previewRotation}`);
@@ -2137,11 +2137,11 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
     let err = error as BusinessError;
     console.error(`The previewOutput.getPreviewRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return previewRotation;
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
-setPreviewRotation(previewRotation: Imagerotation, isDisplayLocked?: boolean): void
+setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): void
 
 Sets the preview rotation degree.
 
@@ -2167,7 +2167,6 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 ```ts
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
-  let previewRotation: camera.ImageRotation;
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
   } catch (error) {
@@ -3210,7 +3209,7 @@ function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile |
 ```
 ### getPhotoRotation<sup>12+</sup>
 
-getPhotoRotation(imageRotation: ImageRotation): ImageRotation
+getPhotoRotation(deviceDegree: number): ImageRotation
 
 Obtains the photo rotation degree.
 
@@ -3224,7 +3223,7 @@ Obtains the photo rotation degree.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation) | Yes  | Screen display compensation angle (the angle required for rotating the image counterclockwise from the device's natural orientation to the screen orientation during image display).|
+| deviceDegree | number | Yes  | Rotation angle.|
 
 **Return value**
 
@@ -3244,17 +3243,17 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let photoRotation: camera.ImageRotation;
+function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+  let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
-    photoRotation = photoOutput.getPhotoRotation(imageRotation);
+    photoRotation = photoOutput.getPhotoRotation(deviceDegree);
     console.log(`Photo rotation is: ${photoRotation}`);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return photoRotation;
 }
 ```
 
@@ -3643,11 +3642,11 @@ function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<camera.F
 
 setFrameRate(minFps: number, maxFps: number): void
 
-Sets a frame rate range for preview streams. The range must be within the supported frame rate range, which can be obtained by calling [getSupportedFrameRates](#getsupportedframerates12-1).
+Sets a frame rate range for video streams. The range must be within the supported frame rate range, which can be obtained by calling [getSupportedFrameRates](#getsupportedframerates12-1).
 
 > **NOTE**
 >
-> This API is valid only in [VideoSession](#videosession11) mode.
+> This API is valid only in [PhotoSession](#photosession11) or [VideoSession](#videosession11) mode.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3656,7 +3655,7 @@ Sets a frame rate range for preview streams. The range must be within the suppor
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | minFps   | number        | Yes  | Minimum frame rate.|
-| maxFps   | number        | Yes  | Maximum frame rate.|
+| maxFps   | number        | Yes  | Maximum frame rate. |
 
 **Error codes**
 
@@ -3681,7 +3680,7 @@ getActiveFrameRate(): FrameRateRange
 
 Obtains the configured frame rate range.
 
-This API is valid only after [setFrameRate](#setframerate12-1) is called to set a frame rate range for preview streams.
+This API is valid only after [setFrameRate](#setframerate12-1) is called to set a frame rate range for video streams.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3740,7 +3739,7 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
 
 ### getVideoRotation<sup>12+</sup>
 
-getVideoRotation(imageRotation: ImageRotation): ImageRotation
+getVideoRotation(deviceDegree: number): ImageRotation
 
 Obtains the video rotation degree.
 
@@ -3754,7 +3753,7 @@ Obtains the video rotation degree.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | Yes  | Screen display compensation angle (the angle required for rotating the image counterclockwise from the device's natural orientation to the screen orientation during image display).|
+| deviceDegree | number | Yes  | Rotation angle.|
 
 **Return value**
 
@@ -3774,17 +3773,17 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation;
+function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
-    videoRotation = videoOutput.getVideoRotation(imageRotation);
+    videoRotation = videoOutput.getVideoRotation(deviceDegree);
     console.log(`Video rotation is: ${videoRotation}`);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return videoRotation;
 }
 ```
 
@@ -4267,7 +4266,7 @@ Determines whether a **CameraInput** instance can be added to this session. This
 
 | Name       | Type                         | Mandatory| Description                    |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
+| cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add. |
 
 **Return value**
 
@@ -4380,7 +4379,7 @@ Determines whether a **CameraOutput** instance can be added to this session. Thi
 
 | Name       | Type                         | Mandatory| Description                    |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add. |
 
 **Return value**
 
@@ -4730,7 +4729,7 @@ Before the setting, do the following checks:
 
 | Name      | Type                    | Mandatory| Description                 |
 | --------- | ----------------------- | ---- | --------------------- |
-| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.      |
+| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.       |
 
 **Error codes**
 
@@ -4852,7 +4851,7 @@ Checks whether a flash mode is supported.
 
 | Name      | Type                    | Mandatory| Description                              |
 | --------- | ----------------------- | ---- | --------------------------------- |
-| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.                    |
+| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.            |
 
 **Return value**
 
@@ -5154,7 +5153,7 @@ Checks whether an exposure mode is supported.
 
 | Name     | Type                          | Mandatory | Description                          |
 | -------- | -------------------------------| ---- | ----------------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | Yes  | Exposure mode.                     |
+| aeMode   | [ExposureMode](#exposuremode)  | Yes  | Exposure mode.                |
 
 **Return value**
 
@@ -5522,9 +5521,9 @@ Sets a zoom ratio, with a maximum precision of two decimal places.
 
 **Parameters**
 
-| Name      | Type                 | Mandatory| Description                                                                                  |
-| --------- | -------------------- | ---- |--------------------------------------------------------------------------------------|
-| zoomRatio | number               | Yes  | Zoom ratio. The supported zoom ratio range can be obtained by calling [getZoomRatioRange](#getzoomratiorange11). If the value passed in is not within the supported range, the value within the precision range is retained.|
+| Name      | Type                 | Mandatory| Description                                                                                                                             |
+| --------- | -------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------|
+| zoomRatio | number               | Yes  | Zoom ratio. The supported zoom ratio range can be obtained by calling [getZoomRatioRange](#getzoomratiorange11). If the value passed in is not within the supported range, the value within the precision range is retained.<br>It takes some time for the zoom ratio to take effect at the bottom layer. To obtain the correct zoom ratio, you need to wait for one to two frames.|
 
 **Error codes**
 
@@ -7247,7 +7246,7 @@ Sets a zoom ratio, with a maximum precision of two decimal places.
 
 | Name      | Type                 | Mandatory | Description                |
 | --------- | -------------------- |-----| ------------------- |
-| zoomRatio | number               | Yes | Zoom ratio. The supported zoom ratio range can be obtained by calling [getZoomRatioRange](#getzoomratiorange11). If the value passed in is not within the supported range, the value within the precision range is retained.|
+| zoomRatio | number               | Yes | Zoom ratio. The supported zoom ratio range can be obtained by calling [getZoomRatioRange](#getzoomratiorange11). If the value passed in is not within the supported range, the value within the precision range is retained. |
 
 **Error codes**
 
@@ -7338,7 +7337,7 @@ Checks whether a video stabilization mode is supported.
 
 | Name     | Type                                             | Mandatory| Description                            |
 | -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.                   |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.              |
 
 **Return value**
 
@@ -8044,7 +8043,7 @@ Implements a video session, which provides operations on the flash, exposure, fo
 
 ### canPreconfig<sup>12+</sup>
 
-canPreconfig(preconfigType: PreconfigType), preconfigRatio?: PreconfigRatio): boolean
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 Checks whether this session supports a preconfigured resolution.
 
@@ -8308,8 +8307,8 @@ Implements a secure session, which provides operations on the flash, exposure, f
 
 > **NOTE**
 >
-> You can call [createSession](#createsession11) with [SceneMode](#scenemode11) set to **SECURE_PHOTO** to create a session in secure mode. This class is designed for applications with high security requirements, such as facial recognition systems and banking services. It must be used together with the security TA to support service scenarios where both standard preview streams and security streams are generated.
-> The security TA can verify the signature of data delivered by the server, sign images, parse and assemble TLV logic, and read, create, and operate keys. It applies to image processing.
+> You can call [createSession](#createsession11) with [SceneMode](#scenemode11) set to **SECURE_PHOTO** to create a session in secure mode. This class is designed for applications with high security requirements, such as facial recognition systems and banking services. It must be used together with the <!--RP1-->security TA<!--RP1End--> to support service scenarios where both standard preview streams and security streams are generated.<!--RP2-->
+> The security TA can verify the signature of data delivered by the server, sign images, parse and assemble TLV logic, and read, create, and operate keys. It applies to image processing.<!--RP2End-->
 
 ### addSecureOutput<sup>12+</sup>
 
@@ -8323,7 +8322,7 @@ Marks a [PreviewOutput](#previewoutput) stream as secure output.
 
 | Name          | Type                            | Mandatory| Description           |
 | ------------- | ------------------------------- | ---- |---------------|
-| previewOutput  | [PreviewOutput](#previewoutput)   | Yes  | Preview output stream.|
+| previewOutput  | [PreviewOutput](#previewoutput)   | Yes  | Preview output stream. |
 
 **Error codes**
 

@@ -1,6 +1,6 @@
 # Device Input Management (ArkTS)
 
-Before developing a camera application, you must create an independent camera object. The application invokes and controls the camera object to perform basic operations such as preview, photographing, and video recording.
+A camera application invokes and controls a camera device to perform basic operations such as preview, photo capture, and video recording.
 
 ## How to Develop
 
@@ -11,48 +11,16 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    ```ts
    import { camera } from '@kit.CameraKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { common } from '@kit.AbilityKit';
-   ```
-
-2. Call [getCameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** object.
-
-   For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
-
-   ```ts
-   function getCameraManager(context: common.BaseContext): camera.CameraManager {
-     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-     return cameraManager;
-   }
    ```
 
    > **NOTE**
    >
-   > If obtaining the object fails, the camera hardware may be occupied or unusable. If it is occupied, wait until it is released.
+   > Before any camera device input, you must complete camera management by following the instructions provided in [Camera Device Management](camera-device-management.md).
 
-3. Call [getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) in the **CameraManager** class to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
-
-   ```ts
-   function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
-     let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-     if (cameraArray != undefined && cameraArray.length > 0) {
-       for (let index = 0; index < cameraArray.length; index++) {
-         console.info('cameraId : ' + cameraArray[index].cameraId);  // Obtain the camera ID.
-         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // Obtain the camera position.
-         console.info('cameraType : ' + cameraArray[index].cameraType);  // Obtain the camera type.
-         console.info('connectionType : ' + cameraArray[index].connectionType);  // Obtain the camera connection type.
-       }
-       return cameraArray;
-     } else {
-       console.error("cameraManager.getSupportedCameras error");
-       return [];
-     }
-   }
-   ```
-
-4. Call [getSupportedOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedoutputcapability11) to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability).
+2. Call [createCameraInput](../../reference/apis-camera-kit/js-apis-camera.md#createcamerainput) in the [cameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to create a camera input stream.
 
    ```ts
-   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager, sceneMode: camera.SceneMode): Promise<camera.CameraOutputCapability | undefined> {
+   async function createInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraInput | undefined> {
      // Create a camera input stream.
      let cameraInput: camera.CameraInput | undefined = undefined;
      try {
@@ -70,33 +38,50 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
      });
      // Open the camera.
      await cameraInput.open();
-     // Obtain the output streams supported by the camera.
-     let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice, sceneMode);
-     if (!cameraOutputCapability) {
-       console.error("cameraManager.getSupportedOutputCapability error");
-       return undefined;
-     }
-     console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
-     return cameraOutputCapability;
+     return cameraInput;
    }
    ```
 
+3. Call [getSupportedSceneModes](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedscenemodes11) to obtain the list of scene modes supported by the current camera device. The list stores all the [SceneModes](../../reference/apis-camera-kit/js-apis-camera.md#scenemode11) supported by the camera device.
 
-## Status Listening
-
-During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are included in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
-
-  Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **CameraStatusInfo** parameter. For details about the parameter, see [CameraStatusInfo](../../reference/apis-camera-kit/js-apis-camera.md#camerastatusinfo).
-
-```ts
-function onCameraStatus(cameraManager: camera.CameraManager): void {
-  cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    if (err !== undefined && err.code !== 0) {
-      console.error(`Callback Error, errorCode: ${err.code}`);
-      return;
+    ```ts
+    function getSupportedSceneMode(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Array<camera.SceneMode> {
+      // Obtain the list of scene modes supported by the camera device.
+      let sceneModeArray: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraDevice);
+      if (sceneModeArray != undefined && sceneModeArray.length > 0) {
+        for (let index = 0; index < sceneModeArray.length; index++) {
+          console.info('Camera SceneMode : ' + sceneModeArray[index]);  
+      }
+        return sceneModeArray;
+      } else {
+          console.error("cameraManager.getSupportedSceneModes error");
+          return [];
+      }
     }
-    console.info(`camera: ${cameraStatusInfo.camera.cameraId}`);
-    console.info(`status: ${cameraStatusInfo.status}`);
-  });
-}
-```
+    ```
+
+4. Call [getSupportedOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedoutputcapability11) to obtain all output streams supported by the current camera device, such as preview streams, photo streams, and video streams. The supported output streams are listed in the **profile** field in [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability). Different types of output streams must be added based on the value of [SceneMode](../../reference/apis-camera-kit/js-apis-camera.md#scenemode11) specified by the camera device.
+
+   ```ts
+   async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager, sceneMode: camera.SceneMode): Promise<camera.CameraOutputCapability | undefined> {
+      // Obtain the output streams supported by the camera device.
+      let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice, sceneMode);
+      if (!cameraOutputCapability) {
+        console.error("cameraManager.getSupportedOutputCapability error");
+        return undefined;
+      }
+      console.info("outputCapability: " + JSON.stringify(cameraOutputCapability));
+      // The following uses the NORMAL_PHOTO mode as an example. You need to add the preview stream and photo stream.
+      // previewProfiles is the preview output streams supported by the current camera device.
+      let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
+      if (!previewProfilesArray) {
+        console.error("createOutput previewProfilesArray == null || undefined");
+      }
+      // photoProfiles is the photo output streams supported by the current camera device.
+      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
+      if (!photoProfilesArray) {
+        console.error("createOutput photoProfilesArray == null || undefined");
+      }
+      return cameraOutputCapability;
+   } 
+   ```

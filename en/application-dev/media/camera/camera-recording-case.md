@@ -1,8 +1,8 @@
-# Camera Recording Sample (ArkTS)
+# Video Recording Sample (ArkTS)
 
 This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence.
 
-Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Camera Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Video Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
 
 ## Development Process
 
@@ -305,22 +305,22 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   // Stop the session.
-  videoSession.stop();
+  await videoSession.stop();
 
   // Close the files.
   fs.closeSync(file);
 
   // Release the camera input stream.
-  cameraInput.close();
+  await cameraInput.close();
 
   // Release the preview output stream.
-  previewOutput.release();
+  await previewOutput.release();
 
   // Release the video output stream.
-  videoOutput.release();
+  await videoOutput.release();
 
   // Release the session.
-  videoSession.release();
+  await videoSession.release();
 
   // Set the session to null.
   videoSession = undefined;
