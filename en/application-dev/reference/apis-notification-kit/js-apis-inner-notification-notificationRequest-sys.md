@@ -15,17 +15,17 @@ The **NotificationRequest** module provides APIs for defining the notification r
 | Name                           | Type                                                   |  Read Only| Optional| Description                                                                   |
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
 | overlayIcon<sup>11+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   No | Yes | Notification overlay icon. This field is optional. The total number of bytes of image pixels cannot exceed 100 KB.<br>**System API**: This is a system API.                                                |
-| classification                | string                                                   |   No | Yes | Notification category.<br>**System API**: This is a system API.                              |
-| isRemoveAllowed<sup>8+</sup>   | boolean                                                  |   No | Yes | Whether the notification can be removed. If a notification is not removable, it will not be deleted when the user touches the delete button below the notification, but it can still be deleted by swiping left on the notification and touching the delete button.<br>**System API**: This is a system API.<br>**Required permissions**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION |
-| source<sup>8+</sup>            | number                                                   |   Yes | Yes | Notification source.<br>**System API**: This is a system API.                               |
-| deviceId<sup>8+</sup>          | string                                                   |   Yes | Yes | Device ID of the notification source.<br>**System API**: This is a system API.                      |
+| classification                | string                                                   |   No | Yes | Notification category.<br>**System API**: This is a system API. Not supported currently.                              |
+| isRemoveAllowed<sup>8+</sup>   | boolean                                                  |   No | Yes | Whether the notification can be removed. If a notification is not removable, it will not be deleted when the user touches the delete button below the notification, but it can still be deleted by swiping left on the notification and touching the delete button.<br>**System API**: This is a system API.<br>**Required permissions**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION|
+| source<sup>8+</sup>            | number                                                   |   Yes | Yes | Notification source.<br>**System API**: This is a system API. Not supported currently.                               |
+| deviceId<sup>8+</sup>          | string                                                   |   Yes | Yes | Device ID of the notification source.<br>**System API**: This is a system API. Not supported currently.                      |
 | representativeBundle<sup>12+</sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No| Yes| Information about the proxied bundle.<br>**System API**: This is a system API.|
-| notificationControlFlags<sup>12+</sup>       | number                                                   |   No | Yes | Notification mode control. This API can be used to reduce the notification modes of the current notification. This parameter is obtained by performing the bitwise OR operation with the enumeration of [NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus12).<br>**System API**: This is a system API.          |
+| notificationControlFlags<sup>12+</sup>       | number                                                   |   No | Yes | Notification mode control.<br>This API can be used to reduce the notification modes of the current notification. This parameter is obtained by performing the bitwise OR operation with the enumeration of [NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus12).<br>**System API**: This is a system API.           |
 | unifiedGroupInfo<sup>12+</sup>       | [UnifiedGroupInfo](#unifiedgroupinfo12) |   No | Yes |Intelligent notification unification information.<br>**System API**: This is a system API.|
 | creatorInstanceKey<sup>12+</sup>       | number |   Yes | Yes | Creator instance key.<br>**System API**: This is a system API.|
 | agentBundle<sup>12+</sup>       | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) |   Yes | Yes | Information about the agent bundle for creating notifications.<br>**System API**: This is a system API.|
 
-## DistributedOptions
+## DistributedOptions<sup>8+</sup>
 
 Describes distributed notification options.
 
@@ -33,7 +33,7 @@ Describes distributed notification options.
 
 | Name                  | Type           | Mandatory| Description                              |
 | ---------------------- | -------------- | ---- | ---------------------------------- |
-| remindType<sup>8+</sup>             | number         | No  | Notification reminder type.<br>**System API**: This is a system API. |
+| remindType             | number         | No  | Notification reminder type.<br>**System API**: This is a system API. |
 
 
 ## NotificationFilter<sup>11+</sup>
