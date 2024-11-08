@@ -6,11 +6,11 @@ hdc（OpenHarmony Device Connector）是为开发人员提供的用于调试的�
 
 hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首次使用按照如下提示配置环境变量。
 
-### 配置环境变量HDC_SERVER_PORT
+### 配置环境变量OHOS_HDC_SERVER_PORT
 
 **Windows环境变量设置方法**
 
-在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加HDC端口变量名为：HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如7035。
+在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加HDC端口变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如8710。
 
 ![新建系统变量](figures/hdc_image_001.PNG)
 
@@ -40,7 +40,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 3. 输入以下内容，在PATH路径下添加HDC_SERVER_PORT端口信息。
 
    ```shell
-   HDC_SERVER_PORT=7035
+   HDC_SERVER_PORT=8710
    launchctl setenv HDC_SERVER_PORT $HDC_SERVER_PORT
    export HDC_SERVER_PORT
    ```
@@ -71,7 +71,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量 &gt; 系统变量**中，将SDK的toolchains完整路径添加到Path变量值中，具体路径信息以SDK**实际配置路径**为准。
 
-以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_/User/username/sdk/openharmony/10/toolchains_<!--RP1End-->为例：
+以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_$DevEco Studio安装目录/sdk/default/openharmony/toolchains_<!--RP1End-->为例：
 
 ![系统变量](figures/hdc_img_002.PNG)
 
@@ -101,10 +101,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 3. 输入以下内容，在PATH路径下**增加**SDK路径信息，具体路径信息以SDK**实际配置路径**为准。
 
-   以下内容以本地SDK的toolchains完整路径<!--RP1-->_/User/username/sdk/openharmony/10/toolchains_<!--RP1End-->为例：
+   以下内容以本地SDK的toolchains完整路径<!--RP1-->_$DevEco Studio安装目录/sdk/default/openharmony/toolchains_<!--RP1End-->为例：
 
    ```shell
-   HDC_SDK_PATH=/User/username/sdk/openharmony/10/toolchains
+   HDC_SDK_PATH=${DevEco Studio安装目录}/sdk/default/openharmony/toolchains
    launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH # 仅MacOS需要在此执行，Linux无须执行
    export PATH=$PATH:$HDC_SDK_PATH
    ```
@@ -181,6 +181,9 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 | -l [level] | 指定运行时日志等级，默认为LOG_INFO |
 | wait | 等待设备正常连接，用于检测设备是否连接并准备好接收指令 |
 | checkserver | 获取client-server版本 |
+| -s | 指定连接的server地址与端口 |
+| -p | 跳过拉起本地server|
+| -m | 启动前台server|
 
 1. 显示hdc相关的帮助信息，命令格式如下：
 
@@ -258,7 +261,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    **参数：**
    | 参数 | 说明 |
    | -------- | -------- |
-   | [level] | 指定运行时日志等级<br/>0：LOG_OFF<br/>1：LOG_FATAL<br/>2：LOG_WARN<br/>3：LOG_INFO<br/>4：LOG_DEBUG<br/>5：LOG_ALL | 
+   | [level] | 指定运行时日志等级<br/>0：LOG_OFF<br/>1：LOG_FATAL<br/>2：LOG_WARN<br/>3：LOG_INFO<br/>4：LOG_DEBUG<br/>5：LOG_ALL <br/>6：libusb debug log| 
    | command | hdc支持的命令 |
 
    **返回值：**
@@ -308,6 +311,69 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    ```shell
    hdc checkserver
    ```
+
+7. 配置单次执行过程中客户端所连接的服务端地址及其端口号，命令格式如下：
+
+    ```shell
+    hdc -s [ip]:[port] [command]
+    ```
+
+    **参数：**
+    | 参数 | 说明 |
+    | -------- | -------- |
+    | ip | 指定连接的IP地址，支持IPv4和IPv6 |
+    | port | 指定连接的端口，范围：1~65536|
+
+    **返回值： **
+    | 返回值 | 说明 |
+    | -------- | -------- |
+    | Connect server failed | 连接服务端失败|
+    
+    使用方法：
+    ```shell
+    # 在已启动的服务端（127.0.0.1:8710）执行查询设备命令
+    hdc -s 127.0.0.1:8710 list targets
+    ```
+
+8. 绕过对本地服务端进程的查询步骤，实现客户端的快速启动并执行指令，命令格式如下：
+    ```shell
+    hdc -p [command]
+    ```
+    **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | Connect server failed | 连接服务端失败 | 
+
+    使用方法：
+    ```shell
+    # 启动后台服务端进程
+    hdc start
+    # 跳过进程查询，直接执行命令
+    hdc -p list targets
+    ```
+9. 使用前台启动模式启动服务端，命令格式如下：
+    ```shell
+    hdc -m
+    ```
+    **返回值：**
+    | 返回值 | 说明 |
+    | -------- | -------- |
+    | Initial failed | 服务端初始化失败 |
+    | [I][1970-01-01 00:00:00.000][abcd][session.cpp:25] Program running. Ver: X.X.Xa Pid:12345 | 正常打印对应等级的日志，显示服务端活动状态 |
+    
+    使用方法：
+    ```shell
+    # 在指定地址运行服务端
+    hdc -s 127.0.0.1:8710 -m
+    ```
+
+> **说明：**
+   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务端运行的特定地址和端口。若未指定地址和端口，系统将采用默认配置，即服务端将在地址 127.0.0.1 和端口 8710 上启动。
+   >
+   > 2. 在前台启动模式下，系统默认的日志输出等级设置为 LOG_DEBUG。若需变更日志等级，可通过结合使用 -l 参数来进行相应的调整。
+   >
+   > 3. 在特定的运行环境中，仅允许单一的服务端进程实例存在。若运行环境中已存在一个活跃的后台服务端进程，则尝试在前台启动新的服务端实例将不会成功，并将导致启动操作失败。
+
 
 ### 查询设备列表相关命令
 
