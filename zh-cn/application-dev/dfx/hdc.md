@@ -37,12 +37,12 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       ```
 
 2. 单击字母“i”，进入**Insert**模式。
-3. 输入以下内容，在PATH路径下添加HDC_SERVER_PORT端口信息。
+3. 输入以下内容，在PATH路径下添加OHOS_HDC_SERVER_PORT端口信息。
 
    ```shell
-   HDC_SERVER_PORT=8710
-   launchctl setenv HDC_SERVER_PORT $HDC_SERVER_PORT
-   export HDC_SERVER_PORT
+   OHOS_HDC_SERVER_PORT=8710
+   launchctl setenv OHOS_HDC_SERVER_PORT $OHOS_HDC_SERVER_PORT
+   export OHOS_HDC_SERVER_PORT
    ```
 
 4. 编辑完成后，单击**Esc**键，退出编辑模式，然后输入“:wq”，单击**Enter**键保存。
@@ -1045,6 +1045,13 @@ hdc_logs日志文件夹将存在以下类型日志：
 | 历史日志归档文件 | hdc-%Y%m%d-%H%M%S.log.tgz | 压缩存储历史日志 | 归档文件为`.tgz`类型压缩文件，可使用解压工具进行解压查看。<br>以历史日志临时文件名`hdc-20240919-161857921.log`为例，<br>对应的历史日志归档文件名为：`hdc-20240919-161857921.log.tgz`，<br>历史日志归档文件生成后，对应的历史日志临时文件将自动删除。 |
 | 实时日志缓存临时文件 | .hdc.cache.log | 实时日志产生的临时缓存 | |
 
+日志相关环境变量：
+| 环境变量名称             | 默认值 | 用途                             |
+|--------------------|-----|--------------------------------|
+| OHOS_HDC_LOG_LEVEL | 5   | 配置服务端日志记录级别                      |
+| OHOS_HDC_LOG_LIMIT | 300 | 配置日志条目数量阈值。当日志记录超出此阈值时，系统将自动启动日志清理机制，以维护日志存储空间的优化，当前系统设定下，日志存储空间的上限为3GB，该限制目前不可调整。|
+
+
 **设备端日志**
 
 开启hilog日志工具，获取对应日志，命令如下：
@@ -1124,7 +1131,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
   - hdc或SDK版本与设备不匹配: 如果设备更新到最新版本，可更新hdc或SDK工具至最新版本。
   - 端口被占用：
 
-    常见于hdc和hdc_std使用同一端口，同时运行时HDC_SERVER_PORT设置的端口互相冲突（未设置则使用默认端口8710，仍然会冲突），注意只运行其中一个。其他软件占用hdc默认端口也会导致该问题发生。
+    常见于hdc和hdc_std使用同一端口，同时运行时OHOS_HDC_SERVER_PORT设置的端口互相冲突（未设置则使用默认端口8710，仍然会冲突），注意只运行其中一个。其他软件占用hdc默认端口也会导致该问题发生。
 
 - 情况四：连接设备时出现`Connect server failed`。
 
@@ -1139,7 +1146,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
     2. 查询HDC端口情况。
 
-       以设置的HDC_SERVER_PORT为8710端口为例，在不同平台查询命令如下：
+       以设置的OHOS_HDC_SERVER_PORT为8710端口为例，在不同平台查询命令如下：
 
        Unix：
 
@@ -1153,7 +1160,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
        netstat -an |findstr 8710
        ```
 
-       如存在抢占的软件，可以关闭该软件进程或者更换HDC_SERVER_PORT环境变量为其他端口号。
+       如存在抢占的软件，可以关闭该软件进程或者更换OHOS_HDC_SERVER_PORT环境变量为其他端口号。
 
     3. 排查未关闭的其他版本hdc server
 
@@ -1189,7 +1196,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 - 运行环境异常
 
-  Linux运行环境：建议使用Ubuntu18.04及以上64版本，如发送libc++.so引用错误请使用ldd/readelf等命令检查库引用。
+  Linux运行环境：建议使用Ubuntu18.04及以上64版本，如出现libc++.so引用错误，请使用ldd/readelf等命令检查库引用。
 
   MacOS运行环境：建议使用MacOS 11及以上版本。
 
