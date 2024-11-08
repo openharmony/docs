@@ -6846,6 +6846,59 @@ struct RequestExample {
 }
 ```
 
+### activate<sup>14+</sup>
+
+activate(isActive: boolean, atuoInactive?: boolean): void
+
+设置当前界面的[焦点激活态](../../ui/arkts-common-events-focus-event.md)。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| isActive| boolean| 是 | 设置是否进入/退出焦点激活态。 |
+| autoInactive | boolean | 否 | 设置焦点激活态退出逻辑。为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制|
+
+```ts
+// 该示例表示在页面加载完成时进入焦点激活态，可按方向键在button间走焦
+@Entry
+@Component
+struct ActivateExample {
+  aboutToAppear() {
+    this.getUIContext().getFocusController().activate(true, false)
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getFocusController().activate(false)
+  }
+
+  build() {
+    Row() {
+      Button('Button1')
+        .width(200)
+        .height(70)
+        .defaultFocus(true)
+
+      Button('Button2')
+        .width(200)
+        .height(70)
+
+      Button('Button3')
+        .width(200)
+        .height(70)
+    }
+    .padding(10)
+    .justifyContent(FlexAlign.SpaceBetween)
+    .width(800)
+  }
+}
+```
+
+
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
 
