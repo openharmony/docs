@@ -145,7 +145,7 @@ taskpool.execute(taskPoolGroup).then((data: ArrayBuffer[]) => {
 
 ![img](figures/thread_data_transfer_image_03.jpg)
 
-下面将通过示例代码说明如何进一步优化图片处理的时间。详细代码请参考[ThreadDataTransfer](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/ThreadDataTransfer)。
+下面将通过示例代码说明如何进一步优化图片处理的时间。详细代码请参考[ThreadDataTransfer](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Performance/PerformanceLibrary/feature/ThreadDataTransfer)。
 ```typescript
 // code/Performance/PerformanceLibrary/feature/ThreadDataTransfer/src/main/ets/utils/TreadUtil.ets
 ......
@@ -197,4 +197,4 @@ export async function pixelMapProcessByTaskPool(pixelMap: image.PixelMap, lastAd
 
 ## 相关示例
 
-[ArrayBuffer序列化和转移示例代码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/ThreadDataTransfer)
+[ArrayBuffer序列化和转移示例代码](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/Performance/PerformanceLibrary/feature/ThreadDataTransfer)

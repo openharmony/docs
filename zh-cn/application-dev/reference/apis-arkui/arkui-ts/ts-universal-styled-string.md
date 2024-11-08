@@ -25,7 +25,7 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。  |
 | styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。 |
@@ -139,7 +139,7 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### fromHtml
 
@@ -169,7 +169,7 @@ static fromHtml(html: string): Promise\<StyledString>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ## MutableStyledString
 
@@ -206,7 +206,7 @@ replaceString(start: number , length: number , other: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### insertString
 
@@ -231,7 +231,7 @@ insertString(start: number , other: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### removeString
 
@@ -258,7 +258,7 @@ removeString(start: number , length: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### replaceStyle
 
@@ -282,7 +282,7 @@ replaceStyle(spanStyle: SpanStyle): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### setStyle
 
@@ -299,6 +299,14 @@ setStyle(spanStyle: SpanStyle): void
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | spanStyle | [SpanStyle](#spanstyle对象说明) | 是   | 样式对象。<br/>**说明：** <br/>默认不清空原有样式，叠加新样式。若是已有样式，则更新。<br/>当SpanStyle的styledKey为IMAGE或CUSTOM_SPAN时，只有当start的位置当前是image或者CustomSpan且长度为1，才会生效，其余情况无效果。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      |The parameter check failed.   |
 
 ### removeStyle
 
@@ -328,7 +336,7 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### removeStyles
 
@@ -357,7 +365,7 @@ removeStyles(start: number , length: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### clearStyles
 
@@ -395,7 +403,7 @@ replaceStyledString(start: number , length: number , other: StyledString): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### insertStyledString
 
@@ -420,7 +428,7 @@ insertStyledString(start: number , other: StyledString): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### appendStyledString
 
@@ -540,8 +548,8 @@ constructor(value?: GestureStyleInterface)
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| onClick | CallBack\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
-| onLongPress | CallBack\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
+| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
+| onLongPress | Callback\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
 
 ## DecorationStyle
 
@@ -581,7 +589,7 @@ constructor(value: DecorationStyleInterface)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型                              | 必填 | 说明   |
+| 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 装饰线颜色。 |
@@ -689,9 +697,9 @@ constructor(lineHeight: LengthMetrics)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型              | 只读   | 必填   | 说明     |
+| 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| textShadow  | Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> |  是  |  是  | 获取属性字符串的文本阴影。 |
+| textShadow  | Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> |  是  |  否  | 获取属性字符串的文本阴影。 |
 
 ### constructor
 
@@ -759,6 +767,8 @@ constructor(value: ImageAttachmentInterface)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。 |
@@ -775,9 +785,9 @@ constructor(value: ImageAttachmentInterface)
 
 ### onMeasure
 
-获取自定义绘制Span的尺寸大小。
-
 abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
+
+获取自定义绘制Span的尺寸大小。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -797,9 +807,9 @@ abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 
 ### onDraw
 
-绘制自定义绘制Span。
-
 abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
+
+绘制自定义绘制Span。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -814,9 +824,9 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
 ### invalidate<sup>13+<sup>
 
-主动刷新使用CustomSpan的Text组件或者RichEditor组件。
-
 invalidate(): void
+
+主动刷新使用CustomSpan的Text组件。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 

@@ -781,7 +781,7 @@ struct pageTwoStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack()
-        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'Hello World'
+        // 如果绑定的LocalStorage中没有PropB,显示本地初始化的值 'Hello World'
         Text(`${this.PropB}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -810,7 +810,7 @@ struct pageThreeStack {
       Column() {
         NavigationContentMsgStack()
 
-        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'pageThreeStack'
+        // 如果绑定的LocalStorage中没有PropC,显示本地初始化的值 'pageThreeStack'
         Text(`${this.PropC}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')

@@ -21,7 +21,8 @@ sendableContextManager模块提供Context与[SendableContext](js-apis-inner-appl
 
 ## 约束限制
 
-“Context转换为SendableContext”和“SendableContext转换为Context”两个环节中的Context类型必须保持一致。目前支持转换的Context包括[Context](js-apis-inner-application-context.md)、[ApplicationContext](js-apis-inner-application-applicationContext.md)、[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+- “Context转换为SendableContext”和“SendableContext转换为Context”两个环节中的Context类型必须保持一致。目前支持转换的Context包括[Context](js-apis-inner-application-context.md)、[ApplicationContext](js-apis-inner-application-applicationContext.md)、[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+- SendableContext转换为Context后，不支持跨线程传递。
 
 ## 导入模块
 

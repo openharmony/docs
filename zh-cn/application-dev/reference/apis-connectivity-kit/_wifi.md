@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [oh_wifi.h](oh__wifi_8h.md) | 定义查询WIFI开关状态的接口。 | 
+| [oh_wifi.h](oh__wifi_8h.md) | 定义查询WIFI开关状态的接口。<br>**引用文件：** \<ConnectivityKit\/wifi\/oh_wifi.h\> | 
 
 
 ### 类型定义

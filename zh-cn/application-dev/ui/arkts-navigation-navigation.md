@@ -1,10 +1,10 @@
 # 组件导航 (Navigation)(推荐)
 
-[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由容器组件，一般作为首页的根容器，包括单栏(Stack)、分栏(Split)和自适应(Auto)三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景。通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。在不同尺寸的设备上，Navigation组件能够自适应显示大小，自动切换分栏展示效果。
+[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由导航的根视图容器，一般作为页面（@Entry）的根容器，包括单栏（Stack）、分栏（Split）和自适应（Auto）三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景下，Navigation组件能够自动适配窗口显示大小，在窗口较大的场景下自动切换分栏展示效果。
 
-Navigation组件主要包含​导航页(NavBar)和子页(NavDestination)。导航页由标题栏(Titlebar，包含菜单栏menu)、内容区(Navigation子组件)和工具栏(Toolbar)组成，其中导航页可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在页面栈中，导航页和子页，以及子页之间可以通过路由操作进行切换。
+Navigation组件主要包含​导航页（NavBar）和子页（NavDestination）。导航页由标题栏（Titlebar，包含菜单栏menu）、内容区（Navigation子组件）和工具栏（Toolbar）组成，其中导航页可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在页面栈中，导航页和子页，以及子页之间可以通过路由操作进行切换。
 
-在API Version 9上，需要配合[NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)组件实现页面路由，从API Version 10开始，推荐使用[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)实现页面路由。
+在API Version 9上，Navigation需要配合[NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)组件实现页面路由。从API Version 10开始，更推荐使用[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)实现页面路由。
 
 
 ## 设置页面显示模式
@@ -647,15 +647,15 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 通过静态import页面再进行路由跳转的方式会造成不同模块之间的依赖耦合，以及首页加载时间长等问题。
 
-动态路由设计的目的就是为了解决多个模块（HAR/HSP）之间可以复用相同的业务，各个业务模块之间解耦和路由功能扩展整合。
+动态路由设计的初衷旨在解决多个模块（HAR/HSP）能够复用相同的业务逻辑，实现各业务模块间的解耦，同时支持路由功能的扩展与整合。
 
 **动态路由的优势：**
 
 - 路由定义除了跳转的URL以外，可以丰富的配置扩展信息，如横竖屏默认模式，是否需要鉴权等等，做路由跳转时统一处理。
 - 给每个路由页面设置一个名字，按照名称进行跳转而不是文件路径。
-- 页面的加载可以使用动态Import（按需加载），防止首个页面加载大量代码导致卡顿。
+- 页面的加载可以使用动态import（按需加载），防止首个页面加载大量代码导致卡顿。
 
-动态路由提供[系统路由表](#系统路由表)和[自定义路由表](#自定义路由表)两种方式。
+动态路由提供[系统路由表](#系统路由表)和[自定义路由表](#自定义路由表)两种实现方式。
 
 - 系统路由表相对自定义路由表，使用更简单，只需要添加对应页面跳转配置项，即可实现页面跳转。
 
@@ -745,7 +745,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 自定义路由表
 
-开发者可以通过自定义路由表的方式来实现跨包动态路由，具体实现方法请参考<!--RP1-->[Navigation自定义动态路由](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)<!--RP1End--> 示例。
+开发者可以通过自定义路由表的方式来实现跨包动态路由，具体实现方法请参考<!--RP1-->[Navigation自定义动态路由](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/ApplicationModels/DynamicRouter)<!--RP1End--> 示例。
 
 **实现方案：**
 

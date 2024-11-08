@@ -3,7 +3,7 @@
 
 ## Overview
 
-The OH_Pixelmap_HdrMetadataValue struct describes the HDR metadata values used by the pixel map and available for the key [OH_Pixelmap_HdrMetadataKey](_image___native_module.md#oh_pixelmap_hdrmetadatakey). It is used in [OH_PixelmapNative_SetMetadata](_image___native_module.md#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](_image___native_module.md#oh_pixelmapnative_getmetadata).
+The OH_Pixelmap_HdrMetadataValue struct describes the HDR metadata values used by the PixelMap and available for the key [OH_Pixelmap_HdrMetadataKey](_image___native_module.md#oh_pixelmap_hdrmetadatakey). It is used in [OH_PixelmapNative_SetMetadata](_image___native_module.md#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](_image___native_module.md#oh_pixelmapnative_getmetadata).
 
 **Since**: 12
 

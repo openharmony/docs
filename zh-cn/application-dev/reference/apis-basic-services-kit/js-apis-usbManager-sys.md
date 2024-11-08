@@ -758,12 +758,12 @@ USB设备侧功能。
 | ACM          | 1   | acm功能。  |
 | ECM          | 2   | ecm功能。  |
 | HDC          | 4   | hdc功能。  |
-| MTP          | 8   | 媒体传输。 |
-| PTP          | 16  | 图片传输。 |
-| RNDIS        | 32  | 网络共享。 |
-| MIDI         | 64  | midi功能。 |
-| AUDIO_SOURCE | 128 | 音频功能。 |
-| NCM          | 256 | ncm传输。  |
+| MTP          | 8   | 媒体传输（暂不支持）。 |
+| PTP          | 16  | 图片传输（暂不支持）。 |
+| RNDIS        | 32  | 网络共享（暂不支持）。 |
+| MIDI         | 64  | midi功能（暂不支持）。 |
+| AUDIO_SOURCE | 128 | 音频功能（暂不支持）。 |
+| NCM          | 256 | ncm传输（暂不支持）。  |
 
 ## PortModeType
 

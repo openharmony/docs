@@ -34,11 +34,11 @@
 
 - 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性中配置。
 
-Swiper 共 5 页，当开发者设置了 cacheCount 属性为 1 且 loop 属性为 false 时，预加载的结果如下：\
+Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 false 时，预加载的结果如下：\
  ![loop=false](figures/swiper_loop_false.png)
 
 \
- Swiper 共 5 页，当开发者设置了 cacheCount 属性为 1 且 loop 属性为 true 时，预加载的结果如下：\
+ Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 true 时，预加载的结果如下：\
  ![loop=true](figures/swiper_loop_true.png)
 
 - Swiper 组件的子组件使用[LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
@@ -166,7 +166,7 @@ struct SwiperExample {
 
 Swiper 子组件页面代码如下：
 
-在子组件首次构建（生命周期执行到[aboutToAppear](../quick-start/arkts-page-custom-components-lifecycle.md)）时，先判断 dataSource 中该 index 的数据是否有数据，若无数据则先进行资源加载，再构建节点。若有数据，则直接构建节点即可。
+在子组件首次构建（生命周期执行到[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)）时，先判断 dataSource 中该 index 的数据是否有数据，若无数据则先进行资源加载，再构建节点。若有数据，则直接构建节点即可。
 
 ```TypeScript
 import image from '@ohos.multimedia.image';

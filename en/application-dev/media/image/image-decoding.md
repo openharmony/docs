@@ -1,6 +1,6 @@
 # Using ImageSource to Decode Images
 
-Image decoding refers to the process of decoding an archived image in a supported format into a [pixel map](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, and DNG.
+Image decoding refers to the process of decoding an archived image in a supported format into a [PixelMap](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF (depending on the hardware).
 
 ## How to Develop
 
@@ -33,16 +33,16 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       To use this method, you must import the \@kit.CoreFileKit module first.
 
       ```ts
-      import { fileIo } from '@kit.CoreFileKit';
+      import { fileIo as fs } from '@kit.CoreFileKit';
       ```
 
-      Then call **fileIo.openSync()** to obtain the file descriptor.
+      Then call **fs.openSync()** to obtain the file descriptor.
   
       ```ts
       // Code on the stage model
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
-      const file : fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
+      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
 
@@ -150,7 +150,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
       ```
 
-4. Set **DecodingOptions** and decode the image to obtain a pixel map.
+4. Set **DecodingOptions** and decode the image to obtain a PixelMap.
    - Set the expected format for decoding.
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
@@ -161,7 +161,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
          editable: true,
          desiredPixelFormat: 3,
       }
-      // Create a pixel map.
+      // Create a PixelMap.
       imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
          console.log("Succeeded in creating PixelMap")
       }).catch((err : BusinessError) => {
@@ -175,20 +175,20 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       let img = await getContext(this).resourceManager.getMediaContent($r('app.media.CUVAHdr'));
       let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
       let decodingOptions : image.DecodingOptions = {
-         // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR pixel map is obtained after decoding.
+         // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR PixelMap is obtained after decoding.
          desiredDynamicRange: image.DecodingDynamicRange.AUTO,
       }
-      // Create a pixel map.
+      // Create a PixelMap.
       imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
          console.log("Succeeded in creating PixelMap")
-         // Check whether the pixel map is the HDR content.
+         // Check whether the PixelMap is the HDR content.
          let info = pixelMap.getImageInfoSync();
          console.log("pixelmap isHdr:" + info.isHdr);
       }).catch((err : BusinessError) => {
          console.error("Failed to create PixelMap")
       });
       ```
-   After the decoding is complete and the pixel map is obtained, you can perform subsequent [image processing](image-transformation.md).
+   After the decoding is complete and the PixelMap is obtained, you can perform subsequent [image processing](image-transformation.md).
 
 5. Release the **PixelMap** instance.
 

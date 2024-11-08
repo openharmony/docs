@@ -45,7 +45,7 @@
 
 - 性能优越
   - 声明式UI前端和UI后端分层：UI后端采用C++语言构建，提供对应前端的基础组件、布局、动效、交互事件、组件状态管理和渲染管线。
-  - 语言编译器和运行时的优化：统一字节码、高效FFI-Foreign Function Interface、AOT-Ahead Of Time、引擎极小化、类型优化等。
+  - 语言编译器和运行时的优化：统一字节码、高效FFI（Foreign Function Interface）、AOT（Ahead Of Time）、引擎极小化、类型优化等。
 
 - 生态容易快速推进
   能够借力主流语言生态快速推进，语言相对中立友好，有相应的标准组织可以逐步演进。
@@ -96,7 +96,7 @@
 | 支持适老化        | 介绍了适老化的使用场景和使用方法。       | -&nbsp;[支持适老化](arkui-support-for-aging-adaptation.md) |
 | 主题设置       | 介绍了应用级和页面级的主题设置能力。       | <!--RP1--><!--RP1End-->-&nbsp;[设置主题换肤](theme_skinning.md) |
 | Stage模型下ArkUI全局接口开发       | 介绍了如何使用UIContext中对应的接口获取与实例绑定的对象。       | -&nbsp;[Stage模型下ArkUI全局接口开发指导](arkts-global-interface.md) |
-| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[添加交互事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|
+| 使用NDK接口构建UI | 介绍了ArkUI NDK接口提供的能力，以及如何通过NDK接口创建UI界面。       | -&nbsp;[接入ArkTS页面](ndk-access-the-arkts-page.md)<br/>-&nbsp;[监听组件事件](ndk-listen-to-component-events.md)<br/>-&nbsp;[使用动画](ndk-use-animation.md)<br/>-&nbsp;[使用懒加载开发长列表界面](ndk-loading-long-list.md)<br/>-&nbsp;[构建弹窗](ndk-build-pop-up-window.md)<br/>-&nbsp;[构建自定义组件](ndk-build-custom-components.md)<br/>-&nbsp;[嵌入ArkTS组件](ndk-embed-arkts-components.md)<br/>-&nbsp;[通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)|
 
 ## 通用规则
 
@@ -116,7 +116,7 @@
 
 基于ArkTS的声明式开发范式，可参考以下实例：
 
-- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+- [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/UI/ArkTsComponentCollection/ComponentCollection)
 
 - [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
 

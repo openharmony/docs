@@ -56,7 +56,7 @@ function test() {
 export {value, test};
 ```
 
-1. 需要在工程的build-profile.json5文件中进行以下配置：
+1. 需要当前模块的build-profile.json5文件中进行以下配置：
 
     ```json
     {
@@ -123,7 +123,7 @@ export {value, test};
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用library的模块中，对build-profile.json5进行配置：
 
     ```json
     {
@@ -175,7 +175,7 @@ export {value, test};
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用@ohos/hypium的模块中，对build-profile.json5进行配置：
 
     ```json
     {
@@ -221,7 +221,7 @@ export {value, test};
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用json5的模块中，对build-profile.json5进行配置：
 
     ```json
     {
@@ -316,7 +316,7 @@ export const add: (a: number, b: number) => number;
     }
     ```
 
-2. 在build-profile.json5中进行配置：
+2. 在使用libentry.so的模块中，对build-profile.json5进行配置：
 
     ```json
     {

@@ -17,7 +17,7 @@ import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 
-查询扩展外设详细信息列表。
+查询扩展外设详细信息列表。如果没有设备接入，那么将会返回一个空的列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -67,7 +67,7 @@ try {
 
 queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
 
-查询扩展外设驱动详细信息列表。
+查询扩展外设驱动详细信息列表。如果没有设备接入，那么将会返回一个空的列表。
 
 **系统接口**：此接口为系统接口。
 
