@@ -1818,7 +1818,7 @@ async function example() {
     let newAsset: photoAccessHelper.PhotoAsset = await photoAsset.clone(title);
     console.info('get new asset successfully');
   } catch (error) {
-    console.error('failed to get new asset. message = ', error);
+    console.error(`failed to get new asset. message =  ${err.code}, ${err.message}`);
   }
 }
 ```
