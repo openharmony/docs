@@ -28,6 +28,8 @@
 | put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | 添加指定类型的键值对到数据库。 | 
 | get(key: string, callback: AsyncCallback\<boolean \| string \| number \| Uint8Array>): void | 获取指定键的值。 | 
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void | 从数据库中删除指定键值的数据。 | 
+| closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | 通过storeId的值关闭指定的分布式键值数据库。 | 
+| deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | 通过storeId的值删除指定的分布式键值数据库。 | 
 
 
 ## 开发步骤
@@ -119,7 +121,7 @@
        // kvStoreType不填时，默认创建多设备协同数据库
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
@@ -213,3 +215,37 @@
      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
    }
    ```
+
+6. 通过storeId的值关闭指定的分布式键值数据库。示例代码如下所示：
+     
+    ```js
+    try {
+      kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
+        if (err) {
+          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing KVStore');
+      });
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    }
+    ```
+
+7. 通过storeId的值删除指定的分布式键值数据库。示例代码如下所示：
+     
+    ```js
+    try {
+      kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
+        if (err) {
+          console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in closing KVStore');
+      });
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    }
+    ```
