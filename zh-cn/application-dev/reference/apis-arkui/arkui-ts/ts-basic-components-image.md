@@ -389,6 +389,10 @@ alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
+> **说明：**
+>
+> 需要配置权限：ohos.permission.INTERNET。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
