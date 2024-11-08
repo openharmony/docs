@@ -489,3 +489,6 @@ Currently, the system does not provide APIs for proactively sending control noti
 > Currently, notifications are displayed for audio AVSession, but not video AVSession.
 >
 > The system sends playback control widgets in the notification center and on the lock screen and controls their lifecycle.
+
+<!--RP2-->
+<!--RP2End-->
