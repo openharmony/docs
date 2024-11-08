@@ -1,6 +1,6 @@
 # Notification Kit (User Notification Service)
 
-- ArkTS APIs 
+- ArkTS APIs
   - [@ohos.notificationManager (NotificationManager)](js-apis-notificationManager.md)
   - [@ohos.notificationManager (NotificationManager) (System API)](js-apis-notificationManager-sys.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe) (System API)](js-apis-notificationSubscribe-sys.md)
