@@ -1,17 +1,17 @@
-# AccessibilityExtensionContext (辅助功能扩展上下文)(系统接口)
+# AccessibilityExtensionContext (System API)
 
-AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，继承自ExtensionContext。
+The **AccessibilityExtensionContext** module, inherited from **ExtensionContext**, provides context for **AccessibilityExtensionAbility**.
 
-辅助功能扩展上下文模块提供辅助功能扩展的上下文环境的能力，包括允许配置辅助应用关注信息类型、查询节点信息、手势注入等。
+You can use the APIs of this module to configure the concerned information, obtain root information, and inject gestures.
 
-> **说明：**
+> **NOTE**
 >
-> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口请参[AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)。
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The current page contains only the system APIs of the current module. For details about other public APIs, see [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md).
 
-## 使用说明
+## Instructions
 
-在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
+Before using the **AccessibilityExtensionContext** module, you must define a child class that inherits from **AccessibilityExtensionAbility**.
 
 ```ts
 import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
@@ -27,27 +27,27 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 enableScreenCurtain(isEnable: boolean): void;
 
-提供开启/关闭幕帘屏的能力。
+Enables or disables the screen curtain.
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
+**Parameters**
 
-| 参数名         | 类型                                     | 必填   | 说明             |
+| Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| isEnable | boolean | 是    | true表示打开幕帘屏功能，false表示关闭幕帘屏功能。|
+| isEnable | boolean | Yes   | **true** indicates enabled; **false** indicates disabled.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
-| 错误码ID   | 错误信息                                     |
+| ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
-**示例：**
+**Example**
 
 ```ts
 import { AccessibilityElement } from '@kit.AccessibilityKit';
@@ -69,40 +69,40 @@ axContext.getWindowRootElement().then((data: AccessibilityElement) => {
 
 findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement>;
 
-根据elementId查询当前活动窗口下的节点元素，使用Promise异步回调。
+Queries the node elements in the current active window based on the **elementId**. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
+**Parameters**
 
-| 参数名       | 类型                                | 必填   | 说明                                       |
+| Name      | Type                               | Mandatory  | Description                                      |
 | --------- | --------------------------------- | ---- | ---------------------------------------- |
-| type      | string                            | 是    | 固定为'elementId', 表示根据elementId查询当前活动窗口下的节点元素。 |
-| condition | number | 是    | 表示要查询的节点元素的elementId。                           |
+| type      | string                            | Yes   | Type of element finding. The value is fixed at **'elementId'**.|
+| condition | number | Yes   | **elementId** of the node element.                          |
 
-**返回值：**
+**Return value**
 
-| 类型                                  | 说明                               |
+| Type                                 | Description                              |
 | ----------------------------------- | -------------------------------- |
-| Promise&lt;[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)&gt; | Promise对象，返回满足指定查询条件的节点元素。 |
+| Promise&lt;[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)&gt; | Promise used to return the result.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
-| 错误码ID   | 错误信息                          |
+| ID  | Error Message                         |
 | ------- | ----------------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
-**示例：**
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//elementId为10
+// elementId is 10.
 let condition = 10;
 
-// rootElement是AccessibilityElement的实例
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('elementId', condition).then((data: AccessibilityElement) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -114,40 +114,40 @@ rootElement.findElement('elementId', condition).then((data: AccessibilityElement
 
 findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityElement>>;
 
-根据节点配置的accessibilityTextHint无障碍文本类型查询所有节点元素，使用Promise异步回调。
+Queries all node elements based on the **accessibilityTextHint** text type configured for a node. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
+**Parameters**
 
-| 参数名       | 类型     | 必填   | 说明                            |
+| Name      | Type    | Mandatory  | Description                           |
 | --------- | ------ | ---- | ----------------------------- |
-| type      | string | 是    | 固定为'textType', 表示根据文本类型查找节点元素。 |
-| condition | string | 是    | 表示查找的条件。                      |
+| type      | string | Yes   | Type of element finding. The value is fixed at **'textType'**.|
+| condition | string | Yes   | Search criteria.                     |
 
-**返回值：**
+**Return value**
 
-| 类型                                       | 说明                            |
+| Type                                      | Description                           |
 | ---------------------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
+| Promise&lt;Array&lt;[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)&gt;&gt; | Promise used to return the result.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
-| 错误码ID   | 错误信息                          |
+| ID  | Error Message                         |
 | ------- | ----------------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
-**示例：**
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// condition的内容需要与目标组件accessibilityTextHint属性的type字段值保持一致
+// The content of condition must be the same as the type value in the accessibilityTextHint attribute of the target component.
 let condition = 'location'; 
 
-// rootElement是AccessibilityElement的实例
+// rootElement is an instance of AccessibilityElement.
 rootElement.findElement('textType', condition).then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -159,22 +159,22 @@ rootElement.findElement('textType', condition).then((data: AccessibilityElement[
 
 getCursorPosition(): Promise\<number>;
 
-获取文本组件中光标位置，使用Promise异步回调。
+Obtains the cursor position in the **Text** component. This API uses a promise to return the result.
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-**返回值：**
+**Return value**
 
-| 类型                  | 说明               |
+| Type                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;number&gt; | Promise对象，返回当前光标所处位置。 |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
-**示例：**
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// rootElement是AccessibilityElement的实例
+// rootElement is an instance of AccessibilityElement.
 rootElement.getCursorPosition().then((data: number) => {
   console.info(`Succeeded in getCursorPosition, ${data}`);
 }).catch((err: BusinessError) => {
@@ -186,22 +186,22 @@ rootElement.getCursorPosition().then((data: number) => {
 
 getCursorPosition(callback: AsyncCallback\<number>): void;
 
-获取文本组件中光标位置，使用callback异步回调。
+Obtains the cursor position in the **Text** component. This API uses an asynchronous callback to return the result.
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
+**Parameters**
 
-| 参数名         | 类型                                     | 必填   | 说明             |
+| Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，表示文本组件中光标位置。|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback function used to return the result.|
 
-**示例：**
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// rootElement是AccessibilityElement的实例
+// rootElement is an instance of AccessibilityElement.
 rootElement.getCursorPosition((err: BusinessError, data: number) => {
   if (err && err.code) {
     console.error(`failed to getCursorPosition, Code is ${err.code}, message is ${err.message}`);
@@ -215,26 +215,26 @@ rootElement.getCursorPosition((err: BusinessError, data: number) => {
 
 startAbility(want: Want): void;
 
-提供拉起前台页面的能力。
+Starts the foreground page.
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-**参数：**
+**Parameters**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| want | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md) | Yes| Want information about the target ability, such as the ability name and bundle name.|
 
-**错误码：**
+**Error codes**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
 
-| 错误码ID   | 错误信息                                     |
+| ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
 | 201 | Permission denied. Interface caller does not have permission. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
-**示例：**
+**Example**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
