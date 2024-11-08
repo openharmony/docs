@@ -6,9 +6,9 @@ The camera startup performance is affected by time-consuming operations such as 
 
 ## Deferred Stream Configuration
 
-A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream. Before configuring the data stream, you need to obtain the surface ID of the **\<XComponent>**.
+A typical camera startup process includes starting the camera device, configuring a data stream, and starting the data stream. Before configuring the data stream, you need to obtain the surface ID of the **XComponent**.
 
-The deferred stream configuration feature decouples stream configuration and start from the surface. Before the **\<XComponent>** provides the surface for the camera application, the system configures and starts the stream. This way, the surface only needs to be available before the stream is started. This improves the startup speed and prevents the implementation of other startup optimization schemas from being affected.
+The deferred stream configuration feature decouples stream configuration and start from the surface. Before the **XComponent** provides the surface for the camera application, the system configures and starts the stream. This way, the surface only needs to be available before the stream is started. This improves the startup speed and prevents the implementation of other startup optimization schemas from being affected.
 
 ![deferred-surface-scene](figures/deferred-surface-scene.png)
 
@@ -55,11 +55,11 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 ## Quick Thumbnail
 
-The photographing performance depends on the algorithm processing speed. A complex algorithm chain provides better image effect while requiring longer processing time.
+The photo capture performance depends on the algorithm processing speed. A complex algorithm chain provides better image effect while requiring longer processing time.
 
-To improve the photographing speed perceived by end users, the quick thumbnail feature is introduced. When the user takes a photo, a thumbnail is output and reported to the camera application for display before a real image is reported.
+To improve the photo capture speed perceived by end users, the quick thumbnail feature is introduced. When the user takes a photo, a thumbnail is output and reported to the camera application for display before a real image is reported.
 
-In this way, the photographing process is optimized, which fulfills the processing requirements of the post-processing algorithm without blocking the photographing speed of the foreground.
+In this way, the photo capture process is optimized, which fulfills the processing requirements of the post-processing algorithm without blocking the photo capture speed of the foreground.
 
 ### Available APIs
 
