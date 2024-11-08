@@ -28,8 +28,8 @@
 | put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | 添加指定类型的键值对到数据库。 | 
 | get(key: string, callback: AsyncCallback\<boolean \| string \| number \| Uint8Array>): void | 获取指定键的值。 | 
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void | 从数据库中删除指定键值的数据。 | 
-| closeKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): void | 通过storeId的值关闭指定的分布式键值数据库。 |
-| deleteKVStore(appId: string, storeId: string, callback: AsyncCallback<void>): void | 通过storeId的值删除指定的分布式键值数据库。 |
+| closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | 通过storeId的值关闭指定的分布式键值数据库。 | 
+| deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | 通过storeId的值删除指定的分布式键值数据库。 | 
 
 
 ## 开发步骤
@@ -220,10 +220,6 @@
      
     ```js
     try {
-      // 请确保获取到键值数据库实例后，再进行相关数据操作
-      kvStore = undefined;
-      store = undefined;
-      kvManager = kvManager as distributedKVStore.KVManager;
       kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
@@ -241,10 +237,6 @@
      
     ```js
     try {
-      // 请确保获取到键值数据库实例后，再进行相关数据操作
-      kvStore = undefined;
-      store = undefined;
-      kvManager = kvManager as distributedKVStore.KVManager;
       kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
