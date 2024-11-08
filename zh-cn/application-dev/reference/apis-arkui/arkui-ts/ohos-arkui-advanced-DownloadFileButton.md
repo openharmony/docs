@@ -154,7 +154,6 @@ struct Index {
         .backgroundColor('#007dff')
         .borderStyle(BorderStyle.Dotted)
         .borderWidth(0)
-        .borderColor('')
         .borderRadius('24vp')
         .position({ x: 0, y: 0 })
         .markAnchor({ x: 0, y: 0 })
