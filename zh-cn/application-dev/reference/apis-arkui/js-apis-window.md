@@ -5421,6 +5421,94 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### setResizeByDragEnabled<sup>14+</sup>
+setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+禁止/使能通过拖拽方式缩放主窗口或子窗口的功能。使用callback异步回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| enable  | boolean | 是 | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
+| callback  | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let enabled = false;
+windowClass.setResizeByDragEnabled(enabled, (err) => {
+  if (err.code) {
+    console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting the function of disabling the resize by drag window.');
+});
+```
+
+### setResizeByDragEnabled<sup>14+</sup>
+setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能通过拖拽方式缩放主窗口或子窗口的功能。使用Promise异步回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明 |
+| ----- | ---------------------------- | -- | --------------------------------- |
+| enable  | boolean | 是 | 设置窗口是否使能通过拖拽进行缩放，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let enabled = false;
+let promise = windowClass.setResizeByDragEnabled(enabled);
+promise.then(() => {
+  console.info('Succeeded in setting the function of disabling the resize by drag window.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ### recover<sup>11+</sup>
 
 recover(): Promise&lt;void&gt;
