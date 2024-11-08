@@ -1,6 +1,6 @@
-# Camera Recording Sample (C/C++)
+# Video Recording Sample (C/C++)
 
-This topic provides sample code that covers the complete recording process and the API calling sequence. For details about a single process (such as device input, session management, and recording), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
+This topic provides sample code that covers the complete video recording process and the API calling sequence. For details about a single process (such as device input, session management, and video recording), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
 ## Development Process
 
@@ -15,7 +15,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
     ```
 
-2. Import the NDK APIs on the C++ side, and perform recording based on the surface ID passed in.
+2. Import the NDK APIs on the C++ side, and perform video recording based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
@@ -212,7 +212,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
         }
 
-        // Create a preview output stream. For details about the surfaceId parameter, see the <XComponent>. The preview stream is the surface provided by the <XComponent>.
+        // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, 0, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
