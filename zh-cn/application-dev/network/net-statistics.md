@@ -11,7 +11,7 @@
 - 支持基于网卡/UID 的流量变化订阅。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 promise 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-statistics.md)。
+> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 Promise 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-statistics.md)。
 
 以下分别介绍具体开发方式。
 
@@ -19,24 +19,24 @@
 
 完整的 JS API 说明以及实例代码请参考：[statistics 链接](../reference/apis-network-kit/js-apis-net-statistics.md)。
 
-| 接口名                                                                                                             | 描述                                                                                                   |
-|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                                           | 获取指定网卡实时下行流量数据。                                                                                      |
-| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                                           | 获取指定网卡实时上行流量数据。                                                                                      |
-| getCellularRxBytes(callback: AsyncCallback\<number>): void;                                                     | 获取蜂窝实时下行流量数据。                                                                                        |
-| getCellularTxBytes(callback: AsyncCallback\<number>): void;                                                     | 获取蜂窝实时上行流量数据。                                                                                        |
-| getAllRxBytes(callback: AsyncCallback\<number>): void;                                                          | 获取所有网卡实时下行流量数据。                                                                                      |
-| getAllTxBytes(callback: AsyncCallback\<number>): void;                                                          | 获取所有网卡实时上行流量数据。                                                                                      |
-| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                                             | 获取指定应用实时下行流量数据。                                                                                      |
-| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                                             | 获取指定应用实时上行流量数据。                                                                                      |
-| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;        | 获取指定网卡历史流量信息。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md)              |
-| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;              | 获取指定应用历史流量信息。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md)              |
-| getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                                       | 获取指定socket实时下行流量数据。                                                                                  |
-| getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                                       | 获取指定socket实时上行流量数据。                                                                                  |
-| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void;            | 订阅流量改变事件通知。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md)                |
-| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;          | 取消订阅流量改变事件通知。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md)              |
-| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise<UidNetStatsInfo>;                      | 获取指定时间段内所有应用在指定网络中的流量使用详情。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md) |
-| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise<NetStatsInfoSequence>; | 获取指定时间段内，应用在指定网络中的流量使用详情。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md)  |
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void; | 获取指定网卡实时下行流量数据。                               |
+| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void; | 获取指定网卡实时上行流量数据。                               |
+| getCellularRxBytes(callback: AsyncCallback\<number>): void;  | 获取蜂窝实时下行流量数据。                                   |
+| getCellularTxBytes(callback: AsyncCallback\<number>): void;  | 获取蜂窝实时上行流量数据。                                   |
+| getAllRxBytes(callback: AsyncCallback\<number>): void;       | 获取所有网卡实时下行流量数据。                               |
+| getAllTxBytes(callback: AsyncCallback\<number>): void;       | 获取所有网卡实时上行流量数据。                               |
+| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void; | 获取指定应用实时下行流量数据。                               |
+| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void; | 获取指定应用实时上行流量数据。                               |
+| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyiface10) |
+| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定应用历史流量信息。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyuid10) |
+| getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | 获取指定socket实时下行流量数据。                             |
+| getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | 获取指定socket实时上行流量数据。                             |
+| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void; | 订阅流量改变事件通知。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsonnetstatschange10) |
+| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void; | 取消订阅流量改变事件通知。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsoffnetstatschange10) |
+| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo\>; | 获取指定时间段内所有应用在指定网络中的流量使用详情。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12) |
+| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence\>; | 获取指定时间段内，应用在指定网络中的流量使用详情。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12) |
 
 ## 获取网卡/UID 的实时流量统计数据
 
