@@ -10,7 +10,7 @@ The live view notification provides real-time progress of long-duration tasks, i
 
 ## Available APIs
 
-The following table describes the APIs for notification publishing. You can specify the notification information – content, ID, slot type, and delivery time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.  
+The following table describes the APIs for notification publishing. You can specify the notification information – content, ID, slot type, and delivery time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) parameter in the APIs.  
 
 | **API**| **Description**|
 | -------- | -------- |
