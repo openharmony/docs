@@ -59,7 +59,6 @@ The **externalNativeOptions** parameter in the module-level **build-profile.json
     "cppFlags": "",
     "abiFilters": [
        "arm64-v8a",
-       "armeabi-v7a",
        "x86_64"
     ],
   }
@@ -71,8 +70,8 @@ The following table describes the **externalNativeOptions** parameter.
 | Configuration Item| Type| Description| 
 | -------- | -------- | -------- |
 | path | string | Path to the CMake build script, that is, the **CMakeLists.txt** file.| 
-| abiFilters | array | Local ABI. Available options are as follows:<br>- armeabi-v7a<br>- arm64-v8a<br>- x86_64<br>If this parameter is not set, the **arm64-v8a** option is used.| 
+| abiFilters | array | Local ABI. Available options are as follows:<!--Del--><br>- armeabi-v7a<!--DelEnd--><br>- arm64-v8a<br>- x86_64<br>If this parameter is not set, the **arm64-v8a** option is used.| 
 | arguments | string | CMake compilation parameters.| 
 | cppFlags | string | C++ compiler parameters.| 
 
- 
+For details about the parameters in the **build-profile.json5** file, see <!--RP1-->[build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5)<!--RP1End-->.

@@ -56,6 +56,7 @@
 - **方案一：使用相机框架提供的[CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)监听折叠屏折叠态变化。**
     ```ts
     import { camera } from '@kit.CameraKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let cameraManager = camera.getCameraManager(getContext())
 

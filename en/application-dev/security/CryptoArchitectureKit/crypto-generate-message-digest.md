@@ -1,4 +1,4 @@
-# MD Operation (ArkTS)
+# MD Operations (ArkTS)
 
 For details about the algorithm specifications, see [Supported Algorithms and Specifications](crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).
 

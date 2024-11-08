@@ -1,7 +1,7 @@
 # 页面路由 (@ohos.router)(不推荐)
 
 
-页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
+页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)这几个方面，介绍如何通过Router模块实现页面路由。
 
 >**说明：**
 >
@@ -485,4 +485,4 @@ struct Index {
 
 针对页面路由开发，有以下相关实例可供参考：
 
-- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+- [页面布局和连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)

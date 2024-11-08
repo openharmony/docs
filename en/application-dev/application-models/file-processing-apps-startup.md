@@ -21,7 +21,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 | parameters | Record<string, Object>       | No        | Custom parameters that are defined by the system and assigned values by developers as required. For details, see Table 2.        |
 | flags | number | No| Processing mode. For details, see Table 3.                                                                                                                                                                                      |
 
-**Table 2** Description of [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)
+**Table 2** Description of [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)
 
 
 | Parameter                             | Type   | Description                                                                                                                                                               |
@@ -29,7 +29,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 | ability.params.stream                 | string  | File URIs to be authorized to the target application. This parameter is used when the file to open depends on other files. For example, opening a local HTML file depends on other local resource files. The value must be an array of file URIs of the string type. For details about how to obtain the file URI, see the **uri** parameter in Table 1.|
 | ohos.ability.params.showDefaultPicker | string | Whether to display a dialog box to ask users to select a file opening mode when only one matching application is found.<br>- **false**: The display of the dialog box is determined by the system policy or default application settings.<br>- **true**: Such a dialog box is always displayed. The default value is **false**.                                                                           |
 
-**Table 3** Description of [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags)
+**Table 3** Description of [flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)
 
 | Parameter                      | Value        | Description                      |
 |--------------------------------|------------|----------------------------|

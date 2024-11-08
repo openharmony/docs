@@ -146,3 +146,18 @@ API9版本之前对TEXT文本存储长度限制在1024字节，所以会存在�
 **解决措施**
 
 RDB数据库底层使用的是SQLite，默认的内存数据库模式是文件，不支持修改。
+
+
+## 关系型数据库rdb中，如何获取数据库大小
+
+**解决措施**
+
+可以使用[execute](../reference/apis-arkdata/js-apis-data-relationalStore.md#execute12)接口执行sql语句获取数据库大小，如：SELECT page_count * page_size AS size FROM pragma_page_count(), pragma_page_size()。
+
+## 如何获取rdb关系型数据库路径
+
+**解决措施**
+
+1. 如果用户拥有root权限，则可以使用命令："find /data -name 数据库名字"进行查找；
+
+2. 可以通过DevEco Studio的File Browser查找数据库文件路径。

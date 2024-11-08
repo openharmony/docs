@@ -482,5 +482,5 @@ console.info('MS_LITE_LOG: *** Finished MSLite Demo ***');
 
 针对使用MindSpore Lite进行图像分类应用的开发，有以下相关实例可供参考：
 
-- [基于Native接口的MindSpore Lite应用开发（C/C++）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteCDemo)
+- [基于Native接口的MindSpore Lite应用开发（C/C++）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/DocsSample/ApplicationModels/MindSporeLiteCDemo)
 

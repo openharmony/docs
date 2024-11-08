@@ -77,8 +77,8 @@
 - MD Operations
   - [MD Overview and Algorithm Specifications](crypto-generate-message-digest-overview.md)
   - MD Generation Development
-    - [MD Operation (ArkTS)](crypto-generate-message-digest.md)
-    - [MD Operation (C/C++)](crypto-generate-message-digest-ndk.md)
+    - [MD Operations (ArkTS)](crypto-generate-message-digest.md)
+    - [MD Operations (C/C++)](crypto-generate-message-digest-ndk.md)
 - [MAC Operations](crypto-compute-mac.md)
 - [Random Number Generation](crypto-generate-random-number.md)
 - Key Derivation

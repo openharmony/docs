@@ -1,7 +1,10 @@
 # 自定义弹窗 (CustomDialog)
 
-
 CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更新等与用户交互响应操作。开发者可以通过CustomDialogController类显示自定义弹窗。具体用法请参考[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)。
+
+>  **说明：**
+>
+>  当前，ArkUI弹窗均为非页面级弹窗，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹窗将不会自动关闭。若需实现在跳转页面时弹窗同步关闭的场景，建议使用Navigation。具体使用方法，请参考[组件导航子页面显示类型的弹窗类型](arkts-navigation-navigation.md#页面显示类型)。
 
 
 ## 创建自定义弹窗

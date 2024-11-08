@@ -80,7 +80,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 2. Create a resource object.
 
-   When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#app-sandbox-directory.md#mapping-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
+   When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#mapping-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
 
    ```c++
    // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)

@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OhosPixelMapInfos** struct defines the information about a pixel map.
+The **OhosPixelMapInfos** struct describes the information about a PixelMap.
 
 **System capability**: SystemCapability.Multimedia.Image
 

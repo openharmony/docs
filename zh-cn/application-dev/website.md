@@ -1191,8 +1191,8 @@
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
-          - [hisysevent](dfx/hisysevent.md)
         <!--Del-->
+          - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-kit-->
@@ -1291,12 +1291,14 @@
       - [Camera Kit简介](media/camera/camera-overview.md)
       - [开发准备](media/camera/camera-preparation.md)
       - 相机开发指导(ArkTS)<!--camera-dev-arkts-->
+        - [相机管理(ArkTS)](media/camera/camera-device-management.md)
         - [设备输入(ArkTS)](media/camera/camera-device-input.md)
         - [会话管理(ArkTS)](media/camera/camera-session-management.md)
         - [预览(ArkTS)](media/camera/camera-preview.md)
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
         - [录像(ArkTS)](media/camera/camera-recording.md)
         - [元数据(ArkTS)](media/camera/camera-metadata.md)
+        - [手电筒使用(ArkTS)](media/camera/camera-torch-use.md)
         - [适配不同折叠状态的摄像头变更(ArkTS)](media/camera/camera-foldable-display.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
@@ -1318,6 +1320,7 @@
         - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
         <!--DelEnd-->
       - 相机开发指导(C/C++)<!--camera-dev-native-->
+        - [相机管理(C/C++)](media/camera/native-camera-device-management.md)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
         - [会话管理(C/C++)](media/camera/native-camera-session-management.md)
         - [预览(C/C++)](media/camera/native-camera-preview.md)
@@ -1326,6 +1329,7 @@
         - [录像(C/C++)](media/camera/native-camera-recording.md)
         - [录像流二次处理(C/C++)](media/camera/native-camera-recording-imageReceiver.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
+        - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
       - 相机最佳实践(C/C++)<!--camera-best-practices-native-->
         - [拍照实现方案(C/C++)](media/camera/native-camera-shooting-case.md)
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
@@ -1362,22 +1366,29 @@
         - [使用Image完成图片编码](media/image/image-encoding-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
-      - 音频播放和录制<!--audio-playback-recording-->
-        - [使用AVPlayer开发音频播放功能(ArkTS)](media/media/using-avplayer-for-playback.md)
-        - [使用AVPlayer开发音频播放功能(C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
-        - [使用SoundPool开发音频播放功能](media/media/using-soundpool-for-playback.md)
-        - [使用AVRecorder开发音频录制功能](media/media/using-avrecorder-for-recording.md)
-        - [获取音视频元数据](media/media/avmetadataextractor.md)
-      - 视频播放和录制<!--video-playback-recording-->
-        - [视频播放](media/media/video-playback.md)
-        - [添加视频外挂字幕](media/media/video-subtitle.md)
-        - [视频录制](media/media/video-recording.md)
-        - [使用AVScreenCaptureRecorder录屏保存到文件(ArkTS)](media/media/using-avscreencapture-ArkTs.md)
-        - [使用AVScreenCapture录屏取原始码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
-        - [使用AVScreenCapture录屏保存到文件(C/C++)](media/media/using-avscreencapture-for-file.md)
-        - [获取视频缩略图](media/media/avimagegenerator.md)
-      - 视频转码
-        - [使用AVTranscoder开发视频转码功能](media/media/using-avtranscoder-for-transcodering.md)
+      - [开发准备](media/media/media-preparation.md)
+      - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
+        - 播放<!--media-playback-arkts-->
+          - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
+          - [使用AVPlayer播放视频(ArkTS)](media/media/video-playback.md)
+          - [使用AVPlayer播放流媒体(ArkTS)](media/media/streaming-media-playback-development-guide.md)
+          - [使用AVPlayer添加视频外挂字幕(ArkTS)](media/media/video-subtitle.md)
+          - [使用SoundPool播放短音频(ArkTS)](media/media/using-soundpool-for-playback.md)
+        - 录制<!--media-recording-arkts-->
+          - [使用AVRecorder录制音频(ArkTS)](media/media/using-avrecorder-for-recording.md)
+          - [使用AVRecorder录制视频(ArkTS)](media/media/video-recording.md)
+          - [使用AVScreenCaptureRecorder录屏写文件(ArkTS)](media/media/using-avscreencapture-ArkTs.md)
+        - 媒体信息查询<!--media-info-arkts-->
+          - [使用AVMetadataExtractor提取音视频元数据信息(ArkTS)](media/media/avmetadataextractor.md)
+          - [使用AVImageGenerator提取视频指定时间图像(ArkTS)](media/media/avimagegenerator.md)
+        - 视频转码<!--media-transcoder-arkts-->
+          - [使用AVTranscoder实现视频转码(ArkTS)](media/media/using-avtranscoder-for-transcodering.md)
+      - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
+        - 播放<!--media-playback-c-->
+          - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playerback.md)
+        - 录屏<!--media-recording-c-->
+          - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
+          - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
     - Media Library Kit（媒体文件管理服务）<!--medialibrary-kit-->
       - [Media Library Kit 简介](media/medialibrary/photoAccessHelper-overview.md)
       - [使用Picker选择媒体库资源](media/medialibrary/photoAccessHelper-photoviewpicker.md)
@@ -1498,7 +1509,7 @@
       - C/C++标准库<!--c-cpp-->
         - [C/C++标准库机制概述](napi/c-cpp-overview.md)
         - [fdsan使用指导](napi/fdsan.md)
-      - 使用Node-API实现跨语言交互
+      - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
         - [Node-API简介](napi/napi-introduction.md)
         - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
         - [Node-API开发规范](napi/napi-guidelines.md)
@@ -1528,7 +1539,6 @@
           - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
-          - [非ArkTS线程调用ArkTS函数](napi/use-uv-queue-work.md)
           - [使用Node-API接口创建ArkTS运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
@@ -1625,6 +1635,8 @@
         - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
         - [在线短视频流畅切换 ](performance/performance-quick-switch-short-video.md)
         - [相机分段式拍照性能提升实践](performance/performance-camera-shot2see.md)
+        - [在线视频播放卡顿优化实践](performance/online_video_playback_lags_practice.md)
+        - [音画同步最佳实践](performance/audio-video-synchronization.md)
     - 性能工具
         - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
         - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
@@ -1779,7 +1791,7 @@
             <!--Del-->
             - [AbilityFirstFrameStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateData-sys.md)
             - [AbilityFirstFrameStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
-            - [AbilityForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityForegroundStateObserver-sys)
+            - [AbilityForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityForegroundStateObserver-sys.md)
             - [AbilityRunningInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo-sys.md)
             - [AbilityStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityStateData-sys.md)
             - [AppForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-appForegroundStateObserver-sys.md)

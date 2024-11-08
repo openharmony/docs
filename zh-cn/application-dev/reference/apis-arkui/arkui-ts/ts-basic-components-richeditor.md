@@ -42,6 +42,8 @@ RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
 >  **说明：**
 >
 >  align属性只支持上方、中间和下方位置的对齐方式。
+> 
+>  不支持borderImage属性。
 
 ### customKeyboard
 
@@ -285,7 +287,7 @@ enterKeyType(value: EnterKeyType)
 
 enableKeyboardOnFocus(isEnabled: boolean)
 
-设置RichEditor通过点击以外的方式获焦时，是否绑定输入法。
+设置RichEditor通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -296,7 +298,7 @@ enableKeyboardOnFocus(isEnabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ## 事件
 
@@ -408,7 +410,7 @@ aboutToDelete(callback:Callback\<[RichEditorDeleteValue](#richeditordeletevalue)
 
 | 参数名 | 类型                                        | 必填 | 说明                 |
 | ------ | ------------------------------------------- | ---- | -------------------- |
-| callback | Callback\<[RichEditorDeleteValue](#richeditordeletevalue), boolean\> | 是 | [RichEditorDeleteValue](#richeditordeletevalue)为准备删除的内容所在的文本或者图片Span信息。<br/>true:组件执行删除操作。<br/>false:组件不执行删除操作。<br/>输入法删除内容前的回调。|
+| callback | Callback\<[RichEditorDeleteValue](#richeditordeletevalue), boolean\> | 是 | [RichEditorDeleteValue](#richeditordeletevalue)为准备删除的内容所在的文本或者图片Span信息。<br/>true:组件执行删除操作。<br/>false:组件不执行删除操作。<br/>输入法删除内容前的回调，英文预上屏点击候选词时会执行该回调。|
 
 ### onDeleteComplete
 
@@ -496,7 +498,7 @@ onSubmit(callback: SubmitCallback)
 
 onWillChange(callback: Callback\<RichEditorChangeValue, boolean\>)
 
-组件内图文变化前，触发回调。
+组件执行增删操作前，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
@@ -514,7 +516,7 @@ onWillChange(callback: Callback\<RichEditorChangeValue, boolean\>)
 
 onDidChange(callback: OnDidChangeCallback)
 
-图文变化后，触发回调。
+组件执行增删操作后，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
@@ -1191,6 +1193,10 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11) | 是 | 文本、图片或SymbolSpan的样式选项信息。 |
 
+>  **说明：**
+>
+>  当start大于end时为异常情况，此时start为0，end为无穷大。
+
 ### updateParagraphStyle<sup>11+</sup>
 
 updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
@@ -1639,7 +1645,7 @@ SymbolSpan样式选项。
 
 | 名称                        | 类型                                       | 必填   | 说明                                       |
 | ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。默认值：size的默认值与objectFit的值有关，不同的objectFit值对应的size默认值也不同。objectFit的值为Cover时，图片高度为组件高度减去组件上下内边距，图片宽度为组件宽度减去组件左右内边距。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+| size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。默认值：size的默认值与objectFit的值有关，不同的objectFit值对应的size默认值也不同。objectFit的值为Cover时，图片高度为组件高度减去组件上下内边距，图片宽度为组件宽度减去组件左右内边距。不支持以Percentage形式设置。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
 | verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否    | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | 否    | 图片缩放类型。<br/> 默认值:ImageFit.Cover。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
 | layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | 否    | 图片布局风格。默认值：{"borderRadius":"","margin":""}<br/>   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                          |
@@ -1702,7 +1708,7 @@ RichEditor span信息。
 
 ## RichEditorRange
 
-范围信息。
+定义RichEditor的范围。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1712,10 +1718,6 @@ RichEditor span信息。
 | ----- | ------ | ---- | ---------------------- |
 | start | number | 否    | 起始位置，省略或者设置负值时表示从0开始。  |
 | end   | number | 否    | 结束位置，省略或者超出所有内容范围时表示无穷大。 |
-
->  **说明：**
->
->  当start大于end时为异常情况，此时start为0，end为无穷大。
 
 ## SelectionMenuOptions<sup>10+</sup>
 

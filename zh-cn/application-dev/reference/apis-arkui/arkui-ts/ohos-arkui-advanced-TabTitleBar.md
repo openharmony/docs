@@ -53,7 +53,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
-| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。 |
+| isEnabled | boolean | 否 | 是否启用。默认禁用。true：启用，false：禁用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 |
 
 ## TabTitleBarTabItem
@@ -70,6 +70,8 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
+
+该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'
