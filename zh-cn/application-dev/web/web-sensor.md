@@ -20,7 +20,7 @@ Web组件可以通过W3C标准协议接口对接运动和方向相关的传感�
    ```
 传感器权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
 
-Web组件在对接运动和方向传感器时，需配置onPermissionRequest接口，通过该接口接收权限请求通知。
+Web组件在对接运动和方向传感器时，需配置[onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#onpermissionrequest9)接口，通过该接口接收权限请求通知。
 
 通过在JavaScript中调用下面这些W3C标准协议接口，可以访问运动和方向传感器。
 
