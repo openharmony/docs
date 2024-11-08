@@ -8,9 +8,6 @@
 >
 > 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Once装饰器。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
-
-
 
 ## 概述
 
@@ -67,7 +64,7 @@
 ```ts
 @ComponentV2
 struct CompA {
-  @Param @Once onceParam: string = '';
+  @Param @Once onceParam: string = "";
   build() {
   	Column() {
   	  Text(`onceParam: ${this.onceParam}`)

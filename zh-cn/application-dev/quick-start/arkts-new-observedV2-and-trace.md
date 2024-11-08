@@ -6,7 +6,6 @@
 >
 >\@ObservedV2与\@Trace装饰器从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -156,7 +155,7 @@ struct Index {
       Text(`${this.father.son.age}`)
         .onClick(() => {
           this.father.son.age++;
-      })
+        })
     }
   }
 }
@@ -183,7 +182,7 @@ struct Index {
       Text(`${this.son.name}`)
         .onClick(() => {
           this.son.name = "Jack";
-      })
+        })
     }
   }
 }
@@ -205,7 +204,7 @@ struct Index {
       Text(`${Manager.count}`)
         .onClick(() => {
           Manager.count++;
-      })
+        })
     }
   }
 }
@@ -241,9 +240,25 @@ struct Index {
     Column() {
       // age被@Trace装饰，用在UI中可以触发UI刷新
       Text(`${this.person.age}`)
+        .onClick(() => {
+          this.person.age++; // 点击会触发UI刷新
+        })
       // id未被@Trace装饰，用在UI中不会触发UI刷新
       Text(`${this.person.id}`) // 当id变化时不会刷新
+        .onClick(() => {
+          this.person.id++; // 点击不会触发UI刷新
+        })
     }
+  }
+}
+```
+
+- \@ObservedV2仅能装饰class，无法装饰自定义组件。
+
+```ts
+@ObservedV2 // 错误用法，编译时报错
+struct Index {
+  build() {
   }
 }
 ```
@@ -310,11 +325,11 @@ struct Index {
       Button("change age")
         .onClick(() => {
           this.info.age++;
-      })
+        })
       Button("Change job")
         .onClick(() => {
           this.info.job.jobName = "Doctor";
-      })
+        })
     }
   }
 }
@@ -352,11 +367,11 @@ struct Index {
       Button("change age")
         .onClick(() => {
           this.message.age++;
-      })
+        })
       Button("Change job")
         .onClick(() => {
           this.message.job.jobName = "Doctor";
-      })
+        })
     }
   }
 }
@@ -372,7 +387,7 @@ struct Index {
 
 \@Trace装饰器与现有状态管理框架的[\@Track](arkts-track.md)与[\@State](arkts-state.md)装饰器的能力不同，@Track使class具有属性级更新的能力，但并不具备深度观测的能力；而\@State只能观测到对象本身以及第一层的变化，对于多层嵌套场景只能通过封装自定义组件，搭配[\@Observed](arkts-observed-and-objectlink.md)和[\@ObjectLink](arkts-observed-and-objectlink.md)来实现观测。
 
-* 点击Button("change length")，length是被\@Trace装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"isRender id: 1"的日志。
+* 点击Button("change length")，length是被\@Trace装饰的属性，它的变化可以触发关联的UI组件，即UINode (1)的刷新，并输出"id: 1 renderTimes: x"的日志，其中x根据点击次数依次增长。
 * 自定义组件Page中的son是常规变量，因此点击Button("assign Son")并不会观测到变化。
 * 当点击Button("assign Son")后，再点击Button("change length")并不会引起UI刷新。因为此时son的地址改变，其关联的UI组件并没有关联到最新的son。
 

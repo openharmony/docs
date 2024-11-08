@@ -7,6 +7,8 @@
 
 **库：** libohweb.so
 
+**引用文件：** <web/arkweb_scheme_handler.h>
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 12

@@ -52,6 +52,8 @@
     - [合理使用缓存提升性能](reasonable_using_cache_improve_performance.md)
     - [滑动白块问题解决指导](resolve_sliding_white_blocks.md)
     - [相机分段式拍照性能提升实践](performance-camera-shot2see.md)
+    - [在线视频播放卡顿优化实践](online_video_playback_lags_practice.md)
+    - [音画同步最佳实践](audio-video-synchronization.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)

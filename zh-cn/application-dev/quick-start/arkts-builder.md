@@ -11,15 +11,6 @@ ArkUI提供了一种轻量的UI元素复用机制\@Builder，该自定义组件�
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
-## 限制条件
-
-- \@Builder通过按引用传递的方式传入参数，才会触发动态渲染UI，并且参数只能是一个。
-
-- \@Builder如果传入的参数是两个或两个以上，不会触发动态渲染UI。
-
-- \@Builder传入的参数中同时包含按值传递和按引用传递两种方式，不会触发动态渲染UI。
-
-- \@Builder的参数必须按照对象字面量的形式，把所需要的属性一一传入，才会触发动态渲染UI。
 
 ## 装饰器使用说明
 
@@ -96,10 +87,11 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      // 在父组件中调用overBuilder组件时，
+      // 把this.label通过引用传递的方式传给overBuilder组件。
       overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
-        // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        // 单击Click me后，UI文本从Hello更改为ArkUI。
         this.label = 'ArkUI';
       })
     }
@@ -140,10 +132,11 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      // 在父组件中调用overBuilder组件时，
+      // 把this.label通过引用传递的方式传给overBuilder组件。
       overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
-        // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        // 单击Click me后，UI文本从Hello更改为ArkUI。
         this.label = 'ArkUI';
       })
     }
@@ -311,6 +304,53 @@ struct PageBuilder {
 }
 ```
 
+## 限制条件
+
+1. \@Builder装饰的函数内部，不允许修改参数值，否则框架会抛出运行时错误。开发者可以在调用\@Builder的自定义组件里改变其参数。
+
+```ts
+interface Temp {
+  paramA: string;
+}
+
+@Builder function overBuilder($$: Temp) {
+  Row() {
+    Column() {
+      Button(`overBuilder === ${$$.paramA}`)
+        .onClick(() => {
+          // 错误写法，不允许在@Builder装饰的函数内部修改参数值
+          $$.paramA = 'Yes';
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+
+  build() {
+    Column() {
+      overBuilder({paramA: this.label})
+      Button('click me')
+        .onClick(() => {
+          this.label = 'ArkUI';
+        })
+    }
+  }
+}
+```
+
+2. \@Builder通过按引用传递的方式传入参数，才会触发动态渲染UI，并且参数只能是一个。
+
+3. \@Builder如果传入的参数是两个或两个以上，不会触发动态渲染UI。
+
+4. \@Builder传入的参数中同时包含按值传递和按引用传递两种方式，不会触发动态渲染UI。
+
+5. \@Builder的参数必须按照对象字面量的形式，把所需要的属性一一传入，才会触发动态渲染UI。
+
+
 ## 使用场景
 
 ### 自定义组件内使用自定义构建函数
@@ -389,7 +429,8 @@ struct Parent {
     Column() {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value, tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
+      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value,
+       tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
       Line()
         .width('100%')
         .height(10)
@@ -550,7 +591,7 @@ function childBuilder($$: Tmp) {
 
 @Component
 struct HelloChildComponent {
-  @State message: string = '';
+  @Prop message: string = '';
   build() {
     Row() {
       Text(`HelloChildComponent===${this.message}`)
@@ -720,7 +761,8 @@ struct Parent {
     Column() {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value}, this.num) // 此处出现问题，使用了两个参数。
+      // 使用了两个参数，用法错误。
+      overBuilder({str_value: this.objParam.str_value}, this.num)
       Line()
         .width('100%')
         .height(10)
@@ -759,7 +801,8 @@ struct Parent {
     Column() {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
-      overBuilder({str_value: this.strParam.str_value}, {num_value: this.numParam.num_value}) // 此处出现问题，使用了两个参数。
+      // 使用了两个参数，用法错误。
+      overBuilder({str_value: this.strParam.str_value}, {num_value: this.numParam.num_value})
       Line()
         .width('100%')
         .height(10)

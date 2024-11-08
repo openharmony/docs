@@ -2,9 +2,12 @@
 
 ## 代码混淆简介
 
-针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。  
-DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本的Stage模型、[编译模式为release](#说明)时自动进行代码混淆，其仅对参数名和局部变量名进行混淆。  
-**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，如果在模块配置文件build-profile.json5开启代码混淆，混淆规则配置文件obfuscation-rules.txt中默认开启-enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐选项，开发者可进一步在obfuscation-rules.txt文件中更改配置。**
+针对工程源码的混淆可以降低工程被破解攻击的风险，缩短代码的类与成员的名称，减小应用的大小。 
+
+>**说明：** 
+>
+> 1. 在 DevEco Studio5.0.3.600之前，新建工程的默认设置是开启代码混淆功能，它会自动对 API10及更高版本的 Stage 模型进行代码混淆。此操作仅适用于以[release模式](#说明)编译的代码，并且混淆仅限于参数名和局部变量名。
+> 2. 在 DevEco Studio5.0.3.600及之后，新建工程的默认设置已更改为关闭代码混淆功能。如果开发者希望开启代码混淆，需要将模块的`build-profile.json5`文件中的`ruleOptions.enable`字段的值设置为 true。此外，混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。需要注意的是，开启这四项规则可能会导致应用在运行时崩溃，因此建议开发者参考[排查指南](#如何排查功能异常)来修正应用功能。
 
 ### 使用约束
 
@@ -34,7 +37,7 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 混淆开启后，默认使能对参数名和局部变量名的混淆，无需选项配置。顶层作用域名称混淆、属性名称的混淆、导出名称混淆、文件名混淆打开可能会导致运行时错误，这些混淆功能通过混淆配置选项来开启/关闭它们。
 
-创建一个新工程的时候，配置文件build-profile.json5中会自动生成以下内容:
+创建一个模块的时候，模块级`build-profile.json5`中会自动生成以下内容:
 
 ```
 "arkOptions": {
@@ -68,10 +71,6 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 当构建HAP、HSP和HAR的时候，最终的混淆规则是当前构建模块的ruleOptions.files属性，依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。  
 如果构建的是HAR，HAR包中的obfuscation.txt是自身的consumerFiles属性， 依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。构建HAP、HSP不会生成obfuscation.txt。详细合并的策略可以查看[混淆规则合并策略](#混淆规则合并策略)。
-
-**规则变更提醒**
-
-从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能，即`"enable": false`；混淆规则配置文件obfuscation-rules.txt中默认开启enable-property-obfuscation、-enable-toplevel-obfuscation、-enable-filename-obfuscation、-enable-export-obfuscation四项推荐的选项。这四项规则开启可能会引发应用运行时崩溃，建议阅读[排查指南](#如何排查功能异常)来修正应用功能。
 
 ### 混淆规则配置文件
 
@@ -335,9 +334,9 @@ lastName
 ```
 
 > **注意**：
-
+>
 > - 该选项在开启`-enable-property-obfuscation`时生效
-
+>
 > - 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
 
 **哪些属性名应该被保留?**
@@ -438,7 +437,7 @@ export namespace Ns {
 ```
 
 > **注意**
-
+>
 > `-keep-global-name`指定的白名单作用于全局。即代码中出现多个顶层作用域名称或者导出名称，只要与`-keep-global-name`配置的白名单名称相同，均不会被混淆。
 
 **哪些顶层作用域的名称应该被保留?**
@@ -482,10 +481,34 @@ entry
 
 **哪些文件名应该被保留?**
 
+1.在使用`require`引入文件路径时，由于`ArkTS`不支持[CommonJS](../arkts-utils/module-principle.md#commonjs模块)语法，因此这种情况下路径应该被保留。
+
 ```
-const module1 = require('./file1')   // ArkTS不支持CommonJS语法，这种路径引用应该被保留
-const moduleName = './file2'
-const module2 = import(moduleName)    // 动态引用方式无法识别moduleName是否是路径，应该被保留
+const module1 = require('./file1')   // file1 应该被保留
+```
+
+2.对于动态引用方式，由于无法识别`import`函数中的参数是否为路径，因此这种情况下路径应该被保留。
+
+```
+const moduleName = './file2'         // file2 应该被保留
+const module2 = import(moduleName)
+```
+
+3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给路由的路径应该被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与上述第二种动态引用场景一致。而若采用系统路由表进行跳转，则需要将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
+
+```
+  {
+    "routerMap": [
+      {
+        "name": "PageOne",
+        "pageSourceFile": "src/main/ets/pages/directory/PageOne.ets",  // 路径都应该被保留
+        "buildFunction": "PageOneBuilder",
+        "data": {
+          "description" : "this is PageOne"
+        }
+      }
+    ]
+  }
 ```
 
 #### -keep-comments *[,identifiers,...]*
@@ -511,11 +534,11 @@ export class exportClass {}
 
 #### -keep-dts *filepath*
 
-保留指定绝对路径的`.d.ts`文件中的名称。这里的文件路径也可以是一个目录，这种情况下目录中所有`.d.ts`文件中的名称都会被保留。
+指定路径的`.d.ts`文件中的名称（例如变量名、类名、属性名等）会被添加至`-keep-global-name`和`-keep-property-name`白名单中。请注意，`filepath`仅支持绝对路径，并且可以指定为一个目录。在这种情况下，该目录中所有`.d.ts`文件中的名称都将被保留。
 
 #### -keep *filepath*
 
-保留指定相对路径中的所有名称(例如变量名、类名、属性名等)不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
+保留指定相对路径中的所有名称（例如变量名、类名、属性名等）不被混淆。这个路径可以是文件与文件夹，若是文件夹，则文件夹下的文件及子文件夹中文件都不混淆。  
 路径仅支持相对路径，`./`与`../`为相对于混淆配置文件所在目录，支持使用路径类通配符。
 
 ```
@@ -963,3 +986,16 @@ AppAbility
 报错内容为 `Cannot read properties of undefined (reading 'has')`
 
 **解决方案：** 将SDK更新至最低4.1.6.3版本。
+
+#### HAP与HSP依赖相同的本地源码HAR模块，可能会出现的问题
+
+* 若开启文件名混淆，会出现以下问题：
+  * 问题一：单例功能异常问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现相同的文件名被混淆成不同文件名的情况。
+  * 问题二：接口调用失败问题。原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块在HAP与HSP的包中可能会出现不同的文件名被混淆成相同的文件名的情况。
+* 若开启`-enable-export-obfuscation`和`-enable-toplevel-obfuscation`选项，在应用运行时会出现加载接口失败的问题。
+原因是HAP与HSP独立执行构建与混淆流程，本地源码HAR模块中暴露的接口在HAP与HSP中被混淆成不同的名称。
+
+**解决方案：**
+1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
+2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+

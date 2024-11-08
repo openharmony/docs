@@ -36,32 +36,30 @@ Chip({options:ChipOptions})
 
 ChipOptions定义chip的样式及具体式样参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。 |
-| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true |
-| activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false                      |
-| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。 |
-| prefixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。 |
-| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。   |
-| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。 |
-| suffixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 后缀图标属性，symbol类型。 |
-| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | 否 | symbol类型后缀图标属性的无障碍朗读功能属性。|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal') |
-| activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。 |
-| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button') |
-| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true |
-| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。 |
-| onClicked<sup>12+</sup>       | [VoidCallback](ts-types.md#voidcallback12) | 否   | 操作块点击事件。                                       |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto |
-| closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。 |
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | Chip组件无障碍描述。|
-| accessibilityLevel<sup>14+</sup> | string | 否 | Chip组件无障碍重要性。<br>默认值："auto"。 |
-| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | 否 | Chip组件选中态类型。|
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activated      | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
+| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| prefixSymbol   | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| suffixSymbol    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 后缀图标属性，symbol类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | 否 | symbol类型后缀图标属性的无障碍朗读功能属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activatedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onClicked      | Callback\<void> | 否   | 操作块点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                       |
+| direction | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | Chip组件无障碍描述。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityLevel<sup>14+</sup> | string | 否 | Chip组件无障碍重要性。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | 否 | Chip组件选中态类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
 >
@@ -138,16 +136,14 @@ SuffixIconOptions定义后缀图标的属性。
 
 继承于[IconCommonOptions](#iconcommonoptions)。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型       | 必填 | 说明               |
 | ------ | ---------- | ---- | ------------------ |
-| action | () => void | 否   | 后缀图标设定事件。 |
-| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍文本属性。|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍描述。|
-| accessibilityLevel<sup>14+</sup> | string | 否 | 后缀图标无障碍重要性。<br>默认值："auto"。|
+| action | () => void | 否   | 后缀图标设定事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍文本属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍描述。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityLevel<sup>14+</sup> | string | 否 | 后缀图标无障碍重要性。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 ## AccessibilityOptions<sup>14+</sup>
 

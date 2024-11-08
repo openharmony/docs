@@ -124,7 +124,7 @@
 
 ### 目标方接入步骤
 
-1. 声明文件打开能力
+1. 声明文件打开能力。
 
     支持打开文件的应用需要在[module.json5](../quick-start/module-configuration-file.md)配置文件中声明文件打开能力。其中uris字段表示接收URI的类型，其中scheme固定为file。type字段表示支持打开的文件类型（参见[UTD类型](../database/uniform-data-type-descriptors.md)（推荐）或[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)），如下举例中类型为txt文件。
 

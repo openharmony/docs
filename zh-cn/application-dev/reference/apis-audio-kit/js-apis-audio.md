@@ -753,6 +753,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
+## DeviceBlockStatusInfo<sup>13+</sup>
+
+描述音频设备被堵塞状态和设备信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                              | 必填 | 说明               |
+| :---------------- | :------------------------------------------------ | :--- | :----------------- |
+| blockStatus       | [DeviceBlockStatus](#deviceblockstatus13)           | 是   | 音频设备堵塞状态。 |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
+
 ## ChannelBlendMode<sup>11+</sup>
 
 枚举，声道混合模式类型。
@@ -804,6 +815,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | :--------- | :--- | :------------- |
 | CONNECT    | 0    | 设备连接。     |
 | DISCONNECT | 1    | 断开设备连接。 |
+
+## DeviceBlockStatus<sup>13+</sup>
+
+枚举，表示音频设备是否被堵塞。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 值   | 说明           |
+| :--------- | :--- | :------------- |
+| UNBLOCKED  | 0    | 音频设备正常。    |
+| BLOCKED    | 1    | 音频设备被堵塞。 |
 
 ## AudioCapturerOptions<sup>8+</sup>
 
@@ -4203,6 +4225,107 @@ try {
 }
 ```
 
+### isMicBlockDetectionSupported<sup>13+</sup>
+
+isMicBlockDetectionSupported(): Promise&lt;boolean&gt;
+
+获取当前设备是否支持麦克风状态检测，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象，返回当前设备是否支持堵麦回调注册状态，true为支持，false为不支持。 |
+
+**示例：**
+
+```ts
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+});
+```
+
+### on('micBlockStatusChanged')<sup>13+</sup>
+
+on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): void
+
+监听音频麦克风是否被堵塞变化事件。在使用此功能之前，用户应查询当前设备是否支持检测，应用只有在使用麦克风录音时，并且所使用的麦克风的堵塞状态发生改变，
+才会收到回调，目前此检测功能仅支持麦克风位于本地设备上，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 是   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported()
+if (blockMic == true) {
+  audioRoutingManager.on('micBlockStatusChanged', async(deviceBlockStatusInfo: ESObject) =>{
+  if (deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.Blocked ||
+    deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.UNBlocked) {
+    console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
+  })
+}
+```
+
+### off('micBlockStatusChanged')<sup>13+</sup>
+
+off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>): void
+
+取消监听音频麦克风是否被堵塞变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 否   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听
+audioRoutingManager.off('micBlockStatusChanged');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+  console.info(`device descriptor size : ${micBlockStatusChanged.deviceDescriptors.length} `);
+  console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+};
+
+audioRoutingManager.on('micBlockStatusChanged', micBlockStatusCallback);
+
+audioRoutingManager.off('micBlockStatusChanged', micBlockStatusCallback);
+```
+
 ### on('deviceChange')<sup>9+</sup>
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
@@ -5362,7 +5485,7 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
 
 type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
 
-回调函数类型，用于音频渲染器的数据写入。
+回调函数类型，用于音频渲染器的数据写入，回调函数结束后，音频服务会把data指针数据放入队列里等待播放，因此请勿在回调外再次更改data指向的数据, 且务必保证往data填满待播放数据, 否则会导致音频服务播放杂音。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 

@@ -126,3 +126,207 @@ load libentry.so failed.
 **so加载失败可能的原因、定位方式以及解决方法**  
 
 参考([Node-API常见问题](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/use-napi-faqs.md))文档
+
+
+## 模块间循环依赖导致运行时未初始化异常问题定位
+
+模块间的循环依赖往往是存在这种文件依赖情况：
+```ts
+// file1
+  export {b} from './file2'
+  export {a} from './A'
+
+// file2
+  import {a} from './file1'
+  export let b:number = a;
+
+// A
+  export let a:number = 50;
+```
+如上代码会报错：
+```
+Error message:a is not initialized
+```
+
+但如果仅仅是更换file1的加载顺序：
+```ts
+// file1
+  export {a} from './A'
+  export {b} from './file2'
+// file2
+  import {a} from './file1'
+  export let b:number = a;
+// A
+  export let a:number = 50;
+```
+以上代码就不会报错。此时执行顺序：file1加载A, A文件无依赖；返回file1继续加载file2, file2文件加载file1时，变量a文件所在的A已经执行完成，因此正常加载。
+开发者需注意，模块化编译采用的是深度遍历加载。
+
+### 循环依赖的解决方法：
+[安全规则@security/no-cycle](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide_no-cycle-V5)
+
+
+##  ArkTS 符号未初始化报错场景示例
+
+ArkTS语言规范是基于ECMAScript规范的子集，根据语言规范，当访问一个还未完成初始化的符号时，运行时会抛出异常，为便于开发者定位解决源码问题，提供以下常见报错场景示例用于参考。
+
+### const/let声明前访问
+
+``` typescript
+console.log(a); // 报错信息：Variable 'a' is used before being assigned.
+console.log(b); // 报错信息：Variable 'b' is used before being assigned.
+
+let a = '1';
+const b = '2';
+```
+**正例**
+
+```
+let a = '1';
+const b = '2';
+
+console.log(a);
+console.log(b);
+```
+
+
+### class声明前实例化
+
+``` typescript
+let a = new A(); // 报错信息：Class 'A' used before its declaration.
+
+class A {}
+```
+
+**正例**
+
+```
+class A {}
+
+let a = new A();
+```
+
+### class声明前访问其静态属性
+
+``` typescript
+let a = A.a; // 报错信息：Class 'A' used before its declaration.
+
+class A {
+  static a = 1;
+}
+```
+
+**正例**
+
+```
+class A {
+  static a = 1;
+}
+
+let a = A.a;
+```
+
+### 在函数中访问未提前声明的let和const变量
+
+``` typescript
+foo(); // 报错信息：Error message:a is not initialized
+
+let a = 1;
+const b = 2;
+
+function foo() {
+  let v = a + b;
+}
+```
+
+**正例**
+
+```
+let a = 1;
+const b = 2;
+
+function foo() {
+  let v = a + b;
+}
+
+foo();
+```
+
+### 在函数中访问未提前声明的类的静态属性
+
+``` typescript
+foo(); // 报错信息：Error message:A is not initialized
+
+class A {
+  static a = 1;
+}
+
+function foo() {
+  let v = A.a;
+  let w = new A();
+}
+```
+
+**正例**
+
+```
+class A {
+  static a = 1;
+}
+
+function foo() {
+  let v = A.a;
+  let w = new A();
+}
+
+foo();
+```
+
+### 模块间循环依赖 - const/let
+
+``` typescript
+// module1.ets
+import { a, b } from './module2'
+
+export let i = 1;
+export let m = a;
+export const j = 2;
+export const n = b;
+
+// ---------------------
+
+// module2.ets
+import { i, j } from './module1'
+
+export let a = i; // 报错信息：Error message:i is not initialized
+export const b = j; // 报错信息：Error message:j is not initialized
+```
+
+**解决方法**
+
+详见[循环依赖的解决方法](#循环依赖的解决方法)
+
+
+### 模块间循环依赖 - class
+
+``` typescript
+// class1.ets
+import { b } from './class2'
+
+export class A {
+  static a = b;
+}
+
+// ---------------------
+
+// class2.ets
+import { A } from './class1'
+export let b = 1;
+
+const i = A.a; // 报错信息：Error message:A is not initialized
+const j = new A(); // 报错信息：Error message:A is not initialized
+```
+
+**解决方法**
+
+详见[循环依赖的解决方法](#循环依赖的解决方法)

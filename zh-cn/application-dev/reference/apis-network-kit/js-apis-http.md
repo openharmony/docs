@@ -224,6 +224,8 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+>
+> 如需传入cookies，请开发者自行在参数options中添加。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -330,6 +332,8 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+>
+> 如需传入cookies，请开发者自行在参数options中添加。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1184,7 +1188,7 @@ request方法回调函数的返回值类型。
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']；<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
+| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的原始cookies。开发者可自行处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 | performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | 是 | HTTP请求的各个阶段的耗时。|
 
 ## ClientCert<sup>11+</sup>

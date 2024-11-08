@@ -173,7 +173,7 @@ Config changed.
 
 **可能原因**
 
-数据库的area（区域）, isEncrypt（加密）, securityLevel（安全级别）等关键配置发生变化。
+数据库的area（区域）, securityLevel（安全级别）等关键配置发生变化。
 
 **处理步骤**
 

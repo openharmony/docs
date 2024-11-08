@@ -6,7 +6,6 @@
 >
 >从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Event装饰器。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -37,11 +36,11 @@
   @ComponentV2
   struct Index {
     @Event changeFactory: ()=>void = ()=>{}; //正确用法
-    @Event message: string = "abcd"; // 错误用法，装饰非方法类型变量
+    @Event message: string = "abcd"; // 错误用法，装饰非方法类型变量，@Event无作用
   }
   @Component
   struct CompA {
-    @Event changeFactory: ()=>void = ()=>{}; // 错误用法
+    @Event changeFactory: ()=>void = ()=>{}; // 错误用法，编译时报错
   }
   ```
 

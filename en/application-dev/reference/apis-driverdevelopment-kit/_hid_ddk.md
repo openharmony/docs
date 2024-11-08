@@ -383,12 +383,12 @@ Enumerates the key codes.
 | HID_KEY_NUMPAD_SUBTRACT  | Arithmetic operator - (subtraction) on the numeric keypad.| 
 | HID_KEY_NUMPAD_ADD  | Arithmetic operator + (addition) on the numeric keypad.| 
 | HID_KEY_NUMPAD_DOT  | Decimal point (.) on the numeric keypad. | 
-| HID_KEY_SYSRQ  | Key **Print Screen**.| 
+| HID_KEY_SYSRQ  | SYSRQ key.| 
 | HID_KEY_MUTE  | Mute key.| 
-| HID_KEY_VOLUME_DOWN  | Key for decreasing volume.| 
-| HID_KEY_VOLUME_UP  | Key for increasing volume.| 
-| HID_KEY_BRIGHTNESS_DOWN  | Key for making the screen dimmer.| 
-| HID_KEY_BRIGHTNESS_UP  | Key for making the screen brighter.| 
+| HID_KEY_VOLUME_DOWN  | Volume Down key.| 
+| HID_KEY_VOLUME_UP  | Volume Up key.| 
+| HID_KEY_BRIGHTNESS_DOWN  | Brightness Down key.| 
+| HID_KEY_BRIGHTNESS_UP  | Brightness Up key.| 
 | HID_BTN_0  | Button 0.| 
 | HID_BTN_1  | Button 1| 
 | HID_BTN_2  | Button 2.| 
@@ -517,8 +517,11 @@ ohos.permission.ACCESS_DDK_HID
 
 **Returns**
 
-Returns the device ID (a non-negative number) if the operation is successful; returns a negative number otherwise.
-
+- deviceID (a non-negative digit): The API call is successful.
+- [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification fails.
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails.
+- [HID_DDK_INVALID_PARAMETER](#hid_ddkerrcode): Parameter verification fails. The possible causes are as follows: 1. The input **hidDevice** is a null pointer. 2. The input **hidEventProperties** is a null pointer. 3. The length of **properties** exceeds 7 characters. 4. The length of **hidEventTypes** exceeds 5 characters. The length of **hidKeys** exceeds 100 characters. 6. The length of **hidAbs** exceeds 26 characters. 7. The length of **hidRelBits** exceeds 13 characters. 8. The length of **hidMiscellaneous** exceeds 6 characters.
+- [HID_DDK_FAILURE](#hid_ddkerrcode): The number of devices reaches the maximum value **200**.
 
 ### OH_Hid_DestroyDevice()
 
@@ -542,7 +545,10 @@ ohos.permission.ACCESS_DDK_HID
 
 **Returns**
 
-Returns **0** if the operation is successful; returns a negative value otherwise.
+- [HID_DDK_SUCCESS](#hid_ddkerrcode): The API call is successful.
+- [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification failed.
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails or the caller is not the device creator.
+- [HID_DDK_FAILURE](#hid_ddkerrcode): The corresponding device does not exist.
 
 
 ### OH_Hid_EmitEvent()
@@ -569,7 +575,12 @@ ohos.permission.ACCESS_DDK_HID
 
 **Returns**
 
-Returns **0** if the operation is successful; returns a negative value otherwise.
+- [HID_DDK_SUCCESS](#hid_ddkerrcode): The API call is successful.
+- [HID_DDK_NO_PERM](#hid_ddkerrcode): Permission verification failed.
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode): The hid_ddk service connection fails or the caller is not the device creator.
+- [HID_DDK_INVALID_PARAMETER](#hid_ddkerrcode): Parameter verification fails. The possible causes are as follows: 1. The device ID is smaller than 0. 2. The length of the input parameter exceeds 7 characters. 3. The input **items** is a null pointer.
+- [HID_DDK_NULL_PTR](#hid_ddkerrcode): The input device is empty.
+- [HID_DDK_FAILURE](#hid_ddkerrcode): The corresponding device does not exist.
 
 
 ## Variable Description

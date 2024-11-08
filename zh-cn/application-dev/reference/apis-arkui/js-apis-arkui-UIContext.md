@@ -2185,13 +2185,13 @@ getMaxFontScale(): number
 uiContext.getMaxFontScale()
 ```
 
-### bindTabsToScrollable<sup>14+</sup>
+### bindTabsToScrollable<sup>13+</sup>
 
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
 绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2259,13 +2259,13 @@ struct TabsExample {
         }
         .width('100%')
         .height('100%')
-        .barOverlap(true)
-        .clip(true)
+        .barOverlap(true) // 使TabBar叠加在TabContent上，当TabBar向上或向下隐藏后，原位置处不为空白
+        .clip(true) // 对超出Tabs组件范围的子组件进行裁剪，防止TabBar向上或向下隐藏后误触TabBar
       }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'scroller联动多个TabsController'))
 
       TabContent() {
         Scroll(this.parentScroller) {
-            List({ space: 20, initialIndex: 0, scroller: this.listScroller }) {
+            List({ space: 20, initialIndex: 0, scroller: this.childScroller }) {
               ForEach(this.arr, (item: string) => {
                 ListItem() {
                   Text(item)
@@ -2293,21 +2293,21 @@ struct TabsExample {
     }
     .width('100%')
     .height('100%')
-    .barOverlap(true)
-    .clip(true)
+    .barOverlap(true) // 使TabBar叠加在TabContent上，当TabBar向上或向下隐藏后，原位置处不为空白
+    .clip(true) // 对超出Tabs组件范围的子组件进行裁剪，防止TabBar向上或向下隐藏后误触TabBar
   }
 }
 ```
 
 ![bindTabsToScrollable](figures/bindTabsToScrollable.gif)
 
-### unbindTabsFromScrollable<sup>14+</sup>
+### unbindTabsFromScrollable<sup>13+</sup>
 
 unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void;
 
 解除Tabs组件和可滚动容器组件的绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2320,15 +2320,15 @@ unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): vo
 
 **示例：**
 
-参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### bindTabsToNestedScrollable<sup>14+</sup>
+### bindTabsToNestedScrollable<sup>13+</sup>
 
 bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
 绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2342,15 +2342,15 @@ bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scrol
 
 **示例：**
 
-参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
-### unbindTabsFromNestedScrollable<sup>14+</sup>
+### unbindTabsFromNestedScrollable<sup>13+</sup>
 
 unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
 解除Tabs组件和嵌套的可滚动容器组件的绑定。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2364,7 +2364,7 @@ unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: S
 
 **示例：**
 
-参考[bindTabsToScrollable](#bindtabstoscrollable14)接口示例。
+参考[bindTabsToScrollable](#bindtabstoscrollable13)接口示例。
 
 ## Font
 
@@ -2486,6 +2486,14 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 | 类型                                                         | 说明                                             |
 | ------------------------------------------------------------ | ------------------------------------------------ |
 | [componentUtils.ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 100001 | UI execution context not found. |
 
 **示例：**
 
@@ -5841,7 +5849,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | 是   | 拖拽信息。                                                   |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
@@ -6837,6 +6845,59 @@ struct RequestExample {
   }
 }
 ```
+
+### activate<sup>14+</sup>
+
+activate(isActive: boolean, atuoInactive?: boolean): void
+
+设置当前界面的[焦点激活态](../../ui/arkts-common-events-focus-event.md)。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| isActive| boolean| 是 | 设置是否进入/退出焦点激活态。 |
+| autoInactive | boolean | 否 | 设置焦点激活态退出逻辑。为true时，会自动在触摸事件、鼠标事件触发时退出，为false时，仅受开发者API控制|
+
+```ts
+// 该示例表示在页面加载完成时进入焦点激活态，可按方向键在button间走焦
+@Entry
+@Component
+struct ActivateExample {
+  aboutToAppear() {
+    this.getUIContext().getFocusController().activate(true, false)
+  }
+
+  aboutToDisappear() {
+    this.getUIContext().getFocusController().activate(false)
+  }
+
+  build() {
+    Row() {
+      Button('Button1')
+        .width(200)
+        .height(70)
+        .defaultFocus(true)
+
+      Button('Button2')
+        .width(200)
+        .height(70)
+
+      Button('Button3')
+        .width(200)
+        .height(70)
+    }
+    .padding(10)
+    .justifyContent(FlexAlign.SpaceBetween)
+    .width(800)
+  }
+}
+```
+
 
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。

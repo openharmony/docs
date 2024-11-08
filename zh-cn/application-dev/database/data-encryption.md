@@ -128,15 +128,18 @@ const STORE_CONFIG : relationalStore.StoreConfig = {
     cryptoParam: CRYPTO_PARAM
 }
 
-let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
-if (store == null) {
-  console.error('Failed to get RdbStore.');
-} else {
-  console.info('Succeeded in getting RdbStore.');
+async function run() {
+    let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+    if (store == null) {
+      console.error('Failed to get RdbStore.');
+    } else {
+      console.info('Succeeded in getting RdbStore.');
+    }
+    // 调用完后需要将密钥清零
+    CRYPTO_PARAM.encryptionKey.fill(0);
 }
 
-// 调用完后需要将密钥清零
-CRYPTO_PARAM.encryptionKey.fill(0);
+run();
 ```
 
 如果开发者不关心加密使用的算法及参数，则无需配置cryptoParam属性，使用默认加密配置即可。当开发者需要自定义加密配置，或需要打开非默认配置的加密数据库时，则需要配置cryptoParam属性。

@@ -10,9 +10,6 @@
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
-## 限制条件
-
-@BuilderParam修饰的变量接收来自父组件通过\@Builder传递内容，且@Builder函数是参数传递类型，仅支持局部@Builder函数参数传递。
 
 ## 装饰器使用说明
 
@@ -121,6 +118,48 @@
  **图2** 示例效果图
 
  ![builderparam-demo2](figures/builderparam-demo2.png)
+
+
+## 限制条件
+
+- \@BuilderParam装饰的变量接收来自父组件使用\@Builder装饰的函数，且\@Builder函数是参数传递类型，仅支持局部\@Builder函数作为参数传递。
+
+```ts
+@Component
+struct Child {
+  header: string = '';
+  @BuilderParam content: () => void;
+  footer: string = '';
+
+  build() {
+    Column() {
+      Text(this.header)
+      this.content();
+      Text(this.footer)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @Builder
+  test() {
+    Text('Hello')
+  }
+
+  build() {
+    Column() {
+      // 错误写法，@BuilderParam需要被初始化
+      Child()
+      // 正确写法
+      Child({ content: this.test })
+    }
+  }
+}
+```
+
+- 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
 
 ## 使用场景
@@ -300,7 +339,7 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      ChildPage({ message: this.label}){  // 使用全部@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
+      ChildPage({ message: this.label}){  // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
         Column() {
           overBuilder();
         }
@@ -495,7 +534,8 @@ struct ParentPage {
   build() {
     Column() {
       ChildPage({
-        customChangeThisBuilderParam: this.componentBuilder // 此处传递参数导致
+        // 当前写法this指向ChildPage组件内
+        customChangeThisBuilderParam: this.componentBuilder
       })
       Button('点击改变label内容')
         .onClick(() => {
@@ -507,6 +547,7 @@ struct ParentPage {
 ```
 
 使用箭头函数的形式把\@Builder传递进自定义组件ChildPage中，当前this指向会停留在父组件ParentPage里，所以在父组件里改变label的值，自定义组件ChildPage会感知到并重新渲染UI。
+把@Builder改为@LocalBuilder也能实现动态渲染UI功能。
 
 【正例】
 

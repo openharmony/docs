@@ -42,7 +42,7 @@ The following table describes the APIs for obtaining objects of the tags that us
 
 ### Accessing an NFC Tag by a Started Application
 1. Declare the permission required for NFC tag operations and the action for filtering the application in the **module.json5** file.
-2. Import the **tag** module and other related modules.
+2. Import modules.
 3. Check whether the device supports the NFC feature.
 4. Register a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application.
 5. Obtain an NFC tag object of the specific technology type.
@@ -208,7 +208,7 @@ export default class EntryAbility extends UIAbility {
 
 ### Accessing an NFC Tag Without Starting an Application
 1. Declare the permission required for NFC tag operations, the NFC tag action, and the NFC tag technologies used to match the applications in the **module.json5** file.
-2. Import the **tag** module and other related modules.
+2. Import modules.
 3. Obtain an NFC tag object of the specific technology type.
 4. Read and write the tag data.
 

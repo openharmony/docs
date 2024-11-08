@@ -1851,7 +1851,7 @@ enum Camera_SceneMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NORMAL_PHOTO | 普通相机模式。 | 
+| NORMAL_PHOTO | 普通拍照模式。 | 
 | NORMAL_VIDEO | 普通视频模式。 | 
 | SECURE_PHOTO | 安全相机模式。 | 
 

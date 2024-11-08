@@ -30,7 +30,7 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 **参数**：
 
-| 名称    | 类型                              | 必填 | 装饰器类型 | 说明                    |
+| 参数名   | 类型                              | 必填 | 装饰器类型 | 说明                    |
 | ------- | --------------------------------- | ---- | ---------- | ----------------------- |
 | options | [CounterOptions](#counteroptions) | 是   | @Prop      | 定义counter组件的类型。 |
 
@@ -67,12 +67,12 @@ CounterType指定Counter的类型，如列表型Counter。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 说明                        |
-| ----------- | --------------------------- |
-| LIST        | 列表型Counter。             |
-| COMPACT     | 紧凑型Counter。             |
-| INLINE      | 普通数字内联调节型Counter。 |
-| INLINE_DATE | 日期型内联型Counter。       |
+| 名称        | 值   | 说明                        |
+| ----------- | ---- | --------------------------- |
+| LIST        | 0    | 列表型Counter。             |
+| COMPACT     | 1    | 紧凑型Counter。             |
+| INLINE      | 2    | 普通数字内联调节型Counter。 |
+| INLINE_DATE | 3    | 日期型内联型Counter。       |
 
 ## CommonOptions
 

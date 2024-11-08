@@ -4,7 +4,6 @@
 >
 >Repeat从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
 
@@ -52,8 +51,6 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 
 ### non-virtualScroll规则
 
-![Repeat-NonVS-FuncGen](./figures/Repeat-NonVS-FuncGen.png)
-
 子组件在Repeat首次渲染时全部创建，在数据更新时会对原组件进行复用。
 
 在Repeat组件进行数据更新时，它会依次对比上次的所有键值和本次更新之后的区别。若当前键值和上次的某一项键值相同，Repeat会直接复用子组件并对RepeatItem.index索引做对应的更新。
@@ -61,6 +58,8 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 当Repeat将所有重复的键值对比完并做了相应的复用后，若上次的键值有不重复的且本次更新之后有新的键值生成需要新建子组件时，Repeat会复用上次多余的子组件并更新RepeatItem.item数据源和RepeatItem.index索引并刷新UI。
 
 若上次的剩余>=本次新更新的数量，则组件完全复用并释放多余的未被复用的组件。若上次的剩余小于本次新更新的数量，将剩余的组件复用完后，Repeat会新建多出来的数据项对应的组件。
+
+![Repeat-NonVS-FuncGen](./figures/Repeat-NonVS-FuncGen.png)
 
 ### virtualScroll规则
 
@@ -122,19 +121,11 @@ cachedCount是当前模板在Repeat的缓存池中可缓存子节点的最大数
 - cachedCount缺省时，框架会分别对不同template，根据屏上节点+预加载的节点个数来计算cachedCount。当屏上节点+预加载的节点个数变多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。
 - 显式指定cachedCount，推荐设置成和屏幕上节点个数一致。需要注意，不推荐设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而导致性能劣化。
 
-
-
 ## 使用场景
 
-### non-virtualScroll
+### non-virtualScroll数据展示&操作
 
 #### 数据源变化
-
-在Repeat组件进行非首次渲染时，它会依次对比上次的所有键值和本次更新之后的区别。若当前键值和上次的某一项键值相同，Repeat会直接复用子组件并对RepeatItem.index索引做对应的更新。
-
-当Repeat将所有重复的键值对比完并做了相应的复用后，若上次的键值有不重复的且本次更新之后有新的键值生成需要新建子组件时，Repeat会复用上次多余的子组件并更新RepeatItem.item数据源和RepeatItem.index索引。
-
-若上次的剩余>=本次新更新的数量，则组件完全复用，若上次的剩余小于本次新更新的数量，将剩余的组件复用完后，Repeat会新建多出来的数据项对应的组件。
 
 ```ts
 @Entry
@@ -185,7 +176,7 @@ struct ChildItem {
 
 #### 索引值变化
 
-下方例子当我们交换数组项1和2时，若键值和上次保持一致，Repeat会复用之前的组件，仅对使用了index索引值的组件做数据刷新。
+下方例子当交换数组项1和2时，若键值和上次保持一致，Repeat会复用之前的组件，仅对使用了index索引值的组件做数据刷新。
 
 ```ts
 @Entry
@@ -237,17 +228,17 @@ struct ChildItem {
 
 ![Repeat-Non-Initial-Render-Case-Exchange-Effect](./figures/Repeat-Non-Initial-Render-Case-Exchange-Effect.gif)
 
-### virtualScroll
+### virtualScroll数据展示&操作
 
 本小节将展示virtualScroll场景下，Repeat的实际使用场景和组件节点的复用情况。根据复用规则可以衍生出大量的测试场景，篇幅原因，只对典型的数据变化进行解释。
 
-#### 应用示例
+#### 一个template
 
-下面的代码设计了Repeat组件的virtualScroll场景典型数据源操作，包括**插入数据、修改数据、删除数据、交换数据**。点击相应的文字可以触发数据的变化，依次点击数据项可以交换被点击的两个数据项。
+下面的代码设计了Repeat组件的virtualScroll场景典型数据源操作，包括**插入数据、修改数据、删除数据、交换数据**。点击下拉框选择index值，点击相应的按钮即可进行数据修改操作。依次点击数据项可以交换被点击的两个数据项。
 
 ```ts
 @ObservedV2
-class Clazz {
+class Repeat005Clazz {
   @Trace message: string = '';
 
   constructor(message: string) {
@@ -257,234 +248,331 @@ class Clazz {
 
 @Entry
 @ComponentV2
-struct TestPage {
-  @Local simpleList: Array<Clazz> = [];
+struct RepeatVirtualScroll {
+  @Local simpleList: Array<Repeat005Clazz> = [];
   private exchange: number[] = [];
   private counter: number = 0;
+  @Local selectOptions: SelectOption[] = [];
+  @Local selectIdx: number = 0;
+
+  @Monitor("simpleList")
+  reloadSelectOptions(): void {
+    this.selectOptions = [];
+    for (let i = 0; i < this.simpleList.length; ++i) {
+      this.selectOptions.push({ value: i.toString() });
+    }
+    if (this.selectIdx >= this.simpleList.length) {
+      this.selectIdx = this.simpleList.length - 1;
+    }
+  }
 
   aboutToAppear(): void {
     for (let i = 0; i < 100; i++) {
-      this.simpleList.push(new Clazz('Hello ' + i));
+      this.simpleList.push(new Repeat005Clazz(`item_${i}`));
+    }
+    this.reloadSelectOptions();
+  }
+
+  handleExchange(idx: number): void { // 点击交换子组件
+    this.exchange.push(idx);
+    if (this.exchange.length === 2) {
+      let _a = this.exchange[0];
+      let _b = this.exchange[1];
+      let temp: Repeat005Clazz = this.simpleList[_a];
+      this.simpleList[_a] = this.simpleList[_b];
+      this.simpleList[_b] = temp;
+      this.exchange = [];
     }
   }
 
   build() {
     Column({ space: 10 }) {
-      Text('点击插入第5项')
-        .fontSize(24)
-        .fontColor(Color.Red)
-        .onClick(() => {
-          this.simpleList.splice(4, 0, new Clazz(`${this.counter++}_new item`));
-        })
-      Text('点击修改第5项')
-        .fontSize(24)
-        .fontColor(Color.Red)
-        .onClick(() => {
-          this.simpleList[4].message = `${this.counter++}_new item`;
-        })
-      Text('点击删除第5项')
-        .fontSize(24)
-        .fontColor(Color.Red)
-        .onClick(() => {
-          this.simpleList.splice(4, 1);
-        })
-      Text('依次点击两个数据项进行交换')
-        .fontSize(24)
-        .fontColor(Color.Red)
+      Text('virtualScroll each()&template() 1t')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+      Text('Select an index and press the button to update data.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
 
-      List({ initialIndex: 10 }) {
-        Repeat<Clazz>(this.simpleList)
-          .each((obj: RepeatItem<Clazz>) => {
+      Select(this.selectOptions)
+        .selected(this.selectIdx)
+        .value(this.selectIdx.toString())
+        .key('selectIdx')
+        .onSelect((index: number) => {
+          this.selectIdx = index;
+        })
+      Row({ space: 5 }) {
+        Button('Add No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 0, new Repeat005Clazz(`${this.counter++}_add_item`));
+            this.reloadSelectOptions();
+          })
+        Button('Modify No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1, new Repeat005Clazz(`${this.counter++}_modify_item`));
+          })
+        Button('Del No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1);
+            this.reloadSelectOptions();
+          })
+      }
+      Button('Update array length to 5.')
+        .onClick(() => {
+          this.simpleList = this.simpleList.slice(0, 5);
+          this.reloadSelectOptions();
+        })
+
+      Text('Click on two items to exchange.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      List({ space: 10 }) {
+        Repeat<Repeat005Clazz>(this.simpleList)
+          .each((obj: RepeatItem<Repeat005Clazz>) => {
             ListItem() {
-              Text('[each] ' + obj.item.message)
-                .fontSize(30)
-                .margin({ top: 10 })
+              Text(`[each] index${obj.index}: ${obj.item.message}`)
+                .fontSize(25)
+                .onClick(() => {
+                  this.handleExchange(obj.index);
+                })
             }
           })
-          .key((item: Clazz, index: number) => {
+          .key((item: Repeat005Clazz, index: number) => {
             return item.message;
           })
           .virtualScroll({ totalCount: this.simpleList.length })
-          .templateId((item: Clazz, index: number) => "default")
-          .template('default', (ri) => {
-            Text('[template] ' + ri.item.message)
-              .fontSize(30)
-              .margin({ top: 10 })
+          .templateId(() => "a")
+          .template('a', (ri) => {
+            Text(`[a] index${ri.index}: ${ri.item.message}`)
+              .fontSize(25)
               .onClick(() => {
-                this.exchange.push(ri.index);
-                if (this.exchange.length === 2) {
-                  let _a = this.exchange[0];
-                  let _b = this.exchange[1];
-                  // click to exchange
-                  let temp: string = this.simpleList[_a].message;
-                  this.simpleList[_a].message = this.simpleList[_b].message;
-                  this.simpleList[_b].message = temp;
-                  this.exchange = [];
-                }
+                this.handleExchange(ri.index);
               })
           }, { cachedCount: 3 })
       }
-      .cachedCount(1)
+      .cachedCount(2)
       .border({ width: 1 })
-      .width('90%')
-      .height('70%')
+      .width('95%')
+      .height('40%')
     }
-    .height('100%')
     .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
   }
 }
 ```
-该应用列表内容为100项自定义类`Clazz`的`message`字符串属性，List组件的cachedCount设为1，template “default”缓存池大小设为3。应用界面如下图所示：
+该应用列表内容为100项自定义类`RpeatClazz`的`message`字符串属性，List组件的cachedCount设为2，模板'a'的缓存池大小设为3。应用界面如下图所示：
 
-![Repeat-VirtualScroll-Demo](./figures/Repeat-VirtualScroll-Demo.jpg)
+![Repeat-VirtualScroll-Demo](./figures/Repeat-VirtualScroll-Demo.gif)
 
-#### 节点操作实例
-
-当进行数据源变化操作时，key值改变的节点会被重新创建。如果相对应的template的缓存池中有缓存节点，就会进行节点复用。当key值不变时，组件会直接复用并更新index的值。
-
-**插入数据**
-
-数据操作：
-
-![Repeat-VirtualScroll-InsertData](./figures/Repeat-VirtualScroll-InsertData.gif)
-
-本例做了四次插入数据操作，前两次为屏幕上方插入数据，后两次为当前屏幕插入数据。打印onUpdateNode函数执行情况“[旧节点key值] -> [新节点key值]”，代表“旧节点”复用“新节点”。节点复用情况如下：
-
-```
-// 屏幕上方两次插入
-onUpdateNode [Hello 22] -> [Hello 8]
-onUpdateNode [Hello 21] -> [Hello 7]
-// 当前屏幕两次插入
-onUpdateNode [Hello 11] -> [2_new item]
-onUpdateNode [Hello 10] -> [3_new item]
-```
-
-在屏幕上方插入数据时，会发生节点移动，引起当前屏幕的预加载节点改变，预加载节点发生了复用，即下方出缓存的节点22复用给了上方进入缓存的节点8。在当前屏幕插入数据时，会产生新数据项，新的节点会复用屏幕下方出缓存的预加载节点。本应用中屏幕下方添加数据时不会发生复用。
-
-**修改数据**
-
-数据操作：
-
-![Repeat-VirtualScroll-ModifyData](./figures/Repeat-VirtualScroll-ModifyData.gif)
-
-本例做了四次修改数据操作，前两次为屏幕上方修改数据，后两次为当前屏幕修改数据。打印onUpdateNode函数执行情况“[旧节点key值] -> [新节点key值]”，代表“旧节点”复用“新节点”。节点复用情况如下：
-
-```
-// 当前屏幕两次修改
-onUpdateNode [1_new item] -> [2_new item]
-onUpdateNode [2_new item] -> [3_new item]
-```
-
-由于屏幕上方/下方的数据不存在渲染节点，所以不会发生节点复用。在当前屏幕修改节点时，由于节点templateId值没有改变，所以复用自身节点，节点id不变。
-
-**交换数据**
-
-数据操作：
-
-![Repeat-VirtualScroll-ExchangeData](./figures/Repeat-VirtualScroll-ExchangeData.gif)
-
-本例在当前屏幕做了两次交换数据操作。由于key值未发生改变，直接交换两个节点，没有节点复用。
-
-**删除数据**
-
-数据操作：
-
-![Repeat-VirtualScroll-DeleteData](./figures/Repeat-VirtualScroll-DeleteData.gif)
-
-本例做了五次删除数据操作，前两次为屏幕上方删除数据，后三次为当前屏幕删除数据。打印onUpdateNode函数执行情况“[旧节点key值] -> [新节点key值]”，代表“旧节点”复用“新节点”。节点复用情况如下：
-
-```
-// 屏幕上方两次删除
-onUpdateNode [Hello 9] -> [Hello 23]
-onUpdateNode [Hello 10] -> [Hello 24]
-// 当前屏幕两次删除没有调用onUpdateNode
-// 当前屏幕第三次删除
-onUpdateNode [Hello 6] -> [Hello 17]
-```
-
-在屏幕上方删除数据时，会发生节点移动，引起当前屏幕的预加载节点改变，预加载节点发生了复用，即上方出缓存的节点9复用给了下方进入缓存的节点23。当前屏幕删除数据时，由于List组件的cachedCount预加载属性，前两次删除操作中，进入屏幕的节点已经渲染，不会发生复用，被删除的节点进入对应template的缓存池中。第三次删除时，下方进入预加载缓存的节点17复用了缓存池中的节点6。
-
-#### 使用多个template
+#### 多个template
 
 ```
 @ObservedV2
-class Wrap1 {
-    @Trace message: string = '';
-    
-    constructor(message: string) {
-        this.message = message;
-    }
+class Repeat006Clazz {
+  @Trace message: string = '';
+
+  constructor(message: string) {
+    this.message = message;
+  }
 }
 
 @Entry
 @ComponentV2
-struct Parent {
-    @Local simpleList: Array<Wrap1> = [];
-    
-    aboutToAppear(): void {
-        for (let i=0; i<100; i++) {
-            this.simpleList.push(new Wrap1('Hello' + i));
-        }
+struct RepeatVirtualScroll2T {
+  @Local simpleList: Array<Repeat006Clazz> = [];
+  private exchange: number[] = [];
+  private counter: number = 0;
+  @Local selectOptions: SelectOption[] = [];
+  @Local selectIdx: number = 0;
+
+  @Monitor("simpleList")
+  reloadSelectOptions(): void {
+    this.selectOptions = [];
+    for (let i = 0; i < this.simpleList.length; ++i) {
+      this.selectOptions.push({ value: i.toString() });
     }
-    
-    build() {
-        Column() {
-            List() {
-                Repeat<Wrap1>(this.simpleList)
-                	.each((obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                    		Row() {
-                    			Text('default index ' + obj.index + ': ')
-                            		.fontSize(30)
-                            	Text(obj.item.message)
-                            		.fontSize(30)
-                    		}
-                        }
-                        .margin(20)
-                	})
-                	.template('odd', (obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                    		Row() {
-                    			Text('odd index ' + obj.index + ': ')
-                            		.fontSize(30)
-                            		.fontColor(Color.Blue)
-                            	Text(obj.item.message)
-                            		.fontSize(30)
-                            		.fontColor(Color.Blue)
-                    		}
-                        }
-                        .margin(20)
-                	})
-                	.template('even', (obj: RepeatItem<Wrap1>)=>{
-                    	ListItem() {
-                    		Row() {
-                    			Text('even index ' + obj.index + ': ')
-                            		.fontSize(30)
-                            		.fontColor(Color.Green)
-                            	Text(obj.item.message)
-                            		.fontSize(30)
-                            		.fontColor(Color.Green)
-                    		}
-                        }
-                        .margin(20)
-                	})
-                	.templateId((item: Wrap1, index: number) => {
-                		return index%2 ? 'odd' : 'even';
-                	})
-                	.key((item: Wrap1, index: number) => {
-                		return item.message;
-                	})
+    if (this.selectIdx >= this.simpleList.length) {
+      this.selectIdx = this.simpleList.length - 1;
+    }
+  }
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.simpleList.push(new Repeat006Clazz(`item_${i}`));
+    }
+    this.reloadSelectOptions();
+  }
+
+  handleExchange(idx: number): void { // 点击交换子组件
+    this.exchange.push(idx);
+    if (this.exchange.length === 2) {
+      let _a = this.exchange[0];
+      let _b = this.exchange[1];
+      let temp: Repeat006Clazz = this.simpleList[_a];
+      this.simpleList[_a] = this.simpleList[_b];
+      this.simpleList[_b] = temp;
+      this.exchange = [];
+    }
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      Text('virtualScroll each()&template() 2t')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+      Text('Select an index and press the button to update data.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      Select(this.selectOptions)
+        .selected(this.selectIdx)
+        .value(this.selectIdx.toString())
+        .key('selectIdx')
+        .onSelect((index: number) => {
+          this.selectIdx = index;
+        })
+      Row({ space: 5 }) {
+        Button('Add No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 0, new Repeat006Clazz(`${this.counter++}_add_item`));
+            this.reloadSelectOptions();
+          })
+        Button('Modify No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1, new Repeat006Clazz(`${this.counter++}_modify_item`));
+          })
+        Button('Del No.' + this.selectIdx)
+          .onClick(() => {
+            this.simpleList.splice(this.selectIdx, 1);
+            this.reloadSelectOptions();
+          })
+      }
+      Button('Update array length to 5.')
+        .onClick(() => {
+          this.simpleList = this.simpleList.slice(0, 5);
+          this.reloadSelectOptions();
+        })
+
+      Text('Click on two items to exchange.')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      List({ space: 10 }) {
+        Repeat<Repeat006Clazz>(this.simpleList)
+          .each((obj: RepeatItem<Repeat006Clazz>) => {
+            ListItem() {
+              Text(`[each] index${obj.index}: ${obj.item.message}`)
+                .fontSize(25)
+                .onClick(() => {
+                  this.handleExchange(obj.index);
+                })
             }
-            .cachedCount(5)
-            .width('100%')
-            .height('100%')
-        }
-        .height('100%')
+          })
+          .key((item: Repeat006Clazz, index: number) => {
+            return item.message;
+          })
+          .virtualScroll({ totalCount: this.simpleList.length })
+          .templateId((item: Repeat006Clazz, index: number) => {
+            return (index % 2 === 0) ? 'odd' : 'even';
+          })
+          .template('odd', (ri) => {
+            Text(`[odd] index${ri.index}: ${ri.item.message}`)
+              .fontSize(25)
+              .fontColor(Color.Blue)
+              .onClick(() => {
+                this.handleExchange(ri.index);
+              })
+          }, { cachedCount: 3 })
+          .template('even', (ri) => {
+            Text(`[even] index${ri.index}: ${ri.item.message}`)
+              .fontSize(25)
+              .fontColor(Color.Green)
+              .onClick(() => {
+                this.handleExchange(ri.index);
+              })
+          }, { cachedCount: 1 })
+      }
+      .cachedCount(2)
+      .border({ width: 1 })
+      .width('95%')
+      .height('40%')
     }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
-![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-Template.gif)
+![Repeat-VirtualScroll-2T-Demo](./figures/Repeat-VirtualScroll-2T-Demo.gif)
+
+### Repeat嵌套
+
+Repeat支持嵌套使用。示例代码：
+
+```ts
+// Repeat嵌套
+@Entry
+@ComponentV2
+struct RepeatNest {
+  @Local outerList: string[] = [];
+  @Local innerList: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 20; i++) {
+      this.outerList.push(i.toString());
+      this.innerList.push(i);
+    }
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      Text('Repeat virtualScroll嵌套')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+      List() {
+        Repeat<string>(this.outerList)
+          .each((obj) => {
+            ListItem() {
+              Column() {
+                Text('outerList item: ' + obj.item)
+                  .fontSize(30)
+                List() {
+                  Repeat<number>(this.innerList)
+                    .each((subObj) => {
+                      ListItem() {
+                        Text('innerList item: ' + subObj.item)
+                          .fontSize(20)
+                      }
+                    })
+                    .key((item) => "innerList_" + item)
+                }
+                .width('80%')
+                .border({ width: 1 })
+                .backgroundColor(Color.Orange)
+              }
+              .height('30%')
+              .backgroundColor(Color.Pink)
+            }
+            .border({ width: 1 })
+          })
+          .key((item) => "outerList_" + item)
+      }
+      .width('80%')
+      .border({ width: 1 })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('90%')
+    .height('80%')
+  }
+}
+```
+
+运行效果：
+
+![Repeat-Nest](./figures/Repeat-Nest.png)
 
 ## 常见问题
 
@@ -558,19 +646,7 @@ export struct RepeatTemplateSingle {
 示例代码仅对增加数据的情况进行展示。
 
 ```ts
-// 定义一个类，标记为可观察的
-// 类中自定义一个数组，标记为可追踪的
-@ObservedV2
-class ArrayHolder {
-  @Trace arr: Array<number> = [];
-
-  // constructor，用于初始化数组个数
-  constructor(count: number) {
-    for (let i = 0; i < count; i++) {
-      this.arr.push(i);
-    }
-  }
-}
+// ...ArrayHolder的定义和上述demo代码一致
 
 @Entry
 @ComponentV2
@@ -723,3 +799,100 @@ struct entryCompSucc {
 示例代码运行效果：
 
 ![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)
+
+### Repeat与@Builder混用的限制
+
+当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
+
+示例代码如下：
+
+```ts
+@Entry
+@ComponentV2
+struct RepeatBuilderPage {
+  @Local simpleList1: Array<number> = [];
+  @Local simpleList2: Array<number> = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.simpleList1.push(i)
+      this.simpleList2.push(i)
+    }
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      Text('Repeat与@Builder混用，左边是异常场景，右边是正常场景，向下滑动一段距离可以看出差别')
+        .fontSize(15)
+        .fontColor(Color.Gray)
+
+      Row({ space: 20 }) {
+        List({ initialIndex: 5, space: 20 }) {
+          Repeat<number>(this.simpleList1)
+            .each((ri) => {})
+            .virtualScroll({ totalCount: this.simpleList1.length })
+            .templateId((item: number, index: number) => "default")
+            .template('default', (ri) => {
+              ListItem() {
+                Column() {
+                  Text('Text id = ' + ri.item)
+                    .fontSize(20)
+                  this.buildItem1(ri.item) // 修改为：this.buildItem1(ri)
+                }
+              }
+              .border({ width: 1 })
+            }, { cachedCount: 3 })
+        }
+        .cachedCount(1)
+        .border({ width: 1 })
+        .width('45%')
+        .height('60%')
+
+        List({ initialIndex: 5, space: 20 }) {
+          Repeat<number>(this.simpleList2)
+            .each((ri) => {})
+            .virtualScroll({ totalCount: this.simpleList2.length })
+            .templateId((item: number, index: number) => "default")
+            .template('default', (ri) => {
+              ListItem() {
+                Column() {
+                  Text('Text id = ' + ri.item)
+                    .fontSize(20)
+                  this.buildItem2(ri)
+                }
+              }
+              .border({ width: 1 })
+            }, { cachedCount: 3 })
+        }
+        .cachedCount(1)
+        .border({ width: 1 })
+        .width('45%')
+        .height('60%')
+      }
+    }
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
+  @Builder
+  // @Builder参数必须传RepeatItem类型才能正常渲染
+  buildItem1(item: number) {
+    Text('Builder1 id = ' + item)
+      .fontSize(20)
+      .fontColor(Color.Red)
+      .margin({ top: 2 })
+  }
+
+  @Builder
+  buildItem2(ri: RepeatItem<number>) {
+    Text('Builder2 id = ' + ri.item)
+      .fontSize(20)
+      .fontColor(Color.Red)
+      .margin({ top: 2 })
+  }
+}
+```
+
+界面展示如下图，进入页面后向下滑动一段距离可以看出差别，左边是错误用法，右边是正确用法（Text组件为黑色，Builder组件为红色）。上述代码展示了开发过程中易出错的场景，即在@Builder构造函数中传参方式为值传递。
+
+![Repeat-Builder](./figures/Repeat-Builder.png)

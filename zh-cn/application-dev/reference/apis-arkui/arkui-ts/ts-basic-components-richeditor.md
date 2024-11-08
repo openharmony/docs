@@ -42,6 +42,8 @@ RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
 >  **说明：**
 >
 >  align属性只支持上方、中间和下方位置的对齐方式。
+> 
+>  不支持borderImage属性。
 
 ### customKeyboard
 
@@ -99,6 +101,8 @@ copyOptions(value: CopyOptions)
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
 设置copyOptions为CopyOptions.None，复制、剪切、帮写功能不生效。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -284,7 +288,7 @@ enterKeyType(value: EnterKeyType)
 
 enableKeyboardOnFocus(isEnabled: boolean)
 
-设置RichEditor通过点击以外的方式获焦时，是否绑定输入法。
+设置RichEditor通过点击以外的方式获焦时，是否主动拉起软键盘。
 
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -295,7 +299,7 @@ enableKeyboardOnFocus(isEnabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
+| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
 
 ### barState<sup>13+</sup>
 
@@ -311,7 +315,7 @@ barState(state: BarState)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| state | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -385,7 +389,7 @@ aboutToIMEInput(callback:Callback\<[RichEditorInsertValue](#richeditorinsertvalu
 | ------ | ------------------------------------------- | ---- | -------------------- |
 | callback | Callback\<[RichEditorInsertValue](#richeditorinsertvalue), boolean\> | 是   | [RichEditorInsertValue](#richeditorinsertvalue)为输入法将要输入内容信息。<br/>true:组件执行添加内容操作。<br/>false:组件不执行添加内容操作<br/>输入法输入内容前的回调。|
 
-### onDidIMEInput
+### onDidIMEInput<sup>12+</sup>
 
 onDidIMEInput(callback:Callback\<TextRange>)
 
@@ -438,7 +442,7 @@ aboutToDelete(callback:Callback\<[RichEditorDeleteValue](#richeditordeletevalue)
 
 | 参数名 | 类型                                        | 必填 | 说明                 |
 | ------ | ------------------------------------------- | ---- | -------------------- |
-| callback | Callback\<[RichEditorDeleteValue](#richeditordeletevalue), boolean\> | 是 | [RichEditorDeleteValue](#richeditordeletevalue)为准备删除的内容所在的文本或者图片Span信息。<br/>true:组件执行删除操作。<br/>false:组件不执行删除操作。<br/>输入法删除内容前的回调。|
+| callback | Callback\<[RichEditorDeleteValue](#richeditordeletevalue), boolean\> | 是 | [RichEditorDeleteValue](#richeditordeletevalue)为准备删除的内容所在的文本或者图片Span信息。<br/>true:组件执行删除操作。<br/>false:组件不执行删除操作。<br/>输入法删除内容前的回调，英文预上屏点击候选词时会执行该回调。|
 
 ### onDeleteComplete
 
@@ -526,7 +530,7 @@ onSubmit(callback: SubmitCallback)
 
 onWillChange(callback: Callback\<RichEditorChangeValue, boolean\>)
 
-组件内图文变化前，触发回调。
+组件执行增删操作前，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
@@ -544,7 +548,7 @@ onWillChange(callback: Callback\<RichEditorChangeValue, boolean\>)
 
 onDidChange(callback: OnDidChangeCallback)
 
-图文变化后，触发回调。
+组件执行增删操作后，触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
@@ -668,16 +672,14 @@ Span位置信息。
 
 Span类型信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 值     | 说明         |
 | ----- | ---- | ------------ |
-| TEXT  | 0 | Span为文字类型。   |
-| IMAGE | 1 | Span为图像类型。   |
-| MIXED | 2 | Span为图文混合类型。 |
-| BUILDER<sup>12+</sup> | 3 | Span为BuilderSpan类型。 |
+| TEXT  | 0 | Span为文字类型。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| IMAGE | 1 | Span为图像类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| MIXED | 2 | Span为图文混合类型。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| BUILDER<sup>12+</sup> | 3 | Span为BuilderSpan类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -706,7 +708,7 @@ Span类型信息。
 | fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle) | 是    | 字体样式。        <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontWeight | number                                   | 是    | 字体粗细。        <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | fontFamily | string                                   | 是    | 字体列表。        <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| decoration | [DecorationStyleResult](ts-universal-styled-string.md#decorationstyleresult) | 是    | 文本装饰线样式信息。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| decoration | [DecorationStyleResult](ts-text-common.md#decorationstyleresult12) | 是    | 文本装饰线样式信息。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | textShadow<sup>12+</sup> | &nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 文字阴影效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | lineHeight<sup>12+</sup> | number       | 否    | 文本行高，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -836,7 +838,7 @@ RichEditor初始化参数。
 
 RichEditor组件控制器基类。
 
-### getCaretOffset<sup>12+</sup>
+### getCaretOffset<sup>10+</sup>
 
 getCaretOffset(): number
 
@@ -852,7 +854,7 @@ getCaretOffset(): number
 | ------ | --------- |
 | number | 当前光标所在位置。 |
 
-### setCaretOffset<sup>12+</sup>
+### setCaretOffset<sup>10+</sup>
 
 setCaretOffset(offset: number): boolean
 
@@ -874,7 +876,7 @@ setCaretOffset(offset: number): boolean
 | ------- | --------- |
 | boolean | 光标是否设置成功。 |
 
-### closeSelectionMenu<sup>12+</sup>
+### closeSelectionMenu<sup>10+</sup>
 
 closeSelectionMenu(): void
 
@@ -884,7 +886,7 @@ closeSelectionMenu(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### getTypingStyle<sup>12+</sup>
+### getTypingStyle<sup>11+</sup>
 
 getTypingStyle(): RichEditorTextStyle
 
@@ -900,7 +902,7 @@ getTypingStyle(): RichEditorTextStyle
 | ---------------------------------------- | ------- |
 | [RichEditorTextStyle](#richeditortextstyle) | 用户预设样式。 |
 
-### setTypingStyle<sup>12+</sup>
+### setTypingStyle<sup>11+</sup>
 
 setTypingStyle(value: RichEditorTextStyle): void
 
@@ -916,7 +918,7 @@ setTypingStyle(value: RichEditorTextStyle): void
 | ----- | ---------------------------------------- | ---- | ----- |
 | value | [RichEditorTextStyle](#richeditortextstyle) | 是    | 预设样式。 |
 
-### setSelection<sup>12+</sup>
+### setSelection<sup>11+</sup>
 
 setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions): void
 
@@ -1016,44 +1018,6 @@ RichEditor组件的控制器，继承自[RichEditorBaseController](#richeditorba
 controller: RichEditorController = new RichEditorController()
 ```
 
-### getCaretOffset
-
-getCaretOffset(): number
-
-返回当前光标所在位置。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| number | 当前光标所在位置。 |
-
-### setCaretOffset
-
-setCaretOffset(offset: number): boolean
-
-设置光标位置。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| offset | number | 是    | 光标偏移位置。超出文本范围时，设置失败。 |
-
-**返回值：**
-
-| 类型      | 说明        |
-| ------- | --------- |
-| boolean | 光标是否设置成功。 |
-
 ### addTextSpan
 
 addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
@@ -1111,8 +1075,8 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
 > - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
 > - 此占位Span不可获焦，支持拖拽，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
-> - 不支持通过[bindSelectionMenu](#属性)设置自定义菜单。
-> - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#事件)，[aboutToDelete](#事件)获取builderSpan信息。
+> - 不支持通过[bindSelectionMenu](#bindselectionmenu)设置自定义菜单。
+> - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#onselect)，[aboutToDelete](#abouttodelete)获取builderSpan信息。
 > - 不支持通过[updateSpanStyle](#updatespanstyle)，[updateParagraphStyle](#updateparagraphstyle11)等方式更新builder。
 > - 对此builder节点进行复制或粘贴不生效。
 > - builder的布局约束由RichEditor传入，如果builder里最外层组件不设置大小，则会用RichEditor的大小作为maxSize。
@@ -1164,45 +1128,6 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 | ------ | --------------------- |
 | number | 添加完成的SymbolSpan所在的位置。 |
 
-### getTypingStyle<sup>11+</sup>
-
-getTypingStyle(): RichEditorTextStyle
-
-获得用户预设的样式。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| [RichEditorTextStyle](#richeditortextstyle) | 用户预设样式。 |
-
-### setTypingStyle<sup>11+</sup>
-
-setTypingStyle(value: RichEditorTextStyle): void
-
-设置用户预设的样式。
-
-当开发者设置默认值（undefined/null）或未调用该接口时：</br>
-- 使用键盘往无文本内容的RichEditor输入内容时，输入的文本样式是按照默认样式显示，默认样式请参照[RichEditorTextStyle](#richeditortextstyle)内容。</br>
-- 使用键盘往有文本内容的RichEditor输入内容时，输入的文本是跟随前一个文本样式，不按照默认样式显示。
-
-当开发者设置非默认值时：</br>
-- 使用键盘往RichEditor输入内容均按照开发者设置的样式显示，如果预设样式中有未设置的属性则按照[RichEditorTextStyle](#richeditortextstyle)默认值显示。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型                                     | 必填   | 说明  |
-| ----- | ---------------------------------------- | ---- | ----- |
-| value | [RichEditorTextStyle](#richeditortextstyle) | 是    | 预设样式。 |
-
 ### updateSpanStyle
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions | RichEditorUpdateSymbolSpanStyleOptions): void
@@ -1220,6 +1145,10 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 | 参数名 | 类型 | 必填 | 说明                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11) | 是 | 文本、图片或SymbolSpan的样式选项信息。 |
+
+>  **说明：**
+>
+>  当start大于end时为异常情况，此时start为0，end为无穷大。
 
 ### updateParagraphStyle<sup>11+</sup>
 
@@ -1296,50 +1225,6 @@ getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
 | Array\<[RichEditorParagraphResult](#richeditorparagraphresult11)> | 选中段落的信息。 |
-
-### closeSelectionMenu
-
-closeSelectionMenu(): void
-
-关闭自定义选择菜单或系统默认选择菜单。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### setSelection<sup>11+</sup>
-
-setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions): void
-
-支持设置文本选中，选中部分背板高亮。
-
-selectionStart和selectionEnd均为-1时表示全选。
-
-未获焦时调用该接口不产生选中效果。
-
-从API version 12开始，在2in1设备中，无论options取何值，调用setSelection接口都不会弹出菜单，此外，如果组件中已经存在菜单，调用setSelection接口会关闭菜单。
-
-在非2in1设备中，options取值为MenuPolicy.DEFAULT时，遵循以下规则：
-
-1. 组件内有手柄菜单时，接口调用后不关闭菜单，并且调整菜单位置。
-
-2. 组件内有不带手柄的菜单时，接口调用后不关闭菜单，并且菜单位置不变。
-
-3. 组件内无菜单时，接口调用后也无菜单显示。
-
-使用[示例](ohos-arkui-advanced-SelectionMenu.md#示例)。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名            | 类型   | 必填   | 说明    |
-| -------------- | ------ | ---- | ------- |
-| selectionStart | number | 是    | 选中开始位置。 |
-| selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### getSelection<sup>11+</sup>
 
@@ -1520,9 +1405,6 @@ onContentChanged(listener: StyledStringChangedListener): void
 | start | number | 否   | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。  |
 | end   | number | 否   | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
 
->  **说明：**
->
->  当start大于end时为异常情况，此时start为0，end为无穷大。
 
 ## RichEditorSpanStyleOptions
 
@@ -1699,7 +1581,7 @@ SymbolSpan样式选项。
 
 | 名称                        | 类型                                       | 必填   | 说明                                       |
 | ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。默认值：size的默认值与objectFit的值有关，不同的objectFit值对应的size默认值也不同。objectFit的值为Cover时，图片高度为组件高度减去组件上下内边距，图片宽度为组件宽度减去组件左右内边距。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+| size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。默认值：size的默认值与objectFit的值有关，不同的objectFit值对应的size默认值也不同。objectFit的值为Cover时，图片高度为组件高度减去组件上下内边距，图片宽度为组件宽度减去组件左右内边距。不支持以Percentage形式设置。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
 | verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否    | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | 否    | 图片缩放类型。<br/> 默认值:ImageFit.Cover。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
 | layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | 否    | 图片布局风格。默认值：{"borderRadius":"","margin":""}<br/>   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                          |

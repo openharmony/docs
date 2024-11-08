@@ -1,4 +1,4 @@
-# Authenticating a Domain Account
+# Authenticating a Domain Account (for System Applications Only)
 
 Authenticate a domain account before unlocking the screen or when the login session fails.
 
@@ -12,7 +12,7 @@ import { osAccount } from '@kit.BasicServicesKit';
 
 ## Domain Account Authentication by Password
 
-The domain account can be authenticated by password. You can use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10) to implement this operation. To call this API, the app must have the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission.
+The domain account can be authenticated by password. You can use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth10) to implement this operation. To call this API, the application must have the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission.
 
 **Procedure**
 

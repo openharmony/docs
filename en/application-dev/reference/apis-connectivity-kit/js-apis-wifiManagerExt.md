@@ -152,7 +152,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```ts
   import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-  wifiManagerExt.getSupportedPowerMode((err, data) => {
+  wifiManagerExt.getSupportedPowerMode((err, data:wifiManagerExt.PowerMode) => {
       if (err) {
           console.error("get supported power mode info error");
           return;
@@ -240,7 +240,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```ts
   import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-  wifiManagerExt.getPowerMode((err, data) => {
+  wifiManagerExt.getPowerMode((err, data:wifiManagerExt.PowerMode) => {
       if (err) {
           console.error("get linked info error");
           return;

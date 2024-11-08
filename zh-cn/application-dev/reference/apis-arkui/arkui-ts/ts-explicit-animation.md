@@ -19,6 +19,15 @@ animateTo(value: AnimateParam, event: () => void): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+> **说明：**
+> - 在duration为0的动画闭包函数中改变属性，以实现停止该属性动画的效果。
+> - 如果需要在组件出现时创建动画，可以参考[示例1](#示例1)，在onAppear中实现动画的创建。
+> - 不推荐在aboutToAppear、aboutToDisappear中调用动画。
+> - 如果在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
+> - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
+> - 也可以使用[组件内转场](./ts-transition-animation-component.md)，在组件出现和消失时做动画。
+> - 组件内转场不支持的属性，可以参考[示例2](#示例2)，使用animationTo实现组件消失动画效果。
+
 **参数：**
 | 参数    | 类型                                | 是否必填 | 描述                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
@@ -35,7 +44,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | delay      | number         | 否 | 动画延迟播放时间，单位为ms(毫秒)，默认不延时播放。<br/>默认值：0<br/>取值范围：(-∞, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明：** <br/>-&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
 | iterations | number         | 否 | 动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。<br/>默认值：1 <br/>取值范围：[-1, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode)|否 | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onFinish   | ()&nbsp;=&gt;&nbsp;void      | 否 | 动画播放完成回调。Ability从前台切换至后台时会立即结束动画，触发播放完成回调。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>|
+| onFinish   | ()&nbsp;=&gt;&nbsp;void      | 否 | 动画播放完成回调。UIAbility从前台切换至后台时会立即结束仍在步进中的有限循环动画，触发播放完成回调。 <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>|
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](#finishcallbacktype11)|否 | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | 否 | 设置动画的期望帧率。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -68,12 +77,13 @@ animateTo(value: AnimateParam, event: () => void): void
 | max | number | 期望的最大帧率。 |
 | expected | number | 期望的最优帧率。 |
 
-## 示例
+## 示例1
 
 > **说明：**
 > 
 > 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
+在组件的onAppear中执行动画。
 ```ts
 // xxx.ets
 @Entry
@@ -148,3 +158,55 @@ struct AnimateToExample {
 ```
 
 ![animation1](figures/animation1.gif)
+
+## 示例2
+
+动画执行完后组件消失。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct AttrAnimationExample {
+  @State heightSize: number = 100;
+  @State isShow: boolean= true;
+  @State count: number= 0;
+  private isToBottom: boolean = true; // 向下
+
+  build() {
+    Column() {
+      if (this.isShow) {
+        Column()
+          .width(200)
+          .height(this.heightSize)
+          .backgroundColor('blue')
+          .onClick(() => {
+            // 建议使用this.getUIContext()?.animateTo()
+            animateTo({
+              duration: 2000,
+              curve: Curve.EaseOut,
+              iterations: 1,
+              playMode: PlayMode.Normal,
+              onFinish: () => {
+                this.count--;
+                if (this.count == 0 && !this.isToBottom) { // 组件只有在向下做完动画才会消失
+                  this.isShow = false;
+                }
+              }
+            }, () => {
+              this.count++;
+              if (this.isToBottom) {
+                this.heightSize = 60;
+              } else {
+                this.heightSize = 100;
+              }
+              this.isToBottom = !this.isToBottom;
+            })
+          })
+      }
+    }.width('100%').height('100%').margin({ top: 5 })
+    .justifyContent(FlexAlign.End)
+  }
+}
+```
+
+![animation2](figures/animation2.gif)

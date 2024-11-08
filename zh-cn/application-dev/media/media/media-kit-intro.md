@@ -1,6 +1,6 @@
 # Media Kit简介
 
-Media Kit（媒体服务）提供了[AVPlayer](#avplayer)和[AVRecorder](#avrecorder)用于播放、录制音视频。
+Media Kit（媒体服务）提供了[AVPlayer](#avplayer)、[SoundPool](#soundpool)、[AVRecorder](#avrecorder)、[AVScreenCapture](#avscreencapture)、[AVMetadataExtractor](#avmetadataextractor)和[AVImageGenerator](#avimagegenerator)用于播放、录制音视频、获取音视频元数据和视频缩略图。
 
 在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。
 
@@ -31,6 +31,8 @@ Media Kit（媒体服务）提供了[AVPlayer](#avplayer)和[AVRecorder](#avreco
 - 容器格式：比如mp4、mkv、mpeg-ts
 
 - 编码格式：比如h264/h265
+
+详细流媒体开发流程请参考[流媒体播放开发指导](streaming-media-playback-development-guide.md)。
 
 ## AVPlayer
 
@@ -132,11 +134,53 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 > 
 > 当dash协议存在内置字幕时，不支持添加外挂字幕。
 
+## SoundPool
+
+SoundPool主要工作是将音频媒体资源（比如mp3/m4a/wav等）转码为音频模拟信号，并通过输出设备进行播放。
+
+SoundPool提供短音频的播放能力，应用只需要提供音频资源来源，不负责数据解析和解码就可达成播放效果。
+
+### 音频播放
+
+当使用SoundPool开发应用播放音频时，其交互关系如图所示。
+
+**图3** 音频池外部模块交互图  
+
+![SoundPool Interaction Diagram](figures/soundpool-interaction-diagram.png)
+
+音乐类应用通过调用JS接口层提供的SoundPool接口实现相应功能时，框架层会通过播放服务（Player Framework）将资源解析成音频数据流（PCM），音频数据流经过软件解码后输出至音频服务（Audio Framework），由音频服务输出至音频驱动渲染，实现音频播放功能。完整的音频播放需要应用、Player Framework、Audio Framework、音频HDI共同实现。
+
+图3中，数字标注表示需要数据与外部模块的传递。
+
+1. 音乐应用将媒体资源传递给SoundPool接口。
+
+2. Player Framework将音频PCM数据流输出给Audio Framework，再由Audio Framework输出给音频HDI。
+
+### 支持的格式与协议
+
+推荐使用以下主流的播放格式，音视容器、音频编码属于内容创作者所掌握的专业领域，不建议应用开发者自制码流进行测试，以免产生无法播放、卡顿等兼容性问题。若发生此类问题不会影响系统，退出播放即可。
+
+支持的协议如下：
+
+| 协议类型 | 协议描述 | 
+| -------- | -------- |
+| 本地点播 | 协议格式：支持file&nbsp;descriptor，禁止file&nbsp;path |
+
+支持的音频播放格式如下：
+
+| 音频容器规格 | 规格描述 | 
+| -------- | -------- |
+| m4a | 音频格式：AAC | 
+| aac | 音频格式：AAC | 
+| mp3 | 音频格式：MP3 | 
+| ogg | 音频格式：VORBIS | 
+| wav | 音频格式：PCM | 
+
 ## AVRecorder
 
 AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视频编码并保存到文件中，帮助开发者轻松实现音视频录制功能，包括开始录制、暂停录制、恢复录制、停止录制、释放资源等功能控制。它允许调用者指定录制的编码格式、封装格式、文件路径等参数。
 
-**图3** 视频录制外部模块交互图  
+**图4** 视频录制外部模块交互图  
 
 ![Video recording interaction diagram](figures/video-recording-interaction-diagram.png)
 
@@ -146,7 +190,7 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 
 通过音视频录制组合，可分别实现纯音频录制、纯视频录制、音视频录制。
 
-图3中，数字标注表示需要数据与外部模块的传递。
+图4中，数字标注表示需要数据与外部模块的传递。
 
 1. 应用通过AVRecorder接口从录制服务获取SurfaceID。
 
@@ -191,3 +235,60 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | m4a | 音频的容器格式，M4A。 | 
 | mp3 | 音频的容器格式，MP3。 | 
 | wav | 音频的容器格式，wav。 | 
+
+## AVScreenCapture
+AVScreenCapture主要工作是捕获音频信号、视频信号，并通过音视频编码将屏幕信息保存到文件中，帮助开发者轻松实现屏幕录制功能，主要包括录屏存文件和录屏取码流两套接口，它允许调用者指定屏幕录制的编码格式、封装格式和文件路径等参数。
+
+**图5** 屏幕录制外部模块交互图  
+
+![AvScreenCapture interaction diagram](figures/avscreencapture-interaction-diagram.png)
+
+- 音频录制：应用通过调用JS/Native接口层提供的AVScreenCapture接口实现音频录制时，框架层会通过录屏框架，调用音频服务（Audio Framework）通过音频捕获音频数据，通过软件编码封装后保存至文件中，实现音频录制功能。
+- 屏幕录制：应用通过调用JS/Native接口层提供的AVScreenCapture接口实现屏幕录制时，框架层会通过录屏框架，调用图形图像服务通过视频捕获屏幕数据，通过软件编码封装后保存至文件中，实现屏幕录制功能。
+
+### 支持的格式
+支持的音频源如下：
+
+| 音频源类型 | 说明 | 
+| -------- | -------- |
+| MIC | 系统麦克风作为音频源输入。 | 
+| ALL_PLAYBACK | 系统内录使用作为音频源输入。 | 
+
+支持的视频源如下：
+
+| 视频源类型 | 说明 | 
+| -------- | -------- |
+| SURFACE_RGBA | 输出Buffer是rgba&nbsp;data | 
+
+支持的音频编码格式如下：
+
+| 音频编码格式 | 说明 | 
+| -------- | -------- |
+| AAC_LC | AAC_LC类型 |
+
+支持的视频编码格式如下：
+
+| 视频编码格式 | 说明 | 
+| -------- | -------- |
+| H264 | H264类型 |
+
+支持的输出文件格式如下：
+
+| 输出文件格式 | 说明 | 
+| -------- | -------- |
+| mp4 | 视频的容器格式，MP4。 | 
+| m4a | 纯音频的容器格式，M4A。 | 
+
+## AVMetadataExtractor
+AVMetadataExtractor 主要用于获取音视频元数据。通过使用 AVMetadataExtractor，开发者可以从原始媒体资源中提取出丰富的元数据信息。以音频资源为例，我们可以获取到关于该音频的标题、艺术家、专辑名称、时长等详细信息。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
+
+- 获取音频资源的元数据的全流程包含：创建AVMetadataExtractor，设置资源，获取元数据，获取专辑封面（可选），销毁资源。
+
+### 支持的格式
+支持的音视频源参考[媒体数据解析](../avcodec/audio-video-demuxer.md)
+
+## AVImageGenerator
+AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerator，开发者可以实现从原始媒体资源中获取视频指定时间的视频帧。
+
+### 支持的格式
+支持的视频源参考[视频解码](../avcodec/video-decoding.md)

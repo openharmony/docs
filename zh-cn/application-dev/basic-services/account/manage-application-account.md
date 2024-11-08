@@ -50,13 +50,8 @@
 
 具体开发实例如下：
 
-1. 准备参数，指定账号所有者。
 
-   ```ts
-   let owner: string = 'com.example.accountjsdemo2';
-   ```
-
-2. 调用[getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9)接口查询账号列表。
+调用[getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9)接口查询账号列表。
 
    ```ts
    appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
@@ -169,7 +164,7 @@
 
 具体开发实例如下：
 
-1. 指定要删除的账号名称，调用[removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9)接口删除账号。
+指定要删除的账号名称，调用[removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9)接口删除账号。
 
    ```ts
    let name: string = 'Zhangsan';

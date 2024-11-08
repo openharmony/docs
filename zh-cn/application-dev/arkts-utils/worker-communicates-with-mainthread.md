@@ -32,11 +32,11 @@
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1)
+         resolve(1);
        }, 100)
      }).then(undefined, (error: BusinessError) => {
      })
-     return p
+     return p;
    }
    
    async function postMessageTest() {
@@ -53,7 +53,7 @@
        flag = true;
        console.info("worker:: res is  " + res);
      }
-     // 给Worke线程发送消息
+     // 给Worker线程发送消息
      ss.postMessage("hello world");
      while (!flag) {
        await promiseCase();
