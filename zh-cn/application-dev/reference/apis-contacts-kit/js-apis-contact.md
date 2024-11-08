@@ -3790,7 +3790,6 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 | sipAddresses      | [SipAddress](#sipaddress)[]             | 是   | 是   | 联系人的会话发起协议（SIP）地址列表。  |
 | websites          | [Website](#website)[]                   | 是   | 是   | 联系人的网站列表。                     |
 | name              | [Name](#name)                           | 是   | 是   | 联系人的姓名。                         |
-| nickName          | [NickName](#nickname)                   | 是   | 是   | 联系人的昵称。                         |
 | note              | [Note](#note)                           | 是   | 是   | 联系人的备注。                         |
 | organization      | [Organization](#organization)           | 是   | 是   | 联系人的组织信息。                     |
 
@@ -3808,25 +3807,10 @@ let myContact: contact.Contact = {
     name: {
         fullName: "fullName",
         namePrefix: "namePrefix"
-    },
-    nickName: {
-        nickName: "nickName"
     }
 };
 ```
 
-
-  或使用new一个Contact对象的方式创建数据：
-
-```js
-let myContact = new contact.Contact();
-let name = new contact.Name();
-name.fullName = "fullName";
-let phoneNumber = new contact.PhoneNumber();
-phoneNumber.phoneNumber = "138xxxxxxxx";
-myContact.name = name;
-myContact.phoneNumbers = [phoneNumber];
-```
 
 
 ## ContactAttributes
@@ -3858,14 +3842,6 @@ let contactAttributes: contact.ContactAttributes = {
 };
 ```
 
-或使用new一个ContactAttributes对象的方式创建数据：
-
-
-```js
-let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
-```
-
 
 ## Attribute
 
@@ -3882,7 +3858,6 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 | ATTR_GROUP_MEMBERSHIP | 联系人的群组。                     |
 | ATTR_IM               | 联系人的即时消息地址。             |
 | ATTR_NAME             | 联系人的姓名。                     |
-| ATTR_NICKNAME         | 联系人的昵称。                     |
 | ATTR_NOTE             | 联系人的备注。                     |
 | ATTR_ORGANIZATION     | 联系人的组织信息。                 |
 | ATTR_PHONE            | 联系人的电话号码。                 |
@@ -3976,13 +3951,6 @@ let holder: contact.Holder = {
 };
 ```
 
-  或使用new一个Holder对象的方式创建数据：
-
-```js
-let holder = new contact.Holder();
-holder.holderId = 1;
-```
-
 
 ## Event
 
@@ -4053,13 +4021,6 @@ let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
-```
-
-  或使用new一个Group对象的方式创建数据：
-
-```js
-let group = new contact.Group();
-group.title = "title";
 ```
 
 
@@ -4147,45 +4108,6 @@ let name: contact.Name = {
 };
 ```
 
-  或使用new一个name对象的方式创建数据：
-
-```js
-let name = new contact.Name();
-name.familyName = "familyName";
-name.fullName = "fullName";
-```
-
-
-## NickName
-
-联系人的昵称类。
-
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
-
-| 名称     |   类型   | 可读 | 可写 | 说明           |
-| -------- | -------- | ---- | ---- | -------------- |
-| nickName | string   | 是   | 是   | 联系人的昵称。 |
-
-
-**对象创建示例：**
-
-  使用JSON格式创建数据：
-
-```js
-let nickName: contact.NickName = {
-    nickName: "nickName"
-};
-```
-
-  或使用new一个NickName对象的方式创建数据：
-
-```js
-let nickName = new contact.NickName();
-nickName.nickName = "nickName";
-```
-
 
 ## Note
 
@@ -4208,13 +4130,6 @@ nickName.nickName = "nickName";
 let note: contact.Note = {
     noteContent: "noteContent"
 };
-```
-
-  或使用new一个Note对象的方式创建数据：
-
-```js
-let note = new contact.Note();
-note.noteContent = "noteContent";
 ```
 
 
@@ -4243,14 +4158,6 @@ let organization: contact.Organization = {
 };
 ```
 
-  或使用new一个Organization对象的方式创建数据：
-
-```js
-let organization = new contact.Organization();
-organization.name = "name";
-organization.title = "title";
-```
-
 
 ## PhoneNumber
 
@@ -4272,19 +4179,6 @@ organization.title = "title";
 | NUM_FAX_HOME     | 5    | 家庭传真电话类型。                               |
 | NUM_PAGER        | 6    | 寻呼机电话类型。                                 |
 | NUM_OTHER        | 7    | 其它电话类型。                                   |
-| NUM_CALLBACK     | 8    | 回呼电话类型。                                   |
-| NUM_CAR          | 9    | 车机电话类型。                                   |
-| NUM_COMPANY_MAIN | 10   | 公司电话类型。                                   |
-| NUM_ISDN         | 11   | 综合业务数字网（ISDN）电话类型。                 |
-| NUM_MAIN         | 12   | 主电话类型。                                     |
-| NUM_OTHER_FAX    | 13   | 其它传真类型。                                   |
-| NUM_RADIO        | 14   | 无线电话类型。                                   |
-| NUM_TELEX        | 15   | 电传电话类型。                                   |
-| NUM_TTY_TDD      | 16   | 电传打字机（TTY）或测试驱动开发（TDD）电话类型。 |
-| NUM_WORK_MOBILE  | 17   | 工作移动电话类型。                               |
-| NUM_WORK_PAGER   | 18   | 工作寻呼机电话类型。                             |
-| NUM_ASSISTANT    | 19   | 助理电话类型。                                   |
-| NUM_MMS          | 20   | 彩信电话类型。                                   |
 | INVALID_LABEL_ID | -1   | 无效电话类型。                                   |
 
 
@@ -4339,13 +4233,6 @@ let portrait: contact.Portrait = {
 };
 ```
 
-  或使用new一个Portrait对象的方式创建数据：
-
-```js
-let portrait = new contact.Portrait();
-portrait.uri = "uri";
-```
-
 
 ## PostalAddress
 
@@ -4370,16 +4257,7 @@ portrait.uri = "uri";
 
 | 名称          |   类型   | 可读 | 可写 | 说明                       |
 | ------------- | -------- | ---- | ---- | -------------------------- |
-| city          | string   | 是   | 是   | 联系人所在的城市。         |
-| country       | string   | 是   | 是   | 联系人所在的国家。         |
-| labelName     | string   | 是   | 是   | 邮政地址类型名称。         |
-| neighborhood  | string   | 是   | 是   | 联系人的邻居。             |
-| pobox         | string   | 是   | 是   | 联系人的邮箱。             |
 | postalAddress | string   | 是   | 是   | 联系人的邮政地址。         |
-| postcode      | string   | 是   | 是   | 联系人所在区域的邮政编码。 |
-| region        | string   | 是   | 是   | 联系人所在的区域。         |
-| street        | string   | 是   | 是   | 联系人所在的街道。         |
-| labelId       | number   | 是   | 是   | 邮政地址类型。             |
 
 
 **对象创建示例：**
@@ -4388,7 +4266,6 @@ portrait.uri = "uri";
 
 ```js
 let postalAddress: contact.PostalAddress = {
-    city: "city",
     postalAddress: "postalAddress"
 };
 ```
@@ -4397,7 +4274,6 @@ let postalAddress: contact.PostalAddress = {
 
 ```js
 let postalAddress = new contact.PostalAddress();
-postalAddress.city = "city";
 postalAddress.postalAddress = "postalAddress";
 ```
 
@@ -4529,9 +4405,3 @@ let website: contact.Website = {
 };
 ```
 
-  或使用new一个Website对象的方式创建数据：
-
-```js
-let website = new contact.Website();
-website.website = "website";
-```
