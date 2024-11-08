@@ -1805,8 +1805,6 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1818,9 +1816,9 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let title: string = systemDateTime.getTime().toString();
     let newAsset: photoAccessHelper.PhotoAsset = await photoAsset.clone(title);
-    console.info("get new asset successfully");
+    console.info('get new asset successfully');
   } catch (error) {
-    console.error("failed to get new asset. message = ", error);
+    console.error('failed to get new asset. message = ', error);
   }
 }
 ```
