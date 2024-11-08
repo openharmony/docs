@@ -220,6 +220,7 @@
      
     ```js
     try {
+      kvStore = null;
       kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
@@ -237,6 +238,7 @@
      
     ```js
     try {
+      kvStore = null;
       kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError)=> {
         if (err) {
           console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
