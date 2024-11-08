@@ -1302,6 +1302,52 @@ let map: Record<string, PersonInfo> = {
 }
 ```
 
+### Abstract Classes 
+
+A class with the modifier abstract is known as abstract class. Abstract classes can be used to represent notions that are common to some set of more concrete notions.
+
+A compile-time error occurs if an attempt is made to create an instance of an abstract class:
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  // Compile-time error: Cannot create an instance of an abstract class.
+```
+
+Subclasses of an abstract class can be non-abstract or in turn abstract. A non-abstract subclass of an abstract superclass can be instantiated. As a result, a constructor for the abstract class, and field initializers for non-static fields of that class are executed：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### Abstract Methods 
+
+A method with the modifier abstract is considered an abstract method. Abstract methods do not have bodies, i.e., they can be declared but not implemented.
+
+Only abstract classes can have abstract methods. A compile-time error occurs if a non-abstract class has an abstract method:
+
+```typescript
+class Y {
+  abstract method(p: string)  //Compile-time error: Abstract methods can only appear within an abstract class.
+}
+```
+
 ## Interfaces
 
 An interface declaration introduces a new type. Interfaces are a common way of defining contracts between various part of codes.
