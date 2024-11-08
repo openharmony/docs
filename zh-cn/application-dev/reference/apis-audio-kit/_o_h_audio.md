@@ -48,7 +48,7 @@
 | typedef struct [OH_AudioManager](#oh_audiomanager) [OH_AudioManager](#oh_audiomanager) | 声明音频管理器。  | 
 | typedef struct [OH_AudioRoutingManager](#oh_audioroutingmanager) [OH_AudioRoutingManager](#oh_audioroutingmanager) | 声明音频路由管理器，用于路由和设备相关功能的音频路由管理器的句柄。  | 
 | typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback))([OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | 此函数指针将指向用于返回更改的音频设备描述符的回调函数，可能返回多个音频设备描述符。  | 
-| typedef void(\* [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, OH_AudioDevice_BlockStatus status, void \*userData) | 此函数指针将指向用于返回音频设备堵塞状态的回调函数，可能返回多个音频设备描述符。  | 
+| typedef void(\* [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) status, void \*userData) | 此函数指针将指向用于返回音频设备堵塞状态的回调函数，可能返回多个音频设备描述符。  | 
 | typedef struct [OH_AudioSessionManager](#oh_audiosessionmanager) [OH_AudioSessionManager](#oh_audiosessionmanager) | 声明音频会话管理器。  | 
 | typedef struct [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) [OH_AudioSession_Strategy](#oh_audiosession_strategy) | 音频会话策略。  | 
 | typedef struct [OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) [OH_AudioSession_DeactivatedEvent](#oh_audiosession_deactivatedevent) | 音频会话已停用事件。  | 
@@ -420,7 +420,7 @@ typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(OH_AudioDevic
 | 名称 | 描述 | 
 | -------- | -------- |
 | audioDeviceDescriptorArray | 音频设备描述符数组应当被释放，获取请调用[OH_AudioRoutingManager_GetDevices](#oh_audioroutingmanager_getdevices)接口。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
-| status | OH_AudioDevice_BlockStatus音频设备的堵塞状态。 |
+| status | 音频设备的堵塞状态[OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus)。 |
 | userData | 用户自定义数据指针。 | 
 
 

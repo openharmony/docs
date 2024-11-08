@@ -27,7 +27,7 @@
 | -------- | -------- |
 | typedef struct [OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) [OH_AudioRoutingManager](_o_h_audio.md#oh_audioroutingmanager) | 声明音频路由管理器，用于路由和设备相关功能的音频路由管理器的句柄。  | 
 | typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](_o_h_audio.md#oh_audioroutingmanager_ondevicechangedcallback)) ([OH_AudioDevice_ChangeType](_o_h_audio.md#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | 此函数指针将指向用于返回更改的音频设备描述符的回调函数，可能返回多个音频设备描述符。  | 
-| typedef void(\* [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](_o_h_audio.md#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](#) status, void \*userData) | 此函数指针将指向用于返回音频设备堵塞状态的回调函数，可能返回多个音频设备描述符。  | 
+| typedef void(\* [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](_o_h_audio.md#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](_o_h_audio.md#oh_audiodevice_blockstatus) status, void \*userData) | 此函数指针将指向用于返回音频设备堵塞状态的回调函数，可能返回多个音频设备描述符。  | 
 
 
 ### 函数
