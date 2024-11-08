@@ -180,10 +180,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 | -t [connect-key] [command] | 连接指定的目标设备，connect-key可通过hdc list targets查询 | 
 | -l [level] | 指定运行时日志等级，默认为LOG_INFO |
 | wait | 等待设备正常连接，用于检测设备是否连接并准备好接收指令 |
-| checkserver | 获取client-server版本 |
-| -s | 指定连接的server地址与端口 |
-| -p | 跳过拉起本地server|
-| -m | 启动前台server|
+| checkserver | 获取客户端与服务进程版本 |
+| -s | 指定当前服务进程的网络监听参数 |
+| -p | 绕过对服务进程的查询步骤，用于快速执行客户端命令 |
+| -m | 使用前台启动模式启动服务进程 |
 
 1. 显示hdc相关的帮助信息，命令格式如下：
 
@@ -295,7 +295,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    hdc -t connect-key wait
    ```
 
-6. 获取client-server版本，命令格式如下：
+6. 获取客户端与服务进程版本，命令格式如下：
 
    ```shell
    hdc checkserver
@@ -304,7 +304,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | Client version: Ver: X.X.Xa, Server version: Ver: X.X.Xa | client-server版本号 | 
+   | Client version: Ver: X.X.Xa, Server version: Ver: X.X.Xa | client（客户端），server（服务进程）版本号 | 
 
    **使用方法：**
 
@@ -312,7 +312,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    hdc checkserver
    ```
 
-7. 配置单次执行过程中客户端所连接的服务端地址及其端口号，命令格式如下：
+7. 指定当前服务进程的网络监听参数，包括地址和端口号，以确保连接的即时配置，该设置将在当前会话中有效，命令格式如下：
 
     ```shell
     hdc -s [ip]:[port] [command]
@@ -321,58 +321,69 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
     **参数：**
     | 参数 | 说明 |
     | -------- | -------- |
-    | ip | 指定连接的IP地址，支持IPv4和IPv6 |
-    | port | 指定连接的端口，范围：1~65536|
+    | ip | 指定监听的IP地址，支持IPv4和IPv6 |
+    | port | 指定监听的端口，范围：1~65536 |
+    | command | hdc支持的命令 |
 
     **返回值： **
     | 返回值 | 说明 |
     | -------- | -------- |
-    | Connect server failed | 连接服务端失败|
+    | Connect server failed | 与服务进程建立连接失败 |
     
     使用方法：
     ```shell
-    # 在已启动的服务端（127.0.0.1:8710）执行查询设备命令
+    # 在已有服务进程，且服务进程的网络监听参数为127.0.0.1:8710的环境中，执行查询设备命令
     hdc -s 127.0.0.1:8710 list targets
     ```
 
-8. 绕过对本地服务端进程的查询步骤，实现客户端的快速启动并执行指令，命令格式如下：
+> **说明：**
+    > 当命令行中明确使用 -s 参数指定服务端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。
+
+8. 绕过对服务进程的查询步骤，用于快速执行客户端命令，命令格式如下：
     ```shell
     hdc -p [command]
     ```
+
+   **参数：**
+   | 参数 | 说明 |
+   | -------- | -------- |
+   | command | hdc支持的命令 |
+
     **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | Connect server failed | 连接服务端失败 | 
+   | Connect server failed | 与服务进程建立连接失败 | 
 
     使用方法：
     ```shell
-    # 启动后台服务端进程
+    # 启动后台服务进程
     hdc start
     # 跳过进程查询，直接执行命令
     hdc -p list targets
     ```
-9. 使用前台启动模式启动服务端，命令格式如下：
+> **说明：**
+    > 在未指定 -p 参数的情况下直接执行 command 命令时，客户端将首先检查本地是否已有运行的服务进程。若无服务进程运行，客户端将自动启动一个后台服务进程，并建立连接以传递命令；若已有一个服务进程在运行，客户端将直接与该后台服务建立连接并下发相应的命令。<br>
+
+9. 使用前台启动模式启动服务进程，命令格式如下：
     ```shell
     hdc -m
     ```
     **返回值：**
     | 返回值 | 说明 |
     | -------- | -------- |
-    | Initial failed | 服务端初始化失败 |
-    | [I][1970-01-01 00:00:00.000][abcd][session.cpp:25] Program running. Ver: X.X.Xa Pid:12345 | 正常打印对应等级的日志，显示服务端活动状态 |
+    | Initial failed | 服务进程初始化失败 |
+    | [I][_1970-01-01 00:00:00.000_][_abcd_][_session.cpp:25_] _Program running. Ver: X.X.Xa Pid:12345_ | 正常打印对应等级的日志，显示服务端活动状态 |
     
     使用方法：
     ```shell
-    # 在指定地址运行服务端
+    # 指定当前服务进程的网络监听参数并启动服务进程
     hdc -s 127.0.0.1:8710 -m
     ```
 
 > **说明：**
-   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务端运行的特定地址和端口。若未指定地址和端口，系统将采用默认配置，即服务端将在地址 127.0.0.1 和端口 8710 上启动。
-   >
-   > 2. 在前台启动模式下，系统默认的日志输出等级设置为 LOG_DEBUG。若需变更日志等级，可通过结合使用 -l 参数来进行相应的调整。
-   >
-   > 3. 在特定的运行环境中，仅允许单一的服务端进程实例存在。若运行环境中已存在一个活跃的后台服务端进程，则尝试在前台启动新的服务端实例将不会成功，并将导致启动操作失败。
+   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数:127.0.0.1:8710。<br>
+   > 2. 在服务进程前台启动模式下，系统默认的日志输出等级设置为 LOG_DEBUG。如需变更日志等级，可通过结合使用 -l 参数来进行相应的调整。<br>
+   > 3. 在运行环境中，仅允许单一的服务进程实例存在。若运行环境中已存在一个活跃的后台服务进程，那么尝试在前台启动新的服务进程实例将不会成功。
 
 
 ### 查询设备列表相关命令
@@ -384,7 +395,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 显示所有已连接的设备列表，命令格式如下：
 
 ```shell
-hdc list targets[-v]
+hdc list targets [-v]
 ```
 
 **返回值：**
@@ -442,7 +453,7 @@ hdc list targets -v
    | 不加参数| 重启设备 |
    | -bootloader| 重启后进入fastboot模式 |
    | -recovery | 重启后进入recovery模式 |
-   | MODE | 重启后进入MODE模式，MODE为/bin/begetctl命令中reboot支持的参数, 可通过hdc shell "/bin/begetctl -h \| grep reboot"查看 |
+   | MODE | 重启后进入MODE模式，MODE为/bin/begetctl命令中reboot支持的参数,<br> 可通过hdc shell "/bin/begetctl -h \| grep reboot"查看 |
 
    **使用方法：**
 
@@ -507,6 +518,10 @@ hdc list targets -v
    hdc start
    hdc start -r // 服务进程启动状态下，触发服务进程重新启动
    ```
+
+> **说明：**
+   > 1. 同时指定 -l 参数和配置OHOS_HDC_LOG_LEVEL环境变量执行`hdc start`，如不存在服务进程，将以OHOS_HDC_LOG_LEVEL参数配置的日志等级启动服务进程；<br>
+   > 2. 指定 -l 参数和未配置OHOS_HDC_LOG_LEVEL环境变量执行`hdc start`，如不存在服务进程，指定 -l 参数配置的日志等级启动服务进程。
 
 ### 网络相关命令
 
