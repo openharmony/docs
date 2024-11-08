@@ -3,7 +3,7 @@
 
 ## When to Use
 
-An [EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database is created in the **el5/** directory to store the application's sensitive information. When the screen is locked and certain conditions are met, the key used to encrypt the sensitive information will be destroyed and the database cannot be operated. After the screen is unlocked, the key is restored and the read and write operations on the database are restored. This mechanism can effectively protect the user data. For details about how to manage the encryption directories, see [Obtaining and Modifying Encrypted Levels](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
+An [EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database is created in the **el5/** directory to store the application's sensitive information. When the device screen is locked and certain conditions are met, the key used to encrypt the sensitive information will be destroyed and the database cannot be operated. After the screen is unlocked, the key is restored and the read and write operations on the database are restored. This mechanism can effectively protect the user data. For details about how to manage the encryption directories, see [Obtaining and Modifying Encryption Levels](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
 
 However, the application may write data when the screen is locked. Data loss will be caused if the EL5 database cannot be operated when data is written. A solution is provided to solve this problem. When the screen is locked, incremental data is stored in an [EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database. The data temporarily stored in the EL2 database will be moved to the EL5 database when the EL5 database is unlocked. This ensures data security and consistency when the screen is locked.
 
@@ -11,12 +11,10 @@ Both the KV store and RDB store can be used as an EL5 database.
 
 ## Working Principles
 
-The following classes are encapsulated to implement the data operations and transfer between the EL2 and EL5 databases:
+The following classes are encapsulated to implement the data operations and transfer between EL2 and EL5 databases:
 
 - **Mover** class: provides APIs for moving data from an EL2 database to an EL5 database after the screen is unlocked.
-
 - **Store** class: provides APIs for accessing and operating the currently operable database.
-
 - **SecretKeyObserver** class: provides APIs for obtaining the key status. After the key is destroyed, the EL5 database will be closed.
 
 - **ECStoreManager** class: provides APIs for managing the EL2 and EL5 databases.
@@ -389,7 +387,7 @@ export default class EntryAbility extends UIAbility {
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S3
+        securityLevel: distributedKVStore.SecurityLevel.S1
       }
     }
     let eContext = this.context.createModuleContext("entry");
@@ -408,7 +406,7 @@ export default class EntryAbility extends UIAbility {
         // If kvStoreType is left empty, a device KV store is created by default.
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // kvStoreType is distributedKVStore.KVStoreType.DEVICE_COLLABORATION for a device KV store.
-        securityLevel: distributedKVStore.SecurityLevel.S3
+        securityLevel: distributedKVStore.SecurityLevel.S1
       }
     }
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
@@ -837,7 +835,7 @@ export default class EntryAbility extends UIAbility {
       context: cContext,
       config: {
         name: 'cstore.db',
-        securityLevel: relationalStore.SecurityLevel.S3,
+        securityLevel: relationalStore.SecurityLevel.S1,
       },
       storeId: "cstore.db"
     }
@@ -847,7 +845,7 @@ export default class EntryAbility extends UIAbility {
       context: eContext,
       config: {
         name: 'estore.db',
-        securityLevel: relationalStore.SecurityLevel.S3,
+        securityLevel: relationalStore.SecurityLevel.S1,
       },
       storeId: "estore.db",
     }
