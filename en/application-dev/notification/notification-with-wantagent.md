@@ -47,7 +47,7 @@ For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-
          parameters: {}
        }
      ],
-     operationType: wantAgent.OperationType.START_ABILITY,
+     actionType: wantAgent.OperationType.START_ABILITY,
      requestCode: 0,
      wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    };
@@ -66,7 +66,7 @@ For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-
          parameters: {},
        }
      ],
-     operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
+     actionType: wantAgent.OperationType.SEND_COMMON_EVENT,
      requestCode: 0,
      wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
    };
@@ -101,6 +101,7 @@ For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-
      },
      id: 6,
      label: 'TEST',
+     // Before using wantAgentObj, ensure that a value has been assigned to it (that is, step 3 is performed).
      wantAgent: wantAgentObj,
    }
    
