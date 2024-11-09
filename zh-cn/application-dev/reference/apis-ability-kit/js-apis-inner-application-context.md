@@ -33,11 +33,15 @@ import { common } from '@kit.AbilityKit';
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 否    | 事件中心，提供订阅、取消订阅、触发事件对象。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 否    | 文件分区信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
-## Context.createModuleContext
+## Context.createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(moduleName: string): Context
 
 根据模块名创建上下文。
+
+**说明：**
+>
+> 从 API Version 12 开始废弃，建议使用[application.createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
