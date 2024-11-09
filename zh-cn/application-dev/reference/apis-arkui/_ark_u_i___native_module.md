@@ -27,6 +27,7 @@
 | [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  | 
 | [native_gesture.h](native__gesture_8h.md) | 提供NativeGesture接口的类型定义。  | 
 | [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。  | 
+| [native_key_event.h](native__key_event_8h.md) | 提供NativeKeyEvent相关接口定义。  | 
 | [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。  | 
 | [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。  | 
 | [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。  | 
@@ -253,6 +254,10 @@
 | [ArkUI_SafeAreaEdge](#arkui_safeareaedge) { ARKUI_SAFE_AREA_EDGE_TOP = 1, ARKUI_SAFE_AREA_EDGE_BOTTOM = 1 &lt;&lt; 1, ARKUI_SAFE_AREA_EDGE_START = 1 &lt;&lt; 2, ARKUI_SAFE_AREA_EDGE_END = 1 &lt;&lt; 3 } | 定义扩展安全区域的方向的枚举值。  | 
 | [ArkUI_NavDestinationState](#arkui_navdestinationstate) {<br/>ARKUI_NAV_DESTINATION_STATE_ON_SHOW = 0, ARKUI_NAV_DESTINATION_STATE_ON_HIDE = 1, ARKUI_NAV_DESTINATION_STATE_ON_APPEAR = 2, ARKUI_NAV_DESTINATION_STATE_ON_DISAPPEAR = 3,<br/>ARKUI_NAV_DESTINATION_STATE_ON_WILL_SHOW = 4, ARKUI_NAV_DESTINATION_STATE_ON_WILL_HIDE = 5, ARKUI_NAV_DESTINATION_STATE_ON_WILL_APPEAR = 6, ARKUI_NAV_DESTINATION_STATE_ON_WILL_DISAPPEAR = 7,<br/>ARKUI_NAV_DESTINATION_STATE_ON_BACK_PRESS = 100<br/>} | 定义NavDestination组件的状态。  | 
 | [ArkUI_RouterPageState](#arkui_routerpagestate) {<br/>ARKUI_ROUTER_PAGE_STATE_ON_WILL_APPEAR = 0, ARKUI_ROUTER_PAGE_STATE_ON_WILL_DISAPPEAR = 1, ARKUI_ROUTER_PAGE_STATE_ON_SHOW = 2, ARKUI_ROUTER_PAGE_STATE_ON_HIDE = 3,<br/>ARKUI_ROUTER_PAGE_STATE_ON_BACK_PRESS = 4<br/>} | 定义Router Page的状态。  | 
+| [ArkUI_KeyCode](#arkui_keycode) {<br/>KEY_UNKNOWN&nbsp;=&nbsp;-1,&nbsp;KEY_FN&nbsp;=&nbsp;0,&nbsp;KEY_HOME&nbsp;=&nbsp;1,&nbsp;KEY_BACK&nbsp;=&nbsp;2,KEY_MEDIA_PLAY_PAUSE&nbsp;=&nbsp;10,&nbsp;KEY_MEDIA_STOP&nbsp;=&nbsp;11,&nbsp;KEY_MEDIA_NEXT&nbsp;=&nbsp;12,&nbsp;KEY_MEDIA_PREVIOUS&nbsp;=&nbsp;13,<br/>KEY_MEDIA_REWIND&nbsp;=&nbsp;14,&nbsp;KEY_MEDIA_FAST_FORWARD&nbsp;=&nbsp;15,&nbsp;KEY_VOLUME_UP&nbsp;=&nbsp;16,&nbsp;KEY_VOLUME_DOWN&nbsp;=&nbsp;17,<br/>KEY_POWER&nbsp;=&nbsp;18,&nbsp;KEY_CAMERA&nbsp;=&nbsp;19,&nbsp;KEY_VOLUME_MUTE&nbsp;=&nbsp;22,&nbsp;KEY_MUTE&nbsp;=&nbsp;23,KEY_BRIGHTNESS_UP&nbsp;=&nbsp;40,&nbsp;KEY_BRIGHTNESS_DOWN&nbsp;=&nbsp;41,&nbsp;KEY_0&nbsp;=&nbsp;2000,&nbsp;KEY_1&nbsp;=&nbsp;2001,<br/>KEY_2&nbsp;=&nbsp;2002,&nbsp;KEY_3&nbsp;=&nbsp;2003,&nbsp;KEY_4&nbsp;=&nbsp;2004,&nbsp;KEY_5&nbsp;=&nbsp;2005,<br/>KEY_6&nbsp;=&nbsp;2006,&nbsp;KEY_7&nbsp;=&nbsp;2007,&nbsp;KEY_8&nbsp;=&nbsp;2008,&nbsp;KEY_9&nbsp;=&nbsp;2009,<br/>KEY_STAR&nbsp;=&nbsp;2010,&nbsp;KEY_POUND&nbsp;=&nbsp;2011,&nbsp;KEY_DPAD_UP&nbsp;=&nbsp;2012,&nbsp;KEY_DPAD_DOWN&nbsp;=&nbsp;2013,KEY_DPAD_LEFT&nbsp;=&nbsp;2014,&nbsp;KEY_DPAD_RIGHT&nbsp;=&nbsp;2015,&nbsp;KEY_DPAD_CENTER&nbsp;=&nbsp;2016,<br/>KEY_A&nbsp;=&nbsp;2017,<br/>KEY_B&nbsp;=&nbsp;2018,&nbsp;KEY_C&nbsp;=&nbsp;2019,&nbsp;KEY_D&nbsp;=&nbsp;2020,&nbsp;KEY_E&nbsp;=&nbsp;2021,<br/>KEY_F&nbsp;=&nbsp;2022,&nbsp;KEY_G&nbsp;=&nbsp;2023,&nbsp;KEY_H&nbsp;=&nbsp;2024,&nbsp;KEY_I&nbsp;=&nbsp;2025,<br/>KEY_J&nbsp;=&nbsp;2026,&nbsp;KEY_K&nbsp;=&nbsp;2027,&nbsp;KEY_L&nbsp;=&nbsp;2028,&nbsp;KEY_M&nbsp;=&nbsp;2029,<br/>KEY_N&nbsp;=&nbsp;2030,&nbsp;KEY_O&nbsp;=&nbsp;2031,&nbsp;KEY_P&nbsp;=&nbsp;2032,&nbsp;KEY_Q&nbsp;=&nbsp;2033,<br/>KEY_R&nbsp;=&nbsp;2034,&nbsp;KEY_S&nbsp;=&nbsp;2035,&nbsp;KEY_T&nbsp;=&nbsp;2036,&nbsp;KEY_U&nbsp;=&nbsp;2037,<br/>KEY_V&nbsp;=&nbsp;2038,&nbsp;KEY_W&nbsp;=&nbsp;2039,&nbsp;KEY_X&nbsp;=&nbsp;2040,&nbsp;KEY_Y&nbsp;=&nbsp;2041,<br/>KEY_Z&nbsp;=&nbsp;2042,&nbsp;KEY_COMMA&nbsp;=&nbsp;2043,&nbsp;KEY_PERIOD&nbsp;=&nbsp;2044,&nbsp;KEY_ALT_LEFT&nbsp;=&nbsp;2045,<br/>KEY_ALT_RIGHT&nbsp;=&nbsp;2046,&nbsp;KEY_SHIFT_LEFT&nbsp;=&nbsp;2047,&nbsp;KEY_SHIFT_RIGHT&nbsp;=&nbsp;2048,&nbsp;KEY_TAB&nbsp;=&nbsp;2049,<br/>KEY_SPACE&nbsp;=&nbsp;2050,&nbsp;KEY_SYM&nbsp;=&nbsp;2051,&nbsp;KEY_EXPLORER&nbsp;=&nbsp;2052,&nbsp;KEY_ENVELOPE&nbsp;=&nbsp;2053,<br/>KEY_ENTER&nbsp;=&nbsp;2054,&nbsp;KEY_DEL&nbsp;=&nbsp;2055,&nbsp;KEY_GRAVE&nbsp;=&nbsp;2056,&nbsp;KEY_MINUS&nbsp;=&nbsp;2057,<br/>KEY_EQUALS&nbsp;=&nbsp;2058,&nbsp;KEY_LEFT_BRACKET&nbsp;=&nbsp;2059,&nbsp;KEY_RIGHT_BRACKET&nbsp;=&nbsp;2060,&nbsp;KEY_BACKSLASH&nbsp;=&nbsp;2061,<br/>KEY_SEMICOLON&nbsp;=&nbsp;2062,&nbsp;KEY_APOSTROPHE&nbsp;=&nbsp;2063,&nbsp;KEY_SLASH&nbsp;=&nbsp;2064,&nbsp;KEY_AT&nbsp;=&nbsp;2065,<br/>KEY_PLUS&nbsp;=&nbsp;2066,&nbsp;KEY_MENU&nbsp;=&nbsp;2067,&nbsp;KEY_PAGE_UP&nbsp;=&nbsp;2068,&nbsp;KEY_PAGE_DOWN&nbsp;=&nbsp;2069,<br/>KEY_ESCAPE&nbsp;=&nbsp;2070,&nbsp;KEY_FORWARD_DEL&nbsp;=&nbsp;2071,&nbsp;KEY_CTRL_LEFT&nbsp;=&nbsp;2072,&nbsp;KEY_CTRL_RIGHT&nbsp;=&nbsp;2073,<br/>KEY_CAPS_LOCK&nbsp;=&nbsp;2074,&nbsp;KEY_SCROLL_LOCK&nbsp;=&nbsp;2075,&nbsp;KEY_META_LEFT&nbsp;=&nbsp;2076,&nbsp;KEY_META_RIGHT&nbsp;=&nbsp;2077,<br/>KEY_FUNCTION&nbsp;=&nbsp;2078,&nbsp;KEY_SYSRQ&nbsp;=&nbsp;2079,&nbsp;KEY_BREAK&nbsp;=&nbsp;2080,&nbsp;KEY_MOVE_HOME&nbsp;=&nbsp;2081,<br/>KEY_MOVE_END&nbsp;=&nbsp;2082,&nbsp;KEY_INSERT&nbsp;=&nbsp;2083,&nbsp;KEY_FORWARD&nbsp;=&nbsp;2084,&nbsp;KEY_MEDIA_PLAY&nbsp;=&nbsp;2085,<br/>KEY_MEDIA_PAUSE&nbsp;=&nbsp;2086,&nbsp;KEY_MEDIA_CLOSE&nbsp;=&nbsp;2087,&nbsp;KEY_MEDIA_EJECT&nbsp;=&nbsp;2088,&nbsp;KEY_MEDIA_RECORD&nbsp;=&nbsp;2089,<br/>KEY_F1&nbsp;=&nbsp;2090,&nbsp;KEY_F2&nbsp;=&nbsp;2091,&nbsp;KEY_F3&nbsp;=&nbsp;2092,&nbsp;KEY_F4&nbsp;=&nbsp;2093,<br/>KEY_F5&nbsp;=&nbsp;2094,&nbsp;KEY_F6&nbsp;=&nbsp;2095,&nbsp;KEY_F7&nbsp;=&nbsp;2096,&nbsp;KEY_F8&nbsp;=&nbsp;2097,<br/>KEY_F9&nbsp;=&nbsp;2098,&nbsp;KEY_F10&nbsp;=&nbsp;2099,&nbsp;KEY_F11&nbsp;=&nbsp;2100,&nbsp;KEY_F12&nbsp;=&nbsp;2101,<br/>KEY_NUM_LOCK&nbsp;=&nbsp;2102,&nbsp;KEY_NUMPAD_0&nbsp;=&nbsp;2103,&nbsp;KEY_NUMPAD_1&nbsp;=&nbsp;2104,&nbsp;KEY_NUMPAD_2&nbsp;=&nbsp;2105,<br/>KEY_NUMPAD_3&nbsp;=&nbsp;2106,&nbsp;KEY_NUMPAD_4&nbsp;=&nbsp;2107,&nbsp;KEY_NUMPAD_5&nbsp;=&nbsp;2108,&nbsp;KEY_NUMPAD_6&nbsp;=&nbsp;2109,<br/>KEY_NUMPAD_7&nbsp;=&nbsp;2110,&nbsp;KEY_NUMPAD_8&nbsp;=&nbsp;2111,&nbsp;KEY_NUMPAD_9&nbsp;=&nbsp;2112,&nbsp;KEY_NUMPAD_DIVIDE&nbsp;=&nbsp;2113,<br/>KEY_NUMPAD_MULTIPLY&nbsp;=&nbsp;2114,&nbsp;KEY_NUMPAD_SUBTRACT&nbsp;=&nbsp;2115,&nbsp;KEY_NUMPAD_ADD&nbsp;=&nbsp;2116,&nbsp;KEY_NUMPAD_DOT&nbsp;=&nbsp;2117,<br/>KEY_NUMPAD_COMMA&nbsp;=&nbsp;2118,&nbsp;KEY_NUMPAD_ENTER&nbsp;=&nbsp;2119,&nbsp;KEY_NUMPAD_EQUALS&nbsp;=&nbsp;2120,&nbsp;KEY_NUMPAD_LEFT_PAREN&nbsp;=&nbsp;2121,<br/>KEY_NUMPAD_RIGHT_PAREN&nbsp;=&nbsp;2122,&nbsp;KEY_VIRTUAL_MULTITASK&nbsp;=&nbsp;2210,&nbsp;KEY_SLEEP&nbsp;=&nbsp;2600,&nbsp;KEY_ZENKAKU_HANKAKU&nbsp;=&nbsp;2601,<br/>KEY_102ND&nbsp;=&nbsp;2602,&nbsp;KEY_RO&nbsp;=&nbsp;2603,&nbsp;KEY_KATAKANA&nbsp;=&nbsp;2604,&nbsp;KEY_HIRAGANA&nbsp;=&nbsp;2605,<br/>KEY_HENKAN&nbsp;=&nbsp;2606,&nbsp;KEY_KATAKANA_HIRAGANA&nbsp;=&nbsp;2607,&nbsp;KEY_MUHENKAN&nbsp;=&nbsp;2608,&nbsp;KEY_LINEFEED&nbsp;=&nbsp;2609,<br/>KEY_MACRO&nbsp;=&nbsp;2610,&nbsp;KEY_NUMPAD_PLUSMINUS&nbsp;=&nbsp;2611,&nbsp;KEY_SCALE&nbsp;=&nbsp;2612,&nbsp;KEY_HANGUEL&nbsp;=&nbsp;2613,<br/>KEY_HANJA&nbsp;=&nbsp;2614,&nbsp;KEY_YEN&nbsp;=&nbsp;2615,&nbsp;KEY_STOP&nbsp;=&nbsp;2616,&nbsp;KEY_AGAIN&nbsp;=&nbsp;2617,<br/>KEY_PROPS&nbsp;=&nbsp;2618,&nbsp;KEY_UNDO&nbsp;=&nbsp;2619,&nbsp;KEY_COPY&nbsp;=&nbsp;2620,&nbsp;KEY_OPEN&nbsp;=&nbsp;2621,<br/>KEY_PASTE&nbsp;=&nbsp;2622,&nbsp;KEY_FIND&nbsp;=&nbsp;2623,&nbsp;KEY_CUT&nbsp;=&nbsp;2624,&nbsp;KEY_HELP&nbsp;=&nbsp;2625,<br/>KEY_CALC&nbsp;=&nbsp;2626,&nbsp;KEY_FILE&nbsp;=&nbsp;2627,&nbsp;KEY_BOOKMARKS&nbsp;=&nbsp;2628,&nbsp;KEY_NEXT&nbsp;=&nbsp;2629,<br/>KEY_PLAYPAUSE&nbsp;=&nbsp;2630,&nbsp;KEY_PREVIOUS&nbsp;=&nbsp;2631,&nbsp;KEY_STOPCD&nbsp;=&nbsp;2632,&nbsp;KEY_CONFIG&nbsp;=&nbsp;2634,<br/>KEY_REFRESH&nbsp;=&nbsp;2635,&nbsp;KEY_EXIT&nbsp;=&nbsp;2636,&nbsp;KEY_EDIT&nbsp;=&nbsp;2637,&nbsp;KEY_SCROLLUP&nbsp;=&nbsp;2638,<br/>KEY_SCROLLDOWN&nbsp;=&nbsp;2639,&nbsp;KEY_NEW&nbsp;=&nbsp;2640,&nbsp;KEY_REDO&nbsp;=&nbsp;2641,&nbsp;KEY_CLOSE&nbsp;=&nbsp;2642,<br/>KEY_PLAY&nbsp;=&nbsp;2643,&nbsp;KEY_BASSBOOST&nbsp;=&nbsp;2644,&nbsp;KEY_PRINT&nbsp;=&nbsp;2645,&nbsp;KEY_CHAT&nbsp;=&nbsp;2646,<br/>KEY_FINANCE&nbsp;=&nbsp;2647,&nbsp;KEY_CANCEL&nbsp;=&nbsp;2648,&nbsp;KEY_KBDILLUM_TOGGLE&nbsp;=&nbsp;2649,&nbsp;KEY_KBDILLUM_DOWN&nbsp;=&nbsp;2650,<br/>KEY_KBDILLUM_UP&nbsp;=&nbsp;2651,&nbsp;KEY_SEND&nbsp;=&nbsp;2652,&nbsp;KEY_REPLY&nbsp;=&nbsp;2653,&nbsp;KEY_FORWARDMAIL&nbsp;=&nbsp;2654,<br/>KEY_SAVE&nbsp;=&nbsp;2655,&nbsp;KEY_DOCUMENTS&nbsp;=&nbsp;2656,&nbsp;KEY_VIDEO_NEXT&nbsp;=&nbsp;2657,&nbsp;KEY_VIDEO_PREV&nbsp;=&nbsp;2658,<br/>KEY_BRIGHTNESS_CYCLE&nbsp;=&nbsp;2659,&nbsp;KEY_BRIGHTNESS_ZERO&nbsp;=&nbsp;2660,&nbsp;KEY_DISPLAY_OFF&nbsp;=&nbsp;2661,&nbsp;KEY_BTN_MISC&nbsp;=&nbsp;2662,<br/>KEY_GOTO&nbsp;=&nbsp;2663,&nbsp;KEY_INFO&nbsp;=&nbsp;2664,&nbsp;KEY_PROGRAM&nbsp;=&nbsp;2665,&nbsp;KEY_PVR&nbsp;=&nbsp;2666,<br/>KEY_SUBTITLE&nbsp;=&nbsp;2667,&nbsp;KEY_FULL_SCREEN&nbsp;=&nbsp;2668,&nbsp;KEY_KEYBOARD&nbsp;=&nbsp;2669,&nbsp;KEY_ASPECT_RATIO&nbsp;=&nbsp;2670,<br/>KEY_PC&nbsp;=&nbsp;2671,&nbsp;KEY_TV&nbsp;=&nbsp;2672,&nbsp;KEY_TV2&nbsp;=&nbsp;2673,&nbsp;KEY_VCR&nbsp;=&nbsp;2674,<br/>KEY_VCR2&nbsp;=&nbsp;2675,&nbsp;KEY_SAT&nbsp;=&nbsp;2676,&nbsp;KEY_CD&nbsp;=&nbsp;2677,&nbsp;KEY_TAPE&nbsp;=&nbsp;2678,<br/>KEY_TUNER&nbsp;=&nbsp;2679,&nbsp;KEY_PLAYER&nbsp;=&nbsp;2680,&nbsp;KEY_DVD&nbsp;=&nbsp;2681,&nbsp;KEY_AUDIO&nbsp;=&nbsp;2682,<br/>KEY_VIDEO&nbsp;=&nbsp;2683,&nbsp;KEY_MEMO&nbsp;=&nbsp;2684,&nbsp;KEY_CALENDAR&nbsp;=&nbsp;2685,&nbsp;KEY_RED&nbsp;=&nbsp;2686,<br/>KEY_GREEN&nbsp;=&nbsp;2687,&nbsp;KEY_YELLOW&nbsp;=&nbsp;2688,&nbsp;KEY_BLUE&nbsp;=&nbsp;2689,&nbsp;KEY_CHANNELUP&nbsp;=&nbsp;2690,<br/>KEY_CHANNELDOWN&nbsp;=&nbsp;2691,&nbsp;KEY_LAST&nbsp;=&nbsp;2692,&nbsp;KEY_RESTART&nbsp;=&nbsp;2693,&nbsp;KEY_SLOW&nbsp;=&nbsp;2694,<br/>KEY_SHUFFLE&nbsp;=&nbsp;2695,&nbsp;KEY_VIDEOPHONE&nbsp;=&nbsp;2696,&nbsp;KEY_GAMES&nbsp;=&nbsp;2697,&nbsp;KEY_ZOOMIN&nbsp;=&nbsp;2698,<br/>KEY_ZOOMOUT&nbsp;=&nbsp;2699,&nbsp;KEY_ZOOMRESET&nbsp;=&nbsp;2700,&nbsp;KEY_WORDPROCESSOR&nbsp;=&nbsp;2701,&nbsp;KEY_EDITOR&nbsp;=&nbsp;2702,<br/>KEY_SPREADSHEET&nbsp;=&nbsp;2703,&nbsp;KEY_GRAPHICSEDITOR&nbsp;=&nbsp;2704,&nbsp;KEY_PRESENTATION&nbsp;=&nbsp;2705,&nbsp;KEY_DATABASE&nbsp;=&nbsp;2706,<br/>KEY_NEWS&nbsp;=&nbsp;2707,&nbsp;KEY_VOICEMAIL&nbsp;=&nbsp;2708,&nbsp;KEY_ADDRESSBOOK&nbsp;=&nbsp;2709,&nbsp;KEY_MESSENGER&nbsp;=&nbsp;2710,<br/>KEY_BRIGHTNESS_TOGGLE&nbsp;=&nbsp;2711,&nbsp;KEY_SPELLCHECK&nbsp;=&nbsp;2712,&nbsp;KEY_COFFEE&nbsp;=&nbsp;2713,&nbsp;KEY_MEDIA_REPEAT&nbsp;=&nbsp;2714,<br/>KEY_IMAGES&nbsp;=&nbsp;2715,&nbsp;KEY_BUTTONCONFIG&nbsp;=&nbsp;2716,&nbsp;KEY_TASKMANAGER&nbsp;=&nbsp;2717,&nbsp;KEY_JOURNAL&nbsp;=&nbsp;2718,<br/>KEY_CONTROLPANEL&nbsp;=&nbsp;2719,&nbsp;KEY_APPSELECT&nbsp;=&nbsp;2720,&nbsp;KEY_SCREENSAVER&nbsp;=&nbsp;2721,&nbsp;KEY_ASSISTANT&nbsp;=&nbsp;2722,<br/>KEY_KBD_LAYOUT_NEXT&nbsp;=&nbsp;2723,&nbsp;KEY_BRIGHTNESS_MIN&nbsp;=&nbsp;2724,&nbsp;KEY_BRIGHTNESS_MAX&nbsp;=&nbsp;2725,&nbsp;KEY_KBDINPUTASSIST_PREV&nbsp;=&nbsp;2726,<br/>KEY_KBDINPUTASSIST_NEXT&nbsp;=&nbsp;2727,&nbsp;KEY_KBDINPUTASSIST_PREVGROUP&nbsp;=&nbsp;2728,&nbsp;KEY_KBDINPUTASSIST_NEXTGROUP&nbsp;=&nbsp;2729,&nbsp;KEY_KBDINPUTASSIST_ACCEPT&nbsp;=&nbsp;2730,<br/>KEY_KBDINPUTASSIST_CANCEL&nbsp;=&nbsp;2731,&nbsp;KEY_FRONT&nbsp;=&nbsp;2800,&nbsp;KEY_SETUP&nbsp;=&nbsp;2801,&nbsp;KEY_WAKEUP&nbsp;=&nbsp;2802,<br/>KEY_SENDFILE&nbsp;=&nbsp;2803,&nbsp;KEY_DELETEFILE&nbsp;=&nbsp;2804,&nbsp;KEY_XFER&nbsp;=&nbsp;2805,&nbsp;KEY_PROG1&nbsp;=&nbsp;2806,<br/>KEY_PROG2&nbsp;=&nbsp;2807,&nbsp;KEY_MSDOS&nbsp;=&nbsp;2808,&nbsp;KEY_SCREENLOCK&nbsp;=&nbsp;2809,&nbsp;KEY_DIRECTION_ROTATE_DISPLAY&nbsp;=&nbsp;2810,<br/>KEY_CYCLEWINDOWS&nbsp;=&nbsp;2811,&nbsp;KEY_COMPUTER&nbsp;=&nbsp;2812,&nbsp;KEY_EJECTCLOSECD&nbsp;=&nbsp;2813,&nbsp;KEY_ISO&nbsp;=&nbsp;2814,<br/>KEY_MOVE&nbsp;=&nbsp;2815,&nbsp;KEY_F13&nbsp;=&nbsp;2816,&nbsp;KEY_F14&nbsp;=&nbsp;2817,&nbsp;KEY_F15&nbsp;=&nbsp;2818,<br/>KEY_F16&nbsp;=&nbsp;2819,&nbsp;KEY_F17&nbsp;=&nbsp;2820,&nbsp;KEY_F18&nbsp;=&nbsp;2821,&nbsp;KEY_F19&nbsp;=&nbsp;2822,<br/>KEY_F20&nbsp;=&nbsp;2823,&nbsp;KEY_F21&nbsp;=&nbsp;2824,&nbsp;KEY_F22&nbsp;=&nbsp;2825,&nbsp;KEY_F23&nbsp;=&nbsp;2826,<br/>KEY_F24&nbsp;=&nbsp;2827,&nbsp;KEY_PROG3&nbsp;=&nbsp;2828,&nbsp;KEY_PROG4&nbsp;=&nbsp;2829,&nbsp;KEY_DASHBOARD&nbsp;=&nbsp;2830,<br/>KEY_SUSPEND&nbsp;=&nbsp;2831,&nbsp;KEY_HP&nbsp;=&nbsp;2832,&nbsp;KEY_SOUND&nbsp;=&nbsp;2833,&nbsp;KEY_QUESTION&nbsp;=&nbsp;2834,<br/>KEY_CONNECT&nbsp;=&nbsp;2836,&nbsp;KEY_SPORT&nbsp;=&nbsp;2837,&nbsp;KEY_SHOP&nbsp;=&nbsp;2838,&nbsp;KEY_ALTERASE&nbsp;=&nbsp;2839,<br/>KEY_SWITCHVIDEOMODE&nbsp;=&nbsp;2841,&nbsp;KEY_BATTERY&nbsp;=&nbsp;2842,&nbsp;KEY_BLUETOOTH&nbsp;=&nbsp;2843,&nbsp;KEY_WLAN&nbsp;=&nbsp;2844,<br/>KEY_UWB&nbsp;=&nbsp;2845,&nbsp;KEY_WWAN_WIMAX&nbsp;=&nbsp;2846,&nbsp;KEY_RFKILL&nbsp;=&nbsp;2847,&nbsp;KEY_CHANNEL&nbsp;=&nbsp;3001,<br/>KEY_BTN_0&nbsp;=&nbsp;3100,&nbsp;KEY_BTN_1&nbsp;=&nbsp;3101,&nbsp;KEY_BTN_2&nbsp;=&nbsp;3102,&nbsp;KEY_BTN_3&nbsp;=&nbsp;3103,<br/>KEY_BTN_4&nbsp;=&nbsp;3104,&nbsp;KEY_BTN_5&nbsp;=&nbsp;3105,&nbsp;KEY_BTN_6&nbsp;=&nbsp;3106,&nbsp;KEY_BTN_7&nbsp;=&nbsp;3107,<br/>KEY_BTN_8&nbsp;=&nbsp;3108,&nbsp;KEY_BTN_9&nbsp;=&nbsp;3109<br/>} | 按键事件的键码。 |
+| [ArkUI_KeyEventType](#arkui_keyeventtype) { ARKUI_KEY_EVENT_UNKNOWN, ARKUI_KEY_EVENT_DOWN, ARKUI_KEY_EVENT_UP, ARKUI_KEY_EVENT_LONG_PRESS, ARKUI_KEY_EVENT_CLICK } | 按键的类型。 | 
+| [ArkUI_KeySourceType](#arkui_keysourcetype) { ARKUI_KEY_SOURCE_UNKNOWN, ARKUI_KEY_SOURCE_TYPE_MOUSE, ARKUI_KEY_SOURCE_TYPE_TOUCH, ARKUI_KEY_SOURCE_TYPE_TOUCH_PAD, ARKUI_KEY_SOURCE_TYPE_KEYBOARD } | 触发当前按键的输入设备类型。 |
+| [ArkUI_KeyIntension](#arkui_keyintension) { ARKUI_KEY_INTENSION_UNKNOWN, ARKUI_KEY_INTENSION_UP, ARKUI_KEY_INTENSION_DOWN, ARKUI_KEY_INTENSION_LEFT, ARKUI_KEY_INTENSION_RIGHT, ARKUI_KEY_INTENSION_SELECT, ARKUI_KEY_INTENSION_ESCAPE, ARKUI_KEY_INTENSION_BACK, ARKUI_KEY_INTENSION_FORWARD, ARKUI_KEY_INTENSION_MENU, ARKUI_KEY_INTENSION_HOME, ARKUI_KEY_INTENSION_PAGE_UP, ARKUI_KEY_INTENSION_PAGE_DOWN, ARKUI_KEY_INTENSION_ZOOM_OUT, ARKUI_KEY_INTENSION_ZOOM_IN, ARKUI_KEY_INTENTION_MEDIA_PLAY_PAUSE, ARKUI_KEY_INTENTION_MEDIA_FAST_FORWARD, ARKUI_KEY_INTENTION_MEDIA_FAST_REWIND, ARKUI_KEY_INTENTION_MEDIA_FAST_PLAYBACK, ARKUI_KEY_INTENTION_MEDIA_NEXT, ARKUI_KEY_INTENTION_MEDIA_PREVIOUS, ARKUI_KEY_INTENTION_MEDIA_MUTE, ARKUI_KEY_INTENTION_VOLUME_UP, ARKUI_KEY_INTENTION_VOLUME_DOWN, ARKUI_KEY_INTENTION_CALL, ARKUI_KEY_INTENTION_ENDCALL, ARKUI_KEY_INTENTION_REJECTCALL, ARKUI_KEY_INTENTION_CAMERA } | 按键对应的意图。 |
 
 ### 函数
 
@@ -714,7 +719,18 @@
 | int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t \*bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将包含属性字符串信息的字节数组反序列化为属性字符串。  | 
 | int32_t [OH_ArkUI_MarshallStyledStringDescriptor](#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t \*bufferSize, [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息序列化为字节数组。  | 
 | const char \* [OH_ArkUI_ConvertToHtml](#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) \*descriptor) | 将属性字符串信息转化成html。  | 
-
+| ArkUI_KeyEventType [OH_ArkUI_KeyEvent_GetType](#oh_arkui_keyevent_gettype)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取按键的类型。 |
+| ArkUI_KeyCode [OH_ArkUI_KeyEvent_GetKeyCode](#oh_arkui_keyevent_getkeycode)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取按键的键码。 |
+| const char \* [OH_ArkUI_KeyEvent_GetKeyText](#oh_arkui_keyevent_getkeytext)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取按键的键值。 |
+| ArkUI_KeySourceType [OH_ArkUI_KeyEvent_GetKeySource](#oh_arkui_keyevent_getkeysource)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取当前按键的输入设备类型。 |
+| int32_t [OH_ArkUI_KeyEvent_GetDeviceId](#oh_arkui_keyevent_getdeviceid)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取当前按键的输入设备ID。 |
+| int32_t [OH_ArkUI_KeyEvent_GetMetaKey](#oh_arkui_keyevent_getmetakey)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取按键发生时元键（即Windows键盘的WIN键、Mac键盘的Command键）的状态。 |
+| uint64_t [OH_ArkUI_KeyEvent_GetTimestamp](#oh_arkui_keyevent_gettimestamp)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。 |
+| void [OH_ArkUI_KeyEvent_StopPropagation](#oh_arkui_keyevent_stoppropagation)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event, bool stopPropagation) | 阻塞事件冒泡传递。 |
+| void [OH_ArkUI_KeyEvent_GetModifierKeyState](#oh_arkui_keyevent_getmodifierkeystate)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event, uint32_t modifierKeys) | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'|'Alt'|'Shift'|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。 |
+| ArkUI_KeyIntension [OH_ArkUI_KeyEvent_GetKeyIntensionCode](#oh_arkui_keyevent_getkeyintensioncode)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取按键对应的意图。 |
+| uint32_t [OH_ArkUI_KeyEvent_GetUnicode](#oh_arkui_keyevent_getunicode)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event) | 获取按键的unicode码值。支持范围为非空格的基本拉丁字符：0x0021-0x007E，不支持字符为0。组合键场景下，返回当前keyEvent对应按键的unicode码值。 |
+| void [OH_ArkUI_KeyEvent_SetConsumed](#oh_arkui_keyevent_setconsumed)(const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)\* event, bool isConsumed) | 在按键事件回调中，设置事件是否被该回调消费。 |
 
 ## 宏定义说明
 
@@ -4209,6 +4225,434 @@ enum ArkUI_XComponentType
 | ARKUI_XCOMPONENT_TYPE_TEXTURE  | 用于EGL/OpenGLES和媒体数据写入，开发者定制绘制内容和XComponent组件内容合成后展示在屏幕上。  | 
 
 
+### ArkUI_KeyCode
+
+```
+enum ArkUI_KeyCode
+```
+**描述：**
+
+按键事件的键码。
+
+**起始版本：** 14
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_KEYCODE_KEY_UNKNOWN | 未知按键 |
+| ARKUI_KEYCODE_KEY_FN | 功能（Fn）键 |
+| ARKUI_KEYCODE_KEY_HOME | 功能（Home）键 |
+| ARKUI_KEYCODE_KEY_BACK | 返回键 |
+| ARKUI_KEYCODE_KEY_MEDIA_PLAY_PAUSE | 多媒体键 播放/暂停 |
+| ARKUI_KEYCODE_KEY_MEDIA_STOP | 多媒体键 停止 |
+| ARKUI_KEYCODE_KEY_MEDIA_NEXT | 多媒体键 下一首 |
+| ARKUI_KEYCODE_KEY_MEDIA_PREVIOUS | 多媒体键 上一首 |
+| ARKUI_KEYCODE_KEY_MEDIA_REWIND | 多媒体键 快退 |
+| ARKUI_KEYCODE_KEY_MEDIA_FAST_FORWARD | 多媒体键 快进 |
+| ARKUI_KEYCODE_KEY_VOLUME_UP | 音量增加键 |
+| ARKUI_KEYCODE_KEY_VOLUME_DOWN | 音量减小键 |
+| ARKUI_KEYCODE_KEY_POWER | 电源键 |
+| ARKUI_KEYCODE_KEY_CAMERA | 拍照键 |
+| ARKUI_KEYCODE_KEY_VOLUME_MUTE | 扬声器静音键 |
+| ARKUI_KEYCODE_KEY_MUTE | 话筒静音键 |
+| ARKUI_KEYCODE_KEY_BRIGHTNESS_UP | 亮度调节按键 调亮 |
+| ARKUI_KEYCODE_KEY_BRIGHTNESS_DOWN | 亮度调节按键 调暗 |
+| ARKUI_KEYCODE_KEY_0 | 按键'0' |
+| ARKUI_KEYCODE_KEY_1 | 按键'1' |
+| ARKUI_KEYCODE_KEY_2 | 按键'2' |
+| ARKUI_KEYCODE_KEY_3 | 按键'3' |
+| ARKUI_KEYCODE_KEY_4 | 按键'4' |
+| ARKUI_KEYCODE_KEY_5 | 按键'5' |
+| ARKUI_KEYCODE_KEY_6 | 按键'6' |
+| ARKUI_KEYCODE_KEY_7 | 按键'7' |
+| ARKUI_KEYCODE_KEY_8 | 按键'8' |
+| ARKUI_KEYCODE_KEY_9 | 按键'9' |
+| ARKUI_KEYCODE_KEY_STAR | 按键'*' |
+| ARKUI_KEYCODE_KEY_POUND | 按键'#' |
+| ARKUI_KEYCODE_KEY_DPAD_UP | 导航键 向上 |
+| ARKUI_KEYCODE_KEY_DPAD_DOWN | 导航键 向下 |
+| ARKUI_KEYCODE_KEY_DPAD_LEFT | 导航键 向左 |
+| ARKUI_KEYCODE_KEY_DPAD_RIGHT | 导航键 向右 |
+| ARKUI_KEYCODE_KEY_DPAD_CENTER | 导航键 确定键 |
+| ARKUI_KEYCODE_KEY_A | 按键'A' |
+| ARKUI_KEYCODE_KEY_B | 按键'B' |
+| ARKUI_KEYCODE_KEY_C | 按键'C' |
+| ARKUI_KEYCODE_KEY_D | 按键'D' |
+| ARKUI_KEYCODE_KEY_E | 按键'E' |
+| ARKUI_KEYCODE_KEY_F | 按键'F' |
+| ARKUI_KEYCODE_KEY_G | 按键'G' |
+| ARKUI_KEYCODE_KEY_H | 按键'H' |
+| ARKUI_KEYCODE_KEY_I | 按键'I' |
+| ARKUI_KEYCODE_KEY_J | 按键'J' |
+| ARKUI_KEYCODE_KEY_K | 按键'K' |
+| ARKUI_KEYCODE_KEY_L | 按键'L' |
+| ARKUI_KEYCODE_KEY_M | 按键'M' |
+| ARKUI_KEYCODE_KEY_N | 按键'N' |
+| ARKUI_KEYCODE_KEY_O | 按键'O' |
+| ARKUI_KEYCODE_KEY_P | 按键'P' |
+| ARKUI_KEYCODE_KEY_Q | 按键'Q' |
+| ARKUI_KEYCODE_KEY_R | 按键'R' |
+| ARKUI_KEYCODE_KEY_S | 按键'S' |
+| ARKUI_KEYCODE_KEY_T | 按键'T' |
+| ARKUI_KEYCODE_KEY_U | 按键'U' |
+| ARKUI_KEYCODE_KEY_V | 按键'V' |
+| ARKUI_KEYCODE_KEY_W | 按键'W' |
+| ARKUI_KEYCODE_KEY_X | 按键'X' |
+| ARKUI_KEYCODE_KEY_Y | 按键'Y' |
+| ARKUI_KEYCODE_KEY_Z | 按键'Z' |
+| ARKUI_KEYCODE_KEY_COMMA | 按键',' |
+| ARKUI_KEYCODE_KEY_PERIOD | 按键'.' |
+| ARKUI_KEYCODE_KEY_ALT_LEFT | 左Alt键 |
+| ARKUI_KEYCODE_KEY_ALT_RIGHT | 右Alt键 |
+| ARKUI_KEYCODE_KEY_SHIFT_LEFT | 左Shift键 |
+| ARKUI_KEYCODE_KEY_SHIFT_RIGHT | 右Shift键 |
+| ARKUI_KEYCODE_KEY_TAB | Tab键 |
+| ARKUI_KEYCODE_KEY_SPACE | 空格键 |
+| ARKUI_KEYCODE_KEY_SYM | 符号修改器按键 |
+| ARKUI_KEYCODE_KEY_EXPLORER | 浏览器功能键，此键用于启动浏览器应用程序。 |
+| ARKUI_KEYCODE_KEY_ENVELOPE | 电子邮件功能键，此键用于启动电子邮件应用程序。 |
+| ARKUI_KEYCODE_KEY_ENTER | 回车键 |
+| ARKUI_KEYCODE_KEY_DEL | 退格键 |
+| ARKUI_KEYCODE_KEY_GRAVE | 按键'`' |
+| ARKUI_KEYCODE_KEY_MINUS | 按键'-' |
+| ARKUI_KEYCODE_KEY_EQUALS | 按键'=' |
+| ARKUI_KEYCODE_KEY_LEFT_BRACKET | 按键'[' |
+| ARKUI_KEYCODE_KEY_RIGHT_BRACKET | 按键']' |
+| ARKUI_KEYCODE_KEY_BACKSLASH | 按键'\\' |
+| ARKUI_KEYCODE_KEY_SEMICOLON | 按键';' |
+| ARKUI_KEYCODE_KEY_APOSTROPHE | 按键''' (单引号) |
+| ARKUI_KEYCODE_KEY_SLASH | 按键'/' |
+| ARKUI_KEYCODE_KEY_AT | 按键'@' |
+| ARKUI_KEYCODE_KEY_PLUS | 按键'+' |
+| ARKUI_KEYCODE_KEY_MENU | 菜单键 |
+| ARKUI_KEYCODE_KEY_PAGE_UP | 向上翻页键 |
+| ARKUI_KEYCODE_KEY_PAGE_DOWN | 向下翻页键 |
+| ARKUI_KEYCODE_KEY_ESCAPE | ESC键 |
+| ARKUI_KEYCODE_KEY_FORWARD_DEL | 删除键 |
+| ARKUI_KEYCODE_KEY_CTRL_LEFT | 左Ctrl键 |
+| ARKUI_KEYCODE_KEY_CTRL_RIGHT | 右Ctrl键 |
+| ARKUI_KEYCODE_KEY_CAPS_LOCK | 大写锁定键 |
+| ARKUI_KEYCODE_KEY_SCROLL_LOCK | 滚动锁定键 |
+| ARKUI_KEYCODE_KEY_META_LEFT | 左元修改器键 |
+| ARKUI_KEYCODE_KEY_META_RIGHT | 右元修改器键 |
+| ARKUI_KEYCODE_KEY_FUNCTION | 功能键 |
+| ARKUI_KEYCODE_KEY_SYSRQ | 系统请求/打印屏幕键 |
+| ARKUI_KEYCODE_KEY_BREAK | Break/Pause键 |
+| ARKUI_KEYCODE_KEY_MOVE_HOME | 光标移动到开始键 |
+| ARKUI_KEYCODE_KEY_MOVE_END | 光标移动到末尾键 |
+| ARKUI_KEYCODE_KEY_INSERT | 插入键 |
+| ARKUI_KEYCODE_KEY_FORWARD | 前进键 |
+| ARKUI_KEYCODE_KEY_MEDIA_PLAY | 多媒体键 播放 |
+| ARKUI_KEYCODE_KEY_MEDIA_PAUSE | 多媒体键 暂停 |
+| ARKUI_KEYCODE_KEY_MEDIA_CLOSE | 多媒体键 关闭 |
+| ARKUI_KEYCODE_KEY_MEDIA_EJECT | 多媒体键 弹出 |
+| ARKUI_KEYCODE_KEY_MEDIA_RECORD | 多媒体键 录音 |
+| ARKUI_KEYCODE_KEY_F1 | 按键'F1' |
+| ARKUI_KEYCODE_KEY_F2 | 按键'F2' |
+| ARKUI_KEYCODE_KEY_F3 | 按键'F3' |
+| ARKUI_KEYCODE_KEY_F4 | 按键'F4' |
+| ARKUI_KEYCODE_KEY_F5 | 按键'F5' |
+| ARKUI_KEYCODE_KEY_F6 | 按键'F6' |
+| ARKUI_KEYCODE_KEY_F7 | 按键'F7' |
+| ARKUI_KEYCODE_KEY_F8 | 按键'F8' |
+| ARKUI_KEYCODE_KEY_F9 | 按键'F9' |
+| ARKUI_KEYCODE_KEY_F10 | 按键'F10' |
+| ARKUI_KEYCODE_KEY_F11 | 按键'F11' |
+| ARKUI_KEYCODE_KEY_F12 | 按键'F12' |
+| ARKUI_KEYCODE_KEY_NUM_LOCK | 小键盘锁 |
+| ARKUI_KEYCODE_KEY_NUMPAD_0 | 小键盘按键'0' |
+| ARKUI_KEYCODE_KEY_NUMPAD_1 | 小键盘按键'1' |
+| ARKUI_KEYCODE_KEY_NUMPAD_2 | 小键盘按键'2' |
+| ARKUI_KEYCODE_KEY_NUMPAD_3 | 小键盘按键'3' |
+| ARKUI_KEYCODE_KEY_NUMPAD_4 | 小键盘按键'4' |
+| ARKUI_KEYCODE_KEY_NUMPAD_5 | 小键盘按键'5' |
+| ARKUI_KEYCODE_KEY_NUMPAD_6 | 小键盘按键'6' |
+| ARKUI_KEYCODE_KEY_NUMPAD_7 | 小键盘按键'7' |
+| ARKUI_KEYCODE_KEY_NUMPAD_8 | 小键盘按键'8' |
+| ARKUI_KEYCODE_KEY_NUMPAD_9 | 小键盘按键'9' |
+| ARKUI_KEYCODE_KEY_NUMPAD_DIVIDE | 小键盘按键'/' |
+| ARKUI_KEYCODE_KEY_NUMPAD_MULTIPLY | 小键盘按键'*' |
+| ARKUI_KEYCODE_KEY_NUMPAD_SUBTRACT | 小键盘按键'-' |
+| ARKUI_KEYCODE_KEY_NUMPAD_ADD | 小键盘按键'+' |
+| ARKUI_KEYCODE_KEY_NUMPAD_DOT | 小键盘按键'.' |
+| ARKUI_KEYCODE_KEY_NUMPAD_COMMA | 小键盘按键',' |
+| ARKUI_KEYCODE_KEY_NUMPAD_ENTER | 小键盘按键回车 |
+| ARKUI_KEYCODE_KEY_NUMPAD_EQUALS | 小键盘按键'=' |
+| ARKUI_KEYCODE_KEY_NUMPAD_LEFT_PAREN | 小键盘按键'(' |
+| ARKUI_KEYCODE_KEY_NUMPAD_RIGHT_PAREN | 小键盘按键')' |
+| ARKUI_KEYCODE_KEY_VIRTUAL_MULTITASK | 虚拟多任务键 |
+| ARKUI_KEYCODE_KEY_SLEEP | 睡眠键 |
+| ARKUI_KEYCODE_KEY_ZENKAKU_HANKAKU | 日文全宽/半宽键 |
+| ARKUI_KEYCODE_KEY_102ND | 102nd按键 |
+| ARKUI_KEYCODE_KEY_RO | 日文Ro键 |
+| ARKUI_KEYCODE_KEY_KATAKANA | 日文片假名键 |
+| ARKUI_KEYCODE_KEY_HIRAGANA | 日文平假名键 |
+| ARKUI_KEYCODE_KEY_HENKAN | 日文转换键 |
+| ARKUI_KEYCODE_KEY_KATAKANA_HIRAGANA | 日语片假名/平假名键 |
+| ARKUI_KEYCODE_KEY_MUHENKAN | 日文非转换键 |
+| ARKUI_KEYCODE_KEY_LINEFEED | 换行键 |
+| ARKUI_KEYCODE_KEY_MACRO | 宏键 |
+| ARKUI_KEYCODE_KEY_NUMPAD_PLUSMINUS | 数字键盘上的加号/减号键 |
+| ARKUI_KEYCODE_KEY_SCALE | 扩展键 |
+| ARKUI_KEYCODE_KEY_HANGUEL | 日文韩语键 |
+| ARKUI_KEYCODE_KEY_HANJA | 日文汉语键 |
+| ARKUI_KEYCODE_KEY_YEN | 日元键 |
+| ARKUI_KEYCODE_KEY_STOP | 停止键 |
+| ARKUI_KEYCODE_KEY_AGAIN | 重复键 |
+| ARKUI_KEYCODE_KEY_PROPS | 道具键 |
+| ARKUI_KEYCODE_KEY_UNDO | 撤消键 |
+| ARKUI_KEYCODE_KEY_COPY | 复制键 |
+| ARKUI_KEYCODE_KEY_OPEN | 打开键 |
+| ARKUI_KEYCODE_KEY_PASTE | 粘贴键 |
+| ARKUI_KEYCODE_KEY_FIND | 查找键 |
+| ARKUI_KEYCODE_KEY_CUT | 剪切键 |
+| ARKUI_KEYCODE_KEY_HELP | 帮助键 |
+| ARKUI_KEYCODE_KEY_CALC | 计算器特殊功能键，用于启动计算器应用程序 |
+| ARKUI_KEYCODE_KEY_FILE | 文件按键 |
+| ARKUI_KEYCODE_KEY_BOOKMARKS | 书签键 |
+| ARKUI_KEYCODE_KEY_NEXT | 下一个按键 |
+| ARKUI_KEYCODE_KEY_PLAYPAUSE | 播放/暂停键 |
+| ARKUI_KEYCODE_KEY_PREVIOUS | 上一个按键 |
+| ARKUI_KEYCODE_KEY_STOPCD | CD停止键 |
+| ARKUI_KEYCODE_KEY_CONFIG | 配置键 |
+| ARKUI_KEYCODE_KEY_REFRESH | 刷新键 |
+| ARKUI_KEYCODE_KEY_EXIT | 退出键 |
+| ARKUI_KEYCODE_KEY_EDIT | 编辑键 |
+| ARKUI_KEYCODE_KEY_SCROLLUP | 向上滚动键 |
+| ARKUI_KEYCODE_KEY_SCROLLDOWN | 向下滚动键 |
+| ARKUI_KEYCODE_KEY_NEW | 新建键 |
+| ARKUI_KEYCODE_KEY_REDO | 恢复键 |
+| ARKUI_KEYCODE_KEY_CLOSE | 关闭键 |
+| ARKUI_KEYCODE_KEY_PLAY | 播放键 |
+| ARKUI_KEYCODE_KEY_BASSBOOST | 低音增强键 |
+| ARKUI_KEYCODE_KEY_PRINT | 打印键 |
+| ARKUI_KEYCODE_KEY_CHAT | 聊天键 |
+| ARKUI_KEYCODE_KEY_FINANCE | 金融键 |
+| ARKUI_KEYCODE_KEY_CANCEL | 取消键 |
+| ARKUI_KEYCODE_KEY_KBDILLUM_TOGGLE | 键盘灯光切换键 |
+| ARKUI_KEYCODE_KEY_KBDILLUM_DOWN | 键盘灯光调亮键 |
+| ARKUI_KEYCODE_KEY_KBDILLUM_UP | 键盘灯光调暗键 |
+| ARKUI_KEYCODE_KEY_SEND | 发送键 |
+| ARKUI_KEYCODE_KEY_REPLY | 答复键 |
+| ARKUI_KEYCODE_KEY_FORWARDMAIL | 邮件转发键 |
+| ARKUI_KEYCODE_KEY_SAVE | 保存键 |
+| ARKUI_KEYCODE_KEY_DOCUMENTS | 文件键 |
+| ARKUI_KEYCODE_KEY_VIDEO_NEXT | 下一个视频键 |
+| ARKUI_KEYCODE_KEY_VIDEO_PREV | 上一个视频键 |
+| ARKUI_KEYCODE_KEY_BRIGHTNESS_CYCLE | 背光渐变键 |
+| ARKUI_KEYCODE_KEY_BRIGHTNESS_ZERO | 亮度调节为0键 |
+| ARKUI_KEYCODE_KEY_DISPLAY_OFF | 显示关闭键 |
+| ARKUI_KEYCODE_KEY_BTN_MISC | 游戏手柄上的各种按键 |
+| ARKUI_KEYCODE_KEY_GOTO | 进入键 |
+| ARKUI_KEYCODE_KEY_INFO | 信息查看键 |
+| ARKUI_KEYCODE_KEY_PROGRAM | 程序键 |
+| ARKUI_KEYCODE_KEY_PVR | 个人录像机(PVR)键 |
+| ARKUI_KEYCODE_KEY_SUBTITLE | 字幕键 |
+| ARKUI_KEYCODE_KEY_FULL_SCREEN | 全屏键 |
+| ARKUI_KEYCODE_KEY_KEYBOARD | 键盘 |
+| ARKUI_KEYCODE_KEY_ASPECT_RATIO | 屏幕纵横比调节键 |
+| ARKUI_KEYCODE_KEY_PC | 端口控制键 |
+| ARKUI_KEYCODE_KEY_TV | TV键 |
+| ARKUI_KEYCODE_KEY_TV2 | TV键2 |
+| ARKUI_KEYCODE_KEY_VCR | 录像机开启键 |
+| ARKUI_KEYCODE_KEY_VCR2 | 录像机开启键2 |
+| ARKUI_KEYCODE_KEY_SAT | SIM卡应用工具包（SAT）键 |
+| ARKUI_KEYCODE_KEY_CD | CD键 |
+| ARKUI_KEYCODE_KEY_TAPE | 磁带键 |
+| ARKUI_KEYCODE_KEY_TUNER | 调谐器键 |
+| ARKUI_KEYCODE_KEY_PLAYER | 播放器键 |
+| ARKUI_KEYCODE_KEY_DVD | DVD键 |
+| ARKUI_KEYCODE_KEY_AUDIO | 音频键 |
+| ARKUI_KEYCODE_KEY_VIDEO | 视频键 |
+| ARKUI_KEYCODE_KEY_MEMO | 备忘录键 |
+| ARKUI_KEYCODE_KEY_CALENDAR | 日历键 |
+| ARKUI_KEYCODE_KEY_RED | 红色指示器 |
+| ARKUI_KEYCODE_KEY_GREEN | 绿色指示器 |
+| ARKUI_KEYCODE_KEY_YELLOW | 黄色指示器 |
+| ARKUI_KEYCODE_KEY_BLUE | 蓝色指示器 |
+| ARKUI_KEYCODE_KEY_CHANNELUP | 频道向上键 |
+| ARKUI_KEYCODE_KEY_CHANNELDOWN | 频道向下键 |
+| ARKUI_KEYCODE_KEY_LAST | 末尾键 |
+| ARKUI_KEYCODE_KEY_RESTART | 重启键 |
+| ARKUI_KEYCODE_KEY_SLOW | 慢速键 |
+| ARKUI_KEYCODE_KEY_SHUFFLE | 随机播放键 |
+| ARKUI_KEYCODE_KEY_VIDEOPHONE | 可视电话键 |
+| ARKUI_KEYCODE_KEY_GAMES | 游戏键 |
+| ARKUI_KEYCODE_KEY_ZOOMIN | 放大键 |
+| ARKUI_KEYCODE_KEY_ZOOMOUT | 缩小键 |
+| ARKUI_KEYCODE_KEY_ZOOMRESET | 缩放重置键 |
+| ARKUI_KEYCODE_KEY_WORDPROCESSOR | 文字处理键 |
+| ARKUI_KEYCODE_KEY_EDITOR | 编辑器键 |
+| ARKUI_KEYCODE_KEY_SPREADSHEET | 电子表格键 |
+| ARKUI_KEYCODE_KEY_GRAPHICSEDITOR | 图形编辑器键 |
+| ARKUI_KEYCODE_KEY_PRESENTATION | 演示文稿键 |
+| ARKUI_KEYCODE_KEY_DATABASE | 数据库键标 |
+| ARKUI_KEYCODE_KEY_NEWS | 新闻键 |
+| ARKUI_KEYCODE_KEY_VOICEMAIL | 语音信箱 |
+| ARKUI_KEYCODE_KEY_ADDRESSBOOK | 通讯簿 |
+| ARKUI_KEYCODE_KEY_MESSENGER | 通信键 |
+| ARKUI_KEYCODE_KEY_BRIGHTNESS_TOGGLE | 亮度切换键 |
+| ARKUI_KEYCODE_KEY_SPELLCHECK | 媒体循环键 |
+| ARKUI_KEYCODE_KEY_COFFEE | 终端锁/屏幕保护程序 |
+| ARKUI_KEYCODE_KEY_MEDIA_REPEAT | 媒体循环键 |
+| ARKUI_KEYCODE_KEY_IMAGES | 图像键 |
+| ARKUI_KEYCODE_KEY_BUTTONCONFIG | 按键配置键 |
+| ARKUI_KEYCODE_KEY_TASKMANAGER | 任务管理器 |
+| ARKUI_KEYCODE_KEY_JOURNAL | 日志按键 |
+| ARKUI_KEYCODE_KEY_CONTROLPANEL | 控制面板键 |
+| ARKUI_KEYCODE_KEY_APPSELECT | 应用程序选择键 |
+| ARKUI_KEYCODE_KEY_SCREENSAVER | 屏幕保护程序键 |
+| ARKUI_KEYCODE_KEY_ASSISTANT | 辅助键 |
+| ARKUI_KEYCODE_KEY_KBD_LAYOUT_NEXT | 下一个键盘布局键 |
+| ARKUI_KEYCODE_KEY_BRIGHTNESS_MIN | 最小亮度键 |
+| ARKUI_KEYCODE_KEY_BRIGHTNESS_MAX | 最大亮度键 |
+| ARKUI_KEYCODE_KEY_KBDINPUTASSIST_PREV | 键盘输入Assist_Previous |
+| ARKUI_KEYCODE_KEY_KBDINPUTASSIST_NEXT | 键盘输入Assist_Next |
+| ARKUI_KEYCODE_KEY_KBDINPUTASSIST_PREVGROUP | 键盘输入Assist_Previous |
+| ARKUI_KEYCODE_KEY_KBDINPUTASSIST_NEXTGROUP | 键盘输入Assist_Next |
+| ARKUI_KEYCODE_KEY_KBDINPUTASSIST_ACCEPT | 键盘输入Assist_Accept |
+| ARKUI_KEYCODE_KEY_KBDINPUTASSIST_CANCEL | 键盘输入Assist_Cancel |
+| ARKUI_KEYCODE_KEY_FRONT | 挡风玻璃除雾器开关 |
+| ARKUI_KEYCODE_KEY_SETUP | 设置键 |
+| ARKUI_KEYCODE_KEY_WAKEUP | 唤醒键 |
+| ARKUI_KEYCODE_KEY_SENDFILE | 发送文件按键 |
+| ARKUI_KEYCODE_KEY_DELETEFILE | 删除文件按键 |
+| ARKUI_KEYCODE_KEY_XFER | 文件传输(XFER)按键 |
+| ARKUI_KEYCODE_KEY_PROG1 | 程序键1 |
+| ARKUI_KEYCODE_KEY_PROG2 | 程序键2 |
+| ARKUI_KEYCODE_KEY_MSDOS | MS-DOS键（微软磁盘操作系统 |
+| ARKUI_KEYCODE_KEY_SCREENLOCK | 屏幕锁定键 |
+| ARKUI_KEYCODE_KEY_DIRECTION_ROTATE_DISPLAY | 方向旋转显示键 |
+| ARKUI_KEYCODE_KEY_CYCLEWINDOWS | Windows循环键 |
+| ARKUI_KEYCODE_KEY_COMPUTER | 按键 |
+| ARKUI_KEYCODE_KEY_EJECTCLOSECD | 弹出CD键 |
+| ARKUI_KEYCODE_KEY_ISO | ISO键 |
+| ARKUI_KEYCODE_KEY_MOVE | 移动键 |
+| ARKUI_KEYCODE_KEY_F13 | 按键'F13' |
+| ARKUI_KEYCODE_KEY_F14 | 按键'F14' |
+| ARKUI_KEYCODE_KEY_F15 | 按键'F15' |
+| ARKUI_KEYCODE_KEY_F16 | 按键'F16' |
+| ARKUI_KEYCODE_KEY_F17 | 按键'F17' |
+| ARKUI_KEYCODE_KEY_F18 | 按键'F18' |
+| ARKUI_KEYCODE_KEY_F19 | 按键'F19' |
+| ARKUI_KEYCODE_KEY_F20 | 按键'F20' |
+| ARKUI_KEYCODE_KEY_F21 | 按键'F21' |
+| ARKUI_KEYCODE_KEY_F22 | 按键'F22' |
+| ARKUI_KEYCODE_KEY_F23 | 按键'F23' |
+| ARKUI_KEYCODE_KEY_F24 | 按键'F24' |
+| ARKUI_KEYCODE_KEY_PROG3 | 程序键3 |
+| ARKUI_KEYCODE_KEY_PROG4 | 程序键4 |
+| ARKUI_KEYCODE_KEY_DASHBOARD | 仪表板 |
+| ARKUI_KEYCODE_KEY_SUSPEND | 挂起键 |
+| ARKUI_KEYCODE_KEY_HP | 高阶路径键 |
+| ARKUI_KEYCODE_KEY_SOUND | 音量键 |
+| ARKUI_KEYCODE_KEY_QUESTION | 疑问按键 |
+| ARKUI_KEYCODE_KEY_CONNECT | 连接键 |
+| ARKUI_KEYCODE_KEY_SPORT | 运动按键 |
+| ARKUI_KEYCODE_KEY_SHOP | 商城键 |
+| ARKUI_KEYCODE_KEY_ALTERASE | 交替键 |
+| ARKUI_KEYCODE_KEY_SWITCHVIDEOMODE | 在可用视频之间循环输出（监视器/LCD/TV输出/等） |
+| ARKUI_KEYCODE_KEY_BATTERY | 电池按键 |
+| ARKUI_KEYCODE_KEY_BLUETOOTH | 蓝牙按键 |
+| ARKUI_KEYCODE_KEY_WLAN | 无线局域网 |
+| ARKUI_KEYCODE_KEY_UWB | 超宽带（UWB） |
+| ARKUI_KEYCODE_KEY_WWAN_WIMAX | WWAN WiMAX按键 |
+| ARKUI_KEYCODE_KEY_RFKILL | 控制所有收音机的键 |
+| ARKUI_KEYCODE_KEY_CHANNEL | 向上频道键 |
+| ARKUI_KEYCODE_KEY_BTN_0 | 按键0 |
+| ARKUI_KEYCODE_KEY_BTN_1 | 按键1 |
+| ARKUI_KEYCODE_KEY_BTN_2 | 按键2 |
+| ARKUI_KEYCODE_KEY_BTN_3 | 按键3 |
+| ARKUI_KEYCODE_KEY_BTN_4 | 按键4 |
+| ARKUI_KEYCODE_KEY_BTN_5 | 按键5 |
+| ARKUI_KEYCODE_KEY_BTN_6 | 按键6 |
+| ARKUI_KEYCODE_KEY_BTN_7 | 按键7 |
+| ARKUI_KEYCODE_KEY_BTN_8 | 按键8 |
+| ARKUI_KEYCODE_KEY_BTN_9 | 按键9 |
+
+
+### ArkUI_KeyEventType
+
+```
+enum ArkUI_KeyEventType
+```
+**描述：**
+
+按键的类型。
+
+**起始版本：** 14
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_KEY_EVENT_UNKNOWN | 未知类型 |
+| ARKUI_KEY_EVENT_DOWN | 按键按下 |
+| ARKUI_KEY_EVENT_UP | 按键松开 |
+| ARKUI_KEY_EVENT_LONG_PRESS | 按键长按 |
+| ARKUI_KEY_EVENT_CLICK | 按键点击 |
+
+
+### ArkUI_KeySourceType
+
+```
+enum ArkUI_KeySourceType
+```
+**描述：**
+
+触发当前按键的输入设备类型。
+
+**起始版本：** 14
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_KEY_SOURCE_UNKNOWN | 未知类型 |
+| ARKUI_KEY_SOURCE_TYPE_MOUSE | 鼠标 |
+| ARKUI_KEY_SOURCE_TYPE_TOUCH | 触摸屏 |
+| ARKUI_KEY_SOURCE_TYPE_TOUCH_PAD | 触摸板 |
+| ARKUI_KEY_SOURCE_TYPE_KEYBOARD | 键盘 |
+
+
+### ArkUI_KeyIntension
+
+```
+enum ArkUI_KeyIntension
+```
+**描述：**
+
+按键对应的意图。
+
+**起始版本：** 14
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_KEY_INTENSION_UNKNOWN | 未知意图 |
+| ARKUI_KEY_INTENSION_UP | 向上 |
+| ARKUI_KEY_INTENSION_DOWN | 向下 |
+| ARKUI_KEY_INTENSION_LEFT | 向左 |
+| ARKUI_KEY_INTENSION_RIGHT | 向右 |
+| ARKUI_KEY_INTENSION_SELECT | 选中 |
+| ARKUI_KEY_INTENSION_ESCAPE | 返回 |
+| ARKUI_KEY_INTENSION_BACK | 后退 |
+| ARKUI_KEY_INTENSION_FORWARD | 前进 |
+| ARKUI_KEY_INTENSION_MENU | 菜单 |
+| ARKUI_KEY_INTENSION_HOME | 主页 |
+| ARKUI_KEY_INTENSION_PAGE_UP | 上一页 |
+| ARKUI_KEY_INTENSION_PAGE_DOWN | 下一页 |
+| ARKUI_KEY_INTENSION_ZOOM_OUT | 缩小 |
+| ARKUI_KEY_INTENSION_ZOOM_IN | 放大 |
+| ARKUI_KEY_INTENTION_MEDIA_PLAY_PAUSE | 播放 |
+| ARKUI_KEY_INTENTION_MEDIA_FAST_FORWARD | 快进 |
+| ARKUI_KEY_INTENTION_MEDIA_FAST_REWIND | 快退 |
+| ARKUI_KEY_INTENTION_MEDIA_FAST_PLAYBACK | 快速播放 |
+| ARKUI_KEY_INTENTION_MEDIA_NEXT | 下一首 |
+| ARKUI_KEY_INTENTION_MEDIA_PREVIOUS | 上一首 |
+| ARKUI_KEY_INTENTION_MEDIA_MUTE | 静音 |
+| ARKUI_KEY_INTENTION_VOLUME_UP | 音量增加 |
+| ARKUI_KEY_INTENTION_VOLUME_DOWN | 音量降低 |
+| ARKUI_KEY_INTENTION_CALL | 接听电话 |
+| ARKUI_KEY_INTENTION_ENDCALL | 挂断电话 |
+| ARKUI_KEY_INTENTION_REJECTCALL | 拒接电话 |
+| ARKUI_KEY_INTENTION_CAMERA | 拍照 |
+
+
 ## 函数说明
 
 
@@ -6494,6 +6938,253 @@ const char* OH_ArkUI_ConvertToHtml (ArkUI_StyledString_Descriptor * descriptor)
 **返回：**
 
 html。该指针由内部管理，在OH_ArkUI_StyledString_Descriptor_Destroy()时释放。
+
+
+### OH_ArkUI_KeyEvent_GetType()
+```
+ArkUI_KeyEventType OH_ArkUI_KeyEvent_GetType(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取按键的类型。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+ArkUI_KeyEventType 按键的类型。
+
+
+### OH_ArkUI_KeyEvent_GetKeyCode()
+```
+ArkUI_KeyCode OH_ArkUI_KeyEvent_GetKeyCode(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取按键的键码。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+ArkUI_KeyCode 按键的键码。
+
+
+### OH_ArkUI_KeyEvent_GetKeyText()
+```
+const char *OH_ArkUI_KeyEvent_GetKeyText(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取按键的键值。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+按键的键值。
+
+
+### OH_ArkUI_KeyEvent_GetKeySource()
+```
+ArkUI_KeySourceType OH_ArkUI_KeyEvent_GetKeySource(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取当前按键的输入设备类型。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+ArkUI_KeySourceType 当前按键的输入设备类型。
+
+
+### OH_ArkUI_KeyEvent_GetDeviceId()
+```
+int32_t OH_ArkUI_KeyEvent_GetDeviceId(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取当前按键的输入设备ID。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+当前按键的输入设备ID。
+
+
+### OH_ArkUI_KeyEvent_GetMetaKey()
+```
+int32_t OH_ArkUI_KeyEvent_GetMetaKey(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取按键发生时元键（即Windows键盘的WIN键、Mac键盘的Command键）的状态。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+按键发生时元键（即Windows键盘的WIN键、Mac键盘的Command键）的状态，1表示按压态，0表示未按压态。
+
+
+### OH_ArkUI_KeyEvent_GetTimestamp()
+```
+uint64_t OH_ArkUI_KeyEvent_GetTimestamp(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+事件时间戳，单位：ns。
+
+
+### OH_ArkUI_KeyEvent_StopPropagation()
+```
+void OH_ArkUI_KeyEvent_StopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation)
+```
+**描述：**
+
+阻塞事件冒泡传递。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| stopPropagation | 表示是否阻止事件冒泡。  | 
+
+
+### OH_ArkUI_KeyEvent_GetModifierKeyState()
+```
+bool OH_ArkUI_KeyEvent_GetModifierKeyState(const ArkUI_UIInputEvent* event, uint32_t modifierKeys)
+```
+**描述：**
+
+获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'|'Alt'|'Shift'|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| modifierKeys | 应用在输入时需通过 ArkUI_ModifierKeyName 创建。  | 
+
+**返回：**
+
+是否按压。
+
+
+### OH_ArkUI_KeyEvent_GetKeyIntensionCode()
+```
+ArkUI_KeyIntension OH_ArkUI_KeyEvent_GetKeyIntensionCode(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取按键对应的意图。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+ArkUI_KeyIntension 按键对应的意图。
+
+
+### OH_ArkUI_KeyEvent_GetUnicode()
+```
+uint32_t OH_ArkUI_KeyEvent_GetUnicode(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+获取按键的unicode码值。支持范围为非空格的基本拉丁字符：0x0021-0x007E，不支持字符为0。组合键场景下，返回当前keyEvent对应按键的unicode码值。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+unicode码值。
+
+
+### OH_ArkUI_KeyEvent_SetConsumed()
+```
+void OH_ArkUI_KeyEvent_SetConsumed(const ArkUI_UIInputEvent* event, bool isConsumed)
+```
+**描述：**
+
+在按键事件回调中，设置事件是否被该回调消费。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| isConsumed | 是否被消费。  | 
 
 
 ### OH_ArkUI_CreateAsymmetricTransitionEffect()
