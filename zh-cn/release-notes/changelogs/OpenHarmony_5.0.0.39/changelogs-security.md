@@ -12,7 +12,8 @@
 
 **变更影响**
 
-此变更为不兼容变更，仅对接口所属的SystemCapability进行调整，对接口本身的使用方式无影响。
+该变更为不兼容变更。
+对接口所属的SystemCapability进行调整，对接口本身的使用方式无影响。
 
 变更前：
 
@@ -88,7 +89,7 @@ HuksTag中的枚举值。详细如下：
 
 SystemCapability.Security.Huks.Core为必选基础能力，SystemCapability.Security.Huks.Extension为可选扩展能力。当前SDK默认定义的device-define都包含SystemCapability.Security.Huks.Core必选能力，因此涉及Universal Keystore组件的功能代码原则上无需适配。但如果代码中涉及调用canIUse()方法对本次变更涉及算法支持情况进行判断，则应修改canIUse()方法传入的SystemCapability，同时参考资料，结合API level判断。
 
-## cl.security.2 @ohos.security.cryptoFramework SysCap变更
+## cl.security.2 @ohos.security.cryptoFramework 接口SysCap变更
 
 **访问级别**
 
@@ -100,11 +101,23 @@ SystemCapability.Security.Huks.Core为必选基础能力，SystemCapability.Secu
 
 **变更影响**
 
-此变更为不兼容变更：
+此变更为不兼容变更。
 
-（1）使用canIUse("SystemCapability.Security.CryptoFramework")方式判断设备是否支持某种算法，则需要进行适配。
+变更前：
 
-（2）若设备SysCap包含了SystemCapability.Security.CryptoFramework，则需要进行适配。
+加解密算法库框架所有接口的SysCap均是SystemCapability.Security.CryptoFramework。
+
+（1）可以使用canIUse("SystemCapability.Security.CryptoFramework")判断设备是否支持加解密算法库能力。
+
+（2）若自定义设备支持加解密算法库能力能力，只需在设备的能力集配置中配置SystemCapability.Security.CryptoFramework。
+
+变更后：
+
+加解密算法库框架按照算法类型对接口重新划分SysCap，如随机数相关接口SysCap变更为SystemCapability.Security.CryptoFramework.Rand。
+
+（1）应该使用具体的Syscap判断设备的加解密算法库是否支持对应算法，如使用canIUse("SystemCapability.Security.CryptoFramework.Rand")判断设备的加解密算法库能力是否支持随机数能力。
+
+（2）若自定义设备原本就支持加解密算法库能力，则需在设备的能力集配置中添加加解密算法库框架的所有SysCap，具体SysCap名见“变更的接口/组件”。
 
 **起始 API Level**
 
@@ -134,6 +147,6 @@ SystemCapability.Security.Huks.Core为必选基础能力，SystemCapability.Secu
 
 **适配指导**
 
-（1）判断设备是否支持使用加解密算法库框架随机数能力需使用canIUse("SystemCapability.Security.CryptoFramework.Rand")，其他算法类似。
+（1）判断设备是否支持加解密算法库框架的随机数能力需使用canIUse("SystemCapability.Security.CryptoFramework.Rand")，其他算法类型类似。
 
-（2）若设备SysCap包含了SystemCapability.Security.CryptoFramework，则需要添加此次变更新增的10个SysCap。
+（2）若自定义设备的能力集配置文件中包含了SystemCapability.Security.CryptoFramework，则需要添加此次变更新增的10个SysCap。
