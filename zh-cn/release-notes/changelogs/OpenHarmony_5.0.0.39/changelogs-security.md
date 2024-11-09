@@ -11,7 +11,6 @@
 通用密钥库为了满足未来mini平台算法能力扩展诉求，将加解密算法相关TAG的SystemCapability由SystemCapability.Security.Huks.Extension调整为SystemCapability.Security.Huks.Core。且由于mini平台算法能力较弱，部分算法当前返回不支持，待后续扩展。
 
 **变更影响**
-
 该变更为不兼容变更。
 对接口所属的SystemCapability进行调整，对接口本身的使用方式无影响。
 
