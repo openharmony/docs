@@ -76,6 +76,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
+//定义标题栏左侧的页签项目类
 class tabItem {
   title: ResourceStr;
   icon?: ResourceStr;
@@ -85,6 +86,7 @@ class tabItem {
   }
 }
 
+//定义标题栏右侧菜单项目接口
 interface menuItem {
   value: ResourceStr;
   isEnabled?: boolean;
@@ -95,6 +97,7 @@ interface menuItem {
 @Component
 struct Index {
   @Builder
+  //定义页签列表关联的页面
   componentBuilder() {
     Text("#1ABC9C\nTURQUOISE")
       .fontWeight(FontWeight.Bold)
@@ -133,7 +136,9 @@ struct Index {
       .backgroundColor("#3498DB")
   }
 
+  //定义几个左侧的页签项目
   private readonly tabItems: Array<tabItem> = [new tabItem('页签1'),new tabItem('页签2'),new tabItem('页签3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('页签4')]
+  //定义几个右侧的菜单项目
   private  readonly menuItems: Array<menuItem> = [
     {
       value: $r('app.media.ic_public_reduce'),
@@ -152,6 +157,7 @@ struct Index {
     },
   ]
 
+  //TabTitleBar效果展示
   build() {
     Row() {
       Column() {
