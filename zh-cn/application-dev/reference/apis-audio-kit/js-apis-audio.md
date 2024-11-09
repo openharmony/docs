@@ -164,7 +164,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
@@ -215,7 +215,7 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
@@ -753,6 +753,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
+## DeviceBlockStatusInfo<sup>13+</sup>
+
+描述音频设备被堵塞状态和设备信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                              | 必填 | 说明               |
+| :---------------- | :------------------------------------------------ | :--- | :----------------- |
+| blockStatus       | [DeviceBlockStatus](#deviceblockstatus13)           | 是   | 音频设备堵塞状态。 |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
+
 ## ChannelBlendMode<sup>11+</sup>
 
 枚举，声道混合模式类型。
@@ -805,6 +816,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | CONNECT    | 0    | 设备连接。     |
 | DISCONNECT | 1    | 断开设备连接。 |
 
+## DeviceBlockStatus<sup>13+</sup>
+
+枚举，表示音频设备是否被堵塞。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 值   | 说明           |
+| :--------- | :--- | :------------- |
+| UNBLOCKED  | 0    | 音频设备正常。    |
+| BLOCKED    | 1    | 音频设备被堵塞。 |
+
 ## AudioCapturerOptions<sup>8+</sup>
 
 音频采集器选项信息。
@@ -838,6 +860,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
@@ -893,9 +916,9 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明      |
 | :--------------------- |:--|:--------|
 | CONCURRENCY_DEFAULT | 0 | 默认使用系统策略。     |
-| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它正在播放应用进行混音。     |
-| CONCURRENCY_DUCK_OTHERS | 2 | 后来播放应用压低正在播放应用的音量。 |
-| CONCURRENCY_PAUSE_OTHERS | 3 | 后来播放应用暂停正在播放应用。 |
+| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它音频并发。     |
+| CONCURRENCY_DUCK_OTHERS | 2 | 压低其他音频的音量。 |
+| CONCURRENCY_PAUSE_OTHERS | 3 | 暂停其他音频。 |
 
 ## AudioSessionDeactivatedReason<sup>12+</sup>
 
@@ -906,7 +929,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明     |
 | :--------------------- |:--|:-------|
 | DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
-| DEACTIVATED_TIMEOUT | 1 | 应用停流后超时。    |
+| DEACTIVATED_TIMEOUT | 1 | 音频会话等待超时。    |
 
 ## AudioSessionStrategy<sup>12+</sup>
 
@@ -1510,6 +1533,8 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 设置指定音量流静音，使用callback方式异步返回结果。
 
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
+
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
 
@@ -1542,6 +1567,8 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 设置指定音量流静音，使用Promise方式异步返回结果。
+
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -4199,6 +4226,107 @@ try {
 }
 ```
 
+### isMicBlockDetectionSupported<sup>13+</sup>
+
+isMicBlockDetectionSupported(): Promise&lt;boolean&gt;
+
+获取当前设备是否支持麦克风状态检测，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象，返回当前设备是否支持堵麦回调注册状态，true为支持，false为不支持。 |
+
+**示例：**
+
+```ts
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+});
+```
+
+### on('micBlockStatusChanged')<sup>13+</sup>
+
+on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): void
+
+监听音频麦克风是否被堵塞变化事件。在使用此功能之前，用户应查询当前设备是否支持检测，应用只有在使用麦克风录音时，并且所使用的麦克风的堵塞状态发生改变，
+才会收到回调，目前此检测功能仅支持麦克风位于本地设备上，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 是   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported()
+if (blockMic == true) {
+  audioRoutingManager.on('micBlockStatusChanged', async(deviceBlockStatusInfo: ESObject) =>{
+  if (deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.Blocked ||
+    deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.UNBlocked) {
+    console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
+  })
+}
+```
+
+### off('micBlockStatusChanged')<sup>13+</sup>
+
+off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>): void
+
+取消监听音频麦克风是否被堵塞变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 否   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听
+audioRoutingManager.off('micBlockStatusChanged');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+  console.info(`device descriptor size : ${micBlockStatusChanged.deviceDescriptors.length} `);
+  console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+};
+
+audioRoutingManager.on('micBlockStatusChanged', micBlockStatusCallback);
+
+audioRoutingManager.off('micBlockStatusChanged', micBlockStatusCallback);
+```
+
 ### on('deviceChange')<sup>9+</sup>
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
@@ -5358,7 +5486,7 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
 
 type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
 
-回调函数类型，用于音频渲染器的数据写入。
+回调函数类型，用于音频渲染器的数据写入，回调函数结束后，音频服务会把data指针数据放入队列里等待播放，因此请勿在回调外再次更改data指向的数据, 且务必保证往data填满待播放数据, 否则会导致音频服务播放杂音。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6212,7 +6340,7 @@ audioRenderer.getBufferSize().then((data: number) => {
 
 getAudioTime(callback: AsyncCallback\<number>): void
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用callback方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6236,7 +6364,7 @@ audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise\<number>
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用Promise方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6262,7 +6390,7 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从 1970 年 1 月 1 日开始），同步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -8297,7 +8425,7 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 
 getAudioTime(callback: AsyncCallback<number\>): void
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用callback方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8321,7 +8449,7 @@ audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise<number\>
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用Promise方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8347,7 +8475,7 @@ audioCapturer.getAudioTime().then((audioTime: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从1970年1月1日开始），单位为纳秒，同步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 

@@ -30,6 +30,6 @@ HSP存在bundleName和签名的一致性要求，而且在调试阶段需要先�
     }
     ```
 
-4. 修改oh-package.json5文件，删除packageType配置。
+4. 修改HSP模块的oh-package.json5文件，删除packageType配置。
 
 5. 修改项目级的配置文件build-profile.json5，在modules模块下找到HSP的配置信息，删除HSP配置下的targets。

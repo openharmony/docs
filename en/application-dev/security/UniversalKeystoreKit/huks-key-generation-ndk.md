@@ -14,7 +14,7 @@ This topic walks you through on how to randomly generate an ECC key. For details
 ## How to Develop
 
 1. Set the alias (**keyAlias**) of the key to generate.
-   - The key alias cannot exceed 64 bytes.
+   - The key alias cannot exceed 128 bytes.
    - For the keys generated for different services, HUKS isolates the storage paths based on the service identity information to prevent conflicts caused by the same key alias.
 
 2. Initialize the key property set. Construct the key property set **paramSet** using [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset).

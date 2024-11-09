@@ -1342,7 +1342,7 @@ export const getMyNode = (): MyNodeController | undefined => {
 }
 ```
 
-![zh-cn_image_NavigationNodeTransfer](figures/zh-cn_image_NavigationNodeTransfer.gif)
+![en-us_image_NavigationNodeTransfer](figures/en-us_image_NavigationNodeTransfer.gif)
 
 ### Using with BindSheet
 
@@ -1885,7 +1885,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-![zh-cn_image_BindSheetNodeTransfer](figures/zh-cn_image_BindSheetNodeTransfer.gif)
+![en-us_image_BindSheetNodeTransfer](figures/en-us_image_BindSheetNodeTransfer.gif)
 
 ## Using geometryTransition
 

@@ -10,9 +10,7 @@ The **ModuleInfo** module provides module information of an application.
 > This API is deprecated since API version 9. You are advised to use [bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
-| Name           | Type  | Readable| Writable| Description    |
+| Name           | Type  | Read-Only| Optional| Description    |
 | --------------- | ------ | ---- | ---- | -------- |
 | moduleName      | string | Yes  | No  | Module name.|
 | moduleSourceDir | string | Yes  | No  | Installation directory. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.|
-
- <!--no_check--> 

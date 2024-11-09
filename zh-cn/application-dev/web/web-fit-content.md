@@ -56,7 +56,7 @@ struct WebHeightPage {
 }
 ```
 
-```
+```html
 <!--fit_content.html-->
 <!DOCTYPE html>
 <html>
@@ -90,7 +90,7 @@ struct WebHeightPage {
                 与应用界面交互：自定义文本选择菜单、上下文菜单、文件上传界面等与应用界面交互能力。</p>
             </li>
             <li><p>App通过JavaScriptProxy，与Web页面进行JavaScript交互。</p></li>
-            <li><p>安全与隐私：无痕浏览模式、广告拦截、高级安全模式等。</p></li>
+            <li><p>安全与隐私：无痕浏览模式、广告拦截、坚盾守护模式等。</p></li>
             <li><p>维测能力：Devtools工具调试能力，使用crashpad收集Web组件崩溃信息。
             </p></li>
             <li><p>

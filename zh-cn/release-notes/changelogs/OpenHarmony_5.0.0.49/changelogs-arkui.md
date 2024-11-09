@@ -26,7 +26,7 @@
 
 通过router.getState()方法获取的path信息为"../../../../library/src/main/ets/components/"。
 
-当开发者把源码HAR升级为字节码HAR时，通过router.getState()方法获取的path信息为"/\_\_harDefaultPagePath\_\_"。
+当开发者把源码HAR升级为字节码HAR时，通过router.getState()方法获取的path信息为"/\_\_harDefaultPagePath\_\_"，不能获取正确的name和path值。
 
 ![pagePath](figures/pagePath3.PNG)
 
@@ -48,7 +48,7 @@
 
 通过router.getState()方法获取的path信息为"../../../../ + 哈希值 + library/src/main/ets/components/"。
 
-当开发者把中间码HAR升级为字节码HAR时，通过router.getState()方法获取的path信息为"/\_\_harDefaultPagePath\_\_"。
+当开发者把中间码HAR升级为字节码HAR时，通过router.getState()方法获取的path信息为"/\_\_harDefaultPagePath\_\_"，不能获取正确的name和path值。
 
 ![pagePath](figures/pagePath3.PNG)
 
@@ -62,7 +62,7 @@
 
 **起始API Level**
 
-API 13
+API 10
 
 **变更发生版本**
 

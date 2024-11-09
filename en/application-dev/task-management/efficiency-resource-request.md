@@ -1,4 +1,4 @@
-# Requesting Efficiency Resources (for Privileged System Applications Only)
+# Requesting Efficiency Resources (ArkTS) (for Privileged System Applications Only)
 
 ## Overview
 
@@ -24,35 +24,33 @@ The table below lists the main APIs used for efficient resources. For details ab
 
 **Table 1** Main APIs for efficiency resources
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| applyEfficiencyResources(request: EfficiencyResourcesRequest): void | Requests efficiency resources. |
-| resetAllEfficiencyResources(): void | Releases all efficiency resources. |
+| applyEfficiencyResources(request: EfficiencyResourcesRequest): void | Requests efficiency resources.|
+| resetAllEfficiencyResources(): void | Releases all efficiency resources.|
 
 **Table 2** Parameters for requesting efficiency resources
-
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| resourceTypes | number | Yes | Type of the resource to request. |
-| isApply | boolean | Yes | Whether the request is used to apply for resources.<br>- **true**: The request is used to apply for resources.<br>- **false**: The request is used to release resources. |
-| timeOut | number | Yes | Duration for which the resource will be used, in milliseconds. |
-| isPersist | boolean | No | Whether the resource is permanently held. The default value is **false**.<br>- **true**: The resource is permanently held.<br>- **false**: The resource is held for a limited period of time. |
-| isProcess | boolean | No | Whether the request is initiated by a process. The default value is **false**.<br>- **true**: The request is initiated by a process.<br>- **false**: The request is initiated by an application. |
-| reason | string | Yes | Reason for requesting the resource. |
+| resourceTypes | number | Yes| Type of the resource to request.|
+| isApply | boolean | Yes| Whether the request is used to apply for resources.<br>- **true**: The request is used to apply for resources.<br>- **false**: The request is used to release resources.|
+| timeOut | number | Yes| Duration for which the resource will be used, in milliseconds.|
+| isPersist | boolean | No| Whether the resource is permanently held. The default value is **false**.<br>- **true**: The resource is permanently held.<br>- **false**: The resource is held for a limited period of time.|
+| isProcess | boolean | No| Whether the request is initiated by a process. The default value is **false**.<br>- **true**: The request is initiated by a process.<br>- **false**: The request is initiated by an application.|
+| reason | string | Yes| Reason for requesting the resource.|
 
 **Table 3** Efficiency resource types
-
-| Name | Value | Description |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| CPU | 1 | CPU resource. Such type of resource prevents an application from being suspended. |
-| COMMON_EVENT | 2 | Common event resource. Such type of resource ensures that an application in the suspended state can receive common events. |
-| TIMER | 4 | Timer resource. Such type of resource ensures that an application in the suspended state can be woken up by system timers. |
-| WORK_SCHEDULER | 8 | Deferred task resource. Such type of resource provides a loose control policy for an application. |
-| BLUETOOTH | 16 | Bluetooth resource. Such type of resource ensures that an application in the suspended state can be woken up by Bluetooth-related events. |
-| GPS | 32 | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events. |
-| AUDIO | 64 | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played. |
-| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resource. Such type of resources prevents locks running in the background from being temporarily released when the application is suspended. |
-| SENSOR<sup>10+</sup> | 256 | Sensor resource. Such type of resources prevents sensor callbacks from being intercepted. |
+| CPU | 1 | CPU resource. Such type of resource prevents an application from being suspended.|
+| COMMON_EVENT | 2 | Common event resource. Such type of resource ensures that an application in the suspended state can receive common events.|
+| TIMER | 4 | Timer resource. Such type of resource ensures that an application in the suspended state can be woken up by system timers.|
+| WORK_SCHEDULER | 8 | Deferred task resource. Such type of resource provides a loose control policy for an application.|
+| BLUETOOTH | 16 | Bluetooth resource. Such type of resource ensures that an application in the suspended state can be woken up by Bluetooth-related events.|
+| GPS | 32 | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events.|
+| AUDIO | 64 | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played.|
+| RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resource. Such type of resources prevents locks running in the background from being temporarily released when the application is suspended.|
+| SENSOR<sup>10+</sup> | 256 | Sensor resource. Such type of resources prevents sensor callbacks from being intercepted.|
 
 ## How to Develop
 
@@ -97,5 +95,4 @@ The table below lists the main APIs used for efficient resources. For details ab
    ```
 
    > **NOTE**
-   >
    > Applications can dynamically request efficiency resources. Therefore, it is recommended that the application proactively releases the resources after the task is complete so as to reduce power consumption and ensure smooth user experience.

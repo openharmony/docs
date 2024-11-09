@@ -2,7 +2,7 @@
 
 ArkWeb的网络协议栈错误列表。
 
-ArkWeb网络协议栈错误码直接映射Chromium错误码net_error_list.h。
+ArkWeb网络协议栈错误码直接映射Chromium错误码<!--RP1-->net_error_list.h<!--RP1End-->。
 
 > **说明：**
 > 
@@ -11,7 +11,7 @@ ArkWeb网络协议栈错误码直接映射Chromium错误码net_error_list.h。
 ## 导入模块
 
 ```js
-import {WebNetErrorList} from '@ohos.web.netErrorList';
+import { WebNetErrorList } from '@kit.ArkWeb';
 ```
 
 ## WebNetErrorList

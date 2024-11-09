@@ -1,4 +1,4 @@
-# 使用AVRecorder开发音频录制功能
+# 使用AVRecorder录制音频(ArkTS)
 
 使用AVRecorder可以实现音频录制功能，本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解AVRecorder音频录制相关功能。
 
@@ -142,9 +142,9 @@ export class AudioRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // 音频比特率
     audioChannels: 2, // 音频声道数
-    audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
+    audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU
     audioSampleRate: 48000, // 音频采样率
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV
   };
   private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风

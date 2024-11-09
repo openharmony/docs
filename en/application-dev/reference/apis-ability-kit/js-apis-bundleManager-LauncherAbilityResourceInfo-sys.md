@@ -14,7 +14,7 @@ The **LauncherAbilityResourceInfo** module provides resource information of the 
 
 **System API**: This is a system API.
 
-| Name                     | Type  | Readable| Writable| Description                |
+| Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | bundleName              | string | Yes  | No  | Bundle name of the application.|
 | moduleName              | string | Yes  | No  | Module name of the application.|

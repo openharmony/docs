@@ -4136,7 +4136,7 @@ console.info("test Decimal round:" + a.toString()); // '3'
 
 static set(object: DecimalConfig):void
 
-用于设置Decimal的配置属性。
+用于设置Decimal的配置属性，通过set设置的属性是全局生效的。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -4158,7 +4158,7 @@ static set(object: DecimalConfig):void
 | 10200001 | The value of 'DecimalConfig.properties' is out of range.     |
 | 10200061 | Crypto unavailable.                                          |
 
-**示例：**
+**示例1：**
 
 ```ts
 let a : Decimal = new Decimal(1.2345678901234567);
@@ -4211,4 +4211,47 @@ let c1 : Decimal = new Decimal('1e501') // 'Infinity'
 Decimal.set({ maxE: 4 })
 let d0 : Decimal = new Decimal(99999) // '99999'
 let d1 : Decimal = new Decimal(100000) // 'Infinity'
+```
+
+**示例2：**
+
+```ts
+// /entry/src/main/ets/pages/test.ets
+export function test(){
+  let a : Decimal = new Decimal(1.2345678901234567);
+  Decimal.set({
+    precision: 5,
+    rounding: 0,
+    toExpNeg: -7,
+    toExpPos: 7,
+    maxE: 9e15,
+    minE: -9e15,
+    modulo: 1,
+    crypto: false
+  })
+  let b : Decimal = a.add(0.5);
+  console.info("test Decimal set:" + b.toString()); // "1.7346"
+}
+```
+
+```ts
+// /entry/src/main/ets/pages/Index.ets
+import {test} from './test'
+
+let a : Decimal = new Decimal(1.2345678901234567);
+Decimal.set({
+  precision: 6,
+  rounding: 1,
+  toExpNeg: -7,
+  toExpPos: 7,
+  maxE: 9e15,
+  minE: -9e15,
+  modulo: 1,
+  crypto: false
+})
+let b : Decimal = a.add(0.5);
+console.info("test Decimal set:" + b.toString()); // "1.73456"
+test();
+b = b.add(0);                                     // "1.7346"
+console.info("test Decimal set:" + b.toString()); // "1.7346"
 ```

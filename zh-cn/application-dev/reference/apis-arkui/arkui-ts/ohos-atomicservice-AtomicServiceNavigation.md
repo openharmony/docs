@@ -37,7 +37,7 @@ AtomicServiceNavigation({
 
 **参数**：
 
-| 名称 | 类型 | 必填 | 装饰器类型|描述 |
+| 名称 | 类型 | 必填 | 装饰器类型|说明 |
 | --------------- | ------ | ---- | ----|----------|
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 否 | @State | 路由栈信息。 |
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
@@ -58,7 +58,7 @@ AtomicServiceNavigation({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |

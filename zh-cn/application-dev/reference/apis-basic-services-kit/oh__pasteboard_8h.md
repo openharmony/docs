@@ -3,9 +3,11 @@
 
 ## 概述
 
-提供访问系统剪贴板的接口、数据结构、枚举类型。 引用文件：&lt;database/pasteboard/oh_pasteboard.h&gt;
+提供访问系统剪贴板的接口、数据结构、枚举类型。 
 
 **库：** libpasteboard.so
+
+**引用文件：** <database/pasteboard/oh_pasteboard.h>
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -53,3 +55,4 @@
 | OH_UdmfData \* [OH_Pasteboard_GetData](_pasteboard.md#oh_pasteboard_getdata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, int \*status) | 获取剪贴板中的数据。  | 
 | int [OH_Pasteboard_SetData](_pasteboard.md#oh_pasteboard_setdata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | 将统一数据对象数据写入剪贴板。  | 
 | int [OH_Pasteboard_ClearData](_pasteboard.md#oh_pasteboard_cleardata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard) | 清空剪贴板中的数据。  | 
+| char ** [OH_Pasteboard_GetMimeTypes](_pasteboard.md#oh_pasteboard_getmimetypes) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪切板中的MIME类型。  | 

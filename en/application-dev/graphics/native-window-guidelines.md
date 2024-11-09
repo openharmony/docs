@@ -11,11 +11,11 @@ The following scenarios are common for native window development:
 
 ## Available APIs
 
-| API | Description | 
+| API| Description| 
 | -------- | -------- |
-| OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production. | 
-| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption. | 
-| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format. | 
+| OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.| 
+| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.| 
+| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.| 
 
 For details about the APIs, see [native_window](../reference/apis-arkgraphics2d/_native_window.md).
 
@@ -69,7 +69,9 @@ libnative_window.so
         {
             // Obtain an OHNativeWindow instance.
             OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
-            // ...
+            // After this callback is triggered, the reference count for the window is initialized to 1. If the window-related APIs and XComponent destructor are concurrently used,
+            // you must manually adjust the reference count by using OH_NativeWindow_NativeObjectReference to increase it and OH_NativeWindow_NativeObjectUnreference to decrease it.
+            // This manual management of the reference count by 1 helps to avoid issues with dangling or null pointers that could occur during concurrent calls to window APIs following the destruction of an XComponent.
         }
         void OnSurfaceChangedCB(OH_NativeXComponent* component, void* window)
         {
@@ -81,7 +83,8 @@ libnative_window.so
         {
             // Obtain an OHNativeWindow instance.
             OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
-            // ...
+            // After this callback is triggered, the reference count for the window is decremented by 1. When the reference count reaches 0, the window is destructed.
+            // Once the window is destructed, no further API calls should be made through the window. This operation results in a crash caused by dangling or null pointers.
         }
         void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
         {

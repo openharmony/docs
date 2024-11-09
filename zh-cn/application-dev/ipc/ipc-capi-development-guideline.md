@@ -20,7 +20,7 @@ IPC CAPI接口不直接提供跨进程通信能力，两个进程之间的IPC通
 | OHIPCRemoteStub\* OH_IPCRemoteStub_Create<br>(const char \*descriptor, OH_OnRemoteRequestCallback requestCallback,<br>OH_OnRemoteDestroyCallback destroyCallback, void \*userData); | 创建OHIPCRemoteStub对象。 |
 |int OH_IPCRemoteProxy_SendRequest(const OHIPCRemoteProxy \*proxy,<br> uint32_t code, const OHIPCParcel \*data, OHIPCParcel \*reply,<br> const OH_IPC_MessageOption \*option);|IPC消息发送函数。|
 |struct OHIPCRemoteProxy;|OHIPCRemoteProxy对象，用于向远端发送请求。<br>需要依赖**元能力**接口返回。|
-|OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|创建远端OHIPCRemoteStub对象死亡<br>通知对象OHIPCDeathRecipient。|
+|OHIPCDeathRecipient\* OH_IPCDeathRecipient_Create<br>(OH_OnDeathRecipientCallback deathRecipientCallback,<br> OH_OnDeathRecipientDestroyCallback destroyCallback,<br>void \*userData);|创建远端OHIPCRemoteStub对象死亡通知对象OHIPCDeathRecipient。|
 |int OH_IPCRemoteProxy_AddDeathRecipient(OHIPCRemoteProxy \*proxy,<br>OHIPCDeathRecipient \*recipient);|向OHIPCRemoteProxy对象添加死亡监听，<br>用于接收远端OHIPCRemoteStub对象死亡的回调通知。|
 
 详细的接口说明请参考[IPCKit](../reference/apis-ipc-kit/_i_p_c_kit.md)。

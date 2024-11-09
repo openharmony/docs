@@ -722,7 +722,11 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 
 > **说明：**
 >
-> 其中，hashData为使用SM3算法对明文数据运算得到的杂凑值，其长度固定为256位。cipherTextData是与明文等长的密文。
+> - hashData为使用SM3算法对明文数据运算得到的杂凑值，其长度固定为256位。
+>
+> - cipherTextData是与明文等长的密文。
+> 
+> - 在拼接生成C1C3C2格式的密文时，如果x分量（C1_X）或y分量（C1_Y）的长度不足32字节，需要在高位补0，使得x分量和y分量的长度均为32字节。
 
 ## Key
 
@@ -1190,8 +1194,8 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器的对象。 |
 
 **错误码：**
-
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|

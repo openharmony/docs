@@ -30,7 +30,7 @@ TabContent()
 
 ### tabBar
 
-tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; text?: string | Resource })
+tabBar(options: string | Resource | CustomBuilder | TabBarOptions)
 
 设置TabBar上显示内容。
 
@@ -46,7 +46,7 @@ tabBar(value: string | Resource | CustomBuilder | { icon?: string | Resource; te
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 是 | TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。 |
+| value | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;<br/>[TabBarOptions<sup>14+</sup>](#tabbaroptions14) | 是 | TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API version 8版本以上适用）。 |
 
 ### tabBar<sup>9+</sup>
 
@@ -70,6 +70,21 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 >  - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
 >  - vertical属性为false值，交换上述2个限制。
 >  - TabContent组件不支持内容过长时页面的滑动，如需页面滑动，可嵌套List使用。
+
+### TabBarOptions<sup>14+</sup>
+
+设置页签内的图片和文字内容。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型         | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| icon | string | [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。 |
+| text | string | [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。 |
 
 ## SubTabBarStyle<sup>9+</sup>对象说明
 
@@ -287,7 +302,7 @@ padding(padding: LocalizedPadding): SubTabBarStyle
 
 id(value: string): SubTabBarStyle
 
-设置子页签的[id](ts-universal-attributes-component-id.md#属性)。
+设置子页签的[id](ts-universal-attributes-component-id.md#id)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -297,7 +312,7 @@ id(value: string): SubTabBarStyle
 
 | 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | string | 是   | 子页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| value | string | 是   | 子页签的[id](ts-universal-attributes-component-id.md#id)。 |
 
 **返回值：**
 
@@ -523,7 +538,7 @@ id(value: string): BottomTabBarStyle
 
 | 参数名  | 类型                                   | 必填 | 说明           |
 | ------- | ------------------------------------- | ---- | ------------- |
-| value | string | 是   | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。 |
+| value | string | 是   | 设置底部页签的[id](ts-universal-attributes-component-id.md#id)。 |
 
 **返回值：**
 

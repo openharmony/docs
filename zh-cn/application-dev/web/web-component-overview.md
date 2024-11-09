@@ -23,7 +23,7 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 - App通过JavaScriptProxy，与Web页面进行JavaScript交互。
 
-- 安全与隐私：无痕浏览模式、广告拦截、高级安全模式等。
+- 安全与隐私：无痕浏览模式、广告拦截、坚盾守护模式等。
 
 - 维测能力：[Devtools工具](web-debugging-with-devtools.md)调试能力，使用crashpad收集Web组件崩溃信息。
 
@@ -33,7 +33,7 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 - Web内核版本：ArkWeb基于谷歌Chromium内核开发，使用的Chromium版本为M114。
 
-## 相关示例
+## 相关实例
 
 针对Web组件开发，有以下相关实例可供参考：
 

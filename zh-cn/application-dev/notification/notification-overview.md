@@ -20,7 +20,7 @@ Notification Kit支持的能力主要包括:
 ## 业务流程
  ![notification_principle](figures/notification_principle.png) 
 
-使用Noification Kit的主要业务流程如下：
+使用Notification Kit的主要业务流程如下：
 
 1.请求通知授权。
 

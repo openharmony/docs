@@ -2563,3 +2563,32 @@ systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>)
     }
 });
 ```
+
+### getMimeTypes<sup>14+</sup>
+
+getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
+
+读取剪贴板中存在的MIME类型，使用Promise异步回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回读取到的MIME类型 |
+
+**示例：**
+
+```ts
+import { pasteboard } from '@kit.BasicServicesKit'
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getMimeTypes().then((data: Array<String>) => {
+    console.info('Succeeded in getting mimeTypes. mimeTypes: ' + data.sort().join(','));
+}) catch (err) {
+    console.error('Failed to get mimeTypes. Cause:' + err.message);
+};
+```

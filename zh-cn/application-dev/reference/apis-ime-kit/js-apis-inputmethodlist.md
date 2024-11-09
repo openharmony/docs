@@ -42,9 +42,9 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| defaultSelected<sup>11+</sup>  | number | 是 | 是 | 非必填。默认选择的模式。 |
-| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | 是 | 是 | 必填。模式选项的资源。 |
-| action<sup>9+</sup> | function | 是 | 是 | 必填。模式选项改变时的回调。 |
+| defaultSelected<sup>11+</sup>  | number | 否 | 是 | 非必填。默认选择的模式。 |
+| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | 否 | 否 | 必填。模式选项的资源。 |
+| action<sup>9+</sup> | function | 否 | 否 | 必填。模式选项改变时的回调。 |
 
 ## Pattern
 
@@ -52,8 +52,8 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。默认图片资源。 |
-| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。选中时的图片资源。 |
+| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 否 | 否 | 必填。默认图片资源。 |
+| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 否 | 否 | 必填。选中时的图片资源。 |
 
 ##  事件
 

@@ -12,7 +12,7 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
-每一种解码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
 <!--RP1--><!--RP1End-->
 
@@ -58,20 +58,20 @@
 
 1. 有两种方式可以使解码器进入Initialized状态：
    - 初始创建解码器实例时，解码器处于Initialized状态。
-   - 任何状态下调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
+   - 任何状态下，调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoDecoder_Configure接口配置解码器，配置成功后解码器进入Configured状态。
-3. Configured状态下调用OH_VideoDecoder_Prepare接口进入Prepared状态。
-4. Prepared状态调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
+3. Configured状态下，调用OH_VideoDecoder_Prepare接口进入Prepared状态。
+4. Prepared状态下，调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
    - 处于Executing状态时，调用OH_VideoDecoder_Stop接口可以使解码器返回到Prepared状态。
 
 5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
-   - Error状态下可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
+   - Error状态下，可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
 
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoDecoder_Start接口之后，解码器立即进入Running子状态。
    - 对于处于Executing状态的解码器，可以调用OH_VideoDecoder_Flush接口返回到Flushed子状态。
-   - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+   - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1)标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
 7. 使用完解码器后，必须调用OH_VideoDecoder_Destroy接口销毁解码器实例。使解码器进入Released状态。
 
@@ -299,7 +299,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
     ```
 
-7. 设置surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+7. 设置surface。
+
+    本例中的nativeWindow，有两种方式获取：
+    1. 如果解码后直接显示，则从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)；
+    2. 如果解码后接OpenGL后处理，则从NativeImage获取，获取方式请参考 [NativeImage](../../graphics/native-image-guidelines.md)。
 
     Surface模式，调用者可以在解码过程中执行该步骤，即动态切换surface。
 
@@ -487,6 +491,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    >
 
 14. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
@@ -526,7 +533,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 15. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
-    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_Prepare接口和OH_VideoDecoder_SetSurface接口重新配置。
+    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_SetSurface接口和OH_VideoDecoder_Prepare接口重新配置。
+    
     ```c++
     // 重置解码器videoDec
     int32_t ret = OH_VideoDecoder_Reset(videoDec);
@@ -538,13 +546,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 解码器重新就绪
-    ret = OH_VideoDecoder_Prepare(videoDec);
+    // Surface模式重新配置surface，而Buffer模式不需要配置surface
+    ret = OH_VideoDecoder_SetSurface(videoDec, window);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // Surface模式重新配置surface，而Buffer模式不需要配置surface
-    ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    // 解码器重新就绪
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

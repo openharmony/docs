@@ -1,49 +1,42 @@
 # FAQs
 
-## Incompatible System Version
+## Failed to Find the Header File During Compilation or Running
 
 ### Symptom
 
-The **usb/usb_ddk_api.h not found** or **hid/hid_ddk_api.h not found** error is displayed during SDK building or running.
+The message "usb/usb_ddk_api.h not found" or "hid/hid_ddk_api.h not found" is displayed during compilation or running.
 
 ### Solution
 
-If an error is reported during SDK building, check whether the system version is the latest.
+- If an error is reported during compilation, check whether the OpenHarmony version is the latest.
 
-If an error is reported during running, check whether the system version is 4.1 Release or later.
+- If an error is reported during running, check whether the device version is <!--RP1-->4.1 Release<!--RP1End--> or later.
+
+## Version Mismatch Displayed During HAP Installation
 
 ### Symptom
 
-The error message **compileSdkVersion and releaseType of the app do not match the apiVersion and releaseType on the device** is displayed during installation.
+The message "compileSdkVersion and releaseType of the app do not match the apiVersion and releaseType on the device" is displayed during HAP installation.
 
 ### Solution
 
-Check whether the system version matches the HAP version.
+Check whether the system version of the device is correct according to the mapping provided in [Version Mapping](#version-mapping).
 
 ### Version Mapping
 
-| Peripheral SDK Name| Minimum API Version| OpenHarmony/HarmonyOS Version|
+| API Type| Minimum API Version| OpenHarmony Version|
 | ------------ | ------------ | ------------ |
-| Application development APIs (ArkTS APIs)| API10 | 4.0 or later|
-| USB DDK APIs| API10 | 4.0 or later|
-| HID DDK APIs| API11 | 4.1 or later|
+| Application development APIs (ArkTS APIs)| API10 | <!--RP2-->4.0 Release<!--RP2End--> or later|
+| USB DDK APIs| API10 | <!--RP3-->4.0 Release<!--RP3End--> or later|
+| HID DDK APIs| API11 | <!--RP4-->4.1 Release<!--RP4End--> or later|
+
+
+## Failed to Parse the Local .so File During HAP Installation
 
 ### Symptom
 
-The error message **code:9568347 error: install parse native so failed** is displayed during HAP installation.
+The message "code:9568347 error: install parse native so failed" is displayed during HAP installation.
 
 ### Solution
 
-Configure the value of **abiFilters** in **buildOption/externalNativeOptions** in the **build-profile.json5** file. For details, see [Application Debugging] (https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-app-debugging-V5).
-
-  ```
-  "buildOption": {
-    "externalNativeOptions": {
-      "abiFilters": [
-        "arm64-v8a",
-        "armeabi-v7a," // Mandatory for RK3568
-        "x86_64",
-       ]
-    },
-  }
-  ```
+Configure the value of `abiFilters` in `buildOption/externalNativeOptions` in the `build-profile.json5` file. For details, see [Application Debugging] (https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-app-debugging-14-V5).

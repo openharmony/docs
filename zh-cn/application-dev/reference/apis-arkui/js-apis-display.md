@@ -76,6 +76,10 @@ import { display } from '@kit.ArkUI';
 | FOLD_DISPLAY_MODE_SUB | 3 | 表示设备当前子屏幕显示。|
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | 表示设备当前双屏协同显示。|
 
+>**说明：**<br>
+>&bullet; 对于大屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
+>&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
+
 ## FoldCreaseRegion<sup>10+</sup>
 
 折叠折痕区域。
@@ -561,6 +565,13 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 开启折叠设备折叠状态变化的监听。
 
+本接口监听设备物理折叠状态的变化，[display.on('foldDispla
+yModeChange')](#displayonfolddisplaymodechange10)则监听屏幕显示模式的变化。
+
+两者存在差异，时序上物理折叠状态变化在前，底层会根据物理折叠状态匹配屏幕显示模式状态。
+
+若需监听当前显示内容是显示在折叠设备的内屏还是外屏，请使用[display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -586,6 +597,10 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
+/**
+ * 注册监听的callback参数要采用对象传递.
+ * 若使用匿名函数注册，每次调用会创建一个新的底层对象，引起内存泄漏问题。
+*/
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
@@ -808,6 +823,10 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 
 开启折叠设备屏幕显示模式变化的监听。
 
+本接口监听设备屏幕显示模式的变化，[display.on('foldStatusChange')](#displayonfoldstatuschange10)则监听设备物理折叠状态的变化。
+
+两者存在差异，时序上物理折叠状态变化在前，底层会根据物理折叠状态匹配屏幕显示模式状态。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -833,9 +852,13 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
+/**
+ * 注册监听的callback参数要采用对象传递.
+ * 若使用匿名函数注册，每次调用会创建一个新的底层对象，引起内存泄漏问题。
+*/
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
-};
+}; 
 display.on('foldDisplayModeChange', callback);
 ```
 

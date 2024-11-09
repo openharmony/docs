@@ -16,7 +16,7 @@ Describes the identity information of an application clone.
 
 **System API**: This is a system API.
 
-| Name     | Type          | Readable | Writable | Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | bundleName | string         | Yes  | No  | Bundle name of the application.         |
-| appIndex | number | Yes  | No  | Index of the application clone. |
+| appIndex | number | Yes  | No  | Index of the application clone.|

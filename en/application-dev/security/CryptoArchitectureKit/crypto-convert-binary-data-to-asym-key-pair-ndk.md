@@ -129,7 +129,9 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 Obtain the binary data of the ECC public or private key, encapsulate the data into a [Crypto_DataBlob](../../reference/apis-crypto-architecture-kit/_crypto_common_api.md#crypto_datablob) object, and convert the data into the ECC key format.  
 
 1. Use [OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create) with the string parameter **'ECC256'** to create an asymmetric key generator (**OH_CryptoAsymKeyGenerator**) object for a 256-bit ECC key pair.
+
 2. Use [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) to obtain the public key data byte stream.
+
 3. Use [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the binary key data into an asymmetric key object (**OH_CryptoKeyPair**).
 
 **Example**

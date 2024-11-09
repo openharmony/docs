@@ -20,6 +20,7 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
 1. 导入相关接口，导入方法如下。
    ```ts
    import { camera, cameraPicker as picker } from '@kit.CameraKit'
+   import { fileIo, fileUri } from '@kit.CoreFileKit'
    ```
 
 2. 配置[PickerProfile](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pickerprofile)
@@ -35,9 +36,9 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
    let pathDir = getContext().filesDir;
    let fileName = `${new Date().getTime()}`
    let filePath = pathDir + `/${fileName}.tmp`
-   fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE);
+   fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
    
-   let uri = fileuri.getUriFromPath(filePath);
+   let uri = fileUri.getUriFromPath(filePath);
    let pickerProfile: picker.PickerProfile = {
      cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
      saveUri: uri
@@ -55,9 +56,8 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
 ## 完整示例
    ```ts 
    import { camera, cameraPicker as picker } from '@kit.CameraKit'
-   import fileuri from '@ohos.file.fileuri';
-   import fs from '@ohos.file.fs';
-   
+   import { fileIo, fileUri } from '@kit.CoreFileKit'
+
    @Entry
    @Component
    struct Index {
@@ -75,9 +75,9 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
                let pathDir = getContext().filesDir;
                let fileName = `${new Date().getTime()}`
                let filePath = pathDir + `/${fileName}.tmp`
-               fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE);
+               fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
    
-               let uri = fileuri.getUriFromPath(filePath);
+               let uri = fileUri.getUriFromPath(filePath);
                let pickerProfile: picker.PickerProfile = {
                  cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
                  saveUri: uri

@@ -15,8 +15,8 @@
 
 | 接口名                                                       | 接口描述                     |
 | ------------------------------------------------------------ | ---------------------------- |
-| publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback) | 发布公共事件。               |
-| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md),&nbsp;callback:&nbsp;AsyncCallback) | 指定发布信息并发布公共事件。 |
+| publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback<void\>) | 发布公共事件。               |
+| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md),&nbsp;callback:&nbsp;AsyncCallback<void\>) | 指定发布信息并发布公共事件。 |
 
 
 ## 发布不携带信息的公共事件
@@ -27,7 +27,6 @@
    
    ```ts
    import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
-   import { promptAction } from '@kit.ArkUI';
    import { hilog } from '@kit.PerformanceAnalysisKit';
 
    const TAG: string = 'ProcessModel';
@@ -40,7 +39,7 @@
    // 发布公共事件，其中的event字段需要替换为实际的事件名称。
    commonEventManager.publish('event', (err: BusinessError) => {
      if (err) {
-       hilog.info(DOMAIN_NUMBER, TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Publish failed, code is ${JSON.stringify(err.code)}, message is ${JSON.stringify(err.message)}`);
      } else {
        //...
        hilog.info(DOMAIN_NUMBER, TAG, `Publish success`);

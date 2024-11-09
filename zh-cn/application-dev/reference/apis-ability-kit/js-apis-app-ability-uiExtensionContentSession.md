@@ -38,6 +38,24 @@ loadContent(path: string, storage?: LocalStorage): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
 
+**示例：**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('session', session);
+    session.loadContent('pages/Extension', storage);
+  }
+
+  // ...
+}
+```
+
 ## UIExtensionContentSession.terminateSelf
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
@@ -60,6 +78,41 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
+**示例：**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Index {
+  private session: UIExtensionContentSession | undefined =
+    storage.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelf')
+        .onClick(() => {
+          this.session?.terminateSelf((err: BusinessError) => {
+            if (err) {
+              console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
+              return;
+            }
+            console.info(`Successed in terminating self.`);
+          });
+
+          storage.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## UIExtensionContentSession.terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
@@ -73,6 +126,41 @@ terminateSelf(): Promise&lt;void&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Index {
+  private session: UIExtensionContentSession | undefined =
+    storage.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelf')
+        .onClick(() => {
+          this.session?.terminateSelf()
+            .then(() => {
+              console.info(`Successed in terminating self.`);
+            })
+            .catch((err: BusinessError) => {
+              console.error(`Failed to terminate self, code: ${err.code}, msg: ${err.message}`);
+            });
+
+          storage.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
@@ -96,6 +184,51 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { UIExtensionContentSession, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Index {
+  private session: UIExtensionContentSession | undefined =
+    storage.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelfWithResult')
+        .onClick(() => {
+          let abilityResult: common.AbilityResult = {
+            resultCode: 0,
+            want: {
+              bundleName: 'com.ohos.uiextensioncontentsession',
+              parameters: {
+                'result': 123456
+              }
+            }
+          };
+
+          this.session?.terminateSelfWithResult(abilityResult, (err: BusinessError) => {
+            if (err) {
+              console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
+              return;
+            }
+            console.info(`Successed in terminating self with result.`);
+          });
+
+          storage.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.terminateSelfWithResult
 
@@ -124,6 +257,51 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { UIExtensionContentSession, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Index {
+  private session: UIExtensionContentSession | undefined =
+    storage.get<UIExtensionContentSession>('session');
+
+  build() {
+    RelativeContainer() {
+      Button('TerminateSelfWithResult')
+        .onClick(() => {
+          let abilityResult: common.AbilityResult = {
+            resultCode: 0,
+            want: {
+              bundleName: 'com.ohos.uiextensioncontentsession',
+              parameters: {
+                'result': 123456
+              }
+            }
+          };
+
+          this.session?.terminateSelfWithResult(abilityResult)
+            .then(() => {
+              console.info(`Successed in terminating self with result.`);
+            })
+            .catch((err: BusinessError) => {
+              console.error(`Failed to terminate self with result, code: ${err.code}, msg: ${err.message}`);
+            });
+
+          storage.clear();
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
 
 ## UIExtensionContentSession.setWindowPrivacyMode
 
@@ -156,6 +334,36 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 | 201      | The application does not have permission to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
+**示例：**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let isPrivacyMode: boolean = true;
+    try {
+      session.setWindowPrivacyMode(isPrivacyMode)
+        .then(() => {
+          console.info(`Successed in setting window to privacy mode.`);
+        })
+        .catch((err: BusinessError) => {
+          console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
+        });
+    } catch (e) {
+      let code = (e as BusinessError).code;
+      let msg = (e as BusinessError).message;
+      console.error(`Failed to set window to privacy mode, code: ${code}, msg: ${msg}`);
+    }
+  }
+
+  // ...
+}
+```
+
 ## UIExtensionContentSession.setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -181,6 +389,36 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 | ------- | -------------------------------- |
 | 201      | The application does not have permission to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let isPrivacyMode: boolean = true;
+    try {
+      session.setWindowPrivacyMode(isPrivacyMode, (err: BusinessError) => {
+        if (err) {
+          console.error(`Failed to set window to privacy mode, code: ${err.code}, msg: ${err.message}`);
+          return;
+        }
+        console.info(`Successed in setting window to privacy mode.`);
+      });
+    } catch (e) {
+      let code = (e as BusinessError).code;
+      let msg = (e as BusinessError).message;
+      console.error(`Failed to set window to privacy mode, code: ${code}, msg: ${msg}`);
+    }
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
@@ -208,6 +446,41 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let wantParams: Record<string, Object> = {
+      'sceneType': 1
+    };
+    let abilityStartCallback: common.AbilityStartCallback = {
+      onError: (code: number, name: string, message: string) => {
+        console.error(`onError, code: ${code}, name: ${name}, msg: ${message}`);
+      },
+      onResult: (result: common.AbilityResult) => {
+        console.info(`onResult, result: ${JSON.stringify(result)}`);
+      }
+    };
+
+    session.startAbilityByType('test', wantParams, abilityStartCallback, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
+        return;
+      }
+      console.info(`Successed in startAbilityByType`);
+    });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
@@ -240,6 +513,41 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // ...
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let wantParams: Record<string, Object> = {
+      'sceneType': 1
+    };
+    let abilityStartCallback: common.AbilityStartCallback = {
+      onError: (code: number, name: string, message: string) => {
+        console.error(`onError, code: ${code}, name: ${name}, msg: ${message}`);
+      },
+      onResult: (result: common.AbilityResult) => {
+        console.info(`onResult, result: ${JSON.stringify(result)}`);
+      }
+    };
+
+    session.startAbilityByType('test', wantParams, abilityStartCallback)
+      .then(() => {
+        console.info(`Successed in startAbilityByType`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`Failed to startAbilityByType, code: ${err.code}, msg: ${err.message}`);
+      });
+  }
+
+  // ...
+}
+```
 
 ## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
 

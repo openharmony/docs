@@ -118,10 +118,71 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 **示例：**
 
 ```ts
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+// Worker.ets
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-let buffer = new ArrayBuffer(8);
-workerInstance.postMessage(buffer, [buffer]);
+// 创建worker线程中与主线程通信的对象
+const workerPort = worker.workerPort
+
+// worker线程接收主线程信息
+workerPort.onmessage = (e: MessageEvents): void => {
+  // data：主线程发送的信息
+  let data: number = e.data;
+  // 往收到的buffer里写入数据
+  const view = new Int8Array(data).fill(3);
+  // worker线程向主线程发送信息
+  workerPort.postMessage(view);
+}
+
+// worker线程发生error的回调
+workerPort.onerror = (err: ErrorEvent) => {
+  console.log("worker.ets onerror" + err.message);
+}
+```
+```ts
+// Index.ets
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            // 主线程中创建Worker对象
+            const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+            // 主线程向worker线程传递信息
+            const buffer = new ArrayBuffer(8);
+            workerInstance.postMessage(buffer, [buffer]);
+            // 主线程接收worker线程信息
+            workerInstance.onmessage = (e: MessageEvents): void => {
+              // data：worker线程发送的信息
+              let data: number = e.data;
+              console.info("main thread data is  " + data);
+              // 销毁Worker对象
+              workerInstance.terminate();
+            }
+            // 在调用terminate后，执行onexit
+            workerInstance.onexit = (code) => {
+              console.log("main thread terminate");
+            }
+
+            workerInstance.onerror = (err: ErrorEvent) => {
+              console.log("main error message " + err.message);
+            }
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
 ```
 
 ### postMessage<sup>9+</sup>
@@ -177,7 +238,7 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
 | transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
 
 **错误码：**
@@ -1088,7 +1149,7 @@ Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message   | Object	     | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| message   | Object	     | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。 |
 | transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。默认值为空数组。 |
 
 **错误码：**
@@ -2288,8 +2349,9 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 
 ## 完整示例
 > **说明：**<br/>
-> 以API version 9的工程为例。<br> API version 8及之前的版本仅支持FA模型，如需使用，注意更换构造Worker的接口和创建worker线程中与主线程通信的对象的两个方法。
+> API version 8及之前的版本仅支持FA模型，如需使用，注意更换构造Worker的接口和创建Worker线程中与主线程通信的对象的两个方法。<br>
 ### FA模型
+> 此处以API version 9的工程为例。
 
 ```ts
 // main thread(同级目录为例)
@@ -2299,7 +2361,8 @@ import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 
 // 主线程向worker线程传递信息
-workerInstance.postMessage("123");
+const buffer = new ArrayBuffer(8);
+workerInstance.postMessage(buffer, [buffer]);
 
 // 主线程接收worker线程信息
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -2330,11 +2393,12 @@ const workerPort = worker.workerPort
 // worker线程接收主线程信息
 workerPort.onmessage = (e: MessageEvents): void => {
     // data：主线程发送的信息
-    let data: string = e.data;
+    let data: number = e.data;
+    const view = new Int8Array(data).fill(3);
     console.log("worker.ets onmessage");
 
     // worker线程向主线程发送信息
-    workerPort.postMessage("123")
+    workerPort.postMessage(view);
 }
 
 // worker线程发生error的回调
@@ -2342,7 +2406,7 @@ workerPort.onerror = (err: ErrorEvent) => {
     console.log("worker.ets onerror");
 }
 ```
-build-profile.json5 配置 :
+在模块级entry/build-profile.json5配置文件添加如下配置:
 ```json
   "buildOption": {
     "sourceOption": {
@@ -2353,36 +2417,53 @@ build-profile.json5 配置 :
   }
 ```
 ### Stage模型
+> 此处以API version 12的工程为例。
 ```ts
-// main thread（以不同目录为例）
+// Index.ets
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-// 主线程中创建Worker对象
-const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ets");
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            // 主线程中创建Worker对象
+            const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+            // 主线程向worker线程传递信息
+            const buffer = new ArrayBuffer(8);
+            workerInstance.postMessage(buffer);
+            // 主线程接收worker线程信息
+            workerInstance.onmessage = (e: MessageEvents): void => {
+              // data：worker线程发送的信息
+              let data: number = e.data;
+              console.info("main thread data is  " + data);
+              // 销毁Worker对象
+              workerInstance.terminate();
+            }
+            // 在调用terminate后，执行onexit
+            workerInstance.onexit = (code) => {
+              console.log("main thread terminate");
+            }
 
-// 主线程向worker线程传递信息
-workerInstance.postMessage("123");
-
-// 主线程接收worker线程信息
-workerInstance.onmessage = (e: MessageEvents): void => {
-    // data：worker线程发送的信息
-    let data: string = e.data;
-    console.log("main thread onmessage");
-
-    // 销毁Worker对象
-    workerInstance.terminate();
-}
-// 在调用terminate后，执行onexit
-workerInstance.onexit = (code) => {
-    console.log("main thread terminate");
-}
-
-workerInstance.onerror = (err: ErrorEvent) => {
-    console.log("main error message " + err.message);
+            workerInstance.onerror = (err: ErrorEvent) => {
+              console.log("main error message " + err.message);
+            }
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
 }
 ```
 ```ts
-// worker.ets
+// Worker.ets
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // 创建worker线程中与主线程通信的对象
@@ -2390,25 +2471,25 @@ const workerPort = worker.workerPort
 
 // worker线程接收主线程信息
 workerPort.onmessage = (e: MessageEvents): void => {
-    // data：主线程发送的信息
-    let data: string = e.data;
-    console.log("worker.ets onmessage");
-
-    // worker线程向主线程发送信息
-    workerPort.postMessage("123")
+  // data：主线程发送的信息
+  let data: number = e.data;
+  // 往收到的buffer里写入数据
+  const view = new Int8Array(data).fill(3);
+  // worker线程向主线程发送信息
+  workerPort.postMessage(view);
 }
 
 // worker线程发生error的回调
 workerPort.onerror = (err: ErrorEvent) => {
-    console.log("worker.ets onerror" + err.message);
+  console.log("worker.ets onerror" + err.message);
 }
 ```
-build-profile.json5 配置:
+在模块级entry/build-profile.json5配置文件添加如下配置:
 ```json
   "buildOption": {
     "sourceOption": {
       "workers": [
-        "./src/main/ets/pages/workers/worker.ets"
+        "./src/main/ets/workers/Worker.ets"
       ]
     }
   }

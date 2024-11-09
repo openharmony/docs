@@ -55,7 +55,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 801 | Capability not supported. |
+| 801 | The specified SystemCapability name was not found. |
 | 29300002 | The system ability work abnormally. |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300004 | File access is denied. |
@@ -99,7 +99,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 801      | Capability not supported.                                    |
+| 801      | The specified SystemCapability name was not found.           |
 | 29300002 | The system ability work abnormally.                          |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300005 | File access was not acquired. |

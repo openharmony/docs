@@ -118,9 +118,3 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    > **NOTE**
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
-
-## Samples
-
-For details about how to develop StaticSubscriberExtensionAbility, see the following sample:
-
-- [Static Subscription (ArkTS) (Full SDK) (API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)

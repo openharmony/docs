@@ -38,6 +38,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
+| imageAIOptions<sup>14+</sup>  | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -130,6 +131,23 @@ repeatPlay(isRepeatPlay: boolean)
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
 | isRepeatPlay| boolean| 是   | 是否循环播放。<br/>false：不循环播放<br/>true：循环播放<br/>默认值：false|
+
+### enableAnalyzer<sup>14+</sup>
+
+enableAnalyzer(enabled: boolean)
+
+设置该图片是否支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+
+| 参数名  | 类型    | 必填 | 说明                         |
+| ------- | ------- | ---- | ---------------------------- |
+| enabled| boolean| 是   | 是否开启AI分析。<br/>false：不开启AI分析<br/>true：开启AI分析<br/>默认值：true|
 
 ## 事件
 
@@ -269,6 +287,9 @@ stopPlayback(): void
 
 ## 示例
 
+### 示例1
+动态照片多种播放形式使用示例。
+
 ```ts
 // xxx.ets
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -338,6 +359,160 @@ struct MovingPhotoViewDemo {
             .repeatPlay(false)
             .autoPlayPeriod(0, 600)
             .objectFit(ImageFit.Cover)
+            .onComplete(() => {
+              console.log('Completed');
+            })
+            .onStart(() => {
+              console.log('onStart')
+            })
+            .onFinish(() => {
+              console.log('onFinish')
+            })
+            .onStop(() => {
+              console.log('onStop')
+            })
+            .onError(() => {
+              console.log('onError')
+            })
+        }
+      }
+      .height('70%')
+
+      Row() {
+        Button('start')
+          .onClick(() => {
+            this.controller.startPlayback()
+          })
+          .margin(5)
+        Button('stop')
+          .onClick(() => {
+            this.controller.stopPlayback()
+          })
+          .margin(5)
+        Button('mute')
+          .onClick(() => {
+            this.isMuted = !this.isMuted
+          })
+          .margin(5)
+      }
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+      .height('15%')
+    }
+  }
+
+  async handlePickerResult(context: Context, uri: string, handler: photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto>): Promise<void> {
+    let uriPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    uriPredicates.equalTo('uri', uri)
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: uriPredicates
+    };
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context)
+    let assetResult = await phAccessHelper.getAssets(fetchOptions)
+    let asset = await assetResult.getFirstObject()
+    let requestOptions: photoAccessHelper.RequestOptions = {
+      deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+    }
+    try {
+      photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler)
+    } catch (err) {
+      console.error("request error: ", err)
+    }
+  }
+}
+
+class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    AppStorage.setOrCreate('mv_data', movingPhoto)
+    emitter.emit({
+      eventId: PHOTO_SELECT_EVENT_ID,
+      priority: emitter.EventPriority.IMMEDIATE,
+    }, {
+    })
+  }
+}
+```
+### 示例2
+图像分析功能使用示例。
+
+```ts
+// xxx.ets
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { emitter } from '@kit.BasicServicesKit';
+import { dataSharePredicates } from '@kit.ArkData';
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
+import visionImageAnalyzer from '@hms.ai.visionImageAnalyzer';
+const PHOTO_SELECT_EVENT_ID: number = 80001
+
+@Entry
+@Component
+struct MovingPhotoViewDemo {
+  @State src: photoAccessHelper.MovingPhoto | undefined = undefined
+  @State isMuted: boolean = false
+  controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private aiController: visionImageAnalyzer.VisionImageAnalyzerController =
+    new visionImageAnalyzer.VisionImageAnalyzerController()
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT, ImageAnalyzerType.OBJECT_LOOKUP],
+    aiController: this.aiController
+  }
+
+  aboutToAppear(): void {
+    emitter.on({
+      eventId: PHOTO_SELECT_EVENT_ID,
+      priority: emitter.EventPriority.IMMEDIATE,
+    }, (eventData: emitter.EventData) => {
+      this.src = AppStorage.get<photoAccessHelper.MovingPhoto>('mv_data') as photoAccessHelper.MovingPhoto
+    })
+  }
+
+  aboutToDisappear(): void {
+    emitter.off(PHOTO_SELECT_EVENT_ID)
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button('PICK')
+          .margin(5)
+          .onClick(async () => {
+            let context = getContext(this)
+            try {
+              let uris: Array<string> = []
+              const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
+              photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE
+              photoSelectOptions.maxSelectNumber = 2
+              const photoViewPicker = new photoAccessHelper.PhotoViewPicker()
+              let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
+              uris = photoSelectResult.photoUris
+              if (uris[0]) {
+                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+              }
+            } catch (e) {
+              console.error(`pick file failed`)
+            }
+          })
+      }
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+      .height('15%')
+
+      Row() {
+        Column() {
+          MovingPhotoView({
+            movingPhoto: this.src,
+            controller: this.controller,
+            imageAIOptions: this.options
+          })
+            .width('100%')
+            .height('100%')
+            .muted(this.isMuted)
+            .autoPlay(true)
+            .repeatPlay(false)
+            .autoPlayPeriod(0, 600)
+            .objectFit(ImageFit.Cover)
+            .enableAnalyzer(true)
             .onComplete(() => {
               console.log('Completed');
             })

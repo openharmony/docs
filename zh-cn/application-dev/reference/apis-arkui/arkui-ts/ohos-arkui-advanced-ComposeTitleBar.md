@@ -23,7 +23,6 @@ import { ComposeTitleBar } from '@kit.ArkUI'
 ## 属性
 不支持[通用属性](ts-universal-attributes-size.md)
 
-
 ## ComposeTitleBar
 
 ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array&lt;ComposeTitleBarMenuItem&gt;})
@@ -34,14 +33,16 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
 | menuItems | Array&lt;[ComposeTitleBarMenuItem](#composetitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 |
+
+> **说明：**
+> 
+> 入参对象不可为undefined，即`ComposeTitleBar(undefined)`。
 
 ## ComposeTitleBarMenuItem
 

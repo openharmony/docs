@@ -14,7 +14,7 @@ The **AppProvisionInfo** module provides information in the [HarmonyAppProvision
 
 **System API**: This is a system API.
 
-| Name                     | Type  | Readable| Writable| Description                |
+| Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | versionCode              | number | Yes  | No  | Version number of the configuration file.|
 | versionName              | string | Yes  | No  | Version name of the configuration file. |
@@ -35,7 +35,7 @@ The **AppProvisionInfo** module provides information in the [HarmonyAppProvision
 
 **System API**: This is a system API.
 
-| Name                     | Type  | Readable| Writable| Description                |
+| Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | notBefore                 | number | Yes  | No  | Earliest validity date of the configuration file.|
 | notAfter                  | number | Yes  | No  | Latest validity date of the configuration file.|
