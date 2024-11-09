@@ -1511,6 +1511,8 @@ struct TabsExample {
 
 本示例通过onChange、onAnimationStart、onAnimationEnd、onGestureSwipe等接口实现了自定义TabBar的切换动画。
 
+<!--code_no_check-->
+
 ```ts
 // EntryAbility.ets
 import { Configuration, UIAbility } from '@kit.AbilityKit'
@@ -1526,6 +1528,8 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+<!--code_no_check-->
 
 ```ts
 // CommonUtil.ets
@@ -1543,6 +1547,8 @@ export class CommonUtil {
   }
 }
 ```
+
+<!--code_no_check-->
 
 ```ts
 // xxx.ets

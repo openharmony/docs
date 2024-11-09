@@ -11,8 +11,8 @@
 
 ## 导入模块
 
-```
-import { ToolBar, ToolBarOptions, toolBarModifier, ItemState } from '@kit.ArkUI'
+```ts
+import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 ```
 
 
