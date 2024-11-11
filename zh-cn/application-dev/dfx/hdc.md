@@ -10,11 +10,11 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 **Windows环境变量设置方法**
 
-在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加HDC端口变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如8710。
+在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加HDC端口变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如7035。
 
 ![新建系统变量](figures/hdc_image_001.PNG)
 
-环境变量配置完成后，关闭并重启DevEco Studio。
+环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件。
 
 **macOS环境变量设置方法**
 
@@ -60,7 +60,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       source ~/.zshrc
       ```
 
-6. 环境变量配置完成后，关闭并重启DevEco Studio。
+6. 环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件。
 
 ### （可选）配置全局环境变量
 
@@ -71,7 +71,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量 &gt; 系统变量**中，将SDK的toolchains完整路径添加到Path变量值中，具体路径信息以SDK**实际配置路径**为准。
 
-以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_$DevEco Studio安装目录/sdk/default/openharmony/toolchains_<!--RP1End-->为例：
+以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_%YourSDKPath%\openharmony\toolchains_<!--RP1End-->为例：
 
 ![系统变量](figures/hdc_img_002.PNG)
 
@@ -101,10 +101,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 3. 输入以下内容，在PATH路径下**增加**SDK路径信息，具体路径信息以SDK**实际配置路径**为准。
 
-   以下内容以本地SDK的toolchains完整路径<!--RP1-->_$DevEco Studio安装目录/sdk/default/openharmony/toolchains_<!--RP1End-->为例：
+   以下内容以本地SDK的toolchains完整路径<!--RP1-->_$YourSDKPath/openharmony/toolchains_<!--RP1End-->为例：
 
    ```shell
-   HDC_SDK_PATH=${DevEco Studio安装目录}/sdk/default/openharmony/toolchains
+   HDC_SDK_PATH=$YourSDKPath/openharmony/toolchains
    launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH # 仅MacOS需要在此执行，Linux无须执行
    export PATH=$PATH:$HDC_SDK_PATH
    ```
