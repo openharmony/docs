@@ -713,12 +713,13 @@ Error: install sign info inconsistent.
 
 **可能原因**
 
-设备上已安装的应用与新安装的应用中签名不一致。如果在Edit Configurations中勾选了“Keep Application Data”（不卸载应用，覆盖安装），并且重新进行了签名，将导致该报错。
+设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+
 
 **处理步骤**
-
+zh-cn\application-dev\quick-start\integrated-hsp.md
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
-
+2. 如果是因不同团队提供的HSP导致签名不一致问题，可以采用[集成态HSP](../quick-start/integrated-hsp.md)的方式统一提供HSP；在多HAP包的情况下，必须确保所有HAP包的签名一致。
 
 ### 9568329 签名信息验证失败
 **错误信息**
