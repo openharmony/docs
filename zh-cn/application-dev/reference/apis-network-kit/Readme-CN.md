@@ -2,6 +2,7 @@
 
 - ArkTS API
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+  - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.net.mdns (MDNS管理)](js-apis-net-mdns.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
