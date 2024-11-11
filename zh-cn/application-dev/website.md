@@ -3175,6 +3175,7 @@
           - [MDNS错误码](reference/apis-network-kit/errorcode-net-mdns.md)
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
+          - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
 
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
