@@ -548,7 +548,7 @@ onWillChange(callback: Callback\<RichEditorChangeValue, boolean\>)
 
 onDidChange(callback: OnDidChangeCallback)
 
-组件执行增删操作后，触发回调。
+组件执行增删操作后，触发回调。文本实际未发生增删时，不触发该回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
@@ -646,7 +646,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | 名称                            | 类型                                       | 必填   | 说明                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
 | spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | 是    | Span位置。                <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| value                         | string                                   | 是    | 文本Span内容。              <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| value                         | string                                   | 是    | 文本Span内容或Symbol的id。              <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | textStyle                     | [RichEditorTextStyleResult](#richeditortextstyleresult) | 是    | 文本Span样式信息。            <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | offsetInSpan                  | [number, number]                         | 是    | 文本Span内容里有效内容的起始和结束位置。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | 否    | 组件SymbolSpan内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
