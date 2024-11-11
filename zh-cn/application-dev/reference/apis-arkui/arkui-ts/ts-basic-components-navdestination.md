@@ -225,6 +225,21 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 > 1. 必须配合Navigation使用，作为其Navigation目的页面的根节点时才能生效。
 > 2. 其他使用限制请参考Navigation对应的[systemBarStyle](ts-basic-components-navigation.md#systembarstyle12)属性说明。
 
+### systemTransition<sup>14+</sup>
+systemTransition(type: NavigationSystemTransitionType)
+
+设置NavDestination系统转场动画，支持分别设置系统标题栏动画和内容动画。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type  | [NavigationSystemTransitionType](#navigationsystemtransitiontype14枚举说明) | 是   | 系统转场动画类型。<br/>默认值: NavigationSystemTransitionType.DEFAULT |
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -237,6 +252,29 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 | ---- | ---------------------------------------- |
 | STANDARD | 标准模式的NavDestination。                       |
 | DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
+
+## NavigationSystemTransitionType<sup>14+</sup>枚举说明
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 枚举值   | 描述 |
+| ----  | ---   | ----- |
+| DEFAULT  | 0 | 默认系统转场动画。|
+| NONE| 1 | 无系统转场动画。|
+| TITLE | 2 | 标题栏系统转场动画。|
+| CONTENT | 3 | 内容区系统转场动画。|
+
+**说明：**
+>
+> 设置系统转场动画，支持分别设置系统标题栏动画和内容动画。
+> 
+> 系统默认转场动画中只有STANDARD页面的push和pop动画有单独的标题栏动画，存在如下限制：
+> 1. 设置NavigationSystemTransitionType为TITLE时，系统转场只有标题栏动画。
+> 2. 设置NavigationSystemTransitionType为CONTENT时，系统转场只有内容区动画。
+>
+> 设置NONE或者TITLE时没有系统转场动画，设置CONTENT和DEFAULT时默认系统转场动画。
 
 ## 事件
 
