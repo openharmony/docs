@@ -1,4 +1,4 @@
-# 自动化测试框架使用指导 
+# 自动化测试框架使用指导
 
 
 ## 概述
@@ -11,19 +11,19 @@
 
 ### 单元测试框架
 
-  图1.单元测试框架主要功能
+图1.单元测试框架主要功能
 
-  ![](figures/UnitTest.PNG)
+![](figures/UnitTest.PNG)
 
-  图2.脚本基础流程运行图
+图2.脚本基础流程运行图
 
-  ![](figures/TestFlow.PNG)
+![](figures/TestFlow.PNG)
 
 ### UI测试框架
 
-  图3.UI测试框架主要功能
+图3.UI测试框架主要功能
 
-  ![](figures/Uitest.PNG)
+![](figures/Uitest.PNG)
 
 ## 基于ArkTS编写和执行测试
 
@@ -78,7 +78,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
-      let ability: UIAbility = await delegator.getCurrentTopAbility();
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
       console.info("get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       done();
@@ -146,15 +146,15 @@ export default function abilityTest() {
           await delegator.startAbility(want);
           await sleep(1000);
           //check top display ability
-          let ability = await delegator.getCurrentTopAbility();
+          const ability: UIAbility = await delegator.getCurrentTopAbility();
           console.info("get top ability");
           expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
           //ui test code
           //init driver
-          let driver = Driver.create();
+          const driver = Driver.create();
           await driver.delayMs(1000);
           //find button on text 'Next'
-          let button = await driver.findComponent(ON.text('Next'));
+          const button = await driver.findComponent(ON.text('Next'));
           //click button
           await button.click();
           await driver.delayMs(1000);
@@ -390,6 +390,10 @@ hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 ```
 
 ### 用户录制操作
+
+>**说明**
+>
+> 录制过程中，需等待当前操作的识别结果在命令行输出后，再进行下一步操作。
 
 ```bash
 # 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
@@ -729,7 +733,7 @@ UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api do
 
 **3、失败日志有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
 
-**问题描述** 
+**问题描述**
 
 UI测试用例执行失败，查看hilog日志发现日志中有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息。
 
