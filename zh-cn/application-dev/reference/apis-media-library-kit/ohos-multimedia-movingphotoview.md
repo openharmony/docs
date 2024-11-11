@@ -285,10 +285,7 @@ stopPlayback(): void
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-## 示例
-
-### 示例1
-动态照片多种播放形式使用示例。
+## 示例1：多种形式播放动态照片
 
 ```ts
 // xxx.ets
@@ -433,8 +430,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
-### 示例2
-图像分析功能使用示例。
+## 示例2：图像分析功能使用
 
 ```ts
 // xxx.ets
@@ -584,6 +580,93 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
       priority: emitter.EventPriority.IMMEDIATE,
     }, {
     })
+  }
+}
+```
+## 示例3：在原子化服务中使用动态照片
+
+```ts
+// xxx.ets
+import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
+
+let context = getContext(this)
+let data: photoAccessHelper.MovingPhoto
+async function loading() {
+  try {
+    // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在
+    let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
+    let videoFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.mp4';
+    data = await photoAccessHelper.MediaAssetManager.loadMovingPhoto(context, imageFileUri, videoFileUri);
+    console.info('load moving photo successfully');
+  } catch (err) {
+    console.error(`load moving photo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+@Entry
+@Component
+struct Index {
+  controller: MovingPhotoViewController = new MovingPhotoViewController()
+  @State ImageFit: ImageFit | undefined | null = ImageFit.Contain;
+  @State flag: boolean = true;
+  @State autoPlayFlag: boolean = true;
+  @State repeatPlayFlag: boolean = false;
+  @State autoPlayPeriodStart: number = 0;
+  @State autoPlayPeriodEnd: number = 500;
+  aboutToAppear(): void {
+    loading()
+  }
+
+  build() {
+    NavDestination() {
+      Column() {
+        Stack({ alignContent: Alignment.BottomStart }) {
+          MovingPhotoView({
+            movingPhoto: data,
+            controller: this.controller
+          })
+            .width(300)
+            .height(400)
+            .muted(this.flag)
+            .objectFit(this.ImageFit)
+            .autoPlay(this.autoPlayFlag)
+            .autoPlayPeriod(this.autoPlayPeriodStart, this.autoPlayPeriodEnd)
+            .repeatPlay(this.repeatPlayFlag)
+            .onComplete(() => {
+              console.info('onComplete')
+            })
+            .onStart(() => {
+              console.info('onStart')
+            })
+            .onStop(() => {
+              console.info('onStop')
+            })
+            .onPause(() => {
+              console.info('onPause')
+            })
+            .onFinish(() => {
+              console.info('onFinish')
+            })
+            .onError(() => {
+              console.info('onError')
+            })
+        }
+
+        Row() {
+          Button('Play')
+            .onClick(() => {
+              this.controller.startPlayback()
+            })
+          Button('StopPlay')
+            .onClick(() => {
+              this.controller.stopPlayback()
+            })
+          Button('mute').id('MovingPhotoView_true')
+            .onClick(() => {
+              this.flag = false
+            })
+        }
+      }
+    }
   }
 }
 ```
