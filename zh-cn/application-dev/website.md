@@ -153,6 +153,7 @@
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
           - 拉起指定应用<!--directional-redirection-->
+            - [拉起指定应用概述](application-models/app-startup-overview.md)
             - [（可选）使用canOpenLink判断应用是否可访问](application-models/canopenlink.md)
             - [使用Deep Linking实现应用间跳转](application-models/deep-linking-startup.md)
             <!--Del-->
@@ -160,7 +161,8 @@
             <!--DelEnd-->
             - [显式Want跳转切换应用链接跳转适配指导](application-models/uiability-startup-adjust.md)
             - [应用链接说明](application-models/app-uri-config.md)
-          - [拉起指定类型的应用](application-models/start-intent-panel.md)
+          - 拉起指定类型的应用<!--specified-type-app-redirection-->
+            - [拉起指定类型的应用概述](application-models/start-intent-panel.md)
             - [拉起导航类应用（startAbilityByType）](application-models/start-navigation-apps.md)
             - [拉起邮件类应用（startAbilityByType）](application-models/start-email-apps.md)
             - [拉起邮件类应用（mailto方式）](application-models/start-email-apps-by-mailto.md)
