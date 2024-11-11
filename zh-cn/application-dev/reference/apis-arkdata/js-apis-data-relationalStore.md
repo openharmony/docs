@@ -8267,15 +8267,19 @@ async function getDataByName(name: string, context: ctx.UIAbilityContext) {
   }
 }
 
-const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
-const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+async function run() {
+  const task = new taskpool.Task(getDataByName, 'Lisa', getContext());
+  const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
 
-if (sendableValuesBucket) {
-  const columnCount = sendableValuesBucket.size;
-  const age = sendableValuesBucket.get('age');
-  const name = sendableValuesBucket.get('name');
-  console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+  if (sendableValuesBucket) {
+    const columnCount = sendableValuesBucket.size;
+    const age = sendableValuesBucket.get('age');
+    const name = sendableValuesBucket.get('name');
+    console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+  }
 }
+
+run()
 ```
 
 ### isColumnNull
