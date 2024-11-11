@@ -180,7 +180,7 @@ Describes the window information.
 | abilityName | string   | Yes  | No  | Ability name.              |
 | windowId | number | Yes  | No  | Window ID.  |
 | windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | Yes  | No  | Window mode.  |
-
+| isFocused | boolean | Yes  | No  | Whether the window is focused. The value true means that the window is focused, and false means unfocused.  |
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1019,6 +1019,7 @@ promise.then((data) => {
     console.info(`windowStatusType:${windowInfo.windowStatusType}`);
     console.info(`abilityName:${windowInfo.abilityName}`);
     console.info(`bundleName:${windowInfo.bundleName}`);
+    console.info(`isFocused:${windowInfo.isFocused}`);
   })
 }).catch((err: BusinessError) => {
   console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
