@@ -1441,20 +1441,43 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ARKUI';
+import { BusinessError } from 'kit.BasicServiceKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-try {
-  let promise = windowClass.moveWindowToAsync(300, 300);
-  promise.then(() => {
-    console.info('Succeeded in moving the window.');
-    let rect = windowClass.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+// EntryAbility.ets
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage:window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let options : window.SubWindowOptions = {
+        title: 'title',
+        decorEnabled: true
+      };
+      let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
+      promise.then((data) => {
+        windowClass = data;
+        try {
+          let promise = windowClass.moveWindowToAsync(300,300);
+          promise.then(() => {
+            console.info('Get window rect: ' + JSON.stringify(rect));
+          }).catch((err: BusinessError) => {
+            console.error('Failed to move the window. Cause code: ${err.code}, message: ${err.message}');
+          });
+        } catch (exception) {
+          console.error('Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}');
+        }
+        console.info('Succeeded in creating the subwindow.Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}');
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}');
+    }
+  }
+};
 ```
 
 ### resize<sup>9+</sup>
@@ -1633,20 +1656,45 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ARKUI';
+import { BusinessError } from 'kit.BasicServiceKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-try {
-  let promise = windowClass.resizeAsync(500, 1000);
-  promise.then(() => {
-    console.info('Succeeded in changing the window size.');
-    let rect = windowClass.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+// EntryAbility.ets
+export default class EntryAbility extends UIAbility {
+  // ...
+    onWindowStageCreate(windowStage:window.WindowStage) {
+      console.info('onWindowStageCreate');
+      let windowClass: window.Window | undefined = undefined;
+      try {
+        let options : window.SubWindowOptions = {
+          title: 'title',
+          decorEnabled: true
+        };
+        let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
+        promise.then((data) => {
+          windowClass = data;
+          try {
+            let promise = windowClass.resizeAsync(500, 1000);
+            promise.then(() => {
+              console.info('Succeeded in changing the window size.');
+              let rect = windowClass.getWindowProperties().windowRect;
+              console.info('Get window rect: ' + JSON.stringify(rect));
+            }).catch((err: BusinessError) => {
+              console.error('Failed to change the window size. Cause code: ${err.code}, message: ${err.message}');
+            });
+          } catch (exception) {
+            console.error('Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}');
+          }
+          console.info('Succeeded in creating the subwindow.Data: ' + JSON.stringify(data));
+        }).catch((err: BusinessError) => {
+          console.error('Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}');
+        });
+      } catch (exception) {
+      console.error('Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}');
+    }
+  }
+};
 ```
 
 ### getWindowProperties<sup>9+</sup>
@@ -7651,15 +7699,24 @@ Sets the background color for this window. This API uses a promise to return the
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ARKUI';
+import { BusinessError } from 'kit.BasicServiceKit';
 
-let color: string = '#00ff33';
-let promise = windowClass.setBackgroundColor(color);
-promise.then(() => {
-  console.info('Succeeded in setting the background color.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the background color. Cause code: ${err.code}, message: ${err.message}`);
-});
+private SetUIContent(windowClass: window.Window) {
+  windowClass.SetUIContent("pages/ButtonWindow",(err: BusinessError) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause code: ${err.code}), message: ${err.message}');
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+    let color: string = '#00ff33';
+    try {
+      windowClass.SetBackgroundColor(color);
+    } catch (exception) {
+      console.error('Failed to set the background color. Cause code: ${exception.code}), message: ${exception.message}');
+    };
+  });
+}
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
