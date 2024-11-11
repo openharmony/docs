@@ -1442,13 +1442,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { window } from '@kit.ARKUI';
-import { BusinessError } from 'kit.BasicServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { UIAbility } from '@kit.AbilityKit';
 
 // EntryAbility.ets
 export default class EntryAbility extends UIAbility {
   // ...
-  onWindowStageCreate(windowStage:window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
@@ -1462,19 +1462,21 @@ export default class EntryAbility extends UIAbility {
         try {
           let promise = windowClass.moveWindowToAsync(300,300);
           promise.then(() => {
-            console.info('Get window rect: ' + JSON.stringify(rect));
+            console.info('Succeeded in moving the window.');
+            let rect = windowClass.getWindowProperties().windowRect;
+            console.info(`Get window rect: ` + JSON.stringify(rect));
           }).catch((err: BusinessError) => {
-            console.error('Failed to move the window. Cause code: ${err.code}, message: ${err.message}');
+            console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
           });
         } catch (exception) {
-          console.error('Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}');
+          console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
         }
         console.info('Succeeded in creating the subwindow.Data: ' + JSON.stringify(data));
       }).catch((err: BusinessError) => {
-        console.error('Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}');
+        console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (exception) {
-      console.error('Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}');
+      console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };
@@ -1657,7 +1659,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { window } from '@kit.ARKUI';
-import { BusinessError } from 'kit.BasicServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { UIAbility } from '@kit.AbilityKit';
 
 // EntryAbility.ets
@@ -1679,19 +1681,19 @@ export default class EntryAbility extends UIAbility {
             promise.then(() => {
               console.info('Succeeded in changing the window size.');
               let rect = windowClass.getWindowProperties().windowRect;
-              console.info('Get window rect: ' + JSON.stringify(rect));
+              console.info(`Get window rect: ` + JSON.stringify(rect));
             }).catch((err: BusinessError) => {
-              console.error('Failed to change the window size. Cause code: ${err.code}, message: ${err.message}');
+              console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
             });
           } catch (exception) {
-            console.error('Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}');
+            console.error(`Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}`);
           }
           console.info('Succeeded in creating the subwindow.Data: ' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-          console.error('Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}');
+          console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
         });
       } catch (exception) {
-      console.error('Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}');
+      console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };
@@ -7700,20 +7702,20 @@ Sets the background color for this window. This API uses a promise to return the
 
 ```ts
 import { window } from '@kit.ARKUI';
-import { BusinessError } from 'kit.BasicServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 private SetUIContent(windowClass: window.Window) {
   windowClass.SetUIContent("pages/ButtonWindow",(err: BusinessError) => {
     if (err.code) {
-      console.error('Failed to load the content. Cause code: ${err.code}), message: ${err.message}');
+      console.error(`Failed to load the content. Cause code: ${err.code}), message: ${err.message}`);
       return;
     }
     console.info('Succeeded in loading the content.');
     let color: string = '#00ff33';
     try {
-      windowClass.SetBackgroundColor(color);
+      windowClass.SetWindowBackgroundColor(color);
     } catch (exception) {
-      console.error('Failed to set the background color. Cause code: ${exception.code}), message: ${exception.message}');
+      console.error(`Failed to set the background color. Cause code: ${exception.code}), message: ${exception.message}`);
     };
   });
 }
