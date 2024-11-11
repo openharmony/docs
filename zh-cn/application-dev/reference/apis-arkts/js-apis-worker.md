@@ -324,7 +324,7 @@ on(type: string, listener: WorkerEventListener): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.on("alert", (e)=>{
+workerInstance.on("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -361,7 +361,7 @@ once(type: string, listener: WorkerEventListener): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.once("alert", (e)=>{
+workerInstance.once("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -683,7 +683,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -719,7 +719,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
@@ -773,13 +773,13 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 //用法一:
-workerInstance.on("alert_on", (e)=>{
+workerInstance.on("alert_on", ()=>{
     console.log("alert listener callback");
 })
-workerInstance.once("alert_once", (e)=>{
+workerInstance.once("alert_once", ()=>{
     console.log("alert listener callback");
 })
-workerInstance.addEventListener("alert_add", (e)=>{
+workerInstance.addEventListener("alert_add", ()=>{
     console.log("alert listener callback");
 })
 
@@ -799,7 +799,7 @@ workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 //当type = "error"，onerror接口定义的方法同时会执行。
 //若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
 
-workerInstance.addEventListener("message", (e)=>{
+workerInstance.addEventListener("message", ()=>{
     console.log("message listener callback");
 })
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -832,7 +832,7 @@ removeAllListener(): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 workerInstance.removeAllListener();
@@ -873,7 +873,7 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -909,7 +909,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
@@ -963,13 +963,13 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
 //用法一:
-workerInstance.on("alert_on", (e)=>{
+workerInstance.on("alert_on", ()=>{
     console.log("alert listener callback");
 })
-workerInstance.once("alert_once", (e)=>{
+workerInstance.once("alert_once", ()=>{
     console.log("alert listener callback");
 })
-workerInstance.addEventListener("alert_add", (e)=>{
+workerInstance.addEventListener("alert_add", ()=>{
     console.log("alert listener callback");
 })
 
@@ -989,7 +989,7 @@ workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 //当type = "error"，onerror接口定义的方法同时会执行。
 //若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
 
-workerInstance.addEventListener("message", (e)=>{
+workerInstance.addEventListener("message", ()=>{
     console.log("message listener callback");
 })
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1022,7 +1022,7 @@ removeAllListener(): void
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 workerInstance.removeAllListener();
@@ -1428,7 +1428,7 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 
 ```ts
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -1612,7 +1612,7 @@ on(type: string, listener: EventListener): void
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.on("alert", (e)=>{
+workerInstance.on("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -1640,7 +1640,7 @@ once(type: string, listener: EventListener): void
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.once("alert", (e)=>{
+workerInstance.once("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -1760,7 +1760,7 @@ onmessage?: (event: MessageEvent) =&gt; void
 import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.onmessage = (e): void => {
+workerInstance.onmessage = (): void => {
     console.log("onmessage");
 }
 ```
@@ -1815,7 +1815,7 @@ addEventListener(type: string, listener: EventListener): void
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
@@ -1843,7 +1843,7 @@ removeEventListener(type: string, callback?: EventListener): void
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 workerInstance.removeEventListener("alert");
@@ -1887,13 +1887,13 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 const workerInstance = new worker.Worker("workers/worker.ets");
 
 //用法一:
-workerInstance.on("alert_on", (e)=>{
+workerInstance.on("alert_on", ()=>{
     console.log("alert listener callback");
 })
-workerInstance.once("alert_once", (e)=>{
+workerInstance.once("alert_once", ()=>{
     console.log("alert listener callback");
 })
-workerInstance.addEventListener("alert_add", (e)=>{
+workerInstance.addEventListener("alert_add", ()=>{
     console.log("alert listener callback");
 })
 
@@ -1913,10 +1913,10 @@ workerInstance.dispatchEvent({type:"alert_add", timeStamp:0});
 //当type = "error"，onerror接口定义的方法同时会执行。
 //若调用removeEventListener接口或者off接口取消事件时，能且只能取消使用addEventListener/on/once创建的事件。
 
-workerInstance.addEventListener("message", (e)=>{
+workerInstance.addEventListener("message", ()=>{
     console.log("message listener callback");
 })
-workerInstance.onmessage = function(e) {
+workerInstance.onmessage = function() {
     console.log("onmessage : message listener callback");
 }
 //调用dispatchEvent分发“message”事件，addEventListener和onmessage中定义的方法都会被执行。
@@ -1937,7 +1937,7 @@ removeAllListener(): void
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 workerInstance.removeAllListener();
@@ -1995,7 +1995,7 @@ import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
-workerInstance.onmessage = (e): void => {
+workerInstance.onmessage = (): void => {
     // let data = e.data;
     console.log("receive data from worker.ets");
 }
@@ -2005,7 +2005,7 @@ workerInstance.onmessage = (e): void => {
 import { worker } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
-workerPort.onmessage = (e): void => {
+workerPort.onmessage = (): void => {
     // let data = e.data;
     let buffer = new ArrayBuffer(5)
     workerPort.postMessage(buffer, [buffer]);
@@ -2077,7 +2077,7 @@ const workerInstance = new worker.Worker("workers/worker.ets");
 import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e): void => {
+parentPort.onmessage = (): void => {
     parentPort.close()
 }
 ```
@@ -2108,7 +2108,7 @@ workerInstance.postMessage("hello world");
 import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
-parentPort.onmessage = (e): void => {
+parentPort.onmessage = (): void => {
     console.log("receive main thread message");
 }
 ```
@@ -2138,7 +2138,7 @@ const workerInstance = new worker.Worker("workers/worker.ets");
 import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
-parentPort.onmessageerror = (e) => {
+parentPort.onmessageerror = () => {
     console.log("worker.ets onmessageerror")
 }
 ```
@@ -2205,7 +2205,7 @@ parentPort.onmessageerror = (e) => {
 
 ```ts
 const workerInstance = new worker.Worker("workers/worker.ets");
-workerInstance.addEventListener("alert", (e)=>{
+workerInstance.addEventListener("alert", ()=>{
     console.log("alert listener callback");
 })
 ```
