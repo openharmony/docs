@@ -22,7 +22,7 @@ createBundleContext(bundleName: string): Context
 
 **说明：**
 >
-> stage模型多module的情况下可能发生资源id冲突的情况，建议使用[Context.createModuleContext](#contextcreatemodulecontextdeprecated)替代。
+> stage模型多module的情况下可能发生资源id冲突的情况，建议使用[application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)替代。
 >
 > 从 API Version 12 开始废弃，建议使用[application.createBundleContext](./js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)替代。
 
