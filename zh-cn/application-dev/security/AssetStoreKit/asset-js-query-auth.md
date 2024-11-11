@@ -93,7 +93,7 @@ function stringToArray(str: string): Uint8Array {
 
 function arrayToString(arr: Uint8Array): string {
   let textDecoder = util.TextDecoder.create("utf-8", { ignoreBOM: true });
-  let str = textDecoder.decodeWithStream(arr, { stream: false })
+  let str = textDecoder.decodeToString(arr, { stream: false })
   return str;
 }
 
