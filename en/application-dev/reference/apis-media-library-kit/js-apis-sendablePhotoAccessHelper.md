@@ -1,4 +1,4 @@
-# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)
+# @ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)
 
 The **sendablePhotoAccessHelper** module provides APIs for album management, including creating an album and accessing and modifying media data in an album, based on a sendable object.
 

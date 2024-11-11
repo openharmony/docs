@@ -1,4 +1,4 @@
-# Creating an ArkTs Runtime Environment Using Node-API
+# Creating an ArkTS Runtime Environment Using Node-API
 
 ## When to Use
 

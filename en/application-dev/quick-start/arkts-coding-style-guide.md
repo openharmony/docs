@@ -1,7 +1,5 @@
 # ArkTS Coding Style Guide
 
-# Overview
-
 ## Purpose
 
 Based on the language characteristics of ArkTS, as well as industry standards and practices, this guide provides coding guidelines to improve code specifications, security, and performance.
@@ -10,7 +8,7 @@ This guide is applicable when you use ArkTS for coding during system or applicat
 
 ## Source
 
-ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some guidelines in this topic are extracted from [TypeScript and JavaScript Coding Style Guide](OpenHarmony-Application-Typescript-JavaScript-coding-guide.md). New guidelines are defined for ArkTS-specific syntax to improve code readability and execution performance.
+ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some guidelines in this topic are extracted from [TypeScript and JavaScript Coding Style Guide](https://gitee.com/openharmony/docs/tree/master/en/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md). New guidelines are defined for ArkTS-specific syntax to improve code readability and execution performance.
 
 ## Document Structure
 
@@ -33,7 +31,7 @@ Guidelines in **TypeScript and JavaScript Coding Style Guide** that are involved
 | JavaScript  | JS | JavaScript programming language|
 | ESObject  | -| JS/TS object in ArkTS cross-language calls|
 
-# Conventions
+## Conventions
 
 Guidelines are categorized as follows:
 
@@ -41,9 +39,9 @@ Guidelines are categorized as follows:
 
 **Recommendation**: a convention that must be taken into consideration.
 
-# Naming
+## Naming
 
-## Properly Name Identifiers to Make Them Easy to Read
+### Properly Name Identifiers to Make Them Easy to Read
 
 **[Description]**
 
@@ -52,7 +50,7 @@ A well-named identifier meets the following basic requirements:
  - Use correct English words in line with the English grammar. Do not use Pinyin.
  - Clearly express the meaning, and avoid misleading.
 
-## Use UpperCamelCase for Class Names, Enum Names, and Namespace Names
+### Use UpperCamelCase for Class Names, Enum Names, and Namespace Names
 
 **[Category]** Recommendation
 
@@ -95,7 +93,7 @@ namespace Base64Utils {
 };
 ```
 
-## Use lowerCamelCase for Variable Names, Method Names, and Parameter Names
+### Use lowerCamelCase for Variable Names, Method Names, and Parameter Names
 
 **[Category]** Recommendation
 
@@ -131,7 +129,7 @@ function findUser(userName: string) {
 }
 ```
 
-## Use Uppercase Letters for Constant Names and Enum Value Names and Separate Words by Underscores
+### Use Uppercase Letters for Constant Names and Enum Value Names and Separate Words by Underscores
 
 **[Category]** Recommendation
 
@@ -150,7 +148,7 @@ enum UserType {
 };
 ```
 
-## Do Not Use Negative Boolean Variable Names
+### Do Not Use Negative Boolean Variable Names
 
 **[Category]** Recommendation
 
@@ -178,9 +176,9 @@ function isEmpty() {}
 function hasNext() {}
 ```
 
-# Format
+## Format
 
-## Use Spaces for Indentation
+### Use Spaces for Indentation
 
 **[Category]** Recommendation
 
@@ -230,7 +228,7 @@ function test(dataSource: DataSource[]) {
 }
 ```
 
-## Use No More Than 120 Characters in Each Line
+### Use No More Than 120 Characters in Each Line
 
 **[Category]** Recommendation
 
@@ -274,7 +272,7 @@ for (let idx = 0; idx < 5; ++idx) {
 }
 ```
 
-## Indent the `case` or `default` Statement in a `switch` Statement Block
+### Indent the `case` or `default` Statement in a `switch` Statement Block
 
 **[Category]** Recommendation
 
@@ -299,7 +297,7 @@ switch (condition) {
 }
 ```
 
-## Keep a Consistent Line Break Style for Expressions and Ensure That Operators Are Placed at the End of a Line
+### Keep a Consistent Line Break Style for Expressions and Ensure That Operators Are Placed at the End of a Line
 
 **[Category]** Recommendation
 
@@ -319,7 +317,7 @@ if (userCount > MAX_USER_COUNT ||
 }
 ```
 
-## Do Not Put Multiple Variable Definitions and Assignment Statements in a Line
+### Do Not Put Multiple Variable Definitions and Assignment Statements in a Line
 
 **[Category]** Rule
 
@@ -346,7 +344,7 @@ let pointX = 0;
 let pointY = 0;
 ```
 
-## Use Spaces to Highlight Keywords and Important Information
+### Use Spaces to Highlight Keywords and Important Information
 
 **[Category]** Recommendation
 
@@ -433,7 +431,7 @@ const arr = [1, 2, 3]; // There is a space after the comma during array initiali
 myFunc(bar, foo, baz); // There is a space after the comma between multiple parameters of a method. There is no space before the comma.
 ```
 
-## Use Single Quotation Marks for Strings
+### Use Single Quotation Marks for Strings
 
 **[Category]** Recommendation
 
@@ -455,7 +453,7 @@ let message = 'world';
 console.log(message);
 ```
 
-## If an Object Literal Has More Than Four Properties, Place Each of Them at Separate Lines
+### If an Object Literal Has More Than Four Properties, Place Each of Them at Separate Lines
 
 **[Category]** Recommendation
 
@@ -500,7 +498,7 @@ let obj: I = {
 }
 ```
 
-## Put `else` or `catch` in the Same Line as the Close Parenthesis `)` of the `if` or `try` Code Block
+### Put `else` or `catch` in the Same Line as the Close Parenthesis `)` of the `if` or `try` Code Block
 
 **[Category]** Recommendation
 
@@ -552,7 +550,7 @@ try {
 }
 ```
 
-## Put the Open Brace `{` and the Statement in the Same Line
+### Put the Open Brace `{` and the Statement in the Same Line
 
 **[Category]** Recommendation
 
@@ -577,9 +575,9 @@ function foo() {
 }
 ```
 
-# Programming Practices
+## Programming Practices
 
-## Add Accessible Modifiers for Class Attributes
+### Add Accessible Modifiers for Class Attributes
 
 **[Category]** Recommendation
 
@@ -611,7 +609,7 @@ class C {
 }
 ```
 
-## Do Not Omit 0s Before and After the Decimal Point of a Floating-Point Number
+### Do Not Omit 0s Before and After the Decimal Point of a Floating-Point Number
 
 **[Category]** Recommendation
 
@@ -635,7 +633,7 @@ const num = 2.0;
 const num = -0.7;
 ```
 
-## Use `Number.isNaN()` to Check Whether a Variable Is `Number.NaN`
+### Use `Number.isNaN()` to Check Whether a Variable Is `Number.NaN`
 
 **[Category]** Rule
 
@@ -671,7 +669,7 @@ if (!Number.isNaN(foo)) {
 }
 ```
 
-## Preferentially Use `Array` Object Methods for Array Traversal
+### Preferentially Use `Array` Object Methods for Array Traversal
 
 **[Category]** Rule
 
@@ -698,7 +696,7 @@ const numbers = [1, 2, 3, 4, 5];
 const increasedByOne: number[] = numbers.map(num => num + 1);
 ```
 
-## Do Not Assign Values in Control Conditional Expressions
+### Do Not Assign Values in Control Conditional Expressions
 
 **[Category]** Rule
 
@@ -726,7 +724,7 @@ if (isFoo) {
 }
 ```
 
-## Do Not Use `return`, `break`, `continue`, or `throw` in a `finally` Code Block
+### Do Not Use `return`, `break`, `continue`, or `throw` in a `finally` Code Block
 
 **[Category]** Rule
 
@@ -766,7 +764,7 @@ function foo() {
 }
 ```
 
-## Do Not Use `ESObject`
+### Do Not Use `ESObject`
 
 **[Category]** Recommendation
 
@@ -810,7 +808,7 @@ import { getObject, I } from 'lib'
 let obj: I = getObject(123);
 ```
 
-## Use `T[]` for the Array Type
+### Use `T[]` for the Array Type
 
 **[Category]** Recommendation
 
@@ -832,3 +830,5 @@ let y: Array<string> = ['a', 'b', 'c'];
 let x: number[] = [1, 2, 3];
 let y: string[] = ['a', 'b', 'c'];
 ```
+
+ <!--no_check--> 
