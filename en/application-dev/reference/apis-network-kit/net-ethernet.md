@@ -5,7 +5,7 @@
 The Ethernet Connection module allows a device to access the Internet through a network cable. After a device is connected to the Ethernet through a network cable, the device can obtain a series of network attributes, such as the dynamically allocated IP address, subnet mask, gateway, and DNS. You can manually configure and obtain the network attributes of the device in static mode.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-ethernet-sys.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](js-apis-net-ethernet-sys.md).
 
 ## **Constraints**
 
@@ -23,7 +23,7 @@ The following describes the development procedure specific to each application s
 
 ## Available APIs
 
-For the complete list of APIs and example code, see [Ethernet Connection](../reference/apis-network-kit/js-apis-net-ethernet-sys.md).
+For the complete list of APIs and example code, see [Ethernet Connection](js-apis-net-ethernet-sys.md).
 
 | Type| API| Description|
 | ---- | ---- | ---- |
