@@ -16,6 +16,9 @@ The following types of credentials are supported for system accounts:
 
 Credential types are further classified into the following subtypes:
 
+> **NOTE**<br>
+> The credential types supported by the device depend on the hardware capability.
+
 | Name      | Value| Description              |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | Six-digit PIN.      |
@@ -26,8 +29,6 @@ Credential types are further classified into the following subtypes:
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | Capacitive fingerprint.  |
 | FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | Optical fingerprint.  |
 | FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | Ultrasonic fingerprint.  |
-
-**NOTE**<br>The credential types supported by the device depend on the hardware capability.
 
 ## Before You Start
 
@@ -94,7 +95,7 @@ Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sy
    ```ts
    let credentialInfo: osAccount.CredentialInfo = {
      credType: osAccount.AuthType.PIN,
-     credSubType: osAccount.AuthSubType.PIN_SIX;
+     credSubType: osAccount.AuthSubType.PIN_SIX,
      token: new Uint8Array([0])
    };
    ```
@@ -231,7 +232,7 @@ The user can update credentials as required. You can use [updateCredential](../.
    };
    ```
 
-3. Use [updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update the credential.  
+3. Use [updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8) to update the credential.
 
    ```ts
    userIDM.updateCredential(credentialInfo, {
