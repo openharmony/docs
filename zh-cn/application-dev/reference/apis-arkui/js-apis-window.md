@@ -10226,7 +10226,11 @@ removeStartingWindow(): Promise&lt;void&gt;
 
 支持应用控制启动页消失时机。
 
-此接口只对应用主窗口生效，且需要在module.json5配置文件[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的metadata标签下配置"enable.remove.starting.window"为"true"才会生效。在标签配置为"true"的情况下，系统提供了启动页超时保护机制，若5s内未调用此接口，系统将自动移除启动页。若标签配置为"false"或未配置标签，则此接口不生效，启动页将会在应用首帧渲染完成后自动移除。
+此接口只对应用主窗口生效，且需要在module.json5配置文件[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的metadata标签下配置"enable.remove.starting.window"为"true"才会生效。
+
+在标签配置为"true"的情况下，系统提供了启动页超时保护机制，若5s内未调用此接口，系统将自动移除启动页。
+
+若标签配置为"false"或未配置标签，则此接口不生效，启动页将会在应用首帧渲染完成后自动移除。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10261,9 +10265,9 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     windowStage.removeStartingWindow().then(() => {
-      console.log('Succeeded in remove starting window.');
+      console.info('Succeeded in removing starting window.');
     }).catch((err: BusinessError) => {
         console.error(`Failed to remove starting window. Cause code: ${err.code}, message: ${err.message}`);
     });
