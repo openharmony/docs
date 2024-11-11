@@ -20,7 +20,7 @@ createBundleContext(bundleName: string): Context
 
 根据Bundle名称创建安装包的上下文。
 
-**说明：**
+> **说明：**
 >
 > stage模型多module的情况下可能发生资源id冲突的情况，建议使用[application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)替代。
 >
@@ -77,7 +77,7 @@ createModuleContext(bundleName: string, moduleName: string): Context
 
 根据Bundle名称和模块名称创建上下文。
 
-**说明：**
+> **说明：**
 >
 > 从 API Version 12 开始废弃，建议使用[application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)替代。
 
