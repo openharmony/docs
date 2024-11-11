@@ -153,7 +153,7 @@ getSetting(): InputMethodSetting
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800007 |  settings extension error. |
+| 12800007 |  setter error. |
 
 **示例：**
 
@@ -187,7 +187,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -247,7 +247,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -323,7 +323,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -396,7 +396,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -482,7 +482,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -546,7 +546,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -921,7 +921,7 @@ showTextInput(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -963,7 +963,7 @@ showTextInput(): Promise&lt;void&gt;
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -1005,7 +1005,7 @@ hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **示例：**
 
@@ -1049,7 +1049,7 @@ hideTextInput(): Promise&lt;void&gt;
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -1163,7 +1163,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **示例：**
 
@@ -1217,7 +1217,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -1260,7 +1260,7 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **示例：**
 
@@ -1310,7 +1310,7 @@ updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -1355,7 +1355,7 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **示例：**
 
@@ -1406,7 +1406,7 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -1448,7 +1448,7 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached.             |
+| 12800009 | input method client detached.             |
 
 **示例：**
 
@@ -1498,7 +1498,7 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -1881,7 +1881,7 @@ on(type: 'insertText', callback: (text: string) => void): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -1953,7 +1953,7 @@ on(type: 'deleteLeft', callback: (length: number) => void): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2014,7 +2014,7 @@ on(type: 'deleteRight', callback: (length: number) => void): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2075,7 +2075,7 @@ on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => voi
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2136,7 +2136,7 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2197,7 +2197,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 | 错误码ID | 错误信息                           |
 | -------- | -------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2258,7 +2258,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2451,7 +2451,7 @@ on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2520,7 +2520,7 @@ on(type: 'getRightTextOfCursor', callback: (length: number) => string): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2589,7 +2589,7 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client is detached. |
+| 12800009 | input method client detached. |
 
 **示例：**
 
@@ -2711,7 +2711,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | package manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2767,7 +2767,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | package manager error.                 |
+| 12800001 | bunder manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2814,7 +2814,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 12800001 | bunder manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2857,7 +2857,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | package manager error.                 |
+| 12800001 | bunder manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2906,7 +2906,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | package manager error.               |
+| 12800001 | bunder manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2960,7 +2960,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | package manager error.               |
+| 12800001 | bunder manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
