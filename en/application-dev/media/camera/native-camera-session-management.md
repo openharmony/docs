@@ -1,15 +1,15 @@
 # Camera Session Management (C/C++)
 
-Before using the camera application for preview, photographing, video recording, and metadata management, you must create a camera session.
+Before using the camera application for preview, photo capture, video recording, and metadata management, you must create a camera session.
 
 You can implement the following functions in the session:
 
-- Configure the camera input and output streams. This is mandatory for photographing.
-  Configuring an input stream is to add a device input, which means that the user selects a camera for photographing. Configuring an output stream is to select a data output mode. For example, to implement photographing, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **XComponent**, and that of the photo stream is saved to the Gallery application through the **ImageReceiver** API.
+- Configure the camera input and output streams. This is mandatory for photo capture.
+  Configuring an input stream is to add a device input, which means that the user selects a camera for photo capture. Configuring an output stream is to select a data output mode. For example, to implement photo capture, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **XComponent**, and that of the photo stream is saved to the Gallery application through the **ImageReceiver** API.
 
 - Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../../reference/apis-camera-kit/_o_h___camera.md).
 
-- Control session switching. The application can switch the camera mode by removing and adding output streams. For example, to switch from photographing to video recording, the application must remove the photo output stream and add the video output stream.
+- Control session switching. The application can switch the camera mode by removing and adding output streams. For example, to switch from photo capture to video recording, the application must remove the photo output stream and add the video output stream.
 
 After the session configuration is complete, the application must commit the configuration and start the session before using the camera functionalities.
 
@@ -58,7 +58,7 @@ After the session configuration is complete, the application must commit the con
     }
    ```
 
-5. Configure the session. You can call **OH_CaptureSession_AddInput()**, **OH_CaptureSession_AddPreviewOutput()**, and **OH_CaptureSession_AddPhotoOutput()** to add the input and output streams to the session, respectively. The code snippet below uses adding the preview stream **previewOutput** and photo stream **photoOutput** as an example to implement the photographing and preview mode.
+5. Configure the session. You can call **OH_CaptureSession_AddInput()**, **OH_CaptureSession_AddPreviewOutput()**, and **OH_CaptureSession_AddPhotoOutput()** to add the input and output streams to the session, respectively. The code snippet below uses adding the preview stream **previewOutput** and photo stream **photoOutput** as an example to implement the photo capture and preview mode.
 
      After the configuration, call **commitConfig()** and **start()** in the **CaptureSession** class in sequence to commit the configuration and start the session.
      
@@ -94,7 +94,7 @@ After the session configuration is complete, the application must commit the con
     }
    ```
 
-6. Control the session. You can call **stop()** in the **CaptureSession** class to stop the session, and call **removeOutput()** and **addOutput()** in this class to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photographing to recording.
+6. Control the session. You can call **stop()** in the **CaptureSession** class to stop the session, and call **removeOutput()** and **addOutput()** in this class to switch to another session. The code snippet below uses removing the photo stream **photoOutput** and adding the video stream **videoOutput** as an example to complete the switching from photo capture to video recording.
      
    ```c++
     ret = OH_CaptureSession_Stop(captureSession);

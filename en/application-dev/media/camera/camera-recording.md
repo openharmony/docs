@@ -1,6 +1,6 @@
-# Camera Recording (ArkTS)
+# Video Recording (ArkTS)
 
-As another important function of the camera application, video recording is the process of cyclic frame capture. To smooth video recording, you can follow step 4 in [Camera Photographing](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
+As another important function of the camera application, video recording is the process of cyclic frame capture. To smooth video recording, you can follow step 4 in [Photo Capture](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
@@ -189,3 +189,6 @@ During camera application development, you can listen for the status of the vide
     });
   }
   ```
+
+<!--RP1-->
+<!--RP1End-->
