@@ -3266,7 +3266,7 @@ let staticMetadata: image.HdrStaticMetadata = {
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then((pixelMap: image.PixelMap) => {
+  pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then(() => {
     console.info('Succeeded in setting pixelMap metadata.');
   }).catch((error: BusinessError) => {
     console.error(`Failed to set the metadata.code ${error.code},message is ${error.message}`);
@@ -5533,27 +5533,29 @@ packing(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence):
 import { BusinessError } from '@ohos.base';
 import image from "@ohos.multimedia.image";
 
-const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
-const context = getContext();
-const resourceMgr = context.resourceManager;
-// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3,  // 指定GIF编码中的帧数为3
-  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
-  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-  loopCount: 0 // 指定GIF编码中循环次数为无限循环
-};
-let Packer = image.createImagePacker();
-Packer.packing(pixelMapList, ops)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packing.');
-  })
+async function Packing() {
+  const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
+  const context = getContext();
+  const resourceMgr = context.resourceManager;
+  // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+  const color = fileData.buffer;
+  let imageSource = image.createImageSource(color);
+  let pixelMapList = await imageSource.createPixelMapList();
+  let ops: image.PackingOptionsForSequence = {
+    frameCount: 3,  // 指定GIF编码中的帧数为3
+    delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
+    disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
+    loopCount: 0 // 指定GIF编码中循环次数为无限循环
+  };
+  let Packer = image.createImagePacker();
+  Packer.packing(pixelMapList, ops)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing.');
+    }).catch((error: BusinessError) => {
+      console.error('Failed to packing.');
+    }) 
+}
 ```
 
 ### packing<sup>(deprecated)</sup>
@@ -6121,29 +6123,31 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 import image from "@ohos.multimedia.image";
 
-const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
-const context = getContext();
-const resourceMgr = context.resourceManager;
-// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
-let path: string = context.cacheDir + '/result.gif';
-let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3,  // 指定GIF编码中的帧数为3
-  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
-  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-  loopCount: 0 // 指定GIF编码中循环次数为无限循环
-};
-let Packer = image.createImagePacker();
-Packer.packToFile(pixelMapList, file.fd, ops)
-  .then(() => {
-    console.info('Succeeded in packToFileMultiFrames.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packToFileMultiFrames.');
-  })
+async function Packing() {
+  const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
+  const context = getContext();
+  const resourceMgr = context.resourceManager;
+  // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+  const color = fileData.buffer;
+  let imageSource = image.createImageSource(color);
+  let pixelMapList = await imageSource.createPixelMapList();
+  let path: string = context.cacheDir + '/result.gif';
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let ops: image.PackingOptionsForSequence = {
+    frameCount: 3,  // 指定GIF编码中的帧数为3
+    delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms
+    disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
+    loopCount: 0 // 指定GIF编码中循环次数为无限循环
+  };
+  let Packer = image.createImagePacker();
+  Packer.packToFile(pixelMapList, file.fd, ops)
+    .then(() => {
+      console.info('Succeeded in packToFileMultiFrames.');
+    }).catch((error: BusinessError) => {
+    console.error('Failed to packToFileMultiFrames.');
+    })
+}
 ```
 
 ## image.createAuxiliaryPicture<sup>13+</sup>
@@ -7098,7 +7102,7 @@ off(type: 'imageArrival', callback?: AsyncCallback\<void>): void
 let callbackFunc = ()=>{
     // do something
 }
-receover.on('imageArrival', callbackFunc)
+receiver.on('imageArrival', callbackFunc)
 receiver.off('imageArrival', callbackFunc)
 ```
 
