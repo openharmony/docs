@@ -834,8 +834,10 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
+let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
@@ -2485,6 +2487,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit'
+import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
