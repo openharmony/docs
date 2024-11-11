@@ -6,16 +6,16 @@
 
 startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
-| 属性名称                              | 含义                                   | 数据类型 | 是否必填                   |
-| ------------------------------------- | -------------------------------------- | -------- | -------------------------- |
-| email                                 | 收件人邮箱地址（支持多个且以逗号分隔） | string[ ] | 否                         |
-| cc                                    | 抄收人邮箱地址（支持多个且以逗号分隔） | string[ ] | 否                         |
-| bcc                                   | 密送人邮箱地址（支持多个且以逗号分隔） | string[ ] | 否                         |
-| subject                               | 邮件主题                               | string   | 否                         |
-| body                                  | 邮件内容                               | string   | 否                         |
-| ability.params.stream                 | 邮件附件（附件的uri地址列表）          | string[ ] | 否                         |
-| ability.want.params.uriPermissionFlag | 给邮件附件赋予至少读权限               | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)   | 否，邮件附件存在情况下必填 |
-| sceneType                             | 意图取值 ：1：发邮件                   | number   | 否，缺省时为1                         |
+| 参数名                                | 类型                                                         | 必填 | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| email                                 | string[ ]                                                    | 否   | 收件人邮箱地址（支持多个且以逗号分隔）                       |
+| cc                                    | string[ ]                                                    | 否   | 抄收人邮箱地址（支持多个且以逗号分隔）                       |
+| bcc                                   | string[ ]                                                    | 否   | 密送人邮箱地址（支持多个且以逗号分隔）                       |
+| subject                               | string                                                       | 否   | 邮件主题                                                     |
+| body                                  | string                                                       | 否   | 邮件内容                                                     |
+| ability.params.stream                 | string[ ]                                                    | 否   | 邮件附件（附件的uri地址列表）                                |
+| ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 否   | 给邮件附件赋予至少读权限。邮件附件参数存在时，该参数也必须要传 |
+| sceneType                             | number                                                       | 否   | 意图取值 ：1：发邮件。默认为1。                              |
 
 > **说明：**
 >
@@ -101,14 +101,14 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
     在参数**want.parameters**中会携带Caller方传入的参数（与调用方传入的有些差异），如下表所示：
 
-    | 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
-    | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | email  | 收件人邮箱地址（支持多个且以逗号分隔）                                  | string[ ] | 否 |
-    | cc | 抄收人邮箱地址（支持多个且以逗号分隔）                                  | string[ ] | 否 |
-    | bcc    | 密送人邮箱地址（支持多个且以逗号分隔）                                  | string[ ] | 否  |
-    | subject    | 邮件主题                               | string   | 否  |
-    | body   | 邮件内容                             | string | 否  |
-    | stream | 邮件附件列表（附件的uri地址列表）                  | string[ ] | 否  |
+    | 参数名  | 类型      | 必填 | 说明                                   |
+    | ------- | --------- | ---- | -------------------------------------- |
+    | email   | string[ ] | 否   | 收件人邮箱地址（支持多个且以逗号分隔） |
+    | cc      | string[ ] | 否   | 抄收人邮箱地址（支持多个且以逗号分隔） |
+    | bcc     | string[ ] | 否   | 密送人邮箱地址（支持多个且以逗号分隔） |
+    | subject | string    | 否   | 邮件主题                               |
+    | body    | string    | 否   | 邮件内容                               |
+    | stream  | string[ ] | 否   | 邮件附件列表（附件的uri地址列表）      |
     
     > **说明：**
     > 
