@@ -39,7 +39,7 @@ createModuleContext(moduleName: string): Context
 
 根据模块名创建上下文。
 
-**说明：**
+> **说明：**
 >
 > 从 API Version 12 开始废弃，建议使用[application.createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)替代。
 
