@@ -11,19 +11,19 @@
 
 ### 单元测试框架
 
- 图1.单元测试框架主要功能
+  图1.单元测试框架主要功能
 
- ![](figures/UnitTest.PNG)
+  ![](figures/UnitTest.PNG)
 
- 图2.脚本基础流程运行图
+  图2.脚本基础流程运行图
 
- ![](figures/TestFlow.PNG)
+  ![](figures/TestFlow.PNG)
 
 ### UI测试框架
 
- 图3.UI测试框架主要功能
+  图3.UI测试框架主要功能
 
- ![](figures/Uitest.PNG)
+  ![](figures/Uitest.PNG)
 
 ## 基于ArkTS编写和执行测试
 
