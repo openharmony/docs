@@ -30,6 +30,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | marketName | string | 是 | 否 | 外部产品系列。<br/>示例：Mate XX |
 | productSeries | string | 是 | 否 | 产品系列。<br/>示例：TAS |
 | productModel | string | 是 | 否 | 认证型号。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br/>示例：TAS-AL00 |
+| productModelAlias<sup>14+</sup> | string | 是 | 否 | 认证型号别名。<br/>**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。<br/>示例：TAS-AL00 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。<br/>示例：TAS-AL00 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。<br/>示例：TASA00CVN1 |
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。 |
@@ -83,6 +84,9 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 
     let productModelInfo: string = deviceInfo.productModel;
     console.info('the value of the deviceInfo productModel is :' + productModelInfo);
+
+    let productModelAliasInfo: string = deviceInfo.productModelAlias;
+    console.info('the value of the deviceInfo productModelAlias is :' + productModelAliasInfo);
 
     let softwareModelInfo: string = deviceInfo.softwareModel;
     console.info('the value of the deviceInfo softwareModel is :' + softwareModelInfo);
