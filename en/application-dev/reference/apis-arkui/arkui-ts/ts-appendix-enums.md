@@ -111,6 +111,8 @@
 
 ## Curve
 
+Defines an interpolation curve. For details about the animation, see <!--RP1-->[Bezier Curve](../../../../design/ux-design/animation-attributes.md)<!--RP1End-->.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -239,6 +241,17 @@
 | Off  | Not displayed.              |
 | On   | Always displayed.             |
 | Auto | Displayed when the screen is touched and hidden after 2s.|
+
+## TitleHeight<sup>9+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Description                        |
+| ----------- | -------------------------- |
+| MainOnly    | Recommended height (56 vp) of the title bar when only the main title is available.     |
+| MainWithSub | Recommended height (82 vp) of the title bar when both the main title and subtitle exist.|
 
 ## EdgeEffect
 
@@ -374,6 +387,8 @@
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name           | Description              |
 | ------------- | ---------------- |
 | Row           | The child components are arranged in the same direction as the main axis runs along the rows. |
@@ -422,7 +437,7 @@
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
-| Type     | Description                                 |
+| Name     | Description                                 |
 | ------- | ----------------------------------- |
 | Cover   | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
@@ -542,16 +557,6 @@
 | LongPress  | The menu is displayed when the component is long-pressed.  |
 | RightClick | The menu is displayed when the component is right-clicked.|
 
-## RichEditorResponseType<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name        | Description           |
-| ---------- | ------------- |
-| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
-| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
-| SELECT | The menu is displayed when the component is selected.|
-
 ## HoverEffect<sup>8+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -614,18 +619,6 @@
 | --------- | --------------------------------- |
 | DEFAULT   | Blue text on white background (black background under the dark theme).|
 | HIGHLIGHT | White text on blue background.                       |
-
-## ThemeColorMode<sup>10+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Description        |
-| ------ | ---------- |
-| SYSTEM | Following the system color mode.|
-| LIGHT  | Light color mode. |
-| DARK   | Dark color mode. |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
@@ -771,30 +764,6 @@ The object of this type can be of a custom type or **undefined**.
 | FIT_CONTENT | Uses the default width, that is, width of two columns.           |
 | FIT_TRIGGER | Inherits the width of the drop-down list button.|
 
-## SelectionMenuOptions<sup>11+</sup>
-
-Provides the span range information.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name| Type | Read Only| Mandatory | Description                              |
-| ------ | ------ | ------ | ------ | -------------------------------------- |
-| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | No| No| Callback invoked when the custom context menu on selection is displayed.|
-| onDisappear | () => void | No| No| Callback invoked when the custom context menu on selection is closed.|
-
-## DismissReason<sup>12+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name         | Value  | Description                                                        |
-| ------------- | ---- | ------------------------------------------------------------ |
-| PRESS_BACK    | 0    | Touching the Back button, swiping left or right on the screen, or pressing the Esc key.                          |
-| TOUCH_OUTSIDE | 1    | Touching the mask.                                              |
-| CLOSE_BUTTON  | 2    | Touching the Close button.                                              |
-| SLIDE_DOWN    | 3    | Sliding down.<br>**NOTE**<br>This API is effective only in [sheet transition]ts-universal-attributes-sheet-transition.md).|
-
 ## ChainStyle<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -806,19 +775,6 @@ Defines the chain style.
 | SPREAD | Child components are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
 | SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).                |
 | PACKED  | There is no gap between child components in the chain. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).                     |
-
-## BarrierDirection<sup>12+</sup>
-
-Defines the barrier direction.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| LEFT | The barrier is on the left side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
-| RIGHT | The barrier is on the right side of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).  |
-| TOP  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).   |
-| BOTTOM  | The barrier is at the top of all the referenced components specified by [referencedId](ts-container-relativecontainer.md#barrierstyle12).|
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
@@ -844,13 +800,6 @@ Defines the pixel-level rounding policy for component boundaries.
 | DASHED        | Dashed line.|
 | WAVY        | Wavy line.|
 
-## FlexSpaceOptions<sup>12+</sup>
-
-| Name         | Type       |  Read Only    | Mandatory     | Description     |
-| ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | No| No| Space on the main axis of the flex container.<br> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| No| Space on the cross axis of the flex container.<br> space: {cross: LengthMetrics.unit(value)} |
-
 ## MenuPolicy<sup>12+</sup>
 
 Defines the menu display policy.
@@ -869,6 +818,8 @@ Defines the menu display policy.
 Enumerates the types of the providers that can be started by the **\<EmbeddedComponent>**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                 | Value| Description                                               |
 | --------------------- | - | ---------------------------------------------------- |
@@ -927,3 +878,16 @@ Enumerates the sources of scroll operations.
 | CENTER   | The image is centered aligned with the line.      |
 | BOTTOM   | The image is bottom aligned with the line.  |
 | BASELINE | The image is bottom aligned with the text baseline.|
+
+
+## XComponentType<sup>10+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                            | Description                                                        |
+| -------------------------------- | ------------------------------------------------------------ |
+| SURFACE                          | The component is used for EGL/OpenGLES and media data input, where the custom content is displayed individually on the screen. When the background color is set to black, the display subsystem (DSS) is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| COMPONENT<sup>(deprecated)</sup> | The component becomes a container where non-UI logic can be executed to dynamically load the display content.<br>**NOTE**<br>This API is deprecated since API version 12. You are advised to use other container components instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| TEXTURE                          | The component is used for EGL/OpenGLES and media data input, where the custom content is combined with the content of the component and then displayed on the screen. 1. Frame synchronization is maintained, which ensures that the GPU textures and other ArkUI drawing commands are batched and sent to the RenderService within the same frame. 2. Animations are unified with built-in components. 3. As the GPU is used for composition, this type may consume more power compared to the surface type that uses the display subsystem (DSS).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| NODE<sup>12+</sup>            | The component is used as a placeholder container for native UI nodes. Page components developed with native APIs can be displayed within this container's area.<br>**NOTE**<br>This type is no longer being evolved. You are advised to use the [ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md) placeholder component for managing components created with native APIs. **ContentSlot** is superior to the NODE-type **XComponent** in terms of memory and performance.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
