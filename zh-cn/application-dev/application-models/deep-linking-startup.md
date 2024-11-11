@@ -13,7 +13,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 > **说明：**
 > 
-> Deep Linking中的scheme取值通常不为https/http/file，否则会拉起默认的系统浏览器。
+> Deep Linking中的scheme取值通常不为https、http、file，否则会拉起默认的系统浏览器。
 
 
 
