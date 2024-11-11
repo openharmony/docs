@@ -101,9 +101,9 @@ export default class EntryAbility extends UIAbility {
         if (isNfcATag) {
             let nfcA : tag.NfcATag | null = null;
             try {
-                nfcA = tag.getNfcATag(tagInfo);
+                nfcA = tag.getNfcA(tagInfo);
             } catch (error) {
-                console.error("tag.getNfcATag catch error: " + error);
+                console.error("tag.getNfcA catch error: " + error);
             }
             // other code to read or write this found tag.
         }
