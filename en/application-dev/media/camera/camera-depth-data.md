@@ -1,6 +1,6 @@
 # Depth Data (for System Applications Only) (ArkTS)
 
-Depth data reflects the spatial arrangement of image pixels in relation to the camera lens. It facilitates enhanced focus precision, background blurring effects, and the like. Depth data can be reported in the preview, photographing, and video scenarios of camera applications.
+Depth data reflects the spatial arrangement of image pixels in relation to the camera lens. It facilitates enhanced focus precision, background blurring effects, and the like. Depth data can be reported in the preview, photo capture, and video scenarios of camera applications.
 
 ## How to Develop
 

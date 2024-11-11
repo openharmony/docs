@@ -1,6 +1,6 @@
-# Camera Photographing Sample (C/C++)
+# Photo Capture Sample (C/C++)
 
-This topic provides sample code that covers the complete photographing process and the API calling sequence. For details about a single process (such as device input, session management, and photographing), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
+This topic provides sample code that covers the complete photo capture process and the API calling sequence. For details about a single process (such as device input, session management, and photo capture), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
 ## Development Process
 
@@ -15,7 +15,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
     ```
 
-2. Import the NDK APIs on the C++ side, and perform photographing based on the surface ID passed in.
+2. Import the NDK APIs on the C++ side, and perform photo capture based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
@@ -164,7 +164,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         photoProfile = cameraOutputCapability->photoProfiles[0];
         
         
-        // Create a preview output stream, with the previewSurfaceId parameter set to the ID of the surface provided by the <XComponent>.
+        // Create a preview output stream, with the previewSurfaceId parameter set to the ID of the surface provided by the XComponent.
         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
@@ -316,7 +316,7 @@ After obtaining the output stream capabilities supported by the camera, create a
           OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatio failed. %{public}d ", ret);
         }
         
-        // Take photos without photographing settings.
+        // Take photos without photo capture settings.
         ret = OH_PhotoOutput_Capture(photoOutput);
         if (ret == CAMERA_OK) {
           OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");

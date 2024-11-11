@@ -1,8 +1,8 @@
-# High-Performance Camera Photographing (for System Applications Only) (ArkTS)
+# High-Performance Photo Capture (for System Applications Only) (ArkTS)
 
-As an important feature of the camera, high-performance photographing enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photographing is implemented as follows: After an application delivers a photographing request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
+As an important feature of the camera, high-performance photo capture enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photo capture is implemented as follows: After an application delivers a phot capture request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
 
-To develop high-performance photographing, perform the following steps:
+To develop high-performance photo capture, perform the following steps:
 
 - Check whether the device supports deferred photo delivery of a certain type.
 - Enable deferred photo delivery (if supported).
@@ -84,7 +84,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-6. Trigger photographing. This procedure is the same as that in the common photographing mode. For details, see [Camera Photographing](camera-shooting.md).
+6. Trigger photo capture. This procedure is the same as that in the common photo capture mode. For details, see [Photo Capture](camera-shooting.md).
 
 
 
