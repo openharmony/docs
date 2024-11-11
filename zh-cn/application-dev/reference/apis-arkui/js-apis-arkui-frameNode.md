@@ -716,7 +716,7 @@ isAttached(): boolean
 
 getInspectorInfo(): Object
 
-获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
+获取节点的结构信息，该信息和DevEco Studio内置<!--RP1-->ArkUI Inspector<!--RP1End-->工具里面的一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
