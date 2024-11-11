@@ -78,7 +78,7 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
-      let ability: UIAbility = await delegator.getCurrentTopAbility();
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
       console.info("get top ability");
       expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       done();
@@ -146,15 +146,15 @@ export default function abilityTest() {
           await delegator.startAbility(want);
           await sleep(1000);
           //check top display ability
-          let ability = await delegator.getCurrentTopAbility();
+          const ability: UIAbility = await delegator.getCurrentTopAbility();
           console.info("get top ability");
           expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
           //ui test code
           //init driver
-          let driver = Driver.create();
+          const driver = Driver.create();
           await driver.delayMs(1000);
           //find button on text 'Next'
-          let button = await driver.findComponent(ON.text('Next'));
+          const button = await driver.findComponent(ON.text('Next'));
           //click button
           await button.click();
           await driver.delayMs(1000);
@@ -390,6 +390,9 @@ hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 ```
 
 ### 用户录制操作
+>**说明**
+>
+> 录制过程中，需等待当前操作的识别结果在命令行输出后，再进行下一步操作。
 
 ```bash
 # 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
