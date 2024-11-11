@@ -10,7 +10,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 **Windows环境变量设置方法**
 
-在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加HDC端口变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如7035。
+在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加HDC端口变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如8710。
 
 ![新建系统变量](figures/hdc_image_001.PNG)
 
