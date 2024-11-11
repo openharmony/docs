@@ -93,6 +93,8 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnWriteData)(OH_Au
 **描述**
 该函数指针将指向用于写入音频数据的回调函数。
 
+回调函数结束后，音频服务会把buffer指针数据放入队列里等待播放，因此请勿在回调外再次更改buffer指向的数据，且务必保证往buffer填满length长度的待播放数据，否则会导致音频服务播放杂音。
+
 **参数:**
 
 | 名称 | 描述 | 
