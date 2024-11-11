@@ -4000,6 +4000,12 @@ async function example() {
 
 ## MediaAssetManager<sup>11+</sup>
 
+媒体资产管理类，管理各种媒体资源的读取操作。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ### requestImage<sup>11+</sup>
 
 static requestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;
@@ -4350,6 +4356,8 @@ async function example() {
 static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: string): Promise\<MovingPhoto>
 
 加载应用沙箱的动态照片。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
