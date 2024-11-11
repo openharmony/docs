@@ -4002,8 +4002,6 @@ async function example() {
 
 媒体资产管理类，管理各种媒体资源的读取操作。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ### requestImage<sup>11+</sup>
