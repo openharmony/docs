@@ -179,7 +179,7 @@ struct FreezeChild {
 - 对LazyForEach中缓存的自定义组件进行冻结，不会触发组件的更新。
 
 ```ts
-// Basic implementation of IDataSource to handle data listener
+// 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];
@@ -628,9 +628,9 @@ struct Page {
 可通过trace观察，仅触发了15个`ChildComponent`节点的刷新。
 ![freeze](./figures/traceWithFreeze.png)
 完整示例如下：
-```
+```ts
 import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
-// Basic implementation of IDataSource to handle data listener
+// 用于处理数据监听的IDataSource的基本实现
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: string[] = [];

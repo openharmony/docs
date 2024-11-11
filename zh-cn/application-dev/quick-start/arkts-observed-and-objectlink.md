@@ -1565,7 +1565,7 @@ struct CounterComp {
       Text(`this.value.counter：increase 7 `)
         .fontSize(30)
         .onClick(() => {
-          // click handler, Text(`this.subValue.counter: ${this.subValue.counter}`) will update
+          // 点击后Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1630,7 +1630,7 @@ struct ParentComp {
 
 【反例】
 
-如果用\@Prop替代\@ObjectLink。点击第一个click handler，UI刷新正常。但是点击第二个onClick事件，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
+如果用\@Prop替代\@ObjectLink。点击Text(`this.subValue.counter: ${this.subValue.counter}`)，UI刷新正常。但是点击Text(`this.value.counter：increase 7 `)，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
 
   this.value.subCounter和this.subValue并不是同一个对象。所以this.value.subCounter的改变，并没有改变this.subValue的拷贝对象，Text(`this.subValue.counter: ${this.subValue.counter}`)不会刷新。
 
@@ -1644,13 +1644,11 @@ struct CounterComp {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.subValue.counter += 7;
         })
       Text(`this.value.counter：increase 7 `)
         .fontSize(20)
         .onClick(() => {
-          // 2nd click handler
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1713,7 +1711,6 @@ struct SubCounterComp {
   build() {
     Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
       .onClick(() => {
-        // 2nd click handler
         this.subValue.counter = 7;
       })
   }
@@ -1726,13 +1723,11 @@ struct CounterComp {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.value.incrCounter();
         })
       SubCounterComp({ subValue: this.value.subCounter })
       Text(`this.value.incrSubCounter()`)
         .onClick(() => {
-          // 3rd click handler
           this.value.incrSubCounter(77);
         })
       Divider().height(2)
