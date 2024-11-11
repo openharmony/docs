@@ -25,8 +25,8 @@ The following table lists the APIs used for KV data persistence. Most of the API
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
 | getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.| 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store.| 
-| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | Obtains the value of the specified key.| 
+| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store.| 
+| get(key: string, callback: AsyncCallback\<boolean \| string \| number \| Uint8Array>): void | Obtains the value of the specified key.| 
 | delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a KV pair based on the specified key.| 
 
 
@@ -119,7 +119,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
        // If kvStoreType is left empty, a device KV store is created by default.
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // Device KV store: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-       securityLevel: distributedKVStore.SecurityLevel.S3
+       securityLevel: distributedKVStore.SecurityLevel.S1
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
