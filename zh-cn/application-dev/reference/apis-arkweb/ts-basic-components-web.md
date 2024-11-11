@@ -6799,7 +6799,7 @@ setResponseCode(code: number): void
 
 | 参数名  | 类型   | 必填   | 说明          |
 | ---- | ------ | ---- | ------------- |
-| code | number | 是   | 要设置的资源响应的状态码。 |
+| code | number | 是   | 要设置的资源响应的状态码。如果该资源以错误结束，请参考[@ohos.web.netErrorList](js-apis-netErrorList.md)设置相应错误码，避免设置错误码为 ERR_IO_PENDING，设置为该错误码可能会导致XMLHttpRequest同步请求阻塞。 |
 
 ### setResponseIsReady<sup>9+</sup>
 
