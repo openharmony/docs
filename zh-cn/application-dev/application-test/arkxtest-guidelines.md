@@ -732,7 +732,7 @@ UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api do
 
 **3、失败日志有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
 
-**问题描述**
+**问题描述** 
 
 UI测试用例执行失败，查看hilog日志发现日志中有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息。
 
