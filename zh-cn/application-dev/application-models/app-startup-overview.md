@@ -48,7 +48,7 @@ Deep Linking与App Linking均可以使用[openLink](../reference/apis-ability-ki
 > 该接口中的appLinkingOnly字段表示是否必须以App Linking的方式启动UIAbility，默认为false。appLinkingOnly为true一般只用于浏览器等应用。
 
 
-| 条件 | App Linking（推荐） | Deep Linking |
+| 应用链接类型 | App Linking（推荐） | Deep Linking |
 | -------- | -------- |-------- |
 | appLinkingOnly为false且目标应用已安装 | 直接跳转打开目标应用。 | 跳转目标应用（如果有多个符合条件的应用时，展示应用选择弹框）。 |
 | appLinkingOnly为false且目标应用未安装 | 跳转默认浏览器打开网页。 |返回失败，系统不跳转，由应用自行处理；当前会展示“链接无法打开”弹框。 |
