@@ -3342,6 +3342,9 @@ struct Demo {
       });
     });
   }
+  build() {
+    // ...
+  }
 }
 ```
 
@@ -3667,7 +3670,7 @@ setMemoryNameSync(name: string): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-async Demo() {
+async function Demo() {
   if (pixelMap != undefined) {
     try {
       pixelMap.setMemoryNameSync("PixelMapName Test");
