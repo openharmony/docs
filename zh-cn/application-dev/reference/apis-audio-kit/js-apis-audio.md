@@ -5461,7 +5461,7 @@ function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
 
 let deviceRoleValue: audio.DeviceRole | undefined = undefined;
 let deviceTypeValue: audio.DeviceType | undefined = undefined;
-audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors) => {
+audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != undefined && deviceRoleValue != undefined){
