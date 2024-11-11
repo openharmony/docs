@@ -192,7 +192,7 @@ let change: string = 'change';
 @Provide(change) message: string = 'Hello';
 ```
 
-2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，仅能通过key来匹配对应的\@Provide变量进行初始化。
+2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
 
 【反例】
 

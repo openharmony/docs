@@ -57,9 +57,9 @@
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
   ```ts
-  // for simple type
+  // 简单类型
   @State count: number = 0;
-  // value changing can be observed
+  // 可以观察到值的变化
   this.count = 1;
   ```
 
