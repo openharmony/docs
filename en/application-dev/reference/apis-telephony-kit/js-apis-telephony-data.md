@@ -32,9 +32,9 @@ Obtains the default slot of the SIM card used for mobile data. This API uses an 
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
+data.getDefaultCellularDataSlotId((err: BusinessError, contextData: number) => {
     if(err){
-        console.error(`getDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`getDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`getDefaultCellularDataSlotId success`);
     }
@@ -61,8 +61,8 @@ Obtains the default slot of the SIM card used for mobile data. This API uses a p
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getDefaultCellularDataSlotId().then((data: number) => {
-    console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
+data.getDefaultCellularDataSlotId().then((contextData: number) => {
+    console.log(`getDefaultCellularDataSlotId success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -111,9 +111,9 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
+data.getCellularDataFlowType((err: BusinessError, contextData: data.DataFlowType) => {
     if(err){
-        console.error(`getCellularDataFlowType fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`getCellularDataFlowType fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`getCellularDataFlowType success`);
     }
@@ -140,8 +140,8 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataFlowType().then((data: data.DataFlowType) => {
-    console.log(`getCellularDataFlowType success, promise: data->${JSON.stringify(data)}`);
+data.getCellularDataFlowType().then((contextData: data.DataFlowType) => {
+    console.log(`getCellularDataFlowType success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCellularDataFlowType fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -167,9 +167,9 @@ Obtains the connection status of the packet switched (PS) domain. This API uses 
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
+data.getCellularDataState((err: BusinessError, contextData: data.DataConnectState) => {
     if(err){
-        console.error(`getCellularDataState fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`getCellularDataState fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`getCellularDataState success`);
     }
@@ -196,8 +196,8 @@ Obtains the connection status of the PS domain. This API uses a promise to retur
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.getCellularDataState().then((data: data.DataConnectState) => {
-    console.log(`getCellularDataState success, promise: data->${JSON.stringify(data)}`);
+data.getCellularDataState().then((contextData: data.DataConnectState) => {
+    console.log(`getCellularDataState success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`getCellularDataState fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -238,9 +238,9 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
+data.isCellularDataEnabled((err: BusinessError, contextData: boolean) => {
     if(err){
-        console.error(`isCellularDataEnabled fail,callback: callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`isCellularDataEnabled fail,callback: callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`isCellularDataEnabled success`);
     }
@@ -280,8 +280,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.isCellularDataEnabled().then((data: boolean) => {
-    console.log(`isCellularDataEnabled success, promise: data->${JSON.stringify(data)}`);
+data.isCellularDataEnabled().then((contextData: boolean) => {
+    console.log(`isCellularDataEnabled success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`isCellularDataEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
@@ -365,9 +365,9 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
+data.isCellularDataRoamingEnabled(0, (err: BusinessError, contextData: boolean) => {
     if(err){
-        console.error(`isCellularDataRoamingEnabled fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+        console.error(`isCellularDataRoamingEnabled fail,callback: err->${JSON.stringify(err)}, contextData->${JSON.stringify(contextData)}`);
     }else{
         console.log(`isCellularDataRoamingEnabled success`);
     }
@@ -415,8 +415,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 import { data } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
-    console.log(`isCellularDataRoamingEnabled success, promise: data->${JSON.stringify(data)}`);
+data.isCellularDataRoamingEnabled(0).then((contextData: boolean) => {
+    console.log(`isCellularDataRoamingEnabled success, promise: contextData->${JSON.stringify(contextData)}`);
 }).catch((err: BusinessError) => {
     console.error(`isCellularDataRoamingEnabled fail, promise: err->${JSON.stringify(err)}`);
 });

@@ -15,10 +15,10 @@ Provides C APIs for the network protocol stack module.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.| 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.| 
-| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module.| 
-| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module.| 
+| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.<br>**File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module.<br>**File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
+| [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module. **File to include**: \<network\/netstack\/net_websocket.h\>| 
+| [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module. **File to include**: \<network\/net_websocket_type.h\> | 
 
 
 ### Structs
@@ -26,8 +26,8 @@ Provides C APIs for the network protocol stack module.
 | Name| Description|
 | -------- | -------- |
 | [NetStack_CertBlob](_net_stack___cert_blob.md) | Certificate data structure.|
-| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | Defines the certificate lock information. |
-| [NetStack_Certificates](_net_stack___certificates.md) | Defines the certificate information. |
+| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | Data structure of the certificate lock information.|
+| [NetStack_Certificates](_net_stack___certificates.md) | Data structure of the certificate information.|
 | [WebSocket_CloseResult](_web_socket___close_result.md) | Parameters for the connection closure received by the WebSocket client. |
 | [WebSocket_CloseOption](_web_socket___close_option.md) | Parameters for the proactive connection closure initiated by the WebSocket client. |
 | [WebSocket_ErrorResult](_web_socket___error_result.md) | Parameters for the connection error received by the WebSocket client. |
@@ -52,8 +52,8 @@ Provides C APIs for the network protocol stack module.
 | -------- | -------- |
 | [NetStack_CertType](#netstack_certtype) { <br>NetStack_CERT_TYPE_PEM = 0, <br>NetStack_CERT_TYPE_DER = 1, <br>NetStack_CERT_TYPE_INVALID <br>} | Certificate type enums.|
 | [WebSocket_ErrCode](#websocket_errcode) {<br>WEBSOCKET_OK = 0, <br>E_BASE = 1000, <br>WEBSOCKET_CLIENT_NULL = (E_BASE + 1), <br>WEBSOCKET_CLIENT_NOT_CREATED = (E_BASE + 2),<br>WEBSOCKET_CONNECTION_ERROR = (E_BASE + 3), <br>WEBSOCKET_CONNECTION_PARSE_URL_ERROR = (E_BASE + 5),<br> WEBSOCKET_CONNECTION_NO_MEMORY = (E_BASE + 6), <br>WEBSOCKET_CONNECTION_CLOSED_BY_PEER = (E_BASE + 7),<br>WEBSOCKET_DESTROYED = (E_BASE + 8), <br>WEBSOCKET_PROTOCOL_ERROR = (E_BASE + 9), <br>WEBSOCKET_SEND_NO_MEMORY = (E_BASE + 10), <br>WEBSOCKET_SEND_DATA_NULL = (E_BASE + 11),<br>WEBSOCKET_DATA_LENGTH_EXCEEDED = (E_BASE + 12), <br>WEBSOCKET_QUEUE_LENGTH_EXCEEDED = (E_BASE + 13),<br> WEBSOCKET_NO_CLIENT_CONTEXT = (E_BASE + 14), <br>WEBSOCKET_NO_HEADER_CONTEXT = (E_BASE + 15),<br>WEBSOCKET_HEADER_EXCEEDED = (E_BASE + 16), <br>WEBSOCKET_NO_CONNECTION = (E_BASE + 17), <br>WEBSOCKET_NO_CONNECTION_CONTEXT = (E_BASE + 18)<br>} | WebSocket error codes. |
-| [NetStack_CertificatePinningKind](#netstack_certificatepinningkind) {<br/>PUBLIC_KEY,<br/>} | Certificate lock type. |
-| [NetStack_HashAlgorithm](#netstack_hashalgorithm) {<br/>SHA_256,<br/>} | Hash algorithm. |
+| [NetStack_CertificatePinningKind](#netstack_certificatepinningkind) {<br>PUBLIC_KEY,<br>} | Certificate lock type.|
+| [NetStack_HashAlgorithm](#netstack_hashalgorithm) {<br>SHA_256,<br>} | Hash algorithm type.|
 
 ### Functions
 
@@ -65,9 +65,9 @@ Provides C APIs for the network protocol stack module.
 | [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | Sends data from the client to the server. |
 | [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | Lets the WebSocket client proactively close the connection. |
 | [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | Releases the context and resources of the WebSocket connection. |
-| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Get pin set for hostname. |
-| [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Get certificates for hostname. |
-| [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Free content of the certificates. |
+| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate lock information.|
+| [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Obtains certificate information.|
+| [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Releases the certificate content.|
 
 ### Variables
 
@@ -76,11 +76,11 @@ Provides C APIs for the network protocol stack module.
 | [NetStack_CertBlob::type](#type) | Certificate type.|
 | [NetStack_CertBlob::size](#size) | Certificate content length.|
 | [NetStack_CertBlob::data](#data) | Certificate content.|
-| [NetStack_CertificatePinning::kind](#kind) | Certificate lock type. |
-| [NetStack_CertificatePinning::hashAlgorithm](#hashalgorithm) | Hash algorithm. |
-| [NetStack_CertificatePinning::publicKeyHash](#publickeyhash) | Hash value. |
-| [NetStack_Certificates::content](#content) | PEM content of the certificates. |
-| [NetStack_Certificates::length](#length) | Number of certificates. |
+| [NetStack_CertificatePinning::kind](#kind) | Certificate lock type.|
+| [NetStack_CertificatePinning::hashAlgorithm](#hashalgorithm) | Hash algorithm.|
+| [NetStack_CertificatePinning::publicKeyHash](#publickeyhash) | Hash value.|
+| [NetStack_Certificates::content](#content) | PEM content of the certificate.|
+| [NetStack_Certificates::length](#length) | Number of certificates.|
 | [WebSocket_CloseResult::code](#code-13) | Connection close code. |
 | [WebSocket_CloseResult::reason](#reason-13) | Connection close reason for the WebSocket client. |
 | [WebSocket_CloseOption::code](#code-23) | Connection close code. |
@@ -239,13 +239,13 @@ enum NetStack_CertificatePinningKind
 
 **Description**
 
-Defines the certificate lock type.
+Enumerates certificate lock types.
 
 **Since**: 12
 
-| Value      | Description         |
-| ---------- | ------------------- |
-| PUBLIC_KEY | Public key pinning. |
+| Value    | Description          |
+| ---------- | -------------- |
+| PUBLIC_KEY | Public key lock type.|
 
 ### NetStack_HashAlgorithm
 
@@ -255,13 +255,13 @@ enum NetStack_HashAlgorithm
 
 **Description**
 
-Defines the hash algorithm.
+Hash algorithm.
 
 **Since**: 12
 
-| Value   | Description      |
-| ------- | ---------------- |
-| SHA_256 | Sha256 algorithm |
+| Value | Description         |
+| ------- | ------------- |
+| SHA_256 | SHA-256 algorithm.|
 
 ## Function Description
 
@@ -321,6 +321,8 @@ Verifies the certificate chain.
 
 **2305027**: The certificate is untrusted.
 
+**2305069**: A call error occurred during certificate verification or the parameter is invalid.
+
 ### OH_NetStack_GetPinSetForHostName()
 
 ```
@@ -329,7 +331,7 @@ int32_t OH_NetStack_GetPinSetForHostName (const char * hostname, NetStack_Certif
 
 **Description**
 
-Get pin set for hostname.
+Obtains the certificate lock information.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -337,18 +339,18 @@ Get pin set for hostname.
 
 **Parameters**
 
-| Name     | Description                   |
-| -------- | ----------------------------- |
-| hostname | Hostname.                     |
-| pin      | Certificate lock information. |
+| Name    | Description                          |
+| -------- | ------------------------------ |
+| hostname | Host name.                      |
+| pin      | Structure of the certificate lock information.|
 
 **Returns**
 
 **0**: success.
 
-**401**- Parameter error.
+**401**: Parameter error.
 
-**2305999** - Out of memory.
+**2305999**: Memory error.
 
 ### OH_NetStack_GetCertificatesForHostName()
 
@@ -358,7 +360,7 @@ int32_t OH_NetStack_GetCertificatesForHostName(const char * hostname, NetStack_C
 
 **Description**
 
-Get certificates for hostname.
+Obtains the certificate information.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -366,18 +368,18 @@ Get certificates for hostname.
 
 **Parameters**
 
-| Name     | Description              |
-| -------- | ------------------------ |
-| hostname | Hostname.                |
-| certs    | Certificate Information. |
+| Name    | Description                      |
+| -------- | -------------------------- |
+| hostname | Host name.                  |
+| certs    | Structure of the certificate information.|
 
 **Returns**
 
 **0**: success.
 
-**401**- Parameter error.
+**401**: Parameter error.
 
-**2305999** - Out of memory.
+**2305999**: Memory error.
 
 ### OH_Netstack_DestroyCertificatesContent()
 
@@ -387,7 +389,7 @@ void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates * certs)
 
 **Description**
 
-Free content of the certificates, After the NetStack_Certificates is used up, call this method to release the memory of the certificates in the structure.
+Releases the certificate content. If **NetStack_Certificates** is no longer used, you can call this API to release the certificate content in it to free up memory space.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -395,9 +397,9 @@ Free content of the certificates, After the NetStack_Certificates is used up, ca
 
 **Parameters**
 
-| Name  | Description              |
-| ----- | ------------------------ |
-| certs | Certificate Information. |
+| Name | Description            |
+| ----- | ---------------- |
+| certs | Defines the certificate information structure.|
 
 ### OH_WebSocketClient_AddHeader()
 
@@ -558,6 +560,8 @@ Sends data from the WebSocket client to the server.
 
 **Returns**
 
+ 
+
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 
 **Required Permissions**
@@ -637,7 +641,7 @@ char** NetStack_Certificates::content
 
 **Description**
 
-PEM content of the certificates.
+PEM content of the certificate.
 
 ### length
 

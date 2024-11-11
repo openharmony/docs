@@ -1,7 +1,7 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management)
 
-This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
-Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options.
+The **vpnExtension** module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
+Third-party VPNs refer to VPN services provided by third parties. They usually provide more security and privacy functions and more comprehensive customization options.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -11,6 +11,39 @@ Third-party VPNs refer to VPN services provided by third parties. They usually s
 ```js
 import { vpnExtension } from '@kit.NetworkKit';
 ```
+
+## LinkAddress<sup>11+</sup>
+type LinkAddress = connection.LinkAddress
+
+Defines the network link address information.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | Network link address information.|
+
+## RouteInfo<sup>11+</sup>
+type RouteInfo = connection.RouteInfo
+
+Defines the network route information.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [connection.RouteInfo](./js-apis-net-connection.md#routeinfo) | Network route information.|
+
+## VpnExtensionContext<sup>11+</sup>
+type VpnExtensionContext = _VpnExtensionContext
+
+Defines the VPN extension context. It allows access to serviceExtension-specific resources.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_VpnExtensionContext](./js-apis-inner-application-VpnExtensionContext.md) | VPN extension context.|
 
 ## vpnExtension.startVpnExtensionAbility
 
@@ -156,12 +189,15 @@ struct Index {
 }
 ```
 
-
 ## vpnExtension.createVpnConnection
 
 createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 Creates a **VpnConnection** object.
+
+> **NOTE**
+>
+> Before calling **createVpnConnection**, call **startVpnExtensionAbility** to enable the VPN function.
 
 **System capability**: SystemCapability.Communication.NetManager.Vpn
 
@@ -422,7 +458,7 @@ Defines the VPN configuration.
 | Name               | Type                                                          | Mandatory| Description                               |
 | ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
 | addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | Yes  | IP address of the vNIC.           |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC.           |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC. Currently, a maximum of 1024 routes can be configured.           |
 | dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server.               |
 | searchDomains       | Array\<string\>                                                | No  | List of DNS search domains.                 |
 | mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes.    |
@@ -432,3 +468,43 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
+
+**Example**
+
+```js
+import { vpnExtension} from '@kit.NetworkKit';
+
+let vpnConfig: vpnExtension.VpnConfig = {
+  addresses: [],
+  routes: [{
+    interface: "eth0",
+    destination: {
+      address: {
+        address:'',
+        family:1,
+        port:8080
+      },
+      prefixLength:1
+    },
+    gateway: {
+      address:'',
+      family:1,
+      port:8080
+    },
+    hasGateway: true,
+    isDefaultRoute: true,
+  }],
+  mtu: 1400,
+  dnsAddresses: ["223.5.5.5", "223.6.6.6"],
+  trustedApplications: [],
+  blockedApplications: [],
+}
+let context: vpnExtension.VpnExtensionContext;
+
+function vpnCreate(){
+  let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+  VpnConnection.create(vpnConfig).then((data) => {
+    console.info("vpn create " + JSON.stringify(data));
+  })
+}
+```

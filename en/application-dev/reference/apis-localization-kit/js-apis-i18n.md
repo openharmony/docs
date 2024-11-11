@@ -1924,7 +1924,19 @@ Converts the input string from the source format to the target format.
 **Example**
   ```ts
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
-  let res: string = transliterator.transform("China"); // res = "zhōng guó"
+  let wordArray = ["中国", "德国", "美国", "法国"]
+  for (let i = 0; i < wordArray.length; i++) {
+      let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+  }
+
+  // Chinese transliteration and tone removal
+  let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+  let result = transliter.transform('中国'); // result: zhong guo
+
+  // Chinese surname pronunciation
+  let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
+  let result = nameTransliter.transform('单老师'); // result: shàn lǎo shī
+  let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
   ```
 
 
@@ -3253,3 +3265,5 @@ This API is supported since API version 8 and is deprecated since API version 9.
 | Type    | Description         |
 | ------ | ----------- |
 | string | Type of the input character.|
+
+<!--no_check-->

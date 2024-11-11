@@ -1,4 +1,4 @@
-# Introduction to Sensor Service Kit
+# Sensor Overview
 
 ## Sensor Types
 
@@ -9,7 +9,7 @@ Sensors are an abstraction of underlying sensor hardware. Your application can a
 | --------------------------- | ------------------ | ------------------------------------------------------------ | ------------------------------------------ |
 | ACCELEROMETER               | Acceleration sensor      | Measures the acceleration (including the gravity acceleration) applied to a device on three physical axes (X, Y, and Z), in the unit of m/s<sup>2</sup>.| Detecting the motion status                            |
 | ACCELEROMETER_UNCALIBRATED  | Uncalibrated acceleration sensor| Measures the uncalibrated acceleration (including the gravity acceleration) applied to a device on three physical axes (X, Y, and Z), in the unit of m/s<sup>2</sup>.| Measuring the acceleration bias estimation                      |
-| LINEAR_ACCELERATION         | Linear acceleration sensor  | Measures the linear acceleration (excluding the gravity acceleration) applied to a device on three physical axes (X, Y, and Z), in the unit of m/s<sup>2</sup>.| Detecting the linear acceleration in each axis          |
+| LINEAR_ACCELEROMETER        | Linear acceleration sensor  | Measures the linear acceleration (excluding the gravity acceleration) applied to a device on three physical axes (X, Y, and Z), in the unit of m/s<sup>2</sup>.| Detecting the linear acceleration in each axis          |
 | GRAVITY                     | Gravity sensor        | Measures the gravity acceleration applied to a device on three physical axes (X, Y, and Z), in the unit of m/s<sup>2</sup>.| Measuring the gravity                            |
 | GYROSCOPE                   | Gyroscope sensor      | Measures the rotation angular velocity of a device on three physical axes (X, Y, and Z), in the unit of rad/s.| Measuring the rotation angular velocity                        |
 | GYROSCOPE_UNCALIBRATED      | Uncalibrated gyroscope sensor| Measures the uncalibrated rotation angular velocity of a device on three physical axes (X, Y, and Z), in the unit of rad/s.| Measuring the bias estimation of the rotation angular velocity              |
@@ -34,7 +34,7 @@ Sensors are an abstraction of underlying sensor hardware. Your application can a
 
 The following modules work cooperatively to implement sensors: Sensor API, Sensor Framework, Sensor Service, and HDF layer.
 
-**Figure 1** How the sensor works
+  **Figure 1** How the sensor works
 
 ![fad1a124-a90e-460f-84fc-e87d6caebb21](figures/fad1a124-a90e-460f-84fc-e87d6caebb21.png)
 
@@ -49,7 +49,7 @@ The following modules work cooperatively to implement sensors: Sensor API, Senso
 
 ## Constraints
 
-To obtain data of the following sensors, you must request the required permissions.
+1. To obtain data of the following sensors, you must request the required permissions.
 
     | Sensor                                            | Permission                          | Sensitivity    | Permission Description                                                    |
     | -------------------------------------------------- | -------------------------------- | ------------ | ------------------------------------------------------------ |
@@ -58,4 +58,4 @@ To obtain data of the following sensors, you must request the required permissio
     | Pedometer sensor                                            | ohos.permission.ACTIVITY_MOTION  | user_grant   | The permission allows an application to read an end user's motion status, for example, to determine whether the user is in motion or to record the number of steps that the user has walked. |
     | Heart rate sensor                                            | ohos.permission.READ_HEALTH_DATA | user_grant   | The permission allows an application to obtain an end user's health data, such as heart rate data.          |
     
-The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.
+2. The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.

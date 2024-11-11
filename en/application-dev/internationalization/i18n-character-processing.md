@@ -81,7 +81,20 @@ import { i18n } from '@kit.LocalizationKit';
 
 // Transliterate the text into the Latn format.
 let transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let res = transliterator.transform("中国"); // res = "zhōng guó"
+let wordArray = ["中国", "德国", "美国", "法国"]
+for (let i = 0; i < wordArray.length; i++) {
+    let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+}
+
+// Chinese transliteration and tone removal
+let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+let result = transliter.transform ('中国'); // result: zhong guo
+
+// Chinese surname pronunciation
+let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
+let result = nameTransliter.transform ('单老师'); // result: shàn lǎo shī
+let result2 = nameTransliter.transform ('长孙无忌'); // result2: zhǎng sūn wú jì
+
 
 // Obtain the list of IDs supported by the Transliterator object.
 let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
