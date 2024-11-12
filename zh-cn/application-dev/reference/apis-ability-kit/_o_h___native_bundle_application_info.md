@@ -9,9 +9,7 @@ OH_NativeBundle_ApplicationInfo是[OH_NativeBundle_GetCurrentApplicationInfo()](
 
 **起始版本：**9
 
-**相关模块：**
-
-[Bundle](_bundle.md)
+**相关模块：**[Bundle](_bundle.md)
 
 
 ## 汇总
