@@ -12,7 +12,7 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
     | 参数名        | 类型   | 必填 | 说明                                                         |
     | ------------- | ------ | ---- | ------------------------------------------------------------ |
     | sceneType     | number | 否   | 意图，默认为1，按航班号查询场景填1或不填                     |
-    | flightNo      | string | 是   | 航班号，航司二位代码+数字。<br>https://www.iata.org/en/about/members/airline-list/?page=1&search=&ordering=Alphabetical |
+    | flightNo      | string | 是   | 航班号，航司二位代码+数字。 |
     | departureDate | string | 否   | 航班出发时间：YYYY-MM-DD                                     |
 
 - 按起降地查询场景
@@ -113,7 +113,7 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
         | 参数名               | 类型   | 必填 | 说明                                                 |
         | -------------------- | ------ | ---- | ---------------------------------------------------- |
         | flightNo           | string | 是   | 航班号，航司二位代码+数字。<br>https://www.iata.org/en/about/members/airline-list/?page=1&search=&ordering=Alphabetical                                             |
-        | departureDate       | string | 否   | 航班出发时间：YYYY-MM-DD。不填时，Target可按当天处理                                             |
+        | departureDate       | string | 否   | 航班出发时间：YYYY-MM-DD。不填时，Target可按当天处理。                                             |
     
     - 按起降地查询场景
     
