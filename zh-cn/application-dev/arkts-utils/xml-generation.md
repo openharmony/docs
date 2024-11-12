@@ -31,14 +31,14 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
 2. 创建缓冲区，构造XmlSerializer对象。可以基于Arraybuffer构造XmlSerializer对象，也可以基于DataView构造XmlSerializer对象。
 
    ```ts
-   // 1.基于Arraybuffer构造XmlSerializer对象
+   // 方式1：基于Arraybuffer构造XmlSerializer对象
    let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
    let thatSer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
 
-   // 2.基于DataView构造XmlSerializer对象
-   let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let dataView: DataView = new DataView(arrayBuffer); // 使用DataView对象操作ArrayBuffer对象
-   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); // 基于DataView构造XmlSerializer对象
+   // 方式2：基于DataView构造XmlSerializer对象
+   // let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); 
+   // let dataView: DataView = new DataView(arrayBuffer); 
+   // let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); 
    ```
 
 3. 调用XML元素生成函数。
