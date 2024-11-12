@@ -168,6 +168,8 @@
             - [拉起邮件类应用（startAbilityByType）](application-models/start-email-apps.md)
             - [拉起邮件类应用（mailto方式）](application-models/start-email-apps-by-mailto.md)
             - [拉起金融类应用（startAbilityByType）](application-models/start-finance-apps.md)
+            - [拉起航班类应用（startAbilityByType）](application-models/start-flight-apps.md)
+            - [拉起快递类应用（startAbilityByType）](application-models/start-express-apps.md)
             - [拉起图片编辑类应用（startAbilityByType）](application-models/photoEditorExtensionAbility.md)
             - [拉起文件处理类应用（startAbility）](application-models/file-processing-apps-startup.md)
           - [拉起系统应用](application-models/system-app-startup.md)

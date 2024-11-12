@@ -2,7 +2,7 @@
 
 本章节主要介绍拉起方应用如何通过指定应用类型、而非某个具体的应用，来实现应用跳转。通常有以下几种方式：
 
-- [通过startAbilityByType接口拉起垂类面板](#通过startabilitybytype接口拉起垂类面板)：调用startAbilityByType接口拉起对应的垂域面板（目前支持拉起导航、金融、邮件类应用面板），该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。
+- [通过startAbilityByType接口拉起垂类面板](#通过startabilitybytype接口拉起垂类面板)：调用startAbilityByType接口拉起对应的垂域面板（目前支持拉起导航、金融、邮件、航班、快递类应用面板），该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。
 - [通过mailto方式跳转电子邮件应用](#通过mailto方式跳转电子邮件应用)：通过mailto电子邮件协议，可以创建指向电子邮件地址的超链接，方便用户通过网页或应用中的超链接直接跳转电子邮件应用。
 - [通过startAbility接口打开文件](#通过startability接口打开文件)：开发者可以通过调用startAbility接口，由系统从已安装的应用中寻找符合要求的应用，打开特定类型的文件。
 
@@ -32,6 +32,9 @@
 |转账汇款功能 |- type：finance <br/> - wantParams.sceneType：1 |Transfer|
 |信用卡还款功能 |- type：finance <br/> - wantParams.sceneType：2 |CreditCardRepayment|
 |撰写邮件功能|- type：mail <br/> - wantParams.sceneType：1|ComposeMail|
+|按航班号查询航班功能|- type：flight<br/> - wantParams.sceneType：1|QueryByFlightNo|
+|按起降地查询航班功能|- type：flight<br/> - wantParams.sceneType：2|QueryByLocation|
+|快递查询功能|- type：express<br/> - wantParams.sceneType：1|QueryExpress|
 
 ## 通过mailto方式跳转电子邮件应用
 
