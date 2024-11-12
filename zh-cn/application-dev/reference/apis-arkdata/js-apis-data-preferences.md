@@ -205,8 +205,8 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                  |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
@@ -289,8 +289,8 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
@@ -370,8 +370,8 @@ getPreferencesSync(context: Context, options: Options): Preferences
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -435,7 +435,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
+| 15500010 | Failed to delete the user preferences persistence file. |
 
 **示例：**
 
@@ -513,7 +513,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
+| 15500010 | Failed to delete the user preferences persistence file. |
 
 **示例：**
 
@@ -585,9 +585,9 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid. |
+| 15500010 | Failed to delete the user preferences persistence file. |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -669,9 +669,9 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid. |
+| 15500010 | Failed to delete the user preferences persistence file. |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -946,8 +946,8 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
@@ -1027,8 +1027,8 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
@@ -1100,8 +1100,8 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
@@ -2064,7 +2064,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
-| 15500019 | Failed to obtain subscription service. |
+| 15500019 | Failed to obtain the subscription service. |
 
 **示例：**
 
