@@ -163,7 +163,7 @@
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
      let settings: camera.PhotoCaptureSetting = {
        quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,  // 设置图片质量高
-       rotation: camera.ImageRotation.ROTATION_0,  // // 设置图片旋转角度的camera.ImageRotation.ROTATION_0是通过说明中获取拍照角度的getPhotoRotation方法获取的值进行设置
+       rotation: camera.ImageRotation.ROTATION_0,  // 设置图片旋转角度的camera.ImageRotation.ROTATION_0是通过说明中获取拍照角度的getPhotoRotation方法获取的值进行设置
        location: captureLocation,  // 设置图片地理位置
        mirror: false  // 设置镜像使能开关(默认关)
      };
