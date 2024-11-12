@@ -1546,7 +1546,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。
+为此OH_NativeXComponent实例注册surface显示回调，该回调在应用窗口已经回到前台时触发。
 
 **参数:**
 
@@ -1571,7 +1571,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。
+为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用窗口已经进入后台时触发。
 
 **参数:**
 
