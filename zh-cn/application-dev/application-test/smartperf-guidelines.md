@@ -174,16 +174,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -d    |否| 采集DDR                 |
 | -sections|否| 设置分段采集          |
 
-#### 启停采集命令参数
-
-| 命令参数   |必选| 说明                   |
-| :-----|:-----| :--------------------- |
-| -start |是| 开始采集，该命令参数后可添加基础采集命令             |
-| -stop |是| 结束采集，执行后会生成采集报告              |
-
-#### 使用示例
-
-##### 基础采集
+##### 使用示例
 
 - 采集2次整机CPU大中小核频率、各核使用率
 
@@ -692,10 +683,17 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv。
 
-##### 执行启停采集命令
+#### 启停采集命令参数
 
-- 启停服务
-    
+先执行start开始采集命令，然后操作设备或应用，最后执行stop结束采集命令。
+
+| 命令参数   |必选| 说明                   |
+| :-----|:-----| :--------------------- |
+| -start |是| 开始采集，该命令参数后可添加基础采集命令             |
+| -stop |是| 结束采集，执行后会生成采集报告              |
+
+##### 使用示例
+  
    ```
    开始采集
    # SP_daemon -start -c
@@ -716,13 +714,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    >
    >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot。
    >
-   >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令。
-   >
-   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\。
+   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。如导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\。
 
 #### 输出和查看csv采集结果
 
-输出和查看采集结果前，需先执行上述的采集命令。采集结果保存在
+输出和查看采集结果前，需先执行上述的采集命令。若采集结果保存在csv文件中，可以按照如下操作导出和查看。
 
   - 采集结果默认输出路径：/data/local/tmp/data.csv
 
