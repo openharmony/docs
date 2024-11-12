@@ -4578,29 +4578,6 @@ off(type: 'keyRequest', callback?: KeyRequestCallback): void
 ```ts
 aVCastController.off('keyRequest');
 ```
-## KeyRequestCallback<sup>12+</sup>
-type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
-
-许可证请求事件的回调函数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                      |
-| ------ | ------ | ---- | ----------------------------------------- |
-| assetId     | string  | 是   | 媒体ID。 |
-| requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
-
-**示例：**
-<!--code_no_check-->
-```ts
-let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
-}
-```
 
 ### on('castControlGenericError')<sup>13+</sup>
 
@@ -5015,6 +4992,30 @@ off(type: 'castControlDrmError', callback?: ErrorCallback): void
 
 ```ts
 aVCastController.off('castControlDrmError');
+```
+
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+许可证请求事件的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | 是   | 媒体ID。 |
+| requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
+
+**示例：**
+<!--code_no_check-->
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
+}
 ```
 
 ## CastDisplayState<sup>12+</sup>
