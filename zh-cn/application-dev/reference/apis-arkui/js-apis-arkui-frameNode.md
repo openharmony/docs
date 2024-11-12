@@ -909,6 +909,26 @@ LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点
 
 请参考[基础事件示例](#基础事件示例)和[LazyForEach场景基础事件使用示例](#lazyforeach场景基础事件使用示例)。
 
+### gestureEvent<sup>14+</sup>
+
+get gestureEvent(): UIGestureEvent
+
+获取FrameNode中持有的UIGestureEvent对象，用于设置组件绑定的手势事件。通过gestureEvent接口设置的手势不会覆盖通过[声明式手势接口](./arkui-ts/ts-gesture-settings.md)绑定的手势，两者同时设置了手势时，优先回调声明式接口设置的手势事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                                                             |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [UIGestureEvent](./arkui-ts/ts-uigestureevent.md#设置组件绑定的手势) | UIGestureEvent对象，用于设置组件绑定的手势。 |
+
+**示例：**
+
+请参考[手势事件示例](#手势事件示例)。
+
 ### onDraw<sup>12+</sup>
 
 onDraw?(context: DrawContext): void
@@ -4284,6 +4304,73 @@ export class TrackManager {
 
   dump(): void {
     this.rootTrack?.dump(0)
+  }
+}
+```
+## 手势事件示例
+```ts
+import { NodeController, FrameNode } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.rootNode.commonAttribute.width(100)
+      .overlay('This is a FrameNode')
+      .backgroundColor(Color.Pink)
+      .width('100%')
+      .height('100%');
+    this.addGestureEvent(this.rootNode);
+    return this.rootNode;
+  }
+
+  addGestureEvent(frameNode: FrameNode) {
+    frameNode.gestureEvent.addGesture(new PanGestureHandler()
+        .onActionStart((event: GestureEvent) => {
+            console.log(`Pan start: ${JSON.stringify(event)}`);
+        })
+        .onActionUpdate((event: GestureEvent) => {
+            console.log(`Pan update: ${JSON.stringify(event)}`);
+        })
+        .onActionEnd((event: GestureEvent) => {
+            console.log(`Pan end: ${JSON.stringify(event)}`);
+        })
+        .onActionCancel(() => {
+            console.log('Pan cancel');
+        })
+    )
+    frameNode.gestureEvent.addGesture(new LongPressGestureHandler()
+        .onAction((event: GestureEvent) => {
+            console.log(`Long press action: ${JSON.stringify(event)}`);
+        })
+        .onActionEnd((event: GestureEvent) => {
+            console.log(`Long press action end: ${JSON.stringify(event)}`);
+        })
+        .onActionCancel(() => {
+            console.log('Long press cancel');
+        })
+    )
+    frameNode.gestureEvent.addGesture(new TapGestureHandler()
+        .onAction((event: GestureEvent) => {
+            console.log(`Tap action: ${JSON.stringify(event)}`);
+        })
+    )
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .borderWidth(1)
+        .width(300)
+        .height(300)
+    }.width("100%")
   }
 }
 ```
