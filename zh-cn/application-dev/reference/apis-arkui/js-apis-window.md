@@ -6752,7 +6752,7 @@ struct Index {
 }
 ```
 
-### setGestureBackEnabled<sup>14+<sup>
+### setGestureBackEnabled<sup>13+<sup>
 
 setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
 
@@ -6760,9 +6760,9 @@ setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
 禁用返回手势功能后，当前应用会禁用手势热区，侧滑返回功能失效；切换到其他应用或者回到桌面后，手势热区恢复，侧滑返回功能正常。
 开启返回手势功能后，当前应用会恢复手势热区，侧滑返回功能正常。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager.Core
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -6826,15 +6826,15 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### isGestureBackEnabled<sup>14+<sup>
+### isGestureBackEnabled<sup>13+<sup>
 
 isGestureBackEnabled(): boolean
 
 获取当前窗口是否禁用返回手势功能，仅主窗全屏模式下生效，2in1设备不生效。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.Window.SessionManager.Core
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
