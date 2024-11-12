@@ -25,23 +25,23 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type |[window.AvoidAreaType](./js-apis-window.md#avoidareatype7) | Yes | Type of the area. |
+| type |[window.AvoidAreaType](./js-apis-window.md#avoidareatype7) | Yes| Type of the area.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-|[window.AvoidArea](./js-apis-window.md#avoidarea7) | Area where the window cannot be displayed. |
+|[window.AvoidArea](./js-apis-window.md#avoidarea7) | Area where the window cannot be displayed.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -70,18 +70,18 @@ Subscribes to the event indicating changes to the area where the window cannot b
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | ---- | ---- | ---- |
-| type   | string | Yes | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | Yes | Callback used to return the area information. |
+| type   | string | Yes| Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | Yes| Callback used to return the area information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -111,18 +111,18 @@ Unsubscribes from the event indicating changes to the area where the window cann
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type | Mandatory | Description |
+| Name  | Type| Mandatory| Description|
 | -------- | ---- | ---- | ---  |
-| type     | string | Yes | Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | No | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string | Yes| Event type. The value is fixed at **'avoidAreaChange'**, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | No| Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -149,18 +149,18 @@ Subscribes to the window size change event of the host application.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type                 | Mandatory | Description                  |
+| Name  | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | Yes  | Callback used to return the window size. |
+| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | Yes  | Callback used to return the window size.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -190,18 +190,18 @@ Unsubscribes from the window size change event of the host application.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type                 | Mandatory | Description                  |
+| Name  | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event. |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled. |
+| type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -232,24 +232,24 @@ Creates a subwindow for this window proxy. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description          |
+| Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| name   | string | Yes  | Name of the subwindow. |
+| name   | string | Yes  | Name of the subwindow.|
 | subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
 
 **Return value**
 
 | Type                            | Description                                            |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise used to return the subwindow created. |
+| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise used to return the subwindow created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). and [Window Error Codes](errorcode-window.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |
@@ -309,10 +309,10 @@ Describes the information about the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type                | Mandatory | Description       |
+| Name| Type                | Mandatory| Description       |
 | ------ | -------------------- | ------------------ | ------------------ |
-| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes | Type of the area where the window cannot be displayed.  |
-| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | Yes| Area where the window cannot be displayed. |
+| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes| Type of the area where the window cannot be displayed.  |
+| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | Yes| Area where the window cannot be displayed.|
 
 
 ## Example
@@ -355,7 +355,7 @@ This example shows how to use all the available APIs in the EmbeddedUIExtensionA
   }
   ```
 
-- The EmbeddedUIExtensionAbility to start by the **\<EmbeddedComponent>** is implemented in the **ets/extensionAbility/ExampleEmbeddedAbility** file. The file content is as follows:
+- The EmbeddedUIExtensionAbility to start by the **EmbeddedComponent** is implemented in the **ets/extensionAbility/ExampleEmbeddedAbility** file. The file content is as follows:
 
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
