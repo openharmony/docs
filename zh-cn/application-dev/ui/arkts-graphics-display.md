@@ -255,7 +255,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
 ## 显示矢量图
 
-Image组件可显示矢量图（svg格式的图片），支持的svg标签为：svg、rect、circle、ellipse、path、line、polyline、polygon和animate。
+Image组件可显示矢量图（svg格式的图片），svg标签文档请参考[svg说明](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-svg.md)。
 
 svg格式的图片可以使用fillColor属性改变图片的绘制颜色。
 
