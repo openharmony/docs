@@ -2420,7 +2420,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setRestoreEnabled<sup>13+</sup>
+## UIAbilityContext.setRestoreEnabled<sup>14+</sup>
 
 setRestoreEnabled(enabled: boolean): Promise\<void>
 

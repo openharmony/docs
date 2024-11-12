@@ -3,7 +3,7 @@
 appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md)。
@@ -791,7 +791,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 终止account进程。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
@@ -847,13 +847,13 @@ try {
 }
 ```
 
-## appManager.killProcessWithAccount<sup>13+</sup>
+## appManager.killProcessWithAccount<sup>14+</sup>
 
 killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: boolean, appIndex?: number): Promise\<void\>
 
 终止account进程。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
@@ -919,7 +919,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 终止account进程。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
@@ -931,11 +931,11 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用Bundle名称。 | 
-  | accountId | number | 是 | 系统账号的账号ID，详情参考[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。 | 
-  | callback | AsyncCallback\<void\> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 | 
+  | bundleName | string | 是 | 应用Bundle名称。 |
+  | accountId | number | 是 | 系统账号的账号ID，详情参考[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。 |
+  | callback | AsyncCallback\<void\> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1079,7 +1079,7 @@ try {
 }
 ```
 
-## appManager.killProcessesByBundleName<sup>13+</sup>
+## appManager.killProcessesByBundleName<sup>14+</sup>
 
 killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?: number): Promise\<void>
 
@@ -1991,7 +1991,7 @@ getSupportedProcessCachePids(bundleName : string): Promise\<Array\<number>>
 
 查询当前应用中支持缓存后快速启动的进程PID。
 
-> **说明：** 
+> **说明：**
 >
 > 本接口仅支持获取调用者所在系统账号下的进程PID。
 
