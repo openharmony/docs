@@ -28,8 +28,8 @@
 | -------- | -------- | -------- |
 | [所有应用可申请](permissions-for-all.md#system_grant系统授权权限列表) | system_grant | [声明权限](declare-permissions.md) &gt; 访问接口 | 
 | [所有应用可申请](permissions-for-all.md#user_grant用户授权权限列表) | user_grant  | [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 | 
-| <!--DelRow-->[允许normal等级应用通过ACL跨级申请](permissions-for-system-apps.md#system_grant允许acl跨级申请) | system_grant | [声明权限](declare-permissions.md) &gt; [声明ACL权限](declare-permissions-in-acl.md) &gt; 访问接口 | 
-| <!--DelRow-->[允许normal等级应用通过ACL跨级申请](permissions-for-system-apps.md#user_grant允许acl跨级申请) | user_grant | [声明权限](declare-permissions.md) &gt; [声明ACL权限](declare-permissions-in-acl.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 |
+| <!--DelRow-->[允许normal等级应用通过ACL跨级申请](permissions-for-system-apps.md#system_grant允许acl跨级申请) | system_grant | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; 访问接口 | 
+| <!--DelRow-->[允许normal等级应用通过ACL跨级申请](permissions-for-system-apps.md#user_grant允许acl跨级申请) | user_grant | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 |
 <!--RP2--><!--RP2End-->
 
 <!--Del-->
@@ -44,8 +44,8 @@
 | -------- | -------- | -------- | -------- |
 | normal、system_basic | system_grant | - | [声明权限](declare-permissions.md) &gt; 访问接口 | 
 | normal、system_basic | user_grant | - | [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 | 
-| system_core | system_grant | true | [声明权限](declare-permissions.md) &gt; [声明ACL权限](declare-permissions-in-acl.md) &gt; 访问接口 | 
-| system_core | user_grant | true | [声明权限](declare-permissions.md) &gt; [声明ACL权限](declare-permissions-in-acl.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 | 
+| system_core | system_grant | true | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; 访问接口 | 
+| system_core | user_grant | true | [申请使用受限权限](declare-permissions-in-acl.md) &gt; [声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) &gt; 访问接口 | 
 
 如果应用需要将自身的APL等级声明为system_basic及以上，在开发应用安装包时，需要修改应用的HarmonyAppProvision配置文件即SDK目录下的“`Toolchains / _{Version} _/ lib / UnsgnedReleasedProfileTemplate.json`”文件），并重新进行应用签名。
 

@@ -165,8 +165,9 @@ Enumerates the color formats supported by the video thumbnail.
 | RGB_888        | 5    | RGB_888.                |
 
 ## AvPlayer<sup>9+</sup>
-
-A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an **AVPlayer** instance.
+> **NOTE**
+> 
+> A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an [AVPlayer](js-apis-media.md#avplayer9) instance.
 
 ### setPlaybackRange<sup>12+</sup>
 
@@ -301,6 +302,94 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to getFrameIndexByTime ${err.message}`);
 })
+```
+
+## AVRecorder<sup>9+</sup>
+
+A recording management class that provides APIs to record media assets. Before calling any API in **AVRecorder**, you must use [createAVRecorder()](js-apis-media.md#mediacreateavrecorder9) to create an **AVRecorder** instance.
+
+> **NOTE**
+>
+> To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
+
+### isWatermarkSupported<sup>12+</sup>
+
+isWatermarkSupported(): Promise\<boolean>
+
+Checks whether the device supports the hardware digital watermark. This API uses a promise to return the result.
+
+This API can be called after the [prepare()](js-apis-media.md#prepare9-3), [start()](js-apis-media.md#start9), or [paused()](js-apis-media.md#pause9) event is triggered.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type            | Description                            |
+| ---------------- | -------------------------------- |
+| Promise\<boolean> | Promise used to return the check result.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
+  console.info(`Succeeded in get, isWatermarkSupported: ${isWatermarkSupported}`);
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get and catch error is ${error.message}`);
+});
+```
+
+### setWatermark<sup>12+</sup>
+
+setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
+
+Sets a watermark for the AVRecorder. This API uses a promise to return the result.
+
+This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) event is triggered and before the [start()](js-apis-media.md#start9) event is triggered.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                        |
+| -------- | -------------------- | ---- | --------------------------- |
+| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8 KB, the watermark resolution is 3072 x 288; if the original image is 4 KB, the watermark resolution is 1536 x 144.|
+| config    | [WatermarkConfig](#watermarkconfig12)   | Yes  | Watermark configuration.|
+
+**Return value**
+
+| Type            | Description                            |
+| ---------------- | -------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------   |
+|   401    | The parameter check failed. Return by promise.            |
+|   801    | Capability not supported. Return by promise. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+let watermark: image.PixelMap|undefined = undefined; // need data
+let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
+
+avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
+  console.info('Succeeded in setWatermark');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to setWatermark and catch error is ${error.message}`);
+});
 ```
 
 ## VideoRecorder<sup>9+</sup>
@@ -1134,3 +1223,16 @@ Describes the video recording profile.
 | videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.|
 | videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 | videoFrameRate   | number                                       | Yes  | Video frame rate.  |
+
+## WatermarkConfig<sup>12+</sup>
+
+Describes the watermark configuration set for the AVRecorder. The start point is the upper left corner of the image.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**System API**: This is a system API.
+
+| Name     | Type  | Mandatory| Description            |
+| --------- | ------ | ---- | ---------------- |
+| top       | number | Yes  | Pixel offset from the top edge of the image.|
+| left      | number | Yes  | Pixel offset from the left edge of the image.|

@@ -14,12 +14,15 @@
   - Modules
     - [AVPlayer](_a_v_player.md)
     - [AVScreenCapture](_a_v_screen_capture.md)
+    - [VideoProcessing](_video_processing.md)
   - Header Files
+    - [avplayer.h](avplayer_8h.md)
+    - [avplayer_base.h](avplayer__base_8h.md)
     - [native_avscreen_capture.h](native__avscreen__capture_8h.md)
     - [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
     - [native_avscreen_capture_errors.h](native__avscreen__capture__errors_8h.md)
-    - [avplayer.h](avplayer_8h.md)
-    - [avplayer_base.h](avplayer__base_8h.md)
+    - [video_processing.h](video__processing_8h.md)
+    - [video_processing_types.h](video__processing__types_8h.md)
   - Structs
     - [AVPlayerCallback](_a_v_player_callback.md)
     - [OH_AudioBuffer](_o_h___audio_buffer.md)
@@ -33,5 +36,6 @@
     - [OH_VideoCaptureInfo](_o_h___video_capture_info.md)
     - [OH_VideoEncInfo](_o_h___video_enc_info.md)
     - [OH_VideoInfo](_o_h___video_info.md)
+    - [VideoProcessing_ColorSpaceInfo](_video_processing___color_space_info.md)
 - Error Codes
   - [Media Error Codes](errorcode-media.md)

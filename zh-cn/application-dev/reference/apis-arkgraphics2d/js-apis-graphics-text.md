@@ -22,6 +22,63 @@
 import { text } from '@kit.ArkGraphics2D';
 ```
 
+## text.matchFontDescriptors<sup>14+</sup>
+
+matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
+
+根据指定的字体描述符返回所有符合要求的系统字体描述符，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| - | - | - | - |
+| desc | [FontDescriptor](#fontdescriptor14) | 是 | 指定需要用来做匹配的字体描述符，其中path字段不作为有效匹配字段，weight字段不填写时不生效，其他字段为非默认值时生效，如果所有字段都不填写或者是默认值，则返回所有的系统字体描述符。如果匹配失败，返回空数组。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| - | - |
+| Promise&lt;Array&lt;[FontDescriptor](#fontdescriptor14)&gt;&gt; | Promise对象，返回所有匹配到的系统字体描述符。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("font descriptor")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            console.info(`Get font descriptor start`)
+            let promise = text.matchFontDescriptors({
+              weight: text.FontWeight.W400,
+            })
+            promise.then((data) => {
+              console.info(`Font descriptor array size: ${data.length}`);
+              console.info(`Font descriptor result: ${JSON.stringify(data)}`)
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to match the font descriptor, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## TextAlign
 
 文本对齐方式枚举。
@@ -256,7 +313,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
 | decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线置，默认初始的Decoration。             |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 字体色，默认为白色。                         |
-| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。                          |
+| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。 目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
 | fontFamilies  | Array\<string>                                       | 是 | 是 | 字体族名称列表，默认为系统字体。                    |
@@ -286,7 +343,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fontFamilies   | Array\<string>                                       | 是   | 是 | 字体类型，默认为系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
-| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。                                                      |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                             |
 | fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为物理像素px。                             |
 | height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
 | leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
@@ -294,6 +351,25 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | enabled        | boolean                                              | 是   | 是 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
 | heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
 | halfLeading    | boolean                                              | 是   | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
+
+## FontDescriptor<sup>14+</sup>
+
+字体描述符信息。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| - | - | -  | - | - |
+| path | string | 否 | 是 | 字体绝对路径，可取任意值，默认值为空字符串。 |
+| postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意值，默认值为空字符串。 |
+| fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
+| fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
+| fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors14)接口入参使用时，不使用该字段视作该字段为默认值。 |
+| width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
+| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
+| monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
+| symbolic | boolean | 否 | 是 | 是否支持符号，true表示支持，false表示不支持，默认值为false。 |
 
 ## FontCollection
 
@@ -340,7 +416,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。
+同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 

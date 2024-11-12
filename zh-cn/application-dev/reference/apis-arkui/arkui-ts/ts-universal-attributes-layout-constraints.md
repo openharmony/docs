@@ -22,7 +22,7 @@ aspectRatio(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 指定当前组件的宽高比，aspectRatio = width/height。<br/>API version 9及以前，默认值为：1.0。<br/>API version 10：无默认值。<br/>**说明：**<br/>该属性在不设置值或者设置非法值时不生效。<br/>例如，Row只设置宽度且没有子组件，aspectRatio不设置值或者设置成负数时，此时Row高度为0。 |
+| value  | number | 是   | 指定当前组件的宽高比，aspectRatio = width/height。同时设置width、height和aspectRatio，height不生效，通过width和aspectRatio计算宽高。设置aspectRatio属性后，组件宽高会受父组件内容区大小限制。<br/>API version 9及以前，默认值为：1.0。<br/>API version 10：无默认值。<br/>**说明：**<br/>该属性在不设置值或者设置非法值时不生效。<br/>例如，Row只设置宽度且没有子组件，aspectRatio不设置值或者设置成负数时，此时Row高度为0。 |
 
 ## displayPriority
 

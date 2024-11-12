@@ -33,12 +33,6 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 - [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量与LocalStorage中给定属性建立双向同步关系。
 
 
-## 限制条件
-
-- LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
-- LocalStorage是页面级存储，[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
-
-
 ## \@LocalStorageProp
 
 在上文中已经提到，如果要建立LocalStorage和自定义组件的联系，需要使用\@LocalStorageProp和\@LocalStorageLink装饰器。使用\@LocalStorageProp(key)/\@LocalStorageLink(key)装饰组件内的变量，key标识了LocalStorage的属性。
@@ -176,6 +170,30 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 3. 当\@LocalStorageLink(key)装饰的数据本身是状态变量，它的改变不仅仅会同步回LocalStorage中，还会引起所属的自定义组件的重新渲染。
 
 ![LocalStorageLink_framework_behavior](figures/LocalStorageLink_framework_behavior.png)
+
+
+## 限制条件
+
+1. \@LocalStorageProp/\@LocalStorageLink的参数必须为string类型，否则编译期会报错。
+
+```ts
+let storage = new LocalStorage();
+storage.setOrCreate('PropA', 48);
+
+// 错误写法，编译报错
+@LocalStorageProp() localStorageProp: number = 1;
+@LocalStorageLink() localStorageLink: number = 2;
+
+// 正确写法
+@LocalStorageProp('PropA') localStorageProp: number = 1;
+@LocalStorageLink('PropA') localStorageLink: number = 2;
+```
+
+2. \@StorageProp与\@StorageLink不支持装饰Function类型的变量，框架会抛出运行时错误。
+
+3. LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
+
+4. LocalStorage是页面级存储，[getShared](../reference/apis-arkui/arkui-ts/ts-state-management.md#getshared10)接口仅能获取当前Stage通过[windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## 使用场景
@@ -781,7 +799,7 @@ struct pageTwoStack {
     NavDestination() {
       Column() {
         NavigationContentMsgStack()
-        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'Hello World'
+        // 如果绑定的LocalStorage中没有PropB,显示本地初始化的值 'Hello World'
         Text(`${this.PropB}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -810,7 +828,7 @@ struct pageThreeStack {
       Column() {
         NavigationContentMsgStack()
 
-        // 绑定的LocalStorage中没有PropA,显示本地初始化的值 'pageThreeStack'
+        // 如果绑定的LocalStorage中没有PropC,显示本地初始化的值 'pageThreeStack'
         Text(`${this.PropC}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1043,6 +1061,39 @@ struct LocalSetSample {
       .width('100%')
     }
     .height('100%')
+  }
+}
+```
+
+### 自定义组件外改变状态变量
+
+```ts
+let storage = new LocalStorage();
+storage.setOrCreate('count', 47);
+
+class Model {
+  storage: LocalStorage = storage;
+
+  call(propName: string, value: number) {
+    this.storage.setOrCreate<number>(propName, value);
+  }
+}
+
+let model: Model = new Model();
+
+@Entry({ storage: storage })
+@Component
+struct Test {
+  @LocalStorageLink('count') count: number = 0;
+
+  build() {
+    Column() {
+      Text(`count值: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call('count', this.count + 1);
+        })
+    }
   }
 }
 ```

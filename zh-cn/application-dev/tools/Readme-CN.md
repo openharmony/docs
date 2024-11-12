@@ -21,3 +21,4 @@
 - 命令行工具
   - [toybox工具](toybox.md)
   - [mediatool工具](mediatool.md)
+  - [devicedebug工具](devicedebug-tool.md)

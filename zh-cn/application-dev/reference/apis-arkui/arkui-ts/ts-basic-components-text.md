@@ -58,7 +58,7 @@ textAlign(value: TextAlign)
 
 ### textOverflow
 
-textOverflow(value: { overflow: TextOverflow })
+textOverflow(options: TextOverflowOptions)
 
 设置文本超长时的显示方式。
 
@@ -80,7 +80,7 @@ textOverflow(value: { overflow: TextOverflow })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | 是   | 文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip} |
+| options | [TextOverflowOptions](#textoverflowoptions13对象说明) | 是   | 文本超长显示方式对象 |
 
 ### maxLines
 
@@ -141,6 +141,8 @@ decoration(value: DecorationStyleInterface)
 baselineOffset(value: number | string)
 
 设置文本基线的偏移量，设置该值为百分比时，按默认值显示。
+
+正数内容向上偏移，负数向下偏移。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -600,6 +602,8 @@ fontFeature(value: string)
 
 例如，使用等宽数字的输入格式为："ss01" on。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -795,7 +799,7 @@ fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
+| weight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12对象说明) | 否  | 设置字体配置项。 |
 
 ### enableHapticFeedback<sup>13+</sup>
@@ -813,6 +817,49 @@ enableHapticFeedback(isEnabled: boolean)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ```
+
+### caretColor<sup>14+</sup>
+
+caretColor(value: ResourceColor)
+
+设置文本框选中区域手柄颜色。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                                   |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中手柄颜色。<br/>默认值：'#007DFF' |
+
+### selectedBackgroundColor<sup>14+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。<br/>默认值：'#007DFF' |
 
 ## TextSpanType<sup>11+</sup>枚举说明
 
@@ -834,11 +881,27 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 描述            |
+| 名称         | 说明          |
 | ---------- | ------------- |
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
+
+## TextOverflowOptions<sup>13+</sup>对象说明
+
+文本超长显示方式对象。
+
+**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip |
 
 ## 事件
 

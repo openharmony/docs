@@ -18,7 +18,7 @@
 | 参数名 | 描述 | 配置项 | 场景举例 |
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐。 <br>支持在原子化服务中使用。|
+| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐，投播。 <br>支持在原子化服务中使用。|
 | AUDIO_RECORDING | 录制 | audioRecording | 录音机在后台录音。 |
 | LOCATION | 定位导航 | location | 导航类应用后台导航。 |
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
@@ -70,9 +70,8 @@
 
 1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
 
-2. 声明后台模式类型，以及添加uris等配置。
-   - 声明后台模式类型（必填项）：在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
-   - 添加uris等配置（可选项）：若使用deeplink、applink等跳转功能，具体请参考如下示例可选项。其中，必填项的配置不可更改，可选项的具体配置请参考[应用间跳转](../application-models/link-between-apps-overview.md)。
+2. 声明后台模式类型。
+   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
    
    ```json
     "module": {
@@ -81,31 +80,6 @@
                 "backgroundModes": [
                  // 长时任务类型的配置项
                 "audioRecording"
-                ], 
-                "skills": [
-                    // 必填项：申请长时任务时entities和actions值
-                    {
-                        "entities": [
-                            "entity.system.home"
-                        ],
-                        "actions": [
-                            "action.system.home"
-                        ]    
-                    },
-                    // 可选项：添加deeplink、applink等跳转功能
-                    {
-                        "entities": [
-                            "test"
-                        ],
-                        "actions": [
-                            "test"
-                        ],
-                        "uris": [
-                            {
-                                "scheme": "test"
-                            }
-                        ]
-                    }
                 ]
             }
         ],
@@ -149,7 +123,7 @@
           wants: [
             {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "MainAbility"
             }
           ],
           // 指定点击通知栏消息后的动作是拉起ability

@@ -12,7 +12,7 @@ To ensure data security, delete the key that is no longer required.
 
 For example, delete a 256-bit HKDF key.
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes. **paramSet** is a reserved parameter. Leave it empty.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes. **paramSet** is a reserved parameter. Leave it empty.
 
 2. Use [OH_Huks_DeleteKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_deletekeyitem) to delete the key.
 

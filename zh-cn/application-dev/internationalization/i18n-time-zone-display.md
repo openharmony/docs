@@ -13,7 +13,7 @@
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. 本地化时区名称，以美国/圣保罗为例。
+2. 本地化时区名称，以美洲/圣保罗为例。
    ```ts
    let timezone = i18n.getTimeZone("America/Sao_Paulo");
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // 巴西利亚标准时间

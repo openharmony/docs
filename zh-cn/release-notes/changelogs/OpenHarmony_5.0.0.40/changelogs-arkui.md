@@ -24,11 +24,11 @@
 
 **起始API Level**
 
-API 13
+API 9
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.40开始。
+从OpenHarmony SDK 5.0.0.43开始。
 
 **变更的接口/组件**
 
@@ -149,3 +149,40 @@ textInput/textArea/search组件的onEditChange接口
 **适配指导**
 
 onEditChange接口的规格没有发生变化，系统默认行为变更，不需要适配。
+
+## cl.arkui.4 ui-extension-component的onReceive/UIExtensionProxy相关接口入参调整
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+匿名函数/接口整改
+
+**变更影响**
+
+该变更为兼容性变更。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| data: { [key: string]: Object } | data: Record\<string, Object\> |
+| callback: (proxy: UIExtensionProxy) | callback: Callback\<UIExtensionProxy\> |
+| callback?: (proxy: UIExtensionProxy) | callback?: Callback\<UIExtensionProxy\> |
+| callback: [callback] | callback: ReceiveCallback |
+
+**起始API Level**
+
+API 14
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.40 版本开始。
+
+**变更的接口/组件**
+
+onReceive/UIExtensionProxy
+
+**适配指导**
+
+onReceive/UIExtensionProxy接口的规格没有发生变化，系统默认行为变更，不需要适配。

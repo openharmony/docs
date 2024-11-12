@@ -85,6 +85,18 @@ Allows an application to use the mock location function.
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_LEARN_MORE_DIALOG
+
+Allows a system application to display the **Learn more** dialog for detailed information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ### ohos.permission.MANAGE_SETTINGS
 
 Allows an application to set the device-level configuration table and user-level configuration table in **SettingsData**.
@@ -759,7 +771,7 @@ Allows an application to use the lock screen service to lock the screen, send a 
 
 ### ohos.permission.BACKUP
 
-Allows an application to have backup and restore capabilities.
+Allows an application to use the backup and restore capability.
 
 **Permission level**: system_basic
 
@@ -2265,21 +2277,9 @@ Allows an application to use the location service without displaying the privacy
 
 ### ohos.permission.EXEMPT_PRIVACY_SECURITY_CENTER
 
-Allows a system application to be hidden on the Privacy & Security page.
+Allows a system application to be hidden on the **Privacy & Security** page.
 
 **Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 13
-
-### ohos.permission.ACCESS_LEARN_MORE_DIALOG
-
-Allows a system application to display the Learn more dialog for detailed information.
-
-**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -3881,37 +3881,75 @@ Allows a system application to modify the eSIM profile and upgrade the eSIM.
 
 Allows a system application to use the camera in the background.
 
-**Permission level**：system_basic
+**Permission level**: system_core
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：13
+**Valid since**: 13
+
+### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
+
+Allows an application to be started by another application on the lock screen page and redirected.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.CALLED_BELOW_LOCK_SCREEN
+
+Allows an application to start even when the screen is locked.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ### ohos.permission.ACCESS_ANALYTICS
 
-Allow a system service to access and read files in the /data/log/faultlog/faultlogger directory.
+Allows a system service to access and read files in **/data/log/faultlog/faultlogger** directory.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
 
 ### ohos.permission.START_RESTORE_NOTIFICATION
 
-Allows a system application to subscribe to the restore start event.
+Allows a system application to subscribe to the restore start event of the backup and restore framework.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：13
+**Valid since**: 13
+
+### ohos.permission.READ_WRITE_USB_DEV
+
+Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
+
+Currently, this permission is available only for 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ### ohos.permission.START_RESTORE_NOTIFICATION
 
@@ -3926,6 +3964,32 @@ This permission is available only for applications running on 2-in-1 devices.
 **Enable via ACL**：true
 
 **Valid since**：13
+
+### ohos.permission.READ_WRITE_USER_FILE
+
+Allows an application to access and modify the files in the user directory.
+
+Currently, this permission is available only for 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+Allows an application or a service to initiate user identity authentication from the background.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ## system_grant Permissions (Unavailable via ACL)
 
@@ -4163,7 +4227,7 @@ Allows a system application or system service to grant third-party applications 
 
 ### ohos.permission.ACCESS_SUPER_HUB
 
-Allows an application to start SuperHub.
+Allows an application to access Super Hub.
 
 **Permission level**: system_basic
 
@@ -4172,6 +4236,42 @@ Allows an application to start SuperHub.
 **Enable via ACL**: false
 
 **Valid since**: 12
+
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+Allows an application to create or remove the recovery key.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+Allows an application to utilize the recovery key to reset the lock screen password or restore user data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+Allows an application to obtain brief information of the recovery key.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
 
 ## user_grant Permissions (Available via ACL)
 
@@ -4480,3 +4580,17 @@ Allows an application to save images and videos to the user's directory within u
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+Allows an application to capture screen information.
+
+With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14

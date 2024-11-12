@@ -25,7 +25,7 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.UNINSTALL_BUNDLE | system_core | Allows an application to uninstall applications.|
 | ohos.permission.RECOVER_BUNDLE | system_core | Allows an application to restore pre-installed applications.|
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | Allows automatic updates of the enterprise MDM applications on enterprise devices.|
-
+| ohos.permission.INSTALL_INTERNALTESTING_BUNDLE | system_core | Allows an application to install beta applications.|
 
 For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
@@ -172,6 +172,8 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 > To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
 >
 > To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+>
+> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -263,6 +265,8 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 > To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
 >
 > To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+>
+> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -349,6 +353,8 @@ Installs a bundle. This API uses a promise to return the result.
 > To install an enterprise MDM application, you must have the **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE** permission.
 >
 > To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
+>
+> To install a beta application, you must have the **ohos.permission.INSTALL_INTERNALTESTING_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -657,6 +663,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **Example**
 
@@ -719,6 +726,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **Example**
 
@@ -782,6 +790,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **Example**
 ```ts
@@ -814,7 +823,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : void
 
 Uninstalls a shared bundle. This API uses an asynchronous callback to return the result.
 
@@ -1332,6 +1341,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700001 | The specified bundle name is not found. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **Example**
@@ -1365,7 +1375,7 @@ try {
 
 ## BundleInstaller.createAppClone<sup>12+</sup>
 
-createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number>;
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number\>;
 
 Creates an application clone. This API uses a promise to return the result.
 
@@ -1432,7 +1442,7 @@ try {
 
 ## BundleInstaller.destroyAppClone<sup>12+</sup>
 
-destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void>;
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void\>;
 
 Destroys an application clone. This API uses a promise to return the result.
 
@@ -1497,7 +1507,7 @@ try {
 
 ## BundleInstaller.installPreexistingApp<sup>12+</sup>
 
-installPreexistingApp(bundleName: string, userId?: number): Promise\<void>;
+installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
 
 Installs a bundle. This API uses a promise to return the result.
 
@@ -1532,6 +1542,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700001 | The specified bundleName cannot be found. |
 | 17700004 | The userId is invalid. |
 | 17700071 | It is not allowed to install the enterprise bundle. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **Example**
 ```ts

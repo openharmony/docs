@@ -9,11 +9,10 @@
 | 容器规格 | 视频编码类型                 |
 | -------- | ---------------------------- |
 | mp4      | HEVC（H.265）、 AVC（H.264） |
-| m4a      | HEVC（H.265）、 AVC（H.264） |
 
 目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
-每一种编码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+每一种编码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
 <!--RP1--><!--RP1End-->
 
@@ -30,6 +29,8 @@
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoEncoder_Destroy接口来销毁实例并释放资源。
 3. 一旦调用Flush，Reset，Stop接口，会触发系统回收OH_AVBuffer，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 4. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
+5. 在Buffer模式下，调用者通过输入回调函数OH_AVCodecOnNeedInputBuffer获取到OH_AVBuffer的指针对象后，必须通过调用OH_VideoEncoder_PushInputBuffer接口
+   来通知系统该对象已被使用完毕。这样系统才能够将该对象里面的数据进行编码。如果调用者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针对象，并且该对象的生命周期超过了当前的OH_AVBuffer指针对象，那么需要进行一次数据的拷贝操作。在这种情况下，调用者需要自行管理新生成的OH_NativeBuffer对象的生命周期，确保其正确使用和释放。
 
 
 ## surface输入与buffer输入
@@ -54,20 +55,20 @@
 
 1. 有两种方式可以使编码器进入Initialized状态：
    - 初始创建编码器实例时，编码器处于Initialized状态。
-   - 任何状态下调用OH_VideoEncoder_Reset接口，编码器将会移回Initialized状态。
+   - 任何状态下，调用OH_VideoEncoder_Reset接口，编码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoEncoder_Configure接口配置编码器，配置成功后编码器进入Configured状态。
-3. Configured状态下调用OH_VideoEncoder_Prepare()进入Prepared状态。
-4. Prepared状态调用OH_VideoEncoder_Start接口使编码器进入Executing状态：
+3. Configured状态下，调用OH_VideoEncoder_Prepare()进入Prepared状态。
+4. Prepared状态下，调用OH_VideoEncoder_Start接口使编码器进入Executing状态：
    - 处于Executing状态时，调用OH_VideoEncoder_Stop接口可以使编码器返回到Prepared状态。
 
 5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
-   - Error状态下可以调用OH_VideoEncoder_Reset接口将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy接口移动到最后的Released状态。
+   - Error状态下，可以调用OH_VideoEncoder_Reset接口将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy接口移动到最后的Released状态。
 
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoEncoder_Start接口之后，编码器立即进入Running子状态。
    - 对于处于Executing状态的编码器，可以调用OH_VideoEncoder_Flush接口返回到Flushed子状态。
-   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1)标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
 7. 使用完编码器后，必须调用OH_VideoEncoder_Destroy接口销毁编码器实例。使编码器进入Released状态。
 
@@ -699,7 +700,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
         inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
     } else {
-        // 如果跨距不等于宽，需要调用者按照跨距进行偏移
+        // 如果跨距不等于宽，需要调用者按照跨距进行偏移，具体可参考以下示例
     }
     // 配置buffer info信息
     OH_AVCodecBufferAttr info;
@@ -717,7 +718,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
-    对跨距进行偏移，以NV12图像为例 示例如下：
+    对跨距进行偏移，以NV12图像为例，示例如下：
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
@@ -736,19 +737,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     使用示例：
 
     ```c++
-    struct Rect   // 源内存区域的宽，高
+    struct Rect   // 源内存区域的宽、高，由调用者自行设置
     {
         int32_t width;
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽，高跨距
+    struct DstRect // 目标内存区域的宽、高跨距，通过回调函数OnNeedInputBuffer获取
     {
         int32_t wStride;
         int32_t hStride;
     };
 
-    struct SrcRect // 源内存区域的宽，高跨距
+    struct SrcRect // 源内存区域的宽、高跨距，由调用者自行设置
     {
         int32_t wStride;
         int32_t hStride;

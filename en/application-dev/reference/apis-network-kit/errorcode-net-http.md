@@ -182,7 +182,8 @@ This error code is reported if an error occurs while writing received data to th
 
 **Cause**
 
-The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The application does not have the permission to write files or the file to be downloaded exceeds 5 MB.
+- The **destroy** function is called before the data of the last request is fully received.
 
 **Solution**
 

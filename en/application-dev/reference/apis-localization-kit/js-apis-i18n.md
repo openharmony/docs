@@ -1577,7 +1577,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| zondID | string | No   | Time zone ID. The default value is the system time zone.|
+| zoneID | string | No   | Time zone ID. The default value is the system time zone.|
 
 **Return value**
 

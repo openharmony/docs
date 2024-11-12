@@ -62,7 +62,7 @@
    pixelMap.writeBufferToPixels(writeColor, () => {});
    ```
 
-## 开发示例-复制（深拷贝）一个新的PixelMap
+## 复制（深拷贝）新的PixelMap
 
 1. 完成[图片解码](image-decoding.md)，获取PixelMap位图对象。
 
@@ -73,26 +73,29 @@
       /**
        *  复制（深拷贝）一个新的PixelMap
        *
-       * @param pixelMap - 被复制的 PixelMap。
-       * @param desiredPixelFormat - 新 PixelMap 的像素格式。如果不指定，则仍使用原 PixelMap 的像素格式。
-       * @returns 新 PixelMap。
+       * @param pixelMap - 被复制的PixelMap。
+       * @param desiredPixelFormat - 新PixelMap的像素格式。如果不指定，则仍使用原PixelMap的像素格式。
+       * @returns 新PixelMap。
        **/
       clonePixelMap(pixelMap: PixelMap, desiredPixelFormat?: image.PixelMapFormat): PixelMap {
-        // 获取当前 PixelMap 的图片信息
+        // 获取当前PixelMap的图片信息。
         const imageInfo = pixelMap.getImageInfoSync();
-        // 读取当前 PixelMap 的图像像素数据，并按照当前 PixelMap 的像素格式写入缓冲区数组
+        // 读取当前PixelMap的图像像素数据，并按照当前PixelMap的像素格式写入缓冲区数组。
         const buffer = new ArrayBuffer(pixelMap.getPixelBytesNumber());
         pixelMap.readPixelsToBufferSync(buffer);
-        // 根据当前 PixelMap 的图片信息，生成初始化选项。
+        // 根据当前PixelMap的图片信息，生成初始化选项。
         const options: image.InitializationOptions = {
-          // 当前 PixelMap 的像素格式
+          // 当前PixelMap的像素格式。
           srcPixelFormat: imageInfo.pixelFormat,
-          // 新 PixelMap 的像素格式
+          // 新PixelMap的像素格式。
           pixelFormat: desiredPixelFormat ?? imageInfo.pixelFormat,
-          // 当前 PixelMap 的尺寸大小
+          // 当前PixelMap的尺寸大小。
           size: imageInfo.size
         };
-        // 根据初始化选项和缓冲区数组，生成新 PixelMap
+        // 根据初始化选项和缓冲区数组，生成新PixelMap。
         return image.createPixelMapSync(buffer, options);
       }
      ```
+
+<!--RP1-->
+<!--RP1End-->

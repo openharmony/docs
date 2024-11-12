@@ -30,13 +30,13 @@ ScrollBar(value: ScrollBarOptions)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-## enableNestedScroll<sup>13+</sup>
+## enableNestedScroll<sup>14+</sup>
 
 enableNestedScroll(value: boolean)
 
 设置滚动条是否嵌套滚动。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

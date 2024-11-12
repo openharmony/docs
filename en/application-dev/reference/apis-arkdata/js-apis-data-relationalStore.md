@@ -1,7 +1,14 @@
 # @ohos.data.relationalStore (RDB Store)
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. It also allows sendable data to be obtained by using [ResultSet.getSendableRow](#getsendablerow12) and transferred across threads.
+
 The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
+
+The application may be suspended if a large amount of data is queried. To prevent this problem, observe the following:
+- The number of data records to be queried at a time should not exceed 5000.
+- Use [TaskPool](../apis-arkts/js-apis-taskpool.md) if there is a large amount of data needs to be queried.
+- Keep concatenated SQL statements as concise as possible.
+- Query data in batches.
 
 The **relationalStore** module provides the following functionalities:
 
@@ -41,7 +48,7 @@ Currently, **getRdbStore()** does not support multi-thread concurrent operations
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**  |
 |-----------|---------|
@@ -74,7 +81,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
@@ -100,7 +107,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
         
     relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
@@ -142,7 +149,7 @@ Currently, **getRdbStore()** does not support multi-thread concurrent operations
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -173,7 +180,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -197,7 +204,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -401,7 +408,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
@@ -427,7 +434,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) => {
       if (err) {
@@ -492,7 +499,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
@@ -516,7 +523,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
@@ -550,7 +557,7 @@ Enumerates the RDB store security levels. Use the enum name rather than the enum
 
 > **NOTE**
 >
-> To perform data sync operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Cross-Device Data Synchronization Mechanism]( ../../database/sync-app-data-across-devices-overview.md#cross-device-data-synchronization-mechanism).
+> To perform data sync operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Cross-Device Data Sync Mechanism](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-sync).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -634,8 +641,7 @@ Defines the data in the form of a KV pair, which cannot be transferred across th
 
 | Type             | Description                          |
 | ---------------- | ---------------------------- |
-| string | The key is a string.|
-| ValueType | The value type is [ValueType](#valuetype).|
+| Record<string, [ValueType](#valuetype)> | Types of the key and value in a KV pair. The key type is string, and the value type is [ValueType](#valuetype).|
 
 ## PRIKeyType<sup>10+</sup> 
 
@@ -867,7 +873,7 @@ Represents statistics about SQL statements executed by the database.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name    | Type                                              | Read-Only | Optional |Description                                                        |
+| Name    | Type                                              | Read-Only| Optional |Description                                                        |
 | -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
 | sql<sup>12+</sup>           | Array&lt;string&gt;            | Yes  |   No  | SQL statements executed. If the value of [batchInsert](#batchinsert) is too large, there may be multiple SQL statements.     |
 | totalTime<sup>12+</sup>      | number                        | Yes  |   No  | Total time used to execute the SQL statements, in μs.                                   |
@@ -2091,7 +2097,7 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -2174,7 +2180,7 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ---------------------------------------------------- |
@@ -2262,7 +2268,7 @@ Inserts a row of data into a table. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -2350,7 +2356,7 @@ Inserts a row of data into a table. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -2438,7 +2444,7 @@ Inserts a row of data into a table. Due to the limit of the shared memory (max. 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
@@ -2527,7 +2533,7 @@ Inserts a row of Sendable data into a table. This API returns the result synchro
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
@@ -2593,7 +2599,7 @@ Batch inserts data into a table. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -2689,7 +2695,7 @@ Batch inserts data into a table. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -2784,7 +2790,7 @@ Inserts a row of data into a table.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
@@ -2875,7 +2881,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -2961,7 +2967,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -3051,7 +3057,7 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -3141,7 +3147,7 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -3231,7 +3237,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** instance.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
@@ -3315,7 +3321,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -3378,7 +3384,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -3441,7 +3447,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
@@ -4097,7 +4103,7 @@ Statements separated by semicolons (;) are not supported.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4160,7 +4166,7 @@ Statements separated by semicolons (;) are not supported.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4228,7 +4234,7 @@ Statements separated by semicolons (;) are not supported.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4299,7 +4305,7 @@ Statements separated by semicolons (;) are not supported.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4392,7 +4398,7 @@ Statements separated by semicolons (;) are not supported.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4466,7 +4472,7 @@ Statements separated by semicolons (;) are not supported.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
@@ -4549,7 +4555,7 @@ Obtains the last modification time of the data in a table. This API uses an asyn
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4613,7 +4619,7 @@ Obtains the last modification time of the data in a table. This API uses a promi
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4666,7 +4672,7 @@ This API does not allow nested transactions and cannot be used across processes 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4734,7 +4740,7 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4790,7 +4796,7 @@ This API does not allow nested transactions and cannot be used across processes 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4861,7 +4867,7 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4915,7 +4921,7 @@ This API does not allow nested transactions and cannot be used across processes 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -4994,7 +5000,7 @@ This API can be used only for a [vector database](js-apis-data-relationalStore-s
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -5054,7 +5060,7 @@ Backs up an RDB store. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -5115,7 +5121,7 @@ Backs up an RDB store. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -5171,7 +5177,7 @@ Restores an RDB store from a backup file. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -5231,7 +5237,7 @@ Restores an RDB store from a backup file. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -6589,7 +6595,7 @@ Clears the dirty data whose cursor is smaller than the specified cursor from the
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**    |
 |-----------|---------------|
@@ -6645,7 +6651,7 @@ Clears all dirty data from the local device. The dirty data is the data that has
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**      |
 |-----------|---------|
@@ -6706,7 +6712,7 @@ Clears the dirty data whose cursor is smaller than the specified cursor from the
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                                                                                                                                     |
 |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -6753,6 +6759,10 @@ Attaches an RDB store to this RDB store so that the data in the attached RDB sto
 
 The RDB store is attached via a database file. This API cannot be used for encrypted RDB stores. After the **attach()** API is called, the RDB store is switched to the non-WAL mode, which may affect the performance.
 
+Before the RDB store is switched to the non-WAL mode, ensure that all **ResultSet**s are closed and all write operations are complete. Otherwise, error 14800015 will be reported.
+
+The **attach()** API cannot be called concurrently. Concurrent calls may cause the system to become unresponsive and trigger 14800015. If this occurs, try to call **attach()** again later.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -6771,7 +6781,7 @@ The RDB store is attached via a database file. This API cannot be used for encry
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -6821,6 +6831,10 @@ Attaches an RDB store to this RDB store so that the data in the attached RDB sto
 
 This API cannot be used to attach a non-encrypted RDB store to an encrypted RDB store. After the **attach()** API is called, the RDB store is switched to the non-WAL mode, which may affect the performance.
 
+Before the RDB store is switched to the non-WAL mode, ensure that all **ResultSet**s are closed and all write operations are complete. Otherwise, error 14800015 will be reported.
+
+The **attach()** API cannot be called concurrently. Concurrent calls may cause the system to become unresponsive and trigger 14800015. If this occurs, try to call **attach()** again later.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -6840,7 +6854,7 @@ This API cannot be used to attach a non-encrypted RDB store to an encrypted RDB 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -6878,7 +6892,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
     name: "rdbstore1.db",
-    securityLevel: relationalStore.SecurityLevel.S1,
+    securityLevel: relationalStore.SecurityLevel.S3,
 }
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -6908,7 +6922,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 const STORE_CONFIG2: relationalStore.StoreConfig = {
     name: "rdbstore2.db",
     encrypt: true,
-    securityLevel: relationalStore.SecurityLevel.S1,
+    securityLevel: relationalStore.SecurityLevel.S3,
 }
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -6935,6 +6949,8 @@ Detaches an RDB store from this RDB store.
 
 After all attached RDB stores are detached, the RDB is switched to the WAL mode.
 
+Before calling **detach()**, ensure that all database operations are complete and all **ResultSet**s are closed. In addition, **detach()** cannot be called concurrently. Concurrent calls may cause the system to become unresponsive. If this occurs, try to call **detach()** again later.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
@@ -6952,7 +6968,7 @@ After all attached RDB stores are detached, the RDB is switched to the WAL mode.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**      |
 |-----------|------------------------|
@@ -7016,7 +7032,7 @@ This API cannot be used for deleted data.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                                                    |
 |-----------|----------------------------------------------------------------------------------------------|
@@ -7083,7 +7099,7 @@ This API cannot be used for deleted data.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7142,7 +7158,7 @@ Due to the limit of the shared memory (max. 2 MB), a single data record cannot e
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7296,7 +7312,7 @@ Obtains the column index based on the column name.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7354,7 +7370,7 @@ Obtains the column name based on the specified column index.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7411,7 +7427,7 @@ Moves the cursor to the row based on the specified offset.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7466,7 +7482,7 @@ Moves to the specified row in the result set.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7516,7 +7532,7 @@ Moves to the first row of the result set.
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7564,7 +7580,7 @@ Moves to the last row of the result set.
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7612,7 +7628,7 @@ Moves to the next row in the result set.
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7660,7 +7676,7 @@ Moves to the previous row in the result set.
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7714,7 +7730,7 @@ Obtains the value from the specified column and current row. If the value type i
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**    |
 |-----------|---------|
@@ -7770,7 +7786,7 @@ Obtains the value from the specified column and current row, and returns it in a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7825,7 +7841,7 @@ Obtains the value from the specified column and current row, and returns it in t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7880,7 +7896,7 @@ Obtains the value from the specified column and current row, and returns a value
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7935,7 +7951,7 @@ Obtains the value from the specified column and current row, and returns a value
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -7990,7 +8006,7 @@ Obtains the value from the specified column and current row, and returns the val
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -8045,7 +8061,7 @@ Obtains the value from the specified column and current row, and returns the val
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -8094,7 +8110,7 @@ Obtains the data in the current row.
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------------ |
@@ -8142,7 +8158,7 @@ Obtains the Sendable data from the current row. The data obtained is used for cr
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                 |
 | ------------ | --------------------------------------------- |
@@ -8226,7 +8242,7 @@ Checks whether the value in the specified column is null.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md). For details about how to handle error 14800011, see [Database Backup and Restore](../../database/data-backup-and-restore.md).
 
 | **ID**| **Error Message**                                                |
 |-----------| ------------------------------------------------------- |

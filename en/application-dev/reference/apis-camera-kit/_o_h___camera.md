@@ -293,6 +293,7 @@ The **OH_Camera** module provides C APIs for the camera service.
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Capture_WithCaptureSetting](#oh_photooutput_capture_withcapturesetting) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_PhotoCaptureSetting](_camera___photo_capture_setting.md) setting) | Captures a photo with photographing parameters.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_Release](#oh_photooutput_release) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput) | Releases a **PhotoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMirrorSupported](#oh_photooutput_ismirrorsupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | Checks whether mirroring is supported.| 
+| [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_EnableMirror](#oh_photooutput_enablemirror) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool enabled) | Enables mirror photography.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_GetActiveProfile](#oh_photooutput_getactiveprofile) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, [Camera_Profile](_camera___profile.md) \*\*profile) | Obtains the profile of a **PhotoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_DeleteProfile](#oh_photooutput_deleteprofile) ([Camera_Profile](_camera___profile.md) \*profile) | Deletes the profile of this **PhotoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_PhotoOutput_IsMovingPhotoSupported](#oh_photooutput_ismovingphotosupported) ([Camera_PhotoOutput](#camera_photooutput) \*photoOutput, bool \*isSupported) | Checks whether moving photos are supported.| 
@@ -1334,7 +1335,7 @@ Defines the callback invoked when frame shutter ends.
 | Name| Description| 
 | -------- | -------- |
 | photoOutput | Pointer to the [Camera_PhotoOutput](#camera_photooutput) instance that transfers the callback.| 
-| Info | Pointer to [Camera_CaptureStartInfo](_camera___capture_start_info.md) passed by the callback.| 
+| Info | Pointer to the frame shutter information, which is defined in the [Camera_FrameShutterInfo](_camera___frame_shutter_info.md) struct.| 
 
 
 ### OH_PhotoOutput_OnFrameStart
@@ -2677,7 +2678,7 @@ Obtains the output capability supported by a camera.
 | Name| Description| 
 | -------- | -------- |
 | cameraManager | Pointer to a [Camera_Manager](#camera_manager) instance.| 
-| camera | Pointer to a camera, which is defined in [Camera_Device](_camera___device.md).| 
+| cameras | Pointer to a list of cameras, which are defined in [Camera_Device](_camera___device.md).| 
 | cameraOutputCapability | Double pointer to the output capability, which is defined in [Camera_OutputCapability](_camera___output_capability.md), if the function is successfully called.| 
 
 **Returns**
@@ -3386,7 +3387,7 @@ Checks whether a preconfigured resolution type with an aspect ratio is supported
 | session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
 | preconfigType | Target resolution type, which is defined in [Camera_PreconfigType](#camera_preconfigtype).| 
 | preconfigRatio | Target aspect ratio, which is defined in [Camera_PreconfigRatio](#camera_preconfigratio).| 
-| canPreconfig | Pointer to the result indicating whether the preconfigured resolution type with the aspect ratio is supported.| 
+| canPreconfig | Pointer to the result indicating whether the preconfigured resolution type is supported.| 
 
 **Returns**
 
@@ -4559,7 +4560,7 @@ Sets a session mode.
 | Name| Description| 
 | -------- | -------- |
 | session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
-| sceneMode | Target scene mode, which is an enumerated value of [CaptureSession_SceneMode](#camera_scenemode-1).| 
+| sceneMode | Target scene mode, which is an enumerated value of [Camera_SceneMode](#camera_scenemode-1).| 
 
 **Returns**
 
@@ -4651,10 +4652,10 @@ Sets a zoom ratio for the device.
 
 **Parameters**
 
-| Name| Description| 
-| -------- | -------- |
-| session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
-| zoom | Target zoom ratio.| 
+| Name| Description                                                       | 
+| -------- |-----------------------------------------------------------|
+| session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.       | 
+| zoom | Target zoom ratio.<br>It takes some time for the zoom ratio to take effect at the bottom layer. To obtain the correct zoom ratio, you need to wait for one to two frames.| 
 
 **Returns**
 
@@ -5085,6 +5086,8 @@ Enables moving photos.
 
 **Since**: 12
 
+**Required permissions**: ohos.permission.MICROPHONE
+
 **Parameters**
 
 | Name| Description| 
@@ -5151,6 +5154,36 @@ Checks whether mirroring is supported.
 | -------- | -------- |
 | photoOutput | Pointer to the [Camera_PhotoOutput](#camera_photooutput) instance, which is used to check whether mirroring is supported.| 
 | isSupported | Pointer to the result that specifies whether mirroring is supported.| 
+
+**Returns**
+
+In [Camera_ErrorCode] (#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_PhotoOutput_EnableMirror()
+
+```
+Camera_ErrorCode OH_PhotoOutput_EnableMirror(Camera_PhotoOutput* photoOutput, bool enabled)
+```
+
+**Description**
+
+Enables mirror photography.
+
+**Since**: 13
+
+**Parameters**
+
+| Name         | Description                                                     | 
+|-------------|---------------------------------------------------------|
+| photoOutput | Pointer to the target [Camera_PhotoOutput] (#camera_photooutput) instance, for which mirror photography will be enabled or disabled.| 
+| enabled     | Whether to enable mirror photography. The value **true** means to enable mirror photography, and **false** means the opposite.       | 
 
 **Returns**
 
@@ -5416,6 +5449,8 @@ In [Camera_ErrorCode] (#camera_errorcode-1):
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
 
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
 
 ### OH_PhotoOutput_Release()
 
@@ -5660,7 +5695,7 @@ Unregisters the callback used to listen for photo availability events.
 | Name| Description| 
 | -------- | -------- |
 | photoOutput | Pointer to the target [Camera_PhotoOutput](#camera_photooutput) instance.| 
-| callback | Target callback, which is defined in [PhotoOutput_Callbacks](_photo_output___callbacks.md).| 
+| callback | Target callback, which is defined in the [PhotoOutput_Callbacks](_photo_output___callbacks.md) struct.| 
 
 **Returns**
 
@@ -5669,6 +5704,8 @@ In [Camera_ErrorCode] (#camera_errorcode-1):
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
 
 
 ### OH_PreviewOutput_DeleteFrameRates()

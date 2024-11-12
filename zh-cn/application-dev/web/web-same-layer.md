@@ -54,7 +54,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 如果应用需要在Web组件加载的网页中使用同层渲染，需要按照以下规格将网页中的&lt;embed&gt;、&lt;object&gt;标签指定为同层渲染组件。
 
 **支持的产品形态：** 
-当前仅支持移动设备和平板形态
+当前仅支持移动设备和平板形态。
 
 **支持的H5标签：**
 - 支持&lt;embed&gt;标签：在开启同层渲染后，仅支持type类型为native前缀的标签识别为同层组件，不支持自定义属性。
@@ -166,11 +166,11 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 
       <body style="background:white">
 
-      <object id = "input1" type="test/input" style="width: 100%; height: 100px; margin: 30px; margin-top: 600px"/>
+      <object id = "input1" type="test/input" style="width: 100%; height: 100px; margin: 30px; margin-top: 600px"></object>
 
-      <object id = "input2" type="test/input" style="width: 100%; height: 100px; margin: 30px; margin-top: 50px"/>
+      <object id = "input2" type="test/input" style="width: 100%; height: 100px; margin: 30px; margin-top: 50px"></object>
 
-      <object id = "input3" type="test/input" style="width: 100%; height: 100px; margin: 30px; margin-top: 50px"/>
+      <object id = "input3" type="test/input" style="width: 100%; height: 100px; margin: 30px; margin-top: 50px"></object>
 
       </body>
       </html>

@@ -1,6 +1,6 @@
 # Device Input Management (C/C++)
 
-Before developing a camera application, you must create an independent camera object. The application invokes and controls the camera object to perform basic operations such as preview, photographing, and video recording.
+A camera application invokes and controls a camera device to perform basic operations such as preview, photo capture, and video recording.
 
 ## How to Develop
 
@@ -26,7 +26,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
     target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
-3. Call **OH_Camera_GetCameraManager()** to obtain a **CameraManager** object.
+3. Call [OH_CameraManager_CreateCameraInput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createcamerainput) to obtain a **cameraInput** object.
 
    ```c++
    Camera_Manager *cameraManager = nullptr;
@@ -40,69 +40,38 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    // Create a CameraManager object.
    Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
    if (cameraManager == nullptr || ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
+      OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
    }
-   ```
-
-   > **NOTE**
-   >
-   > If obtaining the object fails, the camera hardware may be occupied or unusable. If it is occupied, wait until it is released.
-
-4. Call **OH_CameraManager_GetSupportedCameras()** to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
-     
-   ```c++
+   // Listen for camera status changes.
+   ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
+   if (ret != CAMERA_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
+   }
    // Obtain the camera list.
-   ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
-   if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
-   }
-   for (int index = 0; index < size; index++) {
-      OH_LOG_ERROR(LOG_APP, "cameraId  =  %{public}s ", cameras[index].cameraId);              // Obtain the camera ID.
-      OH_LOG_ERROR(LOG_APP, "cameraPosition  =  %{public}d ", cameras[index].cameraPosition);  // Obtain the camera position.
-      OH_LOG_ERROR(LOG_APP, "cameraType  =  %{public}d ", cameras[index].cameraType);          // Obtain the camera type.
-      OH_LOG_ERROR(LOG_APP, "connectionType  =  %{public}d ", cameras[index].connectionType);  // Obtain the camera connection type.
-   }
-   ```
-
-5. Call **OH_CameraManager_GetSupportedCameraOutputCapability()** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**.
-
-   ```c++
+    ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
+    if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+    }
    // Create a camera input stream.
    ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
    if (cameraInput == nullptr || ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
+      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
    }
-   ret = OH_CameraInput_RegisterCallback(cameraInput, GetCameraInputListener());
+   ret == OH_CameraInput_RegisterCallback(cameraInput, GetCameraInputListener());
    if (ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_CameraInput_RegisterCallback failed.");
+      OH_LOG_ERROR(LOG_APP, "OH_CameraInput_RegisterCallback failed.");
    }
    // Open the camera.
    ret = OH_CameraInput_Open(cameraInput);
    if (ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Open failed.");
+      OH_LOG_ERROR(LOG_APP, "OH_CameraInput_open failed.");
    }
-   // Obtain the output streams supported by the camera.
-   ret = OH_CameraManager_GetSupportedCameraOutputCapability(cameraManager, &cameras[cameraDeviceIndex],
-                                                                  &cameraOutputCapability);
-   if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
-         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
-   }
-   
-   if (cameraOutputCapability->previewProfilesSize < 0) {
-      OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
-   }
-   previewProfile = cameraOutputCapability->previewProfiles[0];
-
-   if (cameraOutputCapability->photoProfilesSize < 0) {
-      OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
-   }
-   photoProfile = cameraOutputCapability->photoProfiles[0];
    ```
    ```c++
    // Listen for camera input errors.
    void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
    {
-      OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode = %{public}d", errorCode);
+      OH_LOG_INFO(LOG_APP, "OnCameraInput errorCode: %{public}d", errorCode);
    }
 
    CameraInput_Callbacks* GetCameraInputListener(void)
@@ -114,28 +83,46 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
    }
    ```
 
-## Status Listening
+   > **NOTE**
+   >
+   > Before any camera device input, you must complete camera management by following the instructions provided in [Camera Device Management](native-camera-device-management.md).
 
-During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are included in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
+4. Call [OH_CameraManager_GetSupportedSceneModes()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedscenemodes) to obtain the list of scene modes supported by the current camera device. The list stores all the [Camera_SceneModes](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode) supported by the camera device.
 
-  Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **Camera_StatusInfo** parameter. For details about the parameter, see [Camera_StatusInfo](../../reference/apis-camera-kit/_camera___status_info.md).
-  
    ```c++
-   ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
-   if (ret != CAMERA_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
+   Camera_SceneMode* sceneModes = nullptr;
+   uint32_t length = 0;
+   uint32_t sceneModeIndex = 0;
+   ret = OH_CameraManager_GetSupportedSceneModes(&cameras[cameraDeviceIndex], &sceneModes, &length);
+   if (sceneModes == nullptr || ret != CAMERA_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedSceneModes failed.");
+   }
+   for (int index = 0; index < length; index++) {
+      OH_LOG_INFO(LOG_APP, "scene mode = %{public}s ", sceneModes[index]);    // Obtain the specified scene mode.
    }
    ```
-   ```c++
-   void CameraManagerStatusCallback(Camera_Manager* cameraManager, Camera_StatusInfo* status)
-   {
-      OH_LOG_INFO(LOG_APP, "CameraManagerStatusCallback is called");
-   }
-   CameraManager_Callbacks* GetCameraManagerListener()
-   {
-      static CameraManager_Callbacks cameraManagerListener = {
-         .onCameraStatus = CameraManagerStatusCallback
-      };
-      return &cameraManagerListener;
-   }
-   ```
+
+5. Call [OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_getsupportedcameraoutputcapabilitywithscenemode) to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**. Different types of output streams must be added based on the value of [Camera_SceneMode](../../reference/apis-camera-kit/_o_h___camera.md#camera_scenemode) specified by the camera device.
+
+
+      ```c++
+      // Obtain the output streams supported by the camera device.
+      Camera_OutputCapability* cameraOutputCapability = nullptr;
+      const Camera_Profile* previewProfile = nullptr;
+      const Camera_Profile* photoProfile = nullptr;
+      ret = OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMode(cameraManager, &cameras[cameraDeviceIndex], sceneModes[sceneModeIndex]
+                                                                     &cameraOutputCapability);
+      if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
+         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
+      }
+      // The following uses the NORMAL_PHOTO mode as an example. You need to add the preview stream and photo stream.
+      if (cameraOutputCapability->previewProfilesSize < 0) {
+         OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
+      }
+      previewProfile = cameraOutputCapability->previewProfiles[0];
+   
+      if (cameraOutputCapability->photoProfilesSize < 0) {
+         OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
+      }
+      photoProfile = cameraOutputCapability->photoProfiles[0];
+      ```

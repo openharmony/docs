@@ -98,7 +98,7 @@
 | void [OH_Drawing_DestroyTextStyle](_drawing.md#oh_drawing_destroytextstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 释放被OH_Drawing_TextStyle对象占据的内存。 | 
 | void [OH_Drawing_SetTextStyleColor](_drawing.md#oh_drawing_settextstylecolor) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, uint32_t) | 设置文本颜色。 | 
 | void [OH_Drawing_SetTextStyleFontSize](_drawing.md#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置字号。 | 
-| void [OH_Drawing_SetTextStyleFontWeight](_drawing.md#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字重。 | 
+| void [OH_Drawing_SetTextStyleFontWeight](_drawing.md#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 | 
 | void [OH_Drawing_SetTextStyleBaseLine](_drawing.md#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字体基线位置。 | 
 | void [OH_Drawing_SetTextStyleDecoration](_drawing.md#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置装饰。 | 
 | void [OH_Drawing_SetTextStyleDecorationColor](_drawing.md#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。 | 
@@ -179,14 +179,14 @@
 | void [OH_Drawing_DestroyLineMetrics](_drawing.md#oh_drawing_destroylinemetrics) ([OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 释放行位置信息对象占用的内存。 | 
 | bool [OH_Drawing_TypographyGetLineMetricsAt](_drawing.md#oh_drawing_typographygetlinemetricsat) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行位置信息对象。 | 
 | bool [OH_Drawing_TypographyGetLineInfo](_drawing.md#oh_drawing_typographygetlineinfo) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, bool, bool, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行的位置信息或指定行第一个字符的位置信息。 | 
-| void [OH_Drawing_SetTypographyTextFontWeight](_drawing.md#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本排版字重。 | 
+| void [OH_Drawing_SetTypographyTextFontWeight](_drawing.md#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本排版字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 | 
 | void [OH_Drawing_SetTypographyTextFontStyle](_drawing.md#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置字体风格。 | 
 | void [OH_Drawing_SetTypographyTextFontFamily](_drawing.md#oh_drawing_settypographytextfontfamily) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, const char \*) | 设置字体家族的名称。 | 
 | void [OH_Drawing_SetTypographyTextFontSize](_drawing.md#oh_drawing_settypographytextfontsize) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版字号。 | 
 | void [OH_Drawing_SetTypographyTextFontHeight](_drawing.md#oh_drawing_settypographytextfontheight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版字体高度。 | 
 | void [OH_Drawing_SetTypographyTextHalfLeading](_drawing.md#oh_drawing_settypographytexthalfleading) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否为一半行间距。 | 
 | void [OH_Drawing_SetTypographyTextUseLineStyle](_drawing.md#oh_drawing_settypographytextuselinestyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否启用行样式。 | 
-| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](_drawing.md#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式字重。 | 
+| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](_drawing.md#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 | 
 | void [OH_Drawing_SetTypographyTextLineStyleFontStyle](_drawing.md#oh_drawing_settypographytextlinestylefontstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式风格。 | 
 | void [OH_Drawing_SetTypographyTextLineStyleFontFamilies](_drawing.md#oh_drawing_settypographytextlinestylefontfamilies) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int, const char \*fontFamilies[]) | 设置文本排版行样式字体类型。 | 
 | void [OH_Drawing_SetTypographyTextLineStyleFontSize](_drawing.md#oh_drawing_settypographytextlinestylefontsize) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版行样式字号。 | 
@@ -201,7 +201,7 @@
 | void [OH_Drawing_TextStyleAddShadow](_drawing.md#oh_drawing_textstyleaddshadow) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*) | 字体阴影容器中添加字体阴影元素。 | 
 | void [OH_Drawing_TextStyleClearShadows](_drawing.md#oh_drawing_textstyleclearshadows) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 清除字体阴影容器中的所有元素。 | 
 | [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadowWithIndex](_drawing.md#oh_drawing_textstylegetshadowwithindex) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 根据下标获取字体阴影容器中的元素。 | 
-| void [OH_Drawing_TypographySetIndents](_drawing.md#oh_drawing_typographysetindents) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进。 | 
+| void [OH_Drawing_TypographySetIndents](_drawing.md#oh_drawing_typographysetindents) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进，不调用此接口默认文本无缩进。 | 
 | float [OH_Drawing_TypographyGetIndentsWithIndex](_drawing.md#oh_drawing_typographygetindentswithindex) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int) | 根据下标获取排版缩进容器中的元素。 | 
 | [OH_Drawing_Range](_drawing.md#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](_drawing.md#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, bool) | 获取行的边界。 | 
 | void [OH_Drawing_DestroyTextShadows](_drawing.md#oh_drawing_destroytextshadows) ([OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*) | 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 | 

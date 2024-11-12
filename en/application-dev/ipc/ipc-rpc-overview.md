@@ -1,4 +1,4 @@
-# IPC & RPC Overview
+# Introduction to IPC Kit
 
 
 ## Basic Concepts
@@ -7,7 +7,7 @@ Inter-process communication (IPC) and remote procedure call (RPC) implement cros
 
 > **NOTE**
 > The applications based on the stage model cannot use IPC or RPC directly, and must use the following capabilities to implement related service scenarios:
->- IPC is used in <!--Del-->[<!--DelEnd-->background services<!--Del-->](../application-models/background-services.md)<!--DelEnd--> to provide service calling across processes.
+>- IPC is used in background services to provide service calling across processes.
 >- RPC is used in <!--Del-->[<!--DelEnd-->multi-device collaboration<!--Del-->](../application-models/hop-multi-device-collaboration.md)<!--DelEnd--> to implement remote API calling and data transfer.
 
 

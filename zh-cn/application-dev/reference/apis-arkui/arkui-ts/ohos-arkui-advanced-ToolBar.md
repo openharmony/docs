@@ -11,8 +11,8 @@
 
 ## 导入模块
 
-```
-import { ToolBar, ToolBarOptions, toolBarModifier, ItemState } from '@kit.ArkUI'
+```ts
+import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 ```
 
 
@@ -33,8 +33,6 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称                          | 类型                                                         | 必填 | 装饰器类型  | 说明                                                         |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
 | toolBarList                   | [ToolBarOptions](#toolbaroptions)                            | 是   | @ObjectLink | 工具栏列表。                                                 |
@@ -54,6 +52,8 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ToolBarOption
+
+**装饰器类型：**\@Observed
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,7 +76,7 @@ ToolBarModifier提供设置工具栏高度(height)、背景色(backgroundColor)�
 
 ### backgroundColor
 
-backgroundColor?(backgroundColor: ResourceColor): ToolBarModifier
+backgroundColor(backgroundColor: ResourceColor): ToolBarModifier
 
 自定义绘制工具栏背景色的接口，若重载该方法则可进行工具栏背景色的自定义绘制。
 
@@ -141,6 +141,8 @@ stateEffect(stateEffect: boolean): ToolBarModifier
 ## ItemState
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |

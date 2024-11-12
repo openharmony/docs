@@ -254,3 +254,6 @@
 - [图片编辑（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
 
 - [图片编辑（JS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+
+<!--RP1-->
+<!--RP1End-->

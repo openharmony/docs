@@ -190,7 +190,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 > **说明：** 
 > 
-> 由于StartupTask采用了[Sendable](../arkts-utils/arkts-sendable.md)协议，在继承该接口时，必须添加Sendable注解。
+> 由于StartupTask采用了[Sendable协议](../arkts-utils/arkts-sendable.md#sendable协议)，在继承该接口时，必须添加Sendable注解。
 
 ```ts
 import { StartupTask, common } from '@kit.AbilityKit';

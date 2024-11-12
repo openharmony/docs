@@ -112,13 +112,13 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，确保该名称在整个应用中唯一。取值为长度不超过31字节的字符串，不支持中文。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度31字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该应用的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称或者ExtensionAbility名称，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。 | 字符串数组 | 该标签不可缺省。 |
+| [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。<br/>**说明：**<br/>当存在多个模块时，各模块中的配置可以不一致，但必须包含所需的设备类型以确保正常运行。 | 字符串数组 | 该标签不可缺省。 |
 | deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP是否跟随应用一起安装。<br/>-&nbsp;true：主动安装时安装。<br/>-&nbsp;false：主动安装时不安装。 | 布尔值 | 该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。<br/>**说明：**<br/>当[bundleType](./app-configuration-file.md#配置文件标签)为原子化服务时，该字段需要配置为true。反之，该字段需要配置为false。 | 布尔值 | 该标签不可缺省。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签由IDE构建HAP的时候自动插入。 |
@@ -136,7 +136,7 @@ module.json5配置文件包含以下标签。
 | [proxyData](#proxydata标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。支持的取值如下：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省，缺省值为nonisolationFirst。|
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。当配置为true时，如果系统OTA升级时应用versionCode保持不变，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/>**说明：**<br/>该字段仅对预置应用生效。|布尔值|该标签可缺省，缺省值为false。|
-| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| compressNativeLibs | 在打包hap时，该字段标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。<br>在应用安装时，该字段用于标识libs库是否需要解压出来（API14及之后版本支持，之前的版本均默认解压libs库）。<br/>-&nbsp;true：libs库会解压出来。<br/>-&nbsp;false：libs库不会解压出来。 | 布尔值 | 该标签可缺省，在打包hap时缺省值为false。在安装应用时，该字段未配置时默认为true。 |
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | fileContextMenu | 标识当前HAP的右键菜单配置项。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个，每个字符串取值不超过128字节。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
@@ -154,7 +154,6 @@ module.json5配置文件包含以下标签。
 | 平板 | tablet | - |
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
-| 运动表 | litewearable | - |
 | 车机 | car | - |
 | 2in1 | 2in1 | 融合了屏幕触控和键鼠操作的二合一设备。 |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
@@ -235,7 +234,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识定义用户自定义数据格式，取值为长度不超过255字节的字符串，内容为标识该数据的资源索引。| 字符串 | 该标签可缺省，缺省值为空。 |
 
-resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resources/base/profile目录下。例如$profile:shortcuts_config指定了/resources/base/profile/shortcuts_config.json文件。metadata标签可配置启动页默认大小，name为ohos.ability.window.height表示启动页默认高度，name为ohos.ability.window.width表示启动页默认宽度。
+resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resources/base/profile目录下。例如$profile:shortcuts_config指定了/resources/base/profile/shortcuts_config.json文件。metadata标签可配置启动页默认大小，name为ohos.ability.window.height表示启动页默认高度，name为ohos.ability.window.width表示启动页默认宽度。metadata标签可配置使能移除启动页功能，name为enable.remove.starting.window，value可配置为true/false，未配置则默认为false。
 
 ```json
 {
@@ -264,6 +263,10 @@ resource属性值使用“$profile:文件名”的方式指定文件所在位置
       {
         "name": "ohos.ability.window.width",
         "value": "1300"
+      },
+      {
+        "name": "enable.remove.starting.window",
+        "value": "true"
       }],
     }],
 
@@ -899,7 +902,7 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 | pageSourceFile| 标识页面在模块内的路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签不可缺省。  |
 | buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。   |
 | [data](#data标签)  | 标识字符串类型的自定义数据。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
-| [customData](#customdata标签)  | 标识任意类型的自定义数据，总长度不超过4096。  | 对象   | 该标签可缺省，缺省值为空。   |
+| [customData](#customdata标签)  | 标识任意类型的自定义数据，总长度不超过4096字节。  | 对象   | 该标签可缺省，缺省值为空。   |
 
 示例如下：
 

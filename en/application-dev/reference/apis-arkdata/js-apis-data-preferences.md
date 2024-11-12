@@ -4,6 +4,7 @@ The **Preferences** module provides APIs for processing data in the form of key-
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
+The default encryption level of user preferences is EL2, and the persistent files are stored in the corresponding **el2/** directory. Generally, the data in the **el2/** directory can be accessed only after at least one successful unlock operation (by PIN, fingerprint, or facial authentication) upon the start of the device. Avoid direct access to preferences data without the screen unlock operation. For details about how to modify the encryption level, see [Obtaining and Modifying Encryption Levels](../../../application-dev/application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
 
 > **NOTE**
 >

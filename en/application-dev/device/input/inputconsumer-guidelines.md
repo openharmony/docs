@@ -12,14 +12,17 @@ import { inputConsumer } from '@kit.InputKit';
 
 ## Available APIs
 
-The following table lists the common APIs provided by the **inputConsumer** module. For details, see [ohos.multimodalInput.inputConsumer](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md).
+The following table lists the common APIs provided by the inputConsumer module. For details, see [ohos.multimodalInput.inputConsumer-sys](../../reference/apis-input-kit/js-apis-inputconsumer-sys.md) and [ohos.multimodalInput.inputConsumer](../../reference/apis-input-kit/js-apis-inputconsumer.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
-| on(type: 'key', keyOptions: KeyOptions, callback: Callback<KeyOptions>): void | Listens for combination key events.|
-| off(type: 'key', keyOptions: KeyOptions, callback?: Callback<KeyOptions>): void | Cancels listening for combination key events.|
+| on(type: 'key', keyOptions: KeyOptions, callback: Callback\<KeyOptions>): void | Enables listening for combination key events.|
+| off(type: 'key', keyOptions: KeyOptions, callback?: Callback\<KeyOptions>): void | Disables listening for combination key events.|
 | setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void | Sets the key shielding status.|
 | getShieldStatus(shieldMode: ShieldMode): boolean | Checks whether key shielding is enabled.|
+| getAllSystemHotkeys(): Promise\<Array\<HotkeyOptions>> | Obtains all system combination keys.|
+| on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback\<HotkeyOptions>): void | Enables listening for global combination key events.|
+| off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback\<HotkeyOptions>): void | Disables listening for global combination key events.|
 
 ## How to Develop
 
@@ -41,7 +44,31 @@ try {
 }
 // Stop the application.
 try {
-  inputConsumer.off("key", keyOption, callback);// Cancel listening for combination key events.
+  inputConsumer.off("key", keyOption, callback);// Disable listening for combination key events.
+  console.log(`Unsubscribe success`);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+
+let leftCtrlKey = 2072;
+let zKey = 2042;
+let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+  console.log(`keyOptions: ${JSON.stringify(hotkeyOptions)}`);
+}
+let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: false};
+// Before subscribing to global combination keys, obtain all system combination keys and check whether the combination keys to subscribe are on the system combination key list.
+inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {//: Obtain all system combination keys.
+  console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
+});
+// Start the application.
+try {
+  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);// Subscribe to global combination keys.
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+// Stop the application.
+try {
+  inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);// Unsubscribe from global combination keys.
   console.log(`Unsubscribe success`);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);

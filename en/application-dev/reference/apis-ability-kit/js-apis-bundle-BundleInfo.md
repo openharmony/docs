@@ -12,7 +12,7 @@ The **BundleInfo** module defines the bundle information, which can be obtained 
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name                            | Type                                                        | Readable| Writable| Description                                                        |
+| Name                            | Type                                                        | Read-Only| Optional| Description                                                        |
 | -------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                             | string                                                       | Yes  | No  | Bundle name.                                              |
 | type                             | string                                                       | Yes  | No  | Bundle type.                                                |
@@ -48,11 +48,11 @@ Provides the detailed information of the permissions to request from the system.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name                 | Type                   | Readable| Writable| Description                  |
+| Name                 | Type                   | Read-Only| Optional| Description                  |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
-| name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
-| reason                | string                  | Yes  | Yes  | Reason for requesting the permission.  |
-| usedScene             | [UsedScene](#usedscenedeprecated) | Yes  | Yes  | Application scenario and timing for using the permission.|
+| name                  | string                  | No  | No  | Name of the permission to request.  |
+| reason                | string                  | No  | No  | Reason for requesting the permission.  |
+| usedScene             | [UsedScene](#usedscenedeprecated) | No  | No  | Application scenario and timing for using the permission.|
 
 
 
@@ -64,7 +64,7 @@ Describes the application scenario and timing for using the permission.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| abilities | Array\<string> | Yes  | Yes  | Abilities that use the permission.|
-| when      | string         | Yes  | Yes  | Time when the permission is used.         |
+| abilities | Array\<string> | No  | No  | Abilities that use the permission.|
+| when      | string         | No  | No  | Time when the permission is used.         |

@@ -108,7 +108,7 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
-| 2305069  | Call invalid.                                        |
+| 2305069  | Invalid certificate verification context.            |
 
 > **说明：**
 > 
@@ -184,9 +184,11 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 | 2305010  | Certificate has expired.                             |
 | 2305011  | CRL is not yet valid.                                |
 | 2305012  | CRL has expired.                                     |
+| 2305018  | Self-signed certificate.                             |
 | 2305023  | Certificate has been revoked.                        |
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
+| 2305069  | Invalid certificate verification context.            |
 
 > **说明：**
 >

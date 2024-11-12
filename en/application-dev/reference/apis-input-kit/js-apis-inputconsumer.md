@@ -64,6 +64,16 @@ Enables listening for global combination key events. This API uses an asynchrono
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | Yes   | Shortcut key options.                |
 | callback   | Callback&lt;HotkeyOptions&gt; | Yes   | Callback used to return the combination key data when a global combination key event that meets the specified condition occurs.|
 
+**Error codes**:
+
+For details about the error codes, see [Input Consumer Error Codes](errorcode-inputconsumer.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 4200002  | Parameter error. The hotkey has been used by the system. You can call the [inputConsumer.getAllSystemHotkeys](#inputconsumergetallsystemhotkeys13) interface to query all system hotkeys. |
+| 4200003  | Parameter error. The hotkey has been subscribed to by another. |
+
 **Example**
 
 ```js
@@ -99,6 +109,14 @@ Disables listening for global combination key events.
 | type       | string                     | Yes   | Event type. This parameter has a fixed value of **hotkeyChange**.       |
 | hotkeyOptions | [HotkeyOptions](#hotkeyoptions13)  | Yes   | Shortcut key options.            |
 | callback   | Callback&lt;HotkeyOptions&gt; | No   | Callback to unregister. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**:
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

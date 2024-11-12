@@ -38,10 +38,10 @@ static show(value: ActionSheetOptions)
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹窗副标题。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | message    | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是     | 弹窗内容。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true<br>值为true时，点击遮障层关闭弹窗，值为false时，点击遮障层不关闭弹窗。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10),<br />value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。<br>enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br/>value：Button文本内容。<br/>action:&nbsp;Button选中时的回调。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| confirm    | [ActionSheetButtonOptions](#actionsheetbuttonoptions13对象说明) | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否     |  弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。|
-| offset     | {<br/>dx:&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否      | 弹窗相对alignment所在位置的偏移量。<br/>默认值：<br/>1.alignment设置为Top、TopStart、TopEnd时默认值为{dx:&nbsp;0,dy:&nbsp;"40vp"} <br/>2.alignment设置为其他时默认值为{dx:&nbsp;0,dy:&nbsp;"-40vp"} <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| offset     | [ActionSheetOffset](#actionsheetoffset13对象说明) | 否      | 弹窗相对alignment所在位置的偏移量。<br/>默认值：<br/>1.alignment设置为Top、TopStart、TopEnd时默认值为{dx:&nbsp;0,dy:&nbsp;"40vp"} <br/>2.alignment设置为其他时默认值为{dx:&nbsp;0,dy:&nbsp;"-40vp"} <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | sheets     | Array&lt;[SheetInfo](#sheetinfo对象说明)&gt; | 是       | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | maskRect<sup>10+</sup> | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | showInSubWindow<sup>11+</sup> | boolean | 否 | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -70,7 +70,7 @@ static show(value: ActionSheetOptions)
 | ------ | ------------------------------------------------------------ | ---- | ----------------- |
 | title  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 选项的文本内容。       |
 | icon   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 选项的图标，默认无图标显示。     |
-| action | ()=&gt;void                                          | 是   | 选项选中的回调。 |
+| action | [VoidCallback](ts-types.md#voidcallback12) | 是   | 选项选中的回调。 |
 
 ## DismissDialogAction<sup>12+</sup>
 
@@ -86,6 +86,31 @@ Dialog关闭的信息。
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
 | reason  | [DismissReason](../js-apis-promptAction.md#dismissreason12枚举说明) | 否   | 否   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
+
+## ActionSheetButtonOptions<sup>13+</sup>对象说明
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型    | 必填 | 说明 |
+| ------------ | ------- | ---- | ---- |
+| enabled      | boolean | 否   | 点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true |
+| defaultFocus | boolean | 否   | 设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false |
+| style        | [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10) | 否  | 设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT |
+| value        |  string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) |    是  | Button文本内容。 |
+| action       | [VoidCallback](ts-types.md#voidcallback12)      |   是   | Button选中时的回调。 |
+
+## ActionSheetOffset<sup>13+</sup>对象说明
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                                                         | 必填 | 说明                               |
+| ---- | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| dx   | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 弹出窗口相对于对齐位置dx的偏移量。 |
+| dy   | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 弹出窗口相对于对齐位置dy的偏移量。 |
 
 ## 示例
 
@@ -232,8 +257,6 @@ struct ActionSheetExample {
 ### 示例3
 ActionSheet显示动画持续3秒，退出动画持续100毫秒
 ```ts
-import { router } from '@kit.ArkUI'
-
 @Entry
 @Component
 struct ActionSheetExample {

@@ -507,7 +507,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise<Array<BundleOption\>> | 返回允许通知的应用程序列表。 | 
+| Promise<Array<[BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)\>> | 返回允许通知的应用程序列表。 | 
 
 **错误码：**
 
@@ -612,7 +612,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 类型               | 说明                                                |
 | ------------------ | --------------------------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -717,7 +717,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -927,7 +927,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -1449,7 +1449,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
@@ -2684,9 +2684,13 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification disabled.              |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2761,9 +2765,13 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification disabled.                    |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2833,9 +2841,13 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2900,6 +2912,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -2961,6 +2974,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 | 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -3020,6 +3034,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600007  | The notification does not exist.            |
 | 1600008  | The user does not exist.                    |
 | 1600012  | No memory space.                          |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -3709,6 +3724,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
@@ -4393,7 +4409,6 @@ getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
-| 1600012  | No memory space.                    |
 | 1600019  | The do-not-disturb profile does not exist.                    |
 
 **示例：**

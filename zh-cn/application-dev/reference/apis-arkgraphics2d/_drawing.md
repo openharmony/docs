@@ -19,7 +19,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | -------- | -------- |
 | [drawing_bitmap.h](drawing__bitmap_8h.md) | 文件中定义了与位图相关的功能函数 | 
 | [drawing_brush.h](drawing__brush_8h.md) | 文件中定义了与画刷相关的功能函数。 | 
-| [drawing_canvas.h](drawing__canvas_8h.md) | 文件中定义了与画布相关的功能函数。画布自带一个黑色，开启抗锯齿，不具备其他任何样式的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。 | 
+| [drawing_canvas.h](drawing__canvas_8h.md) | 文件中定义了与画布相关的功能函数。画布自带一个黑色，开启抗锯齿，不具备其他任何样式的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。非录制类型画布会将绘制指令直接绘制到绑定的位图中，录制类型画布会将绘制指令录制下来用于后续的回放。 | 
 | [drawing_color.h](drawing__color_8h.md) | 文件中定义了与颜色相关的功能函数。 | 
 | [drawing_color_filter.h](drawing__color__filter_8h.md) | 声明与绘图模块中的颜色滤波器对象相关的函数。 | 
 | [drawing_error_code.h](drawing__error__code_8h.md) | 声明与绘图模块中的错误码相关的函数。 | 
@@ -320,7 +320,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_BrushReset](#oh_drawing_brushreset) ([OH_Drawing_Brush](#oh_drawing_brush) \*) | 将画刷重置至初始状态，清空所有已设置的属性。 | 
 | [OH_Drawing_Canvas](#oh_drawing_canvas) \* [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate) (void) | 用于创建一个画布对象。 | 
 | void [OH_Drawing_CanvasDestroy](#oh_drawing_canvasdestroy) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于销毁画布对象并回收该对象占有的内存。 | 
-| void [OH_Drawing_CanvasBind](#oh_drawing_canvasbind) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。 | 
+| void [OH_Drawing_CanvasBind](#oh_drawing_canvasbind) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。绑定位图对象后的画布为非录制类型画布。 | 
 | void [OH_Drawing_CanvasAttachPen](#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。 | 
 | void [OH_Drawing_CanvasDetachPen](#oh_drawing_canvasdetachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。 | 
 | void [OH_Drawing_CanvasAttachBrush](#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 | 
@@ -529,7 +529,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Region](#oh_drawing_region) \* [OH_Drawing_RegionCreate](#oh_drawing_regioncreate) (void) | 用于创建一个区域对象，实现更精确的图形控制。 | 
 | bool [OH_Drawing_RegionSetRect](#oh_drawing_regionsetrect) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Rect](#oh_drawing_rect) \*rect) | 用于尝试给区域对象设置矩形边界。 | 
 | void [OH_Drawing_RegionDestroy](#oh_drawing_regiondestroy) ([OH_Drawing_Region](#oh_drawing_region) \*) | 用于销毁区域对象并回收该对象占有的内存。 | 
-| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | 用于在字体管理器中注册自定义字体。 | 
+| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。 | 
 | uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | 用于在字体管理器中注册字体缓冲区。 | 
 | [OH_Drawing_RoundRect](#oh_drawing_roundrect) \* [OH_Drawing_RoundRectCreate](#oh_drawing_roundrectcreate) (const [OH_Drawing_Rect](#oh_drawing_rect) \*, float xRad, float yRad) | 用于创建一个圆角矩形对象。 | 
 | void [OH_Drawing_RoundRectSetCorner](#oh_drawing_roundrectsetcorner) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos, [OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)) | 用于设置圆角矩形中指定圆角位置的圆角半径。 | 
@@ -568,7 +568,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_DestroyTextStyle](#oh_drawing_destroytextstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 释放被OH_Drawing_TextStyle对象占据的内存。 | 
 | void [OH_Drawing_SetTextStyleColor](#oh_drawing_settextstylecolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置文本颜色。 | 
 | void [OH_Drawing_SetTextStyleFontSize](#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置字号。 | 
-| void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字重。 | 
+| void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。| 
 | void [OH_Drawing_SetTextStyleBaseLine](#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字体基线位置。 | 
 | void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置装饰。 | 
 | void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。 | 
@@ -649,14 +649,14 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_DestroyLineMetrics](#oh_drawing_destroylinemetrics) ([OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 释放行位置信息对象占用的内存。 | 
 | bool [OH_Drawing_TypographyGetLineMetricsAt](#oh_drawing_typographygetlinemetricsat) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行位置信息对象。 | 
 | bool [OH_Drawing_TypographyGetLineInfo](#oh_drawing_typographygetlineinfo) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool, bool, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行的位置信息或指定行第一个字符的位置信息。 | 
-| void [OH_Drawing_SetTypographyTextFontWeight](#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版字重。 | 
+| void [OH_Drawing_SetTypographyTextFontWeight](#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 | 
 | void [OH_Drawing_SetTypographyTextFontStyle](#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置字体风格。 | 
 | void [OH_Drawing_SetTypographyTextFontFamily](#oh_drawing_settypographytextfontfamily) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, const char \*) | 设置字体家族的名称。 | 
 | void [OH_Drawing_SetTypographyTextFontSize](#oh_drawing_settypographytextfontsize) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版字号。 | 
 | void [OH_Drawing_SetTypographyTextFontHeight](#oh_drawing_settypographytextfontheight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版字体高度。 | 
 | void [OH_Drawing_SetTypographyTextHalfLeading](#oh_drawing_settypographytexthalfleading) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否为一半行间距。 | 
 | void [OH_Drawing_SetTypographyTextUseLineStyle](#oh_drawing_settypographytextuselinestyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否启用行样式。 | 
-| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式字重。 | 
+| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 | 
 | void [OH_Drawing_SetTypographyTextLineStyleFontStyle](#oh_drawing_settypographytextlinestylefontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式风格。 | 
 | void [OH_Drawing_SetTypographyTextLineStyleFontFamilies](#oh_drawing_settypographytextlinestylefontfamilies) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int, const char \*fontFamilies[]) | 设置文本排版行样式字体类型。 | 
 | void [OH_Drawing_SetTypographyTextLineStyleFontSize](#oh_drawing_settypographytextlinestylefontsize) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版行样式字号。 | 
@@ -671,7 +671,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_TextStyleAddShadow](#oh_drawing_textstyleaddshadow) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const [OH_Drawing_TextShadow](#oh_drawing_textshadow) \*) | 字体阴影容器中添加字体阴影元素。 | 
 | void [OH_Drawing_TextStyleClearShadows](#oh_drawing_textstyleclearshadows) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 清除字体阴影容器中的所有元素。 | 
 | [OH_Drawing_TextShadow](#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadowWithIndex](#oh_drawing_textstylegetshadowwithindex) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 根据下标获取字体阴影容器中的元素。 | 
-| void [OH_Drawing_TypographySetIndents](#oh_drawing_typographysetindents) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进。 | 
+| void [OH_Drawing_TypographySetIndents](#oh_drawing_typographysetindents) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进，不调用此接口默认文本无缩进。 | 
 | float [OH_Drawing_TypographyGetIndentsWithIndex](#oh_drawing_typographygetindentswithindex) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | 根据下标获取排版缩进容器中的元素。 | 
 | [OH_Drawing_Range](#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool) | 获取行的边界。 | 
 | void [OH_Drawing_DestroyTextShadows](#oh_drawing_destroytextshadows) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*) | 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 | 
@@ -6038,7 +6038,7 @@ void OH_Drawing_CanvasBind (OH_Drawing_Canvas* , OH_Drawing_Bitmap*  )
 
 **描述**
 
-用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。
+用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。绑定位图对象后的画布为非录制类型画布。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -12396,7 +12396,7 @@ uint32_t OH_Drawing_RegisterFont (OH_Drawing_FontCollection* , const char* fontF
 
 **描述**
 
-用于在字体管理器中注册自定义字体。
+用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -12950,7 +12950,7 @@ void OH_Drawing_SetTextStyleFontWeight (OH_Drawing_TextStyle* , int  )
 
 **描述**
 
-设置字重。
+设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13346,7 +13346,7 @@ void OH_Drawing_SetTypographyTextFontWeight (OH_Drawing_TypographyStyle* , int  
 
 **描述**
 
-设置文本排版字重。
+设置文本排版字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13479,7 +13479,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight (OH_Drawing_TypographyStyle
 
 **描述**
 
-设置文本排版行样式字重。
+设置文本排版行样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14112,7 +14112,7 @@ OH_Drawing_TextEncoding不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT
 | -------- | -------- |
 | str | 指向字符串的指针。 | 
 | OH_Drawing_Font | 指向字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| OH_Drawing_TextEncoding | 文本编码类型[OH_Drawing_TextEncoding](#oh_drawing_textencoding)。 | 
+| OH_Drawing_TextEncoding | 文本编码类型[OH_Drawing_TextEncoding](#oh_drawing_textencoding)。当前只有TEXT_ENCODING_UTF8生效，其余编码类型也会被视为TEXT_ENCODING_UTF8。 | 
 
 **返回：**
 
@@ -16246,7 +16246,7 @@ void OH_Drawing_TypographySetIndents (OH_Drawing_Typography* , int , const float
 
 **描述**
 
-设置文本的排版缩进。
+设置文本的排版缩进，不调用此接口默认文本无缩进。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16257,8 +16257,8 @@ void OH_Drawing_TypographySetIndents (OH_Drawing_Typography* , int , const float
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Typography | 指向文本对象[OH_Drawing_Typography](#oh_drawing_typography)的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
-| int | 排版缩进数量。 | 
-| float | 指向缩进类型的指针。 | 
+| int | 为段落设置的缩进数量。该值应小于或等于 indents 数组的长度，以避免访问数组越界导致的显示异常。| 
+| float | 指向浮点类型数组的指针，每个数组元素表示一个缩进宽度，单位为物理像素（px）。在应用[OH_Drawing_Typography](#oh_drawing_typography)接口时，需要先声明并初始化该浮点数组。 | 
 
 
 ### OH_Drawing_TypographyStyleDestroyStrutStyle()

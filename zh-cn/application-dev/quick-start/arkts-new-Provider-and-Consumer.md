@@ -1,13 +1,12 @@
 # \@Provider装饰器和\@Consumer装饰器：跨组件层级双向同步
 
-\@Provider和\@Consumer用于跨组件层级数据双向同步，可以使得开发者不拘泥于组件层级。
+\@Provider和\@Consumer用于跨组件层级数据双向同步，可以使得开发者不用拘泥于组件层级。
 \@Provider和\@Consumer属于状态管理V2装饰器，所以只能在\@ComponentV2中才能使用，在\@Component中使用会编译报错。
 
 >**说明：**
 >
 >\@Provider和\@Consumer装饰器从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -17,7 +16,7 @@
 
 
 开发者在使用\@Provider和\@Consumer时要注意：
-- \@Provider和\@Consumer强依赖自定义组件层级，\@Consumer所在组件会由于其父组件的不同，而被初始化为不同的值。
+- \@Provider和\@Consumer强依赖自定义组件层级，\@Consumer会因为所在组件的父组件不同，而被初始化为不同的值。
 - \@Provider和\@Consumer相当于把组件粘合在一起了，从组件独立角度，要减少使用\@Provider和\@Consumer。
 
 
@@ -44,7 +43,7 @@
 | \@Provider属性装饰器 | 说明                                                  |
 | ------------------ | ----------------------------------------------------- |
 | 装饰器参数         | `aliasName?: string`，别名，缺省时默认为属性名。|
-| 支持类型           | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持修饰[箭头函数](#provider和consumer可以修饰回调事件方便组件之间完成行为抽象)。 |
+| 支持类型           | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持装饰[箭头函数](#provider和consumer装饰回调事件用于组件之间完成行为抽象)。 |
 | 从父组件初始化      | 禁止。 |
 | 本地初始化         | 必须本地初始化。 |
 | 观察能力         | 能力等同于\@Trace。变化会同步给对应的\@Consumer。 |
@@ -56,49 +55,70 @@
 | \@Consumer属性装饰器 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
 | 装饰器参数            | `aliasName?: string`，别名，缺省时默认为属性名，向上查找最近的\@Provider。    |
-| 可装饰的变量          | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持修饰箭头函数。 |
+| 可装饰的变量          | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持装饰箭头函数。 |
 | 从父组件初始化      | 禁止。 |
 | 本地初始化         | 必须本地初始化。 |
 | 观察能力         | 能力等同于\@Trace。变化会同步给对应的\@Provider。 |
 
 ### aliasName和属性名
-\@Provider和\@Consumer可接受可选参数aliasName，如果开发者没有配置参数，则使用属性名作为默认值。注意：aliasName是\@Provider和\@Consumer匹配唯一指定key。
+\@Provider和\@Consumer可接受可选参数aliasName，如果开发者没有配置参数，则使用属性名作为默认的aliasName。注意：aliasName是用于\@Provider和\@Consumer进行匹配的唯一指定key。
 
-以下三个例子可清楚介绍\@Provider和\@Consumer在使用aliasName查找关系。
+以下三个例子可清楚介绍\@Provider和\@Consumer如何使用aliasName进行查找匹配。
 ```ts
-@ComponentV2 struct Parent {
-    @Provider() str: string = 'hello';   // no aliasName, use propertyName "str" as aliasName
+@ComponentV2
+struct Parent {
+  // 未定义aliasName, 使用属性名'str'作为aliasName
+  @Provider() str: string = 'hello';
 }
 
-@ComponentV2 struct Child {
-    @Consumer('str') str: string = 'world';   // use aliasName 'str' to find
-                                              // can find in Parent, use Provider value 'hello'
+@ComponentV2
+struct Child {
+  // 定义aliasName为'str'，使用aliasName去寻找
+  // 能够在Parent组件上找到, 使用@Provider的值'hello'
+  @Consumer('str') str: string = 'world';
 }
 ```
 
 ```ts
-@ComponentV2 struct Parent {
-    @Provider('alias') str: string = 'hello';   // has alias
+@ComponentV2
+struct Parent {
+  // 定义aliasName为'alias'
+  @Provider('alias') str: string = 'hello';
 }
 
 @ComponentV2 struct Child {
-    @Consumer('alias') str: string = 'world';   // use aliasName 'alias' to find Provider value 'hello'
+  // 定义aliasName为 'alias'，找到@Provider并获得值'hello'
+  @Consumer('alias') str: string = 'world';
 }
 ```
 
 ```ts
-@ComponentV2 struct Parent {
-    @Provider('alias') str: string = 'hello';   // has alias
+@ComponentV2
+struct Parent {
+  // 定义aliasName为'alias'
+  @Provider('alias') str: string = 'hello';
 }
 
-@ComponentV2 struct Child {
-    @Consumer() str: string = 'world';   // no aliasName, use propertyName "str" as aliasName, cannot find Provider, so use the local value 'world'
+@ComponentV2
+struct Child {
+  // 未定义aliasName，使用属性名'str'作为aliasName
+  // 没有找到对应的@Provider，使用本地值'world'
+  @Consumer() str: string = 'world';
 }
 ```
+
+## 变量传递
+
+| 传递规则       | 说明                                                         |
+| -------------- | ------------------------------------------------------------ |
+| 从父组件初始化 | \@Provider和\@Consumer装饰的变量仅允许本地初始化，无法从外部传入初始化。 |
+| 初始化子组件   | \@Provider和\@Consumer装饰的变量可以初始化子组件中\@Param装饰的变量。 |
 
 ## 使用限制
-1. \@Provider和\@Consumer为自定义组件的属性装饰器，仅能修饰自定义组件内的属性，不能修饰class的属性。
-2. \@Provider和\@Consumer为新状态管理装饰器，只能在\@ComponentV2中使用，不能在\@Component中使用。
+
+1. \@Provider和\@Consumer为自定义组件的属性装饰器，仅能装饰自定义组件内的属性，不能装饰class的属性。
+2. \@Provider和\@Consumer为状态管理V2装饰器，只能在\@ComponentV2中使用，不能在\@Component中使用。
+3. \@Provider和\@Consumer仅支持本地初始化，不支持外部传入初始化。
 
 ## 使用场景
 
@@ -106,10 +126,10 @@
 #### 建立双向绑定
 1. 自定义组件Parent和Child初始化:
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
-    - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，为‘hello’。
+    - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
     - 两者建立双向同步关系。
-2. 点击Parent中的Button，改变@Provider装饰的str，通知其对应的@Consumer。对应UI刷新。
-3. 点击Child中Button，改变@Consumer装饰的str，通知其对应的@Provider。对应UI刷新。
+2. 点击Parent中的Button，改变\@Provider装饰的str，通知其对应的\@Consumer，对应UI刷新。
+3. 点击Child中Button，改变\@Consumer装饰的str，通知其对应的\@Provider，对应UI刷新。
 
 ```ts
 @Entry
@@ -128,7 +148,6 @@ struct Parent {
   }
 }
 
-
 @ComponentV2
 struct Child {
   @Consumer() str: string = 'world';
@@ -143,15 +162,15 @@ struct Child {
   }
 }
 ```
-#### 未双向绑定
+#### 未建立双向绑定
 
-下面的例子中，\@Provider和\@Consumer由于key值不同，无法建立双向同步关系。
+下面的例子中，\@Provider和\@Consumer由于aliasName值不同，无法建立双向同步关系。
 1. 自定义组件Parent和Child初始化:
     - Child中`@Consumer() str: string = 'world'`向上查找，未查找到其数据提供方@Provider。
     - `@Consumer() str: string = 'world'`使用其本地默认值为‘world’。
     - 两者未建立双向同步关系。
-2. 点击Parent中的Button，改变@Provider装饰的str1，刷新@Provider关联的Button组件。
-3. 点击Child中Button，改变@Consumer装饰的str，刷新@Consumer关联的Button组件。
+2. 点击Parent中的Button，改变\@Provider装饰的str1，仅刷新\@Provider关联的Button组件。
+3. 点击Child中Button，改变\@Consumer装饰的str，仅刷新\@Consumer关联的Button组件。
 
 ```ts
 @Entry
@@ -170,7 +189,6 @@ struct Parent {
   }
 }
 
-
 @ComponentV2
 struct Child {
   @Consumer() str: string = 'world';
@@ -186,10 +204,10 @@ struct Child {
 }
 ```
 
-### \@Provider和\@Consumer可以修饰回调事件，方便组件之间完成行为抽象
+### \@Provider和\@Consumer装饰回调事件，用于组件之间完成行为抽象
 
-当需要在父组件中给子组件注册回调函数时，可以通过使用\@Provider和\@Consumer修饰回调方法来解决。
-比如拖拽场景，当发生拖拽事件时，如果希望将子组件的拖拽的起始位置信息同步给父组件。如下面的例子。
+当需要在父组件中向子组件注册回调函数时，可以通过使用\@Provider和\@Consumer装饰回调方法来解决。
+比如拖拽场景，当发生拖拽事件时，如果希望将子组件拖拽的起始位置信息同步给父组件，可以参考下面的例子。
 
 ```ts
 @Entry
@@ -227,10 +245,10 @@ struct Child {
 ```
 
 
-### \@Provider和\@Consumer修饰复杂类型，配合\@Trace一起使用
+### \@Provider和\@Consumer装饰复杂类型，配合\@Trace一起使用
 
-1. \@Provider和\@Consumer只能观察到数据本身的变化。如果当其修饰复杂数据类型，需要观察属性的变化，需要配合\@Trace一起使用。
-2. 修饰buildin type：Array、Map、Set、Data时，可以观察到某些API的变化，观察能力同[\@Trace](./arkts-new-observedV2-and-trace.md#观察变化)。
+1. \@Provider和\@Consumer只能观察到数据本身的变化。如果当其装饰复杂数据类型，需要观察属性的变化时，需要配合\@Trace一起使用。
+2. 装饰内置类型：Array、Map、Set、Date时，可以观察到某些API的变化，观察能力同[\@Trace](./arkts-new-observedV2-and-trace.md#观察变化)。
 
 ```ts
 @ObservedV2
@@ -243,9 +261,7 @@ class User {
     this.age = age;
   }
 }
-
 const data: User[] = [new User('Json', 10), new User('Eric', 15)];
-
 @Entry
 @ComponentV2
 struct Parent {
@@ -270,7 +286,6 @@ struct Parent {
   }
 }
 
-
 @ComponentV2
 struct Child {
   @Consumer('data') users: User[] = [];
@@ -289,11 +304,8 @@ struct Child {
 }
 ```
 
-### \@Provider重名，\@Consumer向上查找其最近的\@Provider
+### \@Provider重名时，\@Consumer向上查找其最近的\@Provider
 \@Provider可以在组件树上重名，\@Consumer会向上查找其最近父节点的\@Provider的数据。
-- AComp中\@Consumer向上查找，查找到Parent中定义的` @Provider() val: number = 10`，所以初始化为10。
-- A1Comp中\@Consumer向上查找，查找到AComp中定义的`@Provider() val: number = 20`，即停止，不会继续向上查找，所以初始化为20。
-
 ```ts
 @Entry
 @ComponentV2
@@ -304,7 +316,6 @@ struct Parent {
     Column() {
       AComp()
     }
-
   }
 }
 
@@ -318,7 +329,6 @@ struct AComp {
       Text(`${this.val2}`)
       A1Comp()
     }
-
   }
 }
 
@@ -327,14 +337,22 @@ struct A1Comp {
   @Consumer() val: number = 0; // 20
 
   build() {
-    Text(`${this.val}`)
+    Column() {
+      Text(`${this.val}`)
+    }
   }
 }
 ```
 
+上面的例子中：
+
+- AComp中\@Consumer向上查找，查找到Parent中定义的` @Provider() val: number = 10`，所以初始化为10。
+- A1Comp中\@Consumer向上查找，查找到AComp中定义的`@Provider() val: number = 20`后停止，不会继续向上查找，所以初始化为20。
+
 ### \@Provider和\@Consumer初始化\@Param
-- 点击Text(`@Consumer val: ${this.val}`),触发`@Consumer() val`的变化，变化同步给Parent中`@Provider() val`,从而触发子组件`Text(`@Param val2: ${this.val2}`)`的变化。
-- `@Consumer() val`的变化也会同步给A1Comp，触发`Text(`A1Comp @Param val ${this.val}`)`的改变。
+
+- 点击Text(\`@Consumer val: ${this.val}\`)，触发`@Consumer() val`的变化，变化同步给Parent中`@Provider() val`，从而触发子组件`Text(@Param val2: ${this.val2})`的刷新。
+- `@Consumer() val`的变化也会同步给A1Comp，触发`Text(A1Comp @Param val ${this.val})`的刷新。
 
 ```ts
 @Entry

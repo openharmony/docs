@@ -144,32 +144,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 主线程超时事件规格
 
-1. 事件规格
-
-   主线程超时事件上报结果，可以通过hdc shell命令查看事件：hisysevent -l | grep MAIN_THREAD_JANK，更多命令参考：[hisysevent](./hisysevent.md)。
-   
-   事件上报的内容解读如下：
-
-    |   类型  |   说明   |
-    | -------------- | ------------------------------------- |
-    | BUNDLE_VERSION | 应用版本号                             |
-    | BUNDLE_NAME    | 应用进程名                             |
-    | BEGIN_TIME     | 主线程超时事件开始时间戳                |
-    | END_TIME       | 主线程超时事件结束时间戳                |
-    | EXTERNAL_LOG   | 栈文件存储路径                         |
-    | STACK          | 堆栈内容                              |
-    | JANK_LEVEL     | 标志位（0-采集栈 1-采集trace）         |
-    | THREAD_NAME    | 线程名                                |
-    | FOREGROUND     | 应用是否在前台                         |
-    | LOG_TIME       | 日志时间戳                             |
-
-2. 日志老化规格
+1. 日志老化规格
 
     一般情况，栈文件的大小为7-10KB，trace文件大小为3-6M。应用沙箱内的watchdog目录最大保存10M内容，超出后，需要用户手动清理文件。目录地址：/data/app/el2/100/log/应用bundle name/watchdog。
 
-3. 事件里如何获取日志：从external_logs中获取日志路径
+2. 事件里如何获取日志：从external_logs中获取日志路径
 
-4. 抓栈功能目前只支持ARM64架构，抓栈结果为解析后的混合栈信息，包含native帧和JS帧
+3. 抓栈功能目前只支持ARM64架构，抓栈结果为解析后的混合栈信息，包含native帧和JS帧
 
    抓栈结果部分示例如下：
    ```text
@@ -224,7 +205,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     4 表示调用函数所在的路径，文件及行列号
    ```
 
-5. trace规格简介
+4. trace规格简介
 
     trace大小为1-5M，对于trace文件的解析可以使用[smpartperf在线工具](https://www.smartperf.host)进行解读.
 

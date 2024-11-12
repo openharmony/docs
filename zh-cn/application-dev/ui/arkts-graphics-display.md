@@ -48,7 +48,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - Resource资源
 
-  使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
+  使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读取到并转换到Resource格式。
 
   **图1** resources  
 
@@ -307,9 +307,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .objectFit(ImageFit.Cover)
             .margin(15)
-              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)

@@ -7,7 +7,7 @@ OHAudio音频频录状态变化示意图：
 
 ## 使用入门
 
-开发者要使用OHAudio提供的播放或者录制能力，需要添加对应的头文件。
+开发者要使用OHAudio提供的录制能力，需要添加对应的头文件。
 
 ### 在 CMake 脚本中链接动态库
 
@@ -210,3 +210,6 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode);
 针对OHAudio开发音频录制，有以下相关实例可供参考：
 
 - [OHAudio录制和播放](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/Audio/OHAudio)
+
+<!--RP1-->
+<!--RP1End-->

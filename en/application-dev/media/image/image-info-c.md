@@ -153,6 +153,17 @@ static void ImageNativeCTest()
         return;
     }
 
+    // Read the timestamp of the OH_ImageNative instance.
+    int64_t timestamp = 0;
+    errCode = OH_ImageNative_GetTimestamp(image, &timestamp);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get timestamp failed, errCode: %{public}d.", errCode);
+        OH_ImageNative_Release(image);
+        OH_ImageReceiverOptions_Release(options);
+        OH_ImageReceiverNative_Release(receiver);
+        return;
+    }
+
     // Release the OH_ImageNative instance.
     errCode = OH_ImageNative_Release(image);
     if (errCode != IMAGE_SUCCESS) {

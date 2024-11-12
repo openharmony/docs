@@ -25,6 +25,7 @@
     - [image_packer_native.h](image__packer__native_8h.md)
     - [image_receiver_native.h](image__receiver__native_8h.md)
     - [image_source_native.h](image__source__native_8h.md)
+    - [picture_native.h](picture__native_8h.md)
     - [pixelmap_native.h](pixelmap__native_8h.md)
     - [image_effect.h](image__effect_8h.md)
     - [image_effect_errors.h](image__effect__errors_8h.md)

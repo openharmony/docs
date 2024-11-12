@@ -3,7 +3,7 @@
 appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.appManager (appManager)](js-apis-app-ability-appManager.md)。
@@ -791,7 +791,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 终止account进程。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
@@ -847,13 +847,13 @@ try {
 }
 ```
 
-## appManager.killProcessWithAccount<sup>13+</sup>
+## appManager.killProcessWithAccount<sup>14+</sup>
 
 killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: boolean, appIndex?: number): Promise\<void\>
 
 终止account进程。使用Promise异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
@@ -919,7 +919,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 终止account进程。使用callback异步回调。
 
-> **说明：** 
+> **说明：**
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
@@ -931,11 +931,11 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 应用Bundle名称。 | 
-  | accountId | number | 是 | 系统账号的账号ID，详情参考[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。 | 
-  | callback | AsyncCallback\<void\> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 | 
+  | bundleName | string | 是 | 应用Bundle名称。 |
+  | accountId | number | 是 | 系统账号的账号ID，详情参考[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)。 |
+  | callback | AsyncCallback\<void\> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1079,7 +1079,7 @@ try {
 }
 ```
 
-## appManager.killProcessesByBundleName<sup>13+</sup>
+## appManager.killProcessesByBundleName<sup>14+</sup>
 
 killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?: number): Promise\<void>
 
@@ -1991,7 +1991,7 @@ getSupportedProcessCachePids(bundleName : string): Promise\<Array\<number>>
 
 查询当前应用中支持缓存后快速启动的进程PID。
 
-> **说明：** 
+> **说明：**
 >
 > 本接口仅支持获取调用者所在系统账号下的进程PID。
 
@@ -2043,5 +2043,64 @@ try {
     })
 } catch (err) {
   hilog.error(0x0000, 'testTag', `get pids error, code: ${err.code}, msg:${err.message}`);
+}
+```
+
+## appManager.clearUpAppData<sup>13+</sup>
+
+clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
+
+根据Bundle名称和应用分身索引，清除指定应用的数据。
+
+**需要权限**：ohos.permission.CLEAN_APPLICATION_DATA
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 表示Bundle名称。 |
+| appCloneIndex | number | 否 | 表示应用分身索引。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+| 16000073 | The app clone index does not exist. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName: string = 'com.ohos.demo';
+let appCloneIndex: number = 0;
+
+try {
+  appManager.clearUpAppData(bundleName, appCloneIndex).then(() => {
+    console.log(`clearUpAppData success.`);
+  }).catch((err: BusinessError) => {
+    console.error(`clearUpAppData fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```

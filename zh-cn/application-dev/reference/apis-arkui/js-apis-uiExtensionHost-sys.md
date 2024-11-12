@@ -321,7 +321,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | 是 | 子窗口参数。 |
+| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions12) | 是 | 子窗口参数。 |
 
 **返回值：**
 
@@ -444,6 +444,61 @@ export default class EntryAbility extends UIExtensionAbility {
       console.log(`Succeeded in deleting water mark flag of window.`);
     }).catch((err: BusinessError) => {
       console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
+```
+### hidePrivacyContentForHost<sup>13+</sup>
+
+hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
+
+设置UIExtension组件在非系统截图时的隐私内容保护开关，使用Promise异步回调。
+> **说明：**
+>
+> 开启截图隐私内容保护后，使用窗口截图[window.snapshot](js-apis-window.md###snapshot)或者组件截图[UIContext.getComponentSnapshot](js-apis-arkui-UIContext.md###getComponentSnapshot)
+将无法截取到当前组件的内容（不包括该组件下创建的子窗）。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统接口**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| shouldHide | boolean | 是   | 是否开启截图隐私保护。true表示开启，false表示不开启。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
+| 1300002  | The UIExtension window proxy is abnormal.                    |
+
+**示例**
+
+```ts
+// ExtensionProvider.ts
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 添加安全水印标志
+    extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
+      console.log(`Successfully enabled privacy protection for non-system screenshots.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
     })
   }
 }

@@ -152,20 +152,77 @@
            console.error('readNextImage failed');
            return;
          }
-         nextImage.getComponent(image.ComponentType.JPEG, (err: BusinessError, imgComponent: image.Component) => {
+         nextImage.getComponent(image.ComponentType.JPEG, async (err: BusinessError, imgComponent: image.Component) => {
            if (err || imgComponent === undefined) {
              console.error('getComponent failed');
            }
-           if (imgComponent && imgComponent.byteBuffer as ArrayBuffer) {
-             // do something...
-             // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）
+           if (imgComponent.byteBuffer) {
+             // 请参考步骤7解析buffer数据，本示例以方式一为例
+             let width = 640; // 宽为创建ImageReceiver时image.Size的width
+             let height = 480; // 高为创建ImageReceiver时image.Size的height
+             let stride = imgComponent.rowStride;
+             console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
+             // stride与width一致
+             if (stride == width) {
+               let pixelMap = await image.createPixelMap(imgComponent.byteBuffer, {
+                 size: { height: height, width: width },
+                 srcPixelFormat: 8,
+               })
+             } else {
+               // stride与width不一致
+               const dstBufferSize = width * height * 1.5
+               const dstArr = new Uint8Array(dstBufferSize)
+               for (let j = 0; j < height * 1.5; j++) {
+                 const srcBuf = new Uint8Array(imgComponent.byteBuffer, j * stride, width)
+                 dstArr.set(srcBuf, j * width)
+               }
+               let pixelMap = await image.createPixelMap(dstArr.buffer, {
+                 size: { height: height, width: width },
+                 srcPixelFormat: 8,
+               })
+             }
            } else {
              console.error('byteBuffer is null');
            }
            // 确保当前buffer没有在使用的情况下，可进行资源释放
+           // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）
            nextImage.release();
          })
        })
      })
    }
    ```
+
+7. 通过 [image.Component]()解析图片buffer数据参考：
+
+   > **注意：**
+   > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：
+
+   方式一：去除component.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
+
+   ```ts
+   // 当前相机预览流仅支持NV21（YUV_420_SP格式的图片）
+   const dstBufferSize = width * height * 1.5;
+   const dstArr = new Uint8Array(dstBufferSize);
+   // 逐行读取buffer数据
+   for (let j = 0; j < height * 1.5; j++) {
+     // component.byteBuffer的每行数据拷贝前width个字节到dstArr中
+     const srcBuf = new Uint8Array(component.byteBuffer, j * stride, width);
+     dstArr.set(srcBuf, j * width);
+   }
+   let pixelMap = await image.createPixelMap(dstArr.buffer, {
+     size: { height: height, width: width }, srcPixelFormat: 8
+   });
+   ```
+
+   方式二：根据stride*height创建pixelMap，然后调用pixelMap的cropSync方法裁剪掉多余的像素。
+
+   ```ts
+   // 创建pixelMap，width宽传行距stride的值
+   let pixelMap = await image.createPixelMap(component.byteBuffer, {
+     size:{height: height, width: stride}, srcPixelFormat: 8});
+   // 裁剪多余的像素
+   pixelMap.cropSync({size:{width:width, height:height}, x:0, y:0});
+   ```
+
+   方式三：将原始component.byteBuffer和stride信息一起传给支持stride的接口处理。

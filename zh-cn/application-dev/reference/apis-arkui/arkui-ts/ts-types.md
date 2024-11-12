@@ -518,6 +518,8 @@
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -744,7 +746,21 @@ setTextSelection选中文字时的配置。
 
 | 名称       | 类型                                            | 必填 | 说明             |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |
 
 ## CaretOffset<sup>11+</sup>对象说明
 

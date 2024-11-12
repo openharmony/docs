@@ -33,7 +33,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 执行逻辑的函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **返回值：**
@@ -81,7 +81,7 @@ execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...a
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | A | 否   | 执行逻辑的函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **返回值：**
@@ -776,7 +776,7 @@ isConcurrent(func: Function): boolean
 
 | 类型    | 说明                                 |
 | ------- | ------------------------------------ |
-| boolean | 如果被检查函数标注了[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)，返回true，否则返回false。 |
+| boolean | 如果被检查函数标注了[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)，返回true，否则返回false。 |
 
 **错误码：**
 
@@ -900,7 +900,7 @@ Task的构造函数。
 
 | 参数名 | 类型      | 必填 | 说明                                                                  |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -939,7 +939,7 @@ Task的构造函数，可以指定任务名称。
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | 是   | 任务名称。                                                   |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -1106,7 +1106,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 > **说明：**
 >
-> 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器声明并校验sendable-class)使用，否则会抛异常。
+> 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器)使用，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1116,7 +1116,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 | 参数名    | 类型                      | 必填 | 说明                                          |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[sendable数据](../../arkts-utils/arkts-sendable.md#sendable数据)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
 
 **错误码：**
 
@@ -1813,7 +1813,7 @@ GenericsTask的构造函数。
 
 | 参数名 | 类型      | 必填 | 说明                                                                  |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
-| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | A | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -1866,7 +1866,7 @@ GenericsTask的构造函数，可以指定任务名称。
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | 是   | 泛型任务名称。                                                   |
-| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | (...args: A) => R \| Promise\<R>  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | A | 否   | 任务执行传入函数的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -1958,7 +1958,7 @@ addTask(func: Function, ...args: Object[]): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
+| func   | Function  | 是   | 执行的逻辑需要传入函数，必须使用[@Concurrent装饰器](../../arkts-utils/taskpool-introduction.md#concurrent装饰器)装饰，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
 | args   | Object[] | 否   | 任务执行函数所需要的入参，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
@@ -2071,11 +2071,11 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 constructor(name: string, priority?: Priority)
 
-SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回相同的串行队列。
+SequenceRunner的构造函数。构造一个全局串行队列，如果名字相同，将返回同一个串行队列。
 
 > **说明：**
 >
-> - 不支持在同一线程重复构造相同的串行队列。
+> - 底层通过单例模式保证了：创建同名串行队列时，获取到同一个实例。
 > - 不支持修改串行队列的优先级。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2252,7 +2252,7 @@ async function seqRunner()
 ## 其他说明
 
 ### 序列化支持类型
-序列化支持类型包括：All Primitive Type(不包括symbol)、Date、String、RegExp、Array、Map、Set、Object、ArrayBuffer、TypedArray。详情可见[TaskPool和Worker支持的序列化类型](../../arkts-utils/serialization-support-types.md)。
+序列化支持类型包括：目前支持的数据类型有[普通对象](../../arkts-utils/normal-object.md)、[ArrayBuffer对象](../../arkts-utils/arraybuffer-object.md)、[SharedArrayBuffer对象](../../arkts-utils/shared-arraybuffer-object.md)、[Transferable对象（NativeBinding对象）](../../arkts-utils/transferabled-object.md)、[Sendable对象](../../arkts-utils/arkts-sendable.md)五种。
 
 ### 简单使用
 

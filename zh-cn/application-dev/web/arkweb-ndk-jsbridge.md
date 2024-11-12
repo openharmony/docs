@@ -18,7 +18,7 @@
 
 ### native侧ArkWeb绑定
 
-* ArkWeb组件声明在ArkTS侧，需要用户自定义一个标识webTag，并将webTag通过NAPI传至应用C++侧，后续ArkWeb native接口使用，均需webTag作为对应组件的唯一标识。
+* ArkWeb组件声明在ArkTS侧，需要用户自定义一个标识webTag，并将webTag通过Node-API传至应用C++侧，后续ArkWeb native接口使用，均需webTag作为对应组件的唯一标识。
 
 * ArkTS侧
 
@@ -27,7 +27,7 @@
   webTag: string = 'ArkWeb1';
   controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
   ...
-  // aboutToAppear中将webTag通过NAPI接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
+  // aboutToAppear中将webTag通过Node-API接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
   aboutToAppear() {
     console.info("aboutToAppear")
     //初始化web ndk
@@ -106,7 +106,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
 
 ### 前端页面调用应用侧函数
 
-通过[registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxy)将应用侧函数注册至前端页面，**推荐在[onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached)回调中注册，其它时机注册需要手动调用[refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh)才能生效。**
+通过[registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxy)将应用侧函数注册至前端页面，推荐在[onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached)回调中注册，其它时机注册需要手动调用[refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh)才能生效。
 
   ```c++
   // 注册对象
@@ -267,14 +267,14 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   }
   ```
 
-* NAPI侧暴露ArkTS接口`entry/src/main/cpp/types/libentry/index.d.ts`
+* Node-API侧暴露ArkTS接口`entry/src/main/cpp/types/libentry/index.d.ts`
 
   ```javascript
   export const nativeWebInit: (webName: string) => void;
   export const runJavaScript: (webName: string, jsCode: string) => void;
   ```
 
-* NAPI侧编译配置`entry/src/main/cpp/CMakeLists.txt`
+* Node-API侧编译配置`entry/src/main/cpp/CMakeLists.txt`
 
   ```c++
   # the minimum version of CMake.
@@ -303,7 +303,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   target_link_libraries(entry PUBLIC libace_napi.z.so ${hilog-lib} libohweb.so)
   ```
 
-* NAPI层代码`entry/src/main/cpp/hello.cpp`
+* Node-API层代码`entry/src/main/cpp/hello.cpp`
 
   ```c++
   #include "napi/native_api.h"

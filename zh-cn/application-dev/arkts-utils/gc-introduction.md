@@ -1,4 +1,4 @@
-# GC介绍
+# GC垃圾回收
 
 GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。ArkTS运行时基于分代模型（年轻代/老年代），混合使用引用计数和对象追踪算法，并行并发化执行GC任务，从而实现不同场景下的高性能内存回收表现。
 
@@ -62,7 +62,7 @@ heap中会生成两个Semi Space供copying使用。
 | HeapSize | 448MB-1024MB | 堆总大小，实际系统分配大小根据堆类型不同分配不同，或内存池不够会降低下限 |
 | SemispaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小 |
 | NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小 |
-| SnapshotSpaceSize | 512KB | 快照空间大小， |
+| SnapshotSpaceSize | 512KB | 快照空间大小 |
 | MachineCodeSpaceSize | 2MB | 机器码空间大小 |
 
 #### worker线程堆上限
@@ -133,7 +133,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 #### 空间阈值触发GC
 
-- 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`，等分配函数
+- 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`等分配函数
 - 限制参数：对应的空间阈值
 - 说明：对象申请空间到达对应空间阈值时触发GC
 - 典型日志：日志可区分GCReason::ALLOCATION_LIMIT
@@ -157,7 +157,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 - 函数方法：`TryTriggerConcurrentMarking`
 - 说明：尝试触发并发mark，将遍历对象进行标记的任务交由线程池中并发运行，减少主线程挂起时间。
-- 典型日志：`fullMarkRequested, trigger full mark.`,`Trigger the first full mark`,`Trigger full mark`,`Trigger the first semi mark`,`Trigger semi mark`
+- 典型日志：`fullMarkRequested`,`trigger full mark`,`Trigger the first full mark`,`Trigger full mark`,`Trigger the first semi mark`,`Trigger semi mark`
 
 #### new space GC前后的阈值调整
 

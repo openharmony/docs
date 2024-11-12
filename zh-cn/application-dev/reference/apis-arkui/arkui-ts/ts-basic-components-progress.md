@@ -74,7 +74,7 @@ Progress(options: ProgressOptions)
 | ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
 | Capsule<sup>8+</sup>   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。高度大于宽度的时候自适应垂直显示。 |
 
-##  ProgressStyleMap说明 
+##  ProgressStyleMap对象说明 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -299,7 +299,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                    | 描述             |
+| 名称                    | 说明      |
 | ----------------------- | ---------------- |
 | LOADING  | 加载中。 |
 | PROGRESSING | 进度更新中。 |

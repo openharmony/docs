@@ -14,24 +14,22 @@ ContextConstant提供Context相关的枚举，当前仅包含数据加密等级�
 import { contextConstant } from '@kit.AbilityKit';
 ```
 
-## ContextConstant.AreaMode
+## AreaMode
 
 数据加密等级。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
-| EL1 | 0 | 设备级加密区，设备开机后可访问的数据区。                                                                                                 |
-| EL2 | 1 | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。                                                                                        |
-| EL3<sup>11+<sup> | 2 | 用户级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，可读写；解锁后，可读写。<br/>未打开文件：锁屏时，不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，可创建、可打开、可写不可读；解锁后，可创建、可打开、可读写。 |
-| EL4<sup>11+<sup> | 3 | 用户级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，FEB2.0可读写、FEB3.0不可读写；解锁后，可读写。<br/>未打开文件：锁屏时，不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，不可创建；解锁后，可创建、可打开、可读写。        |
-| EL5<sup>12+<sup> | 4 | 应用级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，可读写；解锁后，可读写。<br/>未打开文件：锁屏时，调用[Access](js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess)接口获取保留密钥后，可打开、可读写，否则不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，可创建、可打开、可读写；解锁后，可创建、可打开、可读写。 |
+| EL1 | 0 | 设备级加密区，设备开机后可访问的数据区。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| EL2 | 1 | 用户级加密区，设备开机，首次输入密码后才能够访问的数据区。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| EL3<sup>11+<sup> | 2 | 用户级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，可读写；解锁后，可读写。<br/>未打开文件：锁屏时，不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，可创建、可打开、可写不可读；解锁后，可创建、可打开、可读写。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| EL4<sup>11+<sup> | 3 | 用户级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，不可读写；解锁后，可读写。<br/>未打开文件：锁屏时，不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，不可创建；解锁后，可创建、可打开、可读写。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| EL5<sup>12+<sup> | 4 | 应用级加密区，不同场景的文件权限如下：<br/>已打开文件：锁屏时，可读写；解锁后，可读写。<br/>未打开文件：锁屏时，调用[Access](js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess)接口获取保留密钥后，可打开、可读写，否则不可打开、不可读写；解锁后，可打开、可读写。<br/>创建新文件：锁屏时，可创建、可打开、可读写；解锁后，可创建、可打开、可读写。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
-## ContextConstant.ProcessMode<sup>12+</sup>
+## ProcessMode<sup>12+</sup>
 
 进程模式。该功能仅在平板类设备上生效。
 
@@ -83,7 +81,7 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
   }
   ```
 
-## ContextConstant.StartupVisibility<sup>12+</sup>
+## StartupVisibility<sup>12+</sup>
 
 Ability启动后的可见性。该功能仅在平板类设备上生效。
 
@@ -98,4 +96,4 @@ StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一
 
 **示例：**
 
-  参见[ContextConstant.ProcessMode](#contextconstantprocessmode12)。
+  参见[ContextConstant.ProcessMode](#processmode12)。

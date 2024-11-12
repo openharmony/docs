@@ -1276,7 +1276,7 @@ int32_t OH_CommonEvent_GetCodeFromRcvData(const CommonEvent_RcvData* rcvData)
 
 **返回：**
 
-返回公共事件结果代码。
+返回公共事件结果代码。默认为0。
 
 ### OH_CommonEvent_GetDataStrFromRcvData
 
@@ -1298,7 +1298,7 @@ const char* OH_CommonEvent_GetDataStrFromRcvData(const CommonEvent_RcvData* rcvD
 
 **返回：**
 
-返回公共事件自定义结果数据。
+返回公共事件自定义结果数据。默认为null。
 
 ### OH_CommonEvent_GetBundleNameFromRcvData
 
@@ -1320,7 +1320,7 @@ const char* OH_CommonEvent_GetBundleNameFromRcvData(const CommonEvent_RcvData* r
 
 **返回：**
 
-返回公共事件包名称。
+返回公共事件包名称。默认为null。
 
 ### OH_CommonEvent_GetParametersFromRcvData
 
@@ -1342,7 +1342,7 @@ const CommonEvent_Parameters* OH_CommonEvent_GetParametersFromRcvData(const Comm
 
 **返回：**
 
-返回公共事件附加信息。
+返回公共事件附加信息。默认为null。
 
 ### OH_CommonEvent_HasKeyInParameters
 
@@ -1585,4 +1585,4 @@ int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters
 
 **返回：**
 
-返回数组长度。
+返回数组长度。默认为0。

@@ -264,7 +264,7 @@ onProcess(): string;
       let args = 100; // args为appJob方法的参数
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
-        await taskpool.execute(jobTask, taskpool.Priority.HIGH);
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
         console.error("onBackup error." + error.message);
       }
@@ -277,7 +277,7 @@ onProcess(): string;
       let args = 100; // args为appJob方法的参数
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
-        await taskpool.execute(jobTask, taskpool.Priority.HIGH);
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
         console.error("onRestore error." + error.message);
       }

@@ -12,7 +12,7 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
-每一种解码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
 <!--RP1--><!--RP1End-->
 
@@ -21,7 +21,7 @@
 |          支持的能力                       |             使用简述                                                                     |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | 变分辨率         | 解码器支持输入码流分辨率发生变化，发生变化后会触发OH_VideoDecoder_RegisterCallback接口设置的回调函数OnStreamChanged()。具体可参考下文中：Surface模式步骤-4或Buffer模式步骤-3  |
-| 动态切换Surface  | 通过调用OH_VideoDecoder_SetSurface接口配置，仅Surface模式支持。具体可参考下文中：Surface模式步骤-7    |
+| 动态切换surface  | 通过调用OH_VideoDecoder_SetSurface接口配置，仅Surface模式支持。具体可参考下文中：Surface模式步骤-7    |
 | 低时延解码  | 通过调用OH_VideoDecoder_Configure接口配置，具体可参考下文中：Surface模式的步骤-6或Buffer模式步骤-5      |      
 
 
@@ -33,13 +33,15 @@
 5. 在调用Flush，Reset，Stop的过程中，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 6. DRM解密能力在[Surface模式](#surface模式)下既支持非安全视频通路，也支持安全视频通路，在[Buffer模式](#buffer模式)下仅支持非安全视频通路。
 7. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
+8. 在Buffer模式下，调用者通过输出回调函数OH_AVCodecOnNewOutputBuffer获取到OH_AVBuffer的指针对象后，必须通过调用OH_VideoDecoder_FreeOutputBuffer接口
+   来通知系统该对象已被使用完毕。这样系统才能够将后续解码的数据写入到相应的位置。如果调用者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针对象，并且该对象的生命周期超过了当前的OH_AVBuffer指针对象，那么需要进行一次数据的拷贝操作。在这种情况下，调用者需要自行管理新生成的OH_NativeBuffer对象的生命周期，确保其正确使用和释放。
 
-## Surface输出与Buffer输出
+## surface输出与buffer输出
 
 1. 两者数据的输出方式不同。
 2. 两者的适用场景不同：
-- Surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
-- Buffer输出是指经过解码的数据会以共享内存的方式输出。
+- surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
+- buffer输出是指经过解码的数据会以共享内存的方式输出。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
 - 在Surface模式下，可选择调用OH_VideoDecoder_FreeOutputBuffer接口丢弃输出帧（不送显）；在Buffer模式下，应用必须调用OH_VideoDecoder_FreeOutputBuffer接口释放数据。
@@ -56,20 +58,20 @@
 
 1. 有两种方式可以使解码器进入Initialized状态：
    - 初始创建解码器实例时，解码器处于Initialized状态。
-   - 任何状态下调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
+   - 任何状态下，调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoDecoder_Configure接口配置解码器，配置成功后解码器进入Configured状态。
-3. Configured状态下调用OH_VideoDecoder_Prepare接口进入Prepared状态。
-4. Prepared状态调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
+3. Configured状态下，调用OH_VideoDecoder_Prepare接口进入Prepared状态。
+4. Prepared状态下，调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
    - 处于Executing状态时，调用OH_VideoDecoder_Stop接口可以使解码器返回到Prepared状态。
 
 5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
-   - Error状态下可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
+   - Error状态下，可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
 
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoDecoder_Start接口之后，解码器立即进入Running子状态。
    - 对于处于Executing状态的解码器，可以调用OH_VideoDecoder_Flush接口返回到Flushed子状态。
-   - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+   - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1)标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
 7. 使用完解码器后，必须调用OH_VideoDecoder_Destroy接口销毁解码器实例。使解码器进入Released状态。
 
@@ -297,7 +299,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
     ```
 
-7. 设置surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+7. 设置surface。
+
+    本例中的nativeWindow，有两种方式获取：
+    1. 如果解码后直接显示，则从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)；
+    2. 如果解码后接OpenGL后处理，则从NativeImage获取，获取方式请参考 [NativeImage](../../graphics/native-image-guidelines.md)。
 
     Surface模式，调用者可以在解码过程中执行该步骤，即动态切换surface。
 
@@ -485,6 +491,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    >
 
 14. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
@@ -524,7 +533,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 15. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
-    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_Prepare接口和OH_VideoDecoder_SetSurface接口重新配置。
+    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_SetSurface接口和OH_VideoDecoder_Prepare接口重新配置。
+    
     ```c++
     // 重置解码器videoDec
     int32_t ret = OH_VideoDecoder_Reset(videoDec);
@@ -536,13 +546,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 解码器重新就绪
-    ret = OH_VideoDecoder_Prepare(videoDec);
+    // Surface模式重新配置surface，而Buffer模式不需要配置surface
+    ret = OH_VideoDecoder_SetSurface(videoDec, window);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // Surface模式重新配置surface，而Buffer模式不需要配置surface
-    ret = OH_VideoDecoder_SetSurface(videoDec, window);
+    // 解码器重新就绪
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -921,19 +931,19 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     使用示例：
 
     ```c++
-    struct Rect   // 源内存区域的宽，高
+    struct Rect   // 源内存区域的宽、高，通过回调函数OnNewOutputBuffer获取
     {
         int32_t width;
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽，高跨距
+    struct DstRect // 目标内存区域的宽、高跨距，由调用者自行设置
     {
         int32_t wStride;
         int32_t hStride;
     };
 
-    struct SrcRect // 源内存区域的宽，高跨距
+    struct SrcRect // 源内存区域的宽、高跨距，通过回调函数OnNewOutputBuffer获取
     {
         int32_t wStride;
         int32_t hStride;
@@ -977,3 +987,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
 
 后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤14-17。
+
+<!--RP5-->
+<!--RP5End-->

@@ -186,7 +186,7 @@ constructor(colorStops: ColorStop[])
 
 **参数：** 
 
-| 参数名         | 类型 | 必填 | 描述 |
+| 参数名         | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
 | colorStops | [ColorStop](#colorstop10对象说明)[] | 是 | 存储渐变颜色和渐变点。|
 

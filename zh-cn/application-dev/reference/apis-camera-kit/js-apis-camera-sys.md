@@ -2020,6 +2020,192 @@ function enableMirror(videoOutput: camera.VideoOutput): void {
 }
 ```
 
+## MetadataOutput
+
+metadata流。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### addMetadataObjectTypes<sup>13+</sup> 
+
+addMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
+
+新增需要上报的检测对象类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名                  | 类型                                               | 必填 | 说明                          |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function addMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.addMetadataObjectTypes(types);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`addMetadataObjectTypes error. error code: ${err.code}`);
+  }
+}
+```
+
+### removeMetadataObjectTypes<sup>13+</sup> 
+
+removeMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
+
+删除需要上报的检测对象类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名                  | 类型                                               | 必填 | 说明                          |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型信息，通过getSupportedOutputCapability接口获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.                                   |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.removeMetadataObjectTypes(types);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`removeMetadataObjectTypes error. error code: ${err.code}`);
+  }
+}
+```
+
+## MetadataObjectType
+
+枚举，metadata元数据检测类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值   | 说明              |
+| -------------------------- | ---- | ----------------- |
+| HUMAN_BODY<sup>13+</sup>                 | 1    | 用于检测人体的metadata类型。 |
+| CAT_FACE<sup>13+</sup>                   | 2    | 用于检测猫脸的metadata类型。 |
+| CAT_BODY<sup>13+</sup>                   | 3    | 用于检测猫的身体的metadata类型。 |
+| DOG_FACE<sup>13+</sup>                   | 4    | 用于检测狗脸的metadata类型。 |
+| DOG_BODY<sup>13+</sup>                   | 5    | 用于检测狗的身体的metadata类型。 |
+| SALIENT_DETECTION<sup>13+</sup>          | 6    | 用于显著性检测。 |
+
+## Emotion<sup>13+</sup>
+枚举，人脸检测信息中的情绪类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值   | 说明              |
+| -------------------------- | ---- | ----------------- |
+| NEUTRAL                 | 0    | 平静。 |
+| SADNESS                   | 1    | 悲伤。 |
+| SMILE                   | 2    | 微笑。 |
+| SURPRISE                   | 3    | 惊讶。 |
+
+## MetadataObject
+
+相机检测元数据信息的基础类型，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称         | 类型                                        | 只读 | 可选 |说明                |
+| -----------  | ------------------------------------------- | ---- | ---- | ----------------- |
+| objectId<sup>13+</sup>     | number                                      |  是  |  否  | metadataObject Id序号。|
+| confidence<sup>13+</sup>   | number                                      |  是  |  否  | 检测置信度，取值范围[0,1]。|
+
+## MetadataFaceObject<sup>13+</sup>
+
+相机检测到的人脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                    | 类型                              | 只读 | 可选 |说明                |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                             |  是  |  否  | 左眼区域框|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                            |  是  |  否  | 右眼区域框。|
+| emotion                | [Emotion](#emotion13)             |  是  |  否  | 检测到的情绪类型。|
+| emotionConfidence      | number                            |  是  |  否  | 情绪检测置信度，取值范围[0,1]。|
+| pitchAngle             | number                            |  是  |  否  | 俯仰角度，取值范围[-90, 90]，以向下为正。|
+| yawAngle               | number                            |  是  |  否  | 左右旋转角度，取值范围[-90, 90]，以向右为正。|
+| rollAngle              | number                            |  是  |  否  | 平面内旋转角度，取值范围[-180, 180]，以顺时针方向为正。|
+
+## MetadataHumanBodyObject<sup>13+</sup>
+
+相机检测到的人体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## MetadataCatFaceObject<sup>13+</sup>
+
+相机检测到的猫脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                    | 类型                              | 只读 | 可选 |说明                |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 左眼区域框。|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 右眼区域框。|
+
+## MetadataCatBodyObject<sup>13+</sup>
+
+相机检测到的猫的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## MetadataDogFaceObject<sup>13+</sup>
+
+相机检测到的狗脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                    | 类型                              | 只读 | 可选 |说明                |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 左眼区域框。|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 右眼区域框。|
+
+## MetadataDogBodyObject<sup>13+</sup>
+
+相机检测到的狗的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+## MetadataSalientDetectionObject<sup>13+</sup>
+
+相机检测到的显著性元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.on('metadataObjectsAvailable')接口获取。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
 ## PortraitEffect
 
 人像效果类型。

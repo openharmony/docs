@@ -3834,7 +3834,7 @@ createRandomAccessFileSync(file: string | File, mode?: number,
 
 createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
-基于文件路径创建文件流，使用Promise异步返回。
+基于文件路径创建文件流，使用Promise异步返回。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3873,7 +3873,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-基于文件路径创建文件流，使用callback异步回调。
+基于文件路径创建文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3908,7 +3908,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 createStreamSync(path: string, mode: string): Stream
 
-以同步方法基于文件路径创建文件流。
+以同步方法基于文件路径创建文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3943,7 +3943,7 @@ createStreamSync(path: string, mode: string): Stream
 
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
-基于文件描述符打开文件流，使用Promise异步返回。
+基于文件描述符打开文件流，使用Promise异步返回。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3975,16 +3975,20 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
     stream.closeSync();
   }).catch((err: BusinessError) => {
     console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
+    // 文件流打开失败后，文件描述符需要手动关闭
     fs.closeSync(file);
   });
   ```
+
+> **注意：**
+>
+> 使用文件描述符创建的文件流，文件描述符的生命周期也交由文件流对象，在调用文件流的close()函数后，初始的文件描述符也会被关闭。
 
 ## fs.fdopenStream
 
 fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-基于文件描述符打开文件流，使用callback异步回调。
+基于文件描述符打开文件流，使用callback异步回调。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4009,19 +4013,24 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
+      stream.closeSync();
     } else {
       console.info("fdopen stream succeed");
+      // 文件流打开失败后，文件描述符需要手动关闭
       fs.closeSync(file);
     }
-    stream.closeSync();
   });
   ```
+
+> **注意：**
+>
+> 使用文件描述符创建的文件流，文件描述符的生命周期也交由文件流对象，在调用文件流的close()函数后，初始的文件描述符也会被关闭。
 
 ## fs.fdopenStreamSync
 
 fdopenStreamSync(fd: number, mode: string): Stream
 
-以同步方法基于文件描述符打开文件流。
+以同步方法基于文件描述符打开文件流。需要配合[Stream](#stream)中的close()函数关闭文件流。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4048,9 +4057,12 @@ fdopenStreamSync(fd: number, mode: string): Stream
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let stream = fs.fdopenStreamSync(file.fd, "r+");
-  fs.closeSync(file);
   stream.closeSync();
   ```
+
+> **注意：**
+>
+> 使用文件描述符创建的文件流，文件描述符的生命周期也交由文件流对象，在调用文件流的close()函数后，初始的文件描述符也会被关闭。
 
 ## fs.createReadStream<sup>12+</sup>
 
@@ -5750,6 +5762,8 @@ open接口flags参数常量。文件打开标签。
 ## ReadStream<sup>12+</sup>
 
 文件可读流，需要先通过[fs.createReadStream](#fscreatereadstream12)方法来构建一个ReadStream实例。
+
+**规格**：ReadStream读到的数据为解码后的字符串，其编码格式当前仅支持'utf-8'。
 
 ### 属性
 

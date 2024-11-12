@@ -1,6 +1,6 @@
 # @system.app (Application Context)
 
-> **NOTE** 
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -20,7 +20,7 @@ static getInfo(): AppResponse
 
 Obtains the declared information in the **config.json** file of an application.
 
-This API is deprecated since API version 9. You are advised to use [bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) instead.
+This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -28,9 +28,9 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [AppResponse](#appresponse) | Application response information. |
+| [AppResponse](#appresponse) | Application response information.|
 
 **Example**
 
@@ -74,15 +74,17 @@ Sets the maximum number of decoded images that can be cached in the memory to sp
 
 **setImageCacheCount** takes effect only when used in [onPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or [aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) on the page decorated by @Entry.
 
+The **setImageCacheCount**, **setImageRawDataCacheSize**, and **setImageFileCacheSize** APIs are not flexible and will not be further evolved in future developments. In light of this, consider using [ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife) for more complex scenarios.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes | Number of decoded images that are cached in the memory. |
+| value | number | Yes| Number of decoded images that are cached in the memory.|
 
 **Example**
 
@@ -127,9 +129,9 @@ Sets the maximum size (in bytes) of the image data cached in the memory before d
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes | Size of the image data cached before decoding, in bytes. |
+| value | number | Yes| Size of the image data cached before decoding, in bytes.|
 
 **Example**
 
@@ -172,9 +174,9 @@ Sets the maximum size of the image file cache (in bytes) to speed up the loading
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes | Size of the image file cache, in bytes. |
+| value | number | Yes| Size of the image file cache, in bytes.|
 
 **Example**
 
@@ -185,7 +187,7 @@ import app, { AppResponse } from '@system.app'
 export default class OnC {
   onCreate() {
     app.setImageFileCacheSize(209715200)
-    // Set the upper limit of the image file cache to 200 MB. (200 x 1024 x 1024 B= 209715200 B = 200 MB). 
+    // Set the upper limit of the image file cache to 200 MB. (200 x 1024 x 1024 B= 209715200 B = 200 MB).
     console.info('Application onCreate')
   }
   onDestroy() {
@@ -204,9 +206,9 @@ This API is deprecated since API version 8.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type                                             | Mandatory | Description                                                        |
+| Name   | Type                                             | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenOnVisibleOptions](#screenonvisibleoptions) | No  | With keep-alive, the system is prevented from returning to the home screen when the screen is locked, so that the application is visible when the screen is woken up. |
+| options | [ScreenOnVisibleOptions](#screenonvisibleoptions) | No  | With keep-alive, the system is prevented from returning to the home screen when the screen is locked, so that the application is visible when the screen is woken up.|
 
 ### requestFullWindow<sup>(deprecated)</sup>
 
@@ -220,9 +222,9 @@ You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
 
 **Parameters**
 
-| Name | Type                                                 | Mandatory | Description                                                        |
+| Name | Type                                                 | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RequestFullWindowOptions](#requestfullwindowoptions) | No  | Duration for transition from the non-full window to the full window, in milliseconds. By default, the value is in direct proportion to the distance between the non-full window and the full window. |
+| options | [RequestFullWindowOptions](#requestfullwindowoptions) | No  | Duration for transition from the non-full window to the full window, in milliseconds. By default, the value is in direct proportion to the distance between the non-full window and the full window.|
 
 **Example**
 
@@ -245,12 +247,12 @@ Defines the application response information.
 
 **System capability**: The items in the table below require different system capabilities. For details, see the table.
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- |-------- |
-| appID<sup>6+</sup> | string | Yes | Bundle name of an application. It uniquely identifies the application.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Full|
-| appName | string | Yes | Application name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
-| versionName | string | Yes | Application version name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
-| versionCode | number | Yes | Application version number.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+| appID<sup>6+</sup> | string | Yes| Bundle name of an application. It uniquely identifies the application.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Full|
+| appName | string | Yes| Application name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+| versionName | string | Yes| Application version name.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+| versionCode | number | Yes| Application version number.<br> **System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 
 ## ScreenOnVisibleOptions
 
@@ -258,12 +260,12 @@ Defines the options of the visible interface on the screen.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| visible | boolean | No | Whether to keep the application visible. The default value is **false**. |
-| success | () => void | No | Callback upon success. |
-| fail | (data: string, code: number) => void | No | Callback upon failure. |
-| complete | () => void | No | Called when the API call is complete. |
+| visible | boolean | No| Whether to keep the application visible. The default value is **false**.|
+| success | () => void | No| Callback upon success.|
+| fail | (data: string, code: number) => void | No| Callback upon failure.|
+| complete | () => void | No| Called when the API call is complete.|
 
 ## RequestFullWindowOptions
 
@@ -271,6 +273,6 @@ Defines the options of the **RequestFullWindow** API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| duration | number | Yes | Duration of an animation, in milliseconds. |
+| duration | number | Yes| Duration of an animation, in milliseconds.|
