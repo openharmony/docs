@@ -1,6 +1,6 @@
 # 建立应用侧与前端页面数据通道(C/C++)
 
-前端页面和应用侧之间可以使用Native方法实现两端通信（以下简称Native PostWebMessage），可解决ArkTS环境的冗余切换，同时允许发送消息、回调在非UI线程上报，避免造成UI阻塞。当前只支持string和buffer数据类型。
+前端页面和应用侧之间可以使用Native方法实现两端通信（以下简称Native PostWebMessage），可解决ArkTS环境的冗余切换，同时允许发送消息、回调在非UI线程上运行，避免造成UI阻塞。当前只支持string和buffer数据类型。
 
 ## 适用的应用架构
 
@@ -8,9 +8,9 @@
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
-  上图展示了具有普遍适用性的小程序的通用架构。在这一架构中，逻辑层依赖于应用程序自带的JavaScript运行时，该运行时在一个已有的C++环境中运行。通过Native接口，逻辑层能够直接在C++环境中与视图层（其中ArkWeb充当渲染器）进行通信，无需回退至ArkTS环境使用ArkTs PostWebMessage接口，如左图所示。
+  上图展示了具有普遍适用性的小程序的通用架构。在这一架构中，逻辑层依赖于应用程序自带的JavaScript运行时，该运行时在一个已有的C++环境中运行。通过Native接口，逻辑层能够直接在C++环境中与视图层（其中ArkWeb充当渲染器）进行通信，无需回退至ArkTS环境使用ArkTS PostWebMessage接口。
 
-  左图是使用ArkTS PostWebMessage接口构建小程序的方案，应用需要先调用到ArkTS环境，再调用到C++环境，如左图红框所示。右图是使用Native PostWebMessage接口构建小程序的方案，不需要ArkTS环境和C++环境的切换，执行效率更高。
+  左图是使用ArkTS PostWebMessage接口构建小程序的方案，，如红框所示，应用需要先调用到ArkTS环境，再调用到C++环境。右图是使用Native PostWebMessage接口构建小程序的方案，不需要ArkTS环境和C++环境的切换，执行效率更高。
 
   ![arkweb_postwebmessage_diff](figures/arkweb_postwebmessage_diff.png)
 
