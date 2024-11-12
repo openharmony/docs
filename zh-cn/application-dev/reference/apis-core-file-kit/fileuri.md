@@ -5,9 +5,9 @@
 
 文件统一资源标识符（File Uniform Resource Identifier），支持fileuri与路径path的转换、有效性校验、以及指向的变换（指向的文件或路径）。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：**SystemCapability.FileManagement.AppFileService
 
-**起始版本：** 12
+**起始版本：**12
 
 
 ## 汇总
@@ -43,9 +43,9 @@ FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri (const char * uri, unsigne
 
 获取uri所在目录的uri，如果是文件uri则获取父目录的uri，如果是目录uri则返回本身。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：**SystemCapability.FileManagement.AppFileService
 
-**起始版本：** 12
+**起始版本：**12
 
 **参数:**
 
@@ -70,9 +70,9 @@ FileManagement_ErrCode OH_FileUri_GetPathFromUri (const char * uri, unsigned int
 
 将传入的uri转换成路径path。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：**SystemCapability.FileManagement.AppFileService
 
-**起始版本：** 12
+**起始版本：**12
 
 **参数:**
 
@@ -97,9 +97,9 @@ FileManagement_ErrCode OH_FileUri_GetUriFromPath (const char * path, unsigned in
 
 将传入的路径path转换成uri。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：**SystemCapability.FileManagement.AppFileService
 
-**起始版本：** 12
+**起始版本：**12
 
 **参数:**
 
@@ -124,9 +124,9 @@ bool OH_FileUri_IsValidUri (const char * uri, unsigned int length )
 
 校验传入的uri是否有效。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：**SystemCapability.FileManagement.AppFileService
 
-**起始版本：** 12
+**起始版本：**12
 
 **参数:**
 
@@ -149,9 +149,9 @@ FileManagement_ErrCode OH_FileUri_GetFileName (const char * uri, unsigned int le
 
 获取传入的uri中的文件名称。
 
-**系统能力：** SystemCapability.FileManagement.AppFileService
+**系统能力：**SystemCapability.FileManagement.AppFileService
 
-**起始版本：** 13
+**起始版本：**13
 
 **参数:**
 
