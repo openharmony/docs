@@ -352,13 +352,13 @@ OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
 // 3.（可选）基于支持的最大级别做业务逻辑区分
 switch (maxLevel) {
    case AVC_LEVEL_31:
-      // level 3.1-3.2宽、高最大可配1280x720
+      // level 3.1-3.2，宽、高最大可配1280x720
       break;
    case AVC_LEVEL_51:
-      // level 4.0-5.1宽、高最大可配1920x1080
+      // level 4.0-后续，宽、高最大可配1920x1080
       break;
    default:
-      // ...
+      // 报错，不做编码
 }
 // 4. 配置档次参数
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);

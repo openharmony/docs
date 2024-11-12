@@ -931,7 +931,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     使用示例：
 
     ```c++
-    struct Rect   // 源内存区域的宽、高，通过回调函数OnNewOutputBuffer获取
+    // 源内存区域的宽、高，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取
+    struct Rect
     {
         int32_t width;
         int32_t height;
@@ -942,17 +943,17 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         int32_t wStride;
         int32_t hStride;
     };
-
-    struct SrcRect // 源内存区域的宽、高跨距，通过回调函数OnNewOutputBuffer获取
+    // 源内存区域的宽、高跨距，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取
+    struct SrcRect
     {
         int32_t wStride;
         int32_t hStride;
     };
 
     Rect rect = {320, 240};
-    DstRect dstRect = {320, 250};
-    SrcRect srcRect = {320, 250};
-    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
+    DstRect dstRect = {320, 240};
+    SrcRect srcRect = {320, 256};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride * 3 / 2]; // 目标内存区域的指针
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
