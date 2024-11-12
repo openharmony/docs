@@ -1450,7 +1450,7 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     try {
       let options : window.SubWindowOptions = {
         title: 'title',
@@ -1667,7 +1667,7 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage:window.WindowStage) {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     try {
       let options : window.SubWindowOptions = {
         title: 'title',
@@ -2529,7 +2529,7 @@ try {
     console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+  cons ole.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4245,9 +4245,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-private SetUIContent(windowClass: window.Window) {
+// EntryAbility.ets
+export default class EntryAbility extends UIAbility {
+  // ...
+  private SetUIContent(windowClass: window.Window) {
     windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
       if (err.code) {
         console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
@@ -4261,6 +4266,7 @@ private SetUIContent(windowClass: window.Window) {
         console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
       };
     });
+  }
 }
 ```
 
