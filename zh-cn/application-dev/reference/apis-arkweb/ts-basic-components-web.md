@@ -987,7 +987,7 @@ struct WebComponent {
 
 textZoomAtio(textZoomAtio: number)
 
-设置页面的文本缩放百分比，默认为100%。
+设置页面的文本缩放百分比，默认为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1021,7 +1021,7 @@ textZoomAtio(textZoomAtio: number)
 
 textZoomRatio(textZoomRatio: number)
 
-设置页面的文本缩放百分比，默认为100%。
+设置页面的文本缩放百分比，默认为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2482,7 +2482,7 @@ struct WebComponent {
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // 用户自定义行为
       console.log("拦截 id：customItem1")
-      return true;// 用户自定义菜单选项返回true、false无影响，推荐返回true
+      return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
       // 用户自定义行为
       console.log("拦截 id：app.string.customItem2")
