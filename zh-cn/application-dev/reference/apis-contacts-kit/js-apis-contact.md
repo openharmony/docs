@@ -3790,6 +3790,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 | sipAddresses      | [SipAddress](#sipaddress)[]             | 是   | 是   | 联系人的会话发起协议（SIP）地址列表。  |
 | websites          | [Website](#website)[]                   | 是   | 是   | 联系人的网站列表。                     |
 | name              | [Name](#name)                           | 是   | 是   | 联系人的姓名。                         |
+| nickName          | [NickName](#nickname)                   | 是   | 是   | 联系人的昵称。                         |
 | note              | [Note](#note)                           | 是   | 是   | 联系人的备注。                         |
 | organization      | [Organization](#organization)           | 是   | 是   | 联系人的组织信息。                     |
 
@@ -3807,6 +3808,9 @@ let myContact: contact.Contact = {
     name: {
         fullName: "fullName",
         namePrefix: "namePrefix"
+    },
+    nickName: {
+        nickName: "nickName"
     }
 };
 ```
@@ -3858,6 +3862,7 @@ let contactAttributes: contact.ContactAttributes = {
 | ATTR_GROUP_MEMBERSHIP | 联系人的群组。                     |
 | ATTR_IM               | 联系人的即时消息地址。             |
 | ATTR_NAME             | 联系人的姓名。                     |
+| ATTR_NICKNAME         | 联系人的昵称。                     |
 | ATTR_NOTE             | 联系人的备注。                     |
 | ATTR_ORGANIZATION     | 联系人的组织信息。                 |
 | ATTR_PHONE            | 联系人的电话号码。                 |
@@ -4109,6 +4114,29 @@ let name: contact.Name = {
 ```
 
 
+## NickName
+
+联系人的昵称类。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
+
+| 名称     |   类型   | 可读 | 可写 | 说明           |
+| -------- | -------- | ---- | ---- | -------------- |
+| nickName | string   | 是   | 是   | 联系人的昵称。 |
+
+
+**对象创建示例：**
+
+  使用JSON格式创建数据：
+
+```js
+let nickName: contact.NickName = {
+    nickName: "nickName"
+};
+```
+
 ## Note
 
 联系人的备注类。
@@ -4179,6 +4207,19 @@ let organization: contact.Organization = {
 | NUM_FAX_HOME     | 5    | 家庭传真电话类型。                               |
 | NUM_PAGER        | 6    | 寻呼机电话类型。                                 |
 | NUM_OTHER        | 7    | 其它电话类型。                                   |
+| NUM_CALLBACK     | 8    | 回呼电话类型。                                   |
+| NUM_CAR          | 9    | 车机电话类型。                                   |
+| NUM_COMPANY_MAIN | 10   | 公司电话类型。                                   |
+| NUM_ISDN         | 11   | 综合业务数字网（ISDN）电话类型。                 |
+| NUM_MAIN         | 12   | 主电话类型。                                     |
+| NUM_OTHER_FAX    | 13   | 其它传真类型。                                   |
+| NUM_RADIO        | 14   | 无线电话类型。                                   |
+| NUM_TELEX        | 15   | 电传电话类型。                                   |
+| NUM_TTY_TDD      | 16   | 电传打字机（TTY）或测试驱动开发（TDD）电话类型。 |
+| NUM_WORK_MOBILE  | 17   | 工作移动电话类型。                               |
+| NUM_WORK_PAGER   | 18   | 工作寻呼机电话类型。                             |
+| NUM_ASSISTANT    | 19   | 助理电话类型。                                   |
+| NUM_MMS          | 20   | 彩信电话类型。                                   |
 | INVALID_LABEL_ID | -1   | 无效电话类型。                                   |
 
 
