@@ -40,7 +40,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID  | Error Message |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 
 **Example**
@@ -107,7 +107,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID  | Error Message |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 
 **Example**
@@ -169,7 +169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID  | Error Message |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 
 **Example**
@@ -271,7 +271,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID  | Error Message |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 
 **Example**
@@ -337,7 +337,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID  | Error Message |
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001    | Internal error. |
 
 **Example**
@@ -381,7 +381,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 Opens a custom dialog box.
 
-This API cannot be used in **ServiceExtension**.
+<!--Del-->This API cannot be used in **ServiceExtension**.<!--DelEnd-->
 
 **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
 
@@ -409,7 +409,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                          |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal error. |
 
 **Example**
@@ -426,10 +426,10 @@ struct Index {
     Column() {
       Text('Toast').fontSize(30)
       Row({ space: 50 }) {
-        Button ("OK").onClick () => {
+        Button("OK").onClick(() => {
           promptAction.closeCustomDialog(this.customDialogComponentId)
         })
-        Button ("Cancel").onClick () => {
+        Button("Cancel").onClick(() => {
           promptAction.closeCustomDialog(this.customDialogComponentId)
         })
       }
@@ -479,11 +479,11 @@ function customDialogBuilder() {
   Column() {
     Text('Custom dialog Message').fontSize(10)
     Row() {
-      Button ("OK").onClick () => {
+      Button("OK").onClick(() => {
         promptAction.closeCustomDialog(customDialogId)
       })
       Blank().width(50)
-      Button ("Cancel").onClick () => {
+      Button("Cancel").onClick(() => {
         promptAction.closeCustomDialog(customDialogId)
       })
     }
@@ -511,6 +511,7 @@ struct Index {
               builder: () => {
                 this.customDialogComponent()
               },
+              keyboardAvoidMode: KeyboardAvoidMode.NONE,
               showInSubWindow: false,
               offset: { dx: 5, dy: 5 },
               backgroundColor: 0xd9ffffff,
@@ -561,7 +562,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                          |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal error. |
 
 **Example**
@@ -701,6 +702,7 @@ Defines the options of the dialog box.
 | onDidDisappear<sup>12+</sup> | () => void | No | Event callback when the dialog box disappears.<br>**NOTE**<br>The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear. |
 | onWillAppear<sup>12+</sup> | () => void | No | Event callback when the dialog box is about to appear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. You can set the callback event for changing the dialog box display effect in **onWillAppear**. The settings take effect next time the dialog box appears. |
 | onWillDisappear<sup>12+</sup> | () => void | No | Event callback when the dialog box is about to disappear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. If the user dismisses the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**. |
+| keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](#keyboardavoidmode12) | No| How the dialog box avoids the soft keyboard when it is brought up.<br>Default value: **KeyboardAvoidMode.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## DismissDialogAction<sup>12+</sup>
 
@@ -715,7 +717,31 @@ Provides information about the action to dismiss the dialog box.
 | Name   | Type                                                        | Readable | Writable | Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | No  | No  | Callback for dismissing the dialog box. This API is called only when the dialog box needs to be exited. |
-| reason  | [DismissReason](arkui-ts/ts-appendix-enums.md#dismissreason12) | No  | No  | Reason why the dialog box cannot be dismissed. You must specify whether to dismiss the dialog box for each of the listed actions. |
+| reason  | [DismissReason](#dismissreason12) | No  | No  | Reason why the dialog box cannot be dismissed. You must specify whether to dismiss the dialog box for each of the listed actions.|
+
+## DismissReason<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Value  | Description                                                        |
+| ------------- | ---- | ------------------------------------------------------------ |
+| PRESS_BACK    | 0    | Touching the Back button, swiping left or right on the screen, or pressing the Esc key.                          |
+| TOUCH_OUTSIDE | 1    | Touching the mask.                                              |
+| CLOSE_BUTTON  | 2    | Touching the Close button.                                              |
+| SLIDE_DOWN    | 3    | Sliding down.<br>**NOTE**<br>This API is effective only in [sheet transition](./arkui-ts/ts-universal-attributes-sheet-transition.md).|
+
+## KeyboardAvoidMode<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                                            |
+| ------- | ---- | ------------------------------------------------ |
+| DEFAULT | 0    | Automatically avoids the soft keyboard and compresses the height when reaching the maximum limit.|
+| NONE    | 1    | Does not avoid the soft keyboard.                                  |
 
 ## Button
 
