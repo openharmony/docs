@@ -41,6 +41,7 @@ hiperf [command] --help
 ## list命令
 
 可列出设备上支持的所有事件名称，事件名称用于 stat 和 record 的 -e 和 -g 参数。
+
 **list命令参数说明**
 
 | 参数 | 参数说明 |
@@ -75,6 +76,7 @@ hiperf list hw
 ## record命令
 
 采样指定目标程序，并且将采样数据保存到指定的文件中(默认为/data/local/tmp/perf.data)。
+
 **record命令参数说明**
 
 | 参数 | 参数说明 |
@@ -140,6 +142,7 @@ hiperf record --help
 ## stat命令
 
 监听指定目标程序，周期性打印性能计数器的值。
+
 **stat命令参数说明**
 
 | 参数 | 参数说明 |
@@ -181,6 +184,7 @@ hiperf stat --help
 ## dump命令
 
 此命令主要以不加以处理的方式直接读取perf.data的数据，开发和测试人员可核对其中原始采样数据的正确性。
+
 **dump命令参数说明**
 
 | 参数 | 参数说明 |
@@ -217,6 +221,7 @@ hiperf dump --help
 ## report命令
 
 此命令主要用于展示相关采样数据（从perf.data中读取）并且转换为用户需要的格式（比如Json或者ProtoBuf）。
+
 **report命令参数说明**
 
 | 参数 | 参数说明 |
