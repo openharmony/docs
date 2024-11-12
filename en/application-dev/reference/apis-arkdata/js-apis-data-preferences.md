@@ -1874,6 +1874,29 @@ promise.then(() => {
 })
 ```
 
+### flushSync<sup>14+</sup>
+
+flushSync(): void
+
+Flushes the data in the cached **Preferences** instance to the persistent file.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**Example**
+
+```ts
+dataPreferences.flushSync();
+```
 
 ### clear
 
