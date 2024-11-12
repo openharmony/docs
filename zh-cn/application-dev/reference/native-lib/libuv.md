@@ -260,7 +260,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 
 **临时方案：**
 
-在当下的系统版本中，我们并不推荐开发者直接通过`napi_get_uv_event_loop`获取应用主线程的uvloop进行业务逻辑的开发。如果当前系统接口无法满足开发者的开发需求，确有必要使用libuv来实现业务功能，为了使libuv接口在主线程上生效，我们可以在调用类似*uv_xxx_start*后，执行一次`uv_async_send`的方式来主动触发应用主线程执行一次`uv_run`。这样可以保证该接口生效并正常执行。
+在当下的系统版本中，我们并不推荐开发者直接通过`napi_get_uv_event_loop`获取应用主线程的uvloop进行业务逻辑的开发。如果当前Node-API的接口无法满足开发者的开发需求，确有必要使用libuv来实现业务功能，为了使libuv接口在主线程上生效，我们可以在调用类似*uv_xxx_start*后，执行一次`uv_async_send`的方式来主动触发应用主线程执行一次`uv_run`。这样可以保证该接口生效并正常执行。
 
 针对上述无法生效的代码示例，可以修改如下使其生效：
 
