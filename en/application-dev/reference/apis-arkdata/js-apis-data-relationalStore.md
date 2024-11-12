@@ -1,16 +1,16 @@
 # @ohos.data.relationalStore (RDB Store)
 
-The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. It also allows sendable data to be obtained by using [ResultSet.getSendableRow](#getsendablerow12) and transferred across threads.
+The relational database (RDB) store manages data based on relational models. The **relationalStore** module provides a complete mechanism for managing local databases based on the underlying SQLite. You can use the APIs to perform operations such as adding, deleting, modifying, and querying data, and directly run SQL statements. You can also use [ResultSet.getSendableRow](#getsendablerow12) to obtain sendable data for cross-thread transmission.
 
 The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
-The application may be suspended if a large amount of data is queried. To prevent this problem, observe the following:
+Querying data from a large amount of data may take time or even cause application suspension. In this case, you can perform batch operations. For details, see [Batch Database Operations](../../arkts-utils/batch-database-operations-guide.md). Moreover, observe the following:
 - The number of data records to be queried at a time should not exceed 5000.
 - Use [TaskPool](../apis-arkts/js-apis-taskpool.md) if there is a large amount of data needs to be queried.
 - Keep concatenated SQL statements as concise as possible.
 - Query data in batches.
 
-The **relationalStore** module provides the following functionalities:
+The **relationalStore** module provides the following functionality:
 
 - [RdbPredicates](#rdbpredicates): provides predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
 - [RdbStore](#rdbstore): provides APIs for managing data in an RDB store.
@@ -32,7 +32,12 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 Obtains an RDB store. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
-If error code 14800011 is returned when this API is used to obtain an encrypted RDB store, check the value of **encrypt** in **StoreConfig**. The encrypted RDB store can be obtained successfully when **encrypt** is **true**.
+| Opening Mode | RDB Store Encryption Type          | Behavior|
+| ------- | -------------------------------- | ---- |
+| Not encrypt| Encrypt                         | Encrypts the RDB store and opens it.  |
+|  Encrypt| Not encrypt                         | Opens the RDB store in non-encryption mode.  |
+
+The parameter [encrypt](#storeconfig) takes effect only when the RDB store is created for the first time, and cannot be modified. It is important to set this parameter correctly.
 
 Currently, **getRdbStore()** does not support multi-thread concurrent operations.
 
@@ -128,7 +133,12 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 Obtains an RDB store. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
-If error code 14800011 is returned when this API is used to obtain an encrypted RDB store, check the value of **encrypt** in **StoreConfig**. The encrypted RDB store can be obtained successfully when **encrypt** is **true**.
+| Opening Mode | RDB Store Encryption Type          | Behavior|
+| ------- | -------------------------------- | ---- |
+| Not encrypt| Encrypt                         | Encrypts the RDB store and opens it.  |
+| Encrypt| Not encrypt                         | Opens the RDB store in non-encryption mode.  |
+
+The parameter [encrypt](#storeconfig) takes effect only when the RDB store is created for the first time, and cannot be modified. It is important to set this parameter correctly.
 
 Currently, **getRdbStore()** does not support multi-thread concurrent operations.
 
@@ -544,12 +554,13 @@ Defines the RDB store configuration.
 | name          | string        | Yes  | Database file name, which is the unique identifier of the database.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core  |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store; the value **false** (default) means the opposite.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery Connect (AGC). This parameter is not supported currently.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | autoCleanDirtyData<sup>11+</sup> | boolean | No| Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 | allowRebuild<sup>12+</sup> | boolean | No| Whether auto rebuild is allowed when the RDB store is corrupted. The default value is **false**.<br>The value **true** means auto rebuild is allowed.<br>The value **false** means the opposite.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | isReadOnly<sup>12+</sup> | boolean | No| Whether the RDB store is read-only. The default value is **false**, which means the RDB store is readable and writeable.<br>If the value is **true** (read-only), writing data to the RDB store will throw error code 801.<br>The value **false** means the RDB store is readable and writeable.<br>This parameter is supported since API version 12.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| pluginLibs<sup>12+</sup> | Array\<string> | No| Dynamic libraries with capabilities such as Full-Text Search (FTS).<br>**Constraints**: The maximum number of dynamic libraries is 16. If the number of dynamic library names exceeds 16, the RDB store fails to be opened and an error is returned. The dynamic library must be in the sandbox directory or system directory of the application. If the dynamic library cannot be loaded, the RDB store fails to be opened and an error is returned.<br>The dynamic library name must be a complete path. For example, **[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]**, where **context.bundleCodeDir** is the application sandbox path, **/libs/arm64/** indicates the subdirectory, and **libtokenizer.so** is the dynamic library name. If this parameter is left blank, dynamic libraries are not loaded by default.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| pluginLibs<sup>12+</sup> | Array\<string> | No| Dynamic libraries with capabilities such as Full-Text Search (FTS).<br>**Constraints**<br>1. The maximum number of dynamic library names is 16. If the number of dynamic library names exceeds 16, the library fails to be opened and an error is returned.<br>2. The dynamic libraries must be in the sandbox directory or system directory of the application. If a dynamic library fails to be loaded, the RDB store cannot be opened and an error will be returned.<br>3. The dynamic library name must be a complete path that can be loaded by SQLite.<br>Example: **context.bundleCodeDir + "/libs/arm64/" + libtokenizer.so**, where **context.bundleCodeDir** indicates the application sandbox path, **/libs/arm64/** is the subdirectory, **libtokenizer.so** indicates the file name of the dynamic library. If this parameter is left blank, dynamic libraries are not loaded by default.<br>4. The dynamic library must contain all its dependencies to prevent the failure caused by the lack of dependencies.<br>For example, in an NDK project, the default compilation parameters are used to build **libtokenizer.so**, which depends on the C++ standard library. When the dynamic library is loaded, **libc++_shared.so** is linked by mistake because the namespace is different from that during compilation. As a result, the **__emutls_get_address** symbol cannot be found. To solve this problem, you need to statically link the C++ standard library during compilation. For details, see [NDK Project Building Overview](../../napi/build-with-ndk-overview.md).<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core |
+| cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | No| Custom encryption parameters.<br>If this parameter is left empty, the default encryption parameters are used. For details, see default values of [CryptoParam](#cryptoparam14).<br>This parameter is valid only when **encrypt** is **true**.<br>This parameter is supported since API version 14.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 
 ## SecurityLevel
 
@@ -557,7 +568,7 @@ Enumerates the RDB store security levels. Use the enum name rather than the enum
 
 > **NOTE**
 >
-> To perform data sync operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Cross-Device Data Sync Mechanism](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-sync).
+> To perform data sync operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see [Access Control Mechanism in Cross-Device Sync](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-sync).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -567,6 +578,56 @@ Enumerates the RDB store security levels. Use the enum name rather than the enum
 | S2   | 2    | The RDB store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, an RDB store that contains information created by users or call records, such as audio or video clips.|
 | S3   | 3    | The RDB store security level is high. If data leakage occurs, major impact will be caused on the database. For example, an RDB store that contains information such as user fitness, health, and location data.|
 | S4   | 4    | The RDB store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, an RDB store that contains information such as authentication credentials and financial data.|
+
+## CryptoParam<sup>14+</sup>
+
+Represents the configuration of database encryption parameters. This parameter is valid only when **encrypt** in **StoreConfig** is **true**.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name         | Type  | Mandatory| Description                                                        |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| encryptionKey | Uint8Array | Yes  | Key used for database encryption and decryption.<br>If this parameter is not specified, the RDB store generates a key, saves the key, and uses the key to open the database file.<br>If the key is not required, you need to set the key to 0s.|
+| iterationCount | number | No| Number of iterations of the PBKDF2 algorithm used in the RDB store. The value is an integer. The default value is **10000**.<br>The value must be an integer greater than 0. If it is not an integer, the value is rounded down.<br>If this parameter is not specified or is set to **0**, the default value **10000** and the default encryption algorithm **AES_256_GCM** are used.|
+| encryptionAlgo | [EncryptionAlgo](#encryptionalgo14) | No| Algorithm used for database encryption and decryption. <br/>The default value is **AES_256_GCM**. |
+| hmacAlgo | [HmacAlgo](#hmacalgo14) | No| HMAC algorithm used for database encryption and decryption. <br/>The default value is **SHA256**. |
+| kdfAlgo | [KdfAlgo](#kdfalgo14) | No| PBKDF2 algorithm used for database encryption and decryption. <br/>The default value is the same as the HMAC algorithm used. |
+| cryptoPageSize | number | No| Page size used for database encryption and decryption. <br/>The default value is **1024** bytes.<br>The value must be an integer within the range of 1024 to 65536 and must be 2<sup>n</sup>. If the specified value is not an integer, the value is rounded down. |
+
+## EncryptionAlgo<sup>14+</sup>
+
+Enumerates the database encryption algorithms. Use the enum name rather than the enum value.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name| Value  | Description|
+| ---- | ---- | ---- |
+| AES_256_GCM |  0    | AES_256_GCM.    |
+| AES_256_CBC |  1    | AES_256_CBC.    |
+
+## HmacAlgo<sup>14+</sup>
+
+Enumerates the HMAC algorithms for the database. Use the enum name rather than the enum value.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name| Value  | Description|
+| ---- | ---- | ---- |
+| SHA1 |  0    | HMAC_SHA1.    |
+| SHA256 |  1    | HMAC_SHA256.    |
+| SHA512 |  2    | HMAC_SHA512.   |
+
+## KdfAlgo<sup>14+</sup>
+
+Enumerates the PBKDF2 algorithms for the database. Use the enum name rather than the enum value.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name| Value  | Description|
+| ---- | ---- | ---- |
+| KDF_SHA1 |  0    | PBKDF2_HMAC_SHA1.    |
+| KDF_SHA256 |  1    | PBKDF2_HMAC_SHA256.    |
+| KDF_SHA512 |  2    | PBKDF2_HMAC_SHA512.    |
 
 ## AssetStatus<sup>10+</sup>
 
@@ -626,16 +687,16 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 | string  | String. |
 | boolean | Boolean.|
 | Uint8Array<sup>10+</sup>           | Uint8 array.           |
-| Asset<sup>10+</sup>  | [Asset](#asset10).<br>If the field type is **Asset**, the type in the SQL statement for creating a table must be **ASSET**.|
-| Assets<sup>10+</sup> | [Assets](#assets10).<br>If the field type is **Assets**, the type in the SQL statement for creating a table must be **ASSETS**.|
-| Float32Array<sup>12+</sup> | Array of 32-bit floating-point numbers.<br>If the field type is **Float32Array**, the type in the SQL statement for creating a table must be **floatvector(128)**.|
-| bigint<sup>12+</sup> | Integer of any length.<br>If the value type is **bigint**, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example,'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint.|
+| Asset<sup>10+</sup>  | [Asset](#asset10).<br>If the value type is Asset, the type in the SQL statement for creating a table must be ASSET.|
+| Assets<sup>10+</sup> | [Assets](#assets10).<br>If the value type is Assets, the type in the SQL statement for creating a table must be ASSETS.|
+| Float32Array<sup>12+</sup> | Array of 32-bit floating-point numbers.<br>If the field type is Float32Array, the type in the SQL statement for creating a table must be floatvector(128).|
+| bigint<sup>12+</sup> | Integer of any length.<br>If the value type is bigint, the type in the SQL statement for creating a table must be **UNLIMITED INT**. For details, see [Persisting RDB Store Data](../../database/data-persistence-by-rdb-store.md).<br>**NOTE**<br>The bigint type does not support value comparison and cannot be used with the following predicates: **between**, **notBetween**, **greaterThanlessThan**, **greaterThanOrEqualTo**, **lessThanOrEqualTo**, **orderByAsc**, and **orderByDesc**<br>To write a value of bigint type, use **BigInt()** or add **n** to the end of the value, for example, 'let data = BigInt(1234)' or 'let data = 1234n'.<br>If data of the number type is written to a bigint field, the type of the return value obtained (queried) is number but not bigint. |
 
 ## ValuesBucket
 
 type ValuesBucket = Record<string, ValueType>
 
-Defines the data in the form of a KV pair, which cannot be transferred across threads.
+Defines the data in the form of a KV pair. **ValuesBucket** cannot be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -737,11 +798,11 @@ Enumerates the RDB store rebuild types. Use the enum name rather than the enum v
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name   | Value  | Description                                    |
-| ------- | ---- | ---------------------------------------- |
-| NONE    | 0    | The RDB store is not rebuilt.                  |
-| REBUILT | 1    | An empty RDB store is built.|
-| REPAIRED | 2    | The RDB store is repaired, with undamaged data restored. <!--RP2-->Currently, this value is available only to a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP2End-->|
+| Name   | Value  | Description                                                                                                            |
+| ------- | ---- |----------------------------------------------------------------------------------------------------------------|
+| NONE    | 0    | The RDB store is not rebuilt.                                                                                                   |
+| REBUILT | 1    | The RDB store is rebuilt, and an empty database is created. You need to create tables and restore data.                                                                            |
+| REPAIRED | 2    | The RDB store is repaired and undamaged data is restored. <!--RP2-->Currently, this value is available only to a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP2End--> |
 
 ## ChangeType<sup>10+</sup>
 
@@ -883,7 +944,7 @@ Represents statistics about SQL statements executed by the database.
 
 ## RdbPredicates
 
-Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. Data of the Sendable type cannot be passed across threads.
+Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Multiple predicates statements can be concatenated by using **and()** by default. **RdbPredicates** cannot be passed across threads.
 
 ### constructor
 
@@ -2040,7 +2101,7 @@ Before using the APIs of this class, use [executeSql](#executesql) to initialize
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name        | Type           | Read-Only      | Optional | Description                            |
+| Name        | Type           | Read-Only      | Optional| Description                            |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
 | version<sup>10+</sup>  | number | No| No  | RDB store version, which is an integer greater than 0.      |
 | rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | Yes| No| Whether the RDB store has been rebuilt or repaired.|
@@ -3656,7 +3717,7 @@ if(store != undefined) {
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
-Queries data in the RDB store based on specified **RdbPredicates** instance.
+Queries data in the RDB store based on specified conditions. This API returns the result synchronously. If complex logic and a large number of loops are involved in the operations on the **resultSet** obtained by **querySync()**, the freeze problem may occur. You are advised to perform this operation in the [taskpool](../apis-arkts/js-apis-taskpool.md) thread.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3665,7 +3726,7 @@ Queries data in the RDB store based on specified **RdbPredicates** instance.
 | Name    | Type                           | Mandatory| Description                                                        |
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.                     |
-| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. This parameter is left blank by default.|
+| columns    | Array&lt;string&gt;             | No  | Columns to query. If this parameter is not specified, the query applies to all columns. The default value is null.|
 
 **Error codes**
 
@@ -3870,16 +3931,16 @@ if(store != undefined && deviceId != undefined) {
 
 querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data using the specified SQL statement. This API uses an asynchronous callback to return the result.
+Queries data in the RDB store using the specified SQL statement. The number of relational operators between expressions and operators in the SQL statement cannot exceed 1000. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| sql      | string                                       | Yes  | SQL statement to run.                                       |
-| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.   |
+| Name  | Type                                        | Mandatory| Description                                   |
+| -------- | -------------------------------------------- | ---- |---------------------------------------|
+| sql      | string                                       | Yes  | SQL statement to run.                         |
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Error codes**
 
@@ -3920,7 +3981,7 @@ if(store != undefined) {
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data using the specified SQL statement. This API uses an asynchronous callback to return the result.
+Queries data in the RDB store using the specified SQL statement. The number of relational operators between expressions and operators in the SQL statement cannot exceed 1000. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3971,7 +4032,7 @@ if(store != undefined) {
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
-Queries data using the specified SQL statement. This API uses a promise to return the result.
+Queries data in the RDB store using the specified SQL statement. The number of relational operators between expressions and operators in the SQL statement cannot exceed 1000. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4027,7 +4088,7 @@ if(store != undefined) {
 
 querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
-Executes the SQL statement to query data in this RDB store.
+Queries data in the RDB store using the specified SQL statement. The number of relational operators between expressions and operators in the SQL statement cannot exceed 1000. If complex logic and a large number of loops are involved in the operations on the **resultSet** obtained by **querySync()**, the freeze problem may occur. You are advised to perform this operation in the [taskpool](../apis-arkts/js-apis-taskpool.md) thread.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4036,7 +4097,7 @@ Executes the SQL statement to query data in this RDB store.
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql      | string                               | Yes  | SQL statement to run.                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. This parameter is left blank by default.|
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank. The default value is null.|
 
 **Return value**
 
@@ -4060,8 +4121,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose");
 if(store != undefined) {
   try {
     let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
@@ -4086,11 +4145,11 @@ if(store != undefined) {
 
 executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
-Executes an SQL statement that contains specified arguments but returns no value. This API uses an asynchronous callback to return the result.
+Executes an SQL statement that contains specified arguments but returns no value. The number of relational operators between expressions and operators in the statement cannot exceed 1000. This API uses an asynchronous callback to return the result.
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
-Statements separated by semicolons (;) are not supported.
+Statements separated by semicolons (\;) are not supported.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4148,11 +4207,11 @@ if(store != undefined) {
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
-Executes an SQL statement that contains specified arguments but returns no value. This API uses an asynchronous callback to return the result.
+Executes an SQL statement that contains specified arguments but returns no value. The number of relational operators between expressions and operators in the statement cannot exceed 1000. This API uses an asynchronous callback to return the result.
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
-Statements separated by semicolons (;) are not supported.
+Statements separated by semicolons (\;) are not supported.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4211,11 +4270,11 @@ if(store != undefined) {
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
-Executes an SQL statement that contains specified arguments but returns no value. This API uses a promise to return the result.
+Executes an SQL statement that contains specified arguments but returns no value. The number of relational operators between expressions and operators in the statement cannot exceed 1000. This API uses a promise to return the result.
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
-Statements separated by semicolons (;) are not supported.
+Statements separated by semicolons (\;) are not supported.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4275,18 +4334,17 @@ if(store != undefined) {
 }
 ```
 
-
 ### execute<sup>12+</sup>
 
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
-Executes an SQL statement that contains the specified parameters. This API uses a promise to return the result.
+Executes an SQL statement that contains specified arguments. The number of relational operators between expressions and operators in the statement cannot exceed 1000. This API uses a promise to return a value of the ValueType type.
 
 This API can be used to add, delete, and modify data, run SQL statements of the PRAGMA syntax, and create, delete, and modify a table. The type of the return value varies, depending on the execution result.
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
-Statements separated by semicolons (;) are not supported.
+Statements separated by semicolons (\;) are not supported.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4371,14 +4429,14 @@ if(store != undefined) {
 
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
-Executes an SQL statement that contains the specified parameters. This API uses a promise to return the result.
+Executes an SQL statement that contains specified arguments. The number of relational operators between expressions and operators in the statement cannot exceed 1000. This API uses a promise to return the result.
 
 <!--RP1-->
-This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
+This API is available only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
-Statements separated by semicolons (;) are not supported.
+Statements separated by semicolons (\;) are not supported.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4447,13 +4505,13 @@ if(store != null) {
 
 executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
-Executes an SQL statement containing the specified parameters. The return value type is ValueType.
+Executes an SQL statement that contains specified arguments. The number of relational operators between expressions and operators in the statement cannot exceed 1000. This API returns a value of the ValueType type.
 
-You can use this API to add, delete, or modify a row of data with SQL statements of the PRAGMA syntax, and create, delete, or modify a table. The type of the return value is determined by the execution result.
+This API can be used to add, delete, and modify data, run SQL statements of the PRAGMA syntax, and create, delete, and modify a table. The type of the return value varies, depending on the execution result.
 
 This API does not support query, attach, or transaction operations. To perform these operations, use [querySql](#querysql10), [query](#query10), [attach](#attach12), [beginTransaction](#begintransaction), and [commit](#commit).
 
-Statements separated by semicolons (;) are not supported.
+Statements separated by semicolons (\;) are not supported.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4462,7 +4520,7 @@ Statements separated by semicolons (;) are not supported.
 | Name| Type                                | Mandatory| Description                                                        |
 | ------ | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | sql    | string                               | Yes  | SQL statement to run.                                       |
-| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. This parameter is left blank by default.|
+| args   | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If this parameter is left blank or set to **null** or **undefined**, the SQL statement is complete. The default value is null.|
 
 **Return value**
 
@@ -4665,7 +4723,7 @@ if(store != undefined) {
 
 beginTransaction():void
 
-Starts the transaction before executing an SQL statement.
+Begins a transaction before executing an SQL statement.
 This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -4723,12 +4781,12 @@ if(store != undefined) {
 
 beginTrans(): Promise&lt;number&gt;
 
-Begins the transaction before executing the SQL statement. This API uses a promise to return the result.
+Begins a transaction before executing the SQL statement. This API uses a promise to return the result.
 
 Different from [beginTransaction](#begintransaction), this API returns a transaction ID. [execute](#execute12-1) can specify the transaction ID to isolate different transactions.
 
 <!--RP1-->
-This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
+This API is available only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4789,7 +4847,7 @@ if(store != null) {
 
 commit():void
 
-Commits the executed SQL statements.
+Commits the executed SQL statement. This API must be used with [beginTransaction](#begintransaction).
 This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -4846,10 +4904,10 @@ if(store != undefined) {
 
 commit(txId : number):Promise&lt;void&gt;
 
-Commits the executed SQL statements. This API must be used with [beginTrans](#begintrans12).
+Commits the executed SQL statement. This API must be used with [beginTrans](#begintrans12).
 
 <!--RP1-->
-This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
+This API is available only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4914,7 +4972,7 @@ if(store != null) {
 
 rollBack():void
 
-Rolls back the SQL statements that have been executed.
+Rolls back the executed SQL statement.
 This API does not allow nested transactions and cannot be used across processes or threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -4979,10 +5037,10 @@ if(store != undefined) {
 
 rollback(txId : number):Promise&lt;void&gt;
 
-Rolls back the executed SQL statements. This API must be used with [beginTrans](#begintrans12).
+Rolls back the executed SQL statement. This API must be used with [beginTrans](#begintrans12).
 
 <!--RP1-->
-This API can be used only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
+This API is available only for a [vector database](js-apis-data-relationalStore-sys.md#storeconfig).<!--RP1End-->
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -5724,7 +5782,7 @@ Synchronizes data between devices. This API uses a promise to return the result.
 
 | Type                                        | Description                                                        |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the sync result. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure.|
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the sync result. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Error codes**
 
@@ -5970,7 +6028,7 @@ Subscribes to data changes of specified devices. When the data of the specified 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
 | type     | [SubscribeType](#subscribetype)                              | Yes  | Type of data change to observe.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback used to return the data change. Array&lt;string&gt; holds the IDs of the peer devices whose data is changed. |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback used to return the data change. Array&lt;string&gt; holds the IDs of the peer devices whose data is changed.|
 
 **Error codes**
 
@@ -6011,7 +6069,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;): void
 
-Subscribes to data changes of specified devices. A callback is called when data in a distributed or local RDB store changes.
+Subscribes to data changes of the specified devices. The registered callback will be called when data in a distributed or local RDB store changes.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6208,7 +6266,7 @@ Subscribes to SQL statistics.
 
 | Name      | Type                             | Mandatory| Description                               |
 | ------------ |---------------------------------| ---- |-----------------------------------|
-| event        | string                          | Yes  | Event type. The value is **statistics**, which indicates the statistics of the SQL execution time.|
+| event        | string                          | Yes  | Event type. The value is **'statistics'**, which indicates the statistics of the SQL execution time.|
 | observer     | Callback&lt;[SqlExecutionInfo](#sqlexecutioninfo12)&gt; | Yes  | Callback used to return the statistics about the SQL execution time in the database. |
 
 **Error codes**
@@ -6279,7 +6337,7 @@ Unsubscribes from data changes of the specified devices.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event    | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.                          |
 | type     | [SubscribeType](#subscribetype) | Yes  | Type of data change to observe.                                                  |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback to unregister. Array&lt;string&gt; holds the IDs of the peer devices whose data is changed.|
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback to unregister. **Array&lt;string&gt;** holds the IDs of the peer devices whose data is changed.|
 
 **Error codes**
 
@@ -7823,7 +7881,7 @@ if(resultSet != undefined) {
 
 getString(columnIndex: number): string
 
-Obtains the value from the specified column and current row, and returns it in the form of a string.<br>If the type of the value in the specified column is INTEGER, DOUBLE, TEXT, or BLOB, a string will be returned. If the value type is INTEGER and the column is empty, an empty string will be returned. If the value is of any other type, **14800000** will be returned.
+Obtains the value from the specified column and current row, and returns it in the form of a string.<br>If the type of the value in the specified column is INTEGER, DOUBLE, TEXT, or BLOB, a string will be returned. If the value type is INTEGER and the column is empty, an empty string will be returned. If the value is of any other type, **14800000** will be returned. If the value in the current column is of the DOUBLE type, the precision may be lost. You are advised to use [getDouble](#getdouble) to obtain the value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8146,7 +8204,7 @@ if(resultSet != undefined) {
 
 getSendableRow(): sendableRelationalStore.ValuesBucket
 
-Obtains the Sendable data from the current row. The data obtained is used for cross-thread transfer.
+Obtains the sendable data from the current row. The sendable data can be passed across threads.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8299,3 +8357,5 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 |-----------| ------------------------------------------------------------ |
 | 14800000  | Inner error. |
 | 14800012  | Row out of bounds. |
+
+<!--no_check-->
