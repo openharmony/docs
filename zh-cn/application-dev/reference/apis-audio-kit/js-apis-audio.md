@@ -82,7 +82,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 0
 };
 
@@ -135,7 +135,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 0
 };
 
