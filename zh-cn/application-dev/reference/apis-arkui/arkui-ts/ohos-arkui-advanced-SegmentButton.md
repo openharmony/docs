@@ -184,7 +184,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 ### 属性
 
-| 名称    | 类型                                                         | 必填 | 描述       |
+| 名称    | 类型                                                         | 必填 | 说明       |
 | ------- | ------------------------------------------------------------ | ---- | ---------- |
 | buttons | [ItemRestriction](#itemrestriction)\<[SegmentButtonTextItem](#segmentbuttontextitem)> | 是   | 按钮信息。 |
 
@@ -200,7 +200,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 ### 属性
 
-| 名称      | 类型                                              | 必填 | 描述                          |
+| 名称      | 类型                                              | 必填 | 说明                        |
 | -------- | ------------------------------------------------- | ---- | ----------------------------- |
 | buttons  | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | 是   | 按钮信息。                    |
 | multiply | boolean                                           | 否   | 是否可以多选，默认值：false。 |
@@ -452,26 +452,28 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 仅文本按钮信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型                                   | 必填 | 说明      |
 | ---- | -------------------------------------- | ---- | ---------- |
-| text | [ResourceStr](ts-types.md#resourcestr) | 是   | 按钮文本。 |
+| text | [ResourceStr](ts-types.md#resourcestr) | 是   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## SegmentButtonIconItem
 
 仅图标按钮信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 |名称      | 类型                                   | 必填 | 说明               |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中态的按钮图标。 |
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。   |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 >**说明：**
 >
@@ -481,17 +483,19 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 图标+文本按钮信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
 | 名称         | 类型                                   | 必填 | 说明                 |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中态的按钮图标。 |
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。   |
-| text         | [ResourceStr](ts-types.md#resourcestr) | 是   | 按钮文本。           |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| text         | [ResourceStr](ts-types.md#resourcestr) | 是   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 >**说明：**
 >
@@ -503,17 +507,19 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **装饰器类型：** @Observed
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
 | 名称         | 类型                                   | 必填 | 说明                 |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态的按钮图标。 |
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。   |
-| text         | [ResourceStr](ts-types.md#resourcestr) | 否   | 按钮文本。           |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| text         | [ResourceStr](ts-types.md#resourcestr) | 否   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 ### constructor
 
@@ -536,17 +542,19 @@ constructor(options: SegmentButtonItemOptionsConstructorOptions)
 
 SegmentButtonItemOptions的构造参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
 | 名称         | 类型                                   | 必填 | 说明              |
 | ------------ | -------------------------------------- | ---- | -------------------- |
-| icon         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态的按钮图标。 |
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。   |
-| text         | [ResourceStr](ts-types.md#resourcestr) | 否   | 按钮文本。           |
+| icon         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| iconAccessibilityText<sup>13+</sup>         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| selectedIconAccessibilityText<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态按钮图标的无障碍文本。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| text         | [ResourceStr](ts-types.md#resourcestr) | 否   | 按钮文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| accessibilityLevel<sup>13+</sup> | string | 否   | 无障碍重要性，用于控制当前组件是否可被无障碍辅助服务所识别。<br/>支持的值为:<br/>"auto"：当前组件不可被无障碍辅助服务所识别。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
+| accessibilityDescription<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 无障碍说明，用于为用户进一步说明当前组件，开发人员可为组件的该属性设置相对较详细的解释文本，帮助用户理解将要执行的操作。如帮助用户理解将要执行的操作可能导致什么后果，尤其是当这些后果无法从组件本身属性与无障碍文本中了解到时。若组件既拥有文本属性又拥有无障碍说明属性，则组件被选中时，先播报组件的文本属性，再播报无障碍说明属性的内容。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。   |
 
 ## 示例
 
@@ -888,3 +896,92 @@ struct Index {
 ```
 
 ![segmentbutton-sample4](figures/segmentbutton-sample4.png)
+
+### 示例5
+该示例实现了分段按钮的无障碍朗读功能。
+
+```ts
+// xxx.ets
+import {
+  ItemRestriction,
+  SegmentButton,
+  SegmentButtonItemTuple,
+  SegmentButtonOptions,
+  SegmentButtonTextItem,
+  SegmentButtonItemOptions
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: '页签按钮1', accessibilityLevel: 'yes', accessibilityDescription: '页签按钮1 新手提醒' },
+      { text: '页签按钮2', accessibilityLevel: 'yes', accessibilityDescription: '页签按钮2 新手提醒' },
+      { text: '页签按钮3', accessibilityLevel: 'yes', accessibilityDescription: '页签按钮3 新手提醒'
+    }] as ItemRestriction<SegmentButtonTextItem>,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+      accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'},
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'},
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'},
+      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'}
+    ] as SegmentButtonItemTuple,
+    multiply: false,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
+  })
+  @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
+    buttons: [
+      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'},
+      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'},
+      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'},
+      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'}
+    ] as SegmentButtonItemTuple,
+    multiply: true
+  })
+  @State tabSelectedIndexes: number[] = [1]
+  @State singleSelectIconCapsuleSelectedIndexes: number[] = [3]
+  @State multiplySelectIconTextCapsuleSelectedIndexes: number[] = [1, 2]
+
+  build() {
+    Row() {
+      Column() {
+        Column({ space: 25 }) {
+          SegmentButton({ options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes })
+          SegmentButton({ options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
+          SegmentButton({ options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          Button("将按钮2、3替换为splice1、splice2")
+            .onClick(() => {
+              this.iconTextCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
+                text: 'splice1', accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonItemOptions 新手提醒'
+              }), new SegmentButtonItemOptions({ text: 'splice2', icon: $r('sys.media.ohos_ic_public_email'),
+                iconAccessibilityText: '未选中图标无障碍文本', selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+                selectedIconAccessibilityText: '选中图标无障碍文本', accessibilityLevel: 'yes',
+                accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒' }))
+            })
+        }.width('90%')
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```

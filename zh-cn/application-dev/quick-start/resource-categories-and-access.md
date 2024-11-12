@@ -4,7 +4,7 @@
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者可以在[应用UX设计关于资源的介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源。
+- 系统资源：开发者可以在[应用UX设计关于资源的介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的系统图标资源。
 
 ## 资源分类
 
@@ -327,12 +327,12 @@ string资源配置attr属性示例如下：
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过[createModuleContext(bundleName, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createBundleContext(context, bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过[createBundleContext(bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createModuleContext(context, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 
 - 通过```"$r"```或```"$rawfile"```访问资源。具体操作如下：
 
@@ -378,7 +378,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-开发者可以在[应用UX设计关于资源的介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源，获取到图标资源后可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)进步对图标设置。
+开发者可以在[应用UX设计关于资源的介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源，获取到图标资源后可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)对图标颜色等进一步设置。
 
 对于系统资源，可以通过```“$r('sys.type.resource_name')”```的形式访问。其中，sys表示系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”、“symbol”；resource_name为资源名称。
 
@@ -545,7 +545,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 - 静态overlay配置方式
 
-包内overlay资源包中的配置文件module.json5中支持的字段：
+包内overlay资源包中的配置文件app.json5中支持的字段：
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -554,7 +554,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-  },
+  }
+}
+```
+包内overlay资源包中的配置文件module.json5中支持的字段：
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -570,8 +574,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
   }
 }
 ```
-<!--Del-->
-包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
@@ -582,7 +585,11 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
     "targetPariority": 1,
-  },
+  }
+}
+```
+包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+```{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -619,4 +626,4 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Resource/ResourceManager)

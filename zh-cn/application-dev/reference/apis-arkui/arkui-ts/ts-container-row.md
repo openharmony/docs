@@ -14,7 +14,7 @@
 
 ## 接口
 
-Row(value?:{space?:  number&nbsp;|&nbsp;string })
+Row(value?:{space?:  string&nbsp;|&nbsp;number })
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -26,7 +26,7 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| space | number&nbsp;\|&nbsp;string | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| space | string&nbsp;\|&nbsp;number| 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 
 ## 属性

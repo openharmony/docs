@@ -536,6 +536,14 @@ GNSS硬件相关能力
 |---------|--------|--------------|
 | 是       | 是      | 否            |
 
+## SystemCapability.Multimedia.Media.AVTranscoder
+
+获取视频转码能力
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
 ## SystemCapability.Multimedia.AVSession.Core
 
 媒体会话基础能力

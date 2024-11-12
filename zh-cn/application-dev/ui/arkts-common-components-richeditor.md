@@ -411,7 +411,7 @@ RichEditor(this.options)
 
 ## 设置用户预设的样式
 
-通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle12)设置用户预设的样式。
+通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的样式。
   
 其中value是预设样式。
 
@@ -450,7 +450,7 @@ Button('setTypingStyle', {
 
 ## 设置组件内的内容选中时部分背板高亮
   
-通过[setSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#setselection12)设置组件内的内容选中时部分背板高亮。
+通过[setSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#setselection11)设置组件内的内容选中时部分背板高亮。
 
 其中selectionStart为选中开始位置，selectionEnd选中结束位置。当selectionStart和selectionEnd均为-1时表示全选。
 
