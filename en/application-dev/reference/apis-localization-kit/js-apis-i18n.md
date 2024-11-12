@@ -1198,7 +1198,7 @@ Creates an **IndexUtil** object.
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | No   | A string containing locale information, including the language, optional script, and region.<br>The default value is the system locale.|
+| locale | string | No   | A string containing locale information, including the language, script, and country/region.<br>The default value is the system locale.|
 
 **Return value**
 
@@ -1255,7 +1255,7 @@ Adds the index list of a new locale to the index list of the current locale to f
 
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, optional script, and region.|
+| locale | string | Yes   | A string containing locale information, including the language, script, and country/region.|
 
 **Example**
   ```ts
@@ -1306,7 +1306,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, optional script, and region.<br>The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
+| locale | string | Yes   | A string containing locale information, including the language, script, and country/region.<br>The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
 
 **Return value**
 
@@ -1629,7 +1629,7 @@ Obtains the localized representation of a **TimeZone** object.
 
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | No   | A string containing locale information, including the language, optional script, and region. The default value is the system locale.               |
+| locale | string  | No   | A string containing locale information, including the language, script, and country/region. The default value is the system locale.               |
 | isDST  | boolean | No   | Whether DST is considered in the localized representation of the **TimeZone** object. The default value is **false**.|
 
 **Return value**
@@ -1757,7 +1757,7 @@ Obtains the localized representation of a time zone city in the specified locale
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | cityID | string | Yes   | Time zone city ID.|
-| locale | string | Yes   | A string containing locale information, including the language, optional script, and region. |
+| locale | string | Yes   | A string containing locale information, including the language, script, and country/region. |
 
 **Return value**
 
@@ -2251,7 +2251,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
 | toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
 | value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
-| locale   | string                 | Yes   | A string containing locale information, including the language, optional script, and region, for example, **zh-Hans-CN**.               |
+| locale   | string                 | Yes   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.               |
 | style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**. The default value is **short**.<br>For details about the meaning or display effect of different values, see [Number and Unit of Measurement Formatting](../../internationalization/i18n-numbers-weights-measures.md).|
 
 **Return value**
@@ -2281,7 +2281,7 @@ Obtains the sequence of the year, month, and day in the specified locale.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | Yes   | A string containing locale information, including the language, optional script, and region, for example, **zh-Hans-CN**.|
+| locale | string | Yes   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.|
 
 **Return value**
 
@@ -2310,7 +2310,7 @@ Obtains the localized expression for the specified time of the specified locale.
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | Yes   | Specified time, for example, **16**.|
-| locale | string | No   | A string containing locale information, including the language, optional script, and region, for example, **zh-Hans-CN**.<br>The default value is the current locale.|
+| locale | string | No   | A string containing locale information, including the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current locale.|
 
 **Return value**
 
