@@ -119,7 +119,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     -deviceinfo     get device information
     -server         start a process to listen to the socket message of the start and stop commands
     -clear          clear the process ID
-    -ohtestfps      used by the vilidator to obtain the fps, the collection times can be set
+    -ohtestfps      used by the validator to obtain the fps, the collection times can be set
     -editorServer   start a process to listen to the socket message of the editor
     -recordcapacity get the battery level difference
     --version       get version
@@ -127,7 +127,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     -editor         scenario-based collection identifier, parameter configuration items can be added later
     responseTime   get the page response delay after an application is operated
     completeTime   get the page completion delay after an application is operated
-    fpsohtest      used by the vilidator to obtain the fps
+    fpsohtest      used by the validator to obtain the fps
     example1:
     SP_daemon -N 20 -c -g -t -p -r -net -snapshot -d
     SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot -d
@@ -804,7 +804,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -editor|是|    场景化采集标识，后可添加参数配置项         |
 | -responseTime|否|    响应时延         |
 | -completeTime|否|    完成时延         |
-| -fpsohtest|否|    vilidator用于获取fps，1秒采集一次，默认采集10次       |
+| -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次       |
 
 #### 使用示例
 
@@ -832,7 +832,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 采集前先进入应用内，在命令框回车后切换至应用内页面，等待打印采集结果。
 
-- vilidator获取应用页面帧率
+- validator获取应用页面帧率
 
   ```
    # SP_daemon -editor fpsohtest
@@ -852,7 +852,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -deviceinfo|否| 获取设备信息              |
 | -server|否|    启停采集用来拉起daemon进程           |
 | -clear|否|    清除所有SP_daemon进程           |
-| -ohtestfps|否|    vilidator用于获取fps，可设置采集次数(1秒采集一次)          |
+| -ohtestfps|否|    validator用于获取fps，可设置采集次数(1秒采集一次)          |
 | -editorServer|否|    editor工具用来拉起daemon进程         |
 | -recordcapacity|否|    获取当前设备电量         |
 <!--RP2--><!--RP2End-->
@@ -938,7 +938,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 该命令需单独采集，采集结果不写入data.csv。
 
-- vilidator用于获取当前页面帧率
+- validator用于获取当前页面帧率
 
   ```
    # SP_daemon -ohtestfps 10
