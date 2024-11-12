@@ -2529,7 +2529,7 @@ try {
     console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  cons ole.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -7707,24 +7707,15 @@ Sets the background color for this window. This API uses a promise to return the
 **Example**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-private SetUIContent(windowClass: window.Window) {
-  windowClass.SetUIContent("pages/ButtonWindow",(err: BusinessError) => {
-    if (err.code) {
-      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in loading the content.');
-    let color: string = '#00ff33';
-    try {
-      windowClass.SetWindowBackgroundColor(color);
-    } catch (exception) {
-      console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
-    };
-  });
-}
+let color: string = '#00ff33';
+let promise = windowClass.setBackgroundColor(color);
+promise.then(() => {
+  console.info('Succeeded in setting the background color.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the background color. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### setBrightness<sup>(deprecated)</sup>
