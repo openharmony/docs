@@ -79,13 +79,13 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的缩放类型。<br/>默认值：ImageFit.Cover |
 
-### colorFilter<sup>13+</sup>
+### colorFilter<sup>14+</sup>
 
 colorFilter(value: ColorFilter | DrawingColorFilter)
 
 为图像设置颜色滤镜效果。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

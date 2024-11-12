@@ -978,15 +978,15 @@ constructor(value?: ParagraphStyleInterface)
 | LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
 | LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。|
 | TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
-| BACKGROUND_COLOR<sup>13+</sup> | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle13)所属键。|
-| URL<sup>13+</sup> | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle13)所属键。|
+| BACKGROUND_COLOR<sup>14+</sup> | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14)所属键。|
+| URL<sup>14+</sup> | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle14)所属键。|
 | GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
 | PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
 | IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
 | CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
 | USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
 
-## BackgroundColorStyle<sup>13+</sup>
+## BackgroundColorStyle<sup>14+</sup>
 
 文本背景颜色对象说明。
 
@@ -994,7 +994,7 @@ constructor(value?: ParagraphStyleInterface)
 
 ### 属性
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1002,11 +1002,11 @@ constructor(value?: ParagraphStyleInterface)
 | ------------ |---------------------| ---- | ---- | ------ |
 | textBackgroundStyle  |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明)  |  是  |  是  | 获取属性字符串的文本背景颜色。<br />默认值：<br />{<br /> color: Color.Transparent,<br />  radius: 0<br />} |
 
-### constructor<sup>13+</sup>
+### constructor<sup>14+</sup>
 
 constructor(textBackgroundStyle: TextBackgroundStyle)
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1016,7 +1016,7 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | textBackgroundStyle |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 是   | 文本背景色设置项。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
-## UrlStyle<sup>13+</sup>
+## UrlStyle<sup>14+</sup>
 
 超链接对象说明。
 
@@ -1026,7 +1026,7 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 
 ### 属性
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1034,11 +1034,11 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 | ------------ |---------------------| ---- | ---- | ------ |
 | url  | string |  是  |  是  | 获取属性字符串的超链接内容。 |
 
-### constructor<sup>13+</sup>
+### constructor<sup>14+</sup>
 
 constructor(url: string)
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
