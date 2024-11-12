@@ -61,7 +61,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 ![图片说明](figures/SmartPerfReport2.png)
 <!--DelEnd-->
 
+<!--RP1-->
 ## SmartPerf Device-daemon端
+<!--RP1End-->
+
 
 ### 基础采集命令参数
 
