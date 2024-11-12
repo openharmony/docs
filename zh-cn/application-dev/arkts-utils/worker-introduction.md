@@ -21,7 +21,6 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - 序列化传输的数据量大小限制为16MB。
 - 使用Worker模块时，需要在主线程中注册onerror接口，否则当Worker线程出现异常时会发生jscrash问题。
 - 不支持跨HAP使用Worker线程文件。
-- 创建Worker对象时仅允许加载本模块下存在的Worker线程文件，不支持加载其他模块的Worker线程文件。若依赖其他模块提供的Worker功能，需要将Worker实现的整套逻辑封装到方法中，将方法导出后供其他模块使用。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
 - 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
 
@@ -72,6 +71,7 @@ const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/
 // API 8及之前版本使用：
 const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets');
 ```
+
 
 #### Stage模型下的文件路径规则
 
@@ -130,6 +130,7 @@ const workerStage4: worker.ThreadWorker = new worker.ThreadWorker('@har/ets/work
 const workerStage5: worker.ThreadWorker = new worker.ThreadWorker('../../workers/worker.ets');
 ```
 
+
 #### FA模型下的文件路径规则
 
   构造函数中的scriptURL为：Worker线程文件与"{moduleName}/src/main/ets/MainAbility"的相对路径。
@@ -150,10 +151,77 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/worke
 ```
 
 
-
 ### 生命周期注意事项
 
 - Worker的创建和销毁耗费性能，建议开发者合理管理已创建的Worker并重复使用。Worker空闲时也会一直运行，因此当不需要Worker时，可以调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)接口或[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
 
 
 - Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小者。在内存允许的情况下，系统最多可以同时运行64个Worker。如果尝试创建的Worker数量超出这一上限，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况动态调整。一旦所有Worker和主线程的累积内存占用超过了设定的阈值，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。
+
+
+## 跨har包加载Worker
+
+1. 创建har详情参考[开发静态共享包](../quick-start/har-package.md)。
+
+2. 在har中创建Worker线程文件相关内容。
+
+   ```ts
+   // worker.ets
+   workerPort.onmessage = (e: MessageEvents) => {
+     console.info("worker thread receive message: ", e.data);
+     workerPort.postMessage('worker thread post message to main thread');
+   }
+   ```
+
+3. 在entry模块的oh-package.json5文件中配置har包的依赖。
+
+   ```ts
+   // 在entry模块配置har包的依赖
+   {
+     "name": "entry",
+     "version": "1.0.0",
+     "description": "Please describe the basic information.",
+     "main": "",
+     "author": "",
+     "license": "",
+     "dependencies": {
+       "har": "file:../har"
+     }
+   }
+   ```
+
+4. 在entry模块中加载har包中的Worker线程文件。
+
+   ```ts
+   // Index.ets
+   import { worker } from '@kit.ArkTS';
+
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+
+     build() {
+       RelativeContainer() {
+         Text(this.message)
+           .id('HelloWorld')
+           .fontSize(50)
+           .fontWeight(FontWeight.Bold)
+           .alignRules({
+             center: { anchor: '__container__', align: VerticalAlign.Center },
+             middle: { anchor: '__container__', align: HorizontalAlign.Center }
+           })
+           .onClick(() => {
+             // 通过@标识路径加载形式，加载har中Worker线程文件
+             let workerInstance = new worker.ThreadWorker('@har/ets/workers/worker.ets');
+             workerInstance.onmessage = () => {
+               console.info('main thread onmessage');
+             };
+             workerInstance.postMessage('hello world');
+           })
+       }
+       .height('100%')
+       .width('100%')
+     }
+   }
+   ```
