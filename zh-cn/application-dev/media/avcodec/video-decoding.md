@@ -955,25 +955,28 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     SrcRect srcRect = {320, 256};
     uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride * 3 / 2]; // 目标内存区域的指针
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
+    uint8_t* dstTemp = dst;
+    uint8_t* srcTemp = src;
+
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
-        memcpy_s(dst, src, rect.width);
+        memcpy_s(dstTemp, srcTemp, rect.width);
         // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
     // padding
     // 更新源数据和目标数据的指针，指针都向下移动一个padding
-    dst += (dstRect.hStride - rect.height) * dstRect.wStride;
-    src += (srcRect.hStride - rect.height) * srcRect.wStride;
+    dstTemp += (dstRect.hStride - rect.height) * dstRect.wStride;
+    srcTemp += (srcRect.hStride - rect.height) * srcRect.wStride;
     rect.height >>= 1;
     // UV 将UV区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
-        memcpy_s(dst, src, rect.width);
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        memcpy_s(dstTemp, srcTemp, rect.width);
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
 
     delete[] dst;
