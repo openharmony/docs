@@ -39,4 +39,4 @@ Location Kit除了提供基础的定位服务之外，还提供了地理围栏�
 
 针对Location Kit，有以下相关实例可供参考：
 
-- [`Location`：Location Kit（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)
+- [`Location`：Location Kit（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/DeviceManagement/Location)

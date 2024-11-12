@@ -24,7 +24,7 @@ For details about the predefined account constraints, see [Constraints](../../re
 
 ## Setting Constraints for a System Account
 
-The user can set constraints to restrict the system account behaviors. For example, the user can enable mobile guardian for children to prevent the kids to use Wi-Fi or install apps.
+The user can set constraints to restrict the system account behaviors. For example, the user can enable mobile guardian for children to prevent the kids to use Wi-Fi or install applications.
 
 **Procedure**
 

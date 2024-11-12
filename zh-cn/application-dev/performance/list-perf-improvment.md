@@ -299,7 +299,7 @@ export struct ChatListDisplayView {
 }
 ```
 
-最后，在List组件容器中，使用LazyForEach接口遍历数据源this.chatListLazy循环生成ListItem列表项。其中，chatViewBuilder()方法用于布局页面列表项；代码行(msg: ChatModel) => msg.user.userId使用用户的编码作为列表项唯一的键值编码，用于区分不同的列表项。至此，使用懒加载代码实现完成，可以访问[Chat聊天示例程序](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)获取详细代码。
+最后，在List组件容器中，使用LazyForEach接口遍历数据源this.chatListLazy循环生成ListItem列表项。其中，chatViewBuilder()方法用于布局页面列表项；代码行(msg: ChatModel) => msg.user.userId使用用户的编码作为列表项唯一的键值编码，用于区分不同的列表项。至此，使用懒加载代码实现完成，可以访问[Chat聊天示例程序](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/Solutions/IM/Chat)获取详细代码。
 
 ```ts
 build() {
@@ -434,7 +434,7 @@ build() {
 
 使用建议如下：
 
-建议复用自定义组件时避免一切可能改变自定义组件的组件树结构和可能使可复用组件中产生重新布局的操作以将组件复用的性能提升到最高；
+- 建议复用自定义组件时避免一切可能改变自定义组件的组件树结构和可能使可复用组件中产生重新布局的操作以将组件复用的性能提升到最高；
 
 - 建议列表滑动场景下组件复用能力和LazyForEach渲染控制语法搭配使用以达到性能最优效果；
 
@@ -478,7 +478,7 @@ struct ReusableOptLayoutChatView {
 
 当前ArkUI应用框架提供了以下两类常用的布局方式：
 
-**线性布局**： 例如Stack、Column、Row和Flex等，会把布局中的组件按照线性方向进行排布，如横向、纵向、Z轴方向等；这种布局使用简单方便、易于理解，但是在复杂的场景下往往会使用更多的组件数和较深的嵌套层次，维护困难，同时也增加了系统的开销；
+**线性布局**： 例如Stack、Column、Row和Flex等，会把布局中的组件按照线性方向进行排布，如横向、纵向、Z轴方向等；这种布局使用简单方便、易于理解，但是在复杂的场景下往往会使用更多的组件数和较深的嵌套层次，维护困难，同时也增加了系统的开销。
 
 **高级布局**： 往往可以使用更少的节点数和布局层级，实现更加复杂的布局效果，具有扁平化的特性；包括List、Grid、RelativeContainer等，在列表、宫格和混排布局等场景提供了扁平化的布局方式，例如RelativeContainer可以根据锚点来进行低嵌套层级复杂布局，而List和Grid又支持懒加载等提升性能的方法，同时降低了维护成本；因此，高级布局是更加推荐的布局方法。
 
@@ -629,10 +629,10 @@ build() {
 
 ## 总结
 
-本文基于[Sample聊天示例应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)中的聊天列表场景，分析了列表滑动性能的优化方法，包含懒加载、缓存列表项、组件复用、页面布局优化。对每个优化方法详细介绍了原理、使用场景，并基于示例程序给出了优化效果和对比数据。在开发类似列表场景时，可以借鉴这些优化方法。
+本文基于[Sample聊天示例应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/Solutions/IM/Chat)中的聊天列表场景，分析了列表滑动性能的优化方法，包含懒加载、缓存列表项、组件复用、页面布局优化。对每个优化方法详细介绍了原理、使用场景，并基于示例程序给出了优化效果和对比数据。在开发类似列表场景时，可以借鉴这些优化方法。
 
 ## 相关实例
 
 可参考以下实例：
 
-- [Sample聊天实例应用（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+- [Sample聊天实例应用（ArkTS）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/Solutions/IM/Chat)

@@ -186,7 +186,7 @@ export struct InteractiveButton {
     Row() {
       Image(this.imageStr)
       Text(this.text)
-      ...
+      // ...
     }
   }
 }
@@ -204,7 +204,7 @@ function interactiveButton($$: Temp) {
   Row() {
     Image($$.imageStr)
     Text($$.text)
-    ...
+    // ...
   } 
 }
 ```

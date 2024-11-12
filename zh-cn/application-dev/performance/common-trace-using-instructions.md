@@ -108,7 +108,7 @@ OpenHarmony的DFX子系统提供了为应用框架以及系统底座核心模块
 ## Trace实践
 
 以下示例采用`LazyForEach`的方式遍历列表，并借助[SmartPerf-Host调试工具](../../device-dev/device-test/smartperf-host.md)追踪代码执行流程。
-在[代码示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/trace)中，使用一个List容器组件，通过懒加载方式来创建出120个IconView自定义组件。在IconView组件中，使用了Flex容器组件包含Image和Text子组件，形成了图文混合列表。
+在[代码示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/Performance/PerformanceLibrary/feature/trace)中，使用一个List容器组件，通过懒加载方式来创建出120个IconView自定义组件。在IconView组件中，使用了Flex容器组件包含Image和Text子组件，形成了图文混合列表。
 
 ```ts
 // src/main/ets/pages/LazyForEachPage.ets
@@ -119,7 +119,7 @@ struct LazyForEachPage {
   private iconItemSourceList = new ListData();
   aboutToAppear() {
     // 添加120个IconItem的数据
-     ......
+    // ......
   }
   build() {
     Column() {
@@ -216,7 +216,7 @@ export struct IconItem {
 
 ![执行渲染任务并通知图形侧进行渲染泳道图](figures/trace-notify-rs.png)
 
-- `H:Layout[Flex][self:63][parent:62]`对当前帧节点Flex，执行布局任务**；**
+- `H:Layout[Flex][self:63][parent:62]`对当前帧节点Flex，执行布局任务；
   - `H:Measure[%s][self:17][parent:16]` 对Image、Text等组件布局尺寸计算；
 - `H:FrameNode::RenderTask` Flex渲染任务执行；
 - `H:RequestNextVSync` 请求下一帧Vsync信号。
@@ -244,8 +244,8 @@ export struct IconItem {
 
 开发者可以根据业务需求，使用hiTraceMeter进行自定义Trace打点跟踪，目前支持ArkTS和Native，具体使用细节可参考下方链接：
 
-> [性能打点跟踪开发指导（ArkTS）](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/dfx/hitracemeter-guidelines.md/)
-> [性能打点跟踪开发指导（Native）](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/dfx/hitracemeter-native-guidelines.md/)
+> [性能打点跟踪开发指导（ArkTS）](../dfx/hitracemeter-guidelines-arkts.md)
+> [性能打点跟踪开发指导（Native）](../dfx/hitracemeter-guidelines-ndk.md)
 
 添加自定义Trace后，可在[SmartPerf-Host调试工具](../../device-dev/device-test/smartperf-host.md)上查看，自定义Trace将以独立泳道的形式呈现在对应打点的进程下。
 下图两条泳道使用了startTrace和finishTrace方法，表示程序运行过程中，指定标签从调用startTrace到调用finishTrace的耗时统计。图中记录了CUSTOM_TRACE_TAG_1和CUSTOM_TRACE_TAG_2两个标签，先后呈现了2个标签的耗时统计。
@@ -265,7 +265,7 @@ export struct IconItem {
 Trace的生成依赖了DFX子系统中的HiTrace组件，其中包含的hiTraceMeter模块为开发者提供系统性能打点接口，具体细节可参考下方链接：
 
 > [HiTrace组件](https://gitee.com/openharmony/hiviewdfx_hitrace)
-> [hiTraceMeter模块](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/native-apis/_hitrace.md/)
+> [hiTraceMeter模块](../reference/apis-performance-analysis-kit/_hitrace.md)
 
 hiTraceMeter拥有两套开始和结束打点接口，实现对逻辑行为的耗时统计。由于耗时统计大多数以方法为单位，所以hiTraceMeter也提供了快速打点单个方法执行耗时的宏定义HITRACE_METER、HITRACE_METER_NAME、HITRACE_METER_FMT，使用它们，只需要在方法起始位置调用即可。这些宏定义依赖了方法内局部变量的生命周期，其原理是在方法开始时构造了一个打点实例，在实例构造函数中调用开始打点接口，当方法执行完毕，打点实例随着方法结束而执行析构，在实例析构函数中调用结束打点接口。
 

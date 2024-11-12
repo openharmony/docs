@@ -14,7 +14,7 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 | subject                               | Email subject.                              | string   | No                        |
 | body                                  | Email body.                              | string   | No                        |
 | ability.params.stream                 | Email attachments (URI list of the attachments).         | string[ ] | No                        |
-| ability.want.params.uriPermissionFlag | At least the read permission must be granted on the email attachments.              | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags)   | Mandatory when an email attachment exists.|
+| ability.want.params.uriPermissionFlag | At least the read permission must be granted on the email attachments.              | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)   | Mandatory when an email attachment exists.|
 | sceneType                             | 1: Send an email.                  | number   | No. When this parameter is left unspecified, the default value **1** is used.                        |
 
 > **NOTE**

@@ -219,6 +219,7 @@ struct ObservedSendableTest {
 
 ### makeObserved和collections.Array/Set/Map配合使用
 collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../reference/apis-arkts/js-apis-arkts-collections.md)。
+makeObserved可以在ArkUI中导入可观察的colletions容器，但makeObserved不能和状态管理V1的状态变量装饰器如@State和@Prop等配合使用，否则会抛出运行时异常。
 
 #### collections.Array
 collections.Array可以触发UI刷新的API有：
