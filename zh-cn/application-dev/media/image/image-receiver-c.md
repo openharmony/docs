@@ -1,6 +1,6 @@
 # 使用Image_NativeModule完成图片接收器
 
-图像接收类，用于获取组件surface id、接收最新的图片和读取下一张图片、释放ImageReceiver实例。
+图像接收类，用于获取组件surface id、接收最新的图片和读取下一张图片、释放ImageReceiver实例。结合camera API实现的相机预览示例代码可参考[C/C++预览流二次处理示例](../camera/native-camera-preview-imageReceiver.md)。
 
 ## 开发步骤
 
@@ -35,8 +35,31 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 static void OnCallback(OH_ImageReceiverNative *receiver)
 {
+    // callback回调处理接收到的图像数据
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer avaliable.");
+
+    // 读取 OH_ImageReceiverNative 的下一个图片对象
+    OH_ImageNative* image = nullptr;
+    errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image); 
+    // 结合实际使用情况，此处也可以调用OH_ImageReceiverNative_ReadLatestImage方法获取图像数据
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver next image failed, errCode: %{public}d.", errCode);
+        OH_ImageReceiverOptions_Release(options);
+        OH_ImageReceiverNative_Release(receiver);
+        return;
+    }
+
+    // 应用自行处理image图像数据
+    // ...
+
+    // 释放 OH_ImageNative 实例
+    errCode = OH_ImageNative_Release(image);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image native failed, errCode: %{public}d.", errCode);
+    }
 }
+
+static OH_ImageReceiverNative* receiver = nullptr;
 
 static void ImageReceiverNativeCTest()
 {
@@ -101,7 +124,6 @@ static void ImageReceiverNativeCTest()
     }
 
     // 创建 OH_ImageReceiverNative 实例
-    OH_ImageReceiverNative* receiver = nullptr;
     errCode = OH_ImageReceiverNative_Create(options, &receiver);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest create image receiver failed, errCode: %{public}d.", errCode);
@@ -150,43 +172,16 @@ static void ImageReceiverNativeCTest()
     }
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver capacity: %{public}d.", capacity);
 
-    // 读取 OH_ImageReceiverNative 的下一个图片对象
-    OH_ImageNative* image = nullptr;
-    errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver next image failed, errCode: %{public}d.", errCode);
-        OH_ImageReceiverOptions_Release(options);
-        OH_ImageReceiverNative_Release(receiver);
-        return;
-    }
-
-    // 释放 OH_ImageNative 实例
-    errCode = OH_ImageNative_Release(image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image native failed, errCode: %{public}d.", errCode);
-    }
-
-    // 读取 OH_ImageReceiverNative 最新的图片对象
-    errCode = OH_ImageReceiverNative_ReadLatestImage(receiver, &image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver latest image failed, errCode: %{public}d.", errCode);
-        OH_ImageReceiverOptions_Release(options);
-        OH_ImageReceiverNative_Release(receiver);
-        return;
-    }
-
-    // 释放 OH_ImageNative 实例
-    errCode = OH_ImageNative_Release(image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image native failed, errCode: %{public}d.", errCode);
-    }
-
     // 释放 OH_ImageReceiverOptions 实例
     errCode = OH_ImageReceiverOptions_Release(options);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver options failed, errCode: %{public}d.", errCode);
     }
+}
 
+// 在合适时机释放ImageReceiverNative相关资源
+static void ImaggReceiverRelease()
+{
     // 关闭被 OH_ImageReceiverNative_On 开启的回调事件。
     errCode = OH_ImageReceiverNative_Off(receiver);
     if (errCode != IMAGE_SUCCESS) {
@@ -199,4 +194,5 @@ static void ImageReceiverNativeCTest()
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver failed, errCode: %{public}d.", errCode);
     }
 }
+
 ```
