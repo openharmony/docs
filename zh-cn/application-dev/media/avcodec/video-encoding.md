@@ -755,8 +755,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     Rect rect = {320, 240};
     DstRect dstRect = {320, 256};
     SrcRect srcRect = {320, 250};
-    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 3/2目标内存区域的指针
-    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 3/2源内存区域的指针
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride * 3 / 2]; // 目标内存区域的指针
+    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride * 3 / 2]; // 源内存区域的指针
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
