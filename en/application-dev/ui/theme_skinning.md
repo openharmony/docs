@@ -252,7 +252,7 @@ The [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-life
 ![customTheme](figures/customTheme.gif)
 
 ## Setting Local Light and Dark Modes for Application Pages
-Use [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) to set light and dark modes. [ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10) offers three options: **ThemeColorMode.SYSTEM** for following the system setting, **ThemeColorMode.LIGHT** for light mode, and **ThemeColorMode.DARK** for dark mode.<br>
+Use [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) to set light and dark modes. [ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#themecolormode10) offers three options: **ThemeColorMode.SYSTEM** for following the system setting, **ThemeColorMode.LIGHT** for light mode, and **ThemeColorMode.DARK** for dark mode.<br>
 Within the **WithTheme** scope, component styles adapt to the specified light or dark color mode by accessing the corresponding system and application resource values, and the color schemes of components are activated according to the chosen color mode.<br>
 In the example below, components within the scope are set to dark mode using **WithTheme({ colorMode: ThemeColorMode.DARK })**.
 

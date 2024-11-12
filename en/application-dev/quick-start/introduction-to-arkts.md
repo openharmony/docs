@@ -15,7 +15,7 @@ Interoperability with JavaScript was a critical consideration in the ArkTS langu
 
 To ensure best experience for UI app development for OpenHarmony ecosystem, ArkTS provides support for ArkUI, including its declarative syntax and other features. Since this feature is outside the scope of the "stock" TypeScript, a verbose ArkUI example is provided in a separate chapter.
 
-This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.<!--Del--> For details about programming specifications, see [ArkTS Coding Style Guide](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md).<!--DelEnd-->
+This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.
 
 ## The Basics
 
@@ -1722,7 +1722,7 @@ async function test() {
 }
 ```
 
-For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
+For more details about dynamic import, see **Dynamic Import**.
 
 <!--RP1--><!--RP1End-->
 

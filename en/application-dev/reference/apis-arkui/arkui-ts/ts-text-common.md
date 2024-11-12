@@ -222,6 +222,14 @@ Called when the specified menu item is clicked.
 | ------- | --------------------------------- | 
 | boolean | Execution logic of the menu item.<br>Returns **true** if the default system logic is intercepted and only the custom logic is executed.<br>Returns **false** if the custom logic is executed before the default system logic.|
 
+## TextRange<sup>12+</sup>
+
+Defines the text range.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## EditableTextOnChangeCallback<sup>12+</sup>
 
 type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
@@ -347,7 +355,7 @@ Defines the listener for changes of the styled string text content.
 
 | Name| Type| Mandatory| Description|
 | -- | -- | -- | -- |
-| onWillChange | Callback<[StyledStringChangeValue](ts-basic-components-richeditor.md#styledstringchangevalue12), boolean> | No| Callback invoked when text is about to change.|
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | No| Callback invoked when text is about to change.|
 | onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | No| Callback invoked when text is changed.|
 
 ## StyledStringChangeValue<sup>12+</sup>
