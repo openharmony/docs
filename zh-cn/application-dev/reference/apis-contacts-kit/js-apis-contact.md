@@ -4257,7 +4257,17 @@ let portrait: contact.Portrait = {
 
 | 名称          |   类型   | 可读 | 可写 | 说明                       |
 | ------------- | -------- | ---- | ---- | -------------------------- |
+| ------------- | -------- | ---- | ---- | -------------------------- |
+| city          | string   | 是   | 是   | 联系人所在的城市。         |
+| country       | string   | 是   | 是   | 联系人所在的国家。         |
+| labelName     | string   | 是   | 是   | 邮政地址类型名称。         |
+| neighborhood  | string   | 是   | 是   | 联系人的邻居。             |
+| pobox         | string   | 是   | 是   | 联系人的邮箱。             |
 | postalAddress | string   | 是   | 是   | 联系人的邮政地址。         |
+| postcode      | string   | 是   | 是   | 联系人所在区域的邮政编码。 |
+| region        | string   | 是   | 是   | 联系人所在的区域。         |
+| street        | string   | 是   | 是   | 联系人所在的街道。         |
+| labelId       | number   | 是   | 是   | 邮政地址类型。             |
 
 
 **对象创建示例：**
@@ -4266,6 +4276,7 @@ let portrait: contact.Portrait = {
 
 ```js
 let postalAddress: contact.PostalAddress = {
+    city: "city",
     postalAddress: "postalAddress"
 };
 ```
@@ -4274,6 +4285,7 @@ let postalAddress: contact.PostalAddress = {
 
 ```js
 let postalAddress = new contact.PostalAddress();
+postalAddress.city = "city";
 postalAddress.postalAddress = "postalAddress";
 ```
 
