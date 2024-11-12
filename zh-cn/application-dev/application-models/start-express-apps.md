@@ -1,6 +1,6 @@
 # 拉起快递类应用（startAbilityByType）
 
-本章节介绍如何拉起快递类应用扩展面板。例如，在消息类App中，用户收到快递单号，App可识别快递单号，并通过系统接口拉起快递类应用扩展面板，将设备上所有具有查询快递功能的应用匹配出来，展示面板上，由用户选择。
+本章节介绍如何拉起快递类应用扩展面板。例如，在消息类App中，用户收到快递单号，App可识别快递单号，并通过[UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)或[UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)接口拉起快递类应用扩展面板，将设备上所有具有查询快递功能的应用匹配出来，展示面板上，由用户选择。
 
 ## 快递类应用扩展面板参数说明
 
