@@ -89,7 +89,7 @@
     this.animatorOptions.onFinish = () => {
        this.animatorStatus = '完成';
     }
-    //动画重复播放时执行动画
+    //动画重复播放时执行方法
     this.animatorOptions.onRepeat = () => {
        console.log("动画重复播放");
     }

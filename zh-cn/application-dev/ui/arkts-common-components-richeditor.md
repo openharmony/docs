@@ -55,7 +55,7 @@ RichEditor(this.options)
 ## 设置属性
 
 ### 设置自定义选择菜单
-  
+
 通过[bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#bindselectionmenu)设置自定义选择菜单。
 
 其中spanType是菜单的类型，默认值为文字类型；content是菜单的内容；responseType是菜单的响应类型，默认类型为长按；options是菜单的选项，可设置自定义选择菜单弹出或关闭时的回调。
@@ -116,7 +116,7 @@ SystemMenu() {
 ![alt text](figures/richeditor_image_bindselectionmenu.gif)
 
 ### 设置输入框光标、手柄颜色
-  
+
 通过[caretColor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#caretcolor12)设置输入框光标、手柄颜色。
 
 ```ts
@@ -137,9 +137,9 @@ RichEditor(this.options)
 ![alt text](figures/richeditor_image_caretcolor.gif)
 
 ### 设置无输入时的提示文本
-  
+
 通过[placeholder](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#placeholder12)设置无输入时的提示文本。
-  
+
 其中value为无输入时的提示文本；style为添加提示文本的字体样式，style缺省时默认跟随主题。
 
 ```ts
@@ -163,7 +163,7 @@ RichEditor(this.options)
 
 ## 添加事件
 ### 添加组件初始化完成后可触发的回调
-  
+
 通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready)来添加组件初始化完成后可触发的回调。
 
 其中callback是订阅富文本组件初始化完成的回调。
@@ -179,11 +179,11 @@ RichEditor(this.options)
         })
     })
 ```
-  
+
 ![alt text](figures/richeditor_image_onReady.gif)
 
 ### 添加组件内容被选中时可触发的回调
-  
+
 通过[onSelect](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onselect)来添加组件内容被选中时可触发的回调。
 
 在callback中，[RichEditorSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorselection)为选中的所有内容信息。
@@ -214,7 +214,7 @@ Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
     .width(300)
     .height(70)
- ```
+```
 
 ![alt text](figures/richeditor_image_onSelect.gif)
 
@@ -267,7 +267,7 @@ RichEditor(this.options1)
 ![alt text](figures/richeditor_image_ondid.gif)
 
 ### 添加输入法输入内容前和完成输入后可触发的回调
-  
+
 通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)添加输入法输入内容前可触发的回调。通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)添加输入法完成输入后可触发的回调。
 
 aboutToIMEInput的callback中：[RichEditorInsertValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorinsertvalue)为输入法将要输入内容信息；boolean为true时，组件执行添加内容操作。boolean为false时，组件不执行添加内容操作。
@@ -315,7 +315,7 @@ RichEditor(this.options1)
 ![alt text](figures/richeditor_image_aboutToIMEInput2.0.gif)
 
 ### 添加完成粘贴前可触发的回调
-  
+
 通过[onPaste](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onpaste11)添加完成粘贴前可触发的回调。
 
 其中callback用于定义用户粘贴事件。
@@ -346,7 +346,7 @@ RichEditor(this.options)
 
 ### 添加完成剪切前可触发的回调
 
-通过[onCut](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncut12)添加完成粘贴前可触发的回调。
+通过[onCut](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncut12)添加完成剪切前可触发的回调。
 
 其中callback用于定义用户剪切事件。
 
@@ -376,7 +376,7 @@ RichEditor(this.options)
 
 ### 添加完成复制前可触发的回调
 
-通过[onCopy](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncopy12)添加完成粘贴前可触发的回调。
+通过[onCopy](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncopy12)添加完成复制前可触发的回调。
 
 其中callback用于定义用户复制事件。
 
@@ -412,7 +412,7 @@ RichEditor(this.options)
 ## 设置用户预设的样式
 
 通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的样式。
-  
+
 其中value是预设样式。
 
 ```ts
@@ -449,7 +449,7 @@ Button('setTypingStyle', {
 ![alt text](figures/richeditor_image_setTypingStyle.gif)
 
 ## 设置组件内的内容选中时部分背板高亮
-  
+
 通过[setSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#setselection11)设置组件内的内容选中时部分背板高亮。
 
 其中selectionStart为选中开始位置，selectionEnd选中结束位置。当selectionStart和selectionEnd均为-1时表示全选。
@@ -481,7 +481,7 @@ Button('setSelection(0,2)', {
 ![alt text](figures/richeditor_image_set_selection.gif)
 
 ## 添加文本内容
-  
+
 除了直接在组件内输入内容，也可以通过[addTextSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addtextspan)添加文本内容。
 
 其中value是文本内容；options是文本选项，用于添加文本的偏移位置和文本样式信息（[RichEditorTextSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanoptions)）。
@@ -515,7 +515,7 @@ Button('addTextSpan', {
 ## 添加图片内容
 
 通过[addImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addimagespan)添加图片内容。
-  
+
 其中value是图片内容；options是图片选项，用于添加图片的偏移位置和图片样式信息（[RichEditorImageSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorimagespanoptions)）。
 
 添加图片内容，如果组件光标闪烁，插入后光标位置更新为新插入图片的后面。
@@ -545,14 +545,14 @@ Button('addImageSpan', {
         })
     })
 ```
-  
+
 ![alt text](figures/richeditor_image_add_image.gif)
 
 ## 添加@Builder装饰器修饰的内容
 通过[addBuilderSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addbuilderspan11)添加@Builder装饰器修饰的内容。
-  
+
 其中value是builder内容；options是builder选项，可通过[RichEditorBuilderSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
-  
+
 ```ts
 @Builder
 TextBuilder() {
@@ -582,7 +582,7 @@ Button('addBuilderSpan', {
 ![alt text](figures/richeditor_image_add_builder_span2.0.gif)   
 
 ## 添加SymbolSpan内容
-  
+
 可通过[addSymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addsymbolspan11)添加SymbolSpan内容。
 
 其中value是SymbolSpan组件内容；options是SymbolSpan组件选项，用于添加SymbolSpan组件的偏移位置和SymbolSpan组件样式信息（ [RichEditorSymbolSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorsymbolspanoptions11) ）。
@@ -619,7 +619,7 @@ Button('addSymbolSpan', {
 ![alt text](figures/richeditor_image_add_SymbolSpan.gif)
 
 ## 获取组件内span信息
-  
+
 可通过[getSpans](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#getspans)获取组件内span信息。
 
 其中value是需要获取span范围。返回值为Array<[RichEditorTextSpanResult](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanresult) | [RichEditorImageSpanResult](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorimagespanresult)>，是文本和图片Span信息。
