@@ -308,7 +308,7 @@ typedef struct OhosPixelMapInfos
 ## 枚举类型说明
 
 
-### anonymous enum [1/3]
+### 图像格式
 
 ```
 anonymous enum
@@ -324,7 +324,7 @@ anonymous enum
 | OHOS_IMAGE_FORMAT_JPEG | JPEG 编码格式 | 
 
 
-### anonymous enum [2/3]
+### PixelMap透明度类型
 
 ```
 anonymous enum
@@ -342,7 +342,7 @@ PixelMap透明度类型的枚举。
 | OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL  | 预除的格式   | 
 
 
-### anonymous enum [3/3]
+### 方法返回的错误码
 
 ```
 anonymous enum
@@ -360,13 +360,13 @@ anonymous enum
 | OHOS_IMAGE_RESULT_BAD_PARAMETER | 无效值 | 
 
 
-### anonymous enum [1/3]
+### 图像颜色通道类型
 
 ```
 anonymous enum
 ```
 **描述**
-图像组成类型枚举值。
+图像颜色通道类型枚举值。
 
 **起始版本：** 10
 
@@ -378,7 +378,7 @@ anonymous enum
 | OHOS_IMAGE_COMPONENT_FORMAT_JPEG | Jpeg 格式 | 
 
 
-### anonymous enum [2/3]
+### PixelMap 编辑类型
 
 ```
 anonymous enum
@@ -394,13 +394,13 @@ PixelMap 编辑类型的枚举。
 | OHOS_PIXEL_MAP_EDITABLE  | 可编辑的格式   | 
 
 
-### anonymous enum [3/3]
+### 像素格式
 
 ```
 anonymous enum
 ```
 **描述**
-Pixel格式的枚举。
+像素格式的枚举。
 
 **废弃版本：** 10
 
@@ -408,13 +408,11 @@ Pixel格式的枚举。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y  | 亮度信息   | 
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_U  | 色度信息   | 
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_V  | 色差值信息   | 
-| OHOS_IMAGE_COMPONENT_FORMAT_JPEG  | Jpeg 格式   | 
+| OHOS_PIXEL_MAP_FORMAT_NONE  | 未知的格式  | 
+| OHOS_PIXEL_MAP_FORMAT_RGBA_8888  | RGBA_8888格式   | 
+| OHOS_PIXEL_MAP_FORMAT_RGB_565  | RGB_565格式   | 
 
-
-### anonymous enum
+### PixelMap缩放类型
 
 ```
 anonymous enum
