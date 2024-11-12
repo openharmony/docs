@@ -127,6 +127,8 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 
 **System capability**: SystemCapability.Communication.NetStack
 
+**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails.
+
 **Parameters**
 
 | Name  | Type                    | Mandatory| Description                        |
@@ -180,6 +182,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
+
+**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails.
 
 **Parameters**
 
@@ -244,6 +248,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
+
+**Note**: The URL cannot contain more than 1024 characters. Otherwise, the connection fails.
 
 **Parameters**
 
@@ -703,7 +709,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -735,7 +741,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -986,7 +992,7 @@ Enumerates the response headers sent by the server.
 | ------ | ------------------------------------------------------------ |
 | {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
 
-## Result Codes for Connection Closing
+## Result Codes for Closing a WebSocket Connection
 
 You can customize the result codes sent to the server. The result codes in the following table are for reference only.
 
