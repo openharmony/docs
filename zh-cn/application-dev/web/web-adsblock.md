@@ -20,23 +20,23 @@ ArkWeb为应用提供广告过滤功能，支持通过云端推送默认的easyl
 
 ## 约束与限制
 
-1、在[WebviewController](../reference/apis-arkweb/js-apis-webview.md#webviewcontroller)类中，增加开启/关闭广告过滤特性的接口[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12)，支持Web实例级的特性开关。
+- 在[WebviewController](../reference/apis-arkweb/js-apis-webview.md#webviewcontroller)类中，增加开启/关闭广告过滤特性的接口[enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12)，支持Web实例级的特性开关。
 
-2、新增[AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)全局单例类，提供自定义广告过滤配置、控制网站级特性开关的能力。
+- 新增[AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)全局单例类，提供自定义广告过滤配置、控制网站级特性开关的能力。
 
-3、Web实例上提供了[onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web.md#onadsblocked12)回调通知方法，支持将拦截信息通知到上层应用。
+- Web实例上提供了[onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web.md#onadsblocked12)回调通知方法，支持将拦截信息通知到上层应用。
 
-4、[AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)接口[setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12)接口仅能设置一份自定义配置，此配置会持久化，应用冷启动无需重新配置，可避免每次冷启动配置规则都触发广告过滤配置的编译解析。
+- [AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)接口[setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12)接口仅能设置一份自定义配置，此配置会持久化，应用冷启动无需重新配置，可避免每次冷启动配置规则都触发广告过滤配置的编译解析。
 
-5、[AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)接口[addAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockdisallowedlist12)、[removeAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockdisallowedlist12)、[clearAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockdisallowedlist12)、[addAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockallowedlist12)、[removeAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockallowedlist12)、[clearAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockallowedlist12)操作的数据不会持久化，应用冷启动需要重新设置。
+- [AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)接口[addAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockdisallowedlist12)、[removeAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockdisallowedlist12)、[clearAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockdisallowedlist12)、[addAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockallowedlist12)、[removeAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockallowedlist12)、[clearAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockallowedlist12)操作的数据不会持久化，应用冷启动需要重新设置。
 
-6、如果1个web实例启用了广告过滤特性，但未调用[AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)接口[addAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockdisallowedlist12)、[removeAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockdisallowedlist12)、[clearAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockdisallowedlist12)、[addAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockallowedlist12)、[removeAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockallowedlist12)、[clearAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockallowedlist12)配置disallowlist和allowlist数据，则默认所有网站均启用广告过滤。
+- 如果1个Web实例启用了广告过滤特性，但未调用[AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12)接口[addAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockdisallowedlist12)、[removeAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockdisallowedlist12)、[clearAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockdisallowedlist12)、[addAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockallowedlist12)、[removeAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#removeadsblockallowedlist12)、[clearAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#clearadsblockallowedlist12)配置disallowlist和allowlist数据，则默认所有网站均启用广告过滤。
 
-7、allowlist和disallowlist数据共同使用时，allowlist的优先级高于disallowlist，即先使用allowlist匹配，如果匹配成功就不再使用disallowlist匹配，该网站会启用广告过滤特性。
+- allowlist和disallowlist数据共同使用时，allowlist的优先级高于disallowlist，即先使用allowlist匹配，如果匹配成功就不再使用disallowlist匹配，该网站会启用广告过滤特性。
 
-8、如果应用没有使能广告过滤特性，那么确保web组件不会向服务器请求默认的内置easylist配置文件。
+- 如果应用没有使能广告过滤特性，那么确保Web组件不会向服务器请求默认的内置easylist配置文件。
 
-9、disallowlist和allowlist数据采用后缀匹配，例如应用的设置的域名"xxyy.com"，可以匹配上url为"wwsstt.xxyy.com"的网站。
+- disallowlist和allowlist数据采用后缀匹配，例如应用的设置的域名"xxyy.com"，可以匹配上url为"wwsstt.xxyy.com"的网站。
 
 ## 使用场景
 
