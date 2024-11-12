@@ -54,7 +54,7 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
 
 ## 目标方开发步骤
 
-1. 在module.json5中配置[uris](../quick-start/module-configuration-file.md#skills标签)，步骤如下：
+1. 在module.json5中配置[uris](../quick-start/module-configuration-file.md#skills标签)：
     1. 设置linkFeature属性以声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用，取值范围如下：
         | 取值         | 含义                 |
         | ------------ | -------------------- |
