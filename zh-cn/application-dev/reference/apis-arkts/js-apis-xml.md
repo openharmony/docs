@@ -1,4 +1,4 @@
-# @ohos.xml (xml解析与生成)
+# @ohos.xml (XML解析与生成)
 
 本模块提供了将XML文本转换为JavaScript对象、以及XML文件生成和解析的一系列接口。
 
@@ -35,7 +35,7 @@ XmlSerializer的构造函数。
 
 | 参数名   | 类型                              | 必填 | 说明                                             |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入xml信息的ArrayBuffer或DataView内存。 |
+| buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入XML信息的ArrayBuffer或DataView内存。 |
 | encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。               |
 
 **错误码：**
@@ -456,7 +456,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 | 参数名   | 类型                              | 必填 | 说明                                       |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 需要解析的xml文本信息。 |
+| buffer   | ArrayBuffer \| DataView | 是   | 需要解析的XML文本信息。 |
 | encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。         |
 
 **错误码：**
@@ -478,11 +478,64 @@ let arrbuffer = textEncoder.encodeInto(strXml);
 let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
 ```
 
-### parse
+### parseXml<sup>14+</sup>
+
+parseXml(option: ParseOptions): void
+
+解析XML。
+
+**原子化服务API**：从API version 14 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明          |
+| ------ | ----------------------------- | ---- | ------------- |
+| option | [ParseOptions](#parseoptions) | 是   | XML解析选项。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { xml, util } from '@kit.ArkTS';
+
+let strxml =
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title><![CDATA[测试\n测试]]></title>' +
+    '</note>';
+let textEncoder = new util.TextEncoder();
+let uint8 = textEncoder.encodeInto(strxml);
+
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  if (key == xml.EventType.CDSECT) {
+    console.log(JSON.stringify(value.getText()));
+  }
+  return true;
+}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let pullParser = new xml.XmlPullParser(uint8.buffer as object as ArrayBuffer);
+pullParser.parseXml(options);
+// "测试\n测试"
+```
+
+### parse<sup>(deprecated)</sup>
 
 parse(option: ParseOptions): void
 
 该接口用于解析xml。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，建议使用[parseXml<sup>14+</sup>](#parsexml14)替代。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -536,7 +589,7 @@ that.parse(options);
 
 ## ParseOptions
 
-xml解析选项。
+XML解析选项。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -553,7 +606,7 @@ xml解析选项。
 
 ## ParseInfo
 
-当前xml解析信息。
+当前XML解析信息。
 
 
 ### getColumnNumber
