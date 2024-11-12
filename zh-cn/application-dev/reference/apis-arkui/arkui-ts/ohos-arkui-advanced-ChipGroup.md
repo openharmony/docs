@@ -144,6 +144,7 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | ---- | ---- | --- | ---- |
 | action | [VoidCallback](ts-types.md#voidcallback12) | 否 | 后缀图标响应事件。|
 | accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍文本属性。|
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍描述。|
 | accessibilityLevel | string | 否 | 后缀图标无障碍重要性。<br>默认值："auto"。|
 
 ## SymbolItemOptions<sup>14+</sup>
