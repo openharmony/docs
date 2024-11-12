@@ -234,7 +234,7 @@ deviceTypes示例：
 | value | 标识数据项的值，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 标识定义用户自定义数据格式，取值为长度不超过255字节的字符串，内容为标识该数据的资源索引。| 字符串 | 该标签可缺省，缺省值为空。 |
 
-resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resources/base/profile目录下。例如$profile:shortcuts_config指定了/resources/base/profile/shortcuts_config.json文件。metadata标签可配置启动页默认大小，name为ohos.ability.window.height表示启动页默认高度，name为ohos.ability.window.width表示启动页默认宽度。metadata标签可配置使能移除启动页功能，name为enable.remove.starting.window，value可配置为true/false，未配置则默认为false。
+resource属性值使用“$profile:文件名”的方式指定文件所在位置，$profile表示资源的路径为工程中的/resources/base/profile目录下。例如$profile:shortcuts_config指定了/resources/base/profile/shortcuts_config.json文件。metadata标签可配置启动页默认大小和位置，name为ohos.ability.window.height表示启动页默认高度，name为ohos.ability.window.width表示启动页默认宽度，name为ohos.ability.window.left表示启动页默认左边的位置，也可添加对齐方式(center|left|right)(+|-)，name为ohos.ability.window.top表示启动页顶部的位置，也可添加对齐方式(center|top|bottom)(+|-)。metadata标签可配置使能移除启动页功能，name为enable.remove.starting.window，value可配置为true/false，未配置则默认为false。
 
 ```json
 {
@@ -263,6 +263,14 @@ resource属性值使用“$profile:文件名”的方式指定文件所在位置
       {
         "name": "ohos.ability.window.width",
         "value": "1300"
+      },
+      {
+        "name": "ohos.ability.window.left",
+        "value": "right-50"
+      },
+      {
+        "name": "ohos.ability.window.width",
+        "value": "center+50"
       },
       {
         "name": "enable.remove.starting.window",
