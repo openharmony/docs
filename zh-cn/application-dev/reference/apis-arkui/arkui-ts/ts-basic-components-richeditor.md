@@ -1070,6 +1070,8 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
+添加用户自定义布局Span。
+
 > **说明：**
 >
 > - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
