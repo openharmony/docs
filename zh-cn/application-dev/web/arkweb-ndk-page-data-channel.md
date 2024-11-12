@@ -1,8 +1,22 @@
 # 建立应用侧与前端页面数据通道(C/C++)
 
-前端页面和应用侧之间可以使用本文Native方法实现两端通信，可解决ArkTS环境的冗余切换，同时允许发送消息、回调在非UI线程上报，避免造成UI阻塞。当前只支持string和buffer数据类型。
+前端页面和应用侧之间可以使用Native方法实现两端通信（以下简称Native PostWebMessage），可解决ArkTS环境的冗余切换，同时允许发送消息、回调在非UI线程上报，避免造成UI阻塞。当前只支持string和buffer数据类型。
 
-## Native侧ArkWeb绑定
+## 适用的应用架构
+
+应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi)实现PostWebMessage功能。
+
+  ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
+
+  上图展示了具有普遍适用性的小程序的通用架构。在这一架构中，逻辑层依赖于应用程序自带的JavaScript运行时，该运行时在一个已有的C++环境中运行。通过Native接口，逻辑层能够直接在C++环境中与视图层（其中ArkWeb充当渲染器）进行通信，无需回退至ArkTS环境使用ArkTs PostWebMessage接口，如左图所示。
+
+  左图是使用ArkTS PostWebMessage接口构建小程序的方案，应用需要先调用到ArkTS环境，再调用到C++环境，如左图红框所示。右图是使用Native PostWebMessage接口构建小程序的方案，不需要ArkTS环境和C++环境的切换，执行效率更高。
+
+  ![arkweb_postwebmessage_diff](figures/arkweb_postwebmessage_diff.png)
+
+## 使用Native接口实现PostWebMessage通信
+
+### 使用Native接口绑定ArkWeb
 
 - ArkWeb组件声明在ArkTS侧，需要用户自定义一个标识webTag，并将webTag通过Node-API传至应用C++侧。后续ArkWeb Native接口使用时，均需webTag作为对应组件的唯一标识。
 
@@ -17,15 +31,15 @@
   // aboutToAppear中将webTag通过Node-API接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
   aboutToAppear() {
     console.info("aboutToAppear")
-    //初始化web ndk
+    // 初始化web ndk
     testNapi.nativeWebInit(this.webTag);
   }
   ...
   ```
 
-## Native侧API结构体获取
+### 使用Native接口获取API结构体
 
-ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi)。
+ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -38,7 +52,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   webMessage = reinterpret_cast<ArkWeb_WebMessageAPI *>(OH_ArkWeb_GetNativeAPI(ARKWEB_NATIVE_WEB_MESSAGE));
   ```
 
-## 完整示例
+### 完整示例
 
 在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。[createWebMessagePorts](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#createwebmessageports)、[postWebMessage](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#postwebmessage)、[close](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#close)需运行在UI线程。
 
@@ -189,7 +203,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
 
     aboutToAppear() {
       web_webview.WebviewController.setWebDebuggingAccess(true);
-      //初始化web ndk
+      // 初始化web ndk
       testNapi.nativeWebInit(this.webTag);
     }
 
@@ -509,7 +523,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       size_t argc = 1;
       napi_value args[1] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -540,7 +554,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -565,7 +579,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -608,7 +622,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -653,7 +667,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -679,7 +693,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -710,7 +724,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -741,7 +755,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -766,7 +780,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -792,7 +806,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
@@ -817,7 +831,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-      // 获取第一个参数 webTag
+      // 获取第一个参数webTag
       size_t webTagSize = 0;
       napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
       char *webTagValue = new (std::nothrow) char[webTagSize + 1];
