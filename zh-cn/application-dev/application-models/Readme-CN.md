@@ -54,6 +54,8 @@
       - [拉起邮件类应用（startAbilityByType）](start-email-apps.md)
       - [拉起邮件类应用（mailto方式）](start-email-apps-by-mailto.md)
       - [拉起金融类应用（startAbilityByType）](start-finance-apps.md)
+      - [拉起航班类应用（startAbilityByType）](start-flight-apps.md)
+      - [拉起快递类应用（startAbilityByType）](start-express-apps.md)
       - [拉起图片编辑类应用（startAbilityByType）](photoEditorExtensionAbility.md)
       - [拉起文件处理类应用（startAbility）](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
