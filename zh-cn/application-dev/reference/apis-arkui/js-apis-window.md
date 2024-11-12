@@ -1445,7 +1445,7 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     try {
       let options : window.SubWindowOptions = {
         title: 'title',
@@ -1654,7 +1654,7 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage:window.WindowStage) {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     try {
       let options : window.SubWindowOptions = {
         title: 'title',
@@ -4224,21 +4224,26 @@ setWindowBackgroundColor(color: string): void
 ```ts
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
 
-private SetUIContent(windowClass: window.Window) {
-  windowClass.SetUIContent("pages/ButtonWindow",(err: BusinessError) => {
-    if (err.code) {
-      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in loading the content.');
-    let color: string = '#00ff33';
-    try {
-      windowClass.SetWindowBackgroundColor(color);
-    } catch (exception) {
-      console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
-    };
-  });
+// EntryAbility.ets
+export default class EntryAbility extends UIAbility {
+  // ...
+  private SetUIContent(windowClass: window.Window) {
+    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      let color: string = '#00ff33';
+      try {
+        windowClass.setWindowBackgroundColor(color);
+      } catch (exception) {
+        console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
+      };
+    });
+  }
 }
 ```
 
