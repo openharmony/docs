@@ -9,8 +9,8 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
 
 | 参数名    | 类型   | 必填 | 说明                                   |
 | --------- | ------ | ---- | -------------------------------------- |
-| sceneType | number | 否   | 意图，默认为1，查询快递填场景填1或不填 |
-| expressNo | string | 是   | 快递单号                               |
+| sceneType | number | 否   | 意图，默认为1，查询快递填场景填1或不填。 |
+| expressNo | string | 是   | 快递单号。                               |
 
 
 ## 拉起方开发步骤
@@ -56,7 +56,7 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
     1. 设置linkFeature属性以声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用，取值范围如下：
         | 取值         | 含义                 |
         | ------------ | -------------------- |
-        | QueryExpress | 声明应用支持快递查询 |
+        | QueryExpress | 声明应用支持快递查询。 |
     2. 设置scheme、host、port、path/pathStartWith属性，与Want中URI相匹配，以便区分不同功能。
         ```json
         {
@@ -91,7 +91,7 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
     
     | 参数名    | 类型   | 必填 | 说明     |
     | --------- | ------ | ---- | -------- |
-    | expressNo | string | 是   | 快递单号 |
+    | expressNo | string | 是   | 快递单号。 |
 
     
 
