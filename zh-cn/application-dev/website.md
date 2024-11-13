@@ -588,7 +588,7 @@
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
-        - [使用运动和方向传感器](web/web-sensor.md)
+        - [使用运动和方向传感器监测设备状态](web/web-sensor.md)
       - Web渲染和布局<!--web-render-layout--->
         - [Web渲染模式](web/web-render-mode.md)
         - [使用Web组件大小自适应页面内容布局](web/web-fit-content.md)
@@ -2099,7 +2099,6 @@
             - [Graphics](reference/apis-arkui/js-apis-arkui-graphics.md)
             - [NodeController](reference/apis-arkui/js-apis-arkui-nodeController.md)
             - [RenderNode](reference/apis-arkui/js-apis-arkui-renderNode.md)
-            - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
@@ -2123,7 +2122,8 @@
           - [@system.configuration (应用配置)](reference/apis-arkui/js-apis-system-configuration.md)
           - [@system.mediaquery (媒体查询)](reference/apis-arkui/js-apis-system-mediaquery.md)
           - [@system.prompt (弹窗)](reference/apis-arkui/js-apis-system-prompt.md)
-          - [@system.router (页面路由)](reference/apis-arkui/js-apis-system-router.md)
+          - [@system.router (页面路由)](reference/apis-arkui/js-apis-system-router.md)         
+          - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS组件<!--arkui-declarative-comp-->
         - 组件通用信息<!--universal-component-information-->
           - 通用事件<!--universal-events-->
@@ -2252,7 +2252,6 @@
           <!--DelEnd-->
         - 导航与切换<!--navigation-and-switching-->
           - [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)
-          - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [NavDestination](reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)
           - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [Stepper](reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
@@ -2445,7 +2444,8 @@
           <!--Del-->
           - [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
           <!--DelEnd-->
-          - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
+          - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)        
+          - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
       - JS组件<!--arkui-js-comp-->
