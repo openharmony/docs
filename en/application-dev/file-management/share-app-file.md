@@ -4,17 +4,16 @@ An application can share a file with another application based on the file descr
 
 - URI-based file sharing: You can use [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) to specify the read or read/write permission on the file for the target application (application with which the file is shared). The target application can call [fs.open](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopen) to open the file based on the URI and perform read and write operations. Currently, only temporary authorization is supported. The permission on the shared file is revoked once the target application exits.
 
-- FD-based sharing: You can use **open()** of the ohos.file.fs module to specify the read or read/write permission on the file for the target application. After parsing the FD in **Want**, the target application can read or write the file by using **read()** or **write()** API of ohos.file.fs based on the permission granted.
-
+- FD-based sharing: You can use **open()** of the ohos.file.fs module to specify the read or read/write permission on the file for the target application. After obtaining the FD from Want, the target application can call [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) APIs to read and write the file.
 After the FD of a shared file is closed, the target application can no longer open the shared file. Therefore, FD-based file sharing is not recommended. This topic describes how to [share an application file](#sharing-an-application-file) and [use a shared file](#using-a-shared-file) based on the file URI.
 
 ## Shareable Application Directories
 
-| Application Sandbox Path                            | Physical Path                                                                            | Description &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|
-| -------                              | -------                                                                             | ---- |
-| /data/storage/el1/base               | /data/app/el1/\<currentUserId\>/base/\<PackageName\>                                | Encrypted database directory under **/el1**.|
-| /data/storage/el2/base               | /data/app/el2/\<currentUserId\>/base/\<PackageName\>                                | Encrypted database directory under **/el2**.|
-| /data/storage/el2/distributedfiles   | /mnt/hmdfs/\<currentUserId\>/account/device_view/\<networkId\>/data/\<PackageName\> | Distributed data directory under **el2/**.|
+| Application Sandbox Path           | Physical Path                                                | Description &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |
+| ---------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| /data/storage/el1/base             | /data/app/el1/\<currentUserId\>/base/\<PackageName\>         | Encrypted database directory under **/el1**.                 |
+| /data/storage/el2/base             | /data/app/el2/\<currentUserId\>/base/\<PackageName\>         | Encrypted database directory under **/el2**.                 |
+| /data/storage/el2/distributedfiles | /mnt/hmdfs/\<currentUserId\>/account/device_view/\<networkId\>/data/\<PackageName\> | Distributed data directory with an account under **/el2**.   |
 
 ## File URI Specifications
 
@@ -90,8 +89,9 @@ Before sharing an application file, you need to [obtain the application file pat
      // ...
    }
    ```
-**Figure 1** Example<br>
-![share-app-file](figures/share-app-file.png)
+**Figure 1** Example
+
+   ![share-app-file](figures/share-app-file.png)
 
 ## Using a Shared File
 
