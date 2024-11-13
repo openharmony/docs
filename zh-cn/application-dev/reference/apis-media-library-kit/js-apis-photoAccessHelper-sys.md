@@ -6251,6 +6251,19 @@ async function example() {
 | QUALITY_ENHANCEMENT_CLOUD |  1 |  在云侧增强处理。 |
 | QUALITY_ENHANCEMENT_LOCAL_AND_CLOUD |  2 |  在端侧和云侧同时增强处理。 |
 
+## ThumbnailType<sup>13+</sup>
+
+枚举，缩略图类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| LCD         | 1  | 获取LCD缩略图    |
+| THM          | 2 | 获取THM缩略图    |
+
 ## WatermarkType<sup>14+</sup>
 
 枚举，水印可编辑标识。
@@ -6265,16 +6278,3 @@ async function example() {
 | BRAND_COMMON |  1 |  支持品牌和通用水印可编辑。 |
 | COMMON |  2 |  支持通用水印可编辑。 |
 | BRAND |  3 |  支持品牌水印可编辑。 |
-
-## ThumbnailType<sup>13+</sup>
-
-枚举，缩略图类型。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称                           | 值  | 说明       |
-| :---------------------------- | :- | :------- |
-| LCD         | 1  | 获取LCD缩略图    |
-| THM          | 2 | 获取THM缩略图    |
