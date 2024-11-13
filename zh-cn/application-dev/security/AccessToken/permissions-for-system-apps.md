@@ -4283,6 +4283,18 @@
 
 **起始版本**：14
 
+### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
+
+允许UIExtensionAbility显示在锁屏之上。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：14
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
