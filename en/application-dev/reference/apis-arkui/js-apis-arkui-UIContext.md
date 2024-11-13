@@ -413,7 +413,7 @@ struct Index {
 
 getFrameNodeById(id: string): FrameNode | null
 
-Obtains the entity node of the component tree based on the component ID.
+Obtains a FrameNode on the component tree based on the component ID.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1103,7 +1103,7 @@ Obtains the **DragController** object, which can be used to create and initiate 
 
 |Type|Description|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#dragController)| **DragController** object.|
+|[DragController](js-apis-arkui-dragController.md)| **DragController** object.|
 
 **Example**
 
@@ -1741,7 +1741,7 @@ Requests the dynamic sync scene of a component for customizing related frame rat
 
 | Name| Type  | Mandatory| Description                                   |
 | ------ | ------ | ---- | --------------------------------------- |
-| id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node.
+| id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node. |
 
 **Return value**
 
@@ -2299,7 +2299,7 @@ struct TabsExample {
 }
 ```
 
-![bindTabsToScrollable](figures/bindTabsToScrollable.gif)
+
 
 ### unbindTabsFromScrollable<sup>13+</sup>
 
@@ -2448,7 +2448,7 @@ Obtains information about a system font based on the font name.
 
 | Type                                     | Description          |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo) | Information about the system font.|
+| [font.FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
 **Example**
 
@@ -4843,7 +4843,7 @@ Obtains the status information about a page by its index.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#outerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist.|
+| router.[RouterState](js-apis-router.md#routerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist.|
 
 **Example**
 
@@ -4861,7 +4861,7 @@ if (options != undefined) {
 ```
 ### getStateByUrl<sup>12+</sup>
 
-getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
+getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#routerstate)>
 
 Obtains the status information about a page by its URL.
 
@@ -4879,7 +4879,7 @@ Obtains the status information about a page by its URL.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| Array<router.[RouterState](js-apis-router.md#outerstate)> | Page routing state.|
+| Array<router.[RouterState](js-apis-router.md#routerstate)> | Page routing state.|
 
 **Example**
 

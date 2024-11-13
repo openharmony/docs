@@ -122,7 +122,7 @@ Enables recognition for special entities within the text.
 
 For this API to work, the target device must provide the text recognition capability.
 
-When **enableDataDetector** is set to **true**, and the **dataDetectorConfig** attribute is not set, all types of entities are recognized by default, and the **color** and **decoration** of the recognized entities will be changed to the following styles:
+If **enableDataDetector** is set to **true** and **dataDetectorConfig** is not set, all types of entities will be recognized, and the **color** and **decoration** attributes of the recognized entities will be changed to the following styles:
 
 ```ts
 color: '#ff007dff'
@@ -255,8 +255,6 @@ Sets the background color of the selected text. If the opacity is not set, a 20%
 editMenuOptions(editMenu: EditMenuOptions)
 
 Sets the extended options of the custom context menu on selection, including the text content, icon, and callback.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -683,7 +681,7 @@ Provides the span type information.
 
 ## RichEditorResponseType<sup>11+</sup>
 
-Response type of the menu.
+Provides the response type of the menu.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1643,7 +1641,7 @@ Provides the span information of the **RichEditor** component.
 
 ## SelectionMenuOptions<sup>10+</sup>
 
-Menu options.
+Provides the options of the custom context menu on selection.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1651,7 +1649,7 @@ Menu options.
 | ----------- | ---------- | ---- | ------------- |
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | No   | Callback invoked when the custom context menu on selection is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onDisappear | Callback\<void\>  | No   | Callback invoked when the custom context menu on selection is closed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13) | No| Custom menu type.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13) | No| Type of the custom context menu on selection.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1762,7 +1760,7 @@ Invoked when the paste is about to be completed.
 
 | Name    | Type                                            | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| event  | [PasteEvent](#pasteevent11) | No  | Defines the custom paste event.|
+| event  | [PasteEvent](#pasteevent11) | No  | Custom paste event.|
 
 ## Example
 
@@ -1798,7 +1796,7 @@ struct Index {
       .height("20%")
 
       Row() {
-        Button ("Update Style: Bold").onClick(() => {
+        Button("Update Style: Bold").onClick(() => {
           this.controller.updateSpanStyle({
             start: this.start,
             end: this.end,
@@ -2858,7 +2856,7 @@ struct Index {
         .draggable(false)
 
       Column({ space: 5 }) {
-        Button ("Align left").onClick () => {
+        Button("Align Left").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Start,
@@ -2866,7 +2864,7 @@ struct Index {
           })
         })
 
-        Button ("Align right").onClick(() => {
+        Button("Align Right").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.End,
@@ -2874,7 +2872,7 @@ struct Index {
           })
         })
 
-        Button ("Center").onClick ((). => {
+        Button("Center").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Center,
@@ -3103,7 +3101,7 @@ struct Index {
         })
         Divider()
         Row({ space: 5 }) {
-          Button ("Increase Bullet Indent").onClick(() => {
+          Button("Increase Bullet Indent").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
               margin += Indentation
@@ -3141,7 +3139,7 @@ struct Index {
         }
         Divider()
         Row({ space: 5 }) {
-          Button ("Increase Indent").onClick(() => {
+          Button("Increase Indent").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
               margin += Indentation
@@ -4165,7 +4163,7 @@ struct LineBreakStrategyExample {
 
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
 
-### Example: 20
+### Example 20
 This example shows the usage of a styled string.
 
 ```ts
@@ -4261,7 +4259,7 @@ struct Index {
           .width("100%")
         Text("range: " + this.range).width("100%")
         Text("replacementString: " + this.replaceString).width("100%")
-        Tex ("onWillChange callback")
+        Text("onWillChange callback")
           .fontSize(20)
           .width("100%")
         Text("rangeBefore: " + this.rangeBefore).width("100%")

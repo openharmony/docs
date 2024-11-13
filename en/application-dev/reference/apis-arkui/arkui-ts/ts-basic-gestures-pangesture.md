@@ -76,11 +76,10 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 
 ## Attributes
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name | Type   |Description                                       |
+| Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the pan gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the pan gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool)>  | Allowed event input types for the pan gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
 
