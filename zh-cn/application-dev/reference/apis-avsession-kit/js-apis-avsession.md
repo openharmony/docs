@@ -4600,7 +4600,7 @@ on(type: 'castControlGenericError', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6611000  | The error code for cast control is unspecified.      |
 | 6611001  | An unspecified error occurs in the remote player.   |
 | 6611002  | The playback position falls behind the live window.     |
@@ -4645,7 +4645,7 @@ off(type: 'castControlGenericError', callback?: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4674,7 +4674,7 @@ on(type: 'castControlIoError', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6612000  | An unspecified input/output error occurs.     |
 | 6612001  | Network connection failure.   |
 | 6612002  | Network timeout.     |
@@ -4722,7 +4722,7 @@ off(type: 'castControlIoError', callback?: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4751,7 +4751,7 @@ on(type: 'castControlParsingError', callback: ErrorCallback): void
 
 | 错误码ID  | 错误信息              |
 | -------- | --------------------- |
-| 401      |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401      |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6613000  | Unspecified error related to content parsing.     |
 | 6613001  | Parsing error associated with media container format bit streams.   |
 | 6613002  | Parsing error associated with the media manifest.     |
@@ -4787,7 +4787,7 @@ off(type: 'castControlParsingError', callback?: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4816,7 +4816,7 @@ on(type: 'castControlDecodingError', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6614000  | Unspecified decoding error.     |
 | 6614001  | Decoder initialization failed.   |
 | 6614002  | Decoder query failed.     |
@@ -4852,7 +4852,7 @@ off(type: 'castControlDecodingError', callback?: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4883,7 +4883,7 @@ on(type: 'castControlAudioRendererError', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6615000  | Unspecified errors related to the audio renderer.     |
 | 6615001  | Initializing the audio renderer failed.   |
 | 6615002  | The audio renderer fails to write data.     |
@@ -4916,7 +4916,7 @@ off(type: 'castControlAudioRendererError', callback?: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -4945,10 +4945,10 @@ on(type: 'castControlDrmError', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6616000  | Unspecified error related to DRM.     |
 | 6616001  | The chosen DRM protection scheme is not supported by the device.  |
-| 6615002  | Device provisioning failed.    |
+| 6616002  | Device provisioning failed.    |
 | 6616003  | The DRM-protected content to play is incompatible.     |
 | 6616004  | Failed to obtain a license.   |
 | 6616005  | The operation is disallowed by the license policy.     |
@@ -4986,7 +4986,7 @@ off(type: 'castControlDrmError', callback?: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
