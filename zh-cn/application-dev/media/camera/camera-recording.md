@@ -48,7 +48,7 @@
 
    > **说明：**
    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
-
+   >
    > 获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#videooutput)类中的[getVideoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getvideorotation12)方法获取rotation实际的值
 
    ```ts
