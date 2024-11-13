@@ -148,15 +148,15 @@ class MyAbility extends UIAbility {
 
 ## WindowMode<sup>12+</sup>
 
-启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)使用，指定启动Ability的窗口模式。仅在2in1和tablet设备上生效。
+启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)使用，指定启动Ability的窗口模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                        | 值 | 说明                 |
 | ---                         | --- | ---                  |
-| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。         |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 支持应用内拉起Ability时设置为分屏，左侧分屏。   |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | 支持应用内拉起Ability时设置为分屏，右侧分屏。   |
+| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。仅在2in1和tablet设备上生效。  |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 支持应用内拉起Ability时设置为分屏，左侧分屏。仅在折叠屏和tablet设备上生效。   |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | 支持应用内拉起Ability时设置为分屏，右侧分屏。仅在折叠屏和tablet设备上生效。   |
 
 **示例：**
 
