@@ -89,11 +89,11 @@ export default function abilityTest() {
 
 #### 编写UI测试脚本
 
-本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
+本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口，<!--RP1-->具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)<!--RP1End-->。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
-1.编写Index.ets页面代码， 作为被测示例demo。
+1. 编写Index.ets页面代码， 作为被测示例demo。
 
- ```ts
+  ```ts
   @Entry
   @Component
   struct Index {
@@ -119,11 +119,11 @@ export default function abilityTest() {
       .height('100%')
     }
   }
- ```
+  ```
 
-2.在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
+2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
- ```ts
+  ```ts
   import { describe, it, expect } from '@ohos/hypium';
   // 导入测试依赖kit
   import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
@@ -165,7 +165,7 @@ export default function abilityTest() {
        })
     })
   }
- ```
+  ```
 
 ### 执行测试脚本
 
@@ -552,7 +552,7 @@ hdc shell uitest uiInput inputText 100 100 hello
 
 >**说明**
 >
-> 最多支持传入是三个键值，键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)。
+> 最多支持传入是三个键值，<!--RP3-->键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->。
 
 ```shell  
 # 执行执行返回主页操作。
@@ -578,7 +578,7 @@ hdc shell uitest start-daemon
 >
 > 设备需调成开发者模式。
 > 仅元能力aa test拉起的测试hap才能调用Uitest的能力。
-> 测试hap的[APL等级级别](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)需为system_basic、normal。
+> <!--RP4-->测试hap的[APL等级级别](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)需为system_basic、normal<!--RP4End-->。
 
 <!--Del-->
 ## 相关实例
