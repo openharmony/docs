@@ -10,7 +10,7 @@ The WebSocket module supports the heartbeat detection mechanism. After a WebSock
 
 ## Available APIs
 
-The WebSocket connection function is mainly implemented by the WebSocket module. To use related APIs, you must declare the **ohos.permission.INTERNET** permission. The following table describes the related APIs.
+The WebSocket connection function is mainly implemented by the [WebSocket module](../reference/apis-network-kit/js-apis-webSocket.md). To use related APIs, you must declare the **ohos.permission.INTERNET** permission. The following table describes the related APIs.
 
 | API             | Description                                     |
 | ------------------ | ----------------------------------------- |
@@ -83,3 +83,4 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   }
 });
 ```
+
