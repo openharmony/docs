@@ -1805,6 +1805,8 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 **示例：**
 
 ```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
