@@ -1806,6 +1806,7 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { systemDateTime } from '@kit.BasicServicesKit';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
