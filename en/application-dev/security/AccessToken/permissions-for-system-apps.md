@@ -3991,6 +3991,18 @@ Allows an application or a service to initiate user identity authentication from
 
 **Valid since**: 13
 
+### ohos.permission.ACCESS_MCU_LOG_DIR
+
+Allows a system application to access the microcontroller unit (MCU) log directory.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
