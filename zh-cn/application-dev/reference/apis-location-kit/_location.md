@@ -325,7 +325,7 @@ Location_ResultCode OH_Location_StartLocating (const Location_RequestConfig * re
 
 返回操作结果，详细定义参见[Location_ResultCode](#location_resultcode)。
 
-**LOCAION_SUCCESS** 启动定位成功。
+LOCAION_SUCCESS 启动定位成功。
 
 LOCATION_INVALID_PARAM 入参requestConfig为空指针。
 
@@ -362,19 +362,17 @@ Location_ResultCode OH_Location_StopLocating (const Location_RequestConfig * req
 
 返回操作结果，详细定义参见[Location_ResultCode](#location_resultcode)。
 
-**LOCAION_SUCCESS** 停止定位成功。
+LOCAION_SUCCESS 停止定位成功。
 
-LOCATION_INVALID_PARAM 1. 入参为空指针。
+LOCATION_INVALID_PARAM 入参为空指针或入参与[OH_Location_StartLocating](#oh_location_startlocating)的requestConfig指针不同。
 
-1. 入参与[OH_Location_StartLocating](#oh_location_startlocating)的requestConfig指针不同。
+LOCATION_PERMISSION_DENIED 权限校验失败。
 
-   LOCATION_PERMISSION_DENIED 权限校验失败。
+LOCATION_NOT_SUPPORTED 当前设备不支持该功能。
 
-   LOCATION_NOT_SUPPORTED 当前设备不支持该功能。
+LOCATION_SERVICE_UNAVAILABLE 位置服务运行异常。
 
-   LOCATION_SERVICE_UNAVAILABLE 位置服务运行异常。
-
-   LOCATION_SWITCH_OFF 位置开关未打开。
+LOCATION_SWITCH_OFF 位置开关未打开。
 
 **Permission：**
 
