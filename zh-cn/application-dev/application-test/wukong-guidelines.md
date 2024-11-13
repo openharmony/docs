@@ -2,9 +2,7 @@
 
 ## 功能介绍
 
-wukong是系统自带的一种命令行工具，支持Ability的随机事件注入、控件注入、异常捕获、报告生成和对Ability数据遍历截图等特性。通过模拟用户行为，对系统或应用进行稳定性压力测试。  
-
-wukong分为随机测试、专项测试和专注测试。
+wukong是系统自带的一种命令行工具，支持Ability的随机事件注入、控件注入、异常捕获、报告生成和对Ability数据遍历截图等特性。通过模拟用户行为，对系统或应用进行稳定性压力测试。wukong分为随机测试、专项测试和专注测试。
 
 随机测试是指随机测试界面内容，支持的能力包括：shell启动、拉起整机应用、多种注入方式、设置随机种子、打印运行日志和生成报告。
 
@@ -43,6 +41,8 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 3. PC被检测设备连接后，才可执行命令行，支持单个和多个设备。
 
+4. 所有命令行执行前需要先进入shell模式
+
 ## 功能特性及命令说明
 
 | 命令           | 说明                                           |
@@ -54,87 +54,87 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | exec    | wukong随机测试。                                   |
 | focus   | wukong专注测试。                                   |
 
-### 使用示例
+### 执行命令
 
-> 以下操作需要先进入shell模式
+- 进入shell模式
 
-```bash
-#若为单设备，则直接输入如下命令进入shell模式
-C:\Users>hdc shell
-#
+  ```bash
+  #若为单设备，则直接输入如下命令进入shell模式
+  C:\Users>hdc shell
+  #
 
-#若为多设备，则需先获取sn号，先输入hdc list targets获取sn号，然后进入shell模式
-C:\Users>hdc list targets
-15xxx424axxxx345209d94xxxx8fxx900
-C:\Users>hdc -t 15xxx424axxxx345209d94xxxx8fxx900 shell
-#
-```
+  #若为多设备，则需先获取sn号，先输入hdc list targets获取sn号，然后进入shell模式
+  C:\Users>hdc list targets
+  15xxx424axxxx345209d94xxxx8fxx900
+  C:\Users>hdc -t 15xxx424axxxx345209d94xxxx8fxx900 shell
+  #
+  ```
 
-#### 获取应用的bundle name和ability name
+- 获取应用的bundle name和ability name
 
-```bash
-# wukong appinfo
-BundleName:  com.ohos.adminprovisioning
-AbilityName:  com.ohos.adminprovisioning.MainAbility
-BundleName:  com.ohos.callui
-AbilityName:  com.ohos.callui.MainAbility
-```
-#### 执行查看帮助命令
+  ```bash
+  # wukong appinfo
+  BundleName:  com.ohos.adminprovisioning
+  AbilityName:  com.ohos.adminprovisioning.MainAbility
+  BundleName:  com.ohos.callui
+  AbilityName:  com.ohos.callui.MainAbility
+  ```
+- 执行查看帮助命令
 
-```bash
-C:\Users>hdc shell
-# wukong --help        //wukong帮助菜单
-wukong: '--help' is not a valid wukong command. See 'wukong help'.
-usage: wukong <command> [<arguments>]
-These are common wukong command list:
-   help                       wukong help information
-   -v/--version               wukong version
-   exec                       run random test
-   special                    run special test
-   focus                      run focus test
-   appinfo                    show all app information
-# wukong exec -help   //wukong随机测试帮助菜单
-usage: wukong exec [<arguments>]
-These are wukong exec arguments list:
-   -h, --help                 random test help
-   -a, --appswitch            appswitch event percent
-   -b, --bundle               the bundle name of allowlist
-   -p, --prohibit             the bundle name of blocklist
-   -d, --page                 block page list
-   -t, --touch                touch event percent
-   -c, --count                test count
-   -i, --interval             interval
-   -s, --seed                 random seed
-   -m, --mouse                mouse event percent
-   -k, --keyboard             keyboard event percent
-   -H, --hardkey              hardkey event percent
-   -S, --swap                 swap event percent
-   -T, --time                 test time
-   -C, --component            component event percent
-   -r, --rotate               rotate event percent
-   -e, --allow ability        the ability name of allowlist
-   -E, --block ability        the ability name of blocklist
-   -I, --screenshot           get screenshot(only in random input)
-# wukong special -help    //wukong专项测试帮助菜单
-usage: wukong special [<arguments>]
-These are wukong special arguments list:
-   -h, --help                 special test help
-   -t, --touch[x,y]           touch event
-   -c, --count                total count of test
-   -i, --interval             interval
-   -S, --swap[option]         swap event
-                              option is -s| -e| -b
-                              -s, --start: the start point of swap
-                              -e, --end: the end point of swap
-                              -b, --bilateral: swap go and back
-   -k, --spec_insomnia        power on/off event
-   -T, --time                 total time of test
-   -C, --component            component event
-   -p, --screenshot           get screenshot(only in componment input)
-   -r, --record               record user operation
-   -R, --replay               replay user operation
-   -u, --uitest               uitest dumpLayout
-```
+  ```bash
+  C:\Users>hdc shell
+  # wukong --help        //wukong帮助菜单
+  wukong: '--help' is not a valid wukong command. See 'wukong help'.
+  usage: wukong <command> [<arguments>]
+  These are common wukong command list:
+    help                       wukong help information
+    -v/--version               wukong version
+    exec                       run random test
+    special                    run special test
+    focus                      run focus test
+    appinfo                    show all app information
+  # wukong exec -help   //wukong随机测试帮助菜单
+  usage: wukong exec [<arguments>]
+  These are wukong exec arguments list:
+    -h, --help                 random test help
+    -a, --appswitch            appswitch event percent
+    -b, --bundle               the bundle name of allowlist
+    -p, --prohibit             the bundle name of blocklist
+    -d, --page                 block page list
+    -t, --touch                touch event percent
+    -c, --count                test count
+    -i, --interval             interval
+    -s, --seed                 random seed
+    -m, --mouse                mouse event percent
+    -k, --keyboard             keyboard event percent
+    -H, --hardkey              hardkey event percent
+    -S, --swap                 swap event percent
+    -T, --time                 test time
+    -C, --component            component event percent
+    -r, --rotate               rotate event percent
+    -e, --allow ability        the ability name of allowlist
+    -E, --block ability        the ability name of blocklist
+    -I, --screenshot           get screenshot(only in random input)
+  # wukong special -help    //wukong专项测试帮助菜单
+  usage: wukong special [<arguments>]
+  These are wukong special arguments list:
+    -h, --help                 special test help
+    -t, --touch[x,y]           touch event
+    -c, --count                total count of test
+    -i, --interval             interval
+    -S, --swap[option]         swap event
+                                option is -s| -e| -b
+                                -s, --start: the start point of swap
+                                -e, --end: the end point of swap
+                                -b, --bilateral: swap go and back
+    -k, --spec_insomnia        power on/off event
+    -T, --time                 total time of test
+    -C, --component            component event
+    -p, --screenshot           get screenshot(only in componment input)
+    -r, --record               record user operation
+    -R, --replay               replay user operation
+    -u, --uitest               uitest dumpLayout
+  ```
 
 ## 随机测试
 
@@ -172,7 +172,7 @@ These are wukong special arguments list:
 - 设置100次事件注入
 
   ```bash
-    # wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
+  # wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
   ```
 
   命令中各参数含义：
@@ -257,8 +257,8 @@ These are wukong special arguments list:
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
 | -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
-| -e, --allow ability   |  设置压测ability白名单 | 否 | - |
-| -E, --block ability   |  设置压测ability白名单 | 否 | - |
+| -e, --allow ability   |  设置允许测试的ability | 否 | - |
+| -E, --block ability   |  设置禁止测试的ability | 否 | - |
 | -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
 | -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
 | -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
@@ -278,7 +278,6 @@ These are wukong special arguments list:
 | -a  | 0.28          | 参数设置应用随机拉起测试比例28%。    |
 | -t  | 0.72           | 参数设置屏幕随机touch测试比例为72%。    |
 | -c  | 100           | 参数设置执行次数为100次。         |
-
 
 
 ## 查看测试结果
