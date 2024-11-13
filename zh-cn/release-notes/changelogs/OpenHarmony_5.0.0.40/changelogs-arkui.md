@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为兼容性变更。
+该变更为不兼容变更。
 
 变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
 
