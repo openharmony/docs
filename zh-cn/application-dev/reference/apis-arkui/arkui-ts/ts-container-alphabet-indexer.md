@@ -14,7 +14,7 @@
 
 ## 接口
 
-AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
+AlphabetIndexer(value: AlphabetIndexerOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -24,8 +24,16 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| value | [AlphabetIndexerOptions](#alphabetindexeroptions14对象说明) | 是 | 设置索引条组件参数。 |
+
+## AlphabetIndexerOptions<sup>14+</sup>对象说明
+
+用于设置索引条参数。
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
 | arrayValue | Array&lt;string&gt; | 是 | 字母索引字符串数组，不可设置为空。 |
-| selected   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 ## 属性
 
@@ -439,7 +447,7 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 ### onSelect<sup>8+</sup>
 
-onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+onSelect(callback: OnAlphabetIndexerSelectCallback)
 
 索引条选中回调，返回值为当前选中索引。
 
@@ -451,11 +459,11 @@ onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | 是   | 当前选中的索引。 |
+| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback14) | 是   | 索引条选中回调。 |
 
 ### onRequestPopupData<sup>8+</sup>
 
-onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)
+onRequestPopupData(callback: OnAlphabetIndexerRequestPopupDataCallback)
 
 选中字母索引后，请求索引提示弹窗显示内容回调。
 
@@ -467,17 +475,11 @@ onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 当前选中的索引 |
-
-**返回值：** 
-
-| 类型   | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| Array&lt;string&gt; | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
+| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback14) | 是   | 请求索引提示弹窗显示内容回调。 |
 
 ### onPopupSelect<sup>8+</sup>
 
-onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
+onPopupSelect(callback: OnAlphabetIndexerPopupSelectCallback)
 
 字母索引提示弹窗字符串列表选中回调。
 
@@ -489,8 +491,54 @@ onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | 是   | 当前选中的索引。 |
+| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback14) | 是   | 字母索引提示弹窗字符串列表选中回调。 |
 
+## OnAlphabetIndexerSelectCallback<sup>14+</sup>
+type OnAlphabetIndexerSelectCallback = (index: number) => void
+
+滚动到边缘时触发的回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名  | 类型   | 必填 | 说明    |
+| ------- | ----- | ---- | ------ |
+| index    | number  | 是   | 当前选中的索引。 |
+
+## OnAlphabetIndexerPopupSelectCallback<sup>14+</sup>
+type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
+
+滚动到边缘时触发的回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名  | 类型   | 必填 | 说明    |
+| ------- | ----- | ---- | ------ |
+| index   | number  | 是   | 当前选中的索引。 |
+
+## OnAlphabetIndexerRequestPopupDataCallback<sup>14+</sup>
+type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<string\>
+
+滚动到边缘时触发的回调。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名  | 类型   | 必填 | 说明    |
+| ------- | ----- | ---- | ------ |
+| index   | number  | 是   | 当前选中的索引。 |
+
+**返回值：**
+| 类型          | 说明                 |
+| ------------- | -------------------- |
+| Array\<string\> | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
 
 ## 示例
 ### 示例1
