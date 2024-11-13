@@ -30,13 +30,16 @@ The distributed file system provides applications the capability for accessing f
      fs.writeSync(file.fd, 'content');
      // Close the file.
      fs.closeSync(file.fd);
-   } catch (error: BusinessError) {
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    } 
    ```
 
    Device B initiates a link setup request to device A. After the link is set up, device B can read the test file in the distributed file directory.
+   > **NOTE**
+   >
+   > The network ID (**networkId**) of the device can be obtained by using distributed device management APIs. For details, see [Device Management](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md).
 
    ```ts
    import { fileIo as fs } from '@kit.CoreFileKit';
@@ -60,7 +63,7 @@ The distributed file system provides applications the capability for accessing f
    // Access and mount the user directory.
    fs.connectDfs(networkId, listeners).then(() => {
      console.info("Success to connectDfs");
-     let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device B.
+     let context = getContext(); // Obtain the UIAbilityContext information of device B.
      let pathDir: string = context.distributedFilesDir;
      // Obtain the file path of the distributed directory.
      let filePath: string = pathDir + '/test.txt';
@@ -81,7 +84,7 @@ The distributed file system provides applications the capability for accessing f
        // Print the read data.
        let buf = buffer.from(arrayBuffer, 0, num);
        console.info('read result: ' + buf.toString());
-     } catch (error: BusinessError) {
+     } catch (error) {
        let err: BusinessError = error as BusinessError;
        console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
      }
@@ -96,6 +99,7 @@ The distributed file system provides applications the capability for accessing f
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { distributedDeviceManager } from '@kit.DistributedServiceKit'
+   import { fileIo as fs } from '@kit.CoreFileKit';
    
    // Obtain the network ID of device A.
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");

@@ -38,7 +38,7 @@ target_link_libraries(sample PUBLIC libohfileio.so)
 #include <filemanagement/fileio/oh_fileio.h>
 ```
 
-Use **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example:
+Call **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example:
 ```c
     void GetFileLocationExample() {
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
@@ -56,4 +56,4 @@ Use **OH_FileIO_GetFileLocation** to obtain the location of a file. <br>Example:
             printf("GetFileLocation failed, error code is %d", ret);
         }
     }    
-   ```
+```
