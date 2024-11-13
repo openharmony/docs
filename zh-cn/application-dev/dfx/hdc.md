@@ -509,7 +509,10 @@ hdc list targets -v
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | 无返回值 | 服务进程启动成功 |
+   | hdc start server, listening: _::ffff:127.0.0.1:8710_ | 启动服务进程并显示服务进程网络监听参数 |
+   | Start server finish | 服务进程启动成功 |
+   | hdc server process already exists | 服务进程已存在 |
+   | Kill server finish | 重启服务进程，原服务进程终止成功 |
    | [Fail]具体失败信息 | 服务进程启动失败 |
 
    **使用方法：**
