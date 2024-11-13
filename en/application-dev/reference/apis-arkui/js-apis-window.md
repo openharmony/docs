@@ -1447,7 +1447,7 @@ try {
   let promise = windowClass.moveWindowToAsync(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
-    let rect = windowClass?.getWindowProperties().windowRect;
+    let rect = windowClass.getWindowProperties().windowRect;
     console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
@@ -1639,7 +1639,7 @@ try {
   let promise = windowClass.resizeAsync(500, 1000);
   promise.then(() => {
     console.info('Succeeded in changing the window size.');
-    let rect = windowClass?.getWindowProperties().windowRect;
+    let rect = windowClass.getWindowProperties().windowRect;
     console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
@@ -4197,22 +4197,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage: LocalStorage = new LocalStorage();
-storage.setOrCreate('storageSimpleProp', 121);
-windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
-  let errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in loading the content.');
-  let color: string = '#00ff33';
-  try {
-    windowClass?.setWindowBackgroundColor(color);
-  } catch (exception) {
-    console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
-  };
-});
+private SetUIContent(windowClass: window.Window) {
+    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      let color: string = '#00ff33';
+      try {
+        windowClass.setWindowBackgroundColor(color);
+      } catch (exception) {
+        console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
+      };
+    });
+}
 ```
 
 ### setWindowBrightness<sup>9+</sup>
