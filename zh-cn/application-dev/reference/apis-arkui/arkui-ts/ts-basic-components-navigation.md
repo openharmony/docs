@@ -1482,7 +1482,7 @@ Navigation首页名字。
 
 ## BarStyle<sup>12+</sup>枚举说明
 
-标题栏或工具栏的布局样式。
+标题栏或工具栏的布局样式。NavDestination的工具栏不支持设置该属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
