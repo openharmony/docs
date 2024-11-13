@@ -133,11 +133,7 @@ hiperf record -p 267 -d 10 -s dwarf
 
 ![](figures/hipref-record-pid.png)
 
-更多详细信息请参考命令帮助。
 
-```
-hiperf record --help
-```
 
 ## stat命令
 
@@ -175,12 +171,6 @@ Usage: hiperf stat [options] [command [command-args]]
 hiperf stat -p 2349 -d 3 -c 0
 ```
 
-更多详细信息请参考命令帮助。
-
-```
-hiperf stat --help
-```
-
 ## dump命令
 
 此命令主要以不加以处理的方式直接读取perf.data的数据，开发和测试人员可核对其中原始采样数据的正确性。
@@ -212,11 +202,7 @@ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 
 ![](figures/hipref-dump.png)
 
-更多详细信息请参考命令帮助。
 
-```
-hiperf dump --help
-```
 
 ## report命令
 
@@ -252,11 +238,7 @@ Usage: hiperf report [option] \<filename\>
 hiperf report --limit-percent 1
 ```
 
-更多详细信息请参考命令帮助。
 
-```
-hiperf report --help
-```
 
 ## 脚本
 
