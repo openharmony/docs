@@ -790,6 +790,8 @@ struct WaterFlowDemo {
 
 ### 示例3
 WaterFlowSections的使用。
+
+如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#waterflow)。
 ```ts
 // Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
