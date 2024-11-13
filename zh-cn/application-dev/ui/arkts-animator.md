@@ -48,7 +48,7 @@
 4. 动画执行完成后手动释放AnimatorResult对象。
 
    ```ts
-   // 播放动画
+   // 释放动画对象
    result = undefined;
    ```
 
@@ -112,7 +112,7 @@
      this.animatorStatus = '暂停'
    }).width(80).height(35)
    ```
-5. 在页面结束生命周期回调中销毁动画。
+5. 在页面隐藏或销毁的生命周期中释放动画对象，避免内存泄漏。
    ```ts
    onPageHide(): void {
      this.animatorOptions = undefined;
