@@ -269,7 +269,7 @@ resource属性值使用“$profile:文件名”的方式指定文件所在位置
         "value": "right-50"
       },
       {
-        "name": "ohos.ability.window.width",
+        "name": "ohos.ability.window.top",
         "value": "center+50"
       },
       {
