@@ -100,7 +100,7 @@ disable-admin success.
 
 **处理步骤**
 
-1、检查-n后的参数，请补充bundleName。
+检查-n后的参数，请补充bundleName。
 
 ### error: -a, --ability-name option requires an argument.
 
@@ -114,7 +114,7 @@ disable-admin success.
 
 **处理步骤**
 
-1、检查-a后的参数，请补充abilityName。
+检查-a后的参数，请补充abilityName。
 
 ### error: unknown option.
 
@@ -128,7 +128,7 @@ disable-admin success.
 
 **处理步骤**
 
-1、请确认参数是否在参数列表中。
+请确认参数是否在参数列表中。
 
 ### error: -n \<bundle-name\> is expected.
 
@@ -142,7 +142,7 @@ disable-admin success.
 
 **处理步骤**
 
-1、请补充-n \<bundle-name\>。
+请补充-n \<bundle-name\>。
 
 ### error: -a \<ability-name\> is expected.
 
@@ -156,7 +156,7 @@ disable-admin success.
 
 **处理步骤**
 
-1、请补充-a \<ability-name\>。
+请补充-a \<ability-name\>。
 
 ### error: the administrator ability component is invalid.
 
@@ -174,7 +174,7 @@ disable-admin success.
 
 **处理步骤**
 
-1、查询应用的bundleName和enterpriseAdmin类型的ExtensionAbility的abilityName，并将其传入到参数中。
+查询应用的bundleName和enterpriseAdmin类型的ExtensionAbility的abilityName，并将其传入到参数中。
 
 ### error: failed to enable the administrator application of the device.
 
@@ -208,4 +208,4 @@ disable-admin success.
 
 **处理步骤**
 
-1、查询应用的bundleName，并将其传入到参数中。
+查询应用的bundleName，并将其传入到参数中。
