@@ -48,6 +48,8 @@
 
    > **说明：**
    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推
+   > 
+   > 获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#videooutput)类中的[getVideoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getvideorotation12)方法获取rotation实际的值
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -70,7 +72,7 @@
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
-       rotation: 90 // 90°为默认竖屏显示角度，如果由于设备原因或应用期望以其他方式显示等原因，请根据实际情况调整该参数
+       rotation: 90 // rotation的值90，是通过getPhotoRotation接口获取到的值，具体请参考说明中获取录像旋转角度的方法
      };
      // 创建avRecorder
      let avRecorder: media.AVRecorder | undefined = undefined;
