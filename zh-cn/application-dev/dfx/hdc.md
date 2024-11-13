@@ -37,7 +37,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       ```
 
 2. 单击字母“i”，进入**Insert**模式。
-3. 输入以下内容，在PATH路径下添加OHOS_HDC_SERVER_PORT端口信息。
+3. 输入以下内容，添加OHOS_HDC_SERVER_PORT端口信息。
 
    ```shell
    OHOS_HDC_SERVER_PORT=8710
@@ -71,10 +71,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量 &gt; 系统变量**中，将SDK的toolchains完整路径添加到Path变量值中，具体路径信息以SDK**实际配置路径**为准。
 
-以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_%YourSDKPath%\openharmony\toolchains_<!--RP1End-->为例：
+以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_%YourSDKPath%_\openharmony\toolchains为例：
 
 ![系统变量](figures/hdc_img_002.PNG)
-
+<!--RP1End-->
 ![编辑环境变量](figures/hdc_image_003.PNG)
 
 **Linux/macOS环境变量设置方法**
@@ -101,13 +101,14 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 3. 输入以下内容，在PATH路径下**增加**SDK路径信息，具体路径信息以SDK**实际配置路径**为准。
 
-   以下内容以本地SDK的toolchains完整路径<!--RP1-->_$YourSDKPath/openharmony/toolchains_<!--RP1End-->为例：
+   以下内容以本地SDK的toolchains完整路径<!--RP1-->_$YourSDKPath_/openharmony/toolchains为例：
 
    ```shell
    HDC_SDK_PATH=$YourSDKPath/openharmony/toolchains
    launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH # 仅MacOS需要在此执行，Linux无须执行
    export PATH=$PATH:$HDC_SDK_PATH
    ```
+<!--RP1End-->
 
 4. 编辑完成后，单击**Esc**键，退出编辑模式，然后输入“:wq”，单击**Enter**键保存。
 
@@ -231,8 +232,8 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    | connect-key| 设备标识符 |
    | command | hdc支持的命令 |
 
-> **说明：**
-   > connect-key为每个设备唯一的标识符。如果通过usb连接，标识符为序列号；如果通过网络连接设备，标识符为“IP地址:端口号”；
+    > **说明：**
+    > connect-key为每个设备唯一的标识符。如果通过usb连接，标识符为序列号；如果通过网络连接设备，标识符为“IP地址:端口号”。
 
    **返回值：**
    | 返回值 | 说明 |
@@ -261,20 +262,40 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    **参数：**
    | 参数 | 说明 |
    | -------- | -------- |
-   | [level] | 指定运行时日志等级<br/>0：LOG_OFF<br/>1：LOG_FATAL<br/>2：LOG_WARN<br/>3：LOG_INFO<br/>4：LOG_DEBUG<br/>5：LOG_ALL <br/>6：libusb debug log| 
+   | [level] | 指定运行时日志等级<br/>0：LOG_OFF<br/>1：LOG_FATAL<br/>2：LOG_WARN<br/>3：LOG_INFO<br/>4：LOG_DEBUG<br/>5：LOG_ALL <br/>6：LOG_LIBUSB| 
    | command | hdc支持的命令 |
+
+    > **说明：**
+    > 1. 当配置运行时日志级别为6（LOG_LIBUSB）时，将激活libusb相关的增量日志输出，增量日志级别的详细程度高、数据量大，有助于精确诊断服务进程中与USB相关的异常情况。USB相关操作主要由服务进程执行，因此，只有服务进程具备打印增量日志的功能。相应地，客户端侧的日志几乎不包含增量日志信息。
+    > 2. 指定运行时日志等级仅适用于当前进程（包括客户端与服务进程），无法更改已存在的进程日志等级。
 
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
    | 命令执行返回内容 | 请参考对应命令的返回值 |
-   | LOG日志信息 | 对应指定的运行时等级日志打印 |
+   | 日志信息 | 对应指定的运行时等级日志打印 |
 
    **使用方法：**
 
+   客户端打印LOG_DEBUG级别日志:
    ```shell
    hdc -l 5 shell ls
    ```
+   服务进程前台模式启动指定LOG_LIBUSB级别日志:
+   ```shell
+   hdc kill && hdc -l 6 -m
+   ```
+
+    > **说明：**
+    > `-m`参数指定以前台模式启动服务进程，可以直接观察前台日志输出，按下Ctrl+C退出进程。
+
+   服务进程后台启动模式指定LOG_LIBUSB级别日志:
+   ```shell
+   hdc kill && hdc -l 6 start
+   ```
+
+    > **说明：**
+    > 以后台模式启动，可以在hdc.log中观察日志输出，日志路径参考[日志获取场景](#日志获取场景)。
 
 5. 等待设备正常连接，命令格式如下：
 
@@ -325,7 +346,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
     | port | 指定监听的端口，范围：1~65535 |
     | command | hdc支持的命令 |
 
-    **返回值： **
+    **返回值：**
     | 返回值 | 说明 |
     | -------- | -------- |
     | Connect server failed | 与服务进程建立连接失败 |
@@ -337,10 +358,11 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
     hdc -s 127.0.0.1:8710 list targets
     ```
 
-> **说明：**
+    > **说明：**
     > 当命令行中明确使用 -s 参数指定服务端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。
 
 8. 绕过对服务进程的查询步骤，用于快速执行客户端命令，命令格式如下：
+
     ```shell
     hdc -p [command]
     ```
@@ -362,8 +384,8 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
     # 跳过进程查询，直接执行命令
     hdc -p list targets
     ```
-> **说明：**
-    > 在未指定 -p 参数的情况下直接执行 command 命令时，客户端将首先检查本地是否已有运行的服务进程。若系统未检测到运行的服务进程，客户端将自动启动服务进程，并建立连接以传递命令；若系统检测到运行的服务进程，客户端将直接与该后台服务建立连接并下发相应的命令。<br>
+    > **说明：**
+    > 在未指定 -p 参数的情况下直接执行 command 命令时，客户端将首先检查本地是否已有运行的服务进程。若系统未检测到运行的服务进程，客户端将自动启动服务进程，并建立连接以传递命令；若系统检测到运行的服务进程，客户端将直接与该后台服务建立连接并下发相应的命令。
 
 9. 使用前台启动模式启动服务进程，命令格式如下：
     ```shell
@@ -381,10 +403,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
     hdc -s 127.0.0.1:8710 -m
     ```
 
-> **说明：**
-   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数:127.0.0.1:8710。<br>
-   > 2. 在服务进程前台启动模式下，系统默认的日志输出等级设置为 LOG_DEBUG。如需变更日志等级，可通过结合使用 -l 参数来进行相应的调整。<br>
-   > 3. 在运行环境中，仅允许单一的服务进程实例存在。若运行环境中已存在一个活跃的后台服务进程，那么尝试在前台启动新的服务进程实例将不会成功。
+    > **说明：**
+    > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数:127.0.0.1:8710。
+    > 2. 在服务进程前台启动模式下，系统默认的日志输出等级设置为 LOG_DEBUG。如需变更日志等级，可通过结合使用 -l 参数来进行相应的调整。
+    > 3. 在运行环境中，仅允许单一的服务进程实例存在。若运行环境中已存在一个活跃的后台服务进程，那么尝试在前台启动新的服务进程实例将不会成功。
 
 ### 查询设备列表相关命令
 
@@ -415,92 +437,14 @@ hdc list targets -v
 
 | 命令 | 说明 |
 | -------- | -------- |
-| target mount | 以读写模式挂载系统分区（user不可用） |
+| start [-r] | 启动hdc服务进程，使用-r参数触发服务进程重新启动 |
+| kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动 |
 | target boot [-bootloader\|-recovery] | 重启目标设备，使用-bootloader参数重启后进入fastboot模式，使用-recovery参数重启后进入recovery模式 |
 | target boot [MODE] | 重启目标设备，加参数重启后进入相应的模式，其中MODE为/bin/begetctl命令中reboot支持的参数 |
-| smode [-r] | 授予设备端hdc后台服务进程root权限， 使用-r参数取消授权（user不可用） |
-| kill [-r] | 终止hdc服务进程，使用-r参数触发服务进程重新启动 |
-| start [-r] | 启动hdc服务进程，使用-r参数触发服务进程重新启动 |
+| <!--DelRow--> target mount | 以读写模式挂载系统分区（user不可用） |
+| <!--DelRow--> smode [-r] | 授予设备端hdc后台服务进程root权限， 使用-r参数取消授权（user不可用） |
 
-1. 以读写模式挂载系统分区，命令格式如下：
-
-   ```shell
-   hdc target mount
-   ```
-
-   **返回值：**
-   | 返回值 | 说明 |
-   | -------- | -------- |
-   | Mount finish | 挂载成功 |
-   | [Fail]Mount failed | 挂载失败 |
-
-   **使用方法：**
-
-   ```shell
-   hdc target mount
-   ```
-
-2. 重启目标设备，命令格式如下：
-
-   ```shell
-   target boot [-bootloader|-recovery]
-   target boot [MODE]
-   ```
-
-   **参数：**
-   | 参数名 | 说明 |
-   | -------- | -------- |
-   | 不加参数| 重启设备 |
-   | -bootloader| 重启后进入fastboot模式 |
-   | -recovery | 重启后进入recovery模式 |
-   | MODE | 重启后进入MODE模式，MODE为/bin/begetctl命令中reboot支持的参数,<br> 可通过hdc shell "/bin/begetctl -h \| grep reboot"查看 |
-
-   **使用方法：**
-
-   ```shell
-   hdc target boot -bootloader // 重启后进入fastboot模式
-   hdc target boot -recovery  // 重启后进入recovery模式
-   hdc target boot shutdown  // 关机
-
-3. 授予设备端hdc后台服务进程root权限，命令格式如下：
-
-   ```shell
-   hdc smode [-r]
-   ```
-
-   **返回值：**
-   | 返回值 | 说明 |
-   | -------- | -------- |
-   | 无返回值 | 授予权限成功 |
-   | [Fail]具体失败信息 | 授予权限失败 |
-
-   **使用方法：**
-
-   ```shell
-   hdc smode  
-   hdc smode -r  // 取消root权限
-   ```
-
-4. 终止hdc服务进程，命令格式如下：
-
-   ```shell
-   hdc kill [-r]
-   ```
-
-   **返回值：**
-   | 返回值 | 说明 |
-   | -------- | -------- |
-   | Kill server finish | 服务进程终止成功 |
-   | [Fail]具体失败信息 | 服务进程终止失败 |
-
-   **使用方法：**
-
-   ```shell
-   hdc kill
-   hdc kill -r  // 重启并终止服务进程
-   ```
-
-5. 启动hdc服务进程，命令格式如下：
+1. 启动hdc服务进程，命令格式如下：
 
    ```shell
    hdc start [-r]
@@ -522,8 +466,88 @@ hdc list targets -v
    hdc start -r // 服务进程启动状态下，触发服务进程重新启动
    ```
 
-> **说明：**
-   > 当启动hdc服务进程且系统未检测到运行的服务进程时，日志等级的设置优先级如下：若同时指定了-l参数和配置了OHOS_HDC_LOG_LEVEL环境变量，则使用环境变量配置的日志等级；如果仅指定了-l参数，则采用该参数配置的日志等级；若两者均未指定，则服务进程将以默认的LOG_INFO等级启动。
+    > **说明：**
+    > 当启动hdc服务进程且系统未检测到运行的服务进程时，日志等级的设置优先级如下：若同时指定了-l参数和配置了OHOS_HDC_LOG_LEVEL环境变量，则使用环境变量配置的日志等级；如果仅指定了-l参数，则采用该参数配置的日志等级；若两者均未指定，则服务进程将以默认的LOG_INFO等级启动。
+
+2. 终止hdc服务进程，命令格式如下：
+
+   ```shell
+   hdc kill [-r]
+   ```
+
+   **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | Kill server finish | 服务进程终止成功 |
+   | [Fail]具体失败信息 | 服务进程终止失败 |
+
+   **使用方法：**
+
+   ```shell
+   hdc kill
+   hdc kill -r  // 重启并终止服务进程
+   ```
+
+3. 重启目标设备，命令格式如下：
+
+   ```shell
+   target boot [-bootloader|-recovery]
+   target boot [MODE]
+   ```
+
+   **参数：**
+   | 参数名 | 说明 |
+   | -------- | -------- |
+   | 不加参数| 重启设备 |
+   | -bootloader| 重启后进入fastboot模式 |
+   | -recovery | 重启后进入recovery模式 |
+   | MODE | 重启后进入MODE模式，MODE为/bin/begetctl命令中reboot支持的参数。<br> 可通过hdc shell "/bin/begetctl -h \| grep reboot"查看 |
+
+   **使用方法：**
+
+   ```shell
+   hdc target boot -bootloader // 重启后进入fastboot模式
+   hdc target boot -recovery  // 重启后进入recovery模式
+   hdc target boot shutdown  // 关机
+
+<!--Del-->
+4. 以读写模式挂载系统分区，命令格式如下：
+
+   ```shell
+   hdc target mount
+   ```
+
+   **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | Mount finish | 挂载成功 |
+   | [Fail]Mount failed | 挂载失败 |
+
+   **使用方法：**
+
+   ```shell
+   hdc target mount
+   ```
+
+5. 授予设备端hdc后台服务进程root权限，命令格式如下：
+
+   ```shell
+   hdc smode [-r]
+   ```
+
+   **返回值：**
+   | 返回值 | 说明 |
+   | -------- | -------- |
+   | 无返回值 | 授予权限成功 |
+   | [Fail]具体失败信息 | 授予权限失败 |
+
+   **使用方法：**
+
+   ```shell
+   hdc smode  
+   hdc smode -r  // 取消root权限
+   ```
+<!--DelEnd-->
 
 ### 网络相关命令
 
@@ -1062,8 +1086,19 @@ hdc_logs日志文件夹将存在以下类型日志：
 日志相关环境变量：
 | 环境变量名称             | 默认值 | 说明                             |
 |--------------------|-----|--------------------------------|
-| OHOS_HDC_LOG_LEVEL | 5   | 用于配置服务端日志记录级别                      |
+| OHOS_HDC_LOG_LEVEL | 5   | 用于配置服务进程日志记录级别，日志级别详情参考：<br>[全局option相关命令](#全局option相关命令)指定运行时日志等级章节  |
 | OHOS_HDC_LOG_LIMIT | 300 | 用于配置日志条目数量阈值。<br>当日志记录超出此阈值时，<br>系统将自动启动日志清理机制，<br>以维护日志存储空间的优化。<br>当前系统设定下，日志存储空间的上限为3GB，<br>该限制目前不可调整。|
+
+
+环境变量配置方法：
+> **说明：**
+> 以下通过配置OHOS_HDC_LOG_LEVEL环境变量为例，配置环境变量值为：5，介绍环境变量配置方法。
+
+| 操作系统 | 配置方法 |
+|---|---|
+| Windows  | 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量**中，添加环境变量名称为OHOS_HDC_LOG_LEVEL，变量值为5。配置完毕后点击确认。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。  |
+| Linux  | 在~/.bash_profile文件末尾追加内容export OHOS_HDC_LOG_LEVEL=5并保存后，执行`source ~/.bash_profile`生效当前环境变量。 |
+| MacOS  | 在~/.zshrc文件末尾追加内容export OHOS_HDC_LOG_LEVEL=5并保存后，执行`source ~/.zshrc`生效当前环境变量。环境变量配置完成后，关闭并重启命令行或其他使用到OpenHarmony SDK的软件，以生效新配置的环境变量。 |
 
 **设备端日志**
 
