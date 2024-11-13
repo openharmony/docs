@@ -1436,45 +1436,20 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { UIAbility } from '@kit.AbilityKit';
 
-// EntryAbility.ets
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window;
-    try {
-      let options : window.SubWindowOptions = {
-        title: 'title',
-        decorEnabled: true
-      };
-      let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
-      promise.then((data) => {
-        windowClass = data;
-        try {
-          let promise = windowClass.moveWindowToAsync(300,300);
-          promise.then(() => {
-            console.info('Succeeded in moving the window.');
-            let rect = windowClass.getWindowProperties().windowRect;
-            console.info(`Get window rect: ` + JSON.stringify(rect));
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
-          });
-        } catch (exception) {
-          console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-        console.info('Succeeded in creating the subwindow.Data: ' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (exception) {
-      console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
-};
+try {
+  let promise = windowClass.moveWindowToAsync(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the window.');
+    let rect = windowClass?.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### resize<sup>9+</sup>
@@ -1645,45 +1620,20 @@ resizeAsync(width: number, height: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { UIAbility } from '@kit.AbilityKit';
 
-// EntryAbility.ets
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage:window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window;
-    try {
-      let options : window.SubWindowOptions = {
-        title: 'title',
-        decorEnabled: true
-      };
-      let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
-      promise.then((data) => {
-        windowClass = data;
-        try {
-          let promise = windowClass.resizeAsync(500, 1000);
-          promise.then(() => {
-            console.info('Succeeded in changing the window size.');
-            let rect = windowClass.getWindowProperties().windowRect;
-            console.info(`Get window rect: ` + JSON.stringify(rect));
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
-          });
-        } catch (exception) {
-          console.error(`Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-        console.info('Succeeded in creating the subwindow.Data: ' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (exception) {
-      console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
-};
+try {
+  let promise = windowClass.resizeAsync(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the window size.');
+    let rect = windowClass?.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to change the window size. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to change the window size. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### getWindowProperties<sup>9+</sup>
