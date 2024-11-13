@@ -81,7 +81,8 @@ export default {
 ![zh-cn_image_0000001221030133](figures/zh-cn_image_0000001221030133.gif)
 
 
-> **说明：**
+> **说明：** 
+>
 > 当showtext属性值设置为true时，texton和textoff设置的文本才会生效。
 
 

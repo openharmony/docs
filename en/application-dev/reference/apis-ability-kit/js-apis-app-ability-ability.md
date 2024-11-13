@@ -14,6 +14,16 @@ This is the base class of [UIAbility](js-apis-app-ability-uiAbility.md) and [Ext
 import { Ability } from '@kit.AbilityKit';
 ```
 
+## Ability Inheritance Relationship
+
+The following figure shows the inheritance relationship of a variety of abilities.
+
+> **NOTE**
+>
+> Some ExtensionAbilities (such as [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md) and [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)) do not inherit from the ExtensionAbility base class and therefore are not provided in the following figure.
+
+![uiExtensionAbility](../figures/image-ability-uiExtensionAbility.png)
+
 ## Ability.onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void
@@ -56,7 +66,7 @@ Called when the system adjusts the memory level.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| New memory level.|
+| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | Yes| New memory level.|
 
 **Example**
 

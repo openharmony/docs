@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -14,22 +14,19 @@
 
 ## 接口
 
-Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
-  {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
+Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |{width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string&nbsp;\|&nbsp;number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string&nbsp;\|&nbsp;number | 否 | 高度。<br/>默认值：<br/>异常值按照默认值处理。 |
-| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>默认值：0<br/>异常值按照默认值处理。 |
-| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
+| value | {width?: string \| number,height?: string \| number,radius?: string \| number \| Array&lt;string \| number&gt;} \| {width?: string \| number,height?: string \| number,radiusWidth?: string \| number,radiusHeight?: string \| number} | 否 | width：宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>height: 高度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>radius：圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>默认值：0<br/>异常值按照默认值处理。<br/>radiusWidth：圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>radiusHeight：圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。|
 
 ## 属性
 
@@ -41,7 +38,7 @@ radiusWidth(value: number | string)
 
 设置圆角的宽度，仅设置宽时宽高一致。 异常值按照默认值处理。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -59,7 +56,7 @@ radiusHeight(value: number | string)
 
 设置圆角的高度，仅设置高时宽高一致。  异常值按照默认值处理。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -353,16 +350,16 @@ struct RectExample {
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
-        .clip(new Rect({ width: 100, height: 100, radius: 40 }))
+        .clipShape(new Rect({ width: 100, height: 100, radius: 40 }))
       Rect()
         .width(100)
         .height(100)
-        // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
+          // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
         .fill(Color.Pink)
-        // 设置倒角为40
+          // 设置倒角为40
         .radius(40)
         .stroke(Color.Black)
-        // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
+          // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
         .linearGradient({
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]

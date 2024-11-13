@@ -48,6 +48,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
+   #include "napi/native_api.h"
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
@@ -56,7 +57,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅应用事件：
+4. 订阅系统事件：
 
     - onReceive类型观察者：
 
@@ -85,6 +86,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto bundleName = params["bundle_name"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto memory = writer.write(params["memory"]);
+                          auto externalLog = writer.write(eventInfo["external_log"]);
+                          std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true":"false";
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
@@ -92,6 +95,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
                       }
                   }
               }
@@ -101,9 +106,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
           // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // 设置订阅的事件类型为EVENT_RESOURCE_OVERLIMIT。
+          // 设置订阅的事件为EVENT_RESOURCE_OVERLIMIT。
           const char *names[] = {EVENT_RESOURCE_OVERLIMIT};
-          // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
+          // 开发者订阅感兴趣的事件，此处订阅了系统事件。
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
           // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -139,6 +144,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                       auto bundleName = eventInfo["bundle_name"].asString();
                       auto bundleVersion = eventInfo["bundle_version"].asString();
                       auto memory = writer.write(eventInfo["memory"]);
+                      auto externalLog = writer.write(eventInfo["external_log"]);
+                      std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true":"false";
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
@@ -146,6 +153,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
                   }
               }
           }
@@ -160,9 +169,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
           // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-          // 设置订阅的事件类型为EVENT_RESOURCE_OVERLIMIT。
+          // 设置订阅的事件为EVENT_RESOURCE_OVERLIMIT。
           const char *names[] = {EVENT_RESOURCE_OVERLIMIT};
-          // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
+          // 开发者订阅感兴趣的事件，此处订阅了系统事件。
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
           // 开发者设置已实现的回调函数，需OH_HiAppEvent_SetTriggerCondition设置的条件满足方可触发。
           OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -209,13 +218,33 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 7. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄露。接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”。接口示例代码如下：
 
    ```ts
-    Button("memoryleak").onClick(()=>{
-      // 在按钮点击函数中构造一个资源泄漏场景，触发资源泄漏事件，此处的泄漏大小为1M
-      hidebug.setAppResourceLimit("pss_memory", 1024, true);
-    })
+    import hidebug from "@ohos.hidebug";
+
+    @Entry
+    @Component
+    struct Index {
+    @State leakedArray: string[][] = [];
+
+    build() {
+      Column() {
+        Row() {
+          Column() {
+            Button("pss leak")
+              .onClick(() => {
+                hidebug.setAppResourceLimit("pss_memory", 1024, true);
+                for (let i = 0; i < 20 * 1024; i++) {
+                  this.leakedArray.push(new Array(1).fill("leak"));
+                }
+              })
+          }
+        }
+        .height('100%')
+        .width('100%')
+      }
+    }
    ```
 
 8. 点击IDE界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。
@@ -234,9 +263,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936}
+   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572401_6808.log","/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572412_6808.log"]
+   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=false
    ```
 
-10. 移除应用事件观察者：
+10. 移除事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -246,7 +277,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者：
+11. 销毁事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

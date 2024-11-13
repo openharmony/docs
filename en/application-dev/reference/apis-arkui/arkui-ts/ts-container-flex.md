@@ -1,12 +1,12 @@
 # Flex
 
-The **\<Flex>** component allows for flexible layout of child components.
+The **Flex** component allows for flexible layout of child components.
 
 > **NOTE**
 >
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The **\<Flex>** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use **[\<Column>](ts-container-column.md)** or **[\<Row>](ts-container-row.md)** instead under scenarios where consistently high performance is required.
-> - If the main axis of the **\<Flex>** component is not set, it follows the size of the parent container. On the contrary, if the main axis of the [\<Column>](ts-container-column.md) or [\<Row>](ts-container-row.md) component is not set, it follows the size of their child component.
+> - The **Flex** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use [Column](ts-container-column.md) or [Row](ts-container-row.md) instead under scenarios where consistently high performance is required.
+> - If the main axis of the **Flex** component is not set, it follows the size of the parent container. On the contrary, if the main axis of the [Column](ts-container-column.md) or [Row](ts-container-row.md) component is not set, it follows the size of their child component.
 
 
 ## Child Components
@@ -18,7 +18,7 @@ Supported
 
 Flex(value?: FlexOptions)
 
-Creates a standard **\<Flex>** component. For details, see [Flex Layout](../../../ui/arkts-layout-development-flex-layout.md).
+Creates a standard **Flex** component. For details, see [Flex Layout](../../../ui/arkts-layout-development-flex-layout.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -28,17 +28,17 @@ Creates a standard **\<Flex>** component. For details, see [Flex Layout](../../.
 
 | Name           | Type       | Mandatory  | Description                                    |
 | -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
-| value      | [FlexOptions](#flexoptions) | No   |  Parameters of the child components in the **\<Flex>** component.              |
+| value      | [FlexOptions](#flexoptions) | No   |  Parameters of the child components in the **Flex** component.              |
 
 ## FlexOptions
 | Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
 | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
-| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
-| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.<br>**NOTE**<br>When wrapped onto multiple lines, the child elements on the new line are stacked in the direction based on the cross axis direction.|
-| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                   |
-| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                  |
-| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-row **\<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
-| space<sup>12+</sup>          | [FlexSpaceOptions](ts-appendix-enums.md#flexspaceoptions12) | No  | {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} | Space of all child components on the main axis or cross axis of the **\<Flex>** component.<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **Flex** component, that is, the direction of the main axis.                |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | No   | FlexWrap.NoWrap   | Whether the **Flex** component has a single line or multiple lines.<br>**NOTE**<br>When wrapped onto multiple lines, the child elements on the new line are stacked in the direction based on the cross axis direction.|
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **Flex** component along the main axis.                   |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Start   | Alignment mode of the child components in the **Flex** component along the cross axis.                  |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-row **Flex** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
+| space<sup>12+</sup>          | [FlexSpaceOptions](ts-appendix-enums.md#flexspaceoptions12) | No  | {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} | Space of all child components on the main axis or cross axis of the **Flex** component.<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**NOTE**<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Example
 
@@ -342,7 +342,7 @@ struct FlexExample2 {
         .backgroundColor(0xAFEEEE)
 
         Text('NoWrap').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Flex({ wrap: FlexWrap.NoWrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // The child components are arranged in a single line.
+        Flex({ wrap: FlexWrap.Wrap, space: {main: LengthMetrics.px(50), cross: LengthMetrics.px(50)} }) { // The child components are arranged in a single line.
           Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
           Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
           Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)

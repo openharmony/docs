@@ -26,7 +26,7 @@ FrameNode提供了节点创建和删除的能力。可以通过FrameNode的构�
 
 ## 获取对应的RenderNode节点
 
-FrameNode提供了[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#getrendernode)接口，用于获取FrameNode中的RenderNode。可以通过对获取到的RenderNode对象进行操作，动态修改FrameNode上绘制相关的属性，具体可修改的属性参考RenderNode的接口。
+FrameNode提供了[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#getrendernode)接口，用于获取FrameNode中的RenderNode。可以通过对获取到的RenderNode对象进行操作，动态修改FrameNode上绘制相关的属性，具体可修改的属性参考[RenderNode](arkts-user-defined-arktsNode-renderNode.md)的接口。
 
 > **说明：**
 >
@@ -36,17 +36,17 @@ FrameNode提供了[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNod
 
 ## 操作节点树
 
-FrameNode提供了节点的增、删、查、改的能力，能够修改非代理节点的子树结构；可以对所有FrameNode的节点的父子节点做出查询操作，并返回查询结果。
+FrameNode提供了节点的增、删、查、改的能力，能够修改非代理节点的子树结构。可以对所有FrameNode的节点的父子节点做出查询操作，并返回查询结果。
 
 > **说明：**
 >
 > 对节点进行增、删、改操作的时候，会对非法操作抛出异常信息。
 >
-> 通过查询获得的原生组件的代理节点，仅具备查询节点信息的作用，不具备修改节点属性的功能；代理节点不持有组件的实体节点，即不影响对应的节点的生命周期。
+> 通过查询获得的原生组件的代理节点，仅具备查询节点信息的作用，不具备修改节点属性的功能。代理节点不持有组件的实体节点，即不影响对应的节点的生命周期。
 >
 > 查询节点仅查询获得UI相关的节点，不返回语法节点。
 >
-> 使用自定义组件的场景下，可能查询获得自定义组件的新增节点，节点类型为“__Common__”。
+> 使用自定义组件的场景下，可能查询获得自定义组件的新增节点，节点类型为“\_\_Common\_\_”。
 
 ```ts
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
@@ -312,7 +312,7 @@ FrameNode提供了[commonAttribute](../reference/apis-arkui/js-apis-arkui-frameN
 > 
 > - 由于代理节点的属性不可修改，因此通过代理节点的commonAttribute修改节点的基础属性不生效。
 > 
-> - 设置的基础事件与原生组件定义的事件平行，参与事件竞争；设置的基础事件不覆盖原生组件事件。同时设置两个事件回调的时候，优先回调原生组件事件。
+> - 设置的基础事件与原生组件定义的事件平行，参与事件竞争。设置的基础事件不覆盖原生组件事件。同时设置两个事件回调的时候，优先回调原生组件事件。
 
 ```ts
 import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI'
@@ -397,7 +397,7 @@ struct Index {
         Button("modify ArkTS-FrameNode")
           .onClick(() => {
             // 获取到的是当前页面中的开发者创建的FrameNode对象，该节点可修改。即节点大小与位置。
-            console.log("Check the weather the node can be modified " + this.myNodeController?.rootNode?.getParent()
+            console.log("Check the weather the node can be modified " + this.myNodeController?.frameNode
             ?.isModifiable());
             this.myNodeController.modifyNode(this.myNodeController?.frameNode, { width: 150, height: 100 }, {
               x: 100,
@@ -628,8 +628,8 @@ FrameNode提供了查询接口用于返回实体节点的基础信息。具体�
 >
 > 当前接口提供的可查询的信息包括：
 >
-> - 节点大小：getMeasuredSize，getUserConfigSize
+> - 节点大小：[getMeasuredSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getmeasuredsize12)，[getUserConfigSize](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigsize12)
 > 
-> - 布局信息：getPositionToWindow，getPositionToParent，getLayoutPosition，getUserConfigBorderWidth，getUserConfigPadding，getUserConfigMargin
+> - 布局信息：[getPositionToWindow](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontowindow12)，[getPositionToParent](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontoparent12)，[getLayoutPosition](../reference/apis-arkui/js-apis-arkui-frameNode.md#getlayoutposition12)，[getUserConfigBorderWidth](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigborderwidth12)，[getUserConfigPadding](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigpadding12)，[getUserConfigMargin](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigmargin12)
 > 
-> - 节点信息：getId，getUniqueId，getNodeType，getOpacity，isVisible，isClipToFrame，isAttached，getInspectorInfo，getCustomProperty
+> - 节点信息：[getId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getid12) ，[getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)，[getNodeType](../reference/apis-arkui/js-apis-arkui-frameNode.md#getnodetype12)，[getOpacity](../reference/apis-arkui/js-apis-arkui-frameNode.md#getopacity12)，[isVisible](../reference/apis-arkui/js-apis-arkui-frameNode.md#isvisible12)，[isClipToFrame](../reference/apis-arkui/js-apis-arkui-frameNode.md#iscliptoframe12)，[isAttached](../reference/apis-arkui/js-apis-arkui-frameNode.md#isattached12)，[getInspectorInfo](../reference/apis-arkui/js-apis-arkui-frameNode.md#getinspectorinfo12)，[getCustomProperty](../reference/apis-arkui/js-apis-arkui-frameNode.md#getcustomproperty12)

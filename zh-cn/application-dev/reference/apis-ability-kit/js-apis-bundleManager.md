@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager模块)
 
-本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility等信息的查询。
+本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -46,7 +46,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
-| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
+| ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md)<!--RP1End-->：无障碍服务扩展能力，支持访问与操作前台界面。 |
 | DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，仅系统应用支持。 |
 | STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
@@ -193,7 +193,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
 | UNSPECIFIED|  0 | 未指定类型。 |
-| MULTI_INSTANCE |  1  | 多实例模式。  |
+| MULTI_INSTANCE |  1  | 多实例模式。常驻进程不支持该字段。  |
 | APP_CLONE |  2  |  分身模式。  |
 
 ## 接口
@@ -760,164 +760,6 @@ try {
 }
 ```
 
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
-
-根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用callback异步回调。
-
-**需要权限：** ohos.permission.RUN_DYN_CODE
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
-| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。|
-| callback | AsyncCallback\<void> | 是 | 回调函数，当获取成功时，err为null；否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                              |
-| -------- | ------------------------------------- |
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | Failed to verify the abc file. |
-
-**示例：**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-  bundleManager.verifyAbc(abcPaths, true, (err, data) => {
-    if (err) {
-      hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
-    } else {
-      hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-    }
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
-}
-```
-
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
-
-根据给定的abcPaths和deleteOriginalFiles校验.abc文件。使用Promise异步回调。
-
-**需要权限：** ohos.permission.RUN_DYN_CODE
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | 是   | .abc文件路径。 |
-| deleteOriginalFiles | boolean | 是   | 是否删除.abc文件，true删除，false不删除。       |
-
-**返回值：**
-
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | Failed to verify the abc file. |
-
-**示例：**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-  bundleManager.verifyAbc(abcPaths, true).then((data) => {
-    hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-  }).catch((err: BusinessError) => {
-    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.deleteAbc<sup>11+</sup>
-
-deleteAbc(abcPath: string): Promise\<void>
-
-根据给定的abcPath删除.abc文件。使用Promise异步回调。
-
-**需要权限：** ohos.permission.RUN_DYN_CODE
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPath  | string | 是   | .abc文件路径。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700202 | Failed to delete the abc file. |
-
-**示例：**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPath: string = '/data/storage/el2/base/a.abc';
-
-try {
-  bundleManager.deleteAbc(abcPath).then((data) => {
-    hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
-  }).catch((err: BusinessError) => {
-    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
-}
-```
-
 ### bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
@@ -964,5 +806,568 @@ try {
 } catch (err) {
   let message = (err as BusinessError).message;
   hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
+}
+```
+
+### bundleManager.getLaunchWant<sup>13+</sup>
+
+getLaunchWant(): Want
+
+获取自身用于启动应用程序的Want参数。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                | 说明                                        |
+| ----------------------------------- | ------------------------------------------- |
+| [Want](js-apis-app-ability-want.md) | 返回包含Bundle名称和Ability名称的Want对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 17700072 | The launch want is not found. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+  let want = bundleManager.getLaunchWant();
+  hilog.info(0x0000, 'testTag', 'getLaunchWant ability name: %{public}s', want.abilityName);
+  hilog.info(0x0000, 'testTag', 'getLaunchWant bundle name: %{public}s', want.bundleName);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getLaunchWant failed: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleInfo<sup>14+</sup>
+
+getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
+
+以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用callback形式返回结果。
+
+获取调用方自己的信息时不需要权限。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。|
+| userId      | number | 是   | 表示用户ID。  |
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的bundleInfo；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+// 额外获取AbilityInfo
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY;
+let userId = 100;
+
+try {
+    bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getBundleInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', message);
+}
+```
+
+```ts
+// 额外获取ApplicationInfo中的metadata
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
+let userId = 100;
+
+try {
+    bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getBundleInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleInfo<sup>14+</sup>
+
+getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
+
+以异步方法根据给定的bundleName和bundleFlags获取BundleInfo，使用callback形式返回结果。
+
+获取调用方自己的信息时不需要权限。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。|
+| callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | 是 | 回调函数，当获取成功时，err为null，data为获取到的BundleInfo；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+// 额外获取extensionAbility
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY;
+
+try {
+    bundleManager.getBundleInfo(bundleName, bundleFlags, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getBundleInfo successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleInfo<sup>14+</sup>
+
+getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
+
+以异步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用Promise形式返回结果。
+
+获取调用方自己的信息时不需要权限。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 表示要查询的应用Bundle名称。 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 指定返回的BundleInfo所包含的信息。       |
+| userId      | number | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise对象，返回BundleInfo。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+// 额外获取ApplicationInfo和SignatureInfo
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let userId = 100;
+
+try {
+    bundleManager.getBundleInfo(bundleName, bundleFlags, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', message);
+}
+```
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
+
+try {
+    bundleManager.getBundleInfo(bundleName, bundleFlags).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getBundleInfo successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfo failed. Cause: %{public}s', message);
+}
+
+```
+
+### bundleManager.getBundleInfoSync<sup>14+</sup>
+
+getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
+
+以同步方法根据给定的bundleName、bundleFlags和userId获取BundleInfo。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 说明                                                     |
+| ----------- | ------ | ---- | -------------------------------------------------------- |
+| bundleName  | string | 是   | 表示应用程序的bundleName。                                 |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
+| userId      | number | 是   | 表示用户ID。                                             |
+
+**返回值：**
+
+| 类型       | 说明                 |
+| ---------- | -------------------- |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found.     |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
+let userId = 100;
+
+try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags, userId);
+    hilog.info(0x0000, 'testTag', 'getBundleInfoSync successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfoSync failed: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleInfoSync<sup>14+</sup>
+
+getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
+
+以同步方法根据给定的bundleName、bundleFlags获取BundleInfo。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                                                   |
+| ----------- | --------------------- | ---- | ------------------------------------------------------ |
+| bundleName  | string                | 是   | 表示应用程序的bundleName。                             |
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | 是   | 表示用于指定将返回的BundleInfo对象中包含的信息的标志。 |
+
+**返回值：**
+
+| 类型                                              | 说明                 |
+| ------------------------------------------------- | -------------------- |
+| [BundleInfo](js-apis-bundleManager-bundleInfo.md) | 返回BundleInfo对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700026 | The specified bundle is disabled.      |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let bundleName = 'com.example.myapplication';
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
+try {
+    let data = bundleManager.getBundleInfoSync(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleInfoSync successfully: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleInfoSync failed: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleNameByUid<sup>14+</sup>
+
+getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
+
+以异步方法根据给定的uid获取对应的bundleName，使用callback形式返回结果。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| uid      | number                 | 是   | 表示应用程序的UID。                                            |
+| callback | AsyncCallback\<string> | 是   | 回调函数，当获取成功时，err为null，data为获取到的BundleName；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息            |
+| -------- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700021 | The uid is not found. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let uid = 20010005;
+try {
+    bundleManager.getBundleNameByUid(uid, (err, data) => {
+        if (err) {
+            hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed: %{public}s', err.message);
+        } else {
+            hilog.info(0x0000, 'testTag', 'getBundleNameByUid successfully: %{public}s', JSON.stringify(data));
+        }
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleNameByUid<sup>14+</sup>
+
+getBundleNameByUid(uid: number): Promise\<string>
+
+以异步方法根据给定的uid获取对应的bundleName，使用Promise形式返回结果。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                |
+| ---- | ------ | ---- | ------------------ |
+| uid  | number | 是   | 表示应用程序的UID。 |
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| Promise\<string> | Promise对象，返回bundleName。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息            |
+| -------- | ---------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700021 | The uid is not found. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let uid = 20010005;
+try {
+    bundleManager.getBundleNameByUid(uid).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getBundleNameByUid successfully. Data: %{public}s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleNameByUid failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getBundleNameByUidSync<sup>14+</sup>
+
+getBundleNameByUidSync(uid: number): string
+
+以同步方法根据给定的uid获取对应的bundleName。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                |
+| ---- | ------ | ---- | ------------------ |
+| uid  | number | 是   | 表示应用程序的UID。 |
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| string | 返回获取到的bundleName。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息            |
+| -------- | ---------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700021 | The uid is not found. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let uid = 20010005;
+try {
+    let data = bundleManager.getBundleNameByUidSync(uid);
+    hilog.info(0x0000, 'testTag', 'getBundleNameByUidSync successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleNameByUidSync failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getAppCloneIdentity<sup>14+</sup>
+
+getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
+
+根据uid查询分身应用的bundleName和appIndex。使用Promise异步回调。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ---------------------------|
+|    uid     | number |  是  |     表示应用程序的UID。      |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<AppCloneIdentity> | 以Promise方式返回\<AppCloneIdentity>。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700021 | The uid is not found. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let uid = 20010005;
+
+try {
+    bundleManager.getAppCloneIdentity(uid).then((res: bundleManager.AppCloneIdentity) => {
+        hilog.info(0x0000, 'testTag', 'getAppCloneIdentity res = %{public}s', JSON.stringify(res));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', message);
 }
 ```

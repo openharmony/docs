@@ -8,9 +8,9 @@
 
 通过Picker选择文件或文件夹进行临时授权，然后应用可以按需通过文件分享接口（[ohos.fileshare](../reference/apis-core-file-kit/js-apis-fileShare.md)）进行持久化授权。
 
-1. 应用仅临时需要访问公共目录的数据，例如：通讯类应用需要发送用户的文件或者图片。应用调用picker的([select](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3))接口选择需要发送的文件或者图片，此时应用获取到是该文件的临时访问权限，应用重启或者设备重启后，再次访问该文件则仍需使用picker进行文件选则。
+1. 应用仅临时需要访问公共目录的数据，例如：通讯类应用需要发送用户的文件或者图片。应用调用Picker的([select](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3))接口选择需要发送的文件或者图片，此时应用获取到是该文件的临时访问权限，应用重启或者设备重启后，再次访问该文件则仍需使用Picker进行文件选则。
 
-2. 应用如果需要长期访问某个文件或目录时，可以通过Picker选择文件或文件夹进行临时授权，然后利用persistPermission接口（[ohos.fileshare.persistPermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharepersistpermission11)）对授权进行持久化（在授权方同意被持久化的情况下），例如：文档编辑类应用本次编辑完一个用户文件，期望在历史记录中可以直接选中打开，无需再拉起picker进行选择授权。
+2. 应用如果需要长期访问某个文件或目录时，可以通过Picker选择文件或文件夹进行临时授权，然后利用persistPermission接口（[ohos.fileshare.persistPermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharepersistpermission11)）对授权进行持久化（在授权方同意被持久化的情况下），例如：文档编辑类应用本次编辑完一个用户文件，期望在历史记录中可以直接选中打开，无需再拉起Picker进行选择授权。
 
 可使用canIUse接口，确认设备是否具有以下系统能力：SystemCapability.FileManagement.File.Environment.FolderObtain。
 
@@ -21,7 +21,7 @@ if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
 }
 ```
 **需要权限**
-：ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)，该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 **示例：**
 
@@ -70,7 +70,7 @@ async function persistPermissionExample() {
 3.可以通过revokePermission接口（[ohos.fileshare.revokePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharerevokepermission11)）对已持久化的文件取消授权，同时更新应用存储的数据以删除最近访问数据。
 
 **需要权限**
-：ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)，该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 **示例：**
 
@@ -118,7 +118,7 @@ async function revokePermissionExample() {
 对于应用已经持久化的授权，应用每次启动时实际未加载到内存中，需要应用按需进行手动激活已持久化授权的权限，通过activatePermission接口（[ohos.fileshare.activatePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#fileshareactivatepermission11)）对已经持久化授权的权限进行使能操作，否则已经持久化授权的权限仍存在不能使用的情况。
 
 **需要权限**
-：ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)，该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 **示例：**
 

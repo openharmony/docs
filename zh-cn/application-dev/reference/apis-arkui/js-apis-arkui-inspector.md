@@ -116,6 +116,10 @@ off(type: 'draw', callback?: () => void): void
 
 **示例：**
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](./js-apis-arkui-UIContext.md#uiinspector)对象。
+
   ```ts
   import { inspector } from '@kit.ArkUI'
 
@@ -136,7 +140,7 @@ off(type: 'draw', callback?: () => void): void
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID')
+    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // 建议使用 this.getUIContext().getUIInspector().createComponentObserver()接口
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{

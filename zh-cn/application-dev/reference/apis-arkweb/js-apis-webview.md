@@ -1,5 +1,3 @@
-
-
 # @ohos.web.webview (Webview)
 
 @ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
@@ -24,7 +22,9 @@ import { webview } from '@kit.ArkWeb';
 
 once(type: string, callback: Callback\<void\>): void
 
-订阅一次指定类型Web事件的回调。
+订阅一次指定类型Web事件的回调，Web事件的类型目前仅支持"webInited"，在Web引擎初始化完成时触发。
+
+当应用中开始加载第一个Web组件时，Web引擎初始化，且后续再在同一应用中继续加载其他Web组件时不会再触发once接口。当应用销毁最后一个Web组件时，若再加载第一个Web组件，应用重新进入Web引擎初始化流程。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -69,13 +69,21 @@ struct WebComponent {
 
 ## WebMessagePort
 
-通过WebMessagePort可以进行消息的发送以及接收。
+通过WebMessagePort可以进行消息的发送以及接收，发送[WebMessageType](#webmessagetype10)/[WebMessage](#webmessage)类型消息给HTML5侧。
+
+### 属性
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType<sup>10+</sup> | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)，默认false不使用。   |
 
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
 
-发送消息。完整示例代码参考[postMessage](#postmessage)。
+发送[WebMessage](#webmessage)类型消息给HTML5侧，必须先调用[onMessageEvent](#onmessageevent)，否则会发送失败。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -129,7 +137,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-注册回调函数，接收HTML侧发送过来的消息。完整示例代码参考[postMessage](#postmessage)。
+在应用侧的消息端口上注册回调函数，接收HTML5侧发送过来的[WebMessage](#webmessage)类型消息。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -190,19 +198,11 @@ struct WebComponent {
 }
 ```
 
-### isExtentionType<sup>10+</sup>
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
-
 ### postMessageEventExt<sup>10+</sup>
 
 postMessageEventExt(message: WebMessageExt): void
 
-发送消息。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+发送[WebMessageType](#webmessagetype10)类型消息给HTML5侧，必须先调用[onMessageEventExt](#onmessageeventext10)，否则会发送失败。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -225,7 +225,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
-注册回调函数，接收HTML5侧发送过来的消息。
+在应用侧的消息端口上注册回调函数，接收HTML5侧发送过来的[WebMessageType](#webmessagetype10)类型消息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -537,7 +537,7 @@ function postStringToApp() {
 
 close(): void
 
-关闭该消息端口。在使用close前，请先使用[createWebMessagePorts](#createwebmessageports)创建消息端口。
+不需要发送消息时关闭该消息端口。在使用close前，请先使用[createWebMessagePorts](#createwebmessageports)创建消息端口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -596,7 +596,11 @@ constructor(webTag?: string)
 
 > **说明：**
 >
-> webTag是需要开发者自定义的一个标记，即开发者给web的一个字符串形式参数，用来做标记。
+> 不传参：new webview.WebviewController()表示构造函数为空，不使用C API时不需要传参。
+> 
+> 传参且参数是合法字符串：new webview.WebviewController("xxx")，用于开发者区分多实例，并调用对应实例下的方法。
+> 
+> 传入参数为空：new webview.WebviewController("")或new webview.WebviewController(undefined)，该场景下参数无意义，无法区分多个实例，直接返回undefined，需要开发者判断返回值是否正常。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -604,7 +608,7 @@ constructor(webTag?: string)
 
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
-| webTag   | string | 否   | 指定了 Web 组件的名称，默认为 Empty。 |
+| webTag   | string | 否   | 指定了 Web 组件的名称。 |
 
 **示例：**
 
@@ -680,7 +684,7 @@ struct WebComponent {
 
 static initializeWebEngine(): void
 
-在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
+在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。自动预连接历史访问过的高频网站。
 
 > **说明：**
 >
@@ -757,7 +761,9 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能，默认不开启。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+
+安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -769,7 +775,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -962,15 +968,21 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 加载指定的数据。
 
+baseUrl与historyUrl同时为空的情况下：
+
+encoding如果为非base64（包括空值），则假定数据对安全URL字符范围内的八位字节使用ASCII编码，对该范围外的八位字节使用URL的标准%xx十六进制编码。
+
+data数据必须使用base64编码或将内容中的任何#字符编码为%23。否则#将被视为内容的结尾而剩余的文本将被用作文档片段标识符。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| data       | string | 是   | 按照"Base64"或者"URL"编码后的一段字符串。                    |
+| data       | string | 是   | 按照"base64"或者"URL"编码后的一段字符串。                    |
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
-| encoding   | string | 是   | 编码类型，具体为"Base64"或者"URL"编码。                       |
+| encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
 | baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
@@ -991,6 +1003,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 **示例：**
 
+baseUrl与historyUrl同时为空。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -1009,7 +1022,39 @@ struct WebComponent {
             this.controller.loadData(
               "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
               "text/html",
+              // UTF-8为charset。
               "UTF-8"
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              // Coding tests通过base64编码后的字符串。
+              "Q29kaW5nIHRlc3Rz",
+              "text/html",
+              "base64"
             );
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -1038,6 +1083,7 @@ struct WebComponent {
       Button('loadData')
         .onClick(() => {
           try {
+            // UTF-8为charset。
             this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -1290,6 +1336,8 @@ onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。开发者可以在此回调中实现应用失去焦点时应表现的恰当行为。
 
+此状态下会尽可能的暂停任何可以安全暂停的内容，例如动画和地理位置。但不会暂停JavaScript，要全局暂停JavaScript，请使用[pauseAllTimers](#pausealltimers12)。要重新激活Web组件，请调用[onActive](#onactive)。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
@@ -1434,7 +1482,7 @@ struct WebComponent {
 
 clearHistory(): void
 
-删除所有前进后退记录。
+删除所有前进后退记录，不建议在onErrorReceive与onPageBegin中调用clearHistory，会造成异常退出。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1537,6 +1585,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
+> - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1691,6 +1740,10 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
+> **说明：**
+>
+> 离屏组件不会触发runJavaScript接口。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -1789,7 +1842,6 @@ runJavaScript(script: string): Promise\<string>
 | 类型            | 说明                                                |
 | --------------- | --------------------------------------------------- |
 | Promise\<string> | Promise实例，返回脚本执行的结果，执行失败返回null。 |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **错误码：**
 
@@ -3144,6 +3196,8 @@ getUserAgent(): string
 
 获取当前默认用户代理。
 
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -3284,7 +3338,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。单位：px。 |
+| number | 当前网页的页面高度。单位：vp。 |
 
 **错误码：**
 
@@ -3603,9 +3657,9 @@ struct WebComponent {
 
 ### scrollTo
 
-scrollTo(x:number, y:number): void
+scrollTo(x:number, y:number, duration?:number): void
 
-将页面滚动到指定的绝对位置。
+在指定时间内，将页面滚动到指定的绝对位置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3613,8 +3667,9 @@ scrollTo(x:number, y:number): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。 |
-| y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。|
+| x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。单位：vp。 |
+| y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。单位：vp。|
+| duration<sup>14+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
 
 **错误码：**
 
@@ -3642,7 +3697,15 @@ struct WebComponent {
       Button('scrollTo')
         .onClick(() => {
           try {
-            this.controller.scrollTo(50, 50);
+            this.controller.scrollTo(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); //如果想停止当前scroll产生的动画，可再次生成一个1ms的动画去打断该动画。
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3662,8 +3725,8 @@ struct WebComponent {
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3678,9 +3741,9 @@ Scroll Test
 
 ### scrollBy
 
-scrollBy(deltaX:number, deltaY:number): void
+scrollBy(deltaX:number, deltaY:number,duration?:number): void
 
-将页面滚动指定的偏移量。
+在指定时间内将页面滚动指定的偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3688,8 +3751,9 @@ scrollBy(deltaX:number, deltaY:number): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
-| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。单位：vp。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。单位：vp。 |
+| duration<sup>14+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
 
 **错误码：**
 
@@ -3699,6 +3763,10 @@ scrollBy(deltaX:number, deltaY:number): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+> **说明：**
+>
+> 嵌套滚动场景中，调用scrollBy不会触发父组件的嵌套滚动。
 
 **示例：**
 
@@ -3717,7 +3785,102 @@ struct WebComponent {
       Button('scrollBy')
         .onClick(() => {
           try {
-            this.controller.scrollBy(50, 50);
+            this.controller.scrollBy(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); //如果想停止当前scroll产生的动画，可再次生成一个1ms的动画去打断该动画。
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:2000px;
+            height:2000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
+### scrollByWithResult<sup>12+</sup>
+
+scrollByWithResult(deltaX: number, deltaY: number): boolean
+
+将页面滚动指定的偏移量，返回值表示此次滚动是否执行成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前网页是否可以滑动，默认为false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+> **说明：**
+>
+> - 返回值场景：Web页面处于触摸中状态时，返回false，否则返回true。
+> - 同层渲染场景中，Web的同层渲染区域处于触摸中状态时，返回值为true。
+> - 嵌套滚动场景中，调用scrollByWithResult不会触发父组件的嵌套滚动。
+> - 此接口不保证滑动帧率性能。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollByWithResult')
+        .onClick(() => {
+          try {
+          let result = this.controller.scrollByWithResult(50, 50);
+          console.log("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3737,8 +3900,8 @@ struct WebComponent {
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3750,7 +3913,6 @@ Scroll Test
 </body>
 </html>
 ```
-
 ### slideScroll
 
 slideScroll(vx:number, vy:number): void
@@ -3763,8 +3925,8 @@ slideScroll(vx:number, vy:number): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| vx     | number   | 是   | 轻扫滚动的水平速度分量，其中水平向右为速度正方向。 |
-| vy     | number   | 是   | 轻扫滚动的垂直速度分量，其中垂直向下为速度正方向。 |
+| vx     | number   | 是   | 轻扫滚动的水平速度分量，其中水平向右为速度正方向。单位：vp/ms。 |
+| vy     | number   | 是   | 轻扫滚动的垂直速度分量，其中垂直向下为速度正方向。单位：vp/ms。 |
 
 **错误码：**
 
@@ -4558,7 +4720,6 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -4720,6 +4881,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -4931,7 +5093,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4987,7 +5149,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5083,7 +5245,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5119,6 +5281,8 @@ setCustomUserAgent(userAgent: string): void
 
 当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+
 > **说明：**
 >
 >当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
@@ -5133,7 +5297,7 @@ setCustomUserAgent(userAgent: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5151,7 +5315,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State customUserAgent: string = 'test';
+  @State customUserAgent: string = ' DemoApp';
 
   build() {
     Column() {
@@ -5186,7 +5350,7 @@ setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5237,7 +5401,7 @@ startDownload(url: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5287,6 +5451,8 @@ getCustomUserAgent(): string
 
 获取自定义用户代理。
 
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+
 **系统能力：**  SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -5297,7 +5463,7 @@ getCustomUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5406,7 +5572,7 @@ static warmupServiceWorker(url: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5424,6 +5590,7 @@ import { webview } from '@kit.ArkWeb';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log("EntryAbility onCreate");
+        webview.WebviewController.initializeWebEngine();
         webview.WebviewController.warmupServiceWorker("https://www.example.com");
         AppStorage.setOrCreate("abilityWant", want);
     }
@@ -5434,7 +5601,9 @@ export default class EntryAbility extends UIAbility {
 
 enableSafeBrowsing(enable: boolean): void
 
-<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。<!--RP1End-->
+<!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
+<!--RP1End-->
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5755,6 +5924,39 @@ struct WebComponent {
 }
 ```
 
+### getDefaultUserAgent<sup>14+</sup>
+
+static getDefaultUserAgent(): string
+
+获取默认用户代理。
+
+此接口只允许在UI线程调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getDefaultUserAgent')
+        .onClick(() => {
+          webview.WebviewController.getDefaultUserAgent();
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### enableAdsBlock<sup>12+</sup>
 
 enableAdsBlock(enable: boolean): void
@@ -5776,7 +5978,7 @@ enableAdsBlock(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. Parameter string is too long. 3.Parameter verification failed. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -5906,7 +6108,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。 |
+| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
 
 **错误码：**
 
@@ -5953,9 +6155,9 @@ static getRenderProcessMode(): RenderProcessMode
 
 **返回值：**
 
-| 类型                                                         | 说明                   |
-| ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| 渲染子进程模式类型。 |
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [RenderProcessMode](#renderprocessmode12) | 渲染子进程模式类型。调用[getRenderProcessMode()](#getrenderprocessmode12)获取当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。 |
 
 
 **示例：**
@@ -5996,11 +6198,11 @@ terminateRenderProcess(): boolean
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
+| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 如果渲染进程已被销毁则直接返回true。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -6257,7 +6459,7 @@ struct WebComponent {
 
 ### setScrollable<sup>12+</sup>
 
-setScrollable(enable: boolean): void
+setScrollable(enable: boolean, type?: ScrollType): void
 
 设置网页是否允许滚动。
 
@@ -6268,6 +6470,7 @@ setScrollable(enable: boolean): void
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
 | enable     | boolean   | 是   | 表示是否将网页设置为允许滚动，true表示设置为允许滚动，false表示禁止滚动。 |
+| type       | [ScrollType](#scrolltype12) |  否 | 网页可触发的滚动类型，支持缺省配置。<br/> - enable为false时，表示禁止ScrollType类型的滚动，当ScrollType缺省时表示禁止所有类型网页滚动。<br/> - enable为true时，ScrollType缺省与否，都表示允许所有类型的网页滚动。|
 
 **错误码：**
 
@@ -6456,6 +6659,136 @@ struct WebComponent {
   }
 }
 ```
+
+### getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
+
+getLastJavascriptProxyCallingFrameUrl(): string
+
+通过[registerJavaScriptProxy](#registerjavascriptproxy)或者[javaScriptProxy](ts-basic-components-web.md#javascriptproxy)注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入的对象的frame的url。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class TestObj {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  test(testStr: string): string {
+    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testStr;
+  }
+
+  toString(): void {
+    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+
+  testNumber(testNum: number): number {
+    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testNum;
+  }
+
+  testBool(testBol: boolean): boolean {
+    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return testBol;
+  }
+}
+
+class WebObj {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
+    this.mycontroller = controller;
+  }
+
+  webTest(): string {
+    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State testObjtest: TestObj = new TestObj(this.controller);
+  @State webTestObj: WebObj = new WebObj(this.controller);
+
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
+
 ### pauseAllTimers<sup>12+</sup>
 
 pauseAllTimers(): void
@@ -7510,6 +7843,26 @@ class ActualNativeMediaPlayerListener {
     // 当本地播放器解析出视频宽高时， 通知 ArkWeb 内核。
     this.handler.handleVideoSizeChanged(width, height);
   }
+  onDurationChanged(duration: number) {
+    // 本地播放器解析到了新的媒体时长， 通知 ArkWeb 内核。
+    this.handler.handleDurationChanged(duration);
+  }
+  onError(error: webview.MediaError, errorMessage: string) {
+    // 本地播放器出错了，通知 ArkWeb 内核。
+    this.handler.handleError(error, errorMessage);
+  }
+  onNetworkStateChanged(state: webview.NetworkState) {
+    // 本地播放器的网络状态发生了变化， 通知 ArkWeb 内核。
+    this.handler.handleNetworkStateChanged(state);
+  }
+  onPlaybackRateChanged(playbackRate: number) {
+    // 本地播放器的播放速率发生了变化， 通知 ArkWeb 内核。
+    this.handler.handlePlaybackRateChanged(playbackRate);
+  }
+  onMutedChanged(muted: boolean) {
+    // 本地播放器的静音状态发生了变化， 通知 ArkWeb 内核。
+    this.handler.handleMutedChanged(muted);
+  }
 
   // ... 监听本地播放器其他的状态 ...
 }
@@ -7570,7 +7923,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
     // 恢复应用内播放器的状态信息。
   }
 
-  suspendPlayer(type: SuspendType) {
+  suspendPlayer(type: webview.SuspendType) {
     // 记录应用内播放器的状态信息。
     // 销毁应用内播放器。
   }
@@ -7623,6 +7976,94 @@ function shouldHandle(mediaInfo: webview.MediaInfo) {
 }
 ```
 
+### enableWholeWebPageDrawing<sup>12+</sup>
+
+static enableWholeWebPageDrawing(): void
+
+设置开启网页全量绘制能力。仅在web初始化时设置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.enableWholeWebPageDrawing();
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### webPageSnapshot<sup>12+</sup>
+
+webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
+
+获取网页全量绘制结果。（本地资源网页暂不支持）
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型           | 必填  | 说明                      |
+| ----------- | ------------- | ---- | ------------------------ |
+| info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
+| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('webPageSnapshot')
+        .onClick(() => {
+          try {
+            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
+              if (error) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                return;
+              }
+              if (result) {
+                console.info(`return value is:${result}`);
+                //开发者可以根据需要处理返回结果
+              }
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### injectOfflineResources<sup>12+</sup>
 
 injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourcemap12)\>): void
@@ -7632,7 +8073,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
-当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
+当调用`webview.WebviewController.SetRenderProcessMode(webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8102,7 +8543,7 @@ setUrlTrustList(urlTrustList: string): void
         Button('Access the trust web')
           .onClick(() => {
             try {
-              // 白名单生效，可以访问untrust网页
+              // 白名单生效，可以访问trust网页
               this.controller.loadUrl('http://trust.example.com/test');
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -8260,7 +8701,9 @@ body.appendChild(element);
 
 static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
-开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定特定的页面进入前进后退缓存。
+开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定的页面进入前进后退缓存。
+
+需要在[initializeWebEngine()](#initializewebengine)初始化内核之前调用。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -8268,7 +8711,7 @@ static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | 是   | 允许使用特定特性的页面进入前进后退缓存中。|
+| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | 是   | 允许使用特定的页面进入前进后退缓存中。|
 
 **示例：**
 
@@ -8305,7 +8748,7 @@ setBackForwardCacheOptions(options: BackForwardCacheOptions): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | 是   | 用来控制web组件前进后退缓存相关选项。|
+| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | 是   | 用来控制Web组件前进后退缓存相关选项。|
 
 **错误码：**
 
@@ -8346,6 +8789,279 @@ struct Index {
     }
     .height('100%')
     .width('100%')
+  }
+}
+```
+
+### trimMemoryByPressureLevel<sup>14+</sup>
+
+trimMemoryByPressureLevel(level: number): void
+
+根据指定的内存压力等级，主动清理Web组件占用的缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| level | [PressureLevel](#pressurelevel14) | 是 | 需要清理内存的内存等级。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+
+**示例：**
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Row() {
+        Button('trim_Memory')
+          .onClick(() => {
+            try {
+              // 设置当前内存压力等级为适中，释放少量内存
+              webview.WebviewController.trimMemoryByPressureLevel(
+                webview.PressureLevel.MEMORY_PRESSURE_LEVEL_MODERATE);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+      }.height('10%')
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): void
+
+异步callback方式获取指定网页的数据流。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明                    |
+| ------------- | --------------------------------------- | ---- | ----------------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | 是   | 生成PDF所需参数。       |
+| callback      | AsyncCallback<[PdfData](#pdfdata14)>    | 是   | 回调返回网页PDF数据流。 |
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例**:
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(
+            this.pdfConfig,
+            (error, result: webview.PdfData) => {
+              try {
+                // 获取组件上下文
+                let context = getContext(this) as common.UIAbilityContext;
+                // 获取沙箱路径，设置pdf文件名
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              }
+            });
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
+
+以Promise方式异步获取指定网页的数据流。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明              |
+| ------------- | --------------------------------------- | ---- | ----------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | 是   | 生成PDF所需参数。 |
+
+**返回值：**
+
+| 类型                           | 说明                          |
+| ------------------------------ | ----------------------------- |
+| Promise<[PdfData](#pdfdata14)> | Promise实例，返回网页数据流。 |
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例**:
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(this.pdfConfig)
+            .then((result: webview.PdfData) => {
+              try {
+                // 获取组件上下文
+                let context = getContext(this) as common.UIAbilityContext;
+                // 获取沙箱路径，设置pdf文件名
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
+              }
+            })
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
+### getScrollOffset<sup>13+</sup>
+
+getScrollOffset(): ScrollOffset
+
+获取网页当前的滚动偏移量。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值**
+
+| 类型                            | 说明                   |
+| :------------------------------ | ---------------------- |
+| [ScrollOffset](#scrolloffset13) | 网页当前的滚动偏移量。 |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { componentUtils } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct WebComponent {
+  @State testTitle: string = 'webScroll'
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State controllerX: number =-100;
+  @State controllerY: number =-100;
+  @State mode: OverScrollMode = OverScrollMode.ALWAYS;
+
+  build() {
+    Column() {
+      Row() {
+        Text(this.testTitle)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .margin(5)
+      }
+      Column() {
+        Text(`controllerX: ${this.controllerX}, controllerY: ${this.controllerY}`)
+      }
+      .margin({ top: 10, bottom: 10 })
+      Web({ src: $rawfile("scrollByTo.html"), controller: this.controller })
+        .key("web_01")
+        .overScrollMode(this.mode)
+        .onTouch((event) => {
+          this.controllerX = this.controller.getScrollOffset().x;
+          this.controllerY = this.controller.getScrollOffset().y;
+          let componentInfo = componentUtils.getRectangleById("web_01");
+          let webHeight = px2vp(componentInfo.size.height);
+          let pageHeight = this.controller.getPageHeight();
+          if (this.controllerY < 0) {
+            // case1：网页向下过滚动时，可直接使用ScrollOffset.y
+            console.log(`get downwards overscroll offsetY = ${this.controllerY}`);
+          } else if ((this.controllerY != 0) && (this.controllerY > (pageHeight - webHeight))) {
+            // case2：网页向上过滚动时，需计算出网页下边界与Web组件下边界的偏移量
+            console.log(`get upwards overscroll offsetY = ${this.controllerY - (pageHeight >= webHeight ? (pageHeight - webHeight) : 0)}`);
+          } else {
+            // case3：网页未发生过滚动时，可直接使用ScrollOffset.y
+            console.log(`get scroll offsetY = ${this.controllerY}`);
+          }
+        })
+        .height(600)
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -8421,6 +9137,14 @@ struct WebComponent {
 static fetchCookieSync(url: string, incognito?: boolean): string
 
 获取指定url对应cookie的值。
+
+> **说明：**
+>
+> 系统会自动清理过期的cookie，对于同名key的数据，新数据将会覆盖前一个数据。
+> 
+> 为了获取可正常使用的cookie值，fetchCookieSync需传入完整链接。
+> 
+> fetchCookieSync用于获取所有的cookie值，每条cookie值之间会通过"; "进行分隔，但无法单独获取某一条特定的cookie值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8598,6 +9322,69 @@ struct WebComponent {
 }
 ```
 
+### fetchCookie<sup>14+</sup>
+
+static fetchCookie(url: string, incognito: boolean): Promise\<string>
+
+以Promise方式异步获取指定url对应cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| incognito    | boolean | 是   | true表示获取隐私模式下webview的内存cookies，false表示正常非隐私模式下的cookies。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<string> | Promise实例，用于获取指定url对应的cookie值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 17100002 | Invalid url.                                           |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            webview.WebCookieManager.fetchCookie('https://www.example.com', false)
+              .then(cookie => {
+                console.log("fetchCookie cookie = " + cookie);
+              })
+              .catch((error: BusinessError) => {
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+              })
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -8660,13 +9447,15 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-为指定url设置cookie的值。
+为指定url设置单个cookie的值。
 
 > **说明：**
 >
->configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
-
->同步cookie的时机建议在Web组件加载之前完成。
+> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>
+> 同步cookie的时机建议在Web组件加载之前完成。
+>
+> 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8705,8 +9494,64 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 仅支持设置单个cookie值。
+            // configCookieSync每次仅支持设置单个cookie值。
             webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookieSync<sup>14+</sup>
+
+static configCookieSync(url: string, value: string, incognito: boolean, includeHttpOnly: boolean): void
+
+为指定url设置cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要设置的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+| incognito    | boolean | 是   | true表示设置隐私模式下对应url的cookies，false表示设置正常非隐私模式下对应url的cookies。 |
+| includeHttpOnly    | boolean | 是   | true表示允许覆盖含有http-only的cookies，false表示不允许覆盖含有http-only的cookies。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookieSync')
+        .onClick(() => {
+          try {
+            // 仅支持设置单个cookie值。
+            webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', false, false);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -8824,6 +9669,73 @@ struct WebComponent {
         .onClick(() => {
           try {
             webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
+              .then(() => {
+                console.log('configCookie success!');
+              })
+              .catch((error: BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>14+</sup>
+
+static configCookie(url: string, value: string, incognito: boolean, includeHttpOnly: boolean): Promise\<void>
+
+以异步Promise方式为指定url设置单个cookie的值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | 是   | 要获取的cookie所属的url，建议使用完整的url。 |
+| value  | string | 是   | 要设置的cookie的值。      |
+| incognito    | boolean | 是   | true表示设置隐私模式下对应url的cookies，false表示设置正常非隐私模式下对应url的cookies。 |
+| includeHttpOnly    | boolean | 是   | true表示允许覆盖含有http-only的cookies，false表示不允许覆盖含有http-only的cookies。 |
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Promise\<void> | Promise实例，用于获取指定url设置单个cookie值是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            webview.WebCookieManager.configCookie('https://www.example.com', 'a=b', false, false)
               .then(() => {
                 console.log('configCookie success!');
               })
@@ -10753,7 +11665,7 @@ type WebMessage = ArrayBuffer | string
 
 ## JsMessageType<sup>10+</sup>
 
-[runJavaScirptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。
+[runJavaScriptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10809,7 +11721,7 @@ ArkWeb渲染子进程模式类型。
 
 ## JsMessageExt<sup>10+</sup>
 
-[runJavaScirptExt](#runjavascriptext10)接口执行脚本返回的数据对象。
+[runJavaScriptExt](#runjavascriptext10)接口执行脚本返回的数据对象。
 
 ### getType<sup>10+</sup>
 
@@ -10823,7 +11735,7 @@ getType(): JsMessageType
 
 | 类型           | 说明                                                      |
 | --------------| --------------------------------------------------------- |
-| [JsMessageType](#jsmessagetype10) | [runJavaScirptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。 |
+| [JsMessageType](#jsmessagetype10) | [runJavaScriptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。 |
 
 ### getString<sup>10+</sup>
 
@@ -11346,7 +12258,7 @@ struct WebComponent {
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
-| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合[RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)第3.1节中定义的URL规范化和解析规则。           |
+| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。           |
 | isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
@@ -12541,7 +13453,7 @@ pause(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -12637,7 +13549,7 @@ resume(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -13361,134 +14273,6 @@ struct WebComponent {
 }
 ```
 
-## getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>
-
-getLastJavascriptProxyCallingFrameUrl(): string
-
-通过[registerJavaScriptProxy](#registerjavascriptproxy)或者[javaScriptProxy](ts-basic-components-web.md#javascriptproxy)注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入的对象的frame的url。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-class TestObj {
-  mycontroller: webview.WebviewController;
-
-  constructor(controller: webview.WebviewController) {
-    this.mycontroller = controller;
-  }
-
-  test(testStr: string): string {
-    console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testStr;
-  }
-
-  toString(): void {
-    console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-  }
-
-  testNumber(testNum: number): number {
-    console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testNum;
-  }
-
-  testBool(testBol: boolean): boolean {
-    console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return testBol;
-  }
-}
-
-class WebObj {
-  mycontroller: webview.WebviewController;
-
-  constructor(controller: webview.WebviewController) {
-    this.mycontroller = controller;
-  }
-
-  webTest(): string {
-    console.log('Web test ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-    return "Web test";
-  }
-
-  webString(): void {
-    console.log('Web test toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  controller: webview.WebviewController = new webview.WebviewController();
-  @State testObjtest: TestObj = new TestObj(this.controller);
-  @State webTestObj: WebObj = new WebObj(this.controller);
-
-  build() {
-    Column() {
-      Button('refresh')
-        .onClick(() => {
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Button('Register JavaScript To Window')
-        .onClick(() => {
-          try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
-            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        .javaScriptAccess(true)
-    }
-  }
-}
-```
-
-加载的html文件。
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html>
-    <meta charset="utf-8">
-    <body>
-      <button type="button" onclick="htmlTest()">Click Me!</button>
-      <p id="demo"></p>
-      <p id="webDemo"></p>
-    </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.testBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
-</html>
-```
 ## WebHttpBodyStream<sup>12+</sup>
 
 POST、PUT请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。注意本类中其他接口需要在[initialize](#initialize12)成功后才能调用。
@@ -14463,7 +15247,7 @@ struct WebComponent {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
                   resourceHandler.didReceiveResponse(response);
-                  resourceHandler.didReceiveResponseBody(buf.buffer);
+                  // 如果认为buf.length为0是正常情况，则调用resourceHandler.didFinish，否则调用resourceHandler.didFail
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
@@ -15225,12 +16009,12 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | bool | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | bool | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
-前进后退缓存相关设置对象，用来控制web组件前进后退缓存相关选项。
+前进后退缓存相关设置对象，用来控制Web组件前进后退缓存相关选项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -15735,93 +16519,7 @@ struct WebComponent {
   }
 }
 ```
-### enableWholeWebPageDrawing<sup>12+</sup>
 
-static enableWholeWebPageDrawing(): void
-
-设置开启网页全量绘制能力。仅在web初始化时设置。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**示例：**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  aboutToAppear(): void {
-    try {
-      webview.WebviewController.enableWholeWebPageDrawing();
-    } catch (error) {
-      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-    }
-  }
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### webPageSnapshot<sup>12+</sup>
-
-webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
-
-获取网页全量绘制结果。（本地资源网页暂不支持）
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名       | 类型           | 必填  | 说明                      |
-| ----------- | ------------- | ---- | ------------------------ |
-| info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
-| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 |
-
-**示例：**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('webPageSnapshot')
-        .onClick(() => {
-          try {
-            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
-              if (error) {
-                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-                return;
-              }
-              if (result) {
-                console.info(`return value is:${result}`);
-                //开发者可以根据需要处理返回结果
-              }
-            });
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
 ## SnapshotInfo<sup>12+</sup>
 
 获取全量绘制结果入参。
@@ -15845,3 +16543,78 @@ struct WebComponent {
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
+
+## ScrollType<sup>12+</sup>
+
+Scroll滚动类型，用于[setScrollable](#setscrollable12)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| EVENT  | 0 | 滚动事件，表示通过触摸屏，触摸板，鼠标滚轮生成的网页滚动。|
+
+## PressureLevel<sup>14+</sup>
+
+内存压力等级。在应用主动清理Web组件占用的缓存时，Web内核会根据内存压力等级，进行缓存释放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| MEMORY_PRESSURE_LEVEL_MODERATE | 1 | 中等内存压力等级。这个等级下，Web内核会尝试释放重新分配开销较小且不需要立即使用的缓存。 |
+| MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | 严重内存压力等级。这个等级下，Web内核会尝试释放所有可能的内存缓存。 |
+
+##  PdfConfiguration<sup>14+</sup>
+
+createPdf函数输入参数。
+
+> **说明：**
+>
+> 英寸与像素之间转换公式：像素 = 96 * 英寸。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                  | 类型    | 必填 | 说明                                                         |
+| --------------------- | ------- | ---- | ------------------------------------------------------------ |
+| width                 | number  | 是   | 页面宽度。单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
+| height                | number  | 是   | 页面高度。单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
+| scale                 | number  | 否   | 放大倍数。取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。默认值：1.0。 |
+| marginTop             | number  | 是   | 上边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginBottom          | number  | 是   | 下边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginRight           | number  | 是   | 右边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginLeft            | number  | 是   | 左边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| shouldPrintBackground | boolean | 否   | 是否打印背景颜色。默认值：false。                            |
+
+## PdfData<sup>14+</sup>
+
+createPdf函数输出数据流类。
+
+> **说明：**
+>
+> 在网页生成PDF过程中，返回的是数据流，由PdfData类封装。
+
+### pdfArrayBuffer<sup>14+</sup>
+
+pdfArrayBuffer(): Uint8Array
+
+获取网页生成的数据流。完整示例代码参考[createPdf](#createpdf14)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型       | 说明     |
+| ---------- | -------- |
+| Uint8Array | 数据流。 |
+
+## ScrollOffset<sup>13+</sup>
+
+网页当前的滚动偏移量。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型   | 可读 | 可写 | 说明                                                         |
+| ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| x    | number | 是   | 是   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。单位为vp。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。 |
+| y    | number | 是   | 是   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。单位为vp。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。 |

@@ -2,11 +2,10 @@
 
 The **PrintExtensionAbility** module provides operation APIs of the print extension ability.
 
-> **NOTE**
+> **NOTE** 
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+> The APIs provided by this module are system APIs. 
 >
 > The APIs of this module can be used only in the stage model.
 
@@ -28,6 +27,14 @@ Called to initialize the print extension when the system connects to the extensi
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | want | Want | Yes| Parameters required for invoking the print page.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
@@ -51,6 +58,14 @@ Called when an attempt to discover printers starts.
 
 **System capability**: SystemCapability.Print.PrintFramework
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
@@ -71,6 +86,14 @@ onStopDiscoverPrinter(): void
 Called when the attempt to discover printers stops.
 
 **System capability**: SystemCapability.Print.PrintFramework
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
@@ -98,6 +121,14 @@ Called when the device connects to the specified printer.
 | -------- | -------- | -------- | -------- |
 | printerId | number | Yes| Printer ID.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
@@ -123,6 +154,14 @@ Called when the device disconnects from the specified printer.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | printerId | number | Yes| Printer ID.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
@@ -150,6 +189,14 @@ Called when the specified print job starts.
 | -------- | -------- | -------- | -------- |
 | jobInfo | print.PrintJob | Yes| Information about the print job.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
@@ -176,6 +223,14 @@ Called when the specified print job is canceled.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobInfo | print.PrintJob | Yes| Information about the print job.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
@@ -208,6 +263,14 @@ Called when a request is sent to check the capability of the specified printer.
 | **Type**| **Description**|
 | -------- | -------- |
 | print.PrinterCapability | Capability of the printer.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 
@@ -247,6 +310,14 @@ Called when a print preview request is sent. The result is returned to the print
 | -------- | -------- |
 | string | Preview result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
@@ -270,6 +341,14 @@ onDestroy(): void
 Called when the print extension ability is stopped.
 
 **System capability**: SystemCapability.Print.PrintFramework
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
 

@@ -1,4 +1,4 @@
-# Sensor Development
+# Sensor Development (ArkTS)
 
 
 ## When to Use
@@ -10,12 +10,12 @@ For details about the APIs, see [Sensor](../../reference/apis-sensor-service-kit
 
 ## Available APIs
 
-| Module| API| Description|
-| -------- | -------- | -------- |
-| ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
-| ohos.sensor | sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
-| ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
-| ohos.sensor | sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| Obtains information about all sensors on the device. This API uses an asynchronous callback to return the result.|
+| Name| Description|
+| -------- | -------- |
+| sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
+| sensor.once(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
+| sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
+| sensor.getSensorList(callback: AsyncCallback\<Array\<Sensor>>): void| Obtains information about all sensors on the device. This API uses an asynchronous callback to return the result.|
 
 
 ## How to Develop

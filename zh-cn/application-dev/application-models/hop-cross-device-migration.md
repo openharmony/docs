@@ -2,7 +2,7 @@
 
 ## 概述
 
-在用户使用设备的过程中，当使用情境发生变化时（例如从室内走到户外或者周围有更适合的设备等），之前使用的设备可能已经不适合继续当前的任务，此时，用户可以选择新的设备来继续当前的任务，原设备可按需决定是否退出任务，这个就是跨端迁移的场景。常见的跨端迁移场景实例：在平板上播放的视频，迁移到智慧屏继续播放，从而获得更佳的观看体验；平板上的视频应用退出。在应用开发层面，跨端迁移指在A端运行的UIAbility迁移到B端上，完成迁移后，B端UIAbility继续任务，而A端UIAbility可按需决定是否退出。
+在用户使用设备的过程中，当使用情境发生变化时（例如从室内走到户外或者周围有更适合的设备等），之前使用的设备可能已经不适合继续当前的任务，此时，用户可以选择新的设备来继续当前的任务，原设备可按需决定是否退出任务，这个就是跨端迁移的场景。常见的跨端迁移场景实例：在平板上播放的视频，迁移到智慧屏继续播放，从而获得更佳的观看体验；平板上的视频应用退出。在应用开发层面，跨端迁移指在A端运行的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)迁移到B端上，完成迁移后，B端UIAbility继续任务，而A端UIAbility可按需决定是否退出。
 
 主要功能包括：
 
@@ -12,11 +12,11 @@
 
 - 支持应用兼容性检测。
 
-- 支持应用根据实际使用场景动态设置迁移状态（默认迁移状态为 **ACTIVE** 激活状态）。例如，编辑类应用在编辑文本的页面下才需要迁移，其他页面不需要迁移，则可以通过[`setMissionContinueState`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)进行控制。
+- 支持应用根据实际使用场景动态设置迁移状态（默认迁移状态为 **ACTIVE** 激活状态）。例如，编辑类应用在编辑文本的页面下才需要迁移，其他页面不需要迁移，则可以通过[setMissionContinueState](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)进行控制。
 
-- 支持应用动态选择是否进行页面栈恢复（默认进行页面栈信息恢复）。例如，应用希望自定义迁移到其他设备后显示的页面，则可以通过[`SUPPORT_CONTINUE_PAGE_STACK_KEY`](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)进行控制。
+- 支持应用动态选择是否进行页面栈恢复（默认进行页面栈信息恢复）。例如，应用希望自定义迁移到其他设备后显示的页面，则可以通过[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)进行控制。
 
-- 支持应用动态选择迁移成功后是否退出迁移源端应用（默认迁移成功后退出迁移源端应用）。可以通过[`SUPPORT_CONTINUE_SOURCE_EXIT_KEY`](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)进行控制。
+- 支持应用动态选择迁移成功后是否退出迁移源端应用（默认迁移成功后退出迁移源端应用）。可以通过[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)进行控制。
 
   > **说明：**
   >
@@ -26,9 +26,9 @@
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
 
-1. 在源端，通过`UIAbility`的[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调，开发者可以保存待迁移的业务数据。例如，在浏览器应用中完成跨端迁移，开发者需要使用[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调保存页面URL等业务内容。
+1. 在源端，通过[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调，开发者可以保存待迁移的业务数据。例如，在浏览器应用中完成跨端迁移，开发者需要使用onContinue()回调保存页面URL等业务内容。
 2. 分布式框架提供了跨设备应用页面栈以及业务数据的保存和恢复机制，它负责将数据从源端发送到对端。
-3. 在对端，同一`UIAbility`可以通过[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)（冷启动）和[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)（热启动）接口来恢复业务数据。
+3. 在对端，同一UIAbility可以通过[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)（冷启动）和[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)（热启动）接口来恢复业务数据。
 
 ## 跨端迁移流程
 
@@ -38,7 +38,7 @@
 
 ## 约束限制
 
-- 跨端迁移要求在同一`UIAbility`之间进行，也就是需要相同的`bundleName`、`abilityName`和签名信息。
+- 跨端迁移要求在同一[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)之间进行，也就是需要相同的`bundleName`、`abilityName`和签名信息。
 - 为了获得最佳体验，使用`wantParam`传输的数据需要控制在100KB以下。
 
 ## 开发步骤
@@ -63,14 +63,14 @@
    >
    > 根据需要配置应用启动模式类型，配置详情请参照[UIAbility组件启动模式](uiability-launch-type.md)。
 
-2. 在源端`UIAbility`中实现[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调。
+2. 在源端UIAbility中实现onContinue()回调。
 
-    当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
+    当[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)实例触发迁移时，[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调在源端被调用，开发者可以在该接口中通过同步或异步的方式来保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
     - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
     - 应用兼容性检测：开发者可以在触发迁移时从`onContinue()`入参`wantParam.version`获取到迁移对端应用的版本号，与迁移源端应用版本号做兼容校验。
 
-    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移，接口返回值详见[`AbilityConstant.OnContinueResult`](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
+    - 迁移决策：开发者可以通过`onContinue()`回调的返回值决定是否支持此次迁移，接口返回值详见[AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#oncontinueresult)。
 
     &nbsp;
     `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
@@ -111,30 +111,30 @@
     }
     ```
 
-3. 对端设备的UIAbility通过实现[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口，来恢复迁移数据和加载UI。
+3. 对端设备的UIAbility通过实现[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口，来恢复迁移数据和加载UI。
 
     不同的启动方式下会调用不同的接口，详见下图。
 
     ![hop-cross-device-migration](figures/hop-cross-device-migration5.png)
 
     > **说明：**
-    > 1. 在应用迁移启动时，无论是冷启动还是热启动，都会在执行完`onCreate()`/`onNewWant()`后，触发`onWindowStageRestore()`生命周期函数，不执行`onWindowStageCreate()`生命周期函数。
+    > 1. 在应用迁移启动时，无论是冷启动还是热启动，都会在执行完onCreate()/onNewWant()后，触发[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)生命周期函数，不执行[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期函数。
     > 2. 开发者如果在`onWindowStageCreate()`中进行了一些应用启动时必要的初始化，那么迁移后需要在`onWindowStageRestore()`中执行同样的初始化操作，避免应用异常。
 
-    - 通过在[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中检查`launchReason`，可以判断此次启动是否由迁移触发。
-    - 开发者可以从`want`中获取之前保存的迁移数据。
-    - 若开发者使用系统页面栈恢复功能，则需要在`onCreate()`/`onNewWant()`执行完成前，同步调用`restoreWindowStage()`，来触发带有页面栈的页面恢复，详见[按需迁移页面栈](./hop-cross-device-migration.md#按需迁移页面栈)。
+    - 通过在onCreate()/onNewWant()回调中检查`launchReason`(CONTINUATION)，可以判断此次启动是否由迁移触发。
+    - 开发者可以从[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中获取之前保存的迁移数据。
+    - 若开发者使用系统页面栈恢复功能，则需要在onCreate()/onNewWant()执行完成前，同步调用[restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextrestorewindowstage)，来触发带有页面栈的页面恢复，详见[按需迁移页面栈](./hop-cross-device-migration.md#按需迁移页面栈)。
 
     ```ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-
+    
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     export default class MigrationAbility extends UIAbility {
       storage : LocalStorage = new LocalStorage();
-
+    
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
@@ -148,20 +148,20 @@
           this.context.restoreWindowStage(this.storage);
         }
       }
-
+    
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-          hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-          if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-            // 将上述保存的数据从want.parameters中取出恢复
-            let continueInput = '';
-            if (want.parameters !== undefined) {
-              continueInput = JSON.stringify(want.parameters.data);
-              hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-            }
-            // 触发页面恢复
-            this.context.restoreWindowStage(this.storage);
+        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // 将上述保存的数据从want.parameters中取出恢复
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
           }
+          // 触发页面恢复
+          this.context.restoreWindowStage(this.storage);
         }
+      }
     }
     ```
 
@@ -171,13 +171,13 @@
 
 从API version 10开始，提供了支持动态配置迁移能力的功能。即应用可以根据实际使用场景，在需要迁移时开启应用迁移能力；在业务不需要迁移时则可以关闭迁移能力。
 
-开发者可以通过调用[`setMissionContinueState()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)接口对迁移能力进行设置。默认状态下，应用的迁移能力为**ACTIVE**状态，即迁移能力开启，可以迁移。
+开发者可以通过调用[setMissionContinueState()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)接口对迁移能力进行设置。默认状态下，应用的迁移能力为**ACTIVE**状态，即迁移能力开启，可以迁移。
 
 **设置迁移能力的时机**
 
 如果需要实现某些特殊场景，比如只在具体某个页面下支持迁移，或只在某个事件发生时才支持迁移，可以按照如下步骤进行配置
 
-1. 在`UIAbility`的[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调中，关闭迁移能力。
+1. 在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调中，关闭迁移能力。
 
     ```ts
     // MigrationAbility.ets
@@ -198,7 +198,7 @@
     }
     ```
 
- 2. 如果需要在具体某个页面中打开迁移能力，可以在页面的`onPageShow()`函数中调用接口。
+ 2. 如果需要在具体某个页面中打开迁移能力，可以在页面的[onPageShow()](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)函数中调用接口。
 
     ```ts
     // Page_MigrationAbilityFirst.ets
@@ -225,17 +225,17 @@
     }
     ```
 
-3. 如果想要在某个组件的触发事件打开迁移能力，可以在该事件中调用。以Button组件的`onClick()`事件为例：
+3. 如果想要在某个组件的触发事件打开迁移能力，可以在该事件中调用。以Button组件的[onClick()](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)事件为例：
 
     ```ts
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { promptAction } from '@kit.ArkUI';
-
+    
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
@@ -253,7 +253,7 @@
                 this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
                   hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
                   promptAction.showToast({
-                    message: $r('app.string.Success')
+                    message: 'Success'
                   });
                 });
               })
@@ -269,11 +269,13 @@
 
 ### 按需迁移页面栈
 
-`UIAbility`的迁移默认恢复页面栈。开发者需要在`onCreate()`/`onNewWant()`执行完成前，调用`restoreWindowStage()`，向系统传入当前的窗口上下文，用于页面栈的加载恢复。
 
 > **说明：**
 >
-> 接口`restoreWindowStage()`必须在同步方法中执行。如果在异步回调中执行该接口，会导致在应用拉起时页面有概率加载失败。
+> 1. 当前仅支持router路由的页面栈自动恢复，暂不支持navigation路由的页面栈自动恢复。
+> 2. 若应用使用navigation路由，可以设置不进行默认页面栈迁移（配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)参数为`false`），并将需要迁移的页面（或页面栈）信息保存在want中传递，然后在目标端手动加载指定页面。
+
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的迁移默认恢复页面栈。开发者需要在[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)执行完成前，调用[restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#restore)，向系统传入当前的窗口上下文，用于页面栈的加载恢复。`restoreWindowStage()`接口必须在同步方法中执行。如果在异步回调中执行该接口，会导致在应用拉起时页面有概率加载失败。
 
 以`onCreate()`为例：
 
@@ -291,11 +293,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-如果应用不想通过系统自动恢复页面栈，可以通过配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)参数为`false`关闭该功能。开发者需要在`onWindowStageRestore()`中，指定迁移后进入的页面。
-
-> **说明：**
->
-> 不指定迁移后进入的页面，会导致迁移拉起后显示空白页面。
+如果应用不想通过系统自动恢复页面栈，可以通过配置[SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)参数为`false`关闭该功能。开发者需要在[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)中，指定迁移后进入的页面。不指定迁移后进入的页面，会导致迁移拉起后显示空白页面。
 
 例如，`UIAbility`在对端恢复时不需要按照源端页面栈进行恢复，而是需要恢复到指定页面`Page_MigrationAbilityThird`。
 
@@ -330,7 +328,7 @@ export default class MigrationAbility extends UIAbility {
 
 ### 按需退出
 
-`UIAbility`的迁移默认迁移结束后退出源端应用。如果应用希望迁移后源端应用继续运行，或需要进行其他操作（如，保存草稿、清理资源等）后再自行触发退出，不想在迁移后立即自动退出源端应用，可以通过配置[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)参数为`false`设置源端迁移后不退出。
+[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的迁移默认迁移结束后退出源端应用。如果应用希望迁移后源端应用继续运行，或需要进行其他操作（如，保存草稿、清理资源等）后再自行触发退出，不想在迁移后立即自动退出源端应用，可以通过配置[SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)参数为`false`设置源端迁移后不退出。
 
 示例：`UIAbility`设置迁移成功后，源端不需要退出迁移应用。
 
@@ -352,7 +350,7 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ### 支持同应用中不同Ability跨端迁移
-一般情况下，跨端迁移的双端是同Ability之间，但有些应用在不同设备类型下的同一个业务Ability名称不同（即异Ability），为了支持该场景下的两个Ability之间能够完成迁移，可以通过在module.json5文件的abilities标签中配置迁移类型continueType进行关联。
+一般情况下，跨端迁移的双端是同Ability之间，但有些应用在不同设备类型下的同一个业务Ability名称不同（即异Ability），为了支持该场景下的两个Ability之间能够完成迁移，可以通过在[module.json5](../quick-start/module-configuration-file.md)文件的abilities标签中配置迁移类型continueType进行关联。
 需要迁移的两个Ability的continueType字段取值必须保持一致，示例如下：
    > **说明：**
    >
@@ -387,7 +385,7 @@ export default class MigrationAbility extends UIAbility {
        ]
      }
    }
-   ```
+```
 
 ### 支持快速拉起目标应用
 默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
@@ -406,6 +404,110 @@ export default class MigrationAbility extends UIAbility {
      }
    }
    ```
+配置快速拉起功能后，用户触发迁移，等待迁移数据返回的过程中，并行拉起应用，减小用户等待迁移启动时间。同时需注意，应用在迁移的提前启动时，首次触发迁移会收到`launchReason`为提前拉起 (PREPARE_CONTINUATION)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)请求。应用可以通过此`launchReason`，解决跳转、时序等问题，也可以在迁移快速启动时，增加loading界面，以获得更好的体验。快速拉起流程如下图所示。
+
+![hop-cross-device-migration](figures/continue_quick_start.png)
+
+配置了快速拉起的应用，触发迁移时会收到两次启动请求，区别如下：
+
+| 场景           | 生命周期函数                                | launchParam.launchReason                          |
+| -------------- | ------------------------------------------- | ------------------------------------------------- |
+| 第一次启动请求 | onCreate (冷启动)<br />或onNewWant (热启动) | AbilityConstant.LaunchReason.PREPARE_CONTINUATION |
+| 第二次启动请求 | onNewWant                                   | AbilityConstant.LaunchReason.CONTINUATION         |
+
+如果没有配置快速拉起，则触发迁移时会收到一次启动请求：
+
+| 场景         | 生命周期函数                                | launchParam.launchReason                  |
+| ------------ | ------------------------------------------- | ----------------------------------------- |
+| 一次启动请求 | onCreate (冷启动)<br />或onNewWant (热启动) | AbilityConstant.LaunchReason.CONTINUATION |
+
+配置快速拉起功能后，对应的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口具体实现，示例代码如下：
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
+  storage : LocalStorage = new LocalStorage();
+
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+
+    // 1.已配置快速拉起功能，应用立即启动时触发应用生命周期回调
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
+      //若应用迁移数据较大，可在此处添加加载页面(页面中显示loading等)
+      //可处理应用自定义跳转、时序等问题
+      // ...
+    }
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+      
+    // 1.已配置快速拉起功能，应用立即启动时触发应用生命周期回调
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
+      //若应用迁移数据较大，可在此处添加加载页面(页面中显示loading等)
+      //可处理应用自定义跳转、时序等问题
+      // ...
+    }
+      
+    // 2.迁移数据恢复时触发应用生命周期回调
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // 将上述保存的数据从want.parameters中取出恢复
+      let continueInput = '';
+      if (want.parameters !== undefined) {
+        continueInput = JSON.stringify(want.parameters.data);
+        hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+      }
+      // 触发页面恢复
+      this.context.restoreWindowStage(this.storage);
+    }
+  }
+}
+```
+
+快速拉起目标应用时，应用的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)和[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)回调会被依次触发。通常在onWindowStageCreate()中，开发者会调用[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)加载页面，该接口会抛出一个异步任务加载首页，该异步任务与onWindowStageRestore()无同步关系。如果在onWindowStageRestore()中使用UI接口（如路由接口），其调用时机可能早于首页加载。为保证正常加载顺序，可以使用[setTimeout()](../reference/common/js-apis-timer.md#settimeout)抛出异步任务执行相关操作。详细见示例代码。
+
+示例代码如下：
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  private uiContext: UIContext | undefined = undefined;
+
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      this.uiContext = windowStage.getMainWindowSync().getUIContext();
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageRestore(windowStage: window.WindowStage): void {
+    setTimeout(() => {
+      // 抛出异步任务执行路由，保证其执行位于首页加载之后。
+      this.uiContext?.getRouter().pushUrl({
+        url: 'pages/examplePage'
+      });
+    }, 0);
+  }
+
+  // ...
+}
+```
 
 ## 跨端迁移中的数据迁移
 
@@ -434,7 +536,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
-  
+
   // 源端保存
   onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
@@ -481,19 +583,19 @@ export default class MigrationAbility extends UIAbility {
 
 #### 基础数据的迁移
 
-使用分布式数据对象，需要在源端`onContinue()`接口中进行数据保存，并在对端的`onCreate()`/`onNewWant()`接口中进行数据恢复。
+使用分布式数据对象，需要在源端[onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)接口中进行数据保存，并在对端的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口中进行数据恢复。
 
-在源端，将需要迁移的数据保存到分布式数据对象[`DataObject`](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)中。
+在源端，将需要迁移的数据保存到分布式数据对象[DataObject](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)中。
 
-- 在`onContinue()`接口中使用[`create()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectcreate9)接口创建分布式数据对象，将所要迁移的数据填充到分布式数据对象数据中。
-- 调用[`genSessionId()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)接口生成数据对象组网id，并使用该id调用[`setSessionId()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9)加入组网，激活分布式数据对象。
-- 使用[`save()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#save9)接口将已激活的分布式数据对象持久化，确保源端退出后对端依然可以获取到数据。
+- 在onContinue()接口中使用[create()](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectcreate9)接口创建分布式数据对象，将所要迁移的数据填充到分布式数据对象数据中。
+- 调用[genSessionId()](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)接口生成数据对象组网id，并使用该id调用[setSessionId()](../reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9)加入组网，激活分布式数据对象。
+- 使用[save()](../reference/apis-arkdata/js-apis-data-distributedobject.md#save9)接口将已激活的分布式数据对象持久化，确保源端退出后对端依然可以获取到数据。
 - 将生成的`sessionId`通过`want`传递到对端，供对端激活同步使用。
 
 > **注意**
 >
-> 1. 分布式数据对象需要先激活，再持久化，因此必须在`setSessionId()`后调用`save()`接口。
-> 2. 对于源端迁移后需要退出的应用，为了防止数据未保存完成应用就退出，应采用`await`的方式等待`save()`接口执行完毕。从API 12 起，`onContinue()`接口提供了`async`版本供该场景使用。
+> 1. 分布式数据对象需要先激活，再持久化，因此必须在`setSessionId()`后调用save()接口。
+> 2. 对于源端迁移后需要退出的应用，为了防止数据未保存完成应用就退出，应采用`await`的方式等待save()接口执行完毕。从API 12 起，`onContinue()`接口提供了`async`版本供该场景使用。
 > 3. 当前，`wantParams`中`sessionId`字段在迁移流程中被系统占用，建议开发者在`wantParams`中定义其他key值存储该id，避免数据异常。
 
 示例代码如下：
@@ -567,18 +669,18 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-对端在`onCreate()/onNewWant()`中，通过加入与源端一致的分布式数据对象组网进行数据恢复。
+对端在[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)中，通过加入与源端一致的分布式数据对象组网进行数据恢复。
 
 - 创建空的分布式数据对象，用于接收恢复的数据。
-- 从want中读取分布式数据对象组网id。
-- 注册[`on()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9)接口监听数据变更。在收到`status`为`restore`的事件的回调中，实现数据恢复完毕时需要进行的业务操作。
-- 调用`setSessionId()`加入组网，激活分布式数据对象。
+- 从[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中读取分布式数据对象组网id。
+- 注册[on()](../reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9)接口监听数据变更。在收到`status`为`restore`的事件的回调中，实现数据恢复完毕时需要进行的业务操作。
+- 调用[setSessionId()](../reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9)加入组网，激活分布式数据对象。
 
 > **注意**
 >
-> 1. 对端加入组网的分布式数据对象不能为临时变量，因为`on()`接口的回调可能在`onCreate()/onNewWant()`执行结束后才执行，临时变量被释放可能导致空指针异常。可以使用类成员变量避免该问题。
+> 1. 对端加入组网的分布式数据对象不能为临时变量，因为on()接口的回调可能在onCreate()/onNewWant()执行结束后才执行，临时变量被释放可能导致空指针异常。可以使用类成员变量避免该问题。
 > 2. 对端用于创建分布式数据对象的`Object`，其属性应在激活分布式数据对象前置为`undefined`，否则会导致新数据加入组网后覆盖源端数据，数据恢复失败。
-> 3. 应当在激活分布式数据对象之前，调用`on()`接口进行注册监听，防止错过`restore`事件导致数据恢复失败。
+> 3. 应当在激活分布式数据对象之前，调用on()接口进行注册监听，防止错过`restore`事件导致数据恢复失败。
 
 示例代码如下：
 
@@ -645,7 +747,7 @@ export default class MigrationAbility extends UIAbility {
 
 对于图片、文档等文件类数据，需要先将其转换为[资产`commonType.Asset`](../reference/apis-arkdata/js-apis-data-commonType.md#asset)类型，再封装到分布式数据对象中进行迁移。迁移实现方式与普通的分布式数据对象类似，下例中仅针对区别部分进行说明。
 
-在源端，将需要迁移的文件资产保存到分布式数据对象`DataObject`中。
+在源端，将需要迁移的文件资产保存到分布式数据对象[DataObject](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)中。
 
 - 将文件资产拷贝到[分布式文件目录](application-context-stage.md#获取应用文件路径)下，相关接口与用法详见[基础文件接口](../file-management/app-file-access.md)。
 - 使用分布式文件目录下的文件创建`Asset`资产对象。
@@ -754,7 +856,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-对端需要先创建一个各属性为空的`Asset`资产对象作为分布式数据对象的根属性。在接收到`on()`接口`status`为`restored`的事件的回调时，表示包括资产在内的数据同步完成，可以像获取基本数据一样获取到源端的资产对象。
+对端需要先创建一个各属性为空的`Asset`资产对象作为分布式数据对象的根属性。在接收到[on()](../reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9)接口`status`为`restored`的事件的回调时，表示包括资产在内的数据同步完成，可以像获取基本数据一样获取到源端的资产对象。
 
 > **注意**
 >
@@ -915,7 +1017,7 @@ export default class MigrationAbility extends UIAbility {
 
 ### Q1：迁移之后的应用，无法重新迁移回源端
 
-由于迁移状态的设置是Ability级别的，对端拉起的应用可能执行过自己的迁移状态设置命令（例如，冷启动时对端在[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)中设置了 **INACTIVE** ；热启动时对端已打开了不可迁移的页面，迁移状态为 **INACTIVE** 等情况）。为了保证迁移过后的应用依然具有可以迁移回源端的能力，应在 [`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)的迁移调用判断中，将迁移状态设置为 **ACTIVE** 。
+由于迁移状态的设置是Ability级别的，对端拉起的应用可能执行过自己的迁移状态设置命令（例如，冷启动时对端在[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)中设置了 **INACTIVE** ；热启动时对端已打开了不可迁移的页面，迁移状态为 **INACTIVE** 等情况）。为了保证迁移过后的应用依然具有可以迁移回源端的能力，应在 onCreate()/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)的迁移调用判断中，将迁移状态设置为 **ACTIVE** 。
 
 ```ts
 // MigrationAbility.ets
@@ -952,9 +1054,9 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-### Q2：在`onWindowStageRestore()`中调用`loadContent()`没有生效
+### Q2：在onWindowStageRestore()中调用loadContent()没有生效
 
-如果应用没有配置关闭页面栈迁移能力，系统默认对应用的页面栈进行迁移与加载。这种情况下，如果开发者在生命周期函数`onWindowStageRestore()`中再次通过`loadContent()`等方式触发指定页面加载，则这次加载不会生效，依然恢复页面栈中的页面。
+如果应用没有配置关闭页面栈迁移能力，系统默认对应用的页面栈进行迁移与加载。这种情况下，如果开发者在生命周期函数[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)中再次通过[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)等方式触发指定页面加载，则这次加载不会生效，依然恢复页面栈中的页面。
 
 ## 相关实例
 

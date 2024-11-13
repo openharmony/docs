@@ -22,13 +22,13 @@
 
     - 若业务未设置TAG的具体值，表示基于该密钥派生出的密钥，即可由HUKS管理，也可返回给调用方管理，业务可在后续派生时再选择使用何种方式保护密钥。
 
-3. 调用OH_Huks_GenerateKeyItem生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
+3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
 除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md)，导入已有的密钥。
 
 **密钥派生**
 
-1. 获取密钥别名、指定对应的属性参数HuksOptions。
+1. 获取密钥别名，指定对应的属性参数HuksOptions。
 
    可指定参数OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识派生得到的密钥是否由HUKS管理。
 
@@ -78,6 +78,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t DERIVE_KEY_SIZE_32 = 32;
+static const uint32_t DERIVE_KEY_SIZE_256 = 256;
 static struct OH_Huks_Blob g_deriveKeyAlias = {
     (uint32_t)strlen("test_derive"),
     (uint8_t *)"test_derive"
@@ -121,10 +122,10 @@ static struct OH_Huks_Param g_hkdfFinishParams[] = {
         .blob = g_deriveKeyAlias
     }, {
         .tag =  OH_HUKS_TAG_ALGORITHM,
-        .uint32Param = OH_HUKS_ALG_HKDF
+        .uint32Param = OH_HUKS_ALG_AES
     }, {
         .tag =  OH_HUKS_TAG_KEY_SIZE,
-        .uint32Param = DERIVE_KEY_SIZE_32
+        .uint32Param = DERIVE_KEY_SIZE_256
     }, {
         .tag =  OH_HUKS_TAG_PURPOSE,
         .uint32Param = OH_HUKS_KEY_PURPOSE_DERIVE

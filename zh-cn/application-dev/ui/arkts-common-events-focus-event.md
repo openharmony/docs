@@ -16,8 +16,8 @@
 用来指向当前获焦组件的样式。
 
 - 显示规则：默认情况下焦点态不会显示，只有当应用进入激活态后，焦点态才会显示。因此，虽然获得焦点的组件不一定显示焦点态（取决于是否处于激活态），但显示焦点态的组件必然是获得焦点的。大部分组件内置了焦点态样式，开发者同样可以使用样式接口进行自定义，一旦自定义，组件将不再显示内置的焦点态样式。在焦点链中，若多个组件同时拥有焦点态，系统将采用子组件优先的策略，优先显示子组件的焦点态，并且仅显示一个焦点态。
-- 进入激活态：仅使用外接键盘按下TAB键时才会进入焦点的激活态，进入激活态后，才可以使用键盘TAB键/方向键进行走焦。首次用来激活焦点态的TAB键不会触发走焦。
-- 退出激活态：当应用收到点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），焦点的激活态会退出。
+- 进入激活态：使用外接键盘按下TAB键/使用FocusController的activate(true)方法才会进入焦点的激活态，进入激活态后，才可以使用键盘TAB键/方向键进行走焦。首次用来激活焦点态的TAB键不会触发走焦。
+- 退出激活态：当应用收到FocusController的active(false)方法/点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），焦点的激活态会退出。
 
 
 **层级页面**
@@ -30,17 +30,11 @@
 
 在一个应用程序中，任何时候都至少存在一个层级页面组件，并且该组件会持有当前焦点。当该层级页面关闭或不再可见时，焦点会自动转移到下一个可用的层级页面组件上，确保用户交互的连贯性和一致性。
 
-
-
 > **说明：**
 >
 > Popup组件在focusable属性（组件属性，非通用属性）为false的时候，不会有第2条特性。
 >
 > NavBar、NavDestination没有第3条特性，对于它们的走焦范围，是与它们的首个父层级页面相同的。
-
-
-
-
 
 **根容器**
 
@@ -50,13 +44,9 @@
 
 当焦点位于根容器时，首次按下TAB键不仅会使焦点进入激活状态，还会触发焦点向子组件的传递。如果子组件本身也是一个容器，则焦点会继续向下传递，直至到达叶子节点。传递规则是：优先传递给上一次获得焦点的子节点，如果不存在这样的节点，则默认传递给第一个子节点。
 
-
-
 ### 走焦规范
 
 根据走焦的触发方式，可以分为主动走焦和被动走焦。
-
-
 
 **主动走焦**
 
@@ -75,14 +65,14 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 5. 子组件优先：当子组件处理按键走焦事件，父组件将不再介入。
 
 - requestFocus
-详见[requestFocus](#主动获焦失焦)，可以主动将焦点转移到指定组件上。
+详见[主动获焦失焦](#主动获焦失焦)，可以主动将焦点转移到指定组件上。
 不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
 
 - clearFocus
-详见[clearFocus](#主动获焦失焦)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+详见[clearFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
 
 - focusOnTouch
-详见[focusOnTouch](#设置组件是否可获焦)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
+详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
 
 
 **被动走焦**
@@ -93,19 +83,15 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 目前会被动走焦的机制有：
 
 - 组件删除：当处于焦点状态的组件被删除时，焦点框架首先尝试将焦点转移到相邻的兄弟组件上，遵循先向后再向前的顺序。若所有兄弟组件均不可获焦，则焦点将释放，并通知其父组件进行焦点处理。
-- 属性变更：若将处于焦点状态的组件的focusable或enabled属性设置为false，或者将visibility属性设置为不可见，系统将自动转移焦点至其他可获焦组件，转移方式与1中相同
+- 属性变更：若将处于焦点状态的组件的focusable或enabled属性设置为false，或者将visibility属性设置为不可见，系统将自动转移焦点至其他可获焦组件，转移方式与1中相同。
 - 层级页面切换：当发生层级页面切换时，如从一个页面跳转到另一个页面，当前页面的焦点将自动释放，新页面可能会根据预设逻辑自动获得焦点。
 - Web组件初始化：对于Web组件，当其被创建时，若其设计需要立即获得焦点（如某些弹出框或输入框），则可能触发焦点转移至该Web组件，其行为属于组件自身的行为逻辑，不属于焦点框架的规格范围。
-
-
 
 ### 走焦算法
 
 在焦点管理系统中，每个可获焦的容器都配备有特定的走焦算法，这些算法定义了当使用TAB键、Shift+TAB键或方向键时，焦点如何从当前获焦的子组件转移到下一个可获焦的子组件。
 
 容器采用何种走焦算法取决于其UX（用户体验）规格，并由容器组件进行适配。目前，焦点框架支持三种走焦算法：线性走焦、投影走焦和自定义走焦。
-
-
 
 **线性走焦算法**
 
@@ -215,8 +201,8 @@ struct FocusEventExample {
 上述示例包含以下3步：
 
 - 应用打开，按下TAB键激活走焦，“First Button”显示焦点态样式：组件外围有一个蓝色的闭合框，onFocus回调响应，背景色变成绿色。
-- 按下TAB键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦、onBlur回调响应，背景色变回灰色。
-- 按下TAB键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦、onBlur回调响应，背景色变回灰色。
+- 按下TAB键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦，onBlur回调响应，背景色变回灰色。
+- 按下TAB键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦，onBlur回调响应，背景色变回灰色。
 
 ## 设置组件是否可获焦
 
@@ -228,13 +214,11 @@ focusable(value: boolean)
 
 按照组件的获焦能力可大致分为三类：
 
-- 默认可获焦的组件，通常是有交互行为的组件，例如Button、Checkbox，TextInput组件，此类组件无需设置任何属性，默认即可获焦。
+- 默认可获焦的组件，通常是有交互行为的组件，例如Button、Checkbox、TextInput组件，此类组件无需设置任何属性，默认即可获焦。
 
 - 有获焦能力，但默认不可获焦的组件，典型的是Text、Image组件，此类组件缺省情况下无法获焦，若需要使其获焦，可使用通用属性focusable(true)使能。对于没有配置focusable属性，有获焦能力但默认不可获焦的组件，为其配置onClick或是单指单击的Tap手势，该组件会隐式地成为可获焦组件。如果其focusable属性被设置为false，即使配置了上述事件，该组件依然不可获焦。
 
 - 无获焦能力的组件，通常是无任何交互行为的展示类组件，例如Blank、Circle组件，此类组件即使使用focusable属性也无法使其可获焦。
-
-
 
 
 ```ts
@@ -258,11 +242,9 @@ focusOnTouch(value: boolean)
 设置当前组件是否支持点击获焦能力。
 
 
-
-
 >**说明：**
 >
->- 当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规范](#走焦规范)将焦点转移给其他组件。
+>当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规范](#走焦规范)将焦点转移给其他组件。
 
 
 ```ts
@@ -437,8 +419,8 @@ struct morenjiaodian {
 
 上述示例包含以下2步：
 
-- 在第三个Button组件上设置了defaultFocus(true)，进入页面后第三个Button默认获焦，显示为绿色
-- 按下TAB键，触发走焦，第三个Button正处于获焦状态，会出现焦点框
+- 在第三个Button组件上设置了defaultFocus(true)，进入页面后第三个Button默认获焦，显示为绿色。
+- 按下TAB键，触发走焦，第三个Button正处于获焦状态，会出现焦点框。
 
 ### 容器的默认焦点
 
@@ -475,7 +457,7 @@ struct Index {
 
 **整体获焦的焦点链形成**
 
-1.页面首次获焦
+1.页面首次获焦：
 
 - 焦点链叶节点为配置了defaultFocus的节点。
 
@@ -483,7 +465,7 @@ struct Index {
 
 2.页面非首次获焦：由上次获焦的节点获焦。
 
-3.获焦链上存在配置了获焦优先级的组件和容器
+3.获焦链上存在配置了获焦优先级的组件和容器：
 
 - 容器内存在优先级大于PREVIOUS的组件，由优先级最高的组件获焦。
 
@@ -530,8 +512,8 @@ struct RequestFocusExample {
 
 上述示例包含以下2步：
 
-- 进入页面，按下TAB触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框
-- 按下TAB键，走焦到第二个Button，焦点框样式为远离边缘的红色粗框
+- 进入页面，按下TAB触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框。
+- 按下TAB键，走焦到第二个Button，焦点框样式为远离边缘的红色粗框。
 
 ## 主动获焦/失焦
 
@@ -639,9 +621,9 @@ struct RequestExample {
 
 上述示例包含以下3步：
 
-- 点击FocusController.requestFocus按钮，第一个Button获焦
-- 点击focusControl.requestFocus按钮，第二个Button获焦
-- 点击clearFocus按钮，第二个Button失焦
+- 点击FocusController.requestFocus按钮，第一个Button获焦。
+- 点击focusControl.requestFocus按钮，第二个Button获焦。
+- 点击clearFocus按钮，第二个Button失焦。
 
 ## 焦点组与获焦优先级
 
@@ -788,8 +770,46 @@ struct FocusableExample {
 
 上述示例包含以下2步：
 
-- input方框内设置了焦点组，因此按下TAB键后焦点会快速从input中走出去，而按下方向键后可以在input内走焦
-- 左上角的Column没有设置焦点组，因此只能通过Tab键一个一个地走焦
+- input方框内设置了焦点组，因此按下TAB键后焦点会快速从input中走出去，而按下方向键后可以在input内走焦。
+- 左上角的Column没有设置焦点组，因此只能通过Tab键一个一个地走焦。
+
+## 焦点与按键事件
+
+当组件获焦且存在点击事件（`onClick`）或单指单击事件（`TapGesture`）时，回车和空格会触发对应的事件回调。
+
+>  **说明：**
+>
+>  1. 点击事件（`onClick`）或单指单击事件（`TapGesture`）在回车、空格触发对应事件回调时，默认不冒泡传递，即父组件对应[按键事件](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md)不会被同步触发。
+>  2. 按键事件（`onKeyEvent`）默认冒泡传递，即同时会触发父组件的按键事件回调。
+>  3. 组件同时存在点击事件（`onClick`）和按键事件（`onKeyEvent`），在回车、空格触发时，两者都会响应。
+>  4. 获焦组件响应点击事件（`onClick`），与焦点激活态无关。
+
+```
+@Entry
+@Component
+struct FocusOnclickExample {
+  @State count: number = 0
+  @State name: string = 'Button'
+
+  build() {
+    Column() {
+      Button(this.name)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+          if (this.count <= 0) {
+            this.name = "count is negative number"
+          } else if (this.count % 2 === 0) {
+            this.name = "count is even number"
+          } else {
+            this.name = "count is odd number"
+          }
+        }).height(60)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![focus-4](figures/focus-4.gif)
 
 ## 组件获焦能力说明
 

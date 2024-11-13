@@ -655,7 +655,7 @@ Starts the timer on a loop.
 | timeout | Timeout duration of the timer.| 
 | data | Pointer to the input parameter in the callback function invoked upon event changes.| 
 | cb | Callback function invoked upon event changes.| 
-| repeat | Whether to repeat the timer (not supported yet).| 
+| repeat | Whether to repeat the timer.| 
 
 **Returns**
 
@@ -1506,7 +1506,7 @@ Starts the timer.
 | timeout | Timeout duration of the timer.| 
 | data | Pointer to the input parameter in the callback function invoked upon a timeout.| 
 | cb | Callback function invoked upon a timeout.| 
-| repeat | Whether to repeat the timer (not supported yet).| 
+| repeat | Whether to repeat the timer.| 
 
 **Returns**
 

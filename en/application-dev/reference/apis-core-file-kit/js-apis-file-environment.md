@@ -9,16 +9,14 @@ The **Environment** module provides APIs for obtaining the root directories of t
 ## Modules to Import
 
 ```ts
-import environment from '@ohos.file.environment';
+import { Environment } from '@kit.CoreFileKit';
 ```
 
 ## environment.getUserDownloadDir<sup>11+</sup>
 
 getUserDownloadDir(): string
 
-Obtains the sandbox path of the pre-authorized **Download** directory of the current user. This API is available only to the devices with the SystemCapability.FileManagement.File.Environment.FolderObtain system capability.
-
-**Required permissions**: ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+Obtains the sandbox path of the pre-authorized **Download** directory.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -26,7 +24,7 @@ Obtains the sandbox path of the pre-authorized **Download** directory of the cur
 
 | Type                 | Description                 |
 | --------------------- |---------------------|
-| string | Sandbox path of the pre-authorized **Download** directory obtained.|
+| string | Sandbox path of the **Download** directory obtained.|
 
 **Error codes**
 
@@ -34,17 +32,16 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID   | Error Message      |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDownloadDirExample() {
   try {
-    let path = environment.getUserDownloadDir();
+    let path = Environment.getUserDownloadDir();
     console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
@@ -56,9 +53,7 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-Obtains the sandbox path of the pre-authorized **Desktop** directory of the current user. This API is available only to the devices with the SystemCapability.FileManagement.File.Environment.FolderObtain system capability.
-
-**Required permissions**: ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+Obtains the sandbox path of the pre-authorized **Desktop** directory.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -74,17 +69,16 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID   | Error Message      |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDesktopDirExample() {
   try {
-    let path = environment.getUserDesktopDir();
+    let path = Environment.getUserDesktopDir();
     console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
@@ -96,9 +90,7 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-Obtains the sandbox path of the pre-authorized **Documents** directory of the current user. This API is available only to the devices with the SystemCapability.FileManagement.File.Environment.FolderObtain system capability.
-
-**Required permissions**: ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+Obtains the sandbox path of the pre-authorized **Document** directory.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -106,7 +98,7 @@ Obtains the sandbox path of the pre-authorized **Documents** directory of the cu
 
 | Type                 | Description                 |
 | --------------------- |---------------------|
-| string | Sandbox path of the pre-authorized **Documents** directory obtained.|
+| string | Sandbox path of the **Documents** directory obtained.|
 
 **Error codes**
 
@@ -114,17 +106,16 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID   | Error Message      |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function getUserDocumentDirExample() {
   try {
-    let path = environment.getUserDocumentDir();
+    let path = Environment.getUserDocumentDir();
     console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
   } catch (error) {
     console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);

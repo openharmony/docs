@@ -1,6 +1,6 @@
-# Network Management Overview
+# Introduction to Network Kit
 
-Network management functions include:
+Network Kit provides the following functions:
 
 - [HTTP data request](http-request.md): initiates a data request through HTTP.
 - [WebSocket connection](websocket-connection.md): establishes a bidirectional connection between the server and client through WebSocket.

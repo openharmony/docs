@@ -40,7 +40,7 @@ The following describes how to log and subscribe to button onclick events.
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -57,12 +57,12 @@ The following describes how to log and subscribe to button onclick events.
 3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   #include "json/json.h"
-   #include "hilog/log.h"
-   #include "hiappevent/hiappevent.h"
+   # include "json/json.h"
+   # include "hilog/log.h"
+   # include "hiappevent/hiappevent.h"
    
-   #undef LOG_TAG
-   #define LOG_TAG "testTag"
+   # undef LOG_TAG
+   # define LOG_TAG "testTag"
    ```
 
 4. Subscribe to application events.
@@ -93,21 +93,21 @@ The following describes how to log and subscribe to button onclick events.
          }
      }
      
-      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
-          // Set the watcher name. The system identifies different watchers based on their names.
-          appEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // Set the name of the subscribed event to click.
-          const char *names[] = {"click"};
-          // Add the system events to watch, for example, events related to button.
-          OH_HiAppEvent_SetAppEventFilter(appEventWatcher, "button", 0, names, 1);
-          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
-          OH_HiAppEvent_SetWatcherOnReceive(appEventWatcher, OnReceive);
-          // Add a watcher to listen for the specified event.
-          OH_HiAppEvent_AddWatcher(appEventWatcher);
-          return {};
-      }
+     static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
+         // Set the watcher name. The system identifies different watchers based on their names.
+         appEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
+         // Set the name of the subscribed event to click.
+         const char *names[] = {"click"};
+         // Add the system events to watch, for example, events related to button.
+         OH_HiAppEvent_SetAppEventFilter(appEventWatcher, "button", 0, names, 1);
+         // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
+         OH_HiAppEvent_SetWatcherOnReceive(appEventWatcher, OnReceive);
+         // Add a watcher to listen for the specified event.
+         OH_HiAppEvent_AddWatcher(appEventWatcher);
+         return {};
+     }
      ```
-     
+
    - Watcher of the onTrigger type:
 
      In the **napi_init.cpp** file, define the methods related to the watcher of the OnTrigger type.
@@ -181,7 +181,6 @@ The following describes how to log and subscribe to button onclick events.
            {"registerWatcher", nullptr, RegisterWatcher, nullptr, nullptr, nullptr, napi_default, nullptr},
            {"writeAppEvent", nullptr, WriteAppEvent, nullptr, nullptr, nullptr, napi_default, nullptr}
        };
-       };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
@@ -194,21 +193,22 @@ The following describes how to log and subscribe to button onclick events.
    export const writeAppEvent: () => void;
    ```
 
-7. In the **EntryAbility.ts** file, add the following interface to **onCreate()**.
+7. In the **EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
+   // Import the dependent module.
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // Register the system event watcher at startup.
-       testNapi.registerWatcher();
-     }
-   }
+
+   // Add the interface invocation to onCreate().
+   // Register the application event watcher at startup.
+   testNapi.registerWatcher();
    ```
 
 8. In the **Index.ets** file, add a button to trigger the button onclick event.
 
    ```typescript
+   import testNapi from 'libentry.so'
+
    Button("button_click").onClick(() => {
      testNapi.writeAppEvent();
    })
@@ -217,10 +217,10 @@ The following describes how to log and subscribe to button onclick events.
 9. You can view the processing logs of application event data in the **Log** window.
 
    ```text
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.domain=button
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.name=click
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.eventType=4
-   08-06 23:04:03.442 18573-18573/? I A00000/testTag: HiAppEvent eventInfo.params.click_time=1502031843
+   HiAppEvent eventInfo.domain=button
+   HiAppEvent eventInfo.name=click
+   HiAppEvent eventInfo.eventType=4
+   HiAppEvent eventInfo.params.click_time=1502031843
    ```
 
 10. Remove the application event watcher.
@@ -237,9 +237,11 @@ The following describes how to log and subscribe to button onclick events.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set onReceiverWatcher to nullptr.
+        // Destroy the created watcher and set appEventWatcher to nullptr.
         OH_HiAppEvent_DestroyWatcher(appEventWatcher);
-        onTriggerWatcher = nullptr;
+        appEventWatcher = nullptr;
         return {};
     }
     ```
+
+<!--no_check-->

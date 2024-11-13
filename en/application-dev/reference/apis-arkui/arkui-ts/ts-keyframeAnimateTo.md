@@ -12,6 +12,8 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 Sets the keyframe animation.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -22,6 +24,9 @@ Sets the keyframe animation.
 | keyframes    | Array&lt;[KeyframeState](#keyframestate)&gt;  | Yes     | Array of keyframes.           |
 
 ## KeyframeAnimateParam
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name      | Type   | Mandatory| Description                                   |
 | ---------- | ---------- | ------- | ------------------------------------- |
 | delay      | number     | No     | Delay of animation playback, in ms.<br>Default value: **0**, indicating that the playback is not delayed.<br>**NOTE**<br>A value greater than 0 means to begin the animation after the specified amount of time has elapsed.<br>A value less than 0 means to begin the animation in advance. If the absolute value of **delay** is less than the actual animation duration, the animation starts its first frame from the state at the absolute value. If the absolute value of **delay** is greater than or equal to the actual animation duration, the animation starts its first frame from the end state. The actual animation duration is equal to the duration of a single animation multiplied by the number of animation playback times.|
@@ -30,17 +35,20 @@ Sets the keyframe animation.
 
 ## KeyframeState
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name      | Type                             | Mandatory| Description                                      |
 | ---------- | ------------------------------------ | ------- | ---------------------------------------- |
 | duration   | number                               | Yes     | Duration of the keyframe animation, in ms.<br>Value range: [0, +∞)<br>**NOTE**<br>- If this parameter is set to a value less than 0, the value **0** is used.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
-| curve      | [Curve](ts-appendix-enums.md#curve)\| string \| [ICurve](../js-apis-curve.md#icurve) | No | Animation curve used by the keyframe.<br>Default value: **Curve.EaseInOut**<br>**NOTE**<br>Because the[springMotion](../js-apis-curve.md#curvesspringmotion9), [responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9), and [interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10) curves do not have effective duration settings, they are not supported.|
+| curve      | [Curve](ts-appendix-enums.md#curve)\| string \| [ICurve](../js-apis-curve.md#icurve9) | No | Animation curve used by the keyframe.<br>Default value: **Curve.EaseInOut**<br>**NOTE**<br>Because the[springMotion](../js-apis-curve.md#curvesspringmotion9), [responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9), and [interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10) curves do not have effective duration settings, they are not supported.|
 | event      | () => void                           | Yes     | Closure function of the state at the time of the keyframe, that is, the state to be reached at the time of the keyframe.|
 
 ## Example
 
 ```ts
 // xxx.ets
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIContext } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct KeyframeDemo {

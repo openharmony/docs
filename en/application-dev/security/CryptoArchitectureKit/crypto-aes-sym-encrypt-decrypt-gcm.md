@@ -17,14 +17,14 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 4. Use [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
    
-   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
+   Currently, the amount of data to be passed in by a single **Cipher.update** is not limited. You can determine how to pass in data based on the data volume.
 
-   - If the data to be encrypted is short, you can use **doFinal** immediately after **init**.
-   - If the data to be encrypted is considerably long, you can call **update()** multiple times to [pass in the data by segment](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
+   - If a small amount of data is to be encrypted, you can use **Cipher.doFinal** immediately after **Cipher.init**.
+   - If a large amount of data is to be encrypted, you can call **Cipher.update** multiple times to pass in the data by segment.
 
 5. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
-   - If data has been passed in by **update()**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
-   - The output of **doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
+   - If data has been passed in by **Cipher.update**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
+   - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
 
 6. Obtain [GcmParamsSpec.authTag](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec) as the authentication information for decryption.
    In GCM mode, extract the last 16 bytes from the encrypted data as the authentication information for initializing the **Cipher** instance in decryption. In the example, **authTag** is of 16 bytes.
@@ -46,19 +46,23 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12);
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
     let dataTag = new Uint8Array(arr);
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
-    }; 
-    // Obtain the GCM authTag from the doFinal result in encryption and fill it in the params parameter of init() in decryption.
+    };
+    // Obtain the GCM authTag from the Cipher.doFinal result in encryption and fill it in the params parameter of Cipher.init in decryption.
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -75,7 +79,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
     let encryptUpdate = await cipher.update(plainText);
-    // In GCM mode, pass in null in doFinal() in encryption. Obtain the tag data and fill it in the gcmParams object.
+    // In GCM mode, pass in null in Cipher.doFinal in encryption. Obtain the tag data and fill it in the gcmParams object.
     gcmParams.authTag = await cipher.doFinal(null);
     return encryptUpdate;
   }
@@ -84,7 +88,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
     let decryptUpdate = await decoder.update(cipherText);
-    // In GCM mode, pass in null in doFinal() in decryption. Verify the tag data passed in **init**. If the verification fails, an exception will be thrown.
+    // In GCM mode, pass in null in Cipher.doFinal in decryption. Verify the tag data passed in Cipher.init. If the verification fails, an exception will be thrown.
     let decryptData = await decoder.doFinal(null);
     if (decryptData == null) {
       console.info('GCM decrypt success, decryptData is null');
@@ -120,12 +124,15 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
 
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12);
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -133,7 +140,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
     };
-    // Obtain the GCM authTag from the doFinal result in encryption and fill it in the params parameter of init() in decryption.
+    // Obtain the GCM authTag from the Cipher.doFinal result in encryption and fill it in the params parameter of Cipher.init in decryption.
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
       aad: aadBlob,
@@ -150,7 +157,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
     let encryptUpdate = cipher.updateSync(plainText);
-    // In GCM mode, pass in null in doFinal() in encryption. Obtain the tag data and fill it in the gcmParams object.
+    // In GCM mode, pass in null in Cipher.doFinal in encryption. Obtain the tag data and fill it in the gcmParams object.
     gcmParams.authTag = cipher.doFinalSync(null);
     return encryptUpdate;
   }
@@ -159,7 +166,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
     let decryptUpdate = decoder.updateSync(cipherText);
-    // In GCM mode, pass in null in doFinal() in decryption. Verify the tag data passed in **init**. If the verification fails, an exception will be thrown.
+    // In GCM mode, pass in null in Cipher.doFinal in decryption. Verify the tag data passed in Cipher.init. If the verification fails, an exception will be thrown.
     let decryptData = decoder.doFinalSync(null);
     if (decryptData == null) {
       console.info('GCM decrypt success, decryptData is null');

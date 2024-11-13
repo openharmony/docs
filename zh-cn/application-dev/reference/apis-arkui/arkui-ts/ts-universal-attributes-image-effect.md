@@ -25,29 +25,6 @@ blur(value: number, options?: BlurOptions)
 | value                 | number                                            | 是   | 当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
 | options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
 
-## backdropBlur
-
-backdropBlur(value: number, options?: BlurOptions)
-
-为组件添加背景模糊效果。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名                | 类型                                              | 必填 | 说明                                                         |
-| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | number                                            | 是   | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。 |
-| options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | 否   | 灰阶梯参数。                                                 |
-
->  **说明：**
->
->  blur和backdropBlur是实时模糊接口，会每帧进行实时渲染，性能负载较高。当模糊内容和模糊半径都不需要变化时，建议使用[静态模糊接口](../../apis-arkgraphics2d/js-apis-effectKit.md#blur)。
-
 ## shadow
 
 shadow(value: ShadowOptions | ShadowStyle)
@@ -309,7 +286,7 @@ sphericalEffect(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/>2. 如果组件的图像使用异步加载，则不支持球面效果。例如Image组件默认使用异步加载，如果要使用球面效果，就要设置`syncLoad`为`true`，但是这种做法不推荐。`backgroundImage`也是使用异步加载，所以如果设置了`backgroundImage`，不支持球面效果。<br/>3. 如果组件设置了阴影，不支持球面效果。<br>4. 设置value大于0时，组件冻屏不更新并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把value设置为0。 |
+| value  | number | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/>2. 组件阴影和外描边不支持球面效果。<br>3. 设置value大于0时，组件冻屏不更新并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把value设置为0。 |
 
 ## lightUpEffect<sup>12+</sup> 
 
@@ -393,10 +370,10 @@ systemBarEffect()
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | type<sup>10+</sup> | [ShadowType<sup>10+</sup>](#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#textshadow10)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#属性)中该字段不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#textshadow10)中该字段不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## ShadowStyle<sup>10+</sup>枚举说明
 
@@ -460,7 +437,7 @@ systemBarEffect()
 
 | 名称          | 类型                                                        | 必填  | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
-| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | 是    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
+| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | 是    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于1则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
 | direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 是    | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
 
 ## FractionStop<sup>12+</sup>
@@ -509,46 +486,9 @@ freeze(value: boolean)
 
 ## 示例
 
+
+
 ### 示例1
-模糊属性的用法，blur内容模糊，backdropBlur背景模糊。
-```ts
-// xxx.ets
-@Entry
-@Component
-struct BlurEffectsExample {
-  build() {
-    Column({ space: 10 }) {
-      // 对字体进行模糊
-      Text('font blur').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Flex({ alignItems: ItemAlign.Center }) {
-        Text('original text').margin(10)
-        Text('blur text')
-          .blur(5).margin(10)
-        Text('blur text')
-          .blur(10).margin(10)
-        Text('blur text')
-          .blur(15).margin(10)
-      }.width('90%').height(40)
-      .backgroundColor(0xF9CF93)
-
-
-      // 对背景进行模糊
-      Text('backdropBlur').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Text()
-        .width('90%')
-        .height(40)
-        .fontSize(16)
-        .backdropBlur(3)
-        .backgroundImage($r('app.media.image'))
-        .backgroundImageSize({ width: 1200, height: 160 })
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-
-![textblur](figures/textblur.png)
-
-### 示例2
 设置图片的效果，包括阴影，灰度，高光，饱和度，对比度，图像反转，叠色，色相旋转等。
 ```ts
 // xxx.ets
@@ -615,7 +555,7 @@ struct ImageEffectsExample {
 ![imageeffect](figures/imageeffect.png)
 
 
-### 示例3
+### 示例2
 
 设置组件的内容线性渐变模糊效果。
 
@@ -642,7 +582,7 @@ struct ImageExample1 {
 
 ![testlinearGradientBlur](figures/testlinearGradientBlur.png)
 
-### 示例4
+### 示例3
 renderGroup示例
 ```ts
 // xxx.ets
@@ -691,7 +631,7 @@ struct RenderGroupExample {
 
 ![renderGroup](figures/renderGroup.png)
 
-### 示例5
+### 示例4
 单独使用blendMode
 ```ts
 // xxx.ets
@@ -733,102 +673,7 @@ struct Index {
 ![zh-cn_image_effect_blendMode2](figures/zh-cn_image_effect_blendMode.png)
 <br/>不同的混合模式搭配是否需要离屏从而产生不同的效果。
 
-### 示例6
-
-blendMode搭配backgroundEffect实现文字异形模糊效果。<br/>
-如果出现漏线问题，开发者应首先确保两个blendMode所在组件大小严格相同。如果确认相同，可能是组件边界落在浮点数坐标上导致，可尝试设置[pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11)通用属性，使产生的白线、暗线两侧的组件边界对齐到整数像素坐标上。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Index {
-  @State shColor: Color = Color.White;
-  @State sizeDate: number = 20;
-  @State rVal: number = 255;
-  @State gVal: number = 255;
-  @State bVal: number = 255;
-  @State aVal: number = 0.1;
-  @State rad: number = 40;
-  @State satVal: number = 0.8;
-  @State briVal: number = 1.5;
-  build() {
-    Stack() {
-      Image($r('app.media.image'))
-      Column() {
-        Column({ space: 0 }) {
-          Column() {
-            Text('11')
-              .fontSize(144)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('rgba(255,255,255,1)')
-              .fontFamily('HarmonyOS-Sans-Digit')
-              .maxLines(1)
-              .lineHeight(120 * 1.25)
-              .height(120 * 1.25)
-              .letterSpacing(4 * 1.25)
-            Text('42')
-              .fontSize(144)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('rgba(255,255,255,1)')
-              .fontFamily('HarmonyOS-Sans-Digit')
-              .maxLines(1)
-              .lineHeight(120 * 1.25)
-              .height(120 * 1.25)
-              .letterSpacing(4 * 1.25)
-              .shadow({
-                color: 'rgba(0,0,0,0)',
-                radius: 20,
-                offsetX: 0,
-                offsetY: 0
-              })
-            Row() {
-              Text('10月16日')
-                .fontSize(this.sizeDate)
-                .height(22)
-                .fontWeight('medium')
-                .fontColor('rgba(255,255,255,1)')
-              Text('星期一')
-                .fontSize(this.sizeDate)
-                .height(22)
-                .fontWeight('medium')
-                .fontColor('rgba(255,255,255,1)')
-            }
-          }
-          .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
-          .pixelRound({
-            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
-            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
-            end: PixelRoundCalcPolicy.FORCE_CEIL,
-            bottom: PixelRoundCalcPolicy.FORCE_CEIL
-          })
-        }
-        .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
-        .backgroundEffect({
-          radius: this.rad,
-          saturation: this.satVal,
-          brightness: this.briVal,
-          color: this.getVolumeDialogWindowColor()
-        })
-        .justifyContent(FlexAlign.Center)
-        .pixelRound({
-          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
-          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
-          end: PixelRoundCalcPolicy.FORCE_CEIL,
-          bottom: PixelRoundCalcPolicy.FORCE_CEIL
-        })
-      }
-    }
-  }
-  getVolumeDialogWindowColor(): ResourceColor | string {
-    return `rgba(${this.rVal.toFixed(0)}, ${this.gVal.toFixed(0)}, ${this.bVal.toFixed(0)}, ${this.aVal.toFixed(0)})`;
-  }
-}
-```
-
-![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
-
-### 示例7
+### 示例5
 通过 InvertOptions 实现反色。
 ```ts
 // xxx.ets
@@ -865,7 +710,7 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
 
-### 示例8
+### 示例6
 useShadowBatching搭配shadow实现同层阴影不重叠效果。
 ```ts
 // xxx.ets
@@ -924,7 +769,7 @@ struct UseShadowBatchingExample {
 
 ![testUseShadowBatchingDemo](figures/testUseShadowBatching.png)
 
-### 示例9
+### 示例7
 
 设置组件的图像球面效果。
 
@@ -962,7 +807,7 @@ struct SphericalEffectExample {
 
 ![textInputSpherical2](figures/textInputSpherical2.png)
 
-### 示例10
+### 示例8
 
 设置组件的图像渐亮效果。
 
@@ -998,7 +843,7 @@ struct LightUpExample {
 
 ![textLightUp1](figures/textLightUp1.png)
 
-### 示例11
+### 示例9
 
 设置组件的图像边缘像素扩展效果。
 
@@ -1032,7 +877,7 @@ struct PixelStretchExample {
 ![textPixelStretch2](figures/textPixelStretch2.png)
 
 
-### 示例12
+### 示例10
 
 系统导航条智能反色
 

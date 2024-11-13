@@ -1,11 +1,12 @@
 # @ohos.i18n (国际化-I18n)
 
- 本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
+本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
 >  **说明：**
+>
 >  - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。API version 12对应[CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42)，数据变化请参考官方链接。
+>  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。其中，API version 12对应[CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42)，具体数据变化请参考官方链接。
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 
@@ -16,14 +17,13 @@
 import { i18n } from '@kit.LocalizationKit';
 ```
 
-
 ## System<sup>9+</sup>
 
 ### getDisplayCountry<sup>9+</sup>
 
 static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
-获取指定国家的本地化显示文本。
+文本按指定国家进行本地化显示。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -33,15 +33,15 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | 是    | 指定的国家，要求是合法的国家码。            |
-| locale       | string  | 是    | 显示指定国家的区域ID，要求是合法的区域ID。     |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
+| country      | string  | 是    | 用于指定国家，要求是合法的国家码。            |
+| locale       | string  | 是    | 指定国家的区域ID，要求是合法的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本时，首字母是否大写。默认值：true。 |
 
 **返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 指定国家的本地化显示文本。 |
+| string | 按指定国家，本地化显示的文本。 |
 
 **错误码：**
 
@@ -72,7 +72,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-获取指定语言的本地化显示文本。
+文本按指定语言进行本地化显示。例如，getDisplayLanguage("de", "zh-Hans-CN")用中文显示德文，接口输出结果为：德文。
 
 **原子化服务API**： 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -82,15 +82,15 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | 是    | 指定的语言，要求是合法的语言ID。            |
-| locale       | string  | 是    | 显示指定语言的区域ID，要求是合法的区域ID。     |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
+| language     | string  | 是    | 用于指定语言，要求是合法的语言ID。            |
+| locale       | string  | 是    | 指定语言的区域ID，要求是合法的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本时，首字母是否大写。默认值：true。 |
 
 **返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 指定语言的本地化显示文本。 |
+| string | 按指定语言，本地化显示的语言。 |
 
 **错误码：**
 
@@ -106,7 +106,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
+    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // 用英文形式显示中文，displayLanguage = Chinese
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -140,7 +140,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-获取针对输入语言系统支持的国家或地区列表。
+针对输入语言，系统支持的国家或地区列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -156,7 +156,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
-| Array&lt;string&gt; | 系统支持的区域ID列表。 |
+| Array&lt;string&gt; | 系统支持某种特定语言的国家或地区列表。 |
 
 **错误码：**
 
@@ -176,7 +176,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
+    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
@@ -198,13 +198,13 @@ static isSuggested(language: string, region?: string): boolean
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
 | language | string | 是    | 合法的语言ID，例如zh。 |
-| region   | string | 否    | 合法的地区ID，例如CN。默认值：使用SIM卡国家或地区。  |
+| region   | string | 否    | 合法的地区ID，例如CN。<br>默认值：使用SIM卡国家或地区。  |
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 返回true，表示当前语言和地区匹配；返回false，表示当前语言和地区不匹配。 |
+| boolean | 返回true，表示当前语言和地区匹配；<br>返回false，表示当前语言和地区不匹配。 |
 
 **错误码：**
 
@@ -436,7 +436,7 @@ static getUsingLocalDigit(): boolean
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | true表示系统当前已打开本地数字开关，false表示系统当前未打开本地数字开关。 |
+| boolean | true表示本地数字开关已打开，false表示本地数字开关未打开。 |
 
 **示例：**
   ```ts
@@ -448,7 +448,7 @@ static getUsingLocalDigit(): boolean
 
 isRTL(locale: string): boolean
 
-获取该区域是否为从右至左显示语言。
+判断某区域语言是否从右到左显示。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -458,20 +458,19 @@ isRTL(locale: string): boolean
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| locale | string | 是    | 指定区域ID。 |
+| locale | string | 是    | 区域ID。 |
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | true表示该locale从右至左显示语言；false表示该locale从左至右显示语言。 |
+| boolean | true表示该区域语言从右至左显示，false表示该区域语言从左至右显示。 |
 
 **示例：**
   ```ts
   i18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
   i18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
   ```
-
 
 ## i18n.getCalendar<sup>8+</sup>
 
@@ -487,8 +486,8 @@ getCalendar(locale: string, type? : string): Calendar
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | 合法的locale值，例如zh-Hans-CN。                 |
-| type   | string | 否    | 合法的日历类型，目前合法的类型有buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。默认值：区域默认的日历类型。 |
+| locale | string | 是    | 合法的区域ID，例如zh-Hans-CN。                 |
+| type   | string | 否    | 合法的日历类型，取值包括：buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。<br>默认值：区域默认的日历类型。不同取值代表的含义和不同场景下取值请参考[设置日历和历法](../../internationalization/i18n-calendar.md)。 |
 
 **返回值：**
 
@@ -502,8 +501,6 @@ getCalendar(locale: string, type? : string): Calendar
   ```
 
 ## EntityRecognizer<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>11+</sup>
 
@@ -519,7 +516,7 @@ constructor(locale?: string)
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | 否    | 合法的区域ID。 |
+| locale | string | 否    | 合法的区域ID，例如zh-Hans-CN。 |
 
 **错误码：**
 
@@ -549,13 +546,13 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| text | string | 是    | 用于识别实体的文本。 |
+| text | string | 是    | 需要被识别的文本。 |
 
 **返回值：**
 
 | 类型   | 说明                |
 | ---- | ----------------- |
-| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | 识别的实体对象列表。 |
+| Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | 文本中的实体信息列表。 |
 
 **错误码：**
 
@@ -576,7 +573,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 ## EntityInfoItem<sup>11+</sup>
 
-实体信息对象。
+实体信息属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -584,19 +581,17 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 | 名称  | 类型   | 可读   | 可写   | 说明                |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | 是    | 是    | 实体的类型，当前支持"phone_number"和"date"。 |
+| type | string | 是    | 是    | 实体类型，当前支持电话号码和日期类型。 |
 | begin | number | 是    | 是    | 实体的起始位置。 |
 | end | number | 是    | 是    | 实体的终止位置。 |
 
 ## Calendar<sup>8+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 ### setTime<sup>8+</sup>
 
 setTime(date: Date): void
 
-设置日历对象内部的时间日期。
+设置日历对象内部的时间、日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -606,7 +601,7 @@ setTime(date: Date): void
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | 是    | 将要设置的日历对象的内部时间日期。 |
+| date | Date | 是    | 时间、日期。 |
 
 **示例：**
   ```ts
@@ -620,7 +615,7 @@ setTime(date: Date): void
 
 setTime(time: number): void
 
-设置日历对象内部的时间日期, time为从1970.1.1 00:00:00 GMT逝去的毫秒数。
+设置日历对象内部的时间、日期。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -637,7 +632,6 @@ setTime(time: number): void
   let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
-
 
 ### set<sup>8+</sup>
 
@@ -666,7 +660,6 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
   ```
 
-
 ### setTimeZone<sup>8+</sup>
 
 setTimeZone(timezone: string): void
@@ -681,7 +674,7 @@ setTimeZone(timezone: string): void
 
 | 参数名      | 类型     | 必填   | 说明                        |
 | -------- | ------ | ---- | ------------------------- |
-| timezone | string | 是    | 设置的时区id，如“Asia/Shanghai”。 |
+| timezone | string | 是    | 合法的时区ID，如“Asia/Shanghai”。 |
 
 **示例：**
   ```ts
@@ -704,7 +697,7 @@ getTimeZone(): string
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| string | 日历对象的时区id。 |
+| string | 日历对象的时区ID。 |
 
 **示例：**
   ```ts
@@ -718,7 +711,7 @@ getTimeZone(): string
 
 getFirstDayOfWeek(): number
 
-获取日历对象的一周起始日。
+获取日历对象一周的起始日。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -728,7 +721,7 @@ getFirstDayOfWeek(): number
 
 | 类型     | 说明                    |
 | ------ | --------------------- |
-| number | 获取一周的起始日，1代表周日，7代表周六。 |
+| number | 一周的起始日，1代表周日，7代表周六。 |
 
 **示例：**
   ```ts
@@ -741,7 +734,7 @@ getFirstDayOfWeek(): number
 
 setFirstDayOfWeek(value: number): void
 
-设置每一周的起始日。
+设置一周的起始日。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -751,7 +744,7 @@ setFirstDayOfWeek(value: number): void
 
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
-| value | number | 是    | 设置一周的起始日，1代表周日，7代表周六。 |
+| value | number | 是    | 一周起始日，1代表周日，7代表周六。 |
 
 **示例：**
   ```ts
@@ -759,7 +752,6 @@ setFirstDayOfWeek(value: number): void
   calendar.setFirstDayOfWeek(3);
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
-
 
 ### getMinimalDaysInFirstWeek<sup>8+</sup>
 
@@ -812,7 +804,7 @@ setMinimalDaysInFirstWeek(value: number): void
 
 get(field: string): number
 
-获取日历对象中与field相关联的值。
+获取日历对象与field相关联的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -822,7 +814,7 @@ get(field: string): number
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| field | string | 是    | 通过field来获取日历对象相应的值。目前支持的field值请参考下表。 |
+| field | string | 是    | 通过field来获取日历对象相应的值，目前支持的field值请参考下表。 |
 
 
 | field名称   | 说明                                       |
@@ -868,7 +860,7 @@ get(field: string): number
 
 getDisplayName(locale: string): string
 
-获取日历对象在该区域的名字。
+获取日历对象在某区域的名字。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -878,13 +870,13 @@ getDisplayName(locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | locale用于指定区域，如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。 |
+| locale | string | 是    | 区域ID。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 日历在locale所指示的区域的名字。 |
+| string | 日历在locale所指示的区域的名字。如,buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
 
 **示例：**
   ```ts
@@ -907,13 +899,13 @@ isWeekend(date?: Date): boolean
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 指定的日期。若不填，则判断当前日期是否为周末。默认值：系统日期。 |
+| date | Date | 否    | 指定日期。<br>默认值：系统日期。若不填，则判断当前日期是否为周末。 |
 
 **返回值：**
 
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
-| boolean | 若判断指定日期为周末时，返回true，否则返回false。 |
+| boolean | true表示指定的日期是周末，false表示指定的日期不是周末。 |
 
 **示例：**
   ```ts
@@ -929,7 +921,7 @@ isWeekend(date?: Date): boolean
 
 add(field: string, amount: number): void
 
-在日历的给定字段进行加减操作。
+将日历中的某些字段进行加减操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -939,7 +931,7 @@ add(field: string, amount: number): void
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| field | string | 是    | 指定进行操作的日历字段，目前支持的field值有&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond。 |
+| field | string | 是    | 指定日历字段，目前支持的field值有&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond。<br>各取值代表的含义请参考[get](#get8)。 |
 | amount | number | 是    | 进行加减操作的具体数值。 |
 
 **错误码：**
@@ -995,7 +987,7 @@ getTimeInMillis(): number
 
 compareDays(date: Date): number
 
-比较日历和指定日期相差的天数（按毫秒级的精度，不足一天将按一天进行计算）。
+比较日历和指定日期相差的天数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1005,13 +997,13 @@ compareDays(date: Date): number
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 是    | 指定的日期。 |
+| date | Date | 是    | 指定日期。 |
 
 **返回值：**
 
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
-| number | 相差的天数，正数代表日历时间更早，负数代表日历时间更晚。 |
+| number | 相差的天数，正数代表日历时间更早，负数代表指定时间更早。<br>按毫秒级的精度，不足一天将按一天进行计算。 |
 
 **错误码：**
 
@@ -1036,10 +1028,8 @@ compareDays(date: Date): number
   }
   ```
 
-
 ## PhoneNumberFormat<sup>8+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>8+</sup>
 
@@ -1056,14 +1046,13 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。默认值：NATIONAL。  |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化时设置的配置项。默认值：NATIONAL。  |
 
 **示例：**
   ```ts
   let option: i18n.PhoneNumberFormatOptions = {type: "E164"};
   let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
   ```
-
 
 ### isValidNumber<sup>8+</sup>
 
@@ -1098,7 +1087,10 @@ isValidNumber(number: string): boolean
 
 format(number: string): string
 
-对电话号码进行格式化。从API version 12开始，支持对拨号中的号码进行格式化。
+对电话号码进行格式化。
+
+> **说明**
+> 从API version 12开始，支持对拨号中的号码进行格式化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1138,7 +1130,7 @@ format(number: string): string
 
 getLocationName(number: string, locale: string): string
 
-获取电话号码归属地。
+判断电话号码归属地。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1148,8 +1140,8 @@ getLocationName(number: string, locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | string | 是    | 电话号码。获取其他地区号码的归属地，需要在号码前加00+国际区号。 |
-| locale | string | 是    | 区域ID |
+| number | string | 是    | 电话号码。获取其他地区号码的归属地时，需要在号码前加00+国际区号。 |
+| locale | string | 是    | 合法的区域ID。 |
 
 **返回值：**
 
@@ -1167,7 +1159,7 @@ getLocationName(number: string, locale: string): string
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
-表示电话号码格式化对象可设置的属性。
+电话号码格式化时可设置的配置项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1175,7 +1167,7 @@ getLocationName(number: string, locale: string): string
 
 | 名称   | 类型     | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值范围：<br>"E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966",&nbsp;"TYPING"。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的号码格式化。|
+| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值包括："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966",&nbsp;"TYPING"。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的号码格式化。|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1206,7 +1198,7 @@ getInstance(locale?:string): IndexUtil
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 否    | 区域设置信息字符串，包括语言以及可选的脚本和区域。默认值：系统Locale。 |
+| locale | string | 否    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>默认值：系统Locale。 |
 
 **返回值：**
 
@@ -1228,7 +1220,7 @@ getInstance(locale?:string): IndexUtil
 
 getIndexList(): Array&lt;string&gt;
 
-获取当前区域对应的索引列表。
+获取当前区域的索引列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1238,7 +1230,7 @@ getIndexList(): Array&lt;string&gt;
 
 | 类型                  | 说明                 |
 | ------------------- | ------------------ |
-| Array&lt;string&gt; | 返回当前locale对应的索引列表。 |
+| Array&lt;string&gt; | 返回当前区域的索引列表。 |
 
 **示例：**
   ```ts
@@ -1253,7 +1245,7 @@ getIndexList(): Array&lt;string&gt;
 
 addLocale(locale: string): void
 
-在当前索引列表中添加新的区域。
+在当前区域的索引列表中，添加新区域的索引列表，形成复合列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1263,14 +1255,13 @@ addLocale(locale: string): void
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 是    | 区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
+| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
 
 **示例：**
   ```ts
   let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
   ```
-
 
 ### getIndex<sup>8+</sup>
 
@@ -1315,13 +1306,13 @@ getLineInstance(locale: string): BreakIterator
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | 合法的locale值，例如zh-Hans-CN。生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域的规则来进行断句。 |
+| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域规则进行断句。 |
 
 **返回值：**
 
 | 类型                               | 说明          |
 | -------------------------------- | ----------- |
-| [BreakIterator](#breakiterator8) | 用于进行断句的处理器。 |
+| [BreakIterator](#breakiterator8) | 断句处理器。 |
 
 **示例：**
   ```ts
@@ -1331,7 +1322,6 @@ getLineInstance(locale: string): BreakIterator
 
 ## BreakIterator<sup>8+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### setLineBreakText<sup>8+</sup>
 
@@ -1370,7 +1360,7 @@ getLineBreakText(): string
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
-| string | BreakIterator对象正在处理的文本 |
+| string | BreakIterator对象正在处理的文本。 |
 
 **示例：**
   ```ts
@@ -1384,7 +1374,7 @@ getLineBreakText(): string
 
 current(): number
 
-获取BreakIterator对象在当前处理的文本中的位置。
+获取BreakIterator对象在处理文本中的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1408,7 +1398,7 @@ current(): number
 
 first(): number
 
-将BreakIterator对象设置到第一个可断句的分割点。第一个分割点总是被处理的文本的起始位置。
+将BreakIterator移动到第一个可断句的分割点。第一个分割点总是在被处理文本的起始位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1432,7 +1422,7 @@ first(): number
 
 last(): number
 
-将BreakIterator对象的位置设置到最后一个可断句的分割点。最后一个分割点总是被处理文本末尾的下一个位置。
+将BreakIterator移动到最后一个可断句的分割点。最后一个分割点总是在被处理文本末尾的下一个位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1442,7 +1432,7 @@ last(): number
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| number | 被处理的文本的最后一个分割点的偏移量 |
+| number | 被处理文本的最后一个分割点的偏移量。 |
 
 **示例：**
   ```ts
@@ -1466,13 +1456,13 @@ next(index?: number): number
 
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | 否    | BreakIterator将要移动的分割点数。正数代表向后移动，即将BreakIterator向后移动number个可断句的分割点；负数代表向前移动，即向前移动相应个分割点。默认值：1。 |
+| index | number | 否    | BreakIterator将要移动的分割点数。<br>正数代表向后移动，即将BreakIterator向后移动number个可断句的分割点；负数代表向前移动，即向前移动相应个分割点。<br>默认值：1。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 返回移动了index个分割点后，当前BreakIterator在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动了index个分割点后，当前BreakIterator在文本中的位置。<br>若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1498,7 +1488,7 @@ previous(): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 返回移动到前一个分割点后，当前BreakIterator在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
+| number | 移动到前一个分割点后，当前BreakIterator在文本中的位置。<br>若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
 
 **示例：**
   ```ts
@@ -1514,7 +1504,7 @@ previous(): number
 
 following(offset: number): number
 
-将BreakIterator设置到指定位置的后面一个分割点。
+将BreakIterator移动到指定位置后面一个分割点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1524,13 +1514,13 @@ following(offset: number): number
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| offset | number | 是    | 将BreakIterator设置到指定位置的后面一个分割点。 |
+| offset | number | 是    | 将BreakIterator移动到指定位置的后面一个分割点。 |
 
 **返回值：**
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 返回BreakIterator移动后的位置，如果由offset所指定的位置的下一个分割点超出了文本的范围则返回-1。 |
+| number | BreakIterator移动后的位置。若offset所指定位置的下一个分割点超出了文本的范围，则返回-1。 |
 
 **示例：**
   ```ts
@@ -1546,7 +1536,7 @@ following(offset: number): number
 
 isBoundary(offset: number): boolean
 
-判断文本指定位置是否为分割点。
+判断指定位置是否为分割点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1556,13 +1546,13 @@ isBoundary(offset: number): boolean
 
 | 参数名    | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | ----------- |
-| offset | number | 是    | 若offset指定的文本位置是一个分割点，则返回true，否则返回false。返回true时，将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
+| offset | number | 是    | 指定位置。 |
 
 **返回值：**
 
 | 类型      | 说明                              |
 | ------- | ------------------------------- |
-| boolean | 如果是一个分割点返回true,&nbsp;否则返回false。 |
+| boolean | 若offset指定的文本位置是一个分割点，则返回true，否则返回false。<br>返回true时，会将BreakIterator对象移动到offset指定的位置，否则相当于调用following。 |
 
 **示例：**
   ```ts
@@ -1587,7 +1577,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| zondID | string | 否    | 时区ID。默认值：系统时区。 |
+| zoneID | string | 否    | 时区ID。默认值：系统时区。 |
 
 **返回值：**
 
@@ -1600,10 +1590,7 @@ getTimeZone(zoneID?: string): TimeZone
   let timezone: i18n.TimeZone = i18n.getTimeZone();
   ```
 
-
 ## TimeZone
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### getID
 
@@ -1642,14 +1629,14 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | 否    | 区域ID。默认值：系统Locale。                |
-| isDST  | boolean | 否    | 时区对象本地化表示时是否考虑夏令时。默认值：false。 |
+| locale | string  | 否    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。默认值：系统Locale。                |
+| isDST  | boolean | 否    | 时区对象本地化时是否考虑夏令时。默认值：false。 |
 
 **返回值：**
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| string | 时区对象在指定区域的表示。 |
+| string | 时区对象在指定区域的本地化表示。 |
 
 **示例：**
   ```ts
@@ -1701,7 +1688,7 @@ getOffset(date?: number): number
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| number | 某一时刻时区对象表示的时区与UTC时区的偏差。默认值：系统时间。 |
+| number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
 
 **示例：**
   ```ts
@@ -1728,7 +1715,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"], 当前共支持24个时区
+  // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"]
   let ids: Array<string> = i18n.TimeZone.getAvailableIDs();
   ```
 
@@ -1751,10 +1738,9 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]，当前共支持24个时区城市
+  // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]
   let cityIDs: Array<string> = i18n.TimeZone.getAvailableZoneCityIDs();
   ```
-
 
 ### getCityDisplayName<sup>9+</sup>
 
@@ -1771,13 +1757,13 @@ static getCityDisplayName(cityID: string, locale: string): string
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID。 |
-| locale | string | 是    | 区域ID。  |
+| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。  |
 
 **返回值：**
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| string | 时区城市在locale下的本地化显示 |
+| string | 时区城市在某区域的本地化显示。 |
 
 **示例：**
   ```ts
@@ -1799,13 +1785,13 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| cityID | string | 是    | 时区城市ID |
+| cityID | string | 是    | 时区城市ID。 |
 
 **返回值：**
 
 | 类型       | 说明          |
 | -------- | ----------- |
-| TimeZone | 时区城市对应的时区对象 |
+| TimeZone | 时区城市对应的时区对象。 |
 
 **示例：**
   ```ts
@@ -1826,14 +1812,14 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 | 参数名     | 类型     | 必填   | 说明     |
 | --------- | ------ | ---- | ------ |
-| longitude | number | 是    | 经度, 范围[-180, 179.9), 东经取正值, 西经取负值 |
-| latitude  | number | 是    | 纬度, 范围[-90, 89.9), 北纬取正值, 南纬取负值 |
+| longitude | number | 是    | 经度, 范围[-180, 179.9), 东经取正值, 西经取负值。 |
+| latitude  | number | 是    | 纬度, 范围[-90, 89.9), 北纬取正值, 南纬取负值。 |
 
 **返回值：**
 
 | 类型       | 说明          |
 | -------- | ----------- |
-| Array&lt;[TimeZone](#timezone)&gt; | 时区对象的数组 |
+| Array&lt;[TimeZone](#timezone)&gt; | 时区对象数组。 |
 
 **错误码：**
 
@@ -1860,7 +1846,6 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 ## Transliterator<sup>9+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### getAvailableIDs<sup>9+</sup>
 
@@ -1939,7 +1924,19 @@ transform(text: string): string
 **示例：**
   ```ts
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
-  let res: string = transliterator.transform("中国"); // res = "zhōng guó"
+  let wordArray = ["中国", "德国", "美国", "法国"]
+  for (let i = 0; i < wordArray.length; i++) {
+      let res = transliterator.transform(wordArray[i]); // res: zhōng guó, dé guó, měi guó, fǎ guó
+  }
+
+  // 汉语音译去声调
+  let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+  let result = transliter.transform('中国'); // result: zhong guo
+
+  // 汉语姓氏读音
+  let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
+  let result1 = nameTransliter.transform('单老师'); // result1: shàn lǎo shī
+  let result2 = nameTransliter.transform('长孙无忌'); // result2: zhǎng sūn wú jì
   ```
 
 
@@ -1961,7 +1958,7 @@ static isDigit(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入字符串。 |
 
 **返回值：**
 
@@ -1989,7 +1986,7 @@ static isSpaceChar(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 输入字符串。 |
 
 **返回值：**
 
@@ -2017,7 +2014,7 @@ static isWhitespace(char: string): boolean
 
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
+| char | string | 是    | 字符串。 |
 
 **返回值：**
 
@@ -2236,7 +2233,6 @@ static getType(char: string): string
 
 ## I18NUtil<sup>9+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### unitConvert<sup>9+</sup>
 
@@ -2255,8 +2251,8 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | fromUnit | [UnitInfo](#unitinfo8) | 是    | 需要转换的单位。                                 |
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
-| locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。 |
+| locale   | string                 | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md) |
 
 **返回值：**
 
@@ -2271,12 +2267,11 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
   let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, "en-US", "long"); // res = 236.588 liters
   ```
 
-
 ### getDateOrder<sup>9+</sup>
 
 static getDateOrder(locale: string): string
 
-获取该区域日期中年、月、日的排列顺序。
+获取某区域日期中年、月、日的排列顺序。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2286,7 +2281,7 @@ static getDateOrder(locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。 |
+| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成，如：zh-Hans-CN。 |
 
 **返回值：**
 
@@ -2304,7 +2299,7 @@ static getDateOrder(locale: string): string
 
 static getTimePeriodName(hour:number, locale?: string): string
 
-获取该区域指定时间的本地化表达。
+获取某区域指定时间的本地化表达。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2315,13 +2310,13 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | 是    | 指定的时间，如：16。 |
-| locale | string | 否    | 指定区域的参数，默认采用当前APP的区域，如：zh-Hans-CN。 |
+| locale | string | 否    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。如：zh-Hans-CN。 <br>默认是当前区域。|
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 返回该区域指定时间的本地化表达。 |
+| string | 返回某区域指定时间的本地化表达。 |
 
 **错误码：**
 
@@ -2358,14 +2353,14 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | 待匹配的区域id，如：zh-Hans-CN。 |
-| localeList | string[] | 是   | 指定区域id列表。 |
+| locale | string | 是    | 待匹配的区域ID，如：zh-Hans-CN。 |
+| localeList | string[] | 是   | 指定区域ID列表。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 与某个区域最佳匹配的区域id。当指定区域列表中没有匹配的区域时，返回空字串。 |
+| string | 与某个区域最佳匹配的区域ID。当指定区域列表中没有匹配的区域时，返回空字串。 |
 
 **错误码：**
 
@@ -2393,7 +2388,7 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 static getThreeLetterLanguage(locale: string): string
 
-将语言代码由二字母转换为三字母。例如，中文的二字母语言代码是zh，对应的三字母语言代码是zho，更多详细信息可参考[ISO 639](https://www.iso.org/iso-639-language-code)。
+将语言代码由二字母转换为三字母。<br>例如，中文的二字母语言代码是zh，对应的三字母语言代码是zho，更多详细信息可参考[ISO 639](https://www.iso.org/iso-639-language-code)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2430,7 +2425,7 @@ static getThreeLetterLanguage(locale: string): string
 
 static getThreeLetterRegion(locale: string): string
 
-将地区的二字母代码转换为三字母。例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
+将地区的二字母代码转换为三字母。<br>例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2465,7 +2460,6 @@ static getThreeLetterRegion(locale: string): string
 
 ## Normalizer<sup>10+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### getInstance<sup>10+</sup>
 
@@ -2539,10 +2533,9 @@ normalize(text: string): string
   let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
   ```
 
-
 ## NormalizerMode<sup>10+</sup>
 
-表示文本正则化范式的枚举。
+文本正则化范式的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2558,7 +2551,6 @@ normalize(text: string): string
 
 ## HolidayManager<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>11+</sup>
 
@@ -2604,7 +2596,7 @@ isHoliday(date?: Date): boolean
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ---------------| ---- | ------------- |
-| date      | Date           | 否   | JavaScript的Date对象。<br>如果没有指定日期，默认为当天。|
+| date      | Date           | 否   | Date对象。<br>如果没有指定日期，默认为当天。|
 
 **返回值：**
 
@@ -2641,7 +2633,7 @@ isHoliday(date?: Date): boolean
 
 getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoitem11)&gt;
 
-获取指定某年的节假日信息列表。
+获取指定年的节假日信息列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2713,6 +2705,36 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | language        | string           |   是    | 节假日的本地语言，例如ar,en,tr。          |
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
+
+## i18n.getDisplayCountry<sup>(deprecated)</sup>
+
+getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
+
+获取指定国家的本地化显示文本。
+
+从API version 9开始不再维护，建议使用[System.getDisplayCountry](#getdisplaycountry9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名          | 类型      | 必填   | 说明               |
+| ------------ | ------- | ---- | ---------------- |
+| country      | string  | 是    | 指定国家。            |
+| locale       | string  | 是    | 显示指定国家的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 指定国家的本地化显示文本。 |
+
+**示例：**
+  ```ts
+  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
+  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
+  ```
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 

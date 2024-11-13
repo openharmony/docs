@@ -14,15 +14,17 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 import { common } from '@kit.AbilityKit';
 ```
 
-## Context.createBundleContext
+## Context.createBundleContext<sup>(deprecated)</sup>
 
 createBundleContext(bundleName: string): Context
 
 根据Bundle名称创建安装包的上下文。
 
-**说明：**
+> **说明：**
 >
-> stage模型多module的情况下可能发生资源id冲突的情况，建议使用[Context.createModuleContext](#contextcreatemodulecontext)替代。
+> stage模型多module的情况下可能发生资源id冲突的情况，建议使用[application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)替代。
+>
+> 从 API Version 12 开始废弃，建议使用[application.createBundleContext](./js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -69,11 +71,15 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createModuleContext
+## Context.createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(bundleName: string, moduleName: string): Context
 
 根据Bundle名称和模块名称创建上下文。
+
+> **说明：**
+>
+> 从 API Version 12 开始废弃，建议使用[application.createModuleContext](./js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)替代。
 
 **系统接口**：此接口为系统接口。
 

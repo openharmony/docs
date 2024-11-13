@@ -46,17 +46,15 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Provide a : string \| undefined = undefined`是推荐的，不推荐`@Provide a: string = undefined`。
-<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。|
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Provide a : string \| undefined = undefined`是推荐的，不推荐`@Provide a: string = undefined`。
 | 被装饰变量的初始值      | 必须指定。                                    |
-| 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见\@Provide支持allowOverride参数。 |
+| 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见[\@Provide支持allowOverride参数](#provide支持allowoverride参数)。 |
 
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Consume a : string \| undefined`。
-<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。 |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Consume a : string \| undefined`。
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
 
@@ -178,6 +176,153 @@ struct CompA {
    通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
 
 ![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
+
+
+## 限制条件
+
+1. \@Provider/\@Consumer的参数key必须为string类型，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+let change: number = 10;
+@Provide(change) message: string = 'Hello';
+
+// 正确写法
+let change: string = 'change';
+@Provide(change) message: string = 'Hello';
+```
+
+2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
+
+【反例】
+
+```ts
+@Component
+struct Child {
+  @Consume msg: string;
+  // 错误写法，不允许本地初始化
+  @Consume msg1: string = 'Hello';
+
+  build() {
+    Text(this.msg)
+  }
+}
+
+@Entry
+@Component
+struct Example {
+  @Provide message: string = 'Hello';
+
+  build() {
+    Column() {
+      // 错误写法，不允许外部传入初始化
+      Child({msg: 'Hello'})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Component
+struct Child {
+  @Consume num: number;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @Provide num: number = 10;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+      Child()
+    }
+  }
+}
+```
+
+3. \@Provide的key重复定义时，框架会抛出运行时错误，提醒开发者重复定义key，如果开发者需要重复key，可以使用[allowoverride](#provide支持allowoverride参数)。
+
+```ts
+// 错误写法，a重复定义
+@Provide('a') count: number = 10;
+@Provide('a') num: number = 10;
+
+// 正确写法
+@Provide('a') count: number = 10;
+@Provide('b') num: number = 10;
+```
+
+4. 在初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量。
+
+【反例】
+
+```ts
+@Component
+struct Child {
+  @Consume num: number;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  // 错误写法，缺少@Provide
+  num: number = 10;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+      Child()
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Component
+struct Child {
+  @Consume num: number;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  // 正确写法
+  @Provide num: number = 10;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num}`)
+      Child()
+    }
+  }
+}
+```
+
+5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 
 
 ## 使用场景
@@ -593,6 +738,200 @@ struct CustomWidgetChild {
   build() {
     Column() {
       this.builder({ name: this.name })
+    }
+  }
+}
+```
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Provide与@Consume装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.dog.age与this.dog.name时，UI不会刷新。
+
+【反例】
+
+```ts
+class Animal {
+  name:string;
+  type:string;
+  age: number;
+
+  constructor(name:string, type:string, age:number) {
+    this.name = name;
+    this.type = type;
+    this.age = age;
+  }
+
+  static changeName1(animal:Animal) {
+    animal.name = 'Black';
+  }
+  static changeAge1(animal:Animal) {
+    animal.age += 1;
+  }
+}
+
+@Entry
+@Component
+struct Demo1 {
+  @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
+
+  changeAge2(animal:Animal) {
+    animal.age += 2;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Red)
+        .fontSize(30)
+      Button('changeAge1')
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Animal.changeAge1(this.dog);
+        })
+      Button('changeAge2')
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeAge2(this.dog);
+        })
+      Demo2()
+    }
+  }
+}
+
+@Component
+struct Demo2 {
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo2.`)
+        .fontColor(Color.Blue)
+        .fontSize(30)
+      Demo3()
+    }
+  }
+}
+
+@Component
+struct Demo3 {
+  @Consume dog:Animal;
+
+  changeName2(animal:Animal) {
+    animal.name = 'White';
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Yellow)
+        .fontSize(30)
+      Button('changeName1')
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Animal.changeName1(this.dog);
+        })
+      Button('changeName2')
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeName2(this.dog);
+        })
+    }
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.dog加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Animal {
+  name:string;
+  type:string;
+  age: number;
+
+  constructor(name:string, type:string, age:number) {
+    this.name = name;
+    this.type = type;
+    this.age = age;
+  }
+
+  static changeName1(animal:Animal) {
+    animal.name = 'Black';
+  }
+  static changeAge1(animal:Animal) {
+    animal.age += 1;
+  }
+}
+
+@Entry
+@Component
+struct Demo1 {
+  @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
+
+  changeAge2(animal:Animal) {
+    animal.age += 2;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Red)
+        .fontSize(30)
+      Button('changeAge1')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let a1 = this.dog;
+          Animal.changeAge1(a1);
+        })
+      Button('changeAge2')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let a2 = this.dog;
+          this.changeAge2(a2);
+        })
+      Demo2()
+    }
+  }
+}
+
+@Component
+struct Demo2 {
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo2.`)
+        .fontColor(Color.Blue)
+        .fontSize(30)
+      Demo3()
+    }
+  }
+}
+
+@Component
+struct Demo3 {
+  @Consume dog:Animal;
+
+  changeName2(animal:Animal) {
+    animal.name = 'White';
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Yellow)
+        .fontSize(30)
+      Button('changeName1')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let b1 = this.dog;
+          Animal.changeName1(b1);
+        })
+      Button('changeName2')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let b2 = this.dog;
+          this.changeName2(b2);
+        })
     }
   }
 }

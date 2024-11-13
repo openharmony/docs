@@ -1,6 +1,6 @@
 # Key Event
 
-A key event is triggered when a focusable component, such as **\<Button>**, interacts with a keyboard, remote control, or any other input device with keys. To use a key event for components that are not focusable by default, such as **\<Text>** and **\<Image>**, first set their **focusable** attribute to **true**.
+A key event is triggered when a focusable component, such as **Button**, interacts with a keyboard, remote control, or any other input device with keys. To use a key event for components that are not focusable by default, such as **Text** and **Image**, first set their **focusable** attribute to **true**.
 For details about the process and specific timing of the key event triggering, see [Key Event Data Flow](../../../ui/arkts-common-events-device-input-event.md#key-event-data-flow).
 
 >  **NOTE**
@@ -17,17 +17,17 @@ Triggered when a key event occurs.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                         | Mandatory | Description              |
+| Name| Type                         | Mandatory| Description              |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | [KeyEvent](#keyevent)  | Yes  | **KeyEvent** object. |
+| event  | [KeyEvent](#keyevent) | Yes  | **KeyEvent** object.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 ## onKeyPreIme<sup>12+</sup>
 
@@ -41,17 +41,17 @@ If the return value of this callback is **true**, it is considered that the key 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                         | Mandatory | Description              |
+| Name| Type                         | Mandatory| Description              |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent), boolean> | Yes  | Callback for processing the key event. |
+| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent), boolean>| Yes  | Callback for processing the key event.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 ## KeyEvent
 
@@ -66,21 +66,22 @@ If the return value of this callback is **true**, it is considered that the key 
 | keyText                               | string                                   | Key value.                    |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event.            |
 | deviceId                              | number                                   | ID of the input device that triggers the key event.            |
-| metaKey                               | number                                   | State of the metakey (that is, the **WIN** key on the Windows keyboard or the **Command** key on the Mac keyboard) when the key is pressed. The value **1** indicates the pressed state, and **0** indicates the unpressed state. |
-| timestamp                             | number                                   | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds. |
+| metaKey                               | number                                   | State of the meta key (that is, the **WIN** key on the Windows keyboard or the **Command** key on the Mac keyboard) when the key event occurs. The value **1** indicates that the key is pressed, and **0** indicates that the key is not pressed.|
+| timestamp                             | number                                   | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | stopPropagation                       | () => void                               | Stops the event from bubbling upwards or downwards.                 |
 | intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | Intention corresponding to the key.      |
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. However, the **Fn** key on external keyboards is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| unicode<sup>14+</sup>                              | number                                   | Unicode value of the key. Non-space basic Latin characters in the 0x0021-0x007E range are supported. Characters with a value of 0 are not supported. In the case of key combination, this API returns the Unicode value of the key corresponding to the key event.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
-## Example
+## Example 1
 
 ```ts
 // xxx.ets
@@ -111,3 +112,44 @@ struct KeyEventExample {
 ```
 
  ![keyEvent](figures/keyEvent.gif) 
+
+## Example 2
+This example shows how to obtain the Unicode value of the pressed key from a key event.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct KeyEventExample {
+  @State text: string = ''
+  @State eventType: string = ''
+  @State keyType: string = ''
+
+  build() {
+    Column({ space: 10 }) {
+      Button('KeyEvent')
+        .onKeyEvent((event?: KeyEvent) => {
+          if(event){
+            if (event.type === KeyType.Down) {
+              this.eventType = 'Down'
+            }
+            if (event.type === KeyType.Up) {
+              this.eventType = 'Up'
+            }
+            if (event.unicode == 97) {
+              this.keyType = 'a'
+            } else if (event.unicode == 65) {
+              this.keyType = 'A'
+            } else {
+              this.keyType = ' '
+            }
+            this.text = 'KeyType:' + this.eventType + '\nUnicode:' + event.unicode + '\nkeyCode:' + event.keyCode + '\nkeyType:' + this.keyType
+          }
+        })
+      Text(this.text).padding(15)
+    }.height(300).width('100%').padding(35)
+  }
+}
+```
+
+![keyEvent](figures/keyEvent_unicode.gif) 

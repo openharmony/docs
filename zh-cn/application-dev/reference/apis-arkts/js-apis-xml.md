@@ -93,8 +93,8 @@ thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <note importance="high"/>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high"/>
 ```
 
 ### addEmptyElement
@@ -134,8 +134,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <d/>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <d/>
 ```
 
 ### setDeclaration
@@ -157,8 +157,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <?xml version="1.0" encoding="utf-8"?>
 ```
 
@@ -203,8 +203,8 @@ thatSer.startElement("note");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <note>Happy</note>
 ```
 
@@ -233,8 +233,8 @@ thatSer.startElement("note");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <note>Happy</note>
 ```
 
@@ -278,8 +278,8 @@ thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
@@ -316,8 +316,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <!--Hello, World!-->
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!--Hello, World!-->
 ```
 
 ### setCDATA
@@ -357,8 +357,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <![CDATA[root SYSTEM]]>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <![CDATA[root SYSTEM]]>
 ```
 
 ### setText
@@ -397,8 +397,8 @@ thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <note importance="high">Happy</note>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high">Happy</note>
 ```
 
 ### setDocType
@@ -434,8 +434,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 ## XmlPullParser
@@ -545,11 +545,11 @@ xml解析选项。
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否忽略文档类型，默认false，表示解析文档类型。 |
-| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示解析命名空间。 |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数，解析标签和标签值，默认undefined，表示不解析标签和标签值。 |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数，解析属性和属性值，默认undefined，表示不解析属性和属性值。 |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 获取tokenValue回调函数,，解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认undefined，表示不解析元素事件类型和ParseInfo属性。 |
+| supportDoctype                 | boolean                                                      | 否   | 是否解析文档类型，默认false，表示不解析。 |
+| ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示不忽略。 |
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 解析开始标签、标签值和结束标签，默认undefined，表示不解析。 |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 解析属性和属性值，默认undefined，表示不解析。 |
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认undefined，表示不解析。 |
 
 ## ParseInfo
 

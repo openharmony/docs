@@ -27,7 +27,7 @@ Before using JSVM-API to create and obtain numbers, you need to understand the f
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to data type APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code involved in the APIs for manipulating basic data types.
 
 ### OH_JSVM_GetValueUint32
 
@@ -55,10 +55,10 @@ static JSVM_Value GetValueUint32(JSVM_Env env, JSVM_CallbackInfo info)
     // Obtain the parameter of the Number type.
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
-    // Parse the input parameters.
+    // Parse the input parameter.
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     uint32_t number = 0;
-    // Obtain the 32-bit unsigned integer from the input parameter.
+    // Obtain a 32-bit unsigned integer from the input parameter.
     JSVM_Status status = OH_JSVM_GetValueUint32(env, argv[0], &number);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueUint32 fail");
@@ -92,7 +92,7 @@ try {
 
 ### OH_JSVM_GetValueInt32
 
-Use OH_JSVM_GetValueInt32 to obtain a C int32 value from a JS number.
+Use **OH_JSVM_GetValueInt32** to obtain a C int32 value from a JS number.
 
 CPP code:
 
@@ -116,9 +116,9 @@ static JSVM_Value GetValueInt32(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     int32_t result32 = 0;
-    // Parse the input parameters.
+    // Parse the input parameter.
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // Convert the parameter into a C int32 value.
+    // Convert the input parameter into a C int32 value.
     JSVM_Status status = OH_JSVM_GetValueInt32(env, args[0], &result32);
     if (status != JSVM_OK) {
         return nullptr;
@@ -179,9 +179,9 @@ static JSVM_Value GetValueInt64(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     int64_t result64 = 0;
-    // Parse the input parameters.
+    // Parse the input parameter.
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // Convert the input parameters into C int64 values.
+    // Convert the input parameter into a C int64 value.
     JSVM_Status status = OH_JSVM_GetValueInt64(env, args[0], &result64);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueInt64 fail");

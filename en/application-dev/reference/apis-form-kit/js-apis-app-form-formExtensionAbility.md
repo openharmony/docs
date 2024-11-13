@@ -5,7 +5,13 @@ The **FormExtensionAbility** module provides lifecycle callbacks invoked when a 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module can be used only in the stage model.
+>
+> The following modules cannot be referenced in the FormExtensionAbility, as doing so may cause the program to exit abnormally:
+> - @ohos.ability.particleAbility (ParticleAbility)
+> - @ohos.multimedia.audio (Audio Management)
+> - @ohos.multimedia.camera (Camera Management)
+> - @ohos.multimedia.media (Media)
+> - @ohos.resourceschedule.backgroundTaskManager (Background Task Management)
 
 ## Modules to Import
 
@@ -15,9 +21,11 @@ import { FormExtensionAbility } from '@kit.FormKit';
 
 ## Attributes
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Ability.Form
 
-| Name   | Type                                                        | Readable | Writable | Description                                                        |
+| Name   | Type                                                        | Readable| Writable| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
@@ -27,21 +35,23 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 Called to notify the widget provider that a **Form** instance (widget) is being created.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type                                  | Mandatory | Description                                                        |
+| Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion. |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget. |
+| [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
 
 **Example**
 
@@ -69,15 +79,17 @@ onCastToNormalForm(formId: string): void
 
 Called to notify the widget provider that a temporary widget is being converted to a normal one.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                    |
+| Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| formId | string | Yes  | ID of the widget that requests to be converted to a normal one. |
+| formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
 
 **Example**
 
@@ -97,16 +109,18 @@ onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
 Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#updateform) of **formProvider** to update the widget data.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description              |
+| Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget that requests to be updated. |
-| wantParams<sup>12+</sup> | Record<string, Object> | No  | Parameters used for the update. |
+| formId | string | Yes  | ID of the widget that requests to be updated.|
+| wantParams<sup>12+</sup> | Record<string, Object> | No  | Parameters used for the update.|
 
 **Example**
 
@@ -139,13 +153,15 @@ onChangeFormVisibility(newStatus: Record\<string, number>): void
 Called to notify the widget provider that the widget visibility status is being changed.
 This API is valid only for system applications when **formVisibleNotify** is set to **true**.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                  |
+| Name | Type  | Mandatory| Description                  |
 | ------- | ------ | ---- | ---------------------- |
-| newStatus  | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed. |
+| newStatus  | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed.|
 
 **Example**
 
@@ -189,15 +205,17 @@ onFormEvent(formId: string, message: string): void
 
 Called to instruct the widget provider to process the widget event.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                  |
+| Name | Type  | Mandatory| Description                  |
 | ------- | ------ | ---- | ---------------------- |
-| formId  | string | Yes  | ID of the widget that requests the event. |
+| formId  | string | Yes  | ID of the widget that requests the event.|
 | message | string | Yes  | Event message.            |
 
 **Example**
@@ -218,15 +236,17 @@ onRemoveForm(formId: string): void
 
 Called to notify the widget provider that a **Form** instance (widget) is being destroyed.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description              |
+| Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget to be destroyed. |
+| formId | string | Yes  | ID of the widget to be destroyed.|
 
 **Example**
 
@@ -247,15 +267,17 @@ onConfigurationUpdate(newConfig: Configuration): void
 Called when the configuration of the environment where the FormExtensionAbility is running is updated. 
 This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive. If no operation is performed within 10 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| newConfig | [Configuration](../apis-ability-kit/js-apis-app-ability-configuration.md) | Yes | New configuration. |
+| newConfig | [Configuration](../apis-ability-kit/js-apis-app-ability-configuration.md) | Yes| New configuration.|
 
 **Example**
 
@@ -278,15 +300,17 @@ onAcquireFormState?(want: Want): formInfo.FormState
 
 Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial widget state is returned. (You can override this API as required.)
 
+**Model restriction**: This API can be used only in the stage model.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes | Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension. |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
 
 **Example**
 
@@ -307,6 +331,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onStop?(): void
 
 Called when the widget process of the widget provider exits.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
   

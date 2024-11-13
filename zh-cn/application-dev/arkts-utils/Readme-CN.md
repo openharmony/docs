@@ -1,41 +1,86 @@
 # ArkTS（方舟编程语言）
 
-- [ArkTS简介](arkts-commonlibrary-overview.md)
-- 并发
-  - [并发概述](concurrency-overview.md)
-  - 使用异步并发能力进行开发
-    - [异步并发概述 (Promise和async/await)](async-concurrency-overview.md)
-    - [单次I/O任务开发指导 (Promise和async/await)](single-io-development.md)
-  - 使用多线程并发能力进行开发
-    - [多线程并发概述 (TaskPool和Worker)](multi-thread-concurrency-overview.md)
-    - [TaskPool简介](taskpool-introduction.md)
-    - [Worker简介](worker-introduction.md)
-    - [TaskPool和Worker的对比 (TaskPool和Worker)](taskpool-vs-worker.md)
-    - [CPU密集型任务开发指导 (TaskPool和Worker)](cpu-intensive-task-development.md)
-    - [I/O密集型任务开发指导 (TaskPool)](io-intensive-task-development.md)
-    - [同步任务开发指导 (TaskPool和Worker)](sync-task-development.md)
-  - 附录
-    - [Actor并发模型对比内存共享并发模型](actor-model-development-samples.md)
-    - [TaskPool和Worker支持的序列化类型](serialization-support-types.md)
-    - [多线程安全注意事项](multi-thread-safety.md)
-    - [\@Concurrent装饰器：声明并校验并发函数](arkts-concurrent.md)
-    - [Sendable开发指导](arkts-sendable.md)
-    - [已接入Sendable的系统对象](arkts-sendable-system-object-list.md)
-    - [ArkTS异步锁](arkts-async-lock-introduction.md)
-    - [ArkTS容器集 (ArkTS Collections)](arkts-collections-introduction.md)
-    - [共享模块开发指导](arkts-sendable-module.md)
-    - [ArkTS Collections与原生API方法的行为差异对比](arkts-collections-vs-native-api-comparison.md)
-- 容器类库
-  - [容器类库概述](container-overview.md)
-  - [线性容器](linear-container.md)
-  - [非线性容器](nonlinear-container.md)
-- XML生成、解析与转换
-  - [XML概述](xml-overview.md)
-  - [XML生成](xml-generation.md)
-  - [XML解析](xml-parsing.md)
-  - [XML转换](xml-conversion.md)
-- [代码混淆](source-obfuscation.md)
-- 内存管理
-  - [GC介绍](gc-introduction.md)
-- 模块加载
-  - [同步方式动态加载native模块](js-apis-load-native-module.md)
+- [ArkTS简介](arkts-overview.md)
+- ArkTS基础类库
+    - [ArkTS基础类库概述](arkts-utils-overview.md)
+    - XML生成、解析与转换
+        - [XML概述](xml-overview.md)
+        - [XML生成](xml-generation.md)
+        - [XML解析](xml-parsing.md)
+        - [XML转换](xml-conversion.md)
+    - [Buffer介绍](buffer.md)
+    - ArkTS容器类库
+        - [容器类库概述](container-overview.md)
+        - [线性容器](linear-container.md)
+        - [非线性容器](nonlinear-container.md)
+- ArkTS并发
+    - [并发概述](concurrency-overview.md)
+    - [异步并发](async-concurrency-overview.md)
+    - 多线程并发
+        - [多线程并发概述](multi-thread-concurrency-overview.md)
+        - [TaskPool简介](taskpool-introduction.md)
+        - [Worker简介](worker-introduction.md)
+        - [TaskPool与Worker对比 (TaskPool和Worker)](taskpool-vs-worker.md)
+    - 并发线程间通信
+        - [ArkTS线程间通信概述](interthread-communication-overview.md)
+        - 线程间通信对象
+            - [普通对象](normal-object.md)
+            - [ArrayBuffer对象](arraybuffer-object.md)
+            - [SharedArrayBuffer对象](shared-arraybuffer-object.md)
+            - [Transferable对象（NativeBinding对象）](transferabled-object.md)
+            - Sendable对象
+                - [Sendable对象简介](arkts-sendable.md)
+                - [Sendable使用规则与约束](sendable-constraints.md)
+                - [异步锁](arkts-async-lock-introduction.md)
+                - [ASON解析与生成](ason-parsing-generation.md)
+                - [共享容器](arkts-collections-introduction.md)
+                - [共享模块](arkts-sendable-module.md)
+                - [Sendable对象冻结](sendable-freeze.md)
+                - [Sendable使用场景](sendable-guide.md)
+        - 线程间通信场景
+            - [使用TaskPool执行独立的耗时任务](independent-time-consuming-task.md)
+            - [使用TaskPool执行多个耗时任务](multi-time-consuming-tasks.md)
+            - [TaskPool任务与主线程通信](taskpool-communicates-with-mainthread.md)
+            - [Worker和主线程的即时消息通信](worker-communicates-with-mainthread.md)
+            - [Worker同步调用主线程的接口](worker-invoke-mainthread-interface.md)
+    - 应用多线程开发
+        - [应用多线程开发概述](multithread-develop-overview.md)
+        - 耗时任务并发场景
+            - [耗时任务并发场景简介](time-consuming-task-overview.md)
+            - [CPU密集型任务开发指导 (TaskPool和Worker)](cpu-intensive-task-development.md)
+            - [I/O密集型任务开发指导 (TaskPool)](io-intensive-task-development.md)
+            - [同步任务开发指导 (TaskPool和Worker)](sync-task-development.md)
+        - 长时任务并发场景
+            - [长时任务并发场景简介](long-time-task-overview.md)
+            - [长时任务开发指导（TaskPool）](long-time-task-guide.md)
+        - 常驻任务并发场景
+            - [常驻任务并发场景简介](resident-task-overview.md)
+            - [常驻任务开发指导（Worker）](resident-task-guide.md)
+        - 应用多线程开发实践案例
+            - [批量数据写数据库场景](batch-database-operations-guide.md)
+            - [业务模块并发加载场景](concurrent-loading-modules-guide.md)
+            - [全局配置项功能场景](global-configuration-guide.md)
+            - [ArkUI数据更新场景](makeobserved-sendable.md)
+            - [C++线程间数据共享场景](native-interthread-shared.md)
+- [ArkTS跨语言交互](arkts-cross-language-interaction.md)
+- ArkTS运行时
+    - [ArkTS运行时概述](arkts-runtime-overview.md)
+    - [GC垃圾回收](gc-introduction.md)
+    - ArkTS模块化
+        - [模块化运行简介](module-principle.md)
+        - [动态加载](arkts-dynamic-import.md)
+        - [延迟加载（lazy import）](arkts-lazy-import.md)
+        - [同步方式动态加载native模块](js-apis-load-native-module.md)
+        - [基于Node-API加载模块](load-module-base-nodeapi.md)
+- ArkTS编译工具链
+    - [ArkTS编译工具链概述](compilation-tool-chain-overview.md)
+    - 方舟字节码
+        - [方舟字节码概述](arkts-bytecode-overview.md)
+        - [方舟字节码文件格式](arkts-bytecode-file-format.md)
+        - [方舟字节码基本原理](arkts-bytecode-fundamentals.md)
+        - [方舟字节码函数命名规则](arkts-bytecode-function-name.md)
+        - [编译期自定义修改方舟字节码](customize-bytecode-during-compilation.md)
+    - [Disassembler反汇编工具](tool-disassembler.md)
+    - [ArkGuard源码混淆工具](source-obfuscation.md)
+    - [在build-profile.json5中配置arkOptions](arkoptions-guide.md)
+

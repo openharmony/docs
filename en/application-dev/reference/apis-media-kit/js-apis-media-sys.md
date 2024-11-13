@@ -27,15 +27,15 @@ Only one **VideoRecorder** instance can be created per device.
 
 **Parameters**
 
-| Name  | Type                                           | Mandatory | Description                                                        |
+| Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video. |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                      |
+| ID| Error Message                      |
 | -------- | ------------------------------ |
 | 5400101  | No memory. Return by callback. |
 
@@ -71,13 +71,13 @@ Only one **VideoRecorder** instance can be created per device.
 
 | Type                                     | Description                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video. |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the result. If the operation is successful, a **VideoRecorder** instance is returned; otherwise, **null** is returned. The instance can be used to record video.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                     |
+| ID| Error Message                     |
 | -------- | ----------------------------- |
 | 5400101  | No memory. Return by promise. |
 
@@ -113,14 +113,14 @@ This API is called by the system application that creates the dialog box.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                                                         |
+| Name   | Type  | Mandatory| Description                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
-| sessionId | number | Yes  | Session ID of the AVScreenCapture service, which is sent to the application when the AVScreenCapture server starts the privacy dialog box. |
+| sessionId | number | Yes  | Session ID of the AVScreenCapture service, which is sent to the application when the AVScreenCapture server starts the privacy dialog box.|
 | choice    | string | Yes  | User selection result. The value **false** means that the user touches a button to cancel the operation, and **true** means that the user touches a button to continue the operation.           |
 
 **Error codes**
 
-| ID | Error Message                                   |
+| ID| Error Message                                   |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 5400101  | No memory. Return by promise.               |
@@ -139,18 +139,6 @@ try {
     console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
 }
 ```
-
-## AVImageQueryOptions<sup>11+</sup>
-
-Enumerates the relationship between the video frame and the time at which the video thumbnail is obtained.
-
-The time passed in for obtaining the thumbnail may be different from the time of the video frame for which the thumbnail is actually obtained. Therefore, you need to specify their relationship.
-
-**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
-
-| Name                    | Value             | Description                                                        |
-| ------------------------ | --------------- | ------------------------------------------------------------ |
-| AV_IMAGE_QUERY_CLOSEST          | 3      | The frame (not necessarily a key frame) closest to the specified time is selected.<br>**System API**: This is a system API.    |
 
 ## PixelMapParams<sup>11+</sup>
 
@@ -173,8 +161,236 @@ Enumerates the color formats supported by the video thumbnail.
 | Name                    | Value             | Description                                                        |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
 | RGB_565       | 2   | RGB_565.                      |
-| RGBA_8888        | 3    | RGBA_8888. |
+| RGBA_8888        | 3    | RGBA_8888.|
 | RGB_888        | 5    | RGB_888.                |
+
+## AvPlayer<sup>9+</sup>
+> **NOTE**
+> 
+> A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](js-apis-media.md#mediacreateavplayer9) to create an [AVPlayer](js-apis-media.md#avplayer9) instance.
+
+### setPlaybackRange<sup>12+</sup>
+
+setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
+
+Sets the playback range and seeks to the start position of the range based on the specified [SeekMode](js-apis-media.md#seekmode8). After the setting, only the content in the specified range of the audio or video file is played. This API uses a promise to return the result. It can be used when the AVPlayer is in the initialized, prepared, paused, stopped, or completed state.
+
+**System capability**: SystemCapability.Multimedia.Media.AvPlayer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                       |
+| -------- | ---------------------- | ---- | --------------------------- |
+| startTimeMs | number | Yes  | Start position of the range, in ms. The value range is [0, duration). If **-1** is passed in, the system starts playing from position 0.|
+| endTimeMs | number | Yes  | End position of the range, in ms. The value range is (startTimeMs, duration]. If **-1** is passed in, the system plays the content until it reaches the final part of the asset.|
+| mode | [SeekMode](js-apis-media.md#seekmode8) | No  | Seek mode, which can be **SeekMode.SEEK_PREV_SYNC** or **SeekMode.SEEK_CLOSEST**.<br>The default value is **SeekMode.SEEK_PREV_SYNC**.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 202  | Called from Non-System applications. Return by promise. |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**Example**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
+  console.info('Succeeded setPlaybackRange');
+}).catch((err: BusinessError) => {
+  console.error('Failed to setPlaybackRange' + err.message);
+});
+```
+
+## AVMetadataExtractor<sup>11+</sup>
+
+Provides APIs to obtain metadata from media assets. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
+
+### getTimeByFrameIndex<sup>12+</sup>
+
+getTimeByFrameIndex(index: number): Promise\<number>
+
+Obtains the video timestamp corresponding to a video frame number. Only MP4 video files are supported.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description      |
+| ------ | ------ | ---- | ---------- |
+| index  | number | Yes  | Video frame number.|
+
+**Return value**
+
+| Type            | Description                               |
+| ---------------- | ----------------------------------- |
+| Promise\<number> | Promise used to return the timestamp, in microseconds.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**Example**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getTimeByFrameIndex(0).then((timeUs: number) => {
+  console.info(`Succeeded getTimeByFrameIndex timeUs: ${timeUs}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getTimeByFrameIndex ${err.message}`);
+})
+```
+
+### getFrameIndexByTime<sup>12+</sup>
+
+getFrameIndexByTime(timeUs: number): Promise\<number>
+
+Obtains the video frame number corresponding to a video timestamp. Only MP4 video files are supported.
+
+**System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| timeUs | number | Yes  | Video timestamp, in microseconds.|
+
+**Return value**
+
+| Type            | Description                     |
+| ---------------- | ------------------------- |
+| Promise\<number> | Promise used to return the video frame number.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**Example**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
+  console.info(`Succeeded getFrameIndexByTime index: ${index}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getFrameIndexByTime ${err.message}`);
+})
+```
+
+## AVRecorder<sup>9+</sup>
+
+A recording management class that provides APIs to record media assets. Before calling any API in **AVRecorder**, you must use [createAVRecorder()](js-apis-media.md#mediacreateavrecorder9) to create an **AVRecorder** instance.
+
+> **NOTE**
+>
+> To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
+
+### isWatermarkSupported<sup>12+</sup>
+
+isWatermarkSupported(): Promise\<boolean>
+
+Checks whether the device supports the hardware digital watermark. This API uses a promise to return the result.
+
+This API can be called after the [prepare()](js-apis-media.md#prepare9-3), [start()](js-apis-media.md#start9), or [paused()](js-apis-media.md#pause9) event is triggered.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type            | Description                            |
+| ---------------- | -------------------------------- |
+| Promise\<boolean> | Promise used to return the check result.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
+  console.info(`Succeeded in get, isWatermarkSupported: ${isWatermarkSupported}`);
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get and catch error is ${error.message}`);
+});
+```
+
+### setWatermark<sup>12+</sup>
+
+setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
+
+Sets a watermark for the AVRecorder. This API uses a promise to return the result.
+
+This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) event is triggered and before the [start()](js-apis-media.md#start9) event is triggered.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                        |
+| -------- | -------------------- | ---- | --------------------------- |
+| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8 KB, the watermark resolution is 3072 x 288; if the original image is 4 KB, the watermark resolution is 1536 x 144.|
+| config    | [WatermarkConfig](#watermarkconfig12)   | Yes  | Watermark configuration.|
+
+**Return value**
+
+| Type            | Description                            |
+| ---------------- | -------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------   |
+|   401    | The parameter check failed. Return by promise.            |
+|   801    | Capability not supported. Return by promise. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+let watermark: image.PixelMap|undefined = undefined; // need data
+let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
+
+avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
+  console.info('Succeeded in setWatermark');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to setWatermark and catch error is ${error.message}`);
+});
+```
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -189,9 +405,9 @@ Implements video recording. Before calling any API in the **VideoRecorder** clas
 
 **System API**: This is a system API.
 
-| Name              | Type                                  | Readable | Writable | Description            |
+| Name              | Type                                  | Readable| Writable| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | Yes  | No  | Video recording state. |
+| state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | Yes  | No  | Video recording state.|
 
 ### prepare<sup>9+</sup>
 
@@ -207,16 +423,16 @@ Sets video recording parameters. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory | Description                               |
+| Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | config   | [VideoRecorderConfig](#videorecorderconfig9) | Yes  | Video recording parameters to set.           |
-| callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                  |
+| ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 201      | Permission denied. Return by callback.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
@@ -275,21 +491,21 @@ Sets video recording parameters. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                                        | Mandatory | Description                    |
+| Name| Type                                        | Mandatory| Description                    |
 | ------ | -------------------------------------------- | ---- | ------------------------ |
-| config | [VideoRecorderConfig](#videorecorderconfig9) | Yes  | Video recording parameters to set. |
+| config | [VideoRecorderConfig](#videorecorderconfig9) | Yes  | Video recording parameters to set.|
 
 **Return value**
 
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 201      | Permission denied. Return by promise.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
@@ -348,15 +564,15 @@ This API can be called only after [prepare()](#prepare9) is called.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                       |
+| Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                  |
+| ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
@@ -397,13 +613,13 @@ This API can be called only after [prepare()](#prepare9-1) is called.
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<string> | Promise used to return the result. |
+| Promise\<string> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
@@ -438,15 +654,15 @@ This API can be called only after [prepare()](#prepare9) and [getInputSurface()]
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                        |
+| Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                  |
+| ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
@@ -483,13 +699,13 @@ This API can be called only after [prepare()](#prepare9-1) and [getInputSurface(
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
@@ -522,15 +738,15 @@ This API can be called only after [start()](#start9) is called. You can resume r
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                        |
+| Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                  |
+| ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
@@ -567,13 +783,13 @@ This API can be called only after [start()](#start9-1) is called. You can resume
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
@@ -604,15 +820,15 @@ Resumes recording. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                        |
+| Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                  |
+| ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
@@ -647,13 +863,13 @@ Resumes recording. This API uses a promise to return the result.
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
@@ -686,15 +902,15 @@ To start another recording, you must call [prepare()](#prepare9) and [getInputSu
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                        |
+| Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                  |
+| ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
@@ -731,13 +947,13 @@ To start another recording, you must call [prepare()](#prepare9-1) and [getInput
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
@@ -768,15 +984,15 @@ Releases the video recording resources. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                            |
+| Name  | Type                | Mandatory| Description                            |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                         |
+| ID| Error Message                         |
 | -------- | --------------------------------- |
 | 5400105  | Service died. Return by callback. |
 
@@ -809,13 +1025,13 @@ Releases the video recording resources. This API uses a promise to return the re
 
 | Type          | Description                                     |
 | -------------- | ----------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                         |
+| ID| Error Message                         |
 | -------- | --------------------------------- |
 | 5400105  | Service died. Return by callback. |
 
@@ -846,15 +1062,15 @@ To start another recording, you must call [prepare()](#prepare9) and [getInputSu
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                        |
+| Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                         |
+| ID| Error Message                         |
 | -------- | --------------------------------- |
 | 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
@@ -890,13 +1106,13 @@ To start another recording, you must call [prepare()](#prepare9-1) and [getInput
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
 | 5400103  | I/O error. Return by promise.    |
 | 5400105  | Service died. Return by promise. |
@@ -926,16 +1142,16 @@ Subscribes to video recording error events. After an error event is reported, yo
 
 **Parameters**
 
-| Name  | Type         | Mandatory | Description                                                        |
+| Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Event type, which is **'error'** in this case.<br>This event is triggered when an error occurs during video recording. |
+| type     | string        | Yes  | Event type, which is **'error'** in this case.<br>This event is triggered when an error occurs during video recording.|
 | callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID | Error Message                         |
+| ID| Error Message                         |
 | -------- | --------------------------------- |
 | 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
@@ -962,7 +1178,7 @@ Enumerates the video recording states. You can obtain the state through the **st
 | Name    | Type  | Description                  |
 | -------- | ------ | ---------------------- |
 | idle     | string | The video recorder is idle.        |
-| prepared | string | The video recording parameters are set. |
+| prepared | string | The video recording parameters are set.|
 | playing  | string | Video recording is in progress.        |
 | paused   | string | Video recording is paused.        |
 | stopped  | string | Video recording is stopped.        |
@@ -978,14 +1194,14 @@ The **audioSourceType** and **videoSourceType** parameters are used to distingui
 
 **System API**: This is a system API.
 
-| Name           | Type                                          | Mandatory | Description                                                        |
+| Name           | Type                                          | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioSourceType | [AudioSourceType](js-apis-media.md#audiosourcetype9)           | No  | Type of the audio source for video recording. This parameter is mandatory for audio recording.                     |
 | videoSourceType | [VideoSourceType](js-apis-media.md#videosourcetype9)           | Yes  | Type of the video source for video recording.                                      |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video. The value can only be 0 (default), 90, 180, or 270.      |
 | location        | [Location](js-apis-media.md#location)                          | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.                |
-| url             | string                                         | Yes  | Video output URL. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png)  |
+| url             | string                                         | Yes  | Video output URL. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) |
 
 ## VideoRecorderProfile<sup>9+</sup>
 
@@ -995,27 +1211,28 @@ Describes the video recording profile.
 
 **System API**: This is a system API.
 
-| Name            | Type                                        | Mandatory | Description            |
+| Name            | Type                                        | Mandatory| Description            |
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
-| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording. |
-| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording. |
+| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.|
+| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.|
 | audioCodec       | [CodecMimeType](js-apis-media.md#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording.  |
 | audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.    |
-| fileFormat       | [ContainerFormatType](js-apis-media.md#containerformattype8) | Yes  | Container format of a file. |
-| videoBitrate     | number                                       | Yes  | Video encoding bit rate. |
+| fileFormat       | [ContainerFormatType](js-apis-media.md#containerformattype8) | Yes  | Container format of a file.|
+| videoBitrate     | number                                       | Yes  | Video encoding bit rate.|
 | videoCodec       | [CodecMimeType](js-apis-media.md#codecmimetype8)             | Yes  | Video encoding format.  |
-| videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame. |
-| videoFrameHeight | number                                       | Yes  | Height of the recorded video frame. |
+| videoFrameWidth  | number                                       | Yes  | Width of the recorded video frame.|
+| videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 | videoFrameRate   | number                                       | Yes  | Video frame rate.  |
 
-## SeekMode<sup>8+</sup>
+## WatermarkConfig<sup>12+</sup>
 
-Enumerates the video playback seek modes, which can be passed in the **seek** API.
+Describes the watermark configuration set for the AVRecorder. The start point is the upper left corner of the image.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
 **System API**: This is a system API.
 
-| Name          | Value  | Description                                                        |
-| -------------- | ---- | ------------------------------------------------------------ |
-| SEEK_CONTINUOUS<sup>12+</sup> | 3    | Seek mode for drag and preview. This mode can be called in batches in a certain sequence to implement video drag and preview.<br>In this mode, no **'SeekDone'** event is reported upon a successful seek operation. |
+| Name     | Type  | Mandatory| Description            |
+| --------- | ------ | ---- | ---------------- |
+| top       | number | Yes  | Pixel offset from the top edge of the image.|
+| left      | number | Yes  | Pixel offset from the left edge of the image.|

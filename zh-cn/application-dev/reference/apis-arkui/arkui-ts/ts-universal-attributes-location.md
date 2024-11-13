@@ -22,7 +22,7 @@ align(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、Text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#textalign)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
 
 ## direction
 
@@ -64,7 +64,7 @@ position(value: Position | Edges | LocalizedEdges)
 
 markAnchor(value: Position | LocalizedPosition)
 
-设置子元素在位置定位时的锚点。
+设置元素在位置定位时的锚点。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -76,7 +76,7 @@ markAnchor(value: Position | LocalizedPosition)
 
 | 参数名 | 类型                             | 必填 | 说明                                                         |
 | ------ | -------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) \| [LocalizedPosition<sup>12+</sup>](ts-types.md#localizedposition12) | 是   | 设置子元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| value  | [Position](ts-types.md#position) \| [LocalizedPosition<sup>12+</sup>](ts-types.md#localizedposition12) | 是   | 设置元素在位置定位时的锚点，从position或offset的位置上，进一步偏移。<br/>设置.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})，效果等于设置.position({x: value1 - value3, y: value2 - value4})，offset同理。<br/>单独使用markAnchor，设置.markAnchor({x: value1, y: value2})，效果等于设置.offset({x: -value1, y: -value2})。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
 ## offset
 
@@ -94,7 +94,7 @@ offset(value: Position | Edges | LocalizedEdges)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12)  \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 相对偏移，组件相对原本的布局位置进行偏移。offset属性不影响父容器布局，仅在绘制时调整位置。<br/>Position类型基于组件自身左上角偏移，Edges类型基于组件自身四边偏移。 offset属性设置 {x: x, y: y} 与设置 {left: x, top: y} 以及 {right: -x, bottom: -y} 效果相同,  类型LocalizedEdges支持镜像模式：LTR模式下start 等同于x，RTL模式下等同于-x<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12)  \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 相对偏移，组件相对原本的布局位置进行偏移。offset属性不影响父容器布局，仅在绘制时调整位置。<br/>Position类型基于组件自身左上角偏移，Edges类型基于组件自身四边偏移。 offset属性设置 {x: x, y: y} 与设置 {left: x, top: y} 以及 {right: -x, bottom: -y} 效果相同,  类型LocalizedEdges支持镜像模式：LTR模式下start 等同于x，RTL模式下等同于-x<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>默认单位：vp<br/>API version 10：无默认值。 |
 
 ## alignRules<sup>9+</sup>
 
@@ -184,8 +184,8 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| horizontal  | number | &nbsp;否 | 水平方向上的bias值。<br/>当子组件的width可以确定并且有2个水平方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
-| vertical  | number | &nbsp;否 | 垂直方向上的bias值。<br/>当子组件的height可以确定并且有2个垂直方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
+| horizontal  | number | &nbsp;否 | 水平方向上的bias值。<br/>当子组件的width属性有正确值并且有2个水平方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
+| vertical  | number | &nbsp;否 | 垂直方向上的bias值。<br/>当子组件的height属性有正确值并且有2个垂直方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
 
 ## chainMode<sup>12+</sup>
 
@@ -200,9 +200,24 @@ chainMode(direction: Axis, style: ChainStyle)
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | direction  | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
-| style  | [ChainStyle](ts-appendix-enums.md#chainstyle12) | 是   | 链的样式。 |
+| style  | [ChainStyle](chainstyle12) | 是   | 链的样式。 |
+
+## ChainStyle<sup>12+</sup>
+
+定义链的风格。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 说明                                                         |
+| ------------- | ------------------------------------------------------------ |
+| SPREAD        | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
+| PACKED        | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
 
 ## 示例
+
 ### 示例1
 ```ts
 // xxx.ets

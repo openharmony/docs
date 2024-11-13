@@ -20,6 +20,8 @@ When \@Require is used together with a regular variable or a variable decorated 
 
 The \@Require decorator can only decorate a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam in a struct.
 
+For details about usage in DevEco Studio Previewer, see [PreviewChecker Rules](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-previewer-previewchecker-0000001910869788-V5).
+
 ## Use Scenarios
 
 When the \@Require decorator is used together with a regular variable or a variable decorated by \@Prop, \@State, \@Provide, or \@BuilderParam in the **Child** component, the parent component **Index** must pass in the variable for constructing the **Child** component. Otherwise, the compilation fails.
@@ -124,3 +126,5 @@ struct Child {
   }
 }
 ```
+
+<!--no_check-->

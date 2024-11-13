@@ -346,7 +346,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回一个共享内存的Buffer对象。 |
+| Buffer | 返回一个Buffer对象，与入参对象保持内存共享。 |
 
 **错误码：**
 
@@ -370,7 +370,8 @@ let buf = buffer.from(ab, 0, 2);
 
 from(buffer: Buffer | Uint8Array): Buffer
 
-创建并复制`buffer`数据到新的Buffer对象并返回。
+当入参为Buffer对象时，创建并复制入参Buffer对象数据到新的Buffer对象并返回。</br>
+当入参为Uint8Array对象时，创建的Buffer对象持有Uint8Array对象的内存并返回，保持数据的内存关联。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -401,8 +402,15 @@ from(buffer: Buffer | Uint8Array): Buffer
 ```ts
 import { buffer } from '@kit.ArkTS';
 
+// 以Buffer对象类型进行创建新的Buffer对象
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
+
+// 以Uint8Array对象类型进行创建Buffer对象，保持对象间内存共享
+let uint8Array = new Uint8Array(10);
+let buf3 = buffer.from(uint8Array);
+buf3.fill(1)
+console.info("uint8Array:", uint8Array)
 ```
 
 ## buffer.from
@@ -421,7 +429,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 支持Symbol.toPrimitive或valueOf()的对象。 |
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | 是 | 字节偏移量或编码格式。 |
-| length | number | 是 | 字节长度(此入参仅在object的valueOf()返回值为arraybuffer时生效)。其他情况下可填任意number类型值，该参数不会对结果产生影响。 |
+| length | number | 是 | 字节长度(此入参仅在object的valueOf()返回值为ArrayBuffer时生效，取值范围：0 <= length <= ArrayBuffer.byteLength, 超出范围时报错: 10200001)。其他情况下可填任意number类型值，该参数不会对结果产生影响。 |
 
 **返回值：**
 
@@ -974,7 +982,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
+| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: Buffer.length。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
 
 **返回值：**
@@ -997,8 +1005,8 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this buffer is a buffer');
-console.log(buf.lastIndexOf('this').toString());	// 打印: 0
-console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
+console.log(buf.lastIndexOf('this').toString());    // 打印: 0
+console.log(buf.lastIndexOf('buffer').toString());  // 打印: 17
 ```
 
 
@@ -1581,14 +1589,14 @@ readIntBE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 读取的字节数。 |
+| byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取的内容。 |
+| number | 读取的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
@@ -1628,14 +1636,14 @@ readIntLE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 读取的字节数。 |
+| byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。|
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| number | 读取出的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
@@ -1896,14 +1904,14 @@ readUIntBE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 要读取的字节数。 |
+| byteLength | number | 是 | 要读取的字节数。读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| number | 读取出的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
@@ -1941,14 +1949,14 @@ readUIntLE(offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
-| byteLength | number | 是 | 要读取的字节数。 |
+| byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| number | 读取出的内容。当offset为小数时，返回undefined。 |
 
 **错误码：**
 
@@ -1992,7 +2000,7 @@ subarray(start?: number, end?: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。 |
+| Buffer | 返回新的Buffer对象。当 start < 0 或 end < 0 时返回一个空Buffer。 |
 
 **示例：**
 
@@ -2169,7 +2177,7 @@ toString(encoding?: string, start?: number, end?: number): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 字符串。 |
+| string | 字符串。 当start >= Buffer.length 或 start > end 时返回空字符串。 |
 
 **错误码：**
 

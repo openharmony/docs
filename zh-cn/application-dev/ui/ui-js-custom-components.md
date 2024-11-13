@@ -92,7 +92,7 @@
   ```
 
 
-本示例中父组件通过添加自定义属性向子组件传递了名称为title的参数，子组件在props中接收。同时子组件也通过事件绑定向上传递了参数text，接收时通过e.detail获取。要绑定子组件事件，父组件事件命名必须遵循事件绑定规则，详见[自定义组件开发规范](../reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md)。自定义组件效果如下图所示：
+本示例中父组件通过添加自定义属性向子组件传递了名称为title的参数，子组件在props中接收。同时子组件也通过事件绑定向上传递了参数text，接收时通过e.detail获取。要绑定子组件事件，父组件事件命名必须遵循事件绑定规则，详见[自定义组件的基本用法](../reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md)。自定义组件效果如下图所示：
 
 
 **图1** 自定义组件的效果
@@ -102,7 +102,5 @@
 ## 相关实例
 
 针对自定义组件开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
 - [自定义抽奖转盘（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponent)

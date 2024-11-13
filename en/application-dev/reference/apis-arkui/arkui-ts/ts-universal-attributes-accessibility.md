@@ -12,6 +12,10 @@ accessibilityGroup(value: boolean)
 
 Sets the accessibility group.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -26,6 +30,10 @@ accessibilityText(value: string)
 
 Sets the accessibility text.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -34,11 +42,34 @@ Sets the accessibility text.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | string | Yes  | Accessibility text. If a component does not contain text information, it will not be read when the component is selected by the screen reader. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set this attribute for components without text information. When the component is selected by the screen reader, the specified accessibility text will be read, informing the user which component is selected.<br>Default value: **""**<br>**NOTE**<br>If a component with this attribute set contains text information, only the accessibility text will be read.<br>If a component with its **accessibilityGroup** attribute set to **true** does not have **accessibilityText** set and does not contain text information, text concatenation will be performed on its child components (depth first).|
 
+## accessibilityText<sup>12+</sup>
+
+accessibilityText(text: Resource)
+
+Sets the accessibility text, which supports referencing resource files through **Resource**.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                                                                                                                                                                                                                                  |
+| ------ | ------ | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| text  | [Resource](ts-types.md#resource) | Yes  | Reference resource of accessibility text. If a component does not contain text information, it will not be read when the component is selected by the screen reader. In this case, the screen reader user cannot know which component is selected. To solve this problem, you can set this attribute for components without text information. When the component is selected by the screen reader, the specified accessibility text will be read, informing the user which component is selected.<br>**NOTE**<br>If a component with this attribute set contains text information, only the accessibility text will be read.<br>If a component with its **accessibilityGroup** attribute set to **true** does not have **accessibilityText** set and does not contain text information, text concatenation will be performed on its child components (depth first).|
+
+
 ## accessibilityDescription
 
 accessibilityDescription(value: string)
 
 Sets the accessibility description.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,11 +79,33 @@ Sets the accessibility description.
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | string | Yes  | Accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.<br>Default value: **""**|
 
+## accessibilityDescription<sup>12+</sup>
+
+accessibilityDescription(description: Resource)
+
+Sets the accessibility description, which supports referencing resource files through **Resource**.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                                                                                                                                                   |
+| ------ | ------ | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| description  | [Resource](ts-types.md#resource) | Yes  | Reference resource of the accessibility description. You can specify further explanation of the current component, for example, possible operation consequences, especially those that cannot be learned from component attributes and accessibility text. If a component contains both text information and the accessibility description, the text is read first and then the accessibility description, when the component is selected.|
+
 ## accessibilityLevel
 
 accessibilityLevel(value: string)
 
 Sets the accessibility level.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,13 +121,17 @@ accessibilityVirtualNode(builder: CustomBuilder)
 
 Sets the accessibility virtual node.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes  | Accessibility virtual node, which enables you to pass in a custom builder to the self-drawing component. The components in the custom builder are only laid out but not displayed at the backend. When the accessibility application obtains the accessibility node information, the node information in the custom builder is returned.|
+| builder  | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Accessibility virtual node, which enables you to pass in a custom builder to the self-drawing component. The components in the custom builder are only laid out but not displayed at the backend. When the accessibility application obtains the accessibility node information, the node information in the custom builder is returned.|
 
 ## Example
 

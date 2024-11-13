@@ -29,7 +29,7 @@ These concepts are important in exception and error handling. Properly using met
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to error handling.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to exception handling.
 
 ### OH_JSVM_Throw
 
@@ -107,7 +107,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmThrowError},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named JsVmThrowError and associate it with a callback. This allows the JsVmThrowError callback to be called from JS.
+// Set a property descriptor named jsVmThrowError and associate it with a callback. This allows the JsVmThrowError callback to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmThrowError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -161,7 +161,7 @@ try {
 
 ### OH_JSVM_ThrowTypeError
 
-Use **OH_JSVM_ThrowTypeError** to create a JS **TypeError** object with text information.
+Use **OH_JSVM_ThrowTypeError** to throw a JS **TypeError** object with text information.
 
 CPP code:
 
@@ -178,18 +178,18 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmThrowTypeError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// Throw a type error with error message.
+// Throw a type error with an error message.
 static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
     if (argc == 0) {
-        // Throw an exception if no parameter is passed in.
+        // Throw an error if no parameter is passed in.
         OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
     } else if (argc == 1) {
         size_t length;
-        // Obtain the length of the string passed from JS from the input parameter.
+        // Obtain the length of the string in the input parameter passed from JS.
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
         // Obtain the string of the input parameter.
@@ -231,7 +231,7 @@ try {
 
 ### OH_JSVM_ThrowRangeError
 
-Use **OH_JSVM_ThrowRangeError** to create a JS **RangeError** object with text information.
+Use **OH_JSVM_ThrowRangeError** to throw a JS **RangeError** object with text information.
 
 CPP code:
 
@@ -285,7 +285,7 @@ try {
 
 ### OH_JSVM_ThrowSyntaxError
 
-Use **OH_JSVM_ThrowSyntaxError** to create a JS **SyntaxError** object with text information.
+Use **OH_JSVM_ThrowSyntaxError** to throw a JS **SyntaxError** object with text information.
 
 CPP code:
 
@@ -614,7 +614,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Status status;
     bool isExceptionPending = false;
-    // Throw an error.
+    // Perform operations that may cause an error.
     OH_JSVM_ThrowError(env, "OH_JSVM_ThrowError errorCode", "OH_JSVM_ThrowError errorMessage");
     // Check whether there is a pending exception.
     status = OH_JSVM_IsExceptionPending(env, &isExceptionPending);

@@ -20,6 +20,8 @@ add(attributes: AssetMap): Promise\<void>
 
 如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名     | 类型     | 必填 | 说明                                                         |
@@ -91,6 +93,8 @@ addSync(attributes: AssetMap): void
 
 如果要设置[IS_PERSISTENT](#tag)属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名     | 类型     | 必填 | 说明                                                         |
@@ -149,6 +153,8 @@ try {
 remove(query: AssetMap): Promise\<void>
 
 删除符合条件的一条或多条关键资产，使用Promise方式异步返回结果。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -212,6 +218,8 @@ removeSync(query: AssetMap): void
 
 删除符合条件的一条或多条关键资产，使用同步方式。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
@@ -263,6 +271,8 @@ try {
 update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 更新符合条件的一条关键资产，使用Promise方式异步返回结果。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -331,6 +341,8 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 
 更新符合条件的一条关键资产，使用同步方式返回结果。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名             | 类型     | 必填 | 说明                                                         |
@@ -387,6 +399,8 @@ try {
 preQuery(query: AssetMap): Promise\<Uint8Array>
 
 查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promise方式异步返回结果。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -453,6 +467,8 @@ preQuerySync(query: AssetMap): Uint8Array
 
 查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.querySync](#assetquerysync12)、[asset.postQuerySync](#assetpostquerysync12)。使用同步方式返回结果。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
@@ -513,6 +529,8 @@ try {
 query(query: AssetMap): Promise\<Array\<AssetMap>>
 
 查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)，在本函数后调用[asset.postQuery](#assetpostquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -583,6 +601,8 @@ querySync(query: AssetMap): Array\<AssetMap>
 
 查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuerySync](#assetprequerysync12)，在本函数后调用[asset.postQuerySync](#assetpostquerysync12)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用同步方式返回结果。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
@@ -651,6 +671,8 @@ postQuery(handle: AssetMap): Promise\<void>
 
 查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuery](#assetprequery)函数成对出现。使用Promise方式异步返回结果。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
@@ -704,6 +726,8 @@ postQuerySync(handle: AssetMap): void
 
 查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQuerySync](#assetprequerysync12)函数成对出现。使用同步方式返回结果。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
@@ -745,6 +769,8 @@ try {
 
 枚举，关键资产属性支持的数据类型。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 名称   | 值         | 说明                                     |
@@ -765,41 +791,44 @@ try {
 
 | 名称 | 值                                  | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| SECRET                    | TagType.BYTES &#124; 0x01  | 关键资产明文                                                 |
-| ALIAS                     | TagType.BYTES &#124; 0x02 | 关键资产别名，每条关键资产的唯一索引                         |
-| ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | 基于锁屏状态的访问控制                                       |
-| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124; 0x04                   | 是否仅在设置了锁屏密码的情况下，可访问关键资产                 |
-| AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | 访问关键资产所需的用户认证类型                               |
-| AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | 用户认证的有效期                                             |
-| AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值                                         |
-| AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | 用户认证通过的授权令牌                                           |
-| SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | 关键资产支持的同步类型                                       |
-| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产 |
-| DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | 关键资产附属信息，内容由业务自定义且**有完整性保护**             |
-| DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
-| DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
-| DATA_LABEL_CRITICAL_4 | TagType.BYTES &#124; 0x23  | 关键资产附属信息，内容由业务自定义且**有完整性保护** |
-| DATA_LABEL_NORMAL_1       | TagType.BYTES &#124; 0x30 | 关键资产附属信息，内容由业务自定义且**无完整性保护**             |
-| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
-| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
-| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
-| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
-| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
-| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
-| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
-| RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | 关键资产查询返回的结果类型                                         |
-| RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | 关键资产查询返回的结果数量                                         |
-| RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | 关键资产查询返回的结果偏移量<br>**说明：** 用于分批查询场景，指定从第几个开始返回                                 |
-| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序<br>**说明：** 默认按照关键资产新增的顺序返回。 |
-| CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | 新增关键资产时的冲突（如：别名相同）处理策略                             |
-| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | 数据的更新时间（时间戳形式） |
-| OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | 附加的操作类型 |
+| SECRET                    | TagType.BYTES &#124; 0x01  | 关键资产明文。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                                 |
+| ALIAS                     | TagType.BYTES &#124; 0x02 | 关键资产别名，每条关键资产的唯一索引。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                         |
+| ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | 基于锁屏状态的访问控制。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                       |
+| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124 0x04                   | 是否仅在设置了锁屏密码的情况下，可访问关键资产。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                 |
+| AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | 访问关键资产所需的用户认证类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                               |
+| AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | 用户认证的有效期。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                             |
+| AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                         |
+| AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | 用户认证通过的授权令牌。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                           |
+| SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | 关键资产支持的同步类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                       |
+| IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | 在应用卸载时是否需要保留关键资产。 |
+| DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | 关键资产附属信息，内容由业务自定义且**有完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。             |
+| DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | 关键资产附属信息，内容由业务自定义且**有完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | 关键资产附属信息，内容由业务自定义且**有完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_CRITICAL_4 | TagType.BYTES &#124; 0x23  | 关键资产附属信息，内容由业务自定义且**有完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_NORMAL_1       | TagType.BYTES &#124; 0x30 | 关键资产附属信息，内容由业务自定义且**无完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。             |
+| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | 关键资产附属信息，内容由业务自定义且**无完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | 关键资产附属信息，内容由业务自定义且**无完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | 关键资产附属信息，内容由业务自定义且**无完整性保护**。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | 关键资产查询返回的结果类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                         |
+| RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | 关键资产查询返回的结果数量。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                         |
+| RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | 关键资产查询返回的结果偏移量。<br>**说明：** 用于分批查询场景，指定从第几个开始返回。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                 |
+| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序。<br>**说明：** 默认按照关键资产新增的顺序返回。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | 新增关键资产时的冲突（如：别名相同）处理策略。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                             |
+| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | 数据的更新时间（时间戳形式）。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | 附加的操作类型。 |
+| REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | TagType.BOOL &#124; 0x47 | 是否加密业务自定义附属信息。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## Value
 
 type Value = boolean | number | Uint8Array;
 
 关键资产属性的内容，用作[AssetMap](#assetmap)的值。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -809,11 +838,15 @@ type AssetMap = Map\<Tag, Value>
 
 关键资产属性的键-值对集合。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 ## Accessibility
 
 枚举，关键资产基于锁屏状态的访问控制类型。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -826,6 +859,8 @@ type AssetMap = Map\<Tag, Value>
 ## AuthType
 
 枚举，关键资产支持的用户认证类型。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -842,6 +877,8 @@ type AssetMap = Map\<Tag, Value>
 >
 > 本字段属于能力预埋，当前不支持同步。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 名称                          | 值     | 说明                                             |
@@ -855,6 +892,8 @@ type AssetMap = Map\<Tag, Value>
 
 枚举，关键资产查询返回的结果类型。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Security.Asset
 
 | 名称       | 值   | 说明                                                         |
@@ -865,6 +904,8 @@ type AssetMap = Map\<Tag, Value>
 ## ConflictResolution
 
 枚举，新增关键资产时的冲突（如：别名相同）处理策略。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -894,21 +935,21 @@ type AssetMap = Map\<Tag, Value>
 | -------------------------- | ----- | ---- |
 | PERMISSION_DENIED | 201     |调用方无权限。|
 | NOT_SYSTEM_APPLICATION<sup>12+</sup> | 202     |调用方不是一个系统应用。|
-| INVALID_ARGUMENT | 401    |参数错误。|
-| SERVICE_UNAVAILABLE | 24000001    |关键资产服务不可用。|
-| NOT_FOUND | 24000002    |未找到关键资产。|
-| DUPLICATED | 24000003    |关键资产已存在。|
-| ACCESS_DENIED | 24000004    |拒绝访问关键资产。|
-| STATUS_MISMATCH | 24000005    |锁屏状态不匹配。|
-| OUT_OF_MEMORY | 24000006    |系统内存不足。|
-| DATA_CORRUPTED | 24000007    |关键资产损坏。|
-| DATABASE_ERROR | 24000008   |数据库操作失败。|
-| CRYPTO_ERROR | 24000009   |算法库操作失败。|
-| IPC_ERROR | 24000010   |进程通信错误。|
-| BMS_ERROR | 24000011   |包管理服务异常。|
-| ACCOUNT_ERROR | 24000012   |账号系统异常。|
-| ACCESS_TOKEN_ERROR | 24000013   |访问控制服务异常。|
-| FILE_OPERATION_ERROR | 24000014   |文件操作失败。|
-| GET_SYSTEM_TIME_ERROR | 24000015   |获取系统时间失败。|
-| LIMIT_EXCEEDED | 24000016   |缓存数量超限。|
-| UNSUPPORTED | 24000017   |该子功能不支持。|
+| INVALID_ARGUMENT | 401    |参数错误。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| SERVICE_UNAVAILABLE | 24000001    |关键资产服务不可用。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| NOT_FOUND | 24000002    |未找到关键资产。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| DUPLICATED | 24000003    |关键资产已存在。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| ACCESS_DENIED | 24000004    |拒绝访问关键资产。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| STATUS_MISMATCH | 24000005    |锁屏状态不匹配。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| OUT_OF_MEMORY | 24000006    |系统内存不足。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| DATA_CORRUPTED | 24000007    |关键资产损坏。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| DATABASE_ERROR | 24000008   |数据库操作失败。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| CRYPTO_ERROR | 24000009   |算法库操作失败。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| IPC_ERROR | 24000010   |进程通信错误。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| BMS_ERROR | 24000011   |包管理服务异常。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| ACCOUNT_ERROR | 24000012   |账号系统异常。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| ACCESS_TOKEN_ERROR | 24000013   |访问控制服务异常。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| FILE_OPERATION_ERROR | 24000014   |文件操作失败。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| GET_SYSTEM_TIME_ERROR | 24000015   |获取系统时间失败。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| LIMIT_EXCEEDED | 24000016   |缓存数量超限。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| UNSUPPORTED | 24000017   |该子功能不支持。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|

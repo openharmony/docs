@@ -1,4 +1,4 @@
-# 长时任务
+# 长时任务(ArkTS)
 
 
 ## 概述
@@ -12,24 +12,23 @@
 
 ### 使用场景
 
-下表给出了当前长时任务支持的类型，包含数据传输、音视频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
+下表给出了当前长时任务支持的类型，包含数据传输、音视频播放、录制、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
 
 **表1** 长时任务类型
 | 参数名 | 描述 | 配置项 | 场景举例 |
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
-| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐。 |
-| AUDIO_RECORDING | 录音 | audioRecording | 录音机在后台录音。 |
+| AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐，投播。 <br>支持在原子化服务中使用。|
+| AUDIO_RECORDING | 录制 | audioRecording | 录音机在后台录音。 |
 | LOCATION | 定位导航 | location | 导航类应用后台导航。 |
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
-| MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。 |
+| MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。<br>支持在原子化服务中使用。 |
 | <!--DelRow-->WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
-| <!--DelRow-->VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
+| VOIP<sup>13+</sup> | 音视频通话 | voip  | 聊天类应用后台音视频电话。 |
 | TASK_KEEPING | <!--RP1-->计算任务（仅对特定设备开放）<!--RP1End--> | taskKeeping  | 杀毒软件。 |
 
-- 使用了[网络管理](../network/net-mgmt-overview.md)服务的应用，才能通过申请DATA_TRANSFER长时任务实现后台上传下载，不被挂起。如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。使用下载类型的长时任务，应用需要更新下载进度。如果进度长时间（超过10分钟）不更新，下载类型的长时任务会被取消。推荐使用API 12申请下载类型的长时任务，并更新通知进度。
-- 使用了[媒体会话](../media/avsession/avsession-overview.md)服务的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
-
+- 如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。使用下载类型的长时任务，应用需要更新下载进度。如果进度长时间（超过10分钟）不更新，下载类型的长时任务会被取消。推荐使用[新接口](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning12)申请下载类型的长时任务，并更新通知进度。
+- 使用了媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
 
 ### 约束与限制
 
@@ -39,7 +38,7 @@
 
 - **运行限制**：在手机产品上，系统会进行长时任务校验。\
 场景1：若应用申请了长时任务，但未真正执行申请类型的长时任务或申请类型的任务已结束，系统会对应用进行管控。例如系统检测到应用申请了AUDIO_PLAYBACK（音视频播放），但实际未播放音乐，长时任务会被取消。\
-场景2：若应用没有申请对应的长时任务类型，但执行了相关类型的长时任务，系统会对应用进行管控。例如系统检测到应用只申请了AUDIO_PLAYBACK（音视频播放），但实际上除了播放音乐（对应AUDIO_PLAYBACK类型），还在进行录音（对应AUDIO_RECORDING类型），系统会对应用进行管控。\
+场景2：若应用没有申请对应的长时任务类型，但执行了相关类型的长时任务，系统会对应用进行管控。例如系统检测到应用只申请了AUDIO_PLAYBACK（音视频播放），但实际上除了播放音乐（对应AUDIO_PLAYBACK类型），还在进行录制（对应AUDIO_RECORDING类型），系统会对应用进行管控。\
 场景3：若运行长时任务的进程后台负载持续高于所申请类型的典型负载，系统会对应用进行管控。
 
 > **说明：**
@@ -63,17 +62,16 @@
 
 ## 开发步骤
 
-本文以申请录音长时任务为例，示例中包含“申请长时任务”和“取消长时任务”两个按钮，显示效果为：
-- 点击“申请长时任务”按钮，应用申请录音长时任务成功，通知栏显示“正在运行录音任务”通知。
+本文以申请录制长时任务为例，示例中包含“申请长时任务”和“取消长时任务”两个按钮，显示效果为：
+- 点击“申请长时任务”按钮，应用申请录制长时任务成功，通知栏显示“正在运行录制任务”通知。
 - 点击“取消长时任务”按钮，取消长时任务，通知栏撤销相关通知。
 
 ### Stage模型
 
 1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
 
-2. 声明后台模式类型，以及添加uris等配置。
-   - 声明后台模式类型（必填项）：在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
-   - 添加uris等配置（可选项）：长时任务通过第一个元素获取通知标题，若使用隐式跳转等功能，具体格式请参考如下示例。其中，uris在配置项中的位置请严格遵循示例，"scheme"应根据实际业务场景进行修改。
+2. 声明后台模式类型。
+   在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
    
    ```json
     "module": {
@@ -82,24 +80,6 @@
                 "backgroundModes": [
                  // 长时任务类型的配置项
                 "audioRecording"
-                ], 
-                "skills": [
-                    // 需添加隐式跳转的uris配置
-                    {
-                        "entities": [
-                           "entity.system.home"
-                        ],
-                        "actions": [
-                            "action.system.home"
-                        ]    
-                    },
-                    {
-                        "uris": [
-                            {
-                                "scheme": "test"
-                            }
-                        ]
-                    }
                 ]
             }
         ],
@@ -143,7 +123,7 @@
           wants: [
             {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "MainAbility"
             }
           ],
           // 指定点击通知栏消息后的动作是拉起ability
@@ -216,6 +196,7 @@
     }
    ```
    <!--Del-->
+
    **跨设备或跨应用**申请长时任务示例代码如下：
    
    ```ts
@@ -339,8 +320,10 @@
       }
     };
    ```
+
    <!--DelEnd-->
 
+<!--Del-->
 ### FA模型
 
 1. 启动并连接ServiceAbility。
@@ -383,7 +366,7 @@
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
-4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 stopBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
+4. 申请和取消长时任务。在 ServiceAbility 中，调用 [startBackgroundRunning](#接口说明) 接口和 [stopBackgroundRunning](#接口说明) 接口实现长时任务的申请和取消，通过js代码实现。
   
    ```js
     function startContinuousTask() {
@@ -488,7 +471,7 @@
 
     export default new ServiceAbility();
     ```
-
+<!--DelEnd-->
 
 ## 相关实例
 

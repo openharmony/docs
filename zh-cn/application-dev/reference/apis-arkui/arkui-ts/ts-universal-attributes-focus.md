@@ -6,7 +6,11 @@
 >
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  
->  - 焦点开发参考[焦点开发指南](../../../ui/arkts-common-events-focus-event.md)
+>  - 自定义组件无获焦能力，当设置[focusable](#focusable)、[enabled](ts-universal-attributes-enable.md#enabled)等属性为false，或者设置[visibility](ts-universal-attributes-visibility.md#visibility)属性为Hidden、None时，也不影响其子组件的获焦
+>  
+>  - 组件主动获取焦点不受窗口焦点的控制。
+>  
+>  - 焦点开发参考[焦点开发指南](../../../ui/arkts-common-events-focus-event.md).
 
 ## focusable
 
@@ -161,6 +165,16 @@ requestFocus(key: string): void
 >
 >  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
+### activate<sup>14+</sup>
+
+activate(): void
+
+设置当前界面立即进入焦点激活态，界面上出现唯一的获焦组件标识（例如焦点框），与按下Tab键的表现类似。
+
+>  **说明：**
+>
+>  详细介绍请参见[activate](../js-apis-arkui-UIContext.md#activate14)。
+
 ## FocusBoxStyle<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -206,16 +220,15 @@ focusScopeId(id: string, isGroup?: boolean)
 
 设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。 |
-| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。|
+| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。<br/>原子化服务API： 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/> 焦点组不能和tabIndex混用。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。<br/>原子化服务API： 从API version 12开始，该接口支持在原子化服务中使用。|
+| arrowStepOut<sup>14+</sup>  | boolean | 否   | 设置能否使用方向键走焦出当前焦点组。<br/>原子化服务API： 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
@@ -374,13 +387,15 @@ struct FocusableExample {
 
 ### 示例2
 
+> **说明：**
+> 
+> 直接使用focusControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12)获取绑定实例的focusControl。
+
 focusControl.requestFocus示例代码：
 
 使用focusControl.requestFocus接口使指定组件获取焦点。
 ```ts
 // requestFocus.ets
-import { promptAction } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct RequestFocusExample {
@@ -429,11 +444,12 @@ struct RequestFocusExample {
         Button("RequestFocus")
           .width(200).height(70).fontColor(Color.White)
           .onClick(() => {
+            // 建议使用this.getUIContext().getFocusController().requestFocus()
             let res = focusControl.requestFocus(this.selectId)      // 使选中的this.selectId的组件获焦
             if (res) {
-              promptAction.showToast({message: 'Request success'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request success'})
             } else {
-              promptAction.showToast({message: 'Request failed'})
+              this.getUIContext().getPromptAction().showToast({message: 'Request failed'})
             }
           })
       }

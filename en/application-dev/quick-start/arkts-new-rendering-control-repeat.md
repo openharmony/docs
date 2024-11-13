@@ -1,10 +1,12 @@
 # Repeat: Reusing Child Components
 
->**Note:**
+>**NOTE**
 >
 >Repeat is supported since API version 12.
 >
 >State management V2 is still under development, and some features may be incomplete or not always work as expected.
+
+For details about API parameters, see [Repeat APIs](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md).
 
 When **virtualScroll** is disabled, the **Repeat** component, which is used together with the container component, performs loop rendering based on array data. In addition, the component returned by the API should be a child component that can be contained in the **Repeat** parent container. Compared with ForEach, **Repeat** optimizes the rendering performance in some update scenarios and generates function with the index maintained by the framework.
 
@@ -22,6 +24,8 @@ When **virtualScroll** is enabled, **Repeat** iterates data from the provided da
 - **Repeat** can be included in an **if/else** statement, and can also contain such a statement.
 - **Repeat** uses key as identifiers internally. Therefore, the key generator must generate a unique value for each piece of data. If the key generated for multiple pieces of data at the same time are the same, UI component rendering will be faulty.
 - If **virtualScroll** is disabled, the **template** is not supported currently and problems may occur when reusing.
+- When **Repeat** and **\@Builder** are used together, parameters of the **RepeatItem** type must be passed so that the component can listen for data changes. If only **RepeatItem.item** or **RepeatItem.index** is passed, UI rendering exceptions occur.
+- In the virtualScroll scenario, the value of totalCount is customized. When the length of data source changes, the value of totalCount should be manually updated. Otherwise, the rendering exception occurs on the list display area.
 
 ## Key Generation Rules
 
@@ -57,7 +61,7 @@ The following figure describes the node state before sliding.
 
 ![Repeat-Start](./figures/Repeat-Start.png)
 
-Currently, the **Repeat** component has two types of templateId. **templateId a** sets three as its maximum cache value for the corresponding cache pool. **templateId b** sets four as its maximum cache value and preloads one note for its parent components by default. In this case, we swipe right on the screen, and **Repeat** will reuse the nodes in the cache pool.
+Currently, the **Repeat** component has two types of templateId. **templateId a** sets three as its maximum cache value for the corresponding cache pool. **templateId b** sets four as its maximum cache value and preloads one note for its parent components by default. Now swipe right on the screen, and **Repeat** will reuse the nodes in the cache pool.
 
 ![Repeat-Slide](./figures/Repeat-Slide.png)
 
@@ -71,17 +75,23 @@ The **index=10** note slides out of the screen and the preloading range of the p
 
 ![Repeat-Start](./figures/Repeat-Start.png)
 
-In this case, you will delete the **index=12** node, update the data of the **index=13** node, change the **templateId b** to **templateId a** of the **index=14** node, and update the key of the **index=15** node.
+In this case, delete the **index=12** node, update the data of the **index=13** node, change the **templateId b** to **templateId a** of the **index=14** node, and update the key of the **index=15** node.
 
 ![Repeat-Update1](./figures/Repeat-Update1.png)
 
-Now, **Repeat** notifies the parent component to re-lay out the node and compares the keys one by one. If the **key** and **templateId** of the node are the same as those of the original node, you can reuse the note and update the **index** and **data**. If the keys are different, you can reuse the node in the cache pool with the same **templateId** and update the **key**, **index**, and **data**.
+Now, **Repeat** notifies the parent component to re-lay out the nodes and compares the keys one by one. If the template ID of the node is the same as that of the original one, the note is reused to update the **key**, **index** and **data**. Otherwise, the node in the cache pool with the same template ID is reused to update the **key**, **index**, and **data**.
 
 ![Repeat-Update2](./figures/Repeat-Update2.png)
 
-As shown in the preceding figure, you have updated the **data** and **index** of **node 13** and the **templateId** of **node14**. Because of the changed key, **node15** obtains a reuse from the cache pool and updates the **key**, **index**, and **data**. Only the **index** of **node16** and **node17** is updated . The **index=17** node is new and reused from the cache pool.
+As shown in the preceding figure, node13 updates **data** and **index**; node14 updates the template ID and **index** and reuses a node from the cache pool; node15 reuses its own node and updates the **key**, **index**, and **data** synchronously because of the changed **key** and the unchanged template ID; node 16 and node 17 only update the **index**. The **index=17** node is new and reused from the cache pool.
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.png)
+
+## cachedCount Rules
+
+The differences between the **.cachedCount** attribute of the the **List** or **Grid** component and the **cachedCount** attribute of the **Repeat** must be clarified. Both are used to balance performance and memory, but their definitions are different.
+- **.cachedCount** of **List** or **Grid**: indicates the nodes that are located in the component tree and treated as invisible. Container components such as **List** or **Grid** render these nodes to achieve better performance. But **Repeat** treats these nodes as visible.
+- template `cachedCount`: indicates the nodes that are treated as invisible by **Repeat**. These nodes are idle and are temporarily stored in the framework. You can update these nodes as required to implement reuse.
 
 ## Use Scenarios
 
@@ -330,11 +340,11 @@ This example shows four data modifications. Two data items are modified on the u
 
 ```
 // Modify data twice on the current screen.
-onUpdateNode [Hello 14] -> [2_new item]
-onUpdateNode [1_new item] -> [3_new item]
+onUpdateNode [1_new item] -> [2_new item]
+onUpdateNode [2_new item] -> [3_new item]
 ```
 
-Because the rendering nodes does not exist in the upper or lower part of the screen, node reuse does not occur. Modifying a node on the current screen changes the key of the node, triggering re-rendering. In this case, the cache node is found in the cache pool for reuse.
+Because the rendering nodes does not exist in the upper or lower part of the screen, node reuse does not occur. When a node on the current screen is modified, the template ID of the node does not change. Therefore, the node is reused.
 
 **Exchanging Data**
 
@@ -564,7 +574,7 @@ The figure below shows the effect.
 
 ![Repeat-case1-Error](./figures/Repeat-Case1-Error.gif)
 
-In some scenarios, if you do not want the data source change outside the screen to affect the position where the **Scroller** of the **List** stays on the screen, you can use the [onScrollIndex](../ui/arkts-layout-development-create-list.md#responding-to-the-scrolling-position) of the **List** component to listen for the scrolling action. When the list scrolls, you can obtain the scrolling position of a list. Use the [scrollToIndex](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex) feature of the **Scroller** component to slide to the specified **index** position. In this way, when data is added to or deleted from the data source outside the screen, the position where the **Scroller** stays remains unchanged.
+In some scenarios, if you do not want the data source change outside the screen to affect the position where the **Scroller** of the **List** stays on the screen, you can use the [onScrollIndex](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ui/arkts-layout-development-create-list.md#responding-to-the-scrolling-position) of the **List** component to listen for the scrolling action. When the list scrolls, you can obtain the scrolling position of a list. Use the [scrollToIndex](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex) feature of the **Scroller** component to slide to the specified **index** position. In this way, when data is added to or deleted from the data source outside the screen, the position where the **Scroller** stays remains unchanged.
 
 The following code shows the case of adding data to the data source.
 
@@ -639,13 +649,13 @@ The figure below shows the effect.
 
 ![Repeat-case1-Succ](./figures/Repeat-Case1-Succ.gif)
 
-### The **totalCount** value is greater than the length of the page data source.
+### The totalCount Value Is Greater Than the Length of Data Source
 
-When the total length of the data source is large, the lazy data source loading is used to improve the loading speed. As a result, the data length loaded on the page may be less than the total length. To ensure that **Repeat** displays the correct scrollbar style, you need to assign the total data length to **totalCount**. When **totalCount** is greater than the data length loaded on the current page, loop scrolling occurs. This exception is shown as below.
+When the total length of the data source is large, the lazy loading is used to load some data first. To enable **Repeat** to display the correct scrollbar style, you need to change the value of **totalCount** to the total length of data. That is, before all data sources are loaded, the value of **totalCount** is greater than that of **array.length**.
 
-![Repeat-Case2-Error](./figures/Repeat-Case2-Error.gif)
+When the **Repeat** component is initialized, the application must provide sufficient data items for rendering. During the scrolling process of the parent container, the application needs to execute the request instruction for subsequent data items before rendering to ensure that no blank area is displayed during the list sliding process until all data sources are loaded.
 
-To avoid this problem, you need to add the request logic of lazy data loading to the data scrolling event to ensure that no blank area is displayed during list sliding until all data sources are loaded. The sample code is as follows:
+You can use the callback of [onScrollIndex](https://gitee.com/openharmony/docs/blob/master/en/application-dev/ui/arkts-layout-development-create-list.md#controlling-the-scrolling-position) attribute of the **List** or **Grid** parent component to implement the preceding specification. The sample code is as follows:
 
 ```ts
 @ObservedV2
@@ -731,6 +741,6 @@ struct entryCompSucc {
 }
 ```
 
-Checking the Running Result
+The figure below shows the effect.
 
 ![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)

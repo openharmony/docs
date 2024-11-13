@@ -86,7 +86,7 @@ import { router } from '@kit.ArkUI';
 @Component
 struct MyComponent {
   @State showChild: boolean = true;
-  @State btnColor:string = "#FF007DFF"
+  @State btnColor:string = "#FF007DFF";
 
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onPageShow() {
@@ -100,8 +100,8 @@ struct MyComponent {
   // Only components decorated by @Entry can call the lifecycle callbacks of a page.
   onBackPress() {
     console.info('Index onBackPress');
-    this.btnColor ="#FFEE0606"
-    return true // The value true means that the page executes its own return logic instead of the , and false (default) means that the default return logic is used.
+    this.btnColor ="#FFEE0606";
+    return true // The value true means that the page executes its own return logic, and false (default) means that the default return logic is used.
   }
 
   // Component lifecycle
@@ -161,9 +161,12 @@ struct Child {
   }
 
   build() {
-    Text(this.title).fontSize(50).margin(20).onClick(() => {
-      this.title = 'Hello ArkUI';
-    })
+    Text(this.title)
+      .fontSize(50)
+      .margin(20)
+      .onClick(() => {
+        this.title = 'Hello ArkUI';
+      })
   }
 }
 ```
@@ -173,23 +176,23 @@ struct Child {
 @Component
 struct page {
   @State textColor: Color = Color.Black;
-  @State num: number = 0
+  @State num: number = 0;
 
   onPageShow() {
-    this.num = 5
+    this.num = 5;
   }
 
   onPageHide() {
     console.log("page onPageHide");
   }
 
-  onBackPress() {// If the value is not set, false is used.
-    this.textColor = Color.Grey
-    this.num = 0
+  onBackPress() { // If the value is not set, false is used.
+    this.textColor = Color.Grey;
+    this.num = 0;
   }
 
   aboutToAppear() {
-    this.textColor = Color.Blue
+    this.textColor = Color.Blue;
   }
 
   build() {
@@ -200,7 +203,7 @@ struct page {
         .fontColor(this.textColor)
         .margin(20)
         .onClick(() => {
-          this.num += 5
+          this.num += 5;
         })
     }
     .width('100%')

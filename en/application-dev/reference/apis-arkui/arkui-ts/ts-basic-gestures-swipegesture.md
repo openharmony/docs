@@ -9,7 +9,7 @@
 
 ## APIs
 
-SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
+SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -40,6 +40,8 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the swipe gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |

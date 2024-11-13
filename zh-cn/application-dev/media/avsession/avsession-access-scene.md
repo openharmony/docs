@@ -106,7 +106,9 @@ async function setListener() {
     assetId: '0',
     title: 'TITLE',
     mediaImage: 'IMAGE',
-    lyric: 'http://www.test.lyric',
+    // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+    // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+    lyric: "lrc格式歌词内容",
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -486,3 +488,6 @@ async function setListener() {
 >
 > 1. 目前仅audio类型的媒体会话会在通知入口展示，video类型暂时不支持展示。
 > 2. 通知中心、锁屏下的播控卡片的展示，由系统进行发送，并控制相应的生命周期。
+
+<!--RP2-->
+<!--RP2End-->

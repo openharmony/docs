@@ -40,7 +40,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [Sensor_Type](#sensor_type) {<br/>SENSOR_TYPE_ACCELEROMETER = 1, <br/>SENSOR_TYPE_GYROSCOPE = 2,<br/> SENSOR_TYPE_AMBIENT_LIGHT = 5, <br/>SENSOR_TYPE_MAGNETIC_FIELD = 6,<br/>SENSOR_TYPE_BAROMETER = 8,<br/> SENSOR_TYPE_HALL = 10, <br/>SENSOR_TYPE_PROXIMITY = 12,<br/> SENSOR_TYPE_ORIENTATION = 256,<br/>SENSOR_TYPE_GRAVITY = 257, <br/>SENSOR_TYPE_ROTATION_VECTOR = 259, ,<br/>SENSOR_TYPE_PEDOMETER_DETECTION = 265,<br/> SENSOR_TYPE_PEDOMETER = 266,<br/>SENSOR_TYPE_HEART_RATE = 278<br/>} | 枚举传感器类型。  |
+| [Sensor_Type](#sensor_type) {<br/>SENSOR_TYPE_ACCELEROMETER = 1, <br/>SENSOR_TYPE_GYROSCOPE = 2,<br/> SENSOR_TYPE_AMBIENT_LIGHT = 5, <br/>SENSOR_TYPE_MAGNETIC_FIELD = 6,<br/>SENSOR_TYPE_BAROMETER = 8,<br/> SENSOR_TYPE_HALL = 10, <br/>SENSOR_TYPE_PROXIMITY = 12,<br/> SENSOR_TYPE_ORIENTATION = 256,<br/>SENSOR_TYPE_GRAVITY = 257, <br/>SENSOR_TYPE_LINEAR_ACCELERATION = 258,<br/>SENSOR_TYPE_ROTATION_VECTOR = 259,<br/>SENSOR_TYPE_GAME_ROTATION_VECTOR = 262,<br/>SENSOR_TYPE_PEDOMETER_DETECTION = 265,<br/> SENSOR_TYPE_PEDOMETER = 266,<br/>SENSOR_TYPE_HEART_RATE = 278<br/>} | 枚举传感器类型。  |
 | [Sensor_Result](#sensor_result) { <br/>SENSOR_SUCCESS = 0,<br/> SENSOR_PERMISSION_DENIED = 201, <br/>SENSOR_PARAMETER_ERROR = 401,<br/> SENSOR_SERVICE_EXCEPTION = 14500101<br/> } | 定义传感器错误码。  |
 | [Sensor_Accuracy](#sensor_accuracy) { <br/>SENSOR_ACCURACY_UNRELIABLE = 0, <br/>SENSOR_ACCURACY_LOW = 1,<br/> SENSOR_ACCURACY_MEDIUM = 2, <br/>SENSOR_ACCURACY_HIGH = 3 <br/>} | 枚举传感器上报数据的精度级别。 |
 
@@ -63,7 +63,7 @@
 | [OH_SensorEvent_GetType](#oh_sensorevent_gettype)([Sensor_Event](#sensor_event)* sensorEvent, [Sensor_Type](#sensor_type) *sensorType) | 获取传感器类型。  |
 | [OH_SensorEvent_GetTimestamp](#oh_sensorevent_gettimestamp)([Sensor_Event](#sensor_event)* sensorEvent, int64_t *timestamp) | 获取传感器数据的时间戳。                                     |
 | [OH_SensorEvent_GetAccuracy](#oh_sensorevent_getaccuracy)([Sensor_Event](#sensor_event)* sensorEvent, Sensor_Accuracy *accuracy) | 获取传感器数据的精度。                                       |
-| [OH_SensorEvent_GetData](#oh_sensorevent_getdata)([Sensor_Event](#sensor_event)* sensorEvent, float **data, uint32_t *length) | 获取传感器数据。<br/>数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下：<br/>1.SENSOR_TYPE_ACCELEROMETER:data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位m/s²；<br/>2.SENSOR_TYPE_GYROSCOPE:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s；<br/>3.SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，单位lux；从API Version 12开始，将返回两个额外的数据，其中data[1]表示色温，单位kelvin；data[2]表示红外亮度，单位cd/m²；<br/>4. SENSOR_TYPE_MAGNETIC_FIELD:data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉； <br/>5.SENSOR_TYPE_BAROMETER:data[0]表示气压值，单位hPa；<br/>6.SENSOR_TYPE_HALL:data[0]表示皮套吸合状态，0表示打开，大于0表示吸附；<br/>7.SENSOR_TYPE_PROXIMITY:data[0]表示接近状态，0表示接近，大于0表示远离；<br/>8.SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位度；<br/>9.SENSOR_TYPE_GRAVITY:data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位m/s²；<br/>10.SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位度，data[3]表示旋转向量元素；<br/>11.SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示计步检测状态，1表示检测到了步数变化；<br/>12.SENSOR_TYPE_PEDOMETER:data[0]表示步数；<br/>13.SENSOR_TYPE_HEART_RATE:data[0]表示心率数值。 |
+| [OH_SensorEvent_GetData](#oh_sensorevent_getdata)([Sensor_Event](#sensor_event)* sensorEvent, float **data, uint32_t *length) | 获取传感器数据。<br/>数据的长度和内容依赖于监听的传感器类型，传感器上报的数据格式如下：<br/>1.SENSOR_TYPE_ACCELEROMETER:data[0]、data[1]、data[2]分别表示设备x、y、z轴的加速度分量，单位m/s²；<br/>2.SENSOR_TYPE_GYROSCOPE:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s；<br/>3.SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，单位lux；从API Version 12开始，将返回两个额外的数据，其中data[1]表示色温，单位kelvin；data[2]表示红外亮度，单位cd/m²；<br/>4. SENSOR_TYPE_MAGNETIC_FIELD:data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉； <br/>5.SENSOR_TYPE_BAROMETER:data[0]表示气压值，单位hPa；<br/>6.SENSOR_TYPE_HALL:data[0]表示皮套吸合状态，0表示打开，大于0表示吸附；<br/>7.SENSOR_TYPE_PROXIMITY:data[0]表示接近状态，0表示接近，大于0表示远离；<br/>8.SENSOR_TYPE_ORIENTATION:data[0]、data[1]、data[2]分别表示设备绕z、x、y轴的角度，单位度；<br/>9.SENSOR_TYPE_GRAVITY:data[0]、data[1]、data[2]分别表示设备x、y、z轴的重力加速度分量，单位m/s²；<br/>10.SENSOR_TYPE_ROTATION_VECTOR:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角度，单位度，data[3]表示旋转向量元素；<br/>11.SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示计步检测状态，1表示检测到了步数变化；<br/>12.SENSOR_TYPE_PEDOMETER:data[0]表示步数；<br/>13.SENSOR_TYPE_HEART_RATE:data[0]表示心率数值；<br/>14.SENSOR_TYPE_LINEAR_ACCELERATION:从API Version 13开始支持，data[0]、data[1]、data[2]分别表示绕设备的x、y、z的线性加速度，单位m/s²；<br/>15.SENSOR_TYPE_GAME_ROTATION_VECTOR:从API Version 13开始支持，data[0]、data[1]、data[2]分别表示设备分别围绕x、y、z的旋转角度，单位为度，data[3]表示旋转向量。 |
 | [OH_Sensor_CreateSubscriptionId](#oh_sensor_createsubscriptionid)(void) | 创建一个[Sensor_SubscriptionId](#sensor_subscriptionid)实例。 |
 | [OH_Sensor_DestroySubscriptionId](#oh_sensor_destroysubscriptionid)([Sensor_SubscriptionId](#sensor_subscriptionid) *id) | 销毁[Sensor_SubscriptionId](#sensor_subscriptionid)实例并回收内存。 |
 | [OH_SensorSubscriptionId_GetType](#oh_sensorsubscriptionid_gettype)([Sensor_SubscriptionId](#sensor_subscriptionid) *id, [Sensor_Type](#sensor_type) *sensorType) | 获取传感器类型。  |
@@ -554,7 +554,11 @@ SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示计步检测状态，1表示检测�
 
 SENSOR_TYPE_PEDOMETER:data[0]表示步数；
 
-SENSOR_TYPE_HEART_RATE:data[0]表示心率数值。
+SENSOR_TYPE_HEART_RATE:data[0]表示心率数值；
+
+SENSOR_TYPE_LINEAR_ACCELERATION:从API Version 13开始支持，data[0]、data[1]、data[2]分别表示绕设备的x、y、z的线性加速度，单位m/s²；
+
+SENSOR_TYPE_GAME_ROTATION_VECTOR:从API Version 13开始支持，data[0]、data[1]、data[2]分别表示设备分别围绕x、y、z的旋转角度，单位为度，data[3]表示旋转向量。
 
 **起始版本：** 11
 

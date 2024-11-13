@@ -24,8 +24,7 @@ Polyline(value?: {width?: string | number, height?: string | number})
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
+| value | {width?: string \| number, height?: string \| number} | 否 | width：宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>height：高度。<br/>默认值：0<br/>异常值按照默认值处理。|
 
 ## 属性
 

@@ -256,47 +256,6 @@ let result = lightWeightSet.has(123);
 ```
 
 
-### equal
-
-equal(obj: Object): boolean
-
-判断此容器中是否含有该指定obj同类型的对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| obj | Object | 是 | 比较对象。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 构成类型相同返回true，否则返回false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200011 | The equal method cannot be bound. |
-
-**示例：**
-
-```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
-lightWeightSet.add("squirrel");
-lightWeightSet.add("sparrow");
-let obj = ["sparrow", "squirrel"];
-let result = lightWeightSet.equal(obj);
-```
-
-
 ### increaseCapacityTo
 
 increaseCapacityTo(minimumCapacity: number): void
@@ -425,7 +384,7 @@ removeAt(index: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -466,7 +425,7 @@ getValueAt(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -728,10 +687,6 @@ for(let i = 0; i < 10; i++) {
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象,并返回该对象。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -780,4 +735,47 @@ for(let i = 0; i < 10; i++) {
 for(let i = 0; i < 10; i++) {
   lightWeightSet.remove(i + "123");
 }
+```
+
+
+### equal<sup>(deprecated)</sup>
+
+equal(obj: Object): boolean
+
+判断此容器与obj的构成元素是否相同。
+
+> **说明：**
+>
+> 此接口从API version 10开始支持，从API version 12开始废弃。无替代接口。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| obj | Object | 是 | 比较对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 当obj为仅含string或number的LightWeightSet或数组，且对象内部元素构成相同时，返回true；其它情况返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
+**示例：**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["sparrow", "squirrel"];
+let result = lightWeightSet.equal(obj);
 ```

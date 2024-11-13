@@ -1,7 +1,7 @@
 # 出现/消失转场
 
 
-[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)是基础的组件转场接口，用于实现一个组件出现或者消失时的动画效果。可以通过[TransitionEffect](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明)的组合使用，定义出各式效果。
+[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)是基础的组件转场接口，用于实现一个组件出现或者消失时的动画效果。可以通过[TransitionEffect对象](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明)的组合使用，定义出各式效果。
 
 
   **表1** 转场效果接口
@@ -58,7 +58,7 @@
    ...
    // 控制新增或者删除组件
    // 方式一：将控制变量放到animateTo闭包内，未通过animation接口定义动画参数的TransitionEffect将跟随animateTo的动画参数
-   animateTo({ curve: curves.springMotion() }, () => {
+   this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
      this.isPresent = false;
    })
    
@@ -190,7 +190,7 @@ struct Index1 {
     }
     .size({ width: '100%', height: '100%' })
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: DURATION + INTERVAL * (ITEM_COUNTS - 1),
         curve: Curve.Friction
       }, () => {

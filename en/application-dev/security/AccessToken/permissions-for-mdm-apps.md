@@ -457,7 +457,7 @@ Allows a device administrator application to manage the device administrator.
 
 **Valid since**: 12
 
-### ohos.permission.QUERY_AUDIT_EVENT
+## ohos.permission.QUERY_AUDIT_EVENT
 
 Allows an MDM application to query security audit events.
 
@@ -469,3 +469,16 @@ Allows an MDM application to query security audit events.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 12
+
+## ohos.permission.ENTERPRISE_RECOVERY_KEY
+
+Allows an application to manage the enterprise recovery keys.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 13

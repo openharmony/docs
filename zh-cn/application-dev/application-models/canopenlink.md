@@ -15,6 +15,7 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
     ```json
     {
       "module": {
+        //...
         "querySchemes": [
           "app1Scheme"
         ]
@@ -47,8 +48,10 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
 ```json
 {
   "module": {
+    //...
     "abilities": [
       {
+        //...
         "skills": [
           {
             "uris": [

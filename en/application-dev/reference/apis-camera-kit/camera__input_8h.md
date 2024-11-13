@@ -23,7 +23,7 @@ The **camera_input.h** file declares the camera input concepts.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[CameraInput_Callbacks](_camera_input___callbacks.md) | Describes the callbacks used to listen for camera input errors. | 
+| struct  [CameraInput_Callbacks](_camera_input___callbacks.md) | Describes the callbacks used to listen for camera input errors. | 
 
 
 ### Types
@@ -44,4 +44,4 @@ The **camera_input.h** file declares the camera input concepts.
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Open](_o_h___camera.md#oh_camerainput_open) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | Opens a camera. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_OpenSecureCamera](_o_h___camera.md#oh_camerainput_opensecurecamera) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput, uint64_t \*secureSeqId) | Opens a camera in secure mode. | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Close](_o_h___camera.md#oh_camerainput_close) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | Closes a camera. | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Release](_o_h___camera.md#oh_camerainput_release) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | Releases a **CameraInput** instance. | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Release](_o_h___camera.md#oh_camerainput_release) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | Releases a **CameraInput** instance. Either this function or [OH_CameraInput_Close](_o_h___camera.md#oh_camerainput_close) needs to be called. | 

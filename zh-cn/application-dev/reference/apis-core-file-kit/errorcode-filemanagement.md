@@ -16,11 +16,15 @@ Operation not permitted
 
 **可能原因**
 
-当前用户文件操作不被允许。
+当前用户文件操作不被允许，URI或path访问未授权。
 
 **处理步骤**
 
-确认文件权限。
+1、根据当前系统的[访问控制机制](../../security/AccessToken/access-token-overview.md)，应用无法使用分享给其他应用的URI。
+
+2、根据[系统Picker](../../application-models/system-app-startup.md)的运行机制，通过Picker获取到的URI仅有临时权限，无法持久化保存使用。
+
+3、URI路径不推荐进行拼接，拼接后的URI默认未授权。
 
 ### 13900002 没有这个文件或目录
 
@@ -178,15 +182,17 @@ Permission denied
 
 **可能原因**
 
-1.文件操作无权限。
+1.文件操作被DAC或selinux拦截。
 
 2.文件沙箱路径地址错误。
 
 **处理步骤**
 
-1.确认权限。
+1.访问被DAC自主式权限控制权限拦截，请排查文件的UGO权限。
 
-2.确认文件沙箱路径地址。
+2.排查内核日志中是否有[avc拦截日志](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-security-selinux-develop-intro.md)，如果存在avc拦截告警，<!--RP1-->拦截原因分析请参考[SELinux开发说明](../../../device-dev/subsystems/subsys-security-selinux-develop-intro.md)。<!--RP1End-->
+
+3.确认文件的路径是否为应用内的沙箱路径[沙箱路径地址](../../file-management/app-sandbox-directory.md)，文件管理系统禁止操作应用沙箱以外的文档。
 
 ### 13900013 错误的地址
 
@@ -678,7 +684,7 @@ Software caused connection abort
 
 **错误信息**
 
-Invalid display name
+Invalid file name
 
 **可能原因**
 
@@ -692,7 +698,7 @@ Invalid display name
 
 **错误信息**
 
-Invalid uri
+Invalid URI
 
 **可能原因**
 
@@ -720,7 +726,7 @@ Invalid file name extension
 
 **错误信息**
 
-File has been put into trash bin
+File already in the recycle bin
 
 **可能原因**
 
@@ -778,7 +784,7 @@ IPC error
 
 **错误信息**
 
-Not supported filesystem
+File system not supported
 
 **可能原因**
 
@@ -792,7 +798,7 @@ Not supported filesystem
 
 **错误信息**
 
-Failed to mount
+Mount failed
 
 **可能原因**
 
@@ -806,7 +812,7 @@ Failed to mount
 
 **错误信息**
 
-Failed to unmount
+Unmount failed
 
 **可能原因**
 
@@ -834,7 +840,7 @@ Incorrect volume state
 
 **错误信息**
 
-Prepare directory or node error
+Failed to create the drectory or node
 
 **可能原因**
 
@@ -848,7 +854,7 @@ Prepare directory or node error
 
 **错误信息**
 
-Delete directory or node error
+Failed to delete the drectory or node
 
 **可能原因**
 
@@ -880,7 +886,7 @@ No such object
 
 **错误信息**
 
-User id out of range
+User ID out of range
 
 **可能原因**
 
@@ -912,7 +918,7 @@ IPC error
 
 **错误信息**
 
-Invalid uri
+Invalid URI
 
 **可能原因**
 
@@ -926,7 +932,7 @@ Invalid uri
 
 **错误信息**
 
-Fail to get fileextension info
+Failed to obtain the server ability information
 
 **可能原因**
 
@@ -940,7 +946,7 @@ BMS接口异常。
 
 **错误信息**
 
-Get wrong result
+Incorrect result returned by js-server
 
 **可能原因**
 
@@ -954,7 +960,7 @@ server端返回值检查。
 
 **错误信息**
 
-Fail to register notification
+Failed to register Notify
 
 **可能原因**
 
@@ -970,7 +976,7 @@ Fail to register notification
 
 **错误信息**
 
-Fail to remove notification
+Failed to unregister Notify
 
 **可能原因**
 
@@ -986,7 +992,7 @@ Fail to remove notification
 
 **错误信息**
 
-Fail to init notification agent
+Failed to initialize the Notify agent
 
 **可能原因**
 
@@ -1000,7 +1006,7 @@ Fail to init notification agent
 
 **错误信息**
 
-Fail to notify agent
+Failed to notify the agent
 
 **可能原因**
 
@@ -1028,7 +1034,7 @@ Cloud status not ready
 
 **处理步骤**
 
-1.检查是否帐号登录。
+1.检查是否账号登录。
 
 2.检查云同步开关是否打开。
 
@@ -1050,7 +1056,7 @@ Network unavailable
 
 **错误信息**
 
-Battery level warning
+Low battery level
 
 **可能原因**
 

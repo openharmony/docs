@@ -1,10 +1,10 @@
 # 分段式拍照(ArkTS)
 
 分段式拍照是相机的重要功能之一，即应用下发拍照任务后，系统将分多阶段上报不同质量的图片。
-- 在第一阶段，系统快速上报低质量图，应用通过回调会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。
-- 在第二阶段，分段式子服务会根据系统压力及定制化场景进行调度，将后处理好的原图回传给媒体库，替换低质量图。
+- 在第一阶段，系统快速上报轻量处理的图片，轻量处理的图片比全质量图低，出图速度快。应用通过回调会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。
+- 在第二阶段，相机框架会根据应用的请求图片诉求或者在系统闲时，进行图像增强处理得到全质量图，将处理好的图片传回给媒体库，替换轻量处理的图片。
 
-通过分布式拍照，优化了系统的拍照响应时延，从而提升用户体验。
+通过分段式拍照，优化了系统的拍照响应时延，从而提升用户体验。
 
 应用开发分段式拍照主要分为以下步骤：
 
@@ -54,7 +54,7 @@
 3. 设置拍照photoAssetAvailable的回调。
 
    > **注意：**
-   > 如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。
+   > 如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，photoAssetAvailable和photoAvailable同时注册，会导致流被重启，仅photoAssetAvailable生效。
    >
    > 不建议开发者同时注册photoAvailable和photoAssetAvailable。
 
@@ -66,18 +66,58 @@
      }
      console.info('photoOutPutCallBack photoAssetAvailable');
      // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片
-     // 处理方式一：调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片
-     // 处理方式二：调用媒体库接口请求图片并注册低质量图或高质量图buffer回调，自定义使用
+     // 处理方式一：调用媒体库落盘接口保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片
+     mediaLibSavePhoto(photoAsset);
+     // 处理方式二：调用媒体库接口请求图片并注册一阶段图或二阶段图buffer回调，自定义使用
+     mediaLibRequestBuffer(photoAsset);
    }
-   
+
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
      photoOutput.on('photoAssetAvailable', photoAssetAvailableCallback);
    }
+
+   let context = getContext(this);
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+     try {
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+       assetChangeRequest.saveCameraPhoto();
+       await phAccessHelper.applyChanges(assetChangeRequest);
+       console.info('apply saveCameraPhoto successfully');
+     } catch (err) {
+       console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+     }
+   }
+
+   class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+     onDataPrepared(data: ArrayBuffer) {
+       if (data === undefined) {
+         console.error('Error occurred when preparing data');
+         return;
+       }
+       // 应用获取到图片buffer后可自定义处理
+       console.info('on image data prepared');
+     }
+   }
+
+   async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+     let requestOptions: photoAccessHelper.RequestOptions = {
+       // 按照业务需求配置回图模式
+       // FAST_MODE：仅接收一阶段低质量图回调
+       // HIGH_QUALITY_MODE：仅接收二阶段全质量图回调
+       // BALANCE_MODE：接收一阶段及二阶段图片回调
+       deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+     }
+     const handler = new MediaDataHandler();
+     await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+     console.info('requestImageData successfully');
+   }
    ```
 
-   媒体库落盘图片参考：[saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12)
+   落盘图片参考媒体库接口：[saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12)
 
-   媒体库请求图片参考：[requestimagedata](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) 和 [ondataprepare](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11)
+   请求图片参考媒体库接口：[requestImageData](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) 和 [onDataPrepared](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11)
 
 4. 拍照时的会话配置及触发拍照的方式，与普通拍照相同，请参考[拍照](camera-shooting.md)的步骤4-5。
 
@@ -85,7 +125,7 @@
 
 在相机应用开发过程中，可以随时监听拍照输出流状态，包括拍照流开始、拍照帧的开始与结束、拍照输出流的错误。
 
-- 通过注册固定的captureStart回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，拍照第一次曝光时触发，该事件返回此次拍照的captureId。
+- 通过注册固定的captureStart回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，相机设备已经准备开始这次拍照时触发，该事件返回此次拍照的captureId。
 
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
@@ -108,6 +148,19 @@
       }
       console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
       console.info(`frameCount : ${captureEndInfo.frameCount}`);
+    });
+  }
+  ```
+
+- 通过注册固定的captureReady回调函数获取监听可拍下一张结果，photoOutput创建成功时即可监听，当下一张可拍时触发，该事件返回结果为下一张可拍的相关信息。
+
+  ```ts
+  function onPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void {
+    photoOutput.on('captureReady', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
+      console.info(`photo capture ready`);
     });
   }
   ```

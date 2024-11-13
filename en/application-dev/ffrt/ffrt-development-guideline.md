@@ -744,27 +744,7 @@ ID of the task being executed.
 
 ##### Example
 
-```{.c}
-#include "ffrt.h"
-
-int main(int narg, char** argv)
-{
-    static int x = 0;
-    int* xf = &x;
-    void* data = xf;
-    uint64_t timeout1 = 20;
-
-    ffrt::submit([=]() {
-    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
-    ffrt_timer_cb cb;
-    ffrt_timer_start(taskQos, timeout1, data, cb, false);
-    ffrt_usleep(200);
-    }, {}, {});
-    ffrt::wait();
-    return 0;
-}
-
-```
+N/A
 
 #### ffrt_this_task_update_qos
 
@@ -821,7 +801,27 @@ N/A
 
 ##### Example
 
-N/A
+```{.c}
+#include "ffrt.h"
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+
+    ffrt::submit([=]() {
+    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_cb cb;
+    ffrt_timer_start(taskQos, timeout1, data, cb, false);
+    ffrt_usleep(200);
+    }, {}, {});
+    ffrt::wait();
+    return 0;
+} 
+
+```
 
 ### Serial Queue
 
@@ -965,9 +965,7 @@ The main thread queue is obtained for the FFRT thread to communicate with the ma
 
 ##### Example
 ```{.c}
-/**
-This use case needs to be tested in HarmonyOS.
-*/
+This test case must be executed on HarmonyOS.
 #include "ffrt.h"
 
 inline void OnePlusForTest(void* data)
@@ -1025,9 +1023,7 @@ The ArkTS Worker thread queue is obtained for the FFRT thread to communicate wit
 
 ##### Example
 ```{.c}
-/**
-This use case needs to be tested in HarmonyOS.
-*/
+// This test case must be executed on HarmonyOS.
 #include "ffrt.h"
 
 inline void OnePlusForTest(void* data)
@@ -1640,7 +1636,7 @@ void func(void* arg)
 {
     time_t current_time = time(NULL);
     printf("Time: %s", ctime(&current_time));
-    ffrt_usleep(2000000);
+    ffrt_usleep(2000000); // Suspend for 2 seconds
     current_time = time(NULL);
     printf("Time: %s", ctime(&current_time));
 }
@@ -1697,7 +1693,7 @@ int main(int narg, char** argv)
 }
 ```
 
-An output case：
+An output case is as follows:
 
 ```
 Time: Tue Aug 13 15:45:30 2024
@@ -1766,7 +1762,7 @@ Callback function invoked upon a timeout.
 
 `repeat`
 
-Whether to repeat the timer (not supported yet).
+Whether to repeat the timer.
 
 ##### Return value
 
@@ -2204,7 +2200,7 @@ int main(int narg, char** argv)
     
     int ret = ffrt_loop_epoll_ctl(loop, EPOLL_CTL_ADD, testFd, EPOLLIN, (void*)(&testData), testCallBack);
     if (ret == 0) {
-        printf("ffrt_loop_epoll_ctl if the operation is successful.\n");
+        printf("ffrt_loop_epoll_ctl executed successfully.\n");
     }
     ssize_t n = write(testFd, &expected, sizeof(uint64_t));
     usleep(25000);
@@ -2256,7 +2252,7 @@ Callback function invoked upon event changes.
 
 `repeat`
 
-Whether to repeat the timer (not supported yet).
+* Whether to repeat the timer.
 
 ##### Return value
 
@@ -2269,8 +2265,8 @@ N/A
 For details, see the **ffrt_loop_epoll_ctl** interface example.
 
 #### ffrt_loop_timer_stop
-<hr/>
-N/A
+
+Stops the timer.
 
 ##### Declaration
 ```{.c}
@@ -2552,7 +2548,7 @@ In practice, you may not use pure functions in certain scenarios, with the follo
 ### Suggestion 5: C++ APIs recommended
 
 * The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
-* You can download the C++ APIs from the following website: [FFRT C++ APIs](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits)
+* For details about how to download C++ APIs, see [FFRT C++ APIs](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits).
 
 ## Constraints
 

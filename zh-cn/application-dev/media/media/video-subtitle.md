@@ -1,4 +1,4 @@
-# 添加视频外挂字幕
+# 使用AVPlayer添加视频外挂字幕(ArkTS)
 
 当前仅支持视频播放前设置外挂字幕。
 
@@ -51,6 +51,7 @@ import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerSubtitleDemo {
+  private avPlayer: media.AVPlayer | undefined = undefined;
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
@@ -74,34 +75,36 @@ export class AVPlayerSubtitleDemo {
   // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过url属性设置
   async avPlayerSubtitleUrlDemo() {
     // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer()
+    this.avPlayer = await media.createAVPlayer()
     // 设置视频信息
     // 创建回调函数
-    this.setAVPlayerCallback(avPlayer)
+    this.setAVPlayerCallback(this.avPlayer)
 
 
     let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt"
 
-    avPlayer.addSubtitleFromUrl(fdUrl)
+    this.avPlayer.addSubtitleFromUrl(fdUrl)
   }
 
   // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过FromFd属性设置
   async avPlayerSubtitleFromFdDemo() {
     // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer()
+    this.avPlayer = await media.createAVPlayer()
     // 设置视频信息
     // 创建回调函数
-    this.setAVPlayerCallback(avPlayer)
+    this.setAVPlayerCallback(this.avPlayer)
 
     let context = getContext(this) as common.UIAbilityContext
     let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
 
-    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
+    this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
   }
 
   // 注销字幕回调函数
   async avPlayerSubtitleOffDemo() {
-    avPlayer.off('subtitleUpdate')
+    if(this.avPlayer) {
+      this.avPlayer.off('subtitleUpdate')
+    }
   }
 
 }

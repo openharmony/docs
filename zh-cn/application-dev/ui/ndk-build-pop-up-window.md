@@ -10,7 +10,7 @@
 ## 创建和销毁弹窗控制器
 
 - 创建弹窗控制器
-  ArkUI_NativeDialogHandle表示指向弹窗控制器的指针，可以通过调用ArkUI_NativeDialogAPI_x 的create接口创建一个弹窗控制器，
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nativedialoghandle)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)的[create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create)接口创建一个弹窗控制器。
 
   该方法返回ArkUI_NativeDialogHandle类型的数据。
   ```
@@ -66,7 +66,7 @@
    }
    ```
 
-2. 通过controller控制弹窗样式。
+2. 通过controller控制弹窗样式。弹窗接口清单和描述可查看[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)。
    ```
    void ShowDialog() {
        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -99,14 +99,14 @@
 
 可创建交互页面，打开或关闭弹窗。
 
-1. 创建一个可交互的界面，点击Button之后可以弹窗。
+1. 创建一个可交互的界面，点击Button之后可以弹窗。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool isShown = false;
    ArkUI_NativeDialogHandle dialogController;
    ArkUI_NodeHandle buttonNode;
    
-   void MainViewMethod(OH_NativeXComponent *component) {
+   void MainViewMethod(ArkUI_NodeContentHandle handle) {
        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -135,7 +135,7 @@
        nodeAPI->registerNodeEvent(buttonNode, NODE_ON_CLICK, BUTTON_CLICK_ID, nullptr);
        nodeAPI->addNodeEventReceiver(buttonNode, OnButtonClicked);
        nodeAPI->addChild(column, buttonNode);
-       OH_NativeXComponent_AttachNativeRootNode(component, column);
+       OH_ArkUI_NodeContent_AddNode(handle, column);
    }
    ```
 

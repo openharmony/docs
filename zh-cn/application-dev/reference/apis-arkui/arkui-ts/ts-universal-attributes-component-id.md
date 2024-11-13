@@ -4,7 +4,9 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 
 >  **说明：**
 >
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 若同一个组件设置了多个id或者key，最后设置的生效。
 
 ## 属性
 
@@ -194,10 +196,10 @@ class Utils {
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
     let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]     // 相对于组件左上角的水平方向坐标
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]      // 相对于组件左上角的垂直方向坐标
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]    // 相对于组件右下角的水平方向坐标
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]   // 相对于组件右下角的垂直方向坐标
     return Utils.rect_value = {
       "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
     }

@@ -7,6 +7,8 @@
 
 **库：** libohweb.so
 
+**引用文件：** <web/arkweb_type.h>
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 12
@@ -25,8 +27,11 @@
 | struct&nbsp;&nbsp;[ArkWeb_JavaScriptObject](_ark_web___java_script_object.md) | 注入的JavaScript结构体。  | 
 | struct&nbsp;&nbsp;[ArkWeb_ProxyMethod](_ark_web___proxy_method.md) | 注入的Proxy方法通用结构体。  | 
 | struct&nbsp;&nbsp;[ArkWeb_ProxyObject](_ark_web___proxy_object.md) | 注入的Proxy对象通用结构体。  | 
-| struct&nbsp;&nbsp;[ArkWeb_ControllerAPI](_ark_web___controller_a_p_i.md) | Controller相关的Native API结构体。  | 
+| struct&nbsp;&nbsp;[ArkWeb_ControllerAPI](_ark_web___controller_a_p_i.md) | Controller相关的Native API结构体。 在调用API前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。  | 
 | struct&nbsp;&nbsp;[ArkWeb_ComponentAPI](_ark_web___component_a_p_i.md) | Component相关的Native API结构体。  | 
+| struct&nbsp;&nbsp;[ArkWeb_WebMessagePortAPI](_ark_web___web_message_port_a_p_i.md) | Post Message相关的Native API结构体。 在调用API前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。  | 
+| struct&nbsp;&nbsp;[ArkWeb_WebMessageAPI](_ark_web___web_message_a_p_i.md) | Post Message数据相关的Native API结构体。 在调用API前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。  | 
+| struct&nbsp;&nbsp;[ArkWeb_CookieManagerAPI](_ark_web___cookie_manager_a_p_i.md) | 定义了ArkWeb原生CookieManager接口。 在调用API之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。  | 
 
 
 ### 宏定义
@@ -41,6 +46,17 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef enum [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) | Post Message数据类型。  | 
+| typedef struct ArkWeb_WebMessage \* [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) | Post Message数据结构体指针。  | 
 | typedef void(\* [ArkWeb_OnJavaScriptCallback](_web.md#arkweb_onjavascriptcallback)) (const char \*webTag, const [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) \*data, void \*userData) | 注入的JavaScript执行完成的回调。  | 
 | typedef void(\* [ArkWeb_OnJavaScriptProxyCallback](_web.md#arkweb_onjavascriptproxycallback)) (const char \*webTag, const [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md) \*dataArray, size_t arraySize, void \*userData) | Proxy方法被执行的回调。  | 
 | typedef void(\* [ArkWeb_OnComponentCallback](_web.md#arkweb_oncomponentcallback)) (const char \*webTag, void \*userData) | 组件事件通知相关的通用回调。  | 
+| typedef struct ArkWeb_WebMessagePort \* [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) | Post Message端口结构体指针。  | 
+| typedef void(\* [ArkWeb_OnMessageEventHandler](_web.md#arkweb_onmessageeventhandler)) (const char \*webTag, const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) port, const [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) message, void \*userData) | 处理HTML发送过来的Post Message数据。  | 
+
+
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) { [ARKWEB_NONE](_web.md) = 0, [ARKWEB_STRING](_web.md), [ARKWEB_BUFFER](_web.md) } | Post Message数据类型。  | 

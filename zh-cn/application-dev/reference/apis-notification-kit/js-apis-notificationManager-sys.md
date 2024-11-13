@@ -40,8 +40,8 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
@@ -118,8 +118,8 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
@@ -187,8 +187,8 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -245,8 +245,8 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -294,8 +294,8 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -356,8 +356,8 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -411,8 +411,8 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -468,8 +468,8 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -507,7 +507,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise<Array<BundleOption\>> | 返回允许通知的应用程序列表。 | 
+| Promise<Array<[BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)\>> | 返回允许通知的应用程序列表。 | 
 
 **错误码：**
 
@@ -515,8 +515,8 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -562,8 +562,8 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -612,7 +612,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 类型               | 说明                                                |
 | ------------------ | --------------------------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -620,8 +620,8 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -668,8 +668,8 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -717,7 +717,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -725,8 +725,8 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -774,8 +774,8 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -831,8 +831,8 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -879,8 +879,8 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -927,7 +927,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -935,8 +935,8 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -990,8 +990,8 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1044,8 +1044,8 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1106,8 +1106,8 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1164,8 +1164,8 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1212,8 +1212,8 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1268,8 +1268,8 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1317,8 +1317,8 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1375,8 +1375,8 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1424,8 +1424,8 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -1449,7 +1449,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
@@ -1471,8 +1471,8 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -1634,8 +1634,8 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1692,8 +1692,8 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -1740,8 +1740,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -1801,8 +1801,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -1853,8 +1853,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -1918,8 +1918,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -1973,8 +1973,8 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2021,8 +2021,8 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2067,8 +2067,8 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2125,8 +2125,8 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2174,8 +2174,8 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 | 错误码ID | 错误信息                             |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2221,8 +2221,8 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2265,8 +2265,8 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2319,8 +2319,8 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2366,8 +2366,8 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -2427,8 +2427,8 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -2477,8 +2477,8 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -2534,8 +2534,8 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -2583,8 +2583,8 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2629,8 +2629,8 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2676,17 +2676,21 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification disabled.              |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2753,17 +2757,21 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification disabled.                    |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2825,17 +2833,21 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2892,14 +2904,15 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -2953,14 +2966,15 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -3011,8 +3025,8 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
@@ -3020,6 +3034,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600007  | The notification does not exist.            |
 | 1600008  | The user does not exist.                    |
 | 1600012  | No memory space.                          |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -3067,7 +3082,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |  
-| 202      | not system app.                                      |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -3119,8 +3134,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -3176,8 +3191,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -3233,8 +3248,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -3284,8 +3299,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -3343,8 +3358,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -3392,8 +3407,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -3450,8 +3465,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -3499,8 +3514,8 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -3555,8 +3570,8 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -3604,7 +3619,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- | 
-| 202      | not system app.                                      |  
+| 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
@@ -3658,8 +3673,8 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -3709,7 +3724,8 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 202      | not system app.                                      |  
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 
@@ -3757,8 +3773,8 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -3817,7 +3833,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |  
-| 202      | not system app.                                      |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -4097,7 +4113,7 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |  
-| 202      | not system app.                                      |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -4156,8 +4172,8 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Notification
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -4213,8 +4229,8 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -4281,8 +4297,8 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -4354,6 +4370,56 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
   console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.getDoNotDisturbProfile<sup>13+</sup>
+
+getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
+
+查询勿扰模式配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| id   | number | 是  | 勿扰模式编号。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<[DoNotDisturbProfile](#donotdisturbprofile12)\> | Promise对象，返回勿扰模式的配置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201      | Permission denied.     |
+| 202      | Not system application to call the interface.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600019  | The do-not-disturb profile does not exist.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.DoNotDisturbProfile) => {
+  console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
 ```
 

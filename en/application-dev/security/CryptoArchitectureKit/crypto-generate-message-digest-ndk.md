@@ -1,33 +1,6 @@
-# MD Operation (C/C++)
+# MD Operations (C/C++)
 
-
-The message digest (MD) algorithm allows a fixed-length digest to be generated from data of arbitrary size by using the hash algorithm. The MD algorithm is also referred to as a hash algorithm or a one-way hash algorithm.
-
-
-When the same digest algorithm is used, the generated digest (hash value) has the following features:
-
-
-- The same message always results in the same hash value.
-
-- The digest generated is of the fixed length no matter the length of messages. (The digest length is determined by the algorithm used).
-
-- It is almost impossible to find two different messages with the same hash value. (The probability still exists, depending on the length of the digest.)
-
-
-## Supported Algorithms and Specifications
-
-The **Supported Type** column in the following table lists the algorithm to be used when a **Md** instance is created.
-
-| MD Algorithm | Supported Type | API Version |
-| -------- | -------- | -------- |
-| HASH | SHA1 | 9+ |
-| HASH | SHA224 | 9+ |
-| HASH | SHA256 | 9+ |
-| HASH | SHA384 | 9+ |
-| HASH | SHA512 | 9+ |
-| HASH | MD5 | 9+ |
-| HASH | SM3 | 10+ |
-
+For details about the algorithm specifications, see [Supported Algorithms and Specifications](crypto-generate-message-digest-overview.md#supported-algorithms-and-specifications).
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -54,18 +27,19 @@ The following provides examples of MD operations with different data passing met
 
 5. Use [OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy) to destroy the **OH_CryptoDigest** instance.
 
-**Example**
+- **Example**
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_digest.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTestMd()
 {
     OH_Crypto_ErrCode ret;
     OH_CryptoDigest *ctx = nullptr;
-    uint8_t testData[] = "0123456789";
-    Crypto_DataBlob in = {.data = reinterpret_cast<uint8_t *>(testData), .len = sizeof(testData)};
+    char *testData = const_cast<char *>("0123456789");
+    Crypto_DataBlob in = {.data = (uint8_t *)(testData), .len = strlen(testData)};
     Crypto_DataBlob out = {.data = nullptr, .len = 0};
     int mdLen = 0;
     ret = OH_CryptoDigest_Create("SHA256", &ctx);
@@ -101,7 +75,7 @@ static OH_Crypto_ErrCode doTestMd()
 
 5. Use [OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy) to destroy the **OH_CryptoDigest** instance.
 
-**Example**
+- **Example**
 
 ```c++
 #include <stdlib.h>

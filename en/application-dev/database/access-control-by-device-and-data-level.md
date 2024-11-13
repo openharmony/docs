@@ -12,12 +12,12 @@ A higher data security label and device security level indicate stricter encrypt
 
 The data can be rated into four security levels: S1, S2, S3, and S4.
 
-| Risk Level| Security Level| Definition| Example|
+  | Risk Level| Security Level| Definition| Example| 
 | -------- | -------- | -------- | -------- |
-| Critical| S4 | Special data types defined by industry laws and regulations, involving the most private individual information or data that may cause severe adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information|
-| High | S3 | Data that may cause critical adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed. | Individual real-time precise positioning information and movement trajectory |
-| Moderate | S2 | Data that may cause major adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed. | Detailed addresses and nicknames of individuals |
-| Low | S1 | Data that may cause minor adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed. | Gender, nationality, and user application records |
+| Critical| S4 | Special data types defined by industry laws and regulations, involving the most private individual information or data that may cause severe adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information| 
+| High| S3 | Data that may cause critical adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Individual real-time precise positioning information and movement trajectory| 
+| Moderate| S2 | Data that may cause major adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Detailed addresses and nicknames of individuals| 
+| Low| S1 | Data that may cause minor adverse impact on an individual or group once disclosed, tampered with, corrupted, or destroyed.| Gender, nationality, and user application records| 
 
 
 ### Device Security Levels
@@ -40,7 +40,7 @@ In cross-device data sync, data access is controlled based on the device securit
 |SL2|S1 to S2|
 |SL3|S1 to S3|
 |SL4|S1 to S4|
-|SL5|S1 to S4|
+|SL5|S1 to S4| 
 <!--RP2-->
 For example, the security level of development boards RK3568 and Hi3516 is SL1. The database with data security label S1 can be synced with RK3568 and Hi3516, but the databases with database labels S2-S4 cannot.
 <!--RP2End-->
@@ -52,12 +52,17 @@ The access control mechanism ensures secure data storage and sync across devices
 
 ## Setting the Security Level for a KV Store
 
-When a KV store is created, the **securityLevel** parameter specifies the security level of the KV store. The following example shows how to create a KV store with security level of S1.
+When a KV store is created, the **securityLevel** parameter specifies the security level of the KV store. The following example shows how to create a KV store with security level of S3.
 
 For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
+> **NOTE**
+>
+> For the scenarios involving a single device, you can upgrade the security level of a KV store by modifying the **securityLevel** parameter. When upgrading the database security level, observe the following:
+> * This operation does not apply to the databases that require cross-device sync. Data cannot be synced between databases of different security levels. If you want to upgrade the security level of a database that requires cross-device sync, you are advised to create a database of a higher security level.
+> * You need to close the database before modifying the **securityLevel** parameter, and open it after the security level is upgraded.
+> * You cannot downgrade the database security level. For example, you can change the database security level from S2 to S3, but cannot change it from S3 to S2.
 
-
-
+  
 ```ts
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -79,7 +84,7 @@ try {
       backup: false,
       autoSync: false,
       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-      securityLevel: distributedKVStore.SecurityLevel.S1
+      securityLevel: distributedKVStore.SecurityLevel.S3
     };
     kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
       if (err) {
@@ -99,15 +104,14 @@ try {
 }
 ```
 
-
 ## Setting the Security Level for an RDB Store 
 
-When an RDB store is created, the **securityLevel** parameter specifies the security level of the RDB store. The following example shows how to create an RDB store with security level of S1.
+When an RDB store is created, the **securityLevel** parameter specifies the security level of the RDB store. The following example shows how to create an RDB store with security level of S3.
 
 For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
 
-
+  
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { relationalStore } from '@kit.ArkData';
@@ -116,7 +120,7 @@ let store: relationalStore.RdbStore;
 let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {

@@ -170,4 +170,4 @@ The OpenHarmony SDK of API version 11 uses TypeScript 4.9.5, with the **target**
 
 **Differences from Standard TS/JS**
 
-1. In standard TS/JS, the number format of JSON, the decimal point must be followed by a number. Scientific notation such as `2.e3` is not allowed and throws `SyntaxError`. In the ArkCompiler Runtime, this type of scientific notation is allowed.
+In standard TS/JS, the number format of JSON, the decimal point must be followed by a number. Scientific notation such as `2.e3` is not allowed and throws `SyntaxError`. In the ArkCompiler Runtime, this type of scientific notation is allowed.

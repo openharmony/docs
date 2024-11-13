@@ -6,11 +6,10 @@
 >
 >\@Computed装饰器从API version 12开始支持。
 >
->当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
-\@Computed为方法装饰器，修饰getter方法。\@Computed会检测被计算的属性变化，当被计算的属性变化时，\@Computed只会被求解一次。
+\@Computed为方法装饰器，装饰getter方法。\@Computed会检测被计算的属性变化，当被计算的属性变化时，\@Computed只会被求解一次。
 对于复杂的计算，\@Computed会有性能收益。
 
 
@@ -18,7 +17,8 @@
 \@Computed语法：
 
 ```ts
-@Computed get varName(): T {
+@Computed
+get varName(): T {
     return value;
 }
 ```
@@ -28,44 +28,90 @@
 | 支持类型           | getter访问器。 |
 | 从父组件初始化      | 禁止。 |
 | 可初始化子组件      | \@Param  |
-| 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发被计算。当被计算的值改变的时候，计算属性也会发生计算。 |
+| 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发计算。当被计算的值改变的时候，计算属性也会发生计算。 |
+|是否允许赋值         | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](#使用限制)。 |
 
 ## 使用限制
 
-- \@Computed为方法装饰器修饰getter方法，在getter方法中，不能改变参与计算的属性。
+- \@Computed为方法装饰器，仅能装饰getter方法。
 
-```ts
-@Computed
-get fullName() {
-  this.lastName += 'a'; // error
-  return this.firstName + ' ' + this.lastName;
-}
-```
-- \@Computed不能和双向绑定!!连用，即\@Computed修饰的是getter访问器，不会被子组件同步，也不能被赋值。
+  ```ts
+  @Computed
+  get fullName() { // 正确用法
+    return this.firstName + ' ' + this.lastName;
+  }
+  @Computed val: number = 0; // 错误用法，编译时报错
+  @Computed
+  func() { // 错误用法，编译时报错
+  }
+  ```
+- 在\@Computed装饰的getter方法中，不能改变参与计算的属性。
 
+  ```ts
+  @Computed
+  get fullName() {
+    this.lastName += 'a'; // 错误，不能改变参与计算的属性
+    return this.firstName + ' ' + this.lastName;
+  }
+  ```
 
-```ts
-@Computed
-get fullName() {
-  return this.firstName + ' ' + this.lastName;
-}
+- \@Computed不能和双向绑定!!连用，\@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效，且产生运行时报错。
 
-Child({ fullName: this.fullName!! }) // error
-```
+  ```ts
+  @ComponentV2
+  struct Child {
+    @Param double: number = 100;
+    @Event $double: (val: number) => void;
+  
+    build() {
+      Button('ChildChange')
+        .onClick(() => {
+          this.$double(200);
+        })
+    }
+  }
+  
+  @Entry
+  @ComponentV2
+  struct Index {
+    @Local count: number = 100;
+  
+    @Computed
+    get double() {
+      return this.count * 2;
+    }
+  
+    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效，且产生运行时报错
+    set double(newValue : number) {
+      this.count = newValue / 2;
+    }
+  
+    build() {
+      Scroll() {
+        Column({ space: 3 }) {
+          Text(`${this.count}`)
+          // 错误写法，@Computed装饰的属性方法是只读的，无法和双向绑定连用
+          Child({ double: this.double!! })
+        }
+      }
+    }
+  }
+  ```
+
 - \@Computed为状态管理V2提供的能力，只能在\@ComponentV2和\@ObservedV2中使用。
 - 多个\@Computed一起使用时，警惕循环求解。
 
-```ts
-@Local a : number = 1;
-@Computed
-get b() {
-  return this.a + ' ' + this.c;  // error: b -> c -> b
-}
-@Computed
-get c() {
-  return this.a + ' ' + this.b; // error: c -> b -> c
-}
-```
+  ```ts
+  @Local a : number = 1;
+  @Computed
+  get b() {
+    return this.a + ' ' + this.c;  // 错误写法，存在循环b -> c -> b
+  }
+  @Computed
+  get c() {
+    return this.a + ' ' + this.b; // 错误写法，存在循环c -> b -> c
+  }
+  ```
 
 ## 使用场景
 ### 当被计算的属性变化时，\@Computed装饰的getter访问器只会被求解一次
@@ -200,7 +246,7 @@ struct MyView {
 ```
 ### \@Computed装饰的属性可以初始化\@Param
 下面的例子展示了\@Computed初始\@Param。
-- 点击`Button('-')`和`Button('+')`改变商品数量，`quantity`是被\@Trace修饰的，其改变时可以被观察到的。
+- 点击`Button('-')`和`Button('+')`改变商品数量，`quantity`是被\@Trace装饰的，其改变时可以被观察到的。
 - `quantity`的改变触发`total`和`qualifiesForDiscount`重新计算，计算商品总价和是否可以享有优惠。
 - `total`和`qualifiesForDiscount`的改变触发子组件`Child`对应Text组件刷新。
 
@@ -265,7 +311,6 @@ struct Child {
       Text(`Total: ${this.total} `).fontSize(30)
       Text(`Discount: ${this.qualifiesForDiscount} `).fontSize(30)
     }
-
   }
 }
 ```

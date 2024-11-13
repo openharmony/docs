@@ -104,7 +104,7 @@
 | int32_t [OH_PixelMap_CreatePixelMap](#oh_pixelmap_createpixelmap) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, napi_value \*res) | 创建**PixelMap**对象。  | 
 | int32_t [OH_PixelMap_CreatePixelMapWithStride](#oh_pixelmap_createpixelmapwithstride) (napi_env env, [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) info, void \*buf, size_t len, int32_t rowStride, napi_value \*res) | 创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。pixelmap内存在RGBA格式下，默认为DMA内存（图片512\*512以上）。  | 
 | int32_t [OH_PixelMap_CreateAlphaPixelMap](#oh_pixelmap_createalphapixelmap) (napi_env env, napi_value source, napi_value \*alpha) | 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的**PixelMap**对象。  | 
-| [NativePixelMap](#nativepixelmap) \* [OH_PixelMap_InitNativePixelMap](#oh_pixelmap_initnativepixelmap) (napi_env env, napi_value source) | 初始化**PixelMap**对象数据。  | 
+| [NativePixelMap](#nativepixelmap) \* [OH_PixelMap_InitNativePixelMap](#oh_pixelmap_initnativepixelmap) (napi_env env, napi_value source) | 初始化**NativePixelMap**对象。  | 
 | int32_t [OH_PixelMap_GetBytesNumberPerRow](#oh_pixelmap_getbytesnumberperrow) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*num) | 获取**PixelMap**对象每行字节数。  | 
 | int32_t [OH_PixelMap_GetIsEditable](#oh_pixelmap_getiseditable) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*editable) | 获取**PixelMap**对象是否可编辑的状态。  | 
 | int32_t [OH_PixelMap_IsSupportAlpha](#oh_pixelmap_issupportalpha) (const [NativePixelMap](#nativepixelmap) \*native, int32_t \*alpha) | 获取**PixelMap**对象是否支持Alpha通道。  | 
@@ -1049,6 +1049,8 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取最新的一张图片。
 
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
+
 **起始版本：** 10
 
 **参数:**
@@ -1097,6 +1099,8 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 ```
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取下一张图片。
+
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
 
 **起始版本：** 10
 
@@ -1211,7 +1215,7 @@ int32_t OH_Image_Release (ImageNative * native)
 int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 ```
 **描述**
-获取native **ImageNative** 对象的 [OhosImageSize](_ohos_image_size.md) 信息。
+获取native **ImageNative** 对象的 [OhosImageSize](_ohos_image_size.md) 信息。如果[ImageNative](image.md#imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[OhosImageSize](_ohos_image_size.md)中的宽高分别对应YUV图像的宽高；如果[ImageNative](image.md#imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[OhosImageSize](_ohos_image_size.md)中的宽等于JPEG数据大小，高等于1。[ImageNative](image.md#imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[预览流二次处理(C/C++)](../../media/camera/native-camera-preview-imageReceiver.md)与[拍照(C/C++)](../../media/camera/native-camera-shooting.md)。
 
 **起始版本：** 10
 
@@ -1483,7 +1487,7 @@ int32_t OH_ImageSource_Create (napi_env env, struct OhosImageSource * src, struc
 int32_t OH_ImageSource_CreateFromData (napi_env env, uint8_t * data, size_t dataSize, struct OhosImageSourceOps * ops, napi_value * res )
 ```
 **描述**
-通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。
+通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。data数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[OH_PixelMap_CreatePixelMap](./image__pixel__map__mdk_8h.md)这一类接口。
 
 **起始版本：** 11
 
@@ -2479,7 +2483,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap**数据设置项。  | 
+| source | 应用层的 **PixelMap** 对象。  | 
 | alpha | alpha通道的指针。  | 
 
 **返回：**
@@ -2981,7 +2985,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source )
 ```
 **描述**
-初始化**PixelMap**对象数据。
+初始化**NativePixelMap**对象。
 
 **起始版本：** 10
 
@@ -2990,7 +2994,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap** 数据设置项。  | 
+| source | 应用层的 **PixelMap** 对象。  |
 
 **返回：**
 

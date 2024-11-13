@@ -16,6 +16,11 @@
       - [HSP](in-app-hsp.md)
       - [Dynamic Import](arkts-dynamic-import.md)
       - [Lazy Import](arkts-lazy-import.md)
+    - Typical Scenarios Development
+      - [Integrated HSP](integrated-hsp.md)
+      - [Converting HAR to HSP](har-to-hsp.md)
+      - [Converting HSP to HAR](hsp-to-har.md)
+      - [Creating a Static Shortcut of the Application](typical-scenario-configuration.md)
     - [Application Package Installation, Uninstall, and Update](application-package-install-uninstall.md)
   - Application Configuration Files in Stage Model
     - [Overview of Application Configuration Files in Stage Model](application-configuration-file-overview-stage.md)
@@ -43,7 +48,7 @@
   - Basic Syntax of UI Paradigms
     - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
     - [Declarative UI Description](arkts-declarative-ui-description.md)
-    - CustomComponent
+    - Custom Components
       - [Creating a Custom Component](arkts-create-custom-components.md)
       - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
       - [Custom Component Layout](arkts-page-custom-components-layout.md)
@@ -95,15 +100,15 @@
         - [\@Type Decorator: Marking the Types of the Class Property](arkts-new-type.md)
       - Other State Management Features
         - [AppStorageV2: Storing Application-wide UI State](arkts-new-appstoragev2.md)
-        - [PersistenceV2: Application State Persistence](arkts-new-persistencev2.md)
+        - [PersistenceV2: Persisting Application State](arkts-new-persistencev2.md)
         - [!! Syntax: Two-Way Binding](arkts-new-binding.md)
         - [Freezing a Custom Component](arkts-custom-components-freezeV2.md)
         - [Repeat: Reusing Child Components](arkts-new-rendering-control-repeat.md)
-        - [getTarget API: Obtaining the Original Object before the State Management Framework Adding Proxy](arkts-new-getTarget.md)
+        - [getTarget API: Obtaining Original Objects](arkts-new-getTarget.md)
+        - [makeObserved API: Changing Unobservable Data to Observable Data](arkts-new-makeObserved.md)
   - Rendering Control
       - [Rendering Control Overview](arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
       - [ContentSlot: Representing a Placeholder in Hybrid Development](arkts-rendering-control-contentslot.md)
-<!--no_check-->

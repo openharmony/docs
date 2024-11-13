@@ -1,10 +1,12 @@
 # NodeContainer
 
-The **\<NodeContainer>** component is a basic component that accepts an instance of [NodeController](../js-apis-arkui-nodeController.md) and does not allow child nodes to be appended. It must be used together with **NodeController**.
+The **NodeContainer** component is a basic component that accepts an instance of [NodeController](../js-apis-arkui-nodeController.md) and does not allow child nodes to be appended. It must be used together with **NodeController**.
 
 > **NOTE**
 >
 > This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+> Only custom [FrameNodes](../js-apis-arkui-frameNode.md) or the root FrameNode obtained from a [BuilderNode](../js-apis-arkui-builderNode.md) can be attached to this component.
+> [Proxy nodes](../js-apis-arkui-frameNode.md#ismodifiable12) of built-in system components obtained through querying cannot be attached to this component.
 
 ## Child Components
 
@@ -18,11 +20,13 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name    | Type                                            | Mandatory| Description                                                    |
+| Name    | Type                                                | Mandatory| Description                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| controller | [NodeController](../js-apis-arkui-nodeController.md) | Yes  | **NodeController** instance used to control the upper and lower tree nodes in the **\<NodeContainer>**. It represents the lifecycle of the **\<NodeContainer>**.|
+| controller | [NodeController](../js-apis-arkui-nodeController.md) | Yes  | **NodeController** instance used to control the upper and lower tree nodes in the **NodeContainer**. It represents the lifecycle of the **NodeContainer**.|
 
 ## Attributes
 
@@ -35,9 +39,7 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
-
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 declare class Params {
   text: string

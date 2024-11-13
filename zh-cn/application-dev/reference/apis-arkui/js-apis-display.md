@@ -76,6 +76,10 @@ import { display } from '@kit.ArkUI';
 | FOLD_DISPLAY_MODE_SUB | 3 | 表示设备当前子屏幕显示。|
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | 表示设备当前双屏协同显示。|
 
+>**说明：**<br>
+>&bullet; 对于大屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
+>&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
+
 ## FoldCreaseRegion<sup>10+</sup>
 
 折叠折痕区域。
@@ -173,7 +177,7 @@ getDisplayByIdSync(displayId: number): Display
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. 3. Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -561,6 +565,13 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 开启折叠设备折叠状态变化的监听。
 
+本接口监听设备物理折叠状态的变化，[display.on('foldDispla
+yModeChange')](#displayonfolddisplaymodechange10)则监听屏幕显示模式的变化。
+
+两者存在差异，时序上物理折叠状态变化在前，底层会根据物理折叠状态匹配屏幕显示模式状态。
+
+若需监听当前显示内容是显示在折叠设备的内屏还是外屏，请使用[display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -586,6 +597,10 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
+/**
+ * 注册监听的callback参数要采用对象传递.
+ * 若使用匿名函数注册，每次调用会创建一个新的底层对象，引起内存泄漏问题。
+*/
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
@@ -808,6 +823,10 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 
 开启折叠设备屏幕显示模式变化的监听。
 
+本接口监听设备屏幕显示模式的变化，[display.on('foldStatusChange')](#displayonfoldstatuschange10)则监听设备物理折叠状态的变化。
+
+两者存在差异，时序上物理折叠状态变化在前，底层会根据物理折叠状态匹配屏幕显示模式状态。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -833,9 +852,13 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
+/**
+ * 注册监听的callback参数要采用对象传递.
+ * 若使用匿名函数注册，每次调用会创建一个新的底层对象，引起内存泄漏问题。
+*/
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
-};
+}; 
 display.on('foldDisplayModeChange', callback);
 ```
 
@@ -1031,7 +1054,7 @@ promise.then((data: Array<display.Display>) => {
 | rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
-| densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px，支持的范围为[80.0，640.0]。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
+| densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                  |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                    |

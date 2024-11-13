@@ -56,7 +56,7 @@
   ```
 
 
-- 应用侧使用registerJavaScriptProxy()接口注册。
+- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册。
 
   ```ts
   // xxx.ets
@@ -579,11 +579,16 @@
     }
 
     test(): Promise<string> {
-      let p: Promise<string> = new Promise((resolve, reject) => {  setTimeout(() => {console.log('执行完成'); reject('fail');}, 10000);});
+      let p: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('执行完成');
+          reject('fail');
+        }, 10000);
+      });
       return p;
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log(" " + param);
     }
   }

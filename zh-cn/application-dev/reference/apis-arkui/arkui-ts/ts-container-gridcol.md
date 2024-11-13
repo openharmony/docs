@@ -17,13 +17,22 @@ GridCol(option?: GridColOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | option   | [GridColOptions](#gridcoloptions对象说明) | 否   | 栅格布局子组件参数。 |
 
 ## GridColOptions对象说明
-| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件占用栅格容器组件的列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>默认值：1 |
 | offset | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件相对于原本位置偏移的列数。<br/>默认值：0           |
@@ -96,7 +105,9 @@ order(value: number | GridColColumnOption)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填   | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | number | 否    | 在栅格大小为xs的设备上，栅格容器组件的栅格列数。    |
 | sm  | number | 否    | 在栅格大小为sm的设备上，栅格容器组件的栅格列数。      |

@@ -12,15 +12,17 @@ The application sandbox directory specifies the data range visible to an applica
 
 ## Application Permissions
 
-The system has process domain and data domain labels set based on the [Ability Privilege Level (APL)](app-permission-mgmt-overview.md#apl) of an application, and uses the access control mechanism to restrict the data accessible to each application.
+The system has process domain and data domain labels set based on the Ability Privilege Level (APL) of an application, and uses the access control mechanism to restrict the data accessible to each application. This minimizes the risks of application data leakage.
 
 Applications of different APLs can apply for different levels of permissions, and different system resources (such as the Contacts) or system capabilities (such as the capability for accessing a camera or a microphone) are protected by different application permissions. Strict hierarchical permission protection effectively defends against malicious attacks and ensures system security and reliability.
 
 For more information, see [Application Permission Management Overview](app-permission-mgmt-overview.md).
 
-## System Components
+## Secure Access Mechanism
 
-The system also provides temporary authorization methods, such as system Pickers and security components, to allow applications to temporarily access restricted resources without applying for permissions from users. These easy-to-use components implement precise permission control and better protect user privacy.
+OpenHarmony provides a secure access mechanism to redefine the way for applications to obtain private data. Instead of managing permissions, users only need to manage data and grant system data as required. For example, when a user wants to change a profile photo on a social platform, the application can only use the photo selected by the user instead of accessing the Gallery. This mechanism isolates the user's privacy data from the application, safeguarding user privacy.
+
+Specifically, the secure access mechanism is implemented by system Pickers and security components, which allow an application to temporarily access a restricted resource without requesting the permission from the user. This mechanism implements precise permission control while better protecting user privacy.
 
 - [System Pickers](../../application-models/system-app-startup.md)
 
@@ -28,6 +30,6 @@ The system also provides temporary authorization methods, such as system Pickers
 
 - [Security components](security-component-overview.md)
 
-  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the \<**LocationButton**> component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. <br>The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.
+  Security components are a set of button-like ArkUI components provided with certain permissions. You can integrate them to your application UI. When a security component is tapped, the application is temporarily granted with the related permission. For example, you can use the **LocationButton** component for the application that needs to share location information. When this component is tapped by a user, the application is temporarily authorized with the precise location permission and can call the location service to obtain the precise location. 
   
-  <!--no_check-->
+  The permission, however, is temporarily granted to the application and is automatically revoked when the screen is turned off or the application switches to the background or exits.

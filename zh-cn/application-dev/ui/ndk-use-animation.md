@@ -7,17 +7,17 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 > **说明：**
 >
-> - 需要从ArkTS侧获取this.getUIContext()，传入到Native侧。
+> - 需要从ArkTS侧获取[this.getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)，传入到Native侧。
 > 
 > - 在Native侧通过[OH_ArkUI_GetContextFromNapiValue](../reference/apis-arkui/native__node__napi_8h.md)方法获取context。
 > 
-> - 需要执行的动画属性变化必须写在ArkUI_ContextCallback中callback中。
+> - 需要执行的动画属性变化必须写在[ArkUI_ContextCallback](../reference/apis-arkui/_ark_u_i___context_callback.md)中callback中。
 > 
 > - 需要执行的动画属性,必须在执行动画之前设置过。
 
 提供全局animateTo显式动画接口，来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态。
 
-1. 在.ets文件中获取UIContext，把this.getUIContext()当做参数输出到Native方法中。
+1. 在.ets文件中获取[UIContext](../reference//apis-arkui/js-apis-arkui-UIContext.md#uicontext)，把this.getUIContext()当做参数输出到Native方法中。
    ```ts
    // createNativeNode是Native侧暴露的方法
    nativeNode.createNativeNode("xcomponentId", this.getUIContext());
@@ -110,7 +110,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
 
 组件内转场通过NODE_XX_TRANSITION属性（XX包括：OPACITY、TRANSLATE、SCALE、ROTATE、MOVE）配置转场参数，在组件插入和删除时显示过渡动效（通过NODE_TRANSFORM_CENTER属性设置NODE_SCALE_TRANSITION和NODE_ROTATE_ROTATE动效的中心点坐标）。主要用于容器组件中子组件插入和删除时，提升用户体验。
 
-1. 创建可交互界面，界面中包含Button，点击可以控制转场节点的添加和移除。
+1. 创建可交互界面，界面中包含Button，点击可以控制转场节点的添加和移除。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool flag = false;
@@ -118,11 +118,8 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
    ArkUI_NodeHandle childNode;
    ArkUI_NodeHandle buttonNode;
    
-   void mainViewMethod(OH_NativeXComponent *component)
+   void mainViewMethod(ArkUI_NodeContentHandle handle)
    {
-       if (!component) {
-           return;
-       }
        ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -156,7 +153,7 @@ ArkUI开发框架在NDK接口主要提供属性动画，实现组件出现/消�
        parrentNode = column;
        buttonNode = buttonShow;
        nodeAPI->addChild(column, buttonShow);
-       OH_NativeXComponent_AttachNativeRootNode(component, column);
+       OH_ArkUI_NodeContent_AddNode(handle, column);
    }
    ```
 

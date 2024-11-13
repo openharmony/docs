@@ -1,6 +1,6 @@
 # Using AudioRenderer for Audio Playback
 
-The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike the AVPlayer, the AudioRenderer can perform data preprocessing before audio input. Therefore, the AudioRenderer is more suitable if you have extensive audio development experience and want to implement more flexible playback features.
+The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike the [AVPlayer](../media/using-avplayer-for-playback.md), the AudioRenderer can perform data preprocessing before audio input. Therefore, the AudioRenderer is more suitable if you have extensive audio development experience and want to implement more flexible playback features.
 
 ## Development Guidelines
 
@@ -29,7 +29,7 @@ During application development, you are advised to use [on('stateChange')](../..
 ### How to Develop
 
 1. Set audio rendering parameters and create an **AudioRenderer** instance. For details about the parameters, see [AudioRendererOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiorendereroptions8).
-     
+
     ```ts
     import { audio } from '@kit.AudioKit';
 
@@ -62,7 +62,7 @@ During application development, you are advised to use [on('stateChange')](../..
     ```
 
 2. Call **on('writeData')** to subscribe to the audio data write callback.
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo } from '@kit.CoreFileKit';
@@ -77,9 +77,9 @@ During application development, you are advised to use [on('stateChange')](../..
     // Ensure that the resource exists in the path.
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
     let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-   
+
     let writeDataCallback = (buffer: ArrayBuffer) => {
-      
+
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
@@ -92,7 +92,7 @@ During application development, you are advised to use [on('stateChange')](../..
     ```
 
 3. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -106,7 +106,7 @@ During application development, you are advised to use [on('stateChange')](../..
     ```
 
 4. Call **stop()** to stop rendering.
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -120,10 +120,10 @@ During application development, you are advised to use [on('stateChange')](../..
     ```
 
 5. Call **release()** to release the instance.
-     
+
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-
+    
     audioRenderer.release((err: BusinessError) => {
       if (err) {
         console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -133,10 +133,21 @@ During application development, you are advised to use [on('stateChange')](../..
     });
     ```
 
+### Selecting the Correct Stream Usage
+
+When developing a media player, it is important to correctly set the stream usage type according to the intended use case. This will ensure that the player behaves as expected in different scenarios.
+
+The recommended use cases are described in [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage). For example, **STREAM_USAGE_MUSIC** is recommended for music scenarios, **STREAM_USAGE_MOVIE** is recommended for movie or video scenarios, and **STREAM_USAGE_GAME** is recommended for gaming scenarios.
+
+An incorrect configuration of **StreamUsage** may cause unexpected behavior. Example scenarios are as follows:
+
+- When **STREAM_USAGE_MUSIC** is incorrectly used in a game scenario, the game cannot be played simultaneously with music applications. However, games usually can coexist with music playback.
+- When **STREAM_USAGE_MUSIC** is incorrectly used in a navigation scenario, any playing music is interrupted when the navigation application provides audio guidance. However, it is generally expected that the music keeps playing at a lower volume while the navigation is active.
+
 ### Sample Code
 
 Refer to the sample code below to render an audio file using AudioRenderer.
-  
+
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -273,4 +284,4 @@ async function release() {
 }
 ```
 
-When audio streams with the same or higher priority need to use the output device, the current audio playback will be interrupted. The application can respond to and handle the interruption event. For details about how to process concurrent audio playback, see [Audio Playback Concurrency Policies](audio-playback-concurrency.md).
+When audio streams with the same or higher priority need to use the output device, the current audio playback will be interrupted. The application can respond to and handle the interruption event. For details, see [Processing Audio Interruption Events](audio-playback-concurrency.md).

@@ -20,8 +20,8 @@ import { ChildProcessArgs } from '@kit.AbilityKit';
 
 | 名称        | 类型                    | 必填 | 说明                                                         |
 | ----------- | --------------------   | ---- | ------------------------------------------------------------ |
-| entryParams | string                 |  否  | 开发者自定义参数，透传到子进程中。可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.entryParams获取。 |
-| fds         | Record<string, number> |  否  | 文件描述符句柄集合，用于主进程和子进程通信，通过key-value的形式传入到子进程中，可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.fds.xxx获取对应fd句柄。<br/><b>说明：</b>传递到子进程中数字可能会变，但是指向的文件是一致的。|
+| entryParams | string                 |  否  | 开发者自定义参数，透传到子进程中。可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.entryParams获取，entryParams支持传输的最大数据量为150KB。|
+| fds         | Record<string, number> |  否  | 文件描述符句柄集合，用于主进程和子进程通信，通过key-value的形式传入到子进程中，其中key为自定义字符串，value为文件描述符句柄。可以在[ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart)方法中通过args.fds获取fd句柄。<br/><b>说明：</b> <br>- fds最多支持16组，每组key的最大长度为20字符。<br>- 传递到子进程中句柄数字可能会变，但是指向的文件是一致的。|
 
 **示例：**
 

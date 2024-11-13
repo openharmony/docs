@@ -6,7 +6,7 @@ This topic describes how the two application components of the stage model conne
 
 ## UIAbility Accessing a ServiceAbility
 
-A UIAbility accesses a ServiceAbility in the same way as it accesses a ServiceExtensionAbility.
+A [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) accesses a ServiceAbility in the same way as it accesses a [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md).
 
 
 ```ts
@@ -40,7 +40,7 @@ struct Page_StartFAModel {
               onConnect: (elementName, proxy) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
                 promptAction.showToast({
-                  message: $r('app.string.ConnectFAServiceAbility')
+                  message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {
@@ -66,7 +66,7 @@ struct Page_StartFAModel {
 
 ## ExtensionAbility Accessing a ServiceAbility
 
-The following uses the ServiceExtensionAbility component as an example to describe how an ExtensionAbility accesses a ServiceAbility. A ServiceExtensionAbility accesses a ServiceAbility in the same way as it accesses another ServiceExtensionAbility.
+The following uses the [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) component as an example to describe how an [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) accesses a ServiceAbility. A ServiceExtensionAbility accesses a ServiceAbility in the same way as it accesses another ServiceExtensionAbility.
 
 
 ```ts
@@ -100,7 +100,7 @@ struct Page_StartFAModel {
               onConnect: (elementName, proxy) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
                 promptAction.showToast({
-                  message: $r('app.string.ConnectFAServiceAbility')
+                  message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {

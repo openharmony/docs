@@ -5,7 +5,7 @@
 ## 开发步骤
 
 1. 完成分布式组网。
-   首先将需要进行跨设备访问的设备进行同帐号认证完成组网，两个设备是否在同一局域网均可。
+   首先将需要进行跨设备访问的设备进行同账号认证完成组网，两个设备是否在同一局域网均可。
 
 2. 访问跨设备文件。
    同一应用不同设备之间实现跨设备文件访问，只需要将对应的文件放在应用沙箱的分布式文件路径即可。
@@ -30,13 +30,16 @@
      fs.writeSync(file.fd, 'content');
      // 关闭文件
      fs.closeSync(file.fd);
-   } catch (error: BusinessError) {
+   } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`Failed to openSync / writeSync / closeSync. Code: ${err.code}, message: ${err.message}`);
    } 
    ```
 
    设备B主动向设备A发起建链，建链成功后设备B可在分布式路径下读取测试文件。
+   > **说明：**
+   >
+   > 这里通过分布式设备管理的接口获取设备networkId，详见[设备管理接口](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)。
 
    ```ts
    import { fileIo as fs } from '@kit.CoreFileKit';
@@ -60,7 +63,7 @@
    // 访问并挂载公共文件目录
    fs.connectDfs(networkId, listeners).then(() => {
      console.info("Success to connectDfs");
-     let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
+     let context = getContext(); // 获取设备B的UIAbilityContext信息
      let pathDir: string = context.distributedFilesDir;
      // 获取分布式目录的文件路径
      let filePath: string = pathDir + '/test.txt';
@@ -81,7 +84,7 @@
        // 打印读取到的文件数据
        let buf = buffer.from(arrayBuffer, 0, num);
        console.info('read result: ' + buf.toString());
-     } catch (error: BusinessError) {
+     } catch (error) {
        let err: BusinessError = error as BusinessError;
        console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
      }
@@ -96,6 +99,7 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { distributedDeviceManager } from '@kit.DistributedServiceKit'
+   import { fileIo as fs } from '@kit.CoreFileKit';
    
    // 获取设备A的networkId
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");

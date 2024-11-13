@@ -165,11 +165,11 @@ Enumerates the paste options of data.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
-| Name         | Value| Description               |
-|-------------|---|-------------------|
-| INAPP       | 0 | Only intra-application pasting is allowed.     |
-| LOCALDEVICE | 1 | Paste is allowed in any application on the local device.|
-| CROSSDEVICE | 2 | Paste is allowed in any application across devices. |
+| Name                              | Value | Description                                                                                 |
+| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
+| INAPP                              | 0   | Only intra-application pasting is allowed.                                                             |
+| LOCALDEVICE                        | 1   | Paste is allowed in any application on the local device.                                                   |
+| CROSSDEVICE<sup>(deprecated)</sup> | 2   | Paste is allowed in any application across devices.<br>This API has been deprecated since API Version 12. No alternative API or method is available. You can choose **Settings** > **Multi-Device Collaboration** > **Cross-Device Clipboard Switch** to set whether to allow cross-device pasting.|
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -741,7 +741,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900002 | The number of record exceeds the maximum limit. |
+| 12900002 | The number of records exceeds the upper limit. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 
 **Example**
@@ -1503,7 +1503,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1549,7 +1549,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1591,7 +1591,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
@@ -1633,8 +1633,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
-| 201      | Permission verification failed. |
+| 12900003 | Another copy or paste operation is in progress. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **Example**
 
@@ -1702,7 +1702,7 @@ Checks whether the system pasteboard contains data. This API uses a promise to r
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
+| Promise&lt;boolean&gt; | Callback used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
 
 **Example**
 
@@ -1910,7 +1910,7 @@ Checks whether the system pasteboard contains data. This API uses a promise to r
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
+| Promise&lt;boolean&gt; | Callback used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
 
 **Example**
 
@@ -2022,7 +2022,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2058,7 +2058,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2101,7 +2101,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2131,7 +2131,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2169,8 +2169,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
-| 201      | Permission verification failed. |
+| 12900005 | Request timed out. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **Example**
 
@@ -2207,7 +2207,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2226,7 +2226,7 @@ try {
 
 hasDataSync(): boolean
 
-Check whether the system pasteboard contains data. This API returns the result synchronously.
+Checks whether the system pasteboard contains data. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2244,7 +2244,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2266,6 +2266,8 @@ Obtains a **PasteData** object from the pasteboard. This API uses a promise to r
 
 **Required permissions**: ohos.permission.READ_PASTEBOARD
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -2280,8 +2282,8 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 201      | Permission denied. |
-| 12900003 | Another copy or paste is in progress. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900003 | Another copy or paste operation is in progress. |
 
 **Example**
 
@@ -2312,6 +2314,8 @@ Reads data in the system pasteboard. This API returns the result synchronously.
 
 **Required permissions**: ohos.permission.READ_PASTEBOARD
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
 **Return value**
@@ -2326,8 +2330,8 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 201      | Permission denied. |
-| 12900005 | Request time out. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2351,6 +2355,8 @@ Writes a **PasteData** object to the pasteboard. This API uses a promise to retu
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -2370,7 +2376,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900003 | Another copy or paste is in progress. |
+| 12900003 | Another copy or paste operation is in progress. |
 | 12900004 | Replication is prohibited. |
 
 **Example**
@@ -2405,6 +2411,8 @@ Writes data to the system pasteboard. This API returns the result synchronously.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type       | Mandatory| Description            |
@@ -2418,7 +2426,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12900005 | Request time out. |
+| 12900005 | Request timed out. |
 
 **Example**
 
@@ -2442,4 +2450,65 @@ try {
 } catch (err) {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
+```
+### Pattern<sup>13+</sup>
+Describes the modes supported by the pasteboard.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+| Name                              | Value | Description                                                                                 |
+| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
+| URL                              | 0   | URL.                                                             |
+| NUMBER                        | 1   | Number.                                                   |
+| EMAIL_ADDRESS | 2   | Email address.|
+
+### detectPatterns<sup>13+</sup>
+
+detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
+
+Detects patterns on the **local** pasteboard. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| patterns | [Array&lt;Pattern&gt;](#pattern13) | Yes| 	Pattern to be detected in the pasteboard.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise used to return the detected pattern.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { pasteboard } from '@kit.BasicServicesKit'
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+let patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
+
+systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
+    if (patterns.sort().join('')==data.sort().join('')) {
+      console.info('All needed patterns detected, next get data');
+      try {
+        let result: pasteboard.PasteData = systemPasteboard.getDataSync();
+        console.info('Succeeded in getting PasteData.');
+      } catch (err) {
+        console.error('Failed to get PasteData. Cause:' + err.message);
+      };
+    } else {
+      console.info("Not all needed patterns detected, no need to get data.");
+    }
+});
 ```

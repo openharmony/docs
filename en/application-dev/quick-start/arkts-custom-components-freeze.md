@@ -89,11 +89,11 @@ In the preceding example:
 4. When the **back** button is clicked, page B is destroyed, and page A changes from inactive to active. At this time, if the state variable of page A is updated, the @Watch decorated **first** method of page A is called again.
 
 
-### \<TabContent>
+### TabContent
 
-- You can freeze invisible **\<TabContent>** components in the **\<Tabs>** container so that they do not trigger UI re-rendering.
+- You can freeze invisible **TabContent** components in the **Tabs** container so that they do not trigger UI re-rendering.
 
-- During initial rendering, only the **\<TabContent>** component that is being displayed is created. All **\<TabContent>** components are created only after all of them have been switched to.
+- During initial rendering, only the **TabContent** component that is being displayed is created. All **TabContent** components are created only after all of them have been switched to.
 
 ```ts
 @Entry
@@ -146,11 +146,11 @@ struct FreezeChild {
 
 In the preceding example:
 
-1. When **change message** is clicked, the value of **message** changes, and the @Watch decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
+1. When **change message** is clicked, the value of **message** changes, and the @Watch decorated **onMessageUpdated** method of the **TabContent** component being displayed is called.
 
-2. When you click **two** to switch to another **\<TabContent>** component, it switches from inactive to active, and the corresponding @Watch decorated **onMessageUpdated** method is called.
+2. When you click **two** to switch to another **TabContent** component, it switches from inactive to active, and the corresponding @Watch decorated **onMessageUpdated** method is called.
 
-3. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
+3. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **onMessageUpdated** method of the **TabContent** component being displayed is called.
 
 ![TabContent.gif](figures/TabContent.gif)
 
@@ -311,7 +311,9 @@ In the preceding example:
 
 ### Navigation
 
-- Freezing an invisible page does not trigger component update. When the page is returned, the @Watch callback is triggered to refresh the page.
+- When the navigation destination page is invisible, its child custom components are set to the inactive state and will not be re-rendered. When return to this page, its child custom components are restored to the active state and the @Watch callback is triggered to re-render the page.
+
+- In the following example, **NavigationContentMsgStack** is set to the inactive state, which does not respond to the change of the state variables, and does not trigger component re-rendering.
 
 ```ts
 @Entry

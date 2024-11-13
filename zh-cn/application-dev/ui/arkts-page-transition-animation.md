@@ -157,7 +157,6 @@ pageTransition() {
 
 ```ts
 // PageTransitionSrc1
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionSrc1 {
@@ -174,12 +173,12 @@ struct PageTransitionSrc1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一个页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -209,7 +208,6 @@ struct PageTransitionSrc1 {
 
 ```ts
 // PageTransitionDst1
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionDst1 {
@@ -226,12 +224,12 @@ struct PageTransitionDst1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -267,7 +265,6 @@ struct PageTransitionDst1 {
 
 ```ts
 // PageTransitionSrc2
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionSrc2 {
@@ -284,12 +281,12 @@ struct PageTransitionSrc2 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionDst2' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionDst2' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -313,7 +310,6 @@ struct PageTransitionSrc2 {
 
 ```ts
 // PageTransitionDst2
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionDst2 {
@@ -330,12 +326,12 @@ struct PageTransitionDst2 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc2' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionSrc2' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }

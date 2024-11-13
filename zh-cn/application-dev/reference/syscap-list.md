@@ -536,6 +536,14 @@ GNSS硬件相关能力
 |---------|--------|--------------|
 | 是       | 是      | 否            |
 
+## SystemCapability.Multimedia.Media.AVTranscoder
+
+获取视频转码能力
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
 ## SystemCapability.Multimedia.AVSession.Core
 
 媒体会话基础能力
@@ -1474,11 +1482,91 @@ OAID管理服务
 
 ## SystemCapability.Security.CryptoFramework
 
-加解密算法库框架-加解密基础能力
+加解密算法库框架-加解密算法库框架基础
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 是            |
+
+## SystemCapability.Security.CryptoFramework.Key
+
+加解密算法库框架-密钥基础类型
 
 | Default | Tablet | LiteWearable |
 |---------|--------|--------------|
 | 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.Key.SymKey
+
+加解密算法库框架-对称密钥
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+加解密算法库框架-非对称密钥
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.Signature
+
+加解密算法库框架-签名验签
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.Cipher
+
+加解密算法库框架-对称、非对称加解密
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.KeyAgreement
+
+加解密算法库框架-密钥协商
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.MessageDigest
+
+加解密算法库框架-消息摘要
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 是            |
+
+## SystemCapability.Security.CryptoFramework.Mac
+
+加解密算法库框架-消息验证码
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.Kdf
+
+加解密算法库框架-密钥派生
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
+## SystemCapability.Security.CryptoFramework.Rand
+
+加解密算法库框架-随机数
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 是            |
 
 ## SystemCapability.Security.Cert
 

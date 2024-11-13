@@ -25,7 +25,7 @@
 - **跨应用启动组件，需校验目标组件Visible**
   - 只针对跨应用场景。
   - 若目标组件visible字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限（该权限仅系统应用可申请）。
-  - [组件visible配置参考](../quick-start/module-structure.md#abilities对象的内部结构)。
+  - 组件visible配置参考[abilities对象的内部结构](../quick-start/module-structure.md#abilities对象的内部结构)的visible属性。
 
 - **位于后台的应用，启动组件需校验BACKGROUND权限**
 > **说明：**

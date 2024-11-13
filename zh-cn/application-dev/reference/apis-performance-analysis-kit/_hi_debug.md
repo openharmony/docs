@@ -831,3 +831,24 @@ HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture ()
 **返回：**
 
 0 - 成功 11400104 - 系统内部的原因 11400105 - 没有trace正在采集。
+
+### OH_HiDebug_GetGraphicsMemory();
+```
+HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
+```
+
+**描述**
+
+获取应用gpu显存大小。
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述                              |
+| -------- |---------------------------------|
+| value | 指向用来保存接口获取到的应用显存大小（单位KB）的变量的指针。 |
+
+**返回：**
+
+0 - 成功 401 - 传入参数无效 11400104 - 系统内部异常。

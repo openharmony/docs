@@ -28,37 +28,37 @@
 
     | 所属包名         | 方法声明                        |起始API Level|
     | ----------- | ------------------------- |------------------------- |
-    | AccessibilityExtensionContext | setTargetBundleName(targetNames: Array<string>, callback: AsyncCallback<void>): void;   |9   |
-    | AccessibilityExtensionContext | setTargetBundleName(targetNames: Array<string>): Promise<void>;   |9   |
-    | AccessibilityExtensionContext | getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback<AccessibilityElement>): void;   |9   |
-    | AccessibilityExtensionContext | getFocusElement(isAccessibilityFocus?: boolean): Promise<AccessibilityElement>;   |9   |
-    | AccessibilityExtensionContext | getFocusElement(callback: AsyncCallback<AccessibilityElement>): void;   |9   |
-    | AccessibilityExtensionContext | getWindowRootElement(windowId: number, callback: AsyncCallback<AccessibilityElement>): void; |9   |
-    | AccessibilityExtensionContext | getWindowRootElement(windowId?: number): Promise<AccessibilityElement>; |9   |
-    | AccessibilityExtensionContext |  getWindowRootElement(callback: AsyncCallback<AccessibilityElement>): void; |9   |
-    | AccessibilityExtensionContext |  getWindows(displayId: number, callback: AsyncCallback<Array<AccessibilityElement>>): void; |9   |
-    | AccessibilityExtensionContext |   getWindows(displayId?: number): Promise<Array<AccessibilityElement>>; |9   |
-    | AccessibilityExtensionContext |  getWindows(callback: AsyncCallback<Array<AccessibilityElement>>): void; |9   |
+    | AccessibilityExtensionContext | setTargetBundleName(targetNames: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;   |9   |
+    | AccessibilityExtensionContext | setTargetBundleName(targetNames: Array&lt;string&gt;): Promise&lt;void&gt;;   |9   |
+    | AccessibilityExtensionContext | getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback&lt;AccessibilityElement&gt;): void;   |9   |
+    | AccessibilityExtensionContext | getFocusElement(isAccessibilityFocus?: boolean): Promise&lt;AccessibilityElement&gt;;   |9   |
+    | AccessibilityExtensionContext | getFocusElement(callback: AsyncCallback&lt;AccessibilityElement&gt;): void;   |9   |
+    | AccessibilityExtensionContext | getWindowRootElement(windowId: number, callback: AsyncCallback&lt;AccessibilityElement&gt;): void; |9   |
+    | AccessibilityExtensionContext | getWindowRootElement(windowId?: number): Promise&lt;AccessibilityElement&gt;; |9   |
+    | AccessibilityExtensionContext |  getWindowRootElement(callback: AsyncCallback&lt;AccessibilityElement&gt;): void; |9   |
+    | AccessibilityExtensionContext |  getWindows(displayId: number, callback: AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt;): void; |9   |
+    | AccessibilityExtensionContext |   getWindows(displayId?: number): Promise&lt;Array&lt;AccessibilityElement&gt;&gt;; |9   |
+    | AccessibilityExtensionContext |  getWindows(callback: AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt;): void; |9   |
     | AccessibilityExtensionContext |  injectGestureSync(gesturePath: GesturePath): void; |10   |
-    | AccessibilityExtensionContext |   attributeNames<T extends keyof ElementAttributeValues>(callback: AsyncCallback<Array<T>>): void; |9   |
-    | AccessibilityExtensionContext |   attributeNames<T extends keyof ElementAttributeValues>(): Promise<Array<T>>; |9   |
-    | AccessibilityExtensionContext |   attributeValue<T extends keyof ElementAttributeValues>(attributeName: T, callback: AsyncCallback<ElementAttributeValues[T]>): void; |9   |
-    | AccessibilityExtensionContext | attributeValue<T extends keyof ElementAttributeValues>(attributeName: T): Promise<ElementAttributeValues[T]>; |9   |
-    | AccessibilityExtensionContext |   actionNames(callback: AsyncCallback<Array<string>>): void; |9   |
-    | AccessibilityExtensionContext |   actionNames(): Promise<Array<string>>; |9   |
-    | AccessibilityExtensionContext | performAction(actionName: string, parameters: object, callback: AsyncCallback<void>): void; |9   |
-    | AccessibilityExtensionContext |   performAction(actionName: string, parameters?: object): Promise<void>; |9   |
-    | AccessibilityExtensionContext |   performAction(actionName: string, callback: AsyncCallback<void>): void; |9   |
-    | AccessibilityExtensionContext |  findElement(type: 'content', condition: string, callback: AsyncCallback<Array<AccessibilityElement>>): void; |9   |
-    | AccessibilityExtensionContext | findElement(type: 'content', condition: string): Promise<Array<AccessibilityElement>>; |9   |
-    | AccessibilityExtensionContext | findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback<AccessibilityElement>): void; |9   |
-    | AccessibilityExtensionContext | findElement(type: 'focusType', condition: FocusType): Promise<AccessibilityElement>; |9   |
-    | AccessibilityExtensionContext | findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback<AccessibilityElement>): void; |9   |
-    | AccessibilityExtensionContext |   findElement(type: 'focusDirection', condition: FocusDirection): Promise<AccessibilityElement>; |9   |
-    | ohos.accessibility | function on(type: 'accessibilityStateChange', callback: Callback<boolean>): void; |7   |
-    | ohos.accessibility |  function on(type: 'touchGuideStateChange', callback: Callback<boolean>): void; |7   |
-    | ohos.accessibility | function off(type: 'accessibilityStateChange', callback?: Callback<boolean>): void; |7   |
-    | ohos.accessibility | function off(type: 'touchGuideStateChange', callback?: Callback<boolean>): void; |7   |
+    | AccessibilityExtensionContext |   attributeNames&lt;T extends keyof ElementAttributeValues&gt;(callback: AsyncCallback&lt;Array&lt;T&gt;&gt;): void; |9   |
+    | AccessibilityExtensionContext |   attributeNames&lt;T extends keyof ElementAttributeValues&gt;(): Promise&lt;Array&lt;T&gt;&gt;; |9   |
+    | AccessibilityExtensionContext |   attributeValue&lt;T extends keyof ElementAttributeValues&gt;(attributeName: T, callback: AsyncCallback&lt;ElementAttributeValues[T]&gt;): void; |9   |
+    | AccessibilityExtensionContext | attributeValue&lt;T extends keyof ElementAttributeValues&gt;(attributeName: T): Promise&lt;ElementAttributeValues[T]&gt;; |9   |
+    | AccessibilityExtensionContext |   actionNames(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void; |9   |
+    | AccessibilityExtensionContext |   actionNames(): Promise&lt;Array&lt;string&gt;&gt;; |9   |
+    | AccessibilityExtensionContext | performAction(actionName: string, parameters: object, callback: AsyncCallback&lt;void&gt;): void; |9   |
+    | AccessibilityExtensionContext |   performAction(actionName: string, parameters?: object): Promise&lt;void&gt;; |9   |
+    | AccessibilityExtensionContext |   performAction(actionName: string, callback: AsyncCallback&lt;void&gt;): void; |9   |
+    | AccessibilityExtensionContext |  findElement(type: 'content', condition: string, callback: AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt;): void; |9   |
+    | AccessibilityExtensionContext | findElement(type: 'content', condition: string): Promise&lt;Array&lt;AccessibilityElement&gt;&gt;; |9   |
+    | AccessibilityExtensionContext | findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback&lt;AccessibilityElement&gt;): void; |9   |
+    | AccessibilityExtensionContext | findElement(type: 'focusType', condition: FocusType): Promise&lt;AccessibilityElement&gt;; |9   |
+    | AccessibilityExtensionContext | findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback&lt;AccessibilityElement&gt;): void; |9   |
+    | AccessibilityExtensionContext |   findElement(type: 'focusDirection', condition: FocusDirection): Promise&lt;AccessibilityElement&gt;; |9   |
+    | ohos.accessibility | function on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void; |7   |
+    | ohos.accessibility |  function on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void; |7   |
+    | ohos.accessibility | function off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void; |7   |
+    | ohos.accessibility | function off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void; |7   |
     | ohos.accessibility |   function getCaptionsManager(): CaptionsManager; |8   |
     | ohos.application.AccessibilityExtensionAbility |   onConnect(): void; |9   |
     | ohos.application.AccessibilityExtensionAbility |   onDisconnect(): void; |9   |
@@ -72,10 +72,10 @@
 
     | 所属包名         | 方法声明                        |起始API Level|
     | ----------- | ------------------------- |------------------------- |
-    | AccessibilityExtensionContext | getCursorPosition(callback: AsyncCallback<number>): void;   |12   |
-    | AccessibilityExtensionContext | getCursorPosition(): Promise<number>;   |12   |
-    | AccessibilityExtensionContext | findElement(type: 'textType', condition: string): Promise<Array<AccessibilityElement>>;   |12   |
-    | AccessibilityExtensionContext | findElement(type: 'elementId', condition: number): Promise<AccessibilityElement>;   |12   |
+    | AccessibilityExtensionContext | getCursorPosition(callback: AsyncCallback&lt;number&gt;): void;   |12   |
+    | AccessibilityExtensionContext | getCursorPosition(): Promise&lt;number&gt;;   |12   |
+    | AccessibilityExtensionContext | findElement(type: 'textType', condition: string): Promise&lt;Array&lt;AccessibilityElement&gt;&gt;;   |12   |
+    | AccessibilityExtensionContext | findElement(type: 'elementId', condition: number): Promise&lt;AccessibilityElement&gt;;   |12   |
 
 
 3. 设置-辅助功能下，不再提供已安装的服务查询和管理功能。

@@ -66,7 +66,7 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 mask(value: ProgressMask)
 
-为组件上添加指定形状的遮罩。
+为组件上添加可调节进度的遮罩。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

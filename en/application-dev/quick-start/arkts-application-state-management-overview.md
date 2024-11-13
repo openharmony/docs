@@ -4,7 +4,7 @@
 The decorators described in the previous topics are used to share state variables within a page, that is, within a component tree. If you want to share state data at the application level or across multiple pages, you would need to apply application-level state management. ArkTS provides a wide variety of application state management capabilities:
 
 
-- [LocalStorage](arkts-localstorage.md): API for storing the UI state, usually used for state sharing within a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) or between pages.
+- [LocalStorage](arkts-localstorage.md): API for storing the UI state, usually used for state sharing within a [UIAbility](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) or between pages.
 
 - [AppStorage](arkts-appstorage.md): special, singleton LocalStorage object within the application, which is created by the UI framework at application startup and provides the central storage for application UI state attributes.
 

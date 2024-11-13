@@ -16,9 +16,9 @@ In addition to the preceding classes, you can also use Media Kit to implement au
 
 ## Precautions for Developing Audio Recording Applications
 
-The application must request the **ohos.permission.MICROPHONE** permission from the user before invoking the microphone to record audio.
-
-1. [Declare the permission](../../security/AccessToken/declare-permissions.md).
-2. [Request user authorization](../../security/AccessToken/request-user-authorization.md).
-
+The application must request the **ohos.permission.MICROPHONE** permission from the user before invoking the microphone to record audio. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+  
 For details about how to use and manage microphones, see [Microphone Management](mic-management.md).
+
+- If continuous recording or background recording is required, the application must request a continuous task to prevent it from being suspended. For details, see [Continuous Task](../../task-management/continuous-task.md).
+- The application must start recording when it runs in the foreground. It can switch to the background after the recording is started. Recording cannot be started in the background.

@@ -4,12 +4,12 @@ The **GesturePath** module provides APIs for creating gesture path information r
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
+import { GesturePath } from '@kit.AccessibilityKit';
 ```
 
 ## GesturePath
@@ -18,18 +18,22 @@ Defines a gesture path.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Properties
 
-| Name          | Type                                    | Readable  | Writable  | Description    |
-| ------------ | ---------------------------------------- | ---- | ---- | ------ |
+| Name          | Type                                                                             | Readable  | Writable  | Description    |
+| ------------ |---------------------------------------------------------------------------------| ---- | ---- | ------ |
 | points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | Yes   | Yes   | Gesture touch point.   |
-| durationTime | number                                   | Yes   | Yes   | Total gesture duration, in milliseconds.|
+| durationTime | number                                                                          | Yes   | Yes   | Total gesture duration, in milliseconds.|
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(durationTime: number);
 
-Constructor used to create a **GesturePath** object.
+A constructor used to create a **Highlights** album instance.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -42,7 +46,7 @@ Constructor used to create a **GesturePath** object.
 **Example**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
+import { GesturePath } from '@kit.AccessibilityKit';
 
-let gesturePath = new GesturePath.GesturePath(20);
+let gesturePath = new GesturePath(20);
 ```

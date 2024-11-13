@@ -13,14 +13,14 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
 > 
 > - 针对Native侧修改ArkTS组件的场景，需要在Native侧通过Node-API方式构建ArkTS侧的更新数据，再通过ComponentContent的[update](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#update)接口更新。
 > 
-> - [自定义场景](ndk-build-custom-components.md)下，相关函数如measureNode等无法对ArkTS模块内部的组件进行调用。
+> - [构建自定义组件](ndk-build-custom-components.md)时，相关函数如measureNode等无法对ArkTS模块内部的组件进行调用。
 
 
 以下示例代码在[接入ArkTS页面](ndk-access-the-arkts-page.md)章节基础上引入ArkTS的Refresh组件。
 
 
 **图1** Refresh组件挂载文本列表
-  
+
 ![refresh_text_list](figures/refresh_text_list.gif)
 
 
@@ -202,9 +202,9 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
 
    ```cpp
    // native_init.cpp
+   #include "napi/native_api.h"
    #include "ArkUIMixedRefresh.h"
    #include "NativeEntry.h"
-   #include "napi/native_api.h"
    
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {

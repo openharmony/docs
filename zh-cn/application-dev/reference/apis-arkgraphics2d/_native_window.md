@@ -46,11 +46,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS, SET_SOURCE_TYPE,GET_SOURCE_TYPE,SET_APP_FRAMEWORK_TYPE,GET_APP_FRAMEWORK_TYPE<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
+| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE, SET_SOURCE_TYPE, GET_SOURCE_TYPE,<br/>SET_APP_FRAMEWORK_TYPE, GET_APP_FRAMEWORK_TYPE, SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS,<br/>SET_DESIRED_PRESENT_TIMESTAMP = 24<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式Scaling Mode。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 | [OHScalingModeV2](#ohscalingmodev2-1) {<br/>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br/>OH_SCALING_MODE_SCALE_FIT_V2<br/>} | 渲染缩放模式枚举。  | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br/>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br/>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br/>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br/>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br/>} | 枚举HDR元数据关键字。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
 | [OHSurfaceSource](#ohsurfacesource-1) {<br/>OH_SURFACE_SOURCE_DEFAULT = 0, OH_SURFACE_SOURCE_UI, OH_SURFACE_SOURCE_GAME, OH_SURFACE_SOURCE_CAMERA,OH_SURFACE_SOURCE_VIDEO<br/>} | 本地窗口内容来源类型枚举。 | 
 
 ### 函数
@@ -241,8 +241,11 @@ enum OHNativeErrorCode
 | NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED | 消费端未注册listener回调函数 |
 | NATIVE_ERROR_UNSUPPORTED  | 当前设备或平台不支持   | 
 | NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志   | 
+| NATIVE_ERROR_HDI_ERROR  | HDI接口调用失败   | 
+| NATIVE_ERROR_BINDER_ERROR  | 跨进程通信失败   | 
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
 | NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
+
 
 ### NativeWindowOperation
 
@@ -260,28 +263,29 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | -------- | -------- |
 | SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形， 函数中的可变参数是 [输入] int32_t width，[输入] int32_t height。 | 
 | GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形， 函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 | 
-| GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format。 | 
-| SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format。 | 
-| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] uint64_t \*usage。 | 
-| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] uint64_t usage。 | 
-| SET_STRIDE | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride。 | 
-| GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride。 | 
-| SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。 | 
-| GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔， 函数中的可变参数是 [输出] int32_t \*interval。 | 
-| SET_TIMEOUT | 设置请求本地窗口缓冲区的超时等待时间， 函数中的可变参数是 [输入] int32_t timeout。 | 
-| GET_TIMEOUT | 获取请求本地窗口缓冲区的超时等待时间， 函数中的可变参数是 [输出] int32_t \*timeout。 | 
-| SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间， 函数中的可变参数是 [输入] int32_t colorGamut。 | 
-| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间， 函数中的可变参数是 [out int32_t \*colorGamut]。 | 
-| SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform。 | 
-| GET_TRANSFORM | 获取本地窗口缓冲区变换， 函数中的可变参数是 [输出] int32_t \*transform。 | 
+| GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
+| SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
+| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] uint64_t \*usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
+| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] uint64_t usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
+| SET_STRIDE | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride，单位为Byte。 | 
+| GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride，单位为Byte。 | 
+| SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。<br>从API version 14开始废弃，无替代接口。 | 
+| GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔， 函数中的可变参数是 [输出] int32_t \*interval。<br>从API version 14开始废弃，无替代接口。 | 
+| SET_TIMEOUT | 设置请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输入] int32_t timeout，单位为毫秒。 | 
+| GET_TIMEOUT | 获取请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输出] int32_t \*timeout，单位为毫秒。 | 
+| SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间， 函数中的可变参数是 [输入] int32_t colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
+| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间， 函数中的可变参数是 [out int32_t \*colorGamut]，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
+| SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
+| GET_TRANSFORM | 获取本地窗口缓冲区变换， 函数中的可变参数是 [输出] int32_t \*transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
 | SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳， 函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
-| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size。<br/>从API version 12开始支持此枚举。 | 
-| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
-| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
-| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。 |
-| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。|
-| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType，最大支持64字节。 |
-| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 |
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size. | 
+| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t sourceType， 取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
+| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType， 取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
+| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType， 最大支持64字节。 | 
+| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 | 
+| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
+| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
+| SET_DESIRED_PRESENT_TIMESTAMP<sup>13+</sup> | 设置本地窗口缓冲区期望上屏时间的时间戳。 当且仅当RenderService为本地窗口的消费者时，该时间戳生效。 本操作执行后需要配合调用[OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer)生效。 生产者下一次放入队列的buffer，达到该期望上屏时间后，才会被RenderService消费并上屏。 如果buffer队列中存在多个生产者放入的buffer，都设置了desiredPresentTimestamp并已达到期望上屏时间，则较早入队的buffer将被消费者丢弃回队列。 如果期望上屏时间大于消费者提供的时间 1 秒以上，则该期望上屏时间戳将被忽略。 函数中的可变参数是 [输入] int64_t desiredPresentTimestamp，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。 | 
 
 ### OHHDRMetadataKey
 
@@ -367,6 +371,7 @@ int32_t OH_NativeWindow_SetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 **描述**
 
 为OHNativeWindow设置颜色空间属性。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -393,6 +398,7 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 **描述**
 
 为OHNativeWindow设置元数据属性值。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -420,6 +426,7 @@ int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 **描述**
 
 获取OHNativeWindow颜色空间属性。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -446,6 +453,7 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 **描述**
 
 获取OHNativeWindow元数据属性值。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -474,6 +482,7 @@ int32_t OH_NativeWindow_WriteToParcel (OHNativeWindow *window, OHIPCParcel *parc
 **描述**
 
 将窗口对象写入IPC序列化对象中。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -500,6 +509,7 @@ int32_t OH_NativeWindow_ReadFromParcel (OHIPCParcel *parcel, OHNativeWindow **wi
 **描述**
 
 从IPC序列化对象中读取窗口对象。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -527,6 +537,8 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2 (OHNativeWindow *window, OHNative
 **描述**
 
 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer, 与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。
+本接口需要与OH_NativeWindow_NativeObjectUnreference接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -554,6 +566,7 @@ void OH_NativeWindow_SetBufferHold (OHNativeWindow *window)
 ```
 **描述**
 提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -605,6 +618,8 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer (
 **描述**
 
 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。
+本接口需要与OH_NativeWindow_DestroyNativeWindowBuffer接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -659,6 +674,11 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId (uint64_t surfaceId, OHN
 **描述**
 
 通过surfaceId创建对应的OHNativeWindow。
+本接口需要与OH_NativeWindow_DestroyNativeWindow接口配合使用，否则会存在内存泄露。
+如果存在并发释放OHNativeWindow的情况，需要通过OH_NativeWindow_NativeObjectReference和
+OH_NativeWindow_NativeObjectUnreference对OHNativeWindow进行引用计数加一和减一。
+通过surfaceId获取的surface需要是在本进程中创建的，不能跨进程获取surface。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -685,6 +705,7 @@ void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow* window)
 **描述**
 
 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -706,6 +727,7 @@ void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer* buffer)
 **描述**
 
 将OHNativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该OHNativeWindowBuffer对象会被析构掉。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -727,6 +749,7 @@ BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer* b
 **描述**
 
 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -784,6 +807,7 @@ int32_t OH_NativeWindow_GetNativeObjectMagic (void *obj)
 **描述**
 
 获取NativeObject的MagicId。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -809,6 +833,7 @@ int32_t OH_NativeWindow_GetSurfaceId (OHNativeWindow *window, uint64_t *surfaceI
 **描述**
 
 通过OHNativeWindow获取对应的surfaceId。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -835,6 +860,8 @@ int32_t OH_NativeWindow_NativeObjectReference (void *obj)
 **描述**
 
 增加一个NativeObject的引用计数。
+本接口需要与OH_NativeWindow_NativeObjectUnreference接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -860,6 +887,7 @@ int32_t OH_NativeWindow_NativeObjectUnreference (void *obj)
 **描述**
 
 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -885,6 +913,7 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow *window, OHNativ
 **描述**
 
 通过OHNativeWindow将之前申请出来的OHNativeWindowBuffer返还到Buffer队列中，供下次再申请。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -910,6 +939,8 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer (OHNativeWindow *window, OHNati
 **描述**
 
 将OHNativeWindowBuffer添加进OHNativeWindow中。
+本接口需要与OH_NativeWindow_NativeWindowDetachBuffer接口配合使用，否则会存在内存管理混乱问题。
+本接口为非线程安全类型接口
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -936,6 +967,7 @@ int32_t OH_NativeWindow_NativeWindowDetachBuffer (OHNativeWindow *window, OHNati
 **描述**
 
 将OHNativeWindowBuffer从OHNativeWindow中分离。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -962,6 +994,8 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 **描述**
 
 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。
+系统会将fenFd关闭，无需用户close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -990,6 +1024,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,
 **描述**
 
 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -1001,7 +1036,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针。 | 
 | code | 表示操作码，详见[NativeWindowOperation](#nativewindowoperation)。 | 
-| ... | 可变参数，必须与操作码一一对应。 | 
+| ... | 可变参数，必须与操作码对应的数据类型保持一致，且入参数量严格按照操作码提示传入，否则会存在未定义行为。 | 
 
 **返回：**
 
@@ -1017,6 +1052,10 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *window, OHNat
 **描述**
 
 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产。
+在调用本接口前，需要通过SET_BUFFER_GEOMETRY对OHNativeWindow设置宽高。
+本接口需要与OH_NativeWindow_NativeWindowFlushBuffer接口配合使用，否则内存会耗尽。
+当fenceFd使用完，用户需要将其close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -1132,6 +1171,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2 (OHNativeWindow* window, OH
 ```
 **描述**
 设置OHNativeWindow的渲染缩放模式。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 

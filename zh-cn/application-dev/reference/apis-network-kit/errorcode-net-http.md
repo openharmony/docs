@@ -182,7 +182,8 @@ Failed to write the received data to the disk or application.
 
 **可能原因**
 
-应用没有写文件权限或待下载的文件超过5M。
+1、应用没有写文件权限或待下载的文件超过5M。
+2、上一次请求数据未接受完毕便调用destroy销毁导致接收数据不完整。
 
 **处理步骤**
 

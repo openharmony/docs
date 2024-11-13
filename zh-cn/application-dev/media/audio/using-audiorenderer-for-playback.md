@@ -1,6 +1,6 @@
 # 使用AudioRenderer开发音频播放功能
 
-AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比AVPlayer而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
+AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比[AVPlayer](../media/using-avplayer-for-playback.md)而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
 
 ## 开发指导
 
@@ -65,28 +65,26 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
 
-    let bufferSize: number = 0;
     class Options {
       offset?: number;
       length?: number;
     }
 
+    let bufferSize: number = 0;
     let path = getContext().cacheDir;
-    //确保该路径下存在该资源
+    // 确保该沙箱路径下存在该资源
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
     let writeDataCallback = (buffer: ArrayBuffer) => {
-
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
-      }
-      fileIo.readSync(file.fd, buffer, options);
+      };
+      fs.readSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
-    }
+    };
 
     audioRenderer.on('writeData', writeDataCallback);
     ```
@@ -123,7 +121,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     audioRenderer.release((err: BusinessError) => {
       if (err) {
         console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -137,7 +135,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 创建播放器时候，开发者需要根据应用场景指定播放器的`StreamUsage`，选择正确的`StreamUsage`可以避免用户遇到不符合预期的行为。
 
-在音频API文档[StreamUsage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-audio-kit/js-apis-audio.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
+在音频API文档[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
 
 如果开发者配置了不正确的`StreamUsage`，可能带来一些不符合预期的行为。例如以下场景。
 
@@ -151,7 +149,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const TAG = 'AudioRendererDemo';
 
@@ -160,7 +158,6 @@ class Options {
   length?: number;
 }
 
-let context = getContext(this);
 let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -168,28 +165,27 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
   rendererFlags: 0 // 音频渲染器标志
-}
+};
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
 let path = getContext().cacheDir;
-//确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
-  }
-  fileIo.readSync(file.fd, buffer, options);
-   bufferSize += buffer.byteLength;
-}
+  };
+  fs.readSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
+};
 
 // 初始化，创建实例，设置监听事件
 function init() {
@@ -257,7 +253,7 @@ async function stop() {
       if (err) {
         console.error('Renderer stop failed.');
       } else {
-        fileIo.close(file);
+        fs.close(file);
         console.info('Renderer stop success.');
       }
     });

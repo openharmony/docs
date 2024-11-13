@@ -550,9 +550,7 @@ let arr: Test[] = [
 ]
 ```
 
-### Using a Key String for Object Literals of the Record Type
-
-If an object literal is of the Record type, a string must be used as the key of the object literal.
+### If **Record** is used to specify the object literal type, a string must be used as the key of the object literal.
 
 **Before adaptation**
 
@@ -735,7 +733,7 @@ test.foo('', option);
 
 **Reason for change**
 
-The object literal lacks a type. According to the analysis of **test.foo**, the **option** type comes from the some **.d.ets** file. Therefore, you only need to import the type.
+The object literal lacks a type. According to the analysis of **test.foo**, the **option** type comes from the declaration file. Therefore, you only need to import the type.
 In **test.d.ets**, **I** is defined in the namespace. Therefore, to import the type in the .ets file, import the namespace and then obtain the target type based on the name.
 
 ### Passing Parameters from the Object Literal to the Object Type
@@ -1263,7 +1261,7 @@ console.log(t.createController()!.value);
 
 ## arkts-no-globalthis
 
-ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br> (2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured.  
+ArkTS does not support **globalThis** for two reasons:<br>(1) A static type cannot be added for **globalThis**. As a result, the attributes of **globalThis** can be accessed only through search, which causes extra performance overhead.<br>(2) Type annotation is not available for attributes of **globalThis**. As a result, the security and performance of operations on these attributes cannot be ensured. Therefore, ArkTS does not support **globalThis**.
 
 1. You are advised to transfer data between modules based on the service logic and import/export syntax.
 
@@ -1566,7 +1564,7 @@ class Test {
 }
 
 ```
-### Type '*** | null' Not Assignable to type ''\*\*\*'
+### Type `*** | null` is not assignable to type `***`
 
 **Before adaptation**
 
@@ -1743,7 +1741,7 @@ class Test {
 }
 ```
 
-### '***' Is of Type 'unknown'
+### '***' is of type 'unknown'
 
 **Before adaptation**
 
@@ -1767,7 +1765,7 @@ try {
 }
 ```
 
-### Type '*** | null' Not Assignable to Type '\*\*\*'
+### Type '*** | null' is not assignable to type '\*\*\*'
 
 **Before adaptation**
 
@@ -1839,7 +1837,7 @@ function foo(v: number): A | null {
 let a: A = foo(123)!;
 ```
 
-### Cannot Invoke an Object Which Is Possibly 'undefined'
+### Cannot invoke an object which possibly 'undefined'
 
 **Before adaptation**
 
@@ -1879,7 +1877,7 @@ if (a.foo) {
 
 In the original code definition, **foo** is an optional property and may be **undefined**. If **undefined** is called, an error is reported. You are advised to determine whether a property is optional based on the service logic. If defining an optional property is necessary, a null check is required for accessing the property.
 
-### Variable '***' Is Used Before Being Assigned
+### Variable '***' is used before being assigned
 
 **Before adaptation**
 
@@ -1924,7 +1922,7 @@ For primitive types, a value can be assigned based on the service logic, for exa
 
 For the object type, you can change the type to a union type consisting of **null** and assign **null** to the type. In this case, when using the object type, you need to perform the non-null check.
 
-### "Function lacks ending return statement and return type does not include 'undefined'" Error
+### Function lacks ending return statement and return type does not include 'undefined'.
 
 **Before adaptation**
 
@@ -1970,7 +1968,7 @@ let a: number = 123;
 
 ArkTS does not support the use of comments to bypass strict type checks. Delete the comment (**// @ts-nocheck** or **// @ts-ignore**), and then modify other code based on the error information.
 
-## Importing ArkTS Files to JS and TS Files Not Allowed
+## Importing ArkTS files to JS and TS files is not allowed
 
 ## arkts-no-tsdeps
 
@@ -1980,7 +1978,7 @@ In .ts and .js files, it is not allowed to import source code from an .ets file.
 
 Mode 1: Change the file name extension of the .ts file to .ets and adapt the code based on the ArkTS syntax rules.
 
-Mode 2: Extract the code on which the .ts file depends from the .ets file to the .ts file.
+Mode 2: Extract the code that the .ts file depends on from the .ets file to the .ts file.
 
 ## arkts-no-special-imports
 
@@ -2248,7 +2246,7 @@ function deepCopy(obj: object): object {
 }
 ```
 
-## Typical Use Scenarios of State Management
+## Typical Application Scenarios of State Management
 
 ### Using State Variables Outside of Structs
 
@@ -2283,7 +2281,7 @@ export default struct MyComponent {
 
   aboutToAppear() {
     if (this.controller)
-      this.controller.setItem(this);
+      this.controller.setItem(this); // You are not advised to pass this as a parameter to the outside struct.
   }
 }
 
@@ -2329,7 +2327,7 @@ export class MyComponentController {
 @Component
 export default struct MyComponent {
   public controller: MyComponentController | null = null;
-  @State value: CC = new CC('Hello World')
+  @State value: CC = new CC('Hello World');
 
   build() {
     Column() {
@@ -2353,7 +2351,7 @@ struct StyleExample {
     Column() {
       MyComponent({ controller: this.controller })
       Button('change value').onClick(() => {
-        this.controller.changeText('Text')
+        this.controller.changeText('Text');
       })
     }
   }
@@ -2394,8 +2392,8 @@ struct DatauionOldPage {
 
 @Component
 export struct ForEachCom {
-  arrayList: any[]
-  @BuilderParam closer: (data: any) => void = this.componentCloser
+  arrayList: any[]; // The struct does not support generics. An arkts-no-any-unknown error is reported.
+  @BuilderParam closer: (data: any) => void = this.componentCloser; // The struct does not support generics. An arkts-no-any-unknown error is reported.
 
   @Builder
   componentCloser() {
@@ -2403,7 +2401,7 @@ export struct ForEachCom {
 
   build() {
     Column() {
-      ForEach(this.arrayList, (item: any) => {
+      ForEach(this.arrayList, (item: any) => { // The struct does not support generics. An arkts-no-any-unknown error is reported.
         Row() {
           this.closer(item)
         }.width('100%').height(200).backgroundColor('#eee')
@@ -2424,7 +2422,7 @@ class Model {
   aa: string = '11';
 }
 
-type UnionData = Data | Model
+type UnionData = Data | Model;
 
 @Entry
 @Component
@@ -2452,7 +2450,7 @@ struct DatauionPage {
 @Component
 export struct ForEachCom {
   arrayList: UnionData[] = [new Data(), new Data(), new Data()];
-  @BuilderParam closer: (data: UnionData) => void = this.componentCloser
+  @BuilderParam closer: (data: UnionData) => void = this.componentCloser;
 
   @Builder
   componentCloser() {

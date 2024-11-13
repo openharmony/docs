@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.Filter (Advanced Filter)
+# Filter
 
 
 The advanced filter component allows users to filter data with multiple criteria combined. It consists of a floating bar and filters therein. The floating bar can be expanded to reveal the filters, which come in a multi-line collapsible or multi-line list style. For added convenience, you can append an additional quick filter.
@@ -12,7 +12,7 @@ The advanced filter component allows users to filter data with multiple criteria
 ## Modules to Import
 
 ```
-import { Filter } from '@ohos.arkui.advanced.Filter'
+import { Filter } from '@kit.ArkUI'
 ```
 
 
@@ -29,43 +29,48 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 
-| Name| Type| Mandatory | Decorator| Description| 
+| Name| Type| Mandatory | Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | Yes  | \@Prop | List of filter criteria.| 
-| additionFilters | [FilterParams](#filterparams) | No  | \@Prop | Additional quick filter.| 
-| filterType | [FilterType](#filtertype) | No  | \@Prop | Filter type.| 
-| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;) =&gt; void | Yes  | - | Callback invoked when the filter criteria is changed. The input parameter is the list of selected filter criteria.| 
-| container | ()=&gt;void | Yes  | \@BuilderParam | Custom content of the filtering result display area, which is passed in a trailing closure.| 
-
+| multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | Yes  | \@Prop | List of filter criteria.|
+| additionFilters | [FilterParams](#filterparams) | No  | \@Prop | Additional quick filter.|
+| filterType | [FilterType](#filtertype) | No  | \@Prop | Filter type.|
+| onFilterChanged | (filterResults: Array&lt;[FilterResult](#filterresult)&gt;) =&gt; void | Yes  | - | Callback invoked when the filter criteria is changed. The input parameter is the list of selected filter criteria.|
+| container | ()=&gt;void | Yes  | \@BuilderParam | Custom content of the filtering result display area, which is passed in a trailing closure.|
 
 ## FilterParams
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.| 
-| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | Yes| Options of the filter criterion.| 
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.|
+| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | Yes| Options of the filter criterion.|
 
 ## FilterType
 
-| Name| Value| Description| 
-| -------- | -------- | -------- |
-| MULTI_LINE_FILTER | 0 | Multi-line collapsible.| 
-| LIST_FILTER | 1 | Multi-line list.| 
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| MULTI_LINE_FILTER | 0 | Multi-line collapsible.|
+| LIST_FILTER | 1 | Multi-line list.|
 
 ## FilterResult
 
-| Name| Type| Mandatory| Description| 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.| 
-| index | number | Yes| Index of the selected option of the filter criterion.| 
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Value of the selected option of the filter criterion.| 
+| name | [ResourceStr](ts-types.md#resourcestr) | Yes| Name of the filter criterion.|
+| index | number | Yes| Index of the selected option of the filter criterion.|
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Value of the selected option of the filter criterion.|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.
@@ -73,7 +78,7 @@ The [universal events](ts-universal-events-click.md) are not supported.
 ## Example
 
 ```ts
-import { Filter, FilterParams, FilterResult, FilterType } from '@ohos.arkui.advanced.Filter'
+import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'
 
 @Entry
 @Component

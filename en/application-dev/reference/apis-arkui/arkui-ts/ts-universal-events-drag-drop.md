@@ -36,9 +36,9 @@ No custom drag preview is supported for dragging selected text in the following 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                           | Mandatory | Description              |
+| Name     | Type                           | Mandatory| Description              |
 | ----------- | ------------------------------- | ---- | ------------------ |
 | event    | (event: [DragEvent](#dragevent), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8)  \|  [DragItemInfo](#dragiteminfo)  | Yes  | Callback function.<br> **NOTE**<br> **event**: information about the drag event.<br> **extraParams**: extra information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
@@ -46,7 +46,7 @@ No custom drag preview is supported for dragging selected text in the following 
 
 | Type                                                        | Description                    |
 | ------------------------------------------------------------ | ------------------------ |
-| [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo)  | Component information displayed during dragging.<br>**NOTE**<br>The global builder is not supported. |
+| [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo) | Component information displayed during dragging.<br>**NOTE**<br>The global builder is not supported.|
 
 ## onDragEnter
 
@@ -58,9 +58,9 @@ Called when a dragged item enters a valid drop target. This event takes effect o
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                           | Mandatory | Description                          |
+| Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
@@ -74,9 +74,9 @@ Called when a dragged item moves in a valid drop target. This event takes effect
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                           | Mandatory | Description                          |
+| Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
@@ -90,9 +90,9 @@ Called when a dragged item leaves a valid drop target. This event takes effect o
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                           | Mandatory | Description                          |
+| Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
@@ -106,9 +106,9 @@ Called when a dragged item is dropped on a valid drop target. If **event.setResu
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                           | Mandatory | Description                          |
+| Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, including the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
@@ -122,9 +122,9 @@ Triggered when the dragging of the component bound to the event ends.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                           | Mandatory | Description                          |
+| Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | Yes  | Callback function.<br>**NOTE**<br> **event**: information about the drag event, excluding the coordinates of the item that is being dragged.<br> **extraParams**: additional information about the drag event. The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
@@ -134,11 +134,13 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 Invoked when the component enters a state prior to a drop and drop operation.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name     | Type                           | Mandatory | Description                          |
+| Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | callback    | Callback<(preDragStatus: [PreDragStatus](#predragstatus12)> ) => void     | Yes  | Callback function.|
 
@@ -150,7 +152,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging. |
+| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.|
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [\<Image>](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
@@ -163,8 +165,8 @@ Invoked when the component enters a state prior to a drop and drop operation.
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
-| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<ListItem>** component. |
-| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<List>** component. |
+| selectedIndex | number | Index of the dragged item in the parent container. The value of **selectedindex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<ListItem>** component.|
+| insertIndex   | number | Index of the element into which the dragged item is dropped in the **List** component. The value of **insertIndex** starts from **0**.<br>This parameter takes effect only in the drag event of the **\<List>** component.|
 
 ## DragEvent
 
@@ -179,7 +181,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
 | useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the custom drop animation when the dragging ends.<br>If this parameter is set to **true**, the default drop animation is disabled, and the custom one is used.<br>If this parameter is set to **false** or is not set, the default drop animation is enabled. In this case, to avoid conflicts, the application should not implement any custom drop animation.|
-|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Copy or paste mode. |
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | Copy or paste mode.|
 
 ### Methods
 
@@ -187,21 +189,21 @@ Invoked when the component enters a state prior to a drop and drop operation.
 
 | Name    | Return Value Type                           | Description                          |
 | ----------- | ------------------------------- | ------------------------------ |
-| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | Sets drag-related data in the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | Obtains drag-related data from the drag event. For details about the data obtaining result, see the error code description.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | Obtains the summary of drag-related data from the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| setResult(dragRect: [DragResult](#dragresult10))<sup>10+</sup>  | void | Sets the drag and drop result in the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getResult()<sup>10+</sup> | [DragResult](#dragresult10)  | Obtains the drag and drop result from the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle)  | Obtains the rectangle where the preview image is located.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getVelocityX()<sup>10+</sup> | number | Obtains the dragging velocity along the x-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getVelocityY()<sup>10+</sup> | number | Obtains the dragging velocity along the y-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top. |
-| getVelocity()<sup>10+</sup> | number | Obtains the dragging velocity along the main axis. The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getWindowX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getWindowY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getDisplayX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead. |
-| getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead. |
+| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | Sets drag-related data in the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | Obtains drag-related data from the drag event. For details about the data obtaining result, see the error code description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | Obtains the summary of drag-related data from the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| setResult(dragRect: [DragResult](#dragresult10))<sup>10+</sup> | void | Sets the drag and drop result in the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getResult()<sup>10+</sup> | [DragResult](#dragresult10) | Obtains the drag and drop result from the drag event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle) | Obtains the position of the drag preview image relative to the current window, as well as the size of the preview image, in VP units. **x** and **y** represent the coordinates of the upper left corner of the preview image, while **width** and **height** represent the size of the preview image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getVelocityX()<sup>10+</sup> | number | Obtains the dragging velocity along the x-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getVelocityY()<sup>10+</sup> | number | Obtains the dragging velocity along the y-axis. The origin of the coordinate axis is the upper left corner of the screen. The unit is vp. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top.|
+| getVelocity()<sup>10+</sup> | number | Obtains the dragging velocity along the main axis. The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getWindowX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getWindowY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getDisplayX()<sup>10+</sup> | number | X coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
+| getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
 | getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
@@ -209,7 +211,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 
 For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md) and [Drag Event Error Codes](../errorcode-drag-event.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
 | 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 190001    | Data not found.|
@@ -221,26 +223,26 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description |
+| Name| Description|
 | ----- | ----------------- |
-| DRAG_SUCCESSFUL | The drag and drop operation succeeded. It can be used in **onDrop**. |
-| DRAG_FAILED | The drag and drop operation failed. It can be used in **onDrop**. |
-| DRAG_CANCELED | The drag and drop operation was canceled. It can be used in **onDrop**. |
-| DROP_ENABLED | The component allows for a drop operation. It can be used in **onDragMove**. |
-| DROP_DISABLED | The component does not allow for a drop operation. It can be used in **onDragMove**. |
+| DRAG_SUCCESSFUL | The drag and drop operation succeeded. It can be used in **onDrop**.|
+| DRAG_FAILED | The drag and drop operation failed. It can be used in **onDrop**.|
+| DRAG_CANCELED | The drag and drop operation was canceled. It can be used in **onDrop**.|
+| DROP_ENABLED | The component allows for a drop operation. It can be used in **onDragMove**.|
+| DROP_DISABLED | The component does not allow for a drop operation. It can be used in **onDragMove**.|
 
 ## DragBehavior<sup>10+</sup>
 
-Provides the drag behavior. This API takes effect only when [DragResult](#dragresult10) is set to **DROP_ENABLED** and the [onDrop](#ondrop) callback is implemented.
+Describes the drag behavior. When [DragResult](#dragresult10) is set to **DROP_ENABLED**, you can define **DragBehavior** as either **COPY** or **MOVE**. **DragBehavior** serves to inform you about the intended method of data handling – whether it's a copy or a move – but it does not actually dictate the real processing of the data. The behavior is reported back to the drag source through **onDragEnd**, enabling the initiator of the drag to discern whether the operation results in a copy or a move of the data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description |
+| Name| Description|
 | ----- | ----------------- |
-| COPY | Copy mode. |
-| MOVE| Paste mode. |
+| COPY | The data is handled as a copy operation.|
+| MOVE| The data is handled as a move operation, effectively cutting it from its original location.|
 
 ## PreDragStatus<sup>12+</sup>
 
@@ -248,15 +250,15 @@ Provides the drag behavior. This API takes effect only when [DragResult](#dragre
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Value | Description |
+| Name| Value| Description|
 | ---- | - | ----------------- |
-| ACTION_DETECTING_STATUS | 0 | A drag gesture is being detected. (Triggered when the component is long pressed for 50 ms.) |
-| READY_TO_TRIGGER_DRAG_ACTION | 1 | The component is ready to be dragged. (Triggered when the component is long pressed for 500 ms.) |
-| PREVIEW_LIFT_STARTED | 2 | A lift animation is started. (Triggered when the component is long pressed for 800 ms.) |
-| PREVIEW_LIFT_FINISHED | 3 | A lift animation is finished. (Triggered at the completion of the lift animation.) |
-| PREVIEW_LANDING_STARTED | 4 | A drop animation is started. (Triggered when the drop animation starts.) |
-| PREVIEW_LANDING_FINISHED | 5 | A drop animation is finished. (Triggered when the drop animation ends.) |
-| ACTION_CANCELED_BEFORE_DRAG | 6 | A drop animation is terminated. (Triggered when the finger is lifted off the screen after the component enters the **READY_TO_TRIGGER_DRAG_ACTION** state.) |
+| ACTION_DETECTING_STATUS | 0 | A drag gesture is being detected. (Triggered when the component is long pressed for 50 ms.)|
+| READY_TO_TRIGGER_DRAG_ACTION | 1 | The component is ready to be dragged. (Triggered when the component is long pressed for 500 ms.)|
+| PREVIEW_LIFT_STARTED | 2 | A lift animation is started. (Triggered when the component is long pressed for 800 ms.)|
+| PREVIEW_LIFT_FINISHED | 3 | A lift animation is finished. (Triggered at the completion of the lift animation.)|
+| PREVIEW_LANDING_STARTED | 4 | A drop animation is started. (Triggered when the drop animation starts.)|
+| PREVIEW_LANDING_FINISHED | 5 | A drop animation is finished. (Triggered when the drop animation ends.)|
+| ACTION_CANCELED_BEFORE_DRAG | 6 | A drop animation is terminated. (Triggered when the finger is lifted off the screen after the component enters the **READY_TO_TRIGGER_DRAG_ACTION** state.)|
 
 ## Example
 

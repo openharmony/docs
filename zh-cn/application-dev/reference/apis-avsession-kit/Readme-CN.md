@@ -11,5 +11,14 @@
   <!--DelEnd-->
 - ArkTS组件
   - [@ohos.multimedia.avCastPicker (投播组件)](ohos-multimedia-avcastpicker.md)
+- C API
+  - 模块
+    - [OHAVSession](_o_h_a_v_session.md)
+  - 头文件
+    - [native_avmetadata.h](native__avmetadata_8h.md)
+    - [native_avsession.h](native__avsession_8h.md)
+    - [native_avsession_errors.h](native__avsession__errors_8h.md)
+  - 结构体
+    - [AVSession_PlaybackPosition](_a_v_session___playback_position.md)
 - 错误码
   - [媒体会话管理错误码](errorcode-avsession.md)

@@ -1,26 +1,26 @@
-# Managing App Accounts
+# Managing Application Accounts
 
-You can use the [application account SDK](../../reference/apis-basic-services-kit/js-apis-appAccount.md) to manage app accounts.
+You can use the [application account SDK](../../reference/apis-basic-services-kit/js-apis-appAccount.md) to manage application accounts.
 
-When an app is uninstalled, the account data of the app will be automatically deleted. When a local account is deleted, the account data of all apps of the local account will be automatically deleted.
+When an application is uninstalled, the account data of the application will be automatically deleted. When a local account is deleted, the account data of all applications of the local account will be automatically deleted.
 
 ## Before You Start
 
 1. Import the **appAccount** module.
 
    ```ts
-   import account_appAccount from '@ohos.account.appAccount';
+   import { appAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain an **AppAccountManager** instance.
 
    ```ts
-   const appAccountManager = account_appAccount.createAppAccountManager();
+   const appAccountManager = appAccount.createAppAccountManager();
    ```
 
-## Creating an App Account
+## Creating an Application Account
 
-Create an app account for an application user.
+Create an application account for an application user.
 
 **Procedure**
 
@@ -28,25 +28,25 @@ Create an app account for an application user.
 
    ```ts
    let name: string = "ZhangSan";
-   let options: account_appAccount.CreateAccountOptions = {
+   let options: appAccount.CreateAccountOptions = {
      customData: {
        age: '10'
      }
    };
    ```
 
-2. Use [createAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#createaccount9) to create an app account based on the specified parameters.
+2. Use [createAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#createaccount9) to create an application account based on the specified parameters.
 
    ```ts
    try {
      await appAccountManager.createAccount(name, options);
      console.log('createAccount successfully');
-   } catch (err: BusinessError) {
+   } catch (err) {
      console.log('createAccount failed, error: ' + JSON.stringify(err));
    }
    ```
 
-## Obtaining App Account List
+## Obtaining Application Account List
 
 **Procedure**
 
@@ -56,10 +56,10 @@ Create an app account for an application user.
    let owner: string = 'com.example.accountjsdemo2';
    ```
 
-2. Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9) to obtain the app account list.
+2. Use [getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9) to obtain the application account list.
 
    ```ts
-   appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
+   appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
        console.debug('getAllAccounts successfully, data: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
@@ -163,13 +163,13 @@ Create an app account for an application user.
    });
    ```
 
-## Deleting an App Account
+## Removing an Application Account
 
-Delete the app account after the user logs out of the system.
+Remove the application account after the user logs out of the system.
 
 **Procedure**
 
-1. Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to delete the app account.
+1. Use [removeAccount](../../reference/apis-basic-services-kit/js-apis-appAccount.md#removeaccount9) to remove the application account.
 
    ```ts
    let name: string = 'Zhangsan';
@@ -179,3 +179,6 @@ Delete the app account after the user logs out of the system.
        console.log('removeAccount failed, error: ' + JSON.stringify(err));
    });
    ```
+
+<!--RP1-->
+<!--RP1End-->

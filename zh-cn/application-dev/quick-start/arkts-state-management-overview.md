@@ -48,6 +48,7 @@
     }
   }
 
+  @Entry
   @Component
   struct Parent {
     build() {
@@ -63,9 +64,14 @@
 
 - 本地初始化：在变量声明的时候赋值，作为变量的默认值。示例：\@State count: number = 0。
 
-## 状态管理（V1稳定版）
+>**说明：**
+>
+>当前状态管理的功能仅支持在UI主线程使用，不能在子线程、worker、taskpool中使用。
 
-开发者可以使用当前比较完整的状态管理V1版本进行应用开发。
+
+## 状态管理（V1）
+
+开发者可以选择使用状态管理V1版本进行应用开发。
 
 ### 装饰器总览
 
@@ -139,13 +145,9 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 - [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
 
-## 状态管理（V2试用版）
+## 状态管理（V2）
 
-为了增强状态管理V1版本的部分能力，例如深度观察、属性级更新等，ArkUI推出状态管理（V2试用版）供开发者体验试用。
-
->**说明：**
->
->当前状态管理（V2试用版）仍在逐步开发中，完整功能敬请期待。
+为了增强状态管理V1版本的部分能力，例如深度观察、属性级更新等，ArkUI推出状态管理V2供开发者使用。
 
 ### 状态管理V1现状以及V2优点
 
@@ -170,7 +172,7 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 ### 装饰器总览
 
-状态管理（V2试用版）提供了一套全新的装饰器。
+状态管理（V2）提供了一套全新的装饰器。
 
 - [\@ObservedV2](arkts-new-observedV2-and-trace.md)：\@ObservedV2装饰器装饰class，使得被装饰的class具有深度监听的能力。\@ObservedV2和\@Trace配合使用可以使class中的属性具有深度观测的能力。
 
@@ -194,17 +196,23 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 - [!!语法](arkts-new-binding.md)：双向绑定语法糖。
 
-### 使用限制
+### 状态管理V1与V2能力对比
 
-由于状态管理V2采用了和状态管理V1不同的实现，因此不能将状态管理框架V2和状态管理V1混合使用，这项限制包括如下场景：
+| V1装饰器名   | V2装饰器名                                             | 说明                                                         |
+| ------------ | ------------------------------------------------------ | ------------------------------------------------------------ |
+| \@Observed   | \@ObservedV2                                           | 表明当前对象为可观察对象。但两者能力并不相同。 <br/>\@Observed可观察第一层的属性，需要搭配\@ObjectLink使用才能生效。 <br/>\@ObservedV2本身无观察能力，仅代表当前class可被观察，如果要观察其属性，需要搭配\@Trace使用。 |
+| \@Track      | \@Trace                                                | V1装饰器\@Track为精确观察，不使用则无法做到类属性的精准观察。 <br/>V2\@Trace装饰的属性可以被精确跟踪观察。 |
+| \@Component  | \@ComponentV2                                          | \@Component为搭配V1状态变量使用的自定义组件装饰器。<br/>@ComponentV2为搭配V2状态变量使用的自定义组件装饰器。 |
+| \@State      | 无外部初始化：@Local<br/>外部初始化一次：\@Param\@Once | \@State和\@Local类似都是数据源的概念，区别是\@State可以外部传入初始化，而\@Local无法外部传入初始化。 |
+| \@Prop       | \@Param                                                | \@Prop和\@Param类似都是自定义组件参数的概念。当输入参数为复杂类型时，\@Prop为深拷贝，\@Param为引用。 |
+| \@Link       | \@Param\@Event                                         | \@Link是框架自己封装实现的双向同步，对于V2开发者可以通过@Param@Event自己实现双向同步。 |
+| \@ObjectLink            | \@Param                   | 直接兼容，\@ObjectLink需要被@Observed装饰的class的实例初始化，\@Param没有此限制。 |
+| \@Provide    | \@Provider                                             | 兼容。                                                       |
+| \@Consume    | \@Consumer                                             | 兼容。                                                       |
+| \@Watch               | \@Monitor                | \@Watch用于监听V1状态变量的变化，具有监听状态变量本身和其第一层属性变化的能力。状态变量可观察到的变化会触发其\@Watch监听事件。<br/>\@Monitor用于监听V2状态变量的变化，搭配\@Trace使用，可有深层监听的能力。状态变量在一次事件中多次变化时，仅会以最终的结果判断是否触发\@Monitor监听事件。 |
+| LocalStorage               | 全局\@ObservedV2\@Trace   | 兼容。 |
+| AppStorage               | AppStorageV2   | 兼容。 |
+| Environment       | 调用Ability接口获取系统环境变量   | Environment获取环境变量能力和AppStorage耦合。在V2中可直接调用Ability接口获取系统环境变量。 |
+| PersistentStorage     | PersistenceV2   | PersistentStorage持久化能力和AppStorage耦合，PersistenceV2持久化能力可独立使用。 |
 
-- 将V2版本的装饰器装饰的变量传递给V1版本装饰器装饰的变量。
-- 将V1版本装饰器[\@Observed](arkts-observed-and-objectlink.md)、[\@Track](arkts-track.md)与V2版本装饰器[\@ObservedV2](arkts-new-observedV2-and-trace.md)、[\@Trace](arkts-new-observedV2-and-trace.md)混合使用。
-- 将V1版本装饰器\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp、\@Watch等在\@ComponentV2装饰的自定义组件中使用。
-- 将V2版本装饰器\@Local、\@Param、\@Once、\@Event、\@Monitor、\@Provider、\@Consumer在\@Component装饰的自定义组件中使用。
-- 将\@Component与\@ComponentV2同时使用。
-- 在\@Component装饰的自定义组件中通过\@State、\@Prop、\@Link、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp装饰的变量并且该变量的类型为\@ObservedV2装饰的类。
-- 在\@ComponentV2装饰的自定义组件中通过\@Param、\@Local、\@Event、\@Provider()、\@Consumer()装饰的变量并且该变量的类型为\@Observed装饰的类。
-
-将V2装饰器与V1装饰器混合使用，会出现未定义行为，表现为冗余刷新、失去深度观测能力、失去自身属性观测能力、失去属性级更新能力等。因此，不能将状态管理V2与状态管理V1在以上提到的场景混合使用。
-
+有关V1向V2的迁移可参考[迁移指导](./arkts-v1-v2-migration.md)，有关V1与V2的混用可参考[混用文档](./arkts-custom-component-mixed-scenarios.md)。

@@ -54,6 +54,7 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
     }
   }
   ```
+
 ### onBackupEx<sup>12+</sup>
 
 onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
@@ -72,7 +73,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 **说明：**
 >
-> 同步步处理业务场景中，推荐使用示例如下。
+> 同步处理业务场景中，推荐使用示例如下。
 
 **示例：**
 
@@ -91,7 +92,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
         errorCode: 0,
-        errorInfo: "app diy error info"       
+        errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
     }
@@ -100,7 +101,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 **说明：**
 >
-> 异步步处理业务场景中，推荐使用示例如下。
+> 异步处理业务场景中，推荐使用示例如下。
 
 **示例：**
 
@@ -120,7 +121,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
         errorCode: 0,
-        errorInfo: "app diy error info"       
+        errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
     }
@@ -152,7 +153,8 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
     }
   }
   ```
-  ### onRestoreEx<sup>12+</sup>
+
+### onRestoreEx<sup>12+</sup>
 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
@@ -172,7 +174,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 **说明：**
 >
-> 异步步处理业务场景中，推荐使用示例如下。
+> 异步处理业务场景中，推荐使用示例如下。
 
 **示例：**
 
@@ -191,7 +193,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
         errorCode: 0,
-        errorInfo: "app diy error info"
+        errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
     }
@@ -200,7 +202,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 **说明：**
 >
-> 同步步处理业务场景中，推荐使用示例如下。
+> 同步处理业务场景中，推荐使用示例如下。
 
 **示例：**
 
@@ -219,10 +221,92 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
         errorCode: 0,
-        errorInfo: "app diy error info"
+        errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
     }
   }
   ```
-  
+
+### onProcess<sup>12+</sup>
+
+onProcess(): string;
+
+备份恢复框架增加进度返回接口，该接口为同步接口，由应用在执行onBackup(onBackupEx)/onRestore(onRestoreEx)期间进行实现，
+返回应用自身处理业务的进度，返回值为json结构，使用方法见示例代码。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+> **说明：**
+> (1) onProcess可以不实现，系统有默认处理机制；若要实现，返回值结构严格按照示例代码返回</br>
+> (2) 实现onProcess时，业务需要将onBackup(onBackupEx)/onRestore(onRestoreEx)做异步实现，且需要单
+> 独开辟子线程，否则onProcess相关功能无法正常运行,具体使用方式见示例代码
+>
+> onProcess() 推荐使用示例如下。
+
+**示例：**
+
+  ```ts
+  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+  import { taskpool } from '@kit.ArkTS';
+
+  interface ProgressInfo {
+    name: string, // appName
+    processed: number, // 已处理的数据 
+    total: number, // 总数
+    isPercentage: boolean // 可选字段，true表示需要按百分比的格式化展示进度，false或者不实现该字段表示按具体项数展示进度
+  }
+
+  class BackupExt extends BackupExtensionAbility {
+    // 如下代码中，appJob方法为模拟的实际业务代码，args为appJob方法的参数，用于提交到taskpool中，开启子线程进行工作
+    async onBackup() {
+      console.log(`onBackup begin`);
+      let args = 100; // args为appJob方法的参数
+      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
+      try {
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
+      } catch (error) {
+        console.error("onBackup error." + error.message);
+      }
+      taskpool.terminateTask(jobTask); // 需要手动销毁
+      console.log(`onBackup end`);
+    }
+
+    async onRestore() {
+      console.log(`onRestore begin`);
+      let args = 100; // args为appJob方法的参数
+      let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
+      try {
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
+      } catch (error) {
+        console.error("onRestore error." + error.message);
+      }
+      taskpool.terminateTask(jobTask); // 需要手动销毁
+      console.log(`onRestore end`);
+    }
+ 
+
+    onProcess(): string {
+      console.log(`onProcess begin`);
+      let process: string = `{
+       "progressInfo":[
+         {
+          "name": "callact", // appName
+          "processed": 100, // 已处理的数据 
+          "total": 1000, //总数
+          "isPercentage", true // 可选字段，true表示需要按百分比的格式化展示进度，false或者不实现该字段表示按具体项数展示进度
+         }
+       ]
+      }`;
+      console.log(`onProcess end`);
+      return JSON.stringify(process);
+    }
+  }
+
+  @Concurrent
+  function appJob(args: number) : string {
+    // 业务实际逻辑
+    console.log(`appJob begin, args is: ` + args);
+    return "ok";
+  }
+  ```

@@ -5,6 +5,8 @@ UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-abili
 - [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
 - [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
 
+各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+
 > **说明：**
 >
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -43,7 +45,7 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 当前UIAbility的Want类型信息，包括ability名称、bundle名称等。 |
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 |
 
 **示例：**
 
@@ -264,9 +266,9 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 当Ability准备迁移时触发，保存数据。
 
-**说明：**
+> **说明：**
 > 
-> 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)\>形式。
+> 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>形式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -282,7 +284,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&gt;  | 接续的结果或带接续结果的Promise对象。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&gt;  | 接续的结果或带接续结果的Promise对象。 |
 
 **示例：**
 
@@ -337,7 +339,7 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，如ability名称，包名等。 |
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | 是 | UIAbility启动的原因、上次异常退出的原因信息。 |
 
 **示例：**
 
@@ -402,14 +404,14 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | 是 | 回调保存状态的原因。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | want相关参数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#abilityconstantonsaveresult) | 是否同意保存当前UIAbility的状态。 |
+| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#onsaveresult) | 是否同意保存当前UIAbility的状态。 |
 
 **示例：**
 
@@ -569,7 +571,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -657,7 +659,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -733,7 +735,7 @@ release(): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 
 **示例：**
 
@@ -873,7 +875,7 @@ export default class MainAbility extends UIAbility {
 }
 ```
 
-### Caller.on
+### Caller.on('release')
 
 on(type: 'release', callback: OnReleaseCallback): void
 
@@ -928,7 +930,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off
+### Caller.off('release')
 
 off(type: 'release', callback: OnReleaseCallback): void
 
@@ -984,7 +986,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off
+### Caller.off('release')
 
 off(type: 'release'): void
 
@@ -1065,7 +1067,7 @@ on(method: string, callback: CalleeCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200004 | Method registered. The method has registered. |
+| 16200004 | The method has been registered. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -1136,7 +1138,7 @@ off(method: string): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200005 | Method not registered. The method has not registered. |
+| 16200005 | The method has not been registered. |
 | 16000050 | Internal error. |
 
 **示例：**

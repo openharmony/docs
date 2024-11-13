@@ -31,6 +31,18 @@ import { relationalStore } from '@kit.ArkData';
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/> |
 | vector<sup>12+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。向量数据库目前支持[execute](js-apis-data-relationalStore.md#execute12-1)，[querySql](js-apis-data-relationalStore.md#querysql-1)，[beginTrans](js-apis-data-relationalStore.md#begintrans12)，[commit](js-apis-data-relationalStore.md#commit12)，[rollback](js-apis-data-relationalStore.md#rollback12)以及[ResultSet](js-apis-data-relationalStore.md#resultset)类型操作接口。|
+| haMode<sup>12+</sup> | [HAMode](#hamode12) | 否 | 指定关系型数据库存储的高可用性模式，SINGLE表示将数据写入单个关系型数据库存储，MAIN_REPLICA表示将数据写入主关系型数据库存储和副本关系型数据库存储，但不支持加密场景和attach场景。MAIN_REPLICA会导致数据库写入性能的劣化，默认为SINGLE。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。<br/> |
+
+## HAMode<sup>12+</sup>
+
+描述关系型数据库存储的高可用性模式的枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                              | 值   | 说明             |
+| ------------------------------- | --- | -------------- |
+| SINGLE      | 0 | 表示将数据写入单个关系型数据库存储。      |
+| MAIN_REPLICA | 1 | 表示将数据写入主关系型数据库存储和副本关系型数据库存储，不支持加密场景和attach场景。 |
 
 ## Reference<sup>11+</sup>
 
@@ -898,7 +910,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 若手动加锁成功，则其他同账户设备的同应用禁止同步到云端。
+> 若手动加锁成功，则其他同账户设备的同应用禁止同步到云端。使用该接口需要实现云同步功能。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -909,6 +921,14 @@ lockCloudContainer(): Promise&lt;number&gt;
 | 类型                | 说明                                    |
 | ------------------- | ---------------------------------------|
 | Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长，如果加锁失败，返回0，单位：ms。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**            |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
 
 **示例：**
 
@@ -928,7 +948,7 @@ if(store != undefined) {
 
 unlockCloudContainer(): Promise&lt;void&gt;
 
-手动对应用云端数据库解锁，使用Promise异步处理。
+手动对应用云端数据库解锁，使用Promise异步处理。使用该接口需要实现云同步功能。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -940,6 +960,14 @@ unlockCloudContainer(): Promise&lt;void&gt;
 | ------------------- | --------------------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**            |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
+
 **示例：**
 
 ```ts
@@ -950,6 +978,65 @@ if(store != undefined) {
     console.info('unlockCloudContainer succeeded');
   }).catch((err: BusinessError) => {
     console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### restore<sup>12+</sup>
+
+restore(): Promise&lt;void&gt;
+
+从副本关系型数据库文件恢复数据库，使用Promise异步回调。此接口仅供[HAMode](#hamode12)为MAIN_REPLICA时使用，且不支持在事务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**系统接口：** 此接口为系统接口。
+
+**返回值**：
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 14800000  | Inner error. |
+| 14800010  | Invalid database path. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+if(store != undefined) {
+  let promiseRestore = (store as relationalStore.RdbStore).restore();
+  promiseRestore.then(() => {
+    console.info('Succeeded in restoring.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to restore, code is ${err.code},message is ${err.message}`);
   })
 }
 ```

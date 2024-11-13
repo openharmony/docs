@@ -42,26 +42,29 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000,NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
 
 ### 函数
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [OH_NativeImage_Create](#oh_nativeimage_create) (uint32_t textureId, uint32_t textureTarget) | 创建一个**OH_NativeImage**实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。 |
-| [OH_NativeImage_AcquireNativeWindow](#oh_nativeimage_acquirenativewindow) ([OH_NativeImage](#oh_nativeimage) \*image) | 获取与OH_NativeImage相关联的OHNativeWindow指针。 |
-| [OH_NativeImage_AttachContext](#oh_nativeimage_attachcontext) ([OH_NativeImage](#oh_nativeimage) \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到<br/>GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。 |
-| [OH_NativeImage_DetachContext](#oh_nativeimage_detachcontext) ([OH_NativeImage](#oh_nativeimage) \*image) | 将OH_NativeImage实例从当前OpenGL ES上下文分离。 |
-| [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) ([OH_NativeImage](#oh_nativeimage) \*image) | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。 |
-| [OH_NativeImage_GetTimestamp](#oh_nativeimage_gettimestamp) ([OH_NativeImage](#oh_nativeimage) \*image) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。 |
-| [OH_NativeImage_GetTransformMatrix](#oh_nativeimage_gettransformmatrix) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。 |
-| [OH_NativeImage_GetSurfaceId](#oh_nativeimage_getsurfaceid) ([OH_NativeImage](#oh_nativeimage) \*image, uint64_t \*surfaceId) | 获取OH_NativeImage的surface编号。 |
-| [OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image, [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) listener) | 设置帧可用回调。 |
-| [OH_NativeImage_UnsetOnFrameAvailableListener](#oh_nativeimage_unsetonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image) | 取消设置帧可用回调。 |
-| [OH_NativeImage_Destroy](#oh_nativeimage_destroy) ([OH_NativeImage](#oh_nativeimage) \*\*image) | 销毁通过OH_NativeImage_Create创建的**OH_NativeImage**实例, 销毁后该**OH_NativeImage**指针会被赋值为空。 |
-| int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。  |
-| int32_t [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*nativeWindowBuffer, int \*fenceFd) | 通过消费端的**OH_NativeImage**获取一个**OHNativeWindowBuffer**。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口将会创建一个**OHNativeWindowBuffer**。<br/>当使用**OHNativeWindowBuffer**时，用户需要通过**OH_NativeWindow_NativeObjectReference**接口将其引用计数加一。<br/>当**OHNativeWindowBuffer**使用完，用户需要通过**OH_NativeWindow_NativeObjectUnreference**接口将其引用计数减一。<br/>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br/>当fenceFd使用完，用户需要将其close。 | 
-| int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | 通过**OH_NativeImage**实例将**OHNativeWindowBuffer**归还到buffer队列中。<br/>系统会将fenFd关闭，无需用户close。 | 
+| [OH_NativeImage](#oh_nativeimage) \* [OH_NativeImage_Create](#oh_nativeimage_create) (uint32_t textureId, uint32_t textureTarget) | 创建一个**OH_NativeImage**实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。<br/>本接口需要与[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。<br/>本接口为非线程安全类型接口。 | 
+| [OHNativeWindow](_native_window.md#ohnativewindow) \* [OH_NativeImage_AcquireNativeWindow](#oh_nativeimage_acquirenativewindow) ([OH_NativeImage](#oh_nativeimage) \*image) | 获取与OH_NativeImage相关联的OHNativeWindow指针。<br/>本接口为非线程安全类型接口。<br/>OH_NativeImage析构时会将对应的OHNativeWindow实例释放。若从本接口获取OHNativeWindow指针， 当OH_NativeImage实例释放时，请将获取到的OHNativeWindow指针置空，防止后续产生野指针。 | 
+| int32_t [OH_NativeImage_AttachContext](#oh_nativeimage_attachcontext) ([OH_NativeImage](#oh_nativeimage) \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到 GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_DetachContext](#oh_nativeimage_detachcontext) ([OH_NativeImage](#oh_nativeimage) \*image) | 将OH_NativeImage实例从当前OpenGL ES上下文分离。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) ([OH_NativeImage](#oh_nativeimage) \*image) | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。<br/>本接口需要在Opengl ES环境上下文的线程中调用。<br/>本接口需要在接收到[OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)回调后调用。<br/>本接口为非线程安全类型接口。 | 
+| int64_t [OH_NativeImage_GetTimestamp](#oh_nativeimage_gettimestamp) ([OH_NativeImage](#oh_nativeimage) \*image) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_GetTransformMatrix](#oh_nativeimage_gettransformmatrix) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。 | 
+| int32_t [OH_NativeImage_GetSurfaceId](#oh_nativeimage_getsurfaceid) ([OH_NativeImage](#oh_nativeimage) \*image, uint64_t \*surfaceId) | 获取OH_NativeImage的surface编号。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image, [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) listener) | 设置帧可用回调。<br/>不允许在回调函数中调用本模块的其他接口。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_UnsetOnFrameAvailableListener](#oh_nativeimage_unsetonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image) | 取消设置帧可用回调。<br/>本接口为非线程安全类型接口。 | 
+| void [OH_NativeImage_Destroy](#oh_nativeimage_destroy) ([OH_NativeImage](#oh_nativeimage) \*\*image) | 销毁通过OH_NativeImage_Create创建的**OH_NativeImage**实例, 销毁后该<br/>**OH_NativeImage**指针会被赋值为空。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。<br/>matrix在[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口调用后，才会更新。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*\*nativeWindowBuffer, int \*fenceFd) | 通过消费端的**OH_NativeImage**获取一个**OHNativeWindowBuffer**。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口将会创建一个**OHNativeWindowBuffer**。<br/>当使用**OHNativeWindowBuffer**时，用户需要通过[OH_NativeWindow_NativeObjectReference](_native_window.md#oh_nativewindow_nativeobjectreference)接口将其引用计数加一。<br/>当**OHNativeWindowBuffer**使用完，用户需要通过[OH_NativeWindow_NativeObjectUnreference](_native_window.md#oh_nativewindow_nativeobjectunreference)接口将其引用计数减一。<br/>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br/>当fenceFd使用完，用户需要将其close。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | 通过**OH_NativeImage**实例将**OHNativeWindowBuffer**归还到buffer队列中。<br/>系统会将fenFd关闭，无需用户close。<br/>本接口为非线程安全类型接口。 | 
+| [OH_NativeImage](#oh_nativeimage) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | 创建一个**OH_NativeImage**实例，作为surface的消费端。<br/>本接口仅用于surface消费端的内存轮转，创建的OH_NativeImage内部不会主动进行内存渲染处理。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口与 OH_NativeImage_AcquireNativeWindowBuffer和OH_NativeImage_ReleaseNativeWindowBuffer配合使用。<br/>本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。<br/>本接口为非线程安全类型接口。 | 
+| int32_t [OH_ConsumerSurface_SetDefaultUsage](#oh_consumersurface_setdefaultusage) ([OH_NativeImage](#oh_nativeimage) \*image, uint64_t usage) | 设置默认读写方式。 本接口为非线程安全类型接口。 | 
+| int32_t [OH_ConsumerSurface_SetDefaultSize](#oh_consumersurface_setdefaultsize) ([OH_NativeImage](#oh_nativeimage) \*image, int32_t width, int32_t height) | 设置几何图形默认尺寸。 本接口为非线程安全类型接口。 | 
 
 ## 类型定义说明
 
@@ -181,11 +184,100 @@ enum OHNativeErrorCode
 | NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED | 消费端未注册listener回调函数 |
 | NATIVE_ERROR_UNSUPPORTED  | 当前设备或平台不支持   | 
 | NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志   | 
+| NATIVE_ERROR_HDI_ERROR  | HDI接口调用失败   | 
+| NATIVE_ERROR_BINDER_ERROR  | 跨进程通信失败   | 
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
 | NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
 
 
 ## 函数说明
+
+
+### OH_ConsumerSurface_SetDefaultUsage()
+
+```
+int32_t OH_ConsumerSurface_SetDefaultUsage (OH_NativeImage* image, uint64_t usage )
+```
+
+**描述**
+
+设置默认读写方式。 本接口为非线程安全类型接口。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 指向**OH_NativeImage**实例的指针。 | 
+| usage | 表示读写方式。枚举值参考**OH_NativeBuffer_Usage**。 | 
+
+**返回：**
+
+执行成功时返回NATIVE_ERROR_OK。
+
+image是空指针时返回NATIVE_ERROR_INVALID_ARGUMENTS。
+
+
+### OH_ConsumerSurface_SetDefaultSize()
+
+```
+int32_t OH_ConsumerSurface_SetDefaultSize (OH_NativeImage* image, int32_t width, int32_t height )
+```
+
+**描述**
+
+设置几何图形默认尺寸。 本接口为非线程安全类型接口。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 指向**OH_NativeImage**实例的指针。 | 
+| width | 表示几何图形宽度，取值范围大于0，单位为像素。 | 
+| height | 表示几何图形高度，取值范围大于0，单位为像素。 | 
+
+**返回：**
+
+执行成功时返回NATIVE_ERROR_OK。
+
+image是空指针时，或width、height小于等于0时返回NATIVE_ERROR_INVALID_ARGUMENTS。
+
+
+
+### OH_ConsumerSurface_Create()
+
+```
+OH_NativeImage* OH_ConsumerSurface_Create ()
+```
+
+**描述**
+
+创建一个**OH_NativeImage**实例，作为surface的消费端。
+
+本接口仅用于surface消费端的内存轮转，创建的OH_NativeImage内部不会主动进行内存渲染处理。
+
+本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。
+
+本接口与 OH_NativeImage_AcquireNativeWindowBuffer和OH_NativeImage_ReleaseNativeWindowBuffer配合使用。
+
+本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。
+
+本接口为非线程安全类型接口。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
+
+**起始版本：** 12
+
+**返回：**
+
+成功则返回一个指向**OH_NativeImage**实例的指针，否则返回**NULL**。
 
 
 ### OH_NativeImage_AcquireNativeWindowBuffer()
@@ -209,6 +301,7 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer (OH_NativeImage* image, OHNativ
 本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。
 
 当fenceFd使用完，用户需要将其close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -242,6 +335,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer (OH_NativeImage* image, OHNativ
 通过**OH_NativeImage**实例将**OHNativeWindowBuffer**归还到buffer队列中。
 
 系统会将fenFd关闭，无需用户close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -277,6 +371,11 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 
 获取与OH_NativeImage相关联的OHNativeWindow指针。
 
+本接口为非线程安全类型接口。
+
+OH_NativeImage析构时会将对应的OHNativeWindow实例释放。若从本接口获取OHNativeWindow指针，当OH_NativeImage实例释放时，请将获取到的OHNativeWindow指针置空，防止后续产生野指针。
+
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
 **起始版本：** 9
@@ -303,6 +402,7 @@ int32_t OH_NativeImage_AttachContext (OH_NativeImage * image, uint32_t textureId
 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到
 
 GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -329,6 +429,8 @@ OH_NativeImage* OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarge
 **描述**
 
 创建一个**OH_NativeImage**实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。
+本接口需要与OH_NativeImage_Destroy接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -357,6 +459,7 @@ void OH_NativeImage_Destroy (OH_NativeImage ** image)
 销毁通过OH_NativeImage_Create创建的**OH_NativeImage**实例, 销毁后该
 
 **OH_NativeImage**指针会被赋值为空。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -378,6 +481,7 @@ int32_t OH_NativeImage_DetachContext (OH_NativeImage * image)
 **描述**
 
 将OH_NativeImage实例从当前OpenGL ES上下文分离。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -403,6 +507,7 @@ int32_t OH_NativeImage_GetSurfaceId (OH_NativeImage * image, uint64_t * surfaceI
 **描述**
 
 获取OH_NativeImage的surface编号。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -429,6 +534,7 @@ int64_t OH_NativeImage_GetTimestamp (OH_NativeImage * image)
 **描述**
 
 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -481,6 +587,8 @@ int32_t OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage* image, float matrix
 ```
 **描述**
 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。
+matrix在OH_NativeImage_UpdateSurfaceImage接口调用后，才会更新。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -506,6 +614,8 @@ int32_t OH_NativeImage_SetOnFrameAvailableListener (OH_NativeImage * image, OH_O
 **描述**
 
 设置帧可用回调。
+不允许在回调函数中调用本模块的其他接口。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -532,6 +642,7 @@ int32_t OH_NativeImage_UnsetOnFrameAvailableListener (OH_NativeImage * image)
 **描述**
 
 取消设置帧可用回调。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -557,6 +668,9 @@ int32_t OH_NativeImage_UpdateSurfaceImage (OH_NativeImage * image)
 **描述**
 
 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。
+本接口需要在Opengl ES环境上下文的线程中调用。
+本接口需要在接收到OH_OnFrameAvailableListener回调后调用。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 

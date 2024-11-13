@@ -12,15 +12,16 @@ PageNodeInfo defines the page node information used for auto-fill.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name       | Type                | Mandatory| Description                                                        |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| id    | number               | Yes  | ID of the page node.                              |
-| depth    | number              | Yes  | Depth of the page node.                              |
-| autoFillType    | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)        | Yes  | Type of the element to be automatically filled in.   |
-| tag    | string              | Yes  | Tag of the page node.                              |
-| value    | string              | Yes  | Value of the page node.                              |
-| placeholder    | string              | No  | Placeholder of the page node.                              |
-| passwordRules    | string              | No  | Rules for generating passwords.                              |
-| enableAutoFill    | boolean              | Yes  | Status of the auto-fill feature.                              |
-| rect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md) | Yes  | Coordinates, width, and height of the page node. |
-| isFocus<sup>12+</sup>    | boolean              | Yes  | Whether the page node has focus.                              |
+| Name       | Type                | Read-Only| Optional| Description                                                        |
+| ----------- | -------------------- | ----| ---- | ------------------------------------------------------------ |
+| id    | number               | No  | No  | ID of the page node.                              |
+| depth    | number              | No  | No  | Depth of the page node.                              |
+| autoFillType    | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)        | No  | No  | Type of the element to be automatically filled in.   |
+| tag    | string              | No  | No  | Tag of the page node.                              |
+| value    | string              | No  | No  | Value of the page node.                              |
+| placeholder    | string              | No  | Yes  | Placeholder of the page node.                              |
+| passwordRules    | string              | No  | Yes  | Rules for generating passwords.                              |
+| enableAutoFill    | boolean              | No  | No  | Status of the auto-fill feature.                              |
+| rect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md) | No  | No  | Coordinates, width, and height of the page node. |
+| isFocus<sup>12+</sup>    | boolean              | No  | No  | Whether the page node has focus.                              |
+| metadata<sup>12+</sup>    | string              | No  | Yes  | Metadata of the page node.                              |

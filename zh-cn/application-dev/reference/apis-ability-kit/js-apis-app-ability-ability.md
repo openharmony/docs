@@ -14,6 +14,16 @@
 import { Ability } from '@kit.AbilityKit';
 ```
 
+## Ability的继承关系说明
+
+各类Ability的继承关系如下图所示。
+
+> **说明：**
+>
+> 部分ExtensionAbility组件（例如[FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)、[InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)等）与下图中的ExtensionAbility基类不存在继承关系，均未在图中列出。
+
+![uiExtensionAbility](../figures/image-ability-uiExtensionAbility.png)
+
 ## Ability.onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void
@@ -56,7 +66,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | 是 | 当前内存使用级别。|
+| level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | 是 | 当前内存使用级别。|
 
 **示例：**
 

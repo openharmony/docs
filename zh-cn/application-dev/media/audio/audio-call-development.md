@@ -12,7 +12,7 @@
   
 ```ts
 import { audio } from '@kit.AudioKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VoiceCallDemoForAudioRenderer';
@@ -21,7 +21,7 @@ class Options {
   offset?: number;
   length?: number;
 }
-let context = getContext(this);
+
 let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
@@ -29,30 +29,28 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioRendererInfo: audio.AudioRendererInfo = {
   // 需使用通话场景相应的参数
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：VOIP通话
   rendererFlags: 0 // 音频渲染器标志：默认为0即可
-}
+};
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
-
+};
 let path = getContext().cacheDir;
-//确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
-
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
-  }
-  fileIo.readSync(file.fd, buffer, options);
+  };
+  fs.readSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
-}
+};
 
 // 初始化，创建实例，设置监听事件
 audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: audio.AudioRenderer) => { // 创建AudioRenderer实例
@@ -155,18 +153,18 @@ async function release() {
   该过程与[使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)过程相似，关键区别在于audioCapturerInfo参数和音频数据流向。audioCapturerInfo参数中音源类型需设置为语音通话：SOURCE_TYPE_VOICE_COMMUNICATION。
 
   所有录制均需要申请麦克风权限：ohos.permission.MICROPHONE，申请方式请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
- 
+
 ```ts
 import { audio } from '@kit.AudioKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let context = getContext(this);
 const TAG = 'VoiceCallDemoForAudioCapturer';
 class Options {
   offset?: number;
   length?: number;
 }
+
 // 与使用AudioCapturer开发音频录制功能过程相似，关键区别在于audioCapturerInfo参数和音频数据流向
 let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
@@ -175,29 +173,27 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_1, // 通道
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-}
+};
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   // 需使用通话场景相应的参数
   source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, // 音源类型：语音通话
   capturerFlags: 0 // 音频采集器标志：默认为0即可
-}
+};
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
-
+};
 let path = getContext().cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
-  }
-  fileIo.writeSync(file.fd, buffer, options);
+  };
+  fs.writeSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
-}
+};
 
 // 初始化，创建实例，设置监听事件
 async function init() {

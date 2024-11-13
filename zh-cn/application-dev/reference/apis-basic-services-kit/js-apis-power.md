@@ -26,7 +26,7 @@ isActive(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 
@@ -84,7 +84,7 @@ getPowerMode(): DevicePowerMode
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 
@@ -117,7 +117,7 @@ isStandby(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **示例：**
 

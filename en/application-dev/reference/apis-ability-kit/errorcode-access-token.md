@@ -196,7 +196,7 @@ The requested permissions include the permissions that are not rejected by the u
 
 **Solution**
 
-Call **requestPermissionFromUser** to request permissions from the user first.
+Call **requestPermissionsFromUser** to request permissions from the user first.
 
 
 ## 12100013 Global Switch Enabled

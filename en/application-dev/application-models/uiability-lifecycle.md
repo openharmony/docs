@@ -3,7 +3,7 @@
 
 ## Overview
 
-When a user opens or switches to and from an application, the UIAbility instances in the application transit in their different states. The UIAbility class provides a series of callbacks. Through these callbacks, you can know the state changes of the UIAbility instance.
+When a user opens or switches to and from an application, the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instances in the application transit in their different states. The UIAbility class provides a series of callbacks. Through these callbacks, you can know the state changes of the UIAbility instance.
 
 The lifecycle of UIAbility has four states: **Create**, **Foreground**, **Background**, and **Destroy**, as shown in the figure below.
 
@@ -17,7 +17,7 @@ The lifecycle of UIAbility has four states: **Create**, **Foreground**, **Backgr
 
 ### Create
 
-The **Create** state is triggered when the UIAbility instance is created during application loading. It corresponds to the **onCreate()** callback. In this callback, you can perform page initialization operations, for example, defining variables or loading resources.
+The **Create** state is triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created during application loading. It corresponds to the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback. In this callback, you can perform page initialization operations, for example, defining variables or loading resources.
 
 
 ```ts
@@ -37,13 +37,13 @@ export default class EntryAbility extends UIAbility {
 
 ### WindowStageCreate and WindowStageDestroy
 
-After the UIAbility instance is created but before it enters the **Foreground** state, the system creates a WindowStage instance and triggers the **onWindowStageCreate()** callback. You can set UI loading and WindowStage event subscription in the callback.
+After the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created but before it enters the Foreground state, the system creates a WindowStage instance and triggers the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback. You can set UI loading and WindowStage event subscription in the callback.
 
 **Figure 2** WindowStageCreate and WindowStageDestroy 
 
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9-2) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
+In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -93,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 >
 > For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
 
-Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callback is invoked to release UI resources.
+Before the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is destroyed, the [onWindowStageDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagedestroy) callback is invoked to release UI resources.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -130,7 +130,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### WindowStageWillDestroy
-The **onWindowStageWillDestroy()** callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
+The [onWindowStageWillDestroy()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagewilldestroy12) callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -159,7 +159,7 @@ export default class EntryAbility extends UIAbility {
 
 ### Foreground and Background
 
-The **Foreground** and **Background** states are triggered when the UIAbility instance is switched to the foreground and background, respectively. They correspond to the **onForeground()** and **onBackground()** callbacks.
+The **Foreground** and **Background** states are triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is switched to the foreground and background, respectively. They correspond to the [onForeground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground) and [onBackground()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonbackground) callbacks.
 
 The **onForeground()** callback is triggered when the UI of the UIAbility instance is about to become visible, for example, when the UIAbility instance is about to enter the foreground. In this callback, you can apply for resources required by the system or re-apply for resources that have been released in the **onBackground()** callback.
 
@@ -203,9 +203,10 @@ export default class EntryAbility extends UIAbility {
 
 ### Destroy
 
-The **Destroy** state is triggered when the UIAbility instance is destroyed. You can perform operations such as releasing system resources and saving data in the **onDestroy()** callback.
+The Destroy state is triggered when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is destroyed. You can perform operations such as releasing system resources and saving data in the **onDestroy()** callback.
 
-The UIAbility instance is destroyed when [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called or the user closes the instance in the system application Recents.
+The UIAbility instance is destroyed when [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called and the **onDestroy()** callback is invoked.
+<!--RP1-->The UIAbility instance is also destroyed when the user closes the instance in the system application Recents and the **onDestroy()** callback is invoked.<!--RP1End-->
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';

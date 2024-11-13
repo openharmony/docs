@@ -1,4 +1,4 @@
-# 使用AVTranscoder开发视频转码功能
+# 使用AVTranscoder实现视频转码(ArkTS)
 
 使用AVTranscoder可以实现视频转码功能，本开发指导将以“开始转码-暂停转码-恢复转码-转码完成”的一次流程为示例，向开发者讲解AVTranscoder视频转码相关功能。
 
@@ -45,7 +45,7 @@
    })
    ```
 
-3. 设置资源：设置属性fdSrc
+3. 设置资源：设置属性fdSrc。
    > **说明：**
    >
    > 下面代码示例中的fdSrc仅作示意使用，开发者需根据实际情况，确认资源有效性并设置：
@@ -56,6 +56,7 @@
 
    ```ts
    import resourceManager from '@ohos.resourceManager';
+   import { common } from '@kit.AbilityKit';
 
    let context = getContext(this) as common.UIAbilityContext;
    let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
@@ -63,7 +64,7 @@
    this.avTranscoder.fdSrc = fileDescriptor;
    ```
 
-4. 设置资源：设置属性fdDst
+4. 设置资源：设置属性fdDst。
    > **说明：**
    >
    > - 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
@@ -142,75 +143,86 @@
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private avConfig: media.AVTranscoderConfig = {
-     audioBitrate: 100000, // 音频比特率
-     audioCodec: media.CodecMimeType.AUDIO_AAC,
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
-     videoBitrate: 200000, // 视频比特率
-     videoCodec: media.CodecMimeType.VIDEO_AVC,
-     videoFrameWidth: 640,  // 视频分辨率的宽
-     videoFrameHeight: 480, // 视频分辨率的高
-   }
+    audioBitrate: 100000, // 音频比特率
+    audioCodec: media.CodecMimeType.AUDIO_AAC,
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4A,
+    videoBitrate: 200000, // 视频比特率
+    videoCodec: media.CodecMimeType.VIDEO_AVC,
+    videoFrameWidth: 640,  // 视频分辨率的宽
+    videoFrameHeight: 480, // 视频分辨率的高
+  }
 
   // 注册avTranscoder回调函数
   setAVTranscoderCallback() {
-    if (this.avTranscoder != undefined) {
-      // 转码完成回调函数
-      this.avTranscoder.on('complete', () => {
-        console.log(`AVTranscoder is completed`);
-        await releaseTranscoderingProcess();
-      })
-      // 错误上报回调函数
-      this.avTranscoder.on('error', (err: BusinessError) => {
-        console.error(`AVTranscoder failed, code is ${err.code}, message is ${err.message}`);
-      })
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) {
+        // 转码完成回调函数
+        this.avTranscoder.on('complete', async () => {
+          console.log(`AVTranscoder is completed`);
+          await this.releaseTranscoderingProcess();
+        })
+        // 错误上报回调函数
+        this.avTranscoder.on('error', (err: BusinessError) => {
+          console.error(`AVTranscoder failed, code is ${err.code}, message is ${err.message}`);
+        })
+      }
     }
   }
 
   // 开始转码对应的流程
   async startTranscoderingProcess() {
-    if (this.avTranscoder != undefined) {
-      await this.avTranscoder.release();
-      this.avTranscoder = undefined;
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) {
+        await this.avTranscoder.release();
+        this.avTranscoder = undefined;
+      }
+      // 1.创建转码实例
+      this.avTranscoder = await media.createAVTranscoder();
+      this.setAVTranscoderCallback();
+      // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档
+      let context = getContext(this) as common.UIAbilityContext;
+      let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+      this.avTranscoder.fdSrc = fileDescriptor;
+      this.avTranscoder.fdDst = 55;
+      // 3.配置转码参数完成准备工作
+      await this.avTranscoder.prepare(this.avConfig);
+      // 4.开始转码
+      await this.avTranscoder.start();
     }
-    // 1.创建转码实例
-    this.avTranscoder = await media.createAVTranscoder();
-    this.setAVTranscoderCallback();
-    // 2.获取转码源文件fd和目标文件fd赋予avTranscoder；参考FilePicker文档
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
-    this.avTranscoder.fdSrc = fileDescriptor;
-    this.avTranscoder.fdDst = 55;
-    // 3.配置转码参数完成准备工作
-    await this.avTranscoder.prepare(this.avConfig);
-    // 4.开始转码
-    await this.avTranscoder.start();
   }
 
   // 暂停转码对应的流程
   async pauseTranscoderingProcess() {
-    if (this.avTranscoder != undefined) { // 仅在调用start返回后调用pause为合理调用
-      await this.avTranscoder.pause();
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) { // 仅在调用start返回后调用pause为合理调用
+        await this.avTranscoder.pause();
+      }
     }
   }
 
   // 恢复对应的转码流程
   async resumeTranscoderingProcess() {
-    if (this.avTranscoder != undefined) { // 仅在调用pause返回后调用resume为合理调用
-      await this.avTranscoder.resume();
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) { // 仅在调用pause返回后调用resume为合理调用
+        await this.avTranscoder.resume();
+      }
     }
   }
 
   // 释放转码流程
   async releaseTranscoderingProcess() {
-    if (this.avTranscoder != undefined) {
-      // 1.释放转码实例
-      await this.avTranscoder.release();
-      this.avTranscoder = undefined;
-      // 2.关闭转码目标文件fd
+    if (canIUse("SystemCapability.Multimedia.Media.AVTranscoder")) {
+      if (this.avTranscoder != undefined) {
+        // 1.释放转码实例
+        await this.avTranscoder.release();
+        this.avTranscoder = undefined;
+        // 2.关闭转码目标文件fd
+      }
     }
   }
 
@@ -219,7 +231,7 @@ export class AVTranscoderDemo {
     await this.startTranscoderingProcess(); // 开始转码
     await this.pauseTranscoderingProcess(); //暂停转码
     await this.resumeTranscoderingProcess(); // 恢复转码
-    await this.releaseTranscoderingProgress(); // 释放转码
+    await this.releaseTranscoderingProcess(); // 释放转码
   }
 }
 ```

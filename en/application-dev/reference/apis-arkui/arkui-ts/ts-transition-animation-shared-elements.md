@@ -21,10 +21,12 @@ A shared element transition is a transition animation applied to a component tha
 
 ## sharedTransitionOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name             | Type     | Mandatory      | Description                                                     |
 | ----------------- | -------------|-------------- | --------------------------------------------------------------|
 | duration          |     number   |  No          | Animation duration.<br>Default value: **1000**<br>Unit: ms|
-| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup>  | No| Animation curve.<br>Default value: **Curve.Linear**|
+| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup>  | No| Animation curve.<br>Default value: **Curve.Linear**|
 | delay          |     number   |  No          | Delay of animation playback.<br>Default value: **0**<br>Unit: ms|
 | motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  No          | Motion path.|
 | zIndex          |     number   |  No             | Z-axis.|

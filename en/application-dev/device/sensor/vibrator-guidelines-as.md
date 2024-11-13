@@ -10,12 +10,12 @@ For details about the APIs, see [Vibrator](../../reference/apis-sensor-service-k
 
 ## Available APIs
 
-| Module         | API                                                      | Description                                                        |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ohos.vibrator | startVibration(effect: VibrateTime, attribute: VibrateAttribute): Promise&lt;void&gt; | Starts vibration with the specified effect and attribute. This API uses a promise to return the result.|
-| ohos.vibrator | startVibration(effect: VibrateTime, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | Starts vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.|                                |
-| ohos.vibrator | stopVibration(): Promise&lt;void&gt;                         | Stops vibration in all modes. This API uses a promise to return the result.                                    |
-| ohos.vibrator | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | Stops vibration in all modes. This API uses an asynchronous callback to return the result.                                    |
+| Name                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| startVibration(effect: VibrateTime, attribute: VibrateAttribute): Promise&lt;void&gt; | Starts vibration with the specified effect and attribute. This API uses a promise to return the result.|
+| startVibration(effect: VibrateTime, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | Starts vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.|
+| stopVibration(): Promise&lt;void&gt;                         | Stops vibration in all modes. This API uses a promise to return the result.               |
+| stopVibration(callback: AsyncCallback&lt;void&gt;): void     | Stops vibration in all modes. This API uses an asynchronous callback to return the result.              |
 
 
 ## How to Develop

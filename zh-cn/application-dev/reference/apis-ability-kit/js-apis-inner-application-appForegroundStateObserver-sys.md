@@ -1,6 +1,6 @@
 # AppForegroundStateObserver (系统接口)
 
-定义应用启动和退出的状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageron11)的入参监听所有应用的启动和退出的变化。
+定义应用启动和退出的状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11)的入参监听所有应用的启动和退出的变化。
 
 > **说明：**
 >

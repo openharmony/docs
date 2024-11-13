@@ -1,4 +1,4 @@
- # @ohos.data.distributedKVStore (分布式键值数据库)
+# @ohos.data.distributedKVStore (分布式键值数据库)
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、同步等操作。
 
@@ -41,7 +41,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | --------------------- | ------- | --------------------------------------- |
 | MAX_KEY_LENGTH        | 1024    | 数据库中Key允许的最大长度，单位字节。   |
 | MAX_VALUE_LENGTH      | 4194303 | 数据库中Value允许的最大长度，单位字节。 |
-| MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中key允许的最大长度，单位字节。 |
+| MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中Key允许的最大长度，单位字节。 |
 | MAX_STORE_ID_LENGTH   | 128     | 数据库标识符允许的最大长度，单位字节。  |
 | MAX_QUERY_LENGTH      | 512000  | 最大查询长度，单位字节。                |
 | MAX_BATCH_SIZE        | 128     | 最大批处理操作数量。                    |
@@ -127,11 +127,17 @@ import { distributedKVStore } from '@kit.ArkData';
 | 名称                 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | DEVICE_COLLABORATION | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION       | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| SINGLE_VERSION       | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的Key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
 数据库的安全级别枚举。
+> **说明**：
+>
+> 在单设备使用场景下，KV数据库支持修改securityLevel开库参数进行安全等级升级。数据库安全等级升级操作需要注意以下几点：
+> * 该操作不支持需要进行跨设备同步的数据库，不同安全等级的数据库之间不能进行数据同步，需要跨设备同步的数据库如果要升级安全等级，建议重新创建更高安全等级的数据库。
+> * 该操作需在关闭当前数据库之后，通过修改securityLevel开库参数重新设置数据库的安全等级，再进行开库操作。
+> * 该操作只支持升级，不支持降级。例如支持S2->S3的升级，不支持S3->S2的降级。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -151,7 +157,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | createIfMissing | boolean                         | 否  | 当数据库文件不存在时是否创建数据库，默认为true，即创建。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | encrypt         | boolean                         | 否   | 设置数据库文件是否加密，默认为false，即不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | backup          | boolean                         | 否   | 设置数据库文件是否备份，默认为true，即备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| autoSync        | boolean                         | 否   | 设置数据库是否为跨设备自动同步。默认为false，即手动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
+| autoSync        | boolean                         | 否   | 设置数据库是否支持跨设备自动同步。默认为false，即只支持手动同步。配置为true，<!--RP1-->即只支持在[跨设备Call调用实现的多端协同](../../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)中生效，其他场景无法生效。<!--RP1End--><br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC |
 | kvStoreType     | [KVStoreType](#kvstoretype)     | 否   | 设置要创建的数据库类型，默认为DEVICE_COLLABORATION，即多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | securityLevel   | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 | schema          | [Schema](#schema)               | 否   | 设置定义存储在数据库中的值，默认为undefined，即不使用Schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
@@ -166,7 +172,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
 | root    | [FieldNode](#fieldnode) | 是   | 是   | 存放了Value中所有字段的定义。 |
 | indexes | Array\<string>          | 是   | 是   | 索引字段定义，只有通过此字段指定的FieldNode才会创建索引，如果不需要创建任何索引，则此indexes字段可以不定义。格式为：`'$.field1'`, `'$.field2'`。|
-| mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示STRICT模式，1表示COMPATIBLE模式。|
+| mode    | number                  | 是   | 是   | Schema的模式，可以取值0或1，0表示COMPATIBLE模式，1表示STRICT模式。|
 | skip    | number                  | 是   | 是   | 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。|
 
 STRICT：意味着严格模式，在此模式用户插入的Value格式与Schema定义必须严格匹配，字段不能多也不能少，如果不匹配则插入数据时数据库会返回错误。
@@ -385,6 +391,10 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 通过指定options和storeId，创建并获取分布式键值数据库，使用callback异步回调。
 
+> 注意：
+>
+> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
+
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
@@ -402,7 +412,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
-| 15100002     | Open existed database with changed options. |
+| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
 | 15100003     | Database corrupted.                         |
 
 **示例：**
@@ -418,7 +428,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+    securityLevel: distributedKVStore.SecurityLevel.S3,
   };
   kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
@@ -445,6 +455,10 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 通过指定options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
 
+> 注意：
+>
+> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
+
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
@@ -467,7 +481,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.|
-| 15100002     | Open existed database with changed options. |
+| 15100002     | The options configuration changes when the API is called to obtain a KV store. |
 | 15100003     | Database corrupted.                         |
 
 **示例：**
@@ -483,7 +497,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S2,
+    securityLevel: distributedKVStore.SecurityLevel.S3,
   };
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
     console.info("Succeeded in getting KVStore");
@@ -534,7 +548,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -603,7 +617,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -648,7 +662,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Not found.   |
+| 15100004     | Data not found.   |
 
 **示例：**
 
@@ -664,7 +678,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -718,7 +732,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Parameter verification failed.|
-| 15100004     | Not found.   |
+| 15100004     | Data not found.   |
 
 **示例：**
 
@@ -734,7 +748,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S2,
+  securityLevel: distributedKVStore.SecurityLevel.S3,
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -2448,7 +2462,7 @@ try {
 
 deviceId(deviceId:string):Query
 
-添加设备ID作为key的前缀。
+添加设备ID作为Key的前缀。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -2537,7 +2551,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
+| key    | string  | 是    |要添加数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
 | callback | AsyncCallback&lt;void&gt; | 是    |回调函数。数据添加成功，err为undefined，否则为错误对象。   |
 
@@ -2590,7 +2604,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
+| key    | string  | 是    |要添加数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
 
 **返回值：**
@@ -2795,7 +2809,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                    | 是   | 要删除数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key      | string                    | 是   | 要删除数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。删除指定的数据成功，err为undefined，否则为错误对象。         |
 
 **错误码：**
@@ -2856,7 +2870,7 @@ delete(key: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| key    | string   | 是   | 要删除数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key    | string   | 是   | 要删除数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 
 **返回值：**
 
@@ -3190,7 +3204,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
+| key    |string   | 是    |要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
 | callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | 是    |回调函数。返回获取查询的值。  |
 
 **错误码：**
@@ -3201,7 +3215,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3247,7 +3261,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| key    | string   | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key    | string   | 是   | 要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 
 **返回值：**
 
@@ -3263,7 +3277,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -3590,7 +3604,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3673,7 +3687,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3742,7 +3756,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -3816,7 +3830,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -4953,7 +4967,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Not found.          |
+| 15100004     | Data not found.     |
 
 **示例：**
 
@@ -5040,7 +5054,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | ------------ | ------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
 | 15100003     | Database corrupted. |
-| 15100004     | Not found.          |
+| 15100004     | Data not found.     |
 
 **示例：**
 
@@ -5123,7 +5137,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5404,7 +5418,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| key      | string                                                       | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key      | string                                                       | 是   | 要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 | callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | 是   | 回调函数。返回获取查询的值。                                 |
 
 **错误码：**
@@ -5415,7 +5429,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5460,7 +5474,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| key    | string | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key    | string | 是   | 要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 
 **返回值：**
 
@@ -5476,7 +5490,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5509,7 +5523,7 @@ try {
 
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
-获取与指定设备ID和key匹配的string值，使用callback异步回调。
+获取与指定设备ID和Key匹配的string值，使用callback异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -5522,7 +5536,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
-| key       |string  | 是    |表示要查询key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
+| key       |string  | 是    |表示要查询Key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
 | callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | 是    |回调函数，返回匹配给定条件的字符串值。    |
 
 **错误码：**
@@ -5533,7 +5547,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5570,7 +5584,7 @@ try {
 
 get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
-获取与指定设备ID和key匹配的string值，使用Promise异步回调。
+获取与指定设备ID和Key匹配的string值，使用Promise异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -5583,7 +5597,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 | 参数名   | 类型 | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
 | deviceId | string   | 是   | 标识要查询其数据的设备。 |
-| key      | string   | 是   | 表示要查询key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
+| key      | string   | 是   | 表示要查询Key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
 
 **返回值：**
 
@@ -5599,7 +5613,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 | 15100003     | Database corrupted.                    |
-| 15100004     | Not found.                             |
+| 15100004     | Data not found.                        |
 | 15100005     | Database or result set already closed. |
 
 **示例：**
@@ -5768,7 +5782,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-获取与指定设备ID和key前缀匹配的所有键值对，使用callback异步回调。
+获取与指定设备ID和Key前缀匹配的所有键值对，使用callback异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -5841,7 +5855,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
-获取与指定设备ID和key前缀匹配的所有键值对，使用Promise异步回调。
+获取与指定设备ID和Key前缀匹配的所有键值对，使用Promise异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -6230,7 +6244,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6312,7 +6326,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6363,7 +6377,7 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
-获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
+获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -6377,7 +6391,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
 | keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和Key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -6386,7 +6400,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6424,7 +6438,7 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
-获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
+获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -6443,7 +6457,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和Key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -6452,7 +6466,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6510,7 +6524,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6599,7 +6613,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6681,7 +6695,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 
@@ -6750,7 +6764,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 | **错误码ID** | **错误信息**                           |
 | ------------ | -------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100001     | Over max  limits.                      |
+| 15100001     | Upper limit exceeded.                  |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
 

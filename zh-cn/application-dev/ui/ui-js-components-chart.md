@@ -67,7 +67,7 @@ export default {
 
 ## 设置图表类型
 
-chart组件通过设置type属性定义图表t类型，如将图表设置为柱状图。
+chart组件通过设置type属性定义图表类型，如将图表设置为柱状图。
 
 
 ```html
@@ -211,7 +211,8 @@ export default {
 
 ![zh-cn_image_0000001227423251](figures/zh-cn_image_0000001227423251.gif)
 
-> **说明：**
+> **说明：** 
+>
 > chart不支持显示每个点的值。
 
 
@@ -617,11 +618,3 @@ export default {
 ```
 
 ![zh-cn_image_0000001179018876](figures/zh-cn_image_0000001179018876.gif)
-
-
-
-## 相关实例
-
-针对chart开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

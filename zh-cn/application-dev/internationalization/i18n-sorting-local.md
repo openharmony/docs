@@ -19,7 +19,7 @@
    let collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
    ```
 
-3. 比较字串。
+3. 比较字符串。
    ```ts
    let compareResult = collator.compare(first: string, second: string);
    // compareResult 为负数，表示第一个参数排在第二个参数之前

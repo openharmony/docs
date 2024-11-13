@@ -6,8 +6,8 @@ For details about how to use the APIs, see [Application Event Logging](../refere
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events. |
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events. |
+| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events.|
+| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 
@@ -52,9 +52,9 @@ The following describes how to subscribe to the main thread jank event, which is
             // Obtain the PID and UID of the app.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
-            // Set the begin time and end time on the main thread.
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['begin_time']}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['end_time']}`);
+            // Obtain the begin time and end time on the main thread.
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.begin_time=${eventInfo.params['begin_time']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.end_time=${eventInfo.params['end_time']}`);
             // Obtain the error log file generated when the main thread jank event occurs.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
@@ -95,8 +95,8 @@ The following describes how to subscribe to the main thread jank event, which is
      HiAppEvent eventInfo.params.bundle_name=com.example.main_thread_jank
      HiAppEvent eventInfo.params.pid=40986
      HiAppEvent eventInfo.params.uid=20020150
-     HiAppEvent eventInfo.params.crash_type=1717593620016
-     HiAppEvent eventInfo.params.foreground=1717593620518
+     HiAppEvent eventInfo.params.begin_time=1717593620016
+     HiAppEvent eventInfo.params.end_time=1717593620518
      HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613211739_40986.txt"]
      HiAppEvent eventInfo.params.log_over_limit=false
     ```
@@ -120,15 +120,15 @@ The following describes how to subscribe to the main thread jank event, which is
 
     When the main thread jank event occurs, the main thread checker starts to check whether the jank event occurs again every 155 ms (1 ≤ number of check times ≤ 2). There are three cases:
 
-    (1) If a jank event is detected during the first check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends.  
+    (1) If a jank event is detected during the first check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends. 
     
       ![Stack capture time example 1](figures/dump-stack1.PNG)
 
-    (2) If a jank event is detected during the second check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends.  
+    (2) If a jank event is detected during the second check, the main thread checker starts stack sampling every 155 ms for 10 times. The stack sampling data is collected and an event is reported at the next interval. Then the check ends. 
     
       ![Stack capture time example 2](figures/dump-stack2.PNG)
 
-    (3) If no jank event is detected in the two checks, the check ends. 
+    (3) If no jank event is detected in the two checks, the check ends.
 
       ![Stack capture time example 3](figures/dump-stack3.PNG)
 
@@ -146,32 +146,13 @@ The following describes how to subscribe to the main thread jank event, which is
 
 ## Main Thread Jank Event Specifications
 
-1. Event specifications
-
-   You can run the **hdc shell** command (**hisysevent -l | grep MAIN_THREAD_JANK**) to view the main thread jank events. For details, see [hisysevent](./hisysevent.md).
-   
-   The information of the reported event is described as follows:
-
-    |   Type |   Description  |
-    | -------------- | ------------------------------------- |
-    | BUNDLE_VERSION | App version number.                            |
-    | BUNDLE_NAME    | App process name.                            |
-    | BEGIN_TIME     | Begin timestamp of the main thread jank event.               |
-    | END_TIME       | End timestamp of the main thread jank event.               |
-    | EXTERNAL_LOG   | Stack file storage path.                        |
-    | STACK          | Stack content.                             |
-    | JANK_LEVEL     | Flag (**0**: stack sampling; **1**: trace sampling).        |
-    | THREAD_NAME    | Thread name.                               |
-    | FOREGROUND     | Whether the app is in the foreground.                        |
-    | LOG_TIME       | Log timestamp.                            |
-
-2. Log aging
+1. Log aging
 
     Generally, the size of a stack file is 7 KB to 10 KB, and the size of a trace file is 3 MB to 6 MB. The **watchdog** directory in the app sandbox can store a maximum of 10 MB files. If the total file size exceeds 10 MB, the user needs to manually delete files. The path to **watchdog** is **/data/app/el2/100/log/*app_bundle_name*/watchdog**.
 
-3. You can obtain the log path from **EXTERNAL_LOG**.
+2. You can obtain the log path from **EXTERNAL_LOG**.
 
-4. Currently, stack capturing supports only the ARM64 architecture. The stack capture result contains both native frames and JS frames parsed.
+3. Currently, stack capturing supports only the ARM64 architecture. The stack capture result contains both native frames and JS frames parsed.
 
    An example of the stack capture result is as follows:
    ```text
@@ -196,9 +177,9 @@ The following describes how to subscribe to the main thread jank event, which is
 
    Each stack capture records 16 KB call stack information of the main thread for stack unwinding. Therefore, each stack capture result contains a maximum of 16 KB invocation information of the process for 10 times. The captured data is displayed in a tree view, with repeated stack frames aggregated and different call layers distinguished by line indentation.  If the stack fails to be captured (for example, the main thread is blocked in the kernel or signals are masked), the content of the **/proc/self/wchan** file is output.
    
-   In the result, each row indicates a piece of stack information. The meaning of a row of stack frame information can be interpreted as follows.
+   In the result, each row indicates a piece of stack information. The meaning of a row of stack frame information can be interpreted as follows:
 
-   Native frame: 
+   Native frame:
 
    ```text
     9 #02 pc 000090a9 /system/bin/appspawn(main+396)(55679d09bcdea35bb1e0d4e1d9a3e58f)
@@ -213,7 +194,7 @@ The following describes how to subscribe to the main thread jank event, which is
     6 indicates the MD5 value of the .so file.
    ```
 
-   JS frame: 
+   JS frame:
 
    ```text
     1 #23 at wait2 (/entry/build/default/cache/default/XXX/entry/src/main/ets/pages/Index.js:16:12)
@@ -226,9 +207,9 @@ The following describes how to subscribe to the main thread jank event, which is
     4 indicates the path, file, row number, and column number of the called function.
    ```
 
-5. Trace Specifications
+4. Trace specifications
 
-    The size of a trace file is 1 MB to 5 MB. You can parse the trace file using [smpartperf](https://www.smartperf.host).
+    The size of a trace file is 1 MB to 5 MB. You can parse the trace file using [SmartPerf](https://www.smartperf.host).
 
     After the trace file is imported, the page displays the time axis, CPU usage, CPU load, IPC method calling, and process, thread, and method calling information from the top down. In this way, the data is displayed from the event dimension.
 

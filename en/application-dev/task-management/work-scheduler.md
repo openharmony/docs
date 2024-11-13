@@ -1,4 +1,4 @@
-# Deferred Task
+# Deferred Task (ArkTS)
 
 ## Overview
 
@@ -21,18 +21,18 @@ When the scheduling conditions are met or the task scheduling ends, the system c
 
 - **Quantity limit**: An application can request a maximum of 10 deferred tasks during a time segment.
 
-- **Execution frequency limit**: The system controls the execution frequency of deferred tasks<!--RP1--> based on the [application activity group](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->. <!--Del-->Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.<!--DelEnd-->
+- **Execution frequency limit**: The system controls the execution frequency of deferred tasks<!--RP1--> based on the application activity group in the [device usage statistics](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->. <!--Del-->Applications that request the WORK_SCHEDULER resource are placed in the efficiency resource exemption group.<!--DelEnd-->
 
   **Table 1** Application activity groups  
-  | Group | Deferred Task Execution Frequency |
+  | Group| Deferred Task Execution Frequency|
   | -------- | -------- |
-  | Group of active applications | At a minimum interval of 2 hours |
-  | Group of frequently used applications | At a minimum interval of 4 hours |
-  | Group of applications that are used neither frequently nor rarely | At a minimum interval of 24 hours |
-  | Group of rarely used applications | At a minimum interval of 48 hours |
-  | Group of restricted applications | Forbidden |
-  | Group of applications never used | Forbidden |<!--Del-->
-  | Efficiency resource exemption group | No restriction |<!--DelEnd-->
+  | Group of active applications| At a minimum interval of 2 hours|
+  | Group of frequently used applications| At a minimum interval of 4 hours|
+  | Group of applications that are used neither frequently nor rarely| At a minimum interval of 24 hours|
+  | Group of rarely used applications| At a minimum interval of 48 hours|
+  | Group of restricted applications| Forbidden|
+  | Group of applications never used| Forbidden|<!--Del-->
+  | Efficiency resource exemption group| No restriction|<!--DelEnd-->
   
 - **Timeout**: The WorkSchedulerExtensionAbility can run for a maximum of 2 minutes for a single callback. If the application does not cancel the deferred task upon a timeout, the system forcibly terminates the process for the WorkSchedulerExtensionAbility. <!--Del-->Privileged system applications can request the WORK_SCHEDULER resource to extend the duration to 20 minutes in the charging state and 10 minutes in the non-charging state.<!--DelEnd-->
 
@@ -57,37 +57,37 @@ The table below lists the APIs used for developing deferred tasks. For details a
 
 **Table 2** Main APIs for deferred tasks
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| startWork(work: WorkInfo): void; | Starts a deferred task. |
-| stopWork(work: WorkInfo, needCancel?: boolean): void; | Stops a deferred task. |
-| getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void; | Obtains the information about a deferred task. This API uses an asynchronous callback to return the result. |
-| getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;; | Obtains the information about a deferred task. This API uses a promise to return the result. |
-| obtainAllWorks(callback: AsyncCallback\<Array\<WorkInfo>>): void; | Obtains all the deferred tasks. This API uses an asynchronous callback to return the result. |
-| obtainAllWorks(): Promise&lt;Array&lt;WorkInfo&gt;&gt;; | Obtains all the deferred tasks. This API uses a promise to return the result. |
-| stopAndClearWorks(): void; | Stops and clears all the deferred tasks. |
-| isLastWorkTimeOut(workId: number, callback: AsyncCallback\<boolean>): void; | Checks whether the last execution of a deferred task has timed out. This API uses an asynchronous callback to return the result. It is applicable to repeated tasks. |
-| isLastWorkTimeOut(workId: number): Promise&lt;boolean&gt;; | Checks whether the last execution of a deferred task has timed out. This API uses a promise to return the result. It is applicable to repeated tasks. |
+| startWork(work: WorkInfo): void; | Starts a deferred task.|
+| stopWork(work: WorkInfo, needCancel?: boolean): void; | Stops a deferred task.|
+| getWorkStatus(workId: number, callback: AsyncCallback&lt;WorkInfo&gt;): void; | Obtains the information about a deferred task. This API uses an asynchronous callback to return the result.|
+| getWorkStatus(workId: number): Promise&lt;WorkInfo&gt;; | Obtains the information about a deferred task. This API uses a promise to return the result.|
+| obtainAllWorks(callback: AsyncCallback\<Array\<WorkInfo>>): void; | Obtains all the deferred tasks. This API uses an asynchronous callback to return the result.|
+| obtainAllWorks(): Promise&lt;Array&lt;WorkInfo&gt;&gt;; | Obtains all the deferred tasks. This API uses a promise to return the result.|
+| stopAndClearWorks(): void; | Stops and clears all the deferred tasks.|
+| isLastWorkTimeOut(workId: number, callback: AsyncCallback\<boolean>): void; | Checks whether the last execution of a deferred task has timed out. This API uses an asynchronous callback to return the result. It is applicable to repeated tasks.|
+| isLastWorkTimeOut(workId: number): Promise&lt;boolean&gt;; | Checks whether the last execution of a deferred task has timed out. This API uses a promise to return the result. It is applicable to repeated tasks.|
 
 **Table 3** Options of WorkInfo
 | Name            | Type                               | Mandatory  | Description              |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | Yes   | ID of a deferred task.         |
 | bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
-| abilityName     | string                            | Yes   | Ability name in the bundle. |
+| abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | No   | Network type.            |
 | isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
 | chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the deferred task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite. |
+| isRepeat        | boolean                           | No   | Whether the deferred task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
 | isPersisted     | boolean                           | No   | Whether to enable persistent storage for the deferred task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
-| parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters. |
+| parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters.|
 
 The **WorkInfo** parameter is used to set conditions for triggering task scheduling. Its setting must comply with the following rules:
 
@@ -97,16 +97,16 @@ The **WorkInfo** parameter is used to set conditions for triggering task schedul
 
 - At least one condition must be set, including the network type, charging type, storage status, battery status, and timing status.
 
-- For repeated tasks, **repeatCycleTime** must be at least 20 minutes. When **isRepeat** is set, you must set **repeatCycleTime** or **repeatCount**.
+- For repeated tasks, **repeatCycleTime** must be at least 2 hours. When **isRepeat** is set, you must set **repeatCycleTime** or **repeatCount**.
 
 The table below lists the APIs used for developing deferred task scheduling callbacks. For details about more APIs and their usage, see [@ohos.WorkSchedulerExtensionAbility (Deferred Task Scheduling Callbacks)](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md).
 
 **Table 4** Deferred task scheduling callbacks
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| onWorkStart(work: workScheduler.WorkInfo): void | Called when the system starts scheduling the deferred task. |
-| onWorkStop(work: workScheduler.WorkInfo): void | Called when the system stops scheduling the deferred task. |
+| onWorkStart(work: workScheduler.WorkInfo): void | Called when the system starts scheduling the deferred task.|
+| onWorkStop(work: workScheduler.WorkInfo): void | Called when the system stops scheduling the deferred task.|
 
 
 ## How to Develop

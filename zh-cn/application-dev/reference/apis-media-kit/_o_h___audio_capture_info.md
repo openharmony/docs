@@ -23,7 +23,7 @@
 | -------- | -------- |
 | int32_t [audioSampleRate](#audiosamplerate) | 音频采样率，支持列表参考OH_AudioCapturer_GetSamplingRate。  | 
 | int32_t [audioChannels](#audiochannels) | 音频声道数。  | 
-| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype)[audioSource](#audiosource) | 音频源。  | 
+| [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype) [audioSource](#audiosource) | 音频源。  | 
 
 
 ## 结构体成员变量说明

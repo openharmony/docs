@@ -1,6 +1,8 @@
 # 指定用户身份操作(仅对系统应用开放)
 
 多用户并发进行密钥操作时，为了实现密钥数据隔离和访问控制，HUKS提供了额外的可以指定用户进行密钥操作的接口。
+>**说明：**
+> 轻量级设备不支持指定用户身份操作功能。
 
 ## 约束与限制
 
@@ -13,8 +15,8 @@
 
 指定用户的接口额外支持以下功能和使用条件：
 
-1. 使用方可以同时在options参数中传入HUKS_TAG_AUTH_STORAGE_LEVEL选项，以指定存储在指定用户的DE区、CE区或ECE区。
-2. 使用方在options参数中不额外传入HUKS_TAG_AUTH_STORAGE_LEVEL选项时，该接口默认行为为：使用指定userId对应CE存储区的密钥。即不传入HUKS_TAG_AUTH_STORAGE_LEVEL参数，等同于传入值为HUKS_AUTH_STORAGE_LEVEL_CE的HUKS_TAG_AUTH_STORAGE_LEVEL参数。
+1. 使用方可以同时在options参数中传入[HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel)选项，以指定存储在指定用户的DE区、CE区或ECE区。
+2. 使用方在options参数中不额外传入HUKS_TAG_AUTH_STORAGE_LEVEL选项时，该接口默认行为为：使用指定userId对应CE存储区的密钥。即不传入HUKS_TAG_AUTH_STORAGE_LEVEL参数，等同于传入值为[HUKS_AUTH_STORAGE_LEVEL_CE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel)的HUKS_TAG_AUTH_STORAGE_LEVEL参数。
 
 除此之外指定用户的接口的用法和支持的算法规格，与不指定用户的对应接口一致。
 

@@ -10,14 +10,16 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 | OH_JSVM_StopCpuProfiler  |  停止CPU profiler并将结果输出到流。 |
 | OH_JSVM_TakeHeapSnapshot  |  获取当前堆快照并将其输出到流。 |
 | OH_JSVM_OpenInspector  |  在指定的主机和端口上激活inspector，将用来调试JS代码。 |
+| OH_JSVM_OpenInspectorWithName | 基于传入的 pid 和 name 激活 inspector |
 | OH_JSVM_CloseInspector  |  尝试关闭剩余的所有inspector连接。 |
 | OH_JSVM_WaitForDebugger  |  等待主机与inspector建立socket连接，连接建立后程序将继续运行。发送Runtime.runIfWaitingForDebugger命令。 |
+
 
 本文将介绍调试、CPU Profiler、Heap Snapshot的使用方法。
 
 ## 调试能力使用方法
 
-### 调试步骤
+### 使用 OH_JSVM_OpenInspector
 
 1. 在应用工程配置文件module.json中配置网络权限：
 
@@ -34,7 +36,7 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 }]
 ```
 
-2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-0000001767796366-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
 3. 在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
 4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
 5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
@@ -43,7 +45,7 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
 9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
 
-### 示例代码
+#### 示例代码
 
 ```cpp
 #include "ark_runtime/jsvm.h"
@@ -76,28 +78,28 @@ static void CloseInspector(JSVM_Env env) {
 static void RunScript(JSVM_Env env) {
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
-    
+
     JSVM_Value jsSrc;
     OH_JSVM_CreateStringUtf8(env, srcDebugger.c_str(), srcDebugger.size(), &jsSrc);
-    
+
     JSVM_Script script;
     OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script);
-    
+
     JSVM_Value result;
     OH_JSVM_RunScript(env, script, &result);
-    
+
     OH_JSVM_CloseHandleScope(env, handleScope);
 }
 
 void RunDemo() {
     JSVM_InitOptions initOptions{};
     OH_JSVM_Init(&initOptions);
-    
+
     JSVM_VM vm;
     OH_JSVM_CreateVM(nullptr, &vm);
     JSVM_VMScope vmScope;
     OH_JSVM_OpenVMScope(vm, &vmScope);
-    
+
     JSVM_Env env;
     OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
     // 执行JS代码之前打开debugger。
@@ -114,6 +116,45 @@ void RunDemo() {
     OH_JSVM_DestroyEnv(env);
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
+}
+```
+
+### 使用 OH_JSVM_OpenInspectorWithName
+
+1. 在应用工程配置文件module.json中配置网络权限：
+
+```
+"requestPermissions": [{
+  "name": "ohos.permission.INTERNET",
+  "reason": "$string:app_name",
+  "usedScene": {
+    "abilities": [
+      "FromAbility"
+    ],
+    "when": "inuse"
+  }
+}]
+```
+
+2. 为避免debugger过程中的暂停被误报为无响应异常，可以[开启DevEco Studio的Debug模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5)（无需设置断点），或者可以在非主线程的其他线程中运行JSVM。
+3. 打开 inspector 端口, 链接 devtools 用于调试, 其流程如下:  在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspectorWithName(env, 123, “test”)，创建 tcp socket 及其对应的 unixdomain 端口
+4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
+5. 检查端侧端口是否打开成功。hdc shell "cat /proc/net/unix | grep jsvm"。结果出现可用的 unix 端口即可, 如: jsvm_devtools_remote_9229_123, 其中 9229 为 tcp 端口号, 123 为对应的 pid
+6. 转发端口。hdc fport tcp:9229 tcp:9229。转发PC侧端口9229到端侧端口9229。结果为"Forwardport result:OK"即可。
+7. 在 chrome 浏览器地址栏输入 "localhost:9229/json"，回车。获取端口连接信息。打开Chrome开发者工具，拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。
+8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
+9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
+
+#### 代码示例
+
+对应的 enable inspector 替换为下面的即可
+```cpp
+// 开启debugger
+static void EnableInspector(JSVM_Env env) {
+    // 在指定的主机和端口上激活inspector，创建socket。
+    OH_JSVM_OpenInspectorWithName(env, 123, "test");
+    // 等待建立socket连接。
+    OH_JSVM_WaitForDebugger(env, true);
 }
 ```
 
@@ -210,20 +251,20 @@ static void RunScriptWithStatistics(JSVM_Env env) {
 
     // 开始调优。
     auto cpuProfiler = ProfilingBegin(vm);
-    
+
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
-    
+
     JSVM_Value jsSrc;
     OH_JSVM_CreateStringUtf8(env, srcProf.c_str(), srcProf.size(), &jsSrc);
-    
+
     JSVM_Script script;
     OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script);
 
     JSVM_Value result;
     // 执行JS代码。
     OH_JSVM_RunScript(env, script, &result);
-    
+
     OH_JSVM_CloseHandleScope(env, handleScope);
 
     // 结束调优。
@@ -233,19 +274,19 @@ static void RunScriptWithStatistics(JSVM_Env env) {
 void RunDemo() {
     JSVM_InitOptions initOptions{};
     OH_JSVM_Init(&initOptions);
-    
+
     JSVM_VM vm;
     OH_JSVM_CreateVM(nullptr, &vm);
     JSVM_VMScope vmScope;
     OH_JSVM_OpenVMScope(vm, &vmScope);
-    
+
     JSVM_Env env;
     OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
     JSVM_EnvScope envScope;
     OH_JSVM_OpenEnvScope(env, &envScope);
-    
+
     RunScriptWithStatistics(env);
-    
+
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
     OH_JSVM_CloseVMScope(vm, vmScope);

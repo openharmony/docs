@@ -33,16 +33,18 @@ Refer to the sample code below to set the file descriptor and obtain the metadat
 import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
 
 const TAG = 'MetadataDemo'
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World'
-
   // Declare a pixelMap object, which is used for image display.
   @State pixelMap: image.PixelMap | undefined = undefined;
+  rootPath: string = getContext(this).getApplicationContext().filesDir
+  testFilename: string = '/cover.mp3'
 
   build() {
     Row() {
@@ -65,9 +67,12 @@ struct Index {
           this.testFetchMetadataFromFdSrcByCallback()
           // Set fdSrc and obtain the audio metadata and album cover (promise mode).
           this.testFetchMetadataFromFdSrcByPromise()
+          // Use fdSrc to obtain the audio metadata and album cover in the sandbox path.
+          this.testFetchMetadataFromFdSrc()
           // Set dataSrc and obtain the audio metadata and album cover.
           this.testFetchMetadataFromDataSrc()
         })
+
         Image(this.pixelMap).width(300).height(300)
           .margin({
             top: 20
@@ -81,58 +86,85 @@ struct Index {
   // The demo below uses the resource manager API to obtain the audio file packed in the HAP. By setting fdSrc, it obtains and displays the audio metadata,
   // obtains the audio album cover, and displays it on the screen through the Image component. This demo calls APIs in callback mode.
   async testFetchMetadataFromFdSrcByCallback() {
-    // Create an AVMetadataExtractor instance.
-    let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
+    if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
+      // Create an AVMetadataExtractor instance.
+      let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
 
-    // Set the fdSrc attribute.
-    avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+      // Set the fdSrc attribute.
+      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
 
-    // Obtain the metadata (callback mode).
-    avMetadataExtractor.fetchMetadata((error, metadata) => {
-      if (error) {
-        console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`)
-        return
-      }
-      console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
-    })
-
-    // Obtain the album cover (callback mode).
-    avMetadataExtractor.fetchAlbumCover((err, pixelMap) => {
-      if (err) {
-        console.error(TAG, `fetchAlbumCover callback failed, err = ${JSON.stringify(err)}`)
-        return
-      }
-      this.pixelMap = pixelMap
-
-      // Release the instance (callback mode).
-      avMetadataExtractor.release((error) => {
+      // Obtain the metadata (callback mode).
+      avMetadataExtractor.fetchMetadata((error, metadata) => {
         if (error) {
-          console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
+          console.error(TAG, `fetchMetadata callback failed, err = ${JSON.stringify(error)}`)
           return
         }
-        console.info(TAG, `release success.`)
+        console.info(TAG, `fetchMetadata callback success, genre: ${metadata.genre}`)
       })
-    })
+
+      // Obtain the album cover (callback mode).
+      avMetadataExtractor.fetchAlbumCover((err, pixelMap) => {
+        if (err) {
+          console.error(TAG, `fetchAlbumCover callback failed, err = ${JSON.stringify(err)}`)
+          return
+        }
+        this.pixelMap = pixelMap
+
+        // Release the instance (callback mode).
+        avMetadataExtractor.release((error) => {
+          if (error) {
+            console.error(TAG, `release failed, err = ${JSON.stringify(error)}`)
+            return
+          }
+          console.info(TAG, `release success.`)
+        })
+      })
+    }
   }
 
   // The demo below uses the resource manager API to obtain the audio file packed in the HAP. By setting fdSrc, it obtains and displays the audio metadata,
   // obtains the audio album cover, and displays it on the screen through the Image component. This demo calls APIs in promise mode.
   async testFetchMetadataFromFdSrcByPromise() {
-    // Create an AVMetadataExtractor instance.
-    let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
-    // Set the fdSrc attribute.
-    avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
+    if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
+      // Create an AVMetadataExtractor instance.
+      let avMetadataExtractor: media.AVMetadataExtractor = await media.createAVMetadataExtractor()
+      // Set the fdSrc attribute.
+      avMetadataExtractor.fdSrc = await getContext(this).resourceManager.getRawFd('cover.mp3');
 
-    // Obtain the metadata (promise mode).
-    let metadata = await avMetadataExtractor.fetchMetadata()
-    console.info(TAG, `get meta data, hasAudio: ${metadata.hasAudio}`)
+      // Obtain the metadata (promise mode).
+      let metadata = await avMetadataExtractor.fetchMetadata()
+      console.info(TAG, `get meta data, hasAudio: ${metadata.hasAudio}`)
 
-    // Obtain the album cover (promise mode).
-    this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
+      // Obtain the album cover (promise mode).
+      this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
 
-    // Release the instance (promise mode).
-    avMetadataExtractor.release()
-    console.info(TAG, `release success.`)
+      // Release the instance (promise mode).
+      avMetadataExtractor.release()
+      console.info(TAG, `release success.`)
+    }
+  }
+
+  // The demo below uses the fs API to open the sandbox directory and obtain the audio file address. By setting fdSrc, it obtains and displays the audio metadata,
+  // obtains the audio album cover, and displays it on the screen through the Image component.
+  async testFetchMetadataFromFdSrc() {
+    if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
+      // Create an AVMetadataExtractor instance.
+      let avMetadataExtractor = await media.createAVMetadataExtractor()
+
+      // Set the fdSrc attribute.
+      avMetadataExtractor.fdSrc = fs.openSync(this.rootPath + this.testFilename);
+
+      // Obtain the metadata (promise mode).
+      let metadata = await avMetadataExtractor.fetchMetadata()
+      console.info(TAG, `get meta data, mimeType: ${metadata.mimeType}`)
+
+      // Obtain the album cover (promise mode).
+      this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
+
+      // Release the instance (promise mode).
+      avMetadataExtractor.release()
+      console.info(TAG, `release data source success.`)
+    }
   }
 
   // The demo below uses the fs API to open the sandbox directory and obtain the audio file address. By setting dataSrc, it obtains and displays the audio metadata,
@@ -140,9 +172,8 @@ struct Index {
   async testFetchMetadataFromDataSrc() {
     let context = getContext(this) as common.UIAbilityContext
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-    let filePath: string = context.filesDir + '/cover.mp3';
-    let fd: number = fileIo.openSync(filePath, 0o0).fd;
-    let fileSize: number = fileIo.statSync(filePath).size;
+    let fd: number = fs.openSync(this.rootPath + this.testFilename).fd;
+    let fileSize: number = fs.statSync(this.rootPath + this.testFilename).size;
     // Set the dataSrc descriptor, obtain resources from the file through a callback, and write the resources to the buffer.
     let dataSrc: media.AVDataSrcDescriptor = {
       fileSize: fileSize,
@@ -151,14 +182,11 @@ struct Index {
           console.error(TAG, `dataSrc callback param invalid`)
           return -1
         }
-
-        class Option {
-          offset: number | undefined = 0;
-          length: number | undefined = len;
-          position: number | undefined = pos;
+        let options: ReadOptions = {
+          offset: pos,
+          length: len
         }
-        let options = new Option();
-        let num = fileIo.readSync(fd, buffer, options)
+        let num = fs.readSync(fd, buffer, options)
         console.info(TAG, 'readAt end, num: ' + num)
         if (num > 0 && fileSize >= pos) {
           return num;
@@ -166,22 +194,23 @@ struct Index {
         return -1;
       }
     }
+    if (canIUse("SystemCapability.Multimedia.Media.AVMetadataExtractor")) {
+      // Create an AVMetadataExtractor instance.
+      let avMetadataExtractor = await media.createAVMetadataExtractor()
+      // Set the dataSrc attribute.
+      avMetadataExtractor.dataSrc = dataSrc;
 
-    // Create an AVMetadataExtractor instance.
-    let avMetadataExtractor = await media.createAVMetadataExtractor()
-    // Set the dataSrc attribute.
-    avMetadataExtractor.dataSrc = dataSrc;
+      // Obtain the metadata (promise mode).
+      let metadata = await avMetadataExtractor.fetchMetadata()
+      console.info(TAG, `get meta data, mimeType: ${metadata.mimeType}`)
 
-    // Obtain the metadata (promise mode).
-    let metadata = await avMetadataExtractor.fetchMetadata()
-    console.info(TAG, `get meta data, mimeType: ${metadata.mimeType}`)
+      // Obtain the album cover (promise mode).
+      this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
 
-    // Obtain the album cover (promise mode).
-    this.pixelMap = await avMetadataExtractor.fetchAlbumCover()
-
-    // Release the instance (promise mode).
-    avMetadataExtractor.release()
-    console.info(TAG, `release data source success.`)
+      // Release the instance (promise mode).
+      avMetadataExtractor.release()
+      console.info(TAG, `release data source success.`)
+    }
   }
 }
 ```

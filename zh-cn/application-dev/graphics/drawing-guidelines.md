@@ -425,11 +425,16 @@ Native Drawing模块关于文本绘制提供两类API接口：
 5. **释放变量**。
 
     ```c++
+    // 确认typography不再使用时销毁
     OH_Drawing_DestroyTypography(typography);
+    // 确认已经完成layout时销毁
     OH_Drawing_DestroyTypographyHandler(handler);
+    // 确认不需要使用字体绘制功能时销毁
     OH_Drawing_DestroyFontCollection(fontCollection);
+    // 确认已经完成layout时销毁
     OH_Drawing_DestroyTextStyle(txtStyle);
     OH_Drawing_DestroyTextStyle(txtStyle2);
+    // 确认已经完成layout时销毁
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     ```
 

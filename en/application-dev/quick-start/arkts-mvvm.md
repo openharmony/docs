@@ -759,11 +759,9 @@ struct ViewA {
 
 When \@ObjectLink is used, if you click the first or second item of the array, the following two **ViewA** instances change synchronously.
 
-Unlike \@ObjectLink, \@Prop sets up a one-way data synchronization. Clicking the button in **ViewA** triggers only the re-rendering of the button itself and is not propagated to other **ViewA** instances. **ClassA** in **ViewA** is only a copy, not an object of its parent component \@State arrA : Array&lt;ClassA&gt, nor a **ClassA** instance of any other **ViewA**. As a result, though on the surface, the array and **ViewA** have the same object passed in, two irrelevant objects are used for rendering on the UI.
+Unlike \@ObjectLink, \@Prop sets up a one-way data synchronization. Clicking the button in **ViewA** triggers only the re-rendering of the button itself and is not propagated to other **ViewA** instances. **ClassA** in **ViewA** is only a copy, not an object of its parent component \@State arrA : Array\<ClassA>, nor a **ClassA** instance of any other **ViewA**. As a result, though on the surface, the array and **ViewA** have the same object passed in, two irrelevant objects are used for rendering on the UI.
 
-Note the differences between \@Prop and \@ObjectLink:
-
-- \@ObjectLink decorated variables are readable only and cannot be assigned values, whereas \@Prop decorated variables can be assigned values.
+Note the differences between \@Prop and \@ObjectLink: \@ObjectLink decorated variables are readable only and cannot be assigned values, whereas \@Prop decorated variables can be assigned values.
 
 - \@ObjectLink implements two-way data synchronization because it is initialized through a reference to the data source.
 
@@ -800,8 +798,6 @@ In this example, the view model needs to include the following:
 
 The **AddressBook** class is declared as follows:
 
-
-
 ```ts
 export class AddressBook {
   me: Person;
@@ -817,17 +813,15 @@ export class AddressBook {
 
 - Person (class)
   - name : string
-  - address: Address
-  - phones: ObservedArray&lt;string&gt;
+  - address : Address
+  - phones: ObservedArray\<string>;
   - Address (class)
-    - street: string
-    - zip: number
-    - city: string
+    - street : string
+    - zip : number
+    - city : string
 
 
 The **Address** class is declared as follows:
-
-
 
 ```ts
 @Observed
@@ -848,8 +842,6 @@ export class Address {
 
 
 The **Person** class is declared as follows:
-
-
 
 ```ts
 let nextId = 0;
@@ -877,8 +869,6 @@ export class Person {
 
 
 Note that **phones** is a nested property. To observe its change, you need to extend the array to an **ObservedArray** class and decorate it with \@Observed. The **ObservedArray** class is declared as follows:
-
-
 
 ```ts
 @Observed
@@ -1105,20 +1095,19 @@ The update process is as follows:
      }
      ```
 
-     Pay attention to the following differences between \@ObjectLink and \@Link.
+     Pay attention to the following differences between \@ObjectLink and \@Link:
 
-     To implement two-way data synchronization with the parent component, you need to use \@ObjectLink, instead of \@Link, to decorate **me: Person** and **contacts: ObservedArray\<Person>** in **AddressBookView**. The reasons are as follows:
-     - The type of the \@Link decorated variable must be the same as that of the data source, and \@Link can only observe the changes at the first layer.
-     
-     - \@ObjectLink allows for initialization from the property of the data source. It functions as a proxy for the properties of the \@Observed decorated class and can observe the changes of the properties of that class.
-- When the contact name (**Person.name**) or preferred phone number (**Person.phones[0]**) is updated, **PersonView** needs to be updated. As the update to **Person.phones[0]** occurs at the second layer, it cannot be observed if \@Link is used. In addition, \@Link requires its decorated variable be of the same type as the data source. Therefore, \@ObjectLink is required in **PersonView**, that is, \@ObjectLink **person: Person** and \@ObjectLink **phones: ObservedArray\<string>**.
-     
-![en-us_image_0000001605293914](figures/en-us_image_0000001605293914.png)
-     
-Now you have a basic idea of how to build a view model. In the root node of an application, the view model may comprise a huge amount of nested data, which is more often the case. Yet, you can make reasonable separation of the data in the UI tree structure. You can adapt the view model data items to views so that the view at each layer contains relatively flat data, and you only need to observe changes at the current layer.
-     
-In this way, the UI re-render workload is minimized, leading to higher application performance.
-     
+     1. To implement two-way data synchronization with the parent component, you need to use \@ObjectLink, instead of \@Link, to decorate **me: Person** and **contacts: ObservedArray\<Person>** in **AddressBookView**. The reasons are as follows:
+        - The type of the \@Link decorated variable must be the same as that of the data source, and \@Link can only observe the changes at the first layer.
+        - \@ObjectLink allows for initialization from the property of the data source. It functions as a proxy for the properties of the \@Observed decorated class and can observe the changes of the properties of that class.
+     2. When the contact name (**Person.name**) or preferred phone number (**Person.phones[0]**) is updated, **PersonView** needs to be updated. As the update to **Person.phones[0]** occurs at the second layer, it cannot be observed if \@Link is used. In addition, \@Link requires its decorated variable be of the same type as the data source. Therefore, \@ObjectLink is required in **PersonView**, that is, \@ObjectLink **person: Person** and \@ObjectLink **phones: ObservedArray\<string>**.
+
+     ![en-us_image_0000001605293914](figures/en-us_image_0000001605293914.png)
+
+     Now you have a basic idea of how to build a view model. In the root node of an application, the view model may comprise a huge amount of nested data, which is more often the case. Yet, you can make reasonable separation of the data in the UI tree structure. You can adapt the view model data items to views so that the view at each layer contains relatively flat data, and you only need to observe changes at the current layer.
+
+     In this way, the UI re-render workload is minimized, leading to higher application performance.
+
      The complete sample code is as follows:
 
 
@@ -1376,3 +1365,4 @@ struct PageEntry {
   }
 }
 ```
+

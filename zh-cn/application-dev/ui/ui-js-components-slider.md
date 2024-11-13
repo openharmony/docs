@@ -90,7 +90,8 @@ slider组件通过color、selected-color、block-color样式分别为滑动条�
 
 ![zh-cn_image_0000001179438692](figures/zh-cn_image_0000001179438692.gif)
 
-> **说明：**
+> **说明：** 
+>
 > mode属性为滑动条样式，可选值为：
 >
 > - outset：滑块在滑杆上；
@@ -216,8 +217,6 @@ export default{
 ## 相关实例
 
 针对slider开发，有以下相关实例可供参考：
-
-- [JS组件集（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
 - [slider组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
 

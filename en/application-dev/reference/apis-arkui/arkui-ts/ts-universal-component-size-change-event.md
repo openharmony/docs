@@ -12,6 +12,10 @@ onSizeChange(event: SizeChangeCallback): T
 
 Triggered when the component size changes due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of **translate** and **offset**.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -31,6 +35,10 @@ Triggered when the component size changes due to layout updates. This event is n
 SizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => void
 
 Invoked when the component size changes.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

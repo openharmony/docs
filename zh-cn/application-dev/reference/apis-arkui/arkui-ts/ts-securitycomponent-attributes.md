@@ -375,7 +375,7 @@ padding(value: Padding | Dimension): T
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) |是 |安全控件的内边距。<br/>默认值：上下12vp, 左右24vp|
+| value | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) |是 |安全控件的内边距。<br/>默认值：上下8vp, 左右16vp|
 
 **返回值：**
 
@@ -500,7 +500,7 @@ constraintSize(value: ConstraintSizeOptions): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | HORIZONTAL | 0 | 安全控件上图标和文字分布的方向为水平排列。 |
 | VERTICAL | 1 | 安全控件上图标和文字分布的方向为垂直排列。 |

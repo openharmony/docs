@@ -8,6 +8,8 @@
 >
 >对于使用[XComponent](arkui-ts/ts-basic-components-xcomponent.md)的场景，例如：Video或者相机流媒体展示类组件，不建议使用组件截图相关接口，建议从[surface](../apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)直接获取图片。
 >
+>如果组件自身内容不能填满组件大小区域，那么剩余位置截图返回的内容为透明像素。如果组件使用了[图像效果](arkui-ts/ts-universal-attributes-image-effect.md)类属性或其他的效果类属性，则可能产生非用户预期的截图结果。请排查是否需要填充组件透明内容区域，或使用[窗口截图](js-apis-window.md#snapshot9)替代。
+>
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
 
 
@@ -50,6 +52,10 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -67,6 +73,7 @@ struct SnapshotExample {
       }
       Button("click to generate UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().get()
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
               console.log("error: " + JSON.stringify(error))
@@ -123,6 +130,10 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -140,6 +151,7 @@ struct SnapshotExample {
       }
       Button("click to generate UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().get()
           componentSnapshot.get("root", {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
@@ -167,6 +179,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
+> builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。
+>
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -187,15 +201,20 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100001   | The builder is not a valid build function. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
-import { componentSnapshot, componentUtils } from '@kit.ArkUI';
+import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
@@ -226,6 +245,7 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().createFromBuilder()
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
               if(error){
@@ -236,7 +256,7 @@ struct OffscreenSnapshotExample {
               // save pixmap to file
               // ....
               // get component size and location
-              let info = componentUtils.getRectangleById("builder")
+              let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }, 320, true, {scale : 2, waitUntilRenderFinished : true})
         })
@@ -261,6 +281,8 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 > **说明：** 
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+>
+> builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
@@ -290,11 +312,16 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | ------ | ---------------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The builder is not a valid build function. |
+| 160001 | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
-import { componentSnapshot, componentUtils } from '@kit.ArkUI'
+import { componentSnapshot } from '@kit.ArkUI'
 import { image } from '@kit.ImageKit'
 
 @Entry
@@ -325,13 +352,14 @@ struct OffscreenSnapshotExample {
     Column() {
       Button("click to generate offscreen UI snapshot")
         .onClick(() => {
+          // 建议使用this.getUIContext().getComponentSnapshot().createFromBuilder()
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()}, 320, true, {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
               // get component size and location
-              let info = componentUtils.getRectangleById("builder")
+              let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }).catch((err:Error) => {
             console.log("error: " + err)
@@ -388,6 +416,10 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
@@ -406,6 +438,7 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           try {
+          // 建议使用this.getUIContext().getComponentSnapshot().getSync()
             let pixelmap = componentSnapshot.getSync("root", {scale : 2, waitUntilRenderFinished : true})
             this.pixmap = pixelmap
           } catch (error) {
@@ -430,5 +463,5 @@ struct SnapshotExample {
 
 | 名称           | 类型             | 必填           | 说明                         |
 | ---------------|------------     | -----------------------------| -----------------------------|
-| scale           | number | 否 | 指定截图时图形侧绘制pixelmap的缩放比例，比例过大时截图时间会变长，或者截图可能会失败。 <br/> 默认值：1 <br/>**说明：** <br/>组件缩放后的宽高大于8192px，截图会失败。    |
+| scale           | number | 否 | 指定截图时图形侧绘制pixelmap的缩放比例，比例过大时截图时间会变长，或者截图可能会失败。 <br/> 默认值：1 <br/>**说明：** <br/>请不要截取过大尺寸的图片，截图不建议超过屏幕尺寸的大小。当要截取的图片目标长宽超过底层限制时，截图会返回失败，不同设备的底层限制不同。    |
 | waitUntilRenderFinished    | boolean | 否 | 指定是否强制等待系统执行截图指令前所有绘制指令都执行完成之后再截图。该选项可尽可能确保截图内容是最新的状态，应尽量开启，要注意的是，开启后接口可能需要更长的时间返回，具体的时间依赖页面当时时刻需要重绘区域的多少。<br/> 默认值：false         |

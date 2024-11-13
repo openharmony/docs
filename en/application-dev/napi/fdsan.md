@@ -1,74 +1,36 @@
-# fdsan
+# Using fdsan
 
-## Functionality
+## Introduction
 
-### Introduction
+File descriptor sanitizer (fdsan) is a tool used to detect mishandling of file descriptor ownership, which includes double-close and use-after-close. The file descriptor can indicate a file, directory, network socket, I/O device, and the like in an operating system. When a file or a socket is opened in an application, a file descriptor is generated. If a file descriptor is repeatedly closed after being used or is used after being closed, security risks such as memory leaks and file handle leaks will be caused. This type of problems is difficult to locate. That is why fdsan comes in handy.
 
-File descriptor sanitizer (fdsan) is a tool used to detect and clean up file descriptor (FD) errors. An FD is a process-unique identifier (handle) for a file, directory, network socket, or other I/O devices in an operating system. fdsan can detect double-free and use-after-close issues of FDs.
+## Working Principle
 
-When a file or socket is opened in an application, an FD is generated. If the FD is repeatedly closed after use or is used after being closed, security risks such as file handle leaks and memory leaks may occur. This type of problems is difficult to locate. That is why fdsan comes in handy.
-
-
-### Sample Code
-
-```cpp
-void thread_test_one() {
-    int fd = open("/dev/null", O_RDONLY);
-    close(fd);
-    close(fd);
-}
-
-void thread_test_two() {
-    while (true) {
-        int fd = open("log", O_WRONLY | O_APPEND);
-        if (write(fd, "foo", 3) != 3) {
-            OH_LOG_ERROR(LOG_APP, "write failed!");
-        }
-    }
-}
-```
-Run the preceding two threads at the same time. The execution result may be as follows:
-```cpp
-thread test one                           thread test two
-open("/dev/null", O_RDONLY) = 123
-close(123) = 0
-                                          open("log", O_WRONLY | APPEND) = 123
-close(123) = 0
-                                          write(123, "foo", 3) = -1 (EBADF)
-                                          OH_LOG_ERROR(LOG_APP, "write failed!")
-```
-
-Test thread 1 closes the same FD twice (double close), and test thread 2 opens a log file repeatedly without closing it. fdsan can catch these issues, which are difficult to be noticed on the thread (thread 2 in this example) which the error occurred.
-
-
-## Design
-
-### fdsan Design Mechanism
-
-fdsan provides functions to associate FDs with owners and enforces detection of FD errors based on ownership. When a file is opened or created, the FD returned is associated with a tag, which indicates the owner responsible for closing it. Before the file is closed, the tag associated with the FD is checked to determine whether the owner is correct. If yes, the file will be closed. Otherwise, an exception will be thrown to trigger error handling.
+fdsan provides functions to associate a file descriptor with an owner and enforces detection of file descriptor errors based on ownership. When a file is opened or created, the file descriptor returned is associated with a tag, which indicates the owner responsible for closing it. Before the file is closed, the tag associated with the file descriptor is checked to determine whether the owner is correct. If yes, the file can be closed. Otherwise, an exception will be thrown to trigger error handling.
 
 A tag is of 64 bits, consisting of the following:
 
-- **type**: an 8-bit string indicating how an FD is encapsulated for management. For example, **FDSAN_OWNER_TYPE_FILE** indicates that the FD is managed as a handle to a file. The value of **type** is defined in **fdsan_owner_type**.
+- **type**: an 8-bit string indicating how a file descriptor is encapsulated for management. For example, **FDSAN_OWNER_TYPE_FILE** indicates that the file descriptor is managed as a handle to a file. The value of **type** is defined in **fdsan_owner_type**.
+
 - **value**: a 56-bit string uniquely identifying a tag.
 
-**Figure** Tag
+ **Figure** Tag
 
 ![](./figures/tag.png)
 
-### fdsan APIs
 
-#### fdsan_set_error_level
+
+## Available APIs
+
+### fdsan_set_error_level
+
 ```
 enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 ```
-**Description**
 
-Sets an error level, which determines the processing behavior when an exception is detected. The default value of **error_level** is **FDSAN_ERROR_LEVEL_WARN_ALWAYS**.
+**Description**<br>Sets an error level, which determines the processing behavior when an exception is detected. The default value is **FDSAN_ERROR_LEVEL_WARN_ALWAYS**.
 
-**Parameters**
-
-The following table describes **fdsan_error_level**.
+**Parameters**<br>**fdsan_error_level**
 
 | Value                      | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ |
@@ -77,138 +39,125 @@ The following table describes **fdsan_error_level**.
 | `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | Give a warning in HiLog only each time the error is detected.|
 | `FDSAN_ERROR_LEVEL_FATAL` | Call **abort** to terminate the process when the error is detected.|
 
+**Return value**<br>Old **error_level**.
 
-#### fdsan_get_error_level
+### fdsan_get_error_level
 
 ```
 enum fdsan_error_level fdsan_get_error_level();
 ```
 
-**Description**
+**Description**<br>Obtains the current error level.
 
-Obtains the error level.
+**Return value**<br>Current error level.
 
-#### fdsan_create_owner_tag
+### fdsan_create_owner_tag
 ```
 uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
 ```
-**Description**
+**Description**<br>Creates a tag for a file descriptor.
 
-Creates a tag for an FD.
+**Parameters**<br>**fdsan_owner_type**
 
-**Parameters**
+| Value                      | Description                                                        |
+| -------------------------- | ------------------------------------------------------------ |
+| `FDSAN_OWNER_TYPE_GENERIC_00` | Default type.    |
+| `FDSAN_OWNER_TYPE_GENERIC_FF` | Default type for invalid file descriptors.|
+| `FDSAN_OWNER_TYPE_FILE` | Type for a file, which can be opened by using **fopen()** or **fdopen()**.|
+| `FDSAN_OWNER_TYPE_DIRECTORY` | Type for a directory, which can be opened by using **opendir** or **fdopendir**.|
+| `FDSAN_OWNER_TYPE_UNIQUE_FD` | Type for **unique_fd**. This value is reserved.|
+| `FDSAN_OWNER_TYPE_ZIPARCHIVE` | Type for a .zip file. This value is reserved.|
 
-The following describes **fdsan_owner_type**.
+**Return value**<br>Created tag, which can be used as an input of **fdsan_exchange_owner_tag**.
 
-```cpp
-	FDSAN_OWNER_TYPE_GENERIC_00 = 0,
-	FDSAN_OWNER_TYPE_GENERIC_FF = 255,
-
-	/* File. * */
-	FDSAN_OWNER_TYPE_FILE = 1,
-
-	/* Directory. * */
-	FDSAN_OWNER_TYPE_DIR = 2,
-
-	/* Unique FD. */
-	FDSAN_OWNER_TYPE_UNIQUE_FD = 3,
-
-	/* zip archive. */
-	FDSAN_OWNER_TYPE_ZIPARCHIVE = 4,
-```
-
-
-
-#### fdsan_exchange_owner_tag
+### fdsan_exchange_owner_tag
 
 ```
 void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
 ```
-**Description**
+**Description**<br>Modifies the tag of a file descriptor.
 
-Modifies a tag.
+Locate the **FdEntry** based on the file descriptor and check whether the value of **close_tag** is the same as that of **expected_tag**. If yes, you can change the value of **FdEntry** with the value of **new_tag** passed in.
 
-The tool locates the **FdEntry** based on the FD and checks whether the value of **close_tag** is the same as that of **expected_tag**. If yes, you can change the value of **FdEntry** with the value of **new_tag** passed in.
-
-If the value of **close_tag** is not the same as that of **expected_tag**, an error occurs. Perform error handling.
+If the value of **close_tag** is not the same as that of **expected_tag**, an error occurs.
 
 **Parameters**
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | FD, which serves as an index of **FdEntry**.|
+| `fd` | int | File descriptor, which serves as an index of **FdEntry**.|
 | `expected_tag` | uint64_t | Expected value of the tag.    |
 | `new_tag` | uint64_t | New value of the tag.  |
 
 
 
-#### fdsan_close_with_tag
+### fdsan_close_with_tag
 
 ```
 int fdsan_close_with_tag(int fd, uint64_t tag);
 ```
-**Description**
+**Description**<br>Closes a file descriptor based on the tag.
 
-Closes an FD based on the tag descriptor.
-
-The tool locates the **FdEntry** based on the FD. If **close_tag** is the same as **tag**, the FD will be closed. Otherwise, an exception is detected.
+Locate the **FdEntry** based on the file descriptor. If **close_tag** is the same as **tag**, the file descriptor can be closed. Otherwise, an exception occurs.
 
 **Parameters**
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | FD to close.|
+| `fd` | int | File descriptor to close.|
 | `tag` | uint64_t | Expected tag.    |
 
-#### fdsan_get_owner_tag
+**Return value**<br>Returns **0** if the file descriptor is closed; returns **-1** otherwise.
+
+### fdsan_get_owner_tag
 ```
 uint64_t fdsan_get_owner_tag(int fd);
 ```
-**Description**
+**Description**<br>Obtains tag information based on the given file descriptor.
 
-Obtains tag information based on an FD.
-
-The tool locates **FdEntry** based on the FD and obtains **close_tag**.
+Locate **FdEntry** based on the file descriptor and obtain **close_tag**.
 
 **Parameters**
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `tag` | uint64_t | ownership tag     |
+| `tag` | uint64_t | Owner tag.    |
 
-#### fdsan_get_tag_type
+**Return value**<br>Tag of the file descriptor.
+
+### fdsan_get_tag_type
 ```
 const char* fdsan_get_tag_type(uint64_t tag);
 ```
-**Description**
+**Description**<br>Obtains the file descriptor type based on the given tag.
 
-Obtains the type from a tag.
+The type information can be calculated based on the tag information.
 
 **Parameters**
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `tag` | uint64_t | Tag.     |
+| `tag` | uint64_t | Owner tag.    |
 
-#### fdsan_get_tag_value
+**Return value**<br>Type obtained.
+
+### fdsan_get_tag_value
 ```
 uint64_t fdsan_get_tag_value(uint64_t tag);
 ```
-**Description**
+**Description**<br>Obtains the owner value based on the given tag.
 
-Obtains the value from a tag.
+The value contained in a tag can be obtained via offset calculation .
 
 **Parameters**
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `tag` | uint64_t | Tag.    |
+| `tag` | uint64_t | Owner tag.    |
 
+**Return value**<br>Owner value obtained.
 
-
-## Usage
-
-### Using fdsan
+## Example
 
 Use fdsan to detect a double-close problem.
 
@@ -251,21 +200,17 @@ int main()
     return 0;
 }
 ```
-When running the preceding code, the application execution status is as follows:
+In this example, **good_write** is used to open a file and write data to it; **bad_close** is used to open a file and trigger a double-close problem. If the two threads run at the same time, the application execution is as follows:
 
-```cpp
-thread test one                           thread test two
-open("/dev/null", O_RDONLY) = 43
-close(43) = 0
-                                          open("log", O_WRONLY | APPEND) = 43
-close(43) = 0
-                                          write(43, "fdsan test", 11) = -1 (EBADF)
-                                          OH_LOG_ERROR(LOG_APP, "good write but failed?!")
-```
+![](./figures/fdsan-error-2.png)
+
+The **open()** API returns file descriptors in sequence. After the main function is called, the first available file descriptor is **43**. When **bad_close** is called, the file descriptor returned by **open()** for the first time is **43**. After **close()** is called, the file descriptor **43** becomes available. When **good_write** is called, the **open()** function returns the first available file descriptor, that is, **43**. Since **bad_close()** has the double-close problem, the file opened in another thread is incorrectly closed, causing a write failure.
+
+The fdsan tool can detect such problems in two ways: using standard library APIs or implementing APIs with fdsan.
 
 ### Using Standard Library APIs
 
-The **fopen**, **fdopen**, **opendir**, and **fdopendir** APIs in standard libraries have integrated fdsan. Using these APIs instead of **open** can help detect FD problems. For example, use **fopen** instead of **open**.
+The **fopen**, **fdopen**, **opendir**, and **fdopendir** APIs in libc have integrated fdsan. Using these APIs instead of **open** can help detect file descriptor mishandling problems. Use **fopen** instead of **open** in the following code:
 
 ```cpp
 void good_write()
@@ -283,33 +228,18 @@ void good_write()
 }
 ```
 
-Each FD returned by **fopen** has a tag. When the FD is closed by **close**, fdsan checks whether the FD matches the tag. If the FD does not match the tag, related log information is displayed by default. The log information for the preceding code is as follows:
+Each file descriptor returned by **fopen** has a tag. When the file descriptor is closed by **close**, fdsan checks whether the file descriptor matches the tag. If the file descriptor does not match the tag, related log information is displayed by default. The log information for the preceding code is as follows:
 
 ```
 # hilog | grep MUSL-FDSAN
 04-30 15:03:41.760 10933  1624 E C03f00/MUSL-FDSAN: attempted to close file descriptor 43,                             expected to be unowned, actually owned by FILE* 0x00000000f7b90aa2
 ```
 
-As indicated by the log, the file of the FILE interface body is closed by others by mistake. The address of the FILE interface body can be used to further locate the fault.
+As indicated by the log, the file of **FILE** is closed by mistake. You can further locate the fault based on the address of **FILE**.
 
-In addition, you can use **fdsan_set_error_level** to set the error level. If **error_level** is set to **FDSAN_ERROR_LEVEL_FATAL**, fdsan also provides stack information for fault locating in addition to the log information. The following is an example of the stack information generated upon a crash after **error_level** is set to **FDSAN_ERROR_LEVEL_FATAL**:
+In addition, you can use **fdsan_set_error_level** to set an error level. If **error_level** is set to **FDSAN_ERROR_LEVEL_FATAL**, fdsan also provides stack information for fault locating in addition to the log information. The following is an example of the stack information generated upon a crash after **error_level** is set to **FDSAN_ERROR_LEVEL_FATAL**:
 
 ```
-Generated by HiviewDFX@OpenHarmony
-================================================================
-Device info:OpenHarmony 3.2
-Build info:OpenHarmony 5.0.0.22
-Fingerprint:fd76f9ca51bf1b4215afa4826513915fca42ac22cfd82260fe81614668929017
-Module name:com.example.myapplication
-Version:1.0.0
-VersionCode:1000000
-PreInstalled:No
-Foreground:Yes
-Timestamp:2024-04-30 15:51:27.000
-Pid:15284
-Uid:20010043
-Process name:com.example.myapplication
-Process life time:4s
 Reason:Signal:SIGABRT(SI_TKILL)@0x0000076e from:1902:20010043
 Fault thread info:
 Tid:15312, Name:e.myapplication
@@ -326,7 +256,7 @@ Tid:15312, Name:e.myapplication
 #10 pc 000700b0 /system/lib/ld-musl-arm.so.1(3de40c79448a2bbced06997e583ef614)
 ```
 
-The stack information provides information about **bad_close**. Besides, information about all opened files is provided, helping quickly locate faults.
+The stack information provides information about **bad_close** and all opened files, helping quickly locate faults.
 
 ```
 OpenFiles:
@@ -383,32 +313,32 @@ OpenFiles:
 
 ### Implementing APIs with fdsan
 
-You can also implement APIs with fdsan by using **fdsan_exchange_owner_tag** and **fdsan_close_with_tag**. The former can be used to set a tag for an FD; the latter can be used to check the tag before a file is closed.
+You can also implement APIs with fdsan by using **fdsan_exchange_owner_tag** and **fdsan_close_with_tag**. The former can be used to set a tag for a file descriptor; the latter can be used to check the tag when a file is closed.
 
-The following is an example:
+Example:
 
 ```cpp
-struct unique_fd {
-    unique_fd() = default;
+struct fdsan_fd {
+    fdsan_fd() = default;
 
-    explicit unique_fd(int fd)
+    explicit fdsan_fd(int fd)
     {
         reset(fd);
     }
 
-    unique_fd(const unique_fd& copy) = delete;
-    unique_fd(unique_fd&& move)
+    fdsan_fd(const fdsan_fd& copy) = delete;
+    fdsan_fd(fdsan_fd&& move)
     {
         *this = std::move(move);
     }
 
-    ~unique_fd()
+    ~fdsan_fd()
     {
         reset();
     }
 
-    unique_fd& operator=(const unique_fd& copy) = delete;
-    unique_fd& operator=(unique_fd&& move)
+    fdsan_fd& operator=(const fdsan_fd& copy) = delete;
+    fdsan_fd& operator=(fdsan_fd&& move)
     {
         if (this == &move) {
             return *this;
@@ -417,7 +347,7 @@ struct unique_fd {
         if (move.fd_ != -1) {
             fd_ = move.fd_;
             move.fd_ = -1;
-            // Obtain the ownership from the moved-from object.
+            // Acquire ownership from the moved-from object.
             exchange_tag(fd_, move.tag(), tag());
         }
         return *this;
@@ -436,7 +366,7 @@ struct unique_fd {
         }
         if (new_fd != -1) {
             fd_ = new_fd;
-            // Obtain the ownership of the presumably unowned FD.
+            // Acquire ownership of the presumably unowned fd.
             exchange_tag(fd_, 0, tag());
         }
     }
@@ -444,7 +374,7 @@ struct unique_fd {
   private:
     int fd_ = -1;
 
-    // Use the address of object as the file tag.
+    // Use the address of object as the file tag
     uint64_t tag()
     {
         return reinterpret_cast<uint64_t>(this);
@@ -466,6 +396,23 @@ struct unique_fd {
 };
 ```
 
-In this example, **fdsan_exchange_owner_tag** is used to bind an FD and the address of a struct object. Then, **fdsan_close_with_tag** is used to check whether the tag matches the FD before the file is closed. The expected tag is the struct object address.
+In this example, **fdsan_exchange_owner_tag** is used to bind a file descriptor and the address of a struct object. Then, **fdsan_close_with_tag** is used to check whether the tag matches the file descriptor before the file is closed. The expected tag is the struct object address.
 
-You can also set **error_level** to **FDSAN_ERROR_LEVEL_FATAL** so that fdsan can proactively crash when detecting an error to provide more information for fault locating.
+You can use the implemented API in the following code to detect and prevent file descriptor mishandling problems:
+
+```cpp
+void good_write()
+{
+    sleep(1);
+    // int fd = open(DEV_NULL_FILE, O_RDONLY);
+    fdsan_fd fd(open(DEV_NULL_FILE, O_RDONLY));
+    sleep(3);
+    ssize_t ret = write(fd.get(), "fdsan test\n", 11);
+    if (ret == -1) {
+        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+    }
+    close(fd.get());
+}
+```
+
+When the application is executed, the double-close problem of another thread can be detected. You can also set **error_level** to **fatal** so that fdsan can proactively crash after detecting a crash.

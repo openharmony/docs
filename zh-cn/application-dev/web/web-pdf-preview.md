@@ -2,7 +2,15 @@
 
 Web组件提供了在网页中预览PDF的能力。应用可以通过Web组件的[src](../reference/apis-arkweb/ts-basic-components-web.md#web)参数和[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口中传入PDF文件，来加载PDF文档。根据PDF文档来源不同，可以分为三种常用场景：加载网络PDF文档、加载本地PDF文档、加载应用内resource资源PDF文档。
 
-PDF文档预览加载过程中，若涉及网络文档获取，需要配置[ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md)网络访问权限。
+PDF文档预览加载过程中，若涉及网络文档获取，请在module.json5中配置网络访问权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+  ```
 
 
 在下面的示例中，Web组件创建时指定默认加载的网络PDF文档 `www.example.com/test.pdf`，该地址为示例，使用时需替换为真实可访问地址:
@@ -21,7 +29,7 @@ struct WebComponent {
       Web({ 
       	src: 
       	"https://www.example.com/test.pdf", 					// 方式一 加载网络PDF文档
-      	// "file://" + getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
+      	// getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
       	// "resource://rawfile/test.pdf", 						// 方式三 应用内resource资源PDF文档
       	// $rawfile('test.pdf'), 								// 方式四 应用内resource资源PDF文档
       	controller: this.controller 
@@ -41,27 +49,28 @@ struct WebComponent {
 在Web组件创建时，指定默认加载的PDF文档。在默认PDF文档加载完成后，如果需要变更此Web组件显示的PDF文档，可以通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载指定的PDF文档。[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)的第一个参数变量src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)重新加载。
 
 同时包含三种PDF文档加载预览场景:
-- 预览加载网络PDF文件
+- 预览加载网络PDF文件。
 
-  ```
+  ```ts
   Web({ 
     src: "https://www.example.com/test.pdf",
     controller: this.controller 
   })
     .domStorageAccess(true)
   ```
-- 预览加载应用沙箱内PDF文件
+- 预览加载应用沙箱内PDF文件，需要开启应用中文件系统的访问[fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess)权限。
 
-  ```
+  ```ts
   Web({ 
-    src: "file://" + getContext(this).filesDir + "/test.pdf",
+    src: getContext(this).filesDir + "/test.pdf",
     controller: this.controller 
   })
     .domStorageAccess(true)
+    .fileAccess(true)
   ```
 - 预览加载应用内PDF资源文件，有两种使用形式。`$rawfile('test.pdf')`形式无法指定下面介绍的预览参数。
 
-  ```
+  ```ts
   Web({ 
     src: "resource://rawfile/test.pdf", // 或 $rawfile('test.pdf')
     controller: this.controller 
@@ -91,3 +100,4 @@ https://example.com/test.pdf#page=3&zoom=200,250,100
 https://example.com/test.pdf#toolbar=0  
 https://example.com/test.pdf#navpanes=0  
 ```
+<!--RP1--><!--RP1End-->

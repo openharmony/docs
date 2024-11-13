@@ -3,14 +3,14 @@
 
 ## 场景介绍
 
-动态订阅者完成业务需要时，需要主动取消订阅，订阅者通过调用[unsubscribe()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法取消订阅事件。
+动态订阅者完成业务需求后，应主动取消订阅。通过调用[unsubscribe()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerunsubscribe)方法，取消订阅事件。
 
 
 ## 接口说明
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#commoneventsubscriber),&nbsp;callback?:&nbsp;AsyncCallback) | 取消订阅公共事件 |
+| unsubscribe(subscriber:&nbsp;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#commoneventsubscriber),&nbsp;callback?:&nbsp;AsyncCallback<void\>) | 取消订阅公共事件。 |
 
 
 ## 开发步骤
@@ -31,13 +31,13 @@
    
    ```ts
    // subscriber为订阅事件时创建的订阅者对象
-   if (this.subscriber !== null) {
-     commonEventManager.unsubscribe(this.subscriber, (err: BusinessError) => {
+   if (subscriber !== null) {
+     commonEventManager.unsubscribe(subscriber, (err: BusinessError) => {
        if (err) {
          hilog.error(DOMAIN_NUMBER, TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
        } else {
          hilog.info(DOMAIN_NUMBER, TAG, `Unsubscribe success`);
-         this.subscriber = null;
+         subscriber = null;
        }
      })
    }

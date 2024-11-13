@@ -41,21 +41,25 @@
 
 ```ts
 import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-// 配置认证界面需设置navigationButtonText
-const widgetParam: userAuth.WidgetParam = {
-  title: '请验证身份',
-  navigationButtonText: '使用密码',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // 配置认证界面需设置navigationButtonText
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请验证身份',
+    navigationButtonText: '使用密码',
+  };
   // 获取认证对象
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {

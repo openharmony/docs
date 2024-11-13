@@ -18,10 +18,13 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 | -------- | -------- | -------- | -------- |
 | gesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to bind.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.|
 | priorityGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to preferentially recognize.<br>- **gesture**: type of the gesture to bind.<br>- **mask**: mask for gesture events.<br>1. By default, the child component preferentially recognizes the gesture specified by **gesture**, and the parent component preferentially recognizes the gesture specified by **priorityGesture** (if set).<br>2. With regard to long press gestures, the component with the shortest minimum hold-down time responds first, ignoring the **priorityGesture** settings.|
-| parallelGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture that can be recognized at once by the component and its child component.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.<br>The gesture event is not a bubbling event. When **parallelGesture** is set for a component, both it and its child component can respond to the same gesture events, thereby implementing a quasi-bubbling effect. If the component and its child component are bound to both the single-tap and double-tap gesture events, only the single-tap gesture event is responded.|
+| parallelGesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture that can be recognized at once by the component and its child component.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.<br>The gesture event is not a bubbling event. When **parallelGesture** is set for a component, both it and its child component can respond to the same gesture events, thereby implementing a quasi-bubbling effect.|
 
 
 ## GestureType
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name| Description|
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | Tap gesture, which can be a single-tap or multi-tap gesture.|
@@ -40,7 +43,7 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 | Name| Description|
 | -------- | -------- |
 | Normal | The gestures of child components are enabled and recognized based on the default gesture recognition sequence.|
-| IgnoreInternal | The gestures of child components are disabled, including the built-in gestures, such as the built-in swipe gesture for a **\<List>** component. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are disabled.|
+| IgnoreInternal | The gestures of child components are disabled, including the built-in gestures, such as the built-in swipe gesture for a **List** component. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are disabled.|
 
 ## Gesture Response Event
 
@@ -53,6 +56,8 @@ The component binds gesture objects of different **GestureType** instances throu
 | onAction((event:GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized.|
 
 ## GestureEvent
+
+Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -67,18 +72,14 @@ The component binds gesture objects of different **GestureType** instances throu
 | pinchCenterY | number | Y coordinate of the pinch center, in vp. This attribute is used for the **PinchGesture** event.|
 | speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
 | fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo8)[] | List of contact points of the gesture event. If the event input device is touchscreen, the list includes all contact points. If the event input device is mouse or touchpad, the list contains only one contact point.<br>**NOTE**<br>The index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty.|
-| timestamp<sup>8+</sup> | number | Timestamp of the event.<br>**NOTE**<br>Unit: ns|
-| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
-| source<sup>8+</sup> | [SourceType](#sourcetype) | Event input device.|
-| pressure<sup>9+</sup> | number | Press pressure.|
-| tiltX<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the x-axis.|
-| tiltY<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the y-axis.|
-| sourceTool<sup>9+</sup> | [SourceTool](#sourcetool9) | Event input source.|
-| velocityX<sup>10+</sup> | number | Velocity along the x-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left.|
-| velocityY<sup>10+</sup> | number | Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top.|
-| velocity<sup>10+</sup> | number | Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis.|
+| velocityX<sup>10+</sup> | number | Velocity along the x-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from left to right, and it is negative if the movement is from right to left. The unit is vp/s.|
+| velocityY<sup>10+</sup> | number | Velocity along the y-axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The origin of the coordinate axis is the upper left corner of the screen. The velocity is positive if the movement is from top to bottom, and it is negative if the movement is from bottom to top. The unit is vp/s.|
+| velocity<sup>10+</sup> | number | Velocity along the main axis. This parameter is used in [PanGesture](ts-basic-gestures-pangesture.md). The value is the arithmetic square root of the sum of squares of the velocity along the x- and y-axis. The unit is vp/s.|
 
 ## SourceType
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Description|
 | -------- | -------- |
 | Unknown | Unknown device type.|
@@ -87,22 +88,26 @@ The component binds gesture objects of different **GestureType** instances throu
 
 ## FingerInfo<sup>8+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| id | number | Index of a finger.|
-| globalX | number | X coordinate relative to the upper left corner of the application window.|
-| globalY | number | Y coordinate relative to the upper left corner of the application window.|
-| localX | number | X coordinate relative to the upper left corner of the current component's original area.|
-| localY | number | Y coordinate relative to the upper left corner of the current component's original area.|
+| id | number | Index of a finger.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| globalX | number | X-coordinate relative to the upper left corner of the application window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| globalY | number | Y-coordinate relative to the upper left corner of the application window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| localX | number | X-coordinate relative to the upper left corner of the current component's original area, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| localY | number | Y-coordinate relative to the upper left corner of the current component's original area, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| displayX<sup>12+</sup> | number | X-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| displayY<sup>12+</sup> | number | Y-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## SourceTool<sup>9+</sup>
+
 | Name| Description|
 | -------- | -------- |
-| Unknown | Unknown input source.|
-| Finger | Finger input.|
-| Pen | Stylus input.|
+| Unknown | Unknown input source.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Finger | Finger.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Pen | Stylus.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Mouse<sup>12+</sup> | Mouse device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Touchpad<sup>12+</sup> | Touchpad. Single-finger input on the touchpad is treated as a mouse input operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Joystick<sup>12+</sup> | Joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## Example

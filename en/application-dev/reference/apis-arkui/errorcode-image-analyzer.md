@@ -39,21 +39,3 @@ The API is called at a wrong time.
 **Solution**
 
 N/A
-
-## 110003 AI Image Analysis Stopped
-
-**Error Message**
-
-AI analysis is stopped.
-
-**Description**
-
-This error code is reported when a change in the image is detected or the **stopImageAnalyzer()** API is called.
-
-**Possible Causes**
-
-The image changes during AI image analysis or the **stopImageAnalyzer()** API is called.
-
-**Solution**
-
-N/A

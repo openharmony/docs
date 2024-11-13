@@ -17,7 +17,7 @@ The **DataShareExtensionAbility** module provides data share services based on t
 import { DataShareExtensionAbility } from '@kit.ArkData';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
@@ -57,7 +57,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
   onCreate(want: Want, callback: Function) {
     relationalStore.getRdbStore(this.context, {
       name: DB_NAME,
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     }, (err, data) => {
       console.info(`getRdbStore done, data : ${data}`);
       rdbStore = data;

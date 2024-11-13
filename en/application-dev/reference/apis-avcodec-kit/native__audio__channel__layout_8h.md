@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_audio_channel_layout.h** file declares the audio channel layout, which is used to indicate the appearance and sequence of speakers during recording or playback.
+The **native_audio_channel_layout.h** file declares the functions related to the speaker layout during recording and playback.
 
 **Library**: none
 

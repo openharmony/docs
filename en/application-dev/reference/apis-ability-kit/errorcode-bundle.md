@@ -953,6 +953,24 @@ The **uninstallUpdates** API can only be used to uninstall the updates of a pres
 
 Check whether the specified application is a preset application.
 
+## 17700058 Specified Application Cannot Be Installed on this Device or by this User
+
+**Error Message**
+
+Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
+
+**Description**
+
+The specified application cannot be installed on this device or by this user.
+
+**Possible Causes**
+1. The device in use has undergone a whitewashing process.
+2. The specified application is prohibited from being installed by the specified user.
+
+**Solution**
+1. Check whether the device has undergone a whitewashing process.
+2. Install the application as another user.
+
 ## 17700059 Specified Developer ID Does Not Exist
 
 **Error Message**
@@ -979,15 +997,15 @@ The specified application cannot be uninstalled.
 
 **Description**
 
-When the **switchUninstallState** API of the **bundleManager** module is called, the specified application cannot be uninstalled.
+When the **uninstall** API of the **BundleInstaller** module or the **switchUninstallState** API of the **bundleManager** module is called, the specified application cannot be uninstalled.
 
 **Possible Causes**
-
-The specified application is not uninstallable.
+1. When the **uninstall** API is called, the specified application rejects the uninstallation attempt due to the ongoing operation of its own services.
+2. When the **switchUninstallState** API is called, the specified application has a privilege that prevents it from being uninstalled.
 
 **Solution**
-
-Check whether the specified application is uninstallable.
+1. Check the reason why the application cannot be uninstalled and perform related operations.
+2. Check whether the specified application is uninstallable.
 
 ## 17700061 appIndex for a Clone Is Invalid
 
@@ -1027,25 +1045,6 @@ The ability specified by **want** in the **ShortcutInfo** struct does not exist,
 
 Check the validity of **want** in the **ShortcutInfo** struct.
 
-## 17700068 Maximum Number of Application Clones Is Reduced During an Update
-
-**Error Message**
-
-Failed to install the HAP because the maximum count of clone app cannot be reduced.
-
-**Description**
-
-If the multi-app mode is **appClone**, the value of **maxCount** cannot be decreased during an update.
-
-**Possible Causes**
-
-The maximum number of application clones is reduced during the update of an application.
-
-**Solution**
-1. Check whether the application to update supports clones.
-2. Check whether the maximum number of clones supported by the application is reduced before and after the update.
-
-
 ## 17700069 AppClone Instance Cannot Be Created For an Application in Multi-app Mode Not Set To appClone
 
 **Error Message**
@@ -1064,11 +1063,63 @@ The multi-app mode is set to another mode other than **appClone**.
 
 Check whether the application to update supports clones.
 
+## 17700070 Invalid Shortcut ID
+
+**Error Message**
+
+The specified shortcut id is illegal.
+
+**Description**
+
+The specified shortcut ID is invalid.
+
+**Possible Causes**
+
+When the API for adding a shortcut is called, a shortcut with the same bundle name, clone index, user ID, and shortcut ID already exists, or the passed-in shortcut ID is empty.
+
+**Solution**
+
+Check whether the bundle name and shortcut ID are correct.
+
+## 17700071 Enterprise Applications Cannot Be Installed
+
+**Error Message**
+
+It is not allowed to install the enterprise bundle.
+
+**Description**
+
+It is not allowed to install enterprise applications through a specific installation API.
+
+**Possible Causes**
+
+Due to policy control, enterprise applications cannot be installed through the specific API.
+
+**Solution**
+
+## 17700072 Launch Want Does Not Exist
+
+**Error Message**
+
+The launch want is not found.
+
+**Description**
+
+The launch want does not exist.
+
+**Possible Causes**
+
+The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **action.system.home**.
+
+**Solution**
+
+Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
 
-Failed to verify abc.
+Failed to verify the abc file.
 
 **Description**
 
@@ -1086,7 +1137,7 @@ Pass in the path of a trusted .abc file.
 
 **Error Message**
 
-Failed to delete abc.
+Failed to delete the abc file.
 
 **Description**
 

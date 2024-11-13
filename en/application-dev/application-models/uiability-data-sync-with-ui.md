@@ -1,15 +1,15 @@
 # Data Synchronization Between UIAbility and UI Page
 
 
-Based on the application model, you can use any of the following ways to implement data synchronization between UIAbility components and UI pages:
+Based on the application model, you can use any of the following ways to implement data synchronization between [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) components and UI pages:
 
-- [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The **EventHub** object is provided by the base class **Context**. It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
-- [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: AppStorage and LocalStorage, which implement application- and UIAbility-level data synchronization, respectively.
+- [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The [EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) object is provided by the [base class Context](application-context-stage.md). It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
+- [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: [AppStorage](../quick-start/arkts-appstorage.md) and [LocalStorage](../quick-start/arkts-localstorage.md), which implement application- and UIAbility-level data synchronization, respectively.
 
 
 ## Using EventHub for Data Synchronization
 
-[EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility component so that they can subscribe to, unsubscribe from, and trigger events.
+[EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) provides an event mechanism for the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component so that they can subscribe to, unsubscribe from, and trigger events.
 
 Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md).
 
@@ -74,7 +74,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
               .onClick(() => {
                 this.eventHubFunc();
                 promptAction.showToast({
-                  message: $r('app.string.EventHubFuncA')
+                  message: 'EventHubFuncA'
                 });
               })
             }
@@ -87,7 +87,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
               .onClick(() => {
                 this.context.eventHub.off('event1');
                 promptAction.showToast({
-                  message: $r('app.string.EventHubFuncB')
+                  message: 'EventHubFuncB'
                 });
               })
             }
@@ -102,25 +102,25 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
 3. Obtain the event trigger result from the subscription callback of the UIAbility. The run log result is as follows:
 
-   ```json
-   [Example].[Entry].[EntryAbility] 1. []
-   [Example].[Entry].[EntryAbility] 1. [1]
-   [Example].[Entry].[EntryAbility] 1. [2,"test"]
-   ```
+    ```json
+    [Example].[Entry].[EntryAbility] 1. []
+    [Example].[Entry].[EntryAbility] 1. [1]
+    [Example].[Entry].[EntryAbility] 1. [2,"test"]
+    ```
    
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
-   ```ts
-   import { UIAbility } from '@kit.AbilityKit';
+    ```ts
+    import { UIAbility } from '@kit.AbilityKit';
 
-   export default class EntryAbility extends UIAbility {
-     // ... 
-     onDestroy(): void {
-       this.context.eventHub.off('event1');
-     }
-   }
-   ```
+    export default class EntryAbility extends UIAbility {
+      // ... 
+      onDestroy(): void {
+        this.context.eventHub.off('event1');
+      }
+    }
+    ```
 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
-ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbilities. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
+ArkUI provides two application-level state management solutions: [AppStorage](../quick-start/arkts-appstorage.md) and [LocalStorage](../quick-start/arkts-localstorage.md), which implement data synchronization at the application or [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) level, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbility components. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).

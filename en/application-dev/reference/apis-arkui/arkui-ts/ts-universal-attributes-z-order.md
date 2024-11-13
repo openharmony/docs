@@ -14,6 +14,8 @@ Sets the stack level of the component.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -47,10 +49,10 @@ struct ZIndexExample {
   }
 }
 ```
-Display of child components in the **\<Stack>** component when **zIndex** is not set
+Display of child components in the **Stack** component when **zIndex** is not set
 
 ![nozindex.png](figures/nozindex.png)
 
-Display of child components in the **\<Stack>** component when **zIndex** is set
+Display of child components in the **Stack** component when **zIndex** is set
 
 ![zindex.png](figures/zindex.png)

@@ -4,10 +4,10 @@
 
 For details about how to use the APIs (such as parameter usage constraints and value ranges), see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
-| **API**                                             | **Description**                                        |
+| API                                             | **Description**                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to subscribe to application events. |
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events. |
+| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to subscribe to application events.|
+| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
 
 ## **How to Develop**
 
@@ -27,7 +27,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
            - napi_init.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -38,7 +38,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
-3. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, add a watcher in **onCreate** to subscribe to system events. The sample code is as follows:
+3. In the **entry/src/main/ets/entryability/EntryAbility.ets** file of the project, add a watcher in **onCreate()** to subscribe to system events. The sample code is as follows:
 
    ```ts
    hiAppEvent.addWatcher({
@@ -68,7 +68,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.pid=${eventInfo.params['pid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.uid=${eventInfo.params['uid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.type=${eventInfo.params['type']}`);
-           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${eventInfo.params['external_log']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.log_over_limit=${eventInfo.params['log_over_limit']}`);
          }
        }
@@ -93,32 +93,6 @@ The following describes how to subscribe to an address sanitizer event for an ar
        // Construct the array bounds write.
        a[10] = 1;
        return {};
-   }
-
-   static napi_value Add(napi_env env, napi_callback_info info)
-   {
-       size_t argc = 2;
-       napi_value args[2] = {nullptr};
-
-       napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-
-       napi_valuetype valuetype0;
-       napi_typeof(env, args[0], &valuetype0);
-
-       napi_valuetype valuetype1;
-       napi_typeof(env, args[1], &valuetype1);
-
-       double value0;
-       napi_get_value_double(env, args[0], &value0);
-
-       double value1;
-       napi_get_value_double(env, args[1], &value1);
-
-       napi_value sum;
-       napi_create_double(env, value0 + value1, &sum);
-
-       return sum;
-
    }
 
    EXTERN_C_START
@@ -148,25 +122,19 @@ The following describes how to subscribe to an address sanitizer event for an ar
    }
    ```
 
-6. Edit the **entry/src/main/ets/pages/Index.ets** file. The sample code is as follows:
+6. In the **entry/src/main/ets/pages/Index.ets** file, add a button to trigger the address sanitizer event.
 
    ```ts
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import testNapi from 'libentry.so';
+   import testNapi from 'libentry.so'
 
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World';
-
      build() {
        Row() {
-       Column() {
-         Text(this.message)
-           .fontSize(50)
-           .fontWeight(FontWeight.Bold)
-           .onClick(() => {
-             hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+         Column() {
+           Button("address-sanitizer").onClick(() => {
+             testNapi.test();
            })
          }
          .width('100%')
@@ -176,7 +144,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
    }
    ```
 
-7. In DevEco Studio, choose **entry**, click **Edit Configurations**, select **Diagnostics**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+7. In DevEco Studio, choose **entry**, click **Edit Configurations**, click **Diagnostics**, select **Address Sanitizer**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS
@@ -190,6 +158,6 @@ The following describes how to subscribe to an address sanitizer event for an ar
    HiAppEvent eventInfo.pid=12889
    HiAppEvent eventInfo.uid=20020140
    HiAppEvent eventInfo.type=stack-buffer-overflow
-   HiAppEvent eventInfo.external_log=/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log
+   HiAppEvent eventInfo.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log"]
    HiAppEvent eventInfo.log_over_limit=false
    ```

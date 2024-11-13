@@ -256,7 +256,7 @@ emitter.off("eventId");
 
 off(eventId: number, callback: Callback\<EventData\>): void
 
-取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+取消针对该事件ID的订阅，传入可选参数Callback\<EventData\>，并且该Callback\<EventData\>已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -272,7 +272,7 @@ off(eventId: number, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-// 取消eventID为1的事件回调处理函数 emitterCallback
+// 取消eventID为1的事件回调处理函数
 // 如果该回调处理函数没有被订阅，则不做任何处理
 emitter.off(1, () => {
   console.info('callback');
@@ -283,7 +283,7 @@ emitter.off(1, () => {
 
 off(eventId: string, callback: Callback\<EventData\>): void
 
-取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+取消针对该事件ID的订阅，传入可选参数Callback\<EventData\>，并且该Callback\<EventData\>已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -299,7 +299,7 @@ off(eventId: string, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-// 取消eventID为"eventId"的事件回调处理函数 emitterCallback
+// 取消eventID为"eventId"的事件回调处理函数
 // 如果该回调处理函数没有被订阅，则不做任何处理
 emitter.off("eventId", () => {
   console.info('callback');
@@ -310,7 +310,7 @@ emitter.off("eventId", () => {
 
 off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
 
-取消针对该事件ID的订阅，传入可选参数callback，如果该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
+取消针对该事件ID的订阅，传入可选参数Callback\<GenericEventData<T\>\>，如果该Callback\<GenericEventData<T\>\>已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -368,7 +368,7 @@ emit(event: InnerEvent, data?: EventData): void
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -403,7 +403,7 @@ emit(eventId: string, data?: EventData): void
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -473,7 +473,7 @@ emit(eventId: string, options: Options, data?: EventData): void
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -531,7 +531,7 @@ emitter.emit("eventId", options, eventData);
 
 ## emitter.getListenerCount<sup>11+</sup>
 
-getListenerCount(eventId: number|string): number
+getListenerCount(eventId: number | string): number
 
 获取指定事件的订阅数。
 
@@ -543,7 +543,7 @@ getListenerCount(eventId: number|string): number
 
 | 参数名  | 类型           | 必填 | 说明     |
 | ------- | -------------- | ---- | -------- |
-| eventId | number\|string | 是   | 事件ID，string类型的eventId不支持空字符串。 |
+| eventId | number \| string | 是   | 事件ID，string类型的eventId不支持空字符串。 |
 
 **示例：**
 
@@ -589,7 +589,7 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称 | 类型           | 只读 | 可选 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | 否   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
+| data | { [key: string]: any } | 否   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
 
 ## Options<sup>11+</sup>
 

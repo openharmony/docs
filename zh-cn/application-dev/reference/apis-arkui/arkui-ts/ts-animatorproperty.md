@@ -1,6 +1,6 @@
 # 属性动画 (animation)
 
-组件的某些通用属性变化时，可以通过属性动画实现渐变过渡效果，提升用户体验。支持的属性包括[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[opacity](ts-universal-attributes-opacity.md#opacity)、[scale](ts-universal-attributes-transformation.md#scale)、[rotate](ts-universal-attributes-transformation.md#rotate)、[translate](ts-universal-attributes-transformation.md#translate)等。布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md#canvas)的内容、[linearGradient](ts-universal-attributes-gradient-color.md#lineargradient)等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md#renderfit)属性配置。
+组件的某些通用属性变化时，可以通过属性动画实现渐变过渡效果，提升用户体验。支持的属性包括[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[opacity](ts-universal-attributes-opacity.md#opacity)、[scale](ts-universal-attributes-transformation.md#scale)、[rotate](ts-universal-attributes-transformation.md#rotate)、[translate](ts-universal-attributes-transformation.md#translate)等。布局类改变宽高的动画，内容都是直接到终点状态，例如文字、[Canvas](ts-components-canvas-canvas.md#canvas)的内容等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md#renderfit)属性配置。
 
 > **说明：**
 >
@@ -18,6 +18,39 @@ animation(value:AnimateParam)
 | 参数    | 类型                                | 是否必填 | 描述                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
+
+属性动画只对写在animation前面的属性生效，且对组件构造器的属性不生效。
+ ```
+@State widthSize: number = 250;
+@State heightSize: number = 100;
+@State rotateAngle: number = 0;
+@State flag: boolean = true;
+// ...
+Column({ space: this.space }) // 改变Column构造器中的space动画不生效
+  .onClick(() => {
+    if (this.flag) {
+      this.widthSize = 150;
+      this.heightSize = 60;
+      this.space = 20; // 改变this.space动画不生效
+    } else {
+      this.widthSize = 250;
+      this.heightSize = 100;;
+      this.space = 10; // 改变this.space动画不生效
+    }
+    this.flag = !this.flag;
+  })
+  .margin(30)
+  .width(this.widthSize) // 只有写在animation前面才生效
+  .height(this.heightSize) // 只有写在animation前面才生效
+  .animation({
+    duration: 2000,
+    curve: Curve.EaseOut,
+    iterations: 3,
+    playMode: PlayMode.Normal
+  })
+  // .width(this.widthSize) // 动画不生效
+  // .height(this.heightSize) // 动画不生效
+```
 
 ## 示例
 ```ts

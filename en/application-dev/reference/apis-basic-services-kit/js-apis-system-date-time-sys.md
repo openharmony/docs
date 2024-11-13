@@ -334,6 +334,86 @@ try {
 }
 ```
 
+## systemDateTime.updateNtpTime<sup>13+</sup>
+
+updateNtpTime(): Promise&lt;void&gt;
+
+Updates the NTP time from the NTP server This API returns the result asynchronously. In this way, the NTP time is updated from the NTP server only once within one hour.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type               | Description                |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                   |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000001    | Network connection error or OS error.                                                                 |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemDateTime.updateNtpTime().then(() => {
+    console.info(`Succeeded in update ntp time.`);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getNtpTime<sup>13+</sup>
+
+getNtpTime(): number
+
+Obtains the actual time calculated based on the last updated NTP time. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type  | Description                            |
+| ------ |--------------------------------|
+| number | Unix epoch time (ms) calculated based on the last updated NTP time.|
+
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                   |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000002    | updateNtpTime() is not called successfully.                                                           |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let time = systemDateTime.getNtpTime();
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to get ntp time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
 ## Supported System Time Zones
 
 For details about the supported system time zones, see API [I18n.SystemLocaleManager.getTimeZoneCityItemArray()](../apis-localization-kit/js-apis-i18n-sys.md#gettimezonecityitemarray10).

@@ -51,7 +51,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// Callback
+//callback
 try {
     connection.pairDevice('11:22:33:44:55:66', (err: BusinessError) => {
         console.info('pairDevice, device name err:' + JSON.stringify(err));
@@ -104,7 +104,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// Promise
+//promise
 try {
     connection.pairDevice('11:22:33:44:55:66').then(() => {
         console.info('pairDevice');
@@ -214,7 +214,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids
+## connection.getRemoteProfileUuids<sup>12+</sup>
 
 getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
@@ -229,7 +229,7 @@ Obtains the profile UUIDs of a remote Bluetooth device. This API uses an asynchr
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -259,7 +259,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids
+## connection.getRemoteProfileUuids<sup>12+</sup>
 
 getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
@@ -279,7 +279,7 @@ Obtains the profile UUIDs of a remote Bluetooth device. This API uses a promise 
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | Promise used to return the result.|
+|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -637,11 +637,14 @@ try {
 ```
 
 
-## connection.setLocalName
+## connection.setLocalName<sup>(deprecated)</sup>
 
 setLocalName(name: string): void
 
 Sets the name of the local Bluetooth device.
+
+> **NOTE**<br>
+> This API is supported since API version 10 and deprecated since API version 12. No substitute is provided.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -692,7 +695,7 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 
 | Name     | Type                   | Mandatory  | Description                          |
 | -------- | --------------------- | ---- | ---------------------------- |
-| mode     | [ScanMode](#scanmode) | Yes   | Bluetooth scan mode to set.                     |
+| mode     | [ScanMode](#scanmode) | Yes   | Bluetooth scan mode to set. If the scan times out (**duration** is not **0**) when the scan mode is **SCAN_MODE_GENERAL_DISCOVERABLE**, the scan mode will be reset to **SCAN_MODE_CONNECTABLE**.              |
 | duration | number                | Yes   | Duration (in ms) in which the device can be discovered. The value **0** indicates unlimited time.|
 
 **Error codes**

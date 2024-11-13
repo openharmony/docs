@@ -264,3 +264,204 @@ RichEditor/TextInput/TextArea/Search组件在编辑态下，若检测到手指�
 **适配指导**
 
 UX统一文本编辑交互规范，开发者无需适配。
+
+## cl.arkui.8 Dialog组件内AlertDialogParam弹窗类型和ActionSheetOptions弹窗类型支持镜像能力
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Dialog组件内AlertDialogParam弹窗类型和ActionSheetOptions弹窗类型支持镜像能力。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+- 变更前：
+
+  Dialog组件内AlertDialogParam弹窗类型的cornerRadius接口不支持LocalizedBorderRadiuses类型设置圆角。
+
+  Dialog组件内AlertDialogParam弹窗类型的borderColor接口不支持LocalizedEdgeColors类型设置颜色。
+
+  Dialog组件内AlertDialogParam弹窗类型的borderWidth接口不支持LocalizedEdgeWidths类型设置宽度。
+
+  Dialog组件内ActionSheetOptions弹窗类型的cornerRadius接口不支持LocalizedBorderRadiuses类型设置圆角。
+
+  Dialog组件内ActionSheetOptions弹窗类型的borderColor接口不支持LocalizedEdgeColors类型设置颜色。
+
+  Dialog组件内ActionSheetOptions弹窗类型的borderWidth接口不支持LocalizedEdgeWidths类型设置宽度。
+
+- 变更后：
+
+  Dialog组件内AlertDialogParam弹窗类型的cornerRadius接口支持LocalizedBorderRadiuses类型设置圆角。
+
+  Dialog组件内AlertDialogParam弹窗类型的borderColor接口支持LocalizedEdgeColors类型设置颜色。
+
+  Dialog组件内AlertDialogParam弹窗类型的borderWidth接口支持LocalizedEdgeWidths类型设置宽度。
+
+  Dialog组件内ActionSheetOptions弹窗类型的cornerRadius接口支持LocalizedBorderRadiuses类型设置圆角。
+
+  Dialog组件内ActionSheetOptions弹窗类型的borderColor接口支持LocalizedEdgeColors类型设置颜色。
+
+  Dialog组件内ActionSheetOptions弹窗类型的borderWidth接口支持LocalizedEdgeWidths类型设置宽度。
+
+AlertDialogParam弹窗类型的cornerRadius：
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/AlertDialog_cornerRadius_before.png)  |  ![](figures/AlertDialog_cornerRadius_after.png)  |
+
+AlertDialogParam弹窗类型的borderColor：
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/AlertDialog_borderColor_before.png)  |  ![](figures/AlertDialog_borderColor_after.png)  |
+
+AlertDialogParam弹窗类型的borderWidth：
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/AlertDialog_borderWith_before.png)  |  ![](figures/AlertDialog_borderWith_after.png)  |
+
+ActionSheetOptions弹窗类型的cornerRadius：
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/ActionSheet_cornerRadius_before.png)  |  ![](figures/ActionSheet_cornerRadius_after.png)  |
+
+ActionSheetOptions弹窗类型的borderColor：
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/ActionSheet_borderColor_before.png)  |  ![](figures/ActionSheet_borderColor_after.png)  |
+
+ActionSheetOptions弹窗类型的borderWidth：
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/ActionSheet_borderWith_before.png)  |  ![](figures/ActionSheet_borderWith_after.png)  |
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**变更的接口/组件**
+
+Dialog组件内AlertDialogParam弹窗类型的cornerRadius、borderColor、borderWidth接口；
+Dialog组件内ActionSheetOptions弹窗类型的cornerRadius、borderColor、borderWidth接口。
+
+**适配指导**
+
+开发者可以在Dialog内通过AlertDialogParam弹窗类型的cornerRadius接口弹窗设置圆角，且当参数类型为LocalizedBorderRadiuses类型时，支持随语言习惯改变布局顺序。
+
+开发者可以在Dialog内通过AlertDialogParam弹窗类型的borderColor接口设置边框颜色，且当参数类型为LocalizedEdgeColors类型时，支持随语言习惯改变布局顺序。
+
+开发者可以在Dialog内通过AlertDialogParam弹窗类型的borderWidth接口设置边框宽度，且当参数类型为LocalizedEdgeWidths类型时，支持随语言习惯改变布局顺序。
+
+开发者可以在Dialog内通过ActionSheetOptions弹窗类型的cornerRadius接口弹窗设置圆角，且当参数类型为LocalizedBorderRadiuses类型时，支持随语言习惯改变布局顺序。
+
+开发者可以在Dialog内通过ActionSheetOptions弹窗类型的borderColor接口设置边框颜色，且当参数类型为LocalizedEdgeColors类型时，支持随语言习惯改变布局顺序。
+
+开发者可以在Dialog内通过ActionSheetOptions弹窗类型的borderWidth接口设置边框宽度，且当参数类型为LocalizedEdgeWidths类型时，支持随语言习惯改变布局顺序。
+
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Example {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Click to Show')
+        .onClick(() => {
+          AlertDialog.show(
+            {
+              title: 'title',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Center,
+              offset: { dx: 0, dy: -50 },
+              gridCount: 3,
+              width: 300,
+              height: 200,
+              borderWidth:      // 新增API示例
+              {
+                top: LengthMetrics.px(60),
+                end: LengthMetrics.px(30),
+                bottom: LengthMetrics.px(60),
+                start: LengthMetrics.px(60)
+              },
+              cornerRadius:      // 新增API示例
+              {
+                topStart: LengthMetrics.vp(120),
+                topEnd: LengthMetrics.vp(32),
+                bottomStart: LengthMetrics.vp(32),
+                bottomEnd: LengthMetrics.vp(32)
+              },
+              borderColor:     // 新增API示例
+              {
+                top: Color.Black,
+                end: Color.Red,
+                bottom: Color.Black,
+                start: Color.Black
+              },
+              backgroundColor: Color.White,
+            }
+          )
+          ActionSheet.show({
+            title: 'ActionSheet title',
+            subtitle: 'ActionSheet subtitle',
+            message: 'message',
+            autoCancel: true,
+
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            borderWidth:      // 新增API示例
+            {
+              top: LengthMetrics.px(60),
+              end: LengthMetrics.px(30),
+              bottom: LengthMetrics.px(60),
+              start: LengthMetrics.px(60)
+            },
+            cornerRadius:      // 新增API示例
+            {
+              topStart: LengthMetrics.vp(120),
+              topEnd: LengthMetrics.vp(32),
+              bottomStart: LengthMetrics.vp(32),
+              bottomEnd: LengthMetrics.vp(32)
+            },
+            borderColor:     // 新增API示例
+            {
+              top: Color.Black,
+              end: Color.Red,
+              bottom: Color.Black,
+              start: Color.Black
+            },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.log('apples')
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas')
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears')
+                }
+              }
+            ]
+          })
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
+```

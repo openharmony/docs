@@ -31,7 +31,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -48,12 +48,12 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   #include "json/json.h"
-   #include "hilog/log.h"
-   #include "hiappevent/hiappevent.h"
+   # include "json/json.h"
+   # include "hilog/log.h"
+   # include "hiappevent/hiappevent.h"
    
-   #undef LOG_TAG
-   #define LOG_TAG "testTag"
+   # undef LOG_TAG
+   # define LOG_TAG "testTag"
    ```
 
 4. Subscribe to application events.
@@ -195,10 +195,11 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    export const registerWatcher: () => void;
    ```
 
-6. In the **EntryAbility.ts** file, add the following interface invocation to **onCreate()**.
+6. In the **EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
    import testNapi from 'libentry.so'
+   import hidebug from '@kit.PerformanceAnalysisKit'
    export default class EntryAbility extends UIAbility {
      onCreate(want, launchParam) {
        // Register the system event watcher at startup.
@@ -207,10 +208,20 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    }
    ```
 
-7. In DevEco Studio, click the **Run** button to run the project. If the check detects that the memory usage of an application exceeds the maximum limit for three consecutive times, a memory leak event is reported.
+7. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
+   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event. The sample code is as follows:
+
+   ```ts
+    Button("memoryleak").onClick(()=>{
+      // Construct a scenario for triggering a resource leak event in onClick(). The leak size is 1 MB.
+      hidebug.setAppResourceLimit("pss_memory", 1024, true);
+    })
+   ```
+
+8. Click the **Run** button in DevEco Studio to run the project, and then a memory leak event will be reported after 15 to 30 minutes.
    For the same application, the memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
 
-8. After the memory leak event is reported, you can view the following event information in the **Log** window.
+9. After the memory leak event is reported, you can view the following event information in the **Log** window.
 
    ```text
    08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
@@ -225,7 +236,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936}
    ```
 
-9. Remove the application event watcher.
+10. Remove the application event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -235,13 +246,15 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     }
     ```
 
-10. Destroy the application event watcher.
+11. Destroy the application event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set onReceiverWatcher to nullptr.
+        // Destroy the created watcher and set systemEventWatcher to nullptr.
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```
+
+<!--no_check-->

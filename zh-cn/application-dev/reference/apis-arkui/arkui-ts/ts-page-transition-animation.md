@@ -66,22 +66,74 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## 属性
 
+### slide
+
+slide(value: SlideEffect): T
+
+设置页面转场时的滑入滑出效果。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型                                                     | 必填 | 说明                                                     |
-| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| slide     | [SlideEffect](#slideeffect枚举说明)                          | 否   | 设置页面转场时的滑入滑出效果。 |
-| translate | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否   | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。<br/>-&nbsp;x：横向的平移距离。<br/>-&nbsp;y：纵向的平移距离。<br/>-&nbsp;z：竖向的平移距离。 |
-| scale     | {<br/>x?&nbsp;:&nbsp;number;<br/>y?&nbsp;:&nbsp;number;<br/>z?&nbsp;:&nbsp;number;<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string;<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否   | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。<br/>-&nbsp;x：横向放大倍数（或缩小比例）。<br/>-&nbsp;y：纵向放大倍数（或缩小比例）。<br/>-&nbsp;z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。centerX和centerY默认值是"50%"，即默认以页面的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表页面的左上角。<br/> |
-| opacity   | number                                                       | 否   | 设置入场的起点透明度值或者退场的终点透明度值。 |
+**参数：** 
 
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [SlideEffect](#slideeffect枚举说明) | 是   | 页面转场时的滑入滑出效果。 |
+
+### translate
+
+translate(value: TranslateOptions): T
+
+设置页面转场时的平移效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 是   | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。<br/>-&nbsp;x：横向的平移距离。<br/>-&nbsp;y：纵向的平移距离。<br/>-&nbsp;z：竖向的平移距离。 |
+
+### scale
+
+scale(value: ScaleOptions): T
+
+设置页面转场时的缩放效果。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明) | 是   | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。<br/>-&nbsp;x：横向放大倍数（或缩小比例）。<br/>-&nbsp;y：纵向放大倍数（或缩小比例）。<br/>-&nbsp;z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。centerX和centerY默认值是"50%"，即默认以页面的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表页面的左上角。 |
+
+### opacity
+
+opacity(value: number): T
+
+设置入场的起点透明度值或者退场的终点透明度值。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | number | 是   | 设置入场的起点透明度值或者退场的终点透明度值。 |
 
 ## 事件
 ### onEnter
 
-onEnter(event: (type: RouteType, progress: number) => void): PageTransitionEnterInterface
+onEnter(event: PageTransitionCallback): PageTransitionEnterInterface
 
 逐帧回调，直到入场动画结束，progress从0变化到1。
 
@@ -93,7 +145,7 @@ onEnter(event: (type: RouteType, progress: number) => void): PageTransitionEnter
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | (type: [RouteType](#routetype枚举说明), progress: number) => void | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback13) | 是   | 入场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
 
 **示例：**
 
@@ -109,7 +161,7 @@ onEnter(event: (type: RouteType, progress: number) => void): PageTransitionEnter
 
 ### onExit
 
-onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitInterface
+onExit(event: PageTransitionCallback): PageTransitionExitInterface
 
 逐帧回调，直到出场动画结束，progress从0变化到1。
 
@@ -121,7 +173,22 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 
 | 参数名 | 类型                                                               | 必填 | 说明                                                |
 | ------ | ----------------------------------------------------------------- | ---- | ------------------------------------------------    |
-| event  | (type: [RouteType](#routetype枚举说明), progress: number) => void | 是   | 出场动画的逐帧回调直到入场动画结束，progress从0变化到1。 |
+| event  | [PageTransitionCallback](#pagetransitioncallback13) | 是   | 出场动画的逐帧回调直到出场动画结束，progress从0变化到1。 |
+
+## PageTransitionCallback<sup>13+</sup>
+
+type PageTransitionCallback = (type: RouteType, progress: number) => void
+
+页面转场事件回调。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| type | [RouteType](#routetype枚举说明) | 是 |  页面转场类型。 |
+| progress | number | 是 | 转场进度。progress从0变化到1。 |
 
 **示例：**
 
@@ -142,7 +209,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
-| 名称 | 描述                                                         |
+| 名称 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
 | Pop  | 重定向指定页面。从PageB回退到之前的页面PageA。对于PageB，指定RouteType为None或者Pop的PageTransitionExit组件样式生效，对于PageA，指定RouteType为None或者Pop的PageTransitionEnter组件样式生效。 |
 | Push | 跳转到下一页面。PageA跳转到下一个新的界面PageB。对于PageA，指定RouteType为None或者Push的PageTransitionExit组件样式生效，对于PageB，指定RouteType为None或者Push的PageTransitionEnter组件样式生效。 |
@@ -154,7 +221,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 描述                                                         |
+| 名称                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | Left                | 设置到入场时表示从左边滑入，出场时表示滑出到左边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Right               | 设置到入场时表示从右边滑入，出场时表示滑出到右边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

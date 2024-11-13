@@ -27,6 +27,9 @@
 - 音频编辑
 
   音频编辑（如调整单个声道的播放倍速等）需要基于PCM码流进行，所以需要先将音频文件解码。
+> **说明：**
+>
+> 通过MP3音频编码流程生成的码流无法直接通过MP3音频解码流程进行解码。建议通过（PCM码流->MP3音频编码->封装->解封装->MP3音频解码）流程进行。
 
 ## 开发指导
 
@@ -36,6 +39,11 @@
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
 如下为音频解码调用关系图：
+
+- 虚线表示可选。
+
+- 实线表示必选。
+
 ![Invoking relationship of audio decode stream](figures/audio-codec.png)
 
 ### 在 CMake 脚本中链接动态库
@@ -153,7 +161,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 4. （可选）OH_AudioCodec_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
-    添加头文件
+    添加头文件:
 
     ```c++
     #include <multimedia/drm_framework/native_mediakeysystem.h>
@@ -161,13 +169,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    在 CMake 脚本中链接动态库
+    在 CMake 脚本中链接动态库:
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
 
-    使用示例
+    使用示例:
     ```c++
     // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
     MediaKeySystem *system = nullptr;
@@ -176,13 +184,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行DRM授权
+
     // 创建解密会话
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (ret != DRM_OK) {
+        // 如创建失败，请查看DRM接口文档及日志信息
+        printf("create media key session failed.");
+        return;
+    }
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr.");
         return;
     }
     // 获取许可证请求、设置许可证响应等
@@ -206,6 +219,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                 |                -                  |
    | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header 拼接 |                 -                  |      |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 |                -                  |
    
+   各音频解码类型参数范围说明：
+   | 音频解码类型 |                                          采样率(Hz)                                              | 声道数 |
+   | ----------- | ----------------------------------------------------------------------------------------------  | :----: |
+   | AAC         | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000                 |  1~8   |
+   | Flac        | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000、192000         |  1~8   |
+   | Vorbis      | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000、176400、192000 |  1~8   |
+   | MPEG(MP3)   | 8000、11025、12000、16000、22050、24000、32000、44100、48000                                     |  1~2   |
+   | G711mu      | 8000                                                                                            |   1    |
+   | AMR(amrnb)  | 8000                                                                                            |   1    |
+   | AMR(amrwb)  | 16000                                                                                           |   1    |
+   | APE         | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000、176400、192000 |  1~2   |
+
    ```cpp
    // 设置解码分辨率
    int32_t ret;
@@ -262,18 +287,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
     若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
 
-    添加头文件
+    添加头文件：
 
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    在 CMake 脚本中链接动态库
+    在 CMake 脚本中链接动态库：
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
     ```
 
-    使用示例
+    使用示例：
     ```c++
     auto buffer = signal_->inBufferQueue_.front();
     int64_t size;

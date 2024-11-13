@@ -116,7 +116,7 @@ The possible causes include the following:
 
 **Solution**
 
-1. Locate the cause of the authentication failure based on the error information.
+1. Locate the cause of the authentication failure based on the log.
 2. If the authentication fails due to the access control, the key cannot be used any longer.
 
 ## 12000008 Failed to Access the Key Due to a Failure in Authentication Token Verification
@@ -215,14 +215,14 @@ Any of the following occurs:
 - Insufficient memory.
 - Malloc failed.
 
-
 **Possible Causes**
 
-The system memory is insufficient.
+The system memory is insufficient, or the buffer allocated for the output parameter is too small.
 
 **Solution**
 
-Release memory or restart the device.
+1. Release memory or restart the device.
+2. Check whether the buffer allocated for the output parameter is too small.
 
 ## 12000015 Failed to Invoke Other System Services
 

@@ -163,7 +163,7 @@
 
 ### ohos.permission.PRIVACY_WINDOW
 
-允许应用将窗口设置为隐私窗口，禁止截屏录屏
+允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
 **权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
 
@@ -273,7 +273,9 @@
 
 ### ohos.permission.RUN_DYN_CODE
 
-允许应用运行动态代码。
+允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。
+
+该权限相关的API均为系统API，仅部分特定系统应用可申请该权限。 
 
 **权限级别**：normal
 
@@ -335,7 +337,7 @@
 
 允许应用在锁屏后保护本应用敏感数据不被访问。
 
-应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。
 
 **权限级别**：normal
 
@@ -346,6 +348,8 @@
 ### ohos.permission.FILE_ACCESS_PERSIST
 
 允许应用支持持久化访问文件Uri。
+
+<!--RP2--><!--RP2End-->
 
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 
@@ -362,6 +366,26 @@
 **授权方式**：system_grant
 
 **起始版本**：12
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：13
+
+### ohos.permission.WINDOW_TOPMOST
+
+允许应用将窗口设置为应用置顶窗口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：13
 
 ## user_grant（用户授权）权限列表
 
@@ -435,11 +459,14 @@
 
 **申请流程**：
 
-1. 通过弹窗申请前台位置权限。存在两种允许情况：
+1. 在“module.json5”配置文件中[声明权限](declare-permissions.md)。
+
+   由于在申请后台权限前，必须先申请前台位置权限，因此开发者在配置时，应同时配置后台位置权限ohos.permission.LOCATION_IN_BACKGROUND和前台位置权限。前台位置权限的申请有两种允许情况：
    - 申请前台模糊位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)。
    - 申请前台精确位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)和[ohos.permission.LOCATION](#ohospermissionlocation)。
-2. 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
-3. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
+2. 应用需通过弹窗向用户申请对应的前台位置权限。
+3. 当用户点击弹窗授予前台位置权限后，应用应通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
+4. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
 
    设置路径：
    <!--RP1-->
@@ -531,6 +558,8 @@
 
 当前仅2in1设备应用可申请此权限。
 
+<!--RP2--><!--RP2End-->
+
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 
 **授权方式**：user_grant
@@ -542,6 +571,8 @@
 允许应用访问公共目录下的Documents目录及子目录。
 
 当前仅2in1设备应用可申请此权限。
+
+<!--RP2--><!--RP2End-->
 
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 

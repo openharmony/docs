@@ -121,6 +121,111 @@ typedef enum {
 } JSVM_RegExpFlags;
 ```
 
+### 编译选项相关类型
+#### JSVM_CompileOptions
+
+配合编译接口 OH_JSVM_CompileScriptWithOptions 使用，是其参数中 options 数组的元素类型
+
+其中：
+- id 代表这个编译选项的类型
+- content 代表编译选项的内容
+
+id 的值和 content 的类型需要对应使用，详细对应关系参考下面对各个选项类型的介绍
+```c
+typedef struct {
+    /** compile option id. */
+    JSVM_CompileOptionId id;
+    /** option content. */
+    union {
+      /** ptr type. */
+      void *ptr;
+      /** int type. */
+      int num;
+      /** bool type. */
+      _Bool boolean;
+    } content;
+} JSVM_CompileOptions;
+```
+
+#### JSVM_CompileOptionId
+
+JSVM_CompileOptions 中的 id 对应类型， 每个值都有其对应的 content 类型, 其中 JSVM_COMPILE_ENABLE_SOURCE_MAP 对应的类型为 bool，当同时传入的 JSVM_ScriptOrigin 中 sourceMapUrl 不为空时生效
+```c
+typedef enum {
+    /** compile mode. */
+    JSVM_COMPILE_MODE,
+    /** code cache content. */
+    JSVM_COMPILE_CODE_CACHE,
+    /** script origin. */
+    JSVM_COMPILE_SCRIPT_ORIGIN,
+    /** compile profile content. */
+    JSVM_COMPILE_COMPILE_PROFILE,
+    /** switch for source map support. */
+    JSVM_COMPILE_ENABLE_SOURCE_MAP,
+} JSVM_CompileOptionId;
+```
+
+#### JSVM_CompileMode
+
+当 id 为 JSVM_COMPILE_MODE，content 的类型，每个值代表一种编译模式：
+
+- JSVM_COMPILE_MODE_DEFAULT : 默认的编译选项
+- JSVM_COMPILE_MODE_CONSUME_CODE_CACHE : 消耗 codecache 进行编译
+- JSVM_COMPILE_MODE_EAGER_COMPILE : 进行全量编译，不再进行 lazy compile
+- JSVM_COMPILE_MODE_PRODUCE_COMPILE_PROFILE/JSVM_COMPILE_MODE_CONSUME_COMPILE_PROFILE : 当前暂无效果，请等待后续更新
+
+```c
+typedef enum {
+    /** default mode. */
+    JSVM_COMPILE_MODE_DEFAULT,
+    /** consume code cache. */
+    JSVM_COMPILE_MODE_CONSUME_CODE_CACHE,
+    /** apply eager compile. */
+    JSVM_COMPILE_MODE_EAGER_COMPILE,
+    /** preset for compile profile. */
+    JSVM_COMPILE_MODE_PRODUCE_COMPILE_PROFILE,
+    /** consume compile profile. */
+    JSVM_COMPILE_MODE_CONSUME_COMPILE_PROFILE,
+} JSVM_CompileMode;
+```
+
+
+#### JSVM_CodeCache
+
+当 id 为 JSVM_COMPILE_CODE_CACHE 时，content 的类型：
+
+- cache : 指向 code cache 的指针
+- length : code cache 的大小
+
+```c
+typedef struct {
+    /** cache pointer. */
+    uint8_t *cache;
+    /** length. */
+    size_t length;
+} JSVM_CodeCache;
+```
+
+#### JSVM_ScriptOrigin
+
+当 id 为 JSVM_COMPILE_SCRIPT_ORIGIN 时，content 的类型，存放待编译的源码信息：
+
+- sourceMapUrl : sourceMap 的路径，当前仅支持运行设备上的本地路径, 可以为空
+- resourceName : 待编译的 js script 的名字，
+```c
+typedef struct {
+    /** Sourcemap url. */
+    const char* sourceMapUrl;
+    /** Resource name. */
+    const char* resourceName;
+    /** Resource line offset. */
+    size_t resourceLineOffset;
+    /** Resource column offset. */
+    size_t resourceColumnOffset;
+} JSVM_ScriptOrigin;
+```
+
+### JSVM
 ### 内存管理类型
 
 JSVM-API包含以下内存管理类型：
@@ -388,7 +493,8 @@ consoleinfo('Result is:' + value);\
 | ------------------------------- | ---------------------------------------------------------------------------------- |
 | OH_JSVM_CompileScript           | 编译JavaScript代码并返回绑定到当前环境的编译脚本                                                      |
 | OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
-| OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache]                                                                 |
+| OH_JSVM_CompileScriptWithOptions | 通用的编译接口，通过传入 option 数组完成前面的 compile 接口全部功能，同时支持后续选项扩展 |
+| OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache                                                                  |
 | OH_JSVM_RunScript               | 执行编译脚本                                                                             |
 
 场景示例：
@@ -417,12 +523,71 @@ static JSVM_CallbackStruct hello_cb = { Hello, (void*)"Hello" };
 
 static string srcGlobal = R"JS(
 const concat = (...args) => args.reduce((a, b) => a + b);
-throw new Error("exception triggered")
 )JS";
+
+static void RunScriptWithOption(JSVM_Env env, string& src,
+								uint8_t** dataPtr = nullptr,
+								size_t* lengthPtr = nullptr) {
+    JSVM_HandleScope handleScope;
+    OH_JSVM_OpenHandleScope(env, &handleScope);
+
+    JSVM_Value jsSrc;
+    OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
+
+    uint8_t* data = dataPtr ? *dataPtr : nullptr;
+    auto compilMode = data ? JSVM_COMPILE_MODE_CONSUME_CODE_CACHE :  JSVM_COMPILE_MODE_DEFAULT;
+    size_t length = lengthPtr ? *lengthPtr : 0;
+    JSVM_Script script;
+    // 编译js代码
+	JSVM_ScriptOrigin origin {
+	    // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
+	    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
+	    // 源文件名字
+	    .resourceName = "index.js",
+	    // scirpt 在源文件中的起始行列号
+	    .resourceLineOffset = 0,
+	    .resourceColumnOffset = 0,
+	};
+	JSVM_CompileOptions option[3];
+	option[0] = {
+		.id = JSVM_COMPILE_MODE,
+		.content = { .num = compilMode }
+	};
+	JSVM_CodeCache codeCache = {
+		.cache = data,
+		.length = length
+	};
+	option[1] = {
+		.id = JSVM_COMPILE_CODE_CACHE,
+		.content = { .ptr = &codeCache }
+	};
+	// JSVM_COMPILE_ENABLE_SOURCE_MAP 选项默认值为 false，若为 true 那么对应的 sourceMapUrl 必须不为空
+	option[2] = {
+		.id = JSVM_COMPILE_ENABLE_SOURCE_MAP,
+		.content = { .boolean = true }
+	};
+	OH_JSVM_CompileScriptWithOptions(env, jsSrc, 3, option, &script);
+
+    JSVM_Value result;
+    // 执行js代码
+    OH_JSVM_RunScript(env, script, &result);
+
+    char resultStr[128];
+    size_t size;
+    OH_JSVM_GetValueStringUtf8(env, result, resultStr, 128, &size);
+    printf("%s\n", resultStr);
+    if (dataPtr && lengthPtr && *dataPtr == nullptr) {
+        // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
+        OH_JSVM_CreateCodeCache(env, script, (const uint8_t**)dataPtr, lengthPtr);
+        printf("Code cache created with length = %ld\n", *lengthPtr);
+    }
+
+    OH_JSVM_CloseHandleScope(env, handleScope);
+}
 
 static void RunScript(JSVM_Env env, string& src,
                        bool withOrigin = false,
-                       const uint8_t** dataPtr = nullptr,
+                       uint8_t** dataPtr = nullptr,
                        size_t* lengthPtr = nullptr) {
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
@@ -430,22 +595,22 @@ static void RunScript(JSVM_Env env, string& src,
     JSVM_Value jsSrc;
     OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
 
-    const uint8_t* data = dataPtr ? *dataPtr : nullptr;
+    uint8_t* data = dataPtr ? *dataPtr : nullptr;
     size_t length = lengthPtr ? *lengthPtr : 0;
     bool cacheRejected = true;
     JSVM_Script script;
     // 编译js代码
-    if (withOrgin) {
+    if (withOrigin) {
 	    JSVM_ScriptOrigin origin {
 	        // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
-		    .sourceMapurl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
+		    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
 		    // 源文件名字
 		    .resourceName = "index.js",
 		    // scirpt 在源文件中的起始行列号
 		    .resourceLineOffset = 0,
 		    .resourceColumnOffset = 0,
-	    }
-		OH_JSVM_CompileScriptWithOrigin(env, jsSrc, data, length, true, &cacheRejected, origin, &script);
+	    };
+		OH_JSVM_CompileScriptWithOrigin(env, jsSrc, data, length, true, &cacheRejected, &origin, &script);
     } else {
 	    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
     }
@@ -461,7 +626,7 @@ static void RunScript(JSVM_Env env, string& src,
     printf("%s\n", resultStr);
     if (dataPtr && lengthPtr && *dataPtr == nullptr) {
         // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
-        OH_JSVM_CreateCodeCache(env, script, dataPtr, lengthPtr);
+        OH_JSVM_CreateCodeCache(env, script, (const uint8_t**)dataPtr, lengthPtr);
         printf("Code cache created with length = %ld\n", *lengthPtr);
     }
 
@@ -508,7 +673,7 @@ static void CreateSnapshot() {
     OH_JSVM_DestroyVM(vm);
 }
 
-void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
+void RunWithoutSnapshot(uint8_t** dataPtr, size_t* lengthPtr) {
     // 创建虚拟机实例
     JSVM_VM vm;
     OH_JSVM_CreateVM(nullptr, &vm);
@@ -525,7 +690,8 @@ void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
     OH_JSVM_OpenEnvScope(env, &envScope);
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
     auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithoutSnapshot!')";
-    RunScript(env, src, true, dataPtr, lengthPtr);
+    // 其中使用新增接口，可以覆盖原有 Compile 系列接口的功能且具有拓展性
+    RunScriptWithOption(env, src, dataPtr, lengthPtr);
 
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
@@ -533,7 +699,7 @@ void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
     OH_JSVM_DestroyVM(vm);
 }
 
-void RunWithSnapshot(const uint8_t **dataPtr, size_t *lengthPtr) {
+void RunWithSnapshot(uint8_t **dataPtr, size_t *lengthPtr) {
     // The lifetime of blobData must not be shorter than that of the vm.
     // 如果从文件中读取snapshot，需要考虑应用中的文件读写权限
     vector<char> blobData;
@@ -605,7 +771,7 @@ int main(int argc, char *argv[]) {
     // snapshot可以记录下某个时间的js执行环境，可以跨进程通过snapshot快速还原出js执行上下文环境，前提是保证snapshot数据的生命周期。
     const auto useSnapshot = argv[1] == string("use-snapshot");
     const auto run = useSnapshot ? RunWithSnapshot : RunWithoutSnapshot;
-    const uint8_t* data = nullptr;
+    uint8_t* data = nullptr;
     size_t length = 0;
     run(&data, &length);
     run(&data, &length);
@@ -614,6 +780,26 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
+
+### 使用 JSVM-API WebAssembly 接口编译 wasm module
+
+#### 场景介绍
+
+JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、wasm cache 序列化和反序列化的能力。
+
+#### 接口说明
+
+| 接口                          | 功能说明                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| OH_JSVM_CompileWasmModule   | 将 wasm 字节码同步编译为 wasm module。如果提供了 cache 参数，先尝试将 cache 反序列为 wasm module，反序列化失败时再执行编译。 |
+| OH_JSVM_CompileWasmFunction | 将 wasm module 中指定编号的函数编译为优化后的机器码，目前只使能了最高的优化等级，函数编号的合法性由接口调用者保证。                     |
+| OH_JSVM_IsWasmModuleObject  | 判断传入的值是否是一个 wasm module。                                                             |
+| OH_JSVM_CreateWasmCache     | 将 wasm module 中的机器码序列化为 wasm cache，如果 wasm module 不包含机器码，则会序列化失败。                    |
+| OH_JSVM_ReleaseCache        | 释放由 JSVM 接口生成的 cache。传入的 cacheType 和 cacheData 必须匹配，否则会产生未定义行为。                      |
+
+#### 场景示例
+
+详见[使用 JSVM-API WebAssembly 接口](use-jsvm-about-wasm.md)。
 
 ### 异常处理
 
@@ -704,6 +890,8 @@ if (status != JSVM_OK) // 当执行失败出现异常时
 | OH_JSVM_ReferenceRef| 增加由OH_JSVM_CreateReference 创建的引用的引用计数，以确保对象在有引用时不会被提前释放 |
 | OH_JSVM_ReferenceUnref| 减少由OH_JSVM_CreateReference 创建的引用的引用计数，以确保没有任何引用指向该对象时能正确地释放和回收 |
 | OH_JSVM_GetReferenceValue| 返回由 OH_JSVM_CreateReference 创建的引用的对象 |
+| OH_JSVM_RetainScript | 持久化保存一个 JSVM_Script, 使其能够跨过当前 scope 使用 |
+| OH_JSVM_ReleaseScript | 释放持久化保存过的 JSVM_Script，释放之后 JSVM_Script 不再可用，应当置为空 |
 
 场景示例：
 通过handlescope保护在scope范围内创建的对象在该范围内不被回收。
@@ -714,7 +902,7 @@ OH_JSVM_OpenHandleScope(env, &scope);
 JSVM_Value obj = nullptr;
 OH_JSVM_CreateObject(env, &obj);
 OH_JSVM_CloseHandleScope(env, scope);
-```  
+```
 
 通过escapable handlescope保护在scope范围内创建的对象在父作用域范围内不被回收
 
@@ -746,6 +934,33 @@ OH_JSVM_GetReferenceValue(env, reference, &result);
 OH_JSVM_DeleteReference(env, reference);
 ```
 
+通过 RetainScript 持久化保存 JSVM_Script 并使用
+
+```c++
+JSVM_HandleScope scope;
+OH_JSVM_OpenHandleScope(env, &scope);
+JSVM_Script script;
+JSVM_Value jsSrc;
+std::string src(R"JS(
+let a = 37;
+a = a * 9;
+)JS");
+OH_JSVM_CreateStringUtf8(env, src.c_str(), src.size(), &jsSrc);
+OH_JSVM_CompileScriptWithOptions(env, jsSrc, 0, nullptr, &script);
+OH_JSVM_RetainScript(env, script);
+OH_JSVM_CloseHandleScope(env, scope);
+
+// 使用JSVM_Script
+OH_JSVM_OpenHandleScope(env, &scope);
+JSVM_Value result;
+OH_JSVM_RunScript(env, script, &result);
+
+// 释放JSVM_Script，并置空
+OH_JSVM_ReleaseScript(env, script);
+script = nullptr;
+OH_JSVM_CloseHandleScope(env, scope);
+```
+
 ### 创建JS对象类型和基本类型
 
 #### 场景介绍
@@ -760,7 +975,6 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateArraybuffer | 创建一个指定大小的 ArrayBuffer 对象 |
 |OH_JSVM_CreateDate | 创建了一个表示给定毫秒数的 Date 对象 |
 |OH_JSVM_CreateExternal | 创建一个包装了外部指针的 JavaScript 对象 |
-|OH_JSVM_CreateExternalArraybuffer | 创建一个包装了外部 Arraybuffer 的 JavaScript 对象 |
 |OH_JSVM_CreateObject | 创建一个默认的JavaScript Object对象 |
 |OH_JSVM_CreateSymbol | 根据给定的描述符创建一个 Symbol 对象 |
 |OH_JSVM_SymbolFor | 在全局注册表中搜索具有给定描述的现有Symbol,如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol |
@@ -770,7 +984,7 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateUint32 | 根据 Uint32_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateInt64 | 根据 Int64_t 类型对象创建 JavaScript number 对象 |
 |OH_JSVM_CreateDouble | 根据 Double 类型对象创建 JavaScript number 对象 |
-|OH_JSVM_CreateBigintInt64 | 根据 Int64 类型对象创建 JavaScript Bigint 对象 | 
+|OH_JSVM_CreateBigintInt64 | 根据 Int64 类型对象创建 JavaScript Bigint 对象 |
 |OH_JSVM_CreateBigintUint64 | 根据 Uint64 类型对象创建 JavaScript Bigint 对象 |
 |OH_JSVM_CreateBigintWords | 根据给定的 Uint64_t 数组创建一个 JavaScript BigInt 对象 |
 |OH_JSVM_CreateStringLatin1 | 根据 Latin-1 编码的字符串创建一个 JavaScript string 对象 |
@@ -1280,7 +1494,6 @@ OH_JSVM_CreateFunctionWithScript(env, "add", JSVM_AUTO_LENGTH, 2, argus, script,
 |OH_JSVM_TypeTagObject | 将 type_tag 指针的值与 JavaScript 对象或外部对象相关联。 |
 |OH_JSVM_CheckObjectTypeTag | 检查给定的类型标签是否与对象上的类型标签匹配。 |
 |OH_JSVM_AddFinalizer | 为对象添加 JSVM_Finalize 回调，以便在 JavaScript 对象被垃圾回收时调用来释放原生对象。 |
-|OH_JSVM_PostFinalizer | 安排在事件循环中异步调用 JSVM_Finalize 回调。 |
 |OH_JSVM_DefineClassWithPropertyHandler | 定义一个具有给定类名、构造函数、属性和回调处理程序的JavaScript类，并作为函数回调进行调用。属性操作包括getter、setter、deleter、enumerator等。 |
 
 场景示例：
@@ -1791,10 +2004,15 @@ OH_JSVM_GetVersion(env, &versionId);
 内存管理
 
 #### 接口说明
-| 接口 | 功能说明 |
-| -------- | -------- |
-|OH_JSVM_AdjustExternalMemory| 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
-|OH_JSVM_MemoryPressureNotification| 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。 |
+| 接口                                          | 功能说明                                                                                                   |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| OH_JSVM_AdjustExternalMemory                | 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
+| OH_JSVM_MemoryPressureNotification          | 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。                                                                             |
+| OH_JSVM_AllocateArrayBufferBackingStoreData | 申请一块 BackingStore 内存 |
+| OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存 |
+| OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer |
+
+> BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
 
 场景示例：
 内存管理。
@@ -1806,13 +2024,13 @@ OH_JSVM_AdjustExternalMemory(env, 0, &result); // 假设外部分配内存的变
 OH_LOG_INFO(LOG_APP, "Before AdjustExternalMemory: %{public}lld\n", result); // 得到调整前的数值
 // 调整外部分配的内存大小通知给底层虚拟机（此示例假设内存使用量增加）
 int64_t memoryIncrease = 1024 * 1024; // 增加 1 MB
-OH_JSVM_AdjustExternalMemory(env, memoryIncrease, &result); 
+OH_JSVM_AdjustExternalMemory(env, memoryIncrease, &result);
 OH_LOG_INFO(LOG_APP, "After AdjustExternalMemory: %{public}lld\n", result); // 得到调整后的数值
 ```
 ```c++
 // 打开一个Handle scope，在scope范围内申请大量内存来测试函数功能；
 // 分别在“完成申请后”、“关闭scope后”和“调用OH_JSVM_MemoryPressureNotification后”三个节点查看内存状态
-JSVM_HandleScope tmpscope;   
+JSVM_HandleScope tmpscope;
 OH_JSVM_OpenHandleScope(env, &tmpscope);
 for (int i = 0; i < 1000000; ++i) {
     JSVM_Value obj;
@@ -1833,6 +2051,57 @@ OH_JSVM_GetHeapStatistics(vm, &mem);
 OH_LOG_INFO(LOG_APP, "%{public}zu\n", mem.usedHeapSize); // 触发垃圾回收后
 ```
 
+BackingStore 正确使用示例
+``` c++
+void *backingStore;
+JSVM_Value arrayBuffer;
+
+// 申请一块大小为 100 字节的 BackingStore 内存
+OH_JSVM_AllocateArrayBufferBackingStoreData(100, JSVM_ZERO_INITIALIZED, &backingStore);
+
+// 在之前申请的 BackingStore 上创建一个 ArrayBuffer，位置为距离 BackingStore 起始地址加 30 字节处，大小为 20 字节
+OH_JSVM_CreateArrayBufferFromBackingStoreData(env, backingStore, 100, 30, 20, &arrayBuffer);
+
+// 在 JS 中使用创建的 ArrayBuffer
+JSVM_Value js_global;
+JSVM_Value name;
+OH_JSVM_GetGlobal(jsvm_env, &js_global);
+OH_JSVM_CreateStringUtf8(jsvm_env, "buffer", JSVM_AUTO_LENGTH, &name);
+OH_JSVM_SetProperty(env, js_global, name, arrayBuffer);
+
+JSVM_Script script;
+JSVM_Value scriptString;
+JSVM_Value result;
+const char *src = R"JS(
+function writeBuffer(data) {
+  let view = new Uint8Array(data);
+  // Write some values to the ArrayBuffer
+  for (let i = 0; i < view.length; i++) {
+    view[i] = i % 256;
+  }
+}
+writeBuffer(buffer)
+)JS";
+OH_JSVM_CreateStringUtf8(env, src, JSVM_AUTO_LENGTH, &scriptString);
+OH_JSVM_CompileScriptWithOptions(env, scriptString, 0, nullptr, &script);
+OH_JSVM_RunScript(env, script, &result);
+
+// 检查 ArrayBuffer 的内容
+uint8_t *array = static_cast<uint8_t*>(backingStore);
+for (auto i = 0; i < 100; ++i) {
+  if (array[i] != i % 25 % 256) {
+    return false;
+  }
+}
+
+// 释放 array buffer. 注意对于这种方式创建的 ArrayBuffer, 在释放对应的 BackingStore 之前,
+// 务必使用 OH_JSVM_DetachArraybuffer 将所有使用当前的 BackingStore 创建的 ArrayBuffer 释放
+// 否则可能产生不可预测的内存问题，请谨慎使用
+OH_JSVM_DetachArraybuffer(env, arrayBuffer);
+
+// 释放申请的 backing store 内存
+OH_JSVM_FreeArrayBufferBackingStoreData(backingStore);
+```
 ### Promise操作
 
 #### 场景介绍
@@ -1900,38 +2169,20 @@ JSVM_Value result;
 OH_JSVM_JsonParse(env, jsonString, &result);
 ```
 
-### 创建虚拟机的启动快照
+### 创建和使用虚拟机的启动快照
 
 #### 场景介绍
 
-创建虚拟机的启动快照
+创建和使用虚拟机的启动快照
 
 #### 接口说明
 | 接口 | 功能说明 |
 | -------- | -------- |
 |OH_JSVM_CreateSnapshot| 用于创建虚拟机的启动快照 |
+|OH_JSVM_CreateEnvFromSnapshot| 基于启动快照创建jsvm环境 |
 
 场景示例：
-创建虚拟机的启动快照。
-
-```c++
-JSVM_VM vm;
-JSVM_CreateVMOptions options;
-memset(&options, 0, sizeof(options));
-OH_JSVM_CreateVM(&options, &vm);
-JSVM_Env env;
-JSVM_CallbackStruct param[1];
-param[0].data = nullptr;
-param[0].callback = AssertEqual;
-JSVM_PropertyDescriptor descriptor[] = {
-    {"test", nullptr, &param[0], nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
-const char *blobData = nullptr;
-size_t blobSize = 0;
-JSVM_Env envs[1] = {env};
-OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
-```
+[创建和使用虚拟机的启动快照。](use-jsvm-create-snapshot.md)
 
 ### 检查传入的值是否可调用
 
@@ -2114,3 +2365,113 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
     return nullptr;
 }
 ```
+
+### 设置与获取和当前运行的JSVM环境相关联的数据
+
+#### 场景介绍
+
+检索通过OH_JSVM_SetInstanceData()与当前运行的JSVM环境相关联的数据
+
+#### 接口说明
+| 接口 | 功能说明 |
+| -------- | -------- |
+|OH_JSVM_SetInstanceData| 设置与当前运行的JSVM环境相关联的数据 |
+|OH_JSVM_GetInstanceData| 获取与当前运行的JSVM环境相关联的数据 |
+
+场景示例：
+设置并获取与当前运行的JSVM环境相关联的数据。
+
+```c++
+JSVM_VM vm;
+JSVM_CreateVMOptions options;
+JSVM_VMScope vm_scope;
+JSVM_Env env;
+JSVM_EnvScope envScope;
+JSVM_HandleScope handlescope;
+
+static int aa = 0; 
+struct InstanceData {
+    int32_t value;
+};
+
+// 初始化虚拟机，创建JSVM运行环境
+void init_JSVM_environment(){         
+    JSVM_InitOptions init_options;
+    memset(&init_options, 0, sizeof(init_options));
+    if (aa == 0) {
+        OH_JSVM_Init(&init_options);
+        aa++;
+    }
+    memset(&options, 0, sizeof(options));
+    OH_JSVM_CreateVM(&options, &vm);
+    OH_JSVM_OpenVMScope(vm, &vm_scope);
+    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
+    OH_JSVM_OpenEnvScope(env, &envScope);
+    OH_JSVM_OpenHandleScope(env, &handlescope);
+}
+
+// 退出虚拟机，释放对应的环境
+napi_value close_JSVM_environment(napi_env env1, napi_callback_info info) 
+{
+    OH_JSVM_CloseHandleScope(env, handlescope);
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vm_scope);
+    OH_JSVM_DestroyVM(vm);
+    napi_value result;
+    char* s = "ok";
+    napi_create_string_latin1(env1, s, strlen(s), &result);
+    return result;
+}
+
+//清除和释放与实例相关联的内存资源
+void InstanceFinalizeCallback(JSVM_Env env, void *finalizeData, void *finalizeHint)
+{
+    if (finalizeData) {
+        InstanceData *data = reinterpret_cast<InstanceData *>(finalizeData);
+        free(data);
+        *(InstanceData **)finalizeData = nullptr;
+    }
+}
+
+static napi_value GetInstanceData(napi_env env1, napi_callback_info info)
+{
+    InstanceData *instanceData = reinterpret_cast<InstanceData *>(malloc(sizeof(InstanceData)));
+    if (instanceData == nullptr) {
+        printf("Memory allocation failed!\n");
+        return nullptr;
+    }
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    //用于获取回调函数参数
+    napi_get_cb_info(env1, info, &argc, args , nullptr, nullptr);
+    napi_valuetype valuetype0;
+    napi_typeof(env1, args[0], &valuetype0);
+    int32_t tmp = 0;
+    napi_get_value_int32(env1, args[0], &tmp);
+    instanceData->value = tmp;
+    //将获得的参数与当前运行的JSVM环境关联起来
+    OH_JSVM_SetInstanceData(env, instanceData, InstanceFinalizeCallback, nullptr);
+    InstanceData *resData = nullptr;
+    //获取与当前运行的JSVM环境相关联的数据
+    OH_JSVM_GetInstanceData(env, (void **)&resData);
+    napi_value result;
+    napi_create_uint32(env1, resData->value, &result);
+    return result;
+}
+```
+
+### 任务队列
+
+#### 场景介绍
+
+在虚拟机内部启动任务队列的运行，检查是否有微任务在队列中等待，这个任务队列可以由外部事件循环执行
+
+#### 接口说明
+| 接口 | 功能说明 |
+| -------- | -------- |
+|OH_JSVM_PumpMessageLoop| 启动任务队列的运行 |
+|OH_JSVM_PerformMicrotaskCheckpoint| 执行任务队列里的微任务 |
+
+场景示例：
+[启动任务队列，执行任务。](use-jsvm-execute_tasks.md)

@@ -10,9 +10,9 @@
    import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. 基于已有的证书数据，调用[cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert)创建X509证书的对象。
+2. 基于已有的证书数据，调用[cert.createX509Cert](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509cert-1)创建X509证书的对象。
 
-3. 基于已有的CRL数据，调用[cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11)创建X509证书吊销列表的对象。
+3. 基于已有的CRL数据，调用[cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11-1)创建X509证书吊销列表的对象。
 
 4. 调用[cert.createCertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertcrlcollection11)创建[CertCRLCollection](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcrlcollection11)的对象，并返回相应的结果。
 

@@ -11,7 +11,7 @@ JSVM-API provides APIs for implementing asynchronous operations. An asynchronous
 - Synchronous: Code is executed line by line in sequence. Each line of code is executed after the previous line of code is executed. During synchronous execution, if an operation takes a long time, the execution of the entire application will be blocked until the operation is complete.
 - Asynchronous: Tasks can be executed concurrently without waiting for the end of the previous task. In JS, common asynchronous operations apply for timers, event listening, and network requests. Instead of blocking subsequent tasks, the asynchronous task uses a callback or promise to process its result.
 - **Promise**: a JS object used to handle asynchronous operations. Generally, it is exposed externally by using **then()**, **catch()**, or **finally()** to custom logic.
-- **deferred**: a utility object associated with the **Promise** object to set **resolve()** and **reject()** of **Promise**. It is used internally to maintain the status of the asynchronous model and set the **resolve()** and **reject()** callbacks.
+- **deferred**: a utility object associated with the **Promise** object to set **resolve()** and **reject()** of **Promise**. It is used internally to maintain the state of the asynchronous model and set the **resolve()** and **reject()** callbacks.
 - **resolve**: a function used to change the promise state from **pending** to **fulfilled**. The parameters passed to **resolve()** can be obtained from **then()** of the **Promise** object.
 - **reject**: a function used to change the promise state from **pending** to **rejected**. The parameters passed to **reject()** can be obtained from **catch()** of the **Promise** object.
 
@@ -21,14 +21,14 @@ JSVM-API provides APIs for implementing asynchronous operations. An asynchronous
 
 | API                      | Description                      |
 |----------------------------|--------------------------------|
-| OH_JSVM_IsPromise            | Checks whether the given **JSVM_Value** is a **Promise** object. |
-| OH_JSVM_CreatePromise        | Creates a **deferred** object and a JS promise. |
+| OH_JSVM_IsPromise            | Checks whether the given **JSVM_Value** is a **Promise** object.|
+| OH_JSVM_CreatePromise        | Creates a **deferred** object and a JS promise.|
 | OH_JSVM_ResolveDeferred      | Resolves a JS promise by using the **deferred** object associated with it.|
 | OH_JSVM_RejectDeferred       | Rejects a JS promise by using the **deferred** object associated with it.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to promises.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code related to promises.
 
 ### OH_JSVM_IsPromise
 
@@ -138,7 +138,7 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 3;
     JSVM_Value args[3] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // The first parameter is the data to be passed to Resolve(), the second parameter is the data to be passed to reject(), and the third parameter is the Promise status.
+    // The first parameter is the data to be passed to Resolve(), the second parameter is the data to be passed to reject(), and the third parameter is the Promise state.
     bool status;
     OH_JSVM_GetValueBool(env, args[2], &status);
     // Create a Promise object.
@@ -149,7 +149,7 @@ static JSVM_Value ResolveRejectDeferred(JSVM_Env env, JSVM_CallbackInfo info)
         OH_JSVM_ThrowError(env, nullptr, "Create promise failed");
         return nullptr;
     }
-    // Set the promise status based on the third parameter.
+    // Set the promise state based on the third parameter.
     if (status) {
         OH_JSVM_ResolveDeferred(env, deferred, args[0]);
         OH_LOG_INFO(LOG_APP, "OH_JSVM_ResolveDeferred resolve");

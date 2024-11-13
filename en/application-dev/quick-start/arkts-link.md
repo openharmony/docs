@@ -1,4 +1,4 @@
-# \@Link Decorator: Creating a Two-Way Synchronization Between Parent and Child Components
+# \@Link Decorator: Two-Way Synchronization Between Parent and Child Components
 
 
 An \@Link decorated variable creates two-way synchronization with a variable of its parent component.
@@ -17,25 +17,24 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 ## Restrictions
 
-- The \@Link decorator cannot be used in custom components decorated by \@Entry.
+- The @Link decorator cannot be used in custom components decorated by [\@Entry](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/arkts-create-custom-components.md#basic-structure-of-a-custom-component).
 
 
 ## Rules of Use
 
-| \@Link Decorator                                            | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Decorator parameters                                                  | None.                                                          |
-| Synchronization type                                                    | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around.|
-| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined**.|
-| <br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported.|                                                              |
-| Initial value for the decorated variable                                          | Forbidden.                                        |
+| \@Link Decorator                         | Description                                                  |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| Decorator parameters                     | None.                                                        |
+| Synchronization type                     | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around. |
+| Allowed variable types                   | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. <br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined = undefined**. |
+| Initial value for the decorated variable | Forbidden.                                                   |
 
 
 ## Variable Transfer/Access Rules
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An \@Link decorated variable can be initialized from an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({ aLink: this.aState })** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink: $aState})** syntax is also supported.|
+| Initialization and update from the parent component| Mandatory. A two-way synchronization relationship can be established with the @State, @StorageLink, or \@Link decorated variable in the parent component. An @Link decorated variable can be initialized from an [\@State](./arkts-state.md), @Link, [\@Prop](./arkts-prop.md), [\@Provide](./arkts-provide-and-consume.md), [\@Consume](./arkts-provide-and-consume.md), [\@ObjectLink](./arkts-observed-and-objectlink.md), [\@StorageLink](./arkts-appstorage.md#storagelink), [\@StorageProp](./arkts-appstorage.md#storageprop), [\@LocalStorageLink](./arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](./arkts-localstorage.md#localstorageprop) decorated variable in the parent component.<br>Since API version 9, the syntax is **Comp({&nbsp;aLink:&nbsp;this.aState&nbsp;})** for initializing an \@Link decorated variable in the child component from an @State decorated variable in its parent component. The **Comp({aLink:&nbsp;$aState})** syntax is also supported.|
 | Child component initialization  | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access | Private, accessible only within the component.                          |
 
@@ -134,7 +133,7 @@ To understand the value initialization and update mechanism of the \@Link decora
    2. The \@Link in the child component and \@State in the parent component traverse the dependent system components and update the corresponding UI. In this way, the \@Link decorated variable in the child component is synchronized back to the \@State decorated variable in the parent component.
 
 
-## Use Scenarios
+## Usage Scenarios
 
 
 ### Example for @Link with Simple and Class Types
@@ -289,7 +288,7 @@ struct Parent {
 
 ![Video-link-UsageScenario-two](figures/Video-link-UsageScenario-two.gif)
 
-As described above, the ArkUI framework can observe the addition, deletion, and replacement of array items. It should be noted that, in the preceding example, the type of the \@Link and \@State decorated variables is the same: number[]. It is not allowed to define the \@Link decorated variable in the child component as type number (**\@Link item: number**), and create child components for each array item in the \@State decorated array in the parent component. [\@Prop](arkts-prop.md) or \@Observed should be used depending on application semantics.
+As described above, the ArkUI framework can observe the addition, deletion, and replacement of array items. It should be noted that, in the preceding example, the type of the \@Link and \@State decorated variables is the same: number[]. It is not allowed to define the \@Link decorated variable in the child component as type number (**\@Link item: number**), and create child components for each array item in the \@State decorated array in the parent component. [\@Prop](arkts-prop.md) or [\@Observed](./arkts-observed-and-objectlink.md) should be used depending on application semantics.
 
 ### Decorating Variables of the Map Type
 
@@ -402,6 +401,54 @@ struct SetSample1 {
 }
 ```
 
+### Using Two-Way Synchronization Mechanism to Change Local Variables
+
+Use [\@Watch](./arkts-watch.md) to change local variables during two-way synchronization.
+
+In the following example, the \@State decorated variable **sourceNumber** is modified in \@Watch of \@Link to implement variable synchronization between parent and child components. However, the local modification of the \@State decorated variable **memberMessage** does not affect the variable change in the parent component.
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State sourceNumber: number = 0;
+
+  build() {
+    Column() {
+      Text(`sourceNumber of the parent component: ` + this.sourceNumber)
+      Child({ sourceNumber: this.sourceNumber })
+      Button('sourceNumber is changed in the parent component')
+        .onClick(() => {
+          this.sourceNumber++;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @State memberMessage: string = 'Hello World';
+  @Link @Watch('onSourceChange') sourceNumber: number;
+
+  onSourceChange() {
+    this.memberMessage = this.sourceNumber.toString();
+  }
+
+  build() {
+    Column() {
+      Text(this.memberMessage)
+      Text(`sourceNumber of the child component: ` + this.sourceNumber.toString())
+      Button('memberMessage is changed in the child component')
+        .onClick(() => {
+          this.memberMessage = 'Hello memberMessage';
+        })
+    }
+  }
+}
+```
+
 ## Union Type @Link
 
 @Link supports **undefined**, **null**, and union types. In the following example, the type of **name** is string | undefined. If the attribute or type of **name** is changed when the button in the parent component **Index** is clicked, the change will be synced to the child component.
@@ -459,7 +506,7 @@ struct Index {
 
 When using \@Link to decorate a state variable in a child component, ensure that the variable type is the same as the source type, and the source is a state variable decorated by a decorator such as \@State.
 
-[Incorrect Usage]
+[Negative example]
 
 ```ts
 @Observed
@@ -500,7 +547,7 @@ struct Parent {
 
 In the example, the type of **\@Link testNum: number** and the initialization from the parent component **LinkChild ({testNum:this.testNum.c})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: ClassA**, and the initialization from the parent component should be **LinkChild({testNum: this.testNum})**.
 
-[Correct Usage]
+[Positive example]
 
 ```ts
 @Observed

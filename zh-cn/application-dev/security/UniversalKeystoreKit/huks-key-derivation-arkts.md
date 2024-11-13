@@ -24,7 +24,7 @@
 
 **密钥派生**
 
-1. 获取密钥别名、指定对应的属性参数HuksOptions。
+1. 获取密钥别名，指定对应的属性参数HuksOptions。
 
     可指定参数HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识派生得到的密钥是否由HUKS管理。
 

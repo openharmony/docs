@@ -1,10 +1,15 @@
 # Audio Kit（音频服务）
 
 - [Audio Kit简介](audio-kit-intro.md)
-- [处理音频焦点事件](audio-playback-concurrency.md)
+- [使用合适的音频类型](using-right-streamusage-and-sourcetype.md)
+- [音频焦点和音频会话介绍](audio-playback-concurrency.md)
+- 音频焦点管理
+  - [使用AudioSession管理应用音频焦点(ArkTS)](audio-session-management.md)
+  - [使用AudioSession管理应用音频焦点(C/C++)](using-ohaudio-for-session.md)
 - 音频播放
   - [音频播放开发概述](audio-playback-overview.md)
   - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)
+  - [响应音频流输出设备变更](audio-output-device-change.md)
   <!--Del-->
   - [使用TonePlayer开发音频播放功能(仅对系统应用开放)](using-toneplayer-for-playback.md)
   <!--DelEnd-->
@@ -16,7 +21,7 @@
   - [空间音频管理(仅对系统应用开放)](audio-spatialization-management.md)
   <!--DelEnd-->
   - [音频播放流管理](audio-playback-stream-management.md)
-  - [音频输出设备管理](audio-output-device-management.md)
+  - [管理全局音频输出设备](audio-output-device-management.md)
   <!--Del-->
   - [分布式音频播放(仅对系统应用开放)](distributed-audio-playback.md)
   <!--DelEnd-->
@@ -26,7 +31,7 @@
   - [使用OHAudio开发音频录制功能(C/C++)](using-ohaudio-for-recording.md)
   - [管理麦克风](mic-management.md)
   - [音频录制流管理](audio-recording-stream-management.md)
-  - [音频输入设备管理](audio-input-device-management.md)
+  - [管理全局音频输入设备](audio-input-device-management.md)
 - 音频通话
   - [音频通话开发概述](audio-call-overview.md)
   - [开发音频通话功能](audio-call-development.md)

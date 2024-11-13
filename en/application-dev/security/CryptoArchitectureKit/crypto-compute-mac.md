@@ -1,4 +1,4 @@
-# MAC Operation
+# MAC Operations
 
 
 A message authentication code (MAC) is used to check the authenticity and integrity of a message transmitted between two parties that share a secret key.

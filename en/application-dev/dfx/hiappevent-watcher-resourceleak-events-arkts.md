@@ -16,7 +16,7 @@ The following describes how to subscribe to a memory leak event.
 1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, import the dependent modules.
 
    ```ts
-   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+   import { hiAppEvent, hilog, hidebug } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add a watcher in **onCreate()** to subscribe to system events. The sample code is as follows:
@@ -47,10 +47,20 @@ The following describes how to subscribe to a memory leak event.
     });
    ```
 
-3. In DevEco Studio, click the **Run** button to run the project. If the check detects that the memory usage of an application exceeds the maximum limit for three consecutive times, a memory leak event is reported.
+3. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
+   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event. The sample code is as follows:
+
+   ```ts
+    Button("memoryleak").onClick(()=>{
+      // Construct a scenario for triggering a resource leak event in onClick(). The leak size is 1 MB.
+      hidebug.setAppResourceLimit("pss_memory", 1024, true);
+    })
+   ```
+
+4. Click the **Run** button in DevEco Studio to run the project, and then a memory leak event will be reported after 15 to 30 minutes.
    For the same application, the memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
 
-4. After a memory leak event is reported, the system calls **onReceive()**. You can view the following event information in the **Log** window.
+5. After a memory leak event is reported, the system calls **onReceive()**. You can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS

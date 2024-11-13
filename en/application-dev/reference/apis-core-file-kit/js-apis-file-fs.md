@@ -9,7 +9,7 @@ The **fs** module provides APIs for file operations, including accessing and man
 ## Modules to Import
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo as fs } from '@kit.CoreFileKit';
 ```
 
 ## Guidelines
@@ -17,8 +17,8 @@ import fs from '@ohos.file.fs';
 Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -28,7 +28,11 @@ Before using the APIs provided by this module to perform operations on a file or
   }
   ```
 
-For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+Before using this module to perform operations on a file or directory, you need to obtain the application sandbox path.
+
+The **path** parameter specifies the application sandbox path. For details about how to obtain **path**, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). 
+
+A uniform resource identifier (URI) is a string pointing to a resource. For APIs that support only **path**, you can construct a **fileUri** object and obtain the **path** property to convert the URI to **path**, and then use the APIs. For details about the URI definition and how to convert a URI to a path, see [File URI](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md).
 
 ## fs.stat
 
@@ -48,9 +52,9 @@ Obtains detailed file attribute information. This API uses a promise to return t
 
 **Return value**
 
-  | Type                          | Description        |
-  | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return detailed file information.|
+| Type                          | Description        |
+| ---------------------------- | ---------- |
+| Promise&lt;[Stat](#stat)&gt; | Promise used to return detailed file information.|
 
 **Error codes**
 
@@ -59,7 +63,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.stat(filePath).then((stat: fs.Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
@@ -92,7 +96,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
       console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
@@ -116,13 +120,13 @@ Obtains detailed file information. This API returns the result synchronously.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string \| number | Yes  | Application sandbox path or file descriptor (FD) of the file.|
+| file   | string \| number | Yes  | Application sandbox path or FD of the file.|
 
 **Return value**
 
-  | Type           | Description        |
-  | ------------- | ---------- |
-  | [Stat](#stat) | File information obtained.|
+| Type           | Description        |
+| ------------- | ---------- |
+| [Stat](#stat) | File information obtained.|
 
 **Error codes**
 
@@ -154,9 +158,9 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return a Boolean value, which indicating whether the file exists.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return a Boolean value, which indicating whether the file exists.|
 
 **Error codes**
 
@@ -165,7 +169,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.access(filePath).then((res: boolean) => {
     if (res) {
@@ -202,7 +206,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.access(filePath, (err: BusinessError, res: boolean) => {
     if (err) {
@@ -236,9 +240,9 @@ Checks whether a file exists. This API returns the result synchronously.
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | boolean | Returns **true** if the file exists; returns **false** otherwise.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| boolean | Returns **true** if the file exists; returns **false** otherwise.|
 
 **Error codes**
 
@@ -247,7 +251,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   try {
     let res = fs.accessSync(filePath);
@@ -275,15 +279,15 @@ Closes a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description          |
-  | ---- | ------ | ---- | ------------ |
-  | file   | number \| [File](#file) | Yes   | **File** object or FD of the file to close. Once closed, the **File** object or FD cannot be used for read/write operations.|
+| Name | Type    | Mandatory  | Description          |
+| ---- | ------ | ---- | ------------ |
+| file   | number \| [File](#file) | Yes   | **File** object or FD of the file to close. Once closed, the **File** object or FD cannot be used for read/write operations.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -292,7 +296,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
@@ -314,10 +318,10 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name     | Type                       | Mandatory  | Description          |
-  | -------- | ------------------------- | ---- | ------------ |
-  | file       | number \| [File](#file)                  | Yes   | **File** object or FD of the file to close. Once closed, the **File** object or FD cannot be used for read/write operations.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the file is closed.|
+| Name     | Type                       | Mandatory  | Description          |
+| -------- | ------------------------- | ---- | ------------ |
+| file       | number \| [File](#file)                  | Yes   | **File** object or FD of the file to close. Once closed, the **File** object or FD cannot be used for read/write operations.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the file is closed.|
 
 **Error codes**
 
@@ -326,7 +330,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.close(file, (err: BusinessError) => {
@@ -350,9 +354,9 @@ Closes a file. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description          |
-  | ---- | ------ | ---- | ------------ |
-  | file   | number \| [File](#file) | Yes   | **File** object or FD of the file to close. Once closed, the **File** object or FD cannot be used for read/write operations.|
+| Name | Type    | Mandatory  | Description          |
+| ---- | ------ | ---- | ------------ |
+| file   | number \| [File](#file) | Yes   | **File** object or FD of the file to close. Once closed, the **File** object or FD cannot be used for read/write operations.|
 
 **Error codes**
 
@@ -379,17 +383,17 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
 **Parameters**
 
-  | Name | Type                        | Mandatory  | Description                                      |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
-  | options | [CopyOptions](#copyoptions11)| No| Callback invoked to provide the copy progress|
+| Name | Type                        | Mandatory  | Description                                      |
+| ---- | -------------------------- | ---- | ---------------------------------------- |
+| srcUri  | string | Yes   | URI of the file or folder to copy.                     |
+| destUri | string | Yes   | URI of the destination file or folder.                         |
+| options | [CopyOptions](#copyoptions11)| No| Callback invoked to provide the copy progress|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise\<void> | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -398,9 +402,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
-import fileUri from '@ohos.file.fileuri';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileUri } from '@kit.CoreFileKit';
 
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
@@ -438,11 +442,11 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
 **Parameters**
 
-  | Name | Type                        | Mandatory  | Description                                      |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
-  | callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
+| Name | Type                        | Mandatory  | Description                                      |
+| ---- | -------------------------- | ---- | ---------------------------------------- |
+| srcUri  | string | Yes   | URI of the file or folder to copy.                     |
+| destUri | string | Yes   | URI of the destination file or folder.                         |
+| callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -451,8 +455,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fileUri from '@ohos.file.fileuri';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileUri } from '@kit.CoreFileKit';
 
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
@@ -486,12 +490,12 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
 **Parameters**
 
-  | Name | Type                        | Mandatory  | Description                                      |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
-  | options | [CopyOptions](#copyoptions11) |Yes| Callback used to return the copy progress.                         |
-  | callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
+| Name | Type                        | Mandatory  | Description                                      |
+| ---- | -------------------------- | ---- | ---------------------------------------- |
+| srcUri  | string | Yes   | URI of the file or folder to copy.                     |
+| destUri | string | Yes   | URI of the destination file or folder.                         |
+| options | [CopyOptions](#copyoptions11) |Yes| Callback used to return the copy progress.                         |
+| callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -500,9 +504,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
-import fileUri from '@ohos.file.fileuri';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileUri } from '@kit.CoreFileKit';
 
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
@@ -541,17 +545,17 @@ Copies a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name | Type                        | Mandatory  | Description                                      |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string \| number | Yes   | Path or FD of the file to copy.                     |
-  | dest | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
-  | mode | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
+| Name | Type                        | Mandatory  | Description                                      |
+| ---- | -------------------------- | ---- | ---------------------------------------- |
+| src  | string \| number | Yes   | Path or FD of the file to copy.                     |
+| dest | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
+| mode | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -560,7 +564,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, 0).then(() => {
@@ -582,12 +586,12 @@ Copies a file with the specified mode. This API uses an asynchronous callback to
 
 **Parameters**
 
-  | Name     | Type                        | Mandatory  | Description                                      |
-  | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string \| number | Yes   | Path or FD of the file to copy.                     |
-  | dest     | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
-  | mode     | number                     | Yes   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
-  | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked immediately after the file is copied.                            |
+| Name     | Type                        | Mandatory  | Description                                      |
+| -------- | -------------------------- | ---- | ---------------------------------------- |
+| src      | string \| number | Yes   | Path or FD of the file to copy.                     |
+| dest     | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
+| mode     | number                     | Yes   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked immediately after the file is copied.                            |
 
 **Error codes**
 
@@ -596,7 +600,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, 0, (err: BusinessError) => {
@@ -620,11 +624,11 @@ Copies a file. This API overwrites the file with the same name in the destinatio
 
 **Parameters**
 
-  | Name     | Type                        | Mandatory  | Description                                      |
-  | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string \| number | Yes   | Path or FD of the file to copy.                     |
-  | dest     | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
-  | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked immediately after the file is copied.                            |
+| Name     | Type                        | Mandatory  | Description                                      |
+| -------- | -------------------------- | ---- | ---------------------------------------- |
+| src      | string \| number | Yes   | Path or FD of the file to copy.                     |
+| dest     | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked immediately after the file is copied.                            |
 
 **Error codes**
 
@@ -633,7 +637,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/srcDir/test.txt";
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
@@ -658,11 +662,11 @@ Copies a file. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name | Type                        | Mandatory  | Description                                      |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string \| number | Yes   | Path or FD of the file to copy.                     |
-  | dest | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
-  | mode | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
+| Name | Type                        | Mandatory  | Description                                      |
+| ---- | -------------------------- | ---- | ---------------------------------------- |
+| src  | string \| number | Yes   | Path or FD of the file to copy.                     |
+| dest | string \| number | Yes   | Destination path of the file or FD of the file created.                         |
+| mode | number                     | No   | Whether to overwrite the file with the same name in the destination directory. The default value is **0**, which is the only value supported.<br>**0**: overwrite the file with the same name and truncate the part that is not overwritten.|
 
 **Error codes**
 
@@ -686,17 +690,17 @@ Copies a folder. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Application sandbox path of the folder to copy.|
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -705,7 +709,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -726,12 +730,12 @@ Copies a folder with the specified mode. This API uses an asynchronous callback 
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Application sandbox path of the folder to copy.|
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+| callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
 
@@ -740,8 +744,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { ConflictFiles } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -754,7 +758,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
       console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
-    }  
+    }
   });
   ```
 
@@ -770,11 +774,11 @@ An exception will be thrown if there is a folder with the same name in the desti
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Application sandbox path of the folder to copy.|
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
 
@@ -783,8 +787,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { ConflictFiles } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -797,7 +801,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
       console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
-    }  
+    }
   });
   ```
 
@@ -811,11 +815,11 @@ Copies a folder. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Application sandbox path of the folder to copy.|
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
 
 **Error codes**
 
@@ -824,7 +828,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // Copy srcPath to destPath.
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -847,15 +851,15 @@ Opens a **File** object based on an FD.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | fd | number | Yes   | FD of the file.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| fd | number | Yes   | FD of the file.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | [File](#file) | File object opened.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| [File](#file) | File object opened.|
 
 **Error codes**
 
@@ -879,20 +883,22 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 
 Mounts the user directories of a device to the sandbox directory. If the device is abnormal, [onStatus](#onstatus12) in **DfsListeners** will be called to notify the application.
 
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | networkId   | string | Yes   | Network ID of the device. The device network ID can be obtained from [deviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo) using the related [distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md) API.                            |
-  | listeners | [DfsListeners](#fsdfslisteners12) | Yes   | Listeners for distributed file system status.               |
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| networkId   | string | Yes   | Network ID of the device. The device network ID can be obtained from [deviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo) using the related [distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md) API.                            |
+| listeners | [DfsListeners](#fsdfslisteners12) | Yes   | Listeners for distributed file system status.               |
 
 **Return value**
 
-  | Type    | Description                                      |
-  | ------ | ---------------------------------------- |
-  | Promise&lt;void&gt;| Promise that returns no value.                            |
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| Promise&lt;void&gt;| Promise that returns no value.                            |
 
 **Error codes**
 
@@ -901,10 +907,10 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import deviceManager from '@ohos.distributedDeviceManager';
-  let dmInstance = deviceManager.createDeviceManager("com.example.filesync");
-  let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  import { fileIo as fs } from '@kit.CoreFileKit';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
+  let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   let networkId = deviceInfoList[0].networkId;
   let listeners: fs.DfsListeners = {
     onStatus(networkId, status) {
@@ -924,19 +930,21 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
 
 Unmounts the user directories of a device.
 
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | networkId   | string | Yes   | Network ID of the device. The device network ID can be obtained from [deviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo) using the related [distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md) API.                           |
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| networkId   | string | Yes   | Network ID of the device. The device network ID can be obtained from [deviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo) using the related [distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md) API.                           |
 
 **Return value**
 
-  | Type    | Description                                      |
-  | ------ | ---------------------------------------- |
-  | Promise&lt;void&gt;| Promise that returns no value.                            |
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| Promise&lt;void&gt;| Promise that returns no value.                            |
 
 **Error codes**
 
@@ -945,16 +953,179 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import deviceManager from '@ohos.distributedDeviceManager';
-  let dmInstance = deviceManager.createDeviceManager("com.example.filesync");
-  let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  import { fileIo as fs } from '@kit.CoreFileKit';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
+  let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   let networkId = deviceInfoList[0].networkId;
   fs.disconnectDfs(networkId).then(() => {
     console.info("Success to disconnectDfs");
   }).catch((err) => {
     console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
   })
+  ```
+
+## fs.setxattr<sup>12+</sup>
+
+setxattr(path: string, key: string, value: string): Promise&lt;void&gt;
+
+Sets an extended attribute for a file.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the file.                               |
+| key   | string | Yes  | Key of the extended attribute to set.                         |
+| value   | string | Yes  | Value of the extended attribute to set.                         |
+
+**Return value**
+
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| Promise&lt;void&gt;| Promise that returns no value.                            |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  let attrValue = "Test file.";
+  
+  fs.setxattr(filePath, attrKey, attrValue).then(() => {
+    console.info("Set extended attribute successfully.");
+  }).catch((err: BusinessError) => {
+    console.error("Failed to set extended attribute with error message: " + err.message + ", error code: " + err.code);
+  });
+
+  ```
+## fs.setxattrSync<sup>12+</sup>
+
+setxattrSync(path: string, key: string, value: string): void;
+
+Sets an extended attribute for a file. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the file.                               |
+| key   | string | Yes  | Key of the extended attribute to set.                         |
+| value   | string | Yes  | Value of the extended attribute to set.                         |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  let attrValue = "Test file.";
+
+  try {
+    fs.setxattrSync(filePath, attrKey, attrValue);
+    console.info("Set extended attribute successfully.");
+  } catch (err) {
+    console.error("Failed to set extended attribute with error message: " + err.message + ", error code: " + err.code);
+  }
+  
+  ```
+
+## fs.getxattr<sup>12+</sup>
+
+getxattr(path: string, key: string): Promise&lt;string&gt;
+
+Obtains an extended attribute of a file. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the file.                               |
+| key   | string | Yes  | Key of the extended attribute to obtain.                         |
+
+**Return value**
+
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| Promise&lt;string&gt;| Promise used to return the value of the extended attribute obtained. |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  
+  fs.getxattr(filePath, attrKey).then((attrValue: string) => {
+    console.info("Get extended attribute succeed, the value is: " + attrValue);
+  }).catch((err: BusinessError) => {
+    console.error("Failed to get extended attribute with error message: " + err.message + ", error code: " + err.code);
+  });
+
+  ```
+
+## fs.getxattrSync<sup>12+</sup>
+
+getxattrSync(path: string, key: string): string;
+
+Obtains an extended attribute of a file. This API returns the result synchronously.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the file.                               |
+| key   | string | Yes  | Key of the extended attribute to obtain.                         |
+
+**Return value**
+
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
+| key| Value of the extended attribute obtained. |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  let filePath = pathDir + "/test.txt";
+  let attrKey = "user.comment";
+  
+  try {
+    let attrValue = fs.getxattrSync(filePath, attrKey);
+    console.info("Get extended attribute succeed, the value is: " + attrValue);
+  } catch (err) {
+    console.error("Failed to get extended attribute with error message: " + err.message + ", error code: " + err.code);
+    }
+
   ```
 
 ## fs.mkdir
@@ -975,9 +1146,9 @@ Creates a directory. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -986,7 +1157,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath).then(() => {
     console.info("Directory created");
@@ -1014,9 +1185,9 @@ Creates a directory. This API uses a promise to return the result. If **recursio
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1025,7 +1196,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir1/testDir2/testDir3";
   fs.mkdir(dirPath, true).then(() => {
     console.info("Directory created");
@@ -1058,7 +1229,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err: BusinessError) => {
     if (err) {
@@ -1094,7 +1265,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir1/testDir2/testDir3";
   fs.mkdir(dirPath, true, (err: BusinessError) => {
     if (err) {
@@ -1164,7 +1335,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 open(path: string, mode?: number): Promise&lt;File&gt;
 
-Opens a file. This API uses a promise to return the result. The uniform resource identifier (URI) can be used to open a file.
+Opens a file. This API uses a promise to return the result. This API supports the use of a URI.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1174,14 +1345,14 @@ Opens a file. This API uses a promise to return the result. The uniform resource
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path   | string | Yes  | Application sandbox path or file URI of the file to open. When a URI is used, the file can only be opened.                                  |
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value does not support the use of a URI.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
-  | Type                   | Description         |
-  | --------------------- | ----------- |
-  | Promise&lt;[File](#file)&gt; | Promise used to return the **File** object.|
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Promise&lt;[File](#file)&gt; | Promise used to return the **File** object.|
 
 **Error codes**
 
@@ -1190,7 +1361,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
@@ -1217,8 +1388,8 @@ File URIs are supported.
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | Yes  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path     | string                          | Yes  | Application sandbox path or file URI of the file to open. The URI can be used to open the file only.                                  |
+| mode  | number | Yes  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value does not take effect if a URI is used.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 | callback     | AsyncCallback&lt;void&gt;                          | Yes  | Callback used to return the result.                                  |
 
 **Error codes**
@@ -1228,7 +1399,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
@@ -1264,7 +1435,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, (err: BusinessError, file: fs.File) => {
     if (err) {
@@ -1280,7 +1451,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 openSync(path: string, mode?: number): File
 
-Opens a file. This API returns the result synchronously. File URIs are supported. 
+Opens a file. This API returns the result synchronously. File URIs are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1290,14 +1461,14 @@ Opens a file. This API returns the result synchronously. File URIs are supported
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path   | string | Yes  | Application sandbox path or file URI of the file to open. The URI can be used to open the file only.                                  |
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value does not take effect if a URI is used.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
-  | Type    | Description         |
-  | ------ | ----------- |
-  | [File](#file) | File object opened.|
+| Type    | Description         |
+| ------ | ----------- |
+| [File](#file) | File object opened.|
 
 **Error codes**
 
@@ -1332,9 +1503,9 @@ Reads data from a file. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                                | Description    |
-  | ---------------------------------- | ------ |
-  | Promise&lt;number&gt; | Promise used to return the length of the data read, in bytes.|
+| Type                                | Description    |
+| ---------------------------------- | ------ |
+| Promise&lt;number&gt; | Promise used to return the length of the data read, in bytes.|
 
 **Error codes**
 
@@ -1343,8 +1514,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { buffer } from '@kit.ArkTS';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let arrayBuffer = new ArrayBuffer(4096);
@@ -1371,12 +1542,12 @@ Reads data from a file. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-  | Name     | Type                                      | Mandatory  | Description                                      |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | fd       | number                                   | Yes   | FD of the file.                            |
-  | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
-  | options | [ReadOptions](#readoptions11)      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
-  | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the length of the data read, in bytes.                            |
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| fd       | number                                   | Yes   | FD of the file.                            |
+| buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
+| options | [ReadOptions](#readoptions11)      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the length of the data read, in bytes.                            |
 
 **Error codes**
 
@@ -1385,8 +1556,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { buffer } from '@kit.ArkTS';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let arrayBuffer = new ArrayBuffer(4096);
@@ -1414,17 +1585,17 @@ Reads data from a file. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | fd      | number      | Yes   | FD of the file.                            |
-  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file data read.                       |
-  | options | [ReadOptions](#readoptions11)      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| fd      | number      | Yes   | FD of the file.                            |
+| buffer  | ArrayBuffer | Yes   | Buffer used to store the file data read.                       |
+| options | [ReadOptions](#readoptions11)      | No  | The options are as follows:<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.|
 
 **Return value**
 
-  | Type    | Description      |
-  | ------ | -------- |
-  | number | Length of the data read, in bytes.|
+| Type    | Description      |
+| ------ | -------- |
+| number | Length of the data read, in bytes.|
 
 **Error codes**
 
@@ -1458,9 +1629,9 @@ Deletes a directory. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1469,7 +1640,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
     console.info("Directory deleted");
@@ -1502,7 +1673,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err: BusinessError) => {
     if (err) {
@@ -1558,9 +1729,9 @@ Deletes a single file. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1569,7 +1740,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath).then(() => {
     console.info("File deleted");
@@ -1602,7 +1773,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath, (err: BusinessError) => {
     if (err) {
@@ -1653,17 +1824,17 @@ Writes data to a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name    | Type                             | Mandatory  | Description                                      |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | fd      | number                          | Yes   | FD of the file.                            |
-  | buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
+| Name    | Type                             | Mandatory  | Description                                      |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| fd      | number                          | Yes   | FD of the file.                            |
+| buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+| options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
 
 **Return value**
 
-  | Type                   | Description      |
-  | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the length of the data written, in bytes.|
+| Type                   | Description      |
+| --------------------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the length of the data written, in bytes.|
 
 **Error codes**
 
@@ -1672,7 +1843,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let str: string = "hello, world";
@@ -1697,12 +1868,12 @@ Writes data to a file. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-  | Name     | Type                             | Mandatory  | Description                                      |
-  | -------- | ------------------------------- | ---- | ---------------------------------------- |
-  | fd       | number                          | Yes   | FD of the file.                            |
-  | buffer   | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
-  | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback used to return the result.                      |
+| Name     | Type                             | Mandatory  | Description                                      |
+| -------- | ------------------------------- | ---- | ---------------------------------------- |
+| fd       | number                          | Yes   | FD of the file.                            |
+| buffer   | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+| options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
+| callback | AsyncCallback&lt;number&gt;     | Yes   | Callback used to return the result.                      |
 
 **Error codes**
 
@@ -1711,7 +1882,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let str: string = "hello, world";
@@ -1737,17 +1908,17 @@ Writes data to a file. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name    | Type                             | Mandatory  | Description                                      |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | fd      | number                          | Yes   | FD of the file.                            |
-  | buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
+| Name    | Type                             | Mandatory  | Description                                      |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| fd      | number                          | Yes   | FD of the file.                            |
+| buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+| options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported currently.|
 
 **Return value**
 
-  | Type    | Description      |
-  | ------ | -------- |
-  | number | Length of the data written, in bytes.|
+| Type    | Description      |
+| ------ | -------- |
+| number | Length of the data written, in bytes.|
 
 **Error codes**
 
@@ -1783,9 +1954,9 @@ Truncates the file content. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1794,7 +1965,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let len: number = 5;
   fs.truncate(filePath, len).then(() => {
@@ -1829,7 +2000,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let len: number = 5;
   fs.truncate(filePath, len, (err: BusinessError) => {
@@ -1887,9 +2058,9 @@ Reads a file text line by line. This API uses a promise to return the result. On
 
 **Return value**
 
-  | Type                   | Description        |
-  | --------------------- | ---------- |
-  | Promise&lt;[ReaderIterator](#readeriterator11)&gt; | Promise used to return a **ReaderIterator** object.|
+| Type                   | Description        |
+| --------------------- | ---------- |
+| Promise&lt;[ReaderIterator](#readeriterator11)&gt; | Promise used to return a **ReaderIterator** object.|
 
 **Error codes**
 
@@ -1898,8 +2069,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { Options } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -1936,8 +2107,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { Options } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -1970,9 +2141,9 @@ Reads the text content of a file line by line. This API returns the result synch
 
 **Return value**
 
-  | Type                   | Description        |
-  | --------------------- | ---------- |
-  | [ReaderIterator](#readeriterator11) | **ReaderIterator** object.|
+| Type                   | Description        |
+| --------------------- | ---------- |
+| [ReaderIterator](#readeriterator11) | **ReaderIterator** object.|
 
 **Error codes**
 
@@ -1981,7 +2152,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs, { Options } from '@ohos.file.fs';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -2006,9 +2177,9 @@ Obtains the **ReaderIterator** result.
 
 **Return value**
 
-  | Type                   | Description        |
-  | --------------------- | ---------- |
-  | ReaderIteratorResult | **ReaderIteratorResult** object obtained.|
+| Type                   | Description        |
+| --------------------- | ---------- |
+| ReaderIteratorResult | **ReaderIteratorResult** object obtained.|
 
 **Error codes**
 
@@ -2017,8 +2188,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { Options } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Options } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -2062,9 +2233,9 @@ Reads the text content of a file. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                   | Description        |
-  | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the file content read.|
+| Type                   | Description        |
+| --------------------- | ---------- |
+| Promise&lt;string&gt; | Promise used to return the file content read.|
 
 **Error codes**
 
@@ -2073,7 +2244,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.readText(filePath).then((str: string) => {
     console.info("readText succeed:" + str);
@@ -2107,8 +2278,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { ReadTextOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ReadTextOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let readTextOption: ReadTextOptions = {
       offset: 1,
@@ -2145,9 +2316,9 @@ Reads the text of a file. This API returns the result synchronously.
 
 **Return value**
 
-  | Type  | Description                |
-  | ------ | -------------------- |
-  | string | Content of the file read.|
+| Type  | Description                |
+| ------ | -------------------- |
+| string | Content of the file read.|
 
 **Error codes**
 
@@ -2156,7 +2327,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs, { ReadTextOptions } from '@ohos.file.fs'; 
+  import { fileIo as fs, ReadTextOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let readTextOptions: ReadTextOptions = {
     offset: 1,
@@ -2185,9 +2356,9 @@ Obtains information about a symbolic link that is used to refer to a file or dir
 
 **Return value**
 
-  | Type                          | Description        |
-  | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the symbolic link information obtained. For details, see **stat**.|
+| Type                          | Description        |
+| ---------------------------- | ---------- |
+| Promise&lt;[Stat](#stat)&gt; | Promise used to return the symbolic link information obtained. For details, see **stat**.|
 
 **Error codes**
 
@@ -2196,7 +2367,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/linkToFile";
   fs.lstat(filePath).then((stat: fs.Stat) => {
     console.info("lstat succeed, the size of file is " + stat.size);
@@ -2227,7 +2398,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/linkToFile";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
@@ -2254,9 +2425,9 @@ Obtains information about a symbolic link that is used to refer to a file or dir
 
 **Return value**
 
-  | Type           | Description        |
-  | ------------- | ---------- |
-  | [Stat](#stat) | File information obtained.|
+| Type           | Description        |
+| ------------- | ---------- |
+| [Stat](#stat) | File information obtained.|
 
 **Error codes**
 
@@ -2292,9 +2463,9 @@ Renames a file or folder. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2303,7 +2474,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile).then(() => {
@@ -2341,7 +2512,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err: BusinessError) => {
@@ -2395,15 +2566,15 @@ Synchronizes the cached data of a file to storage. This API uses a promise to re
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description          |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | Yes   | FD of the file.|
+| Name | Type    | Mandatory  | Description          |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | Yes   | FD of the file.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2412,7 +2583,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsync(file.fd).then(() => {
@@ -2434,10 +2605,10 @@ Synchronizes the cached data of a file to storage. This API uses an asynchronous
 
 **Parameters**
 
-  | Name     | Type                       | Mandatory  | Description             |
-  | -------- | ------------------------- | ---- | --------------- |
-  | fd       | number                    | Yes   | FD of the file.   |
-  | Callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| Name     | Type                       | Mandatory  | Description             |
+| -------- | ------------------------- | ---- | --------------- |
+| fd       | number                    | Yes   | FD of the file.   |
+| Callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -2446,7 +2617,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fsync(file.fd, (err: BusinessError) => {
@@ -2470,9 +2641,9 @@ Synchronizes the cached data of a file to storage. This API returns the result s
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description          |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | Yes   | FD of the file.|
+| Name | Type    | Mandatory  | Description          |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | Yes   | FD of the file.|
 
 **Error codes**
 
@@ -2497,15 +2668,15 @@ Synchronizes the data of a file. This API uses a promise to return the result. *
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description          |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | Yes   | FD of the file.|
+| Name | Type    | Mandatory  | Description          |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | Yes   | FD of the file.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2514,7 +2685,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fdatasync(file.fd).then(() => {
@@ -2536,10 +2707,10 @@ Synchronizes the data of a file. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-  | Name     | Type                             | Mandatory  | Description               |
-  | -------- | ------------------------------- | ---- | ----------------- |
-  | fd       | number                          | Yes   | FD of the file.     |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| Name     | Type                             | Mandatory  | Description               |
+| -------- | ------------------------------- | ---- | ----------------- |
+| fd       | number                          | Yes   | FD of the file.     |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -2548,7 +2719,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fdatasync (file.fd, (err: BusinessError) => {
@@ -2571,9 +2742,9 @@ Synchronizes the data of a file. This API returns the result synchronously. **fd
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description          |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | Yes   | FD of the file.|
+| Name | Type    | Mandatory  | Description          |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | Yes   | FD of the file.|
 
 **Error codes**
 
@@ -2605,9 +2776,9 @@ Creates a symbolic link based on a file path. This API uses a promise to return 
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2616,7 +2787,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile).then(() => {
@@ -2649,7 +2820,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcFile = pathDir + "/test.txt";
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err: BusinessError) => {
@@ -2699,17 +2870,17 @@ Lists all files, including the files in subfolders, in a directory. This API use
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
-  | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| path | string | Yes   | Application sandbox path of the folder.|
+| options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
 
 
 **Return value**
 
-  | Type                  | Description        |
-  | --------------------- | ---------- |
-  | Promise&lt;string[]&gt; | Promise used to return the file names listed.|
+| Type                  | Description        |
+| --------------------- | ---------- |
+| Promise&lt;string[]&gt; | Promise used to return the file names listed.|
 
 **Error codes**
 
@@ -2718,8 +2889,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -2750,11 +2921,11 @@ Lists all files, including the files in subfolders, in a directory. This API use
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
-  | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
-  | callback | AsyncCallback&lt;string[]&gt; | Yes   | Callback used to return the file names listed.             |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| path | string | Yes   | Application sandbox path of the folder.|
+| options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
+| callback | AsyncCallback&lt;string[]&gt; | Yes   | Callback used to return the file names listed.             |
 
 
 **Error codes**
@@ -2764,8 +2935,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -2799,17 +2970,17 @@ Lists all files, including the files in subfolders, in a directory. This API ret
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
-  | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| path | string | Yes   | Application sandbox path of the folder.|
+| options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
 
 
 **Return value**
 
-  | Type                  | Description        |
-  | --------------------- | ---------- |
-  | string[] | List of the files obtained.|
+| Type                  | Description        |
+| --------------------- | ---------- |
+| string[] | List of the files obtained.|
 
 **Error codes**
 
@@ -2818,7 +2989,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs, { Filter, ListFileOptions} from '@ohos.file.fs';
+  import { fileIo as fs, Filter, ListFileOptions} from '@kit.CoreFileKit';
   let listFileOption: ListFileOptions = {
     recursion: false,
     listNum: 0,
@@ -2845,17 +3016,17 @@ Sets the offset of a file.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | fd | number | Yes   | FD of the file.|
-  | offset | number | Yes   | Offset to set.|
-  | whence | [WhenceType](#whencetype11) | No   | Type of the relative position of the offset.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| fd | number | Yes   | FD of the file.|
+| offset | number | Yes   | Offset to set, in bytes.|
+| whence | [WhenceType](#whencetype11) | No   | Where to start the offset.|
 
 **Return value**
 
-  | Type                  | Description        |
-  | --------------------- | ---------- |
-  | number | Position of the current offset as measured from the beginning of the file.|
+| Type                  | Description        |
+| --------------------- | ---------- |
+| number | Position of the current offset as measured from the beginning of the file.|
 
 **Error codes**
 
@@ -2883,17 +3054,17 @@ Moves a folder. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the folder to move.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a non-empty folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a non-empty folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2902,7 +3073,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2926,12 +3097,12 @@ Moves a folder with the specified mode. This API uses an asynchronous callback t
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the folder to move.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| mode | number | Yes   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
+| callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
 
@@ -2940,8 +3111,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { ConflictFiles } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -2954,7 +3125,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
       console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
-    }  
+    }
   });
   ```
 
@@ -2973,11 +3144,11 @@ An exception will be thrown if there is a folder with the same name in the desti
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the folder to move.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
 
@@ -2986,8 +3157,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { ConflictFiles } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
   // move directory from srcPath to destPath
   let srcPath = pathDir + "/srcDir/";
   let destPath = pathDir + "/destDir/";
@@ -3000,7 +3171,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
       console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
-    }  
+    }
   });
   ```
 
@@ -3017,11 +3188,11 @@ Moves a folder. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the folder to move.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
+| dest | string | Yes   | Application sandbox path of the destination folder.|
+| mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
 
 **Error codes**
 
@@ -3030,8 +3201,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-import fs, { ConflictFiles } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs, ConflictFiles } from '@kit.CoreFileKit';
 // move directory from srcPath to destPath
 let srcPath = pathDir + "/srcDir/";
 let destPath = pathDir + "/destDir/";
@@ -3063,17 +3234,17 @@ Moves a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the file to move. |
-  | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+| dest | string | Yes   | Application sandbox path of the destination file.|
+| mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
 
 **Return value**
 
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -3082,7 +3253,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0).then(() => {
@@ -3105,12 +3276,12 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the source file.|
-  | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | Yes   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.             |
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Application sandbox path of the source file.|
+| dest | string | Yes   | Application sandbox path of the destination file.|
+| mode | number | Yes   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
 
@@ -3119,7 +3290,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err: BusinessError) => {
@@ -3127,7 +3298,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
       console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
-    }  
+    }
   });
   ```
 
@@ -3144,11 +3315,11 @@ Moves a file and forcibly overwrites the file with the same name in the destinat
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the source file.|
-  | dest | string | Yes   | Application sandbox path of the destination file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Application sandbox path of the source file.|
+| dest | string | Yes   | Application sandbox path of the destination file.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -3157,7 +3328,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let srcPath = pathDir + "/source.txt";
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, (err: BusinessError) => {
@@ -3165,7 +3336,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
       console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
-    }  
+    }
   });
   ```
 
@@ -3182,11 +3353,11 @@ Moves a file. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the source file.|
-  | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| src | string | Yes   | Application sandbox path of the source file.|
+| dest | string | Yes   | Application sandbox path of the destination file.|
+| mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
 
 **Error codes**
 
@@ -3205,21 +3376,21 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 mkdtemp(prefix: string): Promise&lt;string&gt;
 
-Creates a temporary directory. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters. This API uses a promise to return the result.
+Creates a temporary directory. This API uses a promise to return the result. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters. 
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | prefix | string | Yes   | String to be replaced  with six randomly generated characters to create a unique temporary directory.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| prefix | string | Yes   | String to be replaced  with six randomly generated characters to create a unique temporary directory.|
 
 **Return value**
 
-  | Type                  | Description        |
-  | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the directory created.|
+| Type                  | Description        |
+| --------------------- | ---------- |
+| Promise&lt;string&gt; | Promise used to return the directory created.|
 
 **Error codes**
 
@@ -3228,7 +3399,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   fs.mkdtemp(pathDir + "/XXXXXX").then((dir: string) => {
     console.info("mkdtemp succeed:" + dir);
   }).catch((err: BusinessError) => {
@@ -3240,16 +3411,16 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
-Creates a temporary directory. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters. This API uses an asynchronous callback to return the result.
+Creates a temporary directory. This API uses an asynchronous callback to return the result. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-  | Name     | Type                         | Mandatory  | Description                         |
-  | -------- | --------------------------- | ---- | --------------------------- |
-  | prefix   | string                      | Yes   | String to be replaced  with six randomly generated characters to create a unique temporary directory.|
-  | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.             |
+| Name     | Type                         | Mandatory  | Description                         |
+| -------- | --------------------------- | ---- | --------------------------- |
+| prefix   | string                      | Yes   | String to be replaced  with six randomly generated characters to create a unique temporary directory.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
 
@@ -3258,7 +3429,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   fs.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     if (err) {
       console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
@@ -3272,21 +3443,21 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 mkdtempSync(prefix: string): string
 
-Creates a temporary directory. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters. This API returns the result synchronously.
+Creates a temporary directory. This API returns the result synchronously. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | prefix | string | Yes   | String to be replaced  with six randomly generated characters to create a unique temporary directory.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| prefix | string | Yes   | String to be replaced  with six randomly generated characters to create a unique temporary directory.|
 
 **Return value**
 
-  | Type   | Description        |
-  | ------ | ---------- |
-  | string | Unique path generated.|
+| Type   | Description        |
+| ------ | ---------- |
+| string | Unique path generated.|
 
 **Error codes**
 
@@ -3296,7 +3467,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
-  ```  
+  ```
 
 ## fs.utimes<sup>11+</sup>
 
@@ -3342,9 +3513,9 @@ Creates a **RandomAccessFile** instance based on a file path or file object. Thi
 
 **Return value**
 
-  | Type                               | Description       |
-  | --------------------------------- | --------- |
-  | Promise&lt;[RandomAccessFile](#randomaccessfile)&gt; | Promise used to return the **RandomAccessFile** instance created.|
+| Type                               | Description       |
+| --------------------------------- | --------- |
+| Promise&lt;[RandomAccessFile](#randomaccessfile)&gt; | Promise used to return the **RandomAccessFile** instance created.|
 
 **Error codes**
 
@@ -3353,7 +3524,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file).then((randomAccessFile: fs.RandomAccessFile) => {
@@ -3370,7 +3541,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createRandomAccessFile(file: string | File, callback: AsyncCallback&lt;RandomAccessFile&gt;): void
 
-Creates a **RandomAccessFile** instance in read-only mode based on a file path or file object. This API uses an asynchronous callback to return the result.
+Creates a **RandomAccessFile** object in read-only mode based on a file path or file object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3387,7 +3558,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
@@ -3423,7 +3594,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
@@ -3455,16 +3626,16 @@ Creates a **RandomAccessFile** instance based on a file path or file object. Thi
 
 **Return value**
 
-  | Type                               | Description       |
-  | --------------------------------- | --------- |
-  | Promise&lt;[RandomAccessFile](#randomaccessfile)&gt; | Promise used to return the **RandomAccessFile** instance created.|
+| Type                               | Description       |
+| --------------------------------- | --------- |
+| Promise&lt;[RandomAccessFile](#randomaccessfile)&gt; | Promise used to return the **RandomAccessFile** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let filePath = pathDir + "/test.txt";
 fs.createRandomAccessFile(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE, { start: 10, end: 100 })
   .then((randomAccessFile: fs.RandomAccessFile) => {
@@ -3494,9 +3665,9 @@ Creates a **RandomAccessFile** instance based on a file path or file object.
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [RandomAccessFile](#randomaccessfile) | **RandomAccessFile** instance created.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [RandomAccessFile](#randomaccessfile) | **RandomAccessFile** instance created.|
 
 **Error codes**
 
@@ -3530,9 +3701,9 @@ Creates a **RandomAccessFile** instance based on a file path or file object.
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [RandomAccessFile](#randomaccessfile) | **RandomAccessFile** instance created.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [RandomAccessFile](#randomaccessfile) | **RandomAccessFile** instance created.|
 
 **Error codes**
 
@@ -3564,9 +3735,9 @@ Creates a stream based on a file path. This API uses a promise to return the res
 
 **Return value**
 
-  | Type                               | Description       |
-  | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
+| Type                               | Description       |
+| --------------------------------- | --------- |
+| Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
 
 **Error codes**
 
@@ -3575,7 +3746,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "a+").then((stream: fs.Stream) => {
     stream.closeSync();
@@ -3609,7 +3780,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
@@ -3618,7 +3789,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
       console.info("Stream created");
     }
     stream.closeSync();
-  })  
+  })
   ```
 
 ## fs.createStreamSync
@@ -3638,9 +3809,9 @@ Creates a stream based on a file path. This API returns the result synchronously
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [Stream](#stream) | Stream opened.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [Stream](#stream) | Stream opened.|
 
 **Error codes**
 
@@ -3666,16 +3837,16 @@ Opens a stream based on an FD. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | fd   | number | Yes   | FD of the file.                            |
-  | mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| fd   | number | Yes   | FD of the file.                            |
+| mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
 
-  | Type                              | Description       |
-  | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
+| Type                              | Description       |
+| --------------------------------- | --------- |
+| Promise&lt;[Stream](#stream)&gt; | Promise used to return the stream opened.|
 
 **Error codes**
 
@@ -3684,7 +3855,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
@@ -3707,11 +3878,11 @@ Opens a stream based on an FD. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-  | Name     | Type                                      | Mandatory  | Description                                      |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | fd       | number                                   | Yes   | FD of the file.                            |
-  | mode     | string                                   | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-  | callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback used to return the result.                           |
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| fd       | number                                   | Yes   | FD of the file.                            |
+| mode     | string                                   | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+| callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes   | Callback used to return the result.                           |
 
 **Error codes**
 
@@ -3720,7 +3891,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
@@ -3744,16 +3915,16 @@ Opens a stream based on an FD. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | fd   | number | Yes   | FD of the file.                            |
-  | mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| fd   | number | Yes   | FD of the file.                            |
+| mode | string | Yes   | - **r**: Open a file for reading. The file must exist.<br>- **r+**: Open a file for both reading and writing. The file must exist.<br>- **w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>- **a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>- **a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [Stream](#stream) | Stream opened.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [Stream](#stream) | Stream opened.|
 
 **Error codes**
 
@@ -3779,16 +3950,16 @@ Creates a readable stream. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path   | string | Yes   | Path of the file.                            |
-  | options | [ReadStreamOptions](#readstreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **end** (number): end position of the data to read in the file. This parameter is optional. The default value is the end of the file.|
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| path   | string | Yes   | Path of the file.                            |
+| options | [ReadStreamOptions](#readstreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position of the data to read in the file. This parameter is optional. By default, data is read from the current position.<br>- **end** (number): end position of the data to read in the file. This parameter is optional. The default value is the end of the file.|
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [ReadStream](#readstream12) | Readable stream created.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [ReadStream](#readstream12) | Readable stream created.|
 
 **Error codes**
 
@@ -3821,16 +3992,16 @@ Creates a writeable stream. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path   | string | Yes   | Path of the file.                            |
-  | options | [WriteStreamOptions](#writestreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position to write the data in the file. This parameter is optional. The default value is the current position.<br>- **mode** (number): [mode](#openmode) for creating the writeable stream. This parameter is optional. The default value is the write-only mode.|
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| path   | string | Yes   | Path of the file.                            |
+| options | [WriteStreamOptions](#writestreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position to write the data in the file. This parameter is optional. The default value is the current position.<br>- **mode** (number): [mode](#openmode) for creating the writeable stream. This parameter is optional. The default value is the write-only mode.|
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [WriteStream](#writestream12) | Writable stream created.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [WriteStream](#writestream12) | Writable stream created.|
 
 **Error codes**
 
@@ -3863,17 +4034,17 @@ Creates a **Watcher** object to observe file or directory changes.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | path   | string | Yes   | Application sandbox path of the file or directory to observe.                            |
-  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or folder is moved. After the file or folder is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
-  | listener   | [WatchEventListener](#watcheventlistener10) | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| path   | string | Yes   | Application sandbox path of the file or directory to observe.                            |
+| events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or folder is moved. After the file or folder is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+| listener   | [WatchEventListener](#watcheventlistener10) | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [Watcher](#watcher10) | **Watcher** object created.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [Watcher](#watcher10) | **Watcher** object created.|
 
 **Error codes**
 
@@ -3882,7 +4053,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs, { WatchEvent } from '@ohos.file.fs';
+  import { fileIo as fs, WatchEvent } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let watcher = fs.createWatcher(filePath, 0x2 | 0x10, (watchEvent: WatchEvent) => {
@@ -3908,17 +4079,17 @@ Called when an observed event occurs.
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                                      |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | event   | [WatchEvent](#watchevent10) | Yes   | Event for the callback to invoke.                            |
- 
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| event   | [WatchEvent](#watchevent10) | Yes   | Event for the callback to invoke.                            |
+
 ## WatchEvent<sup>10+</sup>
 
 Defines the event to observe.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
 | Name  | Type  | Read-Only  | Writable  | Description     |
 | ---- | ------ | ---- | ---- | ------- |
@@ -3958,10 +4129,10 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
-import fileuri from '@ohos.file.fileuri';
-let context = getContext(this) as common.UIAbilityContext; 
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { fileuri } from '@kit.CoreFileKit';
+let context = getContext(this) as common.UIAbilityContext;
 let pathDir: string = context.filesDir;
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
@@ -4002,9 +4173,9 @@ Subscribes to the event reported when a copy task is canceled.
 
 **Return value**
 
-  | Type                  | Description        |
-  | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise used to return the path of the last file copied.|
+| Type                  | Description        |
+| --------------------- | ---------- |
+| Promise&lt;string&gt; | Promise used to return the path of the last file copied.|
 
 **Error codes**
 
@@ -4032,7 +4203,7 @@ Defines the callback for listening for the copy progress.
 
 ## ProgressListener<sup>11+</sup>
 
-Defines the listener used to observe the copy progress.
+Listener used to observe the copy progress.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4059,10 +4230,10 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
 | Name    | Type  | Read-Only  | Writable  | Description                                      |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |                        
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
 | ino    | bigint | Yes   | No   | File identifier, which varies with files on the same device.|                 |
 | mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>**NOTE**<br>The following values are in octal format. The return values are in decimal format. You need to convert the values.<br>- **0o400**: The owner has the permission to read a regular file or a directory entry.<br>- **0o200**: The owner has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The owner has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the permission to read a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file, and other user groups have the permission to read a directory entry.<br>- **0o002**: Other users have the permission to write a regular file, and other user groups have the permission to create or delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file, and other user groups have the permission to search for the specified path in a directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | uid    | number | Yes   | No   | ID of the file owner.|
@@ -4083,9 +4254,9 @@ Checks whether this file is a block special file. A block special file supports 
 
 **Return value**
 
-  | Type    | Description              |
-  | ------- | ---------------- |
-  | boolean | Whether the file is a block special file.|
+| Type    | Description              |
+| ------- | ---------------- |
+| boolean | Whether the file is a block special file.|
 
 **Error codes**
 
@@ -4108,9 +4279,9 @@ Checks whether this file is a character special file. A character special file s
 
 **Return value**
 
-  | Type     | Description               |
-  | ------- | ----------------- |
-  | boolean | Whether the file is a character special file.|
+| Type     | Description               |
+| ------- | ----------------- |
+| boolean | Whether the file is a character special file.|
 
 **Error codes**
 
@@ -4135,9 +4306,9 @@ Checks whether this file is a directory.
 
 **Return value**
 
-  | Type     | Description           |
-  | ------- | ------------- |
-  | boolean | Whether the file is a directory.|
+| Type     | Description           |
+| ------- | ------------- |
+| boolean | Whether the file is a directory.|
 
 **Error codes**
 
@@ -4147,7 +4318,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   let dirPath = pathDir + "/test";
-  let isDirectory = fs.statSync(dirPath).isDirectory(); 
+  let isDirectory = fs.statSync(dirPath).isDirectory();
   ```
 
 ### isFIFO
@@ -4160,9 +4331,9 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 
 **Return value**
 
-  | Type     | Description                   |
-  | ------- | --------------------- |
-  | boolean | Whether the file is an FIFO.|
+| Type     | Description                   |
+| ------- | --------------------- |
+| boolean | Whether the file is an FIFO.|
 
 **Error codes**
 
@@ -4172,7 +4343,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let isFIFO = fs.statSync(filePath).isFIFO(); 
+  let isFIFO = fs.statSync(filePath).isFIFO();
   ```
 
 ### isFile
@@ -4187,9 +4358,9 @@ Checks whether this file is a regular file.
 
 **Return value**
 
-  | Type     | Description             |
-  | ------- | --------------- |
-  | boolean | Whether the file is a regular file.|
+| Type     | Description             |
+| ------- | --------------- |
+| boolean | Whether the file is a regular file.|
 
 **Error codes**
 
@@ -4212,9 +4383,9 @@ Checks whether this file is a socket.
 
 **Return value**
 
-  | Type     | Description            |
-  | ------- | -------------- |
-  | boolean | Whether the file is a socket.|
+| Type     | Description            |
+| ------- | -------------- |
+| boolean | Whether the file is a socket.|
 
 **Error codes**
 
@@ -4224,7 +4395,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let isSocket = fs.statSync(filePath).isSocket(); 
+  let isSocket = fs.statSync(filePath).isSocket();
   ```
 
 ### isSymbolicLink
@@ -4237,9 +4408,9 @@ Checks whether this file is a symbolic link.
 
 **Return value**
 
-  | Type     | Description             |
-  | ------- | --------------- |
-  | boolean | Whether the file is a symbolic link.|
+| Type     | Description             |
+| ------- | --------------- |
+| boolean | Whether the file is a symbolic link.|
 
 **Error codes**
 
@@ -4249,7 +4420,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
   ```ts
   let filePath = pathDir + "/test";
-  let isSymbolicLink = fs.statSync(filePath).isSymbolicLink(); 
+  let isSymbolicLink = fs.statSync(filePath).isSymbolicLink();
   ```
 
 ## Stream
@@ -4266,9 +4437,9 @@ Closes this stream. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description           |
-  | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                 | Description           |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -4277,7 +4448,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.close().then(() => {
@@ -4297,9 +4468,9 @@ Closes this stream. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name     | Type                       | Mandatory  | Description           |
-  | -------- | ------------------------- | ---- | ------------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the stream is closed.|
+| Name     | Type                       | Mandatory  | Description           |
+| -------- | ------------------------- | ---- | ------------- |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the stream is closed.|
 
 **Error codes**
 
@@ -4308,7 +4479,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.close((err: BusinessError) => {
@@ -4350,9 +4521,9 @@ Flushes this stream. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                 | Description           |
-  | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type                 | Description           |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4361,7 +4532,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush().then(() => {
@@ -4382,9 +4553,9 @@ Flushes this stream. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-  | Name     | Type                       | Mandatory  | Description            |
-  | -------- | ------------------------- | ---- | -------------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| Name     | Type                       | Mandatory  | Description            |
+| -------- | ------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -4393,7 +4564,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush((err: BusinessError) => {
@@ -4437,16 +4608,16 @@ Writes data to this stream. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name    | Type                             | Mandatory  | Description                                      |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+| Name    | Type                             | Mandatory  | Description                                      |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+| options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-  | Type                   | Description      |
-  | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the length of the data written.|
+| Type                   | Description      |
+| --------------------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the length of the data written.|
 
 **Error codes**
 
@@ -4455,8 +4626,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { WriteOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   let writeOption: WriteOptions = {
@@ -4482,11 +4653,11 @@ Writes data to this stream. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | Name  | Type                           | Mandatory| Description                                                        |
-  | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer \| string | Yes  | Data to write. It can be a string or data from a buffer.                    |
-  | options  | [WriteOptions](#writeoptions11)                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
-  | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback used to return the result.                              |
+| Name  | Type                           | Mandatory| Description                                                        |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| buffer   | ArrayBuffer \| string | Yes  | Data to write. It can be a string or data from a buffer.                    |
+| options  | [WriteOptions](#writeoptions11)                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+| callback | AsyncCallback&lt;number&gt;     | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -4495,8 +4666,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { WriteOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   let writeOption: WriteOptions = {
@@ -4526,16 +4697,16 @@ Writes data to this stream. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name    | Type                             | Mandatory  | Description                                      |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+| Name    | Type                             | Mandatory  | Description                                      |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+| options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-  | Type    | Description      |
-  | ------ | -------- |
-  | number | Length of the data written in the file.|
+| Type    | Description      |
+| ------ | -------- |
+| number | Length of the data written in the file.|
 
 **Error codes**
 
@@ -4544,7 +4715,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs, { WriteOptions } from '@ohos.file.fs';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath,"r+");
   let writeOption: WriteOptions = {
@@ -4566,16 +4737,16 @@ Reads data from this stream. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+| options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
 
 **Return value**
 
-  | Type                                | Description    |
-  | ---------------------------------- | ------ |
-  | Promise&lt;number&gt; | Promise used to return the data read.|
+| Type                                | Description    |
+| ---------------------------------- | ------ |
+| Promise&lt;number&gt; | Promise used to return the data read.|
 
 **Error codes**
 
@@ -4584,9 +4755,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
-  import fs, { ReadOptions } from '@ohos.file.fs'; 
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { buffer } from '@kit.ArkTS';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
@@ -4614,11 +4785,11 @@ Reads data from this stream. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-  | Name     | Type                                      | Mandatory  | Description                                      |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
-  | options  | [ReadOptions](#readoptions11)                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
-  | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.                        |
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
+| options  | [ReadOptions](#readoptions11)                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.                        |
 
 **Error codes**
 
@@ -4627,9 +4798,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
-  import fs, { ReadOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { buffer } from '@kit.ArkTS';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
@@ -4659,16 +4830,16 @@ Reads data from this stream. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br> |
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+| options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data. This parameter is optional. By default, data is read from the current position.<br> |
 
 **Return value**
 
-  | Type    | Description      |
-  | ------ | -------- |
-  | number | Length of the data read.|
+| Type    | Description      |
+| ------ | -------- |
+| number | Length of the data read.|
 
 **Error codes**
 
@@ -4677,7 +4848,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs, { ReadOptions } from '@ohos.file.fs';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   let readOption: ReadOptions = {
@@ -4695,7 +4866,7 @@ Represents a **File** object opened by **open()**.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
 | Name  | Type  | Read-Only  | Writable  | Description     |
 | ---- | ------ | ---- | ---- | ------- |
@@ -4713,9 +4884,9 @@ Obtains the parent directory of this file object.
 
 **Return value**
 
-  | Type                                | Description    |
-  | ---------------------------------- | ------ |
-  | string | Parent directory obtained.|
+| Type                                | Description    |
+| ---------------------------------- | ------ |
+| string | Parent directory obtained.|
 
 **Error codes**
 
@@ -4724,7 +4895,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   console.info('The parent path is: ' + file.getParent());
@@ -4741,15 +4912,15 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
 
 **Return value**
 
-  | Type                                | Description    |
-  | ---------------------------------- | ------ |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                                | Description    |
+| ---------------------------------- | ------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -4758,7 +4929,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
@@ -4780,10 +4951,10 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.  |     
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
 
@@ -4792,7 +4963,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err: BusinessError) => {
@@ -4815,9 +4986,9 @@ Applies an exclusive lock or a shared lock on this file in non-blocking mode.
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |    
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
 
 **Error codes**
 
@@ -4876,10 +5047,10 @@ Called to return the specified status. Its parameters are passed in by [connectD
 
 **Parameters**
 
-  | Name | Type    | Mandatory  | Description                             |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | networkId   | string | Yes   | Network ID of the device.                            |
-  | status | number | Yes   | Status code of the distributed file system. The status code is the error code returned by **onStatus** invoked by **connectDfs**. If the device is abnormal when **connectDfs()** is called, **onStatus** will be called to return the error code:<br>- [13900046](errorcode-filemanagement.md#13900046): disconnection caused by software. 
+| Name | Type    | Mandatory  | Description                             |
+| ---- | ------ | ---- | ---------------------------------------- |
+| networkId   | string | Yes   | Network ID of the device.                            |
+  | status | number | Yes   | Status code of the distributed file system. The status code is the error code returned by **onStatus** invoked by **connectDfs**. If the device is abnormal when **connectDfs()** is called, **onStatus** will be called to return the error code:<br>- [13900046](errorcode-filemanagement.md#13900046): disconnection caused by software.
 
 ## RandomAccessFile
 
@@ -4887,7 +5058,7 @@ Provides APIs for randomly reading and writing a stream. Before invoking any API
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
 | Name        | Type  | Read-Only | Writable | Description             |
 | ----------- | ------ | ----  | ----- | ---------------- |
@@ -4946,16 +5117,16 @@ Writes data to a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name    | Type                             | Mandatory  | Description                                      |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+| Name    | Type                             | Mandatory  | Description                                      |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+| options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-  | Type                   | Description      |
-  | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the length of the data written.|
+| Type                   | Description      |
+| --------------------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the length of the data written.|
 
 **Error codes**
 
@@ -4964,10 +5135,10 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { WriteOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fsfileIo.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
   let writeOption: WriteOptions = {
@@ -4997,11 +5168,11 @@ Writes data to a file. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-  | Name  | Type                           | Mandatory| Description                                                        |
-  | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer \| string | Yes  | Data to write. It can be a string or data from a buffer.                    |
-  | options  | [WriteOptions](#writeoptions11)                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
-  | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback used to return the result.                              |
+| Name  | Type                           | Mandatory| Description                                                        |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| buffer   | ArrayBuffer \| string | Yes  | Data to write. It can be a string or data from a buffer.                    |
+| options  | [WriteOptions](#writeoptions11)                          | No  | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+| callback | AsyncCallback&lt;number&gt;     | Yes  | Callback used to return the result.                              |
 
 **Error codes**
 
@@ -5010,8 +5181,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { WriteOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
@@ -5045,16 +5216,16 @@ Writes data to a file. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name    | Type                             | Mandatory  | Description                                      |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
-  | options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
+| Name    | Type                             | Mandatory  | Description                                      |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer \| string | Yes   | Data to write. It can be a string or data from a buffer.                    |
+| options | [WriteOptions](#writeoptions11)                          | No   | The options are as follows:<br>- **length** (number): length of the data to write. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to write the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>- **encoding** (string): format of the data to be encoded when the data is a string. The default value is **'utf-8'**, which is the only value supported.|
 
 **Return value**
 
-  | Type    | Description      |
-  | ------ | -------- |
-  | number | Length of the data written in the file.|
+| Type    | Description      |
+| ------ | -------- |
+| number | Length of the data written in the file.|
 
 **Error codes**
 
@@ -5063,7 +5234,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import fs, { WriteOptions } from '@ohos.file.fs';
+  import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let writeOption: WriteOptions = {
@@ -5085,16 +5256,16 @@ Reads data from a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.|
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+| options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.|
 
 **Return value**
 
-  | Type                                | Description    |
-  | ---------------------------------- | ------ |
-  | Promise&lt;number&gt; | Promise used to return the data read.|
+| Type                                | Description    |
+| ---------------------------------- | ------ |
+| Promise&lt;number&gt; | Promise used to return the data read.|
 
 **Error codes**
 
@@ -5103,8 +5274,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { ReadOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
@@ -5134,11 +5305,11 @@ Reads data from a file. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-  | Name     | Type                                      | Mandatory  | Description                                      |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
-  | options  | [ReadOptions](#readoptions11)                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.|
-  | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.                        |
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
+| options  | [ReadOptions](#readoptions11)                                   | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.                        |
 
 **Error codes**
 
@@ -5147,8 +5318,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fs, { ReadOptions } from '@ohos.file.fs';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
@@ -5181,16 +5352,16 @@ Reads data from a file. This API returns the result synchronously.
 
 **Parameters**
 
-  | Name    | Type         | Mandatory  | Description                                      |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
-  | options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br> |
+| Name    | Type         | Mandatory  | Description                                      |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
+| options | [ReadOptions](#readoptions11)      | No   | The options are as follows:<br>- **length** (number): length of the data to read. This parameter is optional. The default value is the buffer length.<br>- **offset** (number): start position to read the data (it is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is read from the **filePointer**.<br> |
 
 **Return value**
 
-  | Type    | Description      |
-  | ------ | -------- |
-  | number | Length of the data read.|
+| Type    | Description      |
+| ------ | -------- |
+| number | Length of the data read.|
 
 **Error codes**
 
@@ -5219,9 +5390,9 @@ Obtains a **ReadStream** instance of this **RandomAccessFile**.
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [ReadStream](#readstream12) | **ReadStream** instance obtained.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [ReadStream](#readstream12) | **ReadStream** instance obtained.|
 
 **Example**
 
@@ -5243,9 +5414,9 @@ Obtains a **WriteStream** instance of this **RandomAccessFile**.
 
 **Return value**
 
-  | Type               | Description       |
-  | ------------------ | --------- |
-  | [WriteStream](#writestream12) | **WriteStream** instance obtained.|
+| Type               | Description       |
+| ------------------ | --------- |
+| [WriteStream](#writestream12) | **WriteStream** instance obtained.|
 
 **Example**
 
@@ -5409,7 +5580,7 @@ Defines the options used in **read()**.
 
 | Name       | Type      | Mandatory      | Description               |
 | ----------- | --------------- | ------------------ |------------------ |
-| length | number     | No| Length of the data to read. This parameter is optional. The default value is the buffer length.          |
+| length | number     | No| Length of the data to read, in bytes. This parameter is optional. The default value is the buffer length.          |
 |  offset    | number     | No| Start position of the file to read, which is determined by **filePointer** plus **offset**. This parameter is optional. By default, data is read from the **filePointer**.|
 
 ## ReadTextOptions<sup>11+</sup>
@@ -5420,8 +5591,8 @@ Defines the options used in **readText()**. It inherits from [ReadOptions](#read
 
 | Name       | Type      | Mandatory      | Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
-| length | number     | No| Length of the data to read. This parameter is optional. The default value is the file length.          |
-|  offset    | number     | No| Start position of the file to read. This parameter is optional. By default, data is read from the current position.|
+| length | number     | No| Length of the data to read, in bytes. This parameter is optional. The default value is the file length.          |
+|  offset    | number     | No| Start position of the file to read, in bytes. This parameter is optional. By default, data is read from the current position.|
 | encoding    | string | No| Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
 
 ## WriteOptions<sup>11+</sup>
@@ -5432,8 +5603,8 @@ Defines the options use din **write()**. It inherits from [Options](#options11).
 
 | Name       | Type      | Mandatory      | Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
-| length | number     | No| Length of the data to write. This parameter is optional. The default value is the buffer length.<br>**Atomic service API**: This API can be used in atomic services since API version 11.          |
-|  offset    | number     | No| Start position of the file to write, which is determined by **filePointer** plus **offset**. This parameter is optional. By default, data is written from the **filePointer**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| length | number     | No| Length of the data to write, in bytes. This parameter is optional. The default value is the buffer length.<br>**Atomic service API**: This API can be used in atomic services since API version 11.          |
+|  offset    | number     | No| Start position of the file to write, in bytes (which is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | encoding    | string | No| Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
 
 ## ListFileOptions<sup>11+</sup>
@@ -5448,18 +5619,18 @@ Defines the options used in **listFile()**.
 | ----------- | --------------- | ------------------ | ------------------ |
 | recursion | boolean     | No| Whether to list all files in the subfolders recursively. This parameter is optional. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.          |
 |  listNum    | number     | No| Number of file names to list. This parameter is optional. The default value is **0**, which means to list all files.|
-| filter    | [Filter](#filter10) | No| Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
+| filter    | [Filter](#filter10) | No| File filtering configuration. It specifies the file filtering conditions.|
 
 ## ReadStream<sup>12+</sup>
 
 Defines a readable stream. You need to use [fs.createReadStream](#fscreatereadstream12) to create a **ReadStream** instance.
 
-### Attributes
+### Properties
 
 | Name    | Type  | Read-Only  | Writable  | Description                                      |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |                        
-| bytesRead    | number | Yes   | No   | Number of bytes read by the readable stream.|   
-| path    | string | Yes   | No   | Path of the file corresponding to the readable stream.|   
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| bytesRead    | number | Yes   | No   | Number of bytes read by the readable stream.|
+| path    | string | Yes   | No   | Path of the file corresponding to the readable stream.|
 
 ### Seek
 
@@ -5472,16 +5643,16 @@ Adjusts the position of the readable stream offset pointer.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | offset | number | Yes   | Number of bytes to move the offset.|
-  | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| offset | number | Yes   | Number of bytes to move the offset, in bytes.|
+| whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
 
 **Return value**
 
-  | Type                  | Description        |
-  | --------------------- | ---------- |
-  | number | Position of the current offset as measured from the beginning of the file.|
+| Type                  | Description        |
+| --------------------- | ---------- |
+| number | Position of the current offset as measured from the beginning of the file, in bytes).|
 
 **Error codes**
 
@@ -5521,12 +5692,12 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 Defines a writeable stream. You need to use [fs.createWriteStream](#fscreatewritestream12) to create a **WriteStream** instance.
 
-### Attributes
+### Properties
 
 | Name    | Type  | Read-Only  | Writable  | Description                                      |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |                        
-| bytesWritten    | number | Yes   | No   | Number of bytes written to the writeable stream.|   
-| path    | string | Yes   | No   | Path of the file corresponding to the writeable stream.|   
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| bytesWritten    | number | Yes   | No   | Number of bytes written to the writeable stream.|
+| path    | string | Yes   | No   | Path of the file corresponding to the writeable stream.|
 
 ### Seek
 
@@ -5538,16 +5709,16 @@ Adjusts the position of the writeable stream offset pointer.
 
 **Parameters**
 
-  | Name   | Type    | Mandatory  | Description                         |
-  | ------ | ------ | ---- | --------------------------- |
-  | offset | number | Yes   | Offset to set.|
-  | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
+| Name   | Type    | Mandatory  | Description                         |
+| ------ | ------ | ---- | --------------------------- |
+| offset | number | Yes   | Offset to set, in bytes.|
+| whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
 
 **Return value**
 
-  | Type                  | Description        |
-  | --------------------- | ---------- |
-  | number | Position of the current offset as measured from the beginning of the file.|
+| Type                  | Description        |
+| --------------------- | ---------- |
+| number | Position of the current offset as measured from the beginning of the file.|
 
 **Error codes**
 
@@ -5591,8 +5762,8 @@ Defines the options used in **createRandomAccessFile()**.
 
 | Name       | Type      | Mandatory      |  Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
-| start   | number     | No| Start position to read the data. This parameter is optional. By default, data is read from the current position.          |
-| end     | number     | No|  End position. This parameter is optional. The default value is the end of the file.|
+| start   | number     | No| Start position to read the data, in bytes. This parameter is optional. By default, data is read from the current position.          |
+| end     | number     | No|  End position to read the data, in bytes. This parameter is optional. The default value is the end of the file.|
 
 ## ReadStreamOptions<sup>12+</sup>
 
@@ -5602,8 +5773,8 @@ Defines the options used in **createReadStream()**.
 
 | Name       | Type      | Mandatory      |  Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
-| start   | number     | No| Start position to read the data. This parameter is optional. By default, data is read from the current position.          |
-| end     | number     | No|  End position. This parameter is optional. The default value is the end of the file.|
+| start   | number     | No| Start position to read the data, in bytes. This parameter is optional. By default, data is read from the current position.          |
+| end     | number     | No|  End position to read the data, in bytes. This parameter is optional. The default value is the end of the file.|
 
 ## WriteStreamOptions<sup>12+</sup>
 
@@ -5613,5 +5784,5 @@ Defines the options used in **createWriteStream()**.
 
 | Name       | Type      | Mandatory      |  Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
-| start   | number     | No| Start position to write the data. This parameter is optional. By default, data is written from the beginning of the file.          |
+| start   | number     | No| Start position to write the data, in bytes. This parameter is optional. By default, data is written from the beginning of the file.          |
 | mode     | number     | No| [Option](#openmode) for creating the writeable stream. You must specify one of the following options.<br>- **OpenMode.READ_ONLY(0o0)**: read-only, which is the default value.<br>- **OpenMode.WRITE_ONLY(0o1)**: write-only.<br>- **OpenMode.READ_WRITE(0o2)**: read/write.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|

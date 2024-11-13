@@ -53,7 +53,7 @@ w.postMessage(a)
 
 > **NOTE**
 >
-> Since API version 11, a sendable class can be used in ArkTS widgets.
+> Since API version 11, the @Sendable decorator can be used to verify the sendable class.
 
 A sendable class must meet the following requirements:
 1. Be marked by and only by the [@Sendable decorator](#sendable-decorator-declaring-and-verifying-a-sendable-class).
@@ -63,9 +63,9 @@ A sendable class must meet the following requirements:
 
 > **NOTE**
 >
-> Since API version 12, a sendable function can be used in ArkTS widgets.
+> Since API version 12, the @Sendable decorator can be used to verify the sendable function.
 >
-> To use a sendable function in API version 12, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the function does not take effect. For details, see [Deveco Studio build-profile.json5 File Description](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-0000001778834297-V5#section511142752919).
+> To use a sendable function in API version 12, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the function does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
 
 A sendable function must meet the following requirements:
 1. Be marked by and only by the [@Sendable decorator](#sendable-decorator-declaring-and-verifying-a-sendable-function).
@@ -111,7 +111,7 @@ The interface **ISendable {}** is introduced to the ArkTS common library [@arkts
 | Use scenario restrictions              | The decorator can be used only in projects of the stage model. It can be used only in .ets files.                   |
 | Inheritance relationship restrictions for decorated classes       | A sendable class can inherit only from another sendable class. A common class cannot inherit from a sendable class. |
 | Property type restrictions for decorated objects | 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, and collections.Set.<br>2. Closure variables are not allowed.<br>3. Private properties must be defined using **private**, rather than the number sign (#).<br>4. Computed properties are not supported.          |
-| Other property restrictions for decorated objects | Member properties must be explicitly declared and initialized. They cannot be followed by exclamation marks (!).|
+| Other property restrictions for decorated objects| Member properties must be explicitly declared and initialized. They cannot be followed by exclamation marks (!).|
 | Method parameters restrictions for decorated objects | Local variables, input parameters, and variables imported through **import** are supported. Closure variables are not allowed.          |
 | Sendable class restrictions     | Properties cannot be added or deleted, but can be modified. The property types before and after the modification must be the same. Methods cannot be modified.  |
 | Use scenario                 | 1. The class methods can be used in TaskPool or Worker.<br>2. The sendable type is used when a large amount of data needs to be transmitted.        |
@@ -143,7 +143,7 @@ class SendableTestClass {
 | Restrictions for decorated function types         | Only common functions and async functions can be decorated by @Sendable. |
 | Restrictions for the decorated function body           | Do not use closure variables, except the sendable class and sendable function defined at the top layer.|
 | Sendable function restrictions   | Properties cannot be added, deleted, or modified.  |
-| Use scenario                 | 1. The sendable function can be used in TaskPool or Worker.<br>2. The sendable type is used when a large amount of data needs to be transmitted. |
+| Use scenario                 | 1. The sendable function can be used in TaskPool or Worker.<br>2. The sendable type is used when a large amount of data needs to be transmitted.|
 
 
 ### Decorator Example
@@ -580,15 +580,19 @@ class C {}
 type D = C; // A compile-time error is reported.
 ```
 
+## Precautions
+
+When using **Sendable** in HAR, enable the configuration of generating TS files. For details, see [Building TS Files](../quick-start/har-package.md#building-ts-files).
+
 ## Rules for Interaction with TS/JS
 
 ### ArkTS General Rules (Only for Sendable Objects Currently)
 
 | Rule Description       |
 | ----------- |
-| When a sendable object is passed to a TS/JS interface, the object layout cannot be operated (adding or deleting properties, or changing property types). |
-| When a sendable object is set to a TS/JS object, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object. |
-| When a sendable object is placed in a TS/JS container, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object. |
+| When a sendable object is passed to a TS/JS interface, the object layout cannot be operated (adding or deleting properties, or changing property types).|
+| When a sendable object is set to a TS/JS object, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object.|
+| When a sendable object is placed in a TS/JS container, the object layout cannot be operated (adding or deleting properties, or changing property types) after the TS/JS object obtains the sendable object.|
 
 > **NOTE**
 >
@@ -599,10 +603,10 @@ type D = C; // A compile-time error is reported.
 
 | Rule Description       |
 | ----------- |
-| Do not delete properties. The **napi_delete_property** interface cannot be used. |
+| Do not delete properties. The **napi_delete_property** interface cannot be used.|
 | Do not add properties. The following interfaces cannot be used: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.	|
-| Do not modify property types. The following interfaces cannot be used: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**. |
-| Symbol-related interfaces and types are not supported. The following interfaces cannot be used: **napi_create_symbol**, **napi_is_symbol_object**, and **napi_symbol**. |
+| Do not modify property types. The following interfaces cannot be used: **napi_set_property**, **napi_set_named_property**, and **napi_define_properties**.|
+| Symbol-related interfaces and types are not supported. The following interfaces cannot be used: **napi_create_symbol**, **napi_is_symbol_object**, and **napi_symbol**.|
 
 
 ## When to Use

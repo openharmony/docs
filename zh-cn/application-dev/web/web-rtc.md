@@ -1,16 +1,30 @@
 # 使用WebRTC进行Web视频会议
 
-Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发者在使用该功能时，需配置"ohos.permission.CAMERA"、"ohos.permission.MICROPHONE"权限。
+Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#onpermissionrequest9)接口接收权限请求通知，需在配置文件中声明相应的音频权限。
+
+- 使用摄像头和麦克风功能前请在module.json5中添加音频相关权限，权限的添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.CAMERA"
+      },
+      {
+        "name" : "ohos.permission.MICROPHONE"
+      }
+    ]
+   ```
 
 通过在JavaScript中调用W3C标准协议接口navigator.mediaDevices.getUserMedia()，该接口用于拉起摄像头和麦克风。constraints参数是一个包含了video和audio两个成员的MediaStreamConstraints对象，用于说明请求的媒体类型。
 
-在下面的示例中，点击index.html前端页面中的开起摄像头按钮，打开摄像头和麦克风。
+在下面的示例中，点击前端页面中的开起摄像头按钮再点击onConfirm，打开摄像头和麦克风。
 
 - 应用侧代码。
 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
@@ -20,6 +34,20 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发�
 
     aboutToAppear() {
       // 配置Web开启调试模式
+      webview.WebviewController.setWebDebuggingAccess(true);
+      let atManager = abilityAccessCtrl.createAtManager();
+      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+        .then((data) => {
+          console.info('data:' + JSON.stringify(data));
+          console.info('data permissions:' + data.permissions);
+          console.info('data authResults:' + data.authResults);
+        }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })
+    }
+
+    aboutToAppear() {
+      // 获取权限请求通知，点击onConfirm按钮后，拉起摄像头和麦克风。
       webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])

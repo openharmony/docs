@@ -256,6 +256,7 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -292,6 +293,7 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -328,6 +330,7 @@ on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -364,6 +367,7 @@ off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -528,7 +532,6 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
@@ -604,6 +607,7 @@ off(callback?: Callback&lt;T&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**

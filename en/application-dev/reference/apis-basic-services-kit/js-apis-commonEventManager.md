@@ -55,7 +55,7 @@ function publishCB(err: BusinessError) {
     if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("publish");
+        console.info("publish success");
     }
 }
 
@@ -115,7 +115,7 @@ function publishCB(err: BusinessError) {
 	if (err) {
         console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("publish");
+        console.info("publish success");
     }
 }
 
@@ -168,7 +168,7 @@ let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
 // Callback for subscriber creation.
 function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
     if(!err) {
-        console.info("createSubscriber");
+        console.info("createSubscriber success");
         subscriber = commonEventSubscriber;
     } else {
         console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
@@ -227,7 +227,7 @@ let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
 
 // Create a subscriber.
 commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => {
-    console.info("createSubscriber");
+    console.info("createSubscriber success");
     subscriber = commonEventSubscriber;
 }).catch((err: BusinessError) => {
     console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
@@ -331,14 +331,15 @@ function SubscribeCB(err: BusinessError, data:commonEventManager.CommonEventData
     if (err) {
         console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("subscribe ");
+        console.info("Consume callback " + JSON.stringify(data));
+        console.info("subscribe success");
     }
 }
 
 // Callback for subscriber creation.
 function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
     if(!err) {
-        console.info("createSubscriber");
+        console.info("createSubscriber success");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
         try {
@@ -404,7 +405,8 @@ function subscribeCB(err: BusinessError, data:commonEventManager.CommonEventData
     if (err) {
         console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("subscribe");
+        console.info("Consume callback " + JSON.stringify(data));
+        console.info("subscribe success");
     }
 }
 // Callback for subscriber creation.
@@ -412,7 +414,7 @@ function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.C
     if (err) {
         console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("createSubscriber");
+        console.info("createSubscriber success");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
         try {
@@ -428,7 +430,7 @@ function unsubscribeCB(err: BusinessError) {
     if (err) {
         console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("unsubscribe");
+        console.info("unsubscribe success");
     }
 }
 // Create a subscriber.

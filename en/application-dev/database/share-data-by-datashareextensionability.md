@@ -32,7 +32,7 @@ There are two roles in **DataShare**:
 ## How to Develop
 
 
-### Data Provider Application Development (Only for System Applications)
+### Data Provider Application Development (for System Applications Only)
 
 The [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) provides the following APIs. You can override these APIs as required.
 
@@ -55,7 +55,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 3. In the **DataShareExtAbility.ets** file, import the **DataShareExtensionAbility** module. You can override the service implementation as required. For example, if the data provider provides only the insert, delete, and query services, you can override only these APIs and import the dependency modules. If permission verification is required, override the callbacks using [getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid), [getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid), and [getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8) provided by the IPC module to obtain the data consumer information for permission verification.
    
    ```ts
-   import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore } from '@kit.ArkData';
+   import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore, DataShareResultSet } from '@kit.ArkData';
    import { Want } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit'
    ```
@@ -79,7 +79,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
        // Create an RDB store.
        relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
-         securityLevel: relationalStore.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S3
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
@@ -147,8 +147,8 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | type | Ability type. The value **dataShare** indicates the development is based on the **datashare** template.| Yes|
    | uri | Unique identifier for the data consumer to access the data provider.| Yes|
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
-   | readPermission | Permission required for data access. If this parameter is not set, read permission verification is not performed by default. | No|
-   | writePermission | Permission required for data modificiation. If this parameter is not set, write permission verification is not performed by default. | No|
+   | readPermission | Permission required for data access. If this parameter is not set, read permission verification is not performed by default.| No|
+   | writePermission | Permission required for data modification. If this parameter is not set, write permission verification is not performed by default.| No|
    | metadata   | Silent access configuration, which includes the following:<br>- **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>- **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
@@ -172,8 +172,8 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
    | Field           | Description                                                    | Mandatory|
    | ------------------- | ------------------------------------------------------------ | ---- |
-   | tableConfig         | Configuration label, which includes **uri** and **crossUserMode**.<br>- **uri**: specifies the range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>1. *****: indicates all databases and tables.<br>2. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}**: specifies a database.<br>3. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}/{*tableName*}**: specifies a table.<br>If URIs of different formats are configured, only the URI with the higher priority takes effect.<br>- **crossUserMode**: Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
-   | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** means to enable silent access, and the value **false** means the opposite.<br>The default  value is **true**.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect. | No  |
+   | tableConfig         | Configuration label, which includes **uri** and **crossUserMode**.<br>- **uri**: specifies the range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br> 1. *****: indicates all databases and tables.<br> 2. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}**: specifies a database.<br> 3. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}/{*tableName*}**: specifies a table.<br>If URIs of different formats are configured, only the URI with the higher priority takes effect.<br>- **crossUserMode**: Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
+   | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** means to enable silent access, and the value **false** means the opposite.<br>The default  value is **true**.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect.| No  |
    | launchInfos         | Launch information, which includes **storeId** and **tableNames**.<br>If the data in a table involved in the configuration changes, an extensionAbility will be started based on the URI in **extensionAbilities**. You need to set this parameter only when the service needs to start an extensionAbility to process data that is not actively changed by the service.<br>- **storeId**: database name, excluding the file name extension. For example, if the database name is **test.db**, set this parameter to **test**.<br>- **tableNames**: names of the database tables. Any change in a table will start an an extensionAbility. | No  |
    
    **data_share_config.json Example**
@@ -211,8 +211,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
-   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { dataShare, dataSharePredicates, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
    import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Define the URI string for communicating with the data provider.
@@ -284,7 +285,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
        console.info(`dsHelper update result:${data}`);
      });
      // Query data.
-     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err:BusinessError, data:number) => {
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err:BusinessError, data:DataShareResultSet) => {
        console.info(`dsHelper query result:${data}`);
      });
      // Delete data.
@@ -292,7 +293,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
        console.info(`dsHelper delete result:${data}`);
      });
      // Update data in batches.
-     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array>) => {
+     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
         // Traverse data to obtain the update result of each data record. value indicates the number of data records that are successfully updated. If value is less than 0, the update fails.
         let a = Object.entries(data);
         for (let i = 0; i < a.length; i++) {
@@ -308,3 +309,6 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      (dsHelper as dataShare.DataShareHelper).close();
    }
    ```
+
+
+

@@ -8,8 +8,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 | API                                                      | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events. |
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher) | Removes a watcher to unsubscribe from application events. |
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events.|
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher)| Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 
@@ -31,7 +31,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -48,12 +48,12 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   #include "json/json.h"
-   #include "hilog/log.h"
-   #include "hiappevent/hiappevent.h"
-   #include "hiappevent/hiappevent_event.h"
-   #undef LOG_TAG
-   #define LOG_TAG "testTag"
+   # include "json/json.h"
+   # include "hilog/log.h"
+   # include "hiappevent/hiappevent.h"
+   # include "hiappevent/hiappevent_event.h"
+   # undef LOG_TAG
+   # define LOG_TAG "testTag"
    ```
 
 4. Subscribe to application events.
@@ -149,13 +149,12 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 6. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
+   // Import the dependent module.
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // Register the system event watcher at startup.
-       testNapi.registerWatcher();
-     }
-   }
+
+   // Add the interface invocation to onCreate().
+   // Register the system event watcher at startup.
+   testNapi.registerWatcher();
    ```
 
 7. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
@@ -190,7 +189,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       HiAppEvent eventInfo.params.end_time=1717597063727
       HiAppEvent eventInfo.params.external_log=1
       HiAppEvent eventInfo.params.log_over_limit=0
-    ``` 
+    ```
 
     > **NOTE**
     > For details, see [Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-time-specifications) and [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events-arkts.md#main-thread-jank-event-specifications).
@@ -209,9 +208,11 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set onReceiverWatcher to nullptr.
+        // Destroy the created watcher and set systemEventWatcher to nullptr.
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```
+
+<!--no_check-->

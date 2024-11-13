@@ -28,17 +28,17 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    import { xml, util } from '@kit.ArkTS';
    ```
 
-2. 创建缓冲区，构造XmlSerializer对象（可以基于Arraybuffer构造XmlSerializer对象， 也可以基于DataView构造XmlSerializer对象）。
+2. 创建缓冲区，构造XmlSerializer对象。可以基于Arraybuffer构造XmlSerializer对象，也可以基于DataView构造XmlSerializer对象。
 
    ```ts
-   // 1.基于Arraybuffer构造XmlSerializer对象
+   // 方式1：基于Arraybuffer构造XmlSerializer对象
    let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
    let thatSer: xml.XmlSerializer = new xml.XmlSerializer(arrayBuffer); // 基于Arraybuffer构造XmlSerializer对象
 
-   // 2.基于DataView构造XmlSerializer对象
-   let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); // 创建一个2048字节的缓冲区
-   let dataView: DataView = new DataView(arrayBuffer); // 使用DataView对象操作ArrayBuffer对象
-   let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); // 基于DataView构造XmlSerializer对象
+   // 方式2：基于DataView构造XmlSerializer对象
+   // let arrayBuffer: ArrayBuffer = new ArrayBuffer(2048); 
+   // let dataView: DataView = new DataView(arrayBuffer); 
+   // let thatSer: xml.XmlSerializer = new xml.XmlSerializer(dataView); 
    ```
 
 3. 调用XML元素生成函数。
@@ -67,7 +67,7 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    ```ts
    let view: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
    let textDecoder: util.TextDecoder = util.TextDecoder.create(); // 调用util模块的TextDecoder类
-   let res: string = textDecoder.decodeWithStream(view); // 对view解码
+   let res: string = textDecoder.decodeToString(view); // 对view解码
    console.info(res);
    ```
 

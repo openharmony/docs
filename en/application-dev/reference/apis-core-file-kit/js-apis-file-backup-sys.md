@@ -84,7 +84,7 @@ Represents the backup priority.
 
 ## IncrementalBackupData<sup>12+</sup>
 
-Represents an incremental backup object, which inherits [IncrementalBackupTime](#incrementalbackuptime12), [FileManifestData](#filemanifestdata12), [BackupParams](#backupparams12), and [BackupPriority](#backuppriority12).
+Represents an incremental backup object, which inherits from [IncrementalBackupTime](#incrementalbackuptime12), [FileManifestData](#filemanifestdata12), [BackupParams](#backupparams12), and [BackupPriority](#backuppriority12).
 
 > **NOTE**
 >
@@ -106,7 +106,7 @@ inherits from [FileMeta](#filemeta) and [FileData](#filedata).
 ## File <sup>12+</sup>
 
 Defines a file object, which
-inherits [FileMeta](#filemeta), [FileData](#filedata), and [FileManifestData](#filemanifestdata12).
+inherits from [FileMeta](#filemeta), [FileData](#filedata), and [FileManifestData](#filemanifestdata12).
 
 > **NOTE**
 >
@@ -176,7 +176,6 @@ Called when the application backup or restore starts. If the callback is success
 | bundleName | string        | Yes  | Application name.                                         |
 | err        | BusinessError | No  | Error returned if the operation fails. If the operation is successful, **err** is **undefined**, and **data** is the bundle name.|
 
-
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
@@ -206,6 +205,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     console.info('onBundleBegin success');
   }
   ```
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -262,6 +262,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     console.info('onBundleEnd success with bundleName: ' + bundleName);
   }
   ```
+
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -327,48 +328,55 @@ Called when the backup service is suspended. If this callback fails to be invoke
 
 ### onResultReport
 
-onResultReport : AsyncCallback&lt;string&gt;
+onResultReport (bundleName: string, result: string)
 
-Called when the restore is complete. If this callback is triggered successfully, the number of files restored or application exception information will be returned.
+Called when the backup or restore is complete. If the callback is invoked successfully, the application bundle name and backup or restore information (such as the number of backed up or restored records or exception information) are returned.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 **Return value**
 
-| Name    | Type         | Mandatory| Description                                                       |
-| ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| result     | string        | Yes  | Application name and information in JSON format.                                         |
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
-
-| ID| Error Message                       |
-| -------- | ------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13500003 | Backup or restore timed out     |
-| 13500004 | Application extension death     |
-| 13600001 | IPC error                       |
-| 13900005 | I/O error                       |
-| 13900011 | Out of memory                   |
-| 13900020 | Invalid argument                |
-| 13900025 | No space left on device         |
-| 13900042 | Unknown error                   |
+| Name    | Type  | Mandatory| Description                           |
+| ---------- | ------ | ---- | ------------------------------- |
+| bundleName | string | Yes  | Bundle name.                       |
+| result     | string | Yes  | Application backup/restore information returned in JSON format.|
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
 
-  onResultReport: (err: BusinessError, result: string) => {
-    if (err) {
-      console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('onResultReport success, result: ' + result);
+  onResultReport: (bundleName: string, result: string) => {
+    console.info('onResultReport bundleName : ' + bundleName);
+    console.info('onResultReport result : ' + result);
   }
   ```
 
+### onProcess
+
+onProcess (bundleName: string, process: string)
+
+Called to report the backup or restore progress information. If the callback is invoked successfully, the progress information or exception information are returned.
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Return value**
+
+| Name    | Type  | Mandatory| Description                           |
+| ---------- | ------ | ---- | ------------------------------- |
+| bundleName | string | Yes  | Bundle name.                       |
+| process     | string | Yes  | Backup/restore progress information in JSON format.|
+
+**Example**
+
+  ```ts
+  import backup from '@ohos.file.backup';
+
+  onProcess: (bundleName: string, process: string) => {
+    console.info('onProcess bundleName : ' + bundleName);
+    console.info('onProcess processInfo : ' + process);
+  }
+  ```
 
 ## backup.getLocalCapabilities
 
@@ -562,6 +570,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     }
   }
   ```
+
 ## backup.getBackupInfo
 
 getBackupInfo(bundleToBackup: string): string;
@@ -621,7 +630,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 updateTimer(bundleName: string, timeout: number): void;
 
-Called after **onBundleBegin** and before **onBundleEnd**.
+Called after **onBundleBegin** and before **onBundleEnd** to set the backup or restore timer.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -632,7 +641,7 @@ Called after **onBundleBegin** and before **onBundleEnd**.
 | Name         | Type    | Mandatory| Description                      |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | Yes  | Name of the application, for which you want to set the backup or restore duration.|
-| timeout | number | Yes  | Maximum backup or restore duration, in ms.|
+| timeout | number | Yes  | Maximum backup or restore duration, in ms.<br>Value range: [0, 14400000]|
 
 **Return value**
 
@@ -667,6 +676,60 @@ Called after **onBundleBegin** and before **onBundleEnd**.
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('updateTimer failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+## backup.updateSendRate
+
+updateSendRate(bundleName: string, sendRate: number): boolean;
+
+Called after **onBundleBegin** and before **onBundleEnd** to update the send rate.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName|string | Yes  | Name of the target application.
+| sendRate | number | Yes  | Send rate to set, in file descriptors (FDs) per second.<br>Value range: 0 to 800<br>Default value: 60 FDs/second<br>The value **0** means to stop transmission. If the value is greater than **800**, the send rate is 800 FDs/second.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| boolean | A Boolean value indicating whether the send rate is set successfully.|
+
+**Error codes**
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | The input parameter is invalid. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import backup form '@ohos.file.backup';
+
+  function updateSendRate() {
+    try {
+      let bundleName = "com.example.myApp";
+      let sendRate = 300;
+      let result = backup.updateSendRate(bundleName, sendRate);
+      if (result) {
+        console.info('updateSendRate success');
+      } else {
+        console.info('updateSendRate fail');
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('updateSendRate failed with err: ' + JSON.stringify(err));
     }
   }
   ```
@@ -730,13 +793,12 @@ A constructor used to create a **SessionBackup** instance.
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
-  }
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
   ```
@@ -811,12 +873,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -843,7 +904,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
 Appends the applications whose data needs to be backed up. Currently, the obtained **SessionBackup** instance can be called only once in the entire backup process. This API uses a promise to return the result.
 
-From API version 12, the optional parameter **infos** is added to carry the information required for backup.
+From API version 12, the optional parameter **infos** is added to carry information about each application to be backed up. The mappings between **infos** and **bundlesToBackup** are identified by index.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -854,7 +915,7 @@ From API version 12, the optional parameter **infos** is added to carry the info
 | Name         | Type    | Mandatory| Description                      |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | Yes  | Array of the application names to append.|
-| infos           | string[] | No  | Information required for backup, which must be the same as the content with the same index in **bundlesToBackup**. This parameter is available since API version 12.|
+| infos           | string[] | No  | Array of the information about each application to be backed up. The mappings between **infos** and **bundlesToBackup** are identified by index. This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -915,12 +976,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -928,31 +988,51 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     try {
       let backupApps: Array<string> = [
         "com.example.hiworld",
+        "com.example.myApp"
       ];
       await sessionBackup.appendBundles(backupApps);
       console.info('appendBundles success');
+      // Application information is carried. In the following, infos, details, and type are fixed parameters.
       let infos: Array<string> = [
         `
-         {
-          "infos":[
+        {
+        "infos": [
             {
-              "details": [
-                {
-                  "detail": [
+                "details": [
                     {
-                      "source": "com.example.hiworld", // Old bundle name of the application.
-                      "target": "com.example.helloworld" // New bundle name of the application.
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
                     }
-                  ],
-                  "type": "app_mapping_relation"
-                }
-              ],
-              "type":"unitcast"
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.hiworld"
             }
-          ]
-         }
-        `
-      ]
+        ]
+    },
+    {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.myApp"
+            }
+        ]
+    }
+      `
+    ]
       await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
@@ -991,7 +1071,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
 | 13900042 | Unknown error                                                                                  |
-
 
 **Example**
 
@@ -1032,12 +1111,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
@@ -1111,12 +1189,11 @@ A constructor used to create a **SessionRestore** instance.
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1126,11 +1203,12 @@ A constructor used to create a **SessionRestore** instance.
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process. This API uses an asynchronous callback to return the result.
+Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process.
 
 > **NOTE**
 >
-> During the data restore, the capability file needs to be verified. You can use [getLocalCapabilities](#backupgetlocalcapabilities) to obtain **remoteCapabilitiesFd** and modify parameters based on the application to be restored. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
+> - During the data restore, the capability file needs to be verified.
+> - Therefore, **remoteCapabilitiesFd** can be obtained by using the [getLocalCapabilities](#backupgetlocalcapabilities) API provided by the backup service. You can modify the parameters based on the actual situation of your application. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1197,12 +1275,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1233,12 +1310,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
-Appends the applications whose data needs to be restored. Since API version 12, the optional parameter **infos** is added to carry the information required for application restore. In the entire process,
-this API can be called only once after an instance of the **SessionRestore** class is obtained. This API uses a promise to return the result.
+Appends the applications whose data needs to be restored. From API version 12, the optional parameter **infos** is added to carry information about each application to be restored. The mappings between **infos** and **bundlesToBackup** are identified by index.
+Currently, the obtained **SessionRestore** instance can be called only once in the entire restore process. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> During the data restore, the capability file needs to be verified. You can use [getLocalCapabilities](#backupgetlocalcapabilities) to obtain **remoteCapabilitiesFd** and modify the parameters based on the application to be restored. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
+> - During the data restore, the capability file needs to be verified.
+> - You can use [getLocalCapabilities](#backupgetlocalcapabilities) to obtain **remoteCapabilitiesFd**,
+    and modify the parameters based on the application to be restored. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1250,7 +1329,7 @@ this API can be called only once after an instance of the **SessionRestore** cla
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | Yes  | FD of the file containing the capabilities to be restored.|
 | bundlesToBackup      | string[] | Yes  | Array of the application names to append.      |
-| infos<sup>12+</sup>  | string[] | No  | Information required for backup, which must be the same as the content with the same index in **bundlesToBackup**. This parameter is available since API version 12.|
+| infos<sup>12+</sup>  | string[] | No  | Array of the information about each application to be restored. The mappings between **infos** and **bundlesToBackup** are identified by index. This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1311,12 +1390,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1329,6 +1407,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       ];
       await sessionRestore.appendBundles(fileData.fd, restoreApps);
       console.info('appendBundles success');
+      // Information of the applications to restore.
       let infos: Array<string> = [
         `
          {
@@ -1436,12 +1515,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1536,12 +1614,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1570,7 +1647,7 @@ Publishes **FileMeta** to the backup service to indicate that the file content i
 >
 > - This interface is part of the zero-copy feature, which reduces unnecessary memory copies and increases transmission efficiency. For details about the zero-copy methods, see the zero-copy APIs such as [fs.copyFile](js-apis-file-fs.md#fscopyfile) provided by [@ohos.file.fs](js-apis-file-fs.md).
 > - After the server returns a file handle through **onFileReady**, the client can copy data to the file corresponding to the file handle provided by the server through zero-copy operations.
-> - After all files in a package are copied, use **publishFile** to notify the backup service that the files are ready.
+> - This API can be called only after the caller has written all the data to be restored. The caller must ensure the consistency and integrity of the data to be written.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1602,11 +1679,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  testFileNum = 123;  // Number of files to back up.
+  let testFileNum = 123; // Number of files required for the restore.
   let testBundleName = 'com.example.myapplication'; // Test bundle name.
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // Count of the files backed up.
+  countMap.set(testBundleName, 0); // Initialize the number of files written.
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1616,7 +1693,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++;
+        countMap[file.bundleName]++; // Update the number of files written.
+        // Called only when the number of files to be restored is the same as the number of files actually written. This ensures data consistency and integrity.
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each package are received.
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
@@ -1655,12 +1733,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      },
+      onProcess: (bundleName: string, process: string) => {
+       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1679,7 +1756,7 @@ Publishes **FileMeta** to the backup service to indicate that the file content i
 >
 > - This interface is part of the zero-copy feature, which reduces unnecessary memory copies and increases transmission efficiency. For details about the zero-copy methods, see the zero-copy APIs such as [fs.copyFile](js-apis-file-fs.md#fscopyfile) provided by [@ohos.file.fs](js-apis-file-fs.md).
 > - After the server returns a file handle through **onFileReady**, the client can copy data to the file corresponding to the file handle provided by the server through zero-copy operations.
-> - After all files in a package are copied, use **publishFile** to notify the backup service that the files are ready.
+> - This API can be called only after the caller has written all the data to be restored. The caller must ensure the consistency and integrity of the data to be written.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1716,11 +1793,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  testFileNum = 123;  // Number of files to back up.
+  let testFileNum = 123; // Number of files required for the restore.
   let testBundleName = 'com.example.myapplication'; // Test bundle name.
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // Count of the files backed up.
+  countMap.set(testBundleName, 0); // Initialize the number of files written.
   async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
@@ -1737,7 +1814,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        countMap[file.bundleName]++;
+        countMap[file.bundleName]++; // Update the number of files written.
+        // Called only when the number of files to be restored is the same as the number of files actually written. This ensures data consistency and integrity.
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each package are received.
           publishFile(file);
         }
@@ -1767,12 +1845,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      },
+      onProcess: (bundleName: string, process: string) => {
+        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1819,11 +1896,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
   let g_session: backup.SessionRestore;
   let initMap = new Map<string, number>();
-  testFileNum = 123;  // Number of files to back up.
+  let testFileNum = 123; // Number of files required for the restore.
   let testBundleName = 'com.example.myapplication'; // Test bundle name.
   initMap.set(testBundleName, testFileNum);
   let countMap = new Map<string, number>();
-  countMap.set(testBundleName, 0); // Count of the files backed up.
+  countMap.set(testBundleName, 0); // Initialize the number of files written.
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1833,6 +1910,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
+        countMap[file.bundleName]++; // Update the number of files written.
+        // Called only when the number of files to be restored is the same as the number of files actually written. This ensures data consistency and integrity.
         if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each package are received.
           let fileMeta: backup.FileMeta = {
             bundleName: file.bundleName,
@@ -1871,12 +1950,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+      },
+      onProcess: (bundleName: string, process: string) => {
+        console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
       }
     };
     let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
@@ -1956,12 +2034,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
@@ -2045,12 +2122,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
@@ -2137,12 +2213,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     onBackupServiceDied: () => {
       console.info('service died');
     },
-    onResultReport: (err: BusinessError, result: string) => {
-      if (err) {
-        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('onResultReport success, result: ' + result);
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.

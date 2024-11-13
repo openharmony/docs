@@ -15,24 +15,26 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | 为SSL/TLS证书链校验模块定义C接口。 | 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | 定义SSL/TLS证书链校验模块的C接口需要的数据结构。 | 
-| [net_websocket.h](net__websocket_8h.md) | 为websocket客户端模块定义C接口。 | 
-| [net_websocket_type.h](net__websocket__type_8h.md) | 定义websocket客户端模块的C接口需要的数据结构。 | 
+| [net_ssl_c.h](net__ssl__c_8h.md) | 为SSL/TLS证书链校验模块定义C接口。<br>**引用文件：** \<network\/netstack\/net_ssl\/net_ssl_c.h\> | 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | 定义SSL/TLS证书链校验模块的C接口需要的数据结构。**引用文件：** \<network\/netstack\/net_ssl\/net_ssl_c_type.h\> | 
+| [net_websocket.h](net__websocket_8h.md) | 为websocket客户端模块定义C接口。**引用文件：** \<network\/netstack\/net_websocket.h\> | 
+| [net_websocket_type.h](net__websocket__type_8h.md) | 定义websocket客户端模块的C接口需要的数据结构。**引用文件：** \<network\/net_websocket_type.h\> | 
 
 
 ### 结构体
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [NetStack_CertBlob](_net_stack___cert_blob.md) | 证书数据结构体。 | 
-| [WebSocket_CloseResult](_web_socket___close_result.md) | websocket客户端来自服务端关闭的参数。  | 
-| [WebSocket_CloseOption](_web_socket___close_option.md) | websocket客户端主动关闭的参数。  | 
-| [WebSocket_ErrorResult](_web_socket___error_result.md) | websocket客户端来自服务端连接错误的参数。  | 
-| [WebSocket_OpenResult](_web_socket___open_result.md) | websocket客户端来自服务端连接成功的参数。  | 
-| [WebSocket_Header](_web_socket___header.md) | websocket客户端增加header头的链表节点。  | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md) | websocket客户端和服务端建立连接的参数。  | 
-| [WebSocket](_web_socket.md) | websocket客户端结构体。  | 
+| [NetStack_CertBlob](_net_stack___cert_blob.md) | 证书数据结构体。 |
+| [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) | 证书锁定信息数据结构体。 |
+| [NetStack_Certificates](_net_stack___certificates.md) | 证书信息数据结构体。 |
+| [WebSocket_CloseResult](_web_socket___close_result.md) | websocket客户端来自服务端关闭的参数。  |
+| [WebSocket_CloseOption](_web_socket___close_option.md) | websocket客户端主动关闭的参数。  |
+| [WebSocket_ErrorResult](_web_socket___error_result.md) | websocket客户端来自服务端连接错误的参数。  |
+| [WebSocket_OpenResult](_web_socket___open_result.md) | websocket客户端来自服务端连接成功的参数。  |
+| [WebSocket_Header](_web_socket___header.md) | websocket客户端增加header头的链表节点。  |
+| [WebSocket_RequestOptions](_web_socket___request_options.md) | websocket客户端和服务端建立连接的参数。  |
+| [WebSocket](_web_socket.md) | websocket客户端结构体。  |
 
 
 ### 类型定义
@@ -46,46 +48,56 @@
 
 ### 枚举
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [NetStack_CertType](#netstack_certtype) { <br/>NetStack_CERT_TYPE_PEM = 0, <br/>NetStack_CERT_TYPE_DER = 1, <br/>NetStack_CERT_TYPE_INVALID <br/>} | 证书类型枚举。 | 
+| [NetStack_CertType](#netstack_certtype) { <br/>NetStack_CERT_TYPE_PEM = 0, <br/>NetStack_CERT_TYPE_DER = 1, <br/>NetStack_CERT_TYPE_INVALID <br/>} | 证书类型枚举。 |
 | [WebSocket_ErrCode](#websocket_errcode) {<br/>WEBSOCKET_OK = 0, <br/>E_BASE = 1000, <br/>WEBSOCKET_CLIENT_NULL = (E_BASE + 1), <br/>WEBSOCKET_CLIENT_NOT_CREATED = (E_BASE + 2),<br/>WEBSOCKET_CONNECTION_ERROR = (E_BASE + 3), <br/>WEBSOCKET_CONNECTION_PARSE_URL_ERROR = (E_BASE + 5),<br/> WEBSOCKET_CONNECTION_NO_MEMORY = (E_BASE + 6), <br/>WEBSOCKET_CONNECTION_CLOSED_BY_PEER = (E_BASE + 7),<br/>WEBSOCKET_DESTROYED = (E_BASE + 8), <br/>WEBSOCKET_PROTOCOL_ERROR = (E_BASE + 9), <br/>WEBSOCKET_SEND_NO_MEMORY = (E_BASE + 10), <br/>WEBSOCKET_SEND_DATA_NULL = (E_BASE + 11),<br/>WEBSOCKET_DATA_LENGTH_EXCEEDED = (E_BASE + 12), <br/>WEBSOCKET_QUEUE_LENGTH_EXCEEDED = (E_BASE + 13),<br/> WEBSOCKET_NO_CLIENT_CONTEXT = (E_BASE + 14), <br/>WEBSOCKET_NO_HEADER_CONTEXT = (E_BASE + 15),<br/>WEBSOCKET_HEADER_EXCEEDED = (E_BASE + 16), <br/>WEBSOCKET_NO_CONNECTION = (E_BASE + 17), <br/>WEBSOCKET_NO_CONNECTION_CONTEXT = (E_BASE + 18)<br/>} | websocket错误码。  |
+| [NetStack_CertificatePinningKind](#netstack_certificatepinningkind) {<br/>PUBLIC_KEY,<br/>} | 证书锁定类型。 |
+| [NetStack_HashAlgorithm](#netstack_hashalgorithm) {<br/>SHA_256,<br/>} | 哈希算法类型。 |
 
 ### 函数
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Websocket客户端的构造函数。  | 
-| [OH_WebSocketClient_AddHeader](#oh_websocketclient_addheader) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_Header](_web_socket___header.md) header) | 将header头信息添加到client客户端request中。  | 
-| [OH_WebSocketClient_Connect](#oh_websocketclient_connect) (struct [WebSocket](_web_socket.md) \*client, const char \*url, struct [WebSocket_RequestOptions](_web_socket___request_options.md) options) | 客户端连接服务端。  | 
-| [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | 客户端向服务端发送数据。  | 
-| [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | 客户端主动关闭websocket连接。  | 
-| [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | 释放websocket连接上下文和资源。  | 
+| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Websocket客户端的构造函数。  |
+| [OH_WebSocketClient_AddHeader](#oh_websocketclient_addheader) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_Header](_web_socket___header.md) header) | 将header头信息添加到client客户端request中。  |
+| [OH_WebSocketClient_Connect](#oh_websocketclient_connect) (struct [WebSocket](_web_socket.md) \*client, const char \*url, struct [WebSocket_RequestOptions](_web_socket___request_options.md) options) | 客户端连接服务端。  |
+| [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | 客户端向服务端发送数据。  |
+| [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | 客户端主动关闭websocket连接。  |
+| [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | 释放websocket连接上下文和资源。  |
+| [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | 获取证书锁定信息。 |
+| [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | 获取证书信息。 |
+| [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | 释放证书内容。 |
 
 ### 变量
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [NetStack_CertBlob::type](#type) | 证书类型。 | 
-| [NetStack_CertBlob::size](#size) | 证书内容长度。 | 
-| [NetStack_CertBlob::data](#data) | 证书内容。 | 
-| [WebSocket_CloseResult::code](#code-13) | 关闭值。  | 
-| [WebSocket_CloseResult::reason](#reason-13) | 关闭原因。  | 
-| [WebSocket_CloseOption::code](#code-23) | 关闭值。  | 
-| [WebSocket_CloseOption::reason](#reason-23) | 关闭原因。  | 
-| [WebSocket_ErrorResult::errorCode](#errorcode) | 错误码。  | 
-| [WebSocket_ErrorResult::errorMessage](#errormessage) | 错误的消息。  | 
-| [WebSocket_OpenResult::code](#code-33) | websocket客户端连接成功码。  | 
-| [WebSocket_OpenResult::reason](#reason-33) | websocket客户端连接原因。  | 
-| [WebSocket_Header::fieldName](#fieldname) | header头的字段名。  | 
-| [WebSocket_Header::fieldValue](#fieldvalue) | header头的字段内容。  | 
-| [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | header头链表的next指针。  | 
-| [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | header头信息。 | 
-| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | 客户端接收连接消息的回调指针。  | 
-| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | 客户端接收消息的回调指针。  | 
-| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | 客户端接收错误消息的回调指针。  | 
-| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | 客户端接收关闭消息的回调指针。  | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | 客户端建立连接请求内容。 | 
+| [NetStack_CertBlob::type](#type) | 证书类型。 |
+| [NetStack_CertBlob::size](#size) | 证书内容长度。 |
+| [NetStack_CertBlob::data](#data) | 证书内容。 |
+| [NetStack_CertificatePinning::kind](#kind) | 证书锁定类型。 |
+| [NetStack_CertificatePinning::hashAlgorithm](#hashalgorithm) | 哈希算法。 |
+| [NetStack_CertificatePinning::publicKeyHash](#publickeyhash) | 哈希值。 |
+| [NetStack_Certificates::content](#content) | 证书的PEM内容。 |
+| [NetStack_Certificates::length](#length) | 证书数量。 |
+| [WebSocket_CloseResult::code](#code-13) | 关闭值。  |
+| [WebSocket_CloseResult::reason](#reason-13) | 关闭原因。  |
+| [WebSocket_CloseOption::code](#code-23) | 关闭值。  |
+| [WebSocket_CloseOption::reason](#reason-23) | 关闭原因。  |
+| [WebSocket_ErrorResult::errorCode](#errorcode) | 错误码。  |
+| [WebSocket_ErrorResult::errorMessage](#errormessage) | 错误的消息。  |
+| [WebSocket_OpenResult::code](#code-33) | websocket客户端连接成功码。  |
+| [WebSocket_OpenResult::reason](#reason-33) | websocket客户端连接原因。  |
+| [WebSocket_Header::fieldName](#fieldname) | header头的字段名。  |
+| [WebSocket_Header::fieldValue](#fieldvalue) | header头的字段内容。  |
+| [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | header头链表的next指针。  |
+| [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | header头信息。 |
+| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | 客户端接收连接消息的回调指针。  |
+| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | 客户端接收消息的回调指针。  |
+| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | 客户端接收错误消息的回调指针。  |
+| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | 客户端接收关闭消息的回调指针。  |
+| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | 客户端建立连接请求内容。 |
 
 
 ## 类型定义说明
@@ -219,6 +231,37 @@ websocket错误码
 | WEBSOCKET_NO_CONNECTION  | websocket客户端没有连接。 | 
 | WEBSOCKET_NO_CONNECTION_CONTEXT  | websocket客户端没有连接上下文。 | 
 
+### NetStack_CertificatePinningKind
+
+```
+enum NetStack_CertificatePinningKind
+```
+
+**描述**
+
+证书锁定类型枚举。
+
+**起始版本：** 12
+
+| 枚举值     | 描述           |
+| ---------- | -------------- |
+| PUBLIC_KEY | 公钥锁定类型。 |
+
+### NetStack_HashAlgorithm
+
+```
+enum NetStack_HashAlgorithm
+```
+
+**描述**
+
+哈希算法。
+
+**起始版本：** 12
+
+| 枚举值  | 描述          |
+| ------- | ------------- |
+| SHA_256 | SHA-256算法。 |
 
 ## 函数说明
 
@@ -277,6 +320,86 @@ uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert,
 2305024 - 证书颁发机构（CA）无效.
 
 2305027 - 证书不受信任.
+
+2305069 - 证书验证时发生错误调用或无效的参数.
+
+### OH_NetStack_GetPinSetForHostName()
+
+```
+int32_t OH_NetStack_GetPinSetForHostName (const char * hostname, NetStack_CertificatePinning * pin)
+```
+
+**描述**
+
+获取证书锁定信息。
+
+**系统能力：** SystemCapability.Communication.NetStack
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称     | 描述                           |
+| -------- | ------------------------------ |
+| hostname | 主机名。                       |
+| pin      | 用户接受证书锁定信息的结构体。 |
+
+**返回：**
+
+0 - 成功.
+
+401- 参数设置错误.
+
+2305999 - 内存错误.
+
+### OH_NetStack_GetCertificatesForHostName()
+
+```
+int32_t OH_NetStack_GetCertificatesForHostName(const char * hostname, NetStack_Certificates * certs)
+```
+
+**描述**
+
+获取证书信息。
+
+**系统能力：** SystemCapability.Communication.NetStack
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称     | 描述                       |
+| -------- | -------------------------- |
+| hostname | 主机名。                   |
+| certs    | 用户接受证书信息的结构体。 |
+
+**返回：**
+
+0 - 成功.
+
+401- 参数设置错误.
+
+2305999 - 内存错误.
+
+### OH_Netstack_DestroyCertificatesContent()
+
+```
+void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates * certs)
+```
+
+**描述**
+
+释放证书内容(certs->content)，当NetStack_Certificates使用结束时调用此方法释放该结构体中证书的内存。
+
+**系统能力：** SystemCapability.Communication.NetStack
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称  | 描述             |
+| ----- | ---------------- |
+| certs | 证书信息结构体。 |
 
 ### OH_WebSocketClient_AddHeader()
 
@@ -480,6 +603,55 @@ enum NetStack_CertType NetStack_CertBlob::type
 
 证书类型。
 
+### kind
+
+```
+enum NetStack_CertificatePinningKind NetStack_CertificatePinning::kind
+```
+
+**描述**
+
+证书锁定类型。
+
+### hashAlgorithm
+
+```
+enum NetStack_HashAlgorithm NetStack_CertificatePinning::hashAlgorithm
+```
+
+**描述**
+
+哈希算法。
+
+### publicKeyHash
+
+```
+char* NetStack_CertificatePinning::publicKeyHash
+```
+
+**描述**
+
+哈希值。
+
+### content
+
+```
+char** NetStack_Certificates::content
+```
+
+**描述**
+
+证书的PEM内容。
+
+### length
+
+```
+size_t NetStack_Certificates::length
+```
+
+**描述**
+
+证书数量。
 
 ### code [1/3]
 

@@ -1,6 +1,6 @@
-# 使用AVPlayer开发音频播放功能(ArkTS)
+# 使用AVPlayer播放音频(ArkTS)
 
-使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
+使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。如需播放PCM音频数据，请使用[AudioRenderer](../audio/using-audiorenderer-for-playback.md)。
 
 播放的全流程包含：创建AVPlayer，设置播放资源，设置播放参数（音量/倍速/焦点模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。
 
@@ -20,6 +20,7 @@
 - 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
 - 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[处理音频焦点事件](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
 - 面对设备同时连接多个音频输出设备的情况，应用可以通过[on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo11)监听音频输出设备的变化，从而做出相应处理。
+- 如果需要访问在线媒体资源，需要申请 ohos.permission.INTERNET 权限。
 
 ## 开发步骤及注意事项
 
@@ -52,6 +53,8 @@
    > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
    > 
    > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
+   > 
+   > 此外，如果需要设置音频渲染信息，则只允许在initialized状态下，第一次调用prepare()之前设置，以便音频渲染器信息在之后生效。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。若默认usage不满足需求，则须主动配置[audio.AudioRendererInfo](../../reference/apis-audio-kit/js-apis-audio.md#audiorendererinfo8)。
 
 4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
 
@@ -63,11 +66,11 @@
 
 ## 完整示例
 
-参考以下示例，完整地播放一首音乐。
+参考以下示例，完整地播放一首音乐，实现起播后3s暂停，暂停3s重新播放的效果。
 
 ```ts
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -96,6 +99,10 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // avplayer 设置播放源后触发该状态上报
           console.info('AVPlayer state initialized called.');
+          this.avPlayer.audioRendererInfo = {
+            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+            rendererFlags: 0
+          }
           avPlayer.prepare();
           break;
         case 'prepared': // prepare调用成功后上报该状态机
@@ -113,13 +120,19 @@ export class AVPlayerDemo {
               console.info('AVPlayer wait to play end.');
             }
           } else {
-            avPlayer.pause(); // 调用暂停接口暂停播放
+            setTimeout(() => {
+              console.info('AVPlayer playing wait to pause');
+              avPlayer.pause(); // 播放3s后调用暂停接口暂停播放
+            }, 3000)
           }
           this.count++;
           break;
         case 'paused': // pause成功调用后触发该状态机上报
           console.info('AVPlayer state paused called.');
-          avPlayer.play(); // 再次播放接口开始播放
+          setTimeout(() => {
+              console.info('AVPlayer paused wait to play again');
+              avPlayer.play(); // 暂停3s后再次调用播放接口开始播放
+            }, 3000)
           break;
         case 'completed': // 播放结束后触发该状态机上报
           console.info('AVPlayer state completed called.');
@@ -151,7 +164,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/01.mp3';
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
-    let file = await fileIo.open(path);
+    let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // 支持seek操作
     avPlayer.url = fdPath;
@@ -188,7 +201,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -199,11 +212,11 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // 获取播放文件的大小
-    this.fileSize = fileIo.statSync(path).size;
+    this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // 支持seek操作
     avPlayer.dataSrc = src;
@@ -223,7 +236,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf);
+        num = fs.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -233,7 +246,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // 不支持seek操作
@@ -251,3 +264,6 @@ export class AVPlayerDemo {
   }
 }
 ```
+
+<!--RP1-->
+<!--RP1End-->

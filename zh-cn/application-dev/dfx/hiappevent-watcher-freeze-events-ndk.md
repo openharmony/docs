@@ -50,6 +50,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
+   #include "napi/native_api.h"
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
@@ -58,7 +59,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅应用事件：
+4. 订阅系统事件：
 
    - onReceive类型观察者：
 
@@ -125,9 +126,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-         // 设置订阅的事件类型为EVENT_APP_FREEZE。
+         // 设置订阅的事件为EVENT_APP_FREEZE。
          const char *names[] = {EVENT_APP_FREEZE};
-         // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
+         // 开发者订阅感兴趣的事件，此处订阅了系统事件。
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
          OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -209,9 +210,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-         // 设置订阅的事件类型为EVENT_APP_FREEZE。
+         // 设置订阅的事件为EVENT_APP_FREEZE。
          const char *names[] = {EVENT_APP_FREEZE};
-         // 开发者订阅感兴趣的应用事件，此处订阅了按钮相关事件。
+         // 开发者订阅感兴趣的事件，此处订阅了系统事件。
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // 开发者设置已实现的回调函数，需OH_HiAppEvent_SetTriggerCondition设置的条件满足方可触发。
          OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -293,7 +294,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.params.log_over_limit=0
    ```
 
-10. 移除应用事件观察者：
+10. 移除事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -303,7 +304,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者：
+11. 销毁事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

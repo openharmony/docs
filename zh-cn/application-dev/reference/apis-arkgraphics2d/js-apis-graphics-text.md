@@ -8,6 +8,7 @@
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
+- [LineTypeset](#linetypeset14)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset14)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -20,6 +21,63 @@
 
 ```ts
 import { text } from '@kit.ArkGraphics2D';
+```
+
+## text.matchFontDescriptors<sup>14+</sup>
+
+matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
+
+根据指定的字体描述符返回所有符合要求的系统字体描述符，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| - | - | - | - |
+| desc | [FontDescriptor](#fontdescriptor14) | 是 | 指定需要用来做匹配的字体描述符，其中path字段不作为有效匹配字段，weight字段不填写时不生效，其他字段为非默认值时生效，如果所有字段都不填写或者是默认值，则返回所有的系统字体描述符。如果匹配失败，返回空数组。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| - | - |
+| Promise&lt;Array&lt;[FontDescriptor](#fontdescriptor14)&gt;&gt; | Promise对象，返回所有匹配到的系统字体描述符。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("font descriptor")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            console.info(`Get font descriptor start`)
+            let promise = text.matchFontDescriptors({
+              weight: text.FontWeight.W400,
+            })
+            promise.then((data) => {
+              console.info(`Font descriptor array size: ${data.length}`);
+              console.info(`Font descriptor result: ${JSON.stringify(data)}`)
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to match the font descriptor, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 ## TextAlign
@@ -188,6 +246,8 @@ import { text } from '@kit.ArkGraphics2D';
 
 省略号类型枚举。
 
+EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
+
 **系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称   | 值 | 说明      |
@@ -254,10 +314,10 @@ import { text } from '@kit.ArkGraphics2D';
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
 | decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线置，默认初始的Decoration。             |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 字体色，默认为白色。                         |
-| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。                          |
+| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。 目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
-| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体类型，默认为系统字体。                    |
+| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体族名称列表，默认为系统字体。                    |
 | fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为px。  |
 | letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为物理像素px。|
 | wordSpacing   | number                                               | 是 | 是 | 单词间距，浮点数，默认为0.0，单位为px。                 |
@@ -266,7 +326,7 @@ import { text } from '@kit.ArkGraphics2D';
 | halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
 | ellipsis      | string                                               | 是 | 是 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
 | ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。                        |
-| locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
+| locale        | string                                               | 是 | 是 | 语言类型，如字段为'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0px。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
@@ -284,7 +344,7 @@ import { text } from '@kit.ArkGraphics2D';
 | fontFamilies   | Array\<string>                                       | 是   | 是 | 字体类型，默认为系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
-| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。                                                      |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                             |
 | fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为物理像素px。                             |
 | height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
 | leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
@@ -292,6 +352,25 @@ import { text } from '@kit.ArkGraphics2D';
 | enabled        | boolean                                              | 是   | 是 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
 | heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
 | halfLeading    | boolean                                              | 是   | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
+
+## FontDescriptor<sup>14+</sup>
+
+字体描述符信息。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| - | - | -  | - | - |
+| path | string | 否 | 是 | 字体绝对路径，可取任意值，默认值为空字符串。 |
+| postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意值，默认值为空字符串。 |
+| fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
+| fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
+| fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors14)接口入参使用时，不使用该字段视作该字段为默认值。 |
+| width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
+| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
+| monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
+| symbolic | boolean | 否 | 是 | 是否支持符号，true表示支持，false表示不支持，默认值为false。 |
 
 ## FontCollection
 
@@ -338,7 +417,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径的文件，以name作为使用的别名，加载成字体。
+同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -347,28 +426,40 @@ loadFontSync(name: string, path: string | Resource): void
 | 参数名 | 类型               | 必填 | 说明                              |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | name  | string             | 是   | 加载成字体后，调用该字体所使用的命名。                                                |
-| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "File:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
+| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
 
 **示例：**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function textFunc() {
-  let fontCollection = new text.FontCollection;
-  fontCollection.loadFontSync('test', 'File://');
-}
+let fontCollection: text.FontCollection = new text.FontCollection();
 
 @Entry
 @Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
+struct RenderTest {
+  LoadFontSyncTest() {
+    fontCollection.loadFontSync('Clock_01', 'file:///system/fonts/HarmonyClock_01.ttf')
+    let fontFamilies: Array<string> = ["Clock_01"]
+    let myTextStyle: text.TextStyle = {
+      fontFamilies: fontFamilies
+    };
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
     }
+    let paragraphBuilder: text.ParagraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    let textData = "测试 loadFontSync 加载字体HarmonyClock_01.ttf";
+    paragraphBuilder.addText(textData);
+    let paragraph: text.Paragraph = paragraphBuilder.build();
+    paragraph.layoutSync(600);
+  }
+
+  aboutToAppear() {
+    this.LoadFontSyncTest();
+  }
+
+  build() {
   }
 }
 ```
@@ -604,6 +695,26 @@ getLongestLine(): number
 
 ```ts
 let longestLine = paragraph.getLongestLine();
+```
+
+### getLongestLineWithIndent<sup>13+</sup>
+
+getLongestLineWithIndent(): number
+
+获取文本最长一行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | ------------- |
+| number | 最长一行的宽度（该宽度包含当前行缩进的宽度），浮点数，单位为物理像素px。|
+
+**示例：**
+
+```ts
+let longestLineWithIndent = paragraph.getLongestLineWithIndent();
 ```
 
 ### getMinIntrinsicWidth
@@ -972,6 +1083,87 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 ```ts
 let lineMetrics =  paragraph.getLineMetrics(0);
+```
+
+## LineTypeset<sup>14+</sup>
+
+保存着文本内容以及样式的载体，可以用于计算单行排版信息。
+
+下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset14)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
+
+### getLineBreak<sup>14+</sup>
+
+getLineBreak(startIndex: number, width: number): number
+
+计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | 是 | 开始计算排版的起始位置（包括起始位置）。取值范围需要为[0,文本字符总数）的整数，参数非法时抛出异常。|
+| width | number | 是   | 可用于排版的宽度，大于0的浮点数，单位为物理像素px。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| number | 返回在限定排版宽度的情况下，从指定位置处开始可以排版的字符总数，取值为整数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+```
+
+### createLine<sup>14+</sup>
+
+createLine(startIndex: number, count: number): TextLine
+
+根据指定的排版区间生成文本行对象。 
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | 是 | 开始计算排版的起始位置，整数，取值范围为[0, 文本字符总数)。|
+| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak14)获得合理的可用于进行排版的字符总数。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| [TextLine](#textline) | 根据文本区间字符生成的TextLine对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 ```
 
 ## RunMetrics
@@ -1359,6 +1551,49 @@ struct Index {
 }
 ```
 
+### buildLineTypeset<sup>14+</sup>
+
+buildLineTypeset(): LineTypeset
+
+构建生成一个行排版器。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                     | 说明                           |
+| ------------------------ | ------------------------------ |
+| [LineTypeset](#linetypeset14)  | 可用于行排版的LineTypeset对象。|
+
+**示例：**
+
+```ts
+import { text } from '@kit.ArkGraphics2D'
+
+function test() {
+  let myParagraphStyle: text.ParagraphStyle = {
+    align: text.TextAlign.JUSTIFY,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addText("123456789");
+  let lineTypeset = ParagraphGraphBuilder.buildLineTypeset();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = test;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
 ### addSymbol
 
 addSymbol(symbolId: number): void
@@ -1369,9 +1604,9 @@ addSymbol(symbolId: number): void
 
 **参数：**
 
-| 参数名    | 类型    | 必填 | 说明                       |
-| -------- | ------- | ---- | -------------------------- |
-| symbolId | number  | 是   | 要设置的符号，十六进制。|
+| 参数名    | 类型    | 必填 | 说明                                                        |
+| -------- | ------- | ---- | ----------------------------------------------------------- |
+| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位及其对应的symbol名称请参阅以下链接中 JSON 文件的 value 字段和 name 字段： [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json)|
 
 **示例：**
 
@@ -1411,8 +1646,7 @@ struct Index {
 
 描述段落基础文本行结构的载体。
 
-下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口获取到TextLine对象实例，再通过此实例调用对应方法。
-
+下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset14)类的[createLine()](#createline14)接口获取到TextLine对象实例，再通过此实例调用对应方法。
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -1454,7 +1688,7 @@ struct Index {
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。
+获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset14)类的[creatLine](#createline14)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline14)方法时会自动销毁。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 

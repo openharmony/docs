@@ -26,7 +26,7 @@ Enumerates the modes used for preloading an application process.
 
 | Name       | Value | Description                        |
 | ----------- | --- | --------------------------- |
-| PRESS_DOWN  | 0 | The application process is preloaded when the application icon is pressed. |
+| PRESS_DOWN  | 0 | The application process is preloaded when the application icon is pressed.|
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
@@ -44,20 +44,20 @@ Checks whether the shared library is in use. This API uses a promise to return t
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| bundleName    | string   | Yes   | Bundle name of the shared library. |
+| bundleName    | string   | Yes   | Bundle name of the shared library.|
 | versionCode   | number   | Yes   | Version number of the shared library.     |
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -96,15 +96,15 @@ Checks whether the shared library is in use. This API uses an asynchronous callb
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| bundleName    | string   | Yes   | Bundle name of the shared library. |
+| bundleName    | string   | Yes   | Bundle name of the shared library.|
 | versionCode   | number   | Yes   | Version number of the shared library.     |
-| callback    | AsyncCallback\<boolean>> | Yes   | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite. |
+| callback    | AsyncCallback\<boolean>> | Yes   | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -128,7 +128,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number
 
@@ -138,18 +138,18 @@ Registers an observer to listen for the state changes of all applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the API to call. It is fixed at **'applicationState'**. |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | Yes | Application state observer, which is used to observe the lifecycle change of an application. |
+| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | --- | --- |
 | number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
 
@@ -157,7 +157,7 @@ Registers an observer to listen for the state changes of all applications.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -204,7 +204,7 @@ try {
 }
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
 
@@ -214,19 +214,19 @@ Registers an observer to listen for the state changes of a specified application
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the API to call. It is fixed at **'applicationState'**. |
-| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | Yes | Application state observer, which is used to observe the lifecycle change of an application. |
-| bundleNameList | `Array<string>` | Yes | **bundleName** array of the application. A maximum of 128 bundle names can be passed. |
+| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
+| bundleNameList | `Array<string>` | Yes| **bundleName** array of the application. A maximum of 128 bundle names can be passed.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | --- | --- |
 | number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
 
@@ -234,7 +234,7 @@ Registers an observer to listen for the state changes of a specified application
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -283,7 +283,7 @@ try {
 }
 ```
 
-## appManager.on<sup>11+</sup>
+## appManager.on('appForegroundState')<sup>11+</sup>
 
 on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 
@@ -297,16 +297,16 @@ Registers an observer to listen for application start or exit events. The observ
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type. It is fixed at **'appForegroundState'**. |
-| observer | [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | Yes | Observer used to listen for application start or exit events. |
+| type | string | Yes| Event type. It is fixed at **'appForegroundState'**.|
+| observer | [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | Yes| Observer used to listen for application start or exit events.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -334,7 +334,7 @@ try {
 }
 ```
 
-## appManager.on<sup>12+</sup>
+## appManager.on('abilityFirstFrameState')<sup>12+</sup>
 
 on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
 
@@ -348,17 +348,17 @@ Registers an observer to listen for the complete of the first frame rendering of
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory | Description                                                        |
+| Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type       | string                                                       | Yes  | Event type. It is fixed at **'abilityFirstFrameState'**.        |
 | observer   | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | Yes  | Observer used to listen for the complete of the first frame rendering of the ability.             |
-| bundleName | string                                                       | No  | Bundle name of the ability to be listened for. If this parameter is left blank, the event is listened for all applications. |
+| bundleName | string                                                       | No  | Bundle name of the ability to be listened for. If this parameter is left blank, the event is listened for all applications.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -386,7 +386,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -396,21 +396,21 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the API to call. It is fixed at **'applicationState'**. |
-| observerId | number | Yes | Digital code of the observer. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the API call result. You can perform error handling or custom processing in this callback. |
+| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
+| observerId | number | Yes| Digital code of the observer.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number): Promise\<void>
 
@@ -487,26 +487,26 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the API to call. It is fixed at **'applicationState'**. |
-| observerId | number | Yes | Digital code of the observer. |
+| type | string | Yes| Type of the API to call. It is fixed at **'applicationState'**.|
+| observerId | number | Yes| Digital code of the observer.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback. |
+| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -569,7 +569,7 @@ try {
 }
 ```
 
-## appManager.off<sup>11+</sup>
+## appManager.off('appForegroundState')<sup>11+</sup>
 
 off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
@@ -583,16 +583,16 @@ Deregisters the observer used to listen for application start or exit events.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type. It is fixed at **'appForegroundState'**.|
-| observer | [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | No | Observer used to listen for application start or exit events.|
+| type | string | Yes| Event type. It is fixed at **'appForegroundState'**.|
+| observer | [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | No| Observer used to listen for application start or exit events.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -633,7 +633,7 @@ try {
 }
 ```
 
-## appManager.off<sup>12+</sup>
+## appManager.off('abilityFirstFrameState')<sup>12+</sup>
 
 off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
 
@@ -647,16 +647,16 @@ Deregisters the observer used to listen for the complete of the first frame rend
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. It is fixed at **'abilityFirstFrameState'**.        |
-| observer | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | No  | Callback used for deregistration. If this parameter is left blank, all subscriptions to the specified event are canceled. |
+| observer | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | No  | Callback used for deregistration. If this parameter is left blank, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -702,19 +702,19 @@ Obtains applications that are running in the foreground. This API uses an asynch
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Yes | Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback. |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -754,19 +754,19 @@ Obtains applications that are running in the foreground. This API uses a promise
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Promise used to return an array holding the application state data. |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Promise used to return an array holding the application state data.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -791,28 +791,34 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 Kills a process by bundle name and account ID. This API uses a promise to return the result.
 
-> **NOTE** 
+> **NOTE**
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.KILL_APP_PROCESSES, or ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
-| accountId | number | Yes | ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). |
+| bundleName | string | Yes| Bundle name.|
+| accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+
+**Return value**
+
+| Type            | Description             |
+| -------------- | --------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -841,14 +847,13 @@ try {
 }
 ```
 
+## appManager.killProcessWithAccount<sup>13+</sup>
 
-## appManager.killProcessWithAccount
+killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: boolean, appIndex?: number): Promise\<void\>
 
-killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
+Kills a process by bundle name and account ID. This API uses a promise to return the result.
 
-Kills a process by bundle name and account ID. This API uses an asynchronous callback to return the result.
-
-> **NOTE** 
+> **NOTE**
 >
 > The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
 
@@ -856,21 +861,87 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description | 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes | Bundle name. | 
-  | accountId | number | Yes | ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9). | 
-  | callback | AsyncCallback\<void\> | Yes | Callback used to return the API call result. You can perform error handling or custom processing in this callback. | 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+| appIndex | number | No| Index of an application clone.|
+
+**Return value**
+
+| Type            | Description             |
+| -------------- | --------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = 'bundleName';
+let accountId = 0;
+let isClearPageStack = false;
+let appIndex = 1;
+
+try {
+  appManager.killProcessWithAccount(bundleName, accountId, isClearPageStack, appIndex).then(() => {
+    console.log('killProcessWithAccount success');
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
+
+## appManager.killProcessWithAccount
+
+killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
+
+Kills a process by bundle name and account ID. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.KILL_APP_PROCESSES, or ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Bundle name.| 
+  | accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).| 
+  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -903,24 +974,24 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 Kills a process by bundle name. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.KILL_APP_PROCESSES or ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the API call result. You can perform error handling or custom processing in this callback. |
+| bundleName | string | Yes| Bundle name.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -958,29 +1029,29 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 Kills a process by bundle name. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.KILL_APP_PROCESSES or ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -1008,6 +1079,66 @@ try {
 }
 ```
 
+## appManager.killProcessesByBundleName<sup>13+</sup>
+
+killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?: number): Promise\<void>
+
+Kills a process by bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+| appIndex | number | No| Index of an application clone.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = 'bundleName';
+let isClearPageStack = false;
+let appIndex = 1;
+
+try {
+  appManager.killProcessesByBundleName(bundleName, isClearPageStack, appIndex).then((data) => {
+    console.log('killProcessesByBundleName success.');
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
+
 ## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
@@ -1018,20 +1149,20 @@ Clears application data by bundle name. This API uses an asynchronous callback t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the API call result. You can perform error handling or custom processing in this callback. |
+| bundleName | string | Yes| Bundle name.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -1073,25 +1204,25 @@ Clears application data by bundle name. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback. |
+| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -1131,16 +1262,16 @@ Obtains the memory size of a process. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pid | number | Yes | Process ID. For details, see [getRunningProcessInfoByBundleName](#appmanagergetrunningprocessinfobybundlename10). |
-| callback | AsyncCallback\<number> | Yes | Callback used to return the API call result and the memory size (in KB). You can perform error handling or custom processing in this callback. |
+| pid | number | Yes| Process ID. For details, see [getRunningProcessInfoByBundleName](#appmanagergetrunningprocessinfobybundlename10).|
+| callback | AsyncCallback\<number> | Yes| Callback used to return the API call result and the memory size (in KB). You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1182,21 +1313,21 @@ Obtains the memory size of a process. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pid | number | Yes | Process ID. For details, see [getRunningProcessInfoByBundleName](#appmanagergetrunningprocessinfobybundlename10). |
+| pid | number | Yes| Process ID. For details, see [getRunningProcessInfoByBundleName](#appmanagergetrunningprocessinfobybundlename10). |
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<number> | Promise used to return the API call result and the memory size (in KB). You can perform error handling or custom processing in this callback. |
+| Promise\<number> | Promise used to return the API call result and the memory size (in KB). You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1235,16 +1366,16 @@ Obtains information about the running processes by bundle name. This API uses an
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
-| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes | Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback. |
+| bundleName | string | Yes| Bundle name.|
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes| Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1286,21 +1417,21 @@ Obtains information about the running processes by bundle name. This API uses a 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback. |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1339,17 +1470,17 @@ Obtains information about the running processes by bundle name and user ID. This
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
-| userId | number | Yes | User ID. |
-| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes | Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback. |
+| bundleName | string | Yes| Bundle name.|
+| userId | number | Yes| User ID.|
+| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes| Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1392,22 +1523,22 @@ Obtains information about the running processes by bundle name and user ID. This
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name. |
-| userId | number | Yes | User ID. |
+| bundleName | string | Yes| Bundle name.|
+| userId | number | Yes| User ID.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback. |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -1451,19 +1582,19 @@ Checks whether an application is running. This API uses a promise to return the 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| bundleName    | string   | Yes   | Bundle name. |
+| bundleName    | string   | Yes   | Bundle name.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -1501,14 +1632,14 @@ Checks whether an application is running. This API uses an asynchronous callback
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| bundleName    | string   | Yes   | Bundle name of the shared library. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Callback used to return the result. The value **true** means that the application is running, and **false** means the opposite. |
+| bundleName    | string   | Yes   | Bundle name of the shared library.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -1544,7 +1675,7 @@ Enumerates the application states. This enum can be used together with [AbilityS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
@@ -1571,18 +1702,18 @@ Obtains the information about the running process based on the bundle type. This
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| bundleType    | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype)  | Yes   | Bundle type. |
+| bundleType    | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype)  | Yes   | Bundle type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the process information. |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the process information.|
 
 **Error codes**
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not system application. |
@@ -1626,24 +1757,24 @@ Preloads an application process. A successful call does not always mean that the
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the application to preload. |
-| userId | number | Yes | User ID. |
-| mode | [PreloadMode](#appmanagerpreloadmode12) | Yes | Mode used for preloading. |
-| appIndex | number | No | Application index of the twin application to be preloaded. |
+| bundleName | string | Yes| Bundle name of the application to preload.|
+| userId | number | Yes| User ID.|
+| mode | [PreloadMode](#appmanagerpreloadmode12) | Yes| Mode used for preloading.|
+| appIndex | number | No| Application index of the twin application to be preloaded.|
 
 **Return value**
 
 | Type          | Description             |
 | -------------- | ---------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | Not system application. |
@@ -1691,26 +1822,27 @@ Obtains the information about running applications in multi-app mode. This API u
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the application. |
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
 | Type          | Description             |
 | -------------- | ---------------- |
-| Promise\<[RunningMultiAppInfo](js-apis-inner-application-runningMultiAppInfo-sys.md)> | Promise used to return the information about running applications with multi-app mode. |
+| Promise\<[RunningMultiAppInfo](js-apis-inner-application-runningMultiAppInfo-sys.md)> | Promise used to return the information about running applications with multi-app mode.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000072 | App clone or multi-instance is not supported. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 
 **Example**
 
@@ -1745,22 +1877,22 @@ Checks whether an application is running. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the application. |
-| appCloneIndex | number | No | Index of the app clone. |
+| bundleName | string | Yes| Bundle name.|
+| appCloneIndex | number | No| Index of the app clone.|
 
 **Return value**
 
 | Type          | Description             |
 | -------------- | ---------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | The application does not have permission to call the interface. |
 | 202 | Not system application. |
@@ -1784,5 +1916,132 @@ try {
     })
 } catch (err) {
   hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
+}
+```
+
+## appManager.terminateMission<sup>12+</sup>
+
+terminateMission(missionId: number): Promise\<void>
+
+Terminates a mission. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.KILL_APP_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| missionId | number | Yes| Mission ID, which can be obtained by calling [getMissionInfos](js-apis-app-ability-missionManager-sys.md#missionmanagergetmissioninfos).|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Button('start link', { type: ButtonType.Capsule, stateEffect: true })
+      .width('87%')
+      .height('5%')
+      .margin({ bottom: '12vp' })
+      .onClick(() => {
+        let missionId: number = 0;
+        try {
+          appManager.terminateMission(missionId).then(()=>{
+              console.log('terminateMission success.');
+            }).catch((err: BusinessError)=>{
+              console.error('terminateMission failed. err: ' + JSON.stringify(err));
+            })
+        } catch (paramError) {
+          let code = (paramError as BusinessError).code;
+          let message = (paramError as BusinessError).message;
+          console.error(`[appManager] error: ${code}, ${message}`);
+        }
+      })
+  }
+}
+```
+
+## appManager.getSupportedProcessCachePids<sup>13+</sup>
+
+getSupportedProcessCachePids(bundleName : string): Promise\<Array\<number>>
+
+Obtains the PIDs of processes that support quick startup after caching in a specified application.
+
+> **NOTE**
+>
+> This API can only be used to obtain the PIDs of the system account to which the caller belongs.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName    | string   | Yes   | Bundle name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<number>> | Promise used to return an array containing the PIDs.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.processcache";
+  appManager.getSupportedProcessCachePids(bundleName).then((pids: Array<number>) => {
+      hilog.info(0x0000, 'testTag', `pids: ${JSON.stringify(pids)}`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `get pids error, code: ${err.code}, msg:${err.message}`);
+    })
+} catch (err) {
+  hilog.error(0x0000, 'testTag', `get pids error, code: ${err.code}, msg:${err.message}`);
 }
 ```

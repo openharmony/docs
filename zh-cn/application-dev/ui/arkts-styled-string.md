@@ -1,6 +1,6 @@
 # 属性字符串（StyledString/MutableStyledString）
 
-属性字符串StyledString/MutableStyledString（MutableStyledString继承于StyledString，以下统一简称StyledString）是功能强大的标记对象，可用于字符或段落级别设置文本样式。通过将StyledString附加到文本组件， 可以通过多种方式更改文本，包括修改字号、添加字体颜色、使文本可点击以及自定义方式绘制文本等。具体用法可参考[StyledString](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)。
+属性字符串StyledString/MutableStyledString（MutableStyledString继承于StyledString，以下统一简称StyledString）是功能强大的标记对象，可用于字符或段落级别设置文本样式。通过将StyledString附加到文本组件， 可以通过多种方式更改文本，包括修改字号、添加字体颜色、使文本可点击以及自定义方式绘制文本等。具体用法可参考[属性字符串](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)。
 
 属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式。也可以自行创建CustomSpan, 以应用自定义样式。 
 
@@ -348,12 +348,12 @@
     }
 
     private async getPixmapFromMedia(resource: Resource) {
-      let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
         bundleName: resource.bundleName,
         moduleName: resource.moduleName,
         id: resource.id
       })
-      let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength))
       let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
         desiredPixelFormat: image.PixelMapFormat.RGBA_8888
       })
@@ -500,7 +500,7 @@ class MyCustomSpan extends CustomSpan {
     brush.setColor({ alpha: 255, red: 0, green: 0, blue: 0 })
     const font = new drawing.Font()
     font.setSize(vp2px(this.fontSize))
-    const textBlob = drawing.TextBlob.makeFromString(this.word.substr(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
+    const textBlob = drawing.TextBlob.makeFromString(this.word.substring(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
     canvas.attachBrush(brush)
 
     this.onDrawRectByRadius(context, options.x, options.x + vp2px(this.width), options.lineTop, options.lineBottom, 20)
@@ -509,7 +509,7 @@ class MyCustomSpan extends CustomSpan {
     canvas.drawTextBlob(textBlob, options.x, options.lineBottom - 30)
     brush.setColor({ alpha: 255, red: 255, green: 228 , blue: 196 })
     canvas.attachBrush(brush)
-    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substr(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
+    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
     canvas.drawTextBlob(textBlob1, options.x + vp2px(100), options.lineBottom - 30)
 
     canvas.detachBrush()
@@ -570,7 +570,7 @@ struct styled_string_demo6 {
     .height('100%')
   }
 }
-```
+  ```
 ![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
 
 ## 场景示例

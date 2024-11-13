@@ -16,30 +16,32 @@ The **ShortcutInfo** module defines shortcut information configured in the confi
 
 **System API**: This is a system API.
 
-| Name                     | Type  | Readable| Writable| Description                |
+| Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | Yes  | No  | Target bundle name of the shortcut.|
-| targetModule              | string | Yes  | No  | Target module name of the shortcut. |
-| targetAbility             | string | Yes  | No  | Target ability name of the shortcut.|
-| parameters<sup>12+</sup>  | Array\<[ParameterItem](#parameteritem12)> | Yes  | No  | Custom data in the shortcut configuration.|
+| targetModule              | string | Yes  | Yes | Target module name of the shortcut. |
+| targetAbility             | string | Yes  | No | Target ability name of the shortcut.|
+| parameters<sup>12+</sup>  | Array\<[ParameterItem](#parameteritem12)> | No  | Yes | Custom data in the shortcut configuration.|
 
 ## ShortcutInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
-**System API**: This is a system API.
+ **System API**: This is a system API.
 
-| Name                   | Type                                      | Readable| Writable| Description                        |
+| Name                   | Type                                      | Read-Only| Optional| Description                        |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
-| id                      | string                                     | Yes  | No  | ID of the application to which the shortcut belongs. |
-| bundleName              | string                                     | Yes  | No  | Name of the bundle that contains the shortcut.|
-| moduleName | string                                     | Yes  | No  | Module name of the shortcut.           |
-| hostAbility             | string                                     | Yes  | No  | Local ability name of the shortcut.  |
-| icon                    | string                                     | Yes  | No  | Icon of the shortcut.            |
-| iconId     | number                                     | Yes  | No  | ID of the shortcut icon.          |
-| label                   | string                                     | Yes  | No  | Label of the shortcut.             |
-| labelId    | number                                     | Yes  | No  | ID of the shortcut label.          |
-| wants                   | Array\<[ShortcutWant](#shortcutwant)> | Yes  | No  | Want information required for the shortcut.       |
+| id                      | string                                     | Yes  | No| ID of the application to which the shortcut belongs. |
+| bundleName              | string                                     | Yes  | No | Name of the bundle that contains the shortcut.|
+| moduleName | string                                     | Yes  | Yes | Module name of the shortcut.           |
+| hostAbility             | string                                     | Yes  | Yes | Local ability name of the shortcut.  |
+| icon                    | string                                     | Yes  | Yes | Icon of the shortcut.            |
+| iconId     | number                                     | Yes  | Yes | ID of the shortcut icon.          |
+| label                   | string                                     | Yes  | Yes | Label of the shortcut.             |
+| labelId    | number                                     | Yes  | Yes | ID of the shortcut label.          |
+| wants                   | Array\<[ShortcutWant](#shortcutwant)> | Yes  | Yes | Want information required for the shortcut.       |
+| appIndex<sup>12+</sup> | number | No| No| Index of an application clone.|
+| sourceType<sup>12+</sup> | number | No| No| Shortcut source type. The value **0** means a custom shortcut, and **1** means a static shortcut.|
 
 ## ParameterItem<sup>12+</sup>
 
@@ -47,9 +49,9 @@ Describes the custom data in the shortcut configuration.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
-| Name         | Type   | Read Only| Mandatory| Description                  |
-| ------------- | ------ | ---- | ---- | ---------------------- |
-| key           | string | Yes  | Yes  | Key of the custom data.      |
-| value         | string | Yes  | Yes  | Value of the custom data.|
+| Name         | Type   | Read-Only| Optional| Description                  |
+| ------------- | ------ | ---- | ---------------------- | ---------------------- |
+| key           | string | No  | No  | Key of the custom data.      |
+| value         | string | No  | No  | Value of the custom data.|
 
 <!--no_check-->

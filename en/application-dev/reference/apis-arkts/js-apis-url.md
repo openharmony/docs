@@ -27,15 +27,15 @@ A constructor used to create a **URLParams** instance.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | No | Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLParams**: object<br>The default value is **null**. |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLParams**: object<br>The default value is **null**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
 
@@ -69,16 +69,16 @@ Appends a key-value pair into the query string.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key of the key-value pair to append. |
-| value | string | Yes | Value of the key-value pair to append. |
+| name | string | Yes| Key of the key-value pair to append.|
+| value | string | Yes| Value of the key-value pair to append.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -103,15 +103,15 @@ Deletes key-value pairs of the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key of the key-value pairs to delete. |
+| name | string | Yes| Key of the key-value pairs to delete.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -136,21 +136,21 @@ Obtains all the values based on the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Target key. |
+| name | string | Yes| Target key.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string[] | All the values obtained. |
+| string[] | All the values obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -176,9 +176,9 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[string, string]&gt; | ES6 iterator. |
+| IterableIterator&lt;[string, string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -204,24 +204,24 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes | Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance. |
-| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this object. |
+| callbackFn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this object.|
 
 **Table 1** callbackFn parameter description
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes | Value that is currently traversed. |
-| key | string | Yes | Key that is currently traversed. |
-| searchParams | [URLParams](#urlparams9) | Yes | Instance that invokes the **forEach** method. |
+| value | string | Yes| Value that is currently traversed.|
+| key | string | Yes| Key that is currently traversed.|
+| searchParams | [URLParams](#urlparams9) | Yes| Instance that invokes the **forEach** method.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -251,22 +251,22 @@ Obtains the value of the first key-value pair based on the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key specified to obtain the value. |
+| name | string | Yes| Key specified to obtain the value.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | Returns the value of the first key-value pair if obtained. |
-| null | Returns **null** if no value is obtained. |
+| string | Returns the value of the first key-value pair if obtained.|
+| null | Returns **null** if no value is obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -292,21 +292,21 @@ Checks whether a key has a value.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key specified to search for its value. |
+| name | string | Yes| Key specified to search for its value.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value exists; returns **false** otherwise. |
+| boolean | Returns **true** if the value exists; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -331,16 +331,16 @@ Sets the value for a key. If key-value pairs matching the specified key exist, t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key of the value to set. |
-| value | string | Yes | Value to set. |
+| name | string | Yes| Key of the value to set.|
+| value | string | Yes| Value to set.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -384,9 +384,9 @@ Obtains an ES6 iterator that contains the keys of all the key-value pairs.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs. |
+| IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs.|
 
 **Example**
 
@@ -411,9 +411,9 @@ Obtains an ES6 iterator that contains the values of all the key-value pairs.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs. |
+| IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs.|
 
 **Example**
 
@@ -438,9 +438,9 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[string, string]&gt; | ES6 iterator. |
+| IterableIterator&lt;[string, string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -466,9 +466,9 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String of serialized search parameters, which is percent-encoded if necessary. |
+| string | String of serialized search parameters, which is percent-encoded if necessary.|
 
 **Example**
 
@@ -487,21 +487,21 @@ Provides APIs for parsing, constructing, standardizing, and encoding URL strings
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| hash | string | Yes | Yes | String that contains a harsh mark (#) followed by the fragment identifier of a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| host | string | Yes | Yes | Host information in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| hostname | string | Yes | Yes | Hostname (without the port) in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| href | string | Yes | Yes | String that contains the whole URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| origin | string | Yes | No | Read-only string that contains the Unicode serialization of the origin of the represented URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| password | string | Yes | Yes | Password in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| pathname | string | Yes | Yes | Path in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| port | string | Yes | Yes | Port in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| protocol | string | Yes | Yes | Protocol in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| search | string | Yes | Yes | Serialized query string in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | Yes | No | **URLSearchParams** object allowing access to the query parameters in a URL.<br>- **NOTE**: This attribute is supported since API version 7 and is deprecated since API version 9. You are advised to use params<sup>9+</sup> instead. |
-| params<sup>9+</sup> | [URLParams](#urlparams9) | Yes | No | **URLParams** object allowing access to the query parameters in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
-| username | string | Yes | Yes | Username in a URL. **Atomic service API**: This API can be used in atomic services since API version 11. |
+| hash | string | Yes| Yes| String that contains a harsh mark (#) followed by the fragment identifier of a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| host | string | Yes| Yes| Host information in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| hostname | string | Yes| Yes| Hostname (without the port) in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| href | string | Yes| Yes| String that contains the whole URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| origin | string | Yes| No| Read-only string that contains the Unicode serialization of the origin of the represented URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| password | string | Yes| Yes| Password in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| pathname | string | Yes| Yes| Path in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| port | string | Yes| Yes| Port in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| protocol | string | Yes| Yes| Protocol in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| search | string | Yes| Yes| Serialized query string in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.<br>- **NOTE**: This attribute is supported since API version 7 and is deprecated since API version 9. You are advised to use params<sup>9+</sup> instead.|
+| params<sup>9+</sup> | [URLParams](#urlparams9) | Yes| No| **URLParams** object allowing access to the query parameters in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| username | string | Yes| Yes| Username in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 
 **Example**
 
@@ -536,10 +536,10 @@ Creates a URL.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes | Input object. |
-| base | string \| URL | No | Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object. |
+| url | string | Yes| Input object.|
+| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
 
 **Example**
 
@@ -551,7 +551,7 @@ new url.URL('path/path1', b); // Output 'https://username:password@host:8080/pat
 let c = new url.URL('/path/path1', b);  // Output 'https://username:password@host:8080/path/path1'; 
 new url.URL('/path/path1', c); // Output 'https://username:password@host:8080/path/path1';
 new url.URL('/path/path1', a); // Output 'https://username:password@host:8080/path/path1';
-new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
+new url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output https://www.exampleUrl/path/path1
 new url.URL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
 new url.URL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
 new url.URL('https://www.example.com', ); // Output https://www.example.com/
@@ -580,16 +580,16 @@ Parses a URL.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes | Input object. |
-| base | string \| URL | No | Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object. |
+| url | string | Yes| Input object.|
+| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200002 | Invalid url string. |
@@ -614,9 +614,9 @@ Converts the parsed URL into a string.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | Website address in a serialized string. |
+| string | Website address in a serialized string.|
 
 **Example**
 
@@ -637,9 +637,9 @@ Converts the parsed URL into a JSON string.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | Website address in a serialized string. |
+| string | Website address in a serialized string.|
 
 **Example**
 ```ts
@@ -667,17 +667,9 @@ A constructor used to create a **URLSearchParams** instance.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No | Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
 
 **Example**
 
@@ -703,10 +695,10 @@ Appends a key-value pair into the query string.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key of the key-value pair to append. |
-| value | string | Yes | Value of the key-value pair to append. |
+| name | string | Yes| Key of the key-value pair to append.|
+| value | string | Yes| Value of the key-value pair to append.|
 
 **Example**
 
@@ -730,9 +722,9 @@ Deletes key-value pairs of the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key of the key-value pairs to delete. |
+| name | string | Yes| Key of the key-value pairs to delete.|
 
 **Example**
 
@@ -756,15 +748,15 @@ Obtains all the key-value pairs based on the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Target key. |
+| name | string | Yes| Target key.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string[] | All key-value pairs matching the specified key. |
+| string[] | All key-value pairs matching the specified key.|
 
 **Example**
 
@@ -789,9 +781,9 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[string, string]&gt; | ES6 iterator. |
+| IterableIterator&lt;[string, string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -819,18 +811,18 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes | Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance. |
-| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this object. |
+| callbackFn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this object.|
 
 **Table 1** callbackFn parameter description
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes | Value that is currently traversed. |
-| key | string | Yes | Key that is currently traversed. |
-| searchParams | [URLSearchParams](#urlsearchparamsdeprecated) | Yes | Instance that invokes the **forEach** method. |
+| value | string | Yes| Value that is currently traversed.|
+| key | string | Yes| Key that is currently traversed.|
+| searchParams | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| Instance that invokes the **forEach** method.|
 
 **Example**
 
@@ -858,16 +850,16 @@ Obtains the value of the first key-value pair based on the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key specified to obtain the value. |
+| name | string | Yes| Key specified to obtain the value.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | Returns the value of the first key-value pair if obtained. |
-| null | Returns **null** if no value is obtained. |
+| string | Returns the value of the first key-value pair if obtained.|
+| null | Returns **null** if no value is obtained.|
 
 **Example**
 
@@ -893,15 +885,15 @@ Checks whether a key has a value.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key specified to search for its value. |
+| name | string | Yes| Key specified to search for its value.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value exists; returns **false** otherwise. |
+| boolean | Returns **true** if the value exists; returns **false** otherwise.|
 
 **Example**
 
@@ -926,10 +918,10 @@ Sets the value for a key. If key-value pairs matching the specified key exist, t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes | Key of the value to set. |
-| value | string | Yes | Value to set. |
+| name | string | Yes| Key of the value to set.|
+| value | string | Yes| Value to set.|
 
 **Example**
 
@@ -975,9 +967,9 @@ Obtains an ES6 iterator that contains the keys of all the key-value pairs.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs. |
+| IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs.|
 
 **Example**
 
@@ -1004,9 +996,9 @@ Obtains an ES6 iterator that contains the values of all the key-value pairs.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs. |
+| IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs.|
 
 **Example**
 
@@ -1033,9 +1025,9 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;[string, string]&gt; | ES6 iterator. |
+| IterableIterator&lt;[string, string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -1062,9 +1054,9 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String of serialized search parameters, which is percent-encoded if necessary. |
+| string | String of serialized search parameters, which is percent-encoded if necessary.|
 
 **Example**
 

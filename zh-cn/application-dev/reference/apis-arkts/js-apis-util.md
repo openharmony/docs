@@ -273,7 +273,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。调用此函数会生成两个UUID，其中一个UUID进行缓存，一个UUID用于输出，首次调用时，参数是true或false无区别；下次调用时，如果参数是true，依旧缓存上次UUID，并生成新的UUID；如果参数是false，将生成两个UUID，其中一个UUID进行缓存，一个UUID进行输出。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。为了提升性能，此接口会默认使用缓存，即入参为true，最多可缓存128个随机的UUID。当缓存中128个UUID都被使用后，会重新进行一次缓存UUID的生成，以保证UUID的随机性。假如不需要使用缓存的UUID，请将入参设置为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -512,7 +512,7 @@ interface Person {
   name: string,
   age: number
 }
-let obj: Person = { name: 'Dany', age: 20 };
+let obj: Person = { name: 'Jack', age: 20 };
 let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
@@ -577,7 +577,7 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的方法名。                    |
+| methodName   | string   | 是   | 指定的方法名，不支持read-only方法。                    |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
 | before       | Function | 是   | 要插入的函数对象。函数有参数，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参数，无参时不做处理。 |
 
@@ -669,7 +669,7 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的原方法名。                   |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                   |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
 | after        | Function | 是   | 要插入的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），第二个参数是原方法的返回值（如果原方法没有返回值，则为undefined），其余参数是原方法的参数。函数也可以无参，无参时不做处理。  |
 
@@ -752,7 +752,7 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的原方法名。                  |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                  |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。       |
 | instead      | Function | 是   | 要用来替换原方法的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参，无参时不做处理。   |
 
@@ -830,8 +830,8 @@ TextDecoder的构造函数。
 **示例：**
 
 ```ts
-let result = new util.TextDecoder();
-let retStr = result.encoding;
+let textDecoder = new util.TextDecoder();
+let retStr = textDecoder.encoding;
 ```
 ### create<sup>9+</sup>
 
@@ -865,8 +865,8 @@ let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
   ignoreBOM : true
 }
-let result = util.TextDecoder.create('utf-8', textDecoderOptions)
-let retStr = result.encoding
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let retStr = textDecoder.encoding;
 ```
 
 ### decodeToString<sup>12+</sup>
@@ -911,8 +911,8 @@ let decodeToStringOptions: util.DecodeToStringOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
-let retStr = textDecoder.decodeToString(result, decodeToStringOptions);
+let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -962,15 +962,15 @@ let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -1041,15 +1041,15 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 ```ts
 let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decode( result , {stream: false});
+let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
 ```
 
@@ -1234,10 +1234,10 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeIntoUint8Array('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1270,10 +1270,10 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeInto('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeInto('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -1331,9 +1331,13 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
+
+> **说明：**
+>
+> 该接口要求参数numerator和denominator必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："parseRationalNumber: The type of Parameter must be integer"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1343,8 +1347,8 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 | 参数名      | 类型   | 必填 | 说明             |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | 是   | 分子，整数类型。 |
-| denominator | number | 是   | 分母，整数类型。 |
+| numerator   | number | 是   | 分子，整数类型。取值范围：-Number.MAX_VALUE <= numerator <= Number.MAX_VALUE。|
+| denominator | number | 是   | 分母，整数类型。取值范围：-Number.MAX_VALUE <= denominator <= Number.MAX_VALUE。|
 
 **错误码：**
 
@@ -1365,6 +1369,10 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 static createRationalFromString(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
+
+> **说明：**
+>
+> 该接口要求参数rationalString是字符串格式。如果传入的参数是小数类型字符串格式，不会进行拦截，但是会输出错误信息："createRationalFromString: The type of Parameter must be integer string"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1510,9 +1518,13 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
+
+> **说明：**
+>
+> 该接口要求参数number1和number2必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："getCommonFactor: The type of Parameter must be integer"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1522,8 +1534,8 @@ getCommonFactor(number1: number,number2: number): number
 
 | 参数名  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | 是   | 整数类型。 |
-| number2 | number | 是   | 整数类型。 |
+| number1 | number | 是   | 整数类型。-Number.MAX_VALUE <= number1 <= Number.MAX_VALUE。|
+| number2 | number | 是   | 整数类型。-Number.MAX_VALUE <= number2 <= Number.MAX_VALUE。|
 
 **返回值：**
 
@@ -1845,17 +1857,19 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 **示例：**
 
 ```ts
-let  pro : util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(1,8);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(1, 8);
 let result = pro.length;
+console.info('result = ' + result);
+// 输出结果：result = 2
 ```
 
 ### constructor<sup>9+</sup>
 
 constructor(capacity?: number)
 
-默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
+默认构造函数用于创建一个新的LRUCache实例，默认容量为64。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1865,12 +1879,20 @@ constructor(capacity?: number)
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | 否   | 指示要为缓冲区自定义的容量，默认值为64。 |
+| capacity | number | 否   | 指示要为缓冲区自定义的容量，不传默认值为64，最大值不能超过2147483647。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 ```
 
 
@@ -1878,7 +1900,7 @@ let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 
 updateCapacity(newCapacity: number): void
 
-将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。
+将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。当缓冲区中值的总数大于指定容量时，会执行删除操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1888,7 +1910,7 @@ updateCapacity(newCapacity: number): void
 
 | 参数名      | 类型   | 必填 | 说明                         |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | 是   | 指示要为缓冲区自定义的容量。 |
+| newCapacity | number | 是   | 指示要为缓冲区自定义的容量，最大值不能超过2147483647。 |
 
 **错误码：**
 
@@ -1901,7 +1923,7 @@ updateCapacity(newCapacity: number): void
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 pro.updateCapacity(100);
 ```
 
@@ -1924,8 +1946,8 @@ toString(): string
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 pro.get(3);
 console.info(pro.toString());
@@ -1952,15 +1974,17 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.getCapacity();
+console.info('result = ' + result);
+// 输出结果：result = 64
 ```
 
 ### clear<sup>9+</sup>
 
 clear(): void
 
-从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
+从当前缓冲区清除键值对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1969,10 +1993,15 @@ clear(): void
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.length;
 pro.clear();
+let res = pro.length;
+console.info('result = ' + result);
+console.info('res = ' + res);
+// 输出结果：result = 1
+// 输出结果：res = 0
 ```
 
 ### getCreateCount<sup>9+</sup>
@@ -2005,10 +2034,12 @@ class ChildLRUCache extends util.LRUCache<number, number> {
   }
 }
 let lru = new ChildLRUCache();
-lru.put(2,10);
+lru.put(2, 10);
 lru.get(3);
 lru.get(5);
 let res = lru.getCreateCount();
+console.info('res = ' + res);
+// 输出结果：res = 2
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -2030,10 +2061,12 @@ getMissCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 let result = pro.getMissCount();
+console.info('result = ' + result);
+// 输出结果：result = 0
 ```
 
 ### getRemovalCount<sup>9+</sup>
@@ -2055,11 +2088,13 @@ getRemovalCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.updateCapacity(2);
-pro.put(50,22);
+pro.put(50, 22);
 let result = pro.getRemovalCount();
+console.info('result = ' + result);
+// 输出结果：result = 0
 ```
 
 ### getMatchCount<sup>9+</sup>
@@ -2081,10 +2116,12 @@ getMatchCount(): number
 **示例：**
 
   ```ts
-  let pro: util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
+  let pro = new util.LRUCache<number, number>();
+  pro.put(2, 10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info('result = ' + result);
+  // 输出结果：result = 1
   ```
 
 ### getPutCount<sup>9+</sup>
@@ -2106,9 +2143,11 @@ getPutCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.getPutCount();
+console.info('result = ' + result);
+// 输出结果：result = 1
 ```
 
 ### isEmpty<sup>9+</sup>
@@ -2130,16 +2169,18 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.isEmpty();
+console.info('result = ' + result);
+// 输出结果：result = false
 ```
 
 ### get<sup>9+</sup>
 
 get(key: K): V | undefined
 
-表示要查询的键。
+返回键对应的值。当键不在缓冲区中时，通过[createDefault<sup>9+</sup>](#createdefault9)接口创建，若createDefault创建的值不为undefined时，此时会调用[afterRemoval<sup>9+</sup>](#afterremoval9)接口，返回createDefault创建的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2155,7 +2196,7 @@ get(key: K): V | undefined
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回undefined。 |
+| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回createDefault创建的值。 |
 
 **错误码：**
 
@@ -2168,16 +2209,18 @@ get(key: K): V | undefined
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result  = pro.get(2);
+console.info('result = ' + result);
+// 输出结果：result = 10
 ```
 
 ### put<sup>9+</sup>
 
 put(key: K,value: V): V
 
-将键值对添加到缓冲区。
+将键值对添加到缓冲区中，返回与添加的键关联的值。当缓冲区中值的总数大于容量时，会执行删除操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2187,14 +2230,14 @@ put(key: K,value: V): V
 
 | 参数名 | 类型 | 必填 | 说明                       |
 | ------ | ---- | ---- | -------------------------- |
-| key    | K    | 是   | 要添加的密钥。             |
+| key    | K    | 是   | 要添加的键。             |
 | value  | V    | 是   | 指示与要添加的键关联的值。 |
 
 **返回值：**
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 返回与添加的键关联的值；如果要添加的键已经存在，则返回原始值，如果键或值为空，则抛出此异常。 |
+| V    | 返回与添加的键关联的值。如果键或值为空，则抛出此异常。 |
 
 **错误码：**
 
@@ -2207,8 +2250,10 @@ put(key: K,value: V): V
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-let result = pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+let result = pro.put(2, 10);
+console.info('result = ' + result);
+// 输出结果：result = 10
 ```
 
 ### values<sup>9+</sup>
@@ -2230,11 +2275,13 @@ values(): V[]
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
-pro.put(2,10);
-pro.put(2,"anhu");
-pro.put("afaf","grfb");
+let pro = new util.LRUCache<number|string,number|string>();
+pro.put(2, 10);
+pro.put(2, "anhu");
+pro.put("afaf", "grfb");
 let result = pro.values();
+console.info('result = ' + result);
+// 输出结果：result = anhu,grfb
 ```
 
 ### keys<sup>9+</sup>
@@ -2256,16 +2303,19 @@ keys(): K[]
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 1);
 let result = pro.keys();
+console.info('result = ' + result);
+// 输出结果：result = 2,3
 ```
 
 ### remove<sup>9+</sup>
 
 remove(key: K): V | undefined
 
-从当前缓冲区中删除指定的键及其关联的值。
+从当前缓冲区中删除指定的键及其关联的值，返回键关联的值。如果键不存在时，则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2294,16 +2344,18 @@ remove(key: K): V | undefined
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.remove(20);
+console.info('result = ' + result);
+// 输出结果：result = undefined
 ```
 
 ### afterRemoval<sup>9+</sup>
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
-删除值后执行后续操作。
+删除值后执行后续操作，后续操作由开发者自行实现。本接口会在删除操作时被调用，如[get<sup>9+</sup>](#get9)、[put<sup>9+</sup>](#put9)、[remove<sup>9+</sup>](#remove9)、[clear<sup>9+</sup>](#clear9)、[updateCapacity<sup>9+</sup>](#updatecapacity9)接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2336,13 +2388,16 @@ class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
 
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
-      console.info('key: ' + key);
-      console.info('value: ' + value);
-      console.info('newValue: ' + newValue);
+      console.info('key = ' + key);
+      // 输出结果：key = 1
+      console.info('value = ' + value);
+      // 输出结果：value = 1
+      console.info('newValue = ' + newValue);
+      // 输出结果：newValue = null
     }
   }
 }
-let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+let lru = new ChildLRUCache<number, number>(2);
 lru.put(1, 1);
 lru.put(2, 2);
 lru.put(3, 3);
@@ -2381,20 +2436,18 @@ contains(key: K): boolean
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number | object, number> = new util.LRUCache();
-pro.put(2,10);
-class Lru{
-s : string = "";
-}
-let obj : Lru = {s : "key" };
-let result = pro.contains(obj);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+let result = pro.contains(2);
+console.info('result = ' + result);
+// 输出结果：result = true
 ```
 
 ### createDefault<sup>9+</sup>
 
 createDefault(key: K): V
 
-如果未计算特定键的值，则执行后续操作，参数表示丢失的键，返回与键关联的值。
+如果在缓冲区未匹配到键，则执行后续操作，参数表示未匹配的键，返回与键关联的值，默认返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2404,7 +2457,7 @@ createDefault(key: K): V
 
 | 参数名 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | 是   | 表示丢失的键。 |
+| key    | K    | 是   | 表示未匹配的键。 |
 
 **返回值：**
 
@@ -2423,8 +2476,10 @@ createDefault(key: K): V
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.createDefault(50);
+console.info('result = ' + result);
+// 输出结果：result = undefined
 ```
 
 ### entries<sup>9+</sup>
@@ -2446,13 +2501,16 @@ entries(): IterableIterator&lt;[K,V]&gt;
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro.entries();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -2461,10 +2519,6 @@ for (let value of arrayValue) {
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个键值对形式的二维数组。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2478,15 +2532,17 @@ for (let value of arrayValue) {
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -3607,7 +3663,7 @@ Types的构造函数。
 
 isAnyArrayBuffer(value: Object): boolean
 
-检查输入的value是否是ArrayBuffer类型。
+检查输入的value是否是ArrayBuffer或SharedArrayBuffer类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3623,7 +3679,7 @@ isAnyArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是ArrayBuffer类型为true，反之为false。 |
+| boolean | 判断的结果，如果是ArrayBuffer或SharedArrayBuffer类型为true，反之为false。 |
 
 **示例：**
 
@@ -3673,7 +3729,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 isArgumentsObject(value: Object): boolean
 
-检查输入的value是否是一个arguments对象类型。
+检查输入的value是否是一个arguments对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3689,7 +3745,7 @@ isArgumentsObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的arguments类型为true，反之为false。 |
+| boolean | 判断的结果，如果是一个arguments对象为true，反之为false。 |
 
 **示例：**
 
@@ -3921,11 +3977,51 @@ isExternal(value: Object): boolean
 
 **示例：**
 
+  ```cpp
+  // /entry/src/main/cpp/napi_init.cpp
+  #include "napi/native_api.h"
+  #include <js_native_api.h>
+  #include <stdlib.h>
+
+  napi_value result;
+  static napi_value Testexternal(napi_env env, napi_callback_info info) {
+      int* raw = (int*) malloc(1024);
+      napi_status status = napi_create_external(env, (void*) raw, NULL, NULL, &result);
+      if (status != napi_ok) {
+          napi_throw_error(env, NULL, "create external failed");
+          return NULL;
+      }
+      return result;
+  }
+
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports)
+  {
+      napi_property_descriptor desc[] = {
+          {"testexternal", nullptr, Testexternal, nullptr, nullptr, nullptr, napi_default, nullptr},
+      };
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+  // 此处已省略模块注册的代码, 你可能需要自行注册Testexternal方法
+  ...
+
+  ```
+
+  <!--code_no_check-->
   ```ts
+  import testNapi from 'libentry.so';
+
   let type = new util.types();
-  let result = type.isExternal(true);
+  const data = testNapi.testexternal();
+  let result = type.isExternal(data);
+
+  let result01 = type.isExternal(true);
   console.info("result = " + result);
-  // 输出结果：result = false
+  console.info("result01 = " + result01);
+  // 输出结果：result = true
+  // 输出结果：result01 = false
   ```
 
 
@@ -3999,10 +4095,6 @@ isGeneratorFunction(value: Object): boolean
 
 检查输入的value是否是generator函数类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -4021,10 +4113,17 @@ isGeneratorFunction(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
+  // /entry/src/main/ets/pages/test.ts
+  export function* foo() {}
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { foo } from './test'
+
   let type = new util.types();
-  let result = type.isGeneratorFunction(function* foo() {});
+  let result = type.isGeneratorFunction(foo);
   console.info("result = " + result);
   // 输出结果：result = true
   ```
@@ -4035,10 +4134,6 @@ isGeneratorFunction(value: Object): boolean
 isGeneratorObject(value: Object): boolean
 
 检查输入的value是否是generator对象类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4058,12 +4153,17 @@ isGeneratorObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
+  // /entry/src/main/ets/pages/test.ts
+  function* foo() {}
+  export const generator = foo();
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { generator } from './test'
+
   let type = new util.types();
-  function* foo() {};
-  const generator = foo();
   let result = type.isGeneratorObject(generator);
   console.info("result = " + result);
   // 输出结果：result = true
@@ -4494,15 +4594,11 @@ isStringObject(value: Object): boolean
   ```
 
 
-### isSymbolObjec<sup>8+</sup>
+### isSymbolObject<sup>8+</sup>
 
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4522,11 +4618,16 @@ isSymbolObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
+  // /entry/src/main/ets/pages/test.ts
+  export const symbols = Symbol('foo');
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { symbols } from './test'
+
   let type = new util.types();
-  const symbols = Symbol('foo');
   let result = type.isSymbolObject(Object(symbols));
   console.info("result = " + result);
   // 输出结果：result = true
@@ -4539,7 +4640,7 @@ isTypedArray(value: Object): boolean
 
 检查输入的value是否是TypedArray类型的辅助类型。
 
-TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、DataView。
+TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、BigUint64Array。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4830,10 +4931,6 @@ isModuleNamespaceObject(value: Object): boolean
 
 检查输入的value是否是Module Namespace Object类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -4852,14 +4949,21 @@ isModuleNamespaceObject(value: Object): boolean
 
 **示例：**
 
-<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
-  import { url } from '@kit.ArkTS';
+  // /entry/src/main/ets/pages/test.ts
+  export function func() {
+    console.info("hello world");
+  }
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import * as nameSpace from './test';
+
   let type = new util.types();
-  let result = type.isModuleNamespaceObject(url);
+  let result = type.isModuleNamespaceObject(nameSpace);
   console.info("result = " + result);
-  // 输出结果：result = false
+  // 输出结果：result = true
   ```
 
 

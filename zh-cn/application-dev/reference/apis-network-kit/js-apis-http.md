@@ -194,7 +194,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -224,6 +224,8 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+>
+> 如需传入cookies，请开发者自行在参数options中添加。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -277,7 +279,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -330,6 +332,8 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+>
+> 如需传入cookies，请开发者自行在参数options中添加。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -388,7 +392,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -498,7 +502,7 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -573,7 +577,7 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -675,7 +679,7 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
-> 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
+> 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
@@ -1097,11 +1101,11 @@ httpRequest.off("dataSendProgress");
 | readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
-| usingProxy<sup>10+</sup>     | boolean \| HttpProxy               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用 |
-| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用                             |
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过getContext().filesDir获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
 | resumeFrom<sup>11+</sup> | number | 否 | 用于设置下载起始位置，该参数只能用于GET方法，不要用于其他。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
 | resumeTo<sup>11+</sup> | number | 否 | 用于设置下载结束位置，该参数只能用于GET方法，不要用于其他。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />-使用HTTP PUT时，不应使用该选项，因为该选项可能与其他选项冲突。<br />-取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
-| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书 |
+| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书。 |
 | dnsOverHttps<sup>11+</sup> | string | 否 | 设置使用https协议的服务器进行DNS解析。<br />-参数必须以以下格式进行URL编码："https:// host:port/path"。 |
 | dnsServers<sup>11+</sup> | Array\<string\> | 否 | 设置指定的DNS服务器进行DNS解析。<br />-可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。<br />-服务器必须是IPV4或者IPV6地址。 |
 | maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制，默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。  |
@@ -1118,14 +1122,14 @@ HTTP 请求方法。
 
 | 名称    | 值      | 说明                |
 | :------ | ------- | :------------------ |
-| OPTIONS | "OPTIONS" | HTTP 请求 OPTIONS。 |
-| GET     | "GET"     | HTTP 请求 GET。     |
-| HEAD    | "HEAD"    | HTTP 请求 HEAD。    |
-| POST    | "POST"    | HTTP 请求 POST。    |
-| PUT     | "PUT"     | HTTP 请求 PUT。     |
-| DELETE  | "DELETE"  | HTTP 请求 DELETE。  |
-| TRACE   | "TRACE"   | HTTP 请求 TRACE。   |
-| CONNECT | "CONNECT" | HTTP 请求 CONNECT。 |
+| OPTIONS | "OPTIONS" | OPTIONS方法描述了目标资源的通信选项。 |
+| GET     | "GET"     | GET方法请求指定资源的表示。使用GET的请求应该只检索数据，不应该包含请求内容。 |
+| HEAD    | "HEAD"    | HEAD方法请求与GET请求相同的响应，但没有响应主体。 |
+| POST    | "POST"    | POST方法将实体提交给指定的资源，通常会导致服务器上的状态更改。 |
+| PUT     | "PUT"     | PUT方法将目标资源的所有当前表示替换为请求内容。 |
+| DELETE  | "DELETE"  | DELETE方法用于删除指定的资源。 |
+| TRACE   | "TRACE"   | TRACE方法沿到达目标资源的路径执行消息环回测试。 |
+| CONNECT | "CONNECT" | CONNECT方法建立到由目标资源标识的服务器的隧道。 |
 
 ## ResponseCode
 
@@ -1184,7 +1188,7 @@ request方法回调函数的返回值类型。
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']；<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
+| cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的原始cookies。开发者可自行处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 | performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | 是 | HTTP请求的各个阶段的耗时。|
 
 ## ClientCert<sup>11+</sup>
@@ -1507,7 +1511,7 @@ http协议版本。
 | :-------- | :----------- |
 | HTTP1_1   |  协议http1.1 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | HTTP2     |  协议http2 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| HTTP3<sup>11+</sup> | 协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />-仅对https的URL生效，http则会请求失败。 |
+| HTTP3<sup>11+</sup> | 协议http3，若系统或服务器不支持，则使用低版本的http协议请求。<br />- 仅对https的URL生效，http则会请求失败。 |
 
 ## CertType<sup>11+</sup>
 

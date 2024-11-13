@@ -33,19 +33,19 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数**：
 
-
-| 名称     | 类型                             | 装饰器类型 | 必填 | 说明         |
-| -------- | -------------------------------- | ---------- | ---- | ------------ |
-| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop      | 是   | 组件配置信息。 |
-| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | 是   | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
-| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | - | 是 | 保存编辑排序的回调函数，返回编辑后的数据。 |
-| onCancel | () => void | - | 是 | 取消保存数据的回调。 |
+| 名称     | 类型                             | 必填 | 装饰器类型 | 说明         |
+| -------- | -------------------------------- | ---------- | ---- | ---- |
+| options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | 是     | @Prop      | 组件配置信息。 |
+| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | 是    | -     | 传入的数据，最大长度为50，数据长度超过50，只会取前50的数据。 |
+| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | 是 | - | 保存编辑排序的回调函数，返回编辑后的数据。 |
+| onCancel | () => void | 是 | - | 取消保存数据的回调。 |
 
 ##  GridObjectSortComponentOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
@@ -60,6 +60,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 值    | 说明           |
 | -------- | ----- | -------------- |
 | IMAGE_TEXT | 'image_text' | 图片文字类型。 |
@@ -69,9 +71,11 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| id       | string \| number                       | 是   | 数据id序号，不可重复。                                       |
+| id       | number&nbsp;\|&nbsp;string             | 是   | 数据id序号，不可重复。                                       |
 | text     | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示文本信息。                                               |
 | selected | boolean                                | 是   | 是否已经被添加，添加：true，未添加：false。                  |
 | url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。 |

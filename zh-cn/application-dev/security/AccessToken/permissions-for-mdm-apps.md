@@ -225,7 +225,7 @@
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-允许在企业设备上安装企业MDM应用包
+允许在企业设备上安装企业MDM应用包。
 
 **权限级别**：system_core
 
@@ -238,7 +238,7 @@
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-允许企业MDM应用在企业设备上自升级
+允许企业MDM应用在企业设备上自升级。
 
 **权限级别**：system_core
 
@@ -469,3 +469,16 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12
+
+## ohos.permission.ENTERPRISE_RECOVERY_KEY
+
+允许应用管理企业级恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：13

@@ -7,7 +7,15 @@
 ![zh-cn_image_0000001599644876](figures/zh-cn_image_0000001599644876.gif)|![zh-cn_image_0000001599644877](figures/zh-cn_image_0000001599644877.gif)
 ---|---
 
-实现一镜到底动效的方式有多种，实际开发过程中，需要依据具体的场景，选择相应的合适的方式进行实现。推荐度由高至低排序，介绍一镜到底的基本实现方式。
+一镜到底的动效有多种实现方式，在实际开发过程中，应根据具体场景选择合适的方法进行实现。
+
+以下是不同实现方式的对比：
+
+| 一镜到底实现方式 | 特点 | 适用场景 |
+| ------ | ---- | ---- |
+| 不新建容器直接变化原容器 | 不发生路由跳转，需要在一个组件中实现展开及关闭两种状态的布局，展开后组件层级不变。| 适用于转场开销小的简单场景，如点开页面无需加载大量数据及组件。 |
+| 新建容器并跨容器迁移组件 | 通过使用NodeController，将组件从一个容器迁移到另一个容器，在开始迁移时，需要根据前后两个布局的位置大小等信息对组件添加位移及缩放，确保迁移开始时组件能够对齐初始布局，避免出现视觉上的跳变现象。之后再添加动画将位移及缩放等属性复位，实现组件从初始布局到目标布局的一镜到底过渡效果。 | 适用于新建对象开销大的场景，如视频直播组件点击转为全屏等。 |
+| 使用geometryTransition共享元素转场 | 利用系统能力，转场前后两个组件调用geometryTransition接口绑定同一id，同时将转场逻辑置于animateTo动画闭包内，这样系统侧会自动为二者添加一镜到底的过渡效果。 | 系统将调整绑定的两个组件的宽高及位置至相同值，并切换二者的透明度，以实现一镜到底过渡效果。因此，为了实现流畅的动画效果，需要确保对绑定geometryTransition的节点添加宽高动画不会有跳变。此方式适用于创建新节点开销小的场景。 |
 
 ## 不新建容器并直接变化原容器
 
@@ -116,7 +124,7 @@ struct Index {
     if (this.selectedIndex < 0) {
       return;
     }
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -201,7 +209,7 @@ export default struct  Post {
     .onClick(() => {
       this.selecteIndex = -1;
       this.selecteIndex = this.index;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 350,
         curve: Curve.Friction
       }, () => {
@@ -221,7 +229,7 @@ export default struct  Post {
 
 ## 新建容器并跨容器迁移组件
 
-通过[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)[自定义占位节点](arkts-user-defined-place-hoder.md)，利用[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)实现组件的跨节点迁移，配合属性动画给组件的迁移过程赋予一镜到底效果。这种一镜到底的实现方式可以结合多种转场方式使用，如导航转场（[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)），半模态转场（[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)）等。
+通过[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)[自定义占位节点](arkts-user-defined-place-hoder.md)，利用[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)实现组件的跨节点迁移，配合属性动画给组件的迁移过程赋予一镜到底效果。这种一镜到底的实现方式可以结合多种转场方式使用，如导航转场（[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)）、半模态转场（[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)）等。
 
 ### 结合Stack使用
 
@@ -330,7 +338,7 @@ struct ExpandPage {
     .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
     .position({ x: this.AnimationProperties.positionX, y: this.AnimationProperties.positionY })
     .onClick(() => {
-      animateTo({ curve: curves.springMotion(0.6, 0.9),
+      this.getUIContext()?.animateTo({ curve: curves.springMotion(0.6, 0.9),
         onFinish: () => {
           if (this.nodeController != undefined) {
             // 执行回调，折叠态节点获取卡片组件
@@ -592,7 +600,7 @@ export const deleteNode = (id: string) => {
 
 ### 结合Navigation使用
 
-可以利用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)的自定义导航转场动画能力（[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)，可参考[Navigation示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)）实现一镜到底动效。共享元素转场期间，组件由消失页面迁移至出现页面。
+可以利用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)的自定义导航转场动画能力（[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)，可参考Navigation[示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)）实现一镜到底动效。共享元素转场期间，组件由消失页面迁移至出现页面。
 
 以展开收起缩略图的场景为例，实现步骤为：
 
@@ -1346,7 +1354,7 @@ export const getMyNode = (): MyNodeController | undefined => {
 
 ### 结合BindSheet使用
 
-想实现半模态转场（[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)）的同时，组件从初始界面做一镜到底动画到半模态页面的效果，可以使用这样的设计思路。将bindSheet的[mode](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)设置为SheetMode.EMBEDDED，该模式下新起的页面可以覆盖在半模态弹窗上，页面返回后该半模态依旧存在，半模态面板内容不丢失。在半模态转场的同时设置一全模态转场（[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)）页面无转场出现，该页面仅有需要做共享元素转场的组件，通过属性动画，展示组件从初始界面至半模态页面的一镜到底动效，并在动画结束时关闭页面，并将该组件迁移至半模态页面。
+想实现半模态转场（[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)）的同时，组件从初始界面做一镜到底动画到半模态页面的效果，可以使用这样的设计思路。将[SheetOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)中的mode设置为SheetMode.EMBEDDED，该模式下新起的页面可以覆盖在半模态弹窗上，页面返回后该半模态依旧存在，半模态面板内容不丢失。在半模态转场的同时设置一全模态转场（[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)）页面无转场出现，该页面仅有需要做共享元素转场的组件，通过属性动画，展示组件从初始界面至半模态页面的一镜到底动效，并在动画结束时关闭页面，并将该组件迁移至半模态页面。
 
 以点击图片展开半模态页的场景为例，实现步骤为：
 
@@ -1417,7 +1425,7 @@ struct Index {
   private sheetRadius: number = 20;
 
   // 设置半模态上图片的布局监听
-  listener:inspector.ComponentObserver = inspector.createComponentObserver('target');
+  listener:inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('target');
   aboutToAppear(): void {
     // 设置半模态上图片的布局完成回调
     let onLayoutComplete:()=>void=():void=>{
@@ -1427,7 +1435,7 @@ struct Index {
       if (this.targetInfo.scale != 0 && this.targetInfo.clipWidth != 0 && this.targetInfo.clipHeight != 0 && !this.isAnimating) {
         this.isAnimating = true;
         // 用于一镜到底的模态页的属性动画
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 1000,
           curve: Curve.Friction,
           onFinish: () => {
@@ -1443,13 +1451,13 @@ struct Index {
           this.clipHeight = this.targetInfo.clipHeight;
           // 修正因半模态高度和缩放导致的高度差
           this.translateY = this.targetInfo.translateY +
-            (px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
-              - px2vp(WindowUtils.navigationIndicatorHeight_px) - px2vp(WindowUtils.topAvoidAreaHeight_px));
+            (this.getUIContext().px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
+              - this.getUIContext().px2vp(WindowUtils.navigationIndicatorHeight_px) - this.getUIContext().px2vp(WindowUtils.topAvoidAreaHeight_px));
           // 修正因缩放导致的圆角差异
           this.radius = this.sheetRadius / this.scaleValue
         })
         // 原图从透明到出现的动画
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 2000,
           curve: Curve.Friction,
         }, () => {
@@ -1476,15 +1484,15 @@ struct Index {
     let itemTranslateY: number = 0;
 
     if (isUseWidthScale) {
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
       itemClipWidth = '100%';
-      itemClipHeight = px2vp((itemInfo.height) / itemScale);
-      itemTranslateY = px2vp(itemInfo.top - ((vp2px(itemClipHeight) - vp2px(itemClipHeight) * itemScale) / 2));
+      itemClipHeight = this.getUIContext().px2vp((itemInfo.height) / itemScale);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - ((this.getUIContext().vp2px(itemClipHeight) - this.getUIContext().vp2px(itemClipHeight) * itemScale) / 2));
     } else {
-      itemTranslateY = px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
       itemClipHeight = '100%';
-      itemClipWidth = px2vp((itemInfo.width) / itemScale);
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
+      itemClipWidth = this.getUIContext().px2vp((itemInfo.width) / itemScale);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
     }
 
     return {
@@ -1946,7 +1954,7 @@ struct IfElseGeometryTransition {
       }
     }
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         curve: curves.springMotion()
       }, () => {
         this.isShow = !this.isShow;
@@ -1988,7 +1996,7 @@ struct Index {
 
   private onAvatarClicked(index: number): void {
     this.selectedIndex = index;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -1998,7 +2006,7 @@ struct Index {
   }
 
   private onPersonalPageBack(index: number): void {
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -2118,3 +2126,4 @@ export default struct  Post {
 针对共享元素转场开发，有以下相关实例可供参考：
 
 - [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
+<!--RP1--><!--RP1End-->

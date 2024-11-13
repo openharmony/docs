@@ -33,16 +33,16 @@ A constructor used to create an **XmlSerializer** instance.
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description                                            |
+| Name  | Type                             | Mandatory| Description                                            |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to set. |
+| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to set.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -69,16 +69,16 @@ Sets an attribute.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description           |
+| Name| Type  | Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
 | name   | string | Yes  | Key of the attribute.  |
-| value  | string | Yes  | Value of the attribute. |
+| value  | string | Yes  | Value of the attribute.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -93,8 +93,8 @@ thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <note importance="high"/>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high"/>
 ```
 
 ### addEmptyElement
@@ -113,15 +113,15 @@ Adds an empty element.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description              |
+| Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| name   | string | Yes  | Name of the empty element to add. |
+| name   | string | Yes  | Name of the empty element to add.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -134,8 +134,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.addEmptyElement("d");
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <d/>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <d/>
 ```
 
 ### setDeclaration
@@ -157,8 +157,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <?xml version="1.0" encoding="utf-8"?>
 ```
 
@@ -180,15 +180,15 @@ Writes the start tag based on the given element name.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description              |
+| Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| name   | string | Yes  | Name of the element. |
+| name   | string | Yes  | Name of the element.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -203,8 +203,8 @@ thatSer.startElement("note");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <note>Happy</note>
 ```
 
@@ -233,8 +233,8 @@ thatSer.startElement("note");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <note>Happy</note>
 ```
 
@@ -254,16 +254,16 @@ Sets the namespace for an element tag.
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                          |
+| Name   | Type  | Mandatory| Description                          |
 | --------- | ------ | ---- | ------------------------------ |
 | prefix    | string | Yes  | Prefix of the element and its child elements.    |
-| namespace | string | Yes  | Namespace to set. |
+| namespace | string | Yes  | Namespace to set.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -278,8 +278,8 @@ thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim());
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result);
 // <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
 ```
 
@@ -295,15 +295,15 @@ Sets a comment.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                |
+| Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| text   | string | Yes  | Comment to set. |
+| text   | string | Yes  | Comment to set.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -316,8 +316,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setComment("Hello, World!");
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <!--Hello, World!-->
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!--Hello, World!-->
 ```
 
 ### setCDATA
@@ -336,15 +336,15 @@ Adds data to the CDATA tag. The structure of the generated CDATA tag is "\<! <![
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description             |
+| Name| Type  | Mandatory| Description             |
 | ------ | ------ | ---- | ----------------- |
-| text   | string | Yes  | CDATA data to set. |
+| text   | string | Yes  | CDATA data to set.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -357,8 +357,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM')
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <![CDATA[root SYSTEM]]>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <![CDATA[root SYSTEM]]>
 ```
 
 ### setText
@@ -373,15 +373,15 @@ Sets a tag value.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| text   | string | Yes  | Tag value to set, which is the content of the **text** attribute. |
+| text   | string | Yes  | Tag value to set, which is the content of the **text** attribute.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -397,8 +397,8 @@ thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy");
 thatSer.endElement();
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <note importance="high">Happy</note>
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <note importance="high">Happy</note>
 ```
 
 ### setDocType
@@ -413,15 +413,15 @@ Sets a document type.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description               |
+| Name| Type  | Mandatory| Description               |
 | ------ | ------ | ---- | ------------------- |
-| text   | string | Yes  | Content of **DocType** to set. |
+| text   | string | Yes  | Content of **DocType** to set.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -434,8 +434,8 @@ let arrayBuffer = new ArrayBuffer(2048);
 let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
 let uint8 = new Uint8Array(arrayBuffer);
-let result = util.TextDecoder.create().decodeWithStream(uint8);
-console.log(result.trim()); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.log(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
 ## XmlPullParser
@@ -454,16 +454,16 @@ Creates and returns an **XmlPullParser** object.
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description                                      |
+| Name  | Type                             | Mandatory| Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | Yes  | XML text information to be parsed. |
+| buffer   | ArrayBuffer \| DataView | Yes  | XML text information to be parsed.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).        |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -490,15 +490,15 @@ Parses XML information.
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description                            |
+| Name| Type                         | Mandatory| Description                            |
 | ------ | ----------------------------- | ---- | -------------------------------- |
-| option | [ParseOptions](#parseoptions) | Yes  | Options for controlling and obtaining the parsed information. |
+| option | [ParseOptions](#parseoptions) | Yes  | Options for controlling and obtaining the parsed information.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -543,13 +543,13 @@ Defines the XML parsing options.
 **System capability**: SystemCapability.Utils.Lang
 
 
-| Name                          | Type                                                        | Mandatory | Description                                   |
+| Name                          | Type                                                        | Mandatory| Description                                   |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | No  | Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed. |
-| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed. |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Callback used to return **tagValue** for parsing the tag and tag value. The default value is **undefined**, indicating that the tag and tag value are not parsed. |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Callback used to return **attributeValue** for parsing the attribute and attribute value. The default value is **undefined**, indicating that the attribute and attribute value are not parsed. |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Callback used to return **tokenValue** for parsing the [EventType](#eventtype) and [ParseInfo](#parseinfo) attributes. The default value is **undefined**, indicating that the **EventType** and **ParseInfo** attribute are not parsed. |
+| supportDoctype                 | boolean                                                      | No  | Whether to ignore the document type. The default value is **false**, indicating that the document type is not parsed.|
+| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Callback used to return **tagValue** for parsing the tag and tag value. The default value is **undefined**, indicating that the tag and tag value are not parsed.|
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Callback used to return **attributeValue** for parsing the attribute and attribute value. The default value is **undefined**, indicating that the attribute and attribute value are not parsed.|
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Callback used to return **tokenValue** for parsing the [EventType](#eventtype) and [ParseInfo](#parseinfo) attributes. The default value is **undefined**, indicating that the **EventType** and **ParseInfo** attribute are not parsed.|
 
 ## ParseInfo
 
@@ -570,7 +570,7 @@ Obtains the column line number, starting from 1.
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Column number obtained. |
+| number | Column number obtained.|
 
 **Example**
 
@@ -589,7 +589,7 @@ function func(key: xml.EventType, value: xml.ParseInfo) {
 let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
-// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:113
+// key:0 value:1 key:2 value:45 key:4 value:50 key:3 value:57 key:1 value:57
 ```
 
 ### getDepth
@@ -597,6 +597,10 @@ console.log(str);
 getDepth(): number
 
 Obtains the depth of this element.
+
+> **NOTE**
+>
+> The depth of the whitespace character event in the tag is the same as the depth of the tag.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -606,7 +610,7 @@ Obtains the depth of this element.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Depth obtained. |
+| number | Depth obtained.|
 
 **Example**
 
@@ -646,7 +650,7 @@ Obtains the current line number, starting from 1.
 
 | Type  | Description          |
 | ------ | -------------- |
-| number | Line number obtained. |
+| number | Line number obtained.|
 
 **Example**
 
@@ -682,7 +686,7 @@ Obtains the name of this element.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| string | Element name obtained. |
+| string | Element name obtained.|
 
 **Example**
 
@@ -717,7 +721,7 @@ Obtains the namespace of this element.
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| string | Namespace obtained. |
+| string | Namespace obtained.|
 
 **Example**
 
@@ -756,7 +760,7 @@ Obtains the prefix of this element.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| string | Element prefix obtained. |
+| string | Element prefix obtained.|
 
 **Example**
 
@@ -796,7 +800,7 @@ Obtains the text of the current event.
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| string | Text content obtained. |
+| string | Text content obtained.|
 
 **Example**
 
@@ -831,7 +835,7 @@ Checks whether the current element is empty.
 
 | Type   | Description                        |
 | ------- | ---------------------------- |
-| boolean | Returns **true** if the element is empty; returns **false** otherwise. |
+| boolean | Returns **true** if the element is empty; returns **false** otherwise.|
 
 **Example**
 
@@ -870,7 +874,7 @@ Checks whether the current event contains only whitespace characters.
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the text event contains only whitespace characters; returns **false** otherwise. |
+| boolean | Returns **true** if the text event contains only whitespace characters; returns **false** otherwise.|
 
 **Example**
 
@@ -908,7 +912,7 @@ Obtains the number of attributes for the current start tag.
 **Return value**
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Number of attributes obtained. |
+| number | Number of attributes obtained.|
 
 **Example**
 
@@ -947,7 +951,7 @@ Enumerates the event types.
 | TEXT             | 4    | Text event.           |
 | CDSECT           | 5    | CDATA section event.          |
 | COMMENT          | 6    | XML comment event.        |
-| DOCDECL          | 7    | XML document type declaration event. |
-| INSTRUCTION      | 8    | XML processing instruction event. |
+| DOCDECL          | 7    | XML document type declaration event.|
+| INSTRUCTION      | 8    | XML processing instruction event.|
 | ENTITY_REFERENCE | 9    | Entity reference event.       |
 | WHITESPACE       | 10   | Whitespace character event.           |

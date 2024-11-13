@@ -78,7 +78,7 @@ The following walks you through how to implement simple playback:
 
 3. Set the callback functions.
 
-    For details about concurrent processing of multiple audio streams, see [Audio Playback Concurrency Policy](audio-playback-concurrency.md). Only the interface language is different.
+    For details about concurrent processing of multiple audio streams, see [Processing Audio Interruption Events](audio-playback-concurrency.md). The procedure is similar, and the only difference is the API programming language in use.
 
     ```c++
     // Customize a data writing function.
@@ -134,7 +134,34 @@ The following walks you through how to implement simple playback:
     To avoid unexpected behavior, ensure that each callback of [OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks) is initialized by a custom callback method or null pointer when being set.
 
     ```c++
-    // (Optional) Use a null pointer to initialize the OnError callback.
+    // Customize a data writing function.
+    int32_t MyOnWriteData(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        void* buffer,
+        int32_t length)
+    {
+        // Write the data to be played to the buffer by length.
+        return 0;
+    }
+    // Customize an audio interruption event function.
+    int32_t MyOnInterruptEvent(
+        OH_AudioRenderer* renderer,
+        void* userData,
+        OH_AudioInterrupt_ForceType type,
+        OH_AudioInterrupt_Hint hint)
+    {
+        // Update the player status and UI based on the audio interruption information indicated by type and hint.
+        return 0;
+    }
+    OH_AudioRenderer_Callbacks callbacks;
+
+    // Configure a callback function. If listening is required, assign a value.
+    callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+
+    // (Mandatory) If listening is not required, use a null pointer for initialization.
+    callbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
     callbacks.OH_AudioRenderer_OnError = nullptr;
     ```
 
@@ -154,8 +181,8 @@ The following walks you through how to implement simple playback:
     | OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer) | Starts the audio renderer.    |
     | OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer) | Pauses the audio renderer.    |
     | OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer) | Stops the audio renderer.    |
-    | OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer) | Flushes written audio data. |
-    | OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer) | Releases the audio renderer instance. |
+    | OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer) | Flushes written audio data.|
+    | OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer) | Releases the audio renderer instance.|
 
 6. Destroy the audio stream builder.
 

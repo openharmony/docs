@@ -44,7 +44,6 @@
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
-      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
@@ -52,6 +51,7 @@
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
+    - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
@@ -68,6 +68,7 @@
     - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件
   - 组件通用信息
     - 通用事件
@@ -78,6 +79,7 @@
       - [按键事件](arkui-ts/ts-universal-events-key.md)
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
+      - [悬浮事件](arkui-ts/ts-universal-events-hover.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
       - [组件尺寸变化事件](arkui-ts/ts-universal-component-size-change-event.md)
@@ -140,6 +142,7 @@
       - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+      - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
     - 手势处理
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
@@ -195,9 +198,7 @@
     <!--DelEnd-->
   - 导航与切换
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
-    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
-    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
@@ -237,6 +238,7 @@
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
+    - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
     <!--DelEnd-->
   - 图片与视频
     - [Image](arkui-ts/ts-basic-components-image.md)
@@ -328,7 +330,7 @@
     - [日期滑动选择器弹窗 (DatePickerDialog)](arkui-ts/ts-methods-datepicker-dialog.md)
     - [时间滑动选择器弹窗 (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [文本滑动选择器弹窗 (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
-    - [Dialog (弹出框)](arkui-ts/ohos-arkui-advanced-Dialog.md)
+    - [弹出框 (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
   - 卡片
     - [FormLink](arkui-ts/ts-container-formlink.md)
     - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
@@ -372,6 +374,7 @@
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
+    - [SVG标签说明](arkui-ts/ts-basic-svg.md)
     <!--Del-->
     - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
     <!--DelEnd-->
@@ -384,9 +387,13 @@
     - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
   <!--DelEnd-->
   - 已停止维护的组件与接口
+    <!--Del-->
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
+    <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
+    - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
+    - [Navigator](arkui-ts/ts-container-navigator.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
 - JS组件 
   - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
@@ -395,9 +402,11 @@
 - C API
   - 模块
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
+    - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
+    - [OH_DisplayManager](_o_h___display_manager.md)
   - 头文件
     - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
@@ -405,7 +414,9 @@
     - [native_dialog.h](native__dialog_8h.md)
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
+    - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+    - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
     - [native_node_napi.h](native__node__napi_8h.md)
     - [native_type.h](native__type_8h.md)
@@ -414,6 +425,8 @@
     - [ui_input_event.h](ui__input__event_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
+    - [oh_display_info.h](oh__display__info_8h.md)
+    - [oh_display_manager.h](oh__display__manager_8h.md)
   - 结构体
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
@@ -442,6 +455,9 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md)
+    - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
+    - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
 - 错误码
   - UI界面
     - [动画错误码](errorcode-animator.md)

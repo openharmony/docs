@@ -24,7 +24,7 @@ static setSystemLanguage(language: string): void
 
 Sets the system language. Currently, this API does not support real-time updating of the system language.
 
-To listen for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEvent-locale.md#common_event_locale_changed11) events after the system language is set, you need to add an [event subscriber](..//apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1).
+To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
 
 **System API**: This is a system API.
 
@@ -86,6 +86,8 @@ static setSystemRegion(region: string): void
 
 Sets the system region.
 
+To listen for system region changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
@@ -127,6 +129,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 static setSystemLocale(locale: string): void
 
 Sets the system locale.
+
+To listen for system locale changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
 
 **System API**: This is a system API.
 

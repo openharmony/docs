@@ -28,7 +28,7 @@ Currently, <!--RP2-->distributed data objects can be used only in [cross-device 
 
 ## Working Principles
 
-**Figure 1** Working mechanism 
+**Figure 1** Working mechanism
 
 ![distributedObject](figures/distributedObject.jpg)
 
@@ -45,9 +45,9 @@ The distributed data objects are encapsulated JS objects in distributed in-memor
 
 **Table 1** Correspondence between a distributed data object and a distributed database
 
-| Distributed Data Object Instance | Object Instance | Property Name | Property Value |
+| Distributed Data Object Instance| Object Instance| Property Name| Property Value|
 | -------- | -------- | -------- | -------- |
-| Distributed in-memory database | Database identified by **sessionID** | Key of a record in the database | Value of a record in the database |
+| Distributed in-memory database| Database identified by **sessionID**| Key of a record in the database| Value of a record in the database|
 
 
 ### Cross-Device Sync and Data Change Notification
@@ -70,21 +70,20 @@ After the sync relationship is established, each session has a copy of shared ob
 
 - Listening for status changes, such as the addition and removal of other devices.
 
-
 When a distributed data object is added to a session, if its data is different from that of the session, the distributed data object updates data of the session. If you do not want to update the data of the session when adding a distributed data object to a session and obtain the data of the session, set the attribute value of the object to **undefined** (for an asset, set each attribute of the asset to an empty string).
 
 ### Minimum Sync Unit
 
 Property is the minimum unit to synchronize in distributed data objects. For example, object 1 in the following figure has three properties: name, age, and parents. If one of the properties is changed, only the changed property needs to be synced.
 
-The object attributes support basic types (number, Boolean, and string) and complex types (array and object). For the distributed data object of the complex type, only the root property can be modified. The subordinate properties cannot be modified.
+The object properties support basic types (number, Boolean, and string) and complex types (array and nested basic types). For the distributed data object of the complex type, only the root property can be modified. The subordinate properties cannot be modified.
 
 ```ts
 dataObject['parents'] = {mom: "amy"}; // Supported modification
 dataObject['parents']['mon'] = "amy"; // Unsupported modification
 ```
 
-**Figure 3** Sync of distributed data objects 
+**Figure 3** Sync of distributed data objects
 
 
 ![distributedObject_syncView](figures/distributedObject_syncView.jpg)
@@ -132,19 +131,19 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| create(context: Context, source: object): DataObject | Creates a distributed data object instance. |
-| genSessionId(): string | Generates a session ID for distributed data objects. |
-| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data sync. Automatic sync is performed for devices with the same session ID on a trusted network. |
-| setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions. |
-| on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object. |
-| off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object. |
-| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | Subscribes to status changes of the distributed data object. |
-| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object. |
-| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object. |
-| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object. |
-| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store. |
+| create(context: Context, source: object): DataObject | Creates a distributed data object instance.|
+| genSessionId(): string | Generates a session ID for distributed data objects.|
+| setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void | Sets a session ID for data sync. Automatic sync is performed for devices with the same session ID on a trusted network.|
+| setSessionId(callback: AsyncCallback&lt;void&gt;): void | Exits all sessions.|
+| on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Subscribes to data changes of the distributed data object.|
+| off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) => void): void | Unsubscribes from data changes of the distributed data object.|
+| on(type: 'status', callback: (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void): void | Subscribes to status changes of the distributed data object.|
+| off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | Unsubscribes from status changes of the distributed data object.|
+| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object.|
+| revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the saving of the distributed data object.|
+| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | Binds an asset and its RDB store.|
 
 
 ## How to Develop
@@ -153,25 +152,26 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 1. Create a distributed data object in **onContinue()** for the application on the source device, and save data.
 
-    1.1 Call **create()** to create a distributed data object instance.
+    (1) Call **create()** to create a distributed data object instance.
 
-    1.2 Call **genSessionId()** to generate a **sessionId**, call **setSessionId()** to set a **sessionId**, and add the **sessionId** to **wantParam**. The distributed data objects with the same **sessionId** can connect to the same network. 
+    (2) Call **genSessionId()** to generate a **sessionId**, call **setSessionId()** to set a **sessionId**, and add the **sessionId** to **wantParam**. The distributed data objects with the same **sessionId** can connect to the same network. 
 
-    1.3 Obtain the network ID from **wantParam** for the application on the target device and call **save()** with this network ID to save data to the target device.
+    (3) Obtain the network ID from **wantParam** for the application on the target device and call **save()** with this network ID to save data to the target device.
 
 2. Create a distributed data object in **onCreate()** and **onNewWant()** for the application on the target device, and register a listener for the "restored" state.
 
-    2.1 Call **create()** to create a distributed data object instance for the application on the target device.
+    (1) Call **create()** to create a distributed data object instance for the application on the target device.
 
-    2.2 Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device.
+    (2) Register a listener callback for the data recovery state. If "restored" is returned by the listener callback registered, the distributed data object of the target device has obtained the data transferred from the source device.
 
-    2.3 Obtain the **sessionId** of the source device from **want.parameters** and call **setSessionId** to set the same **sessionId** for the target device.
+    (3) Obtain the **sessionId** of the source device from **want.parameters** and call **setSessionId** to set the same **sessionId** for the target device.
 
 > **NOTE**
 >
 > - In cross-device migration, after **setsessionId()** is called on the source device to set **sessionId**, call **save()** to save data to the target device.
 >
-> - The **continuable** tag must be set for cross-device migration. <!--RP1-->For details, see [How to Develop](../application-models/hop-cross-device-migration.md#how-to-develop).<!--RP1End-->
+<!--RP1-->
+> - The **continuable** tag must be set for cross-device migration. For details, see [How to Develop](../application-models/hop-cross-device-migration.md#how-to-develop).<!--RP1End-->
 >
 > - The **sessionId** field in **wantParam** is used by other services. You are advised to customize a key for accessing the **sessionId** field.
 >
@@ -318,27 +318,27 @@ export default class EntryAbility extends UIAbility {
 
 1. Call **startAbilityByCall()** to start an ability on another device.
 
-    1.1 Call **genSessionId()** to create a **sessionId** and obtain the network ID of the peer device through the distributed device management interface.
+    (1) Call **genSessionId()** to create a **sessionId** and obtain the network ID of the peer device through the distributed device management interface.
 
-    1.2 Assemble **want** and put **sessionId** into **want**.
+    (2) Assemble **want** and put **sessionId** into **want**.
 
-    1.3 Call **startAbilityByCall()** to start the peer ability.
+    (3) Call **startAbilityByCall()** to start the peer ability.
 
 2. Create a distributed data object on the caller device and adds it to the network.
 
-   2.1 Create a distributed data object instance.
+   (1) Create a distributed data object instance.
 
-   2.2 Register a listener callback for data changes.
+   (2) Register a listener callback for data changes.
 
-   2.3 Set a **sessionId** for the distributed data object and add it to the network.
+   (3) Set a **sessionId** for the distributed data object and add it to the network.
 
 3. Create a distributed data object on the peer device and restore the data saved on the caller device.
 
-   3.1 Create a distributed data object instance on the peer device.
+   (1) Create a distributed data object instance on the peer device.
 
-   3.2 Register a listener callback for data changes.
+   (2) Register a listener callback for data changes.
 
-   3.3 Obtain **sessionId** of the caller device from **want** and add the distributed data object instance to the network with the **sessionId**.
+   (3) Obtain **sessionId** of the caller device from **want** and add the distributed data object instance to the network with the **sessionId**.
 
 > **NOTE**
 >

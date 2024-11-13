@@ -7,7 +7,7 @@ Cookie是网络访问过程中，由服务端发送给客户端的一小段数�
 
 当Cookie SameSite属性未指定时，默认值为SameSite=Lax，只在用户导航到cookie的源站点时发送cookie，不会在跨站请求中被发送。
 
-Web组件提供了WebCookieManager类，用于管理Web组件的Cookie信息。Cookie信息保存在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd的文件中。
+Web组件提供了[WebCookieManager](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager)类，用于管理Web组件的Cookie信息。Cookie信息保存在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd的文件中。
 
 下面以[configCookieSync()](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11)接口举例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager)接口文档。
 

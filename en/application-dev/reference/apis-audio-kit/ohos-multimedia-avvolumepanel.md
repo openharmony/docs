@@ -9,6 +9,7 @@ An application cannot directly adjust the system volume. However, it can invoke 
 >
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The sample effect is subject to the real device in use. Currently, DevEco Studio Previewer cannot display the actual volume or adjust the volume.
+> <!--RP1--><!--RP1End-->
 
 ## Modules to Import
 
@@ -35,16 +36,16 @@ In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-at
 
 **Parameters**
 
-| Name | Type | Mandatory | Decorator | Description                                                                                                                                                                                                   |
+| Name| Type| Mandatory| Decorator| Description                                                                                                                                                                                                   |
 | -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|volumeLevel | number | No | @Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used. For details about how to obtain the maximum and minimum volume values, see [AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9). |
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No |  @Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                     |
+|volumeLevel | number | No| @Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used. For details about how to obtain the maximum and minimum volume values, see [AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9).|
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No|  @Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                     |
 
 ## AVVolumePanelParameter
 
-| Name | Type | Mandatory | Description
+| Name| Type| Mandatory| Description
 | -------- | -------- | -------- | -------- |
-|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No | Position of the volume panel. |
+|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No| Position of the volume panel.|
 
 ## Events
 

@@ -6,7 +6,11 @@ LinkedList和[List](js-apis-list.md)相比，LinkedList是双向链表，可以�
 
 LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedList优于ArrayList，而查询效率ArrayList优于LinkedList。
 
-**推荐使用场景：** 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
+> **注意：**
+>
+> 在LinkedList中使用\[index\]的方式虽然能够获取对应位置的元素，但这会导致未定义结果。推荐使用get()方法。
+
+**推荐使用场景：** 当需要频繁的插入删除元素，并且需要使用双向链表时，推荐使用LinkedList高效操作。
 
 文档中存在泛型的使用，涉及以下泛型标记符：<br>
 - T： Type，类
@@ -163,7 +167,7 @@ insert(index: number, element: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 插入位置索引。 |
+| index | number | 是 | 插入位置索引。需要小于等于int32_max即2147483647。 |
 | element | T | 是 | 插入元素。 |
 
 **错误码：**
@@ -237,7 +241,7 @@ get(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定的下标值。 |
+| index | number | 是 | 指定的下标值。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -370,7 +374,7 @@ removeByIndex(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素的下标值。 |
+| index | number | 是 | 指定元素的下标值。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -727,7 +731,7 @@ set(index: number, element: T): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 查找的下标值。 |
+| index | number | 是 | 查找的下标值。需要小于等于int32_max即2147483647。 |
 | element | T | 是 | 用来替换的元素。 |
 
 **返回值：**
@@ -866,10 +870,6 @@ let result = linkedList.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
-
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -1,10 +1,10 @@
-# \@AnimatableExtend Decorator: Defining Animatable Attributes
+# \@AnimatableExtend Decorator: Definition of Animatable Attributes
 
-The @AnimatableExtend decorator is used to define an attribute method for the non-animatable attribute of a component. During animation execution, a frame-by-frame callback is used to change the value of the non-animatable attribute so that an animation effect can be applied to the attribute.
+The @AnimatableExtend decorator is used to define an attribute method for the non-animatable attribute of a component. During animation execution, a frame-by-frame callback is used to change the value of the non-animatable attribute so that an animation effect can be applied to the attribute. Additionally, you can implement frame-by-frame layout effects by modifying the values of animatable properties in the per-frame callback function.
 
-- Animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute can make the animation specified by the **animation** attribute take effect, then this attribute is called animatable attribute. For example, **height**, **width**, **backgroundColor**, **translate**, and **fontSize** (of the **\<Text>** component) are all animatable attributes.
+- Animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute can make the animation effect specified by the **animation** attribute take effect, then this attribute is called animatable attribute. For example, **height**, **width**, **backgroundColor**, **translate**, and **fontSize** (of the **\<Text>** component) are all animatable attributes.
 
-- Non-animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute cannot make the animation specified by the **animation** attribute take effect, then this attribute is called non-animatable attribute. For example, the **points** attribute of the **\<Polyline>** component is a non-animatable attribute.
+- Non-animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute cannot make the animation effect specified by the **animation** attribute take effect, then this attribute is called non-animatable attribute. For example, the **points** attribute of the **\<Polyline>** component is a non-animatable attribute.
 
 >  **NOTE**
 >
@@ -39,33 +39,35 @@ To perform animation when complex data types are involved, you must implement th
 
 ## Example
 
-The following example applies an animation to the font size attribute.
+The following example implements the frame-by-frame layout effects by changing the width of the **Text** component.
 
 
 ```ts
-@AnimatableExtend(Text) function animatableFontSize(size: number) {
-  .fontSize(size)
+@AnimatableExtend(Text)
+function animatableWidth(width: number) {
+  .width(width)
 }
 
 @Entry
 @Component
 struct AnimatablePropertyExample {
-  @State fontSize: number = 20
+  @State textWidth: number = 80;
+
   build() {
     Column() {
       Text("AnimatableProperty")
-        .animatableFontSize(this.fontSize)
-        .animation({duration: 1000, curve: "ease"})
+        .animatableWidth(this.textWidth)
+        .animation({ duration: 2000, curve: Curve.Ease })
       Button("Play")
         .onClick(() => {
-          this.fontSize = this.fontSize == 20 ? 36 : 20
+          this.textWidth = this.textWidth == 80 ? 160 : 80;
         })
     }.width("100%")
     .padding(10)
   }
 }
 ```
-![image](figures/animatable-font-size.gif)
+![image](figures/AnimatableProperty.gif)
 
 
 The following example implements a polyline animation effect. 
@@ -158,7 +160,7 @@ struct AnimatablePropertyExample {
     Column() {
       Polyline()
         .animatablePoints(this.points)
-        .animation({duration: 1000, curve: "ease"})
+        .animation({duration: 1000, curve: Curve.Ease})
         .size({height:220, width:300})
         .fill(Color.Green)
         .stroke(Color.Red)

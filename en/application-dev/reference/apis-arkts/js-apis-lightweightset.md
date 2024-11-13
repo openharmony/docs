@@ -32,9 +32,9 @@ import { LightWeightSet } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes | No | Number of elements in a lightweight set (called container later). |
+| length | number | Yes| No| Number of elements in a lightweight set (called container later).|
 
 
 ### constructor
@@ -51,7 +51,7 @@ A constructor used to create a **LightWeightSet** instance.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200012 | The LightWeightSet's constructor cannot be directly invoked. |
 
@@ -74,15 +74,15 @@ Checks whether this container is empty (contains no element).
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise. |
+| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -105,21 +105,21 @@ Adds an element to this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| obj | T | Yes | Target element. |
+| obj | T | Yes| Target element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added; returns **false** otherwise. |
+| boolean | Returns **true** if the element is added; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The add method cannot be bound. |
 
@@ -143,21 +143,21 @@ Adds all elements in a **LightWeightSet** instance to this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| set | LightWeightSet&lt;T&gt; | Yes | **LightWeightSet** instance whose elements are to be added to the current container. |
+| set | LightWeightSet&lt;T&gt; | Yes| **LightWeightSet** instance whose elements are to be added to the current container.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added; returns **false** otherwise. |
+| boolean | Returns **true** if the element is added; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The addAll method cannot be bound. |
@@ -186,21 +186,21 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| set | LightWeightSet&lt;T&gt; | Yes | **LightWeightSet** instance to be used for comparison. |
+| set | LightWeightSet&lt;T&gt; | Yes| **LightWeightSet** instance to be used for comparison.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if all the elements in the specified **LightWeightSet** instance are contained; returns **false** otherwise. |
+| boolean | Returns **true** if all the elements in the specified **LightWeightSet** instance are contained; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The hasAll method cannot be bound. |
@@ -229,21 +229,21 @@ Checks whether this container has the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | T | Yes | Target key. |
+| key| T | Yes| Target key.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified key is contained; returns **false** otherwise. |
+| boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The has method cannot be bound. |
 
@@ -253,47 +253,6 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 let lightWeightSet: LightWeightSet<number> = new LightWeightSet();
 lightWeightSet.add(123);
 let result = lightWeightSet.has(123);
-```
-
-
-### equal
-
-equal(obj: Object): boolean
-
-Checks whether this container contains objects of the same type as the specified **obj**.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| obj | Object | Yes | **LightWeightSet** instance to be used for comparison. |
-
-**Return value**
-
-| Type | Description |
-| -------- | -------- |
-| boolean | Returns **true** if the container contains objects of the same type as the specified **obj**; returns **false** otherwise. |
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
-
-| ID | Error Message |
-| -------- | -------- |
-| 10200011 | The equal method cannot be bound. |
-
-**Example**
-
-```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
-lightWeightSet.add("squirrel");
-lightWeightSet.add("sparrow");
-let obj = ["sparrow", "squirrel"];
-let result = lightWeightSet.equal(obj);
 ```
 
 
@@ -311,15 +270,15 @@ If the passed-in capacity is greater than or equal to the number of elements in 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | Yes | Minimum number of elements to accommodate in this container. |
+| minimumCapacity | number | Yes| Minimum number of elements to accommodate in this container.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of minimumCapacity is out of range. |
@@ -345,21 +304,21 @@ Obtains the position index of the element with the specified key in this contain
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | T | Yes | Key of the target element. |
+| key| T | Yes| Key of the target element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Position index of the element. If the element does not exist, a negative value is returned. The negative value consists of a minus sign and the position where the element (if available) should be. The position starts from 1. |
+| number | Position index of the element. If the element does not exist, a negative value is returned. The negative value consists of a minus sign and the position where the element (if available) should be. The position starts from 1.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The getIndexOf method cannot be bound. |
 
@@ -385,21 +344,21 @@ Removes an element of the specified key from this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | T | Yes | Key of the target element. |
+| key| T | Yes| Key of the target element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Value of the element removed. |
+| T | Value of the element removed.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The remove method cannot be bound. |
 
@@ -425,21 +384,21 @@ Removes the element at the specified position from this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes | Position index of the element. |
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed; returns **false** otherwise. |
+| boolean | Returns **true** if the element is removed; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The removeAt method cannot be bound. |
@@ -466,21 +425,21 @@ Obtains the value of the element at the specified position in this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes | Position index of the element. |
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Value obtained. |
+| T | Value obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The getValueAt method cannot be bound. |
@@ -509,7 +468,7 @@ Clears this container and sets its length to **0**.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The clear method cannot be bound. |
 
@@ -535,9 +494,9 @@ Obtains a string that contains all elements in this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| String | String obtained. |
+| String | String obtained.|
 
 **Example**
 
@@ -561,15 +520,15 @@ Obtains an array that contains all objects in this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Array&lt;T&gt; | Array obtained. |
+| Array&lt;T&gt; | Array obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The toArray method cannot be bound. |
 
@@ -595,15 +554,15 @@ Obtains an iterator that contains all the values in this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained. |
+| IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The values method cannot be bound. |
 
@@ -634,23 +593,23 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes | Callback invoked to traverse the elements in the container. |
-| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No | Value of the element that is currently traversed. The default value is the value of the first key-value pair. |
-| key | T | No | Key of the element that is currently traversed (same as **value**). The default value is the key of the first key-value pair. |
-| set | LightWeightSet&lt;T&gt; | No | Instance that calls the **forEach** API. The default value is this instance. |
+| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
+| key| T | No| Key of the element that is currently traversed (same as **value**). The default value is the key of the first key-value pair.|
+| set | LightWeightSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -688,15 +647,15 @@ Obtains an iterator that contains all the elements in this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator<[T, T]> | Iterator obtained. |
+| IterableIterator<[T, T]> | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The entries method cannot be bound. |
 
@@ -740,15 +699,15 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained. |
+| IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 
@@ -782,4 +741,47 @@ for(let i = 0; i < 10; i++) {
 for(let i = 0; i < 10; i++) {
   lightWeightSet.remove(i + "123");
 }
+```
+
+
+### equal<sup>(deprecated)</sup>
+
+equal(obj: Object): boolean
+
+Checks whether the elements of this container are the same as those of **obj**.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 12. There is no substitute API.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| obj | Object | Yes| **LightWeightSet** instance to be used for comparison.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if **obj** is a **LightWeightSet** container or array containing only strings or numbers and the elements in them are the same; returns **false** in other cases.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
+**Example**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["sparrow", "squirrel"];
+let result = lightWeightSet.equal(obj);
 ```

@@ -15,10 +15,11 @@ Defines the gesture APIs.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | int32_t [version](#version) | The struct version is 1. | 
 | ArkUI_GestureRecognizer \*(\* [createTapGesture](#createtapgesture) )(int32_t countNum, int32_t fingersNum) | Creates a tap gesture. | 
+| ArkUI_GestureRecognizer \*(\* [createTapGestureWithDistance](#createtapgesturewithdistance) )(int32_t countNum, int32_t fingersNum, int32_t distance) | Creates a tap gesture that is subject to distance restrictions. | 
 | ArkUI_GestureRecognizer \*(\* [createLongPressGesture](#createlongpressgesture) )(int32_t fingersNum, bool repeatResult, int32_t durationNum) | Creates a long press gesture. | 
 | ArkUI_GestureRecognizer \*(\* [createPanGesture](#createpangesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double distanceNum) | Creates a pan gesture. | 
 | ArkUI_GestureRecognizer \*(\* [createPinchGesture](#createpinchgesture) )(int32_t fingersNum, double distanceNum) | Creates a pinch gesture. | 
@@ -33,7 +34,7 @@ Defines the gesture APIs.
 | int32_t(\* [removeGestureFromNode](#removegesturefromnode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, ArkUI_GestureRecognizer \*recognizer) | Removes a gesture from a node. | 
 | int32_t(\* [setGestureInterrupterToNode](#setgestureinterruptertonode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult)(\*interrupter)(ArkUI_GestureInterruptInfo \*info)) | Sets a gesture interruption callback for a node. | 
 | [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype)(\* [getGestureType](#getgesturetype) )(ArkUI_GestureRecognizer \*recognizer) | Obtains the type of a gesture. | 
-| int32_t(\* [setInnerGestureParallelTo](#setinnergestureparallelto) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, ArkUI_GestureRecognizer \*(\*parallelInnerGesture)(ArkUI_ParallelInnerGestureEvent \*event)) | Sets the callback function for the parallel internal gesture event. | 
+| int32_t(\* [setInnerGestureParallelTo](#setinnergestureparallelto) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, ArkUI_GestureRecognizer \*(\*parallelInnerGesture)([ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) \*event)) | Sets the callback function for the parallel internal gesture event. | 
 
 
 ## Member Variable Description
@@ -50,7 +51,7 @@ Adds a gesture to a gesture group.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | group | Pointer to the target gesture group. | 
 | child | Pointer to the target gesture. | 
@@ -71,7 +72,7 @@ Adds a gesture to a UI component.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | UI component to which you want to add the gesture. | 
 | recognizer | Gesture to be added to the UI component. | 
@@ -94,7 +95,7 @@ Creates a gesture group.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | gestureMode | Gesture group mode. | 
 
@@ -114,7 +115,7 @@ Creates a long press gesture.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | fingersNum | Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. | 
 | repeatResult | Whether to continuously trigger the event callback. | 
@@ -136,7 +137,7 @@ Creates a pan gesture.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | fingersNum | Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value **1** is used. | 
 | directions | Pan direction. The value supports the AND (&amp;) and OR (\|) operations. | 
@@ -158,7 +159,7 @@ Creates a pinch gesture.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | fingersNum | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. The default value is **2**. | 
 | distanceNum | Minimum recognition distance, in vp. If this parameter is set to a value less than or equal to 0, the default value **5** is used. | 
@@ -179,7 +180,7 @@ Creates a rotation gesture.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | fingersNum | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. The default value is **2**. | 
 | angleNum | Minimum degree that can trigger the rotation gesture. The default value is **1**. If this parameter is set to a value less than or equal to 0 or greater than 360, the default value **1** is used. | 
@@ -200,7 +201,7 @@ Creates a swipe gesture.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | fingersNum | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10. | 
 | directions | Swipe direction. | 
@@ -222,10 +223,32 @@ Creates a tap gesture.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | countNum | Number of consecutive taps. If the value is less than 1 or is not set, the default value **1** is used. | 
 | fingersNum | Number of fingers required to trigger a tap. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value **1** is used. | 
+
+**Returns**
+
+Returns the pointer to the created gesture.
+
+
+### createTapGestureWithDistance
+
+```
+ArkUI_GestureRecognizer*(* ArkUI_NativeGestureAPI_1::createTapGestureWithDistance) (int32_t countNum, int32_t fingersNum, int32_t distance)
+```
+**Description**
+
+Creates a tap gesture that is subject to distance restrictions.
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| countNum | Number of consecutive taps. If the value is less than 1 or is not set, the default value **1** is used. | 
+| fingersNum | Number of fingers required to trigger a tap. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value **1** is used. | 
+| distance | Allowed moving distance of a finger. If the value is less than 0 or is not set, it will be converted to the default value of infinity. | 
 
 **Returns**
 
@@ -243,7 +266,7 @@ Disposes of a gesture to release resources.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | recognizer | Pointer to the gesture to dispose of. | 
 
@@ -259,7 +282,7 @@ Obtains the type of a gesture.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | recognizer | Pointer to the gesture. | 
 
@@ -279,7 +302,7 @@ Removes a gesture from a gesture group.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | group | Pointer to the target gesture group. | 
 | child | Pointer to the target gesture. | 
@@ -300,7 +323,7 @@ Removes a gesture from a node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | Node from which you want to remove the gesture. | 
 | recognizer | Gesture to be removed. | 
@@ -321,7 +344,7 @@ Registers a callback for gestures.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | recognizer | Pointer to a gesture recognizer. | 
 | actionTypeMask | Gesture event types. Multiple callbacks can be registered at once, with the callback event types distinguished in the callbacks. Example: actionTypeMask = GESTURE_EVENT_ACTION_ACCEPT \| GESTURE_EVENT_ACTION_UPDATE;  | 
@@ -344,7 +367,7 @@ Sets a gesture interruption callback for a node.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | ArkUI node for which you want to set a gesture interruption callback. | 
 | interrupter | Gesture interruption callback to set. **info** indicates the gesture interruption data. If **interrupter** returns **GESTURE_INTERRUPT_RESULT_CONTINUE**, the gesture recognition process continues. If it returns **GESTURE_INTERRUPT_RESULT_REJECT**, the gesture recognition process is paused. | 
@@ -365,7 +388,7 @@ Sets the callback function for the parallel internal gesture event.
 
 **Parameters**
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | node | ArkUI node for which the callback of the parallel internal gesture event is to be set. | 
 | userData | User-defined data. | 

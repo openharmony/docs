@@ -1,4 +1,4 @@
-# Continuous Task
+# Continuous task (ArkTS)
 
 
 ## Overview
@@ -16,21 +16,20 @@ After an application requests a continuous task, the system verifies whether the
 The table below lists the types of continuous tasks, which are used in various scenarios. You can select a task type suitable for your case based on the description.
 
 **Table 1** Continuous task types
-| Name | Description | Item | Example Scenario |
+| Name| Description| Item| Example Scenario|
 | -------- | -------- | -------- | -------- |
-| DATA_TRANSFER | Data transfer | dataTransfer | The browser downloads a large file in the background. |
-| AUDIO_PLAYBACK | Audio and video playback | audioPlayback | A music application plays music in the background. |
-| AUDIO_RECORDING | Audio recording | audioRecording | A recorder records audio in the background. |
-| LOCATION | Positioning and navigation | location | A navigation application provides navigation in the background. |
-| BLUETOOTH_INTERACTION | Bluetooth-related task | bluetoothInteraction | Transfer a file through Bluetooth. |
-| MULTI_DEVICE_CONNECTION | Multi-device connection | multiDeviceConnection | Carry out distributed service connection. |
-| <!--DelRow-->WIFI_INTERACTION | WLAN-related task (for system applications only) | wifiInteraction  | Transfer a file over WLAN. |
-| <!--DelRow-->VOIP | Voice and video calls (for system applications only) | voip  | Use a system chat application to make an audio call in the background. |
-| TASK_KEEPING | <!--RP1-->Computing task (for specific devices only)<!--RP1End--> | taskKeeping  | Run antivirus software. |
+| DATA_TRANSFER | Data transfer| dataTransfer | The browser downloads a large file in the background.|
+| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | A music application plays music in the background.<br>It can be used in atomic services.|
+| AUDIO_RECORDING | Audio recording| audioRecording | A recorder records audio in the background.|
+| LOCATION | Positioning and navigation| location | A navigation application provides navigation in the background.|
+| BLUETOOTH_INTERACTION | Bluetooth-related task| bluetoothInteraction | Transfer a file through Bluetooth.|
+| MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Carry out distributed service connection.<br>It can be used in atomic services.|
+| <!--DelRow-->WIFI_INTERACTION | WLAN-related task (for system applications only)| wifiInteraction  | Transfer a file over WLAN.|
+| VOIP<sup>13+</sup> | Audio and video calls| voip  | Use a chat application to make an audio and video call in the background.|
+| TASK_KEEPING | <!--RP1-->Computing task (for specific devices only)<!--RP1End--> | taskKeeping  | Run antivirus software.|
 
-- Only applications that use the [network management](../network/net-mgmt-overview.md) service can request a continuous task of the DATA_TRANSFER type to upload and download data in the background and avoid being suspended. If an application calls the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) to delegate the upload and download task to the system, the application will be suspended regardless of whether it has requested such a continuous task.
+- If an application calls the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) to delegate the upload and download task to the system, the application will be suspended regardless of whether it has requested such a continuous task. For a continuous task used for download, the application needs to update the download progress. If the progress is not updated for more than 10 minutes, the continuous task will be canceled. You are advised to use the [new API](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning12) to request a continuous task of the DATA_TRANSFER type and update the notification progress.
 - Only audio and video applications that use [AVSession](../media/avsession/avsession-overview.md) can request a continuous task of the AUDIO_PLAYBACK type to implement background playback.
-
 
 ### Constraints
 
@@ -57,10 +56,10 @@ The table below uses promise as an example to describe the APIs used for develop
 
 **Table 2** Main APIs for continuous tasks
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | Requests a continuous task. |
-| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | Cancels a continuous task. |
+| startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)): Promise&lt;void&gt; | Requests a continuous task.|
+| stopBackgroundRunning(context: Context): Promise&lt;void&gt; | Cancels a continuous task.|
 
 ## How to Develop
 
@@ -74,7 +73,7 @@ The following walks you through how to request a continuous task for recording. 
 
 2. Declare the background mode and add configurations such as **uris**.
    - (Mandatory) Declare the background mode. Specifically, declare the type of the continuous task for the target UIAbility in the **module.json5** file. (Set the corresponding configuration item in the configuration file.)
-   - (Optional) Add configurations such as **uris**. For a continuous task, the first element is used to obtain the notification title. If implicit redirection is used, use the format shown in the code snippet below. The position of **uris** in your configuration must comply with the code snippet, and **scheme** must be modified based on your service scenario.
+   - (Optional) Add configurations such as **uris**. If redirection features such as deep linking and app linking are used, refer to the sample code below. The mandatory parameters cannot be modified. For details about the optional parameters, see [Overview of Application Redirection](../application-models/link-between-apps-overview.md).
    
    ```json
     "module": {
@@ -85,16 +84,23 @@ The following walks you through how to request a continuous task for recording. 
                 "audioRecording"
                 ], 
                 "skills": [
-                    // Add the uris configuration for implicit redirection.
+                    // Mandatory: entities and actions values for the request for a continuous task.
                     {
                         "entities": [
-                           "entity.system.home"
+                            "entity.system.home"
                         ],
                         "actions": [
                             "action.system.home"
                         ]    
                     },
+                    // Optional: required for redirection features such as deep linking and app linking.
                     {
+                        "entities": [
+                            "test"
+                        ],
+                        "actions": [
+                            "test"
+                        ],
                         "uris": [
                             {
                                 "scheme": "test"
@@ -152,17 +158,18 @@ The following walks you through how to request a continuous task for recording. 
           // Custom request code.
           requestCode: 0,
           // Execution attribute of the operation to perform after the notification is clicked.
-          wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+          actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
         };
    
         // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
         wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-           backgroundTaskManager.startBackgroundRunning(this.context,
-             backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
-             console.info(`Succeeded in operationing startBackgroundRunning.`);
-           }).catch((err: BusinessError) => {
-             console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-           });
+          backgroundTaskManager.startBackgroundRunning(this.context,
+            backgroundTaskManager.BackgroundMode.AUDIO_RECORDING, wantAgentObj).then(() => {
+            // Execute the continuous task logic, for example, music playback.
+            console.info(`Succeeded in operationing startBackgroundRunning.`);
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to operation startBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+          });
         });
       }
    
@@ -192,8 +199,6 @@ The following walks you through how to request a continuous task for recording. 
             .onClick(() => {
               // Request a continuous task by clicking a button.
               this.startContinuousTask();
-   
-              // Execute the continuous task logic, for example, music playback.
             })
    
             Button() {
@@ -218,6 +223,7 @@ The following walks you through how to request a continuous task for recording. 
     }
    ```
    <!--Del-->
+
    The code snippet below shows how an application requests a continuous task across devices or applications.
    
    ```ts
@@ -239,7 +245,7 @@ The following walks you through how to request a continuous task for recording. 
         // Custom request code.
         requestCode: 0,
         // Execution attribute of the operation to perform after the notification is clicked.
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       };
 
       // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
@@ -341,8 +347,10 @@ The following walks you through how to request a continuous task for recording. 
       }
     };
    ```
+
    <!--DelEnd-->
 
+<!--Del-->
 ### FA Model
 
 1. Start and connect to a ServiceAbility.
@@ -385,7 +393,7 @@ The following walks you through how to request a continuous task for recording. 
     import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
-4. Request and cancel a continuous task. In the ServiceAbility, call **startBackgroundRunning()** and **stopBackgroundRunning()** to request and cancel a continuous task. Use JS code to implement this scenario.
+4. Request and cancel a continuous task. In the ServiceAbility, call [startBackgroundRunning](#available-apis) and [stopBackgroundRunning](#available-apis) to request and cancel a continuous task. Use JavaScript code to implement this scenario.
   
    ```js
     function startContinuousTask() {
@@ -402,7 +410,7 @@ The following walks you through how to request a continuous task for recording. 
         // Custom request code.
         requestCode: 0,
         // Execution attribute of the operation to perform after the notification is clicked.
-        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        actionFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
       };
 
       // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
@@ -490,4 +498,5 @@ The following walks you through how to request a continuous task for recording. 
 
     export default new ServiceAbility();
     ```
+<!--DelEnd-->
 

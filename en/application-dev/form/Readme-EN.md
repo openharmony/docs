@@ -27,7 +27,7 @@
         - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
         - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
     <!--Del--> 
-    - [Widget Host Development (for System Applications Only)] (widget-host-development-guide.md)
+    - [Widget Host Development (for System Applications Only)](widget-host-development-guide.md)
     <!--DelEnd-->
   - [Developing a JS Widget](js-ui-widget-development.md)
 - [Service Widget Development in FA Model](widget-development-fa.md)

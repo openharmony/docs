@@ -1,5 +1,4 @@
-
-# @ohos.atomicservice.AtomicServiceNavigation (导航根视图容器)
+# AtomicServiceNavigation
 
 作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
@@ -13,9 +12,10 @@
 从API Version 10开始，推荐使用[NavPathStack](ts-basic-components-navigation.md#navpathstack10)进行页面路由。
 ## AtomicServiceNavigation
 
+```
 AtomicServiceNavigation({
     navPathStack?: NavPathStack,
-    navigationContent: Callback\<void\>,
+    navigationContent: Callback<void>,
     title?: ResourceStr,
     titleBackgroundColor?: ResourceColor,
     hideTitleBar?: boolean,
@@ -24,9 +24,10 @@ AtomicServiceNavigation({
     navDestinationBuilder?: NavDestinationBuilder,
     navBarWidthRange?: [Dimension, Dimension],
     minContentWidth?: Dimension,
-    stateChangeCallback?: Callback\<boolean\>,
-    modeChangeCallback?: Callback\<NavigationMode\>
+    stateChangeCallback?: Callback<boolean>,
+    modeChangeCallback?: Callback<NavigationMode>
 })
+```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +37,7 @@ AtomicServiceNavigation({
 
 **参数**：
 
-| 名称 | 类型 | 必填 | 装饰器类型|描述 |
+| 名称 | 类型 | 必填 | 装饰器类型|说明 |
 | --------------- | ------ | ---- | ----|----------|
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 否 | @State | 路由栈信息。 |
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
@@ -57,7 +58,7 @@ AtomicServiceNavigation({
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |

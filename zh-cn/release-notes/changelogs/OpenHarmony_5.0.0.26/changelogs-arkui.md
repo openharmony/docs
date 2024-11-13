@@ -320,3 +320,62 @@ ImageSpanAlignment BASELINE 原先显示效果与文档解释不符
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果以达到预期。
+
+## cl.arkui.9 bindSheet半模态弹窗支持开发者设置底部弹窗样式
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+半模态视觉增强
+
+**变更影响**
+
+该变更为不兼容变更。
+
+bindSheet的Option属性preferType，从枚举值变成了枚举，会影响开发者将preferType属性作为函数形参的场景。
+
+代码举例如:
+
+```ts
+// 函数foo，形参为SheetType的枚举值
+function foo(goog: SheetType.CENTER | SheetType.POPUP | undefined) {
+  // 函数内容
+};
+
+// 声明一个参数 = SheetOptions
+let op : SheetOptions = {
+  preferType : SheetType.CENTER
+};
+
+// foo函数调用op.preferType
+foo(op.preferType)
+
+```
+
+变更前：foo函数可以调用该变量
+
+变更后：foo函数调用该变量会报错，需要将foo函数的形参变更为SheetType枚举
+
+```ts
+// 函数foo，形参为SheetType枚举
+function foo(goog: SheetType | undefined) {
+  // 函数内容
+};
+```
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.26开始。
+
+**适配指导**
+
+默认行为无变更，但需要处理上述函数传参场景。
+
+需要将函数foo的形参类型改成SheetType枚举，而不是枚举值。

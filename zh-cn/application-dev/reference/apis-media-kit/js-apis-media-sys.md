@@ -114,7 +114,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 | 参数名    | 类型   | 必填 | 说明                                                          |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
-| choice    | string | 是   | 用户的选择内容，“取消”为“false”，“确定”为“true“。            |
+| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
 
 **错误码：**
 
@@ -127,14 +127,24 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
+class JsonData {
+  public choice: string = 'true'
+  public displayId: number | null = -1
+  public missionId: number | null = -1
+}
 let sessionId: number = 0; // 替换成拉起此进程的sessionId
-let choice: string = 'false'; // 替换成用户的选择内容
 
 try {
-    await media.reportAVScreenCaptureUserChoice(sessionId, choice);
+  const jsonData: JsonData = {
+    choice: 'true',  // 替换成用户的选择内容
+    displayId: -1,   // 替换成用户选择的屏幕Id
+    missionId: -1,   // 替换成用户选择的窗口Id
+  }
+  await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
-    console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
+  console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
 }
 ```
 
@@ -161,6 +171,233 @@ try {
 | RGB_565       | 2   | 表示RGB_565颜色格式。                       |
 | RGBA_8888        | 3    | 表示RGBA_8888颜色格式。 |
 | RGB_888        | 5    | 表示RGB_888颜色格式。                 |
+
+## AvPlayer<sup>9+</sup>
+> **说明：**
+> 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](js-apis-media.md#mediacreateavplayer9)构建一个[AVPlayer](js-apis-media.md#avplayer9)实例。
+
+### setPlaybackRange<sup>12+</sup>
+
+setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
+
+设置播放区间，并通过指定的[SeekMode](js-apis-media.md#seekmode8)跳转到区间开始位置。设置之后，只播放音视频文件设定区间内的内容。该方法异步方式返回执行结果，通过Promise获取返回值。可在**initialized**/**prepared**/**paused**/**stopped**/**completed**状态下使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AvPlayer
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| startTimeMs | number | 是   | 区间开始位置，单位ms，取值[0, duration)。可以设置-1值，系统将会从0位置开始播放。|
+| endTimeMs | number | 是   | 区间结束位置，单位ms，取值(startTimeMs, duration]。可以设置-1值，系统将会播放到资源末尾。|
+| mode | [SeekMode](js-apis-media.md#seekmode8) | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 202  | Called from Non-System applications. Return by promise. |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
+  console.info('Succeeded setPlaybackRange');
+}).catch((err: BusinessError) => {
+  console.error('Failed to setPlaybackRange' + err.message);
+});
+```
+
+## AVMetadataExtractor<sup>11+</sup>
+> **说明：**
+> 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
+
+### getTimeByFrameIndex<sup>12+</sup>
+
+getTimeByFrameIndex(index: number): Promise\<number>
+
+获取目标视频帧号对应的视频时间戳。仅支持MP4视频文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| index  | number | 是   | 视频帧号。 |
+
+**返回值：**
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| Promise\<number> | 时间戳的Promise返回值。单位是微秒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getTimeByFrameIndex(0).then((timeUs: number) => {
+  console.info(`Succeeded getTimeByFrameIndex timeUs: ${timeUs}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getTimeByFrameIndex ${err.message}`);
+})
+```
+
+### getFrameIndexByTime<sup>12+</sup>
+
+getFrameIndexByTime(timeUs: number): Promise\<number>
+
+获取目标视频时间戳对应的视频帧号。仅支持MP4视频文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| timeUs | number | 是   | 视频时间戳，单位：微秒。 |
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise\<number> | 视频帧号的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
+  console.info(`Succeeded getFrameIndexByTime index: ${index}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getFrameIndexByTime ${err.message}`);
+})
+```
+
+## AVRecorder<sup>9+</sup>
+
+音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](js-apis-media.md#mediacreateavrecorder9)构建一个AVRecorder实例。
+
+> **说明：**
+>
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+
+### isWatermarkSupported<sup>12+</sup>
+
+isWatermarkSupported(): Promise\<boolean>
+
+检查当前设备录制是否支持硬件数字水印能力。通过Promise获取返回值。
+
+可在[prepare()](js-apis-media.md#prepare9-3)、[start()](js-apis-media.md#start9)、[paused()](js-apis-media.md#pause9)事件成功触发后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<boolean> | 获取是否支持水印的Promise返回值。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
+  console.info(`Succeeded in get, isWatermarkSupported: ${isWatermarkSupported}`);
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get and catch error is ${error.message}`);
+});
+```
+
+### setWatermark<sup>12+</sup>
+
+setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
+
+给AVRecorder设置水印图像。通过Promise获取返回值。
+
+当且仅当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，且在[start()](js-apis-media.md#start9)之前，才能调用setWatermark方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                         |
+| -------- | -------------------- | ---- | --------------------------- |
+| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
+| config    | [WatermarkConfig](#watermarkconfig12)   | 是   | 水印的相关配置参数。 |
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<void> | 异步返回函数执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------   |
+|   401    | The parameter check failed. Return by promise.            |
+|   801    | Capability not supported. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+let watermark: image.PixelMap|undefined = undefined; // need data
+let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
+
+avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
+  console.info('Succeeded in setWatermark');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to setWatermark and catch error is ${error.message}`);
+});
+```
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -994,14 +1231,15 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
 
-## SeekMode<sup>8+</sup>
+## WatermarkConfig<sup>12+</sup>
 
-视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
+设置给AVRecorder的水印相关配置，该位置以画面的左上角为开始点。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **系统接口：** 该接口为系统接口
 
-| 名称           | 值   | 说明                                                         |
-| -------------- | ---- | ------------------------------------------------------------ |
-| SEEK_CONTINUOUS<sup>12+</sup> | 3    | 表示拖动预览的Seek模式。有序、批量调用该模式Seek，实现视频的拖动预览功能。<br>该模式下Seek成功不上报SeekDone事件。 |
+| 名称      | 类型   | 必填 | 说明             |
+| --------- | ------ | ---- | ---------------- |
+| top       | number | 是   | 显示位置，距离图像顶部的像素偏移量。 |
+| left      | number | 是   | 显示位置，距离图像左部的像素偏移量。 |

@@ -52,22 +52,22 @@
 1. 此处以获取相册图片为例，调用[@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) 实现相册图片文件的选择。
 
    ```ts
-   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let uris: Array<string> = [];
    
    // 创建图片文件选择实例
-   let photoSelectOptions = new picker.PhotoSelectOptions();
+   let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    
    // 设置选择媒体文件类型为IMAGE，设置选择媒体文件的最大数目
-   photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
    photoSelectOptions.maxSelectNumber = 1;
    
    // 创建图库选择器实例，调用select()接口拉起图库界面进行文件选择。文件选择成功后，返回photoSelectResult结果集。
-   let photoPicker = new picker.PhotoViewPicker();
+   let photoPicker = new photoAccessHelper.PhotoViewPicker();
    photoPicker.select(photoSelectOptions, async (
-     err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
+     err: BusinessError, photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
      if (err) {
        console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
        return;
@@ -219,7 +219,7 @@ let maxIndex: number = 0;
 let maxArray: Array<number> = [];
 let maxIndexArray: Array<number> = [];
 
-// 假设图像预处理后的buffer数据保存在float32View
+// 完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
 let inputs: ArrayBuffer[] = [float32View.buffer];
 let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
 resMgr.getRawFileContent(modelName).then(modelBuffer => {
@@ -235,6 +235,10 @@ resMgr.getRawFileContent(modelName).then(modelBuffer => {
       }
       console.info('MS_LITE_LOG: ' + printStr);
       // 取分类占比的最大值
+      this.max = 0;
+      this.maxIndex = 0;
+      this.maxArray = [];
+      this.maxIndexArray = [];
       let newArray = out.filter(value => value !== max)
       for (let n = 0; n < 5; n++) {
         max = out[0];
@@ -300,3 +304,4 @@ resMgr.getRawFileContent(modelName).then(modelBuffer => {
 
 - [基于ArkTS接口的MindSpore Lite应用开发（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo)
 
+<!--RP1--><!--RP1End-->

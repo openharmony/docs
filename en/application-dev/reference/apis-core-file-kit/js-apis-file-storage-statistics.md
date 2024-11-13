@@ -9,7 +9,7 @@ The **storageStatistics** module provides APIs for obtaining storage space infor
 ## Modules to Import
 
 ```ts
-import storageStatistics from "@ohos.file.storageStatistics";
+import  { storageStatistics } from '@kit.CoreFileKit';
 ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>
@@ -39,7 +39,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
@@ -74,7 +74,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (error) {
       console.error("getCurrentBundleStats failed with error:" + JSON.stringify(error));
@@ -89,8 +89,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-| Name     | Type  | Read-Only| Writable| Description          |
-| --------- | ------ | --- | ---- | -------------- |
-| appSize   | number | Yes| No| Size of the application (excluding empty folders), in bytes.   |
-| cacheSize | number | Yes| No| Size of the cache data, in bytes.  |
-| dataSize  | number | Yes| No| Total size of the application, in bytes.|
+| Name     | Type  | Mandatory| Description          |
+| --------- | ------ | --- | -------------- |
+| appSize   | number | Yes| Size of the application (excluding empty folders), in bytes.   |
+| cacheSize | number | Yes| Size of the cache data, in bytes.  |
+| dataSize  | number | Yes| Total size of the application, in bytes.|

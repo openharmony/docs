@@ -32,7 +32,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 >
 > 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。
 >
-> 3. 在半模态单挡位向上拖拽或是多挡位上滑换挡请况下，内容在拖拽结束或换挡结束后更新显示区域。
+> 3. 在半模态单挡位向上拖拽或是多挡位上滑换挡情况下，内容在拖拽结束或换挡结束后更新显示区域。
 >
 > 4. 半模态是一个严格和宿主节点绑定在一起的弹窗。若是想实现类似“页面显示的瞬间就弹出半模态”的效果，请确认宿主节点是否已挂载上树。若宿主节点还没上树就将isShow置为true，半模态将不生效。建议使用[onAppear](ts-universal-events-show-hide.md#onappear)函数，确保在宿主节点挂载后再显示半模态。
 > 尤其是 [SheetMode](#sheetmode12) = EMBEDDED 时，除宿主节点外，还需确保对应的页面节点成功挂载。
@@ -45,17 +45,17 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 | 名称              | 类型                                       | 必填   | 描述              |
 | --------------- | ---------------------------------------- | ---- | --------------- |
-| height          | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>API version 12之前，底部弹窗横屏时该属性设置无效，高度为距离屏幕顶部8vp。<br/>API version 12开始，底部弹窗横屏时该属性设置生效，最大高度为距离屏幕顶部8vp。<br/>底部弹窗时，当设置detents时，该属性设置无效。<br/>底部弹窗竖屏时，最大高度为距离信号栏8vp。<br />居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MEDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| height          | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>API version 12之前，底部弹窗横屏时该属性设置无效，高度为距离屏幕顶部8vp。<br/>API version 12开始，底部弹窗横屏时该属性设置生效，最大高度为距离屏幕顶部8vp。<br/>API version 14开始，底部弹窗横屏时，无状态栏则最大高度为距离屏幕顶部8vp，有状态栏则最大高度为距离状态栏8vp。<br/>底部弹窗时，当设置detents时，该属性设置无效。<br/>底部弹窗竖屏时，最大高度为距离状态栏8vp。<br />居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MEDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>从API version 12开始，底部弹窗横屏时该属性设置生效。<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。<br />面板可跟手滑动切换档位，松手后是否滑动至目标档位有两个判断条件：速度和距离。速度超过阈值，则执行滑动至与手速方向一致的目标档位；速度小于阈值，则引入距离判断条件，当位移距离>当前位置与目标位置的1/2，滑动至与手速方向一致的目标档位，位移距离当前位置与目标位置的1/2，返回至当前档位。速度阈值：1000，距离阈值：50%。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的dentents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同屏幕宽度所支持的显示类型：<br/>1. 宽度 < 600vp：底部。<br/>2. 600vp <= 宽度 < 840vp：底部、居中。<br/>3. 宽度 >= 840vp：底部、居中、跟手。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/> 2in1设备默认无按钮底板。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的detents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onWillDismiss<sup>12+</sup> | [DismissSheetAction](#dismisssheetaction12) | 否    | 半模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行关闭操作时，如果注册该回调函数，不会立刻关闭, 由开发者控制是否关闭。在回调函数中可以通过[reason](ts-appendix-enums.md#dismissreason12)得到关闭页面的操作类型，从而根据原因选择是否关闭半模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillDismiss<sup>12+</sup> | [DismissSheetAction](#dismisssheetaction12) | 否    | 半模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行关闭操作时，如果注册该回调函数，不会立刻关闭, 由开发者控制是否关闭。在回调函数中可以通过[reason](../js-apis-promptAction.md#dismissreason12枚举说明)得到关闭页面的操作类型，从而根据原因选择是否关闭半模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onWillSpringBackWhenDismiss<sup>12+</sup> | [SpringBackAction](#springbackaction12) | 否    | 半模态页面交互式关闭前控制回弹函数。<br/>**说明：**<br />当用户执行下拉关闭操作并注册shouldDimiss或onWillDismiss时，如果注册该回调函数，则不会回弹，由开发者控制下滑关闭时是否回弹。在回调函数中可以通过调用springBack来实现回弹效果。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onHeightDidChange<sup>12+</sup> | Callback&lt;number&gt; | 否 | 半模态页面高度变化回调函数。<br/>**说明：**<br/>底部弹窗时，只有档位变化和拖拽跟手才返回每一帧高度，拉起半模态和避让软键盘只返回最后的高度，其他弹窗只在半模态拉起返回最后高度。<br/>返回值为px。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onDetentsDidChange<sup>12+</sup> | Callback&lt;number&gt; | 否 | 半模态页面档位变化回调函数。<br/>**说明：**<br/>底部弹窗时，档位变化返回最后的高度。<br/>返回值为px。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -65,10 +65,11 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)&nbsp;\|&nbsp;[LocalizedEdgeColors](ts-types.md#localizededgecolors12)<sup>12+</sup>  | 否 | 设置半模态页面的边框颜色。<br/>默认值：Color.Black。<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。 <br />**说明：**<br />底部弹窗时，底部边框颜色设置无效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | borderStyle<sup>12+</sup> | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9)  | 否 | 设置半模态页面的边框样式。<br/>默认值：BorderStyle.Solid。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 <br />**说明：**<br />底部弹窗时，底部边框样式设置无效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | width<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置半模态页面的宽度。<br /> 百分比参数方式：以父元素宽的百分比来设置半模态页面的宽度。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置半模态页面的阴影。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置半模态页面的阴影。<br />2in1设备默认值：ShadowStyle.OUTER_FLOATING_SM。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | uiContext<sup>12+</sup> | [UIContext](../js-apis-arkui-UIContext.md#uicontext)   | 否 | 在UIContext实例对应的窗口中显示半模态。<br />**说明：**<br />使用[openBindSheet](../js-apis-arkui-UIContext.md#openbindsheet12)启动的半模态页面，不支持设置、更新该属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | mode<sup>12+</sup> | [SheetMode](#sheetmode12)   | 否 | 设置半模态页面的显示层级。<br/>默认值：SheetMode.OVERLAY。 <br />**说明：**<br /> 1. 半模态显示期间mode属性不支持动态切换，两种模式的显示层级完全不同，无法做到显示期间同一个半模态从一个层级变换到另一个层级。建议在使用时明确诉求固定mode值。 <br/> 2. 设置SheetMode.EMBEDDED时不支持设置UIContext属性，两者对应的半模态显示层级效果互相冲突。<br />3. 使用[openBindSheet](../js-apis-arkui-UIContext.md#openbindsheet12)启动半模态页面，若未传入有效的targetId，则不支持设置为SheetMode.EMBEDDED，默认为SheetMode.OVERLAY。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | scrollSizeMode<sup>12+</sup> | [ScrollSizeMode](#scrollsizemode12)   | 否 | 设置半模态面板滑动时，内容区域刷新时机。<br/>默认值：ScrollSizeMode.FOLLOW_DETENT 。|
+| keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13枚举说明) | 否 | 设置半模态激活输入法时对软键盘的避让方式。<br/> **默认值：** TRANSLATE_AND_SCROLL<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## SheetSize枚举说明
 
@@ -137,13 +138,22 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | 名称              | 类型                                       | 必填   | 描述            |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | dismiss | function | 是    | 半模态页面关闭回调函数。开发者需要退出页面时调用。 |
-| reason | [DismissReason](ts-appendix-enums.md#dismissreason12) | 是    | 返回本次半模态页面退出的操作类型。  |
+| reason | [DismissReason](../js-apis-promptAction.md#dismissreason12枚举说明) | 是    | 返回本次半模态页面退出的操作类型。  |
 
 ## SpringBackAction<sup>12+</sup>
 
 | 名称              | 类型                                       | 必填   | 描述            |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | springBack | function | 是    | 半模态页面关闭前控制回弹函数，开发者需要半模态回弹时调用。  |
+
+## SheetKeyboardAvoidMode<sup>13+</sup>枚举说明
+
+| 名称           | 值   | 描述                         |
+| ------------------------- | ---- | -------------------------------- |
+| NONE | 0    | 设置半模态不避让软键盘。   |
+| TRANSLATE_AND_RESIZE    | 1    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过压缩整体内容完成避让。|
+| RESIZE_ONLY    | 2    | 设置半模态通过压缩整体内容避让软键盘。|
+| TRANSLATE_AND_SCROLL    | 3    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过滚动内容完成避让。|
 
 ## 示例
 ### 示例1
@@ -153,30 +163,31 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State sheetHeight:number = 300;
+  @State isShow: boolean = false
+  @State isShow2: boolean = false
+  @State sheetHeight: number = 300;
 
-  @Builder myBuilder() {
+  @Builder
+  myBuilder() {
     Column() {
       Button("change height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = 500;
         })
 
       Button("Set Illegal height")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = -1;
         })
 
       Button("close modal 1")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
     }
@@ -193,12 +204,20 @@ struct SheetTransitionExample {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          height: this.sheetHeight, 
+          height: this.sheetHeight,
           backgroundColor: Color.Green,
-          onWillAppear: () => {console.log("BindSheet onWillAppear.")}, 
-          onAppear: () => {console.log("BindSheet onAppear.")}, 
-          onWillDisappear: () => {console.log("BindSheet onWillDisappear.")}, 
-          onDisappear: () => {console.log("BindSheet onDisappear.")}
+          onWillAppear: () => {
+            console.log("BindSheet onWillAppear.")
+          },
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onWillDisappear: () => {
+            console.log("BindSheet onWillDisappear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
         })
     }
     .justifyContent(FlexAlign.Center)
@@ -212,13 +231,17 @@ struct SheetTransitionExample {
 
 ### 示例2
 
+使用bindSheet的detents属性设置三个不同高度的档位。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow:boolean = false
-  @Builder myBuilder() {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
     Column() {
       Button("content1")
         .margin(10)
@@ -239,17 +262,12 @@ struct SheetTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(),{
-          detents:[SheetSize.MEDIUM,SheetSize.LARGE,200],
-          backgroundColor:Color.Gray,
-          blurStyle:BlurStyle.Thick,
-          showClose:true,
-          title:{title:"title", subtitle:"subtitle"},
-          preferType: SheetType.CENTER,
-          shouldDismiss:((sheetDismiss: SheetDismiss)=> {
-            console.log("bind sheet shouldDismiss")
-            sheetDismiss.dismiss()
-          })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -263,10 +281,10 @@ struct SheetTransitionExample {
 
 ### 示例3
 
+bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型。
+
 ```ts
 // xxx.ets
-// bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
-
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
@@ -302,13 +320,8 @@ struct SheetTransitionExample {
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
-          preferType: SheetType.CENTER,
           borderWidth: { top: LengthMetrics.vp(10), start: LengthMetrics.vp(10), end: LengthMetrics.vp(20) },
           borderColor: { top: Color.Pink, start: Color.Blue, end: Color.Yellow },
-          shouldDismiss: ((sheetDismiss: SheetDismiss) => {
-            console.log("bind sheet shouldDismiss")
-            sheetDismiss.dismiss()
-          })
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -328,10 +341,10 @@ struct SheetTransitionExample {
 
 ### 示例4
 
+bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss。
+
 ```ts
 // xxx.ets
-// bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss
-
 @Entry
 @Component
 struct bindSheetExample {
@@ -378,3 +391,181 @@ struct bindSheetExample {
 }
 ```
 ![zh-cn_sheet](figures/zh-cn_sheet4.gif)
+
+### 示例5
+
+bindSheet设置scrollSizeMode。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State isShow: boolean = false;
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Column()
+        .backgroundColor(Color.Blue)
+        .height(200)
+        .width('100%')
+      Column()
+        .backgroundColor(Color.Green)
+        .height(200)
+        .width('100%')
+    }
+  }
+
+  build() {
+    Column() {
+      Button('BindSheet')
+        .onClick(() => {
+          this.isShow = true;
+        })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [300, 600, 900],
+          uiContext: this.getUIContext(),
+          mode: SheetMode.OVERLAY,
+          scrollSizeMode: ScrollSizeMode.CONTINUOUS,
+          backgroundColor: Color.Orange,
+          title: { title: 'Title', subtitle: 'Subtitle' }
+        })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+跟手触发档位切换时，松手才触发面板内容高度刷新
+
+![zh-cn_sheet](figures/zh-cn_sheet5_ltr.gif)
+
+跟手触发档位切换时，跟手时期就会触发面板内容高度刷新
+
+![zh-cn_sheet](figures/zh-cn_sheet5_rtl.gif)
+
+### 示例6
+
+在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动。
+
+```ts
+//xxx.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct ListenKeyboardHeightChange {
+  @State isShow: boolean = false;
+  @State avoidMode: SheetKeyboardAvoidMode = SheetKeyboardAvoidMode.RESIZE_ONLY;
+  scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
+  @State scrollHeight: number = 0;
+  @State keyBoardChange: boolean = false;
+  windowClass: window.Window | undefined = undefined;
+
+  aboutToAppear(): void {
+    try {
+      window.getLastWindow(getContext(this), (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to obtain the top window, Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        this.windowClass = data;
+        try {
+          if (this.windowClass !== undefined) {
+            console.log('success in listen height change');
+            //注册键盘高度变化监听回调
+            this.windowClass.on('keyboardHeightChange', this.callback);
+          }
+        } catch (exception) {
+          console.error(`Failed to enable the listener for keyboard height changes, Cause code: ${exception.code}, message: ${exception.message}`);
+        }
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error(`Failed to obtain the top window, Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+
+  //当键盘高度变化时，设置相应标志位
+  callback = (height: number) => {
+    this.scrollHeight = height;
+    console.log('height change: ' + this.scrollHeight);
+    if (height !== 0) {
+      this.keyBoardChange = true;
+    }
+  }
+  //当滚动组件高度变化时，根据标志位触发滚动
+  sizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => {
+    if (this.keyBoardChange) {
+      this.scroller.scrollBy(0, this.scrollHeight);
+      this.keyBoardChange = false;
+    }
+  }
+
+  @Builder
+  myBuilder() {
+    Scroll(this.scroller) {
+      Column() {
+        ForEach(this.arr, (item: number) => {
+          Row() {
+            Text(item.toString())
+              .width('80%')
+              .height(60)
+              .backgroundColor('#3366CC')
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 5 })
+          }
+        }, (item: number) => item.toString())
+
+        TextInput().height('100')
+
+        Flex({ alignItems: ItemAlign.End }) {
+          Row() {
+            Button("click")
+              .margin(10)
+              .fontSize(20)
+              .width('45%')
+
+            Button("cancel")
+              .margin(10)
+              .fontSize(20)
+              .width('45%')
+          }.width('100%')
+        }.height('100%')
+      }.margin({ right: 15 })
+    }
+    .scrollBar(BarState.On)
+    .scrollable(ScrollDirection.Vertical)
+    .onSizeChange(this.sizeChangeCallback)
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          backgroundColor: Color.Gray,
+          blurStyle: BlurStyle.Thick,
+          showClose: true,
+          title: { title: "title", subtitle: "subtitle" },
+          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}
+```

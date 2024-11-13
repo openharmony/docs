@@ -19,4 +19,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [MediaLibrary_DeliveryMode](_media_asset_manager.md#medialibrary_deliverymode-1)[deliveryMode](_media_asset_manager.md#deliverymode) | 分发模式。 | 
+| [MediaLibrary_DeliveryMode](_media_asset_manager.md#medialibrary_deliverymode) [deliveryMode](#deliverymode) | 请求资源分发模式，可以指定对于该资源的请求策略。  | 
+
+
+## 结构体成员变量说明
+
+
+### deliveryMode
+
+```
+MediaLibrary_DeliveryMode MediaLibrary_RequestOptions::deliveryMode
+```
+**描述**
+请求资源分发模式，可以指定对于该资源的请求策略。

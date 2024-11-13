@@ -1,6 +1,6 @@
 # ApplicationStateObserver (系统接口)
 
-定义应用状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageron11)的入参监听当前应用的生命周期变化。
+定义应用状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageronapplicationstate)的入参监听当前应用的生命周期变化。
 
 > **说明：**
 > 

@@ -20,10 +20,13 @@
 
 - 音频录制
 
-  通过录制传入PCM，然后编码出对应格式的码流，最后封装成想要的格式
+  通过录制传入PCM，然后编码出对应格式的码流，最后封装成想要的格式。
 - 音频编辑
 
-  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件
+  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件。
+> **说明：**
+>
+> AAC编码器默认采用的VBR可变码率模式，与配置的预期参数可能存在偏差。
 
 ## 开发指导
 
@@ -34,6 +37,11 @@
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
 如下为音频编码调用关系图：
+
+- 虚线表示可选。
+
+- 实线表示必选。
+
 ![Invoking relationship of audio encode stream](figures/audio-codec.png)
 
 ### 在 CMake 脚本中链接动态库
@@ -157,7 +165,16 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    可选项：最大输入长度。
 
-   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。
+   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。  
+   
+   各音频编码类型参数范围说明：
+   | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
+   | ----------- | ------------------------------------------------------------------------------- | :----------------: |
+   | AAC         | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000 | 1、2、3、4、5、6、8 |
+   | Flac        | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000 |        1~8         |
+   | MP3         | 8000、11025、12000、16000、22050、24000、32000、44100、48000                     |        1~2         |
+   | G711mu      | 8000                                                                            |         1          |
+   <!--RP3--><!--RP3End-->
 
    对于44100Hz采样率、2声道立体声、SAMPLE_S16LE采样格式的PCM音频，以32000bps的码率进行AAC编码的调用流程如下：
 
@@ -258,11 +275,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
-   aac： 每帧样点数(SAMPLES_PER_FRAME)建议使用20ms的PCM样点数，即采样率*0.02
+   aac： 每帧样点数(SAMPLES_PER_FRAME)建议使用20ms的PCM样点数，即采样率*0.02。
 
-   flac： 每帧样点数(SAMPLES_PER_FRAME)比较特殊需要，根据如下表格进行设置
+   flac： 每帧样点数(SAMPLES_PER_FRAME)比较特殊需要，根据如下表格进行设置。
 
    | 采样率 | 样点数 |
    | :----: | :----: |
@@ -304,8 +320,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
+   在上方案例中，attr.flags代表缓冲区标记的类别。  
+   如果是结束，需要将flags标识成AVCODEC_BUFFER_FLAGS_EOS。
+   | 枚举值 | 描述 | 
+   | -------- | -------- |
+   | AVCODEC_BUFFER_FLAGS_NONE | 表示为普通帧。 | 
+   | AVCODEC_BUFFER_FLAGS_EOS | 表示缓冲区是流结束帧。 | 
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 表示缓冲区包含编解码特定数据。 | 
 
-8. 调用OH_AudioCodec_FreeOutputBuffer()，输出编码格式码流
+8. 调用OH_AudioCodec_FreeOutputBuffer()，输出编码格式码流。
 
     ```c++
     uint32_t index = signal_->outQueue_.front();

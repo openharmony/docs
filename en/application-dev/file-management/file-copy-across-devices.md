@@ -12,10 +12,10 @@ The distributed file system provides the cross-device file copy capability for a
    Copy the file of device A from the sandbox directory to the **distributedfiles/** directory of device A.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device A.
    let pathDir: string = context.filesDir;
@@ -55,10 +55,10 @@ The distributed file system provides the cross-device file copy capability for a
    Device B copies the file from the distributed file directory of device B.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import fileUri from '@ohos.file.fileuri';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileUri } from '@kit.CoreFileKit';
 
    let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device B.
    let pathDir: string = context.filesDir;

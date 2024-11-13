@@ -57,9 +57,9 @@
 - 当装饰的数据类型为boolean、string、number类型时，可以观察到数值的变化。
 
   ```ts
-  // for simple type
+  // 简单类型
   @State count: number = 0;
-  // value changing can be observed
+  // 可以观察到值的变化
   this.count = 1;
   ```
 
@@ -217,6 +217,21 @@
 - 执行依赖该状态变量的组件的更新方法，组件更新渲染；
 
 - 和该状态变量不相关的组件或者UI描述不会发生重新渲染，从而实现页面渲染的按需更新。
+
+
+## 限制条件
+
+1. \@State装饰的变量必须初始化，否则编译期会报错。
+
+```ts
+// 错误写法，编译报错
+@State count: number;
+
+// 正确写法
+@State count: number = 10;
+```
+
+2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
 
 
 ## 使用场景
@@ -907,3 +922,231 @@ struct ConsumerChild {
 ```
 
 以上示例，在赋值前，使用getTarget获取了对应状态变量的原始对象，经过对比后，如果和当前对象一样，就不赋值，不触发刷新。
+
+### 不允许在build里改状态变量
+
+不允许在build里改变状态变量，状态管理框架会在运行时报出Error级别日志。
+
+下面的示例，渲染的流程是：
+
+1. 创建CompA自定义组件。
+
+2. 执行CompA的build方法：
+
+    1. 创建Column组件。
+
+    2. 创建Text组件。创建Text组件的过程中，触发this.count++。
+
+    3. count的改变再次触发Text组件的刷新。
+
+    4. Text最终显示为2。
+
+```ts
+@Entry
+@Component
+struct CompA {
+  @State count: number = 1;
+
+  build() {
+    Column() {
+      // 应避免直接在Text组件内改变count的值
+      Text(`${this.count++}`)
+        .width(50)
+        .height(50)
+    }
+  }
+}
+```
+
+在首次创建的过程中，Text组件被多渲染了一次，导致其最终显示为2。
+
+框架识别到在build里改变状态变量会打error日志，error日志为：
+
+```ts
+FIX THIS APPLICATION ERROR: @Component 'CompA'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
+```
+
+在上面的例子中，这个错误行为不会造成很严重的后果，只有Text组件多渲染了一次，所以很多开发者忽略了这个日志。
+
+但这个行为是严重错误的，会随着工程的复杂度升级，隐患越来越大。见下一个例子。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: number = 20;
+
+  build() {
+    Column() {
+      Text(`${this.message++}`)
+
+      Text(`${this.message++}`)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+上面示例渲染过程：
+
+1. 创建第一个Text组件，触发this.message改变。
+
+2. this.message改变又触发第二个Text组件的刷新。
+
+3. 第二个Text组件的刷新又触发this.message的改变，触发第一个Text组件刷新。
+
+4. 循环重新渲染……
+
+5. 系统长时间无响应，appfreeze。
+
+所以，在build里面改变状态变量的这种行为是完全错误的。当发现“FIX THIS APPLICATION ERROR: @Component ... has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!”日志时，即使当下没有带来严重后果，也应该警惕。应该排查应用，修改对应的错误写法，消除该错误日志。
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@State装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
+
+【反例】
+
+```ts
+class Balloon {
+  volume: number;
+  constructor(volume: number) {
+    this.volume = volume;
+  }
+
+  static increaseVolume(balloon:Balloon) {
+    balloon.volume += 2;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State balloon: Balloon = new Balloon(10);
+
+  reduceVolume(balloon:Balloon) {
+    balloon.volume -= 1;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The volume of the balloon is ${this.balloon.volume} cubic centimeters.`)
+        .fontSize(30)
+      Button(`increaseVolume`)
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Balloon.increaseVolume(this.balloon);
+        })
+      Button(`reduceVolume`)
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.reduceVolume(this.balloon);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.balloon加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Balloon {
+  volume: number;
+  constructor(volume: number) {
+    this.volume = volume;
+  }
+
+  static increaseVolume(balloon:Balloon) {
+    balloon.volume += 2;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State balloon: Balloon = new Balloon(10);
+
+  reduceVolume(balloon:Balloon) {
+    balloon.volume -= 1;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The volume of the balloon is ${this.balloon.volume} cubic centimeters.`)
+        .fontSize(30)
+      Button(`increaseVolume`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let balloon1 = this.balloon;
+          Balloon.increaseVolume(balloon1);
+        })
+      Button(`reduceVolume`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let balloon2 = this.balloon;
+          this.reduceVolume(balloon2);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### 自定义组件外改变状态变量
+
+开发者可以在aboutToAppear中注册箭头函数，并以此来改变组件中的状态变量。但需要注意的是在aboutToDisappear中将之前注册的函数置空，否则会因为箭头函数捕获了自定义组件的this实例，导致自定义组件无法被释放，从而造成内存泄漏。
+
+```ts
+class Model {
+  private callback: Function | undefined = () => {}
+
+  add(callback: () => void): void {
+    this.callback = callback;
+  }
+
+  delete(): void {
+    this.callback = undefined;
+  }
+
+  call(): void {
+    if (this.callback) {
+      this.callback();
+    }
+  }
+}
+
+let model: Model = new Model();
+
+@Entry
+@Component
+struct Test {
+  @State count: number = 10;
+
+  aboutToAppear(): void {
+    model.add(() => {
+      this.count++;
+    })
+  }
+
+  build() {
+    Column() {
+      Text(`count值: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call();
+        })
+    }
+  }
+
+  aboutToDisappear(): void {
+    model.delete();
+  }
+}
+```
+
+此外，也可以使用[LocalStorage](./arkts-localstorage.md#自定义组件外改变状态变量)的方式在自定义组件外改变状态变量。

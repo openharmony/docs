@@ -16,5 +16,15 @@
   - [@ohos.telephony.sms (SMS) (System API)](js-apis-sms-sys.md)
   - [@ohos.telephony.vcard (VCard) (System API)](js-apis-vcard-sys.md)
   <!--DelEnd-->
+- C API
+  - Module
+    - [Telephony Data](ndk-apis-telephony-data.md)
+    - [Telephony Radio](ndk-apis-telephony-radio.md)
+  - Header Files
+    - [telephony_data.h](telephony__data_8h.md)
+    - [telephony_radio.h](telephony__radio_8h.md)
+    - [telephony_radio_type.h](telephony__radio__type_8h.md)
+  - Structs
+    - [Telephony_NetworkState](_telephony__network_state.md)
 - Error Codes
   - [Telephony Error Codes](errorcode-telephony.md)

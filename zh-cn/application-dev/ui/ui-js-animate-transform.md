@@ -94,7 +94,7 @@
 
 ## 设置平移动画
 
-小球下降动画，改变小球的Y轴坐标实现小球下落，在下一段是时间内减小Y轴坐标实现小球回弹，让每次回弹的高度逐次减小直至回弹高度为0，就模拟出了小球下降的动画。
+小球下降动画，改变小球的Y轴坐标实现小球下落，在下一段时间内减小Y轴坐标实现小球回弹，让每次回弹的高度逐次减小直至回弹高度为0，就模拟出了小球下降的动画。
 
 ```html
 <!-- xxx.hml -->
@@ -303,7 +303,8 @@
 
 ![zh-cn_image_0000001220316305](figures/zh-cn_image_0000001220316305.gif)
 
-> **说明：**
+> **说明：** 
+>
 > transform-origin变换对象的原点位置，如果仅设置一个值，另一个值为50%，若设置两个值第一个值表示X轴的位置，第二个值表示Y轴的位置。
 
 
@@ -415,7 +416,8 @@ text{
 
 ![zh-cn_image_0000001220396251](figures/zh-cn_image_0000001220396251.gif)
 
-> **说明：**
+> **说明：** 
+>
 > 设置transform属性值后，子元素会跟着父元素一起改变，若只改变父元素其他属性值时（如：height，width），子元素不会改变。
 
 
@@ -584,8 +586,6 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 ## 相关实例
 
 针对transform样式动画开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
 - [`JsClock`：时钟（JS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
 

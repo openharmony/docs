@@ -12,7 +12,11 @@ The full screen capture process involves creating an **AVScreenCapture** instanc
 
 If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
 
+Screen capture automatically stops upon system user switching, and **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES** is reported.
+
 This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
+
+If microphone data collection is configured, configure the permission **ohos.permission.MICROPHONE** and request a continuous task. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md) and [Continuous Task](../../task-management/continuous-task.md).
 
 ## How to Develop
 
@@ -23,7 +27,7 @@ If an API is called when the AVScreenCapture is not in the given state, the syst
 **Linking the Dynamic Library in the CMake Script**
 
 ```c++
-target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
+target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffer.so libnative_media_core.so)
 ```
 
 1. Add the header files.
@@ -33,6 +37,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     #include <multimedia/player_framework/native_avscreen_capture.h>
     #include <multimedia/player_framework/native_avscreen_capture_base.h>
     #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <native_buffer/native_buffer.h>
     #include <fcntl.h>
     #include "string"
     #include "unistd.h"
@@ -56,8 +61,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     };
 
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -112,31 +117,14 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-8. Call **AcquireAudioBuffer()** to obtain an audio buffer.
+8. Obtain and process the original audio and video stream data from the callback function **OnBufferAvailable()**.
 
     ```c++
-    OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
+    OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
+        OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData)
     ```
 
-9. Call **AcquireVideoBuffer()** to obtain a video buffer.
-
-    ```c++
-    OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
-    ```
-
-10. Call **ReleaseAudioBuffer()** to release the audio buffer.
-
-    ```c++
-    OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
-    ```
-
-11. Call **ReleaseVideoBuffer()** to release the video buffer.
-
-    ```c++
-    OH_AVScreenCapture_ReleaseVideoBuffer(capture);
-    ```
-
-12. Call **Release()** to release the instance.
+9. Call **Release()** to release the instance.
 
     ```c++
     OH_AVScreenCapture_Release(capture);
@@ -153,6 +141,7 @@ For details about screen capture in surface mode, see [Surface Input](../avcodec
 Currently, the buffer holds original streams, which can be encoded and saved in MP4 format for playback.
 
 > **NOTE**
+>
 > The encoding format is reserved and will be implemented in later versions.
 
 ```c++
@@ -162,6 +151,7 @@ Currently, the buffer holds original streams, which can be encoded and saved in 
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
 #include <multimedia/player_framework/native_avscreen_capture_errors.h>
 #include <multimedia/player_framework/native_avbuffer.h>
+#include <native_buffer/native_buffer.h>
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
@@ -178,9 +168,9 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // Process the state change.
     }
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
-        // Process the screen capture interruption caused by incoming calls.
-        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
+        stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+        // Process screen capture interruption.
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // Process the state change.
@@ -209,7 +199,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Obtain the window ID number[] from the JS side.
-    vector<int> windowIdsExclude = {};
+    std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     // Obtain parameters.
@@ -228,10 +218,10 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Instantiate AVScreenCapture.
     capture = OH_AVScreenCapture_Create();
     
-    // Set the callbacks. 
-    OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
-    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
-    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
+    // Set the callbacks.
+    OH_AVScreenCapture_SetErrorCallback(capture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
 
     // (Optional) Configure screen capture rotation. This API should be called when the device screen rotation is detected. If the device screen does not rotate, the API call is invalid.
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
@@ -248,7 +238,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // Initialize the screen capture parameters and pass in an OH_AVScreenRecorderConfig struct.
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720, .videoFrameHeight = 1080, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+        .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
     };
@@ -271,8 +261,17 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 
     // Start screen capture.
     OH_AVScreenCapture_StartScreenCapture(capture);
+
     // Enable the microphone.
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
+
+    // (Optional) Transfer the IDs of the subwindows and main windows to skip from screen capture. Transfer an empty array to cancel the windows that has been configured for exemption.
+	// std::vector<int> windowIdsSkipPrivacy = {};
+    // OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
+    //     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
+
+    // (Optional) Adjust the screen capture resolution after the capture starts. For details about the resolution range, see the AVCODEC encoding and decoding capabilities.
+    // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
 
     sleep(10); // Capture the screen for 10s.
     // Stop screen capture.

@@ -1,8 +1,8 @@
 # HAR转HSP指导
-目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍了HAR转HSP的步骤。
+目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍了HAR转HSP的步骤，主要是通过配置项的变更将HAR工程变成HSP工程。
 ## HAR转HSP的操作步骤
 
-1. 修改HAR模块下的module.json5文件
+1. 修改HAR模块下的module.json5文件，修改type字段为shared，新增deliveryWithInstall字段。
     ```json
     // MyApplication\library\src\main\module.json5
     {
@@ -16,7 +16,7 @@
     }
     ```
 
-2. 在resources下的base，en_US和zh_CN的element下新增一个string字段shared_desc
+2. 在resources下的base，en_US和zh_CN的element下新增一个string字段shared_desc。
     ```json
     // MyApplication\library\src\main\resources\base\element\string.json
     {
@@ -29,7 +29,7 @@
     }
     ```
 
-3. 在resource\base下新增profile文件夹，在profile下新增一个main_pages.json文件，并配置
+3. 在resources\base下新增profile文件夹，在profile下新增一个main_pages.json文件，并配置如下内容。
     ```json
     // MyApplication\library\src\main\resources\base\profile\main_pages.json
     {
@@ -39,7 +39,7 @@
     }
     ```
 
-4. 在ets目录下新增pages目录，并在pages目录下新增PageIndex.ets文件
+4. 在ets目录下新增pages目录，并在pages目录下新增PageIndex.ets文件，并配置如下内容。
     ```ts
     // MyApplication\library\src\main\ets\pages\PageIndex.ets
     @Entry
@@ -61,9 +61,9 @@
     }
     ```
 
-5. 删除MyApplication\library\build-profile.json5文件的consumerFiles字段配置
+5. 删除HAR模块的build-profile.json5文件中的consumerFiles字段配置。
 
-6. 修改hvigorfile.ts文件
+6. 修改HAR模块的hvigorfile.ts文件，将下面内容替换该文件内容。
     ```ts
     // MyApplication\library\hvigorfile.ts
     import { hspTasks } from '@ohos/hvigor-ohos-plugin';
@@ -74,7 +74,7 @@
     }
     ```
 
-7. 修改oh-package.json5文件，新增packageType配置
+7. 修改oh-package.json5文件，新增packageType配置。
     ```json
     // MyApplication\library\oh-package.json5
     {
@@ -82,7 +82,7 @@
     }
     ```
 
-8. 修改项目根目录下的配置文件build-profile.json5
+8. 修改项目根目录下的配置文件build-profile.json5。
 ![har-to-hsp-8-1.png](figures/har-to-hsp-8-1.png)
 修改后：
 ![har-to-hsp-8-2.png](figures/har-to-hsp-8-2.png)

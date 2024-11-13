@@ -189,7 +189,7 @@ enum OH_BitrateMode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | BITRATE_MODE_CBR  | 恒定比特率模式。   | 
-| BITRATE_MODE_VBR  | 可变比特率模式。   | 
+| BITRATE_MODE_VBR  | 可变比特率模式，码率仅作参考。   | 
 | BITRATE_MODE_CQ  | 恒定质量模式。   | 
 
 

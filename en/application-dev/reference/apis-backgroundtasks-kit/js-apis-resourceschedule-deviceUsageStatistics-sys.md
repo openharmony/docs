@@ -29,7 +29,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 | Name       | Type                          | Mandatory  | Description                                      |
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | Yes   | Bundle name of the application.                          |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.<br>If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned. |
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.<br>If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned.|
 
 **Error codes**
 
@@ -38,6 +38,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 | ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
@@ -73,13 +74,13 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 | Name       | Type    | Mandatory  | Description            |
 | ---------- | ------ | ---- | -------------- |
-| bundleName | string | Yes   | Bundle name of the application. |
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
 | Type                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result.<br>If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned. |
+| Promise&lt;boolean&gt; | Promise used to return the result.<br>If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned.|
 
 **Error codes**
 
@@ -88,6 +89,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 | ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
@@ -127,7 +129,7 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 | Type                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
-| boolean | If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned. |
+| boolean | If the application is commonly used, **true** is returned. If the application is not commonly used or **bundleName** is invalid, **false** is returned.|
 
 **Error codes**
 
@@ -136,6 +138,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 | ID | Error Message            |
 | ---- | --------------------- |
 | 201  | Permission denied. |
+| 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
@@ -155,13 +158,15 @@ queryAppGroup(): Promise&lt;number&gt;
 
 Queries the priority group of this application. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **Return value**
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the priority group. A smaller value indicates a higher priority. |
+| Promise&lt;number&gt; | Promise used to return the priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -199,13 +204,15 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 Queries the priority group of this application. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **Parameters**
 
 | Name     | Type                   | Mandatory  | Description                        |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group. A smaller value indicates a higher priority. |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -245,13 +252,15 @@ queryAppGroupSync(): number
 
 Queries the priority group of this application. This API returns the result synchronously.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **Return value**
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| number | Priority group. A smaller value indicates a higher priority. |
+| number | Priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -291,13 +300,13 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 | Name       | Type    | Mandatory  | Description                                      |
 | ---------- | ------ | ---- | ---------------------------------------- |
-| bundleName | string | Yes   | Bundle name of the application. |
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the priority group. A smaller value indicates a higher priority. |
+| Promise&lt;number&gt; | Promise used to return the priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -345,7 +354,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 | Name       | Type                   | Mandatory  | Description                                      |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
-| bundleName | string                | Yes   | Bundle name of the application. |
+| bundleName | string                | Yes   | Bundle name of the application.|
 | callback   | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
@@ -401,7 +410,7 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| number | Priority group. A smaller value indicates a higher priority. |
+| number | Priority group. A smaller value indicates a higher priority.|
 
 **Error codes**
 
@@ -441,14 +450,14 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 | Name       | Type       | Mandatory  | Description  |
 | ---------- | --------- | ---- | ---- |
-| bundleName | string    | Yes   | Bundle name of the application. |
+| bundleName | string    | Yes   | Bundle name of the application.|
 | newGroup   | [GroupType](#grouptype) | Yes   | Type of the new group. |
 
 **Return value**
 
 | Type           | Description                       |
 | ------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -498,7 +507,7 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 | ---------- | ------------------- | ---- | ------------------------- |
 | bundleName | string              | Yes   | Bundle name of the application.                   |
 | newGroup   | [GroupType](#grouptype)           | Yes   | Type of the new group.                     |
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -550,7 +559,7 @@ Queries the application usage duration statistics based on the specified start t
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Yes   | Callback used to return the application usage duration statistics. |
+| callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
 
@@ -598,14 +607,14 @@ Queries the application usage duration statistics based on the specified start t
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds. |
-| end   | number | Yes   | End time, in milliseconds. |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Promise used to return the application usage duration statistics. |
+| Promise&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Promise used to return the application usage duration statistics.|
 
 **Error codes**
 
@@ -654,7 +663,7 @@ Queries the application usage duration statistics in the specified time frame at
 | byInterval | [IntervalType](#intervaltype)            | Yes   | Type of information to be queried.                                   |
 | begin      | number                                   | Yes   | Start time, in milliseconds.                                   |
 | end        | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Yes   | Callback used to return the application usage duration statistics. |
+| callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Error codes**
 
@@ -699,21 +708,21 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App 
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
 **Parameters**
 
 | Name       | Type                           | Mandatory  | Description   |
 | ---------- | ----------------------------- | ---- | ----- |
-| byInterval | [IntervalType](#intervaltype) | Yes   | Type of information to be queried. |
-| begin      | number                        | Yes   | Start time, in milliseconds. |
-| end        | number                        | Yes   | End time, in milliseconds. |
+| byInterval | [IntervalType](#intervaltype) | Yes   | Type of information to be queried.|
+| begin      | number                        | Yes   | Start time, in milliseconds.|
+| end        | number                        | Yes   | End time, in milliseconds.|
 
 **Return value**
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Promise used to return the application usage duration statistics. |
+| Promise&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Promise used to return the application usage duration statistics.|
 
 **Error codes**
 
@@ -764,7 +773,7 @@ Queries events of all applications based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events. |
+| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events.|
 
 **Error codes**
 
@@ -815,14 +824,14 @@ Queries events of all applications based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds. |
-| end   | number | Yes   | End time, in milliseconds. |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events. |
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
 
 **Error codes**
 
@@ -871,7 +880,7 @@ Queries events of this application based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events. |
+| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Yes   | Callback used to return the events.|
 
 **Error codes**
 
@@ -879,7 +888,6 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 201  | Permission denied. |
 | 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
@@ -920,14 +928,14 @@ Queries events of this application based on the specified start time and end tim
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds. |
-| end   | number | Yes   | End time, in milliseconds. |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events. |
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
 
 **Error codes**
 
@@ -935,7 +943,6 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 201  | Permission denied. |
 | 202  | Not System App. |
 | 401 | Parameter error. |
 | 801 | Capability not supported.|
@@ -976,14 +983,14 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds. |
-| end   | number | Yes   | End time, in milliseconds. |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the statistics about system events. |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the statistics about system events.|
 
 **Error codes**
 
@@ -1031,7 +1038,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
 | end      | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the statistics about system events. | 
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the statistics about system events.| 
 
 **Error codes**
 
@@ -1079,14 +1086,14 @@ Queries the number of notifications from all applications based on the specified
 
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
-| begin | number | Yes   | Start time, in milliseconds. |
-| end   | number | Yes   | End time, in milliseconds. |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
 
 **Return value**
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the number of notifications. |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise used to return the number of notifications.|
 
 **Error codes**
 
@@ -1134,7 +1141,7 @@ Queries the number of notifications from all applications based on the specified
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                   |
 | end      | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the number of notifications. |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Yes   | Callback used to return the number of notifications.|
 
 **Error codes**
 
@@ -1184,7 +1191,7 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 
 | Type                                      | Description                                |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the result. A maximum of 1000 usage records can be returned. |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the result. A maximum of 1000 usage records can be returned.|
 
 **Error codes**
 
@@ -1234,7 +1241,7 @@ Queries the usage records of unused HAP files for each application in the FA mod
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. A maximum of 1000 usage records can be returned. |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. A maximum of 1000 usage records can be returned.|
 
 **Error codes**
 
@@ -1281,13 +1288,13 @@ Queries a given number of usage records of unused HAP files for each application
 
 | Name   | Type    | Mandatory  | Description                                |
 | ------ | ------ | ---- | ---------------------------------- |
-| maxNum | number | Yes   | Number of usage records, in the range [1, 1000]. |
+| maxNum | number | Yes   | Number of usage records, in the range [1, 1000].|
 
 **Return value**
 
 | Type                                      | Description                                |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the result. The usage records returned does not exceed the value of **maxNum**. |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise used to return the result. The usage records returned does not exceed the value of **maxNum**.|
 
 **Error codes**
 
@@ -1336,8 +1343,8 @@ Queries a given number of usage records of unused HAP files for each application
 
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | Yes   |  Number of usage records, in the range [1, 1000]. |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. The usage records returned does not exceed the value of **maxNum**. |
+| maxNum   | number                                   | Yes   |  Number of usage records, in the range [1, 1000].|
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Yes   | Callback used to return the result. The usage records returned does not exceed the value of **maxNum**.|
 
 **Error codes**
 
@@ -1386,15 +1393,15 @@ Registers a callback for application group changes. When an application group of
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                      |
+| Name  | Type                                                        | Mandatory| Description                                      |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | Yes  | Application group change information. |
+| groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | Yes  | Application group change information.|
 
 **Return value**
 
 | Type           | Description                     |
 | ------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1445,10 +1452,10 @@ Registers a callback for application group changes. When an application group of
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                        |
+| Name  | Type                                                        | Mandatory| Description                                        |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
 | groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | Yes  | Application group change information.  |
-| callback | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. |
+| callback | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1503,7 +1510,7 @@ Unregisters the callback for application group changes. This API uses a promise 
 
 | Type           | Description                      |
 | ------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -1547,7 +1554,7 @@ Unregisters the callback for application group changes. This API uses an asynchr
 
 | Name     | Type                 | Mandatory  | Description            |
 | -------- | ------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -1595,7 +1602,7 @@ Defines the information about the usage record in the FA model.
 | labelId              | number                                   | No   | Label ID of the module to which the FA belongs.          |
 | descriptionId        | number                                   | No   | Description ID of the application to which the FA belongs.        |
 | abilityLableId       | number                                   | No   | **MainAbility** label ID of the FA.      |
-| abilityDescriptionId | number                                   | No   | **MainAbility** description ID of the FA. |
+| abilityDescriptionId | number                                   | No   | **MainAbility** description ID of the FA.|
 | abilityIconId        | number                                   | No   | **MainAbility** icon ID of the FA.       |
 | launchedCount        | number                                   | Yes   | Number of FA startup times.                     |
 | lastModuleUsedTime   | number                                   | Yes   | Last time when the FA was used.                  |
@@ -1612,7 +1619,7 @@ Defines the information about the usage record of FA widgets.
 | formName         | string | Yes   | Widget name.      |
 | formDimension    | number | Yes   | Widget dimensions.      |
 | formId           | number | Yes   | Widget ID.      |
-| formLastUsedTime | number | Yes   | Last time when the widget was clicked. |
+| formLastUsedTime | number | Yes   | Last time when the widget was clicked.|
 | count            | number | Yes   | Number of clicks on the widget.   |
 
 ## AppGroupCallbackInfo
@@ -1621,9 +1628,9 @@ Provides the application group changes returned through a callback.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-| Name          | Type  | Mandatory | Description            |
+| Name          | Type  | Mandatory| Description            |
 | ---------------- | ------ | ---- | ---------------- |
-| appOldGroup | number | Yes  | Application group before the change. |
+| appOldGroup | number | Yes  | Application group before the change.|
 | appNewGroup | number | Yes  | Application group after the change.|
 | userId           | number | Yes  | User ID.          |
 | changeReason     | number | Yes  | Reason for the group change.<br>- 256 (default): A record is initially created.<br>- 512: An exception occurs when the priority group is calculated.<br>- 768: The usage duration changes.<br>- 1024: Another application forcibly sets a priority group for the current application.|
@@ -1640,13 +1647,13 @@ Provides the usage duration information of an application.
 | bundleName               | string | No   | Bundle name of the application.                                   |
 | abilityPrevAccessTime    | number | No   | Last time when the application was used.                            |
 | abilityInFgTotalTime     | number | No   | Total time that the application runs in the foreground.                            |
-| id                       | number | Yes   | User ID. |
-| abilityPrevSeenTime      | number | No   | Last time when the application was visible in the foreground. |
-| abilitySeenTotalTime     | number | No   | Total time that the application is visible in the foreground. |
-| fgAbilityAccessTotalTime | number | No   | Total time that the application accesses the foreground. |
+| id                       | number | Yes   | User ID.|
+| abilityPrevSeenTime      | number | No   | Last time when the application was visible in the foreground.|
+| abilitySeenTotalTime     | number | No   | Total time that the application is visible in the foreground.|
+| fgAbilityAccessTotalTime | number | No   | Total time that the application accesses the foreground.|
 | fgAbilityPrevAccessTime  | number | No   | Last time when the application accessed the foreground.|
-| infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object. |
-| infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object. |
+| infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object.|
+| infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object.|
 
 ## BundleEvents
 
@@ -1671,7 +1678,7 @@ Provides the usage duration information of an application.
 
 |Name                          | Description                                      |
 | ------------------------------ | ---------------------------------------- |
-| Record<string, [BundleStatsInfo](#bundlestatsinfo)> | Usage duration information by application. |
+| Record<string, [BundleStatsInfo](#bundlestatsinfo)> | Usage duration information by application.|
 
 ## DeviceEventStats
 
@@ -1683,7 +1690,7 @@ Provides statistics about notifications and system events.
 | ------- | ------ | ---- | ----------------- |
 | name    | string | Yes   | Bundle name of the notification sending application or system event name.   |
 | eventId | number | Yes   | Type of the notification or system event.       |
-| count   | number | Yes   | Number of application notifications or system event triggering times. |
+| count   | number | Yes   | Number of application notifications or system event triggering times.|
 
 ## IntervalType
 
@@ -1693,7 +1700,7 @@ Enumerates the interval types for querying the application usage duration.
 
 | Name          | Value | Description                                      |
 | ------------ | ---- | ---------------------------------------- |
-| BY_OPTIMIZED | 0    | The system queries the application usage duration statistics in the specified time frame at the interval the system deems appropriate. |
+| BY_OPTIMIZED | 0    | The system queries the application usage duration statistics in the specified time frame at the interval the system deems appropriate.|
 | BY_DAILY     | 1    | The system queries the application usage duration statistics in the specified time frame on a daily basis.             |
 | BY_WEEKLY    | 2    | The system queries the application usage duration statistics in the specified time frame on a weekly basis.             |
 | BY_MONTHLY   | 3    | The system queries the application usage duration statistics in the specified time frame on a monthly basis.             |
@@ -1709,7 +1716,7 @@ Enumerates the application group types.
 | ------------------ | ---- | ----------------- |
 | ALIVE_GROUP | 10   | Group of active applications.             |
 | DAILY_GROUP | 20   | Group of frequently used applications that are not in the active state.   |
-| FIXED_GROUP | 30   | Group of applications that are used periodically but not every day. |
+| FIXED_GROUP | 30   | Group of applications that are used periodically but not every day.|
 | RARE_GROUP  | 40   | Group of rarely used applications.     |
 | LIMITED_GROUP | 50   | Group of restricted applications.           |
 | NEVER_GROUP | 60   | Group of applications that have been installed but never run. |

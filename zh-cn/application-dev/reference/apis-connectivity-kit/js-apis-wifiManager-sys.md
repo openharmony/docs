@@ -272,6 +272,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -311,6 +312,7 @@ WLAN配置信息。
 | ipType | [IpType](#iptype9) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
 | staticIp | [IpConfig](#ipconfig9) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
 | proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
+| configStatus<sup>12+</sup> | number | 是 | 否 | 返回当前网络是否允许参与选网。  <br /> **系统接口：** 此接口为系统接口。|
 
 ## IpType<sup>9+</sup>
 
@@ -405,6 +407,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -542,6 +545,7 @@ disconnect(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -906,6 +910,7 @@ updateNetwork(config: WifiDeviceConfig): number
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -953,6 +958,7 @@ disableNetwork(netId: number): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -988,6 +994,7 @@ removeAllNetwork(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1029,6 +1036,7 @@ removeDevice(id: number): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1158,6 +1166,7 @@ startPortalCertification(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -1202,6 +1211,7 @@ enableHiLinkHandshake(isHiLinkEnable: boolean, bssid: string, config: WifiDevice
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -1433,7 +1443,7 @@ setHotspotConfig(config: HotspotConfig): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1601,7 +1611,7 @@ addHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1649,7 +1659,7 @@ delHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1696,6 +1706,7 @@ getHotspotBlockList(): Array&lt;StationInfo&gt;
   | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1739,9 +1750,10 @@ deletePersistentGroup(netId: number): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1.Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1792,7 +1804,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 
-	wifiManager.getP2pGroups((err, data) => {
+	wifiManager.getP2pGroups((err, data:wifiManager.WifiP2pGroupInfo) => {
     if (err) {
         console.error("get P2P groups error");
         return;
@@ -1837,9 +1849,9 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 ## wifiManager.setDeviceName<sup>9+</sup>
 
@@ -1870,6 +1882,7 @@ setDeviceName(devName: string): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1886,7 +1899,7 @@ setDeviceName(devName: string): void
 
 ## wifiManager.on('streamChange')<sup>9+</sup>
 
-on(type: "streamChange", callback: Callback&lt;number&gt;): void
+on(type: 'streamChange', callback: Callback&lt;number&gt;): void
 
 注册WIFI流变更事件。
 
@@ -1917,7 +1930,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
 ## wifiManager.off('streamChange')<sup>9+</sup>
 
-off(type: "streamChange", callback?: Callback&lt;number&gt;): void
+off(type: 'streamChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI流变更事件。
 
@@ -1963,7 +1976,7 @@ wifi.off("streamChange", recvStreamChangeFunc);
 ```
 ## wifiManager.on('deviceConfigChange')<sup>9+</sup>
 
-on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
+on(type: 'deviceConfigChange', callback: Callback&lt;number&gt;): void
 
 注册WIFI设备配置更改事件。
 
@@ -1994,7 +2007,7 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 
 ## wifiManager.off('deviceConfigChange')<sup>9+</sup>
 
-off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
+off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WIFI设备配置更改事件。
 
@@ -2041,7 +2054,7 @@ wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
 
 ## wifiManager.on('hotspotStaJoin')<sup>9+</sup>
 
-on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaJoin', callback: Callback&lt;StationInfo&gt;): void
 
 注册wifi热点sta加入事件。
 
@@ -2072,7 +2085,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
-off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;): void
 
 取消注册wifi热点sta加入事件。
 
@@ -2119,7 +2132,7 @@ wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ## wifiManager.on('hotspotStaLeave')<sup>9+</sup>
 
-on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaLeave', callback: Callback&lt;StationInfo&gt;): void
 
 注册wifi热点sta离开事件。
 
@@ -2150,7 +2163,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
-off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;): void
 
 取消注册wifi热点sta离开事件。
 

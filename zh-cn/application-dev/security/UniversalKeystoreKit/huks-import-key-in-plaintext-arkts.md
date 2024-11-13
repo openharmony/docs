@@ -7,7 +7,7 @@
 ## 开发步骤
 
 1. 指定密钥别名keyAlias。
-   密钥别名的最大长度为64字节。
+   密钥别名的最大长度为128字节。
 
 2. 封装密钥属性集和密钥材料。
    - 密钥属性集同样与密钥生成中指定的密钥属性一致，须包含[HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg)、[HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize)、[HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose)属性。

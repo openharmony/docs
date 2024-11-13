@@ -2,14 +2,13 @@
 
 The **print** module provides APIs for basic print operations.
 
-> **NOTE**
->
+> **NOTE** 
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 ```
 
 ## PrintTask
@@ -29,13 +28,22 @@ Registers a listener for the print task blocking event. This API uses a callback
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**,<br>indicating blocking of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -53,7 +61,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task success event. This API uses a callback to return the result.
+Registers a listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -62,13 +70,22 @@ Registers a listener for the print task success event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**,<br>indicating success of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -86,7 +103,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 on(type: 'fail', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task failure event. This API uses a callback to return the result.
+Registers a listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -95,13 +112,22 @@ Registers a listener for the print task failure event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**,<br>indicating failure of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -119,7 +145,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task cancel event. This API uses a callback to return the result.
+Registers a listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -128,13 +154,22 @@ Registers a listener for the print task cancel event. This API uses a callback t
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating canceling of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -161,13 +196,22 @@ Unregisters the listener for the print task blocking event. This API uses a call
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**,<br>indicating blocking of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -185,7 +229,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task success event. This API uses a callback to return the result.
+Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -194,13 +238,22 @@ Unregisters the listener for the print task success event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**,<br>indicating success of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -218,7 +271,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task failure event. This API uses a callback to return the result.
+Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -227,13 +280,22 @@ Unregisters the listener for the print task failure event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**,<br>indicating failure of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -251,7 +313,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task cancel event. This API uses a callback to return the result.
+Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -260,13 +322,22 @@ Unregisters the listener for the print task cancel event. This API uses a callba
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating canceling of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -303,10 +374,19 @@ Updates the file to be printed. This API uses **writeResultCallback** as the cal
 | fd | number | Yes| File descriptor.|
 | writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -346,10 +426,19 @@ Registers a listener for print job state changes.
 | jobId | string | Yes| ID of the print job.|
 | state | PrintDocumentAdapterState | Yes| New state of the print job.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -386,20 +475,29 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
 | callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
-print.print(file, (err: BusinessError, printTask: print.PrintTask) => {
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
+print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -424,24 +522,33 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | Print result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
-print.print(file).then((printTask: print.PrintTask) => {
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
+print.print(files).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -464,22 +571,31 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
 | context | Context | Yes| UIAbility context used to start printing.|
 | callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context, (err: BusinessError, printTask: print.PrintTask) => {
+print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -504,7 +620,7 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
 | context | Context | Yes| UIAbility context used to start printing.|
 
 **Return value**
@@ -512,18 +628,27 @@ Prints files. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | Print result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context).then((printTask: print.PrintTask) => {
+print.print(files, context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -556,10 +681,19 @@ Prints a file. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | Print result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobName : string = "jobName";

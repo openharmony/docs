@@ -1,6 +1,6 @@
 # XComponent
 
-提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。
+提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >
@@ -22,7 +22,7 @@ XComponent(options: XComponentOptions)
 
 **参数:**
 
-| 参数名  | 参数类型                                | 必填 | 描述                           |
+| 参数名  | 类型                                | 必填 | 说明                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
 | options | [XComponentOptions](#xcomponentoptions12) | 是   | 定义XComponent的具体配置参数。 |
 
@@ -30,18 +30,20 @@ XComponent(options: XComponentOptions)
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
-该接口不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
+该接口从API version 12开始不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:** 
 
-| 参数名      | 参数类型                                      | 必填 | 描述                                                         |
+| 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
-| type        | [XComponentType](#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
-| libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
-| controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
+| type        | [XComponentType](ts-appendix-enums.md#xcomponenttype10)   | 是   | 用于指定XComponent组件类型。                                 |
+| libraryname | string                                        | 否   | 用Native层编译输出动态库名称（对应的动态库不支持跨模块加载），仅类型为SURFACE或TEXTURE时有效。 |
+| controller  | [XComponentController](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
 ### XComponent<sup>(deprecated)</sup>
 
@@ -51,15 +53,15 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 从API version 12开始废弃，建议使用[XComponent(options: XComponentOptions)](#xcomponent12)替代。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:** 
 
-| 参数名      | 参数类型                                      | 必填 | 描述                                                         |
+| 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
 | type        | string                                        | 是   | 用于指定XComponent组件类型，可选值仅有两个为：<br/>-"surface"：用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。<br/>-"component"<sup>9+</sup> ：XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>其他值均会被视为"surface"类型 |
-| libraryname | string                                        | 否   | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
+| libraryname | string                                        | 否   | 应用Native层编译输出动态库名称（对应的动态库不支持跨模块加载），仅XComponent类型为"surface"时有效。 |
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
 
 ## XComponentOptions<sup>12+</sup>
@@ -70,20 +72,12 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [XComponentType](#xcomponenttype10枚举说明)         | 是   | 用于指定XComponent组件类型。 |
-| controller | [XComponentcontroller](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
+| controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
-## XComponentType<sup>10+</sup>枚举说明
-
-| 名称                             | 描述                                                         |
-| -------------------------------- | ------------------------------------------------------------ |
-| SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12 开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NODE                             | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 除支持通用属性外，还支持以下属性：
@@ -95,7 +89,8 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 enableAnalyzer(enable: boolean)
 
-设置组件支持AI分析，需要搭配XComponentController的[StartImageAnalyzer](#startimageanalyzer12)和[StopImageAnalyzer](#stopimageanalyzer12)一起使用。
+设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
+本功能需要搭配XComponentController的[StartImageAnalyzer](#startimageanalyzer12)和[StopImageAnalyzer](#stopimageanalyzer12)一起使用。
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -106,11 +101,33 @@ enableAnalyzer(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 是 | 是否启用图像分析功能 |
+| enable | boolean | 是 | 是否启用图像分析功能。 |
 
   > **说明：**
   >
   > 仅type为SURFACE和TEXTURE时该功能有效。
+
+### enableSecure<sup>13+</sup>
+
+enableSecure(isSecure: boolean)
+
+防止组件内自绘制内容被截屏、录屏。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                   |
+| -------- | ------- | ---- | ---------------------- |
+| isSecure | boolean | 是   | 是否开启隐私图层模式。 |
+
+  > **说明：**
+  >
+  > 仅type为SURFACE时有效。
+  >
+  > 不支持[ArkUI NDK接口](../../../ui/ndk-build-ui-overview.md)创建的XComponent组件。
 
 ## 事件
 
@@ -132,9 +149,11 @@ onLoad(callback: (event?: object) => void )
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名   | 参数类型   | 必填   | 描述                                       |
+| 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | event | object | 否    | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
 
@@ -146,11 +165,15 @@ onDestroy(event: () => void )
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## XComponentController
 
 XComponent组件的控制器，可以将此对象绑定至XComponent组件，然后通过控制器来调用组件方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 创建对象
 
@@ -160,13 +183,25 @@ xcomponentController: XComponentController = new XComponentController()
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-### getXComponentSurfaceId
+### constructor
+
+constructor()
+
+XComponentController的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getXComponentSurfaceId<sup>9+</sup>
 
 getXComponentSurfaceId(): string
 
 获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值:**
 
@@ -183,9 +218,11 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 该接口从API Version 12开始废弃，建议使用[setXComponentSurfaceRect](#setxcomponentsurfacerect12)替代。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名           | 参数类型   | 必填   | 描述                      |
+| 参数名           | 类型   | 必填   | 说明                      |
 | ------------- | ------ | ---- | ----------------------- |
 | surfaceWidth  | number | 是    | XComponent持有Surface的宽度。 |
 | surfaceHeight | number | 是    | XComponent持有Surface的高度。 |
@@ -198,6 +235,8 @@ getXComponentContext(): Object
 获取XComponent实例对象的context，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值:**
 
@@ -213,11 +252,13 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名 | 参数类型                             | 必填 | 描述                              |
+| 参数名 | 类型                             | 必填 | 说明                              |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
-| rect   | [SurfaceRect](#surfacerect12类型说明) | 是   | XComponent持有Surface的显示区域。 |
+| rect   | [SurfaceRect](#surfacerect12对象说明) | 是   | XComponent持有Surface的显示区域。 |
 
 > **说明：**
 >
@@ -235,11 +276,13 @@ getXComponentSurfaceRect(): SurfaceRect
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值:**
 
 | 类型                                 | 描述                                  |
 | ------------------------------------ | ------------------------------------- |
-| [SurfaceRect](#surfacerect12类型说明) | 获取XComponent持有Surface的显示区域。 |
+| [SurfaceRect](#surfacerect12对象说明) | 获取XComponent持有Surface的显示区域。 |
 
 ### onSurfaceCreated<sup>12+</sup>
 
@@ -249,9 +292,11 @@ onSurfaceCreated(surfaceId: string): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名    | 参数类型 | 必填 | 描述                                              |
+| 参数名    | 类型 | 必填 | 说明                                              |
 | --------- | -------- | ---- | ------------------------------------------------- |
 | surfaceId | string   | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。 |
 
@@ -267,12 +312,14 @@ onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名    | 参数类型                              | 必填 | 描述                                                    |
+| 参数名    | 类型                              | 必填 | 说明                                                    |
 | --------- | ------------------------------------- | ---- | ------------------------------------------------------- |
 | surfaceId | string                                | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。       |
-| rect      | [SurfaceRect](#surfacerect12类型说明) | 是   | 回调该方法的时候，绑定XComponent持有Surface的显示区域。 |
+| rect      | [SurfaceRect](#surfacerect12对象说明) | 是   | 回调该方法的时候，绑定XComponent持有Surface的显示区域。 |
 
 > **说明：**
 >
@@ -286,28 +333,17 @@ onSurfaceDestroyed(surfaceId: string): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名    | 参数类型 | 必填 | 描述                                              |
+| 参数名    | 类型 | 必填 | 说明                                              |
 | --------- | -------- | ---- | ------------------------------------------------- |
 | surfaceId | string   | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。 |
 
 > **说明：**
 >
 > 仅当XComponent组件未设置libraryname参数时，会进行该回调。
-
-### SurfaceRect<sup>12+</sup>类型说明
-
-用于描述XComponent持有Surface的显示区域。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称          | 类型   | 必填 | 说明                                                         |
-| ------------- | ------ | ---- | ------------------------------------------------------------ |
-| offsetX       | number | 否   | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位：px。 |
-| offsetY       | number | 否   | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位：px。 |
-| surfaceWidth  | number | 是   | Surface显示区域的宽度，单位：px。                            |
-| surfaceHeight | number | 是   | Surface显示区域的高度，单位：px。                            |
 
 ### startImageAnalyzer<sup>12+</sup>
 
@@ -342,8 +378,9 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
-| 110001 | AI analysis is unsupported.               |
-| 110002 | AI analysis is ongoing.  |
+| 110001 | Image analysis feature is unsupported.               |
+| 110002 | Image analysis is currently being executed.  |
+| 110003 | Image analysis is stopped.  |
 
 ### stopImageAnalyzer<sup>12+</sup>
 
@@ -368,11 +405,13 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名 | 参数类型                             | 必填 | 描述                              |
+| 参数名 | 类型                             | 必填 | 说明                              |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
-| rotationOptions   | [SurfaceRotationOptions](#surfacerotationoptions12类型说明) | 是 | 设置XComponent持有Surface在屏幕旋转时是否锁定方向。 |
+| rotationOptions   | [SurfaceRotationOptions](#surfacerotationoptions12对象说明) | 是 | 设置XComponent持有Surface在屏幕旋转时是否锁定方向。 |
 
 > **说明：**
 >
@@ -381,6 +420,8 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 > 仅在屏幕旋转过程中生效，旋转完成后不再锁定Surface。
 >
 > 仅在屏幕旋转90°，即发生横竖屏切换时生效。
+>
+> 锁定旋转后的Buffer宽高需要保持不变，否则会有拉伸问题。
 
 ### getXComponentSurfaceRotation<sup>12+</sup>
 
@@ -390,21 +431,46 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值:**
 
 | 类型                                 | 描述                                  |
 | ------------------------------------ | ------------------------------------- |
-| [SurfaceRotationOptions](#surfacerotationoptions12类型说明) | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
+| [SurfaceRotationOptions](#surfacerotationoptions12对象说明) | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
 
-### SurfaceRotationOptions<sup>12+</sup>类型说明
+## SurfaceRotationOptions<sup>12+</sup>对象说明
 
 用于描述XComponent持有Surface在屏幕旋转时是否锁定方向的设置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
 | lock       | boolean | 否   | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。 |
+
+## SurfaceRect<sup>12+</sup>对象说明
+
+用于描述XComponent持有Surface的显示区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| offsetX       | number | 否   | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位：px。 |
+| offsetY       | number | 否   | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位：px。 |
+| surfaceWidth  | number | 是   | Surface显示区域的宽度，单位：px。                            |
+| surfaceHeight | number | 是   | Surface显示区域的高度，单位：px。                            |
+
+> **说明：**
+>
+> surfaceWidth和surfaceHeight属性在未调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)也未设置[border](ts-universal-attributes-border.md#border)和[padding](ts-universal-attributes-size.md#padding)等属性时，其取值大小为XComponent组件的大小。
+> 
+> surfaceWidth和surfaceHeight属性的取值都不可超过8192px，否则会导致渲染异常。
 
 ## 示例
 
@@ -412,65 +478,92 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 ### 示例1
 
-图像分析功能使用示例。
+图像AI分析功能使用示例。
+
+<!--Del-->
+> **说明：**
+>
+> 本示例画图逻辑具体实现（和nativeRender相关的函数实现）可以参考[ArkTSXComponent示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)
+<!--DelEnd-->
 
 ```ts
 // xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit';
+import nativeRender from 'libnativerender.so';
 
 class CustomXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {
-    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
   }
 
   onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
   }
 
   onSurfaceDestroyed(surfaceId: string): void {
-    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`)
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
   }
 }
 
 @Entry
 @Component
 struct XComponentExample {
-  xComponentController: XComponentController = new CustomXComponentController()
+  xComponentController: XComponentController = new CustomXComponentController();
   private config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
-  }
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  };
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
-  }
-  @State xcWidth: string = "320px"
-  @State xcHeight: string = "480px"
+  };
+  @State xcWidth: string = "320px";
+  @State xcHeight: string = "480px";
+  @State currentStatus: string = "index";
 
   build() {
     Column({ space: 5 }) {
       Button("change size")
         .onClick(() => {
-          this.xcWidth = "640px"
-          this.xcHeight = "720px"
+          this.xcWidth = "640px";
+          this.xcHeight = "720px";
         })
       Button('start AI analyze')
         .onClick(() => {
           this.xComponentController.startImageAnalyzer(this.config)
             .then(() => {
-              console.log("analysis complete")
+              console.log("analysis complete");
             })
             .catch((error: BusinessError) => {
-              console.log("error code: " + error.code)
+              console.log("error code: " + error.code);
             })
         })
       Button('stop AI analyze')
         .onClick(() => {
-          this.xComponentController.stopImageAnalyzer()
+          this.xComponentController.stopImageAnalyzer();
         })
       Button('get analyzer types')
         .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes()
+          this.aiController.getImageAnalyzerSupportTypes();
+        })
+      Button('Draw Star')
+        .fontSize('16fp')
+        .fontWeight(500)
+        .margin({ bottom: 24 })
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          this.xComponentController.getXComponentSurfaceRect();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+          let hasDraw: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+          }
+          if (hasDraw) {
+            this.currentStatus = "draw star";
+          }
         })
       XComponent({
         type: XComponentType.SURFACE,
@@ -479,11 +572,16 @@ struct XComponentExample {
       })
         .width(this.xcWidth)
         .height(this.xcHeight)
+        .enableAnalyzer(true)
+      Text(this.currentStatus)
+        .fontSize('24fp')
+        .fontWeight(500)
     }
     .width("100%")
   }
 }
 ```
+<!--RP1--><!--RP1End-->
 
 ### 示例2
 

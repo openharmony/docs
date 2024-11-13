@@ -26,7 +26,7 @@ Check the index range and call the API again with a valid index.
 
 **Error Message**
 
-The number of record exceeds the maximum limit.
+The number of records exceeds the upper limit.
 
 **Description**
 
@@ -45,7 +45,7 @@ The number of **PasteData** records has reached the maximum.
 
 **Error Message**
 
-Another copy or paste is in progress.
+Another copy or paste operation is in progress.
 
 **Description**
 
@@ -57,7 +57,7 @@ The copy and paste APIs are both asynchronous APIs. If the data to be copied or 
 
 **Solution**
 
-1. Before copying or pasting data, check the status of the last copy or paste operation.
+1. Before you copy or paste data, check the status of the last copy or paste operation.
 2. Wait until the last copy or paste operation has finished, and then copy or paste data again.
 
 ## 12900004 Copy Prohibited
@@ -76,13 +76,14 @@ The data is read-only and cannot be copied.
 
 **Solution**
 
-Make sure the target data allows the copy action.
+1. Make sure the target data allows the copy action.
+2. Make sure you only copy data that allows for copy.
 
 ## 12900005 Request Timeout
 
 **Error Message**
 
-Request time out.
+Request timed out.
 
 **Description**
 
@@ -95,3 +96,21 @@ The data to be processed is large and consumes too much time.
 **Solution**
 
 If the data to be processed is too large, consider using an asynchronous API.
+
+## 12900006 Settings Already Exists
+
+**Error Message**
+
+Settings already exist.
+
+**Description**
+
+This error code is reported when the global pasteable range of the application to be set already exists.
+
+**Possible Causes**
+
+The global pasteable scope of the application already exists.
+
+**Solution**
+
+Delete the existing settings and then set the new one.

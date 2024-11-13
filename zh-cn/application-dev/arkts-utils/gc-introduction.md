@@ -1,6 +1,6 @@
-# GC介绍
+# GC垃圾回收
 
-GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。ArkTS运行时中就是基于分代模型和混合算法来实现不同场景下内存回收的高性能表现。
+GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。ArkTS运行时基于分代模型（年轻代/老年代），混合使用引用计数和对象追踪算法，并行并发化执行GC任务，从而实现不同场景下的高性能内存回收表现。
 
 在ArkTS中，数据类型分为两类，简单类型和引用类型。简单类型内容直接保存在栈（Stack）中，由操作系统自动分配和释放。引用类型保存在堆（heap）中，需要引擎进行手动释放。GC就是针对堆空间的内存自动回收的管理机制。
 
@@ -62,7 +62,7 @@ heap中会生成两个Semi Space供copying使用。
 | HeapSize | 448MB-1024MB | 堆总大小，实际系统分配大小根据堆类型不同分配不同，或内存池不够会降低下限 |
 | SemispaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小 |
 | NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小 |
-| SnapshotSpaceSize | 512KB | 快照空间大小， |
+| SnapshotSpaceSize | 512KB | 快照空间大小 |
 | MachineCodeSpaceSize | 2MB | 机器码空间大小 |
 
 #### worker线程堆上限
@@ -133,7 +133,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 #### 空间阈值触发GC
 
-- 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`，等分配函数
+- 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`等分配函数
 - 限制参数：对应的空间阈值
 - 说明：对象申请空间到达对应空间阈值时触发GC
 - 典型日志：日志可区分GCReason::ALLOCATION_LIMIT
@@ -157,7 +157,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 - 函数方法：`TryTriggerConcurrentMarking`
 - 说明：尝试触发并发mark，将遍历对象进行标记的任务交由线程池中并发运行，减少主线程挂起时间。
-- 典型日志：`fullMarkRequested, trigger full mark.`,`Trigger the first full mark`,`Trigger full mark`,`Trigger the first semi mark`,`Trigger semi mark`
+- 典型日志：`fullMarkRequested`,`trigger full mark`,`Trigger the first full mark`,`Trigger full mark`,`Trigger the first semi mark`,`Trigger semi mark`
 
 #### new space GC前后的阈值调整
 
@@ -213,7 +213,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 - 应用点击页面跳转
 - 超长帧
 
-除应用冷启动是默认支持，其他敏感场景均为调用dfxjsnapi接口进行设置且无本质区别。
+当前该特性使能由系统侧进行管控，三方应用暂无接口直接调用。
 
 日志关键词: “SmartGC”
 
@@ -222,37 +222,6 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 ![image](./figures/gc-smart-feature.png)
 
 标记性能敏感场景，在进入和退出性能敏感场景时，在堆上标记，避免不必要的GC，维持高性能表现。
-
-### IDLE GC
-
-利用系统绘帧过程中存在的线程idletime，高效利用计算资源分段完成完整的GC工作，减少后续累积内存占用触发长GC造成的卡顿。
-
-#### **Incremental Mark**
-
-完成old gc通常需要消耗较多时间，一次idle time很难完成此项任务，因此将mark过程分布在多次idle time中完成。
-
-![image](./figures/gc-incremental-mark-feature.png)
-
-在线性空间扩容时尝试进行Incremental Mark，满足以下条件则触发增量标记：
-
-- 在ArkProperties里打开ENABLE_IDLE_GC且收到了元能力发送的idleTime开关回调函数；
-- 当前无idleTask且未触发ConcurrentMark；
-- 增量标记完成时，堆大小距到达水线小于256K；
-- 增量标记期间分配对象大小小于100_KB
-
-注：Incremental Mark与Full ConcurrentMark互斥。线性空间主要指的是semiSpace。
-
-#### **Idle YoungGC**
-
-![image](./figures/gc-idle-feature.png)
-
-在线性空间扩容时尝试进行Idle Collection，满足以下条件则设置相应的IdleTask：
-
-- 在ArkProperties里打开ENABLE_IDLE_GC且收到了元能力发送的idleTime开关回调函数；
-- 当前无idleTask且未触发ConcurrentMark；
-- 堆大小小于触发YoungGC ConcurrentMark水线256K以内；
-
-注：Idle YoungGC可与ConcurrentMark共存（防止还未接收到IdleTime就达到GC水线），可先触发ConcurrentMark，后开始Idle YoungGC.
 
 ## 日志解释
 

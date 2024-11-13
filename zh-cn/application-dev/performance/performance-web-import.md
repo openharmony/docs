@@ -140,32 +140,43 @@ webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2)
 @ohos.web.webview提供prefetchPage方法实现在预测到将要加载的页面之前调用，提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码或呈现网页，以加快加载速度。  
 参数：
 
-| 参数名               | 类型               | 说明             |
-|-------------------|------------------|----------------|
-| url               | string           | 预加载的url。       |
-| additionalHeaders | Array<WebHeader> | url的附加HTTP请求头。 |
+| 参数名               | 类型                | 说明             |
+|-------------------|-------------------|----------------|
+| url               | string            | 预加载的url。       |
+| additionalHeaders | Array\<WebHeader> | url的附加HTTP请求头。 |
 
 使用方法如下：
-```javascript
+```typescript
 // src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
-  // ...
+import { webview } from '@kit.ArkWeb';
 
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    // ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .onPageEnd((event) => {
-        //  ...
-        // 在确定即将跳转的页面时开启预加载
-        this.controller.prefetchPage('https://www.example.com/nextpage');
-      })
-    Button('下一页')
-      .onClick(() => {
-        // ...
-        // 跳转下一页
-        this.controller.loadUrl('https://www.example.com/nextpage');
-      })
+
+  build() {
+    Column() {
+       // ...
+       Web({ src: 'https://www.example.com', controller: this.controller })
+         .onPageEnd((event) => {
+           //  ...
+           // 在确定即将跳转的页面时开启预加载，url请替换真实地址
+           this.controller.prefetchPage('https://www.example.com/nextpage');
+         })
+         .width('100%')
+         .height('80%')
+         
+       Button('下一页')
+         .onClick(() => {
+           // ...
+           // 跳转下一页
+           this.controller.loadUrl('https://www.example.com/nextpage');
+         })
+    }
+  }
+}
 ```
 
 ### 预渲染优化
@@ -190,21 +201,25 @@ import webview from '@ohos.web.webview';
 **实践案例**
 
 1. 创建载体，并创建ArkWeb组件
-    ```typescript
-    // 载体Ability
-    // EntryAbility.ets
-    import {createNWeb} from "../pages/common"
+   ```typescript
+   // 载体Ability
+   // EntryAbility.ets
+   import {createNWeb} from "../pages/common";
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
    
-    onWindowStageCreate(windowStage: window.WindowStage): void {
-      windowStage.loadContent('pages/Index', (err, data) => {
-        // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建
-        createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-        if (err.code) {
-          return;
-        }
-      });
-    }
-    ```
+   export default class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         // 创建ArkWeb动态组件（需传入UIContext），loadContent之后的任意时机均可创建
+         createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
+         if (err.code) {
+           return;
+         }
+       });
+     }
+   }
+   ```
 2. 创建NodeContainer和对应的NodeController，渲染后台ArkWeb组件
 
     ```typescript
@@ -583,7 +598,7 @@ struct WebComponent {
 }
 ```
 
-前端页面代码：
+加载的html文件：
 ```html
 <!DOCTYPE html>
 <html>
@@ -668,7 +683,7 @@ struct Index {
           .javaScriptAccess(true)
           .fileAccess(true)
           .onControllerAttached(() => {
-            console.info(this.controller.getWebId());
+            console.info(`${this.controller.getWebId()}`);
           })
       }.height('80%')
     }
@@ -869,6 +884,8 @@ JSBridge优化方案适用于ArkWeb应用侧与前端网页通信场景，开发
 步骤1.只注册同步函数
 ```typescript
 import webview from '@ohos.web.webview';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 // 定义ETS侧对象及函数
 class TestObj {
   test(testStr:string): string {
@@ -1293,7 +1310,7 @@ Web({ src: 'https://www.example.com/a.html', controller: this.controller })
 
 **实践案例**
 
-**场景一 调用ArkTS接口， webview.WebviewController.customizeSchemes(schemes: Array<WebCustomScheme>): void**
+**场景一 调用ArkTS接口， webview.WebviewController.customizeSchemes(schemes: Array\<WebCustomScheme>): void**
 
 【不推荐用法】
 
@@ -1752,6 +1769,90 @@ struct Index {
 | 使用string格式的数据做拦截替换  | 34ms | Web组件内部数据传输仍需要转换为ArrayBuffer，增加数据处理步骤，增加启动耗时 |
 | 使用ArrayBuffer格式的数据做拦截替换  | 13ms | 接口直接支持ArrayBuffer格式，节省了转换时间，同时对ArrayBuffer格式的数据传输方式进行了优化，进一步减少耗时 |
 
+### 预加载优化滑动白块
+
+Web场景应用在加载图片资源时，需要先发起请求，然后解析渲染到屏幕上。在列表滑动过程中，如果等屏幕可视区域出现新图片时才开始发起请求，会因上述加载资源的步骤出现时间差，导致列表中图片出现白块问题，在网络情况不良或应用渲染图片阻塞时，这种情况会更加严重。本章节针对Web场景，在HTML页面中使用预加载策略，使列表滑动前预先加载可视区域外的图片资源，解决可视区域白块问题，提高用户使用体验。
+
+**原理介绍**
+
+滑动白块的产生主要来源于页面滑动场景组件可见和组件上屏刷新之间的时间差，在这两个时间点间，由于网络图片未加载完成，该区域显示的是默认图片即图片白块。图片组件从可见到上屏刷新之间的耗时主要是由图片资源网络请求和解码渲染两部分组成，在这段时间内页面滑动距离是滑动速度(px/ms)*(下载耗时+解码耗时)(ms)，因此只要设置预加载的高度大于滑动距离，就可以保证页面基本无白块。开发者可根据`预加载高度(px)>滑动速度(px/ms)*(下载耗时+解码耗时)(ms)`这一计算公式对应用进行调整，计算出Web页面在设备视窗外需要预加载的图片个数，即可视窗口根元素超过屏幕的高度。
+
+开发者可以使用IntersectionObserver接口，将视窗作为根元素并对其进行观察，当图片滑动进入视窗时替换默认地址为真实地址，触发图片加载。此时适当的扩展视窗高度，就可以实现在图片进入视窗前提前开始加载图片，解决图片未及时加载导致出现白块的问题。
+
+**实践案例**
+
+【不推荐用法】
+
+常规案例使用懒加载的逻辑加载图片，图片组件进入可视区域后再执行加载，滑动过程中列表有大量图片未加载完成产生的白块。
+
+![img](figures/web-sliding-white-block-optimization-1.gif)
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Image List</title>
+    </head>
+    <body>
+        <ul>
+            <li><img src="default.jpg" data-src="photo1.jpg" alt="Photo 1"></li>
+            <li><img src="default.jpg" data-src="photo2.jpg" alt="Photo 2"></li>
+            <li><img src="default.jpg" data-src="photo3.jpg" alt="Photo 3"></li>
+            <li><img src="default.jpg" data-src="photo4.jpg" alt="Photo 4"></li>
+            <li><img src="default.jpg" data-src="photo5.jpg" alt="Photo 5"></li>
+            <!-- 添加更多的图片只需要复制并修改src和alt属性即可 -->
+        </ul>
+    </body>
+    <script>
+        window.onload = function(){
+          // 可视窗口作为根元素，不进行扩展
+          const options = {root:document,rootMargin:'0% 0% 0% 0%'}
+          // 创建一个IntersectionObserver实例
+          const observer = new IntersectionObserver(function(entries,observer){
+            entries.forEach(function(entry){
+              // 检查图片是否进入可视区域
+              if(entry.isIntersecting){
+                const image = entry.target;
+                // 将数据源的src赋值给img的src
+                image.src = image.dataset.src;
+                // 停止观察该图片
+                observer.unobserve(image);
+              }
+            })
+          },options);
+          
+          document.querySelectorAll('img').forEach(img => { observer.observe(img) });
+        }
+    </script>
+</html>
+```
+
+【推荐用法】
+
+根据上方公式，优化案例设定在400mm/s的速度滑动屏幕，此时可计算应用需预加载0.5个屏幕高度的图片。在常规加载案例中，页面将可视窗口作为根元素，rootMargin属性均为0，可视窗口与设备屏幕高度相等。此时可通过设置`rootMargin`向下方向为50%（即0.5个屏幕高度），扩展可视窗口的高度，使图片在屏幕外提前进入可视窗口。当图片元素进入可视窗口时，会将img标签的data-src属性中保存的图片地址赋值给src属性，从而实现图片的预加载。应用会查询页面上所有具有data-src属性的img标签，并开始观察这些图片。当某张图片进入已拓展高度的可视窗口时，就会执行相应的加载操作，实现页面预渲染更多图片，解决滑动白块问题。
+
+```javascript
+// html结构与上方常规案例相同
+// 可视区域作为根元素，向下扩展50%的margin长度
+const options = {root:document,rootMargin:'0% 0% 50% 0%'};
+// 创建IntersectionObserver实例
+const observer = new IntersectionObserver(function(entries,observer){
+  // ...
+},options);
+
+document.querySelectorAll('img').forEach(img => {observer.observe(img)});
+```
+
+![img](figures/web-sliding-white-block-optimization-2.gif)
+
+**总结**
+
+| 图片加载方式      | 说明                                     |
+|-------------|----------------------------------------|
+| 常规加载（不推荐用法） | 常规案例在列表滑动过程中，由于图片加载未及时导致出现大量白块，影响用户体验。 |
+| 预加载（推荐用法）   | 优化案例在拓展0.5个屏幕高度的可视窗口后，滑动时无明显白块，用户体验提升。 |
+
+开发者可使用公式，根据设备屏幕高度和设置滑动屏幕速度预估值，计算出视窗根元素需要扩展的高度，解决滑动白块问题。
 
 
 ## 性能分析
@@ -1766,7 +1867,6 @@ struct Index {
 ```javascript
 // src/main/ets/pages/WebUninitialized.ets
 
-// ...
 Button('进入网页')
   .onClick(() => {
     hilog.info(0x0001, "WebPerformance", "UnInitializedWeb");
@@ -1777,7 +1877,6 @@ Web页使用Web组件加载指定网页
 ```javascript
 // src/main/ets/pages/WebBrowser.ets
 
-// ...
 Web({ src: 'https://www.example.com', controller: this.controller })
   .domStorageAccess(true)
   .onPageEnd((event) => {
@@ -1791,40 +1890,60 @@ Web({ src: 'https://www.example.com', controller: this.controller })
 
 入口页提前进行Web组件的初始化和预连接
 
-```javascript
+```typescript
 // src/main/ets/pages/WebInitialized.ets
 
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
+import { router } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-// ...
-Button('进入网页')
-  .onClick(() => {
-     hilog.info(0x0001, "WebPerformance", "InitializedWeb");
-     router.pushUrl({ url: 'pages/WebBrowser' });
-  })
-// ...
-aboutToAppear() {
-  webview.WebviewController.initializeWebEngine();
-  webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear() {
+    webview.WebviewController.initializeWebEngine();
+    webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+  }
+
+  build() {
+    Column() {
+      Button('进入网页')
+        .onClick(() => {
+          hilog.info(0x0001, "WebPerformance", "InitializedWeb");
+          router.pushUrl({ url: 'pages/WebBrowser' });
+        })
+    }
+  }
 }
 ```
 Web页加载的同时使用prefetchPage预加载下一页
-```javascript
+```typescript
 // src/main/ets/pages/WebBrowser.ets
 
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  // ...
+@Entry
+@Component
+struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-    // ...
-    Web({ src: 'https://www.example.com', controller: this.controller })
-      .domStorageAccess(true)
-      .onPageEnd((event) => {
-         if (event) {
-           hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
-           this.controller.prefetchPage('https://www.example.com/nextpage');
-         }
-      })
+
+  build() {
+    Column() {
+      // ...
+      Web({ src: 'https://www.example.com', controller: this.controller })
+        .domStorageAccess(true)
+        .onPageEnd((event) => {
+          if (event) {
+            hilog.info(0x0001, "WebPerformance", "WebPageOpenEnd");
+            this.controller.prefetchPage('https://www.example.com/nextpage');
+          }
+        })
+    }
+  }
+}
 ```
 
 ### 数据对比

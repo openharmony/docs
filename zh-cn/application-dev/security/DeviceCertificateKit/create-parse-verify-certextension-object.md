@@ -16,7 +16,7 @@
 3. 调用[CertExtension.getEntry](../../reference/apis-device-certificate-kit/js-apis-cert.md#getentry10)获取指定OID证书扩展域段信息。
    比如，证书扩展域段对象标识符列表，根据对象标识符获取具体数据等。
 
-4. 调用[CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10)，判断证书是否为CA证书。
+4. 调用[CertExtension.checkCA](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkca10)判断证书是否为CA证书。
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';

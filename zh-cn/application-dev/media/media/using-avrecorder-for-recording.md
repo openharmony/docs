@@ -1,4 +1,4 @@
-# 使用AVRecorder开发音频录制功能
+# 使用AVRecorder录制音频(ArkTS)
 
 使用AVRecorder可以实现音频录制功能，本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解AVRecorder音频录制相关功能。
 
@@ -24,7 +24,7 @@
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
@@ -34,20 +34,20 @@
    ```
 
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
-   | 事件类型 | 说明 | 
+   | 事件类型 | 说明 |
    | -------- | -------- |
-   | stateChange | 必要事件，监听AVRecorder的state属性改变 | 
+   | stateChange | 必要事件，监听AVRecorder的state属性改变 |
    | error | 必要事件，监听AVRecorder的错误信息 |
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    // 状态上报回调函数
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.log(`current state is ${state}`);
      // 用户可以在此补充状态发生切换后想要进行的动作
    })
-   
+
    // 错误上报回调函数
    avRecorder.on('error', (err: BusinessError) => {
      console.error(`avRecorder failed, code is ${err.code}, message is ${err.message}`);
@@ -67,13 +67,13 @@
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // 音频比特率
      audioChannels: 2, // 音频声道数
-     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
+     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU
      audioSampleRate: 48000, // 音频采样率
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV
    }
    let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风
@@ -132,7 +132,7 @@
 ## 完整示例
 
   参考以下示例，完成“开始录制-暂停录制-恢复录制-停止录制”的完整流程。
-  
+
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -142,9 +142,9 @@ export class AudioRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // 音频比特率
     audioChannels: 2, // 音频声道数
-    audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前只支持aac
+    audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU
     audioSampleRate: 48000, // 音频采样率
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前只支持m4a
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV
   };
   private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风

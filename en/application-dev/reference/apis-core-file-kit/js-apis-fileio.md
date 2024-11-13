@@ -3014,7 +3014,7 @@ Provides detailed file information. Before calling a method of the **Stat** clas
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
 | Name    | Type  | Read-Only  | Writable  | Description                                      |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
@@ -3889,7 +3889,7 @@ Provides information about files and directories. Before calling an API of the *
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-### Attributes
+### Properties
 
 | Name  | Type  | Read-Only  | Writable  | Description     |
 | ---- | ------ | ---- | ---- | ------- |

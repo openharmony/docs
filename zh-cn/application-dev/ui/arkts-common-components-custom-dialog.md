@@ -3,12 +3,13 @@
 
 CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更新等与用户交互响应操作。开发者可以通过CustomDialogController类显示自定义弹窗。具体用法请参考[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)。
 
+> **说明：** 
+>
+> 当前，ArkUI弹窗均为非页面级弹窗，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹窗将不会自动关闭。若需实现在跳转页面时弹窗同步关闭的场景，建议使用Navigation。具体使用方法，请参考[组件导航子页面显示类型的弹窗类型](arkts-navigation-navigation.md#页面显示类型)。
 
 ## 创建自定义弹窗
 
-1. 使用\@CustomDialog装饰器装饰自定义弹窗。
-
-2. \@CustomDialog装饰器用于装饰自定义弹框，此装饰器内进行自定义内容（也就是弹框内容）。
+1. 使用\@CustomDialog装饰器装饰自定义弹窗，可在此装饰器内自定义弹窗内容。
 
    ```ts
    @CustomDialog
@@ -16,7 +17,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      controller: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample({}),
      })
-
+   
      build() {
        Column() {
          Text('我是内容')
@@ -139,8 +140,6 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
    ```ts
    // Index.ets
-   import { router } from '@kit.ArkUI';
-
    @CustomDialog
    struct CustomDialogExample {
      @Link textValue: string
@@ -172,7 +171,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
                if (this.controller != undefined && this.textValue != '') {
                  this.controller.close()
                } else if (this.controller != undefined) {
-                 router.pushUrl({
+                 this.getUIContext().getRouter().pushUrl({
                    url: 'pages/Index2'
                  })
                  this.controller.close()
@@ -205,7 +204,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      }
 
      onPageShow() {
-       const params = router.getParams() as Record<string, string>; // 获取传递过来的参数对象
+       const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // 获取传递过来的参数对象
        if (params) {
          this.dialogController?.open()
          this.textValue = params.info as string; // 获取info属性的值
@@ -239,8 +238,6 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
    ```ts
    // Index2.ets
-   import { router } from '@kit.ArkUI';
-
    @Entry
    @Component
    struct Index2 {
@@ -250,7 +247,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
          Button(this.message)
            .fontSize(50)
            .fontWeight(FontWeight.Bold).onClick(() => {
-           router.back({
+           this.getUIContext().getRouter().back({
              url: 'pages/Index',
              params: {
                info: 'Hello World'

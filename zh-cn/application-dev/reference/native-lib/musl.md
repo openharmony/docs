@@ -61,6 +61,11 @@ param set musl.log.ld.app.{app_name} true
 param set musl.log.ld.all true
 param set musl.log.ld.app.{app_name} false
 ```
+## musl 差异规格接口说明
+
+| 接口名称          | 说明                                                                                         |
+|:--               |    :--                                                                                       |
+| epoll_create     | 在OpenHarmony5.0 上 该接口逻辑与1.2.3版本保持一致，不会对入参进行判断，不区分入参小于等于0的情况，预计下版本更新此接口逻辑与社区1.2.5保持一致，增加入参逻辑判断，入参小于等于0时创建失败，并返回错误码EINVAL。 |  
 
 ## ICONV支持的字符集编码格式
 

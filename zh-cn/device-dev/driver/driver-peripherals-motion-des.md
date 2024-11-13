@@ -25,7 +25,7 @@ Motion驱动框架如图1所示，上层为Framework层，提供MSDP服务，通
 
 1. MSDP：上层综合传感信息处理平台服务层，当HDI接口服务实例获取成功后可以直接调用Motion HDI接口。
 2. IDL：接口抽象层。MSDP服务层首先从Motion Proxy获取到Motion HDI接口服务实例。而Motion Proxy获取到的接口实例是由IService Manager进行分配。当MSDP服务层成功获取到Motion HDI接口服务实例后，MSDP服务层就可以直接调用Motion Proxy中的HDI接口，然后通过IPC（Inter-Process Communication）调用到Motion Stub，从而调用到Motion Service的接口。这部分是由工具自动生成的代码，不用器件厂商自己开发。
-3. HDI Service：HDI Service中包括Motion Interface Driver、Motion Service和Motion Impl三个部分。其中Motion Interface Driver为手势识别接口的驱动代码，在这部分驱动代码中通过定义一个struct HdfDriverEntry类型的结构体变量，实现此变量中的的Init、Bind和Release函数描述驱动能力，函数内部通过HDF_INIT宏加载驱动。Motion Service为手势识别服务接口类，具体的实现在Motion Impl中描述。此部分代码需要器件厂商根据自己器件来开发。
+3. HDI Service：HDI Service中包括Motion Interface Driver、Motion Service和Motion Impl三个部分。其中Motion Interface Driver为手势识别接口的驱动代码，在这部分驱动代码中通过定义一个struct HdfDriverEntry类型的结构体变量，实现此变量中的Init、Bind和Release函数描述驱动能力，函数内部通过HDF_INIT宏加载驱动。Motion Service为手势识别服务接口类，具体的实现在Motion Impl中描述。此部分代码需要器件厂商根据自己器件来开发。
 
 ## 开发指导 
 

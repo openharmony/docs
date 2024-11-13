@@ -55,6 +55,7 @@
 | typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | 定<br/>义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
 | typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)  [OH_Drawing_Font](_drawing.md#oh_drawing_font) | 用于描述字体。 | 
 | typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)  [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | 用于描述内存流。 | 
+| typedef struct [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) | 用于描述字型参数。 | 
 | typedef struct [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface)  [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface) | 用于描述字形。 | 
 | typedef struct [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob)  [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob) | 定义一个文本对象，表示将多个文本组合到一个不可变的容器中。 每个文本行由字形和位置组成。 | 
 | typedef struct [OH_Drawing_Image](_drawing.md#oh_drawing_image)  [OH_Drawing_Image](_drawing.md#oh_drawing_image) | 定义一个用于描述绘制二维像素数组的图片。 | 
@@ -70,7 +71,8 @@
 | typedef enum [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding)  [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) | 文本编码类型枚举。 | 
 | typedef struct [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr)  [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) | 定义字体管理类, 用于字体管理。 | 
 | typedef struct [OH_Drawing_FontStyleSet](_drawing.md#oh_drawing_fontstyleset)  [OH_Drawing_FontStyleSet](_drawing.md#oh_drawing_fontstyleset) | 定义字体样式集, 用于字体样式族匹配。 | 
-
+| typedef struct [OH_Drawing_RecordCmdUtils](_drawing.md#oh_drawing_recordcmdutils) [OH_Drawing_RecordCmdUtils](_drawing.md#oh_drawing_recordcmdutils) | 定义指令录制工具，用于生成录制指令。 | 
+| typedef struct [OH_Drawing_RecordCmd](_drawing.md#oh_drawing_recordcmd) [OH_Drawing_RecordCmd](_drawing.md#oh_drawing_recordcmd) | 定义录制指令类, 用于存储录制指令的集合。 |
 
 ### 枚举
 

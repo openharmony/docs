@@ -1,106 +1,154 @@
 # Focus Event
 
+## Basic Concepts and Specifications
 
-## Basic Concepts
+### Basic Concepts
 
-- Focus
+**Focus, Focus Chain, and Focus Traversal**
 
-  Focus points to a unique interactive element in the current window. When a user indirectly interacts with an application by using a non-directional input device such as a keyboard, a television remote control, or a vehicle-mounted joystick/knob, focus-based interaction is an important input means.
-
-- Default focus
-
-  After an application opens or switches to a page, the first focusable component (if any) in the component tree of the page is the default focus. You can [customize the default focus](#setting-default-focus) as needed.
-
-- Focused
-
-  A focused component is one that has focus. Only one end-point component in the application can receive focus at one time, and all the component's ancestor components along the focus chain are focused. If you want a component to be focused, ensure that the component and all its ancestor components are focusable (the [focusable](#setting-whether-a-component-is-focusable) attribute is set to **true**).
-
-- Not focused
-
-  A component is not focused when it loses focus. In this case, all its ancestor components and the components not on the same focus chain as the focused component are not focused.
-
-- Focus navigation
-
-  Focus navigation refers to a process in which the focus is transferred in the current application. It causes the original focused component to lose focus and a previously not focused component to receive focus. Focus navigation in applications can be classified into the following types by behavior:
-
-  - Active navigation: A component is assigned focus due to subjective actions by developers or users, such as pressing the Tab or arrow keys on the external keyboard, using the [requestFocus](#focuscontrolrequestfocus) API, or clicking the component when the [focusOnTouch](#focusontouch) attribute is set to **true**.
-  - Passive navigation: A component is assigned focus due to logical operations by the system. This focus navigation mode cannot be set by developers. For example, the system may assign focus to a component when the **if-else** statement is used to delete the focused component or set the focused component (or its parent component) to be unfocusable or when the page is switched.
-
-- Focused state
-
-  The focused state refers to the style of the focused component. It is similar among different components and is not visible by default. The focused state is visible only when the Tab or arrow keys on the external keyboard are pressed to move focus. The Tab key or arrow key that triggers the focused state for the first time does not trigger focus navigation. When the application receives a touch event (including a finger press event on the screen and a press event of a left mouse button), the focused state style is automatically hidden. The focused state style is defined by the backend component and cannot be modified by developers.
+- Focus: refers to the single interactive element on the current application screen. When users interact indirectly with the application using non-pointing input devices such as keyboards, TV remote controls, or in-car joysticks/knobs, navigation and interaction based on focus are crucial means of input.
+- Focus chain: refers to the sequence of nodes from the root to a focused component in the application's component tree, where all nodes are considered focused.
+- Focus traversal: refers to the behavior of focus shifting between components in an application. This process is transparent to the user but can be monitored through **onFocus** and **onBlur** events. For details on how focus traversal is managed, see [Focus Traversal Guidelines](#focus-traversal-guidelines)
 
 
-## Rules of Focus Navigation
+**Focus State**
 
-Focus navigation follows the set rules regardless of whether it is active or passive focus navigation. By default, these rules are defined by the focus system and subject to the container where focus is located.
+Refers to the style indicating the currently focused component.
 
-- Linear navigation: used in components where child components are arranged linearly, such as the **\<Flex>**, **\<Row>**, **\<Column>**, and **\<List>** components. The focus navigation direction is the same as the direction of the arrow keys.
-
-  **Figure 1** Linear navigation 
-
-  ![en-us_image_0000001562700537](figures/en-us_image_0000001562700537.png)
-
-  For example, in the **\<Row>** container, you can use the left and right arrow keys (←/→) to move focus between two adjacent focusable components.
-
-- Cross navigation: used when the up (↑), down (↓), left (←), and right (→) arrow keys are pressed to move focus. The following figure shows a **\<Grid>** container where cross focus navigation is frequently seen.
-
-  **Figure 2** Cross focus navigation in the \<Grid> component 
-
-  ![en-us_image_0000001511740580](figures/en-us_image_0000001511740580.png)
-
-  >**NOTE**
-  >
-  > - With the previous focus navigation rules, the functions of the Tab/Shift+Tab keys are the same as those of the arrow keys. Pressing the Tab key is equivalent to pressing the right arrow key and then, if the focus cannot be moved, the down arrow key. Pressing the Shift+Tab key is equivalent to pressing the left arrow key and then, if the focus cannot be moved, the up arrow key.
-  >
-  > - The key that triggers focus navigation is the press event (Down event).
-  >
-  > - After a component is deleted or set to be unfocusable, the linear navigation rule is followed. The focus automatically moves to the sibling component in front of the deleted or unfocusable component. If that component cannot receive focus, the focus is then moved to the sibling component on the rear.
-
-- **tabIndex**-based navigation: Focus navigation with the Tab/Shift+Tab keys becomes sequential when the [tabIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9) attribute is set for the components.
-
-- Area-based focus: You can define the order of sequential focus navigation and the default focused component, by setting the **tabIndex** attribute for a container component and the [groupDefaultFocus](#groupdefaultfocus) attribute.
-
-- Rules for focusing on a container component
-  - There is a focusable child in the container component.<br> When the container (for which **groupDefaultFocus** is not set) is focused for the first time, the positions of its child components are calculated to identify the child component closest to the center of the container, and the focus automatically moves to this child component. If the container is not focused for the first time, the focus automatically moves to the child component that is focused last time in the container.
-  - There is no focusable child in the container component.<br> If the **onClick** or single-finger tap event is configured for the container, the focus moves to the container.
-
-- Focus interaction: When a component is focused, the inherent click task of the component or its bound **onClick** callback task is automatically mounted to the Spacebar or Enter key. This means that pressing the key is equivalent to clicking and touching in terms of executing the task.
+- Display rules: The focus state is not displayed by default; it only appears when the application is active. A component with the focus state is definitely focused, but not all focused components show the state, depending on the activation status. Most components come with default focus state styles; you customize these styles when needed. Once customized, the component will no longer display the default focus state style. In a focus chain, if multiple components have the focus state, the system shows the focus state for only one, prioritizing the child component's focus state over others.
+- Entering the activated state: Pressing the Tab key on an external keyboard activates focus, allowing subsequent use of the **Tab** key or arrow keys for focus traversal. The initial **Tab** press that activates focus does not cause focus to move.
+- Exiting the activated state: Focus activation ends upon any click event, including touch screen presses or mouse clicks.
 
 
->**NOTE**
+**Hierarchical Pages**
+
+Hierarchical pages are specialized container components, such as **Page**, **Dialog**, **SheetPage**, **ModalPage**, **Menu**, **Popup**, **NavBar**, and **NavDestination**, within a focus framework. These components typically have the following key features:
+
+- Visual layering: They appear on top of other content, creating a distinct visual hierarchy.
+- Focus capture: They automatically take focus when first displayed.
+- Focus limitation: When focus is within these components, users cannot use keyboard keys to move focus outside to other elements. In other words, focus movement is confined within the component.
+
+An application always has at least one hierarchical page in focus. When this hierarchical page is closed or no longer visible, the focus shifts to another, ensuring smooth user interaction.
+
+
+
+> **NOTE**
 >
->The focus involved in this topic refers to component focus. In real-world applications, the focus can also be window focus, which points to the currently focused window. When a window loses focus, all focused components in the window lose focus.
+> The **Popup** component does not capture focus if it has **focusable** set to **false**.
+>
+> The **NavBar** and **NavDestination** components do not restrict focus movement and share the focus scope of their immediate parent hierarchical page.
 
 
-## Listening for Focus Changes
 
+
+
+**Root Container**
+
+In hierarchical pages, the root container is where the default focus resides when the page is first shown.
+
+You can change the default focus using the **defaultFocus** attribute.
+
+Pressing **Tab** with focus on the root container activates focus and passes it to child components. Focus proceeds to the last focused child or the first child if no previous focus exists, until it reaches the leaf node.
+
+
+
+### Focus Traversal Guidelines
+
+Focus traversal can be divided into active and passive based on how it is triggered.
+
+
+
+**Active Focus Traversal**
+
+
+Active focus traversal refers to focus movement initiated by deliberate actions, such as keyboard shortcuts (**Tab**, **Shift+Tab**, arrow keys) and programmatic focus control through **requestFocus**, **clearFocus**, and **focusOnTouch**.
+
+
+- Keyboard traversal
+1. Prerequisite: The application is in the focus activated state.
+2. Scope: limited to the currently focused hierarchical page, as detailed in the "Focus limitation" section under "Hierarchical Pages."
+3. Key types:
+**Tab** key: follows a Z-shaped logic to traverse all leaf nodes within the scope, looping back to the first after the last.
+**Shift+Tab**: reverses the direction of the **Tab** key.
+Arrow keys (up, down, left, and right): moves focus in a cross-shaped pattern, with container-specific algorithms determining the next focus in a single-layer container. If the algorithm determines the next focus should be on a container component, the system uses a center-point distance priority algorithm to further identify the target child node within the container.
+4. Traversal algorithm: Each focusable container has a unique algorithm defining how focus moves.
+5. Priority: Child components take precedence in handling keyboard events over parents.
+
+- requestFocus
+Moves focus to a specific component, which is allowed across hierarchical pages but not across windows or different ArkUI instances.
+For details, see [Active Focus Acquisition/Loss](#active-focus-acquisitionloss).
+
+- clearFocus
+Clears the focus within the current hierarchical page, with the focus reverting to the root container. For details, see [clearFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#clearfocus12).
+
+- focusOnTouch
+Enables a component to gain focus on touch. It is ineffective on non-focusable components. For container components, focus goes to the last focused child or the first focusable child upon touch. For details, see [focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9).
+
+
+**Passive Focus Traversal**
+
+Passive focus traversal occurs when the focus automatically shifts due to system actions or other operations without developer intervention, reflecting the default behavior of the focus system.
+
+
+Mechanisms that trigger passive focus traversal include:
+
+- Component removal: If a focused component is removed, the system tries to shift focus to the next available sibling, following a back-to-front order. If no siblings are focusable, focus is released to the parent component.
+- Attribute change: Changing a component's **focusable** or **enabled** to **false**, or **visibility** to invisible causes the system to automatically move focus to another focusable component, using the same method as for component removal.
+- Hierarchical page transition: During switching between hierarchical pages, the current page's focus is automatically released, and the new page may automatically gain focus according to preset logic.
+- **Web** component initialization: The **Web** component may immediately gain focus upon creation if designed to do so (for example, certain dialog boxes or text boxes), which is part of the component's behavior and not governed by the focus framework specifications.
+
+
+
+### Focus Traversal Algorithms
+
+In the focus management system, every focusable container is assigned a specific algorithm that dictates how focus moves from the current to the next focusable child component when **Tab**, **Shift+Tab**, or arrow keys are used.
+
+The algorithm used by a container is based on its UX design and is implemented by the component itself. The focus framework supports three focus traversal algorithms: linear, projection, and custom.
+
+
+
+**Linear Focus Traversal Algorithm**
+
+
+The linear focus traversal algorithm is the default algorithm, focusing on the order of child nodes in the node tree, commonly used in single-direction layouts such as **Row**, **Column**, and **Flex** containers. Its operation rules are as follows:
+
+
+- Order dependency: The focus order is based solely on the mounting sequence of child nodes in the node tree, independent of their visual layout.
+- **Tab** key traversal: The **Tab** key moves focus through nodes in their mounting sequence.
+- Arrow key traversal: Arrow keys perpendicular to the container's layout direction are ignored. For example, a horizontal **Row** container does not accept focus requests from up and down keys.
+- Boundary handling: The container rejects focus requests in the opposite direction from the current focus edge. For example, if the focus is on the first child of a horizontal **Row** container, it won't process leftward focus requests.
+
+
+**Projection Focus Traversal Algorithm**
+
+The projection focus traversal algorithm determines the next focus based on the overlap area and center-point distance of the projection of the current focused component in the direction of focus movement. It is particularly suitable for containers with varying child sizes, such as the **Flex** component with the **wrap** attribute. Its operation rules are as follows:
+
+
+- Arrow keys: Focus goes to the child with the largest overlap area and the shortest center-point distance to the projection of the current focus. If multiple children qualify, the first in the node tree is chosen. If no components overlap with the projection, the focus request is unprocessable.
+- **Tab** key: It mimics a rightward shift to find the next focus; if none is available, it simulates moving the current focus down its height, and then checks leftward. The child farthest in the direction with overlapping projection wins.
+- **Shift+Tab** key: It mimics a leftward shift to find the next focus; if none is available, it simulates moving the current focus up its height, and then checks rightward. The child farthest in the direction with overlapping projection wins.
+
+
+**Custom Focus Traversal Algorithm**
+
+The custom focus traversal algorithm is defined by the component itself, allowing for specific focus traversal behaviors as determined by the component's design specifications.
+
+## onFocus/onBlur Events
 
 ```ts
-import List from '@ohos.util.List';
-import promptAction from '@ohos.promptAction';
 onFocus(event: () => void)
 ```
 
 
 Triggered when the bound component obtains focus.
 
-
-
 ```ts
 onBlur(event:() => void)
 ```
 
-
 Triggered when the bound component loses focus.
 
-
 The **onFocus** and **onBlur** APIs are usually used in pairs to listen for the focus changes of the component.
-
-
-The following sample code shows how to use these APIs:
-
-
 
 ```ts
 // xxx.ets
@@ -115,7 +163,6 @@ struct FocusEventExample {
     Column({ space: 20 }) {
       // You can use the up and down arrow keys on an external keyboard to move the focus between the three buttons. When a button gains focus, its color changes. When it loses focus, its color changes back.
       Button('First Button')
-        .defaultFocus(true)
         .width(260)
         .height(70)
         .backgroundColor(this.oneButtonColor)
@@ -165,139 +212,57 @@ struct FocusEventExample {
 ![en-us_image_0000001511740584](figures/en-us_image_0000001511740584.gif)
 
 
-The preceding example includes four steps:
+The preceding example includes three steps:
 
-
-1. When the application is opened, the **First Button** component obtains the focus by default, its **onFocus** callback is triggered, and its background color turns green.
-
-2. When the Tab key (or the down arrow key) is pressed, **First Button** is in focused state, that is, there is a blue closed box outside the component. If no focus navigation is triggered, the focus remains on **First Button**.
-
-3. When the Tab key (or the down arrow key) is pressed, the **Second Button** component is focused, its **onFocus** callback is triggered, and its background color turns green. **First Button** loses focus, its **onBlur** callback is triggered, and its background color turns gray.
-
-4. When the Tab key (or the down arrow key) is pressed, the **Third Button** component is focused, its **onFocus** callback is triggered, and its background color turns green. **Second Button** loses focus, its **onBlur** callback is triggered, and its background color turns gray.
-
+- When the application is opened, pressing the **Tab** key activates focus traversal, **First Button** displays a focus state style – a blue bounding box around the component – and its **onFocus** callback is triggered, changing the background color to green.
+- When the **Tab** key is pressed again, **Second Button** gains focus, triggering its **onFocus** callbacktriggered, and its background color turns green, while **First Button** loses focus, triggering its **onBlur** callback, and its background color reverts to gray.
+- A subsequent **Tab** key press causes **Third Button** to gain focus, triggering its **onFocus** callback, and its background color turns green. Concurrently, **Second Button** loses focus, triggering its **onBlur** callback, and its background color reverts to gray.
 
 ## Setting Whether a Component Is Focusable
-
-Use the **focusable** API to set whether a component is focusable.
-
 
 ```ts
 focusable(value: boolean)
 ```
 
+Sets whether the component is focusable.
+
 Components can be classified into the following types based on their focusability:
 
-- Components that are focusable by default: These components are usually interactive components, such as **\<Button>**, **\<Checkbox>**, and **\<TextInput>**.
+- Default focusable components: These components are usually interactive components, such as **Button**, **Checkbox**, and **TextInput**.
 
-- Components that can be focused but are unfocusable by default: Typical examples are **\<Text>** and **\<Image>**. To enable them to be focusable, use the **focusable(true)** attribute.
+- Focusable but default unfocusable components: Typical examples are **Text** and **Image**. To enable them to be focusable, use the **focusable(true)** attribute. When these components do not have the **focusable** attribute set, setting an **onClick** event or a single-tap gesture implicitly makes them focusable. However, when these components have the **focusable** attribute set to **false**, they remain unfocusable even if you bind the aforementioned event or gesture to them.
 
-- Components that cannot be focused: These components usually do not allow for interactions and cannot be focused even if they use the **focusable** attribute. Examples are **\<Blank>** and **\<Circle>**.
+- Non-focusable components: Components that do not allow for interactions, such as **Blank** and **Circle**, cannot be made focusable, even with the **focusable** attribute applied.
+
+
+
+
+```ts
+enabled(value: boolean)
+```
+
+Sets the component's interactivity. If [enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled) is set to **false**, the component becomes non-interactive and cannot gain focus.
+
+
+```ts
+visibility(value: Visibility)
+```
+
+Sets the component's visibility. If [visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility) set to **Visibility.None** or **Visibility.Hidden**, the component becomes invisible and cannot gain focus.
+
+
+```ts
+focusOnTouch(value: boolean)
+```
+
+Sets whether the component is focusable on touch.
+
+
 
 
 >**NOTE**
-> - If **focusable** is set to **false**, the component is unfocusable. The universal attribute [enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md) can also be used to make the component unfocusable.
 >
-> - When a component is in the focused state, if its **focusable** or **enabled** attribute is set to **false**, the component automatically loses focus. Then, the focus moves to other components based on the [rules of focus navigation](#rules-of-focus-navigation).
->
-> - For components that can be focused but are unfocusable by default (when the **focusable** attribute is not configured), they can implicitly become focusable if you bind an **onClick** event or single-finger tap gesture to them. However, when these components have the **focusable** attribute set to **false**, they remain unfocusable even if you bind the aforementioned event or gesture to them.
-
-
-  **Table 1** Focusability of basic components
-
-| Basic Component                                    | Can Be Focused| Default Value of focusable| Rules of Focus Navigation    |
-| ---------------------------------------- | ------- | ------------ | -------- |
-| [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | Yes      | true         | Linear navigation    |
-| [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) | No      | false        | /        |
-| [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) | Yes      | true         | /        |
-| [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | Yes      | true         | /        |
-| [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | Yes      | true         | /        |
-| [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | No      | false        | /        |
-| [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | Yes      | true         | Linear navigation    |
-| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | No      | false        | /        |
-| [Formcomponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | No      | false        | /        |
-| [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | No      | false        | /        |
-| [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | Yes      | false        | /        |
-| [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | Yes      | false        | /        |
-| [LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) | No      | false        | /        |
-| [Marquee](../reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md) | No      | false        | /        |
-| [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) | Yes      | true         | Linear navigation    |
-| [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md) | Yes      | true         | /        |
-| [MenuItemGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md) | Yes      | true         | Linear navigation    |
-| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | No      | false        | Customized   |
-| [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | No      | false        | Follows the child container   |
-| [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | No      | false        | Linear navigation    |
-| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | No      | false        | /        |
-| [PluginComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | No      | false        | /        |
-| [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | No      | false        | /        |
-| [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | No      | false        | /        |
-| [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | Yes      | true         | /        |
-| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | Yes      | true         | /        |
-| [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | No      | false        | /        |
-| [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | No      | false        | /        |
-| [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | No      | false        | /        |
-| [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | Yes      | true         | /        |
-| [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | Yes      | true         | Linear navigation    |
-| [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md) | Yes      | true         | /        |
-| [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) | No      | false        | /        |
-| [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md) | Yes      | true         | /        |
-| [StepperItem](../reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md) | Yes      | true         | /        |
-| [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) | Yes      | false        | /        |
-| [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | Yes      | true         | /        |
-| [TextClock](../reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md) | No      | false        | /        |
-| [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | Yes      | true         | /        |
-| [TextPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md) | Yes      | true         | Linear navigation    |
-| [TextTimer](../reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md) | No      | false        | /        |
-| [TimePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md) | Yes      | true         | Linear navigation    |
-| [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | Yes      | true         | /        |
-| [Web](../reference/apis-arkweb/ts-basic-components-web.md) | Yes      | true         | Customized|
-| [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | No      | false        | /        |
-
-  **Table 2** Focusability of container components
-
-| Container Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation    |
-| ---------------------------------------- | ----- | ------------ | -------- |
-| [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) | No    | false        | /        |
-| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | No    | false        | /        |
-| [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | Yes    | true         | Linear navigation    |
-| [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | Yes    | true         | /        |
-| [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | Yes    | true         | Linear navigation    |
-| [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) | Yes    | true         | Linear navigation    |
-| [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) | Yes    | true         | Customized |
-| [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) | Yes    | true         | Customized |
-| [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) | Yes    | true         | Customized |
-| [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | Yes    | true         | Follows the child component   |
-| [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) | Yes    | true         | Linear navigation    |
-| [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | Yes    | true         | Follows the child component   |
-| [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) | Yes    | true         | Follows the **\<List>** component|
-| [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) | No    | true         | Customized |
-| [Panel](../reference/apis-arkui/arkui-ts/ts-container-panel.md) | No    | true         | Follows the child component   |
-| [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | No    | false        | /        |
-| [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) | No    | true         | Customized |
-| [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) | Yes    | true         | Linear navigation    |
-| [RowSplit](../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md) | Yes    | true         | /        |
-| [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) | Yes    | true         | Linear navigation    |
-| [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | Yes    | true         | Linear navigation    |
-| [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) | Yes    | true         | Linear navigation    |
-| [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) | Yes    | true         | Customized |
-| [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) | Yes    | true         | Customized |
-| [TabContent](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) | Yes    | true         | Follows the child component   |
-
-  **Table 3** Focusability of media components
-
-| Media Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation|
-| ---------------------------------------- | ----- | ------------ | ---- |
-| [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | Yes    | true         | /    |
-
-  **Table 4** Focusability of canvas components
-
-| Canvas Component                                    | Focusable| Default Value of focusable| Rules of Focus Navigation|
-| ---------------------------------------- | ----- | ------------ | ---- |
-| [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md) | No    | false        | /    |
-
-
-The following example shows how to use the **focusable** API:
-
+>- When a component that is currently focused has its **focusable** or **enabled** attribute set to **false**, it automatically loses focus. The focus then shifts to another component according to the [Focus Traversal Guidelines](#focus-traversal-guidelines).
 
 
 ```ts
@@ -306,12 +271,14 @@ The following example shows how to use the **focusable** API:
 @Component
 struct FocusableExample {
   @State textFocusable: boolean = true;
+  @State textEnabled: boolean = true;
   @State color1: Color = Color.Yellow;
   @State color2: Color = Color.Yellow;
+  @State color3: Color = Color.Yellow;
 
   build() {
     Column({ space: 5 }) {
-      Text('Default Text')    // The focusable attribute is not set for the first <Text> component. By default, the component is unfocusable.
+      Text('Default Text')    // The first Text component does not have the focusable attribute set, and is not focusable by default.
         .borderColor(this.color1)
         .borderWidth(2)
         .width(300)
@@ -324,17 +291,33 @@ struct FocusableExample {
         })
       Divider()
 
-      Text('focusable: ' + this.textFocusable)    // The focusable attribute is set for the second <Text> component. The initial value is true.
+      Text('focusable: ' + this.textFocusable)    // The second Text component initially has focusable set to true and focusOnTouch true.
         .borderColor(this.color2)
         .borderWidth(2)
         .width(300)
         .height(70)
         .focusable(this.textFocusable)
+        .focusOnTouch(true)
         .onFocus(() => {
           this.color2 = Color.Blue;
         })
         .onBlur(() => {
           this.color2 = Color.Yellow;
+        })
+
+      Text('enabled: ' + this.textEnabled)    // The third Text component has focusable set to true, enabled initially true.
+        .borderColor(this.color3)
+        .borderWidth(2)
+        .width(300)
+        .height(70)
+        .focusable(true)
+        .enabled(this.textEnabled)
+        .focusOnTouch(true)
+        .onFocus(() => {
+          this.color3 = Color.Blue;
+        })
+        .onBlur(() => {
+          this.color3 = Color.Yellow;
         })
 
       Divider()
@@ -352,11 +335,14 @@ struct FocusableExample {
 
       Divider()
     }.width('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((e) => {    // Bind onKeyEvent. When the <Column> component is focused, pressing F can reverse the focusable attribute of the second <Text> component.
-      if(e){
-        if (e.keyCode === 2022 && e.type === KeyType.Down) {
-          this.textFocusable = !this.textFocusable;
-        }
+    .onKeyEvent((e) => {
+      // Bind onKeyEvent. When this Column component has focus, pressing F will toggle the focusable state of the second Text component.
+      if (e.keyCode === 2022 && e.type === KeyType.Down) {
+        this.textFocusable = !this.textFocusable;
+      }
+      // Bind onKeyEvent. When this Column component has focus, pressing G will toggle the enabled state of the third Text component.
+      if (e.keyCode === 2023 && e.type === KeyType.Down) {
+        this.textEnabled = !this.textEnabled;
       }
     })
   }
@@ -367,784 +353,537 @@ struct FocusableExample {
 Operation result:
 
 
-![en-us_image_0000001511900540](figures/en-us_image_0000001511900540.gif)
+![focus-1.gif](figures/focus-1.gif)
+
+The preceding example includes three steps:
 
 
-The preceding example includes two parts: default focus and active navigation.
+- As the first **Text** component does not have **focusable(true)** set, it is unfocusable.
+- The second **Text** component is set with **focusOnTouch(true)**, allowing it to gain focus on touch. Pressing the **Tab** key triggers focus traversal, but the focus remains on the second component. When the **F** key is pressed, the **onKeyEvent** callback toggles **focusable** to **false**, making the second **Text** component unfocusable, and the focus shifts to the next available focusable component, which is the third **Text** component.
+- Pressing the **G** key triggers the **onKeyEvent** callback, which sets **enabled** to **false**, making the third **Text** component unfocusable. The focus then automatically moves to the **Row** container, where the default configuration causes the focus to shift to **Button1**.
 
+## Default Focus
 
-**Default focus:**
-
-
-- According to the definition of the default focus, after the application is opened, the first focusable element is focused by default.
-
-- As the **focusable** attribute is not set for the first **\<Text>** component, it cannot be focused.
-
-- The **focusable** attribute of the second **\<Text>** component is explicitly set to **true**. In this case, the default focus is placed on the component.
-
-
-**Active navigation:**
-
-
-Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. According to the [rule for focusing on a container component](#rules-of-focus-navigation), the sequential Tab navigation follows the Z-shaped pattern; as such, the focus automatically moves to **Button1**.
-
-
-## Setting Default Focus
-
+### Default Focus on a Page
 
 ```ts
 defaultFocus(value: boolean)
 ```
 
-When the page is constructed for the first time, the focus system searches for all components on the current page, finds the first component bound to **defaultFocus(true)**, and sets the component as the default focus. If no component is bound to **defaultFocus(true)**, the first focusable component is set as the default focus.
-
-Below is an application layout.
-
-![en-us_image_0000001563060793](figures/en-us_image_0000001563060793.png)
-
-The following is the sample code for implementing the application layout, and **defaultFocus** is not set in the sample code:
+Specifies whether to set the component as the default focus of the page.
 
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
-
-class MyDataSource implements IDataSource {
-  private list: number[] = [];
-  private listener: DataChangeListener | undefined = undefined;
-
-  constructor(list: number[]) {
-    this.list = list;
-  }
-
-  totalCount(): number {
-    return this.list.length;
-  }
-
-  getData(index: number): number {
-    return this.list[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener;
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
-
-class swcf {
-  swiperController: SwiperController | undefined
-
-  fun(index: number) {
-    if (this.swiperController) {
-      if (index == 0) {
-        this.swiperController.showPrevious();
-      } else {
-        this.swiperController.showNext();
-      }
-    }
-  }
-}
-
-class TmpM {
-  left: number = 20
-  bottom: number = 20
-  right: number = 20
-}
-
-let MarginTmp: TmpM = new TmpM()
-
 @Entry
 @Component
-struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  @State tmp: promptAction.ShowToastOptions = { 'message': 'Button OK on clicked' }
-  private data: MyDataSource = new MyDataSource([])
-
-  aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 1; i <= 4; i++) {
-      list.push(i);
-    }
-    this.data = new MyDataSource(list);
-  }
+struct morenjiaodian {
+  @State oneButtonColor: Color = Color.Gray;
+  @State twoButtonColor: Color = Color.Gray;
+  @State threeButtonColor: Color = Color.Gray;
 
   build() {
-    Column({ space: 5 }) {
-      Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string) => {
-          Row({ space: 10 }) {
-            Column() {
-              Button('1').width(120).height(120)
-                .fontSize(40)
-                .backgroundColor('#dadbd9')
-            }
-
-            Column({ space: 20 }) {
-              Row({ space: 20 }) {
-                Button('2')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('3')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('4')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('5')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('6')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('7')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-            }
-          }
-          .width(320)
-          .height(300)
-          .justifyContent(FlexAlign.Center)
-          .borderWidth(2)
-          .borderColor(Color.Gray)
-          .backgroundColor(Color.White)
-        }, (item: string): string => item)
-      }
-      .cachedCount(2)
-      .index(0)
-      .interval(4000)
-      .indicator(true)
-      .loop(true)
-      .duration(1000)
-      .itemSpace(0)
-      .curve(Curve.Linear)
-      .onChange((index: number) => {
-        console.info(index.toString());
-      })
-      .margin({ left: 20, top: 20, right: 20 })
-
-      Row({ space: 40 }) {
-        Button('←')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            let swf = new swcf()
-            swf.fun(0)
-          })
-        Button('→')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            let swf = new swcf()
-            swf.fun(1)
-          })
-      }
-      .width(320)
-      .height(50)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#f7f6dc')
-
-      Row({ space: 20 }) {
-        Button('Cancel')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-
-        Button('OK')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-          .onClick(() => {
-            promptAction.showToast(this.tmp);
-          })
-      }
-      .width(320)
-      .height(80)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#dff2e4')
-      .margin(MarginTmp)
-    }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 50 })
-  }
-}
-```
-
-
-As **defaultFocus** is not set in the application, the first focusable component obtains the focus by default. Pressing the Tab key or arrow keys can set the focused component to enter the focused state.
-
-
-![en-us_image_0000001511421360](figures/en-us_image_0000001511421360.gif)
-
-
-Assume that you want to perform the **onClick** callback of the **OK** button without switching the focus when opening the application. In this case, you can bind **defaultFocus(true)** to the button, make it the default focus on the page.
-
-
-
-```ts
-import promptAction from '@ohos.promptAction';
-@Entry
-@Component
-struct MouseExample {
-  @State Tmp: promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
-  build() {
-    Column() {
-      Button('OK')
-        .defaultFocus(true)    // Bind defaultFocus to the OK button.
-        .fontSize(30)
-        .fontColor('#787878')
-        .type(ButtonType.Normal)
-        .width(140).height(50).backgroundColor('#dadbd9')
-        .onClick(() => {
-          promptAction.showToast(this.Tmp);
-        })
-    }
-  }
-}
-
-```
-
-
-![en-us_image_0000001562940617](figures/en-us_image_0000001562940617.gif)
-
-
-When the application is opened, pressing the Tab key switches the **OK** button to the focused state, indicating that the default focus is changed to the button. After the space key is pressed, the **onClick **event of the **OK** button is triggered.
-
-
-## Setting the Order for Sequential Tab Navigation
-
-
-```ts
-tabIndex(index: number)
-```
-
-Use **tabIndex** to set the order for sequential Tab navigation. The default value is **0**. In Tab navigation, where Tab/Shift+Tab is used (the arrow keys do not affect the navigation), the focus system automatically obtains all components whose **tabIndex** is greater than 0 and moves focus in ascending or descending order.
-
-
-With the example provided in [Setting Default Focus](#setting-default-focus), the default order for sequential focus navigation is as follows:
-
-
-![en-us_image_0000001511421364](figures/en-us_image_0000001511421364.gif)
-
-
-The default order for sequential Tab navigation is from the first focusable component to the last focusable component, and the process goes through Button 1-> Button 2 -> Button 3 -> Button 4 -> Button 5 -> Button 6 -> Button 7 -> Left arrow -> Right arrow -> Button OK. This focus navigation queue is relatively complete and traverses most of the components. However, the disadvantage is that the path from the first to the last is long.
-
-
-If you want to quickly go from the first to the last without sacrificing too much traversal integrity, you can use the **tabIndex** attribute.
-
-
-For example, take the white area, the yellow area, and the green area each as a unit. To implement the focus navigation queue of Button1 -> Left arrow -> Button-OK, you only need to add **tabIndex(1)**, **tabIndex(2)**, and **tabIndex(3)** to the Button1, left arrow, and ButtonOK components in sequence. The **tabIndex** attribute indicates how a component participates in sequential Tab navigation. A component with a larger value gains focus later than one with a smaller value.
-
-
-
-```ts
-@Entry
-@Component
-struct MouseExample {
-  build() {
-    Column() {
-      Button('1').width(120).height(120)
-        .fontSize(40)
-        .backgroundColor('#dadbd9')
-        .tabIndex(1)    // Set Button 1 as the first tabIndex node.
-    }
-  }
-}
-```
-
-
-
-```ts
-class swcf{
-  swiperController:SwiperController|undefined
-  fun(){
-    if(this.swiperController){
-      this.swiperController.showPrevious();
-    }
-  }
-}
-@Entry
-@Component
-struct MouseExample {
-  build() {
-    Column() {
-      Button('←')
-        .fontSize(40)
-        .fontWeight(FontWeight.Bold)
+    Column({ space: 20 }) {
+      // You can use the up and down arrow keys on an external keyboard to move the focus between the three buttons. When a button gains focus, its color changes. When it loses focus, its color changes back.
+      Button('First Button')
+        .width(260)
+        .height(70)
+        .backgroundColor(this.oneButtonColor)
         .fontColor(Color.Black)
-        .backgroundColor(Color.Transparent)
-        .onClick(() => {
-          let swf = new swcf()
-          swf.fun()
+          // Listen for the focus obtaining event of the first component and change its color when it obtains focus.
+        .onFocus(() => {
+          this.oneButtonColor = Color.Green;
         })
-        .tabIndex(2)    // Set Button-left arrow as the second tabIndex node.
-    }
+          // Listen for the focus loss event of the first component and change its color when it loses focus.
+        .onBlur(() => {
+          this.oneButtonColor = Color.Gray;
+        })
+
+      Button('Second Button')
+        .width(260)
+        .height(70)
+        .backgroundColor(this.twoButtonColor)
+        .fontColor(Color.Black)
+          // Listen for the focus obtaining event of the second component and change its color when it obtains focus.
+        .onFocus(() => {
+          this.twoButtonColor = Color.Green;
+        })
+          // Listen for the focus loss event of the second component and change its color when it loses focus.
+        .onBlur(() => {
+          this.twoButtonColor = Color.Grey;
+        })
+
+      Button('Third Button')
+        .width(260)
+        .height(70)
+        .backgroundColor(this.threeButtonColor)
+        .fontColor(Color.Black)
+          // Set the default focus.
+        .defaultFocus(true)
+          // Listen for the focus obtaining event of the third component and change its color when it obtains focus.
+        .onFocus(() => {
+          this.threeButtonColor = Color.Green;
+        })
+          // Listen for the focus loss event of the third component and change its color when it loses focus.
+        .onBlur(() => {
+          this.threeButtonColor = Color.Gray ;
+        })
+    }.width('100%').margin({ top: 20 })
   }
 }
 ```
 
+![defaultFocus.gif](figures/defaultFocus.gif)
 
+The preceding example includes two steps:
+
+- The **defaultFocus(true)** is set on the third **Button** component, which means it gains focus by default when the page is loaded, displaying in green.
+- Pressing the **Tab** key triggers focus traversal, and since the third **Button** component is in focus, a focus frame appears around it.
+
+### Default Focus for Containers
+
+The default focus within a container is affected by [focus priority](#focus-group-and-focus-priority).
+
+**Differences Between defaultFocus and FocusPriority**
+
+[defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9) specifies the initial focus when the page loads. [FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focuspriority12) defines the order in which child components gain focus within a container. Behavior is undefined when both attributes are set in some scenarios. For example, a page's initial display cannot simultaneously meet the focus requirements of a component with **defaultFocus **and a high-priority component.
+
+Example
 
 ```ts
-import promptAction from '@ohos.promptAction';
 @Entry
 @Component
-struct MouseExample {
-  @State Tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+struct Index {
   build() {
-    Column() {
-    Button('OK')
-      .fontSize(30)
-      .fontColor('#787878')
-      .type(ButtonType.Normal)
-      .width(140).height(50).backgroundColor('#dadbd9')
-      .onClick(() => {
-        promptAction.showToast(this.Tmp);
-      })
-      .tabIndex(3)    // Set Button OK as the third tabIndex node.
-    }
+    Row() {
+      Button('Button1')
+        .defaultFocus(true)
+      Button('Button2')
+        .focusScopePriority('RowScope', FocusPriority.PREVIOUS)
+    }.focusScopeId('RowScope')
   }
 }
 ```
 
+### Focus Chain for Pages/Containers
 
-![en-us_image_0000001511580976](figures/en-us_image_0000001511580976.gif)
+**Overall Focus and Non-Overall Focus**
+
+- Overall focus: The entire page or container gains focus first, then the focus shifts to its child components. Examples include page transitions, route switches within **Navigation** components, focus group traversal, and when a container component proactively calls **requestFocusById**.
+
+- Non-overall focus: A specific component gains focus, pulling its parent components into focus. Examples include a **TextInput** component proactively obtaining focus or using the **Tab** key for traversal in non-focus group.
+
+**Formation of the Focus Chain in Overall Focus**
+
+1. Initial page focus:
+
+- The leaf node of the focus chain is the node with **defaultFocus** set.
+
+- If no **defaultFocus** is configured, the focus remains on the page's root container.
+
+2. Subsequent page focus: Focus is gained by the node that last held focus.
+
+3. Focus chain with priority configuration:
+
+- If a container has a component with a focus priority higher than **PREVIOUS**, the component with the highest priority gains focus.
+
+- If no component with a priority higher than **PREVIOUS** exists, the last focused node regains focus, such as when a window refocuses after being out of focus.
 
 
->**NOTE**
-> - When the focus is on a tabIndex (greater than 0) node, after Tab/Shift+Tab is pressed, the focus system preferentially searches for the rear/front node in the tabIndex (greater than 0) queue. If the rear/front node exists, the focus system moves the focus to that node. If the node does not exist, the default focus logic is used to move the focus backward or forward.
->
-> - When the focus is on the tabIndex (equal to 0) node, the focus system uses the default focus navigation logic. During the navigation, the tabIndex (greater than 0) and tabIndex (less than 0) nodes are skipped.
->
-> - When the focus is on a tabIndex (less than 0) node, pressing Tab/Shift+Tab does not move the focus.
-
-
-### groupDefaultFocus
+## Focus Style
 
 
 ```ts
-groupDefaultFocus(value: boolean)
+focusBox(style: FocusBoxStyle)
 ```
 
-Using **tabIndex** to [set the order for sequential Tab navigation](#setting-the-order-for-sequential-tab-navigation) has the following issues:
-
-While a component is set as a tabIndex node (white-Button1, yellow-left arrow, and green-ButtonOK) in each area (white, yellow, and green), focus moves quickly only within these components in Tab navigation.
-
-As a workaround, you can set **tabIndex** for the container of each area. However, under this setting, when a container receives focus for the first time, the focused child component is the first focusable component by default, rather than the desired component (Button1, left arrow, and ButtonOK).
-
-This is where the **groupDefaultFocus** attribute comes into play, whose value type is boolean and default value is **false**.
-
-This attribute must be used together with **tabIndex**. Use **tabIndex** to bind the focus sequence to the areas (containers), and then bind **groupDefaultFocus(true)** to Button1, left arrow, and ButtonOK. In this way, when the target area (container) is focused for the first time, its child components bound to **groupDefaultFocus(true)** get the focus at the same time.
-
+Sets the system focus box style for the component.
 
 ```ts
-// xxx.ets
-import promptAction from '@ohos.promptAction';
-
-class MyDataSource implements IDataSource {
-  private list: number[] = [];
-  private listener: DataChangeListener|undefined = undefined;
-
-  constructor(list: number[]) {
-    this.list = list;
-  }
-
-  totalCount(): number {
-    return this.list.length;
-  }
-
-  getData(index: number): number {
-    return this.list[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    this.listener = listener;
-  }
-
-  unregisterDataChangeListener() {
-  }
-}
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
-struct SwiperExample {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
-  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
-
-  aboutToAppear(): void {
-    let list: number[] = []
-    for (let i = 1; i <= 4; i++) {
-      list.push(i);
+struct RequestFocusExample {
+  build() {
+    Column({ space: 30 }) {
+      Button("small black focus box")
+        .focusBox({
+          margin: new LengthMetrics(0),
+          strokeColor: ColorMetrics.rgba(0, 0, 0),
+        })
+      Button("large red focus box")
+        .focusBox({
+          margin: LengthMetrics.px(20),
+          strokeColor: ColorMetrics.rgba(255, 0, 0),
+          strokeWidth: LengthMetrics.px(10)
+        })
     }
-    this.data = new MyDataSource(list);
+    .alignItems(HorizontalAlign.Center)
+    .width('100%')
   }
+}
+```
+
+![focusBox](figures/focusBox.gif)
+
+
+The preceding example includes two steps:
+
+- After the page opens, pressing the Tab key initiates focus traversal. The first **Button** gains focus, displaying a small, black focus box that is closely fitted to the edge.
+- Pressing the Tab key again shifts focus to the second **Button**, which features a large, red focus box with a thicker stroke and a more significant margin from the edge.
+
+## Active Focus Acquisition/Loss
+
+- Using **FocusController** APIs
+
+  You are advised to use **requestFocus** from **FocusController** for actively acquiring focus. It provides the following benefits:
+  - Takes effect in the current frame, preventing interference from subsequent component tree changes.
+  - Provides exception handling, aiding in troubleshooting focus acquisition issues.
+  - Prevents errors in multi-instance scenarios by avoiding incorrect instance retrieval.
+
+  You must first obtain an instance using the [getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12) API in **UIContext** and then use this instance to call the corresponding methods.
+
+  ```ts
+  requestFocus(key: string): void
+  ```
+  Transfers focus to a component node by the component ID, which is effective immediately.
+
+  ```ts
+  clearFocus(): void
+  ```
+  Clears the focus and forcibly moves the focus to the root container node of the page, causing other nodes in the focus chain to lose focus.
+
+- Using **focusControl** APIs
+  ```ts
+  requestFocus(value: string): boolean
+  ```
+
+  Moves focus to a specified component, with the change taking effect in the next frame.
+
+
+```ts
+// focusTest.ets
+@Entry
+@Component
+struct RequestExample {
+  @State btColor: string = '#ff2787d9'
+  @State btColor2: string = '#ff2787d9'
 
   build() {
-    Column({ space: 5 }) {
-      Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string) => {
-          Row({ space: 10 }) {    // Set the <Row> component as the first tabIndex node.
-            Column() {
-              Button('1').width(120).height(120)
-                .fontSize(40)
-                .backgroundColor('#dadbd9')
-                .groupDefaultFocus(true)    // Set Button-1 as the default focus of the first tabIndex node.
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('Button')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .onFocus(() => {
+            this.btColor = '#ffd5d5d5'
+          })
+          .onBlur(() => {
+            this.btColor = '#ff2787d9'
+          })
+          .id("testButton")
+
+        Button('Button')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor2)
+          .onFocus(() => {
+            this.btColor2 = '#ffd5d5d5'
+          })
+          .onBlur(() => {
+            this.btColor2 = '#ff2787d9'
+          })
+          .id("testButton2")
+
+        Divider()
+          .vertical(false)
+          .width("80%")
+          .backgroundColor('#ff707070')
+          .height(10)
+
+        Button('FocusController.requestFocus')
+          .width(200).height(70).fontColor(Color.White)
+          .onClick(() => {
+            this.getUIContext().getFocusController().requestFocus("testButton")
+          })
+          .backgroundColor('#ff2787d9')
+
+        Button("focusControl.requestFocus")
+          .width(200).height(70).fontColor(Color.White)
+          .onClick(() => {
+            focusControl.requestFocus("testButton2")
+          })
+          .backgroundColor('#ff2787d9')
+
+        Button("clearFocus")
+          .width(200).height(70).fontColor(Color.White)
+          .onClick(() => {
+            this.getUIContext().getFocusController().clearFocus()
+          })
+          .backgroundColor('#ff2787d9')
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![focus-2](figures/focus-2.gif)
+
+The preceding example includes three steps:
+
+- When the **FocusController.requestFocus** button is clicked, the first button gains focus.
+- When the **focusControl.requestFocus** button is clicked, the second button gains focus.
+- When the **clearFocus** button is clicked, the second button loses focus.
+
+## Focus Group and Focus Priority
+
+```ts
+focusScopePriority(scopeId: string, priority?: FocusPriority)
+```
+
+Sets the focus priority of this component in a specified container. It must be used together with **focusScopeId**.
+
+
+```ts
+focusScopeId(id: string, isGroup?: boolean)
+```
+
+Assigns an ID to this container component and specifies whether the container is a focus group. Focus groups should not be mixed with **tabIndex** usage.
+
+```ts
+// focusTest.ets
+@Entry
+@Component
+struct FocusableExample {
+  @State inputValue: string = ''
+
+  build() {
+    Scroll() {
+      Row({ space: 20 }) {
+        Column({ space: 20 }) {  // Labeled as Column1.
+          Column({ space: 5 }) {
+            Button('Group1')
+              .width(165)
+              .height(40)
+              .fontColor(Color.White)
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
             }
-
-            Column({ space: 20 }) {
-              Row({ space: 20 }) {
-                Button('2')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('3')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('4')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('5')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
-
-              Row({ space: 20 }) {
-                Button('6')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-                Button('7')
-                  .width(70)
-                  .height(70)
-                  .fontSize(40)
-                  .type(ButtonType.Normal)
-                  .borderRadius(20)
-                  .backgroundColor('#dadbd9')
-              }
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
             }
+          }.borderWidth(2).borderColor(Color.Red).borderStyle(BorderStyle.Dashed)
+          Column({ space: 5 }) {
+            Button('Group2')
+              .width(165)
+              .height(40)
+              .fontColor(Color.White)
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+                .focusScopePriority('ColumnScope1', FocusPriority.PRIOR) // Focuses when Column1 first gains focus.
+            }
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+            }
+          }.borderWidth(2).borderColor(Color.Green).borderStyle(BorderStyle.Dashed)
+        }
+        .focusScopeId('ColumnScope1')
+        Column({ space: 5 }) {  // Labeled as Column2.
+          TextInput({placeholder: 'input', text: this.inputValue})
+            .onChange((value: string) => {
+              this.inputValue = value
+            })
+            .width(156)
+          Button('Group3')
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
           }
-          .width(320)
-          .height(300)
-          .justifyContent(FlexAlign.Center)
-          .borderWidth(2)
-          .borderColor(Color.Gray)
-          .backgroundColor(Color.White)
-          .tabIndex(1)
-        }, (item:string):string => item)
-      }
-      .cachedCount(2)
-      .index(0)
-      .interval(4000)
-      .indicator(true)
-      .loop(true)
-      .duration(1000)
-      .itemSpace(0)
-      .curve(Curve.Linear)
-      .onChange((index: number) => {
-        console.info(index.toString());
-      })
-      .margin({ left: 20, top: 20, right: 20 })
-
-      Row({ space: 40 }) {    // Set the <Row> component as the second tabIndex node.
-        Button('←')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            this.swiperController.showPrevious();
-          })
-          .groupDefaultFocus(true)    // Set the Button-left arrow as the default focus of the second tabIndex node.
-        Button('→')
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.Black)
-          .backgroundColor(Color.Transparent)
-          .onClick(() => {
-            this.swiperController.showNext();
-          })
-      }
-      .width(320)
-      .height(50)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#f7f6dc')
-      .tabIndex(2)
-
-      Row({ space: 20 }) {    // Set the <Row> component as the third tabIndex node.
-        Button('Cancel')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-
-        Button('OK')
-          .fontSize(30)
-          .fontColor('#787878')
-          .type(ButtonType.Normal)
-          .width(140)
-          .height(50)
-          .backgroundColor('#dadbd9')
-          .defaultFocus(true)
-          .onClick(() => {
-            promptAction.showToast(this.tmp);
-          })
-          .groupDefaultFocus(true)    // Set Button-OK as the default focus of the third tabIndex node.
-      }
-      .width(320)
-      .height(80)
-      .justifyContent(FlexAlign.Center)
-      .borderWidth(2)
-      .borderColor(Color.Gray)
-      .backgroundColor('#dff2e4')
-      .margin({ left: 20, bottom: 20, right: 20 })
-      .tabIndex(3)
-    }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 50 })
-  }
-}
-```
-
-![en-us_image_0000001562700533](figures/en-us_image_0000001562700533.gif)
-
-
-### focusOnTouch
-
-
-```ts
-focusOnTouch(value: boolean)
-```
-
-Sets whether a component is focusable on touch (touching or left-clicking). The parameter value type is boolean and the default value is **false**. The default value is **true** for input components: TextInput, TextArea, Search, and Web.
-
-By binding **focusOnTouch(true)** to a component whose default value is **false**, such as **\<Button>**, you enable the component to become focused on touch.
-
-When **focusOnTouch(true)** is bound to a container and the container area is clicked, the first focusable component of the container is immediately focused.
-
-The sample code is as follows:
-
-
-```ts
-// requestFocus.ets
-@Entry
-@Component
-struct RequestFocusExample {
-  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'N']
-
-  build() {
-    Column({ space:20 }){
-      Button("id: " + this.idList[0] + " focusOnTouch(true) + focusable(false)")
-        .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
-        .hoverEffect(HoverEffect.Scale)
-        .focusable(false)
-      Button("id: " + this.idList[1] + " default")
-        .width(400).height(70).fontColor(Color.White)
-        .hoverEffect(HoverEffect.Scale)
-      Button("id: " + this.idList[2] + " focusOnTouch(false)")
-        .width(400).height(70).fontColor(Color.White).focusOnTouch(false)
-        .hoverEffect(HoverEffect.Scale)
-      Button("id: " + this.idList[3] + " focusOnTouch(true)")
-        .width(400).height(70).fontColor(Color.White).focusOnTouch(true)
-        .hoverEffect(HoverEffect.Scale)
-    }.width('100%').margin({ top:20 })
+          Button()
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+            .focusScopePriority('ColumnScope2', FocusPriority.PREVIOUS)  // Focuses when Column2 first gains focus.
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+          Button()
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+        }.borderWidth(2).borderColor(Color.Orange).borderStyle(BorderStyle.Dashed)
+        .focusScopeId('ColumnScope2', true) // Column2 is a focus group.
+      }.alignItems(VerticalAlign.Top)
+    }
   }
 }
 ```
 
 
-![en-us_image_0000001511580980](figures/en-us_image_0000001511580980.gif)
-
-
-Interpretation:
-
-
-Because **focusOnTouch(true)** and **focusable(false)** are both set for Button-A, the component is unfocusable and cannot be focused on touch.
-
-
-No related attributes are set for Button-B, and therefore it cannot be focused on touch.
-
-
-**focusOnTouch(false)** is set for Button-C, and therefore it cannot be focused on touch, just as Button-B.
-
-
-**focusOnTouch(true)** is set for Button-D, and therefore it is focused on touch.
-
-
->**NOTE**
->
->The focused state is cleared immediately after the screen receives a touch event. Therefore, each time a component is touched, the **Tab** key needs to be pressed again to show the focused state again and find the component that has the focus.
-
-
-### focusControl.requestFocus
-
-
-```ts
-focusControl.requestFocus(id: string)
-```
-
-Requests the focus to move to the specified component. This API can be used in global method statements. The parameter **id** indicates the target component to focus, which is the string bound to the component using the universal attribute **id**.
-
-
-The usage method is as follows: Invoke the API in any execution statement and specify the ID of the target component as the input parameter. When the program executes the statement, it immediately requests focus for the specified target component.
-
-
-Sample code:
+![focus-3](figures/focus-3.gif)
 
 
 
-```ts
-// requestFocus.ets
-import promptAction from '@ohos.promptAction';
+The preceding example includes two steps:
 
-@Entry
-@Component
-struct RequestFocusExample {
-  @State idList: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'N']
-  @State requestId: number = 0
+- The input box is set with a focus group, which means that when the **Tab** key is pressed, the focus quickly moves out from the input, and when arrow keys are used, the focus stays within the input.
+- The **Column** component in the upper left corner does not have a focus group set. Therefore, focus can only be traversed one by one with the **Tab** key.
 
-  build() {
-    Column({ space:20 }){
-      Row({space: 5}) {
-        Button("id: " + this.idList[0] + " focusable(false)")
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[0])
-          .focusable(false)
-        Button("id: " + this.idList[1])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[1])
-      }
-      Row({space: 5}) {
-        Button("id: " + this.idList[2])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[2])
-        Button("id: " + this.idList[3])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[3])
-      }
-      Row({space: 5}) {
-        Button("id: " + this.idList[4])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[4])
-        Button("id: " + this.idList[5])
-          .width(200).height(70).fontColor(Color.White)
-          .id(this.idList[5])
-      }
-    }.width('100%').margin({ top:20 })
-    .onKeyEvent((e) => {
-      if(e){
-        if (e.keyCode >= 2017 && e.keyCode <= 2022) {
-          this.requestId = e.keyCode - 2017;
-        } else if (e.keyCode === 2030) {
-          this.requestId = 6;
-        } else {
-          return;
-        }
-        if (e.type !== KeyType.Down) {
-          return;
-        }
-      }
-      let res = focusControl.requestFocus(this.idList[this.requestId]);
-      let tmps:promptAction.ShowToastOptions = {'message':'Request success'}
-      let tmpf:promptAction.ShowToastOptions = {'message':'Request failed'}
-      if (res) {
-        promptAction.showToast(tmps);
-      } else {
-        promptAction.showToast(tmpf);
-      }
-    })
-  }
-}
-```
+## Component Focusability
 
 
-![en-us_image_0000001562820905](figures/en-us_image_0000001562820905.gif)
+  **Table 1** Focusability of basic components
 
+| Basic Component                                    | Focusable| Default Value of focusable|
+| ---------------------------------------- | ------- | ------------ |
+| [AlphabetIndexer](../reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md) | Yes      | true         |
+| [Blank](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) | No      | false        |
+| [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md) | Yes      | true         |
+| [CalendarPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md) | Yes      | true         |
+| [Checkbox](../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md) | Yes      | true         |
+| [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | Yes      | true         |
+| [ContainerSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md) | No      | false         |
+| [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | Yes      | false        |
+| [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | Yes      | true         |
+| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | Yes      | false        |
+| [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | Yes      | false        |
+| [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | Yes      | false        |
+| [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | No      | false        |
+| [ImageSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md)                 | No      | false        |
+| [LoadingProgress](../reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md) | Yes      | true        |
+| [Marquee](../reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md) | No      | false        |
+| [Menu](../reference/apis-arkui/arkui-ts/ts-basic-components-menu.md) | Yes      | true         |
+| [MenuItem](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md) | Yes      | true         |
+| [MenuItemGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md) | No      | false         |
+| [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | Yes      | true       |
+| [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | No      | false        |
+| [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | Yes      | true        |
+| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | Yes      | true        |
+| [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | Yes      | true        |
+| [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | Yes      | true        |
+| [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | Yes      | true         |
+| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | Yes      | true         |
+| [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md) | Yes      | true         |
+| [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | No      | false        |
+| [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | No      | false        |
+| [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | Yes      | true         |
+| [Select](../reference/apis-arkui/arkui-ts/ts-basic-components-select.md) | Yes      | true         |
+| [Slider](../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md) | Yes      | true         |
+| [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) | No      | false        |
+| [Stepper](../reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md) | Yes      | true         |
+| [StepperItem](../reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md) | Yes      | true         |
+| [SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md) | No      | false         |
+| [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md) | No      | false         |
+| [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) | Yes      | false        |
+| [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | No      | false         |
+| [TextClock](../reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md) | No      | false        |
+| [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | Yes      | true         |
+| [TextPicker](../reference/apis-arkui/arkui-ts/ts-basic-components-textpicker.md) | Yes      | true         |
+| [TextTimer](../reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md) | No      | false        |
+| [TimePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md) | No      | false         |
+| [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md) | Yes      | true         |
+| [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) | Yes      | false        |
 
-Interpretation: There are six **\<Button>** components on the page. **Focusable(false)** is set for Button-A, indicating that Button-A cannot be focused. In **onKeyEvent** of the external container, key events are listened. When A to F keys are pressed, the focus is requested for Buttons A to F. If you press N, the focus is requested the component whose ID does not exist on the current page.
+  **Table 2** Focusability of container components
 
+| Container Component                                    | Focusable| Default Value of focusable|
+| ---------------------------------------- | ----- | ------------ |
+| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | No    | false        |
+| [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | Yes    | true         |
+| [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | Yes    | true         |
+| [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | Yes    | false         |
+| [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)    | No    | false         |
+| [Flex](../reference/apis-arkui/arkui-ts/ts-container-flex.md) | Yes    | true         |
+| [FlowItem](../reference/apis-arkui/arkui-ts/ts-container-flowitem.md)             | Yes    | true         |
+| [FolderStack](../reference/apis-arkui/arkui-ts/ts-container-folderstack.md)             | Yes    | true         |
+| [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md)               | No    | false         |
+| [GridCol](../reference/apis-arkui/arkui-ts/ts-container-gridcol.md) | Yes    | true         |
+| [GridRow](../reference/apis-arkui/arkui-ts/ts-container-gridrow.md) | Yes    | true         |
+| [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) | Yes    | true         |
+| [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | Yes    | true         |
+| [Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)         | Yes    | true         |
+| [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) | Yes    | true         |
+| [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | Yes    | true         |
+| [ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md) | Yes    | true         |
+| [Navigator](../reference/apis-arkui/arkui-ts/ts-container-navigator.md) | Yes    | true         |
+| [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | Yes    | true        |
+| [RelativeContainer](../reference/apis-arkui/arkui-ts/ts-container-relativecontainer.md) | No    | false         |
+| [Row](../reference/apis-arkui/arkui-ts/ts-container-row.md) | Yes   | true         |
+| [RowSplit](../reference/apis-arkui/arkui-ts/ts-container-rowsplit.md) | Yes    | true         |
+| [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) | Yes    | true         |
+| [SideBarContainer](../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md) | Yes    | true         |
+| [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) | Yes    | true         |
+| [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) | Yes    | true         |
+| [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) | Yes    | true         |
+| [TabContent](../reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) | Yes    | true         |
+| [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)         | No    | false         |
+| [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md)         | Yes    | true         |
 
-1. Press the Tab key. Because the first component Button-A cannot be focused, the second component Button-B is focused by default, and Button-B is displayed in the focused state.
+  **Table 3** Focusability of media components
 
-2. Press A on the keyboard to request the focus for Button-A. The message "Request failed" is displayed, indicating that the focus cannot be obtained. The focus position remains unchanged.
-
-3. Press B on the keyboard to request the focus for Button-B. The message "Request success" is displayed, indicating that the focus is on Button-B. The focus position remains unchanged.
-
-4. Press C on the keyboard to request the focus for Button-C. The message "Request success" is displayed, indicating that the focus is on Button-C. The focus position changes from Button-B to Button-C.
-
-5. Press D on the keyboard to request the focus for Button-D. The message "Request success" is displayed, indicating that the focus is on Button-D. The focus position changes from Button-C to Button-D.
-
-6. Press E on the keyboard to request the focus for Button-E. The message "Request success" is displayed, indicating that the focus is on Button-E. The focus position changes from Button-D to Button-E.
-
-7. Press F on the keyboard to request the focus for Button-F. The message "Request success" is displayed, indicating that the focus is on Button-F. The focus position changes from Button-E to Button-F.
-
-8. Press N on the keyboard to request the focus for an unknown component. The message "Request failed" is displayed, indicating that the focus cannot be obtained and the focus position remains unchanged.
+| Media Component                                    | Focusable| Default Value of focusable|
+| ---------------------------------------- | ----- | ------------ |
+| [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | Yes    | true         |
+<!--no_check-->

@@ -28,12 +28,12 @@
 
 - 多端协同需遵循[分布式跨设备组件启动规则](component-startup-rules.md#分布式跨设备组件启动规则)。
 
-- 为了获得最佳体验，使用want传输的数据建议在100KB以下。
+- 为了获得最佳体验，使用[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)传输的数据建议在100KB以下。
 
 
 ## 通过跨设备启动UIAbility和ServiceExtensionAbility组件实现多端协同（无返回数据）
 
-在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的UIAbility与ServiceExtensionAbility。
+在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)与[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)。
 
 
 ### 接口说明
@@ -94,7 +94,7 @@
     }
     ```
 
-4. 设置目标组件参数，调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
+4. 设置目标组件参数，调用[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)或[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -150,7 +150,7 @@
                 // context为发起端UIAbility的AbilityContext
                 this.context.startAbility(want).then(() => {
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfulCollaboration')
+                    message: 'SuccessfulCollaboration'
                   });
                 }).catch((err: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
@@ -166,7 +166,7 @@
     }
     ```
 
-5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
+5. 当设备A发起端应用不需要设备B上的[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1)接口退出。（该接口不支持[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的退出，UIAbility由用户手动通过任务管理退出）
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -225,7 +225,7 @@
 
 ## 通过跨设备启动UIAbility组件实现多端协同（获取返回数据）
 
-在设备A上通过应用提供的启动按钮，启动设备B上指定的UIAbility，当设备B上的UIAbility退出后，会将返回值发回设备A上的发起端应用。
+在设备A上通过应用提供的启动按钮，启动设备B上指定的[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)，当设备B上的UIAbility退出后，会将返回值发回设备A上的发起端应用。
 
 
 ### 接口说明
@@ -245,7 +245,7 @@
 
 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
-3. 在发起端设置目标组件参数，调用startAbilityForResult()接口启动目标端UIAbility，异步回调中的data用于接收目标端UIAbility停止自身后返回给调用方UIAbility的信息。getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
+3. 在发起端设置目标组件参数，调用[startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)接口启动目标端UIAbility，异步回调中的data用于接收目标端UIAbility停止自身后返回给调用方UIAbility的信息。getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -302,7 +302,7 @@
                 this.context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'stop service extension ability success')
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfullyStop')
+                    message: 'SuccessfullyStop'
                   });
                 }).catch((err: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, `stop service extension ability err is ` + JSON.stringify(err));
@@ -318,7 +318,7 @@
     }
     ```
 
-4. 在目标端UIAbility任务完成后，调用terminateSelfWithResult()方法，将数据返回给发起端的UIAbility。
+4. 在目标端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)任务完成后，调用[terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法，将数据返回给发起端的UIAbility。
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -371,7 +371,7 @@
     }
     ```
 
-5. 发起端UIAbility接收到目标端UIAbility返回的信息，对其进行处理。
+5. 发起端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)接收到目标端UIAbility返回的信息，对其进行处理。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -477,9 +477,9 @@
 3. 如果已有后台服务，请直接进入下一步；如果没有，则[实现一个后台服务（仅对系统应用开放）](serviceextensionability.md#实现一个后台服务仅对系统应用开放)。
 
 4. 连接一个后台服务。
-   - 实现IAbilityConnection接口。IAbilityConnection提供了以下方法供开发者实现：onConnect()是用来处理连接Service成功的回调，onDisconnect()是用来处理Service异常终止的回调，onFailed()是用来处理连接Service失败的回调。
+   - 实现IAbilityConnection接口。IAbilityConnection提供了以下方法供开发者实现：[onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect)是用来处理连接Service成功的回调，[onDisconnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#ondisconnect)是用来处理Service异常终止的回调，[onFailed()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onfailed)是用来处理连接Service失败的回调。
    - 设置目标组件参数，包括目标设备ID、Bundle名称、Ability名称。
-   - 调用connectServiceExtensionAbility发起连接。
+   - 调用connectServiceExtensionAbility()发起连接。
    - 连接成功，收到目标设备返回的服务句柄。
    - 进行跨设备调用，获得目标端服务返回的结果。
      
@@ -586,7 +586,7 @@
 
     getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
-5. 断开连接。调用disconnectServiceExtensionAbility()断开与后台服务的连接。
+5. 断开连接。调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)断开与后台服务的连接。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -617,7 +617,7 @@
                   hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                   // 成功断连后台服务
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfullyDisconnectBackendService')
+                    message: 'SuccessfullyDisconnectBackendService'
                   })
                 }).catch((error: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
@@ -663,10 +663,11 @@
 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 3. 创建被调用端UIAbility。
-     被调用端UIAbility需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过on接口注册监听，无需接收数据时通过off接口解除监听。
+
+     被调用端[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)需要实现指定方法的数据接收回调函数、数据的序列化及反序列化方法。在需要接收数据期间，通过[on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)接口注册监听，无需接收数据时通过[off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)接口解除监听。
 
     1. 配置UIAbility的启动模式。
-        配置module.json5，将CalleeAbility配置为单实例"singleton"。
+        配置[module.json5](../quick-start/module-configuration-file.md)，将CalleeAbility配置为单实例"singleton"。
 
         | Json字段 | 字段说明 |
         | -------- | -------- |
@@ -677,7 +678,7 @@
         ```json
         "abilities":[{
             "name": ".CalleeAbility",
-            "srcEntry": "./ets/CalleeAbility/CalleeAbility.ts",
+            "srcEntry": "./ets/CalleeAbility/CalleeAbility.ets",
             "launchType": "singleton",
             "description": "$string:CalleeAbility_desc",
             "icon": "$media:icon",
@@ -724,8 +725,8 @@
           };
         }
         ```
-    4. 实现Callee.on监听及Callee.off解除监听。
-          如下示例在Ability的onCreate注册MSG_SEND_METHOD监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
+    4. 实现[Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon)监听及[Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff)解除监听。
+          如下示例在Ability的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)注册MSG_SEND_METHOD监听，在[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondestroy)取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
            
         ```ts
         import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
@@ -816,13 +817,13 @@
         ```
      
 4. 获取Caller接口，访问被调用端UIAbility。
-    1. 导入UIAbility模块。
+    1. 导入[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)模块。
       
         ```ts
         import { UIAbility } from '@kit.AbilityKit';
         ```
     2. 获取Caller通信接口。
-        Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease和onRemoteStateChange监听。应用开发者根据实际业务需要做相应处理。
+        Ability的context属性实现了[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)方法，用于获取指定通用组件的[Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端并获取Caller通信接口，注册Caller的[onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronrelease)和[onRemoteStateChange](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronremotestatechange10)监听。应用开发者根据实际业务需要做相应处理。
 
         ```ts
         import { BusinessError } from '@kit.BasicServicesKit';
@@ -888,7 +889,7 @@
                         });
                         hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
                         promptAction.showToast({
-                          message: $r('app.string.CallerSuccess')
+                          message: 'CallerSuccess'
                         });
                         // 注册caller的协同场景下跨设备组件状态变化监听通知
                         try {
@@ -916,7 +917,7 @@
         getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
    
 5. 向被调用端UIAbility发送约定序列化数据。
-    1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。
+    1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用[Call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercall)接口，向[Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee)被调用端发送数据。
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -971,7 +972,7 @@
           // ...
         }
         ```
-    2. 如下示例调用CallWithResult接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
+    2. 如下示例调用[CallWithResult](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercallwithresult)接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -1036,29 +1037,30 @@
         ```
    
 6. 释放Caller通信接口。
-  Caller不再使用后，应用开发者可以通过release接口释放Caller。
 
-    ```ts
-    import { UIAbility, Caller } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+    [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller)不再使用后，应用开发者可以通过[release](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callerrelease)接口释放Caller。
 
-    const TAG: string = '[CalleeAbility]';
-    const DOMAIN_NUMBER: number = 0xFF00;
+      ```ts
+      import { UIAbility, Caller } from '@kit.AbilityKit';
+      import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    export default class EntryAbility extends UIAbility {
-      caller: Caller | undefined;
+      const TAG: string = '[CalleeAbility]';
+      const DOMAIN_NUMBER: number = 0xFF00;
 
-      releaseCall(): void {
-        try {
-          if (this.caller) {
-            this.caller.release();
-            this.caller = undefined;
+      export default class EntryAbility extends UIAbility {
+        caller: Caller | undefined;
+
+        releaseCall(): void {
+          try {
+            if (this.caller) {
+              this.caller.release();
+              this.caller = undefined;
+            }
+            hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
+          } catch (error) {
+            hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
           }
-          hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
-        } catch (error) {
-          hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
         }
       }
-    }
-    ```
+      ```
 <!--no_check-->

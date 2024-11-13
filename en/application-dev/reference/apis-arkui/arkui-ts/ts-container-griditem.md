@@ -1,11 +1,12 @@
 # GridItem
 
-The **\<GridItem>** component provides a single item in a grid.
+The **GridItem** component provides a single item in a grid.
 
 >  **NOTE**
 >
 >  * This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->  * This component can be used only as a child of [\<Grid>](ts-container-grid.md).
+>  * This component can be used only as a child of [Grid](ts-container-grid.md).
+>  * When this component is used with **LazyForEach**, its child components are created when it is created. When this component is used with **if/else** or **ForEach**, or when the parent component is **Grid**, its child components are created when it is laid out.
 
 
 ## Child Components
@@ -15,6 +16,10 @@ This component can contain a single child component.
 ## APIs
 
 GridItem(value?: GridItemOptions)
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -30,13 +35,15 @@ rowStart(value: number)
 
 Sets the start row number of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | Start row number of the component.|
+| value  | number | Yes  | Start row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
 
 ### rowEnd
 
@@ -44,13 +51,15 @@ rowEnd(value: number)
 
 Sets the end row number of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | End row number of the component.|
+| value  | number | Yes  | End row number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
 
 ### columnStart
 
@@ -58,13 +67,15 @@ columnStart(value: number)
 
 Sets the start column number of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | Start column number of the component.|
+| value  | number | Yes  | Start column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
 
 ### columnEnd
 
@@ -72,17 +83,19 @@ columnEnd(value: number)
 
 Sets the end column number of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | Yes  | End column number of the component.|
+| value  | number | Yes  | End column number of the component.<br>In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).|
 
 >  **NOTE**
 >
->  When a grid is used with [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), the layout of the last grid item must be restricted. In this case, you are advised to use the [layoutOptions](ts-container-grid.md) parameter of the grid. For details, see [Example 3 in Grid](ts-container-grid.md#example-3).
+>  In situations where you need to designate the start row and column numbers as well as the number of rows and columns a grid item spans, you are advised to use the [layoutOptions parameter](ts-container-grid.md#gridlayoutoptions10) of the **Grid** component. For reference, see [Grid Example 1](ts-container-grid.md#example-1) and [Grid Example 3](ts-container-grid.md#example-3).
 >
 >  Rules for setting **rowStart**, **rowEnd**, **columnStart**, and **columnEnd**:
 >
@@ -122,9 +135,11 @@ This API is deprecated since API version 9.
 
 selectable(value: boolean)
 
-Sets whether the grid item is selectable for multiselect. This attribute takes effect only when multiselect is enabled for the parent **\<Grid>** container.
+Sets whether the grid item is selectable in the mouse selection box area. This attribute takes effect only when mouse box selection is enabled for the parent **Grid** container.
 
 This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,7 +147,7 @@ This attribute must be used before the [style for the selected state](./ts-unive
 
 | Name| Type   | Mandatory| Description                                                 |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| value  | boolean | Yes  | Whether the grid item is selectable for multiselect.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether the grid item is selectable in the mouse selection box area.<br>Default value: **true**|
 
 ### selected<sup>10+</sup>
 
@@ -141,6 +156,8 @@ selected(value: boolean)
 Sets whether the grid item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
 
 This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,11 +169,19 @@ This attribute must be used before the [style for the selected state](./ts-unive
 
 ## GridItemOptions<sup>11+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Type                                 | Mandatory| Description                                                        |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | style | [GridItemStyle](#griditemstyle11) | No  | Style of the grid item.<br>Default value: **GridItemStyle.NONE**<br>If this parameter is set to **GridItemStyle.NONE**, no style is applied.<br>If this parameter is set to **GridItemStyle.PLAIN**, the grid item is in hover or press style depending on the state.|
 
 ## GridItemStyle<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name |Value| Description                    |
 | ----- |----| ------------------------ |
@@ -175,13 +200,15 @@ onSelect(event: (isSelected: boolean) =&gt; void)
 
 Triggered when the selected state of the grid item changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name    | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| isSelected | boolean | Yes  | Returns **true** if the grid item is selected for multselect; returns **false** otherwise.|
+| isSelected | boolean | Yes  | Returns **true** if the grid item is selected in the mouse selection box area; returns **false** otherwise.|
 
 ## Example
 

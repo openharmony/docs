@@ -1,4 +1,4 @@
-# Universal Keystore Kit (Key Management Service)
+# Universal Keystore Kit
 
 - [Introduction to Universal Keystore Kit](huks-overview.md)
 - [Basic Concepts of HUKS](huks-concepts.md)

@@ -42,6 +42,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -96,6 +97,7 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **示例：**
@@ -136,6 +138,7 @@ off(type: 'privateModeChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **示例：**
@@ -169,7 +172,7 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 202     | Permission verification failed, non-system application uses system API.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -207,7 +210,7 @@ setFoldStatusLocked(locked: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 202     | Permission verification failed, non-system application uses system API.|
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
@@ -250,6 +253,7 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
@@ -292,6 +296,7 @@ hasImmersiveWindow(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API.|
 | 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |

@@ -1,8 +1,8 @@
 # 使用HKDF进行密钥派生
 
-对应算法规格请查看[密钥派生算法规格：HKDF](crypto-key-derivation-overview.md#hkdf算法)
+对应算法规格请查看[密钥派生算法规格：HKDF](crypto-key-derivation-overview.md#hkdf算法)。
 
-# 开发步骤
+## 开发步骤
 1. 构造[HKDFSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#hkdfspec12)对象，作为密钥派生参数进行密钥派生。
    
    HKDFSpec是[KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11)的子类，需要指定：

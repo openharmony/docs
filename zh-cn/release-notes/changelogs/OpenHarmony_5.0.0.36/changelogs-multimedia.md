@@ -21,18 +21,18 @@
 
 **废弃的接口/组件**
 
-|            接口声明            |               废弃说明               |           代替接口            |
-| :----------------------------: | :----------------------------------: | :---------------------------: |
-| audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean, callback: AsyncCallback<void>): void | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
-| audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean): Promise<void> | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
-| audio.AudioSpatializationManager#isSpatializationEnabled(): boolean | 使用带有指定设备描述参数的查询接口替换 | audio.AudioSpatializationManager#isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean |
-| audio.AudioSpatializationManager#on(type: 'spatializationEnabledChange', callback: Callback<boolean>): void | 使用带有指定设备描述参数的开始监听接口替换 | audio.AudioSpatializationManager#on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice>): void |
-| audio.AudioSpatializationManager#off(type: 'spatializationEnabledChange', callback?: Callback<boolean>): void | 使用带有指定设备描述参数的停止监听接口替换 | audio.AudioSpatializationManager#off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice>): void |
-| audio.AudioSpatializationManager#setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback<void>): void | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
-| audio.AudioSpatializationManager#setHeadTrackingEnabled(enable: boolean): Promise<void> | 使用带有指定设备描述参数的设置接口替换 | audio.AudioSpatializationManager#setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
-| audio.AudioSpatializationManager#isHeadTrackingEnabled(): boolean | 使用带有指定设备描述参数的查询接口替换 | audio.AudioSpatializationManager#isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean |
-| audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChange', callback: Callback<boolean>): void | 使用带有指定设备描述参数的开始监听接口替换 | audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice>): void |
-| audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChange', callback?: Callback<boolean>): void | 使用带有指定设备描述参数的停止监听接口替换 | audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice>): void |
+|            接口声明          |           替代接口            |
+| :----------------------------: | :---------------------------: |
+| audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean, callback: AsyncCallback<void>): void | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
+| audio.AudioSpatializationManager#setSpatializationEnabled(enable: boolean): Promise<void> | audio.AudioSpatializationManager#setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
+| audio.AudioSpatializationManager#isSpatializationEnabled(): boolean | audio.AudioSpatializationManager#isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean |
+| audio.AudioSpatializationManager#on(type: 'spatializationEnabledChange', callback: Callback<boolean>): void | audio.AudioSpatializationManager#on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice>): void |
+| audio.AudioSpatializationManager#off(type: 'spatializationEnabledChange', callback?: Callback<boolean>): void | audio.AudioSpatializationManager#off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice>): void |
+| audio.AudioSpatializationManager#setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback<void>): void | audio.AudioSpatializationManager#setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
+| audio.AudioSpatializationManager#setHeadTrackingEnabled(enable: boolean): Promise<void> | audio.AudioSpatializationManager#setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise<void> |
+| audio.AudioSpatializationManager#isHeadTrackingEnabled(): boolean | audio.AudioSpatializationManager#isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean |
+| audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChange', callback: Callback<boolean>): void | audio.AudioSpatializationManager#on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice>): void |
+| audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChange', callback?: Callback<boolean>): void | audio.AudioSpatializationManager#off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice>): void |
 
 **适配指导**
 

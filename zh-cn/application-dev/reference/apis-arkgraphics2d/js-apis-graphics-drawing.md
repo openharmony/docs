@@ -7,6 +7,8 @@ drawing模块提供了基本的绘制能力，如绘制矩形、圆形、点、�
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 本模块采用屏幕物理像素单位px。
+>
+> - 本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
 ## 导入模块
 
@@ -192,7 +194,7 @@ path.moveTo(10,10);
 
 lineTo(x: number, y: number) : void
 
-用于添加一条从路径的最后点位置到目标点位置的线段。
+用于添加一条从路径的最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的线段。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -260,7 +262,7 @@ path.arcTo(10, 15, 10, 10, 10, 10);
 
 quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
-用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。
+用于添加一条从路径最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的二阶贝塞尔圆滑曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -294,7 +296,7 @@ path.quadTo(10, 15, 10, 10);
 
 conicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
-在当前路径上添加一条路径终点到目标点位置的圆锥曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。若路径没有内容则将起始点设置为 (0, 0)。
+在当前路径上添加一条路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的圆锥曲线，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -329,7 +331,7 @@ path.conicTo(200, 400, 100, 200, 0);
 
 cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。
+用于添加一条从路径最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的三阶贝塞尔圆滑曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -365,7 +367,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 
 rMoveTo(dx : number, dy : number): void
 
-设置一个相对于当前路径终点的路径起始点位置。
+设置一个相对于当前路径终点（若路径没有内容则默认为 (0, 0)）的路径起始点位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -397,7 +399,7 @@ path.rMoveTo(10, 10);
 
 rLineTo(dx : number, dy : number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的线段。
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的线段。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -429,7 +431,7 @@ path.rLineTo(400, 200);
 
 rQuadTo(dx1: number, dy1: number, dx2: number, dy2: number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔曲线。
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的二阶贝塞尔曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -463,7 +465,7 @@ path.rQuadTo(100, 0, 0, 200);
 
 rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔曲线。
+使用相对位置在当前路径上添加一条路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的圆锥曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -475,7 +477,7 @@ rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: numbe
 | ctrlY  | number | 是   | 控制点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
 | endX   | number | 是   | 目标点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
 | endY   | number | 是   | 目标点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
-| weight | number | 是   | 表示曲线的权重，决定了曲线的形状，越大越接近控制点。若小于等于0则等同于使用[lineTo](#lineto)添加一条到结束点的线段，若为1则等同于[quadTo](#quadto)，该参数为浮点数。 |
+| weight | number | 是   | 表示曲线的权重，决定了曲线的形状，越大越接近控制点。若小于等于0则等同于使用[rLineTo](#rlineto12)添加一条到结束点的线段，若为1则等同于[rQuadTo](#rquadto12)，该参数为浮点数。 |
 
 **错误码：**
 
@@ -498,7 +500,7 @@ path.rConicTo(200, 400, 100, 200, 0);
 
 rCubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的三阶贝塞尔曲线。
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的三阶贝塞尔曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -535,7 +537,7 @@ path.rCubicTo(200, 0, 0, 200, -20, 0);
 addArc(rect: common2D.Rect, startAngle: number, sweepAngle: number): void
 
 向路径添加一段圆弧。
-当startAngle和sweepAngle同时满足以下两种情况时，添加整个椭圆而不是圆弧；
+当startAngle和sweepAngle同时满足以下两种情况时，添加整个椭圆而不是圆弧:
 1.startAngle对90取余接近于0；
 2.sweepAngle不在(-360, 360)区间内。
 其余情况sweepAngle会对360取余后添加圆弧。
@@ -781,7 +783,7 @@ path.transform(matrix);
 
 contains(x: number, y: number): boolean
 
-判断指定坐标点是否被路径包含。
+判断指定坐标点是否被路径包含，判定是否被路径包含的规则参考[PathFillType](#pathfilltype12)。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -890,7 +892,7 @@ addPolygon(points: Array\<common2D.Point>, close: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| points | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point)   | 是   | 坐标点数组。 |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组。 |
 | close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线，true表示将路径闭合，false表示不将路径闭合。 |
 
 **错误码：**
@@ -2339,7 +2341,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawTextBlob(blob: TextBlob, x: number, y: number): void
 
-用于绘制一段文字。
+用于绘制一段文字。若构造blob的字体不支持待绘制字符，则该部分字符无法绘制。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3481,7 +3483,7 @@ static makeFromPosText(text: string, len: number, points: common2D.Point[], font
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string             | 是   | 绘制字形的文本内容。                   |
 | len      | number             | 是   | 字形个数，由[countText](#counttext12)获取，该参数为整数。 |
-| points   |[common2D.Point[]](js-apis-graphics-common2D.md#point)      | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
+| points   |[common2D.Point](js-apis-graphics-common2D.md#point)[]     | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
 | font     | [Font](#font)      | 是   | 字型对象。 |
 
 **返回值：**
@@ -3562,7 +3564,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | 是   | 绘制字形的文本内容。                   |
 | font     | [Font](#font)                 | 是   | 字型对象。           |
-| encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。 |
+| encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。当前只有TEXT_ENCODING_UTF8生效，其余编码类型也会被视为TEXT_ENCODING_UTF8。 |
 
 **返回值：**
 
@@ -3718,7 +3720,7 @@ static makeFromFile(filePath: string): Typeface
 
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| filePath | string           | 是   | 表示字体资源存放的路径。 |
+| filePath | string           | 是   | 表示字体资源存放的路径。应用沙箱路径和真实物理路径的对应关系请参考[应用沙箱路径和真实物理路径的对应关系](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。 |
 
 **返回值：**
 
@@ -4656,6 +4658,117 @@ let font : drawing.Font = new drawing.Font();
 let text : string = 'hello world';
 let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
+```
+
+### getBounds<sup>14+</sup>
+
+getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
+
+获取字形数组中每个字形对应的边界矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| glyphs | Array\<number> | 是   | 字形索引数组，可由[textToGlyphs](#texttoglyphs12)生成。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | 返回得到的字形边界矩形数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let font: drawing.Font = new drawing.Font();
+            let text: string = 'hello world';
+            let glyphs: number[] = font.textToGlyphs(text);
+            let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
+            for (let index = 0; index < fontBounds.length; index++) {
+              console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
+                " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### createPathForGlyph<sup>14+</sup>
+
+createPathForGlyph(index: number): Path
+
+获取指定字形的路径轮廓。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| index | number | 是   | 字形索引。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| [Path](#path) | 返回指定字形的路径轮廓。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let text: string = '你好';
+    let glyphs: number[] = font.textToGlyphs(text);
+    for (let index = 0; index < glyphs.length; index++) {
+      let path: drawing.Path = font.createPathForGlyph(glyphs[index])
+      canvas.drawPath(path)
+    }
+  }
+}
 ```
 
 ## FontMetricsFlags<sup>12+</sup>
@@ -6719,33 +6832,14 @@ brush.reset();
 
 矩阵对象。
 
-$$
-表示为\begin{bmatrix}
-    scaleX & skewX & transX \\
-    skewY & scaleY & transY \\
-    pers0 & pers1 & pers2
-\end{bmatrix}的3*3矩阵。
-$$
+表示为3*3的矩阵，如下图所示：
+
+![matrix_3x3](figures/matrix3X3.PNG)
+
 矩阵中的元素从左到右，从上到下分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。
 设(x<sub>1</sub>, y<sub>1</sub>)为源坐标点，(x<sub>2</sub>, y<sub>2</sub>)为源坐标点通过矩阵变换后的坐标点，则两个坐标点的关系如下：
-$$\left[ \begin{matrix}
-   x_2 \\
-   y_2 \\
-   1
-  \end{matrix}
-  \right] = \left[
- \begin{matrix}
-  scaleX & skewX & transX \\
-  skewY & scaleY & transY \\
-  pers0 & pers1 & pers2
-  \end{matrix}
-  \right] \left[
- \begin{matrix}
-   x_1 \\
-   y_1 \\
-   1
-  \end{matrix}
-  \right]$$
+
+![matrix_xy](figures/matrix_xy.PNG)
 
 ### constructor<sup>12+</sup>
 
@@ -7327,13 +7421,13 @@ mapPoints(src: Array\<common2D.Point>): Array\<common2D.Point>
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 是   | 源点数组。 |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组。 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 源点数组经矩阵变换后的点数组。 |
+| Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 源点数组经矩阵变换后的点数组。 |
 
 **错误码：**
 
@@ -7477,8 +7571,8 @@ setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: n
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 是   | 源点数组，长度必须为count。 |
-| dst | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 是   | 目标点数组，长度必须为count。 |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组，长度必须为count。 |
+| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 目标点数组，长度必须为count。 |
 | count | number | 是   | 在src和dst点的数量，该参数为整数。 |
 
 **返回值：**
@@ -7810,7 +7904,7 @@ class DrawingRenderNode extends RenderNode {
 
 quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
-用于判断矩形和区域是否不相交。
+用于快速判断矩形和区域是否不相交，实际上比较的是矩形和区域的外接矩形是否不相交，因此会有误差。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -8062,7 +8156,7 @@ import { common2D,drawing } from '@kit.ArkGraphics2D';
 
 let startPt: common2D.Point = { x: 100, y: 100 };
 let endPt: common2D.Point = { x: 300, y: 300 };
-let shaderEffect =drawing.ShaderEffect.createLinearGradient(startPt, endPt，[0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+let shaderEffect =drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
 ### createRadialGradient<sup>12+</sup>

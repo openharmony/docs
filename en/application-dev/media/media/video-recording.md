@@ -190,21 +190,22 @@ export class VideoRecorderDemo {
 
   // Process of starting recording.
   async startRecordingProcess() {
-    if (this.avRecorder != undefined) {
+    if (this.avRecorder === undefined) {
       // 1. Create an AVRecorder instance.
       this.avRecorder = await media.createAVRecorder();
       this.setAvRecorderCallback();
-      // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
-      // 3. Set recording parameters to complete the preparations.
-      await this.avRecorder.prepare(this.avConfig);
-      this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
-      // 4. Complete camera-related preparations.
-      await this.prepareCamera();
-      // 5. Start the camera stream output.
-      await this.startCameraOutput();
-      // 6. Start recording.
-      await this.avRecorder.start();
     }
+    // 2. Obtain the file descriptor of the recorded file. The obtained file descriptor is passed in to the URL in avConfig. The implementation is omitted here.
+    // 3. Set recording parameters to complete the preparations.
+    await this.avRecorder.prepare(this.avConfig);
+    this.videoOutSurfaceId = await this.avRecorder.getInputSurface();
+    // 4. Complete camera-related preparations.
+    await this.prepareCamera();
+    // 5. Start the camera stream output.
+    await this.startCameraOutput();
+    // 6. Start recording.
+    await this.avRecorder.start();
+    
   }
 
   // Process of pausing recording.

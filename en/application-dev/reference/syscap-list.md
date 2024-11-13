@@ -12,7 +12,7 @@ Before using an API for development, you are advised to familiarize yourself wit
 
 ArkUI component capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -20,7 +20,7 @@ ArkUI component capability
 
 NAPI functionality
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -28,7 +28,7 @@ NAPI functionality
 
 libuv functionality
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -36,7 +36,7 @@ libuv functionality
 
 Appearance configuration
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -44,7 +44,7 @@ Appearance configuration
 
 General type
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | Yes           |
 
@@ -52,7 +52,7 @@ General type
 
 Bundle manager service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -60,7 +60,7 @@ Bundle manager service
 
 Overlay capability of bundle management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -68,7 +68,7 @@ Overlay capability of bundle management
 
 Distributed bundle manager service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -76,7 +76,7 @@ Distributed bundle manager service
 
 zlib compression and decompression tool
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -84,7 +84,7 @@ zlib compression and decompression tool
 
 Interface between the rendering API and the bottom-layer platform window system
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -92,7 +92,7 @@ Interface between the rendering API and the bottom-layer platform window system
 
 Capability for rendering advanced 2D and 3D graphics
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -100,7 +100,7 @@ Capability for rendering advanced 2D and 3D graphics
 
 Capability for rendering advanced 2D and 3D graphics
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -108,7 +108,7 @@ Capability for rendering advanced 2D and 3D graphics
 
 WebGL 1.0 API
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -116,7 +116,7 @@ WebGL 1.0 API
 
 Enhanced window management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -124,7 +124,7 @@ Enhanced window management capability
 
 Basic window management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -132,7 +132,7 @@ Basic window management capability
 
 Common event
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -140,7 +140,7 @@ Common event
 
 Notification
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -148,7 +148,7 @@ Notification
 
 Agent-powered reminder
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -156,7 +156,7 @@ Agent-powered reminder
 
 Event emitter service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -164,7 +164,7 @@ Event emitter service
 
 Inter-process communication (IPC)
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -172,7 +172,7 @@ Inter-process communication (IPC)
 
 DSoftBus
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -180,7 +180,7 @@ DSoftBus
 
 Basic network management service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -188,7 +188,7 @@ Basic network management service
 
 Ethernet connectivity
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -196,7 +196,7 @@ Ethernet connectivity
 
 Network sharing
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -204,7 +204,7 @@ Network sharing
 
 mDNS service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -212,7 +212,7 @@ mDNS service
 
 VPN
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -220,7 +220,7 @@ VPN
 
 Basic network stack capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | Yes           |
 
@@ -228,7 +228,7 @@ Basic network stack capability
 
 Basic Wi-Fi capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -236,7 +236,7 @@ Basic Wi-Fi capability
 
 Wi-Fi STA capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -244,7 +244,7 @@ Wi-Fi STA capability
 
 Wi-Fi AP capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -252,7 +252,7 @@ Wi-Fi AP capability
 
 Wi-Fi P2P capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -260,7 +260,7 @@ Wi-Fi P2P capability
 
 Bluetooth service and protocol stack
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -268,7 +268,7 @@ Bluetooth service and protocol stack
 
 Basic location capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -276,7 +276,7 @@ Basic location capability
 
 Geocoding capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -284,7 +284,7 @@ Geocoding capability
 
 Geofencing capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -292,7 +292,7 @@ Geofencing capability
 
 GNSS hardware capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -300,7 +300,7 @@ GNSS hardware capability
 
 Basic input capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -308,7 +308,7 @@ Basic input capability
 
 Input device management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -316,7 +316,7 @@ Input device management
 
 Input event listener
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -324,7 +324,7 @@ Input event listener
 
 Input event consumer
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -332,7 +332,7 @@ Input event consumer
 
 Input event simulator
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -340,7 +340,7 @@ Input event simulator
 
 Mouse pointer management module
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -348,7 +348,7 @@ Mouse pointer management module
 
 Shortcut keys
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -356,7 +356,7 @@ Shortcut keys
 
 Extended battery management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -364,7 +364,7 @@ Extended battery management capability
 
 Power management display
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -372,7 +372,7 @@ Power management display
 
 Temperature control
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -380,7 +380,7 @@ Temperature control
 
 Basic power management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -388,7 +388,7 @@ Basic power management capability
 
 Basic battery management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -396,7 +396,7 @@ Basic battery management capability
 
 Extended capability of the system power management service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -404,7 +404,7 @@ Extended capability of the system power management service
 
 Basic media capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -412,7 +412,7 @@ Basic media capability
 
 Audio player capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -420,7 +420,7 @@ Audio player capability
 
 Media audio recorder capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -428,7 +428,7 @@ Media audio recorder capability
 
 Video player capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -436,7 +436,7 @@ Video player capability
 
 Video recorder capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -444,7 +444,7 @@ Video recorder capability
 
 Basic media codec capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -452,7 +452,7 @@ Basic media codec capability
 
 Media audio codec capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -460,7 +460,7 @@ Media audio codec capability
 
 Media audio decoding capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -468,7 +468,7 @@ Media audio decoding capability
 
 Media audio encoding capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -476,7 +476,7 @@ Media audio encoding capability
 
 Media video decoding capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -484,7 +484,7 @@ Media video decoding capability
 
 Media video encoding capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -492,7 +492,7 @@ Media video encoding capability
 
 Media splitter capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -500,7 +500,7 @@ Media splitter capability
 
 Media muxer capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -508,7 +508,7 @@ Media muxer capability
 
 Audio and video player capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -516,7 +516,7 @@ Audio and video player capability
 
 Audio and video recorder capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -524,7 +524,7 @@ Audio and video recorder capability
 
 Capability of obtaining media cloud data
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -532,7 +532,15 @@ Capability of obtaining media cloud data
 
 Capability of obtaining video thumbnails
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Multimedia.Media.AVTranscoder
+
+Capability of obtaining video transcoding
+
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -540,7 +548,7 @@ Capability of obtaining video thumbnails
 
 Basic media session capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -548,7 +556,7 @@ Basic media session capability
 
 Media session management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -556,7 +564,7 @@ Media session management capability
 
 Casting capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -564,7 +572,7 @@ Casting capability
 
 Extended media projection capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes     | Yes    | No           |
 
@@ -572,7 +580,7 @@ Extended media projection capability
 
 Basic audio capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -580,7 +588,7 @@ Basic audio capability
 
 Audio output capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -588,7 +596,7 @@ Audio output capability
 
 Audio input capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -596,7 +604,7 @@ Audio input capability
 
 Audio device management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -604,7 +612,7 @@ Audio device management capability
 
 Audio volume management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -612,7 +620,7 @@ Audio volume management capability
 
 Audio communication capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -620,7 +628,7 @@ Audio communication capability
 
 Audio focus
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -628,7 +636,7 @@ Audio focus
 
 Dialing tone and ringback tone playback
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -636,7 +644,7 @@ Dialing tone and ringback tone playback
 
 System tone recording capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -644,7 +652,7 @@ System tone recording capability
 
 Basic camera capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -652,7 +660,7 @@ Basic camera capability
 
 Media digital rights management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -660,7 +668,7 @@ Media digital rights management
 
 Basic image capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -668,7 +676,7 @@ Basic image capability
 
 Image source decoding and parsing capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -676,7 +684,7 @@ Image source decoding and parsing capability
 
 Image packaging capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -684,7 +692,7 @@ Image packaging capability
 
 Image receiving capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -692,7 +700,7 @@ Image receiving capability
 
 Basic media library capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -700,7 +708,7 @@ Basic media library capability
 
 Distributed media library capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -708,7 +716,7 @@ Distributed media library capability
 
 System sound management, covering ringtones, notifications, alarms, and more
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -716,7 +724,7 @@ System sound management, covering ringtones, notifications, alarms, and more
 
 Basic cellular service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -724,7 +732,7 @@ Basic cellular service
 
 Call management service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -732,7 +740,7 @@ Call management service
 
 Cellular call service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -740,7 +748,7 @@ Cellular call service
 
 Cellular data service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -748,7 +756,7 @@ Cellular data service
 
 SMS and MMS services
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -756,7 +764,7 @@ SMS and MMS services
 
 Cellular network status registration service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -764,7 +772,7 @@ Cellular network status registration service
 
 Internationalization
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -772,7 +780,7 @@ Internationalization
 
 Resource management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -780,7 +788,7 @@ Resource management
 
 Customization framework
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -788,7 +796,7 @@ Customization framework
 
 Custom configurations
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -796,7 +804,7 @@ Custom configurations
 
 Enterprise device management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -804,7 +812,7 @@ Enterprise device management
 
 Basic accessibility capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -812,7 +820,7 @@ Basic accessibility capability
 
 Visual accessibility capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -820,7 +828,7 @@ Visual accessibility capability
 
 Audio accessibility capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -828,7 +836,7 @@ Audio accessibility capability
 
 Deferred task scheduling
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -836,7 +844,7 @@ Deferred task scheduling
 
 Continuous task management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -844,7 +852,7 @@ Continuous task management
 
 Transient task management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -852,7 +860,7 @@ Transient task management
 
 Application usage statistics
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -860,7 +868,7 @@ Application usage statistics
 
 Application activity group
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -868,7 +876,7 @@ Application activity group
 
 TS/JS language base library
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -876,7 +884,7 @@ TS/JS language base library
 
 HiLog functionality
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -884,7 +892,7 @@ HiLog functionality
 
 HiTrace for distributed tracing
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -892,7 +900,7 @@ HiTrace for distributed tracing
 
 FaultLogger for event recording
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -900,7 +908,7 @@ FaultLogger for event recording
 
 Log file management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -908,7 +916,7 @@ Log file management
 
 HiChecker mode
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -916,7 +924,7 @@ HiChecker mode
 
 HiDumper for system information exporting
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -924,7 +932,7 @@ HiDumper for system information exporting
 
 HiAppEvent for application event logging
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -932,7 +940,7 @@ HiAppEvent for application event logging
 
 HiAppEvent for system event logging
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -940,7 +948,7 @@ HiAppEvent for system event logging
 
 Debugging and tuning
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -948,7 +956,7 @@ Debugging and tuning
 
 Update
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -956,7 +964,7 @@ Update
 
 Distributed device management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -964,7 +972,7 @@ Distributed device management
 
 Mutual authentication between devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -972,7 +980,7 @@ Mutual authentication between devices
 
 Library of data transmission management and control policies
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -980,7 +988,7 @@ Library of data transmission management and control policies
 
 Device security level management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -988,7 +996,7 @@ Device security level management
 
 Basic capability of device key management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | Yes           |
 
@@ -996,7 +1004,7 @@ Basic capability of device key management
 
 Extended capability of device key management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1004,7 +1012,7 @@ Extended capability of device key management
 
 Key asset storage capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1012,7 +1020,7 @@ Key asset storage capability
 
 Access control
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1020,7 +1028,7 @@ Access control
 
 System account
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1028,7 +1036,7 @@ System account
 
 Application account
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1036,7 +1044,7 @@ Application account
 
 Unified user authentication
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1044,7 +1052,7 @@ Unified user authentication
 
 PIN authentication
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1052,7 +1060,7 @@ PIN authentication
 
 Input method framework
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1060,7 +1068,7 @@ Input method framework
 
 Pasteboard service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1068,7 +1076,7 @@ Pasteboard service
 
 Time, time zone, and timing service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1076,7 +1084,7 @@ Time, time zone, and timing service
 
 Wallpaper framework
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1084,7 +1092,7 @@ Wallpaper framework
 
 Screen lock service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1092,7 +1100,7 @@ Screen lock service
 
 Upload service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1100,7 +1108,7 @@ Upload service
 
 Download service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1108,7 +1116,7 @@ Download service
 
 Backup and restore
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1116,7 +1124,7 @@ Backup and restore
 
 Spatial statistics
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1124,7 +1132,7 @@ Spatial statistics
 
 Volume management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1132,7 +1140,7 @@ Volume management
 
 File encryption capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1140,7 +1148,7 @@ File encryption capability
 
 Basic file I/O interface
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1148,7 +1156,7 @@ Basic file I/O interface
 
 Environment-related interface
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1156,7 +1164,7 @@ Environment-related interface
 
 Distributed file extension
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1164,7 +1172,7 @@ Distributed file extension
 
 Application file service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1172,7 +1180,7 @@ Application file service
 
 User file service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1180,7 +1188,7 @@ User file service
 
 Basic capability of user file management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1188,7 +1196,7 @@ Basic capability of user file management
 
 Management of images and videos in public directories
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1196,7 +1204,7 @@ Management of images and videos in public directories
 
 Device-cloud file synchronization management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1204,7 +1212,7 @@ Device-cloud file synchronization management
 
 Device-cloud file synchronization capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1212,7 +1220,7 @@ Device-cloud file synchronization capability
 
 USB service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1220,7 +1228,7 @@ USB service
 
 Sensor service subscription
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1228,7 +1236,7 @@ Sensor service subscription
 
 Miscellaneous devices – sensor
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1236,7 +1244,7 @@ Miscellaneous devices – sensor
 
 Basic system information
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1244,7 +1252,7 @@ Basic system information
 
 Basic relational database capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1252,7 +1260,7 @@ Basic relational database capability
 
 Common types of distributed data management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1260,7 +1268,7 @@ Common types of distributed data management
 
 Basic capability of key-value databases
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1268,7 +1276,7 @@ Basic capability of key-value databases
 
 Distributed key-value database
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1276,7 +1284,7 @@ Distributed key-value database
 
 Distributed data object
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1284,7 +1292,7 @@ Distributed data object
 
 Basic capability of preferences data storage
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1292,7 +1300,7 @@ Basic capability of preferences data storage
 
 Basic capability of cross-process data sharing
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1300,7 +1308,7 @@ Basic capability of cross-process data sharing
 
 Data consumer of cross-process data sharing
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1308,7 +1316,7 @@ Data consumer of cross-process data sharing
 
 Data provider of cross-process data sharing
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1316,7 +1324,7 @@ Data provider of cross-process data sharing
 
 Device-cloud synchronization status configuration
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1324,7 +1332,7 @@ Device-cloud synchronization status configuration
 
 Device-cloud synchronization API manually invoked by the data side
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1332,7 +1340,7 @@ Device-cloud synchronization API manually invoked by the data side
 
 Interface required by the cloud space service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1340,7 +1348,7 @@ Interface required by the cloud space service
 
 Definition of basic component running data, including wants and system configuration
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1348,7 +1356,7 @@ Definition of basic component running data, including wants and system configura
 
 Core basic functional modules for component runtime, including application initialization and GUI-less component running
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1356,7 +1364,7 @@ Core basic functional modules for component runtime, including application initi
 
 Feature Ability (FA) model
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1364,7 +1372,7 @@ Feature Ability (FA) model
 
 Universal components (with GUIs)
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1372,7 +1380,7 @@ Universal components (with GUIs)
 
 Task management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1380,7 +1388,7 @@ Task management
 
 CLI tool
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1388,7 +1396,7 @@ CLI tool
 
 Widget management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1396,7 +1404,7 @@ Widget management
 
 continuationManager for starting the device selection module and updating the continuation status
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1404,7 +1412,7 @@ continuationManager for starting the device selection module and updating the co
 
 Calendar event management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1412,7 +1420,7 @@ Calendar event management
 
 Contacts database
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -1420,7 +1428,7 @@ Contacts database
 
 Contacts
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | No     | No           |
 
@@ -1428,7 +1436,7 @@ Contacts
 
 API setting
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1436,7 +1444,7 @@ API setting
 
 UI test framework
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1444,7 +1452,7 @@ UI test framework
 
 Webview component
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1452,7 +1460,7 @@ Webview component
 
 OAID management service
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1460,7 +1468,7 @@ OAID management service
 
 Advertising
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1468,23 +1476,103 @@ Advertising
 
 Certificate management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
 ## SystemCapability.Security.CryptoFramework
 
-Cryptographic framework – basic encryption and decryption capabilities
+Crypto framework - basics
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | Yes           |
+
+## SystemCapability.Security.CryptoFramework.Key
+
+Crypto framework - basic key types
+
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.Key.SymKey
+
+Crypto framework - symmetric keys
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.Key.AsymKey
+
+Crypto framework - asymmetric keys
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.Signature
+
+Crypto framework - signing and signature verification
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.Cipher
+
+Crypto framework - symmetric and asymmetric encryption and decryption
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.KeyAgreement
+
+Crypto framework - key agreement
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.MessageDigest
+
+Crypto framework - message digest
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | Yes           |
+
+## SystemCapability.Security.CryptoFramework.Mac
+
+Crypto framework - message authentication code
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.Kdf
+
+Crypto framework - key derivation
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | No           |
+
+## SystemCapability.Security.CryptoFramework.Rand
+
+Crypto framework - random number
+
+| Default | Tablet | Lite Wearable|
+|---------|--------|--------------|
+| Yes      | Yes     | Yes           |
 
 ## SystemCapability.Security.Cert
 
 Certificate algorithm library framework - certificate capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1492,7 +1580,7 @@ Certificate algorithm library framework - certificate capability
 
 Core services of bundle management, including bundle information query, bundle installation, and bundle uninstall
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1500,7 +1588,7 @@ Core services of bundle management, including bundle information query, bundle i
 
 Installation-free capability provided by bundle management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1508,7 +1596,7 @@ Installation-free capability provided by bundle management
 
 Capability of obtaining icons and labels provided by bundle management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1516,7 +1604,7 @@ Capability of obtaining icons and labels provided by bundle management
 
 Default application management capability provided by bundle management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1524,7 +1612,7 @@ Default application management capability provided by bundle management
 
 Query capability provided by bundle management for the home screen
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1532,7 +1620,7 @@ Query capability provided by bundle management for the home screen
 
 Interception capability provided by bundle management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1540,7 +1628,7 @@ Interception capability provided by bundle management
 
 Quick fix
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1548,7 +1636,7 @@ Quick fix
 
 Wide color gamut management
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1556,7 +1644,7 @@ Wide color gamut management
 
 Efficiency resource application
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1564,7 +1652,7 @@ Efficiency resource application
 
 Device attestation
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1572,7 +1660,7 @@ Device attestation
 
 File transfer agent between applications and servers
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1580,7 +1668,7 @@ File transfer agent between applications and servers
 
 Device standby mode when the screen is turned off
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1588,7 +1676,7 @@ Device standby mode when the screen is turned off
 
 Distributed data management - basic capability of the Unified Data Management Framework (UDMF)
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1596,7 +1684,7 @@ Distributed data management - basic capability of the Unified Data Management Fr
 
 Screen recording capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1604,7 +1692,7 @@ Screen recording capability
 
 Audio pool capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1612,7 +1700,7 @@ Audio pool capability
 
 Spatial audio management capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1620,7 +1708,7 @@ Spatial audio management capability
 
 Audio-haptic playback capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1628,7 +1716,7 @@ Audio-haptic playback capability
 
 3D capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1636,7 +1724,7 @@ Audio-haptic playback capability
 
 Custom drawing capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1644,7 +1732,7 @@ Custom drawing capability
 
 2D drawing capability at the native layer
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1652,7 +1740,7 @@ Custom drawing capability
 
 System capability encoding and decoding
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1660,7 +1748,7 @@ System capability encoding and decoding
 
 Concurrent programming framework
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1668,7 +1756,7 @@ Concurrent programming framework
 
 Local windows for custom drawing (2D&3D)
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1676,7 +1764,7 @@ Local windows for custom drawing (2D&3D)
 
 Graphics buffer (independent of the local window)
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1684,7 +1772,7 @@ Graphics buffer (independent of the local window)
 
 Surface output to the OpenGLES texture
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1692,7 +1780,7 @@ Surface output to the OpenGLES texture
 
 Capability of providing vertical sync signals for the system
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1700,7 +1788,7 @@ Capability of providing vertical sync signals for the system
 
 Power management display
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1708,7 +1796,7 @@ Power management display
 
 Image creation capability
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1716,7 +1804,7 @@ Image creation capability
 
 WebGL 2.0 API
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | No           |
 
@@ -1724,7 +1812,7 @@ WebGL 2.0 API
 
 ArkUI component for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | Yes      | Yes     | Yes           |
 
@@ -1732,7 +1820,7 @@ ArkUI component for mini-system devices
 
 Location service for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |
 
@@ -1740,7 +1828,7 @@ Location service for mini-system devices
 
 Battery service for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |
 
@@ -1748,7 +1836,7 @@ Battery service for mini-system devices
 
 Basic file I/O interface for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |
 
@@ -1756,7 +1844,7 @@ Basic file I/O interface for mini-system devices
 
 Basic system information for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |
 
@@ -1764,7 +1852,7 @@ Basic system information for mini-system devices
 
 Power management display for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |
 
@@ -1772,7 +1860,7 @@ Power management display for mini-system devices
 
 Basic capability of preference data storage for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |
 
@@ -1780,7 +1868,7 @@ Basic capability of preference data storage for mini-system devices
 
 Sensor service subscription for mini-system devices
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |
 
@@ -1788,6 +1876,6 @@ Sensor service subscription for mini-system devices
 
 Miscellaneous mini-system devices – sensor
 
-| Default | Tablet | Lite Wearable |
+| Default | Tablet | Lite Wearable|
 |---------|--------|--------------|
 | No      | No     | Yes           |

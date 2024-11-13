@@ -3,9 +3,9 @@
 
 ## 场景介绍
 
-为了满足数据库的安全特性，存有敏感信息的应用会在[EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode)（加密路径切换请参考[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)EL1-EL4路径切换）路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁。此时E类数据库不可操作。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
+为了满足数据库的安全特性，存有敏感信息的应用会在[EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)（加密路径切换请参考[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)EL1-EL4路径切换）路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁，此时E类数据库不可操作。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
 
-然而，在锁屏的过程中，应用程序仍然可以继续写入数据，由于此时E类数据库不可读写，可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的状态下，将数据存储在[EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和一致性。
+然而，在锁屏的过程中，应用程序仍然可以继续写入数据，由于此时E类数据库不可读写，可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的状态下，将数据存储在[EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和一致性。
 
 键值型数据库和关系型数据库均支持E类加密数据库。
 
@@ -389,7 +389,7 @@ export default class EntryAbility extends UIAbility {
         // kvStoreType不填时，默认创建多设备协同数据库
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
     let eContext = this.context.createModuleContext("entry");
@@ -408,7 +408,7 @@ export default class EntryAbility extends UIAbility {
         // kvStoreType不填时，默认创建多设备协同数据库
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
@@ -837,7 +837,7 @@ export default class EntryAbility extends UIAbility {
       context: cContext,
       config: {
         name: 'cstore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "cstore.db"
     }
@@ -847,7 +847,7 @@ export default class EntryAbility extends UIAbility {
       context: eContext,
       config: {
         name: 'estore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "estore.db",
     }

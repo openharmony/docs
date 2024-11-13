@@ -26,6 +26,26 @@ ScrollBar(value: ScrollBarOptions)
 | -------- | -------- | -------- | -------- |
 | value |  [ScrollBarOptions](#scrollbaroptions对象说明)| 是 | 滚动条组件参数。 |
 
+## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+## enableNestedScroll<sup>14+</sup>
+
+enableNestedScroll(value: boolean)
+
+设置滚动条是否嵌套滚动。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | boolean | 是   | 是否执行嵌套滚动。设置为true执行嵌套滚动，设置为false不嵌套滚动。 <br/>默认值：false |
+
 ## ScrollBarOptions对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -52,7 +72,7 @@ ScrollBar(value: ScrollBarOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Vertical | 纵向滚动条。 |
 | Horizontal | 横向滚动条。 |
@@ -150,3 +170,68 @@ struct ScrollBarExample {
 
 
 ![zh-cn_image_scrollbar](figures/zh-cn_image_scrollbar.gif)
+
+## 示例3
+
+该示例为ScrollBar组件支持嵌套滚动的样式。
+```ts
+@Entry
+@Component
+struct StickyNestedScroll {
+  listScroller: Scroller = new Scroller();
+  @State array: number[] = []
+
+  @Styles
+  listCard() {
+    .backgroundColor(Color.White)
+    .height(72)
+    .width("100%")
+    .borderRadius(12)
+  }
+
+  build() {
+    Stack() {
+      Scroll() {
+        Column() {
+          Text('Scroll Area')
+            .width("100%")
+            .height("40%")
+            .backgroundColor('#0080DC')
+            .textAlign(TextAlign.Center)
+          List({ space: 10, scroller: this.listScroller }) {
+            ForEach(this.array, (item: number) => {
+              ListItem() {
+                Text('item' + item)
+                  .fontSize(16)
+              }
+              .listCard()
+            }, (item: string) => item)
+          }
+          .scrollBar(BarState.Off)
+          .nestedScroll({
+            scrollForward: NestedScrollMode.PARENT_FIRST,
+            scrollBackward: NestedScrollMode.SELF_FIRST
+          })
+          .height("100%")
+        }
+        .width("100%")
+      }
+      .edgeEffect(EdgeEffect.Spring)
+      .backgroundColor('#DCDCDC')
+      .scrollBar(BarState.Off)
+      .width('100%')
+      .height('100%')
+      ScrollBar({ scroller: this.listScroller})
+        .position({right:0})
+        .enableNestedScroll(true)
+    }
+  }
+
+  aboutToAppear() {
+    for (let i = 0; i < 15; i++) {
+      this.array.push(i)
+    }
+  }
+}
+```
+![EnableNestedScroll](figures/EnableNestedScroll.gif)

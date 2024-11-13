@@ -1,4 +1,4 @@
-# @ohos.atomicservice.AtomicServiceWeb（Web高阶组件）
+# AtomicServiceWeb
 
 为开发者提供满足定制化诉求的Web高阶组件，屏蔽原生Web组件中无需关注的接口，并提供JS扩展能力。
 
@@ -27,6 +27,7 @@ import { AtomicServiceWeb } from '@kit.ArkUI';
 
 ## AtomicServiceWeb
 
+```
 AtomicServiceWeb({
   src: ResourceStr,
   controller: AtomicServiceWebController,
@@ -34,15 +35,16 @@ AtomicServiceWeb({
   mixedMode?: MixedMode,
   darkMode?: WebDarkMode,
   forceDarkAccess?: boolean,
-  onMessage?: Callback\<OnMessageEvent\>,
-  onErrorReceive?: Callback\<OnErrorReceiveEvent\>,
-  onHttpErrorReceive?: Callback\<OnHttpErrorReceiveEvent\>,
-  onPageBegin?: Callback\<OnPageBeginEvent\>,
-  onPageEnd?: Callback\<OnPageEndEvent\>,
-  onControllerAttached?: Callback\<void\>,
-  onLoadIntercept?: Callback\<OnLoadInterceptEvent, boolean\>,
-  onProgressChange?: Callback\<OnProgressChangeEvent\>
+  onMessage?: Callback<OnMessageEvent>,
+  onErrorReceive?: Callback<OnErrorReceiveEvent>,
+  onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>,
+  onPageBegin?: Callback<OnPageBeginEvent>,
+  onPageEnd?: Callback<OnPageEndEvent>,
+  onControllerAttached?: Callback<void>,
+  onLoadIntercept?: Callback<OnLoadInterceptEvent, boolean>,
+  onProgressChange?: Callback<OnProgressChangeEvent>
 })
+```
 
 **装饰器类型：**@Component
 
@@ -52,7 +54,7 @@ AtomicServiceWeb({
 
 **参数**：
 
-| 名称                   | 类型                                                                                                               | 必填 | 装饰器类型       | 描述                                                                                                                   |
+| 名称                   | 类型                                                                                                               | 必填 | 装饰器类型       | 说明                                                                                                                  |
 |----------------------|------------------------------------------------------------------------------------------------------------------|----|-------------|----------------------------------------------------------------------------------------------------------------------|
 | src                  | [ResourceStr](ts-types.md#resourcestr)                                                                           | 是  | -           | 网页资源地址，访问网络资源需要在AGC配置业务域名，访问本地资源仅支持包内文件（$rawfile）。不支持通过状态变量（例如@State）动态更新地址。加载的网页中支持通过JS SDK提供的接口调用系统能力，具体以JS SDK为准。 |
 | controller           | [AtomicServiceWebController](#atomicservicewebcontroller)                                                        | 是  | @ObjectLink | 通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。                                                              |
@@ -328,6 +330,10 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 Web组件返回的请求/响应头对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 类型     | 可读 | 可写 | 说明            |
 |-------------|--------|----|----|---------------|
 | headerKey   | string | 是  | 是  | 请求/响应头的key。   |
@@ -343,7 +349,7 @@ Web组件返回的请求/响应头对象。
 
 | 名称   | 类型       | 必填 | 说明    |
 |------|----------|----|-------|
-| data | Object[] | 是  | 消息列表。 |
+| data | object[] | 是  | 消息列表。 |
 
 ## OnErrorReceiveEvent
 

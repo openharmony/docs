@@ -34,7 +34,7 @@ Defines the InsightIntent call execution result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| code | number | No| Yes| Error code returned.|
-| result | Record<string, Object> | No| No| Execution result returned.|
+| code | number | No| No| Error code returned.|
+| result | Record<string, Object> | No| Yes| Execution result returned.|

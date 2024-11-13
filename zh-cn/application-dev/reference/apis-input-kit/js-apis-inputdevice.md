@@ -653,6 +653,28 @@ try {
 }
 ```
 
+## inputDevice.getIntervalSinceLastInput<sup>13+</sup>
+
+getIntervalSinceLastInput(): Promise&lt;number&gt;
+
+获取距离上次系统输入事件的时间间隔，使用Promise异步回调。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值**：
+
+| 参数                                          | 说明                            |
+| --------------------------------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise对象，异步返回获取的时间间隔，单位为微秒（μs）。|
+
+**示例**：
+
+```js
+  inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
+    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+  });
+```
+
 ## DeviceListener<sup>9+</sup>
 
 输入设备热插拔的描述信息。
@@ -691,17 +713,17 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| touchmajor  | string | 是 | 否 | 表示touchmajor轴。  |
-| touchminor  | string | 是 | 否 | 表示touchminor轴。  |
-| toolminor   | string | 是 | 否 | 表示toolminor轴。   |
-| toolmajor   | string | 是 | 否 | 表示toolmajor轴。   |
-| orientation | string | 是 | 否 | 表示orientation轴。 |
-| pressure    | string | 是 | 否 | 表示pressure轴。    |
-| x           | string | 是 | 否 | 表示x轴。           |
-| y           | string | 是 | 否 | 表示y轴。           |
-| null        | string | 是 | 否 | 无。              |
+| 类型      |说明      |
+| --------- | ------- |
+| 'touchmajor'  | 表示touchmajor轴。|
+| 'touchminor'  | 表示touchminor轴。|
+| 'toolminor'   | 表示toolminor轴。 |
+| 'toolmajor'   | 表示toolmajor轴。 |
+| 'orientation' | 表示orientation轴。|
+|'pressure'    | 表示pressure轴。  |
+| 'x'          | 表示x轴。         |
+| 'y'           | 表示y轴。         |
+|'null'        |  无。             |
 
 ## AxisRange
 
@@ -727,14 +749,14 @@ type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| keyboard    | string | 是 | 否 | 表示输入设备是键盘。  |
-| touchscreen | string | 是 | 否 | 表示输入设备是触摸屏。 |
-| mouse       | string | 是 | 否 | 表示输入设备是鼠标。  |
-| trackball   | string | 是 | 否 | 表示输入设备是轨迹球。 |
-| touchpad    | string | 是 | 否 | 表示输入设备是触摸板。 |
-| joystick    | string | 是 | 否 | 表示输入设备是操纵杆。 |
+| 类型       |说明      |
+| --------- |  ------- |
+| 'keyboard'    | 表示输入设备是键盘。  |
+| 'touchscreen' | 表示输入设备是触摸屏。 |
+| 'mouse'       | 表示输入设备是鼠标。  |
+| 'trackball'   | 表示输入设备是轨迹球。 |
+| 'touchpad'    | 表示输入设备是触摸板。 |
+| 'joystick'   | 表示输入设备是操纵杆。 |
 
 ## ChangedType<sup>9+</sup>
 
@@ -744,10 +766,10 @@ type ChangedType = 'add' | 'remove'
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| add    | string | 是 | 否 | 表示输入设备插入。 |
-| remove | string | 是 | 否 | 表示输入设备移除。 |
+| 类型        | 说明      |
+| --------- | ------- |
+| 'add'    | 表示输入设备插入。 |
+| 'remove' | 表示输入设备移除。 |
 
 ## KeyboardType<sup>9+</sup>
 

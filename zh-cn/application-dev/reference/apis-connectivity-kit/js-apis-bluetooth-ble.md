@@ -29,7 +29,7 @@ createGattServer(): GattServer
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| GattServer | 返回一个Gatt服务的实例。 |
+| [GattServer](#gattserver) | 返回一个Gatt服务的实例。 |
 
 **示例：**
 
@@ -138,7 +138,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 | 参数名     | 类型                                     | 必填   | 说明                                  |
 | ------- | -------------------------------------- | ---- | ----------------------------------- |
-| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，如果不使用过滤的方式，该参数设置为null。 |
+| filters | Array&lt;[ScanFilter](#scanfilter)&gt; | 是    | 表示扫描结果过滤策略集合，符合过滤条件的设备发现会保留。如果不使用过滤的方式，该参数设置为null。 |
 | options | [ScanOptions](#scanoptions)            | 否    | 表示扫描的参数配置，可选参数。                     |
 
 **错误码**：
@@ -1371,8 +1371,6 @@ let cccV = new Uint8Array(arrayBufferC);
 cccV[0] = 1;
 let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
-let characteristicN: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
-  characteristicUuid: '00001821-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 characteristics[0] = characteristic;
 
 // 创建gattService
@@ -1437,7 +1435,7 @@ try {
 
 close(): void
 
-关闭服务端功能，去注册server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
+关闭服务端功能，去掉server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2456,14 +2454,14 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Ca
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback 模式
 let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) => {
-    if (code) {
-        let services: Array<ble.GattService> = gattServices;
+    if (code && code.code != 0) {
         console.info('bluetooth code is ' + code.code);
-        console.info('bluetooth services size is ', services.length);
-
-        for (let i = 0; i < services.length; i++) {
-            console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
-        }
+        return;
+    }
+    let services: Array<ble.GattService> = gattServices;
+    console.info('bluetooth services size is ', services.length);
+    for (let i = 0; i < services.length; i++) {
+        console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
     }
 }
 
@@ -2799,7 +2797,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Callback异步
 | 参数名            | 类型                                      | 必填   | 说明                  |
 | -------------- | --------------------------------------- | ---- | ------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | 是    | 蓝牙设备特征对应的二进制值及其它参数。 |
-| writeType | GattWriteType | 是    | 蓝牙设备特征的写入类型。 |
+| writeType | [GattWriteType](#gattwritetype) | 是    | 蓝牙设备特征的写入类型。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。当写入成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -2866,7 +2864,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Promise异步�
 | 参数名            | 类型                                      | 必填   | 说明                  |
 | -------------- | --------------------------------------- | ---- | ------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | 是    | 蓝牙设备特征对应的二进制值及其它参数。 |
-| writeType | GattWriteType | 是    | 蓝牙设备特征的写入类型。 |
+| writeType | [GattWriteType](#gattwritetype) | 是    | 蓝牙设备特征的写入类型。 |
 
 **返回值：**
 
@@ -2962,7 +2960,13 @@ let descriptor: ble.BLEDescriptor = {
 };
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.writeDescriptorValue(descriptor);
+    device.writeDescriptorValue(descriptor, (err: BusinessError) => {
+        if (err) {
+            console.info('notifyCharacteristicChanged callback failed');
+        } else {
+            console.info('notifyCharacteristicChanged callback successful');
+        }
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -3215,7 +3219,13 @@ let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-80
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.setCharacteristicChangeNotification(characteristic, false);
+    device.setCharacteristicChangeNotification(characteristic, false, (err: BusinessError) => {
+        if (err) {
+            console.info('notifyCharacteristicChanged callback failed');
+        } else {
+            console.info('notifyCharacteristicChanged callback successful');
+        }
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -3336,7 +3346,13 @@ let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-80
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
   let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-  device.setCharacteristicChangeIndication(characteristic, false);
+  device.setCharacteristicChangeIndication(characteristic, false, (err: BusinessError) => {
+    if (err) {
+      console.info('notifyCharacteristicChanged callback failed');
+    } else {
+      console.info('notifyCharacteristicChanged callback successful');
+    }
+  });
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -3411,7 +3427,7 @@ try {
 
 on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
-订阅蓝牙低功耗设备的特征值变化事件。需要先调用[setCharacteristicChangeNotification](#setcharacteristicchangenotification)接口才能接收server端的通知。使用Callback异步回调。
+订阅蓝牙低功耗设备的特征值变化事件。需要先调用[setCharacteristicChangeNotification](#setcharacteristicchangenotification)接口或[setCharacteristicChangeIndication](#setcharacteristicchangeindication)接口才能接收server端的通知。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3765,8 +3781,8 @@ try {
 | deviceId           | string | 是    | 否    | 表示发送特征值写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
 | offset             | number | 是    | 否    | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
-| isPrepared             | boolean | 是    | 否    | 表示写请求是否立即执行。 |
-| needRsp             | boolean | 是    | 否    | 表示是否要给client端回复响应。 |
+| isPrepared             | boolean | 是    | 否    | 表示写请求是否立即执行。true表示立即执行。 |
+| needRsp             | boolean | 是    | 否    | 表示是否要给client端回复响应。true表示需要回复。 |
 | value             | ArrayBuffer | 是    | 否    | 表示写入的描述符二进制数据。 |
 | characteristicUuid | string | 是    | 否    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
@@ -3897,7 +3913,7 @@ try {
 
 | 名称                | 类型                             | 可读  | 可写  | 说明                      |
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
-| advertisingSettings<sup>11+</sup> | AdvertiseSetting                | 是    | 是    | 表示发送广播的相关参数。    |
+| advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | 是    | 是    | 表示发送广播的相关参数。    |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
 | duration<sup>11+</sup>    | number   | 是    | 是    | 表示发送广播持续的时间。单位为10ms，有效范围为1(10ms)到65535(655350ms)，如果未指定此参数或者将其设置为0，则会连续发送广播。    |
@@ -4011,11 +4027,11 @@ try {
 
 | 名称       | 类型  | 必填   | 说明          |
 | -------- | ------ |---- | ----------- |
-| write    | boolean | 否  | 表示该特征支持写操作，需要对端设备的回复。 |
-| writeNoResponse | boolean | 否    | 表示该特征支持写操作，无需对端设备回复。 |
-| read | boolean   |  否    | 表示该特征支持读操作。 |
-| notify | boolean   | 否    | 表示该特征可通知对端设备。 |
-| indicate | boolean   | 否    | 表示该特征可通知对端设备，需要对端设备的回复。 |
+| write    | boolean | 否  | 表示该特征支持写操作，true表示需要对端设备的回复。 |
+| writeNoResponse | boolean | 否    | true表示该特征支持写操作，无需对端设备回复。 |
+| read | boolean   |  否    | true表示该特征支持读操作。 |
+| notify | boolean   | 否    | true表示该特征可通知对端设备。 |
+| indicate | boolean   | 否    | true表示该特征可通知对端设备，需要对端设备的回复。 |
 
 
 ## GattWriteType<a name="GattWriteType"></a>

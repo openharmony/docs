@@ -24,7 +24,7 @@ Represents the profile state change parameters.
 | Name    | Type                          | Readable| Writable| Description                           |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | Yes  | No  | Address of the Bluetooth device.  |
-| state    | ProfileConnectionState        | Yes  | No  | Profile connection state of the device.|
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | Yes  | No  | Profile connection state of the device.|
 | cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | Yes| No| Cause of the disconnection.|
 
 
@@ -44,7 +44,7 @@ Enumerates the possible causes of a Bluetooth disconnection.
 | CONNECT_FAIL_INTERNAL      | 5    | Internal error.|
 
 
-## baseProfile.getConnectedDevices
+## BaseProfile.getConnectedDevices
 
 getConnectedDevices(): Array&lt;string&gt;
 
@@ -87,7 +87,7 @@ try {
 ```
 
 
-## baseProfile.getConnectionState
+## BaseProfile.getConnectionState
 
 getConnectionState(deviceId: string): ProfileConnectionState
 
@@ -137,7 +137,7 @@ try {
 ```
 
 
-## baseProfile.on('connectionStateChange')
+## BaseProfile.on('connectionStateChange')
 
 on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): void
 
@@ -181,7 +181,7 @@ try {
 ```
 
 
-## baseProfile.off('connectionStateChange')
+## BaseProfile.off('connectionStateChange')
 
 off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam)&gt;): void
 

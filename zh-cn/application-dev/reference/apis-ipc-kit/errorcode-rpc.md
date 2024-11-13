@@ -10,7 +10,7 @@
 
 **错误信息**
 
-Call mmap function failed.
+Failed to call mmap.
 
 **错误描述**
 
@@ -30,7 +30,7 @@ Call mmap function failed.
 
 **错误信息**
 
-Call os ioctl function failed.
+Failed to call ioctl.
 
 **错误描述**
 
@@ -50,7 +50,7 @@ Call os ioctl function failed.
 
 **错误信息**
 
-Write to ashmem failed.
+Failed to write data to the shared memory.
 
 **错误描述**
 
@@ -70,7 +70,7 @@ Write to ashmem failed.
 
 **错误信息**
 
-Read from ashmem failed.
+Failed to read data from the shared memory.
 
 **错误描述**
 
@@ -90,7 +90,7 @@ Read from ashmem failed.
 
 **错误信息**
 
-Only proxy object permitted.
+Operation allowed only for the proxy object.
 
 **错误描述**
 
@@ -108,7 +108,7 @@ Only proxy object permitted.
 
 **错误信息**
 
-Only remote object permitted.
+Operation allowed only for the remote object.
 
 **错误描述**
 
@@ -146,7 +146,7 @@ Communication failed.
 
 **错误信息**
 
-Proxy or remote object is invalid.
+The proxy or remote object is invalid.
 
 **错误描述**
 
@@ -166,7 +166,7 @@ Proxy or remote object is invalid.
 
 **错误信息**
 
-Write data to message sequence failed.
+Failed to write data to the message sequence.
 
 **错误描述**
 
@@ -184,7 +184,7 @@ sequence默认空间已满。
 
 **错误信息**
 
-Read data from message sequence failed.
+Failed to read data from the message sequence.
 
 **错误描述**
 
@@ -202,7 +202,7 @@ Read data from message sequence failed.
 
 **错误信息**
 
-Sequence memory alloc failed.
+Memory allocation failed.
 
 **错误描述**
 
@@ -220,7 +220,7 @@ Sequence memory alloc failed.
 
 **错误信息**
 
-Call JS callback function failed.
+Failed to call the JS callback function.
 
 **错误描述**
 
@@ -238,7 +238,7 @@ Call JS callback function failed.
 
 **错误信息**
 
-Call os dup function failed.
+Failed to call dup.
 
 **错误描述**
 

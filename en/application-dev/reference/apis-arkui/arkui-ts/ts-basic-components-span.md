@@ -1,12 +1,12 @@
 # Span
 
-As a child of the [\<Text>](ts-basic-components-text.md) and [\<ContainerSpan>](ts-basic-components-containerspan.md) components, the \<Span> component is used to display inline text.
+As a child of the [Text](ts-basic-components-text.md) and [ContainerSpan](ts-basic-components-containerspan.md) components, the Span component is used to display inline text.
 
 >  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  Since API version 10, this component can inherit the attributes of the **\<Text>** parent component. That is, if no attribute is set for this component, it inherits the attributes (if set) of its parent component. Only the following attributes can be inherited: **fontColor**, **fontSize**, **fontStyle**, **fontWeight**, **decoration**, **letterSpacing**, **textCase**, **fontfamily**, and **textShadow**.
+>  Since API version 10, this component can inherit the attributes of the **Text** parent component. That is, if no attribute is set for this component, it inherits the attributes (if set) of its parent component. Only the following attributes can be inherited: **fontColor**, **fontSize**, **fontStyle**, **fontWeight**, **decoration**, **letterSpacing**, **textCase**, **fontfamily**, and **textShadow**.
 
 
 ## Child Components
@@ -22,11 +22,13 @@ Span(value: string | Resource)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string \| [Resource](ts-types.md#resource) | Yes | Plain text. |
+| value | string \| [Resource](ts-types.md#resource) | Yes| Plain text.|
 
 
 ## Attributes
@@ -45,11 +47,11 @@ Style and color of the text decorative line.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface)  | Yes  | Style of the text decorative line.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>}<br>**NOTE**<br>The **style** parameter cannot be used in widgets. |
+| Name| Type     | Mandatory| Description    |
+| ------ | -------- | ---- | -------------- |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | Yes  | Style of the text decorative line.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>}<br>**NOTE**<br>The **style** parameter cannot be used in widgets.|
 
 ### letterSpacing
 
@@ -63,11 +65,11 @@ Letter spacing. A negative value tightens the spacing; a positive value loosens 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                      | Mandatory | Description          |
-| ------ | -------------------------- | ---- | -------------- |
-| value  | number \| string | Yes  | Letter spacing. |
+| Name| Type    | Mandatory|  Description  |
+| ------ | ------- | ---- | -------------- |
+| value  | number \| string | Yes  | Letter spacing.|
 
 ### textCase
 
@@ -81,11 +83,11 @@ Text case.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                     | Mandatory | Description                                    |
-| ------ | ----------------------------------------- | ---- | ---------------------------------------- |
-| value  | [TextCase](ts-appendix-enums.md#textcase) | Yes  | Text case.<br>Default value: **TextCase.Normal** |
+| Name| Type  | Mandatory| Description  |
+| ------ | ------- | ---- | ------- |
+| value  | [TextCase](ts-appendix-enums.md#textcase) | Yes  | Text case.<br>Default value: **TextCase.Normal**|
 
 ### lineHeight<sup>10+</sup>
 
@@ -97,11 +99,11 @@ Sets the line height for the text.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description          |
-| ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Line height of the text. |
+| Name| Type   | Mandatory| Description |
+| ------ | ------ | ---- | ---- |
+| value  | [Length](ts-types.md#length) | Yes  | Line height of the text.|
 
 ### font<sup>10+</sup>
 
@@ -113,11 +115,11 @@ Text style, covering the font size, font width, Font family, and font style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                    | Mandatory | Description      |
+| Name| Type                    | Mandatory| Description      |
 | ------ | ------------------------ | ---- | ---------- |
-| value  | [Font](ts-types.md#font) | Yes  | Text style. |
+| value  | [Font](ts-types.md#font) | Yes  | Text style.|
 
 ### textShadow<sup>11+</sup>
 
@@ -129,11 +131,11 @@ Text shadow. It supports input parameters in an array to implement multiple text
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description          |
-| ------ | ------------------------------------------------------------ | ---- | -------------- |
-| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \|  Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Yes  | Text shadow. |
+| Name| Type| Mandatory| Description|
+| ------ | ----- | ---- | --- |
+| value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \|  Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)>| Yes  | Text shadow.|
 
 ## Events
 
@@ -141,7 +143,7 @@ Among all the universal events, only the [click event](ts-universal-events-click
 
 >  **NOTE**
 >
->  As the **\<Span>** component does not include size information, the **target** attribute of the **ClickEvent** object returned by the click event is invalid.
+>  As the **Span** component does not include size information, the **target** attribute of the **ClickEvent** object returned by the click event is invalid.
 
 ## BaseSpan
 
@@ -153,33 +155,58 @@ Defines the **BaseSpan** base class, including the common attributes of the span
 
 ### textBackgroundStyle<sup>11+</sup>
 
-textBackgroundStyle(style: TextBackgroundStyle)
+textBackgroundStyle(style: TextBackgroundStyle): T
 
-Background style. This attribute prioritizes the value separately set for the component. If it is not set, the component can inherit the settings from its parent [\<ContainerSpan>](ts-basic-components-containerspan.md).
+Background style. This attribute prioritizes the value separately set for the component. If it is not set, the component can inherit the settings from its parent [ContainerSpan](ts-basic-components-containerspan.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle)  | Yes  | Background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} |
+| Name| Type | Mandatory| Description|
+| ----- | ---- | ---- | ---- |
+| style  | [TextBackgroundStyle](#textbackgroundstyle11) | Yes  | Background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} |
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| T | Attributes of the span.|
 
 ### baselineOffset<sup>12+</sup>
 
-baselineOffset(value: LengthMetrics)
+baselineOffset(value: LengthMetrics): T
 
 Sets the offset of the baseline. This attribute coexists with the **baselineOffset** attribute of the parent component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Offset of the baseline. If the value specified is a percentage, the default value is used.<br>A positive number is offset upwards, and a negative number is offset downwards.<br>Default value: **0**<br>In an image span, setting this parameter to a non-zero value will cause **verticalAlign** to become ineffective. |
+| Name| Type| Mandatory| Description |
+| ----- | ---- | ---- | ---- |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | Yes  | Offset of the baseline. If the value specified is a percentage, the default value is used.<br>A positive number is offset upwards, and a negative number is offset downwards.<br>Default value: **0**<br>In an image span, setting this parameter to a non-zero value will cause **verticalAlign** to become ineffective.|
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| T | Attributes of the span.|
+
+## TextBackgroundStyle<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type    | Mandatory| Description        |
+| ------ | ------- | ---- | ------------ |
+| color  | [ResourceColor](ts-types.md#resourcecolor)                                  | No  | Text background color.|
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9) | No  | Rounded corner radius of the text background.|
 
 ## Example
 ### Example 1

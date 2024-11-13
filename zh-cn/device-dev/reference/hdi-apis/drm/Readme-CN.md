@@ -1,0 +1,27 @@
+# DRM HDI 参考
+
+- 模块
+    - [HdiDrm](_hdi_drm.md)
+- 头文件
+    - [IMediaDecryptModule.idl](_i_media_decrypt_module_8idl.md)
+    - [IMediaKeySession.idl](_i_media_key_session_8idl.md)
+    - [IMediaKeySessionCallback.idl](_i_media_key_session_callback_8idl.md)
+    - [IMediaKeySystem.idl](_i_media_key_system_8idl.md)
+    - [IMediaKeySystemCallback.idl](_i_media_key_system_callback_8idl.md)
+    - [IMediaKeySystemFactory.idl](_i_media_key_system_factory_8idl.md)
+    - [IOemCertificate.idl](_i_oem_certificate_8idl.md)
+    - [MediaKeySystemTypes.idl](_media_key_system_types_8idl.md)
+- 结构体
+    - [CryptoInfo](_crypto_info.md)
+    - [DrmBuffer](_drm_buffer.md)
+    - [IMediaDecryptModule](interface_i_media_decrypt_module.md)
+    - [IMediaKeySession](interface_i_media_key_session.md)
+    - [IMediaKeySessionCallback](interface_i_media_key_session_callback.md)
+    - [IMediaKeySystem](interface_i_media_key_system.md)
+    - [IMediaKeySystemCallback](interface_i_media_key_system_callback.md)
+    - [IMediaKeySystemFactory](interface_i_media_key_system_factory.md)
+    - [IOemCertificate](interface_i_oem_certificate.md)
+    - [MediaKeyRequest](_media_key_request.md)
+    - [MediaKeyRequestInfo](_media_key_request_info.md)
+    - [Pattern](_pattern.md)
+    - [SubSample](_sub_sample.md)

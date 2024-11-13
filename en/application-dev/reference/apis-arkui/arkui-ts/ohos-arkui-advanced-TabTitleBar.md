@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.TabTitleBar (Tab Title Bar)
+# TabTitleBar
 
 
 The tab title bar is used to switch between tabs pages. It is applicable only to level-1 pages.
@@ -12,7 +12,7 @@ The tab title bar is used to switch between tabs pages. It is applicable only to
 ## Modules to Import
 
 ```
-import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
+import { TabTitleBar } from '@kit.ArkUI'
 ```
 
 
@@ -30,32 +30,37 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description| 
+| Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | Yes| - | List of tab items on the left of the title bar.| 
-| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | No| - | List of menu items on the right of the title bar.| 
-| swiperContent | () =&gt; void | Yes| \@BuilderParam | Constructor for page content pertaining to the tab list.| 
-
+| tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | Yes| - | List of tab items on the left of the title bar.|
+| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | No| - | List of menu items on the right of the title bar.|
+| swiperContent | () =&gt; void | Yes| \@BuilderParam | Constructor for page content pertaining to the tab list.|
 
 ## TabTitleBarMenuItem
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon.| 
-| isEnabled | boolean | No| Whether to enable the item.<br> Default value: **true**<br> The value **true** means to enable the item, and **false** means the opposite.| 
-| action | () =&gt; void | No| Action to perform.| 
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Icon resource.|
+| label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Icon label.|
+| isEnabled | boolean | No| Whether to enable the item.<br> Default value: **true**<br> The value **true** means to enable the item, and **false** means the opposite.|
+| action | () =&gt; void | No| Action to perform.|
 
 ## TabTitleBarTabItem
 
-| Name| Type| Mandatory| Description| 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.| 
-| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the tab.| 
+| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the tab.|
+| icon | [ResourceStr](ts-types.md#resourcestr) | No| Icon of the tab.|
 
 
 ## Events
@@ -64,8 +69,7 @@ The [universal events](ts-universal-events-click.md) are not supported.
 ## Example
 
 ```ts
-import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
-import promptAction from '@ohos.promptAction'
+import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
 class tabItem {
   title: ResourceStr;

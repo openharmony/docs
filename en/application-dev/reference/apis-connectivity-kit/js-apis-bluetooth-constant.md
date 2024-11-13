@@ -1,4 +1,4 @@
-# @ohos.bluetooth.constant (Bluetooth Constant Module)
+# @ohos.bluetooth.constant (Bluetooth constant Module)
 
 The **constant** module provides definitions of the constants used in Bluetooth.
 
@@ -161,7 +161,7 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
 
 
-## ProfileUuids
+## ProfileUuids<sup>12+</sup>
 
 Enumerates the profile UUIDs.
 

@@ -1,13 +1,13 @@
 # @ohos.secureElement (SE Management)
 
-The **secureElement** module provides APIs for managing secure elements (SEs). SEs include the Embedded SE (eSE) and SIM on a device. The SE service mentioned in this topic is an **SEService** instance. For details, see [newSEService](#secureelementnewseservice).
+The **secureElement** module provides APIs for managing secure elements (SEs). SEs include the Embedded SE (eSE) and SIM on a device. The SE service mentioned in this topic is an **SEService** instance. For details, see [newSEService](#omapinewseservice).
 
 The instances of the following types are mentioned in this topic:
 
 | Type   | Description                                          |
 | ------- | ---------------------------------------------- |
-| Reader  | SE supported by the device. If eSE and SIM are supported, two instances will be returned. |
-| Session | Session created on an SE **Reader** instance. |
+| Reader  | SE supported by the device. If eSE and SIM are supported, two instances will be returned.|
+| Session | Session created on an SE **Reader** instance.|
 | Channel | Channel set up by a **Session** instance. The channel can be a basic channel or a logical channel.  |
 
 > **NOTE**
@@ -20,7 +20,7 @@ The instances of the following types are mentioned in this topic:
 import { omapi } from '@kit.ConnectivityKit';
 ```
 
-## secureElement.ServiceState
+## ServiceState
 
 Enumerates the SE service stats.
 
@@ -28,10 +28,10 @@ Enumerates the SE service stats.
 
 | Name        | Value  | Description              |
 | ------------ | ---- | ------------------ |
-| DISCONNECTED | 0    | The SE service is disconnected. |
-| CONNECTED    | 1    | The SE service is connected. |
+| DISCONNECTED | 0    | The SE service is disconnected.|
+| CONNECTED    | 1    | The SE service is connected.|
 
-## secureElement.newSEService
+## omapi.newSEService
 
 newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService
 
@@ -40,28 +40,28 @@ Creates an **SEService** instance for connecting to all available SEs in the sys
 The returned **SEService** instance is available only when **true** is returned by the specified callback or [isConnected](#seserviceisconnected).
 
 > **NOTE**
-> This API is supported since API version 10 and deprecated since API version 12. Use [createService](#secureelementcreateservice12) instead.
+> This API is supported since API version 10 and deprecated since API version 12. Use [createService](#omapicreateservice12) instead.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
 **Parameters**
 
-| **Name** | **Type**                                            | **Mandatory** | **Description**            |
+| **Name**| **Type**                                            | **Mandatory**| **Description**            |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
 | type       | string                                               | Yes     | Type of the SE service to create. It has a fixed value of **'serviceState'**.     |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback used to return the SE service state.|
+| callback   | Callback<[ServiceState](#servicestate)> | Yes     | Callback used to return the SE service state.|
 
 **Return value**
 
 | **Type** | **Description**  |
 | -------- | --------- |
-| SEService | **SEService** instance created. |
+| SEService | **SEService** instance created.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message|
+| ID| Error Message|
 | ------- | -------|
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
@@ -90,7 +90,7 @@ function secureElementDemo() {
 }
 ```
 
-## secureElement.createService<sup>12+</sup>
+## omapi.createService<sup>12+</sup>
 
 createService(): Promise\<SEService>;
 
@@ -104,7 +104,15 @@ The **SEService** object is available only when [isConnected](#seserviceisconnec
 
 | **Type** | **Description**  |
 | :-------- | :--------- |
-| Promise\<[SEService](#seservice)> | Primose used to return the **SEService** instance created. |
+| Promise\<[SEService](#seservice)> | Primose used to return the **SEService** instance created.|
+
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **Example**
 
@@ -131,7 +139,7 @@ function secureElementDemo() {
 
 ## SEService
 
-**SEService** indicates the connection service used to connect to all available SEs in the system. You can use [createService](#secureelementcreateservice12) to create an **SEService** instance.
+**SEService** indicates the connection service used to connect to all available SEs in the system. You can use [createService](#omapicreateservice12) to create an **SEService** instance.
 
 ### SEService.getReaders
 
@@ -143,15 +151,15 @@ Obtains available SE readers, which include all the SEs on the device.
 
 **Return value**
 
-| **Type** | **Description**              |
+| **Type**| **Description**              |
 | :------- | :--------------------- |
-| [Reader](#reader)[] | Available readers obtained. |
+| [Reader](#reader)[] | Available readers obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -190,15 +198,15 @@ Checks whether this SE service is connected.
 
 **Return value**
 
-| **Type** | **Description**                                      |
+| **Type**| **Description**                                      |
 | :------- | :--------------------------------------------- |
-| boolean  | Returns **true** if the SE service is connected; returns **false** otherwise. |
+| boolean  | Returns **true** if the SE service is connected; returns **false** otherwise.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -240,7 +248,7 @@ Releases all SE resources allocated to this SE service. After that, [isConnected
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -273,15 +281,15 @@ Obtains the version of the Open Mobile API (OMAPI) specification used.
 
 **Return value**
 
-| **Type** | **Description**                                          |
+| **Type**| **Description**                                          |
 | -------- | -------------------------------------------------- |
-| string   | OMAPI version obtained. For example, **3.3** indicates Open Mobile API Specification v3.3. |
+| string   | OMAPI version obtained. For example, **3.3** indicates Open Mobile API Specification v3.3.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -318,15 +326,15 @@ Obtains the name of this reader. The name is **SIM[*Slot*]** for a SIM reader an
 
 **Return value**
 
-| **Type** | **Description**  |
+| **Type**| **Description**  |
 | -------- | ---------- |
-| string   | [Reader](#reader) name obtained. |
+| string   | [Reader](#reader) name obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -360,16 +368,17 @@ Checks whether the SE corresponding to this reader is available.
 
 **Return value**
 
-| **Type** | **Description**                                    |
+| **Type**| **Description**                                    |
 | -------- | -------------------------------------------- |
-| boolean  | Returns **true** if the SE is available; returns **false** otherwise. |
+| boolean  | Returns **true** if the SE is available; returns **false** otherwise.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
@@ -402,7 +411,7 @@ Opens a session to connect to an SE in this reader. Multiple sessions can be ope
 
 **Return value**
 
-| **Type** | **Description**                      |
+| **Type**| **Description**                      |
 | -------- | ------------------------------ |
 | [Session](#session)  | Session instance opened.|
 
@@ -410,8 +419,9 @@ Opens a session to connect to an SE in this reader. Multiple sessions can be ope
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
@@ -452,8 +462,9 @@ Closes all sessions opened on this reader. All channels opened by these sessions
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
@@ -501,15 +512,15 @@ Obtains the reader that provides this session.
 
 **Return value**
 
-| **Type** | **Description**                   |
+| **Type**| **Description**                   |
 | -------- | --------------------------- |
-| [Reader](#reader)   | Reader instance obtained. |
+| [Reader](#reader)   | Reader instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -554,16 +565,17 @@ Obtains the Answer to Reset (ATR) of this SE. If the ATR of this SE is not avail
 
 **Return value**
 
-| **Type** | **Description**                                    |
+| **Type**| **Description**                                    |
 | -------- | -------------------------------------------- |
-| number[] | Returns the ATR obtained if the SE has an available ATR; returns an empty array otherwise. |
+| number[] | Returns the ATR obtained if the SE has an available ATR; returns an empty array otherwise.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
@@ -597,8 +609,9 @@ Closes the session with the SE. All channels opened by this session will be clos
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
@@ -629,15 +642,15 @@ Checks whether this session is closed.
 
 **Return value**
 
-| **Type** | **Description**                            |
+| **Type**| **Description**                            |
 | -------- | ------------------------------------ |
-| boolean  | Returns **true** if the session is closed; returns **false** otherwise. |
+| boolean  | Returns **true** if the session is closed; returns **false** otherwise.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -672,8 +685,9 @@ Closes all channels opened on this session.
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, service state exception. |
 
 **Example**
@@ -704,22 +718,24 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide th
 
 **Parameters**
 
-| **Name** | **Type** | **Mandatory** | **Description**                                                    |
+| **Name**| **Type**| **Mandatory**| **Description**                                                    |
 | ---------- | -------- | ------ | ------------------------------------------------------------ |
 | aid        | number[] | Yes     |AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 
 **Return value**
 
-| **Type** | **Description**             |
+| **Type**| **Description**             |
 | -------- | --------------------- |
-| Promise\<[Channel](#channel)>  | Promise used to return the basic channel instance obtained. |
+| Promise\<[Channel](#channel)>  | Promise used to return the basic channel instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -765,17 +781,19 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide th
 
 **Parameters**
 
-| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -823,23 +841,25 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide th
 
 **Parameters**
 
-| **Name** | **Type** | **Mandatory** | **Description**                                                    |
+| **Name**| **Type**| **Mandatory**| **Description**                                                    |
 | ---------- | -------- | ------ | ------------------------------------------------------------ |
-| aid        | number[] | Yes      | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| aid        | number[] | Yes      | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | p2         | number   | Yes      |P2 parameter of the **SELECT APDU** command executed on this channel.                    |
 
 **Return value**
 
-| **Type** | **Description**             |
+| **Type**| **Description**             |
 | -------- | --------------------- |
-| Promise\<[Channel](#channel)>  | Promise used to return the basic channel instance obtained. |
+| Promise\<[Channel](#channel)>  | Promise used to return the basic channel instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -886,9 +906,9 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide th
 
 **Parameters**
 
-| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.                    |
 | callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
@@ -896,8 +916,10 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. If the SE cannot provide th
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -946,22 +968,24 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide 
 
 **Parameters**
 
-| **Name** | **Type** | **Mandatory** | **Description**                               |
+| **Name**| **Type**| **Mandatory**| **Description**                               |
 | ---------- | -------- | ------ | --------------------------------------- |
-| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 
 **Return value**
 
-| **Type** | **Description**                                                    |
+| **Type**| **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| Promise\<[Channel](#channel)>  | Promise used to return the logical channel instance obtained. |
+| Promise\<[Channel](#channel)>  | Promise used to return the logical channel instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1007,17 +1031,19 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide 
 
 **Parameters**
 
-| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
-| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the logical channel instance obtained. |
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the logical channel instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1065,23 +1091,25 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide 
 
 **Parameters**
 
-| **Name** | **Type** | **Mandatory** | **Description**                                 |
+| **Name**| **Type**| **Mandatory**| **Description**                                 |
 | ---------- | -------- | ------ | ----------------------------------------- |
-| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
+| aid        | number[] | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | p2         | number   | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel. |
 
 **Return value**
 
-| **Type** | **Description**      |
+| **Type**| **Description**      |
 | -------- | -------------- |
-| Promise\<[Channel](#channel)> | Promise used to return the logical channel instance obtained. |
+| Promise\<[Channel](#channel)> | Promise used to return the logical channel instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1128,18 +1156,20 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. If the SE cannot provide 
 
 **Parameters**
 
-| **Name** | **Type**              | **Mandatory** | **Description**                                                    |
+| **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
-| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected. |
-| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel. |
-| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the logical channel instance obtained. |
+| aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
+| p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.|
+| callback   | AsyncCallback\<[Channel](#channel)> | Yes     | Callback used to return the logical channel instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1191,15 +1221,15 @@ Obtains the session used to open this channel.
 
 **Return value**
 
-| **Type** | **Description**                     |
+| **Type**| **Description**                     |
 | -------- | ----------------------------- |
-| [Session](#session)  | Session instance obtained. |
+| [Session](#session)  | Session instance obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -1234,7 +1264,7 @@ Closes this channel.
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -1266,15 +1296,15 @@ Checks whether this channel is a basic channel.
 
 **Return value**
 
-| **Type** | **Description**                                                    |
+| **Type**| **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| boolean  | Returns **true** if the channel is a basic channel; returns **false** otherwise. |
+| boolean  | Returns **true** if the channel is a basic channel; returns **false** otherwise.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -1307,15 +1337,15 @@ Checks whether this channel is closed.
 
 **Return value**
 
-| **Type** | **Description**                                     |
+| **Type**| **Description**                                     |
 | -------- | --------------------------------------------- |
-| boolean  | Returns **true** if the channel is closed; returns **false** otherwise. |
+| boolean  | Returns **true** if the channel is closed; returns **false** otherwise.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -1348,15 +1378,15 @@ Obtains the response data including the status word of **SELECT Applet**.
 
 **Return value**
 
-| **Type** | **Description**                                                    |
+| **Type**| **Description**                                                    |
 | -------- | ------------------------------------------------------------ |
-| number[] | Response data including the status word obtained. |
+| number[] | Response data including the status word obtained.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 801  | Capability not supported. |
 
@@ -1389,22 +1419,24 @@ Transmits APDU data (as per ISO/IEC 7816) to the SE. This API uses a promise to 
 
 **Parameters**
 
-| **Name** | **Type** | **Mandatory** | **Description**                             |
+| **Name**| **Type**| **Mandatory**| **Description**                             |
 | ---------- | -------- | ------ | ------------------------------------- |
-| command    | number[] | Yes     | APDU data to send. |
+| command    | number[] | Yes     | APDU data to send.|
 
 **Return value**
 
-| **Type** | **Description**      |
+| **Type**| **Description**      |
 | -------- | -------------- |
-| Promise\<number[]> | Promise used to return the response received, in a number array. |
+| Promise\<number[]> | Promise used to return the response received, in a number array.|
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -1442,17 +1474,19 @@ Transmits APDU data (as per ISO/IEC 7816) to the SE. This API uses an asynchrono
 
 **Parameters**
 
-| **Name** | **Type**               | **Mandatory** | **Description**                             |
+| **Name**| **Type**               | **Mandatory**| **Description**                             |
 | ---------- | ----------------------- | ------ | ------------------------------------- |
-| command    | number[]                | Yes     | APDU data to send. |
+| command    | number[]                | Yes     | APDU data to send.|
 | callback   | AsyncCallback\<number[]> | Yes     | Callback used to return the response received, in a number array. |
 
 **Error codes**
 
 For details about error codes, see [SE Error Codes](errorcode-se.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |

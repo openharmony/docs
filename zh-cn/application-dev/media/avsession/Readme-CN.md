@@ -4,6 +4,7 @@
 - 本地媒体会话
   - [本地媒体会话概述](local-avsession-overview.md)
   - [媒体会话提供方](using-avsession-developer.md)
+  - [媒体会话提供方(C/C++)](using-ohavsession-developer.md)
   - [应用接入AVSession场景介绍](avsession-access-scene.md)
   <!--Del-->
   - [媒体会话控制方(仅对系统应用开放)](using-avsession-controller.md)

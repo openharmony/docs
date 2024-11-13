@@ -12,16 +12,16 @@ The **BackupExtensionContext** module provides the capability for accessing a sp
 ## Modules to Import
 
 ```ts
-import BackupExtensionContext from '@ohos.file.BackupExtensionContext';
+import  { BackupExtensionContext } from '@kit.CoreFileKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
-| Name| Type| Read-Only| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| backupDir<sup>12+</sup> | string | Yes| No| Temporary directory used for backup or restore. This directory cannot be used for other purposes. Currently, only **el1/** and **el2/** are supported.|
+| Name| Type| Mandatory| Description| 
+| -------- | -------- | -------- | -------- |
+| backupDir<sup>12+</sup> | string | Yes| Temporary directory used for backup or restore. This directory cannot be used for other purposes. Currently, only **el1/** and **el2/** are supported.|
 
 ## When to Use
 **BackupExtensionContext** is used to obtain a temporary directory for backup or restore.
@@ -29,8 +29,8 @@ import BackupExtensionContext from '@ohos.file.BackupExtensionContext';
 **Example**
 
 ```ts
-import BackupExtensionAbility from '@ohos.application.BackupExtensionAbility';
-import contextConstant from '@ohos.app.ability.contextConstant';
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+import { contextConstant } from '@kit.AbilityKit';
 
 export default class MyBackupExtAbility extends BackupExtensionAbility {
     async onBackup() {

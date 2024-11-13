@@ -1,10 +1,10 @@
-# Agent-powered Reminder
+# Agent-powered Reminder (ArkTS)
 
 ## Overview
 
 ### Introduction
 
-After an application switches to the background or an application process is terminated, it may have scheduled tasks for reminding users, for example, flash sale reminders for shopping applications. To meet this requirement, the system provides agent-powered reminders (implemented by **reminderAgentManager**). When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.
+After an application switches to the background or an application process is terminated, it may have scheduled tasks for reminding users, for example, flash sale reminders for shopping applications. To meet this requirement, the system provides agent-powered reminders (implemented by **reminderAgentManager**). When the application switches to the background or the process is terminated, the system sends reminders on behalf of the application. Currently, the following reminder types are supported: timer, calendar, and alarm.<!--RP1--><!--RP1End-->
 
 - Timer: reminders based on countdown timers
 
@@ -18,6 +18,8 @@ After an application switches to the background or an application process is ter
 
 - **Redirection limit**: The application that is redirected to upon a click on the notification must be the application that requested the agent-powered reminder.
 
+<!--RP2--><!--RP2End-->
+
 
 ## Available APIs
 
@@ -25,14 +27,14 @@ The table below uses promise as an example to describe the APIs used for develop
 
 **Table 1** Main APIs for agent-powered reminders
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a reminder. |
-| cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a reminder. |
-| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application. |
-| cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application. |
-| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Adds a notification slot. |
-| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a notification slot. |
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a reminder.|
+| cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a reminder.|
+| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.|
+| cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.|
+| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Adds a notification slot.|
+| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a notification slot.|
 
 
 ## How to Develop
@@ -114,7 +116,7 @@ The table below uses promise as an example to describe the APIs used for develop
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 5*60, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
         content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.
@@ -152,7 +154,7 @@ The table below uses promise as an example to describe the APIs used for develop
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 5*60, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
         content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.

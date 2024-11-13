@@ -1,12 +1,16 @@
-# 使用Node-API接口创建ArkTs运行时环境
+# 使用Node-API接口创建ArkTS运行时环境
 
 ## 场景介绍
 
-开发者通过pthread_create创建新线程后，可以通过`napi_create_ark_runtime`来创建一个新的ArkTs基础运行时环境，并通过该运行时环境加载ArkTs模块，目前仅支持在ArkTs模块中使用`console`接口打印日志，使用`timer`定时器功能。当使用结束后，开发者需要通过`napi_destroy_ark_runtime`来销毁所创建的ArkTs基础运行时环境。
+开发者通过pthread_create创建新线程后，可以通过`napi_create_ark_runtime`来创建一个新的ArkTS基础运行时环境，并通过该运行时环境加载ArkTS模块。当使用结束后，开发者需要通过`napi_destroy_ark_runtime`来销毁所创建的ArkTS基础运行时环境。
+
+## 约束限制
+
+一个进程最多只能创建16个运行时环境。
 
 ## 使用示例
 
-1. 接口声明、编译配置以及模块注册
+1. 接口声明、编译配置以及模块注册。
 
    **接口声明**
 
@@ -62,7 +66,7 @@
    }
    ```
 
-2. 新建线程并创建ArkTS基础运行时环境
+2. 新建线程并创建ArkTS基础运行时环境，加载自定义模块请参考[napi_load_module_with_info](./use-napi-load-module-with-info.md)。
 
    ```cpp
    // create_ark_runtime.cpp
@@ -86,7 +90,7 @@
            return nullptr;
        }
    
-       // 3. 使用ArtTs中的logger
+       // 3. 使用ArkTS中的logger
        napi_value logger;
        ret = napi_get_named_property(env, objUtils, "Logger", &logger);
        if (ret != napi_ok) {
@@ -94,7 +98,7 @@
        }
        ret = napi_call_function(env, objUtils, logger, 0, nullptr, nullptr);
    
-       // 4. 销毁arkts环境
+       // 4. 销毁ArkTS环境
        ret = napi_destroy_ark_runtime(&env);
    
        return nullptr;
@@ -110,7 +114,7 @@
    }
    ```
 
-3. ArkTS侧示例代码
+3. 编写ArkTS侧示例代码。
 
    ```ts
    // ObjectUtils.ets

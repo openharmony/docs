@@ -4,7 +4,8 @@ The **DataAbilityHelper** object is obtained through [acquireDataAbilityHelper](
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
 > Except [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap), the APIs of this module can be used only in the FA model.
 
 ## Modules to Import
@@ -33,11 +34,11 @@ Opens a file with a specified URI. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                  | Mandatory | Description                              |
+| Name    | Type                  | Mandatory| Description                              |
 | -------- | ---------------------- | ---- | ---------------------------------- |
 | uri      | string                 | Yes  | URI of the file to open.          |
 | mode     | string                 | Yes  | Mode for opening the file. The value **r** indicates read-only access, **w** indicates **write-only** access, and **rw** indicates read-write access.           |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the file descriptor. |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the file descriptor.|
 
 **Example**
 
@@ -71,16 +72,16 @@ Opens a file with a specified URI. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                    |
+| Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | Yes  | URI of the file to open. |
+| uri  | string | Yes  | URI of the file to open.|
 | mode | string | Yes  | Mode for opening the file. The value **r** indicates read-only access, **w** indicates **write-only** access, and **rw** indicates read-write access. |
 
 **Return value**
 
 | Type            | Description            |
 | ---------------- | ---------------- |
-| Promise\<number> | Promise used to return the file descriptor. |
+| Promise\<number> | Promise used to return the file descriptor.|
 
 **Example**
 
@@ -98,7 +99,7 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) =>
 });
 ```
 
-## DataAbilityHelper.on
+## DataAbilityHelper.on('dataChange')
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
@@ -110,10 +111,10 @@ Registers an observer to listen for changes in the data specified by a given URI
 
 **Parameters**
 
-| Name    | Type                | Mandatory | Description                    |
+| Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | The value **'dataChange'** means data changes.              |
-| uri      | string               | Yes  | URI of the data. |
+| uri      | string               | Yes  | URI of the data.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the observer is registered, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
@@ -136,7 +137,7 @@ DAHelper.on(
 );
 ```
 
-## DataAbilityHelper.off
+## DataAbilityHelper.off('dataChange')
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
@@ -148,10 +149,10 @@ Deregisters the observer that listens for changes in the data specified by a giv
 
 **Parameters**
 
-| Name    | Type                | Mandatory | Description                    |
+| Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | The value **'dataChange'** means data changes.              |
-| uri      | string               | Yes  | URI of the data. |
+| uri      | string               | Yes  | URI of the data.|
 | callback | AsyncCallback\<void> | No  | Callback used to return the result. If the observer is deregistered, **err** is **undefined**. Otherwise, **err** is an error object.      |
 
 **Example**
@@ -190,10 +191,10 @@ Obtains the media resource type of the data specified by a given URI. This API u
 
 **Parameters**
 
-| Name    | Type                  | Mandatory | Description                                         |
+| Name    | Type                  | Mandatory| Description                                         |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
 | uri      | string                 | Yes  | URI of the data.                     |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the media resource type. |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the media resource type.|
 
 **Example**
 
@@ -226,15 +227,15 @@ Obtains the media resource type of the data specified by a given URI. This API u
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                    |
+| Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | Yes  | URI of the data. |
+| uri  | string | Yes  | URI of the data.|
 
 **Return value**
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the media resource type. |
+| Promise\<string> | Promise used to return the media resource type.|
 
 **Example**
 
@@ -263,11 +264,11 @@ Obtains the supported media resource types of a specified file. This API uses an
 
 **Parameters**
 
-| Name          | Type                          | Mandatory | Description                              |
+| Name          | Type                          | Mandatory| Description                              |
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
 | uri            | string                         | Yes  | URI of the file.          |
 | mimeTypeFilter | string                         | Yes  | Media resource type of the file to obtain.      |
-| callback       | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array holding the media resource types. |
+| callback       | AsyncCallback\<Array\<string>> | Yes  | Callback used to return an array holding the media resource types.|
 
 **Example**
 
@@ -300,16 +301,16 @@ Obtains the supported media resource types of a specified file. This API uses a 
 
 **Parameters**
 
-| Name          | Type  | Mandatory | Description                        |
+| Name          | Type  | Mandatory| Description                        |
 | -------------- | ------ | ---- | ---------------------------- |
 | uri            | string | Yes  | URI of the file.    |
-| mimeTypeFilter | string | Yes  | Media resource type of the file to obtain. |
+| mimeTypeFilter | string | Yes  | Media resource type of the file to obtain.|
 
 **Return value**
 
 | Type                    | Description                    |
 | ------------------------ | ------------------------ |
-| Promise\<Array\<string>> | Promise used to return an array holding the media resource types. |
+| Promise\<Array\<string>> | Promise used to return an array holding the media resource types.|
 
 **Example**
 
@@ -338,10 +339,10 @@ Converts the URI that refers to a DataAbility into a normalized URI. This API us
 
 **Parameters**
 
-| Name    | Type                  | Mandatory | Description                                                        |
+| Name    | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                 | Yes  | URI object to normalize.                                     |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned. |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
 
 **Example**
 
@@ -374,15 +375,15 @@ Converts the URI that refers to a DataAbility into a normalized URI. This API us
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                   |
+| Name| Type  | Mandatory| Description                   |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | Yes  | URI object to normalize. |
+| uri  | string | Yes  | URI object to normalize.|
 
 **Return value**
 
 | Type            | Description                                                  |
 | ---------------- | ------------------------------------------------------ |
-| Promise\<string> | Promise used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned. |
+| Promise\<string> | Promise used to return the normalized URI object if the Data ability supports URI normalization. If the Data ability does not support URI normalization, **null** is returned.|
 
 **Example**
 
@@ -411,10 +412,10 @@ Converts a normalized URI generated by **normalizeUri** to a denormalized one. T
 
 **Parameters**
 
-| Name    | Type                  | Mandatory | Description                                               |
+| Name    | Type                  | Mandatory| Description                                               |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | Yes  | URI object to denormalize.                            |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the denormalized URI object. |
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the denormalized URI object.|
 
 **Example**
 
@@ -447,15 +448,15 @@ Converts a normalized URI generated by **normalizeUri** to a denormalized one. T
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                   |
+| Name| Type  | Mandatory| Description                   |
 | ---- | ------ | ---- | ----------------------- |
-| uri  | string | Yes  | URI object to normalize. |
+| uri  | string | Yes  | URI object to normalize.|
 
 **Return value**
 
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
-| Promise\<string> |Promise used to return the denormalized URI object. |
+| Promise\<string> |Promise used to return the denormalized URI object.|
 
 **Example**
 
@@ -484,9 +485,9 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 **Parameters**
 
-| Name    | Type                | Mandatory | Description                    |
+| Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| uri      | string               | Yes  | URI of the data that changes. |
+| uri      | string               | Yes  | URI of the data that changes.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the observer is registered, **err** is **undefined**. Otherwise, **err** is an error object.              |
 
 **Example**
@@ -520,15 +521,15 @@ Notifies the registered observer of a change to the data specified by the URI. T
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                    |
+| Name| Type  | Mandatory| Description                    |
 | ---- | ------ | ---- | ------------------------ |
-| uri  | string | Yes  | URI of the data that changes. |
+| uri  | string | Yes  | URI of the data that changes.|
 
 **Return value**
 
 | Type          | Description                 |
 | -------------- | --------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -557,10 +558,10 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name        | Type                  | Mandatory | Description                                                  |
+| Name        | Type                  | Mandatory| Description                                                  |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
 | uri          | string                 | Yes  | URI of the data to insert.                              |
-| valuesBucket | rdb.ValuesBucket       | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted. |
+| valuesBucket | rdb.ValuesBucket       | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
 | callback     | AsyncCallback\<number> | Yes  | Callback used to return the index of the inserted data record.                    |
 
 **Example**
@@ -601,16 +602,16 @@ Inserts a single data record into the database. This API uses a promise to retur
 
 **Parameters**
 
-| Name        | Type            | Mandatory | Description                                                  |
+| Name        | Type            | Mandatory| Description                                                  |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
 | uri          | string           | Yes  | URI of the data to insert.                              |
-| valuesBucket | rdb.ValuesBucket | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted. |
+| valuesBucket | rdb.ValuesBucket | Yes  | Data record to insert. If this parameter is **null**, a blank row will be inserted.|
 
 **Return value**
 
 | Type            | Description                    |
 | ---------------- | ------------------------ |
-| Promise\<number> | Promise used to return the index of the inserted data record. |
+| Promise\<number> | Promise used to return the index of the inserted data record.|
 
 **Example**
 
@@ -645,11 +646,11 @@ Inserts multiple data records into the database. This API uses an asynchronous c
 **Model restriction**: This API can be used only in the FA model.
 **Parameters**
 
-| Name        | Type                   | Mandatory | Description                            |
+| Name        | Type                   | Mandatory| Description                            |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | Yes  | URI of the data to insert.        |
 | valuesBuckets | Array\<[rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)> | Yes  | Data records to insert.          |
-| callback     | AsyncCallback\<number>  | Yes  | Callback used to return the number of inserted data records. |
+| callback     | AsyncCallback\<number>  | Yes  | Callback used to return the number of inserted data records.|
 
 **Example**
 
@@ -686,16 +687,16 @@ Inserts multiple data records into the database. This API uses a promise to retu
 
 **Parameters**
 
-| Name        | Type                   | Mandatory | Description                    |
+| Name        | Type                   | Mandatory| Description                    |
 | ------------ | ----------------------- | ---- | ------------------------ |
-| uri          | string                  | Yes  | URI of the data to insert. |
+| uri          | string                  | Yes  | URI of the data to insert.|
 | valuesBuckets | Array<[rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)> | Yes  | Data records to insert.  |
 
 **Return value**
 
 | Type            | Description                  |
 | ---------------- | ---------------------- |
-| Promise\<number> | Promise used to return the number of inserted data records. |
+| Promise\<number> | Promise used to return the number of inserted data records.|
 
 **Example**
 
@@ -728,10 +729,10 @@ Deletes one or more data records from the database. This API uses an asynchronou
 
 **Parameters**
 
-| Name        | Type                             | Mandatory | Description                                            |
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to delete.                        |
-| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**. |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 | callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of deleted data records.              |
 
 **Example**
@@ -767,16 +768,16 @@ Deletes one or more data records from the database. This API uses a promise to r
 
 **Parameters**
 
-| Name        | Type                             | Mandatory | Description                                            |
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to delete.                        |
-| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is **null**. |
+| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
 
 | Type            | Description                    |
 | ---------------- | ------------------------ |
-| Promise\<number> | Promise used to return the number of deleted data records. |
+| Promise\<number> | Promise used to return the number of deleted data records.|
 
 **Example**
 
@@ -807,7 +808,7 @@ Uses a custom processing logic to delete data records from the database. This AP
 
 **Parameters**
 
-| Name        | Type                             | Mandatory | Description                                            |
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to delete.                        |
 | callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of deleted data records.              |
@@ -843,11 +844,11 @@ Updates data in the database. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name        | Type                             | Mandatory | Description                                            |
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
 | valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
-| predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**. |
+| predicates   | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 | callback     | AsyncCallback\<number>            | Yes  | Callback used to return the number of updated data records.                |
 
 **Example**
@@ -890,17 +891,17 @@ Updates data in the database. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name        | Type                             | Mandatory | Description                                            |
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
 | valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
-| predicates   | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is **null**. |
+| predicates   | dataAbility.DataAbilityPredicates | No  | Filter criteria. You should define the processing logic when this parameter is **null**.|
 
 **Return value**
 
 | Type            | Description                                        |
 | ---------------- | -------------------------------------------- |
-| Promise\<number> | Promise used to return the number of updated data records. |
+| Promise\<number> | Promise used to return the number of updated data records.|
 
 **Example**
 
@@ -938,7 +939,7 @@ Uses a custom processing logic to update data records in the database. This API 
 
 **Parameters**
 
-| Name        | Type                             | Mandatory | Description                                            |
+| Name        | Type                             | Mandatory| Description                                            |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | Yes  | URI of the data to update.                        |
 | valuesBucket | rdb.ValuesBucket                  | Yes  | New values.                              |
@@ -982,11 +983,11 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name      | Type                             | Mandatory | Description                                            |
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
 | columns    | Array\<string>                | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
-| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database. |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
 | callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
@@ -1023,7 +1024,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name      | Type                             | Mandatory | Description                                            |
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
 | callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
@@ -1059,7 +1060,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name      | Type                             | Mandatory | Description                                            |
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
 | columns    | Array\<string>                | Yes  | Columns to query. If this parameter is **null**, all columns will be queried.  |
@@ -1097,10 +1098,10 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name      | Type                             | Mandatory | Description                                            |
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
-| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database. |
+| predicates | dataAbility.DataAbilityPredicates | Yes  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
 | callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | Yes  | Callback used to return the result.                        |
 
 **Example**
@@ -1136,17 +1137,17 @@ Queries data in the database. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name      | Type                             | Mandatory | Description                                            |
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | Yes  | URI of the data to query.                        |
 | columns    | Array\<string>               | No  | Columns to query. If this parameter is **null**, all columns will be queried.  |
-| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database. |
+| predicates | dataAbility.DataAbilityPredicates | No  | Filter criteria. When **null** is passed in, you need to customize the logic for querying data in the database.|
 
 **Return value**
 
 | Type               | Description          |
 | ------------------- | -------------- |
-| Promise\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)> | Promise used to return the result. |
+| Promise\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)> | Promise used to return the result.|
 
 **Example**
 
@@ -1178,13 +1179,13 @@ Calls an extended method defined by the DataAbility. This API uses an asynchrono
 
 **Parameters**
 
-| Name      | Type                             | Mandatory | Description                                            |
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                 | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.          |
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  | Parameter to pass in.     |
 | extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | Yes  | Key-value pair parameter.      |
-| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Yes | Callback used to return the extended parameters in the format of key-value pairs.    |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Yes| Callback used to return the extended parameters in the format of key-value pairs.    |
 
 **Example**
 
@@ -1218,7 +1219,7 @@ Calls an extended method defined by the DataAbility. This API uses a promise to 
 
 **Parameters**
 
-| Name      | Type                             | Mandatory | Description                                            |
+| Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                 | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.          |
 | method    | string                  | Yes  | Name of the API to call.  |
@@ -1227,9 +1228,9 @@ Calls an extended method defined by the DataAbility. This API uses a promise to 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 |------ | ------- |
-|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Promise used to return the extended parameters in the format of key-value pairs. |
+|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Promise used to return the extended parameters in the format of key-value pairs.|
 
 **Example**
 
@@ -1262,7 +1263,7 @@ Operates data in the database in batches. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name       | Type                         | Mandatory | Description                                            |
+| Name       | Type                         | Mandatory| Description                                            |
 | ----------| ---------------------------------| ---- | ------------------------------------------------ |
 | uri       | string                           | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | Yes  | An array holding the data operations on the database.  |
@@ -1301,16 +1302,16 @@ Operates data in the database in batches. This API uses a promise to return the 
 
 **Parameters**
 
-| Name         | Type                           | Mandatory | Description                                            |
+| Name         | Type                           | Mandatory| Description                                            |
 | ----------    | -------------------------------| ---- | ------------------------------------------------ |
 | uri           | string                         | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>  | Yes  | An array holding the data operations on the database.  |
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 |------ | ------- |
-|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | Promise used to return the result of each operation in the **DataAbilityResult** array. |
+|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | Promise used to return the result of each operation in the **DataAbilityResult** array.|
 
 **Example**
 
@@ -1341,6 +1342,6 @@ Defines the **PacMap** type used for data storage.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
-| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes | Data stored in key-value pairs.|
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| Data stored in key-value pairs.|

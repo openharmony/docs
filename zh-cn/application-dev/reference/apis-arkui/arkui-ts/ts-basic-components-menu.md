@@ -18,7 +18,8 @@ Menu()
 
 作为菜单的固定容器，无参数。
 
-> **说明:**
+> **说明:** 
+>
 > 菜单和菜单项宽度计算规则：
 >
 > 布局过程中，期望每个菜单项的宽度一致。若子组件设置了宽度，则以[尺寸计算规则](ts-universal-attributes-size.md#constraintsize)为准。
@@ -26,6 +27,8 @@ Menu()
 > 不设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置默认2栅格的宽度，若菜单项内容区比2栅格宽，则会自适应撑开。
 >
 > 设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置减去padding后的固定宽度。
+>
+> 设置Menu边框[width](ts-universal-attributes-size.md#width)时，支持设置的最小宽度为64vp。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -63,10 +66,9 @@ font(value: Font)
 
 **参数：**
 
-| 参数名 | 类型                     | 必填 | 说明                   |
-| ------ | ------------------------ | ---- | ---------------------- |
-| value  | [Font](ts-types.md#font) | 是   | Menu中所有文本的尺寸。 |
-
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | Menu中所有文本的尺寸。<br/>默认值：<br/>{<br/>      size: 16,<br/>      family: 'HarmonyOS Sans',<br/>      weight: FontWeight.Medium,<br/>      style: FontStyle.Normal<br/>} |
 ### fontColor<sup>10+</sup>
 
 fontColor(value: ResourceColor)
@@ -81,7 +83,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。<br/>默认值：'#E5000000' |
 
 ### radius<sup>10+</sup>
 
@@ -97,23 +99,7 @@ radius(value: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/> 默认值跟随主题。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
-
-### width<sup>10+</sup>
-
-width(value: Length)
-
-设置Menu边框宽度，支持设置的最小宽度为64vp。
-
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                         | 必填 | 说明           |
-| ------ | ---------------------------- | ---- | -------------- |
-| value  | [Length](ts-types.md#length) | 是   | Menu边框宽度。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> <br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
 
 ### menuItemDivider<sup>12+</sup>
 
@@ -163,9 +149,9 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- |--------------|
-| mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。 |
+| mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。<br/>默认值：SubMenuExpandingMode.SIDE_EXPAND  |
 
-## subMenuExpandingMode<sup>12+</sup>枚举说明
+## SubMenuExpandingMode<sup>12+</sup>枚举说明
 
 Menu子菜单展开样式枚举。
 
@@ -173,7 +159,7 @@ Menu子菜单展开样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 描述                                       |
+| 名称            | 说明                                       |
 | --------------- | ------------------------------------------ |
 | SIDE_EXPAND     | 默认展开样式, 子菜单位于同一平面侧边展开。 |
 | EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。     |
@@ -247,7 +233,7 @@ struct Index {
 }
 ```
 
-![menu1](figures/menu1.png)
+![menu](figures/menu.png)
 
 ### 示例2
 

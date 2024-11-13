@@ -146,7 +146,7 @@ For details about the error codes, see [Battery Information Error Codes](errorco
   console.info("The result is: " + result);
   ```
 
-## BatteryConfig
+## Attributes
 
 Describes battery information.
 

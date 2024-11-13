@@ -1,4 +1,4 @@
-# Authorizing File Access (C/C++)
+# Persisting Temporary Permissions (C/C++)
 
 ## When to Use
 
@@ -23,8 +23,6 @@ For details about the APIs, see [FileShare](../reference/apis-core-file-kit/file
 
 - To call **FileShare** APIs, the application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md).
 
-- The APL of the ohos.permission.FILE_ACCESS_PERSIST permission is system_basic. If your application is of the normal APL, request this permission via the ACL.
-
 ## How to Develop
 
 The following example describes how to use the **FileShare** APIs.
@@ -48,7 +46,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     static const uint32_t POLICY_NUM = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = { 
+    FileShare_PolicyInfo policy[POLICY_NUM] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     FileShare_PolicyErrorResult* result = nullptr;

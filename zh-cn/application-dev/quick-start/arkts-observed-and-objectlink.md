@@ -21,13 +21,6 @@
 - \@Observed用于嵌套类场景中，观察对象类属性变化，要配合自定义组件使用（示例详见[嵌套对象](#嵌套对象)），如果要做数据双/单向同步，需要搭配\@ObjectLink或者\@Prop使用（示例详见[\@Prop与\@ObjectLink的差异](#prop与objectlink的差异)）。
 
 
-## 限制条件
-
-- 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
-
-- \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
-
-
 ## 装饰器说明
 
 | \@Observed类装饰器 | 说明                                |
@@ -84,38 +77,38 @@ this.objLink= ...
 
 
 ```ts
-class ClassA {
-  public c: number;
+class Child {
+  public num: number;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(num: number) {
+    this.num = num;
   }
 }
 
 @Observed
-class ClassB {
-  public a: ClassA;
-  public b: number;
+class Parent {
+  public child: Child;
+  public count: number;
 
-  constructor(a: ClassA, b: number) {
-    this.a = a;
-    this.b = b;
+  constructor(child: Child, count: number) {
+    this.child = child;
+    this.count = count;
   }
 }
 ```
 
-以上示例中，ClassB被\@Observed装饰，其成员变量的赋值的变化是可以被观察到的，但对于ClassA，没有被\@Observed装饰，其属性的修改不能被观察到。
+以上示例中，Parent被\@Observed装饰，其成员变量的赋值的变化是可以被观察到的，但对于Child，没有被\@Observed装饰，其属性的修改不能被观察到。
 
 
 ```ts
-@ObjectLink b: ClassB
+@ObjectLink parent: Parent
 
 // 赋值变化可以被观察到
-this.b.a = new ClassA(5)
-this.b.b = 5
+this.parent.child = new Child(5)
+this.parent.count = 5
 
-// ClassA没有被@Observed装饰，其属性的变化观察不到
-this.b.a.c = 5
+// Child没有被@Observed装饰，其属性的变化观察不到
+this.parent.child.num = 5
 ```
 
 \@ObjectLink：\@ObjectLink只能接收被\@Observed装饰class的实例，推荐设计单独的自定义组件来渲染每一个数组或对象。此时，对象数组或嵌套对象（属性是对象的对象称为嵌套对象）需要两个自定义组件，一个自定义组件呈现外部数组/对象，另一个自定义组件呈现嵌套在数组/对象内的类对象。可以观察到：
@@ -135,29 +128,29 @@ class DateClass extends Date {
 }
 
 @Observed
-class ClassB {
-  public a: DateClass;
+class NewDate {
+  public data: DateClass;
 
-  constructor(a: DateClass) {
-    this.a = a;
+  constructor(data: DateClass) {
+    this.data = data;
   }
 }
 
 @Component
-struct ViewA {
+struct Child {
   label: string = 'date';
-  @ObjectLink a: DateClass;
+  @ObjectLink data: DateClass;
 
   build() {
     Column() {
       Button(`child increase the day by 1`)
         .onClick(() => {
-          this.a.setDate(this.a.getDate() + 1);
+          this.data.setDate(this.data.getDate() + 1);
         })
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
-        selected: this.a
+        selected: this.data
       })
     }
   }
@@ -165,20 +158,20 @@ struct ViewA {
 
 @Entry
 @Component
-struct ViewB {
-  @State b: ClassB = new ClassB(new DateClass('2023-1-1'));
+struct Parent {
+  @State newData: NewDate = new NewDate(new DateClass('2023-1-1'));
 
   build() {
     Column() {
-      ViewA({ label: 'date', a: this.b.a })
+      Child({ label: 'date', data: this.newData.data })
 
       Button(`parent update the new date`)
         .onClick(() => {
-          this.b.a = new DateClass('2023-07-07');
+          this.newData.data = new DateClass('2023-07-07');
         })
-      Button(`ViewB: this.b = new ClassB(new DateClass('2023-08-20'))`)
+      Button(`ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))`)
         .onClick(() => {
-          this.b = new ClassB(new DateClass('2023-08-20'));
+          this.newData = new NewDate(new DateClass('2023-08-20'));
         })
     }
   }
@@ -196,7 +189,150 @@ struct ViewB {
    1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法
    2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
-2. 属性更新：当\@Observed装饰的class属性改变时，会走到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+
+
+## 限制条件
+
+1. 使用\@Observed装饰class会改变class原始的原型链，\@Observed和其他类装饰器装饰同一个class可能会带来问题。
+
+2. \@ObjectLink装饰器不能在\@Entry装饰的自定义组件中使用。
+
+3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+class Test {
+  msg: number;
+
+  constructor(msg: number) {
+    this.msg = msg;
+  }
+}
+
+// 错误写法，编译报错
+@ObjectLink count;
+@ObjectLink test: Test;
+
+// 正确写法
+@ObjectLink count: Info;
+```
+
+4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+// 错误写法，编译报错
+@ObjectLink count: Info = new Info(10);
+
+// 正确写法
+@ObjectLink count: Info;
+```
+
+5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
+
+【反例】
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink num: Info;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num.count}`)
+        .onClick(() => {
+          // 错误写法，\@ObjectLink装饰的变量不能被赋值
+          this.num = new Info(10);
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State num: Info = new Info(10);
+
+  build() {
+    Column() {
+      Text(`count的值: ${this.num}`)
+      Child({num: this.num})
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+@Observed
+class Info {
+  count: number;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink num: Info;
+
+  build() {
+    Column() {
+      Text(`num的值: ${this.num.count}`)
+        .onClick(() => {
+          // 正确写法，可以更改@ObjectLink装饰变量的成员属性
+          this.num.count = 20;
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State num: Info = new Info(10);
+
+  build() {
+    Column() {
+      Text(`count的值: ${this.num}`)
+      Button('click')
+        .onClick(() => {
+          // 可以在父组件做整体替换
+          this.num = new Info(30);
+        })
+      Child({num: this.num})
+    }
+  }
+}
+```
 
 
 ## 使用场景
@@ -378,29 +514,29 @@ ViewC中的事件句柄：
 let NextID: number = 1;
 
 @Observed
-class ClassA {
+class Info {
   public id: number;
-  public c: number;
+  public info: number;
 
-  constructor(c: number) {
+  constructor(info: number) {
     this.id = NextID++;
-    this.c = c;
+    this.info = info;
   }
 }
 
 @Component
-struct ViewA {
-  // 子组件ViewA的@ObjectLink的类型是ClassA
-  @ObjectLink a: ClassA;
-  label: string = 'ViewA1';
+struct Child {
+  // 子组件Child的@ObjectLink的类型是Info
+  @ObjectLink info: Info;
+  label: string = 'ViewChild';
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c = ${this.a ? this.a.c : "undefined"}`)
+      Button(`ViewChild [${this.label}] this.info.info = ${this.info ? this.info.info : "undefined"}`)
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.a.c += 1;
+          this.info.info += 1;
         })
     }
   }
@@ -408,35 +544,35 @@ struct ViewA {
 
 @Entry
 @Component
-struct ViewB {
-  // ViewB中有@State装饰的ClassA[]
-  @State arrA: ClassA[] = [new ClassA(0), new ClassA(0)];
+struct Parent {
+  // Parent中有@State装饰的Info[]
+  @State arrA: Info[] = [new Info(0), new Info(0)];
 
   build() {
     Column() {
       ForEach(this.arrA,
-        (item: ClassA) => {
-          ViewA({ label: `#${item.id}`, a: item })
+        (item: Info) => {
+          Child({ label: `#${item.id}`, info: item })
         },
-        (item: ClassA): string => item.id.toString()
+        (item: Info): string => item.id.toString()
       )
-      // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的ClassA的实例
-      ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })
-      ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })
+      // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的Info的实例
+      Child({ label: `ViewChild this.arrA[first]`, info: this.arrA[0] })
+      Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })
 
-      Button(`ViewB: reset array`)
+      Button(`ViewParent: reset array`)
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA = [new ClassA(0), new ClassA(0)];
+          this.arrA = [new Info(0), new Info(0)];
         })
-      Button(`ViewB: push`)
+      Button(`ViewParent: push`)
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA.push(new ClassA(0))
+          this.arrA.push(new Info(0))
         })
-      Button(`ViewB: shift`)
+      Button(`ViewParent: shift`)
         .width(320)
         .margin(10)
         .onClick(() => {
@@ -446,17 +582,17 @@ struct ViewB {
             console.log("length <= 0")
           }
         })
-      Button(`ViewB: chg item property in middle`)
+      Button(`ViewParent: item property in middle`)
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA[Math.floor(this.arrA.length / 2)].c = 10;
+          this.arrA[Math.floor(this.arrA.length / 2)].info = 10;
         })
-      Button(`ViewB: chg item property in middle`)
+      Button(`ViewParent: item property in middle`)
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA[Math.floor(this.arrA.length / 2)] = new ClassA(11);
+          this.arrA[Math.floor(this.arrA.length / 2)] = new Info(11);
         })
     }
   }
@@ -465,15 +601,15 @@ struct ViewB {
 
 ![Observed_ObjectLink_object_array](figures/Observed_ObjectLink_object_array.gif)
 
-- this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..) ：该状态变量的改变触发2次更新：
-  1. ForEach：数组项的赋值导致ForEach的[itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的ViewA组件实例。
-  2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })：上述更改改变了数组中第二个元素，所以绑定this.arrA[1]的ViewA将被更新。
+- this.arrA[Math.floor(this.arrA.length/2)] = new Info(..) ：该状态变量的改变触发2次更新：
+  1. ForEach：数组项的赋值导致ForEach的[itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的Child组件实例。
+  2. Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })：上述更改改变了数组中第二个元素，所以绑定this.arrA[1]的Child将被更新。
 
-- this.arrA.push(new ClassA(0)) ： 将触发2次不同效果的更新：
-  1. ForEach：新添加的ClassA对象对于ForEach是未知的[itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)，ForEach的item builder将执行，创建新的ViewA组件实例。
-  2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })：数组的最后一项有更改，因此引起第二个ViewA的实例的更改。对于ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })，数组的更改并没有触发一个数组项更改的改变，所以第一个ViewA不会刷新。
+- this.arrA.push(new Info(0)) ： 将触发2次不同效果的更新：
+  1. ForEach：新添加的Info对象对于ForEach是未知的[itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)，ForEach的item builder将执行，创建新的Child组件实例。
+  2. Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })：数组的最后一项有更改，因此引起第二个Child的实例的更改。对于Child({ label: `ViewChild this.arrA[first]`, info: this.arrA[0] })，数组的更改并没有触发一个数组项更改的改变，所以第一个Child不会刷新。
 
-- this.arrA[Math.floor(this.arrA.length/2)].c：@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性的变化将被\@ObjectLink观察到。
+- this.arrA[Math.floor(this.arrA.length/2)].info：@State无法观察到第二层的变化，但是Info被\@Observed装饰，Info的属性的变化将被\@ObjectLink观察到。
 
 
 ### 二维数组
@@ -483,18 +619,18 @@ struct ViewB {
 
 ```ts
 @Observed
-class StringArray extends Array<String> {
+class StringArray extends Array<string> {
 }
 ```
 
 使用new StringArray()来构造StringArray的实例，new运算符使得\@Observed生效，\@Observed观察到StringArray的属性变化。
 
-声明一个从Array扩展的类class StringArray extends Array&lt;String&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
+声明一个从Array扩展的类class StringArray extends Array&lt;string&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
 
 
 ```ts
 @Observed
-class StringArray extends Array<String> {
+class StringArray extends Array<string> {
 }
 
 @Component
@@ -534,7 +670,7 @@ struct IndexPage {
         (itemArr: StringArray) => {
           ItemPage({ itemArr: itemArr })
         },
-        (itemArr: string) => itemArr[0]
+        (itemArr: StringArray) => itemArr[0]
       )
 
       Divider()
@@ -542,7 +678,7 @@ struct IndexPage {
       Button('update')
         .onClick(() => {
           console.error('Update all items in arr');
-          if ((this.arr[0] as Array<String>)[0] !== undefined) {
+          if ((this.arr[0] as StringArray)[0] !== undefined) {
             // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
             // 因此需要确保推送的字符串是唯一的。
             this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
@@ -571,11 +707,11 @@ struct IndexPage {
 
 ```ts
 @Observed
-class ClassA {
-  public a: MyMap<number, string>;
+class Info {
+  public info: MyMap<number, string>;
 
-  constructor(a: MyMap<number, string>) {
-    this.a = a;
+  constructor(info: MyMap<number, string>) {
+    this.info = info;
   }
 }
 
@@ -597,12 +733,12 @@ export class MyMap<K, V> extends Map<K, V> {
 @Entry
 @Component
 struct MapSampleNested {
-  @State message: ClassA = new ClassA(new MyMap("myMap", [[0, "a"], [1, "b"], [3, "c"]]));
+  @State message: Info = new Info(new MyMap("myMap", [[0, "a"], [1, "b"], [3, "c"]]));
 
   build() {
     Row() {
       Column() {
-        MapSampleNestedChild({ myMap: this.message.a })
+        MapSampleNestedChild({ myMap: this.message.info })
       }
       .width('100%')
     }
@@ -667,11 +803,11 @@ struct MapSampleNestedChild {
 
 ```ts
 @Observed
-class ClassA {
-  public a: MySet<number>;
+class Info {
+  public info: MySet<number>;
 
-  constructor(a: MySet<number>) {
-    this.a = a;
+  constructor(info: MySet<number>) {
+    this.info = info;
   }
 }
 
@@ -693,12 +829,12 @@ export class MySet<T> extends Set<T> {
 @Entry
 @Component
 struct SetSampleNested {
-  @State message: ClassA = new ClassA(new MySet("Set", [0, 1, 2, 3, 4]));
+  @State message: Info = new Info(new MySet("Set", [0, 1, 2, 3, 4]));
 
   build() {
     Row() {
       Column() {
-        SetSampleNestedChild({ mySet: this.message.a })
+        SetSampleNestedChild({ mySet: this.message.info })
       }
       .width('100%')
     }
@@ -747,31 +883,31 @@ struct SetSampleNestedChild {
 
 ## ObjectLink支持联合类型
 
-@ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为ClassA | ClassB | undefined，点击父组件Page2中的Button改变count的属性或者类型，Child中也会对应刷新。
+@ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
 ```ts
 @Observed
-class ClassA {
-  public a: number;
+class Source {
+  public source: number;
 
-  constructor(a: number) {
-    this.a = a;
+  constructor(source: number) {
+    this.source = source;
   }
 }
 
 @Observed
-class ClassB {
-  public b: number;
+class Data {
+  public data: number;
 
-  constructor(b: number) {
-    this.b = b;
+  constructor(data: number) {
+    this.data = data;
   }
 }
 
 @Entry
 @Component
-struct Page2 {
-  @State count: ClassA | ClassB | undefined = new ClassA(10)
+struct Parent {
+  @State count: Source | Data | undefined = new Source(10)
 
   build() {
     Column() {
@@ -780,25 +916,25 @@ struct Page2 {
       Button('change count property')
         .onClick(() => {
           // 判断count的类型，做属性的更新
-          if (this.count instanceof ClassA) {
-            this.count.a += 1
-          } else if (this.count instanceof ClassB) {
-            this.count.b += 1
+          if (this.count instanceof Source) {
+            this.count.source += 1
+          } else if (this.count instanceof Data) {
+            this.count.data += 1
           } else {
             console.info('count is undefined, cannot change property')
           }
         })
 
-      Button('change count to ClassA')
+      Button('change count to Source')
         .onClick(() => {
-          // 赋值为ClassA的实例
-          this.count = new ClassA(100)
+          // 赋值为Source的实例
+          this.count = new Source(100)
         })
 
-      Button('change count to ClassB')
+      Button('change count to Data')
         .onClick(() => {
-          // 赋值为ClassA的实例
-          this.count = new ClassB(100)
+          // 赋值为Data的实例
+          this.count = new Data(100)
         })
 
       Button('change count to undefined')
@@ -812,14 +948,15 @@ struct Page2 {
 
 @Component
 struct Child {
-  @ObjectLink count: ClassA | ClassB | undefined
+  @ObjectLink count: Source | Data | undefined
 
   build() {
     Column() {
-      Text(`count is instanceof ${this.count instanceof ClassA ? 'ClassA' : this.count instanceof ClassB ? 'ClassB' : 'undefined'}`)
+      Text(`count is instanceof ${this.count instanceof Source ? 'Source' :
+        this.count instanceof Data ? 'Data' : 'undefined'}`)
         .fontSize(30)
 
-      Text(`count's property is  ${this.count instanceof ClassA ? this.count.a : this.count?.b}`).fontSize(15)
+      Text(`count's property is  ${this.count instanceof Source ? this.count.source : this.count?.data}`).fontSize(15)
 
     }.width('100%')
   }
@@ -838,23 +975,23 @@ struct Child {
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public info: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(info: number) {
+    this.info = info;
   }
 }
 
 @Component
 struct ObjectLinkChild {
-  @ObjectLink testNum: ClassA;
+  @ObjectLink testNum: Info;
 
   build() {
-    Text(`ObjectLinkChild testNum ${this.testNum.c}`)
+    Text(`ObjectLinkChild testNum ${this.testNum.info}`)
       .onClick(() => {
         // ObjectLink不能被赋值
-        this.testNum = new ClassA(47);
+        this.testNum = new Info(47);
       })
   }
 }
@@ -862,15 +999,15 @@ struct ObjectLinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: Info[] = [new Info(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum[0].info}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum[0].info += 1;
         })
-        
+
       ObjectLinkChild({ testNum: this.testNum[0] })
     }
   }
@@ -880,7 +1017,7 @@ struct Parent {
 点击ObjectLinkChild给\@ObjectLink装饰的变量赋值：
 
 ```
-this.testNum = new ClassA(47); 
+this.testNum = new Info(47); 
 ```
 
 这是不允许的，对于实现双向数据同步的\@ObjectLink，赋值相当于要更新父组件中的数组项或者class的属性，这个对于 TypeScript/JavaScript是不能实现的。框架对于这种行为会发生运行时报错。
@@ -889,23 +1026,23 @@ this.testNum = new ClassA(47);
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class Info {
+  public info: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(info: number) {
+    this.info = info;
   }
 }
 
 @Component
 struct ObjectLinkChild {
-  @ObjectLink testNum: ClassA;
+  @ObjectLink testNum: Info;
 
   build() {
-    Text(`ObjectLinkChild testNum ${this.testNum.c}`)
+    Text(`ObjectLinkChild testNum ${this.testNum.info}`)
       .onClick(() => {
         // 可以对ObjectLink装饰对象的属性赋值
-        this.testNum.c = 47;
+        this.testNum.info = 47;
       })
   }
 }
@@ -913,15 +1050,15 @@ struct ObjectLinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: Info[] = [new Info(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum[0].info}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum[0].info += 1;
         })
-        
+
       ObjectLinkChild({ testNum: this.testNum[0] })
     }
   }
@@ -940,101 +1077,100 @@ struct Parent {
 
 
 ```ts
-class ClassA {
-  a: number;
+class Parent {
+  parentId: number;
 
-  constructor(a: number) {
-    this.a = a;
+  constructor(parentId: number) {
+    this.parentId = parentId;
   }
 
-  getA(): number {
-    return this.a;
+  getParentId(): number {
+    return this.parentId;
   }
 
-  setA(a: number): void {
-    this.a = a;
-  }
-}
-
-class ClassC {
-  c: number;
-
-  constructor(c: number) {
-    this.c = c;
-  }
-
-  getC(): number {
-    return this.c;
-  }
-
-  setC(c: number): void {
-    this.c = c;
+  setParentId(parentId: number): void {
+    this.parentId = parentId;
   }
 }
 
-class ClassB extends ClassA {
-  b: number = 47;
-  c: ClassC;
+class Child {
+  childId: number;
 
-  constructor(a: number, b: number, c: number) {
-    super(a);
-    this.b = b;
-    this.c = new ClassC(c);
+  constructor(childId: number) {
+    this.childId = childId;
   }
 
-  getB(): number {
-    return this.b;
+  getChildId(): number {
+    return this.childId;
   }
 
-  setB(b: number): void {
-    this.b = b;
-  }
-
-  getC(): number {
-    return this.c.getC();
-  }
-
-  setC(c: number): void {
-    return this.c.setC(c);
+  setChildId(childId: number): void {
+    this.childId = childId;
   }
 }
 
+class Cousin extends Parent {
+  cousinId: number = 47;
+  child: Child;
+
+  constructor(parent: number, cousinId: number, child: number) {
+    super(parent);
+    this.cousinId = cousinId;
+    this.child = new Child(child);
+  }
+
+  getCousinId(): number {
+    return this.cousinId;
+  }
+
+  setCousinId(cousinId: number): void {
+    this.cousinId = cousinId;
+  }
+
+  getChild(): number {
+    return this.child.getChildId();
+  }
+
+  setChild(child: number): void {
+    return this.child.setChildId(child);
+  }
+}
 
 @Entry
 @Component
 struct MyView {
-  @State b: ClassB = new ClassB(10, 20, 30);
+  @State cousin: Cousin = new Cousin(10, 20, 30);
 
   build() {
     Column({ space: 10 }) {
-      Text(`a: ${this.b.a}`)
-      Button("Change ClassA.a")
+      Text(`parentId: ${this.cousin.parentId}`)
+      Button("Change Parent.parent")
         .onClick(() => {
-          this.b.a += 1;
+          this.cousin.parentId += 1;
         })
 
-      Text(`b: ${this.b.b}`)
-      Button("Change ClassB.b")
+      Text(`cousinId: ${this.cousin.cousinId}`)
+      Button("Change Cousin.cousinId")
         .onClick(() => {
-          this.b.b += 1;
+          this.cousin.cousinId += 1;
         })
 
-      Text(`c: ${this.b.c.c}`)
-      Button("Change ClassB.ClassC.c")
+      Text(`childId: ${this.cousin.child.childId}`)
+      Button("Change Cousin.Child.childId")
         .onClick(() => {
           // 点击时上面的Text组件不会刷新
-          this.b.c.c += 1;
+          this.cousin.child.childId += 1;
         })
     }
   }
 }
 ```
 
-- 最后一个Text组件Text('c: ${this.b.c.c}')，当点击该组件时UI不会刷新。 因为，\@State b : ClassB 只能观察到this.b属性的变化，比如this.b.a, this.b.b 和this.b.c的变化，但是无法观察嵌套在属性中的属性，即this.b.c.c（属性c是内嵌在b中的对象classC的属性）。
+- 最后一个Text组件Text('child: ${this.cousin.child.childId}')，当点击该组件时UI不会刷新。 因为，\@State cousin : Cousin 只能观察到this.cousin属性的变化，比如this.cousin.parentId, this.cousin.cousinId 和this.cousin.child的变化，但是无法观察嵌套在属性中的属性，即this.cousin.child.childId（属性childId是内嵌在cousin中的对象Child的属性）。
 
-- 为了观察到嵌套于内部的ClassC的属性，需要做如下改变：
-  - 构造一个子组件，用于单独渲染ClassC的实例。 该子组件可以使用\@ObjectLink c : ClassC或\@Prop c : ClassC。通常会使用\@ObjectLink，除非子组件需要对其ClassC对象进行本地修改。
-  - 嵌套的ClassC必须用\@Observed装饰。当在ClassB中创建ClassC对象时（本示例中的ClassB(10, 20, 30）)，它将被包装在ES6代理中，当ClassC属性更改时（this.b.c.c += 1），该代码将修改通知到\@ObjectLink变量。
+- 为了观察到嵌套于内部的Child的属性，需要做如下改变：
+  - 构造一个子组件，用于单独渲染Child的实例。 该子组件可以使用\@ObjectLink child : Child或\@Prop child : Child。通常会使用\@ObjectLink，除非子组件需要对其Child对象进行本地修改。
+  - 嵌套的Child必须用\@Observed装饰。当在Cousin中创建Child对象时（本示例中的Cousin(10, 20, 30）)，它将被包装在ES6代理中，当Child属性更改时（this.cousin.child.childId += 1），该代码将修改通知到\@ObjectLink变量。
 
 【正例】
 
@@ -1042,76 +1178,76 @@ struct MyView {
 
 
 ```ts
-class ClassA {
-  a: number;
+class Parent {
+  parentId: number;
 
-  constructor(a: number) {
-    this.a = a;
+  constructor(parentId: number) {
+    this.parentId = parentId;
   }
 
-  getA(): number {
-    return this.a;
+  getParentId(): number {
+    return this.parentId;
   }
 
-  setA(a: number): void {
-    this.a = a;
+  setParentId(parentId: number): void {
+    this.parentId = parentId;
   }
 }
 
 @Observed
-class ClassC {
-  c: number;
+class Child {
+  childId: number;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(childId: number) {
+    this.childId = childId;
   }
 
-  getC(): number {
-    return this.c;
+  getChildId(): number {
+    return this.childId;
   }
 
-  setC(c: number): void {
-    this.c = c;
+  setChildId(childId: number): void {
+    this.childId = childId;
   }
 }
 
-class ClassB extends ClassA {
-  b: number = 47;
-  c: ClassC;
+class Cousin extends Parent {
+  cousinId: number = 47;
+  child: Child;
 
-  constructor(a: number, b: number, c: number) {
-    super(a);
-    this.b = b;
-    this.c = new ClassC(c);
+  constructor(parent: number, cousinId: number, child: number) {
+    super(parent);
+    this.cousinId = cousinId;
+    this.child = new Child(child);
   }
 
-  getB(): number {
-    return this.b;
+  getCousinId(): number {
+    return this.cousinId;
   }
 
-  setB(b: number): void {
-    this.b = b;
+  setCousinId(cousinId: number): void {
+    this.cousinId = cousinId;
   }
 
-  getC(): number {
-    return this.c.getC();
+  getChild(): number {
+    return this.child.getChildId();
   }
 
-  setC(c: number): void {
-    return this.c.setC(c);
+  setChild(child: number): void {
+    return this.child.setChildId(child);
   }
 }
 
 @Component
-struct ViewClassC {
-  @ObjectLink c: ClassC;
+struct ViewChild {
+  @ObjectLink child: Child;
 
   build() {
     Column({ space: 10 }) {
-      Text(`c: ${this.c.getC()}`)
-      Button("Change C")
+      Text(`childId: ${this.child.getChildId()}`)
+      Button("Change childId")
         .onClick(() => {
-          this.c.setC(this.c.getC() + 1);
+          this.child.setChildId(this.child.getChildId() + 1);
         })
     }
   }
@@ -1120,26 +1256,26 @@ struct ViewClassC {
 @Entry
 @Component
 struct MyView {
-  @State b: ClassB = new ClassB(10, 20, 30);
+  @State cousin: Cousin = new Cousin(10, 20, 30);
 
   build() {
     Column({ space: 10 }) {
-      Text(`a: ${this.b.a}`)
-      Button("Change ClassA.a")
+      Text(`parentId: ${this.cousin.parentId}`)
+      Button("Change Parent.parentId")
         .onClick(() => {
-          this.b.a += 1;
+          this.cousin.parentId += 1;
         })
 
-      Text(`b: ${this.b.b}`)
-      Button("Change ClassB.b")
+      Text(`cousinId: ${this.cousin.cousinId}`)
+      Button("Change Cousin.cousinId")
         .onClick(() => {
-          this.b.b += 1;
+          this.cousin.cousinId += 1;
         })
 
-      ViewClassC({ c: this.b.c }) // Text(`c: ${this.b.c.c}`)的替代写法
-      Button("Change ClassB.ClassC.c")
+      ViewChild({ child: this.cousin.child }) // Text(`childId: ${this.cousin.child.childId}`)的替代写法
+      Button("Change Cousin.Child.childId")
         .onClick(() => {
-          this.b.c.c += 1;
+          this.cousin.child.childId += 1;
         })
     }
   }
@@ -1258,8 +1394,11 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 
 ```ts
-@ObjectLink value：ParentCounter = new ParentCounter(0);
-@ObjectLink subValue：SubCounter = new SubCounter(0);
+CounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
+@ObjectLink value：ParentCounter; // @ObjectLink 接收 ParentCounter
+
+CounterChild({ subValue: this.value.subCounter }); // CounterComp组件 传递 SubCounter 给 CounterChild 组件
+@ObjectLink subValue：SubCounter; // @ObjectLink 接收 SubCounter
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
@@ -1426,7 +1565,7 @@ struct CounterComp {
       Text(`this.value.counter：increase 7 `)
         .fontSize(30)
         .onClick(() => {
-          // click handler, Text(`this.subValue.counter: ${this.subValue.counter}`) will update
+          // 点击后Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1491,7 +1630,7 @@ struct ParentComp {
 
 【反例】
 
-如果用\@Prop替代\@ObjectLink。点击第一个click handler，UI刷新正常。但是点击第二个onClick事件，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
+如果用\@Prop替代\@ObjectLink。点击Text(`this.subValue.counter: ${this.subValue.counter}`)，UI刷新正常。但是点击Text(`this.value.counter：increase 7 `)，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
 
   this.value.subCounter和this.subValue并不是同一个对象。所以this.value.subCounter的改变，并没有改变this.subValue的拷贝对象，Text(`this.subValue.counter: ${this.subValue.counter}`)不会刷新。
 
@@ -1505,13 +1644,11 @@ struct CounterComp {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.subValue.counter += 7;
         })
       Text(`this.value.counter：increase 7 `)
         .fontSize(20)
         .onClick(() => {
-          // 2nd click handler
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1574,7 +1711,6 @@ struct SubCounterComp {
   build() {
     Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
       .onClick(() => {
-        // 2nd click handler
         this.subValue.counter = 7;
       })
   }
@@ -1587,13 +1723,11 @@ struct CounterComp {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.value.incrCounter();
         })
       SubCounterComp({ subValue: this.value.subCounter })
       Text(`this.value.incrSubCounter()`)
         .onClick(() => {
-          // 3rd click handler
           this.value.incrSubCounter(77);
         })
       Divider().height(2)
@@ -1857,3 +1991,147 @@ Child02({
 ```
 
 此时Child01中Text组件不会刷新，因为this.pers.person.name属于两层嵌套。
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
+
+【反例】
+
+```ts
+@Observed
+class Weather {
+  temperature:number;
+
+  constructor(temperature:number) {
+    this.temperature = temperature;
+  }
+
+  static increaseTemperature(weather:Weather) {
+    weather.temperature++;
+  }
+}
+
+class Day {
+  weather:Weather;
+  week:string;
+  constructor(weather:Weather, week:string) {
+    this.weather = weather;
+    this.week = week;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State day1: Day = new Day(new Weather(15), 'Monday');
+
+  build() {
+    Column({ space:10 }) {
+      Child({ weather: this.day1.weather})
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink weather: Weather;
+
+  reduceTemperature (weather:Weather) {
+    weather.temperature--;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`The temperature of day1 is ${this.weather.temperature} degrees.`)
+        .fontSize(20)
+      Button('increaseTemperature')
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Weather.increaseTemperature(this.weather);
+        })
+      Button('reduceTemperature')
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.reduceTemperature(this.weather);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.weather加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+@Observed
+class Weather {
+  temperature:number;
+
+  constructor(temperature:number) {
+    this.temperature = temperature;
+  }
+
+  static increaseTemperature(weather:Weather) {
+    weather.temperature++;
+  }
+}
+
+class Day {
+  weather:Weather;
+  week:string;
+  constructor(weather:Weather, week:string) {
+    this.weather = weather;
+    this.week = week;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State day1: Day = new Day(new Weather(15), 'Monday');
+
+  build() {
+    Column({ space:10 }) {
+      Child({ weather: this.day1.weather})
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink weather: Weather;
+
+  reduceTemperature (weather:Weather) {
+    weather.temperature--;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`The temperature of day1 is ${this.weather.temperature} degrees.`)
+        .fontSize(20)
+      Button('increaseTemperature')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let weather1 = this.weather;
+          Weather.increaseTemperature(weather1);
+        })
+      Button('reduceTemperature')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let weather2 = this.weather;
+          this.reduceTemperature(weather2);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

@@ -41,7 +41,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 }
 
 let path = getContext().cacheDir;
-// Ensure that the resource exists in the path.
+// Ensure that the resource exists in the sandbox path.
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 

@@ -26,7 +26,7 @@ libace_napi.z.so
 
 ## 已从Node-API组件标准库中导出的符号列表
 
-从Node-API标准库导出的接口，其使用方法及行为同Node.js一致。相关接口声明及参数约束请参考[Node-API](https://nodejs.org/docs/latest-v8.x/api/n-api.html)文档。
+从Node-API标准库导出的接口，其使用方法及行为基于[Node.js](https://nodejs.org/docs/latest-v10.x/api/n-api.html)，并进行了部分[能力拓展](#node-api组件扩展的符号列表)。
 
 |符号类型|符号名|说明|起始支持API版本|
 | --- | --- | --- | --- |
@@ -165,6 +165,7 @@ libace_napi.z.so
 |FUNC|napi_get_all_property_names|获取一个数组，其中包含此对象过滤后的属性名称。|10|
 |FUNC|napi_detach_arraybuffer|分离给定`ArrayBuffer`的底层数据。|10|
 |FUNC|napi_is_detached_arraybuffer|判断给定的`ArrayBuffer`是否已被分离过。|10|
+|FUNC|napi_run_script|将给定对象作为js代码运行。当前接口实际为空实现，可使用系统拓展接口`napi_run_script_path`接口，提升安全性。|10|
 |FUNC|napi_set_instance_data|绑定与当前运行的环境相关联的数据项。|11|
 |FUNC|napi_get_instance_data|检索与当前运行的环境相关联的数据项。|11|
 |FUNC|napi_add_env_cleanup_hook|注册环境清理钩子函数。|11|
@@ -175,11 +176,470 @@ libace_napi.z.so
 |FUNC|napi_add_finalizer|当js `Object`中的对象被垃圾回收时调用注册的napi_finalize回调。|11|
 |FUNC|napi_fatal_exception|向js抛出 `UncaughtException`。|12|
 
+## 已导出符号列表与标准库对应符号的差异
+
+### napi_throw_error
+
+**返回：**
+
+- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+
+- 该导出接口允许code属性设置失败。
+
+### napi_throw_type_error
+
+**返回：**
+
+- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+
+- 该导出接口允许code属性设置失败。
+
+### napi_throw_range_error
+
+**返回：**
+
+- 当code == nullptr时，标准库会返回napi_invalid_arg，而OpenHarmony中未做判断。
+
+- 该导出接口允许code属性设置失败。
+
+### napi_create_error
+
+**参数：**
+
+- code: 该导出接口支持String或Number类型。
+
+**返回：**
+
+- 当code类型不匹配时，该导出接口返回napi_invalid_arg。
+
+- 该导出接口允许code属性设置失败。
+
+### napi_create_type_error
+
+**参数：**
+
+- code: 该导出接口支持String或Number类型。
+
+**返回：**
+
+- 当code类型不匹配时，该导出接口返回napi_invalid_arg。
+
+- 该导出接口允许code属性设置失败。
+
+- OpenHarmony中创建的错误类型为Error。
+
+### napi_create_range_error
+
+**参数：**
+
+- code: OpenHarmony中支持String或Number类型。
+
+**返回：**
+
+- 当code类型不匹配时，该导出接口返回napi_invalid_arg。
+
+- 该导出接口允许code属性设置失败。
+
+- OpenHarmony中创建的错误类型为Error。
+
+### napi_create_reference
+
+**参数：**
+
+- value: 标准库中仅支持Object、Function、Symbol类型，而该导出接口对value的类型没有限制。
+
+### napi_create_symbol
+
+**返回：**
+
+- 当入参description不为空且不是String对象时，该导出接口返回napi_invalid_arg。
+
+### napi_create_typedarray
+
+**返回：**
+
+- 当入参arraybuffer不为空且不为ArrayBuffer对象时，该导出接口返回napi_arraybuffer_expected。
+
+### napi_create_dataview
+
+**返回：**
+
+- 当入参arraybuffer不为空且不为ArrayBuffer对象时，该导出接口返回napi_arraybuffer_expected。
+
+- 如果byte_offset与byte_length的和大于arraybuffer的大小，该导出接口将会抛出RangeError异常，并返回napi_pending_exception。
+
+### napi_get_typedarray_info
+
+**参数：**
+
+- object: 该导出接口支持TypedArray或[Sendable TypedArray](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)类型。
+
+### napi_coerce_to_object
+
+**返回：**
+
+- 当value为undefined或null时，该导出接口返回napi_ok，出参result为undefined。
+
+### napi_instanceof
+
+**返回：**
+
+- 当参数object不是Object对象时，该导出接口直接返回napi_object_expected，result不做处理。
+
+- 当参数constructor不是Function对象时，该导出接口不会抛出异常，接口返回napi_function_expected。
+
+### napi_is_typedarray
+
+**参数：**
+
+- value: 该导出接口额外支持[Sendable TypedArray](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)类型。
+
+### napi_get_property_names
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_set_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_get_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_has_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_delete_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_has_own_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_set_named_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_get_named_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_has_named_property
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_set_element
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_get_element
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_has_element
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_delete_element
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_define_properties
+
+**返回：**
+
+- 当参数object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_type_tag_object
+
+**返回：**
+
+- 当参数js_object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_check_object_type_tag
+
+**返回：**
+
+- 当参数js_object不是Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_call_function
+
+**返回：**
+
+- 该导出接口不会去校验参数recv是否为nullptr。
+
+- 当参数func不是Function对象时，该导出接口返回napi_function_expected。
+
+### napi_new_instance
+
+**返回：**
+
+- 当参数constructor不是Function对象时，该导出接口返回napi_function_expected。
+
+### napi_define_class
+
+**返回：**
+
+- 当length不为NAPI_AUTO_LENGTH且大于INT_MAX时，该导出接口返回napi_object_expected。
+
+### napi_wrap
+
+**返回：**
+
+- 参数js_object不为Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_unwrap
+
+**返回：**
+
+- 参数js_object不为Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_remove_wrap
+
+**返回：**
+
+- 参数js_object不为Object或Function对象时，该导出接口返回napi_object_expected。
+
+### napi_create_async_work
+
+**参数：**
+
+- 该导出接口暂时不支持async_hooks资源管理机制。
+
+- 该导出接口不会校验入参async_resource_name是否为String类型对象。
+
+- 由于当前暂不支持async_hooks资源管理机制，入参async_resource暂时也不做处理。
+
+### napi_delete_async_work
+
+**参数：**
+
+- 该导出接口暂时不支持async_hooks资源管理机制。
+
+### napi_queue_async_work
+
+**参数：**
+
+- 该导出接口暂时不支持async_hooks资源管理机制。
+
+### napi_cancel_async_work
+
+**返回：**
+
+- 若因为底层uv导致取消任务失败，标准库会根据失败原因，返回napi_generic_failure或napi_invalid_arg或napi_cancelled，而在OpenHarmony上该导出接口不会去校验uv的返回值，开发者可以根据相关的日志去排查任务是否取消失败。
+
+### napi_async_init
+
+**说明：**
+
+- OpenHarmony暂不支持async_hooks资源管理机制。目前未实现与async_hooks交互的内容，该接口调用后并不会有async_hooks的相关操作。
+
+### napi_make_callback
+
+**说明：**
+
+- OpenHarmony暂不支持async_hooks资源管理机制。目前未实现与async_hooks交互的内容，该接口调用后并不会有async_hooks的相关操作。
+
+### napi_async_destroy
+
+**说明：**
+
+- OpenHarmony暂不支持async_hooks资源管理机制。目前未实现与async_hooks交互的内容，接口调用后并不会有async_hooks的相关操作。
+
+### napi_get_node_version
+
+**说明：**
+
+- OpenHarmony不需要获取node的版本，故当前该导出接口为空实现。
+
+### napi_resolve_deferred
+
+**说明：**
+
+- promise的then方法的resolve或者reject回调中出现异常时，如果promise没有catch块，代码会继续执行不会崩溃；如果promise有catch块，则异常会被该catch块捕获。
+
+### napi_reject_deffered
+
+**说明：**
+
+- promise的then方法的resolve或者reject回调中出现异常时，如果promise没有catch块，代码会继续执行不会崩溃；如果promise有catch块，则异常会被该catch块捕获。
+
+### napi_create_threadsafe_function
+
+**参数：**
+
+- initial_thread_count: OpenHarmony中上限为128。
+
+- async_resource: OpenHarmony中不做类型限制。
+
+- async_resource_name: OpenHarmony中不做类型限制。
+
+- func: OpenHarmony中不做类型限制。
+
+**说明：**
+
+- OpenHarmony中，创建线程安全函数的过程中没有注册cleanup hook方法，如有需要可以调用napi_add_env_cleanup_hook。
+
+### napi_call_threadsafe_function
+
+**说明：**
+
+- OpenHarmony调用uv_async_send接口前会检查env是否存活。
+
+- 调用uv_async_send接口失败时，OpenHarmony中会返回napi_generic_failure。
+
+### napi_release_threadsafe_function
+
+**说明：**
+
+- OpenHarmony调用uv_async_send接口前会检查env是否存活。
+
+- ThreadCount为0时，OpenHarmony中会返回napi_generic_failure。
+
+### napi_ref_threadsafe_function
+
+**说明：**
+
+- OpenHarmony中有校验func和env是否为同一ArkTS线程的过程，若不是同一线程则会返回napi_generic_failure。
+
+### napi_unref_threadsafe_function
+
+**说明：**
+
+- OpenHarmony中有校验func和env是否为同一ArkTS线程的过程，若不是同一线程则会返回napi_generic_failure。
+
+### napi_create_date
+
+**返回：**
+
+- 当入参正常但date创建失败时，标准库中返回napi_generic_failure，而OpenHarmony中将会抛出异常，并且接口返回napi_pending_exception。
+
+### napi_create_bigint_words
+
+**返回：**
+
+- 当入参正常但bigInt创建失败时，标准库中返回napi_generic_failure，而OpenHarmony中将会抛出异常，并且接口返回napi_pending_exception。
+
+### napi_get_value_bigint_words
+
+**返回：**
+
+- 当参数value不是BigInt对象时，OpenHarmony中返回napi_object_expected。
+
+### napi_create_buffer
+
+**返回：**
+
+- OpenHarmony中创建的buffer类型为ArrayBufferLike。
+
+- OpenHarmony中，size为0时返回napi_invalid_arg。
+
+- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+
+- OpenHarmony中，data为nullptr时返回napi_invalid_arg。
+
+- 标准库中，进入或退出接口前若有异常将直接返回napi_pending_exception，OpenHarmony中没有对此做校验。
+
+### napi_create_buffer_copy
+
+**返回：**
+
+- OpenHarmony中创建的buffer类型为ArrayBufferLike。
+
+- OpenHarmony中，size为0时返回napi_invalid_arg。
+
+- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+
+- OpenHarmony中，data为nullptr时返回napi_invalid_arg。
+
+- 标准库中，进入或退出接口前若有异常将直接返回napi_pending_exception，OpenHarmony中没有对此做校验。
+
+### napi_create_external_buffer
+
+**返回：**
+
+- OpenHarmony中创建的buffer类型为ArrayBufferLike。
+
+- OpenHarmony中，size为0时返回napi_invalid_arg。
+
+- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+
+- 标准库中，因未知原因导致创建失败时将返回napi_generic_failure，OpenHarmony中返回napi_pending_exception。
+
+### napi_get_buffer_info
+
+**返回：**
+
+- OpenHarmony会对value是否属于buffer进行判断，若不属于则返回napi_arraybuffer_expected。
+
+### napi_detach_arraybuffer
+
+**返回：**
+
+- 当入参arraybuffer不为Object对象时，该导出接口返回napi_object_expected；当arraybuffer是Object对象但不为ArrayBuffer对象时，该导出接口返回napi_invalid_arg。
+
+### napi_add_env_cleanup_hook
+
+**说明：**
+
+- data已注册到env中时，OpenHarmony仅打印异常日志。
+
+### napi_add_finalizer
+
+**返回：**
+
+- 入参js_object不是Object对象时，OpenHarmony中该导出接口返回napi_object_expected。
+
+**说明：**
+
+- OpenHarmony中，当强引用delete时直接进行回调，无需等到对象析构。
+
+- 回调主动抛出异常时，OpenHarmony会触发JSCrash。
+
+### napi_fatal_exception
+
+**参数：**
+
+- err: OpenHarmony中仅支持Error类型，类型不匹配将返回napi_invalid_arg。
+
+### napi_get_uv_event_loop
+
+**返回：**
+
+- 参数env不是有效的napi_env（例如此env已被释放）时，该导出接口返回napi_generic_failure。
+
 ## 未从Node-API组件标准库中导出的符号列表
 
 |符号类型|符号名|说明|
 | --- | --- | --- |
-|FUNC|napi_run_script|将给定对象作为js代码运行。|
 |FUNC|napi_adjust_external_memory|调整js `Object`持有的外部内存。|
 
 ## Node-API组件扩展的符号列表
@@ -196,22 +656,26 @@ libace_napi.z.so
 |FUNC|napi_destroy_ark_runtime|销毁基础运行时环境。|12|
 |FUNC|napi_run_event_loop|触发底层的事件循环。|12|
 |FUNC|napi_stop_event_loop|停止底层的事件循环。|12|
-|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。|12|
+|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTS基础运行时环境中使用。|12|
 |FUNC|napi_serialize|将ArkTS对象转换为native数据。|12|
 |FUNC|napi_deserialize|将native数据转为ArkTS对象。|12|
 |FUNC|napi_delete_serialization_data|删除序列化数据。|12|
-|FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|12|
+|FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS主线程。|12|
 |FUNC|napi_is_sendable|判断给定JS value是否是Sendable的。|12|
-|FUNC|napi_define_sendable_class|创建一个sendable类。|12|
-|FUNC|napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|12|
-|FUNC|napi_create_sendable_array | 创建一个sendable数组。|12|
-|FUNC|napi_create_sendable_array_with_length | 创建一个指定长度的sendable数组。|12|
-|FUNC|napi_create_sendable_arraybuffer | 创建一个sendable ArrayBuffer。|12|
-|FUNC|napi_create_sendable_typedarray | 创建一个sendable TypedArray。|12|
+|FUNC|napi_define_sendable_class|创建一个Sendable类。|12|
+|FUNC|napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个Sendable对象。|12|
+|FUNC|napi_create_sendable_array | 创建一个Sendable数组。|12|
+|FUNC|napi_create_sendable_array_with_length | 创建一个指定长度的Sendable数组。|12|
+|FUNC|napi_create_sendable_arraybuffer | 创建一个Sendable ArrayBuffer。|12|
+|FUNC|napi_create_sendable_typedarray | 创建一个Sendable TypedArray。|12|
 |FUNC|napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|12|
 |FUNC|napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|12|
 |FUNC|napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|12|
 |FUNC|napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|12|
+
+> 说明：
+>
+> 有关Sendable特性的介绍，详见[Sendable开发指导](../../arkts-utils/arkts-sendable.md)。
 
 ### napi_qos_t
 
@@ -487,7 +951,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 **描述：**
 
-将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。
+将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTS基础运行时环境中使用。
 
 **参数：**
 
@@ -586,7 +1050,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 
 **描述：**
 
-将指定优先级和入队方式的任务投递到ArkTS线程。
+将指定优先级和入队方式的任务投递到ArkTS主线程。
 
 **参数：**
 
@@ -643,7 +1107,7 @@ napi_status napi_define_sendable_class(napi_env env,
 
 **描述：**
 
-创建一个sendable类。
+创建一个Sendable类。
 
 **参数：**
 
@@ -680,7 +1144,7 @@ napi_status napi_create_sendable_object_with_properties(napi_env env,
 
 **描述：**
 
-使用给定的napi_property_descriptor创建一个sendable对象。
+使用给定的napi_property_descriptor创建一个Sendable对象。
 
 **参数：**
 
@@ -704,7 +1168,7 @@ napi_status napi_create_sendable_array(napi_env env, napi_value* result)
 
 **描述：**
 
-创建一个sendable数组。
+创建一个Sendable数组。
 
 **参数：**
 
@@ -724,7 +1188,7 @@ napi_status napi_create_sendable_array_with_length(napi_env env, size_t length, 
 
 **描述：**
 
-创建一个指定长度的sendable数组。
+创建一个指定长度的Sendable数组。
 
 **参数：**
 
@@ -746,7 +1210,7 @@ napi_status napi_create_sendable_arraybuffer(napi_env env, size_t byte_length, v
 
 **描述：**
 
-创建一个sendable ArrayBuffer。
+创建一个Sendable ArrayBuffer。
 
 **参数：**
 
@@ -775,7 +1239,7 @@ napi_status napi_create_sendable_typedarray(napi_env env,
 
 **描述：**
 
-创建一个sendable TypedArray。
+创建一个Sendable TypedArray。
 
 **参数：**
 
@@ -901,3 +1365,5 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 **返回：**
 
 如果API成功，则返回napi_ok。
+
+<!--no_check-->

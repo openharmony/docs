@@ -17,7 +17,7 @@ HiAppEvent提供接口用于订阅系统踩内存事件。
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
 | type | string | 地址越界错误类型，取值范围详见type属性。 |
-| external_log | string[] | 故障日志文件路径。为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，日志文件处理完后请及时删除。 |
+| external_log | string[] | 故障日志文件路径。**为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，日志文件处理完后请及时删除。** |
 | log_over_limit | boolean | 生成的故障日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
 **type属性：**

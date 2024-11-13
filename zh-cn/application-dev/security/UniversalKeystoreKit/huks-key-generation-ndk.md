@@ -14,7 +14,7 @@
 ## 开发步骤
 
 1. 指定待生成的密钥别名keyAlias。
-   - 密钥别名的最大长度为64字节。
+   - 密钥别名的最大长度为128字节。
    - 对于不同业务间生成的密钥，HUKS将基于业务身份信息进行存储路径隔离，不会因为和其他业务密钥同名导致冲突。
 
 2. 初始化密钥属性集。通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset)构造密钥属性集paramSet。

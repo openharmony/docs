@@ -6,7 +6,7 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
 
 1. Create a [PBKDF2Spec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pbkdf2spec11) object and use it as a parameter for key derivation.
    
-   **PBKDF2Spec** is a child class of **KdfSpec**. You need to specify the following:
+   **PBKDF2Spec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 
    - **algName**: algorithm to use, which is **'PBKDF2'**.
    - **password**: original password used to generate the derived key.

@@ -34,10 +34,10 @@ enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 
 | 名称                       | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ |
-| `FDSAN_ERROR_LEVEL_DISABLED` | disabled ，此level代表什么都不处理。                         |
-| `FDSAN_ERROR_LEVEL_WARN_ONCE` | warn-once，第一次出现错误时在hilog中发出警告，然后将级别降低为disabled(FDSAN_ERROR_LEVEL_DISABLED) |
-| `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | warn-always，每次出现错误时都在hilog中发出警告 |
-| `FDSAN_ERROR_LEVEL_FATAL` | fatal ，出现错误时调用abort异常退出. |
+| `FDSAN_ERROR_LEVEL_DISABLED` | disabled，此level代表什么都不处理。                         |
+| `FDSAN_ERROR_LEVEL_WARN_ONCE` | warn-once，第一次出现错误时在hilog中发出警告，然后将级别降低为disabled(FDSAN_ERROR_LEVEL_DISABLED)。 |
+| `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | warn-always，每次出现错误时都在hilog中发出警告。 |
+| `FDSAN_ERROR_LEVEL_FATAL` | fatal，出现错误时调用abort异常退出。 |
 
 **返回值：** 返回旧的error_level。
 
@@ -200,13 +200,13 @@ int main()
     return 0;
 }
 ```
-上述代码中的`goog_write`函数会打开一个文件并写入一些字符串而`bad_close`函数中也会打开一个文件同时包含double-close问题，这两个线程同时运行那么程序的执行情况会是这样的：
+上述代码中的`good_write`函数会打开一个文件并写入一些字符串而`bad_close`函数中也会打开一个文件同时包含double-close问题，这两个线程同时运行那么程序的执行情况会是这样的。
 
 ![](./figures/fdsan-error-2.png)
 
-由于每次open返回的fd是顺序分配的，在进入主函数后第一个可用的fd是43，`bad_close`函数中第一次open返回的fd是43，在关闭之后，43就变成了可用的fd，在`good_write`函数中open返回了第一个可用的fd，即43，但是由于`bad_close`函数中存在double-close问题，因此错误的关闭了另一个线程中打开的文件，导致写入失败
+由于每次open返回的fd是顺序分配的，在进入主函数后第一个可用的fd是43，`bad_close`函数中第一次open返回的fd是43，在关闭之后，43就变成了可用的fd，在`good_write`函数中open返回了第一个可用的fd，即43，但是由于`bad_close`函数中存在double-close问题，因此错误的关闭了另一个线程中打开的文件，导致写入失败。
 
-在fdsan引入之后，有两种方法可以检测这类问题：使用标准库接口或实现具有fdsan的函数接口
+在fdsan引入之后，有两种方法可以检测这类问题：使用标准库接口或实现具有fdsan的函数接口。
 
 ### 使用标准库接口
 

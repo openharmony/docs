@@ -35,7 +35,8 @@
 
 ![zh-cn_image_0000001226897009](figures/zh-cn_image_0000001226897009.png)
 
-> **说明：**
+> **说明：** 
+>
 > grid-container仅支持grid-row为子组件。
 
 
@@ -166,7 +167,8 @@ text{
 
 ![zh-cn_image_0000001227135731](figures/zh-cn_image_0000001227135731.png)
 
-> **说明：**
+> **说明：** 
+>
 > grid-row仅支持grid-col为子组件，只能在grid-col组件中添加填充的内容。
 
 
@@ -244,10 +246,3 @@ export default {
 
 
 ![zh-cn_image_0000001263160403](figures/zh-cn_image_0000001263160403.gif)
-
-
-## 相关实例
-
-针对Grid开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

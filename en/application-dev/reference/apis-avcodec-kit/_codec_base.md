@@ -15,29 +15,31 @@ The table below lists the media codec formats. The type is a constant string.
 
 | Name                                                        | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------ |
-| [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Multipurpose Internet Mail Extension (MIME) type of AVC (H.264) video codec.                    |
 | [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | MIME type of the AAC audio codec.                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | MIME type of the Free Lossless Audio Codec (FLAC) audio codec.                          |
+| [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->        |
+| [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | MIME type of the G.711 mu-law audio codec.                        |
 | [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | MIME type of the Vorbis audio decoder.                          |
 | [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MIME type of the MP3 audio decoder.                             |
+| [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | MIME type of the Audio Vivid audio decoder. <!--Del-->(This specification is not available yet.)<!--DelEnd-->     |
+| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | MIME type of the AMR-NB audio decoder.                          |
+| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | MIME type of the AMR-WB audio decoder.                          |
+| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |MIME type of the APE audio decoder.                        |
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | MIME type of the HEVC (H.265) video codec.                   |
+| [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Multipurpose Internet Mail Extension (MIME) type of AVC (H.264) video codec.                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams.|
 | [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | MIME type of the JPG image encoder, which is used only for muxing JPG covers.      |
 | [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | MIME type of the PNG image encoder, which is used only for muxing PNG covers.      |
 | [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | MIME type of the BMP image encoder, which is used only for muxing BMP covers.      |
-| [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | MIME type of the Audio Vivid audio decoder. <!--Del-->(This specification is not available yet.)<!--DelEnd-->     |
-| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | MIME type of the AMR-NB audio decoder.                          |
-| [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | MIME type of the AMR-WB audio decoder.                          |
-| [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->        |
-| [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | MIME type of the G.711 mu-law audio codec.                        |
-| [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) | MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd--> |
-| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |MIME type of the APE audio decoder.                        |
+| [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |MIME type of the WEBVTT subtitle demuxer.                        |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |MIME type of the SRT subtitle demuxer.                        |
 
 
 ### Media Data Key-Value Pairs
 
 The table below lists the key-value pairs used to describe media data. The key type is a constant string, and the value type can be int32_t, int64_t, float, double, char *, or uint8_t *.
+
+The OH_AVFormat API is used to configure or query parameters.
 
 Key-value pairs dedicated for capability query:
 
@@ -49,96 +51,99 @@ Common key-value pairs of audio and video:
 
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_MD_KEY_BITRATE](#oh_md_key_bitrate)                      | Bit rate. The value type is int64_t. This key is used in audio and video encoding scenarios. It is optional in video encoding scenarios.|
-| [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size)        | Maximum size of an input stream to decode. The value type is int32_t. This key is optional.          |
-| [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | Encoding grading. The value type is int32_t. For details, see [OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), and [OH_AACProfile](#oh_aacprofile). This key is optional.|
-| [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | Codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. This key is optional. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd--> |
+| [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | Codec-specific data. In the case of video, data carried in **SPS/PPS** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. This key is optional. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd--> |
 | [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | Maximum number of input buffers. The value type is int32_t. This key is optional.     |
 | [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | Maximum number of output buffers. The value type is int32_t. This key is optional.       |
+| [OH_MD_KEY_BITRATE](#oh_md_key_bitrate)                      | Bit rate. The value type is int64_t. This key is used in audio and video encoding scenarios. It is optional in video encoding scenarios.|
+| [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | Encoding grading. The value type is int32_t. For details, see [OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), and [OH_AACProfile](#oh_aacprofile). This key is optional.|
+| [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size)        | Maximum size of an input stream to decode. The value type is int32_t. This key is optional.          |
+
 
 The table below lists the video-dedicated key-value pairs.
 
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp)                | Surface buffer timestamp. The value is of the int64 type. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
+| [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp)                | Surface buffer timestamp. The value is of the int64_t type. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
 | [OH_ED_KEY_EOS](#oh_ed_key_eos)                              | End of stream for the surface buffer. The value type is int32_t. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd-->|
 | [OH_MD_KEY_WIDTH](#oh_md_key_width)                          | Video width. The value type is int32_t.                            |
 | [OH_MD_KEY_HEIGHT](#oh_md_key_height)                        | Video height. The value type is int32_t.                              |
 | [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format)            | Video pixel format. The value type is int32_t. For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).|
 | [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate)                | Video frame rate. The value type is double. This key is optional.                |
-| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | Video encoding bit rate mode. The value type is int32_t. For details, see [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode). This key is optional.|
-| [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval)    | Key frame interval, in milliseconds. The value type is int32_t. This key is used in audio and video encoding scenarios. This key is optional.|
-| [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | Rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0. This key is used in video decoding scenarios. This key is optional.|
 | [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag)                | Video YUV value range flag. The value type is int32_t. The value **1** means a full range, and **0** means a limited range. This key is optional.|
 | [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries)      | Video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary). The video primary color complies with Table 2 in the H.273 standard. This key is optional.|
 | [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | Video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic). The video transfer characteristics comply with Table 3 in the H.273 standard. This key is optional.|
 | [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard. This key is optional.|
-| [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | Request for immediate encoding of I-frames. The value type is int32_t. This key is optional.           |
-| [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | Required encoding quality. The value type is int32_t. This key applies only to encoders configured in constant quality mode. This key is optional.|
-| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | Video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional. You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md).|
-| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | Enabled status of temporal scalability. The value type is int32_t. The value **1** means temporal scalability is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase of video encoding.|
-| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | Size of a temporal image group. The value type is int32_t. This key is valid only when temporal scalability is enabled. This key is optional and used only in the configuration phase of video encoding.|
-| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | Reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1). This key is valid only when temporal scalability is enabled. This key is optional and used only in the configuration phase of video encoding.|
-| [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | Top coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional.|
-| [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | Bottom coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional.|
-| [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | Left coordinate (x) of the cropped rectangle. The value type is int32_t. This key is optional.|
-| [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | Right coordinate (x) of the cropped rectangle. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride)       | Stride of the video frame. The value type is int32_t. This key is optional.       |
 | [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | Height of the video frame. The value type is int32_t. This key is optional.       |
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | Width of the video frame. The value type is int32_t. This key is optional.       |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | Height of the video frame. The value type is int32_t. This key is optional.       |
 | [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | Enabled status of low-latency video codec. The value type is int32_t. The value **1** means that low-latency video codec is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase.|
+| [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | Video encoding bit rate mode. The value type is int32_t. For details, see [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode). This key is optional.|
+| [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | Required encoding quality. The value type is int32_t. This key applies only to encoders configured in constant quality mode. This key is optional.|
+| [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | Request for immediate encoding of I-frames. The value type is int32_t. This key is optional.           |
+| [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval)    | Key frame interval, in milliseconds. The value type is int32_t. This key is optional and is used only for video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | Enabled status of temporal scalability. The value type is int32_t. The value **1** means temporal scalability is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase of video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | Size of a temporal image group. The value type is int32_t. This key is valid only when temporal scalability is enabled. This key is optional and used only in the configuration phase of video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | Reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1). This key is valid only when temporal scalability is enabled. This key is optional and used only in the configuration phase of video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | Number of LTR frames. The value type is int32_t. The value must be within the supported value range. This key is optional and is used only for video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr)  | Whether the current frame is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is marked as an LTR frame, and **0** means the opposite. This key is optional and is used only for video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	LTR frame referenced by the current frame. The value type is int32_t. This key is optional and is used only for video encoding.|
+| [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | Whether the frame corresponding to the stream output from the current OH_AVBuffer is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite. This key is optional and is used only for video encoding.|
+| [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | POC of the frame. The value type is int32_t. This key is optional and is used only for video encoding.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | Maximum Quantization Parameter (QP) allowed by the video encoder. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | Minimum QP allowed by the video encoder. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](#oh_md_key_video_encoder_qp_average)     |Average QP of video frames. The value type is int32_t. This key is optional. |
 | [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |Mean Squared Error (MSE) of video frames. The value type is double. This key is optional. |
-| [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | Number of LTR frames. The value type is int32_t. The value must be within the supported value range.|
-| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr)  | Whether the current frame is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is marked as an LTR frame, and **0** means the opposite.|
-| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	LTR frame referenced by the current frame. The value type is int32_t.|
-| [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | Whether the current frame is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite.|
-| [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | POC of the frame. The value type is int32_t.|
+| [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | Output color space of the video decoder. The value type is int32_t. The supported value is **OH_COLORSPACE_BT709_LIMIT**.|
+| [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | Rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0. This key is optional and is used only for video decoding in surface mode  |
+| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | Video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional and is used only for video decoding in surface mode. You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md).|
+| [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | Top coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional and is used only for video decoding.|
+| [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | Bottom coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional and is used only for video decoding.|
+| [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | Left coordinate (x) of the cropped rectangle. The value type is int32_t. This key is optional and is used only for video decoding.|
+| [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | Right coordinate (x) of the cropped rectangle. The value type is int32_t. This key is optional and is used only for video decoding.|
 
 
 The table below lists the audio-dedicated key-value pairs.
 
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | Original audio format. The value type is int32_t.                        |
+| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | Original audio format. The value type is int32_t. For details, see [AudioSampleFormat](../apis-audio-kit/js-apis-audio.md#audiosampleformat8).                       |
 | [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count)  | Number of audio channels. The value type is int32_t.                          |
 | [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate)      | Audio sampling rate. The value type is int32_t.                            |
+| [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | Audio codec compression level. The value type is int32_t type. This key is used only for audio encoding. This key is optional.    |
 | [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout)        | Required encoding channel layout. The value type is int64_t. This key applies only to encoders. |
 | [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | Number of bits for each coded sample. The value type is int32_t. This key applies to FLAC encoders. For details, see [OH_BitsPerSample](#oh_bitspersample). This key is optional.|
-| [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts)              | AAC format. The value type is int32_t. This key applies to AAC decoders. This key is optional. |
 | [OH_MD_KEY_SBR](#oh_md_key_sbr)                              | AAC SBR format. The value type is int32_t. This key applies to AAC encoders. This key is optional.|
-| [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level)    | FLAC compliance level. The value type is int32_t. This key is optional.         |
-| [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | Vorbis identification header. The value type is uint8_t. This key applies only to Vorbis decoders. This key is optional.|
-| [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header)            | Vorbis setup header. The value type is uint8_t. This key applies only to Vorbis decoders. This key is optional.|
-| [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | Audio codec compression level. The value type is int32_t. This key is optional.    |
-| [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | Number of audio objects. The value type is int32_t. This key is optional.           |
-| [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Audio Vivid metadata. The value type is uint8_t. This key is optional.    |
+| [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level)    | FLAC compliance level. The value type is int32_t. This key is used only for audio encoding. This key is optional.         |
+| [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts)              | AAC format, which can be ADTS or LATM. The value type is int32_t. This key applies to AAC decoders. This key is optional. |
+| [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | Vorbis identification header. The value type is uint8_t\*. This key applies only to Vorbis decoders. This key is optional.|
+| [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header)            | Vorbis setup header. The value type is uint8_t\*. This key applies only to Vorbis decoders. This key is optional.|
+| [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | Number of audio objects. The value type is int32_t. This key is used only for Audio Vivid decoding. This key is optional.           |
+| [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Audio Vivid metadata. The value type is uint8_t\*. This key is used only for Audio Vivid decoding. This key is optional.    |
 
 The table below lists the key-value pairs dedicated for muxing and demuxing.
 
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type)                | Track type. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype). This key is optional.|
-| [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | Duration. The value type is int64_t. This key is optional.                 |
-| [OH_MD_KEY_TITLE](#oh_md_key_title)                          | Title of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_ARTIST](#oh_md_key_artist)                        | Artist of the input media. The value type is string. This key is optional.            |
-| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | Album of the input media. The value type is string. This key is optional.              |
+| [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both muxing and demuxing. This key is optional. |
+| [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | Start time of the first frame in a media file. The value type is int64_t. This key is optional.           |
+| [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | Track start time. The value type is int64_t. This key is optional.           |
+| [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type)                | Track type in a media file. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype-1). This key is optional.|
+| [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | Duration in a media file. The value type is int64_t. This key is optional.                 |
+| [OH_MD_KEY_TITLE](#oh_md_key_title)                          | Title in a media file. The value type is string. This key is optional.              |
+| [OH_MD_KEY_ARTIST](#oh_md_key_artist)                        | Artist in a media file. The value type is string. This key is optional.            |
+| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | Album in a media file. The value type is string. This key is optional.              |
 | [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | Album artist of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_DATE](#oh_md_key_date)                            | Date of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | Comment of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | Genre of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright)                  | Copyright of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_LANGUAGE](#oh_md_key_language)                    | Language of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_DESCRIPTION](#oh_md_key_description)              | Description of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_LYRICS](#oh_md_key_lyrics)                        | Lyrics of the input media. The value type is string. This key is optional.              |
-| [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count)              | Track count of the input media. The value type is int32_t. This key is optional.        |
-| [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Whether it is HDR Vivid. The value type is int32_t. This key is optional.           |
-| [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Decoder buffer timestamp, in microseconds. The value type is int64_t. This key is optional.           |
-| [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Buffer duration, in microseconds. The value type is int64_t. This key is optional.           |
-| [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | File start time. The value type is int64_t. This key is optional.           |
+| [OH_MD_KEY_DATE](#oh_md_key_date)                            | Date in a media file, for example, 2024. The value type is string. This key is optional.   |
+| [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | Comment in a media file. The value type is string. This key is optional.              |
+| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | Genre in a media file. The value type is string. This key is optional.              |
+| [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright)                  | Copyright in a media file. The value type is string. This key is optional.              |
+| [OH_MD_KEY_LANGUAGE](#oh_md_key_language)                    | Language in a media file. The value type is string. This key is optional.              |
+| [OH_MD_KEY_DESCRIPTION](#oh_md_key_description)              | Description in a media file. The value type is string. This key is optional.              |
+| [OH_MD_KEY_LYRICS](#oh_md_key_lyrics)                        | Lyrics in a media file. The value type is string. This key is optional.              |
+| [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count)              | Number of tracks in a media file. The value type is int32_t. This key is optional.        |
+| [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Duration corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t. This key is optional.           |
+| [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Decoding timestamp corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t. This key is optional.           |
 | [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | MIME type of the codec. The value type is string. This key is optional.        |
 | [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | Aspect ratio of the sample. The value type is double.|
 
@@ -158,7 +163,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 
 | Name| Description| 
 | -------- | -------- |
-| struct  [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | Describes all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
+| struct  [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | Describes all the asynchronous callback function pointers of an **OH_AVCodec** instance. (This function is deprecated in API version 11.)| 
 | struct  [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | Describes all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
 | struct  [OH_AVDataSource](_o_h___a_v_data_source.md) | Describes a user-defined data source. | 
 
@@ -170,42 +175,42 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Defines a struct for a native object for the graphics interface. | 
 | typedef struct [OH_AVCodec](#oh_avcodec) [OH_AVCodec](#oh_avcodec) | Defines a struct for a native object for the audio and video codec interface. | 
 | typedef void(\* [OH_AVCodecOnError](#oh_avcodeconerror)) ([OH_AVCodec](#oh_avcodec) \*codec, int32_t errorCode, void \*userData) | Defines the pointer to the function that is called to report error information when an error occurs during the running of an **OH_AVCodec** instance.| 
-| typedef void(\* [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) ([OH_AVCodec](#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format, void \*userData) | Defines the pointer to the function that is called to report the new stream description when the output stream changes.| 
-| typedef void(\* [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
-| typedef void(\* [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
+| typedef void(\* [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)) ([OH_AVCodec](#oh_avcodec) \*codec, [OH_AVFormat](_core.md#oh_avformat) \*format, void \*userData) | Defines the pointer to the function that is called to report the new stream description when the resolution of the input stream being decoded or the output stream that has been encoded changes.| 
+| typedef void(\* [OH_AVCodecOnNeedInputData](#oh_avcodeconneedinputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data. (This function is deprecated in API version 11.)| 
+| typedef void(\* [OH_AVCodecOnNewOutputData](#oh_avcodeconnewoutputdata)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVMemory](_core.md#oh_avmemory) \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data. (This function is deprecated in API version 11.)| 
 | typedef void(\* [OH_AVCodecOnNeedInputBuffer](#oh_avcodeconneedinputbuffer)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVBuffer](_core.md#oh_avbuffer) \*buffer, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
 | typedef void(\* [OH_AVCodecOnNewOutputBuffer](#oh_avcodeconnewoutputbuffer)) ([OH_AVCodec](#oh_avcodec) \*codec, uint32_t index, [OH_AVBuffer](_core.md#oh_avbuffer) \*buffer, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
-| typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
+| typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance. (This function is deprecated in API version 11.)| 
 | typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](#oh_avcodeccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
 | typedef int32_t(\* [OH_AVDataSourceReadAt](#oh_avdatasourcereadat)) (OH_AVBuffer \*data, int32_t length, int64_t pos) | Defines a function pointer used to provide the capability of obtaining user-defined media data. | 
 | typedef struct [OH_AVDataSource](_o_h___a_v_data_source.md) [OH_AVDataSource](#oh_avdatasource) | Defines a struct for a user-defined data source. | 
-| typedef enum [OH_MediaType](#oh_mediatype-1) [OH_MediaType](#oh_mediatype) | Defines an enum for media types.| 
-| typedef enum [OH_AACProfile](#oh_aacprofile-1) [OH_AACProfile](#oh_aacprofile) | Defines an enum for Advanced Audio Coding (AAC) profiles.| 
-| typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | Defines an enum for Advanced Video Coding (AVC) profiles.| 
-| typedef enum [OH_HEVCProfile](#oh_hevcprofile-1) [OH_HEVCProfile](#oh_hevcprofile) | Defines an enum for High Efficiency Video Coding (HEVC) profiles.| 
-| typedef enum [OH_AVOutputFormat](#oh_avoutputformat-1) [OH_AVOutputFormat](#oh_avoutputformat) | Defines an enum for output file formats of a muxer.| 
-| typedef enum [OH_AVSeekMode](#oh_avseekmode-1) [OH_AVSeekMode](#oh_avseekmode) | Defines an enum for seek modes.| 
-| typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | Defines an enum for scaling modes.| 
-| typedef enum [OH_BitsPerSample](#oh_bitspersample-1) [OH_BitsPerSample](#oh_bitspersample) | Defines an enum for number of audio bits for each coded sample.| 
-| typedef enum [OH_ColorPrimary](#oh_colorprimary-1) [OH_ColorPrimary](#oh_colorprimary) | Defines an enum for primary colors.| 
-| typedef enum [OH_TransferCharacteristic](#oh_transfercharacteristic-1) [OH_TransferCharacteristic](#oh_transfercharacteristic) | Defines an enum for transfer characteristics.| 
-| typedef enum [OH_MatrixCoefficient](#oh_matrixcoefficient-1) [OH_MatrixCoefficient](#oh_matrixcoefficient) | Defines an enum for matrix coefficients.| 
-| typedef enum [OH_AVCLevel](#oh_avclevel-1) [OH_AVCLevel](#oh_avclevel) | Defines an enum for AVC levels. | 
-| typedef enum [OH_HEVCLevel](#oh_hevclevel-1) [OH_HEVCLevel](#oh_hevclevel) | Defines an enum for HEVC levels. | 
-| typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | Defines an enum for reference modes of temporal image groups. | 
+| typedef enum [OH_MediaType](#oh_mediatype-1) [OH_MediaType](#oh_mediatype) | Defines an enum for the media types.| 
+| typedef enum [OH_AACProfile](#oh_aacprofile-1) [OH_AACProfile](#oh_aacprofile) | Defines an enum for the Advanced Audio Coding (AAC) profiles.| 
+| typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | Defines an enum for the Advanced Video Coding (AVC) profiles.| 
+| typedef enum [OH_HEVCProfile](#oh_hevcprofile-1) [OH_HEVCProfile](#oh_hevcprofile) | Defines an enum for the High Efficiency Video Coding (HEVC) profiles.| 
+| typedef enum [OH_AVOutputFormat](#oh_avoutputformat-1) [OH_AVOutputFormat](#oh_avoutputformat) | Defines an enum for the output file formats supported by a muxer.| 
+| typedef enum [OH_AVSeekMode](#oh_avseekmode-1) [OH_AVSeekMode](#oh_avseekmode) | Defines an enum for the seek modes.| 
+| typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | Defines an enum for the scaling modes. This enum is used only in surface mode.| 
+| typedef enum [OH_BitsPerSample](#oh_bitspersample-1) [OH_BitsPerSample](#oh_bitspersample) | Defines an enum for the number of audio bits for each coded sample.| 
+| typedef enum [OH_ColorPrimary](#oh_colorprimary-1) [OH_ColorPrimary](#oh_colorprimary) | Defines an enum for the primary colors.| 
+| typedef enum [OH_TransferCharacteristic](#oh_transfercharacteristic-1) [OH_TransferCharacteristic](#oh_transfercharacteristic) | Defines an enum for the transfer characteristics.| 
+| typedef enum [OH_MatrixCoefficient](#oh_matrixcoefficient-1) [OH_MatrixCoefficient](#oh_matrixcoefficient) | Defines an enum for the matrix coefficients.| 
+| typedef enum [OH_AVCLevel](#oh_avclevel-1) [OH_AVCLevel](#oh_avclevel) | Defines an enum for the AVC levels. | 
+| typedef enum [OH_HEVCLevel](#oh_hevclevel-1) [OH_HEVCLevel](#oh_hevclevel) | Defines an enum for the HEVC levels. | 
+| typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | Defines an enum for the reference modes of temporal image groups. | 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [AudioChannelSet](#audiochannelset) : uint64_t {<br>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>BACK_LEFT = 1ULL &lt;&lt; 4U,<br>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>BACK_CENTER = 1ULL &lt;&lt; 8U,<br>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>TOP_CENTER = 1ULL &lt;&lt; 11U,<br>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br>AMBISONICS_W = AMBISONICS_ACN0,<br>AMBISONICS_Y = AMBISONICS_ACN1,<br>AMBISONICS_Z = AMBISONICS_ACN2,<br>AMBISONICS_X = AMBISONICS_ACN3,<br>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br>} | Enumerates the audio channel sets. Each channel number is mapped to a variable of int64.| 
+| [AudioChannelSet](#audiochannelset) : uint64_t {<br>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>BACK_LEFT = 1ULL &lt;&lt; 4U,<br>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>BACK_CENTER = 1ULL &lt;&lt; 8U,<br>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>TOP_CENTER = 1ULL &lt;&lt; 11U,<br>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br>AMBISONICS_W = AMBISONICS_ACN0,<br>AMBISONICS_Y = AMBISONICS_ACN1,<br>AMBISONICS_Z = AMBISONICS_ACN2,<br>AMBISONICS_X = AMBISONICS_ACN3,<br>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br>} | Enumerates the audio channel sets. Each channel number is mapped to a variable of int64_t. (This function is deprecated in API version 11.)| 
 | [AudioChannelLayout](#audiochannellayout) : uint64_t {<br>UNKNOWN_CHANNEL_LAYOUT = 0,<br>MONO = (AudioChannelSet::FRONT_CENTER),<br>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br>HOA_FIRST,<br>HOA_SECOND,<br>HOA_THIRD<br>} | Enumerates the types of the audio channel sets. The output format of the decoder is represented as the channel type of the codec.| 
-| [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1<br>} | Enumerates the media types.| 
+| [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1,<br>MEDIA_TYPE_SUBTITILE = 2<br>} | Enumerates the media types.|
 | [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.| 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.| 
-| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9,<br>AV_OUTPUT_FORMAT_WAV = 10<br>} | Enumerates the output file formats of a muxer.|
+| [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9,<br>AV_OUTPUT_FORMAT_WAV = 10<br>} | Enumerates the output file formats supported by a muxer.|
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br>SEEK_MODE_NEXT_SYNC = 0,<br>SEEK_MODE_PREVIOUS_SYNC,<br>SEEK_MODE_CLOSEST_SYNC<br>} | Enumerates the seek modes.| 
 | [OH_ScalingMode](#oh_scalingmode-1) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes.| 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br>INVALID_WIDTH = -1<br>} | Enumerates the number of audio bits for each coded sample.| 
@@ -214,91 +219,50 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_MatrixCoefficient](#oh_matrixcoefficient-1) {<br>MATRIX_COEFFICIENT_IDENTITY = 0,<br>MATRIX_COEFFICIENT_BT709 = 1,<br>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br>MATRIX_COEFFICIENT_FCC = 4,<br>MATRIX_COEFFICIENT_BT601_625 = 5,<br>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br>MATRIX_COEFFICIENT_YCGCO = 8,<br>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br>MATRIX_COEFFICIENT_BT2020_CL = 10,<br>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br>MATRIX_COEFFICIENT_ICTCP = 14<br>} | Enumerates the matrix coefficients.| 
 | [OH_AVCLevel](#oh_avclevel-1) {<br>AVC_LEVEL_1 = 0, <br>AVC_LEVEL_1b = 1, <br>AVC_LEVEL_11 = 2, <br>AVC_LEVEL_12 = 3,<br>AVC_LEVEL_13 = 4, <br>AVC_LEVEL_2 = 5, <br>AVC_LEVEL_21 = 6, <br>AVC_LEVEL_22 = 7,<br>AVC_LEVEL_3 = 8, <br>AVC_LEVEL_31 = 9, <br>AVC_LEVEL_32 = 10, <br>AVC_LEVEL_4 = 11,<br>AVC_LEVEL_41 = 12, <br>AVC_LEVEL_42 = 13, <br>AVC_LEVEL_5 = 14, <br>AVC_LEVEL_51 = 15, <br>AVC_LEVEL_52 = 16, <br>AVC_LEVEL_6 = 17, <br>AVC_LEVEL_61 = 18, <br>AVC_LEVEL_62 = 19<br>} | Enumerates the AVC levels. | 
 | [OH_HEVCLevel](#oh_hevclevel-1) {<br>HEVC_LEVEL_1 = 0, <br>HEVC_LEVEL_2 = 1, <br>HEVC_LEVEL_21 = 2, <br>HEVC_LEVEL_3 = 3,<br>HEVC_LEVEL_31 = 4, <br>HEVC_LEVEL_4 = 5, <br>HEVC_LEVEL_41 = 6, <br>HEVC_LEVEL_5 = 7,<br>HEVC_LEVEL_51 = 8, <br>HEVC_LEVEL_52 = 9, <br>HEVC_LEVEL_6 = 10, <br>HEVC_LEVEL_61 = 11,<br>HEVC_LEVEL_62 = 12<br>} | Enumerates the HEVC levels. | 
-| [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1 <br>} | Enumerates the reference modes of temporal image groups. | 
+| [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1, <br>UNIFORMLY_SCALED_REFERENCE = 2 <br>} | Enumerates the reference modes of temporal image groups. | 
 
 
 ### Variables
 
 | Name| Description| 
 | -------- | -------- |
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Pointer to the key that describes the MIME type of the AVC (H.264) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | Pointer to the key that describes the MIME type of the AAC audio codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](#oh_avcodec_mimetype_audio_flac) | Pointer to the key that describes the MIME type of the Free Lossless Audio Codec (FLAC) audio codec.|
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | Pointer to the key that describes the MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  |
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | Pointer to the key that describes the MIME type of the G.711 mu-law audio codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | Pointer to the key that describes the MIME type of the Vorbis audio decoder.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | Pointer to the key that describes the MIME type of the MP3 audio decoder.|
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | Pointer to the key that describes the MIME type of the Audio Vivid audio decoder. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  |
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | Pointer to the key that describes the MIME type of the AMR-NB audio decoder.|
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.|
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |Pointer to the key that describes the MIME type of the APE audio decoder.                        |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | Pointer to the key that describes the MIME type of the HEVC (H.265) video codec.|
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Pointer to the key that describes the MIME type of the AVC (H.264) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams.|
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](#oh_avcodec_mimetype_image_jpg) | Pointer to the key that describes the MIME type of the JPG image encoder, which is used only for muxing JPG covers.|
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](#oh_avcodec_mimetype_image_png) | Pointer to the key that describes the MIME type of the PNG image encoder, which is used only for muxing PNG covers.|
 | const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](#oh_avcodec_mimetype_image_bmp) | Pointer to the key that describes the MIME type of the BMP image encoder, which is used only for muxing BMP covers.|
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | Pointer to the key that describes the MIME type of the Audio Vivid audio decoder. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  |
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | Pointer to the key that describes the MIME type of the AMR-NB audio decoder.|
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.|
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | Pointer to the key that describes the MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  |
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | Pointer to the key that describes the MIME type of the G.711 mu-law audio codec.|
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) |Pointer to the key that describes the MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd--> |
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |Pointer to the key that describes the MIME type of the APE audio decoder.                        |
+| const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |Pointer to the key that describes the MIME type of the WEBVTT subtitle demuxer.                |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |Pointer to the key that describes the MIME type of the SRT subtitle demuxer.                        |
-| const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64 type. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
-| const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
-| const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | Pointer to the key that describes the track type. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype).|
-| const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | Pointer to the key that describes the MIME type of the codec. The value type is string.|
-| const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | Pointer to the key that describes the duration. The value type is int64_t.|
+| const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count) | Pointer to the key that describes the maximum number of LTR frames obtained during video encoding. The value type is int32_t. |
+| const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | Pointer to the key that describes codec-specific data. In the case of video, data carried in **SPS/PPS** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd--> |
+| const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | Pointer to the key that describes the maximum number of input buffers. The value type is int32_t.|
+| const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | Pointer to the key that describes the maximum number of output buffers. The value type is int32_t.|
 | const char \* [OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | Pointer to the key that describes the bit rate. The value type is int64_t.|
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | Pointer to the key that describes the encoding grading. The value type is int32_t. For details, see [OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), and [OH_AACProfile](#oh_aacprofile).|
 | const char \* [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | Pointer to the key that describes the maximum size of an input stream to decode. The value type is int32_t.|
+| const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64_t type. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
+| const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
 | const char \* [OH_MD_KEY_WIDTH](#oh_md_key_width) | Pointer to the key that describes the video width. The value type is int32_t.|
 | const char \* [OH_MD_KEY_HEIGHT](#oh_md_key_height) | Pointer to the key that describes the video height. The value type is int32_t.|
 | const char \* [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format) | Pointer to the key that describes the video pixel format. The value type is int32_t. For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).|
-| const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | Pointer to the key that describes the original audio format. The value type is int32_t.|
 | const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | Pointer to the key that describes the video frame rate. The value type is double.|
-| const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | Pointer to the key that describes the video encoding bit rate mode. The value type is int32_t. For details, see [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode).|
-| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | Pointer to the key that describes the encoding grading. The value type is int32_t. For details, see [OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), and [OH_AACProfile](#oh_aacprofile).|
-| const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | Pointer to the key that describes the number of audio channels. The value type is int32_t.|
-| const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | Pointer to the key that describes the audio sampling rate. The value type is int32_t.|
-| const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | Pointer to the key that describes the key frame interval, in milliseconds. The value type is int32_t.|
-| const char \* [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | Pointer to the key that describes the rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0.|
+| const char \* [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | Pointer to the key that describes the rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0. This key is used only for video decoding in surface mode.|
 | const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | Pointer to the key that describes the video YUV value range flag. The value type is int32_t. The value **1** means a full range, and **0** means a limited range.|
 | const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | Pointer to the key that describes the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary). The video primary color complies with Table 2 in the H.273 standard.|
 | const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | Pointer to the key that describes the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic). The video transfer characteristics comply with Table 3 in the H.273 standard.|
 | const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Pointer to the key that describes the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard.|
-| const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | Pointer to the key that describes the request for immediate encoding of I-frames. The value type is int32_t.|
-| const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | Pointer to the key that describes the required encoding quality. The value type is int32_t. This key applies only to encoders configured in constant quality mode.|
-| const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | Pointer to the key that describes the codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd--> |
-| const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | Pointer to the key that describes the title of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | Pointer to the key that describes the artist of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | Pointer to the key that describes the album of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | Pointer to the key that describes the album artist of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_DATE](#oh_md_key_date) | Pointer to the key that describes the date of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_COMMENT](#oh_md_key_comment) | Pointer to the key that describes the comment of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | Pointer to the key that describes the genre of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright) | Pointer to the key that describes the copyright of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_LANGUAGE](#oh_md_key_language) | Pointer to the key that describes the language of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | Pointer to the key that describes the description of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_LYRICS](#oh_md_key_lyrics) | Pointer to the key that describes the lyrics of the input media. The value type is string.|
-| const char \* [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count) | Pointer to the key that describes the track count of the input media. The value type is int32_t.|
-| const char \* [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | Pointer to the key that describes the required encoding channel layout. The value type is int64_t. This key applies only to encoders.|
-| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | Pointer to the key that describes the number of bits for each coded sample. The value type is int32_t. This key applies to FLAC encoders. For details, see [OH_BitsPerSample](#oh_bitspersample).|
-| const char \* [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | Pointer to the key that describes the AAC format. The value type is int32_t. This key applies to AAC decoders.|
-| const char \* [OH_MD_KEY_SBR](#oh_md_key_sbr) | Pointer to the key that describes the AAC SBR format. The value type is int32_t. This key applies to AAC encoders.|
-| const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | Pointer to the key that describes the FLAC compliance level. The value type is int32_t.|
-| const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | Pointer to the key that describes the Vorbis identification header. The value type is uint8_t. This key applies only to Vorbis decoders.|
-| const char \* [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header) | Pointer to the key that describes the Vorbis setup header. The value type is uint8_t. This key applies only to Vorbis decoders.|
-| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | Pointer to the key that describes the video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md).|
-| const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | Pointer to the key that describes the maximum number of input buffers. The value type is int32_t.|
-| const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | Pointer to the key that describes the maximum number of output buffers. The value type is int32_t.|
-| const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | Pointer to the key that describes the audio codec compression level. The value type is int32_t.|
-| const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Pointer to the key that describes whether it is HDR Vivid. The value type is int32_t.|
-| const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | Pointer to the key that describes the number of audio objects. The value type is int32_t.|
-| const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t.|
-| const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count) | Pointer to the key that describes the maximum number of LTR frames obtained during video encoding. The value type is int32_t. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | Pointer to the key that describes the enabled status of temporal scalability. The value type is int32_t. The value **1** means temporal scalability is enabled, and **0** means the opposite. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | Pointer to the key that describes the size of a temporal image group. The value type is int32_t. This key is valid only when temporal scalability is enabled. |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | Pointer to the key that describes the reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode). This key is valid only when temporal scalability is enabled. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count) | Pointer to the key that describes the number of LTR frames. The value type is int32_t. The value must be within the supported value range. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr) | Pointer to the key that describes the key that marks the current frame as an LTR frame. The value type is int32_t. The value **1** means that the frame is marked as an LTR frame, and **0** means the opposite. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr) | Pointer to the key that describes the LTR frame referenced by the current frame. The value type is int32_t. | 
-| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr) | Pointer to the key that describes the key that specifies whether the current frame is an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite. | 
-| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc) | Pointer to the key that describes the POC of the frame. The value type is int32_t. | 
+| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | Pointer to the key that describes the video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional and is used only for video decoding in surface mode. You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md).|
 | const char \* [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top) | Pointer to the key that describes the top coordinate (y) of the cropped rectangle. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom) | Pointer to the key that describes the bottom coordinate (y) of the cropped rectangle. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | Pointer to the key that describes the left coordinate (x) of the cropped rectangle. The value type is int32_t. | 
@@ -308,13 +272,56 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | Pointer to the key that describes the width of the video frame. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | Pointer to the key that describes the height of the video frame. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | Pointer to the key that describes the enabled status of low-latency video codec. The value type is int32_t. The value **1** means that low-latency video codec is enabled, and **0** means the opposite. If enabled, the input and output data held by the video encoder or decoder does not exceed the amount required by the codec standard.  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | Pointer to the key that describes the video encoding bit rate mode. The value type is int32_t. For details, see [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode).|
+| const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | Pointer to the key that describes the required encoding quality. The value type is int32_t. This key applies only to encoders configured in constant quality mode.|
+| const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | Pointer to the key that describes the request for immediate encoding of I-frames. The value type is int32_t.|
+| const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | Pointer to the key that describes the key frame interval, in milliseconds. The value type is int32_t. This key is optional and is used only for video encoding.|
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | Pointer to the key that describes the enabled status of temporal scalability. The value type is int32_t. The value **1** means temporal scalability is enabled, and **0** means the opposite. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | Pointer to the key that describes the size of a temporal image group. The value type is int32_t. This key is valid only when temporal scalability is enabled. |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | Pointer to the key that describes the reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode). This key is valid only when temporal scalability is enabled. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count) | Pointer to the key that describes the number of LTR frames. The value type is int32_t. The value must be within the supported value range. This key is optional and is used only for video encoding. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr) | Pointer to the key that describes the key that marks the current frame as an LTR frame. The value type is int32_t. The value **1** means that the frame is marked as an LTR frame, and **0** means the opposite. This key is optional and is used only for video encoding. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr) | Pointer to the key that describes the LTR frame referenced by the current frame. The value type is int32_t. This key is optional and is used only for video encoding. | 
+| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr) | Pointer to the key that specifies whether the frame corresponding to the stream output from the current OH_AVBuffer is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite. This key is optional and is used only for video encoding. | 
+| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc) | Pointer to the key that describes the POC of the frame. The value type is int32_t. This key is optional and is used only for video encoding. | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max) | Pointer to the key that describes the maximum QP allowed by the video encoder. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min) | Pointer to the key that describes the minimum QP allowed by the video encoder. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](#oh_md_key_video_encoder_qp_average) | Pointer to the key that describes the average QP of video frames. The value type is int32_t.|
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |Pointer to the key that describes the MSE of video frames. The value type is double. |
-| const char \* [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Pointer to the key that describes the decoder buffer timestamp, in microseconds. The value type is int64_t. |
-| const char \* [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Pointer to the key that describes the buffer duration, in microseconds. The value type is int64_t.      |
-| const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | Pointer to the key that describes the file start time. The value type is int64_t.    |
+| const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)   | Pointer to the key that describes the output color space of the video decoder. The value type is int32_t. The supported value is **OH_COLORSPACE_BT709_LIMIT**.|
+| const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | Pointer to the key that describes the original audio format. The value type is int32_t.|
+| const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | Pointer to the key that describes the number of audio channels. The value type is int32_t.|
+| const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | Pointer to the key that describes the audio sampling rate. The value type is int32_t.|
+| const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | Pointer to the key that describes the audio codec compression level. The value type is int32_t type. This key is used only for audio encoding.|
+| const char \* [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | Pointer to the key that describes the required encoding channel layout. The value type is int64_t. This key applies only to encoders.|
+| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | Pointer to the key that describes the number of bits for each coded sample. The value type is int32_t. This key applies to FLAC encoders. For details, see [OH_BitsPerSample](#oh_bitspersample).|
+| const char \* [OH_MD_KEY_SBR](#oh_md_key_sbr) | Pointer to the key that describes the AAC SBR format. The value type is int32_t. This key applies to AAC encoders.|
+| const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | Pointer to the key that describes the FLAC compliance level. The value type is int32_t. This key is used only for audio encoding.|
+| const char \* [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | Pointer to the key that describes the AAC format, which can be ADTS or LATM. The value type is int32_t. This key applies to AAC decoders.|
+| const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | Pointer to the key that describes the Vorbis identification header. The value type is uint8_t. This key applies only to Vorbis decoders.|
+| const char \* [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header) | Pointer to the key that describes the Vorbis setup header. The value type is uint8_t. This key applies only to Vorbis decoders.|
+| const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | Pointer to the key that describes the number of audio objects. The value type is int32_t. This key is used only for Audio Vivid decoding.|
+| const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t\*. This key is used only for Audio Vivid decoding.|
+| const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both muxing and demuxing.|
+| const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | Pointer to the key that describes the start time of the first frame in a media file. The value type is int64_t.    |
+| const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | Pointer to the key that describes the track start time. The value type is int64_t.    |
+| const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | Pointer to the key that describes the track type in a media file. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype-1).|
+| const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | Pointer to the key that describes the duration in a media file. The value type is int64_t.|
+| const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | Pointer to the key that describes the title in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | Pointer to the key that describes the lyrics in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | Pointer to the key that describes the album in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | Pointer to the key that describes the album artist of the input media. The value type is string.|
+| const char \* [OH_MD_KEY_DATE](#oh_md_key_date) | Pointer to the key that describes the date in a media file, for example, 2024. The value type is string.|
+| const char \* [OH_MD_KEY_COMMENT](#oh_md_key_comment) | Pointer to the key that describes the comment in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | Pointer to the key that describes the genre in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright) | Pointer to the key that describes the copyright in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_LANGUAGE](#oh_md_key_language) | Pointer to the key that describes the language in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | Pointer to the key that describes the description in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_LYRICS](#oh_md_key_lyrics) | Pointer to the key that describes the lyrics in a media file. The value type is string.|
+| const char \* [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count) | Pointer to the key that describes the number of tracks in a media file. The value type is int32_t.|
+| const char \* [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Pointer to the key that describes the duration corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t.      |
+| const char \* [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Pointer to the key that describes the decoding timestamp corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t. |
+| const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | Pointer to the key that describes the MIME type of the codec. The value type is string.|
 | const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)            | Pointer to the key that describes the aspect ratio of the sample. The value type is double.|
 
 
@@ -329,7 +336,7 @@ typedef enum OH_AACProfile OH_AACProfile
 
 **Description**
 
-Defines an enum for AAC profiles.
+Defines an enum for the AAC profiles.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -343,7 +350,7 @@ typedef enum OH_AVCLevel OH_AVCLevel
 ```
 **Description**
 
-Defines an enum for AVC levels.
+Defines an enum for the AVC levels.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -424,8 +431,12 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 
 Defines the pointer to the function that is called to report error information when an error occurs during the running of an **OH_AVCodec** instance.
 
-- **AV_ERROR_NO_MEMORY**: System resources are insufficient.
-- **AV_ERROR_UNKNOWN**: An unknown error occurs. Analyze the error based on specific logs.
+| Use Case| Error Code|
+| -------- | -------- |
+| Audio encoding/decoding| **AV_ERR_DRM_DECRYPT_FAILED**: DRM decryption failed. |
+| Video encoding and decoding| **AV_ERROR_NO_MEMORY**: System resources are insufficient.<br>**AV_ERROR_UNKNOWN**: An unknown error occurs. Analyze the error based on specific logs.<br>**AV_ERR_SERVICE_DIED**: The service is dead. |
+| Video decoding| **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION**: The current input does not support CSC. |
+<!--RP1--><!--RP1End-->
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -437,7 +448,7 @@ Defines the pointer to the function that is called to report error information w
 | -------- | -------- |
 | codec | Pointer to an **OH_AVCodec** instance. | 
 | errorCode | Error code. | 
-| userData | Pointer to user-specific data. | 
+| userData | Pointer to the data on which the caller depends when executing the callback. |
 
 
 ### OH_AVCodecOnNeedInputBuffer
@@ -461,7 +472,7 @@ Defines the pointer to the function that is called when new input data is requir
 | codec | Pointer to an **OH_AVCodec** instance. | 
 | index | Index of the new input buffer. | 
 | buffer | Pointer to the data to fill in the new input buffer. | 
-| userData | Pointer to user-specific data. | 
+| userData | Pointer to the data on which the caller depends when executing the callback. | 
 
 
 ### OH_AVCodecOnNeedInputData
@@ -489,7 +500,7 @@ Defines the pointer to the function that is called when new input data is requir
 | codec | Pointer to an **OH_AVCodec** instance. | 
 | index | Index of the new input buffer. | 
 | data | Pointer to the data to fill in the new input buffer. | 
-| userData | Pointer to user-specific data. | 
+| userData | Pointer to the data on which the caller depends when executing the callback. | 
 
 
 ### OH_AVCodecOnNewOutputBuffer
@@ -513,7 +524,7 @@ Defines the pointer to the function that is called when new output data is gener
 | codec | Pointer to an **OH_AVCodec** instance. | 
 | index | Index of the new output buffer. | 
 | buffer | Pointer to the data filled in the new output buffer. | 
-| userData | Pointer to user-specific data. | 
+| userData | Pointer to the data on which the caller depends when executing the callback. | 
 
 
 ### OH_AVCodecOnNewOutputData
@@ -542,7 +553,7 @@ Defines the pointer to the function that is called when new output data is gener
 | index | Index of the new output buffer. | 
 | data | Pointer to the data filled in the new output buffer. | 
 | attr | Pointer to the description information about the new output buffer. For details, see **OH_AVCodecBufferAttr**. | 
-| userData | Pointer to user-specific data. | 
+| userData | Pointer to the data on which the caller depends when executing the callback. | 
 
 
 ### OH_AVCodecOnStreamChanged
@@ -553,7 +564,7 @@ typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 
 **Description**
 
-Defines the pointer to the function that is called to report the new stream description when the output stream changes. Note that the lifecycle of the pointer to the **OH_AVFormat** instance is valid only when the function pointer is being called. Do not access the pointer to the instance after the function pointer is called.
+Defines the pointer to the function that is called to report the new stream description when the resolution of the input stream being decoded or the output stream that has been encoded changes. Note that the lifecycle of the pointer to the **OH_AVFormat** instance is valid only when the function pointer is being called. Do not access the pointer to the instance after the function pointer is called.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -565,7 +576,7 @@ Defines the pointer to the function that is called to report the new stream desc
 | -------- | -------- |
 | codec | Pointer to an **OH_AVCodec** instance. |
 | format | Pointer to the description information about the new output stream. |
-| userData | Pointer to user-specific data. |
+| userData | Pointer to the data on which the caller depends when executing the callback. |
 
 
 ### OH_AVCProfile
@@ -576,7 +587,7 @@ typedef enum OH_AVCProfile OH_AVCProfile
 
 **Description**
 
-Defines an enum for AVC profiles.
+Defines an enum for the AVC profiles.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -633,7 +644,7 @@ typedef enum OH_AVOutputFormat OH_AVOutputFormat
 
 **Description**
 
-Defines an enum for output file formats of a muxer.
+Defines an enum for the output file formats supported by a muxer.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -648,7 +659,7 @@ typedef enum OH_AVSeekMode OH_AVSeekMode
 
 **Description**
 
-Defines an enum for seek modes.
+Defines an enum for the seek modes.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -663,7 +674,7 @@ typedef enum OH_BitsPerSample OH_BitsPerSample
 
 **Description**
 
-Defines an enum for number of audio bits for each coded sample.
+Defines an enum for the number of audio bits for each coded sample.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -678,7 +689,7 @@ typedef enum OH_ColorPrimary OH_ColorPrimary
 
 **Description**
 
-Defines an enum for primary colors.
+Defines an enum for the primary colors.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -693,7 +704,7 @@ typedef enum OH_HEVCLevel OH_HEVCLevel
 
 **Description**
 
-Defines an enum for HEVC levels.
+Defines an enum for the HEVC levels.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -708,7 +719,7 @@ typedef enum OH_HEVCProfile OH_HEVCProfile
 
 **Description**
 
-Defines an enum for HEVC profiles.
+Defines an enum for the HEVC profiles.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -723,7 +734,7 @@ typedef enum OH_MatrixCoefficient OH_MatrixCoefficient
 
 **Description**
 
-Defines an enum for matrix coefficients.
+Defines an enum for the matrix coefficients.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -738,7 +749,7 @@ typedef enum OH_MediaType OH_MediaType
 
 **Description**
 
-Defines an enum for media types.
+Defines an enum for the media types.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -753,7 +764,7 @@ typedef enum OH_ScalingMode OH_ScalingMode
 
 **Description**
 
-Defines an enum for scaling modes.
+Defines an enum for the scaling modes. This enum is used only in surface mode.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -768,7 +779,7 @@ typedef enum OH_TemporalGopReferenceMode OH_TemporalGopReferenceMode
 
 **Description**
 
-Defines an enum for reference modes of temporal image groups.
+Defines an enum for the reference modes of temporal image groups.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -782,7 +793,7 @@ typedef enum OH_TransferCharacteristic OH_TransferCharacteristic
 ```
 **Description**
 
-Defines an enum for transfer characteristics.
+Defines an enum for the transfer characteristics.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -875,7 +886,7 @@ enum AudioChannelSet : uint64_t
 
 **Description**
 
-Enumerates the audio channel sets. Each channel number is mapped to a variable of int64.
+Enumerates the audio channel sets. Each channel number is mapped to a variable of int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -953,7 +964,7 @@ Enumerates the AAC profiles.
 
 | Value| Description| 
 | -------- | -------- |
-| AAC_PROFILE_LC  | AAV profile of the low complexity level.  | 
+| AAC_PROFILE_LC  | AAC profile of the low complexity level.  | 
 
 
 ### OH_AVCLevel
@@ -1023,7 +1034,7 @@ enum OH_AVOutputFormat
 
 **Description**
 
-Enumerates the output file formats of a muxer.
+Enumerates the output file formats supported by a muxer.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1054,9 +1065,9 @@ Enumerates the seek modes.
 
 | Value| Description| 
 | -------- | -------- |
-| SEEK_MODE_NEXT_SYNC  | Seeks to the next key frame at the specified position.  | 
-| SEEK_MODE_PREVIOUS_SYNC  | Seeks to the previous key frame at the specified position.  | 
-| SEEK_MODE_CLOSEST_SYNC  | Seeks to the latest key frame at the specified position.  | 
+| SEEK_MODE_NEXT_SYNC  | Seeks to the next I-frame at the specified position. If there is no I-frame after the specified position, the seek operation may fail.  |
+| SEEK_MODE_PREVIOUS_SYNC  | Seeks to the previous I-frame at the specified position.  | 
+| SEEK_MODE_CLOSEST_SYNC  | Seeks to the latest I-frame at the specified position.  | 
 
 
 ### OH_BitsPerSample
@@ -1096,7 +1107,7 @@ enum OH_ColorPrimary
 
 **Description**
 
-Enumerates the primary colors.
+Enumerates the primary colors. This enum is used for both encoding and decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1178,7 +1189,7 @@ enum OH_MatrixCoefficient
 
 **Description**
 
-Enumerates the matrix coefficients.
+Enumerates the matrix coefficients. This enum is used for both encoding and decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1220,7 +1231,7 @@ Enumerates the media types.
 | -------- | -------- |
 | MEDIA_TYPE_AUD  | Audio track.  | 
 | MEDIA_TYPE_VID  | Video track.  | 
-
+| MEDIA_TYPE_SUBTITILE  | Subtitle track.<br>**Since**: 12  |
 
 ### OH_ScalingMode
 
@@ -1230,7 +1241,7 @@ enum OH_ScalingMode
 
 **Description**
 
-Enumerates the scaling modes.
+Enumerates the scaling modes. This enum is used only in surface mode.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1258,8 +1269,9 @@ Enumerates the reference modes of temporal image groups.
 
 | Value| Description| 
 | -------- | -------- |
-| ADJACENT_REFERENCE  | Refer to the nearest short-term reference frame.  | 
-| JUMP_REFERENCE  | Refer to the latest LTR frame.  | 
+| ADJACENT_REFERENCE  | Refers to the nearest short-term reference frame.  | 
+| JUMP_REFERENCE  | Refers to the latest LTR frame.  | 
+| UNIFORMLY_SCALED_REFERENCE  | Drops video frames at the highest level, and evenly distributes the remaining frames. The number of temporal image groups must be a power of 2.  | 
 
 
 ### OH_TransferCharacteristic
@@ -1270,7 +1282,7 @@ enum OH_TransferCharacteristic
 
 **Description**
 
-Enumerates the transfer characteristics.
+Enumerates the transfer characteristics. This enum can be used for both encoding and decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1315,6 +1327,21 @@ Pointer to the key that describes the MIME type of the SRT subtitle demuxer.
 **Since**: 12
 
 
+### OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT
+
+```
+const char* OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT
+```
+
+**Description**
+
+Pointer to the key that describes the MIME type of the WEBVTT subtitle demuxer.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 12
+
+
 ### OH_AVCODEC_MIMETYPE_AUDIO_APE
 
 ```
@@ -1324,21 +1351,6 @@ const char* OH_AVCODEC_MIMETYPE_AUDIO_APE
 **Description**
 
 Pointer to the key that describes the MIME type of the APE audio decoder.
-
-**System capability**: SystemCapability.Multimedia.Media.CodecBase
-
-**Since**: 12
-
-
-### OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-
-```
-const char* OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-```
-
-**Description**
-
-Pointer to the key that describes the MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1595,7 +1607,7 @@ const char* OH_ED_KEY_TIME_STAMP
 
 **Description**
 
-Pointer to the key that describes the surface buffer timestamp. The value is of the int64 type. <!--Del-->(This key is not supported yet.)<!--DelEnd-->
+Pointer to the key that describes the surface buffer timestamp. The value is of the int64_t type. <!--Del-->(This key is not supported yet.)<!--DelEnd-->
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1627,7 +1639,7 @@ const char* OH_MD_KEY_AAC_IS_ADTS
 
 **Description**
 
-Pointer to the key that describes the AAC format. The value type is int32_t. This key applies to AAC decoders.
+Pointer to the key that describes the AAC format, which can be ADTS or LATM. The value type is int32_t. The value **0** means the LATM format, and **1** means the ADTS format. This key is supported by AAC decoders.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1642,7 +1654,7 @@ const char* OH_MD_KEY_ALBUM
 
 **Description**
 
-Pointer to the key that describes the album of the input media. The value type is string.
+Pointer to the key that describes the album in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1657,7 +1669,7 @@ const char* OH_MD_KEY_ALBUM_ARTIST
 
 **Description**
 
-Pointer to the key that describes the album artist of the input media. The value type is string.
+Pointer to the key that describes the album artist in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1672,7 +1684,7 @@ const char* OH_MD_KEY_ARTIST
 
 **Description**
 
-Pointer to the key that describes the artist of the input media. The value type is string.
+Pointer to the key that describes lyrics in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1717,7 +1729,7 @@ const char* OH_MD_KEY_AUDIO_COMPRESSION_LEVEL
 
 **Description**
 
-Pointer to the key that describes the audio codec compression level. The value type is int32_t.
+Pointer to the key that describes the audio codec compression level. The value type is int32_t type. This key is used only for audio encoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1732,7 +1744,7 @@ const char* OH_MD_KEY_AUDIO_OBJECT_NUMBER
 
 **Description**
 
-Pointer to the key that describes the number of audio objects. The value type is int32_t.
+Pointer to the key that describes the number of audio objects. The value type is int32_t. This key is used only for Audio Vivid decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1762,7 +1774,7 @@ const char* OH_MD_KEY_AUDIO_VIVID_METADATA
 
 **Description**
 
-Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t.
+Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t\*. This key is used only for Audio Vivid decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1822,7 +1834,7 @@ const char* OH_MD_KEY_CODEC_CONFIG
 
 **Description**
 
-Pointer to the key that describes the codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd-->
+Pointer to the key that describes the codec-specific data. In the case of video, data carried in **SPS/PPS** is transferred. In the case of audio, data carried in **extraData** is transferred. The value type is uint8_t\*. <!--Del-->(This key is not supported yet for the video codec.)<!--DelEnd-->
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1867,7 +1879,7 @@ const char* OH_MD_KEY_COMMENT
 
 **Description**
 
-Pointer to the key that describes the comment of the input media. The value type is string.
+Pointer to the key that describes the comment in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1882,7 +1894,7 @@ const char* OH_MD_KEY_COMPLIANCE_LEVEL
 
 **Description**
 
-Pointer to the key that describes the FLAC compliance level. The value type is int32_t.
+Pointer to the key that describes the FLAC compliance level. The value type is int32_t. This key is used only for audio encoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1897,7 +1909,7 @@ const char* OH_MD_KEY_COPYRIGHT
 
 **Description**
 
-Pointer to the key that describes the copyright of the input media. The value type is string.
+Pointer to the key that describes the copyright in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1912,7 +1924,7 @@ const char* OH_MD_KEY_DATE
 
 **Description**
 
-Pointer to the key that describes the date of the input media. The value type is string.
+Pointer to the key that describes the date in a media file, for example, 2024. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1927,7 +1939,7 @@ const char* OH_MD_KEY_DESCRIPTION
 
 **Description**
 
-Pointer to the key that describes the description of the input media. The value type is string.
+Pointer to the key that describes the description in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1942,7 +1954,7 @@ const char* OH_MD_KEY_DURATION
 
 **Description**
 
-Pointer to the key that describes the duration, in microseconds. The value type is int64_t.
+Pointer to the key that describes the duration in a media file, in microseconds. The value type is int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1972,7 +1984,7 @@ const char* OH_MD_KEY_GENRE
 
 **Description**
 
-Pointer to the key that describes the genre of the input media. The value type is string.
+Pointer to the key that describes the genre in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2002,7 +2014,7 @@ const char* OH_MD_KEY_I_FRAME_INTERVAL
 
 **Description**
 
-Pointer to the key that describes the key frame interval, in milliseconds. The value type is int32_t.
+Pointer to the key that describes the key frame interval, in milliseconds. The value type is int32_t. This key is optional and is used only for video encoding.
 
 A negative value indicates that only the first frame is a key frame, and a zero value indicates that all frames are key frames.
 
@@ -2034,7 +2046,7 @@ const char* OH_MD_KEY_LANGUAGE
 
 **Description**
 
-Pointer to the key that describes the language of the input media. The value type is string.
+Pointer to the key that describes the language in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2049,7 +2061,7 @@ const char* OH_MD_KEY_LYRICS
 
 **Description**
 
-Pointer to the key that describes the lyrics of the input media. The value type is string.
+Pointer to the key that describes the lyrics in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2124,7 +2136,7 @@ const char* OH_MD_KEY_QUALITY
 
 **Description**
 
-Pointer to the key that describes the required encoding quality. The value type is int32_t. This key applies only to encoders configured in constant quality mode.
+Pointer to the key that describes the required encoding quality. The value type is int32_t. In H.264 and H.265 encoding scenarios, the value range can be obtained by calling **OH_AVCapability_GetEncoderQualityRange()**. This key applies only to the encoder in constant quality mode.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2154,7 +2166,7 @@ const char* OH_MD_KEY_REQUEST_I_FRAME
 
 **Description**
 
-Pointer to the key that describes the request for immediate encoding of I-frames. The value type is int32_t.
+Pointer to the key that describes the request for immediate encoding of I-frames. The value type is int32_t. This key is used in **OH_VideoEncoder_SetParameter()** or takes effect immediately with the frame.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2169,7 +2181,7 @@ const char* OH_MD_KEY_ROTATION
 
 **Description**
 
-Pointer to the key that describes the rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0.
+Pointer to the key that describes the rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0. This key is used only in video decoding surface mode.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2199,7 +2211,7 @@ const char* OH_MD_KEY_SCALING_MODE
 
 **Description**
 
-Pointer to the key that describes the video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md).
+Pointer to the key that describes the video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md). This key is optional and is used only for video decoding in surface mode.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2229,7 +2241,7 @@ const char* OH_MD_KEY_TITLE
 
 **Description**
 
-Pointer to the key that describes the title of the input media. The value type is string.
+Pointer to the key that describes the title in a media file. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2244,7 +2256,7 @@ const char* OH_MD_KEY_TRACK_COUNT
 
 **Description**
 
-Pointer to the key that describes the track count of the input media. The value type is int32_t.
+Pointer to the key that describes the number of tracks in a media file. The value type is int32_t.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2259,7 +2271,7 @@ const char* OH_MD_KEY_TRACK_TYPE
 
 **Description**
 
-Pointer to the key that describes the track type. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype).
+Pointer to the key that describes the track type in a media file. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype-1).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2288,7 +2300,7 @@ const char* OH_MD_KEY_VIDEO_CROP_BOTTOM
 
 **Description**
 
-Pointer to the key that describes the bottom coordinate (y) of the cropped rectangle. The value type is int32_t. The row at the bottom of the cropped rectangle is contained, and the row index starts from 0.
+Pointer to the key that describes the bottom coordinate (y) of the cropped rectangle. The value type is int32_t. The row at the bottom of the cropped rectangle is contained, and the row index starts from 0. This key is used only for video decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2303,7 +2315,7 @@ const char* OH_MD_KEY_VIDEO_CROP_LEFT
 
 **Description**
 
-Pointer to the key that describes the left coordinate (x) of the cropped rectangle. The value type is int32_t. The leftmost column of the cropped rectangle is contained, and the column index starts from 0.
+Pointer to the key that describes the left coordinate (x) of the cropped rectangle. The value type is int32_t. The leftmost column of the cropped rectangle is contained, and the column index starts from 0. This key is used only for video decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2318,7 +2330,7 @@ const char* OH_MD_KEY_VIDEO_CROP_RIGHT
 
 **Description**
 
-Pointer to the key that describes the right coordinate (x) of the cropped rectangle. The value type is int32_t. The rightmost column of the cropped rectangle is contained, and the column index starts from 0.
+Pointer to the key that describes the right coordinate (x) of the cropped rectangle. The value type is int32_t. The rightmost column of the cropped rectangle is contained, and the column index starts from 0. This key is used only for video decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2333,7 +2345,7 @@ const char* OH_MD_KEY_VIDEO_CROP_TOP
 
 **Description**
 
-Pointer to the key that describes the top coordinate (y) of the cropped rectangle. The value type is int32_t. The row at the top of the cropped rectangle is contained, and the row index starts from 0.
+Pointer to the key that describes the top coordinate (y) of the cropped rectangle. The value type is int32_t. The row at the top of the cropped rectangle is contained, and the row index starts from 0. This key is used only for video decoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2488,7 +2500,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE
 
 Pointer to the key that describes the average QP of video frames. The value type is int32_t.
 
-It is part of the feature of exporting the statistics of the video encoder. It is sent by the video encoder for video frames.
+Pointer to the key that describes the average QP value of the current frame encoding block. It is output with OH_AVBuffer.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2505,7 +2517,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_MSE
 
 Pointer to the key that describes the MSE of video frames. The value type is double.
 
-It is part of the feature of exporting the statistics of the video encoder. It is sent by the video encoder for video frames.
+Pointer to the key that describes the MSE of the current frame encoding block. It is output with OH_AVBuffer.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2554,7 +2566,7 @@ const char* OH_MD_KEY_VIDEO_IS_HDR_VIVID
 
 **Description**
 
-Pointer to the key that describes whether it is HDR Vivid. The value type is int32_t.
+Pointer to the key that describes whether the video track in a media file is HDR Vivid. The value type is int32_t. This key is used for both muxing and demuxing.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2569,7 +2581,7 @@ const char* OH_MD_KEY_DECODING_TIMESTAMP
 
 **Description**
 
-Pointer to the key that describes the decoder buffer timestamp, in microseconds. The value type is int64_t.
+Pointer to the key that describes the decoding timestamp corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2584,7 +2596,7 @@ const char* OH_MD_KEY_BUFFER_DURATION
 
 **Description**
 
-Pointer to the key that describes the buffer duration, in microseconds. The value type is int64_t.
+Pointer to the key that describes the duration corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2599,7 +2611,46 @@ const char* OH_MD_KEY_START_TIME
 
 **Description**
 
-Pointer to the key that describes the file start time. The value type is int64_t.
+Pointer to the key that describes the start time of the first frame in a media file. The value type is int64_t.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 12
+
+### OH_MD_KEY_TRACK_START_TIME
+
+```
+const char* OH_MD_KEY_TRACK_START_TIME
+```
+
+**Description**
+
+Pointer to the key that describes the track start time. The value type is int64_t.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 12
+
+
+### OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
+
+```
+const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
+```
+
+**Description**
+
+Pointer to the key that describes the output color space of the video decoder. The value type is int32_t.
+
+The supported value is **OH_COLORSPACE_BT709_LIMIT**. For details, see [OH_NativeBuffer_ColorSpace](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1).
+
+It is used when [OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure) is called.
+
+If Color Space Conversion (CSC) is supported and this key is configured, the video decoder automatically transcodes the HDR Vivid video to the BT.709 SDR video.
+
+If CSC function not supported, the error code [AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1) is returned when [OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure) is called.
+
+If the input video is not an HDR Vivid video, the callback function [OH_AVCodecOnError](#oh_avcodeconerror) is invoked to report the error code [AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2613,7 +2664,7 @@ const char* OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR
 ```
 **Description**
 
-Pointer to the key that describes the key that specifies whether the current frame is an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite.
+Pointer to the key that describes the key that specifies whether the frame corresponding to the stream output from the current OH_AVBuffer is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite.
 
 This key is optional and is used only for video encoding output rotation.
 
@@ -2654,7 +2705,7 @@ Pointer to the key that describes the height of the video frame. The value type 
 
 When [OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription) is called during video decoding, the height can be parsed from the returned **OH_AVFormat** instance.
 
-When the decoded output stream changes, the height can be parsed from the **OH_AVForamt** instance returned by [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged).
+When the decoded output stream<!--RP2--><!--RP2End--> changes, the height can be parsed from the **OH_AVForamt** instance returned by [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2673,7 +2724,7 @@ Pointer to the key that describes the width of the video frame. The value type i
 
 When [OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription) is called during video decoding, the width can be parsed from the returned **OH_AVFormat** instance.
 
-When the decoded output stream changes, the width can be parsed from the **OH_AVForamt** instance returned by [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged).
+When the decoded output stream<!--RP2--><!--RP2End--> changes, the width can be parsed from the **OH_AVForamt** instance returned by [OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

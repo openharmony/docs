@@ -2,11 +2,15 @@
 
 ## When to Use
 
-After creating a thread using **pthread_create**, you can use **napi_create_ark_runtime** to create an ArkTS runtime environment and load the ArkTS modules through the created runtime environment. Currently, the ArkTS modules support only the **console** interface and the **timer** feature. To destroy an ArkTS runtime environment that is not required, use **napi_destroy_ark_runtime**.
+After creating a thread using **pthread_create**, you can use **napi_create_ark_runtime** to create an ArkTS runtime environment and load the ArkTS module in the runtime environment. To destroy an ArkTS runtime environment that is not required, use **napi_destroy_ark_runtime**.
+
+## Constraints
+
+A maximum of 16 runtime environments can be created for a process.
 
 ## Example
 
-1. Declare the APIs, configure compile settings, and register the modules.
+1. Declare the APIs, configure compile settings, and register the module.
 
    **Declare the APIs.**
 
@@ -62,7 +66,7 @@ After creating a thread using **pthread_create**, you can use **napi_create_ark_
    }
    ```
 
-2. Create a thread and an ArkTS runtime environment.
+2. Create a thread and an ArkTS runtime environment, and load the module. For details about how to load a custom module, see [Loading a Module Using Node-API](use-napi-load-module-with-info.md).
 
    ```cpp
    // create_ark_runtime.cpp
@@ -72,7 +76,7 @@ After creating a thread using **pthread_create**, you can use **napi_create_ark_
    
    static void *CreateArkRuntimeFunc(void *arg)
    {
-       // 1. Create the basic runtime environment.
+       // 1. Create the ArkTS runtime environment.
        napi_env env;
        napi_status ret = napi_create_ark_runtime(&env);
        if (ret != napi_ok) {
@@ -110,7 +114,7 @@ After creating a thread using **pthread_create**, you can use **napi_create_ark_
    }
    ```
 
-3. The following provides the sample ArkTS code.
+3. Write the ArkTS code.
 
    ```ts
    // ObjectUtils.ets

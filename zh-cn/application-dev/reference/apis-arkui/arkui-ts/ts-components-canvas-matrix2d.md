@@ -32,226 +32,54 @@ Matrix2D(unit?: LengthMetricsUnit)
 
 | 名称 | 类型 | 只读 | 可选   | 说明 |
 | ----- | ----- | --------------- | ------ | ------------------------ |
-| [scaleX](#scalex)         | number | 否 | 是 | 水平缩放系数。           |
-| [scaleY](#scaley)         | number | 否 | 是 | 垂直缩放系数。           |
-| [rotateX](#rotatex)       | number | 否 | 是 | 水平倾斜系数。           |
-| [rotateY](#rotatey)       | number | 否 | 是 | 垂直倾斜系数。           |
-| [translateX](#translatex) | number | 否 | 是 | 水平平移距离。<br>默认单位为vp。 |
-| [translateY](#translatey) | number | 否 | 是 | 垂直平移距离。<br>默认单位为vp。 |
+| scaleX         | number | 否 | 是 | 水平缩放系数。           |
+| scaleY         | number | 否 | 是 | 垂直缩放系数。           |
+| rotateX       | number | 否 | 是 | 水平倾斜系数。           |
+| rotateY       | number | 否 | 是 | 垂直倾斜系数。           |
+| translateX | number | 否 | 是 | 水平平移距离。<br>默认单位：vp。 |
+| translateY | number | 否 | 是 | 垂直平移距离。<br>默认单位：vp。 |
 
 >  **说明：**
 >  
 >  可使用[px2vp](ts-pixel-units.md#像素单位转换)接口进行单位转换。
 
-### scaleX
+**示例：**
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DScaleX {
-  @State message: string = 'Matrix2D ScaleX'
+struct Parameter {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private matrix : Matrix2D = new Matrix2D()
 
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("Set scaleX")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleX = 1
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('240vp')
+        .height('180vp')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillRect(100,20,50,50)
+          this.matrix.scaleX = 1
+          this.matrix.scaleY = 1
+          this.matrix.rotateX = -0.5
+          this.matrix.rotateY = 0.5
+          this.matrix.translateX = 10
+          this.matrix.translateY = 10
+          this.context.setTransform(this.matrix)
+          this.context.fillRect(100,20,50,50)
+        })
     }
+    .width('100%')
     .height('100%')
   }
 }
 ```
 
-### scaleY
+![matrix-parameters.png](figures/matrix-parameters.png)
 
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Matrix2DScaleY {
-  @State message: string = 'Matrix2D ScaleY'
-
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("Set scaleY")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleY = 1
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### rotateX
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Matrix2DRotateX {
-  @State message: string = 'Matrix2D RotateX'
-
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("Set rotateX")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.rotateX = Math.sin(45 / Math.PI)
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### rotateY
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Matrix2DRotateY {
-  @State message: string = 'Matrix2D RotateY'
-
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("Set rotateY")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.rotateY = Math.cos(45 / Math.PI)
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### translateX
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Matrix2DTranslateX {
-  @State message: string = 'Matrix2D TranslateX'
-
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("Set translateX")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.translateX = 10
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### translateY
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Matrix2DTranslateY {
-  @State message: string = 'Matrix2D TranslateY'
-
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("Set translateY")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.translateY = 10
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
 
 ## 方法
 
@@ -279,34 +107,32 @@ identity(): Matrix2D
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DIdentity {
-  @State message: string = 'Matrix2D Identity'
+struct Identity {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private matrix : Matrix2D = new Matrix2D()
 
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("matrix identity")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix = matrix.identity()
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('240vp')
+        .height('180vp')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillRect(100,20,50,50)
+          this.matrix = this.matrix.identity()
+          this.context.setTransform(this.matrix)
+          this.context.fillRect(100,100,50,50)
+        })
     }
+    .width('100%')
     .height('100%')
   }
 }
 ```
+
+![matrix-identity.png](figures/matrix-identity.png)
+
 
 ### invert
 
@@ -332,40 +158,38 @@ invert(): Matrix2D
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DInvert {
-  @State message: string = 'Matrix2D Invert'
+struct Invert {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private matrix : Matrix2D = new Matrix2D()
 
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("matrix invert")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleX = 2
-            matrix.scaleY = 1
-            matrix.rotateX = 0
-            matrix.rotateY = 0
-            matrix.translateX = 10
-            matrix.translateY = 20
-            matrix.invert()
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('240vp')
+        .height('180vp')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillRect(100,110,50,50)
+          this.matrix.scaleX = 1
+          this.matrix.scaleY = 1
+          this.matrix.rotateX = -0.5
+          this.matrix.rotateY = 0.5
+          this.matrix.translateX = 10
+          this.matrix.translateY = 10
+          this.matrix.invert()
+          this.context.setTransform(this.matrix)
+          this.context.fillRect(100,110,50,50)
+        })
     }
+    .width('100%')
     .height('100%')
   }
 }
 ```
+
+![matrix-invert.png](figures/matrix-invert.png)
+
 
 ### multiply<sup>(deprecated) </sup>
 
@@ -375,7 +199,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
 
-该接口从API version 10开始废弃。
+该接口从API version 10开始废弃，且无实际绘制效果。
 
 **参数：**
 
@@ -395,7 +219,7 @@ multiply(other?: Matrix2D): Matrix2D
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DMultiply {
+struct Multiply {
   @State message: string = 'Matrix2D Multiply'
 
   printMatrix(title: string, matrix: Matrix2D) {
@@ -437,6 +261,9 @@ struct Matrix2DMultiply {
 }
 ```
 
+![matrix-multiply.png](figures/matrix-multiply.png)
+
+
 ### rotate<sup>(deprecated) </sup>
 
 rotate(rx?: number, ry?: number): Matrix2D
@@ -451,8 +278,8 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ---- | ------ | ---- | -------------------------------- |
-| rx   | number | 否   | 旋转点的水平方向坐标。<br>默认单位为vp。<br>默认值：0。 |
-| ry   | number | 否   | 旋转点的垂直方向坐标。<br>默认单位为vp。<br>默认值：0。 |
+| rx   | number | 否   | 旋转点的水平方向坐标。<br>默认单位：vp。 |
+| ry   | number | 否   | 旋转点的垂直方向坐标。<br>默认单位：vp。 |
 
 **返回值：**
 
@@ -466,40 +293,38 @@ rotate(rx?: number, ry?: number): Matrix2D
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DRotate {
-  @State message: string = 'Matrix2D Rotate'
+struct Rotate {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private matrix : Matrix2D = new Matrix2D()
 
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("matrix rotate")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleX = 1
-            matrix.scaleY = 1
-            matrix.rotateX = 0
-            matrix.rotateY = 0
-            matrix.translateX = 0
-            matrix.translateY = 0
-            matrix.rotate(10, 10)
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('240vp')
+        .height('180vp')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillRect(50,110,50,50)
+          this.matrix.scaleX = 1
+          this.matrix.scaleY = 1
+          this.matrix.rotateX = -0.5
+          this.matrix.rotateY = 0.5
+          this.matrix.translateX = 10
+          this.matrix.translateY = 10
+          this.matrix.rotate(5, 5)
+          this.context.setTransform(this.matrix)
+          this.context.fillRect(50,110,50,50)
+        })
     }
+    .width('100%')
     .height('100%')
   }
 }
 ```
+
+![matrix-rotate.png](figures/matrix-rotate.png)
+
 
 ### rotate<sup>10+</sup>
 
@@ -517,9 +342,9 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| degree | number | 是  | 旋转角度，单位为弧度。顺时针方向为正角度，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。<br>默认值：0。|
-| rx     | number | 否  | 旋转点的水平方向坐标。<br>默认单位为vp。<br>默认值：0。    |
-| ry     | number | 否  | 旋转点的垂直方向坐标。<br>默认单位为vp。<br>默认值：0。    |
+| degree | number | 是  | 旋转角度。顺时针方向为正角度，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>默认单位：弧度。|
+| rx     | number | 否  | 旋转点的水平方向坐标。<br>默认单位：vp。<br>默认值：0。    |
+| ry     | number | 否  | 旋转点的垂直方向坐标。<br>默认单位：vp。<br>默认值：0。    |
 
 **返回值：**
 
@@ -533,40 +358,38 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DRotate {
-  @State message: string = 'Matrix2D Rotate'
+struct Rotate {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private matrix : Matrix2D = new Matrix2D()
 
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("matrix rotate")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleX = 1
-            matrix.scaleY = 1
-            matrix.rotateX = 0
-            matrix.rotateY = 0
-            matrix.translateX = 0
-            matrix.translateY = 0
-            matrix.rotate(90 / Math.PI, 10, 10)
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('240vp')
+        .height('180vp')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillRect(60,80,50,50)
+          this.matrix.scaleX = 1
+          this.matrix.scaleY = 1
+          this.matrix.rotateX = -0.5
+          this.matrix.rotateY = 0.5
+          this.matrix.translateX = 10
+          this.matrix.translateY = 10
+          this.matrix.rotate(-60 * Math.PI / 180, 5, 5)
+          this.context.setTransform(this.matrix)
+          this.context.fillRect(60,80,50,50)
+        })
     }
+    .width('100%')
     .height('100%')
   }
 }
 ```
+
+![matrix-rotate10+.png](figures/matrix-rotate10+.png)
+
 
 ### translate
 
@@ -584,8 +407,8 @@ translate(tx?: number, ty?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                  |
 | ---- | ------ | ---- | ---------------------------- |
-| tx   | number | 否   | 水平方向平移距离。<br>默认单位为vp。<br>默认值：0。 |
-| ty   | number | 否   | 垂直方向平移距离。<br>默认单位为vp。<br>默认值：0。 |
+| tx   | number | 否   | 水平方向平移距离。<br>默认单位：vp。<br>默认值：0。 |
+| ty   | number | 否   | 垂直方向平移距离。<br>默认单位：vp。<br>默认值：0。 |
 
 **返回值：**
 
@@ -599,40 +422,38 @@ translate(tx?: number, ty?: number): Matrix2D
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DTranslate {
-  @State message: string = 'Matrix2D Translate'
+struct Translate {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private matrix : Matrix2D = new Matrix2D()
 
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("matrix translate")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleX = 1
-            matrix.scaleY = 1
-            matrix.rotateX = 0
-            matrix.rotateY = 0
-            matrix.translateX = 0
-            matrix.translateY = 0
-            matrix.translate(100, 100)
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('240vp')
+        .height('180vp')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillRect(40,20,50,50)
+          this.matrix.scaleX = 1
+          this.matrix.scaleY = 1
+          this.matrix.rotateX = 0
+          this.matrix.rotateY = 0
+          this.matrix.translateX = 0
+          this.matrix.translateY = 0
+          this.matrix.translate(100, 100)
+          this.context.setTransform(this.matrix)
+          this.context.fillRect(40,20,50,50)
+        })
     }
+    .width('100%')
     .height('100%')
   }
 }
 ```
+
+![matrix-translate.png](figures/matrix-translate.png)
+
 
 ### scale
 
@@ -650,8 +471,8 @@ scale(sx?: number, sy?: number): Matrix2D
 
 | 参数 | 类型   | 必填 | 描述               |
 | ---- | ------ | ---- | ------------------ |
-| sx   | number | 否   | 水平缩放比例系数。<br>默认值：1。 |
-| sy   | number | 否   | 垂直缩放比例系数。<br>默认值：1。 |
+| sx   | number | 否   | 水平缩放比例系数。<br>默认值：1.0。 |
+| sy   | number | 否   | 垂直缩放比例系数。<br>默认值：1.0。 |
 
 **返回值：**
 
@@ -665,37 +486,34 @@ scale(sx?: number, sy?: number): Matrix2D
 // xxx.ets
 @Entry
 @Component
-struct Matrix2DScale {
-  @State message: string = 'Matrix2D Scale'
+struct Scale {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private matrix : Matrix2D = new Matrix2D()
 
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("matrix scale")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleX = 1
-            matrix.scaleY = 1
-            matrix.rotateX = 0
-            matrix.rotateY = 0
-            matrix.translateX = 0
-            matrix.translateY = 0
-            matrix.scale(0.5, 0.5)
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('240vp')
+        .height('180vp')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillRect(120,70,50,50)
+          this.matrix.scaleX = 1
+          this.matrix.scaleY = 1
+          this.matrix.rotateX = -0.5
+          this.matrix.rotateY = 0.5
+          this.matrix.translateX = 10
+          this.matrix.translateY = 10
+          this.matrix.scale(0.5, 0.5)
+          this.context.setTransform(this.matrix)
+          this.context.fillRect(120,70,50,50)
+        })
     }
+    .width('100%')
     .height('100%')
   }
 }
 ```
+
+![matrix-scale.png](figures/matrix-scale.png)

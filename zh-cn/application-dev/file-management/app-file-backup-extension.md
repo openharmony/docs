@@ -13,7 +13,6 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 - 当备份恢复时，所有待备份文件及目录的路径不得超过4095字节，否则将导致未定义行为。
 - 当备份目录时，应用进程必须拥有读取该目录及其所有子目录的权限（DAC中的`r`），否则将导致备份失败。
 - 当备份文件时，应用进程必须拥有搜索该文件所有祖父级目录的权限（DAC中的`x`），否则将导致备份失败。
-- 当启动模式标签["launchType"为"singleton"](../quick-start/module-configuration-file.md#abilities标签)时不支持备份恢复。
 
 ## 开发步骤
 
@@ -62,7 +61,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
            "/data/storage/el2/base/files/users/hidden/"
        ],
        "fullBackupOnly": false,
-       "restoreDeps": "",
+       "restoreDeps": ""
    }
    ```
 
@@ -70,7 +69,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
    如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
 
-   下面的示例展示了一个空实现的`BackupExtension.ets`文件。
+   下面的示例展示了一个空实现的`BackupExtension.ets`文件：
 
     ```ts
     //onBackup && onRestore

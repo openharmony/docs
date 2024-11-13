@@ -14,6 +14,9 @@
 
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+如需要在图库中看到所保存的图片、视频资源，需要将其保存到媒体库，保存方式请参考：[保存媒体库资源](../medialibrary/photoAccessHelper-savebutton.md)。
+
+需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
 ```ts
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
@@ -23,19 +26,6 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
-
-async function savePicture(buffer: ArrayBuffer, img: image.Image): Promise<void> {
-  let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-  let options: photoAccessHelper.CreateOptions = {
-    title: Date.now().toString()
-  };
-  let photoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg', options);
-  //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
-  let file: fs.File = fs.openSync(photoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-  await fs.write(file.fd, buffer);
-  fs.closeSync(file);
-  img.release(); 
-}
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   //设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中
@@ -60,7 +50,11 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
         console.error('byteBuffer is null');
         return;
       }
-      savePicture(buffer, imageObj);
+
+      // 如需要在图库中看到所保存的图片、视频资源，请使用用户无感的安全控件创建媒体资源。
+
+      // buffer处理结束后需要释放该资源，如果未正确释放资源会导致后续拍照获取不到buffer
+      imageObj.release(); 
     });
   });
 }
@@ -309,20 +303,22 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+
+  // 需要在拍照结束之后调用以下关闭摄像头和释放会话流程，避免拍照未结束就将会话释放。
   // 停止当前会话
-  photoSession.stop();
+  await photoSession.stop();
 
   // 释放相机输入流
-  cameraInput.close();
+  await cameraInput.close();
 
   // 释放预览输出流
-  previewOutput.release();
+  await previewOutput.release();
 
   // 释放拍照输出流
-  photoOutput.release();
+  await photoOutput.release();
 
   // 释放会话
-  photoSession.release();
+  await photoSession.release();
 
   // 会话置空
   photoSession = undefined;

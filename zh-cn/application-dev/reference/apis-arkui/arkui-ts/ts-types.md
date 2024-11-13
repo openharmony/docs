@@ -491,7 +491,7 @@
 
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
-| SYSTEM   | 系统默认安全区域，包括状态栏、导航栏。   |
+| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
 | CUTOUT   | 设备的非安全区域，例如刘海屏或挖孔屏区域。 |
 | KEYBOARD | 软键盘区域。                               |
 
@@ -518,6 +518,8 @@
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -584,7 +586,7 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 | 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11对象说明)) => void | hover事件的回调。 |
+| HoverCallback | (isHover: boolean, event: HoverEvent) => void | hover事件的回调。 |
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 
@@ -601,13 +603,13 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 组件可见区域变化事件的回调类型。
 
-type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
+type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) => void;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称            | 类型                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isVisible：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+| VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
 ## StyledStringValue<sup>12+</sup>
 
@@ -744,7 +746,21 @@ setTextSelection选中文字时的配置。
 
 | 名称       | 类型                                            | 必填 | 说明             |
 | ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |
 
 ## CaretOffset<sup>11+</sup>对象说明
 

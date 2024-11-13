@@ -221,7 +221,9 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+  // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "lrc格式歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -274,7 +276,9 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+  // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "lrc格式歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -1268,24 +1272,26 @@ currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSe
 
 ### getAVCastController<sup>10+</sup>
 
-getAVCastController(callback: AsyncCallback\<AVCastController>): void
+getAVCastController(): Promise\<AVCastController>
 
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
+设备建立连接后，获取投播控制器。结果通过Promise异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**参数：**
+**返回值：**
 
-| 参数名    | 类型                                                        | 必填 | 说明                                                         |
-| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | 是   | 回调函数，返回投播控制器实例。 |
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise<[AVCastController](#avcastcontroller10)\>  | Promise对象。返回投播控制器实例。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- |---------------------------------------|
+| 错误码ID | 错误信息 |
+| -------- | --------------------------------------- |
 | 6600102| The session does not exist.           |
 | 6600109| The remote connection is not established. |
 
@@ -1305,26 +1311,24 @@ currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastContr
 
 ### getAVCastController<sup>10+</sup>
 
-getAVCastController(): Promise\<AVCastController>
+getAVCastController(callback: AsyncCallback\<AVCastController>): void
 
 设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**返回值：**
+**参数：**
 
-| 类型                                                        | 说明                                                         |
-| --------- | ------------------------------------------------------------ |
-| Promise<[AVCastController](#avcastcontroller10)\>  | Promise对象。返回投播控制器实例。 |
+| 参数名    | 类型                                                        | 必填 | 说明                                                         |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | 是   | 回调函数，返回投播控制器实例。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | --------------------------------------- |
+| 错误码ID | 错误信息                                  |
+| -------- |---------------------------------------|
 | 6600102| The session does not exist.           |
 | 6600109| The remote connection is not established. |
 
@@ -3830,7 +3834,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
   // 从服务器获取许可证，需要开发者根据实际情况进行赋值
   let licenseResponseData: Uint8Array = new Uint8Array();
-  console.info('Succeeded in get license by ' + drmUrl);
+  console.info(`Succeeded in get license by ${drmUrl}.`);
   aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
 }
 ```
@@ -4467,8 +4471,7 @@ on(type: 'error', callback: ErrorCallback): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
+  console.info(`error happened, error code: ${error.code}, error message : ${error.message}.`)
 })
 ```
 
@@ -4575,6 +4578,422 @@ off(type: 'keyRequest', callback?: KeyRequestCallback): void
 ```ts
 aVCastController.off('keyRequest');
 ```
+
+### on('castControlGenericError')<sup>13+</sup>
+
+on(type: 'castControlGenericError', callback: ErrorCallback): void
+
+监听投播通用错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlGenericError'。 |
+| callback | ErrorCallback | 是   | 投播通用错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6611000  | The error code for cast control is unspecified.      |
+| 6611001  | An unspecified error occurs in the remote player.   |
+| 6611002  | The playback position falls behind the live window.     |
+| 6611003  | The process of cast control times out.    |
+| 6611004  | The runtime check failed.      |
+| 6611100  | Cross-device data transmission is locked.    |
+| 6611101  | The specified seek mode is not supported.   |
+| 6611102  | The position to seek to is out of the range of the media asset or the specified seek mode is not supported.  |
+| 6611103  | The specified playback mode is not supported.       |
+| 6611104  | The specified playback speed is not supported.    |
+| 6611105  | The action failed because either the media source device or the media sink device has been revoked.   |
+| 6611106  | The parameter is invalid, for example, the url is illegal to play.  |
+| 6611107  | Allocation of memory failed.  |
+| 6611108  | Operation is not allowed.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlGenericError', (error: BusinessError) => {
+  console.info(`castControlGenericError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlGenericError')<sup>13+</sup>
+
+off(type: 'castControlGenericError', callback?: ErrorCallback): void
+
+取消监听投播通用的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlGenericError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlGenericError');
+```
+
+### on('castControlIoError')<sup>13+</sup>
+
+on(type: 'castControlIoError', callback: ErrorCallback): void
+
+监听投播输入/输出的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlIoError'。 |
+| callback | ErrorCallback | 是   | 投播输入/输出的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6612000  | An unspecified input/output error occurs.     |
+| 6612001  | Network connection failure.   |
+| 6612002  | Network timeout.     |
+| 6612003  | Invalid "Content-Type" HTTP header.    |
+| 6612004  | The HTTP server returns an unexpected HTTP response status code.      |
+| 6612005  | The file does not exist.    |
+| 6612006  | No permission is granted to perform the IO operation.   |
+| 6612007  | Access to cleartext HTTP traffic is not allowed by the app's network security configuration. |
+| 6612008  | Reading data out of the data bound.    |
+| 6612100  | The media does not contain any contents that can be played.   |
+| 6612101  | The media cannot be read, for example, because of dust or scratches.   |
+| 6612102  | This resource is already in use. |
+| 6612103  | The content using the validity interval has expired.  |
+| 6612104  | Using the requested content to play is not allowed.    |
+| 6612105  | The use of the allowed content cannot be verified.  |
+| 6612106  | The number of times this content has been used as requested has reached the maximum allowed number of uses.  |
+| 6612107  | An error occurs when sending packet from source device to sink device.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlIoError', (error: BusinessError) => {
+  console.info(`castControlIoError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlIoError')<sup>13+</sup>
+
+off(type: 'castControlIoError', callback?: ErrorCallback): void
+
+取消监听投播输入/输出的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlIoError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlIoError');
+```
+
+### on('castControlParsingError')<sup>13+</sup>
+
+on(type: 'castControlParsingError', callback: ErrorCallback): void
+
+监听投播解析的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlParsingError'。 |
+| callback | ErrorCallback | 是   | 投播解析的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID  | 错误信息              |
+| -------- | --------------------- |
+| 401      |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6613000  | Unspecified error related to content parsing.     |
+| 6613001  | Parsing error associated with media container format bit streams.   |
+| 6613002  | Parsing error associated with the media manifest.     |
+| 6613003  | An error occurs when attempting to extract a file with an unsupported media container format or an unsupported media container feature.    |
+| 6613004  | Unsupported feature in the media manifest.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlParsingError', (error: BusinessError) => {
+  console.info(`castControlParsingError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlParsingError')<sup>13+</sup>
+
+off(type: 'castControlParsingError', callback?: ErrorCallback): void
+
+取消监听投播解析的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlParsingError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlParsingError');
+```
+
+### on('castControlDecodingError')<sup>13+</sup>
+
+on(type: 'castControlDecodingError', callback: ErrorCallback): void
+
+监听投播解码的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlDecodingError'。 |
+| callback | ErrorCallback | 是   | 投播解码的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6614000  | Unspecified decoding error.     |
+| 6614001  | Decoder initialization failed.   |
+| 6614002  | Decoder query failed.     |
+| 6614003  | Decoding the media samples failed.    |
+| 6614004  | The format of the content to decode exceeds the capabilities of the device.    |
+| 6614005  | The format of the content to decode is not supported.    |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlDecodingError', (error: BusinessError) => {
+  console.info(`castControlDecodingError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+### off('castControlDecodingError')<sup>13+</sup>
+
+off(type: 'castControlDecodingError', callback?: ErrorCallback): void
+
+取消监听投播解码的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlDecodingError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlDecodingError');
+```
+
+### on('castControlAudioRendererError')<sup>13+</sup>
+
+on(type: 'castControlAudioRendererError', callback: ErrorCallback): void
+
+监听投播音频渲染器的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlAudioRendererError'。 |
+| callback | ErrorCallback | 是   | 投播音频渲染器的错误事件回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)以及[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6615000  | Unspecified errors related to the audio renderer.     |
+| 6615001  | Initializing the audio renderer failed.   |
+| 6615002  | The audio renderer fails to write data.     |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlAudioRendererError', (error: BusinessError) => {
+  console.info(`castControlAudioRendererError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+### off('castControlAudioRendererError')<sup>13+</sup>
+
+off(type: 'castControlAudioRendererError', callback?: ErrorCallback): void
+
+取消监听投播音频渲染器的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlAudioRendererError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlAudioRendererError');
+```
+
+### on('castControlDrmError')<sup>13+</sup>
+
+on(type: 'castControlDrmError', callback: ErrorCallback): void
+
+监听投播drm的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 错误事件回调类型，支持的事件：'castControlDrmError'。 |
+| callback | ErrorCallback | 是   | 投播drm的错误事件回调方法。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6616000  | Unspecified error related to DRM.     |
+| 6616001  | The chosen DRM protection scheme is not supported by the device.  |
+| 6615002  | Device provisioning failed.    |
+| 6616003  | The DRM-protected content to play is incompatible.     |
+| 6616004  | Failed to obtain a license.   |
+| 6616005  | The operation is disallowed by the license policy.     |
+| 6616006  | An error occurs in the DRM system.     |
+| 6616007  | The device has revoked DRM privileges.   |
+| 6616008  | The DRM license being loaded into the open DRM session has expired.      |
+| 6616100  | An error occurs when the DRM processes the key response.     |
+
+**示例：**
+
+```ts
+aVCastController.on('castControlDrmError', (error: BusinessError) => {
+  console.info(`castControlDrmError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlDrmError')<sup>13+</sup>
+
+off(type: 'castControlDrmError', callback?: ErrorCallback): void
+
+取消监听投播drm的错误事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 	取消对应的监听事件，支持的事件是'castControlDrmError'。 |
+| callback | ErrorCallback | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+aVCastController.off('castControlDrmError');
+```
+
 ## KeyRequestCallback<sup>12+</sup>
 type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
@@ -4666,7 +5085,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | publishDate     | Date                    | 否   | 发行日期。                                                             |
 | subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
+| lyric           | string                  | 否   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。<br>字符串长度需小于等于40960字节。<br>**说明：** 系统支持简单版的LRC格式（Simple LRC format）的歌词文本内容。当传入的歌词内容不规范（如出现重复的时间戳等），将导致解析失败以及在系统中显示异常。 |
 | previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
@@ -4839,16 +5258,16 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 播放设备的相关信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
-| castCategory   | AVCastCategory        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
-| deviceId   | string | 是   | 播放设备的ID。<br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
-| deviceName | string | 是   | 播放设备的名称。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
-| deviceType | DeviceType | 是   | 播放设备的类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
-| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
-| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| castCategory   | AVCastCategory        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceId   | string | 是   | 播放设备的ID。<br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceName | string | 是   | 播放设备的名称。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceType | DeviceType | 是   | 播放设备的类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast   <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast   <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| manufacturer<sup>13+</sup> | string | 否   | 播放设备生产厂家。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| modelName<sup>13+</sup> | string | 否   | 播放设备型号名称。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
@@ -7547,21 +7966,72 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 会话发生错误时的错误码。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 | 名称                                   | 值      | 说明                             |
 | -------------------------------------- | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | Session service exception.               |
-| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | The session does not exist.      |
-| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | The session controller does not exist.   |
-| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | The remote session  connection failed.         |
-| ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
-| ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
-| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connection failed.       |
-| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
+| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | 会话服务端异常。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | 会话不存在。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | 会话控制器不存在。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | 远端会话连接失败。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_COMMAND_INVALID               | 6600105 | 无效会话命令。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_SESSION_INACTIVE              | 6600106 | 会话未激活。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | 命令&消息过载。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | 设备连接失败。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | 远端会话不存在。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| ERR_CODE_CAST_CONTROL_UNSPECIFIED<sup>13+</sup>    | 6611000 | 未被定义的投播错误码。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_REMOTE_ERROR<sup>13+</sup>    | 6611001 | 远端播放器中发生不明错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_BEHIND_LIVE_WINDOW<sup>13+</sup>     | 6611002 | 播放出现延迟。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_TIMEOUT<sup>13+</sup>     | 6611003 | 投播控制进程超时。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_RUNTIME_CHECK_FAILED<sup>13+</sup>      | 6611004 | 运行时检查失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAYER_NOT_WORKING<sup>13+</sup>      | 6611100 | 跨设备数据传输被锁定。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_SEEK_MODE_UNSUPPORTED<sup>13+</sup>      | 6611101 | 不支持指定的查找模式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_ILLEGAL_SEEK_TARGET<sup>13+</sup>      | 6611102 | 要搜索的位置超出媒体的范围，或者不支持当前搜索模式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAY_MODE_UNSUPPORTED<sup>13+</sup>      | 6611103 |  不支持指定的播放模式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAY_SPEED_UNSUPPORTED<sup>13+</sup>      | 6611104 | 不支持指定的播放速度。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DEVICE_MISSING<sup>13+</sup>      | 6611105 | 操作失败，因为媒体源设备或媒体接收器设备已被销毁。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_INVALID_PARAM<sup>13+</sup>       | 6611106 | 该参数无效。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_NO_MEMORY<sup>13+</sup>       | 6611107 | 内存分配失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_OPERATION_NOT_ALLOWED<sup>13+</sup>       | 6611108 | 不被允许的操作。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_UNSPECIFIED<sup>13+</sup>       | 6612000 | 未指定的输入/输出错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_CONNECTION_FAILED<sup>13+</sup>       | 6612001 | 网络连接失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_CONNECTION_TIMEOUT<sup>13+</sup>       | 6612002 | 网络连接超时。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_INVALID_HTTP_CONTENT_TYPE <sup>13+</sup>      | 6612003 | 无效的"Content-Type"。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_BAD_HTTP_STATUS<sup>13+</sup>        | 6612004 | HTTP服务器返回一个意外的HTTP响应状态码。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_FILE_NOT_FOUND<sup>13+</sup>   | 6612005 | 文件不存在。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NO_PERMISSION<sup>13+</sup>    | 6612006 | 不允许执行输入/输出的IO操作。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CLEARTEXT_NOT_PERMITTED<sup>13+</sup>    | 6612007 | 应用的网络安全配置不允许访问明文HTTP流量。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_READ_POSITION_OUT_OF_RANGE<sup>13+</sup>        | 6612008 | 从数据绑定中读取数据。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NO_CONTENTS<sup>13+</sup>     | 6612100 | 媒体中没有可播放的内容。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_READ_ERROR<sup>13+</sup>        | 6612101 | 媒体无法读取。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CONTENT_BUSY<sup>13+</sup>         | 6612102 | 该资源正在使用中。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CONTENT_EXPIRED<sup>13+</sup>    | 6612103 | 输入/输出的IO请求内容已过期。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_USE_FORBIDDEN<sup>13+</sup>    | 6612104 | 不允许播放请求内容。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NOT_VERIFIED<sup>13+</sup>     | 6612105 | 无法验证所允许的内容。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_EXHAUSTED_ALLOWED_USES<sup>13+</sup>     | 6612106 | 此内容已达到允许的最大使用次数。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_PACKET_SENDING_FAILED<sup>13+</sup>   | 6612107 | 从源设备发送数据包到接收设备时出现错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_UNSPECIFIED<sup>13+</sup>    | 6613000 | 未指定的内容解析错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_CONTAINER_MALFORMED<sup>13+</sup>    | 6613001 | 媒体容器比特流的格式解析错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_MANIFEST_MALFORMED<sup>13+</sup>     | 6613002 | 媒体清单解析错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_CONTAINER_UNSUPPORTED<sup>13+</sup>   | 6613003 | 文件的媒体容器格式/媒体容器特性不被支持。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_MANIFEST_UNSUPPORTED<sup>13+</sup>      | 6613004 | 媒体清单中不支持的特性。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_UNSPECIFIED<sup>13+</sup>     | 6614000 | 未指定的解码错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_INIT_FAILED<sup>13+</sup>   | 6614001 | 解码器初始化失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_QUERY_FAILED<sup>13+</sup>     | 6614002 | 解码器查询失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FAILED<sup>13+</sup>     | 6614003 | 媒体样本解码失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FORMAT_EXCEEDS_CAPABILITIES<sup>13+</sup>    | 6614004 | 设备的能力无法解码当前格式。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FORMAT_UNSUPPORTED<sup>13+</sup>    | 6614005 | 不支持的解码格式。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_UNSPECIFIED<sup>13+</sup>       | 6615000 | 未指定的音频渲染器错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_INIT_FAILED <sup>13+</sup>     | 6615001 | 音频渲染器初始化失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_WRITE_FAILED<sup>13+</sup>    | 6615002 | 音频渲染器写入数据失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_UNSPECIFIED<sup>13+</sup>      | 6616000 | 未指定的DRM相关错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_SCHEME_UNSUPPORTED<sup>13+</sup>  | 6616001 | 设备不支持所选择的DRM保护方案。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_PROVISIONING_FAILED<sup>13+</sup>   | 6616002 | 设备配置失败。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_CONTENT_ERROR<sup>13+</sup>  | 6616003 | 受DRM保护的内容无法播放。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_LICENSE_ACQUISITION_FAILED<sup>13+</sup>    | 6616004 | 获取许可证失败。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_DISALLOWED_OPERATION<sup>13+</sup>     | 6616005 | 许可证策略不允许该操作。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_SYSTEM_ERROR<sup>13+</sup>     | 6616006 | DRM系统中发生错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_DEVICE_REVOKED<sup>13+</sup>     | 6616007 | 设备已撤销DRM权限。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_LICENSE_EXPIRED<sup>13+</sup>   | 6616008 | 加载中的DRM许可证已过期。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_PROVIDE_KEY_RESPONSE_ERROR<sup>13+</sup>    | 6616100 | DRM处理密钥响应时发生错误。 <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br>**系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## SkipIntervals<sup>11+</sup>
 

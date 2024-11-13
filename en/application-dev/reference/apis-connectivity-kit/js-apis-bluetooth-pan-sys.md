@@ -80,7 +80,7 @@ Sets Bluetooth tethering, which shares a mobile connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| value | boolean | Yes   | Whether to set tethering over a Bluetooth PAN.|
+| value | boolean | Yes   | Whether to set tethering over a Bluetooth PAN. The value **true** means to set tethering over a Bluetooth PAN; the value **false** means the opposite.|
 
 **Error codes**
 

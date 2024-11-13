@@ -85,36 +85,46 @@ struct Parent {
 ### Native侧代码实现
 Napi的基础开发知识请查看以下文档：[开发导读](../napi/ndk-development-overview.md)。
 
-本章节仅描述实现ContentSlot相关逻辑代码。创建C侧组件，具体请查看ArkUI api文档的[Capi章节](../reference/apis-arkui/_ark_u_i___native_module.md)。
+本章节仅描述实现ContentSlot相关逻辑代码。创建C侧组件，具体请查看[使用NDK接口构建UI](../ui/ndk-build-ui-overview.md)。
 
 ```c++
-ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
-ArkUI_NativeNode_API_1 *nodeAPI;
+#include "napi/native_api.h"
+#include "arkui/native_type.h"
+#include "arkui/native_node.h"
+#include "arkui/native_node_napi.h"
+#include "arkui/native_interface.h"
+#include "hilog/log.h"
 
-napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
+ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
+ArkUI_NativeNodeAPI_1 *nodeAPI;
+const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
+
+// Manager为应用定义的NativeNode管理类
+napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
     // napi相关处理空指针&数据越界等问题
     if ((env == nullptr) || (info == nullptr)) {
         return nullptr;
     }
-    
+
     size_t argc = 1;
     napi_value args[1] = { nullptr };
     if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
     }
-    
+
     if (argc != 1) {
         return nullptr;
     }
-    
+
+    nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNode_API_1"));
+
     // 将nodeContentHandle_指向ArkTS侧传入的nodeContent
-    OH_ARKUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
-    
-    nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNode_API_1"));
-    
+    OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
+
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
-            ArkUINodeHandle component;
+            ArkUI_NodeHandle component;
             // 创建C侧组件，具体请查看ArkUI api文档的Capi章节
             component = CreateNodeHandle();
             // 将组件添加到nodeContent管理器中

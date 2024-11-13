@@ -85,8 +85,8 @@ Progress有5种可选类型，通过ProgressType可以设置进度条样式，Pr
 - 胶囊样式进度条
   >**说明：**
   >
-  >-  头尾两端圆弧处的进度展示效果与ProgressType.Eclipse样式相同；
-  >-  中段处的进度展示效果为矩形状长条，与ProgressType.Linear线性样式相似；
+  >-  头尾两端圆弧处的进度展示效果与ProgressType.Eclipse样式相同。
+  >-  中段处的进度展示效果为矩形状长条，与ProgressType.Linear线性样式相似。
   >
   >-  组件高度大于宽度的时候自适应垂直显示。
 
@@ -102,7 +102,7 @@ Progress有5种可选类型，通过ProgressType可以设置进度条样式，Pr
 
 ## 场景示例
 
-更新当前进度值，如应用安装进度条。可通过点击Button增加progressValue，value属性将progressValue设置给Progress组件，进度条组件即会触发刷新，更新当前进度。
+更新当前进度值，如应用安装进度条，可通过点击Button增加progressValue，value属性将progressValue设置给Progress组件，进度条组件即会触发刷新，更新当前进度。
 
 ```ts
 @Entry

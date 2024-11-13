@@ -151,7 +151,7 @@
       let formId: string = '';
       let isTempCard: boolean;
       if (want.parameters) {
-        formId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
+        formId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
         isTempCard = want.parameters[formInfo.FormParam.TEMPORARY_KEY] as boolean;
         if (isTempCard === false) { // 如果为常态卡片，直接进行信息持久化
           hilog.info(DOMAIN_NUMBER, TAG, 'Not temp card, init db for:' + formId);

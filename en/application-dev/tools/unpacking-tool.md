@@ -1,10 +1,15 @@
 # Unpacking Tool
 
 
-The unpacking tool is a commissioning tool used to unpack HAP (an application package), HAR (statically shared library), HSP (dynamically shared library), and APP (application set to launch to the application market) files. It also provides Java APIs to parse the HAP, APP, and HSP files.
+The unpacking tool is a commissioning tool used to unpack HAP (an application package), HSP (dynamically shared library), and APP (application set to launch to the application market) files. It also provides Java APIs to parse the HAP, HSP, and APP files.
 
 
 The **app_unpacking_tool.jar** package can be found in the OpenHarmony SDK downloaded locally.
+
+
+## Constraints
+
+The unpacking tool must run in Java8 or later.
 
 
 ## Unpacking Commands
@@ -16,7 +21,7 @@ You can use the JAR package of the unpacking tool to unpack an HAP file by impor
 #### Example
 
 ```
-java -jar app_unpacking_tool.jar --mode <option> --hap-path <options> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode hap --hap-path <path> --out-path <path> [--force true]
 ```
 
 #### Parameters
@@ -29,25 +34,6 @@ java -jar app_unpacking_tool.jar --mode <option> --hap-path <options> --out-path
 | --out-path | Yes        | NA            | Path of the target files.                                          |
 | --force    | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during unpacking. |
 
-### Unpacking Commands for HAR Files
-
-You can use the JAR package of the unpacking tool to unpack an HAR file by importing unpacking options and file paths.
-
-#### Example
-
-```
-java -jar app_unpacking_tool.jar --mode <options> --har-path <option> --out-path [option] --force [option]
-```
-
-#### Parameters
-
-| Name      | Mandatory| Option         | Description                                                       |
-| ---------- | ---------- |-------------| ----------------------------------------------------------- |
-| --mode     | Yes        | har         | Unpacking mode.                                                 |
-| --har-path | Yes        | NA          | Path of the HAR file.                                                |
-| --out-path | Yes        | NA          | Path of the target files.                                         |
-| --force    | No        | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during unpacking.|
-
 ### Unpacking Commands for APP Files
 
 You can use the JAR package of the unpacking tool to unpack an APP file by importing unpacking options and file paths.
@@ -55,7 +41,7 @@ You can use the JAR package of the unpacking tool to unpack an APP file by impor
 #### Example
 
 ```
-java -jar app_unpacking_tool.jar --mode <options> --app-path <option> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode app --app-path <path> --out-path <path> [--force true]
 ```
 
 #### Parameters
@@ -74,7 +60,7 @@ You can use the JAR package of the unpacking tool to unpack an HAP file to obtai
 #### Example
 
 ```
-java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <option> --out-path <option> --force true
+java -jar app_unpacking_tool.jar --mode hap --rpcid true --hap-path <path> --out-path <path> [--force true]
 ```
 
 #### Parameters
@@ -94,7 +80,7 @@ You can use the JAR package of the unpacking tool to unpack an HSP file by impor
 #### Example
 
 ```
-java -jar app_unpacking_tool.jar --mode <option> --hsp-path <options> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode hsp --hsp-path <path> --out-path <path> [--force true]
 ```
 
 #### Parameters
@@ -113,7 +99,7 @@ You can use the JAR package of the unpacking tool to unpack an APPQF file by imp
 #### Example
 
 ```
-java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-path [option] --force [option]
+java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <path> [--force true]
 ```
 
 #### Parameters
@@ -127,7 +113,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 
 ## Package Parsing APIs
 
-The package parsing APIs are used by the application market to parse an HAP, APP, or HSP file and obtain information such as the configuration file.
+The package parsing APIs are used by the application market to parse an HAP, HSP, or APP file and obtain information such as the configuration file.
 
 ### Available APIs
 
@@ -151,6 +137,7 @@ The package parsing APIs are used by the application market to parse an HAP, APP
 | profileInfosStr | List\<String>      | Configuration information of the application.| NA   |
 | icon            | String             | Path of the icon of the entry component. If there is no entry component, the icon path of the first component is returned.| NA   |
 | label           | String             | Label of the entry component. If there is no entry component, the label of the first component is returned.| NA   |
+| packageSize     | long               | Size of the APP file, in bytes.| NA   |
 
 ### PackInfo Struct
 
@@ -232,6 +219,8 @@ The package parsing APIs are used by the application market to parse an HAP, APP
 | moduleAtomicService  | ModuleAtomicService struct (see **ModuleAtomicService Struct** below)| Information about the atomic service in the HAP.         | NA              |
 | formInfos            | List\<AbilityFormInfo>                        | Widget information.                      | NA              |
 | descriptions         | HashMap\<String, String>                      | Description of the HAP.                   | NA             |
+| compressedSize       | long                                          | Size of the compressed HAP file, in bytes.        | NA              |
+| originalSize         | long                                          | Original size of the HAP file, in bytes.        | NA             |
 
 ### AbilityInfo Struct
 
@@ -246,7 +235,7 @@ The package parsing APIs are used by the application market to parse an HAP, APP
 | labelRes          | String                   | Ability name visible to users.                  | NA                              |
 | type              | String                   | Ability type.                                  | In the stage model, the value is directly assigned to the **page** field.|
 | formsEnabled      | boolean                  | Whether the widget is enabled for the ability.                          | NA                              |
-| formInfo          | FormInfo structure          | Widget information.                                   | NA                              |
+| formInfo          | FormInfo struct          | Widget information.                                   | NA                              |
 | uri               | String                   | URI of the ability.                             | This field is supported only in the FA model.                     |
 | launchType        | String                   | Launcher type of the ability.                  | NA                              |
 | orientation       | String                   | Orientation of the ability.                   | NA                              |
@@ -281,7 +270,7 @@ The package parsing APIs are used by the application market to parse an HAP, APP
 | moduleName          | String  | Name of the module.                   | This field corresponds to the **moduleName** field under the **module** struct in the stage model.                |
 | moduleType          | String  | Type of the HAP.                      | This field corresponds to the **moduleType** field under the **module** struct in the stage model.                |
 | deliveryWithInstall | boolean | Whether the HAP is installed when the user installs the application.| This field corresponds to the **deliveryWithInstall** field under the **module** struct in the stage model.        |
-| installationFree    | int     | Whether the HAP supports the installation-free feature.          | This parameter corresponds to the **installationFree** field under the **module** struct in the stage model. In the JSON file, if this parameter is set to **true**, **1** is returned; if this parameter is set to **false**, **0** is returned; if this parameter is not set, **2** is returned.|
+| installationFree    | int     | Whether the HAP file supports the installation-free feature.          | This parameter corresponds to the **installationFree** field under the **module** struct in the stage model. In the JSON file, if this parameter is set to **true**, **1** is returned; if this parameter is set to **false**, **0** is returned; if this parameter is not set, **2** is returned.|
 | virtualMachine      | String  | Type of the target virtual machine (VM) where the HAP is running. It is used for cloud distribution, such as the application market and distribution center.| This field corresponds to the **virtualMachine** field under the **module** struct in the stage model.|
 
 ### MetaData Struct

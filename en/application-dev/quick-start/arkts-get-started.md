@@ -26,7 +26,9 @@ The added features offered by ArkTS for the ArkUI framework include the followin
 - [Rendering control](arkts-rendering-control-overview.md): ArkTS provides rendering control. Conditional rendering can render state-specific content based on the application state. **ForEach** iteratively obtains data from the data source and creates the corresponding component during each iteration. **LazyForEach** iterates over provided data sources and creates corresponding components during each iteration.
 
 
-ArkTS is compatible with the TS and JavaScript (JS for short) ecosystem. This means that you can write new code or reuse existing code in TS and JS for development. For details about TS and JS support, see [ARK Runtime Compatibility with TS/JS](arkts-migration-background.md#ark-runtime-compatibility-with-tsjs).
+ArkTS is compatible with the TS and JavaScript (JS) ecosystem, so that you can write new code or reuse existing code in TS or JS for development. For details about how the OpenHarmony system supports TS or JS language, see [ARK Runtime Compatibility with TS/JS](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/arkts-migration-background.md#ark-runtime-compatibility-with-tsjs).
 
 
-ArkTS will continue to evolve to accommodate ever-changing application development and running requirements, and gradually adds more features, such as parallelism and concurrency enhancement, typed system enhancement, and distributed development paradigm.
+ArkTS will continue to accommodate ever-changing application development and running requirements, and gradually provides more features, such as enhanced parallelization and concurrency, improved system, and distributed development paradigm.
+
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-commonlibrary-overview.md).

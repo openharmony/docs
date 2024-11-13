@@ -59,7 +59,7 @@ acquireAccess(dataType: DataType): AccessStatus
 | 201      | Permission verification failed, usually returned by VerifyAccessToken. |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801 | Capability not supported. |
+| 801 | The specified SystemCapability name was not found. |
 | 29300001 | Invalid parameter. |
 | 29300002 | The system ability work abnormally. |
 | 29300003 | The application is not enabled the data protection under lock screen. |
@@ -117,7 +117,7 @@ releaseAccess(dataType: DataType): ReleaseStatus
 | 201      | Permission verification failed, usually returned by VerifyAccessToken. |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801      | Capability not supported.                                    |
+| 801      | The specified SystemCapability name was not found.           |
 | 29300001 | Invalid parameter.                                           |
 | 29300002 | The system ability work abnormally.                          |
 | 29300003 | The application is not enabled the data protection under lock screen. |

@@ -27,7 +27,7 @@ struct PageServiceAbility {
       };
       await featureAbility.startAbility({ want });
       promptAction.showToast({
-        message: $r('app.string.start_service_success_toast')
+        message: 'start_service_success_toast'
       });
       hilog.info(domain, TAG, `Start ability succeed`);
     } catch (error) {

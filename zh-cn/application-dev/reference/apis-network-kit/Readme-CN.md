@@ -2,6 +2,7 @@
 
 - ArkTS API
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+  - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.net.mdns (MDNS管理)](js-apis-net-mdns.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
@@ -19,6 +20,7 @@
   - [@ohos.net.statistics (流量管理)（系统接口）](js-apis-net-statistics-sys.md)
   - [@ohos.net.vpn (VPN管理)（系统接口）](js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (VPN增强管理)（系统接口）](js-apis-net-vpnExtension-sys.md)
+  - [@ohos.net.netFirewall (网络防火墙)（系统接口）](js-apis-net-netfirewall.md)
   <!--DelEnd-->
 - C API
   - 模块
@@ -39,7 +41,11 @@
     - [NetConn_NetHandle](_net_conn___net_handle.md)
     - [NetConn_NetHandleList](_net_conn___net_handle_list.md)
     - [NetConn_Route](_net_conn___route.md)
+    - [NetConn_NetConnCallback](_net_conn___net_conn_callback.md)
+    - [NetConn_NetSpecifier](_net_conn___net_specifier.md)
     - [NetStack_CertBlob](_net_stack___cert_blob.md)
+    - [NetStack_CertificatePinning](_net_stack___certificate_pinning.md)
+    - [NetStack_Certificates](_net_stack___certificates.md)
     - [WebSocket](_web_socket.md)
     - [WebSocket_CloseOption](_web_socket___close_option.md)
     - [WebSocket_CloseResult](_web_socket___close_result.md)
@@ -61,3 +67,4 @@
   - [MDNS错误码](errorcode-net-mdns.md)
   - [流量管理错误码](errorcode-net-statistics.md)
   - [VPN错误码](errorcode-net-vpn.md)
+  - [NetworkSecurity错误码](errorcode-net-networkSecurity.md)

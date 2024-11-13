@@ -45,9 +45,14 @@ When an asynchronous callback is used, the return value can be processed directl
 | -2     | Invalid parameter.      |
 
 ## Development Example
+
+> **Attention:**
+> It is recommended to add a synchronous exit operation at the end of handling abnormal callback functions, otherwise multiple abnormal callbacks may occur.
+
 ```ts
 import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
+import process from '@ohos.process';
 
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
@@ -60,6 +65,9 @@ let callback: errorManager.ErrorObserver = {
         if (typeof(errorObj.stack) === 'string') {
             console.log('onException, stack: ', errorObj.stack);
         }
+        //After the callback function is executed, a synchronous exit method is used to avoid multiple triggers.
+        let pro = new process.ProcessManager();
+        pro.exit(0);
     }
 }
 

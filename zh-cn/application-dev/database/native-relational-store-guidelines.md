@@ -104,7 +104,7 @@ libnative_rdb_ndk.z.so
    // 应用模块名
    config.moduleName = "xxx";
    // 数据库文件安全等级
-   config.securityLevel = OH_Rdb_SecurityLevel::S1;
+   config.securityLevel = OH_Rdb_SecurityLevel::S3;
    // 数据库是否加密
    config.isEncrypt = false;
    // config所占内存大小

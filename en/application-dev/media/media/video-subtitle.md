@@ -16,12 +16,9 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
 
-   // Alternatively, use addSubtitleUrl.
-   let fd:string = fileDescriptor.fd.toString()
-   let offset:string = fileDescriptor.offset.toString()
-   let length:string = fileDescriptor.length.toString()
-   let fdUrl:string = 'fd://' + fd + '?offset=' + offset + '&size=' + length
-   avPlayer.addSubtitleUrl(fdUrl)
+   // Alternatively, use addSubtitleFromUrl.
+   let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt" 
+   avPlayer.addSubtitleFromUrl(fdUrl)
    ```
 
 2. Register a subtitle callback function in the AVPlayer instance used for video playback.
@@ -54,6 +51,7 @@ import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerSubtitleDemo {
+  private avPlayer: media.AVPlayer | undefined = undefined;
   // Set AVPlayer callback functions.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
@@ -63,7 +61,7 @@ export class AVPlayerSubtitleDemo {
     })
     // Register a subtitle update callback function.
     avPlayer.on('subtitleUpdate', (info: media.SubtitleInfo) => {
-      if (!!info) {
+      if (info) {
         let text = (!info.text) ? '' : info.text
         let startTime = (!info.startTime) ? 0 : info.startTime
         let duration = (!info.duration) ? 0 : info.duration
@@ -77,39 +75,36 @@ export class AVPlayerSubtitleDemo {
   // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and set based on the url attribute.
   async avPlayerSubtitleUrlDemo() {
     // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer()
+    this.avPlayer = await media.createAVPlayer()
     // Set video information.
     // Create a callback function.
-    this.setAVPlayerCallback(avPlayer)
+    this.setAVPlayerCallback(this.avPlayer)
 
-    let context = getContext(this) as common.UIAbilityContext
-    let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
 
-    let fd:string = fileDescriptor.fd.toString()
-    let offset:string = fileDescriptor.offset.toString()
-    let length:string = fileDescriptor.length.toString()
-    let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length
+    let fdUrl:string = "http://xxx.xxx.xxx.xxx:xx/xx/index.srt"
 
-    avPlayer.addSubtitleUrl(fdUrl)
+    this.avPlayer.addSubtitleFromUrl(fdUrl)
   }
 
   // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and set based on the FromFd attribute.
   async avPlayerSubtitleFromFdDemo() {
     // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer()
+    this.avPlayer = await media.createAVPlayer()
     // Set video information.
     // Create a callback function.
-    this.setAVPlayerCallback(avPlayer)
+    this.setAVPlayerCallback(this.avPlayer)
 
     let context = getContext(this) as common.UIAbilityContext
     let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
 
-    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
+    this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
   }
 
   // Unregister the subtitle update callback function.
   async avPlayerSubtitleOffDemo() {
-    avPlayer.off('subtitleUpdate')
+    if(this.avPlayer) {
+      this.avPlayer.off('subtitleUpdate')
+    }
   }
 
 }

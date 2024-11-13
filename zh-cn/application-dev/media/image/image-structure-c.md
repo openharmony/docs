@@ -9,13 +9,13 @@ OH_ImageNative是native层封装的图像对象结构体。OH_ImageNative结构�
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | Image_Size| imageSize | 图像大小 |[OH_ImageNative_GetImageSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getimagesize) | 获取 OH_ImageNative 对象的 Image_Size 信息。|
-| uint32_t | types |组件类型 |[OH_ImageNative_GetComponentTypes](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getcomponenttypes) | 获取 OH_ImageNative 对象的组件列表信息。 |
+| uint32_t | types |组件类型，用于描述图像颜色分量。 |[OH_ImageNative_GetComponentTypes](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getcomponenttypes) | 获取 OH_ImageNative 对象的组件列表信息。 |
 | OH_NativeBuffer | nativeBuffer | 组件缓冲区|[OH_ImageNative_GetByteBuffer](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getbytebuffer) | 获取 OH_ImageNative 对象中某个组件类型所对应的缓冲区。|
 | size_t | bufferSize | 缓冲区的大小 | [OH_ImageNative_GetBufferSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getbuffersize) | 获取 OH_ImageNative 对象中某个组件类型所对应的缓冲区的大小。|
 | int32_t | rowStride | 像素行宽 | [OH_ImageNative_GetRowStride](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getrowstride) | 获取 OH_ImageNative 对象中某个组件类型所对应的像素行宽。 |
 | int32_t | pixelStride | 像素大小 | [OH_ImageNative_GetPixelStride](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_getpixelstride) | 获取 OH_ImageNative 对象中某个组件类型所对应的像素大小。 |
 
-释放OH_ImageNative对象使用[OH_ImageNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_release)函数
+释放OH_ImageNative对象使用[OH_ImageNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagenative_release)函数。
 
 ## OH_ImagePackerNative结构体
 
@@ -28,17 +28,17 @@ OH_ImagePackerNative是native层封装的图像打包结构体，OH_ImagePackerN
 |int32_t | imagesourceFd | imagesource关联的文件描述符 | [OH_ImagePackerNative_PackToFileFromImageSource](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtofilefromimagesource) | 将一个ImageSource编码到文件中。|
 |int32_t | pixelmapFd | pixelmap关联的文件描述符| [OH_ImagePackerNative_PackToFileFromPixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_packtofilefrompixelmap) | 将一个Pixelmap编码到文件中。|
 
-创建OH_ImagePackerNative对象使用[OH_ImagePackerNative_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_create)函数
+创建OH_ImagePackerNative对象使用[OH_ImagePackerNative_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_create)函数。
 
-释放OH_ImagePackerNative对象使用[OH_ImagePackerNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_release)函数
+释放OH_ImagePackerNative对象使用[OH_ImagePackerNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagepackernative_release)函数。
 
 ## OH_PackingOptions结构体
 
 OH_PackingOptions是native层封装的图像编码选项结构体，OH_PackingOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-创建PackingOptions结构体的对象使用[OH_PackingOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_packingoptions_create)函数
+创建PackingOptions结构体的对象使用[OH_PackingOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_packingoptions_create)函数。
 
-释放OH_PackingOptions对象使用[OH_PackingOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_packingoptions_release)函数
+释放OH_PackingOptions对象使用[OH_PackingOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_packingoptions_release)函数。
 
 OH_PackingOptions结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -54,9 +54,9 @@ OH_PackingOptions结构体内容和操作方式如下：
 
 OH_ImageReceiverNative是native层封装的图片接收器结构体，OH_ImageReceiverNative结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-创建OH_ImageReceiverNative 对象使用[OH_ImageReceiverNative_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceivernative_create)函数
+创建OH_ImageReceiverNative对象使用[OH_ImageReceiverNative_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceivernative_create)函数。
 
-释放OH_ImageReceiverNative 对象使用[OH_ImageReceiverNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceivernative_release)函数
+释放OH_ImageReceiverNative对象使用[OH_ImageReceiverNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceivernative_release)函数。
 
 OH_ImageReceiverNative结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -71,12 +71,12 @@ OH_ImageReceiverNative结构体内容和操作方式如下：
 
 ## OH_ImageReceiverOptions结构体
 
-OH_ImageReceiverOptions是native层封装的图片接收器选项设置器结构体。用于创建OH_ImageReceiverNative时传入设置参数。
+OH_ImageReceiverOptions是native层封装的图片接收器选项设置器结构体，用于创建OH_ImageReceiverNative时传入设置参数。
 OH_ImageReceiverOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-创建OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_create)函数
+创建OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_create)函数。
 
-释放OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_release)函数
+释放OH_ImageReceiverOptions对象使用[OH_ImageReceiverOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_release)函数。
 
 OH_ImageReceiverOptions结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -97,10 +97,10 @@ OH_ImageSourceNative是native层封装的图片源结构体，用于创建图片
 | [OH_ImageSourceNative_CreateFromFd](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createfromfd)	|通过fd创建OH_ImageSourceNative对象。|
 | [OH_ImageSourceNative_CreateFromData](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createfromdata)	|通过缓冲区数据创建OH_ImageSourceNative对象。|
 | [OH_ImageSourceNative_CreateFromRawFile](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createfromrawfile)	|通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative对象。|
-| [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmap)	|通过图片解码参数创建OH_PixelmapNative对象|
-| [OH_ImageSourceNative_CreatePixelmapList](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmaplist)	|通过图片解码参数创建OH_PixelmapNative数组|
+| [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmap)	|通过图片解码参数创建OH_PixelmapNative对象。|
+| [OH_ImageSourceNative_CreatePixelmapList](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmaplist)	|通过图片解码参数创建OH_PixelmapNative数组。|
 
-释放OH_ImageSourceNative对象使用[OH_ImageSourceNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_release)函数
+释放OH_ImageSourceNative对象使用[OH_ImageSourceNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_release)函数。
 
 OH_ImageSourceNative结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -115,9 +115,9 @@ OH_ImageSourceNative结构体内容和操作方式如下：
 
 OH_ImageSource_Info是native层封装的图片源信息结构体，OH_ImageSource_Info结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-创建OH_ImageSource_Info对象使用[OH_ImageSourceInfo_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourceinfo_create)函数
+创建OH_ImageSource_Info对象使用[OH_ImageSourceInfo_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourceinfo_create)函数。
 
-释放OH_ImageSource_Info对象使用[OH_ImageSourceInfo_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourceinfo_release)函数
+释放OH_ImageSource_Info对象使用[OH_ImageSourceInfo_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourceinfo_release)函数。
 
 OH_ImageSource_Info结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -132,9 +132,9 @@ OH_DecodingOptions是native层封装的编码选项参数结构体，用于设�
 
 OH_DecodingOptions结构体不可直接操作，而是采用函数调用方式创建、释放结构体以及操作具体字段。
 
-创建OH_DecodingOptions对象使用[OH_DecodingOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions_create)函数
+创建OH_DecodingOptions对象使用[OH_DecodingOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions_create)函数。
 
-释放OH_DecodingOptions对象使用[OH_DecodingOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions_release)函数
+释放OH_DecodingOptions对象使用[OH_DecodingOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions_release)函数。
 
 OH_DecodingOptions结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -158,7 +158,7 @@ OH_PixelmapNative结构体是native层封装的图像解码后无压缩的位图
 
 函数创建OH_PixelmapNative使用[OH_PixelmapNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_createpixelmap)函数，默认采用BGRA_8888格式处理数据。
 
-释放OH_PixelmapNative对象使用[OH_PixelmapNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_release)函数
+释放OH_PixelmapNative对象使用[OH_PixelmapNative_Release](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_release)函数。
 
 OH_PixelmapNative结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -171,15 +171,15 @@ OH_PixelmapNative结构体内容和操作方式如下：
 | float, float| x, y | x平移量，y平移量 | [OH_PixelmapNative_Translate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_translate)	| 根据输入的坐标对图片进行位置变换。|
 | float | angle | 旋转角度 |[OH_PixelmapNative_Rotate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_rotate) | 根据输入的角度对图片进行旋转。|
 | bool, bool | shouldFilpHorizontally, shouldFilpVertically | 是否水平翻转，是否垂直翻转 | [OH_PixelmapNative_Flip](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_flip)	| 根据输入的条件对图片进行翻转。|
-| Image_Region | region | 裁剪区间 | [OH_PixelmapNative_Crop](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_crop)	| 根据输入的尺寸对图片进行裁剪|
+| Image_Region | region | 裁剪区间 | [OH_PixelmapNative_Crop](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_crop)	| 根据输入的尺寸对图片进行裁剪。|
 
 ## OH_Pixelmap_InitializationOptions结构体
 
 OH_Pixelmap_InitializationOptions是native层封装的初始化参数结构体，用于设置Pixelmap的初始化参数。
 
-创建OH_Pixelmap_InitializationOptions对象使用[OH_PixelmapInitializationOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapinitializationoptions_create)函数
+创建OH_Pixelmap_InitializationOptions对象使用[OH_PixelmapInitializationOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapinitializationoptions_create)函数。
 
-释放OH_Pixelmap_InitializationOptions对象使用[OH_PixelmapInitializationOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapinitializationoptions_release)函数
+释放OH_Pixelmap_InitializationOptions对象使用[OH_PixelmapInitializationOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapinitializationoptions_release)函数。
 
 OH_Pixelmap_InitializationOptions结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |
@@ -197,9 +197,9 @@ OH_Pixelmap_InitializationOptions结构体内容和操作方式如下：
 
 OH_Pixelmap_ImageInfo是native层封装的图像像素信息结构体，保存图像像素的宽高、行跨距、像素格式、是否是HDR。
 
-创建OH_Pixelmap_ImageInfo对象使用[OH_PixelmapImageInfo_Create](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_create)函数
+创建OH_Pixelmap_ImageInfo对象使用[OH_PixelmapImageInfo_Create](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_create)函数。
 
-释放OH_Pixelmap_ImageInfo对象使用[OH_PixelmapImageInfo_Release](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_release)函数
+释放OH_Pixelmap_ImageInfo对象使用[OH_PixelmapImageInfo_Release](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_release)函数。
 
 OH_Pixelmap_ImageInfo结构体内容和操作方式如下：
 | 字段类型| 字段名称 | 字段描述 |操作函数 | 函数描述 |

@@ -7,6 +7,7 @@
     - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
+    - [@ohos.app.ability.application (Application)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
@@ -38,6 +39,7 @@
     - [@ohos.app.appstartup.StartupTask](js-apis-app-appstartup-startupTask.md)
     <!--Del-->
     - [@ohos.app.ability.AbilityConstant (AbilityConstant)(系统接口)](js-apis-app-ability-abilityConstant-sys.md)
+    - [@ohos.app.ability.application (Application)(系统接口)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](js-apis-app-ability-autoStartupManager-sys.md)
     - [@ohos.app.ability.common (应用上下文Context)(系统接口)](js-apis-app-ability-common-sys.md)
@@ -46,6 +48,7 @@
     - [@ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)](js-apis-app-ability-insightIntentDriver-sys.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](js-apis-app-ability-serviceExtensionAbility-sys.md)
     - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](js-apis-app-ability-startOptions-sys.md)
+    - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](js-apis-app-ability-uiServiceExtensionAbility-sys.md)
     - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](js-apis-app-ability-uiExtensionContentSession-sys.md)
     <!--DelEnd-->
   - FA模型能力的接口
@@ -83,6 +86,7 @@
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
+    - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](js-apis-appDomainVerify-sys.md)
     - [@ohos.bundle.bundleManager (bundleManager模块(系统接口))](js-apis-bundleManager-sys.md)
     - [@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](js-apis-bundleMonitor-sys.md)
     - [@ohos.bundle.bundleResourceManager (bundleResourceManager模块)(系统接口)](js-apis-bundleResourceManager-sys.md)
@@ -126,12 +130,14 @@
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      - [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md)
+      - [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)
       - [PhotoEditorExtensionContext](js-apis-app-ability-photoEditorExtensionContext.md)
       - [SendableContext](js-apis-inner-application-sendableContext.md)
       <!--Del-->
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver(系统接口)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
-      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys)
+      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys.md)
       - [AbilityRunningInfo(系统接口)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AbilityStateData(系统接口)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver(系统接口)](js-apis-inner-application-appForegroundStateObserver-sys.md)
@@ -160,6 +166,8 @@
       - [PageNodeInfo(系统接口)](js-apis-inner-application-pageNodeInfo-sys.md)
       - [ProcessData(系统接口)](js-apis-inner-application-processData-sys.md)
       - [ServiceExtensionContext(系统接口)](js-apis-inner-application-serviceExtensionContext-sys.md)
+      - [UIServiceExtensionContext(系统接口)](js-apis-inner-application-uiserviceExtensionContext-sys.md)
+      - [UIServiceHostProxy(系统接口)](js-apis-inner-application-uiservicehostproxy-sys.md)
       - [UIAbilityContext(系统接口)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext(系统接口)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData(系统接口)](js-apis-inner-application-viewData-sys.md)
@@ -230,6 +238,7 @@
       - [elementName](js-apis-bundle-ElementName.md)
       - [hapModuleInfo](js-apis-bundle-HapModuleInfo.md)
       - [moduleInfo](js-apis-bundle-ModuleInfo.md)
+      - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
       <!--Del-->
       - [bundleInstaller(系统接口)](js-apis-bundle-BundleInstaller-sys.md)
       - [bundleStatusCallback(系统接口)](js-apis-Bundle-BundleStatusCallback-sys.md)
@@ -240,16 +249,24 @@
       <!--DelEnd-->
 - C API
   - 模块
+    - [AbilityAccessControl](_ability_access_control.md)
+    - [AbilityRuntime](_ability_runtime.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件
+    - [ability_access_control.h](ability__access__control_8h.md)
+    - [ability_runtime_common.h](ability__runtime__common_8h.md)
+    - [application_context.h](application__context_8h.md)
+    - [context_constant.h](context__constant_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
   - 结构体
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
+    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
 - 错误码
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
   - [访问控制错误码](errorcode-access-token.md)
   - [锁屏敏感数据管理错误码](errorcode-screenLockFileManager.md)
+  - [应用域名校验错误码](errorcode-appDomainVerify.md)

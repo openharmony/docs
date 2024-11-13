@@ -154,7 +154,28 @@ List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup�
 
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1 |
+| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1<br/>取值范围：[0, +∞) |
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(count: number, show: boolean)
+
+设置列表中ListItem/ListItemGroup的预加载数量，并配置是否显示预加载节点。
+
+List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：1 <br/>取值范围：[0, +∞)|
+| show  | boolean | 是   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>(deprecated)</sup>
 
@@ -197,7 +218,7 @@ chainAnimation(value: boolean)
 
 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。
 
-链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。
+链式联动效果：List内的ListItem间隔一定距离，该距离可以通过List组件space参数设置，默认为20vp。在手指划动过程中，手指拖动的ListItem是主动对象，相邻的ListItem为从动对象，主动对象驱动从动对象联动，驱动效果遵循弹簧物理动效。
 
 链式动效生效后，List的分割线不显示。
 
@@ -418,7 +439,7 @@ childrenMainSize(value: ChildrenMainSize)
 
 ### maintainVisibleContentPosition<sup>12+</sup>
 
-maintainVisibleContentPosition(enabled: Optional\<boolean\>)
+maintainVisibleContentPosition(enabled: boolean)
 
 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。
 
@@ -430,7 +451,7 @@ maintainVisibleContentPosition(enabled: Optional\<boolean\>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | Optional\<boolean\> | 是   | 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方插入或删除数据时可见内容位置不变。|
+| enabled  | boolean | 是   | 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方插入或删除数据时可见内容位置不变。|
 
 > **说明：** 
 > - 只有使用LazyForEach在显示区域外插入或删除数据时，才能保持可见内容位置不变。使用ForEach插入或删除数据或使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
@@ -445,7 +466,7 @@ maintainVisibleContentPosition(enabled: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                        |
+| 名称     |  值  | 说明                      |
 | ------ | ------ | ------------------------- |
 | Start  | 0 | ListItem在List中，交叉轴方向首部对齐。 |
 | Center | 1 | ListItem在List中，交叉轴方向居中对齐。 |
@@ -459,7 +480,7 @@ maintainVisibleContentPosition(enabled: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                 |
+| 名称     |  值  | 说明                               |
 | ------ | ------ | ---------------------------------- |
 | None   | 0 | ListItemGroup的header不吸顶，footer不吸底。 |
 | Header | 1 | ListItemGroup的header吸顶，footer不吸底。  |
@@ -477,7 +498,7 @@ maintainVisibleContentPosition(enabled: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | NONE   | 0 | 默认无项目滚动对齐效果。            |
 | START  | 1 | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
@@ -492,7 +513,7 @@ maintainVisibleContentPosition(enabled: Optional\<boolean\>)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型     | 必填 | 说明                   |
-| :------- | -------- | ---- | ---------------------- |
+| ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
 ## 事件
@@ -577,7 +598,7 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 ### onScrollFrameBegin<sup>9+</sup>
 
-onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain：number })
+onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number })
 
 列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
 
@@ -763,7 +784,7 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 ### onScrollVisibleContentChange<sup>12+</sup>
 onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
 
-有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem/ListItemGroup中的header/ListItemGroup中的footer都算一个子组件。
+有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem、ListItemGroup中的header或footer都算一个子组件。
 
 List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollVisibleContentChange事件。
 
@@ -787,7 +808,7 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | Idle   |  0  | 空闲状态。滚动状态回归空闲时触发，控制器提供的无动画方法控制滚动时触发。 |
 | Scroll |  1  | 滚动状态。手指拖动List，拖动滚动条和滚动鼠标滚轮时触发。|
@@ -850,7 +871,41 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
+### getVisibleListContentInfo<sup>13+</sup>
 
+getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
+
+根据坐标获取子组件的索引信息。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明              |
+| ----- | ------ | ---- | ----------------- |
+| x | number | 是    | x轴坐标，单位为vp。 |
+| y | number | 是    | y轴坐标，单位为vp。 |
+
+> **说明：**
+>
+> x或y为非法值时返回的 [VisibleListContentInfo](#visiblelistcontentinfo12对象说明)对象中index为-1，itemGroupArea返回undefined，itemIndexInGroup返回undefined。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+|  [VisibleListContentInfo](#visiblelistcontentinfo12对象说明) | 获得子组件的索引信息。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 ### scrollToItemInGroup<sup>11+</sup>
 
 scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align?: ScrollAlign): void
@@ -944,7 +999,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | NONE |  0  | 当前页面可视边处于none位置。例如，ListItemGroup中既没有header、footer，也没有ListItem。 |
 | IN_LIST_ITEM_AREA |  1  | 当前页面可视边处于ListItem位置。 |
@@ -1168,6 +1223,8 @@ struct ListExample {
 
 ### 示例5
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
+
+如果配合状态管理V2使用，详情见：[List与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#list)。
 ```ts
 // xxx.ets
 @Entry
@@ -1228,3 +1285,147 @@ struct ListExample {
 ```
 
 ![list](figures/list5.gif)
+
+### 示例6
+该示例展示了含有group时，获得List组件的Item索引相关信息。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemGroupExample {
+  private timeTable: TimeTable[] = [
+    {
+      title: '星期一',
+      projects: ['语文', '数学', '英语']
+    },
+    {
+      title: '星期二',
+      projects: ['物理', '化学', '生物']
+    },
+    {
+      title: '星期三',
+      projects: ['历史', '地理', '政治']
+    },
+    {
+      title: '星期四',
+      projects: ['美术', '音乐', '体育']
+    }
+  ]
+  private scroller: ListScroller = new ListScroller()
+  @State listIndexInfo: VisibleListContentInfo = {index: -1}
+  @State mess:string = "null"
+  @State itemBackgroundColorArr: boolean[] = [false]
+  @Builder
+  itemHead(text: string) {
+    Text(text)
+      .fontSize(20)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(10)
+  }
+
+  @Builder
+  itemFoot(num: number) {
+    Text('共' + num + "节课")
+      .fontSize(16)
+      .backgroundColor(0xAABBCC)
+      .width("100%")
+      .padding(5)
+  }
+
+  build() {
+    Column() {
+      List({ space: 20, scroller: this.scroller}) {
+        ForEach(this.timeTable, (item: TimeTable, index: number) => {
+          ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
+            ForEach(item.projects, (project: string, subIndex: number) => {
+              ListItem() {
+                Text(project)
+                  .width("100%")
+                  .height(100)
+                  .fontSize(20)
+                  .textAlign(TextAlign.Center)
+                  .backgroundColor(this.itemBackgroundColorArr[index *3 +subIndex] ? 0x68B4FF: 0xFFFFFF)
+              }
+            }, (item: string) => item)
+          }
+          .divider({ strokeWidth: 1, color: Color.Blue }) // 每行之间的分界线
+        },(item: string) => item)
+      }
+      .width('90%')
+      .sticky(StickyStyle.Header | StickyStyle.Footer)
+      .scrollBar(BarState.Off)
+      .gesture(
+        PanGesture()
+          .onActionUpdate((event: GestureEvent) => {
+            if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
+              this.listIndexInfo  = this.scroller.getVisibleListContentInfo(event.fingerList[0].localX, event.fingerList[0].localY)
+              let itemIndex:string = 'undefined';
+              if (this.listIndexInfo.itemIndexInGroup != undefined ) {
+                itemIndex = this.listIndexInfo.itemIndexInGroup.toString()
+                if (this.listIndexInfo.index != undefined && this.listIndexInfo.index >= 0 &&
+                  this.listIndexInfo.itemIndexInGroup >= 0 ) {
+                  this.itemBackgroundColorArr[this.listIndexInfo.index * 3 + this.listIndexInfo.itemIndexInGroup] = true;
+                }
+              }
+              this.mess = 'index:' + this.listIndexInfo.index.toString() + ' itemIndex:' + itemIndex
+            }
+          }))
+      .gesture(
+        TapGesture({ count: 1 })
+          .onAction((event: GestureEvent) => {
+            if (event) {
+              this.itemBackgroundColorArr.splice(0,this.itemBackgroundColorArr.length);
+            }
+          })
+      )
+      Text('您当前位置Item索引为'+ this.mess)
+        .fontColor(Color.Red)
+        .height(50)
+    }.width('100%').height('90%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+  }
+}
+
+interface TimeTable {
+  title: string;
+  projects: string[];
+}
+
+```
+
+![list](figures/getItemIndex_listGroup.gif)
+
+### 示例7
+
+```ts
+// xxx.ets
+//该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct ListExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  scrollerForList: Scroller = new Scroller()
+  build() {
+    Column() {
+
+      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%').height(100).fontSize(16)
+              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
+  }
+}
+```
+
+![fadingEdge_list](figures/fadingEdge_list.gif)

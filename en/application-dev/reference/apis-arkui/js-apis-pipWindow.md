@@ -28,7 +28,7 @@ Checks whether the PiP feature is enabled.
 
 | Type      | Description                                 |
 |----------|-------------------------------------|
-| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is enabled, and **false** means the opposite. |
+| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is enabled, and **false** means the opposite.|
 
 **Example**
 
@@ -51,19 +51,19 @@ Creates a PiP controller. This API uses a promise to return the result.
 
 | Name         | Type                                      | Mandatory       | Description                                                                                                                                                                                                                                    |
 |--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| config       | [PiPConfiguration](#pipconfiguration)    | Yes        | Options for creating the PiP controller. This parameter cannot be empty, and **context** and **componentController** that are used to construct this parameter cannot be empty. When constructing this parameter, **templateType** (if specified) must be a value defined in [PiPTemplateType](#piptemplatetype), and **controlGroups** (if specified) must match the value of **templateType**. For details, see [PiPControlGroup](#pipcontrolgroup12). |
+| config       | [PiPConfiguration](#pipconfiguration)    | Yes        | Options for creating the PiP controller. This parameter cannot be empty, and **context** and **componentController** that are used to construct this parameter cannot be empty. When constructing this parameter, **templateType** (if specified) must be a value defined in [PiPTemplateType](#piptemplatetype), and **controlGroups** (if specified) must match the value of **templateType**. For details, see [PiPControlGroup](#pipcontrolgroup12).|
 
 **Return value**
 
 | Type                                                        | Description                      |
 |------------------------------------------------------------|--------------------------|
-| Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise used to return the PiP controller. |
+| Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise used to return the PiP controller.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                                                                                                        |
+| ID| Error Message                                                                                                                                        |
 |-------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | 401   | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
@@ -144,6 +144,72 @@ promise.then((data : PiPWindow.PiPController) => {
 });
 ```
 
+## PiPWindow.create<sup>12+</sup>
+
+create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;PiPController&gt;
+
+Creates a PiP controller through a type node. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+ 
+| Name         | Type                                      | Mandatory       | Description                                                                                                                                                                                                                                    |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| config       | [PiPConfiguration](#pipconfiguration)    | Yes        | Options for creating the PiP controller. This parameter cannot be empty, and **context** that is used to construct this parameter cannot be empty. When constructing this parameter, **templateType** (if specified) must be a value defined in [PiPTemplateType](#piptemplatetype), and **controlGroups** (if specified) must match the value of **templateType**. For details, see [PiPControlGroup](#pipcontrolgroup12).|
+| contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md#xcomponent12)    | Yes        | Content to be rendered in the PiP window. The parameter value cannot be empty. |
+
+**Return value**
+
+| Type                                                        | Description                      |
+|------------------------------------------------------------|--------------------------|
+| Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise used to return the PiP controller.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                                                                        |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 401   | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { PiPWindow } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
+
+let pipController: PiPWindow.PiPController | undefined = undefined;
+let xComponentController: XComponentController = new XComponentController();
+let xComponent = typeNode.createNode(this.getUIContext(), "XComponent");
+xComponent.initialize({
+  id:'xcomponent',
+  type:XComponentType.SURFACE,
+  controller:xComponentController
+});
+let contentWidth: number = 800; // The content width is 800 px.
+let contentHeight: number = 600; // The content height is 600 px.
+let config: PiPWindow.PiPConfiguration = {
+  context: getContext(this),
+  componentController: xComponentController,
+  templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
+  contentWidth: contentWidth,
+  contentHeight: contentHeight
+};
+
+let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
+promise.then((data : PiPWindow.PiPController) => {
+  pipController = data;
+  console.info(`Succeeded in creating pip controller. Data:${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
+});
+```
+
 ## PiPConfiguration
 
 Defines the parameters for creating a PiP controller.
@@ -156,10 +222,10 @@ Defines the parameters for creating a PiP controller.
 |---------------------|----------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Context environment.                                                                                                                                                                                                                                                                                                                                 |
 | componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md)         | Yes  | Original [XComponent](../../ui/arkts-common-components-xcomponent.md) controller.                                                                                                                                                                                                                                                                     |
-| navigationId        | string                                                                     | No  | Navigation ID of the current page.<br>1. When the UIAbility uses [Navigation](arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **<\Navigation>** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>2. When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the navigation ID. (This navigation mode is not recommended in PiP scenarios.) After a PiP window is started in this scenario, do not switch between pages. Otherwise, exceptions may occur during restoration.<br>3. If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window. |
+| navigationId        | string                                                                     | No  | Navigation ID of the current page.<br>1. When the UIAbility uses [Navigation](arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **Navigation** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>2. When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the ID of the **Navigation** component for the PiP controller.<br>3. If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window.|
 | templateType        | [PiPTemplateType](#piptemplatetype)                                        | No  | Template type, which is used to distinguish video playback, video call, and video meeting scenarios.                                                                                                                                                                                                                                                                                                                 |
-| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window.                                                                                                                                                                                                                                                                                                                |
-| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window.                                                                                                                                                                                                                                                                                                                |
+| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1920. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the width of the [XComponent](../../ui/arkts-common-components-xcomponent.md).                                                                |
+| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1080. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the height of the [XComponent](../../ui/arkts-common-components-xcomponent.md).                                                                |
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | No  | A list of optional component groups of the PiP controller. An application can configure whether to display these optional components. If this parameter is not set for an application, the basic components (for example, play/pause of the video playback component group) are displayed. A maximum of three components can be configured in the list.                                                                                                                                                                                                                                                  |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | No  | Custom UI that can be displayed at the top of the PiP window.                                                                                                                                                                                                                                                                                            |
 
@@ -174,8 +240,8 @@ Enumerates the PIP template types.
 | Name           | Value  | Description                                  |
 |---------------|-----|--------------------------------------|
 | VIDEO_PLAY    | 0   | Video playback template. A PiP window will be started during video playback, and the video playback template is loaded.  |
-| VIDEO_CALL    | 1   | Video call template. A PiP window will be started during a video call, and the video call template will be loaded. |
-| VIDEO_MEETING | 2   | Video meeting template. A PiP window will be started during a video meeting, and the video meeting template will be loaded. |
+| VIDEO_CALL    | 1   | Video call template. A PiP window will be started during a video call, and the video call template will be loaded.|
+| VIDEO_MEETING | 2   | Video meeting template. A PiP window will be started during a video meeting, and the video meeting template will be loaded.|
 | VIDEO_LIVE    | 3   | Live template. A PiP window will be started during a live, and the live template is loaded.    |
 
 ## PiPState
@@ -192,7 +258,7 @@ Enumerates the PiP states.
 | STARTED              | 2   | PiP is started.           |
 | ABOUT_TO_STOP        | 3   | PiP is about to stop.           |
 | STOPPED              | 4   | PiP is stopped.           |
-| ABOUT_TO_RESTORE     | 5   | The original page is about to restore. |
+| ABOUT_TO_RESTORE     | 5   | The original page is about to restore.|
 | ERROR                | 6   | An error occurs during the execution of the PiP lifecycle.  |
 
 ## PiPControlGroup<sup>12+</sup>
@@ -207,10 +273,10 @@ Describes the optional component groups of the PiP controller. An application ca
 
 | Type                                             | Description         |
 |-------------------------------------------------|-------------|
-| [VideoPlayControlGroup](#videoplaycontrolgroup12)     | Video playback component group. |
-| [VideoCallControlGroup](#videocallcontrolgroup12)       | Video call component group. |
-| [VideoMeetingControlGroup](#videomeetingcontrolgroup12) | Video meeting component group. |
-| [VideoLiveControlGroup](#videolivecontrolgroup12)     | Live video component group. |
+| [VideoPlayControlGroup](#videoplaycontrolgroup12)     | Video playback component group.|
+| [VideoCallControlGroup](#videocallcontrolgroup12)       | Video call component group.|
+| [VideoMeetingControlGroup](#videomeetingcontrolgroup12) | Video meeting component group.|
+| [VideoLiveControlGroup](#videolivecontrolgroup12)     | Live video component group.|
 
 
 ## VideoPlayControlGroup<sup>12+</sup>
@@ -281,9 +347,9 @@ Enumerates the types of action events of the PiP controller.
 
 | Type                                             | Description         |
 |-------------------------------------------------|-------------|
-| [PiPVideoActionEvent](#pipvideoactionevent)     | Action event for components displayed on the video playback controller. |
-| [PiPCallActionEvent](#pipcallactionevent)       | Action event for components displayed on the video call controller. |
-| [PiPMeetingActionEvent](#pipmeetingactionevent) | Action event for components displayed on the video meeting controller. |
+| [PiPVideoActionEvent](#pipvideoactionevent)     | Action event for components displayed on the video playback controller.|
+| [PiPCallActionEvent](#pipcallactionevent)       | Action event for components displayed on the video call controller.|
+| [PiPMeetingActionEvent](#pipmeetingactionevent) | Action event for components displayed on the video meeting controller.|
 | [PiPLiveActionEvent](#pipliveactionevent)       | Action event for components displayed on the live video controller.  |
 
 ## PiPVideoActionEvent
@@ -301,8 +367,8 @@ Defines the PiP action event during video playback.
 | 'playbackStateChanged'       | The playback status changes.                     |
 | 'nextVideo'                  | Plays the next video.                         |
 | 'previousVideo'              | Plays the previous video.                         |
-| 'fastForward'<sup>12+</sup>  | Fast forwards the video. This value is supported since API version 12. |
-| 'fastBackward'<sup>12+</sup> | Rewinds the video. This value is supported since API version 12. |
+| 'fastForward'<sup>12+</sup>  | Fast forwards the video. This value is supported since API version 12.|
+| 'fastBackward'<sup>12+</sup> | Rewinds the video. This value is supported since API version 12.|
 
 ## PiPCallActionEvent
 
@@ -317,8 +383,8 @@ Defines the PiP action event in a video call.
 | Type               | Description              |
 | ------------------- | ------------------ |
 | 'hangUp'             | The video call is hung up.    |
-| 'micStateChanged'   | The microphone is muted or unmuted. |
-| 'videoStateChanged' | The camera is turned on or off. |
+| 'micStateChanged'   | The microphone is muted or unmuted.|
+| 'videoStateChanged' | The camera is turned on or off.|
 | 'voiceStateChanged'<sup>12+</sup> | The speaker is muted or unmuted.  |
 
 
@@ -336,8 +402,8 @@ Defines the PiP action event in a video meeting.
 | ------------------- | ------------------ |
 | 'hangUp'            | The video meeting is hung up.    |
 | 'voiceStateChanged' | The speaker is muted or unmuted.  |
-| 'videoStateChanged' | The camera is turned on or off. |
-| 'micStateChanged'<sup>12+</sup>   | The microphone is muted or unmuted. |
+| 'videoStateChanged' | The camera is turned on or off.|
+| 'micStateChanged'<sup>12+</sup>   | The microphone is muted or unmuted.|
 
 
 ## PiPLiveActionEvent
@@ -352,7 +418,7 @@ Defines the PiP action event in a live.
 
 | Type                  | Description            |
 | ---------------------- | ---------------- |
-| 'playbackStateChanged' | The live is played or paused. |
+| 'playbackStateChanged' | The live is played or paused.|
 | 'voiceStateChanged'<sup>12+</sup> | The speaker is muted or unmuted.  |
 
 
@@ -382,12 +448,12 @@ Enumerates the types of components displayed on the PiP controller.
 | Name               | Value  | Description                                  |
 |-------------------|-----|--------------------------------------|
 | VIDEO_PLAY_PAUSE  | 0   | Play/Pause component.  |
-| VIDEO_PREVIOUS    | 1   | Previous component in video scenarios. |
-| VIDEO_NEXT        | 2   | Next component in video scenarios. |
+| VIDEO_PREVIOUS    | 1   | Previous component in video scenarios.|
+| VIDEO_NEXT        | 2   | Next component in video scenarios.|
 | FAST_FORWARD      | 3   | Fast-forward component in video scenarios.    |
 | FAST_BACKWARD     | 4   | Rewind component in video scenarios.  |
-| HANG_UP_BUTTON           | 5   | Hang-up component. |
-| MICROPHONE_SWITCH | 6  | Microphone on/off component. |
+| HANG_UP_BUTTON           | 5   | Hang-up component.|
+| MICROPHONE_SWITCH | 6  | Microphone on/off component.|
 | CAMERA_SWITCH     | 7   | Camera on/off component.    |
 | MUTE_SWITCH       | 8   | Mute/Unmute component.    |
 
@@ -398,14 +464,16 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 
 Describes the action event callback of the PiP controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
 
 | Name                      | Type          | Mandatory   | Description                               |
 |--------------------------|--------------|--------------|-----------------------------------|
-| event       |  [PiPActionEventType](#pipactioneventtype)       | Yes | Type of the action event of the PiP controller.<br>The application performs processing based on the action event. For example, if the **'playbackStateChanged'** event is triggered, the application starts or stops the video. |
-| status | number | No | Status of a component that can be switched. For example, for a microphone on/off component group, a camera on/off component group, and a mute/unmute component group, the value **1** means that the component is enabled and **0** means that the component is disabled. For other components, the default value **-1** is used. |
+| event       |  [PiPActionEventType](#pipactioneventtype)       | Yes| Type of the action event of the PiP controller.<br>The application performs processing based on the action event. For example, if the **'playbackStateChanged'** event is triggered, the application starts or stops the video.|
+| status | number | No| Status of a component that can be switched. For example, for a microphone on/off component group, a camera on/off component group, and a mute/unmute component group, the value **1** means that the component is enabled and **0** means that the component is disabled. For other components, the default value **-1** is used.|
 
 ## ControlEventParam<sup>12+</sup>
 
@@ -417,8 +485,8 @@ Describes the parameters in the callback of the action event of the PiP controll
 
 | Name                      | Type          | Mandatory   | Description                                                                                                                               |
 |--------------------------|--------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| controlType       |  [PiPControlType](#pipcontroltype12)      | Yes | Type of the action event of the PiP controller. The application performs processing based on the component type. For example, if the video play/pause component is touched, the application starts or stops the video.                                                                     |
-| status | [PiPControlStatus](#pipcontrolstatus12) | No | Status of a component that can be switched. For example, for a microphone on/off component group, a camera on/off component group, and a mute/unmute component group, the value **PiPControlStatus.PLAY** means that the component is enabled and **PiPControlStatus.PAUSE** means that the component is disabled. For the hang-up component, the default value is **-1**. |
+| controlType       |  [PiPControlType](#pipcontroltype12)      | Yes| Type of the action event of the PiP controller. The application performs processing based on the component type. For example, if the video play/pause component is touched, the application starts or stops the video.                                                                     |
+| status | [PiPControlStatus](#pipcontrolstatus12) | No| Status of a component that can be switched. For example, for a microphone on/off component group, a camera on/off component group, and a mute/unmute component group, the value **PiPControlStatus.PLAY** means that the component is enabled and **PiPControlStatus.PAUSE** means that the component is disabled. For the hang-up component, the default value is **-1**.|
 
 ## PiPController
 
@@ -547,7 +615,7 @@ Updates the media content size when the media content is switched.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                                                                       |
+| ID| Error Message                                                                                                       |
 |-------|-------------------------------------------------------------------------------------------------------------|
 | 401   | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -572,14 +640,14 @@ Updates the enabled status of a component displayed on the PiP controller.
 
 | Name   | Type    | Mandatory | Description                                                                                                |
 |--------|--------|-----|----------------------------------------------------------------------------------------------------|
-| controlType  | [PiPControlType](#pipcontroltype12)  | Yes  | Type of the component displayed on the PiP controller. Currently, only **VIDEO_PLAY_PAUSE**, **MICROPHONE_SWITCH**, **CAMERA_SWITCH**, and **MUTE_SWITCH** are supported. |
+| controlType  | [PiPControlType](#pipcontroltype12)  | Yes  | Type of the component displayed on the PiP controller. Currently, only **VIDEO_PLAY_PAUSE**, **MICROPHONE_SWITCH**, **CAMERA_SWITCH**, and **MUTE_SWITCH** are supported.|
 | status | [PiPControlStatus](#pipcontrolstatus12)  | Yes  | Status of the component displayed on the PiP controller.                                                                                    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                                                                       |
+| ID| Error Message                                                                                                       |
 |-------|-------------------------------------------------------------------------------------------------------------|
 | 401   | Params error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed |
 
@@ -611,7 +679,7 @@ Sets the enabled status for a component displayed on the PiP controller.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                                                                       |
+| ID| Error Message                                                                                                       |
 |-------|-------------------------------------------------------------------------------------------------------------|
 | 401   | Params error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed |
 
@@ -638,7 +706,7 @@ Subscribes to PiP state events.
 | Name       | Type       | Mandatory  | Description                                                                                               |
 |------------|-----------|------|---------------------------------------------------------------------------------------------------|
 | type       | string    | Yes   | Event type. The event **'stateChange'** is triggered when the PiP state changes.                                                            |
-| callback   | function  | Yes   | Callback used to return the result, which includes the following information:<br>- **state**: [PiPState](#pipstate), indicating the new PiP state.<br>- **reason**: a string indicating the reason for the state change.  |
+| callback   | function  | Yes   | Callback used to return the result, which includes the following information:<br>- **state**: [PiPState](#pipstate), indicating the new PiP state.<br>- **reason**: a string indicating the reason for the state change. |
 
 **Example**
 
@@ -707,7 +775,7 @@ Subscribes to PiP action events. The [on('controlEvent')](#oncontrolevent12) API
 
 | Name     | Type        | Mandatory   | Description                                               |
 |----------|------------|-------|---------------------------------------------------|
-| type     | string     | Yes    | Event type. The value **'controlPanelActionEvent'** indicates the PiP action event. |
+| type     | string     | Yes    | Event type. The value **'controlPanelActionEvent'** indicates the PiP action event.|
 | callback | [ControlPanelActionEventCallback](#controlpanelactioneventcallback12)  | Yes    | Action event callback of the PiP controller.                               |
 
 **Example**
@@ -755,7 +823,7 @@ Subscribes to PiP action events.
 
 | Name     | Type                                                 | Mandatory   | Description                                    |
 |----------|-----------------------------------------------------|-------|----------------------------------------|
-| type     | string                                              | Yes    | Event type. The value **'controlEvent'** indicates the PiP action event. |
+| type     | string                                              | Yes    | Event type. The value **'controlEvent'** indicates the PiP action event.|
 | callback | Callback<[ControlEventParam](#controleventparam12)> | Yes    | Action event callback of the PiP controller.                    |
 
 **Example**
@@ -823,10 +891,10 @@ Unsubscribes from PiP action events.
 
 **Parameters**
 
-| Name       | Type                                                 | Mandatory | Description                                                    |
+| Name       | Type                                                 | Mandatory| Description                                                    |
 |------------|-----------------------------------------------------|----|--------------------------------------------------------|
 | type       | string                                              | Yes | Event type. The value **'controlEvent'** indicates the PiP action event.                |
-| callback | Callback<[ControlEventParam](#controleventparam12)> | No | Action event callback of the PiP controller. If no value is passed in, all subscriptions to the specified event are canceled. |
+| callback | Callback<[ControlEventParam](#controleventparam12)> | No | Action event callback of the PiP controller. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 

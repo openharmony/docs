@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Create table failed.
+Failed to create the in-memory database.
 
 **错误描述**
 
@@ -16,8 +16,8 @@ Create table failed.
 
 **可能原因**
 
-已经存在加入相同session的对象。
+已有其他分布式数据对象设置了相同的sessionId。
 
 **处理步骤**
 
-使用[genSessionId](../../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)创建的sessionId来避免加入已经存在的session。
+使用[genSessionId](../../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)生成随机的sessionId，避免和其他分布式数据对象使用相同的sessionId。

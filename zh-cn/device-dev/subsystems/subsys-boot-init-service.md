@@ -74,7 +74,6 @@
           "name" : "serviceName",
           "path" : ["/system/bin/serviceName"]
           "jobs" : {
-              "on-boot" : "boot",
               "on-start" : "services:serviceName_start",
               "on-stop" : "services:serviceName_stop",
               "on-restart" : "services:serviceName_restart"

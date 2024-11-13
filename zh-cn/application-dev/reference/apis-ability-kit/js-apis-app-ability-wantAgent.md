@@ -1,22 +1,27 @@
 # @ohos.app.ability.wantAgent (WantAgent模块)
 
-app.ability.WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
+app.ability.WantAgent是一个封装了[Want](./js-apis-app-ability-want.md)对象的类，允许应用程序能够在未来的某个时间点执行该Want。该模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取包名等功能。
+WantAgent的一个典型应用场景是通知处理。例如，当用户点击通知时，会触发WantAgent的[trigger](#wantagenttrigger)接口，并拉起目标应用。具体使用请参考[通知模块](../../notification/notification-with-wantagent.md)。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
 ```ts
-import { WantAgent } from '@kit.AbilityKit';
+import { wantAgent } from '@kit.AbilityKit';
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
+
+三方应用只能设置自己应用的Ability。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -34,7 +39,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -69,7 +74,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -90,11 +95,15 @@ try {
 }
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
+
+三方应用只能设置自己应用的Ability。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -117,7 +126,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -151,7 +160,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -169,11 +178,13 @@ try {
 
 
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 获取WantAgent实例的包名（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -191,7 +202,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -226,7 +237,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -260,11 +271,13 @@ try {
 }
 ```
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
 获取WantAgent实例的包名（Promise形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -287,7 +300,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -322,7 +335,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -351,11 +364,13 @@ try {
 }
 ```
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 获取WantAgent实例的用户ID（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -373,7 +388,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -408,7 +423,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -442,11 +457,13 @@ try {
 }
 ```
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent): Promise\<number\>
 
 获取WantAgent实例的用户ID（Promise形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -469,7 +486,7 @@ getUid(agent: WantAgent): Promise\<number\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -504,7 +521,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -534,11 +551,13 @@ try {
 }
 ```
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 取消WantAgent实例（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -556,7 +575,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -591,7 +610,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -625,11 +644,13 @@ try {
 }
 ```
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent): Promise\<void\>
 
 取消WantAgent实例（Promise形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -652,7 +673,7 @@ cancel(agent: WantAgent): Promise\<void\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -687,7 +708,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -717,11 +738,13 @@ try {
 }
 ```
 
-## WantAgent.trigger
+## wantAgent.trigger
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<CompleteData\>): void
 
 主动激发WantAgent实例（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -777,7 +800,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -811,11 +834,13 @@ try {
 }
 ```
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
 判断两个WantAgent实例是否相等（Callback形式）,以此来判断是否是来自同一应用的相同操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -868,7 +893,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -903,11 +928,13 @@ try {
 }
 ```
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -965,7 +992,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -996,11 +1023,13 @@ try {
 }
 ```
 
-## WantAgent.getOperationType
+## wantAgent.getOperationType
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
 获取一个WantAgent的OperationType信息（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1018,7 +1047,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -1054,7 +1083,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1088,11 +1117,13 @@ try {
 }
 ```
 
-## WantAgent.getOperationType
+## wantAgent.getOperationType
 
 getOperationType(agent: WantAgent): Promise\<number>
 
 获取一个WantAgent的OperationType信息（Promise形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1115,7 +1146,7 @@ getOperationType(agent: WantAgent): Promise\<number>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -1153,7 +1184,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1187,6 +1218,8 @@ try {
 
 表示使用WantAgent类型的枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                                      |
@@ -1208,6 +1241,8 @@ try {
 
 表示操作WantAgent类型的枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称              | 值            | 说明                      |
@@ -1215,14 +1250,16 @@ try {
 | UNKNOWN_TYPE      | 0 | 不识别的类型。            |
 | START_ABILITY     | 1 | 开启一个有页面的Ability。 |
 | START_ABILITIES   | 2 | 开启多个有页面的Ability。 |
-| START_SERVICE     | 3 | 开启一个无页面的ability。 |
+| START_SERVICE     | 3 | 开启一个无页面的Ability（仅在FA模型下生效）。 |
 | SEND_COMMON_EVENT | 4 | 发送一个公共事件。        |
 
 
 
-## CompleteData 
+## CompleteData
 
 表示主动激发WantAgent返回的数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1230,7 +1267,7 @@ try {
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | 否 | 否   | 触发的wantAgent。       |
 | want           | [Want](js-apis-app-ability-want.md#属性)                            | 否 | 否   | 存在的被触发的want。     |
-| finalCode      | number                          | 否 | 否   | 触发wantAgent的请求代码。|
+| finalCode      | number                          | 否 | 否   | 触发wantAgent的执行结果。<br/>- 对于启动Ability的场景(即[OperationType](#operationtype) 取值为 1、2、3时)，执行成功finalcode为0，执行失败finalcode取值参见[元能力子系统错误码](errorcode-ability.md)。<br/>- 对于发布公共事件的场景(即[OperationType](#operationtype)取值为4时)，执行成功finalcode为0，执行失败finalcode取值参见[事件错误码](../apis-basic-services-kit/errorcode-CommonEventService.md)。 |
 | finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |
 

@@ -1,6 +1,6 @@
 # Notification Kit (User Notification Service)
 
-- ArkTS APIs 
+- ArkTS APIs
   - [@ohos.notificationManager (NotificationManager)](js-apis-notificationManager.md)
   - [@ohos.notificationManager (NotificationManager) (System API)](js-apis-notificationManager-sys.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe) (System API)](js-apis-notificationSubscribe-sys.md)
@@ -29,5 +29,10 @@
     <!--Del-->
     - [@ohos.notification (Notification) (System API)](js-apis-notification-sys.md)
     <!--DelEnd-->
+- C APIs
+  - Module
+    - [Notification](capi-notification.md)
+  - Header File
+    - [notification.h](notification_8h.md)
 - Error Codes
   - [Notification Error Codes](errorcode-notification.md)

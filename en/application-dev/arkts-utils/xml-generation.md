@@ -55,7 +55,7 @@ To generate an XML file, proceed as follows:
    thatSer.setText('Everyday'); // Write the tag value.
    thatSer.endElement(); // Write the end flag.
    thatSer.startElement('author');
-   thatSer.setText('Giada');
+   thatSer.setText('Giana');
    thatSer.endElement();
    thatSer.startElement('year');
    thatSer.setText('2005');
@@ -69,12 +69,12 @@ To generate an XML file, proceed as follows:
    ```ts
    let view: Uint8Array = new Uint8Array(arrayBuffer); // Use Uint8Array to read data from the object of the ArrayBuffer type.
    let textDecoder: util.TextDecoder = util.TextDecoder.create(); // Call the TextDecoder class of the util module.
-   let res: string = textDecoder.decodeWithStream(view); // Decode the view.
+   let res: string = textDecoder.decodeToString(view); // Decode the view.
    console.info(res);
    ```
 
    The output is as follows:
 
    ```
-   <?xml version=\"1.0\" encoding=\"utf-8\"?><bookstore>\r\n  <book category=\"COOKING\">\r\n    <title lang=\"en\">Everyday</title>\r\n    <author>Giada</author>\r\n    <year>2005</year>\r\n  </book>\r\n</bookstore>
+   <?xml version=\"1.0\" encoding=\"utf-8\"?><bookstore>\r\n  <book category=\"COOKING\">\r\n    <title lang=\"en\">Everyday</title>\r\n    <author>Giana</author>\r\n    <year>2005</year>\r\n  </book>\r\n</bookstore>
    ```

@@ -27,7 +27,7 @@ import { inputMethodEngine } from '@kit.IMEKit';
 | ENTER_KEY_TYPE_NEXT | number | 5 | “下一个”功能键。 |
 | ENTER_KEY_TYPE_DONE | number | 6 | “回车”功能键。 |
 | ENTER_KEY_TYPE_PREVIOUS | number | 7 | “前一个”功能键。 |
-| ENTER_KEY_TYPE_NEWLINE | number | 8 | “换行”功能键。 |
+| ENTER_KEY_TYPE_NEWLINE<sup>12+</sup> | number | 8 | “换行”功能键。 |
 | PATTERN_NULL | number | -1 | 无特殊性编辑框。 |
 | PATTERN_TEXT | number | 0 | 文本编辑框。 |
 | PATTERN_NUMBER | number | 2 | 数字编辑框。 |
@@ -143,7 +143,7 @@ createKeyboardDelegate(): KeyboardDelegate
 let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
-## inputMethodEngine.CommandDataType<sup>12+</sup>
+## CommandDataType<sup>12+</sup>
 
 type CommandDataType = number | string | boolean;
 
@@ -640,7 +640,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
-| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
 
 **错误码：**
 
@@ -648,7 +648,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -657,8 +657,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {
@@ -683,7 +683,7 @@ off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | 是   | 设置监听类型，固定取值为'privateCommand'。                   |
-| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **错误码：**
 
@@ -691,7 +691,7 @@ off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -700,8 +700,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {
@@ -731,7 +731,7 @@ getSecurityMode(): SecurityMode
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800004 | not an input method extension. |
+| 12800004 | not an input method. |
 
 **示例：**
 
@@ -765,7 +765,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method extension. |
+| 12800004   | not an input method. |
 
 **示例：**
 
@@ -815,7 +815,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method extension. |
+| 12800004   | not an input method. |
 
 **示例：**
 
@@ -2227,7 +2227,7 @@ exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -2264,7 +2264,7 @@ exitCurrentInputType(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -2323,8 +2323,8 @@ keyboardController.exitCurrentInputType().then(() => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
-| end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
+| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。|
+| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。|
 
 ## Movement<sup>10+</sup>
 
@@ -2334,7 +2334,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
+| direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
 
 ## InputClient<sup>9+</sup>
 
@@ -3795,7 +3795,7 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 
 | 参数名      | 类型                            | 必填 | 说明       |
 | ----------- | ------------------------------- | ---- | ---------- |
-| commandData | Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)> | 是   | 私有数据。 |
+| commandData | Record<string, [CommandDataType](#commanddatatype12)> | 是   | 私有数据。 |
 
 **返回值：**
 
@@ -3811,7 +3811,7 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 | -------- | ---------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                     |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -3865,7 +3865,7 @@ getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
 | 12800003 | input method client error.        |
-| 12800012 | input method panel doesn't exist. |
+| 12800012 | the input method panel does not exist. |
 | 12800013 | window manager service error.     |
 
 **示例：**
@@ -3914,7 +3914,7 @@ setPreviewText(text: string, range: Range): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
-| 12800011 | text preview is not supported.                               |
+| 12800011 | text preview not supported.                               |
 
 **示例：**
 
@@ -3956,7 +3956,7 @@ setPreviewTextSync(text: string, range: Range): void
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
-| 12800011 | text preview is not supported.                               |
+| 12800011 | text preview not supported.                               |
 
 **示例：**
 
@@ -3995,7 +3995,7 @@ finishTextPreview(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800011 | text preview is not supported. |
+| 12800011 | text preview not supported. |
 
 **示例：**
 
@@ -4032,7 +4032,7 @@ finishTextPreviewSync(): void
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800011 | text preview is not supported. |
+| 12800011 | text preview not supported. |
 
 **示例：**
 
@@ -4098,8 +4098,8 @@ try {
 
 | 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| [PanelType](#paneltype10)   | 是   | 是   | 面板的类型。 |
-| flag	    | [PanelFlag](#panelflag10)   | 是   | 是   | 面板的状态类型。 |
+| type   	| [PanelType](#paneltype10)   | 否   | 否   | 面板的类型。 |
+| flag	    | [PanelFlag](#panelflag10)   | 否   | 是   | 面板的状态类型。 |
 
 ## PanelRect<sup>12+</sup>
 
@@ -4109,8 +4109,8 @@ try {
 
 | 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 横屏状态时输入法面板窗口的位置大小。 |
-| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 竖屏状态时输入法面板窗口的位置大小。 |
+| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 横屏状态时输入法面板窗口的位置大小。 |
+| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 竖屏状态时输入法面板窗口的位置大小。 |
 
 ## WindowInfo<sup>12+</sup>
 
@@ -4120,8 +4120,8 @@ try {
 
 | 名称   | 类型                                                         | 只读 | 可选 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
-| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 是   | 是   | 窗口矩形区域。 |
-| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 是   | 是   | 窗口模式类型。 |
+| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
+| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 

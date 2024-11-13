@@ -4,7 +4,7 @@
 
 移动终端设备已经深入人民日常生活的方方面面，如连接蓝牙耳机听音乐、连接WIFI上网、使用NFC进行一碰开门等已成为终端用户日常生活中常见的行为。
 当用户处于这些丰富的使用场景中时，蓝牙提供基于蓝牙连接的基础能力，如音乐/通话/分享等，WIFI提供基础的无线连接能力，NFC提供基础的靠近刷卡和读卡能力。
-对于开发者，设计基础通信的体验服务，可以使应用的使用体验更贴近每个终端用户。
+对于开发者，设计基础通信的体验服务，可以使应用的使用体验更贴近每个终端用户的日常生活。
 
 ### 蓝牙简介
 
@@ -59,7 +59,7 @@ WLAN系统为用户提供接入WLAN网络功能（STA模式）、点对点的数
   详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 - **AP模式**<br/>
-  AP模式为加入无线局域网的成员设备（即客户端）提供下行数据业务，它提供以无线方式组建无线局域网WLAN，相当际WLAN的中心设备。
+  AP模式为加入无线局域网的成员设备（即客户端）提供下行数据业务，它提供以无线方式组建无线局域网WLAN，相当于WLAN的中心设备。
   详情请参考[@ohos.wifiManager API参考](../reference/apis-connectivity-kit/js-apis-wifiManager.md)。
 
 ### NFC简介
@@ -74,7 +74,7 @@ NFC英文全称Near Field Communication，近距离无线通信。NFC服务提�
   详情请参考[@ohos.nfc.tag API参考](../reference/apis-connectivity-kit/js-apis-nfcTag.md)。
 
 - **NFC卡模拟**<br/>
-  NFC卡模拟模块，提供了NFC的刷卡业务，电子设备和读卡器触碰完成刷卡。应用程序需要按照规定的格式来声明NFC卡模拟能力，只有声明后应用程序才能收具备刷卡能力。
+  NFC卡模拟模块，提供了NFC的刷卡业务，电子设备和读卡器触碰完成刷卡。应用程序需要按照规定的格式来声明NFC卡模拟能力，只有声明后应用程序才能够具备刷卡能力。
   详情请参考[@ohos.nfc.cardEmulation API参考](../reference/apis-connectivity-kit/js-apis-cardEmulation.md)。
 
 ### 运作机制

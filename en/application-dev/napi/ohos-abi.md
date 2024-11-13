@@ -44,7 +44,8 @@ This section describes the ABIs supported by OpenHarmony and their differences.
 
 ### armeabi-v7a
 
-armeabi-v7a is developed on the [Application Binary Interface (ABI) for the ARM Architecture](https://developer.arm.com/Architectures/Application%20Binary%20Interface) and applies to 32-bit ARMv7-A CPUs. For details about the supported core list, see *List of ARM processors*. It supports ARM32, Thumb-2, and VFPv3-D16 instructions.
+armeabi-v7a is developed on the [Application Binary Interface](https://developer.arm.com/Architectures/ABI) and applies to 32-bit ARMv7-A CPUs. It supports ARM processors Cortex-A5, Cortex-A7, Cortex-A8, Cortex-A9, Cortex-A12, Cortex-A15, and Cortex-A17. It also supports ARM32, Thumb-2, and VFPv3-D16 instructions.
+
 
 This ABI uses **-mfloat-cpu=softfp** to enforce the floating-point rule in function calls. The compiler still uses hardware floating point instructions. Other extensions including Neon are optional in this ABI. For better compatibility, you are advised to use **-mfpu=softvfp** to compile the native libraries.
 
@@ -62,7 +63,7 @@ This ABI uses 128-bit long double (IEEE binary128).
 
 ### x86_64
 
-x86_64 is developed on Intel 64 and IA-32 ABI and supports MMX, SSE, SSE2, SSE3, SSSE3, and SSE4.1 instructions. For details about x86 specifications, see [System V Application Binary Interface](undefined) and [AMD64 Architecture Processor Supplement](undefined).
+x86_64 is developed on Intel 64 and IA-32 ABI and supports MMX, SSE, SSE2, SSE3, SSSE3, and SSE4.1 instructions. For details about x86 specifications, see **System V Application Binary Interface** and **AMD64 Architecture Processor Supplement**.
 
 This ABI uses 128-bit long double (IEEE binary128). Note that many x86 platforms use the float80 format, whereas OpenHarmony uses the 128-bit format.
 

@@ -1,14 +1,13 @@
 # @ohos.intl (国际化-Intl)
 
- 本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
+本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
 [I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
 
 >  **说明：**
+>
 >  - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->  - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
->
->  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。API version 12对应[CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42)，数据变化请参考官方链接。
+>  - 本模块接口依据[CLDR](https://cldr.unicode.org) 国际化数据库进行处理，随着CLDR演进，本模块接口处理结果可能发生变化。其中，API version 12对应[CLDR 42](https://cldr.unicode.org/index/downloads/cldr-42)，详细数据变化请参考官方链接。
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 >
@@ -23,7 +22,6 @@ import { intl } from '@kit.LocalizationKit';
 
 ## Locale
 
-
 ### 属性
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -35,21 +33,29 @@ import { intl } from '@kit.LocalizationKit';
 | 名称              | 类型      | 必填   | 说明                                       |
 | --------------- | ------- | -------- | ---------------------------------------- |
 | language        | string  | 是    | 与区域设置相关的语言，如：zh。                    |
-| script          | string  | 是    | 语言的书写方式，如：Hans。                          |
-| region          | string  | 是    | 与区域设置相关的地区，如：CN。                         |
-| baseName        | string  | 是    | Locale的基本核心信息（由语言脚本与地区组成），如：zh-Hans-CN。  |
-| caseFirst       | string  | 是    | 区域的整理规则是否考虑大小写，取值包括："upper",&nbsp;"lower",&nbsp;"false"。 |
-| calendar        | string  | 是    | 区域的日历信息，取值包括："buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。 |
-| collation       | string  | 是    | 区域的排序规则，取值包括："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
-| hourCycle       | string  | 是    | 区域的时制信息，取值包括："h12",&nbsp;"h23",&nbsp;"h11",&nbsp;"h24"。 |
-| numberingSystem | string  | 是    | 区域使用的数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| numeric         | boolean | 是    | 是否对数字字符具有特殊的排序规则处理。默认值：false。                      |
+| script          | string  | 是    | 区域语言的书写方式（脚本），如：Hans。                          |
+| region          | string  | 是    | 与区域设置相关的国家或地区，如：CN。                         |
+| baseName        | string  | 是    | Locale的基本信息，由语言、脚本、国家或地区组成，如：zh-Hans-CN。  |
+| caseFirst       | string  | 是    | 区域的排序规则是否考虑大小写，<br>取值包括："upper",&nbsp;"lower",&nbsp;"false"。 |
+| calendar        | string  | 是    | 区域的日历信息，<br>取值包括："buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。 |
+| collation       | string  | 是    | 区域的排序规则，<br>取值包括："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。 |
+| hourCycle       | string  | 是    | 区域的时制信息，<br>取值包括："h12",&nbsp;"h23",&nbsp;"h11",&nbsp;"h24"。 |
+| numberingSystem | string  | 是    | 区域使用的数字系统，<br>取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+| numeric         | boolean | 是    | 是否对数字字符进行特殊的排序规则处理。<br>默认值：false。                      |
+
+>  **说明：**
+>
+>  - caseFirst、collation：不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。
+>
+>  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
+>
+>  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。
 
 ### constructor<sup>8+</sup>
 
 constructor()
 
-创建区域对象
+创建区域对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -59,18 +65,17 @@ constructor()
 
 **示例：** 
   ```ts
-  // 默认构造函数使用系统当前locale创建Locale对象
+  // 默认构造函数使用系统当前locale创建
   let locale = new intl.Locale();
   // 返回系统当前locale
   let localeID = locale.toString();
   ```
 
-
 ### constructor
 
 constructor(locale: string, options?: LocaleOptions)
 
-创建区域对象
+创建区域对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -82,8 +87,8 @@ constructor(locale: string, options?: LocaleOptions)
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string                           | 是    | 区域信息的字符串，由语言、脚本、国家或地区组成。|
-| options             | [LocaleOptions](#localeoptions) | 否    | 用于创建区域对象的选项。 |
+| locale               | string                           | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>locale可填写组成部分中的一个或多个。|
+| options             | [LocaleOptions](#localeoptions) | 否    | 创建区域对象的选项。 |
 
 **示例：** 
   ```ts
@@ -97,7 +102,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 toString(): string
 
-获取区域对象的字符串表示
+获取区域对象的字符串。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -109,7 +114,7 @@ toString(): string
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| string | 区域对象的字符串表示。 |
+| string | 区域对象的字符串。 |
 
 **示例：** 
   ```ts
@@ -118,12 +123,11 @@ toString(): string
   let localeID = locale.toString(); // localeID = "en-GB"
   ```
 
-
 ### maximize
 
 maximize(): Locale
 
-最大化区域信息，若缺少脚本与地区信息，则补齐。
+最大化区域信息，可补齐Locale中缺少脚本、国家或地区信息。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -135,7 +139,7 @@ maximize(): Locale
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
-| [Locale](#locale) | 最大化后的区域对象。 |
+| [Locale](#locale) | 补充完脚本、国家或地区信息后的区域对象。 |
 
 **示例：** 
   ```ts
@@ -157,7 +161,7 @@ maximize(): Locale
 
 minimize(): Locale
 
-最小化区域信息，若包含脚本与地区信息，则去除。
+最小化区域信息，可删除Locale中的脚本、国家或地区信息。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -169,7 +173,7 @@ minimize(): Locale
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
-| [Locale](#locale) | 最小化后的区域对象。 |
+| [Locale](#locale) | 删除完脚本、国家或地区信息后的区域对象。 |
 
 **示例：** 
   ```ts
@@ -186,12 +190,9 @@ minimize(): Locale
   localeID = minimizedLocale.toString(); // localeID = "en"
   ```
 
-
 ## LocaleOptions
 
-表示区域初始化选项。
-
-从API9开始，LocaleOptions中的属性改为可选。
+区域初始化选项。从API9开始，LocaleOptions属性由必填改为可选。
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
@@ -201,12 +202,20 @@ minimize(): Locale
 
 | 名称              | 类型      | 必填   |  说明                                       |
 | --------------- | ------- | ---- |---------------------------------------- |
-| calendar        | string  | 否   |日历参数，如："buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", "islamicc"。 |
-| collation       | string  | 否     |排序参数，取值包括："big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	", "search", "searchjl", "standard", "stroke", "trad", "unihan", "zhuyin"。 |
-| hourCycle       | string  | 否     |时制格式，取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
-| numberingSystem | string  | 否     |数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+| calendar        | string  | 否   |日历参数，<br>取值包括："buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", "islamicc"。 |
+| collation       | string  | 否     |排序参数，<br>取值包括："big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	", "search", "searchjl", "standard", "stroke", "trad", "unihan", "zhuyin"。 |
+| hourCycle       | string  | 否     |时制格式，<br>取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
+| numberingSystem | string  | 否     |数字系统，<br>取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | numeric         | boolean | 否     | 是否使用12小时制。默认值：false。                               |
-| caseFirst       | string  | 否     | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。 |
+| caseFirst       | string  | 否     | 表示大写、小写的排序顺序，<br>取值范围："upper",&nbsp;"lower",&nbsp;"false"。 |
+
+>  **说明：**
+>
+>  - calendar：不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
+>
+>  - hourCycle：不同取值的显示效果可参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。
+>
+>  - collation、caseFirst：不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。
 
 ## DateTimeFormat
 
@@ -214,7 +223,7 @@ minimize(): Locale
 
 constructor()
 
-创建时间日期格式化对象。
+创建时间、日期格式化对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -228,12 +237,11 @@ constructor()
   let datefmt= new intl.DateTimeFormat();
   ```
 
-
 ### constructor
 
 constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
-创建时间日期格式化对象。
+创建时间、日期格式化对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -245,28 +253,23 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options              | [DateTimeOptions](#datetimeoptions) | 否    | 用于创建时间日期格式化的选项。若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
+| locale               | string \| Array&lt;string&gt;        | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>locale可填写组成部分中的一个或多个。 |
+| options              | [DateTimeOptions](#datetimeoptions) | 否    | 创建时间、日期格式化对象时可设置的配置项。<br>若所有选项均未设置时，year、month、day三个属性的默认值为numeric。 |
 
 **示例：** 
   ```ts
   // 使用 "zh-CN" locale创建DateTimeFormat对象，日期风格为full，时间风格为medium
   let datefmt= new intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
-  ```
 
-
-**示例：** 
-  ```ts
   // 使用 ["ban", "zh"] locale列表创建DateTimeFormat对象，因为ban为非法LocaleID，因此使用zh Locale创建DateTimeFormat对象
   let datefmt= new intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
-
 
 ### format
 
 format(date: Date): string
 
-格式化时间日期字符串。
+对时间、日期进行格式化。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -284,7 +287,7 @@ format(date: Date): string
 
 | 类型     | 说明           |
 | ------ | ------------ |
-| string | 格式化后的时间日期字符串 |
+| string | 格式化后的时间、日期字符串。 |
 
 **示例：** 
   ```ts
@@ -298,12 +301,11 @@ format(date: Date): string
   formattedDate = datefmt.format(date); // formattedDate "Friday, 17 December 2021 at 03:24:00"
   ```
 
-
 ### formatRange
 
 formatRange(startDate: Date, endDate: Date): string
 
-格式化时间日期段字符串。
+对时间段、日期段进行格式化。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -315,14 +317,14 @@ formatRange(startDate: Date, endDate: Date): string
 
 | 参数名       | 类型   | 必填   | 说明       |
 | --------- | ---- | ---- | -------- |
-| startDate | Date | 是    | 起始的时间日期。 |
-| endDate   | Date | 是    | 结束的时间日期。 |
+| startDate | Date | 是    | 时间、日期的开始。 |
+| endDate   | Date | 是    | 时间、日期的结束。 |
 
 **返回值：** 
 
 | 类型     | 说明             |
 | ------ | -------------- |
-| string | 格式化后的时间日期段字符串。 |
+| string | 格式化后的时间段、日期段字符串。 |
 
 **示例：** 
   ```ts
@@ -333,12 +335,11 @@ formatRange(startDate: Date, endDate: Date): string
   let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021 - 18/12/2021"
   ```
 
-
 ### resolvedOptions
 
 resolvedOptions(): DateTimeOptions
 
-获取DateTimeFormat对象的格式化选项。
+获取创建时间、日期格式化对象时设置的配置项。  
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -350,7 +351,7 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions) | DateTimeFormat&nbsp;对象的格式化选项。 |
+| [DateTimeOptions](#datetimeoptions) | 时间、日期格式化对象设置的配置项。 |
 
 **示例：** 
   ```ts
@@ -364,9 +365,7 @@ resolvedOptions(): DateTimeOptions
 
 ## DateTimeOptions
 
-表示时间日期格式化选项，参数取值和实现效果请参考[时间日期国际化](../../internationalization/i18n-time-date.md)。
-
-从API9开始，DateTimeOptions中的属性改为可选。
+时间、日期格式化时可设置的配置项。从API9开始，DateTimeOptions的属性由必填改为可选。
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
@@ -377,25 +376,30 @@ resolvedOptions(): DateTimeOptions
 | 名称              | 类型      | 必填   | 说明                                       |
 | --------------- | ------- | ---- |  ---------------------------------------- |
 | locale          | string  | 否    |区域参数，&nbsp;如：zh-Hans-CN。                 |
-| dateStyle       | string  | 否     |日期显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
-| timeStyle       | string  | 否     |时间显示格式，取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
-| hourCycle       | string  | 否     |时制格式，取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
+| dateStyle       | string  | 否     |日期显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
+| timeStyle       | string  | 否     |时间显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"medium",&nbsp;"full",&nbsp;"auto"。 |
+| hourCycle       | string  | 否     |时制格式，<br>取值包括："h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | timeZone        | string  | 否     |使用的时区（合法的IANA时区ID）。                      |
-| numberingSystem | string  | 否     |数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
-| hour12          | boolean | 否     | 是否使用12小时制。若hour12和hourCycle未设置且系统24小时开关打开时，hour12属性的默认值为false。         |
-| weekday         | string  | 否     | 工作日的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| era             | string  | 否     | 时代的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| year            | string  | 否     | 年份的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
-| month           | string  | 否     | 月份的显示格式，取值包括："numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| day             | string  | 否     | 日期的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
-| hour            | string  | 否     | 小时的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
-| minute          | string  | 否     | 分钟的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
-| second          | string  | 否     | 秒钟的显示格式，取值包括："numeric",&nbsp;"2-digit"。  |
-| timeZoneName    | string  | 否     | 时区名称的本地化表示, 取值包括："long",&nbsp;"short",&nbsp;"auto"。                              |
-| dayPeriod       | string  | 否     | 时段的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
-| localeMatcher   | string  | 否     | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。 |
-| formatMatcher   | string  | 否     | 要使用的格式匹配算法，取值包括："basic",&nbsp;"best&nbsp;fit"。 |
+| numberingSystem | string  | 否     |数字系统，<br>取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
+| hour12          | boolean | 否     | 是否使用12小时制，<br>若hour12和hourCycle未设置且系统24小时开关打开时，hour12属性的默认值为false。         |
+| weekday         | string  | 否     | 工作日的显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
+| era             | string  | 否     | 时代的显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
+| year            | string  | 否     | 年份的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
+| month           | string  | 否    | 月份的显示格式，<br>取值包括："numeric",&nbsp;"2-digit",&nbsp;"long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
+| day             | string  | 否     | 日期的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
+| hour            | string  | 否     | 小时的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
+| minute          | string  | 否     | 分钟的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
+| second          | string  | 否     | 秒钟的显示格式，<br>取值包括："numeric",&nbsp;"2-digit"。  |
+| timeZoneName    | string  | 否     | 时区名称的本地化表示, <br>取值包括："long",&nbsp;"short",&nbsp;"auto"。   |
+| dayPeriod       | string  | 否     | 时段的显示格式，<br>取值包括："long",&nbsp;"short",&nbsp;"narrow",&nbsp;"auto"。 |
+| localeMatcher   | string  | 否     | 要使用的区域匹配算法，<br>取值包括："lookup",&nbsp;"best&nbsp;fit"。 |
+| formatMatcher   | string  | 否     | 要使用的格式匹配算法，<br>取值包括："basic",&nbsp;"best&nbsp;fit"。 |
 
+>  **说明：**
+>
+>  - dateStyle、timeStyle、weekday、year：不同取值的显示效果请参考[时间日期国际化表1](../../internationalization/i18n-time-date.md)。
+>
+>  - 不同常用场景下各参数的取值请参考[时间日期国际化开发实例](../../internationalization/i18n-time-date.md)。
 
 ## NumberFormat
 
@@ -430,15 +434,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options              | [NumberOptions](#numberoptions) | 否    | 用于创建数字格式化的选项。                |
+| locale               | string \| Array&lt;string&gt;    | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
+| options              | [NumberOptions](#numberoptions) | 否    | 创建数字格式化对象时可设置的配置项。               |
 
 **示例：** 
   ```ts
   // 使用 en-GB locale创建NumberFormat对象，style设置为decimal，notation设置为scientific
   let numfmt = new intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
-
 
 ### format
 
@@ -454,13 +457,13 @@ format(number: number): string
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | number | 是    | 数字对象 |
+| number | number | 是    | 数字对象。 |
 
 **返回值：** 
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| string | 格式化后的数字字符串 |
+| string | 格式化后的数字字符串。 |
 
 
 **示例：** 
@@ -475,7 +478,7 @@ format(number: number): string
 
 resolvedOptions(): NumberOptions
 
-获取NumberFormat 对象的格式化选项。
+获取创建数字格式化对象时设置的配置项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -485,7 +488,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions) | NumberFormat&nbsp;对象的格式化选项。 |
+| [NumberOptions](#numberoptions) | 创建数字格式化对象时设置的配置项。 |
 
 
 **示例：** 
@@ -497,12 +500,9 @@ resolvedOptions(): NumberOptions
   let notation = options.notation; // notation = scientific
   ```
 
-
 ## NumberOptions
 
-表示设备支持的能力。
-
-从API9开始，NumberOptions中的属性改为可选。
+创建数字格式化对象时可设置的配置项。从API9开始，NumberOptions的属性由必填改为可选。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -510,25 +510,29 @@ resolvedOptions(): NumberOptions
 
 | 名称                       | 类型      | 必填   |  说明                                       |
 | ------------------------ | ------- | ---- |  ---------------------------------------- |
-| locale                   | string  | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。locale属性默认值为系统Locale。               |
-| currency                 | string  | 否    | 货币单位，&nbsp;取值符合[ISO-4217标准](https://www.iso.org/iso-4217-currency-codes.html)，如："EUR"，"CNY"，"USD"等。<br>从API version 12开始支持三位数字代码，如："978"，"156"，"840"等。</br>  |
-| currencySign             | string  | 否    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。currencySign属性默认值为standard。 |
-| currencyDisplay          | string  | 否    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。currencyDisplay属性默认值为symbol。 |
+| locale                   | string  | 否    | 区域参数，&nbsp;如："zh-Hans-CN"。<br>locale属性默认值为系统当前Locale。               |
+| currency                 | string  | 否    | 货币单位，&nbsp;取值符合[ISO-4217标准](https://www.iso.org/iso-4217-currency-codes.html)，如："EUR"，"CNY"，"USD"等。<br>从API version 12开始支持三位数字代码，如："978"，"156"，"840"等。    |
+| currencySign             | string  | 否    | 货币单位的符号显示，取值包括：&nbsp;"standard"，"accounting"。<br>默认值为standard。 |
+| currencyDisplay          | string  | 否    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。<br>默认值为symbol。 |
 | unit                     | string  | 否    | 单位名称，如："meter"，"inch"，“hectare”等。        |
-| unitDisplay              | string  | 否    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。unitDisplay属性默认值为short。 |
-| unitUsage<sup>8+</sup>   | string  | 否    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte",&nbsp;"size-shortfile-byte"。unitUsage属性默认值为default。 |
-| signDisplay              | string  | 否    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。signDisplay属性默认值为auto。 |
-| compactDisplay           | string  | 否    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。compactDisplay属性默认值为short。      |
-| notation                 | string  | 否    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。notation属性默认值为standard。 |
-| localeMatcher            | string  | 否    | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。localeMatcher属性默认值为best fit。 |
-| style                    | string  | 否    | 数字的显示格式，取值包括："decimal",&nbsp;"currency",&nbsp;"percent",&nbsp;"unit"。style属性默认值为decimal。 |
+| unitDisplay              | string  | 否    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值为short。 |
+| unitUsage<sup>8+</sup>   | string  | 否    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte",&nbsp;"size-shortfile-byte"。<br>默认值为default。 |
+| signDisplay              | string  | 否    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。<br>默认值为auto。 |
+| compactDisplay           | string  | 否    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。<br>默认值为short。      |
+| notation                 | string  | 否    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。<br>默认值为standard。 |
+| localeMatcher            | string  | 否    | 要使用的区域匹配算法，取值包括："lookup",&nbsp;"best&nbsp;fit"。<br>默认值为best fit。 |
+| style                    | string  | 否    | 数字的显示格式，取值包括："decimal",&nbsp;"currency",&nbsp;"percent",&nbsp;"unit"。<br>默认值为decimal。 |
 | numberingSystem          | string  | 否    | 数字系统，取值包括："adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。numberingSystem属性默认值为locale的默认数字系统。 |
 | useGrouping              | boolean | 否    | 是否分组显示。useGrouping属性默认值为auto。                                  |
-| minimumIntegerDigits     | number  | 否    | 表示要使用的最小整数位数，取值范围：1~21。minimumIntegerDigits属性默认值为1。                  |
-| minimumFractionDigits    | number  | 否    | 表示要使用的最小分数位数，取值范围：0~20。minimumFractionDigits属性默认值为0。                  |
-| maximumFractionDigits    | number  | 否    | 表示要使用的最大分数位数，取值范围：1~21。maximumFractionDigits属性默认值为3。                  |
-| minimumSignificantDigits | number  | 否    | 表示要使用的最低有效位数，取值范围：1~21。minimumSignificantDigits属性默认值为1。                  |
-| maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。maximumSignificantDigits属性默认值为21。                  |
+| minimumIntegerDigits     | number  | 否    | 表示要使用的最小整数位数，取值范围：1~21。<br>minimumIntegerDigits属性默认值为1。                  |
+| minimumFractionDigits    | number  | 否    | 表示要使用的最小分数位数，取值范围：0~20。<br>minimumFractionDigits属性默认值为0。                  |
+| maximumFractionDigits    | number  | 否    | 表示要使用的最大分数位数，取值范围：1~21。<br>maximumFractionDigits属性默认值为3。                  |
+| minimumSignificantDigits | number  | 否    | 表示要使用的最低有效位数，取值范围：1~21。<br>minimumSignificantDigits属性默认值为1。                  |
+| maximumSignificantDigits | number  | 否    | 表示要使用的最大有效位数，取值范围：1~21。<br>maximumSignificantDigits属性默认值为21。                  |
+
+>  **说明：**
+>
+>  - 各属性不同取值代表的含义或呈现效果，请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。
 
 ## Collator<sup>8+</sup>
 
@@ -563,8 +567,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options              | [CollatorOptions](#collatoroptions8) | 否    | 用于创建排序对象的选项。       |
+| locale               | string \| Array&lt;string&gt;        | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。  |
+| options              | [CollatorOptions](#collatoroptions8) | 否    | 创建排序对象时可设置的配置项。       |
 
 **示例：** 
   ```ts
@@ -577,7 +581,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 compare(first: string, second: string): number
 
-依据Collator的排序策略对两个字符串进行比较。
+依据配置项设置的排序规则，比较两个字符串。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -594,7 +598,7 @@ compare(first: string, second: string): number
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| number | 比较结果。当number为负数，表示first排序在second之前；当number为0，表示first与second排序相同；当number为正数，表示first排序在second之后。 |
+| number | 比较结果。<br>- number为负数时，表示first排序在second之前；<br>- number为0时，表示first与second排序相同；<br>- number为正数，表示first排序在second之后。 |
 
 **示例：** 
   ```ts
@@ -609,7 +613,7 @@ compare(first: string, second: string): number
 
 resolvedOptions(): CollatorOptions
 
-返回Collator对象的属性。
+获取创建排序对象时设置的配置项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -619,7 +623,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions8) | 返回的Collator对象的属性。 |
+| [CollatorOptions](#collatoroptions8) | 返回排序对象的属性。 |
 
 **示例：** 
   ```ts
@@ -633,7 +637,7 @@ resolvedOptions(): CollatorOptions
 
 ## CollatorOptions<sup>8+</sup>
 
-表示Collator可设置的属性。
+创建排序对象时可设置的配置项。  
 
 从API9中，CollatorOptions中的属性改为可选。
 
@@ -643,16 +647,21 @@ resolvedOptions(): CollatorOptions
 
 | 名称                | 类型      | 必填   | 说明                                       |
 | ----------------- | ------- | ---- | ---------------------------------------- |
-| localeMatcher     | string  | 否    | locale匹配算法，取值范围："best&nbsp;fit",&nbsp;"lookup"。localeMatcher属性默认值为best fit。 |
-| usage             | string  | 否    | 比较的用途，取值范围："sort",&nbsp;"search"。usage属性默认值为sort。        |
-| sensitivity       | string  | 否    | 表示字符串中的哪些差异会导致非零结果值，取值范围："base",&nbsp;"accent",&nbsp;"case",&nbsp;"letiant"。sensitivity属性默认值为variant。 |
-| ignorePunctuation | boolean | 否    | 表示是否忽略标点符号，取值范围：true,&nbsp;false。ignorePunctuation属性默认值为false。        |
-| collation         | string  | 否    | 排序规则，取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。collation属性默认值为default。 |
-| numeric           | boolean | 否    | 是否使用数字排序，取值范围：true,&nbsp;false。numeric属性默认值为false。          |
-| caseFirst         | string  | 否    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。caseFirst属性默认值为false |
+| localeMatcher     | string  | 否    | locale匹配算法，取值范围："best&nbsp;fit",&nbsp;"lookup"。<br>默认值为best fit。 |
+| usage             | string  | 否    | 比较的用途，取值范围："sort",&nbsp;"search"。<br>默认值为sort。        |
+| sensitivity       | string  | 否    | 表示字符串中的哪些差异会导致非零结果值，取值范围："base",&nbsp;"accent",&nbsp;"case",&nbsp;"letiant"。<br>默认值为variant。 |
+| ignorePunctuation | boolean | 否    | 表示是否忽略标点符号，取值范围：true,&nbsp;false。<br>默认值为false。        |
+| collation         | string  | 否    | 排序规则，<br>取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。<br>默认值为default。 |
+| numeric           | boolean | 否    | 是否使用数字排序，取值范围：true,&nbsp;false。<br>默认值为false。          |
+| caseFirst         | string  | 否    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。<br>默认值为false |
+
+
+>  **说明：**
+>
+>  - usage、sensitivity、collation、caseFirst不同取值代表的含义请参考[本地习惯排序](../../internationalization/i18n-sorting-local.md)。
+
 
 ## PluralRules<sup>8+</sup>
-
 
 ### constructor<sup>8+</sup>
 
@@ -685,15 +694,14 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 用于创建单复数对象的选项。       |
+| locale               | string \| Array&lt;string&gt;            | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
+| options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 创建单复数对象时设置的配置项。       |
 
 **示例：** 
   ```ts
   // 使用 zh-CN locale创建PluralRules对象，localeMatcher设置为lookup，type设置为cardinal
   let pluralRules= new intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
-
 
 ### select<sup>8+</sup>
 
@@ -715,7 +723,7 @@ select(n: number): string
 
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
-| string | 单复数类别，取值包括："zero"，"one"，"two",&nbsp;"few",&nbsp;"many",&nbsp;"others"。 |
+| string | 单复数类别，取值包括："zero"，"one"，"two",&nbsp;"few",&nbsp;"many",&nbsp;"others"。 <br>不同取值代表的含义请参考[语言单复数规则](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)。|
 
 **示例：** 
   ```ts
@@ -733,8 +741,7 @@ select(n: number): string
 
 ## PluralRulesOptions<sup>8+</sup>
 
-表示PluralRules对象可设置的属性。
-从API9开始，PluralRulesOptions中的属性改为可选。
+创建单复数对象时可设置的配置项。从API9开始，PluralRulesOptions的属性由必填改为可选。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -742,17 +749,16 @@ select(n: number): string
 
 | 名称                       | 类型     | 可读   | 可写   | 说明                                       |
 | ------------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher            | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。localeMatcher属性默认值为best fit。 |
-| type                     | string | 是    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal"。type属性默认值为cardinal。   |
-| minimumIntegerDigits     | number | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。minimumIntegerDigits属性默认值为1。                  |
-| minimumFractionDigits    | number | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。minimumFractionDigits属性默认值为0。                  |
-| maximumFractionDigits    | number | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。maximumFractionDigits属性默认值为3。                  |
-| minimumSignificantDigits | number | 是    | 是    | 表示要使用的最低有效位数，取值范围：1~21。minimumSignificantDigits属性默认值为1。                  |
-| maximumSignificantDigits | number | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。maximumSignificantDigits属性默认值为21。                  |
+| localeMatcher            | string | 是    | 是    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。<br>默认值为best fit。 |
+| type                     | string | 是    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal",<br>默认值为cardinal。<br>- cardinal：基数词，ordinal：序数词。  |
+| minimumIntegerDigits     | number | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。<br>默认值为1。                  |
+| minimumFractionDigits    | number | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。<br>默认值为0。                  |
+| maximumFractionDigits    | number | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。<br>默认值为3。                  |
+| minimumSignificantDigits | number | 是    | 是    | 表示要使用的最低有效位数，取值范围：1~21。<br>默认值为1。                  |
+| maximumSignificantDigits | number | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值为21。                |
 
 
 ## RelativeTimeFormat<sup>8+</sup>
-
 
 ### constructor<sup>8+</sup>
 
@@ -785,8 +791,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
-| locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 用于创建相对时间格式化对象的选项。            |
+| locale               | string \| Array&lt;string&gt;            | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
+| options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 创建相对时间格式化对象时可配置的选项。     |
 
 **示例：** 
   ```ts
@@ -810,7 +816,7 @@ format(value: number, unit: string): string
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 相对时间格式化的数值。                              |
-| unit  | string | 是    | 相对时间格式化的单位，取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
+| unit  | string | 是    | 相对时间格式化的单位，<br>取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
 
 **返回值：** 
 
@@ -831,7 +837,7 @@ format(value: number, unit: string): string
 
 formatToParts(value: number, unit: string): Array&lt;object&gt;
 
-返回一个对象数组，表示可用于自定义区域设置格式的相对时间格式。
+自定义区域的相对时间格式。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -842,13 +848,13 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 相对时间格式化的数值。                              |
-| unit  | string | 是    | 相对时间格式化的单位，取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
+| unit  | string | 是    | 相对时间格式化的单位，<br>取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
 
 **返回值：** 
 
 | 类型                  | 说明                          |
 | ------------------- | --------------------------- |
-| Array&lt;object&gt; | 返回可用于自定义区域设置格式的相对时间格式的对象数组。 |
+| Array&lt;object&gt; | 相对时间格式的对象数组。 |
 
 **示例：** 
   ```ts
@@ -886,7 +892,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 ## RelativeTimeFormatInputOptions<sup>8+</sup>
 
-表示RelativeTimeFormat对象可设置的属性。
+创建相对时间格式化对象时可设置的属性选项。
 
 从API9开始，RelativeTimeFormatInputOptions中的属性改为可选。
 
@@ -896,9 +902,13 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 | 名称            | 类型     | 必填   |说明                                       |
 | ------------- | ------ | ---- | ---------------------------------------- |
-| localeMatcher | string | 否    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。localeMatcher属性默认值为best fit。 |
-| numeric       | string | 否    | 输出消息的格式，取值包括："always",&nbsp;"auto"。numeric属性默认值为always。      |
-| style         | string | 否    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。style属性默认值为long。 |
+| localeMatcher | string | 否    | locale匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。<br>默认值为best fit。 |
+| numeric       | string | 否    | 输出消息的格式，取值包括："always",&nbsp;"auto"。<br>默认值为always。      |
+| style         | string | 否    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。<br>默认值为long。 |
+
+> **说明**
+>
+> numeric、style不同参数取值显示的效果，请参考[相对时间格式化选项](../../internationalization/i18n-time-date.md#相对时间格式化)。
 
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 

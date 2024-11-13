@@ -28,7 +28,7 @@ Radio(options: RadioOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                  | 必填 | 描述               |
+| 参数名  | 类型                                  | 必填 | 说明               |
 | ------- | ------------------------------------- | ---- | ------------------ |
 | options | [RadioOptions](#radiooptions对象说明) | 是   | 配置单选框的参数。 |
 
@@ -45,11 +45,13 @@ Radio(options: RadioOptions)
 
 ## RadioIndicatorType<sup>12+</sup>枚举说明
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 描述                             |
+| 名称            | 说明                           |
 | --------------- | -------------------------------- |
 | TICK            | 选中样式为系统默认TICK图标。  |
 | DOT             | 选中样式为系统默认DOT图标。   |
@@ -266,33 +268,33 @@ struct RadioExample {
 ```
 ![radio](figures/radio_2.gif)
 ### 示例3
-设置自定义单选样式
+设置自定义单选样式。
 ```ts
 class MyRadioStyle implements ContentModifier<RadioConfiguration> {
   type: number = 0
-  selectedColor:Color = Color.Black
+  selectedColor: ResourceColor = Color.Black
 
-  constructor(numberType: number, colorType:Color) {
+  constructor(numberType: number, colorType: ResourceColor) {
     this.type = numberType
     this.selectedColor = colorType
   }
 
-  applyContent() : WrappedBuilder<[RadioConfiguration]>
-  {
+  applyContent(): WrappedBuilder<[RadioConfiguration]> {
     return wrapBuilder(buildRadio)
   }
 }
 
-@Builder function buildRadio(config: RadioConfiguration) {
-  Row({ space:30 }) {
+@Builder
+function buildRadio(config: RadioConfiguration) {
+  Row({ space: 30 }) {
     Circle({ width: 50, height: 50 })
       .stroke(Color.Black)
       .fill(config.checked ? (config.contentModifier as MyRadioStyle).selectedColor : Color.White)
     Button(config.checked ? "off" : "on")
       .width(100)
       .type(config.checked ? (config.contentModifier as MyRadioStyle).type : ButtonType.Normal)
-      .backgroundColor(0xAABBCC)
-      .onClick(()=>{
+      .backgroundColor('#2787D9')
+      .onClick(() => {
         if (config.checked) {
           config.triggerChange(false)
         } else {
@@ -309,17 +311,18 @@ struct refreshExample {
     Column({ space: 50 }) {
       Row() {
         Radio({ value: 'Radio1', group: 'radioGroup' })
-          .contentModifier(new MyRadioStyle(1, Color.Red))
+          .contentModifier(new MyRadioStyle(1, '#004AAF'))
           .checked(false)
           .width(300)
           .height(100)
       }
+
       Row() {
         Radio({ value: 'Radio2', group: 'radioGroup' })
           .checked(true)
           .width(300)
           .height(60)
-          .contentModifier(new MyRadioStyle(2, Color.Red))
+          .contentModifier(new MyRadioStyle(2, '#004AAF'))
       }
     }
   }

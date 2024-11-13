@@ -17,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
-## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
+## ApplicationContext.on('abilityLifecycle')
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
@@ -105,7 +105,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
@@ -158,7 +158,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
@@ -210,7 +210,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
+## ApplicationContext.on('environment')
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
@@ -273,7 +273,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
@@ -325,7 +325,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
@@ -376,7 +376,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.on('applicationStateChange')<sup>10+</sup>
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
@@ -432,7 +432,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.off('applicationStateChange')<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
@@ -568,7 +568,11 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。使用Promise异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用Promise异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -602,11 +606,65 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
+## ApplicationContext.killAllProcesses<sup>14+</sup>
+
+killAllProcesses(clearPageStack: boolean): Promise\<void\>
+
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用Promise异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| clearPageStack | boolean | 是 | 表示是否清除页面堆栈。true表示清除，false表示不清除。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+let isClearPageStack = false;
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.killAllProcesses(isClearPageStack);
+  }
+}
+```
+
 ## ApplicationContext.killAllProcesses
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。使用callback异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用callback异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -616,7 +674,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<void\>   | 是   | 回调函数。当杀死应用所在的进程成功，err为undefined，否则为错误对象。 |
+| callback    | AsyncCallback\<void\>   | 是   | 回调函数。当终止应用所在的进程成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -657,7 +715,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -828,7 +886,7 @@ restartApp(want: Want): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
+| 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
 
 **示例：**
@@ -1003,6 +1061,148 @@ class MyAbilityStage extends AbilityStage {
       let code = (error as BusinessError).code;
       let message = (error as BusinessError).message;
       console.error(`setSupportedProcessCache fail, code: ${code}, msg: ${message}`);
+    }
+  }
+}
+```
+
+
+## ApplicationContext.setFontSizeScale<sup>13+</sup>
+
+setFontSizeScale(fontSizeScale: number): void
+
+设置应用字体大小缩放比例。仅支持主线程调用。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| fontSizeScale | number | 是   | 表示字体缩放比例，取值为非负数。当应用字体[跟随系统](../../quick-start/app-configuration-file.md#configuration标签)且该字段取值超过[fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration标签)取值时，实际生效值为[fontSizeMaxScale](../../quick-start/app-configuration-file.md#configuration标签)取值。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class MyAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        return;
+      }
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.setFontSizeScale(2);
+    });
+  }
+}
+```
+
+
+## ApplicationContext.getCurrentInstanceKey<sup>14+</sup>
+
+getCurrentInstanceKey(): string
+
+获取当前应用多实例的唯一实例标识。仅支持主线程调用。
+
+> **说明：**
+>
+> 当前仅支持2in1设备。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| string | 返回当前应用多实例的唯一实例标识。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000078 | The multi-instance is not supported. |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    let currentInstanceKey = '';
+    try {
+      currentInstanceKey = applicationContext.getCurrentInstanceKey();
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`getCurrentInstanceKey fail, code: ${code}, msg: ${message}`);
+    }
+    console.log(`currentInstanceKey: ${currentInstanceKey}`);
+  }
+}
+```
+
+## ApplicationContext.getAllRunningInstanceKeys<sup>14+</sup>
+
+getAllRunningInstanceKeys(): Promise\<Array\<string>>;
+
+获取应用的所有多实例的唯一实例标识。使用Promise异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 当前仅支持2in1设备。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| Promise\<Array\<string>> | Promise对象，返回应用的所有多实例的唯一实例标识。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000078 | The multi-instance is not supported. |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.getAllRunningInstanceKeys();
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`getAllRunningInstanceKeys fail, code: ${code}, msg: ${message}`);
     }
   }
 }

@@ -82,8 +82,8 @@ The ES6 syntax is supported.
   | $refs | Object | DOM elements or child component instances that have registered the ref attribute. For example code, see [Obtaining a DOM element](#obtaining-a-dom-element). |
   | private | Object | Data model of the page. Private data attribute can be modified only on the current page. |
   | public | Object | Data model of the page. Behaviors of public data attributes are the same as those of the data attribute. |
-  | props | Array/Object | Used for communication between components. This attribute can be transferred to components via &lt;tag xxxx='value'&gt;. A props name must be in lowercase and cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (for, if, show, and tid). Currently, props does not support functions. For details, see [props](../reference/apis-arkui/arkui-js/js-components-custom-props.md). |
-  | computed | Object | Used for pre-processing an object for reading and setting. The result is cached. The name cannot start with a dollar sign ($) or underscore (_). Do not use reserved words. For details, see [props](../reference/apis-arkui/arkui-js/js-components-custom-props.md). |
+  | props | Array/Object | Used for communication between components. This attribute can be transferred to components via &lt;tag xxxx='value'&gt;. A props name must be in lowercase and cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (for, if, show, and tid). Currently, props does not support functions. For details, see [props](../reference/apis-arkui/arkui-js/js-components-custom-props.md#props). |
+  | computed | Object | Used for pre-processing an object for reading and setting. The result is cached. The name cannot start with a dollar sign ($) or underscore (_). Do not use reserved words. For details, see [computed](../reference/apis-arkui/arkui-js/js-components-custom-props.md#computed). |
 
 ## Methods
 
@@ -118,16 +118,16 @@ The ES6 syntax is supported.
 - Public methods
   | Name | Parameter | Description |
   | -------- | -------- | -------- |
-  | $element | id: string | Obtains the component with a specified ID. If no ID is specified, the root component is returned. For example code, see [Obtaining a DOM element](#obtaining-a-dom-element).<br/>Usage:<br/>```<div id='_xxx_'></div>```<br/>- this.$element('_xxx_'): Obtain the component whose ID is _xxx_.<br/>- this.$element(): Obtain the root component. |
-  | $rootElement | N/A | Obtains the root element.<br/>Usage: this.\$rootElement().scrollTo({ duration: 500, position: 300 }), which scrolls the page by 300 px within 500 ms. |
-  | $root | N/A | Obtains the root ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
-  | $parent | N/A | Obtains the parent ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
-  | $child | id: string | Obtains the ViewModel instance of a custom child component with a specified ID. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel).<br/>Usage:<br/>this.\$child('xxx'): Obtain the ViewModel instance of a custom child component whose ID is _xxx_. |
+  | $element     | id: string | Obtains the component with a specified ID. If no ID is specified, the root component is returned. For example code, see [Obtaining a DOM element](#obtaining-a-dom-element).<br/>Usage:<br/>&lt;div id='xxx'&gt;&lt;/div&gt;<br/>- `this.$element('xxx')`<br/>- this.$element('xxx'): Obtain the component whose ID is xxx.<br/>- this.$element(): Obtain the root component. |
+  | $rootElement | N/A        | Obtains the root element.<br/>Usage: this.\$rootElement().scrollTo({ duration: 500, position: 300 }), which scrolls the page by 300 px within 500 ms. |
+  | $root        | N/A        | Obtains the root ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
+  | $parent      | N/A        | Obtains the parent ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
+  | $child       | id: string | Obtains the ViewModel instance of a custom child component with a specified ID. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel).<br/>Usage:<br/>this.\$child('xxx'): Obtain the ViewModel instance of a custom child component whose ID is _xxx_. |
 
 - Event methods
   | Name | Parameter | Description |
   | -------- | -------- | -------- |
-  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered. For details, see [props](../reference/apis-arkui/arkui-js/js-components-custom-props.md)<br/>Usage:<br/>this.$watch('key', callback) |
+  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered. For details, see [Monitoring Data Changes by $watch](../reference/apis-arkui/arkui-js/js-components-custom-props.md#monitoring-data-changes-by-watch).<br/>Usage:<br/>this.$watch('key', callback) |
 
 - Page methods
   | Name | Parameter | Description |
@@ -142,7 +142,7 @@ The ES6 syntax is supported.
   | id | string | - | ID of the element to be scrolled to. |
   | duration | number | 300 | Scrolling duration, in milliseconds. |
   | timingFunction | string | ease | Animation curve for scrolling. Available options:<br/>[Animation Styles](../reference/apis-arkui/arkui-js/js-components-common-animation.md) |
-  | complete | () => void | - | Callback to be invoked when the scrolling is complete. |
+  | complete | () =&gt; void | - | Callback to be invoked when the scrolling is complete. |
 
   Example
 

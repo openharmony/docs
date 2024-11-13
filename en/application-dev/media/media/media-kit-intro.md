@@ -84,41 +84,53 @@ Audio and video containers and codecs are domains specific to content creators. 
 
 The table below lists the supported protocols.
 
-| Scenario | Description | 
+| Scenario| Description| 
 | -------- | -------- |
-| Local VOD | The file descriptor is supported, but the file path is not. |
-| Network VoD | HTTP, HTTPS, and HLS are supported. |
-| Live webcasting | HLS and HTTP-FLV are supported. |
+| Local VOD| The file descriptor is supported, but the file path is not.|
+| Network VoD| HTTP, HTTPS, HLS, and DASH are supported.|
+| Live webcasting| HLS and HTTP-FLV are supported.|
 
 The table below lists the supported audio playback formats.
 
-| Audio Container Format | Description | 
+| Audio Container Format| Description| 
 | -------- | -------- |
-| m4a | Audio format: AAC | 
-| aac | Audio format: AAC | 
-| mp3 | Audio format: MP3 | 
-| ogg | Audio format: VORBIS  | 
-| wav | Audio format: PCM | 
-| amr | Audio format: AMR | 
+| m4a | Audio format: AAC| 
+| aac | Audio format: AAC| 
+| mp3 | Audio format: MP3| 
+| ogg | Audio format: VORBIS | 
+| wav | Audio format: PCM| 
+| amr | Audio format: AMR| 
 
 <!--Del-->
 > **NOTE**
 > 
 > The supported video formats are further classified into mandatory and optional ones. All vendors must support mandatory ones and can determine whether to implement optional ones based on their service requirements. You are advised to perform compatibility processing to ensure that all the application functions are compatible on different platforms.
 
-| Video Format | Mandatory or Not |
+| Video Format| Mandatory or Not|
 | -------- | -------- |
-| H265<sup>10+</sup>      | Yes |
-| H264      | Yes |
+| H265<sup>10+</sup>      | Yes|
+| H264      | Yes|
 <!--DelEnd-->
 
 The table below lists the supported playback formats and mainstream resolutions.
 
-| Video Container Format | Description | Resolution | 
+| Video Container Format| Description| Resolution| 
 | -------- | -------- | -------- |
-| mp4 | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3 | Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p |
-| mkv | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3 | Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p |
-| ts | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3 | Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p |
+| mp4 | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| mkv | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| ts | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+
+The table below lists the supported subtitle formats.
+
+| Subtitle Container Format| Protocol| Loading Mode|
+| -------- | -------- | -------- |
+| srt | File descriptor (FD) for local video on-demand (VOD), and HTTP/HTTPS/HLS/DASH for network VOD| External subtitle|
+| vtt | FD for local VOD, and HTTP/HTTPS/HLS/DASH for network VOD| External subtitle|
+| webvtt | DASH for network VOD| Built-in subtitle|
+
+> **NOTE**
+> 
+> When DASH streams include built-in subtitles, external subtitles cannot be used.
 
 ## AVRecorder
 
@@ -150,30 +162,32 @@ In Figure 3, the numbers indicate the process where data is transferred to exter
 
 The table below lists the supported audio sources.
 
-| Type | Description | 
+| Type| Description| 
 | -------- | -------- |
-| mic | The system microphone is used as the audio source input. | 
+| mic | The system microphone is used as the audio source input.| 
 
 The table below lists the supported video sources.
 
-| Type | Description | 
+| Type| Description| 
 | -------- | -------- |
-| surface_yuv | The input surface carries raw data. | 
-| surface_es | The input surface carries ES data. | 
+| surface_yuv | The input surface carries raw data.| 
+| surface_es | The input surface carries ES data.| 
 
 The table below lists the supported audio and video encoding formats.
 
-| Encoding Format | Description | 
+| Encoding Format| Description| 
 | -------- | -------- |
-| audio/mp4a-latm | Audio encoding format MP4A-LATM. |
-| video/hevc | Video encoding format HEVC. | 
-| video/avc | Video encoding format AVC. | 
-| audio/mpeg | Audio encoding format MPEG. | 
+| audio/mp4a-latm | Audio encoding format MP4A-LATM.|
+| video/hevc | Video encoding format HEVC.| 
+| video/avc | Video encoding format AVC.| 
+| audio/mpeg | Audio encoding format MPEG.| 
+| audio/g711mu | Audio encoding format G.711 μ-law.| 
 
 The table below lists the supported output file formats.
 
-| Format | Description | 
+| Format| Description| 
 | -------- | -------- |
-| mp4 | Video container format MP4. | 
-| m4a | Audio container format M4A. | 
-| mp3 | Audio container format MP3. | 
+| mp4 | Video container format MP4.| 
+| m4a | Audio container format M4A.| 
+| mp3 | Audio container format MP3.| 
+| wav | Audio container format WAV.| 

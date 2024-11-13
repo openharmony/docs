@@ -1054,7 +1054,7 @@ let para: Record<string, number> = { 'PropA': 47 };
 let storage: LocalStorage = new LocalStorage(para);
 let res: boolean = storage.setOrCreate('PropA', 121); // true
 let res1: boolean = storage.setOrCreate('PropB', 111); // true
-let res2: boolean = storage.setOrCreate('PropB', null); // false
+let res2: boolean = storage.setOrCreate('PropB', null); // true (API12及之后返回true，API11及之前返回false)
 ```
 
 ### ref<sup>12+</sup>
@@ -1609,6 +1609,10 @@ link.aboutToBeDeleted();
 
 ## PersistentStorage
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储UI状态)](../../../quick-start/arkts-persiststorage.md)
 
 > **说明：**<br/>
@@ -1839,6 +1843,9 @@ let keys: Array<string> = PersistentStorage.Keys();
 
 ## Environment
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 Environment具体使用说明，详见[Environment(设备环境查询)](../../../quick-start/arkts-environment.md)
 

@@ -19,56 +19,77 @@ bootchart和bootevent只支持标准系统， begetctl 支持小型系统和标�
 ## 开发指导
 ### 参数说明
  **表1**  begetctl 命令说明<a name="table14737791480"></a>
-| 命令 | 命令格式和示例 | 说明 |
-| :----------  |  :----------  |:--------|
-| init group test [stage] | init group test | stage参见ServiceStatus。 |
-| param ls [-r] [name] | 显示系统参数，例如：<br>查看USB系统参数：begetctl param ls persist.sys.usb    | 无 |
-| param get [name] | 获取系统参数信息，例如：<br>begetctl param get 或 param get | 无 |
-| param set name value| 设置系统参数，例如：<br>begetctl param set ohos.servicectrl.display 1 或 param set ohos.servicectrl.display 1| 无 |
-| param wait name [value] [timeout] | 等待系统参数，例如：<br>begetctl param wait persist.sys.usb.config hdc 或 param wait persist.sys.usb.config hdc | timeout默认值：30秒 |
-| param dump [verbose] | dump 系统参数信息，例如：<br>begetctl param dump 或 param dump| 无 |
-| param shell [name] | 进入Parameter shell，例如：<br>begetctl param shell 或 param shell| 无 |
-| timer_stop servicename | 停止服务计时器，例如：<br>begetctl timer_stop appspawn | servicename长度不超过96字符 |
-| timer_start servicename timeout | 启动服务计时器，例如：<br>begetctl timer_start appspawn | servicename长度不超过96；timeout默认值：10毫秒  |
-| start_service servicename | 启动服务，例如：<br>begetctl start_service appspawn 或 start_service appspawn | 无 |
-| stop_service servicename | 停止服务，例如：<br>begetctl stop_service appspawn 或 stop_service appspawn | 无 |
-| service_control start servicename | 启动服务，例如：<br>begetctl service_control start appspawn 或 service_control start appspawn | 无 |
-| service_control stop servicename | 停止服务，例如：<br>begetctl service_control stop appspawn 或 service_control stop appspawn  | 无 |
-| misc_daemon --write_logo xxx.rgb | 写入开机logo，例如：<br>begetctl misc_daemon --write_logo logo.rgb 或 misc_daemon --write_logo logo.rgb| rgb文件最大不超过1024*2038，仅支持hi3516dv300 |
-| reboot | 重启系统，例如：<br>begetctl reboot 或 reboot|无 |
-| reboot shutdown | 关闭系统，例如：<br>begetctl reboot shutdown 或 reboot shutdown |无 |
-| reboot suspend | 暂停系统，例如：<br>begetctl reboot suspend 或 reboot suspend | 无 |
-| reboot updater | 重新启动并进入updater，例如：<br>begetctl reboot updater 或 reboot updater | 无 |
-| reboot updater[:options] | 重新启动并进入updater，例如：<br>begetctl reboot updater 或 reboot updater | 无 |
-| reboot flashd | 重新启动并进入flashd，例如：<br>begetctl reboot flashd 或 reboot flashd | 无 |
-| reboot flashd[:options] | 重新启动并进入flashd，例如：<br>begetctl reboot flashd 或 reboot flashd | 无 |
-| reboot charge | 重新启动并进入charge，例如：<br>begetctl reboot charge 或 reboot charge | 无 |
-| reboot loader | 重新启动并进入烧写模式，例如：<br>begetctl reboot loader 或 reboot loader | 无 |
-| bootchart stop | 停止图形分析，例如：<br>begetctl bootchart stop | 仅支持rk3568|
-| bootchart start | 开始图形分析，例如：<br>begetctl bootchart start | 无 |
-| bootchart disable | 图形分析不使能，例如：<br>begetctl bootchart disable | 无 |
-| bootchart enable | 图形分析使能，例如：<br>begetctl bootchart enable | 无 |
-| sandbox -s service_name | 服务进沙盒，例如：<br>sandbox -s foundation | 无 |
-| sandbox -p process_name | 进程进沙盒，例如：<br>sandbox -p /bin/sh | 无 |
-| sandbox -n sandbox_name | 进入配置的system或者chipset沙盒，例如：<br>sandbox -n system | 无 |
-| sandbox -h | sandbox command help | 无 |
-| partitionslot getslot | 获取当前活动slot，例如：<br>begetctl partitionslot getslot 或 partitionslot getslot | 无 | 
-| partitionslot getsuffix slot | 获取当前匹配slot，例如：<br>begetctl partitionslot getsuffix 1 或 partitionslot getsuffix 1 | 无 |
-| partitionslot setactive slot | 设置活动slot，例如：<br>begetctl partitionslot setactive 1 或 partitionslot setactive 1 | 无 |
-| partitionslot setunboot slot | 设置非活动slot，例如：<br>begetctl partitionslot setunboot 1 或 partitionslot setunboot 1 | 无 |
-| modulectl uninstall moduleName | 卸载动态插件，例如：<br>modulectl uninstall bootchart | 无 |
-| modulectl install moduleName | 安装动态插件，例如：<br>modulectl install bootchart | 无 |
-| modulectl list | 动态插件列表，例如：<br>begetctl modulectl list | 无 |
-| setloglevel level | 设置log等级为info，例如：<br>begetctl setloglevel 1 | log等级设置范围0~4 |
-| getloglevel | 获取当前init的log等级，例如：<br>begetctl getloglevel | 无 |
-| bootevent disable | 关闭bootevent插件功能，例如：<br>bootevent disable | 无 |
-| bootevent enable | 开启bootevent插件功能，例如：<br>begetctl 关闭bootevent插件功能 | 无 |
-| dump_service parameter_service trigger | 命令行展示所有trigger信息，例如：<br>begetctl dump_service parameter_service trigger | 无 |
-| dump_service all | 命令行展示所有服务的信息，例如：<br>begetctl dump_service all | 无 |
-| dump_service serviceName | 命令行展示单个服务信息，例如：<br>begetctl dump_service param_watcher | 无 |
-| dump api | 命令行展示init接口信息，例如：<br>begetctl dump api | 无 |
+| 命令 | 说明 | 格式和示例|
+| :----------  |  :----------  |:-------------- |
+| init group test [stage] | init moduletest 测试用 | stage参见[ServiceStatus](#section001) |
+| param ls [-r] [name] | 显示系统参数dac和selinux信息<br> -r： 展示所有参数信息 <br> name：展示指定参数信息 | begetctl param ls xxx.xxx 或 <br>param ls xxx.xxx<br>例如：<br>begetctl param ls persist.sys.usb |
+| param get [name] | 获取系参数统值 | begetctl param get xxxx.xxx 或 <br>param get xxxx.xxx<br>例如：<br>param get const.product.name|
+| param set name value| 设置系统参数值 |begetctl param set xxxx.xxx value 或<br> param set xxxx.xxx value <br>例如：<br>begetctl param set ohos.servicectrl.display 1 |
+| param wait name [value] [timeout] | 等待参数被设置成某值<br> timeout默认值：30秒| begetctl param wait xxx.xxx value 或<br> wait xxx.xxx value <br>例如：<br>param wait xx.sss 1 |
+| param dump [verbose] | dump 系统参数信息|begetctl param dump <br>或 param dump |
+| param shell [name] | 进入Parameter shell|begetctl param shell <br>或 param shell |
+| param save | 持久化workspace中的所有带持久化标记的参数|begetctl param save <br>或 param save |
+| dump api | dump 显示init 系统参数接口信息|begetctl dump api |
+| getloglevel | 获取当前init的log等级<br>读取persist.init.debug.loglevel<br>0:debug<br> 1:info<br> 2:warning<br> 3:err<br> 4:fatal|begetctl getloglevel |
+| setloglevel level | 设置log等级为info <br>log等级设置范围0~4<br> 0:debug<br>1:info<br> 2:warning<br> 3:err<br>4:fatal|begetctl setloglevel 1 |
+| timer_stop servicename | 停止服务计时器<br>servicename长度不超过96字符|begetctl timer_stop servicename | begetctl timer_stop appspawn |
+| timer_start servicename timeout | 启动服务计时器<br>servicename长度不超过96<br>timeout默认值：10毫秒 |begetctl timer_start servicename | begetctl timer_start appspawn|
+| start_service servicename | 启动服务| begetctl start_service servicename 或<br>start_service servicename|begetctl start_service appspawn |
+| stop_service servicename | 停止服务|begetctl stop_service servicename 或<br> stop_service servicename|begetctl stop_service appspawn |
+| service_control start servicename | 启动服务|begetctl service_control start servicename 或<br> service_control start servicename|begetctl service_control start appspawn |
+| service_control stop servicename | 停止服务|begetctl service_control stop servicename 或<br> service_control stop servicename|begetctl service_control stop appspawn |
+| sandbox -b pid | 进入native应用沙盒 | begetctl sandbox -b pid|
+| sandbox -p process_name | 进程进沙盒| begetctl sandbox -p /bin/sh |
+| sandbox -n sandbox_name | 进入配置的system或者chipset沙盒| begetctl sandbox -n system|
+| sandbox -s service_name | 服务进沙盒| begetctl sandbox -s service_name |
+| sandbox -h | 展示sandbox 命令帮助信息| begetctl sandbox -h |
+| modulectl uninstall moduleName | 卸载动态插件| begetctl modulectl uninstall moduleName <br>例如:<br>卸载bootchart：<br> begetctl modulectl uninstall bootchart |
+| modulectl install moduleName | 安装动态插件|begetctl modulectl install moduleName <br>例如:<br>安装bootchart：<br>begetctl modulectl install bootchart |
+| modulectl list | 查询动态插件列表|begetctl modulectl list |
+| misc_daemon --write_logo xxx.rgb | 写入开机logo<br>rgb文件最大不超过1024*2038，仅支持hi3516dv300|begetctl misc_daemon --write_logo logo.rgb 或<br> misc_daemon --write_logo logo.rgb|
+| reboot | 重启系统|begetctl reboot 或<br> reboot|
+| reboot shutdown[:options] | 关闭系统|begetctl reboot shutdown 或<br> reboot shutdown |
+| reboot suspend | 暂停系统|begetctl reboot suspend 或<br> reboot suspend |
+| reboot updater | 重新启动并进入updater|begetctl reboot updater 或<br> reboot updater |
+| reboot updater[:options] | 重新启动并进入updater|begetctl reboot updater 或<br> reboot updater |
+| reboot flashd | 重新启动并进入flashd|begetctl reboot flashd 或<br> reboot flashd |
+| reboot flashd[:options] | 重新启动并进入flashd|begetctl reboot flashd 或<br> reboot flashd |
+| reboot charge | 重新启动并进入charge|begetctl reboot charge 或<br> reboot charge |
+| reboot loader | 重新启动并进入烧写模式|begetctl reboot loader 或<br> reboot loader |
+| bootevent disable | 关闭bootevent插件功能|begetctl bootevent disable |
+| bootevent enable | 开启bootevent插件功能|begetctl bootevent enable |
+| dump_service parameter_service trigger | 命令行展示所有trigger信息|begetctl dump_service parameter_service trigger |
+| dump_service all | 命令行展示所有服务的信息|begetctl dump_service all |
+| dump_service serviceName | 命令行展示单个服务信息|begetctl dump_service param_watcher |
+| dump_service loop | dump loop 中fd信息 |begetctl dump_service loop|
+| bootchart stop | 停止图形分析，仅支持rk3568|begetctl bootchart stop |
+| bootchart start | 开始图形分析|begetctl bootchart start |
+| bootchart disable | 图形分析不使能|begetctl bootchart disable |
+| bootchart enable | 图形分析使能|begetctl bootchart enable |
+| dac uid username | 查询username 对应的uid|begetctl dac uid username <br>例如:<br>begetctl dac uid root|
+| dac gid groupname | groupname 对应的gid以及组成员|begetctl dac gid groupname <br>例如:<br> begetctl dac gid shell |
+| get log level | 获取当前init的log等级<br>读取persist.init.debug.loglevel<br>0:debug<br> 1:info<br> 2:warning<br> 3:err<br> 4:fatal|begetctl get log level |
+| set log level | 设置log等级为info <br>log等级设置范围0~4<br> 0:debug<br>1:info<br> 2:warning<br> 3:err<br>4:fatal|begetctl set log level 1 |
+| appspawn_time | 查询应用孵化的最大最小时间 | begetctl appspawn_time <br>例如：<br>begetctl appspawn_time|
+| dump_nwebspawn | dump nwebspawn 应用信息|begetctl dump_nwebspawn <br>例如：<br>打开备忘录<br>begetctl dump_nwebspawn |
+| dump_appspawn | dump appspawn 应用信息|begetctl dump_appspawn<br>例如：<br>begetctl dump_appspawn|
 
-
+- <a name = "section001"> **ServiceStatus**
+```
+typedef enum {
+    SERVICE_IDLE = 0, // service add
+    SERVICE_STARTING, // service start
+    SERVICE_STARTED, // 2 service ok running
+    SERVICE_READY, // 3 service ok running
+    SERVICE_STOPPING,
+    SERVICE_STOPPED, // 5
+    SERVICE_ERROR,
+    SERVICE_SUSPENDED,
+    SERVICE_FREEZED,
+    SERVICE_DISABLED,
+    SERVICE_CRITICAL
+} ServiceStatus;
+```
 ### 开发步骤
   新增一个插件， 以bootchart为例：
 1. 安装so文件， 定义单独文件，实现下面函数。 

@@ -4,8 +4,8 @@ Before requesting permissions for your application, read and understand the [Wor
 
 > **NOTE**
 >
-> - The permissions listed in this topic apply to the applications whose Ability Privilege Level (APL) is system_basic or system_core, but not to the applications with the normal APL.
-> - Only some of the permissions can be requested via the [Access Control List (ACL)](app-permission-mgmt-overview.md#acl).
+> - The permissions listed in this topic are available to the applications whose Ability Privilege Level (APL) is system_basic or system_core, but not to the applications of the normal APL.
+> - However, some of the permissions can be granted to an application of the normal APL via the [Access Control List (ACL)](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## system_grant Permissions (Requestable via ACL)
 
@@ -84,6 +84,18 @@ Allows an application to use the mock location function.
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.ACCESS_LEARN_MORE_DIALOG
+
+Allows a system application to display the **Learn more** dialog for detailed information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ### ohos.permission.MANAGE_SETTINGS
 
@@ -661,6 +673,18 @@ Allows an application to access system event logging data.
 
 **Valid since**: 8
 
+### ohos.permission.READ_DFX_XPOWER
+
+Allows an application to read XPower data.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.PERMISSION_USED_STATS
 
 Allows a system application to access the permission usage records.
@@ -689,7 +713,7 @@ Allows an application to take screenshots.
 
 Allows an application to install, uninstall, and authorize users' public certificate credentials.
 
-**Permission level**: system_basic for API versions 9 to 11 and system_core for API versions 12 and later.
+**Permission level**: system_basic in API versions 9 to 11 and system_core since API versions 12.
 
 **Authorization mode**: system_grant
 
@@ -747,7 +771,7 @@ Allows an application to use the lock screen service to lock the screen, send a 
 
 ### ohos.permission.BACKUP
 
-Allows an application to have backup and restore capabilities.
+Allows an application to use the backup and restore capability.
 
 **Permission level**: system_basic
 
@@ -1157,7 +1181,7 @@ Allows an application to obtain detailed security event information.
 
 ### ohos.permission.securityguard.REPORT_SECURITY_INFO
 
-Allows an application to report risk data to Security Guard.
+Allows an application to report security information to Security Guard.
 
 **Permission level**: system_basic
 
@@ -2251,6 +2275,18 @@ Allows an application to use the location service without displaying the privacy
 
 **Valid since**: 12
 
+### ohos.permission.EXEMPT_PRIVACY_SECURITY_CENTER
+
+Allows a system application to be hidden on the **Privacy & Security** page.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 Allows a system application to obtain the status of the super privacy mode.
@@ -2832,6 +2868,18 @@ Allows an application to query the location of an offline device.
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.REGISTER_FINDNETWORK_ACCESSORY
+
+Allows an application or system ability to initiate the process for registering the Find Network accessories.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ### ohos.permission.MANAGE_RGM
 
@@ -3541,6 +3589,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+Allows a system ability or system application to access the fusion service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 Allows an application to publish common events related to location management.
@@ -3637,53 +3697,311 @@ Allows a system ability to obtain file thumbnails.
 
 **Valid since**: 12
 
+### ohos.permission.NETWORK_DHCP
+
+Allows a system application to apply for IP addresses from the DHCP server.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 Allows an application to connect to an automobile head unit.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
 
 ### ohos.permission.MANAGE_NET_FIREWALL
 
-Allows a system application to configure network firewall rules.
+Allows a system application to configure firewall rules.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
 
 ### ohos.permission.GET_NET_FIREWALL
 
-Allows a system application to obtain network firewall rules and firewall interception records.
+Allows a system application to obtain firewall rules and firewall interception records.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：12
+**Valid since**: 12
 
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 Allows a system application to access the widget for credential enrollment.
 
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.MANAGE_ACCESSORY
+
+Allows an application to obtain information about accessories (such as the keyboard and mouse), send data to accessories, and obtain responses from them.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.COLLECT_ACCESSORY_LOG
+
+Allows an application to obtain logs of accessories (such as the keyboard and mouse).
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+
+Allows an application to install beta applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
+
+Allows a system ability to send screen rotation events to applications or other system abilities.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+
+Allows a system ability to send the projection cable plug-in and plug-out events to applications or other system abilities.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.GET_ETHERNET_LOCAL_MAC
+
+Allows an application to obtain the current MAC address of the Ethernet.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
+Allows a modal UIExtension to unhide non-secure windows.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_DISTRIBUTED_MODEM
+
+Allows a system service to access distributed modems.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.GET_TELEPHONY_ESIM_STATE
+
+Allows a system application to obtain eSIM profile information and data written on the device chip when the eSIM is activated.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE
+
+Allows a system application to modify the eSIM profile and upgrade the eSIM.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.CAMERA_BACKGROUND
+
+Allows a system application to use the camera in the background.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
+
+Allows an application to be started by another application on the lock screen page and redirected.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.CALLED_BELOW_LOCK_SCREEN
+
+Allows an application to start even when the screen is locked.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.ACCESS_ANALYTICS
+
+Allows a system service to access and read files in **/data/log/faultlog/faultlogger** directory.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+Allows a system application to subscribe to the restore start event of the backup and restore framework.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.READ_WRITE_USB_DEV
+
+Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
+
+Currently, this permission is available only for 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
+
+This permission is available only for applications running on 2-in-1 devices.
+
 **Permission level**：system_basic
 
 **Authorization mode**：system_grant
 
 **Enable via ACL**：true
 
-**Valid since**：12
+**Valid since**：13
+
+### ohos.permission.READ_WRITE_USER_FILE
+
+Allows an application to access and modify the files in the user directory.
+
+Currently, this permission is available only for 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+Allows an application or a service to initiate user identity authentication from the background.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.ACCESS_MCU_LOG_DIR
+
+Allows a system application to access the microcontroller unit (MCU) log directory.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
 
 ## system_grant Permissions (Unavailable via ACL)
 
@@ -3907,21 +4225,9 @@ Allows a system service to enable distributed hardware resources.
 
 **Valid since**: 11
 
-### ohos.permission.INSTALL_INTERNALTESTING_BUNDLE
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
 
-Allows an application to install beta applications.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.PUBLISH_DISPLAY_ROTATION_EVENT
-
-Allows a system ability to send screen rotation events to applications or other system abilities.
+Allows a system application or system service to grant third-party applications the temporary permission to save images and videos for the specified period of time.
 
 **Permission level**: system_core
 
@@ -3931,9 +4237,21 @@ Allows a system ability to send screen rotation events to applications or other 
 
 **Valid since**: 12
 
-### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
+### ohos.permission.ACCESS_SUPER_HUB
 
-Allows a system ability to send the projection cable plug-in and plug-out events to applications or other system abilities.
+Allows an application to access Super Hub.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 12
+
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+Allows an application to create or remove the recovery key.
 
 **Permission level**: system_core
 
@@ -3941,7 +4259,31 @@ Allows a system ability to send the projection cable plug-in and plug-out events
 
 **Enable via ACL**: true
 
-**Valid since**: 12
+**Valid since**: 14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+Allows an application to utilize the recovery key to reset the lock screen password or restore user data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+Allows an application to obtain brief information of the recovery key.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
 
 ## user_grant Permissions (Available via ACL)
 
@@ -4229,6 +4571,8 @@ Allows an application to read the pasteboard.
 
 Allows an application to access the **Desktop** directory and its subdirectories in the user directory.
 
+Currently, this permission is available only for 2-in-1 device applications.
+
 **Permission level**: system_basic
 
 **Authorization mode**: user_grant
@@ -4236,3 +4580,29 @@ Allows an application to access the **Desktop** directory and its subdirectories
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+Allows an application to save images and videos to the user's directory within up to 30 minutes after obtaining the permission.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+Allows an application to capture screen information.
+
+With this permission, the application can perform operations such as taking screenshots and recording on-screen information. Currently, this permission is available only for applications running on tablets and 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14

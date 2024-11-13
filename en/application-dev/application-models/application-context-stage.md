@@ -3,7 +3,7 @@
 
 ## Overview
 
-[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application file path), and **area** (encryption level). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
+[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, [resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md), [applicationInfo](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md), [dir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties) (application file path), and [area](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode) (encryption level). It also provides basic methods such as **createBundleContext()** and [getApplicationContext()](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextgetapplicationcontext). The [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component and [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) derived class components have their own **Context** classes, for example, the base class **Context**, [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md), and ServiceExtensionContext.
 
 - The figure below illustrates the inheritance relationship of contexts. 
 
@@ -14,7 +14,7 @@
   ![context-holding](figures/context-holding.png)
   
 - The following describes the information provided by different contexts.
-  - [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
+  - [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md): Each [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
     
     ```ts
     import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
@@ -42,7 +42,7 @@
       }
     }
     ```
-  - [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md): module-level context. It provides **HapModuleInfo** and **Configuration** in addition to those provided by the base class **Context**.
+  - [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md): module-level context. It provides [HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties) and [Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#properties) in addition to those provided by the base class **Context**.
     
     ```ts
     import { AbilityStage } from '@kit.AbilityKit';
@@ -54,7 +54,7 @@
       }
     }
     ```
-  - [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from UIAbility, ExtensionAbility, and AbilityStage.
+  - [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md), and [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md).
     
     ```ts
     import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
@@ -81,11 +81,11 @@ This topic describes how to use the context in the following scenarios:
 
 ### Obtaining Application File Paths
 
-The base class [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext** inherit this capability. The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
+The [base class Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md), [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) inherit this capability. The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
 
 The application file paths obtained by the preceding contexts are different.
 
-- The application file path obtained through **ApplicationContext** is at the application level. This path is recommended for storing global application information, and the files in the path will be deleted when the application is uninstalled.
+- The application file path obtained through [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) is at the application level. This path is recommended for storing global application information, and the files in the path will be deleted when the application is uninstalled.
 
   | Name| Path|
   | -------- | -------- |
@@ -150,7 +150,7 @@ The application file paths obtained by the preceding contexts are different.
   }
   ```
 
-- The application file path obtained through **AbilityStageContext**, **UIAbilityContext**, or **ExtensionContext** is at the HAP level. This path is recommended for storing HAP-related information, and the files in this path are deleted when the HAP is uninstalled. However, the deletion does not affect the files in the application-level path unless all HAPs of the application are uninstalled.
+- The application file path obtained through [AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md), [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md), and [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md) is at the [HAP](../quick-start/hap-package.md) level. This path is recommended for storing HAP-related information, and the files in this path are deleted when the HAP is uninstalled. However, the deletion does not affect the files in the application-level path unless all HAPs of the application are uninstalled.
 
   | Name| Path|
   | -------- | -------- |
@@ -219,7 +219,7 @@ The application file paths obtained by the preceding contexts are different.
 
 Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection.
 
-In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security.  For details about the permissions required for a specific encryption level, see **AreaMode** in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. For details about the permissions required for a specific encryption level, see [AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode) in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
 
 <ul>
 <li>EL1: For private files, such as alarms and wallpapers, the application can place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password.</li>
@@ -275,7 +275,7 @@ struct Page_Context {
             if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
               this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
               promptAction.showToast({
-                message: $r('app.string.SwitchToEL1')
+                message: 'SwitchToEL1'
               });
             }
             // Store common information.
@@ -291,7 +291,7 @@ struct Page_Context {
             if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
               this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
               promptAction.showToast({
-                message: $r('app.string.SwitchToEL2')
+                message: 'SwitchToEL2'
               });
             }
             // Store sensitive information.
@@ -309,7 +309,7 @@ struct Page_Context {
 
 ### Obtaining the Context of Other Modules in the Current Application
 
-Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
+Call [createModuleContext(moduleName:string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
   
   ```ts
   import { common } from '@kit.AbilityKit';
@@ -352,7 +352,7 @@ Call **createModuleContext(moduleName:string)** to obtain the context of another
 
 ### Subscribing to UIAbility Lifecycle Changes in a Process
 
-In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to UIAbility lifecycle changes in a process.
+In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) lifecycle changes in a process.
 
 [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered. Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) as an example.
 
@@ -423,7 +423,8 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
-    };
+    }
+
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
   //...
@@ -437,8 +438,7 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
-    };
-
+    }
   }
 }
 ```

@@ -4,10 +4,10 @@
 The **startAbility()** method in the **featureAbility** class is used to start a remote PageAbility.
 
 
-In addition to **'\@ohos.ability.featureAbility'**, you must import **'\@ohos.distributedHardware.deviceManager'**, which provides account-independent distributed device networking capabilities. Then you can use **getTrustedDeviceListSync** of the **DeviceManager** module to obtain the remote device ID and pass the remote device ID in the **want** parameter for starting the remote PageAbility.
+In addition to '\@ohos.ability.featureAbility', you must import '\@ohos.distributedHardware.deviceManager', which provides account-independent distributed device networking capabilities. Then you can use [getTrustedDeviceListSync](../reference/apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync) of the DeviceManager module to obtain the remote device ID and pass the remote device ID in the **want** parameter for starting the remote PageAbility.
 
 
-The **getTrustedDeviceListSync** method is available only for system applications. Therefore, non-system applications cannot obtain remote device information or start a remote ability.
+The [getTrustedDeviceListSync](../reference/apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync) method is available only for system applications. Therefore, non-system applications cannot obtain remote device information or start a remote ability.
 
 
 **Table 1** featureAbility APIs
@@ -177,7 +177,7 @@ struct PagePageAbilitySecond {
       want: wantValue
     }).then((data) => {
       promptAction.showToast({
-        message: $r('app.string.start_remote_success_toast')
+        message: 'start_remote_success_toast'
       });
       hilog.info(domain, TAG, 'onStartRemoteAbility finished, ' + JSON.stringify(data));
     }).catch((error: BusinessError) => {

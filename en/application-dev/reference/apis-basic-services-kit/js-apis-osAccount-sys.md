@@ -31,14 +31,14 @@ Activates a system account. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                               |
+| Name  | Type                      | Mandatory| Description                                               |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
 | localId  | number                    | Yes  | ID of the target system account.                 |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -80,19 +80,19 @@ Activates a system account. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                |
+| Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type               | Description                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -133,19 +133,19 @@ Deactivates (logs out of) a system account. This API uses a promise to return th
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                |
+| Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type               | Description                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -184,19 +184,19 @@ Checks whether a system account is activated. This API uses a promise to return 
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                              |
+| Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                  | Description                                                      |
 | ---------------------- | ---------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the account is activated; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -235,20 +235,20 @@ Checks whether a constraint is enabled for a system account. This API uses a pro
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                               |
+| Name    | Type  | Mandatory| Description                               |
 | ---------- | ------ | ---- | ---------------------------------- |
 | localId    | number | Yes  | ID of the target system account. |
-| constraint | string | Yes  | [Constraint](js-apis-osAccount.md#constraints) to check. |
+| constraint | string | Yes  | [Constraint](js-apis-osAccount.md#constraints) to check.|
 
 **Return value**
 
 | Type                  | Description                                                                 |
 | --------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the specified constraint is enabled; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -288,19 +288,19 @@ Checks whether a system account has been verified. This API uses a promise to re
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                             |
+| Name | Type  | Mandatory| Description                                                             |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified. |
+| localId | number | Yes  | ID of the target system account. If this parameter is not specified, this API checks whether the current system account has been verified.|
 
 **Return value**
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the system account has been verified; the value **false** means the opposite.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -339,14 +339,14 @@ Removes a system account. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                |
+| Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
 | localId  | number                    | Yes  | ID of the target system account.                 |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -392,19 +392,19 @@ Removes a system account. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                              |
+| Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type               | Description                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -448,16 +448,16 @@ Sets or removes constraints for a system account. This API uses an asynchronous 
 
 **Parameters**
 
-| Name     | Type                     | Mandatory | Description                                            |
+| Name     | Type                     | Mandatory| Description                                            |
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId     | number                    | Yes  | ID of the target system account.              |
 | constraints | Array&lt;string&gt;       | Yes  | [Constraints](js-apis-osAccount.md#constraints) to set or remove.       |
 | enable      | boolean                   | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                          |
-| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -501,7 +501,7 @@ Sets or removes constraints for a system account. This API uses a promise to ret
 
 **Parameters**
 
-| Name     | Type               | Mandatory | Description                                        |
+| Name     | Type               | Mandatory| Description                                        |
 | ----------- | ------------------- | ---- | -------------------------------------------- |
 | localId     | number              | Yes  | ID of the target system account.          |
 | constraints | Array&lt;string&gt; | Yes  | [Constraints](js-apis-osAccount.md#constraints) to set or remove.   |
@@ -511,11 +511,11 @@ Sets or removes constraints for a system account. This API uses a promise to ret
 
 | Type               | Description                                |
 | :------------------ | :----------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -546,7 +546,7 @@ Sets or removes constraints for a system account. This API uses a promise to ret
 
 setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the name for a system account. This API uses an asynchronous callback to return the result.
+Sets the name of a system account. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -556,15 +556,15 @@ Sets the name for a system account. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name   | Type                     | Mandatory | Description                                            |
+| Name   | Type                     | Mandatory| Description                                            |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId   | number                    | Yes  | ID of the target system account.              |
 | localName | string                    | Yes  | Account name to set. The value cannot exceed 1024 characters.                         |
-| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -598,7 +598,7 @@ Sets the name for a system account. This API uses an asynchronous callback to re
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-Sets the name for a system account. This API uses a promise to return the result.
+Sets the name of a system account. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -608,20 +608,20 @@ Sets the name for a system account. This API uses a promise to return the result
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description                               |
+| Name   | Type  | Mandatory| Description                               |
 | --------- | ------ | ---- | --------------------------------- |
-| localId   | number | Yes  | ID of the target system account. |
+| localId   | number | Yes  | ID of the target system account.|
 | localName | string | Yes  | Account name to set. The value cannot exceed 1024 characters.           |
 
 **Return value**
 
 | Type               | Description                                 |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -661,13 +661,13 @@ Queries the maximum number of system accounts that can be created. This API uses
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                                                             |
+| Name  | Type                       | Mandatory| Description                                                                             |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of system accounts that can be created. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the maximum number of system accounts that can be created. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -705,11 +705,11 @@ Queries the maximum number of system accounts that can be created. This API uses
 
 | Type                 | Description                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the maximum number of system accounts that can be created. |
+| Promise&lt;number&gt; | Promise used to return the maximum number of system accounts that can be created.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 12300001 | The system service works abnormally. |
@@ -744,11 +744,11 @@ Queries the maximum number of system accounts allowed to log in to the system. T
 
 | Type                 | Description                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 12300001 | The system service works abnormally. |
@@ -783,19 +783,19 @@ Obtains all the enabled constraints of a system account. This API uses a promise
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description        |
+| Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                              | Description                                                      |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the enabled [constraints](js-apis-osAccount.md#constraints) of the system account. |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return all the enabled [constraints](js-apis-osAccount.md#constraints) of the system account.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -834,13 +834,13 @@ Queries information about all the system accounts created. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                              |
+| Name  | Type                                                        | Mandatory| Description                                              |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created system accounts. Otherwise, **data** is an error object. |
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is a list of all created system accounts. Otherwise, **data** is an error object.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -878,11 +878,11 @@ Queries information about all the system accounts created. This API uses a promi
 
 | Type                                                       | Description                                          |
 | ----------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise used to return the information about all the system accounts created. |
+| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise used to return the information about all the system accounts created.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -918,11 +918,11 @@ Obtains the ID of the foreground system account.
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the foreground system account obtained. |
+| Promise&lt;number&gt; | Promise used to return the ID of the foreground system account obtained.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 12300001 | The system service works abnormally. |
@@ -957,11 +957,11 @@ Creates a system account. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name   | Type                                                | Mandatory | Description                                                                        |
+| Name   | Type                                                | Mandatory| Description                                                                        |
 | :-------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------- |
 | localName | string                                               | Yes  | Name of the system account to create.                                                       |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the system account to create.                                                       |
-| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object. |
+| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1007,17 +1007,17 @@ Creates a system account. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type                           | Mandatory | Description                  |
+| Name   | Type                           | Mandatory| Description                  |
 | --------- | ------------------------------- | ---- | ---------------------- |
-| localName | string                          | Yes  | Name of the system account to create. |
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create. |
+| localName | string                          | Yes  | Name of the system account to create.|
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create.|
 | options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
 | Type                                          | Description                                 |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account. |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
 
 **Error codes**
 
@@ -1068,15 +1068,15 @@ Creates a system account and associates it with the specified domain account. Th
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory | Description                                                                        |
+| Name    | Type                                                | Mandatory| Description                                                                        |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
 | type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | Yes  | Type of the system account to create.                                                      |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | Yes  | Domain account information.                                                              |
-| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object. |
+| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the created system account. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1121,9 +1121,9 @@ Creates a system account and associates it with the specified domain account. Th
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory | Description                |
+| Name    | Type                                     | Mandatory| Description                |
 | ---------- | ---------------------------------------- | ---- | -------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create. |
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create.|
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
 | options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
@@ -1131,11 +1131,11 @@ Creates a system account and associates it with the specified domain account. Th
 
 | Type                                          | Description                                   |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account. |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the information about the created system account.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1187,11 +1187,11 @@ Queries information about the system account to which the current process belong
 
 | Type                                          | Description                                      |
 | ---------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained. |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1227,14 +1227,14 @@ Queries information about the system account of the given ID. This API uses an a
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory | Description                                                                      |
+| Name  | Type                                                | Mandatory| Description                                                                      |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | localId  | number                                               | Yes  | ID of the target system account.                                                     |
-| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object. |
+| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the system account information obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1273,19 +1273,19 @@ Queries information about the system account of the given ID. This API uses a pr
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                |
+| Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                                          | Description                                |
 | ---------------------------------------------- | ------------------------------------ |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained. |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise used to return the system account information obtained.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1325,14 +1325,14 @@ Obtains the profile photo of a system account. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                                                        |
+| Name  | Type                       | Mandatory| Description                                                                        |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
 | localId  | number                      | Yes  | ID of the target system account.                                                               |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the profile photo information obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the profile photo information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1371,19 +1371,19 @@ Obtains the profile photo of a system account. This API uses a promise to return
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description        |
+| Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 
 **Return value**
 
 | Type                 | Description                                   |
 | --------------------- | -------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the profile photo information obtained. |
+| Promise&lt;string&gt; | Promise used to return the profile photo information obtained.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1423,15 +1423,15 @@ Sets a profile photo for a system account. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description        |
+| Name  | Type                     | Mandatory| Description        |
 | -------- | ------------------------- | ---- | ------------ |
-| localId  | number                    | Yes  | ID of the target system account. |
+| localId  | number                    | Yes  | ID of the target system account.|
 | photo    | string                    | Yes  | Profile photo information.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1474,20 +1474,20 @@ Sets a profile photo for a system account. This API uses a promise to return the
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description        |
+| Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId | number | Yes  | ID of the target system account. |
+| localId | number | Yes  | ID of the target system account.|
 | photo   | string | Yes  | Profile photo information.  |
 
 **Return value**
 
 | Type               | Description                                |
 | ------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1532,15 +1532,15 @@ Subscribes to the system account activation states, including the states of the 
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates a system account is activated, and **activating** indicates a system account is being activated. |
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates a system account is activated, and **activating** indicates a system account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
 | callback | Callback&lt;number&gt;     | Yes  | Callback used to return the ID of the system account being activated or activated.   |
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1576,15 +1576,15 @@ Unsubscribes from the system account activation states, including the states of 
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** indicates that a system account is activated, and **activating** indicates that a system account is being activated. |
-| name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**. |
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** indicates that a system account is activated, and **activating** indicates that a system account is being activated.|
+| name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
 | callback | Callback&lt;number&gt;     | No  | Callback to unregister. By default, this parameter is left empty, which unregisters all callbacks for the system account activation states.                     |
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1620,14 +1620,14 @@ Subscribes to the switchover between a foreground system account and a backgroun
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switching'                 | Yes  | Event type. The value **switching** indicates that the switchover between a foreground system account and a background account is being performed. |
+| type     | 'switching'                 | Yes  | Event type. The value **switching** indicates that the switchover between a foreground system account and a background account is being performed.|
 | callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | Yes  | Callback used to return the system account IDs before and after the switchover.   |
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1663,14 +1663,14 @@ Unsubscribes from the switchover between a foreground system account and a backg
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switching'                 | Yes  | Event type. The value **switching** indicates that the switchover between a foreground system account and a background account is being performed. |
+| type     | 'switching'                 | Yes  | Event type. The value **switching** indicates that the switchover between a foreground system account and a background account is being performed.|
 | callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | No  | Callback to unregister. By default, this parameter is left empty, which unregisters all callbacks for the **switching** event.                     |
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1703,14 +1703,14 @@ Subscribes to the end of a switchover between a foreground system account and a 
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switched'                 | Yes  | Event type. The value **switched** indicates that the switchover between a foreground system account and a background system account is complete. |
+| type     | 'switched'                 | Yes  | Event type. The value **switched** indicates that the switchover between a foreground system account and a background system account is complete.|
 | callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | Yes  | Callback used to return the system account IDs before and after the switchover.   |
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1746,14 +1746,14 @@ Unsubscribes from the end of a switchover between a foreground system account an
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switched'                 | Yes  | Event type. The value **switched** indicates that the switchover between a foreground system account and a background system account is complete. |
+| type     | 'switched'                 | Yes  | Event type. The value **switched** indicates that the switchover between a foreground system account and a background system account is complete.|
 | callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | No  | Callback to unregister. By default, this parameter is left empty, which unregisters all callbacks for the **switched** event.                     |
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1784,14 +1784,14 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                                       |
+| Name  | Type                      | Mandatory| Description                                                                       |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------------------ |
 | uid      | number                      | Yes  | Process UID.                                                                |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle ID obtained. Otherwise, **data** is an error object. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle ID obtained. Otherwise, **data** is an error object.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1826,19 +1826,19 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description        |
+| Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| uid     | number | Yes  |  Process UID. |
+| uid     | number | Yes  |  Process UID.|
 
 **Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the bundle ID obtained. |
+| Promise&lt;number&gt; | Promise used to return the bundle ID obtained.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1874,19 +1874,19 @@ Obtains the bundle ID based on the specified UID. This API returns the result sy
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description        |
+| Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| uid     | number | Yes  |  Process UID. |
+| uid     | number | Yes  |  Process UID.|
 
 **Return value**
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | Bundle ID obtained. |
+| number | Bundle ID obtained.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1919,13 +1919,13 @@ Checks whether the current process belongs to the main system account. This API 
 
 **Parameters**
 
-| Name  | Type                         | Mandatory | Description                                                              |
+| Name  | Type                         | Mandatory| Description                                                              |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -1963,11 +1963,11 @@ Checks whether the current process belongs to the main system account. This API 
 
 | Type                  | Description                                                                 |
 | ---------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account. |
+| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current process belongs to the main system account. If **false** is returned, the current process does not belong to the main system account.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2003,15 +2003,15 @@ Obtains the constraint source information of a system account. This API uses an 
 
 **Parameters**
 
-| Name  | Type                      | Mandatory | Description                                                        |
+| Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | Yes  |  ID of the target system account. |
-| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained. |
+| localId     | number | Yes  |  ID of the target system account.|
+| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained.|
 | callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the [constraint](js-apis-osAccount.md#constraints) source information obtained. Otherwise, **err** is an error object.                     |
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2050,20 +2050,20 @@ Obtains the constraint source information of a system account. This API uses a p
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description        |
+| Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | Yes  |  ID of the target system account. |
-| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained. |
+| localId     | number | Yes  |  ID of the target system account.|
+| constraint     | string | Yes  |  [Constraint](js-apis-osAccount.md#constraints) whose source information is to be obtained.|
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise used to return the source information of the specified [constraint](js-apis-osAccount.md#constraints). |
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise used to return the source information of the specified [constraint](js-apis-osAccount.md#constraints).|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2103,19 +2103,19 @@ Obtains the type of a system account. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description        |
+| Name | Type  | Mandatory| Description        |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | Yes  |  ID of the target system account. |
+| localId     | number | Yes  |  ID of the target system account.|
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise used to return the type of the system account obtained. |
+| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise used to return the type of the system account obtained.|
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2158,7 +2158,7 @@ A constructor used to create an instance for user authentication.
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 
@@ -2185,7 +2185,7 @@ Obtains version information.
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 
@@ -2210,20 +2210,20 @@ Obtains the available status of the authentication capability corresponding to t
 
 **Parameters**
 
-| Name          | Type                              | Mandatory | Description                      |
+| Name          | Type                              | Mandatory| Description                      |
 | --------------- | -----------------------------------| ---- | ------------------------- |
 | authType        | [AuthType](#authtype8)             | Yes  | Authentication credential type.    |
-| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | Yes  | Trust level of the authentication. |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | Yes  | Trust level of the authentication.|
 
 **Return value**
 
 | Type  | Description                          |
 | ------ | ----------------------------- |
-| number | Available status of the authentication capability. |
+| number | Available status of the authentication capability.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2258,14 +2258,14 @@ Obtains the executor property based on the request. This API uses an asynchronou
 
 **Parameters**
 
-| Name   | Type                                                                   | Mandatory | Description                               |
+| Name   | Type                                                                   | Mandatory| Description                               |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------ |
-| request  | [GetPropertyRequest](#getpropertyrequest8)                  | Yes  | Request information, including the authentication credential type and property list. |
+| request  | [GetPropertyRequest](#getpropertyrequest8)                  | Yes  | Request information, including the authentication credential type and property list.|
 | callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the executor property information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2311,19 +2311,19 @@ Obtains the executor property based on the request. This API uses a promise to r
 
 **Parameters**
 
-| Name   | Type                                                  | Mandatory | Description                               |
+| Name   | Type                                                  | Mandatory| Description                               |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#getpropertyrequest8) | Yes  | Request information, including the authentication credential type and property list. |
+| request  | [GetPropertyRequest](#getpropertyrequest8) | Yes  | Request information, including the authentication credential type and property list.|
 
 **Return value**
 
 | Type                                                             | Description                                                |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor property information obtained. |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor property information obtained.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2370,14 +2370,14 @@ Sets the property for the initialization algorithm. This API uses an asynchronou
 
 **Parameters**
 
-| Name   | Type                                                 | Mandatory | Description                                                                   |
+| Name   | Type                                                 | Mandatory| Description                                                                   |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
 | request  | [SetPropertyRequest](#setpropertyrequest8)| Yes  | Request information, including the authentication credential type and the key value to set.                                  |
-| callback | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2421,19 +2421,19 @@ Sets the property for the initialization algorithm. This API uses a promise to r
 
 **Parameters**
 
-| Name   | Type                                      | Mandatory | Description                                     |
+| Name   | Type                                      | Mandatory| Description                                     |
 | -------- | ------------------------------------------ | ---- | ---------------------------------------- |
-| request  | [SetPropertyRequest](#setpropertyrequest8) | Yes  | Request information, including the authentication credential type and the key value to set. |
+| request  | [SetPropertyRequest](#setpropertyrequest8) | Yes  | Request information, including the authentication credential type and the key value to set.|
 
 **Return value**
 
 | Type                 | Description                                                          |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2475,7 +2475,7 @@ Prepares for remote authentication. This API uses a promise to return the result
 
 **Parameters**
 
-| Name           | Type  | Mandatory | Description            |
+| Name           | Type  | Mandatory| Description            |
 | --------         | ------ | ---- | --------------- |
 | remoteNetworkId  | string | Yes  | Remote network ID. |
 
@@ -2483,11 +2483,11 @@ Prepares for remote authentication. This API uses a promise to return the result
 
 | Type                 | Description                                                          |
 | :-------------------- | :------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2532,7 +2532,7 @@ Performs authentication of the current user. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name          | Type                                    | Mandatory | Description                               |
+| Name          | Type                                    | Mandatory| Description                               |
 | --------------- | ---------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                               | Yes | Challenge value, which is a random number used to improve security.|
 | authType        | [AuthType](#authtype8)                   | Yes | Authentication credential type.                       |
@@ -2543,11 +2543,11 @@ Performs authentication of the current user. This API uses an asynchronous callb
 
 | Type       | Description              |
 | ---------- | ------------------ |
-| Uint8Array | ID of the context for canceling the authentication. |
+| Uint8Array | ID of the context for canceling the authentication.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | -------- | --------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2596,23 +2596,23 @@ Starts user authentication based on the specified challenge value, authenticatio
 
 **Parameters**
 
-| Name          | Type                                    | Mandatory | Description                               |
+| Name          | Type                                    | Mandatory| Description                               |
 | --------------- | ---------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                               | Yes | Challenge value, which is a random number used to prevent replay attacks and improve security.|
 | authType        | [AuthType](#authtype8)                   | Yes | Authentication type.                       |
 | authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | Yes | Trust level of the authentication result.              |
-| options         | [AuthOptions](#authoptions12) | Yes | Optional parameters for the authentication. |
+| options         | [AuthOptions](#authoptions12) | Yes| Optional parameters for the authentication.|
 | callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback used to return the authentication result. |
 
 **Return value**
 
 | Type       | Description              |
 | ---------- | ------------------ |
-| Uint8Array | ID of the context for canceling the authentication. |
+| Uint8Array | ID of the context for canceling the authentication.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | -------- | --------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2665,7 +2665,7 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name          | Type                                                | Mandatory | Description                               |
+| Name          | Type                                                | Mandatory| Description                               |
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | userId          | number                                               | Yes | User ID.                       |
 | challenge       | Uint8Array                                           | Yes | Challenge value, which is a random number used to improve security.                         |
@@ -2677,11 +2677,11 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 
 | Type       | Description              |
 | ---------- | ------------------ |
-| Uint8Array | ID of the context for canceling the authentication. |
+| Uint8Array | ID of the context for canceling the authentication.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | -------- | --------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2734,11 +2734,11 @@ Cancels an authentication.
 
 | Name   | Type      | Mandatory | Description                                       |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextId | Uint8Array | Yes  | ID of the authentication context. The context ID is dynamically generated. |
+| contextId | Uint8Array | Yes  | ID of the authentication context. The context ID is dynamically generated.|
 
 **Error codes**
 
-| ID | Error Message           |
+| ID| Error Message           |
 | -------- | ------------------ |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2782,7 +2782,7 @@ Creates a PIN authentication instance.
 
 **Error codes**
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | ------------- |
 | 202 | Not system application.|
 
@@ -2805,13 +2805,13 @@ Register a PIN inputer.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory | Description                     |
+| Name   | Type                    | Mandatory| Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| inputer   | [IInputer](#iinputer8)  | Yes | PIN inputer, which is used to obtain the PIN. |
+| inputer   | [IInputer](#iinputer8)  | Yes | PIN inputer, which is used to obtain the PIN.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2850,7 +2850,7 @@ Unregisters this PIN inputer.
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2879,14 +2879,14 @@ Register a credential inputer.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory | Description                     |
+| Name   | Type                    | Mandatory| Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type. |
-| inputer   | [IInputer](#iinputer8)  | Yes | Credential inputer to register. |
+| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
+| inputer   | [IInputer](#iinputer8)  | Yes | Credential inputer to register.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2926,13 +2926,13 @@ Unregisters this credential inputer.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory | Description                     |
+| Name   | Type                    | Mandatory| Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type. |
+| authType   | [AuthType](#authtype8)  | Yes | Authentication credential type.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -2968,7 +2968,7 @@ Authenticates a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | credential   | Uint8Array  | Yes  | Credentials of the domain account.|
@@ -3033,7 +3033,7 @@ Authenticates a domain account in a pop-up window.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
@@ -3083,7 +3083,7 @@ Authenticates a domain account by the authorization token.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token   | Uint8Array  | Yes  | Authorization token generated when the PIN or biometric authentication is successful.|
@@ -3134,7 +3134,7 @@ Obtains information about a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | Yes  | Options for obtaining the domain account information.|
 | callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Yes  | Callback used to return the result.|
@@ -3189,7 +3189,7 @@ Obtains the authentication status of a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | Yes  | Callback used to return the result.|
@@ -3241,7 +3241,7 @@ Binds a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
@@ -3291,7 +3291,7 @@ Unbinds a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
@@ -3341,10 +3341,10 @@ Checks whether the specified domain account token is valid.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| token | Uint8Array | Yes | Domain account token to check. |
+| token | Uint8Array | Yes| Domain account token to check.|
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3392,7 +3392,7 @@ Obtains the domain access token based on the specified conditions.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | options | [GetDomainAccessTokenOptions](#getdomainaccesstokenoptions10)  | Yes  | Options specified for obtaining the domain access token.|
 | callback   | AsyncCallback&lt;Uint8Array&gt; | Yes  | Callback used to return the result.|
@@ -3448,13 +3448,13 @@ Registers a domain plug-in.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory | Description                     |
+| Name   | Type                    | Mandatory| Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| plugin   | [DomainPlugin](#domainplugin9)  | Yes | Domain plug-in to register. |
+| plugin   | [DomainPlugin](#domainplugin9)  | Yes | Domain plug-in to register.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3504,7 +3504,7 @@ Unregisters this domain plug-in.
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3533,7 +3533,7 @@ Authenticates a domain account.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | credential   | Uint8Array  | Yes  | Credentials of the domain account.|
@@ -3541,7 +3541,7 @@ Authenticates a domain account.
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3594,13 +3594,13 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3647,14 +3647,14 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | localId   | number  | Yes  | Local ID of the system account bound to the domain account.|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | Yes  | Callback used to return the authentication result.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3700,14 +3700,14 @@ Checks whether a domain account exists.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3752,7 +3752,7 @@ Checks whether a domain account exists.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 
@@ -3760,11 +3760,11 @@ Checks whether a domain account exists.
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3807,15 +3807,15 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token | Uint8Array  | Yes  | New token of the domain account.|
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the token is successfully updated, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the token is successfully updated, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3860,7 +3860,7 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token | Uint8Array  | Yes  | New token of the domain account.|
@@ -3869,11 +3869,11 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3916,14 +3916,14 @@ Updates information of a domain account. This API uses a promise to return the r
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information to update.|
 | newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | New domain account information.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -3966,14 +3966,14 @@ Obtains information about the specified domain account. This API uses an asynchr
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Domain account information.|
 | callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4019,7 +4019,7 @@ Obtains information about the specified domain account. This API uses a promise 
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Options for obtaining the domain account information.|
 
@@ -4027,11 +4027,11 @@ Obtains information about the specified domain account. This API uses a promise 
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;DomainAccountInfo&gt; | Promise used to return the domain account information obtained. |
+| Promise&lt;DomainAccountInfo&gt; | Promise used to return the domain account information obtained.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4073,14 +4073,14 @@ Obtains the service access token of this domain account. This API uses an asynch
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | businessParams | Record<string, Object>  | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
 | callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, an error object is returned.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -4125,7 +4125,7 @@ Obtains the service access token of this domain account. This API uses a promise
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | businessParams | Record<string, Object> | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
 
@@ -4133,11 +4133,11 @@ Obtains the service access token of this domain account. This API uses a promise
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the service access token obtained. |
+| Promise&lt;Uint8Array&gt; | Promise used to return the service access token obtained.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -4182,7 +4182,7 @@ Checks whether the authentication of a domain account has expired. This API uses
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 
@@ -4190,11 +4190,11 @@ Checks whether the authentication of a domain account has expired. This API uses
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4227,11 +4227,11 @@ Represents the configuration of a domain server.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| parameters | Record<string, Object> | Yes  | Server configuration parameters. |
+| parameters | Record<string, Object> | Yes  | Server configuration parameters.|
 | id | string | Yes  | Server configuration ID.|
-| domain | string | Yes | Domain to which the server belongs. |
+| domain | string | Yes| Domain to which the server belongs.|
 
 ## DomainServerConfigManager<sup>12+</sup>
 
@@ -4251,19 +4251,19 @@ Adds domain server configuration. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type                    | Mandatory | Description                     |
+| Name   | Type                    | Mandatory| Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| parameters   | Record<string, Object>  | Yes | Configuration parameters of the domain server. |
+| parameters   | Record<string, Object>  | Yes | Configuration parameters of the domain server.|
 
 **Return value**
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the configuration of the newly added domain server. |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the configuration of the newly added domain server.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4275,6 +4275,7 @@ Adds domain server configuration. This API uses a promise to return the result.
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let configParams: Record<string, Object> = {
     'uri': 'test.example.com',
     'port': 100
@@ -4301,19 +4302,19 @@ Deletes domain server configuration. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name   | Type                    | Mandatory | Description                     |
+| Name   | Type                    | Mandatory| Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| configId   | string  | Yes | Server configuration ID. |
+| configId   | string  | Yes | Server configuration ID.|
 
 **Return value**
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4324,6 +4325,7 @@ Deletes domain server configuration. This API uses a promise to return the resul
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let configParams: Record<string, Object> = {
     'uri': 'test.example.com',
     'port': 100
@@ -4352,19 +4354,19 @@ Obtains the server configuration of a domain account. This API uses a promise to
 
 **Parameters**
 
-| Name   | Type                    | Mandatory | Description                     |
+| Name   | Type                    | Mandatory| Description                     |
 | ----------| ----------------------- | --- | -------------------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes | Information of the domain account. |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes | Information of the domain account.|
 
 **Return value**
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the domain server configuration of the account. |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise used to return the domain server configuration of the account.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4375,6 +4377,7 @@ Obtains the server configuration of a domain account. This API uses a promise to
 
 **Example**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountInfo: osAccount.DomainAccountInfo = {
     'accountName': 'demoName',
     'accountId': 'demoId',
@@ -4406,7 +4409,7 @@ A constructor used to create an instance for user IDM.
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 202 | Not system application.|
 
@@ -4429,13 +4432,13 @@ Opens a session to obtain the challenge value. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name   | Type                            | Mandatory | Description                                                           |
+| Name   | Type                            | Mandatory| Description                                                           |
 | -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
 | callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the challenge value obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4470,19 +4473,19 @@ Opens a session. This API returns a challenge value, which can be used to determ
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description       |
+| Name    | Type   | Mandatory| Description       |
 | --------- | ------- | ---- | ----------- |
-| accountId<sup>12+</sup> | number  | No  | System account ID, which is left blank by default. |
+| accountId<sup>12+</sup> | number  | No  | System account ID, which is left blank by default.|
 
 **Return value**
 
 | Type                     | Description                    |
 | :------------------------ | ----------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the challenge value obtained. |
+| Promise&lt;Uint8Array&gt; | Promise used to return the challenge value obtained.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4521,14 +4524,14 @@ Adds credential information, including the credential type, subtype, and token (
 
 **Parameters**
 
-| Name          | Type                                | Mandatory | Description                       |
+| Name          | Type                                | Mandatory| Description                       |
 | --------------- | ------------------------------------ | --- | ---------------------------- |
 | credentialInfo  | [CredentialInfo](#credentialinfo8)   | Yes | Credential information to add.               |
 | callback        | [IIdmCallback](#iidmcallback8)       | Yes | Callback used to return the result. |
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4588,14 +4591,14 @@ Updates credential information. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name          | Type                                 | Mandatory | Description                    |
+| Name          | Type                                 | Mandatory| Description                    |
 | --------------- | ------------------------------------- | --- | ------------------------- |
 | credentialInfo  | [CredentialInfo](#credentialinfo8)    | Yes | New credential information.            |
-| callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback used to return the new credential information. |
+| callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback used to return the new credential information.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4665,13 +4668,13 @@ Closes this session to terminate IDM.
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description       |
+| Name    | Type   | Mandatory| Description       |
 | --------- | ------- | ---- | ----------- |
-| accountId<sup>12+</sup> | number  | No  | System account ID, which is left blank by default. |
+| accountId<sup>12+</sup> | number  | No  | System account ID, which is left blank by default.|
 
 **Error codes**
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4701,13 +4704,13 @@ Cancels an entry based on the challenge value.
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description  |
+| Name   | Type       | Mandatory| Description  |
 | -------- | ----------- | ---- | ----- |
-| challenge | Uint8Array | Yes  | Challenge value. |
+| challenge | Uint8Array | Yes  | Challenge value.|
 
 **Error codes**
 
-| ID | Error Message           |
+| ID| Error Message           |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4740,14 +4743,14 @@ Deletes a user based on the authentication token. This API uses a callback to re
 
 **Parameters**
 
-| Name   | Type                          | Mandatory | Description                     |
+| Name   | Type                          | Mandatory| Description                     |
 | -------- | ------------------------------ | --- | ------------------------- |
 | token    | Uint8Array                     | Yes | Authentication token.            |
 | callback | [IIdmCallback](#iidmcallback8) | Yes | Callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message       |
+| ID| Error Message       |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4785,15 +4788,15 @@ Deletes user credential information.
 
 **Parameters**
 
-| Name          | Type                                           | Mandatory | Description                     |
+| Name          | Type                                           | Mandatory| Description                     |
 | --------------- | ----------------------------------- | --- | ---------------------------|
 | credentialId    | Uint8Array                          | Yes | Credential ID.                 |
 | token           | Uint8Array                          | Yes | Authentication token.              |
-| callback        | [IIdmCallback](#iidmcallback8)      | Yes | Callback used to return the result. |
+| callback        | [IIdmCallback](#iidmcallback8)      | Yes | Callback used to return the result.|
 
 **Error codes**
 
-| ID | Error Message            |
+| ID| Error Message            |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4834,13 +4837,13 @@ Obtains authentication information. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name   | Type                                                                    | Mandatory | Description                                                |
+| Name   | Type                                                                    | Mandatory| Description                                                |
 | -------- | ------------------------------------------------------------------------ | ---- | --------------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is information about all registered credentials of the user. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message              |
+| ID| Error Message              |
 | -------- | --------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4876,14 +4879,14 @@ Obtains authentication information of the specified type. This API uses an async
 
 **Parameters**
 
-| Name   | Type                                              | Mandatory | Description                                               |
+| Name   | Type                                              | Mandatory| Description                                               |
 | -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
 | authType | [AuthType](#authtype8) | Yes  | Authentication credential type.                                         |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the information about all enrolled credentials of the specified type. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the information about all enrolled credentials of the specified type. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-| ID | Error Message              |
+| ID| Error Message              |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4921,7 +4924,7 @@ Obtains authentication information of the specified type. This API uses a promis
 
 **Parameters**
 
-| Name   | Type                               | Mandatory | Description     |
+| Name   | Type                               | Mandatory| Description     |
 | -------- | ----------------------------------- | ---- | -------- |
 | authType | [AuthType](#authtype8)              | No  | Authentication type. By default, this parameter is left blank, which means to obtain information about all authentication types.|
 
@@ -4933,7 +4936,7 @@ Obtains authentication information of the specified type. This API uses a promis
 
 **Error codes**
 
-| ID | Error Message              |
+| ID| Error Message              |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -4971,9 +4974,9 @@ Obtains authentication information. This API uses a promise to return the result
 
 **Parameters**
 
-| Name   | Type                               | Mandatory | Description     |
+| Name   | Type                               | Mandatory| Description     |
 | -------- | ----------------------------------- | ---- | -------- |
-| options | [GetAuthInfoOptions](#getauthinfooptions12)          | No  | Optional parameters for obtaining authentication information. |
+| options | [GetAuthInfoOptions](#getauthinfooptions12)          | No  | Optional parameters for obtaining authentication information.|
 
 **Return value**
 
@@ -4983,7 +4986,7 @@ Obtains authentication information. This API uses a promise to return the result
 
 **Error codes**
 
-| ID | Error Message              |
+| ID| Error Message              |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -5025,10 +5028,10 @@ Obtains the ID of the enrolled credential based on the credential type and accou
 
 **Parameters**
 
-| Name    | Type                  | Mandatory | Description     |
+| Name    | Type                  | Mandatory| Description     |
 | --------  | ---------------------- | ---- | -------- |
-| authType  | [AuthType](#authtype8) | Yes  | Credential type. |
-| accountId | number                 | No  | System account ID, which is left blank by default. |
+| authType  | [AuthType](#authtype8) | Yes  | Credential type.|
+| accountId | number                 | No  | System account ID, which is left blank by default.|
 
 **Return value**
 
@@ -5038,7 +5041,7 @@ Obtains the ID of the enrolled credential based on the credential type and accou
 
 **Error codes**
 
-| ID | Error Message              |
+| ID| Error Message              |
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
@@ -5084,14 +5087,14 @@ Called to notify the caller the data is set.
 
 **Parameters**
 
-| Name     | Type                                    | Mandatory | Description                                           |
+| Name     | Type                                    | Mandatory| Description                                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
 | authSubType | [AuthSubType](#authsubtype8)             | Yes  | Credential subtype.                           |
-| data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials. |
+| data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
 
 **Error codes**
 
-| ID | Error Message              |
+| ID| Error Message              |
 | -------- | ------------------- |
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -5130,11 +5133,11 @@ Called to notify the caller that data is obtained.
 
 **Parameters**
 
-| Name     | Type                                   | Mandatory | Description            |
+| Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| authSubType | [AuthSubType](#authsubtype8) | Yes | Authentication credential subtype. |
+| authSubType | [AuthSubType](#authsubtype8) | Yes| Authentication credential subtype.|
 | callback   | [IInputData](#iinputdata8)  | Yes  | Callback used to return the PIN data.|
-| options | [GetInputDataOptions](#getinputdataoptions-12) | Yes | Optional parameters for the callback function. |
+| options | [GetInputDataOptions](#getinputdataoptions-12) | Yes| Optional parameters for the callback function.|
 
 **Example**
   ```ts
@@ -5173,7 +5176,7 @@ Called to return the result code and authentication result.
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory | Description                |
+| Name    | Type                                   | Mandatory| Description                |
 | --------- | --------------------------------------- | ---- | ------------------- |
 | result    | number                                   | Yes  | Authentication result code.|
 | extraInfo | [AuthResult](#authresult8)  | Yes  | Specific authentication result information. If the authentication is successful, the authentication token is returned in **extrainfo**. If the authentication fails, the remaining authentication time is returned. If the authentication executor is locked, the freezing time is returned.|
@@ -5200,7 +5203,7 @@ Called to acquire identity authentication information.
 
 **Parameters**
 
-| Name   | Type    | Mandatory | Description                          |
+| Name   | Type    | Mandatory| Description                          |
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | Yes  | Type of authentication executor.  |
 | acquire   | number  | Yes  | Tip code of the authentication executor.|
@@ -5239,7 +5242,7 @@ Called to return the result code and request result information.
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory | Description                    |
+| Name    | Type                                   | Mandatory| Description                    |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | Yes  | Authentication result code.   |
 | extraInfo | [RequestResult](#requestresult8)  | Yes  | Specific information to be transferred.|
@@ -5266,7 +5269,7 @@ Called to acquire IDM information.
 
 **Parameters**
 
-| Name   | Type    | Mandatory | Description                          |
+| Name   | Type    | Mandatory| Description                          |
 | --------- | ------- | ---- | ----------------------------- |
 | module    | number  | Yes  | Type of authentication executor.  |
 | acquire   | number  | Yes  | Tip code of the authentication executor.|
@@ -5298,8 +5301,8 @@ Defines the request for obtaining property information.
 | Name   | Type                                                         | Mandatory  | Description                  |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
 | authType | [AuthType](#authtype8)                            | Yes   | Authentication credential type.       |
-| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | Yes   | An array of the types of the properties to obtain. |
-| accountId<sup>12+</sup> | number | No | System account ID, which is **undefined** by default. |
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | Yes   | An array of the types of the properties to obtain.|
+| accountId<sup>12+</sup> | number | No| System account ID, which is **undefined** by default.|
 
 ## SetPropertyRequest<sup>8+</sup>
 
@@ -5312,7 +5315,7 @@ Defines the request for setting property information.
 | Name   | Type                                            | Mandatory  | Description                |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
 | authType | [AuthType](#authtype8)               | Yes   | Authentication credential type.    |
-| key     | [SetPropertyType](#setpropertytype8) | Yes   | Type of the property to set. |
+| key     | [SetPropertyType](#setpropertytype8) | Yes   | Type of the property to set.|
 | setInfo  | Uint8Array                                       | Yes   | Information to set.    |
 
 ## ExecutorProperty<sup>8+</sup>
@@ -5323,15 +5326,15 @@ Defines the executor property.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name        | Type                        |  Readable | Writable | Description             |
+| Name        | Type                        |  Readable| Writable| Description             |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
 | result       | number                       | Yes   | Yes  | Result.        |
 | authSubType  | [AuthSubType](#authsubtype8) | Yes   | Yes  | Authentication credential subtype.|
 | remainTimes  | number                       | Yes   | Yes  | Number of remaining authentication times.    |
 | freezingTime | number                       | Yes   | Yes  | Freezing time.    |
-| enrollmentProgress<sup>10+</sup> | string   | Yes   | Yes  | Enrollment progress. By default, no value is passed in. |
-| sensorInfo<sup>10+</sup> | string           | Yes   | Yes  | Sensor information. By default, no value is passed in. |
-| nextPhaseFreezingTime<sup>12+</sup> | number | Yes   | Yes  | Next freezing time, which is **undefined** by default. |
+| enrollmentProgress<sup>10+</sup> | string   | Yes   | Yes  | Enrollment progress. By default, no value is passed in.|
+| sensorInfo<sup>10+</sup> | string           | Yes   | Yes  | Sensor information. By default, no value is passed in.|
+| nextPhaseFreezingTime<sup>12+</sup> | number | Yes   | Yes  | Next freezing time, which is **undefined** by default.|
 
 ## AuthResult<sup>8+</sup>
 
@@ -5346,10 +5349,10 @@ Defines the authentication result information.
 | token        | Uint8Array  | No   | Authentication token. By default, no value is passed in.     |
 | remainTimes  | number      | No   | Number of remaining authentication times. By default, no value is passed in.     |
 | freezingTime | number      | No   | Freezing time. By default, no value is passed in.     |
-| nextPhaseFreezingTime<sup>12+</sup> | number | No   | Next freezing time, which is **undefined** by default. |
-| credentialId<sup>12+</sup> | Uint8Array  | No   | Credential ID, which is left blank by default. |
-| accountId<sup>12+</sup>         | number | No   | System account ID, which is **undefined** by default. |
-| pinValidityPeriod<sup>12+</sup> | number | No   | Authentication validity period, which is **undefined** by default. |
+| nextPhaseFreezingTime<sup>12+</sup> | number | No   | Next freezing time, which is **undefined** by default.|
+| credentialId<sup>12+</sup> | Uint8Array  | No   | Credential ID, which is left blank by default.|
+| accountId<sup>12+</sup>         | number | No   | System account ID, which is **undefined** by default.|
+| pinValidityPeriod<sup>12+</sup> | number | No   | Authentication validity period, which is **undefined** by default.|
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -5364,7 +5367,7 @@ Defines the credential information.
 | credType     | [AuthType](#authtype8)       | Yes   | Authentication credential type.    |
 | credSubType  | [AuthSubType](#authsubtype8) | Yes   | Authentication credential subtype.  |
 | token        | Uint8Array                           | Yes   | Authentication token.    |
-| accountId<sup>12+</sup>    | number | No   | System account ID, which is **undefined** by default. |
+| accountId<sup>12+</sup>    | number | No   | System account ID, which is **undefined** by default.|
 
 ## RequestResult<sup>8+</sup>
 
@@ -5390,7 +5393,7 @@ Defines enrolled credential information.
 | ------------ | ---------------------------------------- | ----- | ------------------- |
 | credentialId | Uint8Array                               | Yes   | Credential ID.      |
 | authType     | [AuthType](#authtype8)       | Yes   | Authentication credential type.  |
-| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Credential subtype. |
+| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Credential subtype.|
 | templateId   | Uint8Array                               | Yes   | Authentication credential template ID.    |
 
 ## GetPropertyType<sup>8+</sup>
@@ -5401,14 +5404,14 @@ Enumerates the types of properties to obtain.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name          | Value | Description     |
+| Name          | Value| Description     |
 | ------------- | ------ | --------- |
-| AUTH_SUB_TYPE | 1      | Authentication credential subtype. |
+| AUTH_SUB_TYPE | 1      | Authentication credential subtype.|
 | REMAIN_TIMES  | 2      | Remaining time.  |
 | FREEZING_TIME | 3      | Freezing time.  |
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | Enrollment progress.  |
 | SENSOR_INFO<sup>10+</sup> | 5      | Sensor information.  |
-| NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | Next freezing time. |
+| NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | Next freezing time.|
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -5418,9 +5421,9 @@ Enumerates the types of properties to set.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name          | Value | Description       |
+| Name          | Value| Description       |
 | -------------- | ----- | ----------- |
-| INIT_ALGORITHM | 1     | Initialization algorithm. |
+| INIT_ALGORITHM | 1     | Initialization algorithm.|
 
 ## AuthType<sup>8+</sup>
 
@@ -5430,12 +5433,12 @@ Enumerates the authentication credential types.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Value | Description            |
+| Name | Value| Description            |
 | ----- | ----- | ---------------- |
-| PIN   | 1     | PIN authentication. |
+| PIN   | 1     | PIN authentication.|
 | FACE  | 2     | Facial authentication.|
-| FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication. |
-| RECOVERY_KEY<sup>12+</sup> | 8 | Key recovery type. |
+| FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication.|
+| RECOVERY_KEY<sup>12+</sup> | 8 | Key recovery type.|
 | DOMAIN<sup>9+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
@@ -5446,13 +5449,13 @@ Enumerates the authentication credential subtypes.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name      | Value | Description              |
+| Name      | Value| Description              |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | Six-digit PIN.      |
-| PIN_NUMBER | 10001 | Custom PIN. |
-| PIN_MIXED  | 10002 | Custom mixed credentials. |
-| PIN_FOUR<sup>12+</sup>   | 10003 | 4-digit credential. |
-| PIN_PATTERN<sup>12+</sup>  | 10004 | Pattern credential. |
+| PIN_NUMBER | 10001 | Custom PIN.|
+| PIN_MIXED  | 10002 | Custom mixed credentials.|
+| PIN_FOUR<sup>12+</sup>   | 10003 | 4-digit credential.|
+| PIN_PATTERN<sup>12+</sup>  | 10004 | Pattern credential.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | Capacitive fingerprint.  |
@@ -5468,12 +5471,12 @@ Enumerates the trust levels of the authentication result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name | Value | Description       |
+| Name | Value| Description       |
 | ---- | ------ | ----------- |
-| ATL1 | 10000  | Trust level 1. |
-| ATL2 | 20000  | Trust level 2. |
-| ATL3 | 30000  | Trust level 3. |
-| ATL4 | 40000  | Trust level 4. |
+| ATL1 | 10000  | Trust level 1.|
+| ATL2 | 20000  | Trust level 2.|
+| ATL3 | 30000  | Trust level 3.|
+| ATL4 | 40000  | Trust level 4.|
 
 ## Module<sup>8+</sup>
 
@@ -5483,9 +5486,9 @@ Enumerates the modules from which information is obtained.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name      | Value | Description                    |
+| Name      | Value| Description                    |
 | --------- | ------ | ------------------------ |
-| FACE_AUTH | 1      | Facial authentication module. |
+| FACE_AUTH | 1      | Facial authentication module.|
 
 ## ResultCode<sup>8+</sup>
 
@@ -5495,7 +5498,7 @@ Enumerates the authentication result codes.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                   | Value | Description                                    |
+| Name                   | Value| Description                                    |
 | ----------------------- | ----- | ---------------------------------------- |
 | SUCCESS                 | 0     | The authentication is successful or the authentication feature is supported.            |
 | FAIL                    | 1     | The authentication executor failed to identify the user.                  |
@@ -5504,7 +5507,7 @@ Enumerates the authentication result codes.
 | TIMEOUT                 | 4     | The authentication timed out.                      |
 | TYPE_NOT_SUPPORT        | 5     | The authentication credential type is not supported.                |
 | TRUST_LEVEL_NOT_SUPPORT | 6     | The authentication trust level is not supported.              |
-| BUSY                    | 7     | The authentication executor is busy. Try again after a few seconds. |
+| BUSY                    | 7     | The authentication executor is busy. Try again after a few seconds.|
 | INVALID_PARAMETERS      | 8     | Incorrect parameters are detected.                         |
 | LOCKED                  | 9     | The authentication executor is locked.                    |
 | NOT_ENROLLED            | 10    | The authentication executor is not enrolled.                  |
@@ -5517,7 +5520,7 @@ Enumerates the tip codes for facial authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                         | Value | Description                                    |
+| Name                         | Value| Description                                    |
 | ----------------------------- | ----- | ---------------------------------------- |
 | FACE_AUTH_TIP_TOO_BRIGHT      | 1     | The obtained face image is too bright.        |
 | FACE_AUTH_TIP_TOO_DARK        | 2     | The obtained face image is too dark.      |
@@ -5525,8 +5528,8 @@ Enumerates the tip codes for facial authentication.
 | FACE_AUTH_TIP_TOO_FAR         | 4     | The face is too far away from the device.                      |
 | FACE_AUTH_TIP_TOO_HIGH        | 5     | Only the upper part of the face is captured because the device is angled too high.             |
 | FACE_AUTH_TIP_TOO_LOW         | 6     | Only the lower part of the face is captured because the device is angled too low.             |
-| FACE_AUTH_TIP_TOO_RIGHT       | 7     | Only the right part of the face is captured because the device is angled too much to the right. |
-| FACE_AUTH_TIP_TOO_LEFT        | 8     | Only the left part of the face is captured because the device is angled too much to the left. |
+| FACE_AUTH_TIP_TOO_RIGHT       | 7     | Only the right part of the face is captured because the device is angled too much to the right.|
+| FACE_AUTH_TIP_TOO_LEFT        | 8     | Only the left part of the face is captured because the device is angled too much to the left.|
 | FACE_AUTH_TIP_TOO_MUCH_MOTION | 9     | The face moves too fast during facial information collection.        |
 | FACE_AUTH_TIP_POOR_GAZE       | 10    | The face is not facing the device.                        |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | No face is detected.                        |
@@ -5539,10 +5542,10 @@ Enumerates the tip codes for fingerprint authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name                         | Value | Description                                           |
+| Name                         | Value| Description                                           |
 | ----------------------------- | ----- | ----------------------------------------------- |
 | FINGERPRINT_TIP_GOOD          | 0     | The captured image is clear.                             |
-| FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | The fingerprint image has big noise due to dirt on the sensor. |
+| FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | The fingerprint image has big noise due to dirt on the sensor.|
 | FINGERPRINT_TIP_INSUFFICIENT  | 2     | Failed to process the fingerprint image due to big noise.  |
 | FINGERPRINT_TIP_PARTIAL       | 3     | Only part of the fingerprint image is detected.                        |
 | FINGERPRINT_TIP_TOO_FAST      | 4     | The fingerprint image is incomplete due to quick motion.                 |
@@ -5556,10 +5559,10 @@ Represents information about a system account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default. |
-| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**. |
+| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default.|
+| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**.|
 
 ## OsAccountType
 
@@ -5567,7 +5570,7 @@ Enumerates the system account types.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name  | Value | Description        |
+| Name  | Value| Description        |
 | ------ | ------ | ----------- |
 | PRIVATE<sup>12+</sup> | 1024  | Private account. Only one privacy account is allowed.<br>**System API**: This is a system API.  |
 
@@ -5577,11 +5580,11 @@ Represents information about a domain account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default. |
-| isAuthenticated<sup>11+</sup>| boolean | No | Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
-| serverConfigId<sup>12+</sup>| boolean | No | ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default.|
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default.|
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
+| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default.|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5591,10 +5594,10 @@ Defines the constraint source type.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | Yes  | ID of the system account.    |
-| type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source. |
+| type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source.|
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -5604,9 +5607,9 @@ Enumerates the constraint sources.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name  | Value | Description        |
+| Name  | Value| Description        |
 | ------ | ------ | ------------ |
-| CONSTRAINT_NOT_EXIST  | 0      | The constraint does not exist. |
+| CONSTRAINT_NOT_EXIST  | 0      | The constraint does not exist.|
 | CONSTRAINT_TYPE_BASE | 1      | Constraint from system settings.  |
 | CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | Constraint from the device owners' settings.  |
 | CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | Constraint from the profile owners' settings.  |
@@ -5619,10 +5622,10 @@ Presents the authentication status information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | remainTimes  | number | Yes  | Number of remaining authentication times.  |
-| freezingTime | number | Yes  | Freezing time. |
+| freezingTime | number | Yes  | Freezing time.|
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
 
@@ -5632,12 +5635,12 @@ Defines the options for obtaining a domain access token.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.  |
-| domainAccountToken | Uint8Array | Yes  | Token of the domain account. |
-| businessParams | Record<string, Object> | Yes  | Service parameters customized by the service party based on the request protocol. |
-| callerUid | number | Yes  | Unique identifier of the caller. |
+| domainAccountToken | Uint8Array | Yes  | Token of the domain account.|
+| businessParams | Record<string, Object> | Yes  | Service parameters customized by the service party based on the request protocol.|
+| callerUid | number | Yes  | Unique identifier of the caller.|
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
@@ -5647,11 +5650,11 @@ Defines the options for obtaining domain account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| accountName | string | Yes  | Domain account name. |
+| accountName | string | Yes  | Domain account name.|
 | domain      | string | No  | Domain name, which is **undefined** by default.|
-| serverConfigId<sup>12+</sup>| boolean | No | ID of the server to which the domain account belongs. The default value is **undefined**.|
+| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs. The default value is **undefined**.|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5661,9 +5664,9 @@ Defines the options for the domain plug-in to obtain the domain account informat
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| callerUid | number | Yes  | Unique identifier of the caller. |
+| callerUid | number | Yes  | Unique identifier of the caller.|
 
 ## OsAccountSwitchEventData<sup>12+</sup>
 
@@ -5673,10 +5676,10 @@ Defines the event that indicates the start or end of a foreground-background sys
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| fromAccountId | number | Yes  | System account ID before the switchover. |
-| toAccountId | number | Yes  | System account ID after the switchover. |
+| fromAccountId | number | Yes  | System account ID before the switchover.|
+| toAccountId | number | Yes  | System account ID after the switchover.|
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
@@ -5686,7 +5689,7 @@ Represents the optional parameter used to create a system account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br><br>Exceed 255 characters.|
 
@@ -5698,7 +5701,7 @@ Represents a set of optional parameters for creating a system account bound to t
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type  | Mandatory | Description      |
+| Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br><br>Exceed 255 characters.|
 
@@ -5710,10 +5713,10 @@ Represents a set of optional parameters for [GetAuthInfo](#getauthinfo12).
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name     | Type                   | Mandatory | Description      |
+| Name     | Type                   | Mandatory| Description      |
 | --------- | ---------------------- | ---- | ---------- |
-| authType  | [AuthType](#authtype8) | No  | Authentication type, which is **undefined** by default. |
-| accountId | number                 | No  | System account ID, which is **undefined** by default. |
+| authType  | [AuthType](#authtype8) | No  | Authentication type, which is **undefined** by default.|
+| accountId | number                 | No  | System account ID, which is **undefined** by default.|
 
 ## AuthIntent<sup>12+</sup>
 
@@ -5725,7 +5728,7 @@ Enumerates the authentication intents.
 
 | Name    | Value  | Description      |
 | -------- | --- | ---------- |
-| UNLOCK   | 1   | Unlock. |
+| UNLOCK   | 1   | Unlock.|
 
 ## RemoteAuthOptions<sup>12+</sup>
 
@@ -5735,11 +5738,11 @@ Represents a set of optional parameters for remote authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name              | Type   | Mandatory | Description      |
+| Name              | Type   | Mandatory| Description      |
 | ------------------ | ------ | ---- | ---------- |
-| verifierNetworkId  | string | No  | Network ID of the credential verifier, which is left blank by default. |
-| collectorNetworkId | string | No  | Network ID of the credential collector, which is left blank by default. |
-| collectorTokenId   | number | No  | Token ID of the credential collector, which is **undefined** by default. |
+| verifierNetworkId  | string | No  | Network ID of the credential verifier, which is left blank by default.|
+| collectorNetworkId | string | No  | Network ID of the credential collector, which is left blank by default.|
+| collectorTokenId   | number | No  | Token ID of the credential collector, which is **undefined** by default.|
 
 ## AuthOptions<sup>12+</sup>
 
@@ -5749,11 +5752,11 @@ Represents a set of optional parameters for [auth](#auth12).
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name              | Type   | Mandatory | Description      |
+| Name              | Type   | Mandatory| Description      |
 | ------------------ | ------ | ---- | ---------- |
-| accountId          | number | No  | System account ID, which is **undefined** by default. |
-| authIntent         | [AuthIntent](#authintent12) | No  | Authentication intent, which is **undefined** by default. |
-| remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | No  | Remote authentication options, which is **undefined** by default. |
+| accountId          | number | No  | System account ID, which is **undefined** by default.|
+| authIntent         | [AuthIntent](#authintent12) | No  | Authentication intent, which is **undefined** by default.|
+| remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | No  | Remote authentication options, which is **undefined** by default.|
 
 ## GetInputDataOptions <sup>12+</sup>
 
@@ -5763,6 +5766,6 @@ Represents a set of optional parameters for [onGetData](#ongetdata8).
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name              | Type   | Mandatory | Description      |
+| Name              | Type   | Mandatory| Description      |
 | ------------------ | ------ | ---- | ---------- |
-| challenge          | Uint8Array | No  | Challenge value, which is **undefined** by default. |
+| challenge          | Uint8Array | No  | Challenge value, which is **undefined** by default.|

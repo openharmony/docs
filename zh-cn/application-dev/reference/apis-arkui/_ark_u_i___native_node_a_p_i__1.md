@@ -415,7 +415,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 | -------- | -------- |
 | parent | 父节点指针。  | 
 | child | 子节点指针。  | 
-| sibling | 前一个兄弟节点指针，如果为空则插入位置在最前面。  | 
+| sibling | 前一个兄弟节点指针，如果为空则插入位置在最后面。  | 
 
 **返回：**
 
@@ -591,7 +591,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
 | targetId | 自定义事件ID，当事件触发时在回调参数[ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) 中携带回来。  | 
-| userData | 自定义事件参数，当事件触发时在回调参数**rkUI_NodeEvent** 中携带回来。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数[ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) 中携带回来。  | 
 
 **返回：**
 

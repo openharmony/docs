@@ -7,6 +7,8 @@
 >  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 在attributeModifier中设置的属性尽量不要与其他方法设置的属性相同，避免在页面刷新时attributeModifier不生效。
+>
+> attributeModifier不支持自定义组件。
 
 ## attributeModifier
 
@@ -79,7 +81,7 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 
 **属性支持范围:**
 
-不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持手势，事件仅支持onClick、onTouch、onAppear、onDisAppear、onMouse、onHover、onKeyEvent、onBlur、onFocus、onAreaChange、onSizeChange、onGestureJudgeBegin。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
+不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持手势，事件仅支持onClick、onTouch、onAppear、onDisAppear、onMouse、onHover、onKeyEvent、onBlur、onFocus、onAreaChange、onSizeChange、onGestureJudgeBegin、onGestureRecognizerJudgeBegin、shouldBuiltInRecognizerParallelWith。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
 ## 自定义Modifier
 从API version 12开始，开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
 
@@ -98,6 +100,9 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 
 ## 示例
 ### 示例1
+
+如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
+
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {

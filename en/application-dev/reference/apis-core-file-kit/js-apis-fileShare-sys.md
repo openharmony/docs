@@ -10,7 +10,7 @@ The **fileShare** module provides APIs for granting the access permissions on a 
 ## Modules to Import
 
 ```ts
-import fileShare from '@ohos.fileshare';
+import  { fileShare } from '@kit.CoreFileKit';
 ```
 
 ## fileShare.grantUriPermission
@@ -48,8 +48,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -107,8 +107,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import wantConstant from '@ohos.app.ability.wantConstant';
-  import { BusinessError } from '@ohos.base';
+  import { wantConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let uri: string = 'file://media/image/8';
   let bundleName: string = 'com.demo.test';
   try {
@@ -137,7 +137,7 @@ Deactivates the permissions on multiple files or folders. This API uses a promis
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](js-apis-fileShare.md#policyinfo11)> | Yes| Permissions to deactivate. |
+| policies| Array&lt;[PolicyInfo](js-apis-fileShare.md#policyinfo11)> | Yes| Permissions to persist.          |
 
 **Return value**
 
@@ -161,8 +161,8 @@ If the permission deactivation of some URIs fails, error code 13900001 will be r
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
+import { BusinessError } from '@kit.BasicServicesKit';
+import  { picker } from '@kit.CoreFileKit';
   
   async function deactivatePermissionExample() {
     try {

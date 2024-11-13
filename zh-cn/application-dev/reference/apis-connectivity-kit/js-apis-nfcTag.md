@@ -70,57 +70,56 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
-    // add other code here...
+        // add other code here...
 
-    // want is initialized by nfc service, contains tag info for this found tag
-    let tagInfo : tag.TagInfo | null = null;
-    try {
-      tagInfo = tag.getTagInfo(want);
-    } catch (error) {
-      console.error("tag.getTagInfo catch error: " + error);
-    }
-    if (tagInfo == null || tagInfo == undefined) {
-      console.log("no TagInfo to be created, ignore it.");
-      return;
-    }
+        // want is initialized by nfc service, contains tag info for this found tag
+        let tagInfo : tag.TagInfo | null = null;
+        try {
+            tagInfo = tag.getTagInfo(want);
+        } catch (error) {
+            console.error("tag.getTagInfo catch error: " + error);
+        }
+        if (tagInfo == null || tagInfo == undefined) {
+            console.log("no TagInfo to be created, ignore it.");
+            return;
+        }
 
-    // get the supported technologies for this found tag.
-    let isNfcATag =  false;
-    let isIsoDepTag =  false;
-    for (let i = 0; i < tagInfo.technology.length; i++) {
-      if (tagInfo.technology[i] == tag.NFC_A) {
-        isNfcATag = true;
-      }
+        // get the supported technologies for this found tag.
+        let isNfcATag =  false;
+        let isIsoDepTag =  false;
+        for (let i = 0; i < tagInfo.technology.length; i++) {
+            if (tagInfo.technology[i] == tag.NFC_A) {
+                isNfcATag = true;
+            }
+            if (tagInfo.technology[i] == tag.ISO_DEP) {
+                isIsoDepTag = true;
+            }
+        // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
+        }
 
-      if (tagInfo.technology[i] == tag.ISO_DEP) {
-        isIsoDepTag = true;
-      }
-      // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
-    }
+        // use NfcA APIs to access the found tag.
+        if (isNfcATag) {
+            let nfcA : tag.NfcATag | null = null;
+            try {
+                nfcA = tag.getNfcA(tagInfo);
+            } catch (error) {
+                console.error("tag.getNfcA catch error: " + error);
+            }
+            // other code to read or write this found tag.
+        }
 
-    // use NfcA APIs to access the found tag.
-    if (isNfcATag) {
-      let nfcA : tag.NfcATag | null = null;
-      try {
-        nfcA = tag.getNfcATag(tagInfo);
-      } catch (error) {
-        console.error("tag.getNfcATag catch error: " + error);
-      }
-      // other code to read or write this found tag.
+        // use getIsoDep APIs to access the found tag.
+        if (isIsoDepTag) {
+            let isoDep : tag.IsoDepTag | null = null;
+            try {
+                isoDep = tag.getIsoDep(tagInfo);
+            } catch (error) {
+                console.error("tag.getIsoDep catch error: " + error);
+            }
+            // other code to read or write this found tag.
+        }
+        // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
     }
-
-    // use getIsoDep APIs to access the found tag.
-    if (isIsoDepTag) {
-      let isoDep : tag.IsoDepTag | null = null;
-      try {
-        isoDep = tag.getIsoDep(tagInfo);
-      } catch (error) {
-        console.error("tag.getIsoDep catch error: " + error);
-      }
-      // other code to read or write this found tag.
-    }
-    // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
-  }
 }
 ```
 
@@ -541,7 +540,7 @@ getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): 
 
 registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-注册对NFC Tag读卡事件的监听，实现前台应用优先分发的目的。通过discTech设置支持的读卡技术类型，通过Callback方式获取读取到Tag的[TagInfo](#taginfo)信息。需要与取消监听接口[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)成对使用。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
+注册对NFC Tag读卡事件的监听，实现前台应用优先分发的目的。通过discTech设置支持的读卡技术类型，通过Callback方式获取读取到Tag的[TagInfo](#taginfo)信息。应用必须在前台才能调用。需要与取消监听接口[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)成对使用。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
 
 **需要权限：** ohos.permission.NFC_TAG
 

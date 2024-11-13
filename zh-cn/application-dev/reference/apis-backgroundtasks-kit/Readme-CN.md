@@ -13,6 +13,7 @@
   <!--DelEnd-->
   - application
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
+    - [WorkSchedulerExtensionContext(系统接口)](js-apis-inner-application-WorkSchedulerExtensionContext-sys.md)
   - 已停止维护
     - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
     - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
@@ -21,6 +22,14 @@
     - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-backgroundTaskManager-sys.md)
     - [@ohos.bundleState (设备使用信息统计)(系统接口)](js-apis-deviceUsageStatistics-sys.md)
     <!--DelEnd-->
+- C API
+  - 模块
+    - [TransientTask](_transient_task.md)
+  - 头文件
+    - [transient_task_api.h](transient__task__api_8h.md)
+    - [transient_task_type.h](transient__task__type_8h.md)
+  - 结构体
+    - [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)
 - 错误码
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)

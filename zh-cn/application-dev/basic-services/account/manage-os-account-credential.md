@@ -1,4 +1,4 @@
-# 管理系统账号的凭据（仅对系统应用开放）
+# 管理系统账号凭据（仅对系统应用开放）
 
 凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统账号的凭据。
 
@@ -16,6 +16,9 @@
 
 凭据类型进一步细分为以下子类型：
 
+> **说明：**
+> 实际设备可支持的凭据类型取决于硬件能力。
+
 | 名称       | 值 | 说明               |
 | ---------- | ----- | ------------------ |
 | PIN_SIX    | 10000 | 表示6位凭证。       |
@@ -26,8 +29,6 @@
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |
 | FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | 表示光学指纹。   |
 | FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | 表示超声波指纹。   |
-
-备注：实际设备可支持的凭据类型取决于硬件能力。
 
 ## 开发准备
 
@@ -77,7 +78,7 @@
 
 具体开发实例如下：
 
-1. 调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
+调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
 
    ```ts
    let challenge: Uint8Array = await userIDM.openSession();
@@ -94,7 +95,7 @@
    ```ts
    let credentialInfo: osAccount.CredentialInfo = {
      credType: osAccount.AuthType.PIN,
-     credSubType: osAccount.AuthSubType.PIN_SIX;
+     credSubType: osAccount.AuthSubType.PIN_SIX,
      token: new Uint8Array([0])
    };
    ```
@@ -231,7 +232,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    };
    ```
 
-3. 调用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)更新凭据。其中：
+3. 调用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)更新凭据。
 
    ```ts
    userIDM.updateCredential(credentialInfo, {

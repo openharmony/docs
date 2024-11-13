@@ -24,7 +24,7 @@ TimePicker(options?: TimePickerOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                            | 必填 | 描述                     |
+| 参数名  | 类型                                            | 必填 | 说明                     |
 | ------- | ----------------------------------------------- | ---- | ------------------------ |
 | options | [TimePickerOptions](#timepickeroptions对象说明) | 否   | 配置时间选择组件的参数。 |
 

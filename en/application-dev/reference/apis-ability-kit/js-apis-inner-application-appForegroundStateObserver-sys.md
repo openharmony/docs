@@ -1,6 +1,6 @@
 # AppForegroundStateObserver (System API)
 
-The **AppForegroundStateObserver** module defines the listener used to listen for application startup and exit state changes. It can be used as an input parameter of [on()](js-apis-app-ability-appManager-sys.md#appmanageron11) to listen for the state changes of all applications.
+The AppForegroundStateObserver module defines the listener used to listen for application startup and exit state changes. It can be used as an input parameter of [on](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11) to listen for the state changes of all applications.
 
 > **NOTE**
 >
@@ -19,9 +19,9 @@ import { appManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                            | Type                   | Readable | Writable | Description  |
+| Name                            | Type                   | Readable| Writable| Description  |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAppStateChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the startup or exit state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md). |
+| onAppStateChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the startup or exit state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md).|
 
 **Example**
 ```ts

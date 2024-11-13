@@ -9,7 +9,7 @@
 **错误示例**
 
 ```cpp
-static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+static napi_value IncorrectDemo1(napi_env env, napi_callback_info info) {
     // argc 未正确的初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
     size_t argc;
     napi_value argv[10] = {nullptr};
@@ -51,7 +51,7 @@ static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
     // napi_get_cb_info 会向 argv 中写入 argc 个 JS 传入参数或 undefined
-    napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码
     // ... ...
     return nullptr;
@@ -143,6 +143,10 @@ if (status != napi_ok) {
 
 使用uv_queue_work方法，不会走Node-API框架，此时需要开发者自己合理使用napi_handle_scope来管理napi_value的生命周期。
 
+> **说明**
+>
+> 本规则旨在强调napi_value生命周期情况，若只想往JS线程抛任务，**不推荐**使用uv_queue_work方法。如有抛任务的需要，请使用[napi_threadsafe_function系列](./use-napi-thread-safety.md)接口。
+
 **正确示例**：
 
 ```cpp
@@ -154,11 +158,15 @@ void callbackTest(CallbackContext* context)
     context->retData = 1;
     work->data = (void*)context;
     uv_queue_work(
-        loop, work, [](uv_work_t* work) {},
-        // using callback function back to JS thread
+        loop, work,
+        // 请注意，uv_queue_work会创建一个线程并执行该回调函数，若开发者只想往JS线程抛任务，不推荐使用uv_queue_work，以避免冗余的线程创建
+        [](uv_work_t* work) {
+            // 执行一些业务逻辑
+        },
+        // 该回调会执行在loop所在的JS线程上
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; 
+            napi_handle_scope scope = nullptr;
             napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
                 if (work != nullptr) {
@@ -252,6 +260,10 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
     void* data = nullptr;
 
     napi_create_arraybuffer(env, arrSize * sizeof(int32_t), &data, &arrBuffer);
+    // data为空指针，取消对data进行写入
+    if (data == nullptr) {
+        return arrBuffer;
+    }
     int32_t* i32Buffer = reinterpret_cast<int32_t*>(data);
     for (int i = 0; i < arrSize; i++) {
         // arrayBuffer直接对缓冲区进行修改，跳过运行时，
@@ -280,8 +292,8 @@ napi_create_arraybuffer等同于JS代码中的`new ArrayBuffer(size)`，其生�
 
 **【建议】** 尽可能的减少数据转换次数，避免不必要的复制。
 
-- **减少数据转换次数：** 频繁的数据转换可能会导致性能下降，可以通过批量处理数据或者使用更高效的数据结构来优化性能；
-- **避免不必要的数据复制：** 在进行数据转换时，可以使用Node-API提供的接口来直接访问原始数据，而不是创建新的副本；
+- **减少数据转换次数：** 频繁的数据转换可能会导致性能下降，可以通过批量处理数据或者使用更高效的数据结构来优化性能。
+- **避免不必要的数据复制：** 在进行数据转换时，可以使用Node-API提供的接口来直接访问原始数据，而不是创建新的副本。
 - **使用缓存：** 如果某些数据在多次转换中都会被使用到，可以考虑使用缓存来避免重复的数据转换。缓存可以减少不必要的计算，提高性能。
 
 ## 模块注册与模块命名

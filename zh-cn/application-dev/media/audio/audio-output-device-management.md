@@ -1,4 +1,4 @@
-# 音频输出设备管理
+# 管理全局音频输出设备
 
 有时设备同时连接多个音频输出设备，需要指定音频输出设备进行音频播放，此时需要使用AudioRoutingManager接口进行输出设备的管理，API说明可以参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)。
 
@@ -112,7 +112,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 async function getPreferOutputDeviceForRendererInfo() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -131,7 +131,7 @@ import { audio } from '@kit.AudioKit';
 let rendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags : 0
-}
+};
 
 // 监听最高优先级输出设备变化
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {

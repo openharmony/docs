@@ -1,7 +1,7 @@
 # aa工具
 
 
-Ability assistant（Ability助手，简称为aa），是实现应用及测试用例启动功能的工具，为开发者提供基本的应用调试和测试能力，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
+Ability assistant（Ability助手，简称为aa），是用于启动应用和启动测试用例的工具，为开发者提供基本的应用调试和测试能力，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
 
 > **说明：**
 >
@@ -38,7 +38,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   | -e | 可选参数，entity。      |
   | -t | 可选参数，type。        |
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
-  | --pi  | 可选参数，整形类型键值对。     |
+  | --pi  | 可选参数，整型类型键值对。     |
   | --pb  | 可选参数，布尔类型键值对。     |
   | --ps  | 可选参数，字符串类型键值对。    |
   | --psn | 可选参数，空字符串关键字。     |
@@ -47,6 +47,7 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   | --wh | 可选参数，windowHeight，窗口高度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
   | --ww | 可选参数，windowWidth，窗口宽度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
   | -D | 可选参数，调试模式。        |
+  | -p | 可选参数，调优命令。命令由调用方自定义。        |
 
   **返回值**：
 
@@ -57,10 +58,10 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   
   ```bash
   # 显示启动Ability
-  aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>]
+  aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
   
   # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
-  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>]
+  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
   ```
 
   **示例**：
@@ -320,4 +321,34 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   # 获取等待调试状态的应用包名和持久化信息
   aa appdebug -g
   # 获取信息例： bundle name : com.example.publishsystem, persist : false
+  ```
+
+## process
+  对应用进行调试或调优，IDE用该命令集成调试和调优工具。
+
+  | 参数 | 参数说明 |
+  | -------- | -------- |
+  | -h/--help | 帮助信息。 |
+  | -b | 必选参数，bundleName。 |
+  | -a | 必选参数，abilityName。 |
+  | -m | 可选参数，moduleName。 |
+  | -p | 可选参数，调优命令，与-D必须二选一。命令由调用方自定义。 |
+  | -D | 可选参数，调试命令，与-p必须二选一。命令由调用方自定义。 |
+  | -S | 可选参数，进入应用沙箱。 |
+
+  **返回值**：
+
+  当执行成功时，返回"start native process successfully."；当执行失败时，返回"error: failed to start native process."；当给定参数不合法时，返回"error: option requires a value."并打印帮助信息。
+
+  **使用方法**：
+
+  ```bash
+  # 显示帮助信息
+  aa process -h
+
+  # 调试应用
+  aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-D <debug-cmd>] [-S]
+
+  # 调优应用
+  aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-S]
   ```

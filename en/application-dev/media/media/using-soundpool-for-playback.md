@@ -39,17 +39,41 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-2. Call **load()** to load a sound.
+2. Call **on('loadComplete')** to listen for the completion of sound loading.
+
+    ```ts
+    soundPool.on('loadComplete', (soundId: number) => {
+      console.info('loadComplete, soundId: ' + soundId);
+    });
+    ```
+
+3. Call **on('playFinished')** to listen for the completion of sound playing.
+     
+    ```ts
+    soundPool.on('playFinished', () => {
+      console.info("receive play finished message");
+    });
+    ```
+
+4. Call **on('error')** to listen for errors that may occur.
+     
+    ```ts
+    soundPool.on('error', (error: BusinessError) => {
+      console.info('error happened,message is :' + error.message);
+    });
+    ```
+
+5. Call **load()** to load a sound.
     You can pass in a URI or an FD to load the sound. The following uses the URI as an example. For more methods, see [SoundPool](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load).
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
    
     let soundID: number;
     let uri: string;
     async function load() {
-      await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+      await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
         console.info("file fd: " + file.fd);
         uri = 'fd://' + (file.fd).toString()
       }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
@@ -60,30 +84,6 @@ During application development, you must subscribe to playback state changes and
         console.error('soundPool load failed and catch error is ' + err.message);
       })
     }
-    ```
-
-3. Call **on('loadComplete')** to listen for the completion of sound loading.
-
-    ```ts
-    soundPool.on('loadComplete', (soundId: number) => {
-      console.info('loadComplete, soundId: ' + soundId);
-    });
-    ```
-
-4. Call **on('playFinished')** to listen for the completion of sound playing.
-     
-    ```ts
-    soundPool.on('playFinished', () => {
-      console.info("receive play finished message");
-    });
-    ```
-
-5. Call **on('error')** to listen for errors that may occur.
-     
-    ```ts
-    soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,message is :' + error.message);
-    });
     ```
 
 6. Set the playback parameters and call **play()** to play the sound. If **play()** with the same sound ID passed in is called for multiple times, the sound is played only once.
@@ -210,7 +210,7 @@ The following sample code implements low-latency playback using **SoundPool**.
 ```ts
 import { audio } from '@kit.AudioKit';
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
@@ -236,7 +236,7 @@ async function create() {
   finishPlayCallback();
   setErrorCallback();
   // Load a sound.
-  await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+  await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
     uri = 'fd://' + (file.fd).toString()
   }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.

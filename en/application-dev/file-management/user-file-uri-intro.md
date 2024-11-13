@@ -31,7 +31,7 @@ The following table describes the fields in a document URI.
 
 - Use **select()** or **save()** of [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) to select or save a document.
 - Use **select()** or **save()** of [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) to select or save an audio file.
-- Use [PhotoViewPicker.save](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to save an image or video. The URI of the image or video saved is returned.<!--Del-->
+- Use [PhotoViewPicker.save](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated) to save an image or video. The URI of the image or video saved is returned.<!--Del-->
 - Use [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md). The [FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo) object contains the URI of the file or directory. Note that the APIs of [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) can be called only by a system application. 
 
 You can obtain the document URIs of the files and folders in the following directories:
@@ -53,54 +53,55 @@ Applications of the system_basic or system_core APL can call **@ohos.file.fs** a
 1. Use [@ohos.file.fileAccess](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md) to create a document. The document URI is returned.
 2. Rename the document based on its URI.
 
-```ts
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import fileAccess from '@ohos.file.fileAccess';
-// context is passed by EntryAbility.
-let context = getContext(this) as common.UIAbilityContext;
+   ```ts
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { Want } from '@kit.AbilityKit';
+   import { common } from '@kit.AbilityKit';
+   import { fileAccess } from '@kit.CoreFileKit';
+   // context is passed by EntryAbility.
+   let context = getContext(this) as common.UIAbilityContext;
+   
+   async function example() {
+       let fileAccessHelper: fileAccess.FileAccessHelper;
+       // Obtain wantInfos by using getFileAccessAbilityInfo().
+       let wantInfos: Array<Want> = [
+         {
+           bundleName: "com.ohos.UserFile.ExternalFileManager",
+           abilityName: "FileExtensionAbility",
+         },
+       ]
+       try {
+         fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
+         if (!fileAccessHelper) {
+           console.error("createFileAccessHelper interface returns an undefined object");
+         }
+         // A built-in storage directory is used as an example.
+         // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
+         // Use the URI obtained.
+         let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+         let displayName: string = "file1.txt";
+         let fileUri: string;
+         try {
+           // Create a document. The URI of the document created is returned.
+           fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
+           if (!fileUri) {
+             console.error("createFile return undefined object");
+           }
+           console.log("createFile success, fileUri: " + JSON.stringify(fileUri));
+           // Rename the document. The URI of the renamed document is returned.
+           let renameUri = await fileAccessHelper.rename(fileUri, "renameFile.txt");
+           console.log("rename success, renameUri: " + JSON.stringify(renameUri));
+         } catch (err) {
+           let error: BusinessError = err as BusinessError;
+           console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+         }
+       } catch (err) {
+         let error: BusinessError = err as BusinessError;
+         console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
+       }
+     }
+   ```
 
-async function example() {
-    let fileAccessHelper: fileAccess.FileAccessHelper;
-    // Obtain wantInfos by using getFileAccessAbilityInfo().
-    let wantInfos: Array<Want> = [
-      {
-        bundleName: "com.ohos.UserFile.ExternalFileManager",
-        abilityName: "FileExtensionAbility",
-      },
-    ]
-    try {
-      fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
-      if (!fileAccessHelper) {
-        console.error("createFileAccessHelper interface returns an undefined object");
-      }
-      // A built-in storage directory is used as an example.
-      // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
-      // Use the URI obtained.
-      let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
-      let displayName: string = "file1.txt";
-      let fileUri: string;
-      try {
-        // Create a document. The URI of the document created is returned.
-        fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-        if (!fileUri) {
-          console.error("createFile return undefined object");
-        }
-        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));
-        // Rename the document. The URI of the renamed document is returned.
-        let renameUri = await fileAccessHelper.rename(fileUri, "renameFile.txt");
-        console.log("rename success, renameUri: " + JSON.stringify(renameUri));
-      } catch (err) {
-        let error: BusinessError = err as BusinessError;
-        console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-      }
-    } catch (err) {
-      let error: BusinessError = err as BusinessError;
-      console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
-    }
-  }
-```
 <!--DelEnd-->
 
 ## Media File URI
@@ -152,7 +153,7 @@ Applications of the normal APL can call [photoAccessHelper](../reference/apis-me
 Applications of the system_basic or system_core APL can call **photoAccessHelper** and [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) APIs to process media files based on their URI. For details about how to use the APIs, see the API reference document.
 <!--DelEnd-->
 
-Without the ohos.permission.READ_IMAGEVIDEO permission, the application of the normal APL can use [PhotoViewPicker.select](../reference/apis-core-file-kit/js-apis-file-picker.md#select) to obtain the URI, and use [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object corresponding to the URI. The **PhotoAsset** object can be used to call [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the thumbnail and call [get](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to read certain information in [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
+Without the ohos.permission.READ_IMAGEVIDEO permission, the application of the normal APL can use [PhotoViewPicker.select](../reference/apis-core-file-kit/js-apis-file-picker.md#selectdeprecated-1) to obtain the URI, and use [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object corresponding to the URI. The **PhotoAsset** object can be used to call [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the thumbnail and call [get](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to read certain information in [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
 
 The following information can be obtained from **PhotoKeys** through temporary authorization:
 
@@ -174,10 +175,10 @@ The following information can be obtained from **PhotoKeys** through temporary a
 The following example shows how to obtain the thumbnail and file information based on the media file URI with temporary authorization.
 
 ```ts
-import picker from '@ohos.file.picker';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { BusinessError } from '@ohos.base';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { picker } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { dataSharePredicates } from '@kit.ArkData';
 
 // Define an array of URIs to hold the URIs returned by PhotoViewPicker.select.
 let uris: Array<string> = [];
@@ -235,7 +236,7 @@ try {
 }
 ```
 <!--Del-->
-## Copying a File by URI (for System Applications Only)
+## Copying A File by URI (for System Applications Only)
 
 To copy a file to the specified directory based on the URI, perform the following:
 
@@ -250,13 +251,12 @@ To copy a file to the specified directory based on the URI, perform the followin
 5. Use helper.[copyFile](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#copyfile11)(srcUri, destUri, fileName) to copy the file to the specified directory.
 
 Sample code:
-<!--DelEnd-->
 
 ```
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import fileAccess from '@ohos.file.fileAccess';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
+import { fileAccess } from '@kit.CoreFileKit';
 
 // context is passed by EntryAbility.
 let context = getContext(this) as common.UIAbilityContext;
@@ -301,3 +301,4 @@ async function example() {
     }
   }
 ```
+<!--DelEnd-->

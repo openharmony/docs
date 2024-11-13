@@ -1,14 +1,14 @@
 # Working with Objects Using JSVM-API
 
-## Introduction
+## Overview
 
 JSVM-API provides APIs for basic JavaScript (JS) object operations, including creating an object, obtaining the prototype of an object, freezing or sealing an object, and checking the object type. You can use these APIs to manage JS objects.
 
 ## Basic Concepts
 
-You may need to define and operate objects when using JSVM-API in development. For example, create an API with an object as an input parameter, performs certain operations on the object, and returns a result object. In this process, you need to ensure that the definition of the API is clear and compatible with the attributes and methods of the object.
+You may need to define and operate objects when using JSVM-API in development. For example, define an API with an object as an input parameter, perform operations on the object, and have a result object returned. In this process, you need to ensure that the API definition is clear and compatible with the properties and methods of the object.
 
-- API: defines the interaction protocol between components. An API includes input parameters, output result, and possible error handling. By calling APIs, components can call and exchange data with each other without knowing the internal implementation details.
+- API: defines the interaction protocol between components. An API includes input parameters, output result, and possible error handling. By calling APIs, components can interact and exchange data with each other without knowing the internal implementation details.
 - Object: a composite data type that allows values of different types to be stored as an independent entity in JS. An object is a collection of properties and methods. A property is a value associated with an object, and a method is an operation that the object can perform.
 
 ## Available APIs
@@ -30,7 +30,7 @@ You may need to define and operate objects when using JSVM-API in development. F
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code for object management.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following only demonstrates the C++ and ArkTS code for object management APIs.
 
 ### OH_JSVM_GetPrototype
 

@@ -11,7 +11,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | 否 | 是否忽略文档类型。默认为false，表示对文档类型进行解析。 |
+| supportDoctype | boolean | 否 | 是否忽略文档类型。默认为false，表示不解析文档类型。 |
 | ignoreNameSpace | boolean | 否 | 是否忽略命名空间。默认为false，表示对命名空间进行解析。 |
 | tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取tagValue回调函数，打印标签及标签值。默认为null，表示不进行XML标签和标签值的解析。 |
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否 | 获取attributeValue回调函数， 打印属性及属性值。默认为null，表示不进行XML属性和属性值的解析。 |
@@ -34,6 +34,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
     ```
 
 2. 对XML文件编码后调用XmlPullParser。
+
    可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。
 
     ```ts
@@ -45,10 +46,10 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-    // 1.基于ArrayBuffer构造XmlPullParser对象
+    // 方式1：基于ArrayBuffer构造XmlPullParser对象
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
    
-    // 2.基于DataView构造XmlPullParser对象
+    // 方式2：基于DataView构造XmlPullParser对象
     // let dataView: DataView = new DataView(arrBuffer.buffer as object as ArrayBuffer);
     // let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
     ```

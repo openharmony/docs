@@ -44,17 +44,15 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | 参数名   | 类型                                    | 必填 | 说明                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
-| layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | 否 | Grid布局选项。 |
+| layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10对象说明) | 否 | Grid布局选项。 |
 
-## GridLayoutOptions<sup>10+</sup>
+## GridLayoutOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 布局选项。其中,irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见示例3；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见示例1。
-
-**参数：**
 
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
@@ -257,6 +255,25 @@ cachedCount(value: number)
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：1 |
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(count: number, show: boolean)
+
+设置预加载的GridItem数量，并配置是否显示预加载节点。
+
+设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：1 |
+| show  | boolean | 是   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>8+</sup>
 
@@ -471,7 +488,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 值 | 描述                                   |
+| 名称   | 值 | 说明                                 |
 | ------ |------| -------------------------------------- |
 | DEFAULT  |  0  | 使用Grid的默认对齐方式。 |
 | STRETCH |  1  | 以一行中的最高的GridItem作为其他GridItem的高度。 |
@@ -490,7 +507,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   |枚举值| 描述                                   |
+| 名称   |值| 说明                                 |
 | ------ |------| -------------------------------------- |
 | Row  |  0  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
 | Column |  1  | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
@@ -1165,8 +1182,8 @@ struct GridExample {
 ### 示例5
 
 1.  设置属性editMode\(true\)设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。
-2.  在[onItemDragStart](#事件)回调中设置拖拽过程中显示的图片。
-3.  在[onItemDrop](#事件)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#事件)中完成交换数组位置逻辑。
+2.  在[onItemDragStart](#onitemdragstart8)回调中设置拖拽过程中显示的图片。
+3.  在[onItemDrop](#onitemdrop8)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#onitemdrop8)中完成交换数组位置逻辑。
 
 > **说明：** 
 >
@@ -1509,3 +1526,46 @@ struct Index {
 
 ```
 ![gridAlignItems](figures/gridAlignItems.png)
+
+### 示例10
+
+```ts
+// xxx.ets
+//该示例实现了Grid组件开启边缘渐隐效果并设置边缘渐隐长度
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = ['0', '1', '2', '3', '4']
+  @State rowNumbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  scroller: Scroller = new Scroller()
+
+  build() {
+    Column({ space: 5 }) {
+      Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
+      Grid(this.scroller) {
+        ForEach(this.rowNumbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .height('90%')
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![fadingEdge_grid](figures/fadingEdge_grid.gif)

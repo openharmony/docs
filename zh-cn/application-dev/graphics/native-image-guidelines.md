@@ -12,7 +12,7 @@ NativeImage是提供**Surface关联OpenGL外部纹理**的模块，表示图形�
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | 创建一个OH_NativeImage实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。 |
-| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | 获取与OH_NativeImage相关联的OHNativeWindow指针，该OHNativeWindow后续不再需要时需要调用 OH_NativeWindow_DestroyNativeWindow释放。 |
+| OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | 获取与OH_NativeImage相关联的OHNativeWindow指针，该OHNativeWindow在调用OH_NativeImage_Destroy时会将其释放，不需要调用OH_NativeWindow_DestroyNativeWindow释放，否则会出现访问已释放内存错误，可能会导致奔溃。 |
 | OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文，且该OpenGL ES纹理会绑定到 GL_TEXTURE_EXTERNAL_OES，并通过OH_NativeImage进行更新。 |
 | OH_NativeImage_DetachContext (OH_NativeImage \*image)        | 将OH_NativeImage实例从当前OpenGL ES上下文分离。              |
 | OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。      |
@@ -41,9 +41,13 @@ libnative_buffer.so
 **头文件**
 
 ```c++
+#include <iostream>
+#include <string>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
+#include <sys/mman.h>
 #include <native_image/native_image.h>
 #include <native_window/external_window.h>
 #include <native_buffer/native_buffer.h>
@@ -52,12 +56,7 @@ libnative_buffer.so
 1. **初始化EGL环境**。
 
    这里提供一份初始化EGL环境的代码示例。XComponent模块的具体使用方法请参考[XComponent开发指导](../ui/napi-xcomponent-guidelines.md)。
-   ```c++
-   #include <iostream>
-   #include <string>
-   #include <EGL/egl.h>
-   #include <EGL/eglext.h>
-   
+   ```c++   
    using GetPlatformDisplayExt = PFNEGLGETPLATFORMDISPLAYEXTPROC;
    constexpr const char *EGL_EXT_PLATFORM_WAYLAND = "EGL_EXT_platform_wayland";
    constexpr const char *EGL_KHR_PLATFORM_WAYLAND = "EGL_KHR_platform_wayland";
@@ -68,7 +67,7 @@ libnative_buffer.so
    EGLContext eglContext_ = EGL_NO_CONTEXT;
    EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
    static inline EGLConfig config_;
-   static inline EGLSurface eglsurface_;
+   static inline EGLSurface eglSurface_;
    // 从XComponent中获取到的OHNativeWindow
    OHNativeWindow *eglNativeWindow_;
    
@@ -129,7 +128,7 @@ libnative_buffer.so
            std::cout << "Failed to bind OpenGL ES API" << std::endl;
        }
    
-       unsigned int ret;
+       unsigned int glRet;
        EGLint count;
        EGLint config_attribs[] = {EGL_SURFACE_TYPE,
                                   EGL_WINDOW_BIT,
@@ -146,8 +145,8 @@ libnative_buffer.so
                                   EGL_NONE};
    
        // 获取一个有效的系统配置信息
-       ret = eglChooseConfig(eglDisplay_, config_attribs, &config_, 1, &count);
-       if (!(ret && static_cast<unsigned int>(count) >= 1)) {
+       glRet = eglChooseConfig(eglDisplay_, config_attribs, &config_, 1, &count);
+       if (!(glRet && static_cast<unsigned int>(count) >= 1)) {
            std::cout << "Failed to eglChooseConfig" << std::endl;
        }
    
@@ -160,7 +159,7 @@ libnative_buffer.so
        }
    
        // 创建eglSurface
-       eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, eglNativeWindow_, context_attribs);
+       eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, reinterpret_cast<EGLNativeWindowType>(eglNativeWindow_), context_attribs);
        if (eglSurface_ == EGL_NO_SURFACE) {
            std::cout << "Failed to create egl surface %{public}x, error:" << eglGetError() << std::endl;
        }
@@ -215,8 +214,6 @@ libnative_buffer.so
    2. 将生产的内容写入NativeWindowBuffer。
 
       ```c++
-      #include <sys/mman.h>
-       
       // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
       void *mappedAddr = mmap(handle->virAddr, handle->size, PROT_READ | PROT_WRITE, MAP_SHARED, handle->fd, 0);
       if (mappedAddr == MAP_FAILED) {

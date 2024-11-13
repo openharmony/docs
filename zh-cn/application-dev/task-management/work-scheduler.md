@@ -1,4 +1,4 @@
-# 延迟任务
+# 延迟任务(ArkTS)
 
 ## 概述
 
@@ -20,7 +20,7 @@
 
 - **数量限制**：一个应用同一时刻最多申请10个延迟任务。
 
-- **执行频率限制**：系统会根据<!--RP1-->[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。<!--Del-->通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。<!--DelEnd-->
+- **执行频率限制**：系统会根据<!--RP1-->[设备使用信息统计](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)应用的活跃分组<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。<!--Del-->通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。<!--DelEnd-->
 
   **表1** 应用活跃程度分组   
   | 应用活跃分组 | 延迟任务执行频率 |
@@ -82,7 +82,7 @@
 | isRepeat        | boolean                           | 否    | 是否循环任务。<br>- true表示循环任务，false表示非循环任务。 |
 | repeatCycleTime | number                            | 否    | 循环间隔，单位为毫秒。             |
 | repeatCount     | number                            | 否    | 循环次数。             |
-| isPersisted     | boolean                           | 否    | 是否持久化保存工作。<br>- true表示持久化保存工作。false表示非持久化保存工作。|
+| isPersisted     | boolean                           | 否    | 注册的延迟任务是否可保存在系统中。<br>- true表示可保存，即系统重启后，任务可恢复。false表示不可保存。|
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态。<br>- true表示需要，false表示不需要。   |
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
@@ -95,7 +95,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 - 至少设置一个满足的条件，包括网络类型、充电类型、存储状态、电池状态、定时状态等。
 
-- 对于重复任务，任务执行间隔至少20分钟。设置重复任务时间间隔时，须同时设置是否循环或循环次数中的一个。
+- 对于重复任务，任务执行间隔至少2小时。设置重复任务时间间隔时，须同时设置是否循环或循环次数中的一个。
 
 **表4** 延迟任务回调接口
 

@@ -23,10 +23,10 @@ import { appManager } from '@kit.AbilityKit';
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 0   |    进程处于创建状态。       |
-| STATE_FOREGROUND          | 2   |    进程处于前台状态。      |
-| STATE_ACTIVE  | 3   |     进程处于获焦状态。   |
-| STATE_BACKGROUND        | 4   |    进程处于后台不可见状态。           |
-| STATE_DESTROY        | 5   |    进程处于销毁状态。         |
+| STATE_FOREGROUND          | 1   |    进程处于前台状态。      |
+| STATE_ACTIVE  | 2   |     进程处于获焦状态。   |
+| STATE_BACKGROUND        | 3   |    进程处于后台不可见状态。           |
+| STATE_DESTROY        | 4   |    进程处于销毁状态。         |
 
 ## appManager.isRunningInStabilityTest
 

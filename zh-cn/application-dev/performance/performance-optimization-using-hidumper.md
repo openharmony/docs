@@ -1,9 +1,8 @@
-
 # 使用HiDumper命令行工具优化性能
 
 ## 简介
 
-HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取工具，帮助开发者分析、定位问题。在应用开发过程中，开发者可以使用Hidumper命令行工具获取UI界面组件树信息，配合ArkUI Inspector等图形化工具定位布局性能问题；还可以使用该命令行工具获取如内存和CPU使用情况等各项系统数据，对应用性能进行评估。本文通过一些示例介绍在优化应用性能过程中如何使用Hidumper命令行工具。
+HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取工具，帮助开发者分析、定位问题。在应用开发过程中，开发者可以使用HiDumper命令行工具获取UI界面组件树信息，配合ArkUI Inspector等图形化工具定位布局性能问题；还可以使用该命令行工具获取如内存和CPU使用情况等各项系统数据，对应用性能进行评估。本文通过一些示例介绍在优化应用性能过程中如何使用HiDumper命令行工具。
 
 开发者可参考下面步骤，通过使用HiDumper提供的-s、--mem、--cpuusage等命令进行性能分析。有关HiDumper其他功能的详细介绍可查看[《HiDumper概述》](../../device-dev/subsystems/subsys-dfx-hidumper.md)。
 
@@ -37,8 +36,8 @@ HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取
      | SystemUi_NavigationB | 三键导航 |
      | SystemUi_StatusBar   | 状态栏  |
      | ScreenLockWindow     | 锁屏   |
-   
-4. 通过WinId获取对应页面的控件树文件
+
+4. 通过WinId获取对应页面的控件树文件。
    ```
    hdc shell hidumper -s WindowManagerService -a '-w 28 -element -c' // 28 即为查找到的WinId
    ```
@@ -54,7 +53,7 @@ HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取
    ![CorrectFilePath2](figures/hidumper-filepath2.PNG)
 
    ```
-   hdc file recv /data/app/el2/100/base/com.example.demo/haps/entry/files/arkui.dump . // 获取文件到本地
+   hdc file recv /data/app/el2/100/base/com.example.demo/haps/entry/files/arkui.dump  // 获取文件到本地
    ```
 6. 打开文件查看应用组件树。组件树文件详细列出了每个组件的各项属性，如子组件数量childSize、组件ID、背景色BackgroundColor等。
    ```
@@ -65,35 +64,35 @@ HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取
      | IsDisappearing: 0
      | FrameRect: RectT (360.00, 0.00) - [180.00 x 29.00]
      | BackgroundColor: #00000000
-     ...
+     // ...
      |-> Stack childSize:1
        | ID: 23
        | Depth: 10
        | IsDisappearing: 0
        | FrameRect: RectT (0.00, 0.00) - [180.00 x 29.00]
        | BackgroundColor: #FFFFFF00
-       ...
+       // ...
        |-> Stack childSize:1
          | ID: 24
          | Depth: 11
          | IsDisappearing: 0
          | FrameRect: RectT (0.00, 0.00) - [180.00 x 29.00]
          | BackgroundColor: #FF0000FF
-         ...
+         // ...
          |-> Stack childSize:1
            | ID: 25
            | Depth: 12
            | IsDisappearing: 0
            | FrameRect: RectT (0.00, 0.00) - [180.00 x 29.00]
            | BackgroundColor: #00000000
-           ...
+           // ...
            |-> Text childSize:0
                ID: 26
                Depth: 13
                IsDisappearing: 0
                FrameRect: RectT (83.00, 0.00) - [14.00 x 29.00]
                BackgroundColor: #00000000
-               ... 
+               // ... 
    ```
 
 ### 查看if/else控件
@@ -238,7 +237,7 @@ hdc shell hidumper --mem [pid]
 
 在应用开发中，经常会遇到需要大量计算的场景，HiDumper提供了查看CPU使用率的功能，方便开发者进行性能优化。下面将以[Chat](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)为例，展示如何使用HiDumper查看CPU信息。 
 
-1. 编译项目、安装并打开Chat应用，运行以下hidumper命令获取当前应用的Pid。
+1. 编译项目、安装并打开Chat应用，运行以下HiDumper命令获取当前应用的Pid。
     ```
     hdc shell hidumper -s WindowManagerService -a '-a'
     ```

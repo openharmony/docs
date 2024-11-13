@@ -30,6 +30,8 @@
   - 加解密开发指导
     - [使用AES对称密钥（GCM模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [使用AES对称密钥（GCM模式）加解密(C/C++)](crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
+    - [使用AES对称密钥（CCM模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-ccm.md)
+    - [使用AES对称密钥（CCM模式）加解密(C/C++)](crypto-aes-sym-encrypt-decrypt-ccm-ndk.md)
     - [使用AES对称密钥（CBC模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-cbc.md)
     - [使用AES对称密钥（CBC模式）加解密(C/C++)](crypto-aes-sym-encrypt-decrypt-cbc-ndk.md)
     - [使用AES对称密钥（ECB模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-ecb.md)
@@ -72,8 +74,11 @@
     - [使用ECDH进行密钥协商](crypto-key-agreement-using-ecdh.md)
     - [使用X25519进行密钥协商](crypto-key-agreement-using-x25519.md)
     - [使用DH进行密钥协商](crypto-key-agreement-using-dh.md)
-- [消息摘要计算(ArkTS)](crypto-generate-message-digest.md)
-- [消息摘要计算(C/C++)](crypto-generate-message-digest-ndk.md)
+- 消息摘要计算
+  - [消息摘要计算介绍及算法规格](crypto-generate-message-digest-overview.md)
+  - 消息摘要计算开发指导
+    - [消息摘要计算(ArkTS)](crypto-generate-message-digest.md)
+    - [消息摘要计算(C/C++)](crypto-generate-message-digest-ndk.md)
 - [消息认证码计算](crypto-compute-mac.md)
 - [安全随机数生成](crypto-generate-random-number.md)
 - 密钥派生

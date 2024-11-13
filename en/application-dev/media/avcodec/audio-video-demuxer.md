@@ -1,14 +1,14 @@
-# Audio and Video Demuxing
+# Media Data Demuxing
 
-You can call the native APIs provided by the **AVDemuxer** module to demux audio and video, that is, to extract audio and video frame data from bit stream data.
+You can call the native APIs provided by the AVDemuxer module to demux media data. The demuxing involves extracting media samples such as audio, video, and subtitles from bit stream data, and obtaining information related to Digital Rights Management (DRM).
 
-Currently, two data input types are supported: remote connection (over HTTP or HLS) and File Descriptor (FD).
+Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
 The following demuxing formats are supported:
 
 | Media Format | Muxing Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
-| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP1End-->|
+| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3); subtitle stream: WEBVTT<!--RP1End-->|
 | Audio/Video    | fmp4                       |<!--RP2-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP2End-->|
 | Audio/Video    | mkv                        |<!--RP3-->Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS<!--RP3End-->|
 | Audio/Video    | mpeg-ts                    |<!--RP4-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP4End-->|
@@ -18,24 +18,27 @@ The following demuxing formats are supported:
 | Audio      | mp3                        |Audio stream: MPEG (MP3)|
 | Audio      | ogg                        |Audio stream: OGG|
 | Audio      | flac                       |Audio stream: FLAC|
-| Audio      | wav                        |Audio stream: PCM|
+| Audio      | wav                        |Audio stream: PCM and PCM-MULAW|
 | Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
 | Audio      | ape                        |Audio stream: APE|
 | External subtitle  | srt                        |Subtitle stream: SRT|
+| External subtitle  | webvtt                     |Subtitle stream: WEBVTT|
+
+The DRM demuxing capability supports the following formats: <!--RP7-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP7End-->.
 
 **Usage Scenario**
 
 - Audio and video playback
   
-  Demux audio and video streams, decode the frame data obtained through demuxing, and play the decoded data.
+  Demux media streams, decode the samples obtained through demuxing, and play the samples.
 
 - Audio and video editing
   
-  Demux audio and video streams, and edit the specified frames.
+  Demux media streams, and edit the specified samples.
 
 - Media file format conversion
 
-  Demux audio and video streams, and encapsulate them into a new file format.
+  Demux media streams, and encapsulate them into a new file format.
 
 ## How to Develop
 
@@ -47,7 +50,7 @@ Read [AVDemuxer](../../reference/apis-avcodec-kit/_a_v_demuxer.md) and [AVSource
 > - To call the demuxer APIs to write a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
 
-### Linking the Dynamic Library in the CMake Script
+### Linking the Dynamic Libraries in the CMake Script
 
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -55,6 +58,11 @@ target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
+
+> **NOTE**
+>
+> The word 'sample' in the preceding code snippet is only an example. Use the actual project directory name.
+>
 
 ### How to Develop
 
@@ -71,6 +79,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 2. Create a resource object.
+
+   When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#app-sandbox-directory.md#mapping-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
+
    ```c++
    // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
    std::string filePath = "test.mp4";
@@ -174,21 +185,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
-   Register the callback to obtain the media key system information in either of the following ways:
+   There are two types of APIs for setting DRM information listeners. The callback function shown in example 1 can return a demuxer instance and therefore is recommended in the scenario where multiple demuxer instances are used. The callback function shown in example 2 does not return a demuxer instance and is applicable to the scenario where a single demuxer instance is used.
 
-   Sample code for the first method:
-   ```c++
-   // Implement the OnDrmInfoChanged callback.
-   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
-   {
-      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
-   }
-
-   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
-   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
-   ```
-
-   Sample code for the second method:
+   Example 1:
    ```c++
    // Implement the OnDrmInfoChangedWithObj callback.
    static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
@@ -200,11 +199,25 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    Drm_ErrCode ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback);
 
    ```
+
+   Example 2:
+   ```c++
+   // Implement the OnDrmInfoChanged callback.
+   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
+   }
+
+   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
+   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+   ```
+
    After the callback is invoked, you can call the API to proactively obtain the media key system information (UUID and corresponding PSSH).
    ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
+   After obtaining and parsing DRM information, create [MediaKeySystem](../drm/native-drm-mediakeysystem-management.md) and [MediaKeySession](../drm/native-drm-mediakeysession-management.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](./audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 [Surface Output in Video Decoding](./video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](./video-decoding.md#buffer mode).
 
 5. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
@@ -283,7 +296,22 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-9. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
+9. Start demuxing and cyclically obtain samples. The code snippet below uses a file that contains audio and video tracks as an example.
+
+   A **BufferAttr** object contains the following attributes.
+   - **size**: sample size.
+   - **offset**: offset of the data in the AVBuffer. The value is generally 0.
+   - **pts**: timestamp when the file is muxed.
+   - **flags**: sample attributes.
+
+   | flag | Description|
+   | -------- | -------- |
+   | AVCODEC_BUFFER_FLAGS_NONE | Default value.|
+   | AVCODEC_BUFFER_FLAGS_EOS | End of Stream (EOS). The data is empty.|
+   | AVCODEC_BUFFER_FLAGS_SYNC_FRAME | IDR frame or I-frame.|
+   | AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME | Incomplete sample. Generally, a complete sample fails to be copied because the buffer is too small.|
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | Frame containing parameter set information.|
+   | AVCODEC_BUFFER_FLAGS_DISCARD  | Frames that can be discarded.|
 
    ```c++
    // Create a buffer to store the data obtained after demuxing.
@@ -298,11 +326,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int32_t ret;
    while (!audioIsEnd || !videoIsEnd) {
       // Before calling OH_AVDemuxer_ReadSampleBuffer, call OH_AVDemuxer_SelectTrackByID to select the track from which the demuxer reads data.
-      // Obtain audio frame data.
+      // Obtain the audio sample.
       if(!audioIsEnd) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
-            // Obtain the process the audio frame data in the buffer.
+            // Obtain and process the audio sample in the buffer.
             OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("audio info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
@@ -313,7 +341,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       if(!videoIsEnd) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
-            // Obtain the process the video frame data in the buffer.
+            // Obtain and process the video sample in the buffer.
             OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("video info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
@@ -350,7 +378,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 > For details about the data type and value range, see [Media Data Key-Value Pairs](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
 
 **Table 1** Supported file-level attributes
-| Attribute| Description|
+| Name| Description|
 | -- | -- |
 |OH_MD_KEY_TITLE|Title.|
 |OH_MD_KEY_ARTIST|Artist.|
@@ -380,9 +408,10 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 | -- | -- | -- | -- | -- |
 |OH_MD_KEY_CODEC_MIME|Stream codec type.|Supported|Supported|Supported|
 |OH_MD_KEY_TRACK_TYPE|Stream track type.|Supported|Supported|Supported|
+|OH_MD_KEY_TRACK_START_TIME|Start time of the stream.|Supported|Supported|Supported|
 |OH_MD_KEY_BITRATE|Stream bit rate.|Supported|Supported|Not supported|
 |OH_MD_KEY_LANGUAGE|Stream language type.|Supported|Supported|Not supported|
-|OH_MD_KEY_CODEC_CONFIG|Codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred.|Supported|Supported|Not supported|
+|OH_MD_KEY_CODEC_CONFIG|Codec-specific data. In the case of video, a parameter set is transferred. In the case of audio, parameter configuration information of the decoder is transferred.|Supported|Supported|Not supported|
 |OH_MD_KEY_WIDTH|Video stream width.|Supported|Not supported|Not supported|
 |OH_MD_KEY_HEIGHT|Video stream height.|Supported|Not supported|Not supported|
 |OH_MD_KEY_FRAME_RATE|Video stream frame rate.|Supported|Not supported|Not supported|

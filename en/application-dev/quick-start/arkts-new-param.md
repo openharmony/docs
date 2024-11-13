@@ -9,8 +9,6 @@ You can use \@Param, a variable decorator in state management V2, to enhance the
 >
 >State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
-
-
 ## Overview
 
 \@Param indicates the state passed in from the external, ensuring that data can be synchronized between the parent and child components.
@@ -77,7 +75,7 @@ struct Child {
   build() {
     Column() {
       Text(`ObjectLink region: ${this.region.x}-${this.region.y}`)
-      Text(`Prop region: ${this.region.x}-${this.region.y}`)
+      Text(`Prop regionProp: ${this.regionProp.x}-${this.regionProp.y}`)
     }
   }
 }
@@ -371,7 +369,7 @@ The \@Param decorator has the following constraints:
   }
   ```
 
-- \@Param decorated variable indicates the external input of the component. The local initial value can be used for initialization. But if the externally input value exists, it is preferentially used for initialization. You should use the local initial value and pass in the external initialization of the \@Param decorated variables.
+- The \@Param decorated variable indicates the external input of the component and needs to be initialized. The local initial value can be used for initialization. But if the external input value exists, it is preferentially used for initialization. It is not allowed to use neither the local initial value nor the external input value.
 
   ```ts
   @ComponentV2

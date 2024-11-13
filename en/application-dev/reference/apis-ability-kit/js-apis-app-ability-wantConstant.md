@@ -12,7 +12,7 @@ The wantConstant module provides the actions, entities, and flags used in **Want
 import { wantConstant } from '@kit.AbilityKit';
 ```
 
-## wantConstant.Params
+## Params
 
 Defines **Params** (specifying the action that can be performed) in the Want.
 
@@ -30,8 +30,11 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | Show mode. For details, see **wantConstant.ShowMode**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | File URIs to be authorized to the target ability. The value must be an array of file URIs of the string type. For details about how to obtain the file URI, see [fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | APP_CLONE_INDEX_KEY<sup>12+</sup>  | ohos.extra.param.key.appCloneIndex  | Index of an application clone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| CALLER_REQUEST_CODE<sup>12+</sup>  | ohos.extra.param.key.callerRequestCode  | Request code that uniquely idenfies the caller of [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) or [openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12). When either of the APIs is called to start an ability, the target ability returns the result to the caller based on the request code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.appInstance  | Specific application instance.|
+| CREATE_APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.createAppInstance  | Action of creating an application instance.|
 
-## wantConstant.Flags
+## Flags
 
  Enumerates the flags that specify how the Want will be handled.
 
@@ -44,7 +47,7 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | Make the URI persisted. It takes effect only on tablets.|
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Install the ability if it has not been installed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                             |
 | FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | Do not display any tips if the ability implicitly started does not match any application.      |
-## wantConstant.ShowMode<sup>12+</sup>
+## ShowMode<sup>12+</sup>
 
 Enumerates the modes used to show the atomic service startup.
 

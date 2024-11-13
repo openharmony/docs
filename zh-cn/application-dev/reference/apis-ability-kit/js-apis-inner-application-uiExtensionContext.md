@@ -1,6 +1,6 @@
 # UIExtensionContext
 
-UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)，提供UIExtensionAbility的相关配置信息以及操作UIAbility的方法，如启动UIAbility等。
+UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)，提供[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的相关配置信息以及操作[UIAbility](js-apis-app-ability-uiAbility.md)的方法，如启动[UIAbility](js-apis-app-ability-uiAbility.md)等。
 
 > **说明：**
 >
@@ -43,7 +43,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -52,15 +52,22 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000069 | The extension cannot start the third party application. |
 | 16000070 | The extension cannot start the service. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -125,7 +132,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -133,15 +140,22 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000069 | The extension cannot start the third party application. |
 | 16000070 | The extension cannot start the service. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -215,7 +229,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -224,15 +238,22 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000069 | The extension cannot start the third party application. |
 | 16000070 | The extension cannot start the service. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -302,7 +323,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -311,15 +332,22 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000069 | The extension cannot start the third party application. |
 | 16000070 | The extension cannot start the service. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -386,7 +414,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -394,15 +422,22 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000069 | The extension cannot start the third party application. |
 | 16000070 | The extension cannot start the service. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -480,7 +515,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -489,15 +524,22 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | The application is not allow jumping to other applications. |
-| 16000019 | Can not match any component. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16000069 | The extension cannot start the third party application. |
 | 16000070 | The extension cannot start the service. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -571,7 +613,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1059,8 +1101,8 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
-| 16000003 | The appId does not exist. |
-| 16000004 | Can not start invisible component. |
+| 16000003 | The specified ID does not exist. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000050 | Internal error. |
@@ -1144,7 +1186,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -1153,7 +1195,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000019 | Can not match any component. |
+| 16000019 | No matching ability is found. |
 | 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -1221,6 +1263,240 @@ export default class UIExtAbility extends UIExtensionAbility {
 
   onSessionDestroy(session: UIExtensionContentSession) {
     log(`UIExtAbility onSessionDestroy`);
+  }
+}
+```
+
+## UIExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
+
+启动一个UIServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+>
+
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                         |只读 | 可选 | 说明                      |
+| -------- | ---------------------------------------------------------------------------- | ---- |  ---- |------------------------- |
+| want     | [Want](js-apis-app-ability-want.md)                                        | 是 | 否  | 启动UIServiceExtensionAbility的Want参数信息。 |
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | The Ability is not supported. |
+| 16000001 | The specified ability does not exist.                                                                       |
+| 16000002 | Incorrect ability type.                                                                                     |
+| 16000004 | Failed to start the invisible ability.                                                                          |
+| 16000005 | The specified process does not have the permission.                                                         |
+| 16000006 | Cross-user operations are not allowed.                                                                      |
+| 16000008 | The crowdtesting application expires.                                                                       |
+| 16000011 | The context does not exist.                                                                                 |
+| 16000012 | The application is controlled.                                                                              |
+| 16000013 | The application is controlled by EDM.                                                                       |
+| 16000050 | Internal error.                                                                                             |
+| 16200001 | The caller has been released.                                                                               |
+
+**示例：**
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        // 创建启动按钮
+        Button('start ability')
+          .enabled(true)
+          .onClick(() => {
+            let context = getContext(this) as common.UIExtensionContext;
+            let startWant: Want = {
+              bundleName: 'com.acts.uiserviceextensionability',
+              abilityName: 'UiServiceExtAbility',
+            };
+            try {
+              // 启动UIServiceExtensionAbility
+              context.startUIServiceExtensionAbility(startWant).then(() => {
+                console.log('startUIServiceExtensionAbility success');
+              }).catch((error: BusinessError) => {
+                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+              })
+            } catch (err) {
+              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+            }
+          })
+      }
+    }
+  }
+}
+```
+
+## UIExtensionContext.connectUIServiceExtensionAbility<sup>13+<sup>
+connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
+
+连接到UIServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+>
+
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名               | 类型                             | 只读 | 可选 | 说明                 |
+| -------------------- | -------------------------------- | ---- | -------------------- |  -------------------- |
+| want                 | Want                             | 是  | 否 | 用于连接的Want信息。 |
+| callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | 是 |否  | 连接UIServiceExtensionAbility回调。     |
+
+**返回值：**
+
+| 类型                    | 说明                 |
+| ----------------------- | -------------------- |
+| Promise&lt;UIServiceProxy&gt; | 连接UIServiceExtensionAbility成功时，返回[UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)对象，借助该对象可以往UIServiceExtensionAbility发送数据。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------- |
+| 201      | The application does not have permission to call the interface.        |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not  |
+| 16000002 | Incorrect ability type.                                                |
+| 16000004 | Failed to start the invisible ability.                                     |
+| 16000005 | The specified process does not have the permission.                    |
+| 16000006 | Cross-user operations are not allowed.                                 |
+| 16000008 | The crowdtesting application expires.                                  |
+| 16000011 | The context does not exist.                                            |
+| 16000050 | Internal error.                                                        |
+| 16000053 | The ability is not on the top of the UI.                               |
+| 16000055 | Installation-free timed out.                                           |
+
+**示例：**
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Page_UIServiceExtensionAbility {
+  @State uiServiceProxy: common.UIServiceProxy | null = null;
+
+  build() {
+    Column() {
+      //...
+      Row() {
+        //...
+      }.onClick(() => {
+        const context = getContext(this) as common.UIExtensionContext;
+        const want: Want = {
+          deviceId: '',
+          bundleName: 'com.example.myapplication',
+          abilityName: ''
+        };
+        // 定义回调
+        const callback: common.UIServiceExtensionConnectCallback = {
+          onData: (data: Record<string, Object>): void => {
+            console.log('onData:', JSON.stringify(data));
+          },
+          onDisconnect: (): void => {
+            console.log('onDisconnect');
+          }
+        };
+        // 连接UIServiceExtensionAbility
+        context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
+          this.uiServiceProxy = uiServiceProxy;
+          console.log('connectUIServiceExtensionAbility success');
+        }).catch((error: BusinessError) => {
+          console.log('connectUIServiceExtensionAbility failed', JSON.stringify(error));
+        })
+      })
+    }
+  }
+}
+```
+
+## UIExtensionContext.disconnectUIServiceExtensionAbility<sup>13+<sup>
+disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
+
+断开UIServiceExtensionAbility。
+
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名               | 类型                             | 只读 | 可选 | 说明                 |
+| -------------------- | -------------------------------- | ---- | -------------------- | -------------------- |
+| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | 是 | 否  | [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability13)返回的Proxy。 |
+
+**返回值：**
+
+| 类型                    | 说明                 |
+| ----------------------- | -------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000011 | The context does not exist.                                                                      |
+| 16000050 | Internal error.                                                                                  |
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Page_UIServiceExtensionAbility {
+  @State uiServiceProxy: common.UIServiceProxy | null = null;
+
+  build() {
+    Column() {
+      //...
+      Row() {
+        //...
+      }.onClick(() => {
+        const context = getContext(this) as common.UIExtensionContext;
+        // this.uiServiceProxy是连接时保存的proxy对象
+        context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
+          console.log('disconnectUIServiceExtensionAbility success');
+        }).catch((error: BusinessError) => {
+          console.log('disconnectUIServiceExtensionAbility failed', JSON.stringify(error));
+        })
+      })
+    }
   }
 }
 ```

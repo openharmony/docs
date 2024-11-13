@@ -8,7 +8,7 @@
 
 **Error Message**
 
-If the test framework failed to initialize.
+Initialization failed.
 
 **Description**
 
@@ -25,7 +25,7 @@ Run the **param set persist.ace.testmode.enabled 1** command and restart the dev
 ## 17000002 Unable to Call the API
 **Error Message**
 
-If the async function was not called with await.
+The async function is not called with await.
 
 **Description**
 
@@ -42,7 +42,7 @@ Check test cases and make sure asynchronous APIs are called using **await**.
 ## 17000003 Assertion Failure
 **Error Message**
 
-If the assertion failed.
+Assertion failed.
 
 **Description**
 
@@ -59,7 +59,7 @@ Check the existence of the component that is asserted to exist.
 ## 17000004 Target Component/Window Lost
 **Error Message**
 
-If the window or component is invisible or destroyed.
+The window or component is invisible or destroyed.
 
 **Description**
 

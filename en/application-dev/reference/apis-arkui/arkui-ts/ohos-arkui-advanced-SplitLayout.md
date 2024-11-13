@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SplitLayout (Split Layout)
+# SplitLayout
 
 
 The split layout component allows you to split the available space into different content areas, which can be text only or a mixture of imagery and text.
@@ -12,7 +12,7 @@ The split layout component allows you to split the available space into differen
 ## Modules to Import
 
 ```
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
 ```
 
 
@@ -29,6 +29,8 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported.
 SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, tertiaryText?: string, container: () =&gt; void })
 
 **Decorator**: @Component
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +50,8 @@ The [universal events](ts-universal-events-click.md) are not supported.
 ## Example
 
 ```ts
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

@@ -16,13 +16,13 @@ FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力�
 
 FolderStack(value?: { upperItems?:  Array<string\> })
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名       | 参数类型                                    | 必填 | 参数描述                                                                 |
+| 参数名       | 类型                                    | 必填 | 说明                                                                 |
 | ------------ | ------------------------------------------- | ---- |----------------------------------------------------------------------|
 | value |  { upperItems?:  Array<string\> } | 否   | FolderStack的配置项。<br/>-&nbsp;upperItems：定义悬停态会被移到上半屏的子组件的id，组件id在此数组中的子组件悬停触发时自动避让折叠屏折痕区后移到上半屏，其它组件堆叠在下半屏区域。 |
 
@@ -119,13 +119,15 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| handler | (param: [HoverEventParam](#hovereventparam对象说明)) => void | 是   | 当悬停状态改变的时候触发回调。 |
+| handler | (param: [HoverEventParam](#hovereventparam12对象说明)) => void | 是   | 当悬停状态改变的时候触发回调。 |
 
-## HoverEventParam对象说明
+## HoverEventParam<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名              | 类型                                                          | 必填 | 说明         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称              | 类型                                                          | 必填 | 说明         |
 |------------------|-------------------------------------------------------------| --- |------------|
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
 | isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |

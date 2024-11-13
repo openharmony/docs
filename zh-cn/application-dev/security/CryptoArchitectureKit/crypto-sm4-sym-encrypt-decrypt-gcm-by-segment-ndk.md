@@ -18,7 +18,7 @@
 
 2. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'SM4_128|GCM|PKCS7'，创建对称密钥类型为SM4_128、分组模式为GCM、填充模式为PKCS7的Cipher实例，用于完成加解密操作。
 
-3. 调用[OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create)创建参数对象，调用[OH_CryptoSymCipherParams_SetParams](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置对应的加密参数。
+3. 调用[OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create)创建参数对象，调用[OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置对应的加密参数。
 
 4. 调用[OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init)，设置模式为加密（CRYPTO_ENCRYPT_MODE），指定加密密钥（OH_CryptoSymKey）和GCM模式对应的加密参数（OH_CryptoSymCipherParams），初始化加密Cipher实例。
 
@@ -39,7 +39,7 @@
 7. 使用[OH_CryptoSymCipherParams_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_create)创建Params，使用[OH_CryptoSymCipherParams_SetParam](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_setparam)设置authTag，作为解密的认证信息。
    在GCM模式下，需要从加密后的数据中取出末尾16字节，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
 
-8、调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)，[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy),[OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy)销毁各对象。
+8. 调用[OH_CryptoSymKeyGenerator_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_destroy)、[OH_CryptoSymCipher_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_destroy)、[OH_CryptoSymCipherParams_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipherparams_destroy)销毁各对象。
 
 
 **解密**
@@ -58,8 +58,10 @@
 #include <string.h>
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
+#include <string.h>
 
 #define OH_CRYPTO_GCM_TAG_LEN 16
+#define OH_CRYPTO_MAX_TEST_DATA_LEN 128
 static OH_Crypto_ErrCode doTestSm4GcmSeg()
 {
     OH_CryptoSymKeyGenerator *genCtx = nullptr;
@@ -68,12 +70,11 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     OH_CryptoSymKey *keyCtx = nullptr;
     OH_CryptoSymCipherParams *params = nullptr;
 
-    uint8_t plainText[] = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
-    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
-
-    uint8_t aad[8] = {0};
+    char *plainText = const_cast<char *>("aaaaa.....bbbbb.....ccccc.....ddddd.....eee");
+    Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tagArr[16] = {0};
-    uint8_t iv[12] = {0};
+    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成
     Crypto_DataBlob tag = {.data = nullptr, .len = 0};
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadBlob = {.data = aad, .len = sizeof(aad)};
@@ -82,11 +83,11 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     Crypto_DataBlob tagInit = {.data = tagArr, .len = sizeof(tagArr)};
     int32_t cipherLen = 0;
     int blockSize = 20;
-    int32_t randomLen = sizeof(plainText);
+    int32_t randomLen = strlen(plainText);
     int cnt = randomLen / blockSize;
     int rem = randomLen % blockSize;
-    uint8_t cipherText[sizeof(plainText) + 16] = {0};
-    Crypto_DataBlob cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
+    Crypto_DataBlob cipherBlob;
 
     // 生成密钥
     OH_Crypto_ErrCode ret;
@@ -146,15 +147,15 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
         memcpy(&cipherText[cipherLen], outUpdate.data, outUpdate.len);
         cipherLen += outUpdate.len;
     }
-    cipherBlob.len = cipherLen;
     ret = OH_CryptoSymCipher_Final(encCtx, nullptr, &tag);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
     
     // 解密
-    msgBlob.data -= sizeof(plainText) - rem;
-    msgBlob.len = sizeof(plainText);
+    cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    msgBlob.data -= strlen(plainText) - rem;
+    msgBlob.len = strlen(plainText);
     ret = OH_CryptoSymCipher_Create("SM4_128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -170,11 +171,6 @@ static OH_Crypto_ErrCode doTestSm4GcmSeg()
     ret = OH_CryptoSymCipher_Final(decCtx, &cipherBlob, &decUpdate);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
-    }
-    if (memcmp(msgBlob.data, decUpdate.data, msgBlob.len) == 0) {
-        ret = (OH_Crypto_ErrCode)1234567;
-    } else {
-        ret = (OH_Crypto_ErrCode)456;
     }
 end:
     OH_CryptoSymCipherParams_Destroy(params);

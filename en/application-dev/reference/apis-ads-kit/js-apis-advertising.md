@@ -442,15 +442,15 @@ Defines the requested ad content.
 **System capability**: SystemCapability.Advertising.Ads
 
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| adType | number | Yes| Ad type.| 
-| uniqueId | string | Yes| Unique ID of the ad.| 
-| rewarded | boolean | Yes| Whether users get rewarded for watching or clicking the ad.<br>- **true**: Users get rewarded.<br>- **false**: Users do not get rewarded.| 
-| shown | boolean | Yes| Whether the ad is shown.<br>- **true**: The ad is shown.<br>- **false**: The ad is not shown.| 
-| clicked | boolean | Yes| Whether the ad is clicked.<br>- **true**: The ad is clicked.<br>- **false**: The ad is not clicked.| 
-| rewardVerifyConfig | Map&lt;string, string&gt; | Yes| Server verification parameter.<br>{<br>customData: "test",<br>userId: "12345"<br>} | 
-| [key: string] | Object | Yes| Custom parameters.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
+| Name| Type| Read-Only| Mandatory| Description|
+| -------- | --------| -------- | -------- | -------- |
+| adType | number | No|Yes| Ad type.| 
+| uniqueId | string | No|Yes| Unique ID of the ad.| 
+| rewarded | boolean | No|Yes| Whether users get rewarded for watching or clicking the ad.<br>- **true**: Users get rewarded.<br>- **false**: Users do not get rewarded.| 
+| shown | boolean | No|Yes| Whether the ad is shown.<br>- **true**: The ad is shown.<br>- **false**: The ad is not shown.| 
+| clicked | boolean | No|Yes| Whether the ad is clicked.<br>- **true**: The ad is clicked.<br>- **false**: The ad is not clicked.| 
+| rewardVerifyConfig | Map&lt;string, string&gt; | No|Yes| Server verification parameter.<br>{<br>customData: "test",<br>userId: "12345"<br>} | 
+| [key: string] | Object | No|Yes| Custom parameters.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
 
 
 ## AdDisplayOptions
@@ -520,7 +520,7 @@ Obtains the body of an ad request. This API uses a promise to return the result.
 **Parameters**
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| adParam | [AdRequestParams[]](#adrequestparams) | Yes| Ad request parameters.| 
+| adParams | [AdRequestParams[]](#adrequestparams) | Yes| Ad request parameters.| 
 | adOptions | [AdOptions](#adoptions) | Yes| Ad configuration.| 
 
 **Return value**
@@ -535,7 +535,7 @@ For details about the following error codes, see [Ads Service Framework Error Co
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 401      | Invalid input parameter.         |
+| 401      | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified |
 | 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 
@@ -607,7 +607,7 @@ For details about the following error codes, see [Ads Service Framework Error Co
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 401      | Invalid input parameter. Possible causes: parameter is null.|
+| 401      | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified |
 | 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 | 21800005 | Failed to parse the ad response. |
@@ -670,7 +670,7 @@ For details about the following error codes, see [Ads Service Framework Error Co
 
 | ID| Error Message| 
 | -------- | -------- |
-| 401 | Invalid input parameter. Possible causes: parameter is null. | 
+| 401 | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified | 
 | 21800001 | System internal error. | 
 
 

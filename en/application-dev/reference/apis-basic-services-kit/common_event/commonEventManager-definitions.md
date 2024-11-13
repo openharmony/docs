@@ -3,8 +3,6 @@
 This document provides a list of common events defined by the system.
 Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
 
-
-
 ## Ability Kit
 
 
@@ -386,6 +384,24 @@ APIs related to this event: **auth**. This API is a system API. For details, see
 **Value:** "usual.event.USER_UNLOCKED"
 
 
+### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
+
+Indicates a successful login from a distributed account.
+
+When a distributed account is successfully logged in, the event notification service is triggered to publish this event carrying the system account ID.
+
+APIs related to this event: **setOsAccountDistributedInfo**, **updateOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API.
+For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions:** none
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Value:** "usual.event.DISTRIBUTED_ACCOUNT_LOGIN"
+
+
 ### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
 
 Indicates a successful logout from a distributed account.
@@ -410,7 +426,7 @@ Indicates that the token of a distributed account is invalid.
 
 When the token of a distributed account is invalid, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo**, **updateOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. 
+APIs related to this event: **setOsAccountDistributedInfo**, **updateOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API.
 For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
 
 **Required subscriber permissions:** none
@@ -468,7 +484,7 @@ When the screen is unlocked, the event notification service is triggered to publ
 ### COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
 Indicates the action of a common event that the user unlocks the device.
 
-  > NOTE
+  > Notes:
   >
   > This API is deprecated since API Version 10 and replaced by [COMMON_EVENT_SCREEN_UNLOCKED](#common_event_screen_unlocked).
 
@@ -585,7 +601,7 @@ When the device starts charging in idle mode, and the temperature rise is accept
 
 ### COMMON_EVENT_SHUTDOWN
 
-Indicates that the device is being and will be shut down.
+Indicates the common event that the device is being shut down and the final shutdown will proceed.
 
 When the device is being shut down until it is powered off, the event notification service is triggered to publish this event.
 
@@ -598,9 +614,9 @@ When the device is being shut down until it is powered off, the event notificati
 
 ### COMMON_EVENT_SCREEN_OFF
 
-Indicates that the device screen is off and the device is in sleep mode.
+Indicates the common event that a device screen-off initiated by the power service is complete.
 
-When the device screen is turned off and the device is in sleep mode, the event notification service is triggered to publish this event.
+When the device screen-off initiated by the power service is complete, the event notification service is triggered to release this event.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -611,9 +627,9 @@ When the device screen is turned off and the device is in sleep mode, the event 
 
 ### COMMON_EVENT_SCREEN_ON
 
-Indicates that the device screen is on and the device is in the active state.
+Indicates the common event that a device screen-on initiated by the power service is complete.
 
-When the device screen is turned on and in the active state, the event notification service is triggered to publish this event.
+When the device screen-on initiated by the power service is complete, the event notification service is triggered to release this event.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -639,7 +655,7 @@ When the system power saving mode changes, the event notification service is tri
 
 Indicates that the device's thermal level has changed.
 
-When the device's thermal level changes, the event notification service is triggered to publish this event. <!--Del-->For details about how to configure the device thermal level, see [Thermal Level Customization Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-thermal_level.md).<!--DelEnd-->
+When the device's thermal level changes, the event notification service is triggered to publish this event. <!--Del-->For details about how to configure the device thermal level, see [Thermal Level Customization](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-thermal_level.md).<!--DelEnd-->
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -657,7 +673,7 @@ When the device is about to enter the forced sleep mode, the event notification 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
+**Required subscriber permissions:** none
 
 **Value:** "usual.event.ENTER_FORCE_SLEEP"
 
@@ -670,7 +686,7 @@ When the device exits the forced sleep mode, the event notification service is t
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
+**Required subscriber permissions:** none
 
 **Value:** "usual.event.EXIT_FORCE_SLEEP"
 
@@ -946,7 +962,7 @@ The following table lists the enumerated values and their corresponding connecti
 | ------ | ---------- |
 |    2   |   Connecting.  |
 |    3   |   Connected.  |
-|    4   |   Disconnecting. |
+|    4   |   Disconnecting.|
 |    5   |   Disconnected.  |
 
 **System capability**: SystemCapability.Notification.CommonEvent
@@ -1878,7 +1894,6 @@ Indicates the common event that the Bluetooth adapter name of the device has cha
 
 **Value:** "common.event.IVI_ACTIVE"
 
-
 ### COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
 (Reserved, not supported yet) Indicates the common event that the account visibility changed.
 
@@ -1898,7 +1913,6 @@ The subscriber requires the ohos.permission.GET_APP_ACCOUNTS permission (for sys
 
 **Value:** "usual.event.data.ACCOUNT_DELETED"
 
-
 ### COMMON_EVENT_FOUNDATION_READY
 (Reserved, not supported yet) Indicates the common event that the foundation is ready.
 
@@ -1908,7 +1922,6 @@ The subscriber requires the ohos.permission.GET_APP_ACCOUNTS permission (for sys
 
 **Value:** "usual.event.data.FOUNDATION_READY"
 
-
 ### COMMON_EVENT_SPN_INFO_CHANGED 
 Indicates the common event of that the SPN information had changed.
 
@@ -1917,3 +1930,5 @@ Indicates the common event of that the SPN information had changed.
 **Required subscriber permissions:** none
 
 **Value:** "usual.event.SPN_INFO_CHANGED"
+<!--no_check-->
+

@@ -20,6 +20,8 @@ Obtains a **PhotoAccessHelper** instance for accessing and modifying media files
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -40,7 +42,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types;3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
@@ -171,6 +173,70 @@ async function example() {
 }
 ```
 
+### getBurstAssets<sup>12+</sup>
+
+getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+
+Obtains burst assets. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**Parameters**
+
+| Name | Type               | Mandatory| Description            |
+| ------- | ------------------- | ---- | ---------------- |
+| burstKey | string   | Yes  | UUID of a set of burst photos (**BURST_KEY** of [PhotoKeys](#photokeys)).    |
+| options | [FetchOptions](#fetchoptions)   | Yes  | Options for fetching the burst photos.    |
+
+**Return value**
+
+| Type                       | Description          |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+import { photoAccessHelper } form '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getBurstAssets');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // burstKey is a 36-bit UUID, which can be obtained from photoAccessHelper.PhotoKeys.
+  let burstKey: string = "e719d696-09fa-44f8-ec3f215aa62a";
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await 
+      phAccessHelper.getBurstAssets(burstKey, fetchOptions);
+    if (fetchResult !== undefined) {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      if (photoAsset !== undefined) {
+        console.info('photoAsset.displayName :' + photoAsset.displayName);
+      }
+    }
+  } catch (err) {
+    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### createAsset
 
 createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
@@ -178,6 +244,8 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
 If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -232,6 +300,8 @@ Creates an image or video asset with the specified file type and file name exten
 
 If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
@@ -280,6 +350,8 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
 If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -767,6 +839,8 @@ Applies media changes. This API uses a promise to return the result.
 
 If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -874,17 +948,156 @@ async function example() {
 }
 ```
 
+### showAssetsCreationDialog<sup>12+</sup>
+
+showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+Shows the dialog box for the user to confirm whether to save the photos or videos. If the user agrees to save the images or videos, a list of URIs granted with the save permission is returned. The list takes effect permanently, and the application can write the images or videos based on the URIs. If the user refuses to save the images or videos, an empty list is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| srcFileUris | Array&lt;string&gt; | Yes| Sandbox URIs of the images or videos to be saved to the media library.|
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | Yes| Configuration for saving the images or videos, including the names of the files to be saved. The value must be consistent with that of **srcFileUris**.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return a URI list. The URIs are granted with the write permission.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**Example**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+  console.info('ShowAssetsCreationDialogDemo.');
+
+  try {
+    // Obtain the sandbox URIs of the images or videos to be saved to the media library.
+    let srcFileUris: Array<string> = [
+      'file://fileUriDemo1' // The URI here is an example only.
+    ];
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test2', // Optional.
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT, // Optional.
+      }
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
+    console.info('showAssetsCreationDialog success, data is ' + desFileUris);
+  } catch (err) {
+    console.error('showAssetsCreationDialog failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+  }
+}
+```
+
+### createAssetWithShortTermPermission<sup>12+</sup>
+
+createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Promise&lt;string&gt;
+
+Creates an asset with a temporary permission of the given period. When this API is called by an application for the first time, a dialog box will be displayed for the user to confirm whether to save the asset. If the user agrees to save the asset, the asset instance will be created and the file URI granted with the save permission will be returned. The application can write the asset based on the URI
+within 5 minutes after the user agrees to save the asset. If the same application calls this API again within the 5 minutes, the authorized URI can be automatically returned without the need to display the conformation dialog box.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| photoCreationConfig | [PhotoCreationConfig](#photocreationconfig12); | Yes| Configuration for saving a media asset (image or video) to the media library, including the file name.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | Promise used to return the URI of the asset saved. The URI is granted with a temporary write permission.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 | Permission denied |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**Example**
+
+```ts
+import fs from '@ohos.file.fs';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+    console.info('createAssetWithShortTermPermissionDemo.');
+    
+    try {
+        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+        let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
+            title: '123456', 
+            fileNameExtension: 'jpg',
+            photoType: photoAccessHelper.PhotoType.IMAGE,
+            subtype: photoAccessHelper.PhotoSubtype.DEFAULT, 
+        };
+
+        let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
+        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        // Use the actual URI and file size.
+        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let bufSize: number = 2000000;
+        let readSize: number = 0;
+        let buf = new ArrayBuffer(bufSize);
+        let readLen = fs.readSync(srcFile.fd, buf, {
+            offset: readSize,
+            length: bufSize
+        });
+        if (readLen > 0) {
+            readSize += readLen;
+            fs.writeSync(resultFile.fd, buf, { length: readLen });
+        }
+        fs.closeSync(srcFile);
+        fs.closeSync(resultFile);
+    } catch (err) {
+        console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+    }
+    
+}
+```
+
 ## PhotoAsset
 
 Provides APIs for encapsulating file asset attributes.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
@@ -998,6 +1211,8 @@ Commits the modification on the file metadata to the database. This API uses an 
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -1054,6 +1269,8 @@ commitModify(): Promise&lt;void&gt;
 Commits the modification on the file metadata to the database. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1112,6 +1329,7 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1168,6 +1386,7 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
 > - The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -1507,9 +1726,9 @@ async function example() {
 
 Provides APIs for the user to select images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Example**
 
@@ -1525,9 +1744,9 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
 
@@ -1580,9 +1799,9 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
 
@@ -1632,9 +1851,9 @@ Starts a **photoPicker** page for the user to select one or more images or video
 
 **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
 
@@ -2269,13 +2488,13 @@ async function example() {
 
 Provides APIs to manage albums.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType | [AlbumType]( #albumtype) | Yes   | No   | Type of the album.   |
+| albumType | [AlbumType](#albumtype) | Yes   | No   | Type of the album.   |
 | albumSubtype | [AlbumSubtype](#albumsubtype) | Yes   | No  | Subtype of the album.   |
 | albumName | string | Yes   | Yes for a user album; no for a system album.  | Name of the album.   |
 | albumUri | string | Yes   | No   | URI of the album.  |
@@ -2771,6 +2990,8 @@ constructor(asset: PhotoAsset)
 
 Constructor.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -2813,6 +3034,8 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 Creates an image asset change request.
 
 Use **fileUri** to specify the data source of the asset to be created. For details, see [FileUri](../apis-core-file-kit/js-apis-file-fileuri.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2911,6 +3134,8 @@ async function example() {
 static createAssetRequest(context: Context, photoType: PhotoType, extension: string, options?: CreateOptions): MediaAssetChangeRequest
 
 Create an asset change request based on the file type and filename extension.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3082,6 +3307,8 @@ Obtains the asset in this asset change request.
 
 > **NOTE**<br>For the change request used to create an asset, this API returns **null** before [applyChanges](#applychanges11) is called to apply the changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Return value**
@@ -3122,6 +3349,8 @@ async function example() {
 setTitle(title: string): void
 
 Sets the media asset title.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3179,9 +3408,9 @@ Obtains the write handle of a temporary file.
 
 > **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after a temporary file write handle is successfully obtained.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Return value**
 
@@ -3226,9 +3455,11 @@ async function example() {
 
 addResource(type: ResourceType, fileUri: string): void
 
-Adds resources to the application sandbox directory using **fileUri**.
+Adds a resource using **fileUri**.
 
-> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after the resource is successfully added. For a moving photo, you can call this API twice to add the image and video resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3274,9 +3505,11 @@ async function example() {
 
 addResource(type: ResourceType, data: ArrayBuffer): void
 
-Adds resources using **ArrayBuffer** data.
+Adds a resource using **ArrayBuffer** data.
 
-> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after resources are successfully added.
+> **NOTE**<br>For the same asset change request, this API cannot be repeatedly called after the resource is successfully added. For a moving photo, you can call this API twice to add the image and video resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3480,7 +3713,7 @@ Sets the album name.
 
 The album name must comply with the following specifications:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -3958,7 +4191,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     let requestId: string = 'xxx-xxx'; // A valid requestId returned by APIs such as requestImage() must be used.
-    await photoAccessHelper.MediaAssetManager.cancelRequest(requestId);
+    await photoAccessHelper.MediaAssetManager.cancelRequest(context, requestId);
     console.info("request cancelled successfully");
   } catch (err) {
     console.error(`cancelRequest failed with error: ${err.code}, ${err.message}`);
@@ -4082,6 +4315,8 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
 
 Provides APIs for managing a moving photo instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 ### getUri<sup>12+</sup>
@@ -4089,6 +4324,8 @@ Provides APIs for managing a moving photo instance.
 getUri(): string
 
 Obtains the URI of this moving photo.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4150,6 +4387,8 @@ async function example() {
 requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 Requests the image data and video data of this moving photo and writes them to the specified URIs, respectively.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4230,6 +4469,8 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 Requests the moving photo content of the specified resource type and writes it to the specified URI.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
@@ -4307,6 +4548,8 @@ async function example() {
 requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 
 Requests the moving photo content of the specified resource type and returns it in ArrayBuffer format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4397,6 +4640,8 @@ The member types are the union of the types listed in the following table.
 
 Enumerates media file types.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name |  Value|  Description|
@@ -4408,12 +4653,26 @@ Enumerates media file types.
 
 Enumerates the [PhotoAsset](#photoasset) types.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| DEFAULT |  0 |  Default type, which is a photo.|
+| DEFAULT |  0 |  Photo, which is the default type.|
 | MOVING_PHOTO |  3 |  Moving photo.|
+| BURST |  4 |  Burst photo.|
+
+## DynamicRangeType<sup>12+</sup>
+
+Enumerates the formats for displaying media assets.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| SDR |  0 |  Standard dynamic range (SDR).|
+| HDR |  1 |  High dynamic range (HDR). |
 
 ## AlbumType
 
@@ -4437,6 +4696,7 @@ Enumerate the album subtypes.
 | USER\_GENERIC                     | 1          | User album.                          |
 | FAVORITE                          | 1025       | Favorites.                           |
 | VIDEO                             | 1026       | Video album.                          |
+| IMAGE<sup>12+</sup>               | 1031       | Photo album.                          |
 | ANY                               | 2147483647 | Any album.                          |
 
 ## PhotoKeys
@@ -4457,12 +4717,17 @@ Defines the key information about an image or video file.
 | WIDTH         | 'width'               | Image width, in pixels.                                   |
 | HEIGHT        | 'height'              | Image height, in pixels.                                     |
 | DATE_TAKEN    | 'date_taken'          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.               |
-| ORIENTATION   | 'orientation'         | Orientation of the image file.                                            |
+| ORIENTATION   | 'orientation'         | Orientation of the file, in degrees.                                            |
 | FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
 | TITLE         | 'title'               | Title in the file.                                                  |
 | DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | Date when the file was added. The value is the number of milliseconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).<br>**NOTE**: The photos queried cannot be sorted based on this field. |
 | DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | Date when the album file content (not the album name) was last modified. The value is the number of milliseconds elapsed since the Epoch time.<br>**NOTE**: The photos queried cannot be sorted based on this field.|
 | PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | Subtype of the media file.                                                  |
+| DYNAMIC_RANGE_TYPE<sup>12+</sup>   | 'dynamic_range_type'               | Dynamic range type of the media asset.                                                 |
+| COVER_POSITION<sup>12+</sup>   | 'cover_position'               | Position of the moving photo cover, which is the video timestamp (in μs) corresponding to the cover frame.|
+| BURST_KEY<sup>12+</sup>   | 'burst_key'               | Unique ID of a group of burst photos.|
+| LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | Width and height of an LCD image, in the format of a **width:height** string.|
+| THM_SIZE<sup>12+</sup>  | 'thm_size'  | Width and height of a thumbnail image, in the format of a **width:height** string.|
 
 ## AlbumKeys
 
@@ -4484,12 +4749,14 @@ Note that the title cannot:
 - Exceed 255 characters.
 - Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title                  | string                          | No | Title of the image or video. |
-| subtype<sup>12+</sup>  | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file. |
+| subtype<sup>12+</sup>  | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 
 ## FetchOptions
@@ -4524,6 +4791,8 @@ Media change request, which is the parent class of the asset change request and 
 ## ResourceType<sup>11+</sup>
 
 Enumerates the types of the resources to write.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4573,24 +4842,24 @@ Enumerates the **DefaultChangeUri** subtypes.
 
 Enumerates the media file types that can be selected.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                                   |  Value| Description      |
 |---------------------------------------|  ---- |----------|
 | IMAGE_TYPE                            |  'image/*' | Image.   |
 | VIDEO_TYPE                            |  'video/*' | Video.   |
 | IMAGE_VIDEO_TYPE                      |  '\*/*' | Image and video.|
-| MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | Moving photo. |
+| MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | Moving photo.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## RecommendationType<sup>11+</sup>
 
 Enumerates the types of recommended images.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name |  Value|  Description|
 | ----- |  ---- | ---- |
@@ -4599,11 +4868,11 @@ Enumerates the types of recommended images.
 | BAR_CODE |  3 | Barcode.|
 | ID_CARD |  4 | ID card.|
 | PROFILE_PICTURE |  5 | Profile.|
-| PASSPORT<sup>12+</sup> |  6 | passport.|
-| BANK_CARD<sup>12+</sup> |  7 | Bank card.|
-| DRIVER_LICENSE<sup>12+</sup> |  8 | Driver license.|
-| DRIVING_LICENSE<sup>12+</sup> |  9 | Vehicle license.|
-| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | Featured single portrait.|
+| PASSPORT<sup>12+</sup> |  6 | passport.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BANK_CARD<sup>12+</sup> |  7 | Bank card.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DRIVER_LICENSE<sup>12+</sup> |  8 | Driver license.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DRIVING_LICENSE<sup>12+</sup> |  9 | Vehicle license<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | Featured single portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 **Example**
 
@@ -4634,7 +4903,9 @@ async function example() {
 
 ## TextContextInfo<sup>12+</sup>
 
-Represents the text information for the recommended images.
+Represents the text information of the recommended images.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4676,14 +4947,14 @@ async function example() {
 
 Defines the image recommendation options. The image recommendation feature depends on the image data analysis capability, which varies with devices.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| recommendationType | [RecommendationType](#recommendationtype11)   | No  | Type of the recommended image. If this parameter is not specified, images are not recommended by default.|
-| textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | No  | Text based on which images are recommended. If both **recommendationType** and **textContextInfo** are set, **textContextInfo** takes precedence over **recommendationType**.|
+| recommendationType | [RecommendationType](#recommendationtype11)   | No  | Type of the recommended image.|
+| textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | No  | Text based on which images are recommended. If both **recommendationType** and **textContextInfo** are set, **textContextInfo** takes precedence over **recommendationType**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## BaseSelectOptions<sup>12+</sup>
 
@@ -4691,36 +4962,37 @@ Defines the basic options for selecting media assets from Gallery.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
-| maxSelectNumber       | number | No  | Maximum number of media files that can be selected.<br>Maximum value: **500**<br>Default value: **50**     |
-| isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.<br>The value **true** means photo taking is supported; the value **false** means the opposite.|
-| isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.<br>The value **true** means the image is searchable; the value **false** means the opposite.|
-| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Image recommendation parameters.     |
-| preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | URI of the preselected image.|
+| MIMEType<sup>10+</sup>    | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| maxSelectNumber<sup>10+</sup>      | number | No  | Maximum number of media files that can be selected.<br>Maximum value: **500**<br>Default value: **50**<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.<br>The value **true** means photo taking is supported; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.<br>The value **true** means the image is searchable; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Image recommendation parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | URI of the preselected image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| isPreviewForSingleSelectionSupported<sup>12+</sup> | boolean  | No  | Whether to enable full image preview if a single image is selected.<br>The value **true** means to enable full image preview; the value **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## PhotoSelectOptions
 
 Defines additional options for selecting media assets from Gallery. It inherits from **BaseSelectOptions**.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image can be edited.<br>The value **true** means the image can be edited; the value **false** means the opposite.    |
+| isOriginalSupported<sup>12+</sup>       | boolean | No  | Whether to display the button for selecting the original image. <br>The value **true** means to display the button; the value **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
+| subWindowName<sup>12+</sup>       | string | No  | Name of the sub-window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 
 ## PhotoSelectResult
 
 Defines information about the images or videos selected.
 
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
@@ -4739,3 +5011,18 @@ Enumerates the asset delivery modes.
 | FAST_MODE |  0 |  Fast mode.|
 | HIGH_QUALITY_MODE |  1 |  High-quality mode.|
 | BALANCE_MODE |  2 |  Balance mode.|
+
+## PhotoCreationConfig<sup>12+</sup>
+
+Represents the configuration for saving a media asset (image or video) to the media library, including the file name.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+| title | string | No | Title of the image or video.|
+| fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
+| photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
+| subtype | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file, which can be **DEFAULT** or **MOVING_PHOTO**.|

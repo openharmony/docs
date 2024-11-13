@@ -7,6 +7,8 @@
 
 **库：** libohweb.so
 
+**引用文件：** <web/arkweb_interface.h>
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 12
@@ -28,7 +30,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) { [ARKWEB_NATIVE_COMPONENT](_web.md), [ARKWEB_NATIVE_CONTROLLER](_web.md) } | 定义Native API的类型枚举。  | 
+| [ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) {<br/>[ARKWEB_NATIVE_COMPONENT](_web.md), [ARKWEB_NATIVE_CONTROLLER](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE_PORT](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE](_web.md),<br/>[ARKWEB_NATIVE_COOKIE_MANAGER](_web.md)<br/>} | 定义Native API的类型枚举。  | 
 
 
 ### 函数

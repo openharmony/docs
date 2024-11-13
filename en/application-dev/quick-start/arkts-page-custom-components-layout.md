@@ -71,6 +71,9 @@ struct CustomLayout {
   }
 }
 ```
+
+![custom-component-custom-layout](figures/custom-component-custom-layout.png)
+
 In the preceding example, the **Index** page contains a custom component that implements a custom layout and whose child components are passed in a builder on the **Index** page.
 
 **onMeasureSize** and **onPlaceChildren** are called in the custom component to set the size and position of its child components. In **onMeasureSize**, the initial size is set at 100, and the size of each child component is increased by half of the size of the previous child component, leading to component size increment. In **onPlaceChildren**, **startPos** is **300**, the position of each child component is **startPos** minus its own height, and the lower right corner of all child components is at the corner point (300,300). In this way, child components are stacked, starting from the lower right corner.

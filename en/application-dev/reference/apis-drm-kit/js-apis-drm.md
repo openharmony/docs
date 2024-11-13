@@ -1,10 +1,10 @@
 # @ohos.multimedia.drm (Digital Rights Management)
 
-The Digital Rights Management (DRM) framework provides APIs for you to develop digital rights management for audio and video applications. You can call the DRM plug-ins provided by the system to implement the following features:
+The Digital Rights Management (DRM) framework provides APIs for you to develop digital rights management for your audio and video applications. You can call the DRM schemes (which exist as DRM plug-ins) provided by the system to implement the following features:
 
-* DRM certificate management: generates media key system requests, and processes responses to media key system requests to implement provision request management.
-* DRM media key management: generates media key requests, processes responses to media key requests, and manages offline media keys.
-* DRM authorization: authorizes access to DRM-protected content based on the media keys.
+* DRM certificate management: generates provision requests and processes responses to these requests. Such a request/response exchange occurs between an application and a provisioning server to retrieve a DRM certificate.
+* DRM media key management: generates media key requests, processes responses to these requests, and manages offline media keys. Such a request/response exchange occurs between an application and a license server to obtain or release a media key, which is used to decrypt DRM-protected content.
+* DRM authorization: authorizes access to DRM-protected content based on media keys.
 * DRM decryption: decrypts DRM-protected content.
 
 > **NOTE**
@@ -25,29 +25,29 @@ Enumerates the DRM error codes.
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
 | ERROR_UNKNOWN       | 24700101    | Unknown error.  |
-| MAX_SYSTEM_NUM_REACHED   | 24700103    | The number of **MediaKeySystem** instances reaches 64.    |
-| MAX_SESSION_NUM_REACHED    | 24700104    | The number of **MediaKeySession** instances reaches 64.      |
-| SERVICE_FATAL_ERROR  | 24700201    | IPC service error.    |
+| MAX_SYSTEM_NUM_REACHED   | 24700103    | The number of **MediaKeySystem** instances reaches the upper limit (64).   |
+| MAX_SESSION_NUM_REACHED    | 24700104    | The number of **MediaKeySession** instances reaches the upper limit (64).    |
+| SERVICE_FATAL_ERROR  | 24700201    | DRM service error.    |
 
 ## PreDefinedConfigName
 
-Enumerates the predefined configuration options.
+Enumerates the names of predefined configuration items.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
-| CONFIG_DEVICE_VENDOR        | 'vendor'    | Plug-in name.  |
-| CONFIG_DEVICE_VERSION    | 'version'    | Plug-in version.    |
-| CONFIG_DEVICE_DESCRIPTION     | 'description'    | Device descriptor.      |
-| CONFIG_DEVICE_ALGORITHMS   | 'algorithms'    | Algorithm names.    |
-| CONFIG_DEVICE_UNIQUE_ID    | 'deviceUniqueId'    | Unique device ID.    |
-| CONFIG_SESSION_MAX         | 'maxSessionNum'    | Maximum number of sessions supported by the device.    |
-| CONFIG_SESSION_CURRENT   | 'currentSessionNum'    | Number of current sessions.    |
+| CONFIG_DEVICE_VENDOR        | 'vendor'    | Plug-in vendor name, which corresponds to the value of **vendor** in the return value of [getConfigurationString](#getconfigurationstring).  |
+| CONFIG_DEVICE_VERSION    | 'version'    | Plug-in version number, which corresponds to the value of **version** in the return value of [getConfigurationString](#getconfigurationstring).    |
+| CONFIG_DEVICE_DESCRIPTION     | 'description'    | Device descriptor, which corresponds to the value of **description** in the return value of [getConfigurationString](#getconfigurationstring).     |
+| CONFIG_DEVICE_ALGORITHMS   | 'algorithms'    | Supported algorithm names, which correspond to the value of **algorithms** in the return value of [getConfigurationString](#getconfigurationstring).    |
+| CONFIG_DEVICE_UNIQUE_ID    | 'deviceUniqueId'    | Unique device ID, which corresponds to the value of **deviceUniqueId** in the return value of [getConfigurationByteArray](#getconfigurationbytearray).    |
+| CONFIG_SESSION_MAX         | 'maxSessionNum'    | Maximum number of sessions supported by the device, which corresponds to the value of **maxSessionNum** in the return value of [getConfigurationString](#getconfigurationstring).    |
+| CONFIG_SESSION_CURRENT   | 'currentSessionNum'    | Number of existing sessions, which corresponds to the value of **currentSessionNum** in the return value of [getConfigurationString](#getconfigurationstring).    |
 
 ## MediaKeyType
 
-Enumerates the media key types.
+Enumerates the types of media keys.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -70,21 +70,21 @@ Enumerates the statuses of offline media keys.
 
 ## CertificateStatus
 
-Enumerates the device certificate statuses.
+Enumerates the statuses of DRM certificates.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
-| CERT_STATUS_PROVISIONED        | 0    | A device certificate has been installed on the device.  |
-| CERT_STATUS_NOT_PROVISIONED   | 1    | No device certificate is installed on the device.    |
-| CERT_STATUS_EXPIRED    | 2    | The device certificate has expired.      |
-| CERT_STATUS_INVALID  | 3    | The device certificate is invalid.    |
-| CERT_STATUS_UNAVAILABLE  | 4    | The device certificate is unavailable.    |
+| CERT_STATUS_PROVISIONED        | 0    | A DRM certificate has been installed on the device.  |
+| CERT_STATUS_NOT_PROVISIONED   | 1    | No DRM certificate is installed on the device.    |
+| CERT_STATUS_EXPIRED    | 2    | The DRM certificate has expired.      |
+| CERT_STATUS_INVALID  | 3    | The DRM certificate is invalid.    |
+| CERT_STATUS_UNAVAILABLE  | 4    | The DRM certificate is unavailable.    |
 
 ## MediaKeyRequestType
 
-Enumerates the types of requests for media keys.
+Enumerates the types of media key requests.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -109,26 +109,26 @@ Enumerates the content protection levels.
 
 | Name                      | Value  | Description           |
 | ------------------------- | ---- | ------------    |
-| CONTENT_PROTECTION_LEVEL_UNKNOWN        | 0    | Unknown level.  |
+| CONTENT_PROTECTION_LEVEL_UNKNOWN        | 0    | Unknown content protection level.  |
 | CONTENT_PROTECTION_LEVEL_SW_CRYPTO   | 1    | Software content protection level.    |
 | CONTENT_PROTECTION_LEVEL_HW_CRYPTO    | 2    | Hardware content protection level.      |
-| CONTENT_PROTECTION_LEVEL_ENHANCED_HW  | 3    | Hardware enhancement level.    |
+| CONTENT_PROTECTION_LEVEL_ENHANCED_HW  | 3    | Enhanced hardware content protection level.    |
 | CONTENT_PROTECTION_LEVEL_MAX  | 4    | Highest content protection level.    |
 
 ## ProvisionRequest
 
-Describes a provision request, which is used to request a device certificate from a provisioning server.
+Describes a provision request, which is used to request a DRM certificate from a provisioning server.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
 | data   | Uint8Array | Yes | Data carried in the provision request.     |
-| defaultURL     | string                 | Yes | URL of the provisioning server.      |
+| defaultURL     | string                 | Yes | URL of the provisioning server (which provisions DRM certificates).      |
 
 ## OptionsData
 
-Describes the operation data carried in a provision request.
+Describes the optional data carried in a media key request.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -136,12 +136,12 @@ Describes the operation data carried in a provision request.
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | Yes | Name of the operation data.     |
-| value     | string                 | Yes | Value of the operation data.      |
+| name   | string | Yes | Name of the optional data.     |
+| value     | string                 | Yes | Value of the optional data.      |
 
 ## MediaKeyRequest
 
-Describes a media key request, which is used to request a media key from a license server.
+Describes a media key request.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -151,7 +151,7 @@ Describes a media key request, which is used to request a media key from a licen
 | -------- | ----------------------------- |---- | ------------- |
 | mediaKeyRequestType   | [MediaKeyRequestType](#mediakeyrequesttype) | Yes | Type of the media key request.     |
 | data     | Uint8Array                 | Yes | Data carried in the media key request.      |
-| defaultURL     | string                 | Yes | URL of the license server.      |
+| defaultURL     | string                 | Yes | URL of the license server (which provisions media keys).      |
 
 ## EventInfo
 
@@ -164,11 +164,11 @@ Describes the event information.
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
 | info   | Uint8Array | Yes | Event information.     |
-| extraInfo     | string                 | Yes | Additional event information.      |
+| extraInfo     | string                 | Yes | Extended event information.      |
 
 ## StatisticKeyValue
 
-Describes the statistics information.
+Describes the statistical information.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -187,8 +187,8 @@ Describes the media key status.
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | Yes | ID of the media key.     |
-| value     | string                 | Yes | Status of the media key.      |
+| name   | string | Yes | Name of the media key status (such as the media key expiration time and content protection level).     |
+| value     | string                 | Yes | Value of the media key status.      |
 
 ## KeysInfo
 
@@ -200,12 +200,12 @@ Describes the information about media keys.
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
-| keyId   | Uint8Array | Yes | ID of the media keys, in the form of a byte array.     |
-| value     | string                 | Yes | Status of the media key.      |
+| keyId   | Uint8Array | Yes | Media key ID.     |
+| value     | string                 | Yes | Media key status.      |
 
 ## MediaKeySystemInfo
 
-Describes the DRM information of a media source.
+Describes the DRM information, which is used to encrypt content.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -213,25 +213,25 @@ Describes the DRM information of a media source.
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
-| uuid   | string | Yes | Unique ID of the DRM plug-in.     |
-| pssh     | Uint8Array                 | Yes | Protection Scheme Specific Header (PSSH) in the DRM information.      |
+| uuid   | string | Yes | UUID of the DRM content protection system.     |
+| pssh     | Uint8Array                 | Yes | Protection System Specific Header (PSSH) in the DRM information.      |
 
 ## MediaKeySystemDescription<sup>12+</sup>
 
-Describes the information about the DRM plug-in supported by the device.
+Describes the plug-in information.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
-| name   | string | Yes | Name of the DRM plug-in.     |
-| uuid   | string | Yes | Unique ID of the DRM plug-in.     |
+| name   | string | Yes | Name of the plug-in.     |
+| uuid   | string | Yes | UUID of the plug-in.     |
 
 ## drm.createMediaKeySystem
 
 createMediaKeySystem(name: string): MediaKeySystem
 
-Creates a **MediaKeySystem** instance. This API returns the result synchronously.
+Creates a **MediaKeySystem** instance.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -239,7 +239,7 @@ Creates a **MediaKeySystem** instance. This API returns the result synchronously
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | Plug-in type.                  |
+| name  | string     | Yes  | DRM scheme name.                  |
 
 **Return value**
 
@@ -275,7 +275,7 @@ try {
 
 isMediaKeySystemSupported(name: string): boolean
 
-Checks whether the device supports the media key system with a given plug-in type.
+Checks whether the device supports the specified DRM scheme.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -283,13 +283,13 @@ Checks whether the device supports the media key system with a given plug-in typ
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | Plug-in type.                  |
+| name  | string     | Yes  | DRM scheme name.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
+| boolean          | Returns **true** if the device supports the DRM scheme; returns **false** otherwise.                  |
 
 **Error codes**
 
@@ -297,7 +297,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed, the param name's length is zero or too big(exceeds 4096 Bytes).               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -320,7 +320,7 @@ try {
 
 isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
-Checks whether the device supports the media key system with a given plug-in type and MIME type.
+Checks whether the device supports the combination of the DRM scheme and MIME type.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -328,14 +328,14 @@ Checks whether the device supports the media key system with a given plug-in typ
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | Plug-in type.                  |
-| mimeType  | string     | Yes  | MIME type. The supported MIME types are determined by the DRM scheme on the device.                  |
+| name  | string     | Yes  | DRM scheme name.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
+| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                  |
 
 **Error codes**
 
@@ -354,7 +354,7 @@ import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/avc");
   console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
@@ -366,7 +366,7 @@ try {
 
 isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean
 
-Checks whether the device supports the media key system with a given plug-in type, MIME type, and content protection level.
+Checks whether the device supports the combination of the DRM scheme, MIME type, and content protection level.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -374,15 +374,15 @@ Checks whether the device supports the media key system with a given plug-in typ
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | Plug-in type.                  |
-| mimeType  | string     | Yes  | MIME type. The supported MIME types are determined by the DRM scheme on the device.                  |
-| level  | [ContentProtectionLevel](#contentprotectionlevel)     | Yes  | Content protection level of the device.                  |
+| name  | string     | Yes  | DRM scheme name.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
+| level  | [ContentProtectionLevel](#contentprotectionlevel)     | Yes  | Content protection level.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | **true**: The device supports the media key system.<br>**false**: The device does not support the media key system.                  |
+| boolean          | Returns **true** if the device supports the combination; returns **false** otherwise.                  |
 
 **Error codes**
 
@@ -390,7 +390,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed.  Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed, the param name's length is zero or too big(exceeds 4096 Bytes)               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -401,7 +401,7 @@ import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/avc", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
   console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
@@ -413,7 +413,7 @@ try {
 
 getMediaKeySystemUuid(name: string): string;
 
-Obtains the names and UUIDs of the DRM plug-ins supported by the device.
+Obtains the UUID of the DRM content protection system supported by the specified DRM scheme.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -421,13 +421,13 @@ Obtains the names and UUIDs of the DRM plug-ins supported by the device.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | Name of the DRM plug-in.                  |
+| name  | string     | Yes  | DRM scheme name.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| uuid  | string     | Yes  | Unique ID of the DRM plug-in.                  |
+| uuid  | string     | Yes  | UUID of the DRM content protection system.                  |
 
 **Error codes**
 
@@ -457,7 +457,7 @@ try {
 
 getMediaKeySystems(): MediaKeySystemDescription[]
 
-Obtains the names and UUIDs of the DRM plug-ins supported by the device.
+Obtains the list of plug-ins supported by the device.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -465,7 +465,7 @@ Obtains the names and UUIDs of the DRM plug-ins supported by the device.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | DRM plug-in information, including the plug-in name and UUID.                  |
+| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | Array of the supported plug-ins.                  |
 
 **Error codes**
 
@@ -490,7 +490,7 @@ try {
 ```
 
 ## MediaKeySystem
-Manages and records media key sessions. Before calling any API in **MediaKeySystem**, you must use [createMediaKeySystem](#drmcreatemediakeysystem) to create a **MediaKeySystem** instance.
+Implements **MediaKeySystem** instance management. Specifically, it provides APIs to request and process DRM certificates, creates session, manages offline media key, obtain DRM statistical information, and obtain device configuration information. Before calling any API in **MediaKeySystem**, you must use [createMediaKeySystem](#drmcreatemediakeysystem) to create a **MediaKeySystem** instance.
 
 ### setConfigurationString
 
@@ -504,7 +504,7 @@ Sets a configuration item in the form of a string.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device.                  |
+| configName  | string     | Yes  | Name of the configuration item. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 | value  | string     | Yes  | Value of the configuration item.                  |
 
 **Error codes**
@@ -525,7 +525,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  mediaKeySystem.setConfigurationString("configName", "configValue");
+  mediaKeySystem.setConfigurationString("stringConfigName", "stringConfigValue"); // Ensure that stringConfigName is configurable.
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationString ERROR: ${error}`);
@@ -544,13 +544,13 @@ Obtains the value of a configuration item in the form of a string.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item.                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| string          | Value of the configuration item, in the form of a string.                  |
+| string          | Value of the configuration item in the form of a string.                  |
 
 **Error codes**
 
@@ -570,7 +570,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: string = mediaKeySystem.getConfigurationString("configName");
+  let configValue: string = mediaKeySystem.getConfigurationString("vendor");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationString ERROR: ${error}`);  
@@ -589,8 +589,8 @@ Sets a configuration item in the form of a byte array.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item.                  |
-| value  | Uint8Array     | Yes  | Value of the configuration item, in the form of an array.                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
+| value  | Uint8Array     | Yes  | Value of the configuration item in the form of an array.                  |
 
 **Error codes**
 
@@ -599,8 +599,8 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 | ID        | Error Message       |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
-| 24700101                |  All unknown errors                  |
-| 24700201                |  Fatal service error, for example, service died                  |
+| 24700101                |  All unknown errors.                  |
+| 24700201                |  Fatal service error, for example, service died.                  |
 
 **Example**
 
@@ -609,9 +609,11 @@ import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+// Set configValue based on project requirements.
+let configValue: Uint8Array = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeySystem.setConfigurationByteArray("configName", configValue);
+  // Ensure that byteArrayConfigName of the current DRM scheme is configurable.
+  mediaKeySystem.setConfigurationByteArray("byteArrayConfigName", configValue);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationByteArray ERROR: ${error}`);  
@@ -622,7 +624,7 @@ try {
 
 getConfigurationByteArray(configName: string): Uint8Array
 
-Obtains the values of a configuration item in the form of a byte array.
+Obtains the value of a configuration item in the form of a byte array.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -630,13 +632,13 @@ Obtains the values of a configuration item in the form of a byte array.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | Yes  | Name of the configuration item.                  |
+| configName  | string     | Yes  | Name of the configuration item, which is determined by the DRM scheme on the device. For details about available options, see [PreDefinedConfigName](#predefinedconfigname).                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Uint8Array          | Value of the configuration item, in the form of an array.                  |
+| Uint8Array          | Value of the configuration item in the form of an array.                  |
 
 **Error codes**
 
@@ -656,7 +658,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: Uint8Array = mediaKeySystem.getConfigurationByteArray("configName");
+  let configValue: Uint8Array = mediaKeySystem.getConfigurationByteArray("deviceUniqueId"); // Ensure that deviceUniqueId exists.
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);  
@@ -667,7 +669,7 @@ try {
 
 getStatistics(): StatisticKeyValue[]
 
-Obtains the statistics information, including the number of current sessions, decryption times, and decryption failures, as well as the plug-in version.
+Obtains the statistical information, including the number of current sessions, plug-in version, maximum decryption duration for each session, number of decryption times, and number of decryption failures.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -675,7 +677,7 @@ Obtains the statistics information, including the number of current sessions, de
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [StatisticKeyValue[]](#statistickeyvalue)          | Statistics information, in the form of an array.                  |
+| [StatisticKeyValue[]](#statistickeyvalue)          | Statistical information.                  |
 
 **Error codes**
 
@@ -705,7 +707,7 @@ try {
 
 getMaxContentProtectionLevel(): ContentProtectionLevel
 
-Obtains the maximum content protection level supported by the device.
+Obtains the maximum content protection level supported by the current DRM scheme.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -743,7 +745,7 @@ try {
 
 generateKeySystemRequest(): Promise<ProvisionRequest\>
 
-Generates a media key system request to obtain a provision request.
+Generates a provision request.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -751,7 +753,7 @@ Generates a media key system request to obtain a provision request.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<[ProvisionRequest](#provisionrequest)\>          | Promise used to return the media key system request.                  |
+| Promise<[ProvisionRequest](#provisionrequest)\>          | Promise used to return the provision request obtained. If a DRM certificate already exists on the device, a failure message is returned.  |
 
 **Error codes**
 
@@ -769,6 +771,7 @@ import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+// Do not call this API if a DRM certificate already exists on the device.
 mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
   console.log("generateKeySystemRequest");
 }).catch((err: BusinessError) => {
@@ -780,7 +783,7 @@ mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionR
 
 processKeySystemResponse(response: Uint8Array): Promise<void\>
 
-Processes a response to the media key system request.
+Processes a provision response.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -788,13 +791,13 @@ Processes a response to the media key system request.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| response  | Uint8Array     | Yes  | Response to the media key system request.                  |
+| response  | Uint8Array     | Yes  | Provision response.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<void\>          | Promise that returns no value.                  |
+| Promise<void\>          | Promise                  |
 
 **Error codes**
 
@@ -802,7 +805,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  he parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -813,6 +816,7 @@ import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+// keySystemResponse is the response obtained from the DRM service. Pass in the actual data obtained.
 let keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySystem.processKeySystemResponse(keySystemResponse).then(() => {
   console.log("processKeySystemResponse");
@@ -825,7 +829,7 @@ mediaKeySystem.processKeySystemResponse(keySystemResponse).then(() => {
 
 getCertificateStatus():CertificateStatus
 
-Obtains the status of the OEM device certificate.
+Obtains the status of the DRM certificate.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -833,7 +837,7 @@ Obtains the status of the OEM device certificate.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [CertificateStatus](#certificatestatus)          | Status of the OEM device certificate.                  |
+| [CertificateStatus](#certificatestatus)          | Certificate status.                  |
 
 **Error codes**
 
@@ -863,7 +867,7 @@ try {
 
 on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
-Subscribes to events indicating that the application needs to request a device certificate.
+Subscribes to events indicating that the application requests a DRM certificate.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -871,8 +875,8 @@ Subscribes to events indicating that the application needs to request a device c
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keySystemRequired'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application sends a media key system request.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, a device certificate must be requested.                |
+| type     | string               | Yes  | Event type. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application requires a DRM certificate.|
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, a DRM certificate must be requested.                |
 
 **Error codes**
 
@@ -898,7 +902,7 @@ mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
 
 off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
-Unsubscribes from events indicating that the application needs to request a device certificate.
+Unsubscribes from events indicating that the application requests a DRM certificate.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -906,7 +910,7 @@ Unsubscribes from events indicating that the application needs to request a devi
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keySystemRequired'**. The event can be listened for when a **MediaKeySystem** instance is created.|
+| type     | string               | Yes  | Event type. The event can be listened for when a **MediaKeySystem** instance is created.|
 | callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
@@ -929,7 +933,7 @@ mediaKeySystem.off('keySystemRequired');
 
 createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
-Creates a **MediaKeySession** instance based on the specified content protection level.
+Creates a **MediaKeySession** instance with the specified content protection level.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -937,7 +941,7 @@ Creates a **MediaKeySession** instance based on the specified content protection
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| level  | [ContentProtectionLevel](#contentprotectionlevel)     | Yes  | Content protection level of the device.                  |
+| level  | [ContentProtectionLevel](#contentprotectionlevel)     | Yes  | Content protection level.                  |
 
 **Return value**
 
@@ -952,7 +956,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 | ID        | Error Message       |
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.The param level exceeds reasonable range, please use value in ContentProtectionLevel.          |
-| 24700101                 |  MAll unknown errors                  |
+| 24700101                 |  All unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Fatal service error, for example, service died                  |
 
@@ -975,7 +979,7 @@ try {
 
 createMediaKeySession(): MediaKeySession
 
-Creates a **MediaKeySession** instance based on the default content protection level.
+Creates a **MediaKeySession** instance with the default content protection level of the DRM scheme.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1053,7 +1057,7 @@ try {
 
 getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
-Obtain the status of the offline media keys.
+Obtains the status of offline media keys with the specified IDs.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1061,7 +1065,7 @@ Obtain the status of the offline media keys.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId | Uint8Array     | Yes  | ID of the offline media keys.                  |
+| mediaKeyId | Uint8Array     | Yes  | Array holding the IDs of offline media keys.                  |
 
 **Return value**
 
@@ -1086,9 +1090,10 @@ import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+// mediaKeyId is the return value of processMediaKeyResponse or getOfflineMediaKeyIds. Pass in the actual data returned.
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  let configValue: drm.OfflineMediaKeyStatus = mediaKeySystem.getOfflineMediaKeyStatus(mediaKeyIdString);
+  let configValue: drm.OfflineMediaKeyStatus = mediaKeySystem.getOfflineMediaKeyStatus(mediaKeyId);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getOfflineMediaKeyStatus ERROR: ${error}`);
@@ -1107,7 +1112,7 @@ Clears offline media keys by ID.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | Yes  | ID of the offline media keys.                  | The ID can be obtained from the return value of **processMeidaKeyResponse**.|
+| mediaKeyId  | Uint8Array     | Yes  | Array holding the IDs of offline media keys.           |
 
 **Error codes**
 
@@ -1126,9 +1131,10 @@ import { drm } from '@kit.DrmKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+// mediaKeyId is the return value of processMediaKeyResponse or getOfflineMediaKeyIds. Pass in the actual data returned.
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeySystem.clearOfflineMediaKeys(mediaKeyIdString);
+  mediaKeySystem.clearOfflineMediaKeys(mediaKeyId);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`clearOfflineMediaKeys ERROR: ${error}`);
@@ -1139,7 +1145,7 @@ try {
 
 destroy(): void
 
-Destroys the resources applied for running the **MediaKeySystem** instance.
+Destroys this **MediaKeySystem** instance.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -1168,7 +1174,7 @@ try {
 ```
 
 ## MediaKeySession
-Manages the media keys and decoder. Before calling any API in **MediaKeySession**, you must use [createMediaKeySession](#createmediakeysession) to create a **MediaKeySession** instance.
+Implements media key management. Before calling any API in **MediaKeySession**, you must use [createMediaKeySession](#createmediakeysession) to create a **MediaKeySession** instance.
 
 ### generateMediaKeyRequest
 
@@ -1184,10 +1190,10 @@ Generates a media key request.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mimeType  | string     | Yes  | MIME type.                  |
-| initData  | Uint8Array     | Yes  | PSSH data (not encoded using Base64).                  |
-| mediaKeyType| number     | Yes  | Media key type.                  | The value **0** means an online media key, and **1** means an offline media key.|
-| options  | [OptionsData[]](#optionsdata)     | Yes  | Reserved operation data.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
+| initData  | Uint8Array     | Yes  | Initial data.                  |
+| mediaKeyType| number     | Yes  | Type of the media key.                  | The value **0** means an online media key, and **1** means an offline media key.|
+| options  | [OptionsData[]](#optionsdata)     | No  | Optional data.                  |
 
 **Return value**
 
@@ -1213,12 +1219,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
-let optionsData: drm.OptionsData[]  = [
-    {name : "optionsDataNameA", value : "optionsDataValueA"},
-    {name : "optionsDataNameB", value : "optionsDataValueB"}
-];
+// PSSH data is the descriptive header of the copyright protection system and is encapsulated in encrypted streams. Specifically, in MP4 file, the PSSH data is found within the PSSH box; for DASH streams, the PSSH data is located in the MPD and MP4 PSSH box; for HLS+TS streams, the PSSH data is located in the M3U8 file and each TS segment. Pass in the actual value.
 let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, optionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
+mediaKeySession.generateMediaKeyRequest("video/avc", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
   console.log('generateMediaKeyRequest' + mediaKeyRequest);
 }).catch((err: BusinessError) => {
   console.error(`generateMediaKeyRequest: ERROR: ${err}`);
@@ -1229,7 +1232,7 @@ mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, optionsData).
 
 processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
-Processes a response to the media key request.
+Processes a media key response.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1239,7 +1242,7 @@ Processes a response to the media key request.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| response  | Uint8Array     | Yes  | Response to the media key request.                  |
+| response  | Uint8Array     | Yes  | Media key response.                  |
 
 **Return value**
 
@@ -1265,6 +1268,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+// mediaKeyResponse is obtained from the DRM service. Pass in the actual value obtained.
 let mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1277,7 +1281,7 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
 
  checkMediaKeyStatus(): MediaKeyStatus[]
 
-Checks the status of online media keys.
+Checks the status of the media keys in use.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1287,7 +1291,7 @@ Checks the status of online media keys.
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeyStatus[]](#mediakeystatus)          | Array holding the media key statuses.                  |
+| [MediaKeyStatus[]](#mediakeystatus)          | Media key status.                  |
 
 **Error codes**
 
@@ -1318,7 +1322,7 @@ try {
 
 clearMediaKeys(): void
 
-Clears online media keys.
+Clears the media keys in use.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1341,6 +1345,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+// mediaKeyResponse is obtained from the DRM service. Pass in the actual value obtained.
+let mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint8Array) => {
+  console.log('processMediaKeyResponse:' + mediaKeyId);
+}).catch((err: BusinessError) => {
+  console.error(`processMediaKeyResponse: ERROR: ${err}`);
+});
 try {
   mediaKeySession.clearMediaKeys();
 } catch (err) {
@@ -1363,7 +1374,7 @@ Generates a request to release offline media keys.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array    | Yes  | ID of the offline media keys.                  |
+| mediaKeyId  | Uint8Array    | Yes  | Array holding the IDs of offline media keys.                  |
 
 **Return value**
 
@@ -1389,13 +1400,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
-let Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
-mediaKeySession.processMediaKeyResponse(Request).then((mediaKeyId: Uint8Array) => {
-  console.log('processMediaKeyResponse:' + mediaKeyId);
-}).catch((err: BusinessError) => {
-  console.error(`processMediaKeyResponse: ERROR: ${err}`);
-});
-let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+// mediaKeyId is the return value of processMediaKeyResponse or getOfflineMediaKeyIds. Pass in the actual data returned.
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).then((offlineReleaseRequest: Uint8Array) => {
   console.log('generateOfflineReleaseRequest:' + offlineReleaseRequest);
 }).catch((err: BusinessError) => {
@@ -1417,14 +1423,14 @@ Processes a response to a request for releasing offline media keys.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | Yes  | ID of the offline media keys.                  |
-| response  | Uint8Array     | Yes  | Response to the request for releasing the offline media keys.                  |
+| mediaKeyId  | Uint8Array     | Yes  | Array holding the IDs of offline media keys.                  |
+| response  | Uint8Array     | Yes  | Response to the request for releasing offline media keys.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<void\>          | Promise that returns no value.                  |
+| Promise<void\>          | Promise                  |
 
 **Error codes**
 
@@ -1444,15 +1450,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
-let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
-mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
-  console.log('processMediaKeyResponse:' + mediaKeyId);
+// mediaKeyId is the return value of processMediaKeyResponse or getOfflineMediaKeyIds. Apply for memory based on the actual length.
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).then((offlineReleaseRequest: Uint8Array) => {
+  console.log('generateOfflineReleaseRequest:' + offlineReleaseRequest);
 }).catch((err: BusinessError) => {
-  console.error(`processMediaKeyResponse: ERROR: ${err}`);
+  console.error(`generateOfflineReleaseRequest: ERROR: ${err}`);
 });
-let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
-let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
-mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
+// offlineReleaseResponse is obtained from the DRM service. Apply for memory based on the actual length.
+let offlineReleaseResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
+mediaKeySession.processOfflineReleaseResponse(mediaKeyId, offlineReleaseResponse).then(() => {
   console.log('processOfflineReleaseResponse');
 }).catch((err: BusinessError) => {
   console.error(`processOfflineReleaseResponse: ERROR: ${err}`);
@@ -1473,13 +1480,13 @@ Restores offline media keys.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mediaKeyId  | Uint8Array     | Yes  | ID of the offline media keys.                  |
+| mediaKeyId  | Uint8Array     | Yes  | Array holding the IDs of offline media keys.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<void\>          | Promise that returns no value.                  |
+| Promise<void\>          | Promise                  |
 
 **Error codes**
 
@@ -1499,13 +1506,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
-let response = new Uint8Array ([0x00,0x00]);
-let mediaKeyId = new Uint8Array ([0x00,0x00]);
-mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
-  console.log('processOfflineReleaseResponse');
-}).catch((err: BusinessError) => {
-  console.error(`processOfflineReleaseResponse: ERROR: ${err}`);
-});
+// mediaKeyId is the return value of processMediaKeyResponse or getOfflineMediaKeyIds. Pass in the actual data returned.
+let mediaKeyId = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.restoreOfflineMediaKeys(mediaKeyId).then(() => {
   console.log("restoreOfflineMediaKeys");
 }).catch((err: BusinessError) => {
@@ -1558,7 +1560,7 @@ try {
 
 requireSecureDecoderModule(mimeType: string): boolean
 
-Obtains the status of the secure decoder.
+Checks whether secure decoding is required.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1568,13 +1570,13 @@ Obtains the status of the secure decoder.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| mimeType  | string     | Yes  | MIME type.                  |
+| mimeType  | string     | Yes  | MIME type, which is determined by the DRM scheme.                  |
 
 **Return value**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
-| boolean          | Status of the secure decoder. The value **true** means that the secure decoder is ready, and **false** means the opposite.                  |
+| boolean          | Whether secure decoding is required. The value **true** means that secure decoding is required, and **false** means the opposite.                  |
 
 **Error codes**
 
@@ -1595,7 +1597,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
-  let status: boolean = mediaKeySession.requireSecureDecoderModule("mimeType");
+  let status: boolean = mediaKeySession.requireSecureDecoderModule("video/avc");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`requireSecureDecoderModule ERROR: ${error}`);
@@ -1606,7 +1608,7 @@ try {
 
 on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
-Subscribes to events indicating that the application needs to request a media key. This API uses a callback to return the result.
+Subscribes to events indicating that the application requests a media key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1616,8 +1618,8 @@ Subscribes to events indicating that the application needs to request a media ke
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the application sends a media key request.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, a media key request is being sent.                |
+| type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**. This event is triggered when the application requires a media key.|
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1644,7 +1646,7 @@ mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
 
 off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
-Unsubscribes from events indicating that the application needs to request a media key.
+Unsubscribes from events indicating that the application requests a media key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1654,7 +1656,7 @@ Unsubscribes from events indicating that the application needs to request a medi
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**. The event can be listened for when a **MediaKeySystem** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'keyRequired'**.|
 | callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
@@ -1680,7 +1682,7 @@ mediaKeySession.off('keyRequired');
 
 on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
-Subscribes to events indicating that the media key expires. This API uses a callback to return the result.
+Subscribes to events indicating that a media key expires.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1690,8 +1692,8 @@ Subscribes to events indicating that the media key expires. This API uses a call
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the media key expires.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, the media key has expired.                |
+| type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**. This event is triggered when a media key expires.|
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1718,7 +1720,7 @@ mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
 
 off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
-Unsubscribes from events indicating that the media key expires.
+Unsubscribes from events indicating that a media key expires.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1728,7 +1730,7 @@ Unsubscribes from events indicating that the media key expires.
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**. The event can be listened for when a **MediaKeySystem** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'keyExpired'**.|
 | callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
@@ -1754,7 +1756,7 @@ mediaKeySession.off('keyExpired');
 
 on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
-Subscribes to vendor-defined events. This API uses a callback to return the result.
+Subscribes to vendor-defined events.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1764,7 +1766,7 @@ Subscribes to vendor-defined events. This API uses a callback to return the resu
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when a vendor-defined event occurs.|
+| type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**. This event is triggered when a vendor-defined event occurs.|
 | callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
 
 **Error codes**
@@ -1802,7 +1804,7 @@ Unsubscribes from vendor-defined events.
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**. The event can be listened for when a **MediaKeySystem** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'vendorDefined'**.|
 | callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
@@ -1828,7 +1830,7 @@ mediaKeySession.off('vendorDefined');
 
 on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
-Subscribes to events indicating that the media key updates on expiry. This API uses a callback to return the result.
+Subscribes to events indicating that a media key updates on expiry.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1838,8 +1840,8 @@ Subscribes to events indicating that the media key updates on expiry. This API u
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the media key updates on expiry.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, the validity period of the media key has been updated.                |
+| type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**. This event is triggered when a media key updates on expiry.|
+| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information.                |
 
 **Error codes**
 
@@ -1866,7 +1868,7 @@ mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
 
 off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
-Unsubscribes from events indicating that the media key updates on expiry. 
+Unsubscribes from events indicating that a media key updates on expiry. 
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1876,7 +1878,7 @@ Unsubscribes from events indicating that the media key updates on expiry.
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**. The event can be listened for when a **MediaKeySystem** instance is created.|
+| type     | string               | Yes  | Event type. The value is fixed at **'expirationUpdate'**.|
 | callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
 
 **Error codes**
@@ -1902,7 +1904,7 @@ mediaKeySession.off('expirationUpdate');
 
 on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
-Subscribes to events indicating that the media key changes. This API uses a callback to return the result.
+Subscribes to events indicating that a media key changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1912,8 +1914,8 @@ Subscribes to events indicating that the media key changes. This API uses a call
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**. The event can be listened for when a **MediaKeySystem** instance is created. This event is triggered when the media key changes.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | Yes  | Callback used to return the event information. If this event callback is returned, the media key has changed.                |
+| type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**. This event is triggered when a media key changes.|
+| callback | Callback\<[KeysInfo[]](#keysinfo), boolean\> | Yes  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.                |
 
 **Error codes**
 
@@ -1942,7 +1944,7 @@ mediaKeySession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: bool
 
 off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
-Unsubscribes from events indicating that the media key changes.
+Unsubscribes from events indicating that a media key changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1952,8 +1954,8 @@ Unsubscribes from events indicating that the media key changes.
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**. The event can be listened for when a **MediaKeySystem** instance is created.|
-| callback | Callback\<[EventInfo](#eventinfo)\> | No  | Callback used to return the event information.                 |
+| type     | string               | Yes  | Event type. The value is fixed at **'keysChange'**.|
+| callback | Callback\<[KeysInfo[]](#keysinfo), boolean\> | No  | Callback used to return the event information, including the lists of key IDs, statuses, and availability.               |
 
 **Error codes**
 
@@ -1978,7 +1980,7 @@ mediaKeySession.off('keysChange');
 
 destroy(): void
 
-Destroys the resources applied for running the **MediaKeySession** instance.
+Destroys this **MediaKeySession** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

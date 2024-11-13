@@ -11,31 +11,59 @@
   - [Development Overview](develop-code-overview.md)
   - C/C++ Standard Library
     - [C/C++ Mechanisms](c-cpp-overview.md)
-
+    - [Using fdsan](fdsan.md)
   - Using Node-API
     - [Node-API Overview](napi-introduction.md)
     - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
     - [Node-API Development Specifications](napi-guidelines.md)
     - [Node-API Development Process](use-napi-process.md)
     - Node-API Use Cases
+      - [Using Node-API Extension APIs](use-napi-about-extension.md)
+      - [Working with Array Using Node-API](use-napi-about-array.md)
+      - [Working with ArrayBuffer Using Node-API](use-napi-about-arraybuffer.md)
+      - [Working with BigInt Using Node-API](use-napi-about-bigint.md)
+      - [Working with Buffer Using Node-API](use-napi-about-buffer.md)
+      - [Working with Basic Data Types Using Node-API](use-napi-basic-data-types.md)
+      - [Working with Classes Using Node-API](use-napi-about-class.md)
+      - [Working with Cleanup Hooks Using Node-API](use-napi-about-cleanuphook.md)
+      - [Working with Date Using Node-API](use-napi-about-date.md)
+      - [Error Handling Using Node-API](use-napi-about-error.md)
+      - [Associating Data with a Running Environment to Tide their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
+      - [Working with Functions Using Node-API](use-napi-about-function.md)
+      - [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md)
+      - [Working with Objects Using JSVM-API](use-napi-about-object.md)
+      - [Working with Other Node-API Utilities](use-napi-about-other-practical-tools.md)
+      - [Working with Primitives Using Node-API](use-napi-about-primitive.md)
+      - [Implementing Asynchronous Operations Using Node-API](use-napi-about-promise.md)
+      - [Working with Property Using Node-API](use-napi-about-property.md)
+      - [Working with String Using Node-API](use-napi-about-string.md)
+      - [Customizing Asynchronous Operations Using Node-API](use-napi-about-custom-asynchronous-operations.md)
+    - Typical Node-API Scenarios
       - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
       - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
       - [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
       - [Calling Back ArkTS APIs in a Non-ArkTS Thread](use-uv-queue-work.md)
-      - [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md)
+      - [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md).
       - [Loading a Module in the Main Thread Using Node-API](use-napi-load-module.md)
       - [Running or Stopping an Event Loop in an Asynchronous Thread Using Extended Node-API](use-napi-event-loop.md)
       - [Loading a Module Using Node-API](use-napi-load-module-with-info.md)
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
-      - [Using Node-API Extension APIs](use-napi-about-extension.md)
     - [Node-API FAQs](use-napi-faqs.md)
   - Using JSVM-API
     - [JSVM-API Overview](jsvm-introduction.md)
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
-    - [JSVM-API Development Specifications](jsvm-guidelines.md)
-    - [Debugging and Tuning JS Code Using JSVM-API](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+    - [JSVM-API Development Process](use-jsvm-process.md)
+    - JSVM-API Development Specifications
+      - [JSVM-API Development Specifications](jsvm-guidelines.md)
+      - [JSVM-API FAQs](jsvm-frequently-questions.md)
     - JSVM-API Use Cases
-      - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
+      - [Working with Task Queues Using JSVM-API](use-jsvm-execute_tasks.md)
+      - [Working with VM Snapshots Using JSVM-API](use-jsvm-create-snapshot.md)
+      - [Developing Wasm Using JSVM-API](use-jsvm-about-wasm.md)
+    - Typical JSVM-API Scenarios
+      - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+      - JSVM-API Tuning and Performant Coding Cases
+        - [Creating and Destroying JS VMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
         - [JSVM Tuning Practices](jsvm-optimizations.md)
   - Resource Management

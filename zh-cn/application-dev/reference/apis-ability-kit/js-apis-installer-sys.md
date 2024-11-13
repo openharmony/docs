@@ -25,7 +25,7 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.UNINSTALL_BUNDLE | system_core | 允许应用卸载应用。 |
 | ohos.permission.RECOVER_BUNDLE | system_core | 允许应用恢复预置应用。 |
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | 允许企业MDM应用在企业设备上自升级。|
-
+| ohos.permission.INSTALL_INTERNALTESTING_BUNDLE | system_core | 允许应用安装开发者内测构建应用。|
 
 权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
@@ -170,6 +170,8 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -211,6 +213,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -259,6 +262,8 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -298,6 +303,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -343,6 +349,8 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -389,6 +397,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -651,6 +660,8 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -713,6 +724,8 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -776,6 +789,8 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 ```ts
@@ -808,7 +823,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : void
 
 以异步方法卸载一个共享包，使用callback形式返回结果。
 
@@ -1326,7 +1341,9 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 | 17700001 | The specified bundle name is not found. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
+| 17700073 | Failed to install the HAP because an application with the same bundle name but different signature information exists on the device. |
 
 **示例：**
 
@@ -1359,7 +1376,7 @@ try {
 
 ## BundleInstaller.createAppClone<sup>12+</sup>
 
-createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise<number>;
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number\>;
 
 以异步方法创建应用分身，使用Promise形式返回结果。
 
@@ -1426,7 +1443,7 @@ try {
 
 ## BundleInstaller.destroyAppClone<sup>12+</sup>
 
-destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise<void>;
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void\>;
 
 以异步方法删除应用分身，使用Promise形式返回结果。
 
@@ -1479,6 +1496,70 @@ try {
                 console.info('destroyAppClone successfully.');
         }).catch((error: BusinessError) => {
             console.error('destroyAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.installPreexistingApp<sup>12+</sup>
+
+installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
+
+以异步方法安装应用，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                          |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | 是   | 需要安装应用的包名。                                           |
+| userId       | number                        | 否   | 需要安装应用的用户id，userId需要大于0。默认值：调用方所在用户。   |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found. |
+| 17700004 | The userId is invalid. |
+| 17700071 | It is not allowed to install the enterprise bundle. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let userId = 100;
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.installPreexistingApp(bundleName, userId)
+            .then(() => {
+                console.info('installPreexistingApp successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('installPreexistingApp failed:' + error.message);
         });
     }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);

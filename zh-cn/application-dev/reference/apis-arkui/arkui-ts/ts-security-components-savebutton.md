@@ -1,5 +1,5 @@
 # SaveButton
- 
+
 安全控件的保存控件，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
 
 > **说明：**
@@ -40,9 +40,16 @@ SaveButton(options:SaveButtonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SaveButtonOptions](#savebuttonoptions) | 否 | 创建包含指定元素的保存按钮。 |
+| options | [SaveButtonOptions](#savebuttonoptions) | 是 | 创建包含指定元素的保存按钮。 |
 
 ## SaveButtonOptions
+
+用于指定保存按钮的图标、文本等指定元素。
+
+> **说明：**
+> 
+> icon或text需至少传入一个。<br>
+> 如果icon、text都不传入，[SaveButton](#savebutton-1)中的options参数不起效，创建的SaveButton为默认样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -50,8 +57,8 @@ SaveButton(options:SaveButtonOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+| icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标。 |
+| text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述。 |
 | buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## SaveIconStyle枚举说明
@@ -60,7 +67,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
 | LINES | 1 | 保存按钮展示线条样式图标。 |
@@ -69,7 +76,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -80,6 +87,9 @@ SaveButton(options:SaveButtonOptions)
 | RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | 保存按钮的文字描述为“导出”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | 保存按钮的文字描述为“快速保存图片”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | 保存按钮的文字描述为“重新保存”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## SaveButtonOnClickResult枚举说明
 
@@ -87,7 +97,7 @@ SaveButton(options:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 保存按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |
