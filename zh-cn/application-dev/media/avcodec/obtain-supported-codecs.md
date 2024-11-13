@@ -355,7 +355,7 @@ switch (maxLevel) {
       // level 3.1-3.2，宽、高最大可配1280x720
       break;
    case AVC_LEVEL_51:
-      // level 4.0-后续，宽、高最大可配1920x1080
+      // level 4.0以上，宽、高最大可配1920x1080
       break;
    default:
       // 报错，不做编码
