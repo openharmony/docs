@@ -57,11 +57,11 @@ Image Kit编解码支持多种图片格式，并采用了高效的算法和优�
   图片框架当前提供了两套C API接口，分别为[依赖于JS对象的C API](../../reference/apis-image-kit/image.md)和[不依赖于JS对象的C API](../../reference/apis-image-kit/_image___native_module.md)。
   - 依赖于JS对象的C接口
   
-    这类接口可以完成图片编解码，图片接收器，处理图像数据等功能，相关示例代码可以参考[图片开发指导(依赖JS对象)(C/C++)](Readme-CN.md)节点下的内容。开发者可查看[Image](../../reference/apis-image-kit/image.md)模块下的C API，确认API范围。这部分API在API 11之前发布，在后续的版本不再增加新功能。
+    这类接口可以完成图片编解码，图片接收器，处理图像数据等功能，相关示例代码可以参考[图片开发指导(依赖JS对象)(C/C++)](image-decoding-native.md)节点下的内容。开发者可查看[Image](../../reference/apis-image-kit/image.md)模块下的C API，确认API范围。这部分API在API 11之前发布，在后续的版本不再增加新功能。
 
   - 不依赖于JS对象的C接口
   
-    这类接口除了提供上述图片框架基础功能，还可以完成多图编解码等新特性，相关开发指导请参考[图片开发指导(C/C++)](Readme-CN.md)节点下的内容。开发者可查看[Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md)模块下的C API，确认API范围。这部分API从API 12开始支持，并将持续演进，**推荐开发者使用**。
+    这类接口除了提供上述图片框架基础功能，还可以完成多图编解码等新特性，相关开发指导请参考[图片开发指导(C/C++)](image-source-c.md)节点下的内容。开发者可查看[Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md)模块下的C API，确认API范围。这部分API从API 12开始支持，并将持续演进，**推荐开发者使用**。
 
   > **注意：**
   > 两套C API不建议同时使用，在部分场景下存在不兼容的问题。
