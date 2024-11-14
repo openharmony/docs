@@ -46,7 +46,7 @@ To achieve this, you can use the ArkTS component **\<AVVolumePanel>** in your ap
 The **setVolume()** API in both the **AVPlayer** and **AudioRenderer** classes can be used to set the audio stream volume. The code snippet below uses the API in the [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#mediacreateavplayer9) class:
 
 ```ts
-let volume = 1.0 // Specified volume. The value range is [0.00-1.00]. The value 1 indicates the maximum volume.
+let volume = 1.0;  // Specified volume. The value range is [0.00-1.00]. The value 1 indicates the maximum volume.
 avPlayer.setVolume(volume);
 ```
 
