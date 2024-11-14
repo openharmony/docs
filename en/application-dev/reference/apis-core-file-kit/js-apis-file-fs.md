@@ -166,12 +166,64 @@ Checks whether a file exists. This API uses a promise to return the result.
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 13900020 | Invalid parameter value.|
+
 **Example**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.access(filePath).then((res: boolean) => {
+    if (res) {
+      console.info("file exists");
+    } else {
+      console.info("file not exists");
+    }
+  }).catch((err: BusinessError) => {
+    console.error("access failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## fs.access
+
+access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boolean&gt;
+
+Checks whether a file is stored locally or has the related permission. This API uses a promise to return the result. If the file is on the cloud or a distributed device, **false** is returned.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the file to check.                                  |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | Yes  | File permission to verify.|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | Yes| Location of the file to verify.|
+
+**Return value**
+
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the file is a local file and has the related permission. The value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 13900020 | Invalid parameter value.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let filePath = pathDir + "/test.txt";
+  fs.access(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL).then((res: boolean) => {
     if (res) {
       console.info("file exists");
     } else {
@@ -202,6 +254,11 @@ Checks whether a file exists. This API uses an asynchronous callback to return t
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 13900020 | Invalid parameter value.|
 
 **Example**
 
@@ -248,6 +305,11 @@ Checks whether a file exists. This API returns the result synchronously.
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 13900020 | Invalid parameter value.|
+
 **Example**
 
   ```ts
@@ -266,6 +328,54 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   }
   ```
 
+## fs.accessSync
+
+accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
+
+Checks whether a file is stored locally or has the related permission. This API returns the result synchronously. If the file is on the cloud or a distributed device, **false** is returned.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | Yes  | Application sandbox path of the file to check.                                  |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | Yes  | File permission to verify.|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | Yes  | Location of the file to verify.|
+
+**Return value**
+
+| Type                 | Description                          |
+| ------------------- | ---------------------------- |
+| boolean | Returns **true** if the file is a local file and has the related permission; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 13900020 | Invalid parameter value.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let filePath = pathDir + "/test.txt";
+  try {
+    let res = fs.accessSync(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL);
+    if (res) {
+      console.info("file exists");
+    } else {
+      console.info("file not exists");
+    }
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+  }
+  ```
 
 ## fs.close
 
@@ -907,6 +1017,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
@@ -919,8 +1030,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   }
   fs.connectDfs(networkId, listeners).then(() => {
     console.info("Success to connectDfs");
-  }).catch((err) => {
-    console.error('connectDfs failed with error message: ${JSON.stringify(err)}');
+  }).catch((err: BusinessError) => {
+    console.error("connectDfs failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -953,6 +1064,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
@@ -960,7 +1072,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let networkId = deviceInfoList[0].networkId;
   fs.disconnectDfs(networkId).then(() => {
     console.info("Success to disconnectDfs");
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
   })
   ```
@@ -977,9 +1089,9 @@ Sets an extended attribute for a file.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the file.                               |
-| key   | string | Yes  | Key of the extended attribute to set.                         |
-| value   | string | Yes  | Value of the extended attribute to set.                         |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
+| key   | string | Yes  | Key of the extended attribute to set.                                  |
+| value   | string | Yes  | Value of the extended attribute to set.                                  |
 
 **Return value**
 
@@ -1019,9 +1131,9 @@ Sets an extended attribute for a file. This API returns the result synchronously
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the file.                               |
-| key   | string | Yes  | Key of the extended attribute to set.                         |
-| value   | string | Yes  | Value of the extended attribute to set.                         |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
+| key   | string | Yes  | Key of the extended attribute to set.                                  |
+| value   | string | Yes  | Value of the extended attribute to set.                                  |
 
 **Error codes**
 
@@ -1057,14 +1169,14 @@ Obtains an extended attribute of a file. This API uses a promise to return the r
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the file.                               |
-| key   | string | Yes  | Key of the extended attribute to obtain.                         |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
+| key   | string | Yes  | Key of the extended attribute to obtain.                                  |
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| Promise&lt;string&gt;| Promise used to return the value of the extended attribute obtained. |
+| Promise&lt;string&gt;| Promise used to return the value of the extended attribute obtained.   |
 
 **Error codes**
 
@@ -1098,14 +1210,14 @@ Obtains an extended attribute of a file. This API returns the result synchronous
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the file.                               |
-| key   | string | Yes  | Key of the extended attribute to obtain.                         |
+| path   | string | Yes  | Application sandbox path of the file.                                  |
+| key   | string | Yes  | Key of the extended attribute to obtain.                                  |
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| key| Value of the extended attribute obtained. |
+| key| Value of the extended attribute obtained.     |
 
 **Error codes**
 
@@ -1345,8 +1457,8 @@ Opens a file. This API uses a promise to return the result. This API supports th
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path or file URI of the file to open. When a URI is used, the file can only be opened.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value does not support the use of a URI.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path   | string | Yes  | Application sandbox path or URI of the file to open. If a URI is specified, the file can be opened but not created.                                  |
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value is invalid if **path** is a URI.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -1388,8 +1500,8 @@ File URIs are supported.
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | Yes  | Application sandbox path or file URI of the file to open. The URI can be used to open the file only.                                  |
-| mode  | number | Yes  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is open in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value does not take effect if a URI is used.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path     | string                          | Yes  | Application sandbox path or URI of the file to open. If a URI is specified, the file can be opened but not created.                                  |
+| mode  | number | Yes  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value is invalid if **path** is a URI.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 | callback     | AsyncCallback&lt;void&gt;                          | Yes  | Callback used to return the result.                                  |
 
 **Error codes**
@@ -1461,8 +1573,8 @@ Opens a file. This API returns the result synchronously. File URIs are supported
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path or file URI of the file to open. The URI can be used to open the file only.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value does not take effect if a URI is used.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path   | string | Yes  | Application sandbox path or URI of the file to open. If a URI is specified, the file can be opened but not created.                                  |
+| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it. (This value is invalid if **path** is a URI.)<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -2179,11 +2291,15 @@ Obtains the **ReaderIterator** result.
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| ReaderIteratorResult | **ReaderIteratorResult** object obtained.|
+| [ReaderIteratorResult](#readeriteratorresult) | **ReaderIteratorResult** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+> **NOTE**
+>
+> If the line read by ReaderIterator is not in UTF-8 format, error code 13900037 will be returned.
 
 **Example**
 
@@ -2662,7 +2778,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 fdatasync(fd: number): Promise&lt;void&gt;
 
-Synchronizes the data of a file. This API uses a promise to return the result. **fdatasync()** is similar to **fsync()**, but does not flush modified metadata unless that metadata is needed.
+Synchronizes the data (excluding the metadata) of a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2701,7 +2817,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-Synchronizes the data of a file. This API uses an asynchronous callback to return the result. **fdatasync()** is similar to **fsync()**, but does not flush modified metadata unless that metadata is needed.
+Synchronizes the data (excluding the metadata) of a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2736,7 +2852,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 fdatasyncSync(fd: number): void
 
-Synchronizes the data of a file. This API returns the result synchronously. **fdatasync()** is similar to **fsync()**, but does not flush modified metadata unless that metadata is needed.
+Synchronizes the data (excluding the metadata) of a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3026,7 +3142,7 @@ Sets the offset of a file.
 
 | Type                  | Description        |
 | --------------------- | ---------- |
-| number | Position of the current offset as measured from the beginning of the file.|
+| number | Position of the current offset as measured from the beginning of the file, in bytes.|
 
 **Error codes**
 
@@ -3278,7 +3394,7 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
 
 | Name   | Type    | Mandatory  | Description                         |
 | ------ | ------ | ---- | --------------------------- |
-| src | string | Yes   | Application sandbox path of the source file.|
+  | src | string | Yes   | Application sandbox path of the file to move.|
 | dest | string | Yes   | Application sandbox path of the destination file.|
 | mode | number | Yes   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.             |
@@ -3317,7 +3433,7 @@ Moves a file and forcibly overwrites the file with the same name in the destinat
 
 | Name   | Type    | Mandatory  | Description                         |
 | ------ | ------ | ---- | --------------------------- |
-| src | string | Yes   | Application sandbox path of the source file.|
+  | src | string | Yes   | Application sandbox path of the file to move.|
 | dest | string | Yes   | Application sandbox path of the destination file.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
@@ -3722,7 +3838,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
-Creates a stream based on a file path. This API uses a promise to return the result.
+Creates a stream based on a file path. This API uses a promise to return the result. To close the stream, use **close()** of [Stream](#stream).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3761,7 +3877,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-Creates a stream based on a file path. This API uses an asynchronous callback to return the result.
+Creates a stream based on a file path. This API uses an asynchronous callback to return the result. To close the stream, use **close()** of [Stream](#stream).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3796,7 +3912,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createStreamSync(path: string, mode: string): Stream
 
-Creates a stream based on a file path. This API returns the result synchronously.
+Creates a stream based on a file path. This API returns the result synchronously. To close the stream, use **close()** of [Stream](#stream).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3831,7 +3947,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
-Opens a stream based on an FD. This API uses a promise to return the result.
+Opens a stream based on an FD. This API uses a promise to return the result. To close the stream, use **close()** of [Stream](#stream).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3863,16 +3979,20 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     stream.closeSync();
   }).catch((err: BusinessError) => {
     console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
+    // If the file stream fails to be opened, the FD must be manually closed.
     fs.closeSync(file);
   });
   ```
+
+> **NOTE**
+>
+> If a file stream is created with an FD, the lifecycle of the FD is also transferred to the file stream object. When **close()** is called to close the file stream, the FD is also closed.
 
 ## fs.fdopenStream
 
 fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): void
 
-Opens a stream based on an FD. This API uses an asynchronous callback to return the result.
+Opens a stream based on an FD. This API uses an asynchronous callback to return the result. To close the stream, use **close()** of [Stream](#stream).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3897,19 +4017,24 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
       console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
+      stream.closeSync();
     } else {
       console.info("fdopen stream succeed");
+      // If the file stream fails to be opened, the FD must be manually closed.
       fs.closeSync(file);
     }
-    stream.closeSync();
   });
   ```
+
+> **NOTE**
+>
+> If a file stream is created with an FD, the lifecycle of the FD is also transferred to the file stream object. When **close()** is called to close the file stream, the FD is also closed.
 
 ## fs.fdopenStreamSync
 
 fdopenStreamSync(fd: number, mode: string): Stream
 
-Opens a stream based on an FD. This API returns the result synchronously.
+Opens a stream based on an FD. This API returns the result synchronously. To close the stream, use **close()** of [Stream](#stream).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3936,9 +4061,12 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let stream = fs.fdopenStreamSync(file.fd, "r+");
-  fs.closeSync(file);
   stream.closeSync();
   ```
+
+> **NOTE**
+>
+> If a file stream is created with an FD, the lifecycle of the FD is also transferred to the file stream object. When **close()** is called to close the file stream, the FD is also closed.
 
 ## fs.createReadStream<sup>12+</sup>
 
@@ -4131,24 +4259,26 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { fileuri } from '@kit.CoreFileKit';
+import { fileUri } from '@kit.CoreFileKit';
+import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let pathDir: string = context.filesDir;
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
-let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
-let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
+let copySignal = new fs.TaskSignal;
 let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   if (progress.processedSize / progress.totalSize > 0.5) {
-    options.copySignal.cancel();
+    copySignal.cancel();
   }
 };
 let options: fs.CopyOptions = {
   "progressListener" : progressListener,
   "copySignal" : new fs.TaskSignal,
 }
-console.info("copyFileWithCancel success.", + options.copySignal.onCancel());
+console.info("copyFileWithCancel success.");
 try {
   fs.copy(srcDirPathLocal, dstDirUriLocal, options, (err: BusinessError) => {
     if (err) {
@@ -4184,6 +4314,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
 ```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { TaskSignal } from '@ohos.file.fs';
 let copySignal: fs.TaskSignal = new TaskSignal();
 copySignal.onCancel().then(() => {
     console.info("copyFileWithCancel success.");
@@ -5138,7 +5270,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fsfileIo.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
   let writeOption: WriteOptions = {
@@ -5570,6 +5702,16 @@ Enumerates the access modes to verify. If this parameter is left blank, the syst
 | READ    | 4     | Verify the read permission on the file.|
 | READ_WRITE    | 6     | Verify the read/write permission on the file.|
 
+## AccessFlagType<sup>12+</sup>
+
+Enumerates the locations of the file to verify.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name       | Value      | Description               |
+| ----------- | --------------- | ------------------ |
+| LOCAL | 0     | The file is stored locally.         |
+
 ## ReadOptions<sup>11+</sup>
 
 Defines the options used in **read()**.
@@ -5581,7 +5723,7 @@ Defines the options used in **read()**.
 | Name       | Type      | Mandatory      | Description               |
 | ----------- | --------------- | ------------------ |------------------ |
 | length | number     | No| Length of the data to read, in bytes. This parameter is optional. The default value is the buffer length.          |
-|  offset    | number     | No| Start position of the file to read, which is determined by **filePointer** plus **offset**. This parameter is optional. By default, data is read from the **filePointer**.|
+|  offset    | number     | No| Start position of the file to read (**filePointer** plus **offset**), in bytes. This parameter is optional. By default, data is read from the **filePointer**.|
 
 ## ReadTextOptions<sup>11+</sup>
 
@@ -5604,7 +5746,7 @@ Defines the options use din **write()**. It inherits from [Options](#options11).
 | Name       | Type      | Mandatory      | Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
 | length | number     | No| Length of the data to write, in bytes. This parameter is optional. The default value is the buffer length.<br>**Atomic service API**: This API can be used in atomic services since API version 11.          |
-|  offset    | number     | No| Start position of the file to write, in bytes (which is determined by **filePointer** plus **offset**). This parameter is optional. By default, data is written from the **filePointer**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+|  offset    | number     | No| Start position of the file to write (**filePointer** plus **offset**), in bytes. This parameter is optional. By default, data is written from the **filePointer**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | encoding    | string | No| Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
 
 ## ListFileOptions<sup>11+</sup>
@@ -5624,6 +5766,8 @@ Defines the options used in **listFile()**.
 ## ReadStream<sup>12+</sup>
 
 Defines a readable stream. You need to use [fs.createReadStream](#fscreatereadstream12) to create a **ReadStream** instance.
+
+The data obtained by **ReadStream** is a decoded string. Currently, only the UTF-8 format is supported.
 
 ### Properties
 
@@ -5645,14 +5789,14 @@ Adjusts the position of the readable stream offset pointer.
 
 | Name   | Type    | Mandatory  | Description                         |
 | ------ | ------ | ---- | --------------------------- |
-| offset | number | Yes   | Number of bytes to move the offset, in bytes.|
+| offset | number | Yes   | Number of bytes to move the offset.|
 | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
 
 **Return value**
 
 | Type                  | Description        |
 | --------------------- | ---------- |
-| number | Position of the current offset as measured from the beginning of the file, in bytes).|
+| number | Position of the current offset as measured from the beginning of the file, in bytes.|
 
 **Error codes**
 
@@ -5711,14 +5855,14 @@ Adjusts the position of the writeable stream offset pointer.
 
 | Name   | Type    | Mandatory  | Description                         |
 | ------ | ------ | ---- | --------------------------- |
-| offset | number | Yes   | Offset to set, in bytes.|
+  | offset | number | Yes   | Number of bytes to move the offset.|
 | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
 
 **Return value**
 
 | Type                  | Description        |
 | --------------------- | ---------- |
-| number | Position of the current offset as measured from the beginning of the file.|
+  | number | Position of the current offset as measured from the beginning of the file, in bytes.|
 
 **Error codes**
 
