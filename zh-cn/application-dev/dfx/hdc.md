@@ -101,14 +101,15 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 3. 输入以下内容，在PATH路径下**增加**SDK路径信息，具体路径信息以SDK**实际配置路径**为准。
 
-   以下内容以本地SDK的toolchains完整路径<!--RP1-->_$YourSDKPath_/openharmony/toolchains为例：
+<!--RP2-->
+   以下内容以本地SDK的toolchains完整路径_$YourSDKPath_/openharmony/toolchains为例：
 
    ```shell
    HDC_SDK_PATH=$YourSDKPath/openharmony/toolchains
    launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH # 仅MacOS需要在此执行，Linux无须执行
    export PATH=$PATH:$HDC_SDK_PATH
    ```
-<!--RP1End-->
+<!--RP2End-->
 
 4. 编辑完成后，单击**Esc**键，退出编辑模式，然后输入“:wq”，单击**Enter**键保存。
 
