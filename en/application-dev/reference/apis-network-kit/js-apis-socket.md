@@ -3803,7 +3803,7 @@ Creates a **LocalSocket** object.
 **Return value**
 
 | Type                              | Description                   |
-  | :--------------------------------- | :---------------------- |
+| :--------------------------------- | :---------------------- |
 | [LocalSocket](#localsocket11) | **LocalSocket** object.|
 
 **Example**
@@ -6981,6 +6981,8 @@ Defines a TLS socket server connection. Before calling TLSSocketServer APIs, you
 listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 Listens to client connections after **bind** is successfully called. This API uses an asynchronous callback to return the result. After a connection is established, a TLS session will be created and initialized and a certificate key will be loaded and verified. 
+
+**NOTE**<br>If the IP address is set to **0.0.0.0**, listening works for all IP addresses of the local host.
 
 **Required permissions**: ohos.permission.INTERNET
 

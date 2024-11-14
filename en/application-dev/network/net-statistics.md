@@ -11,7 +11,6 @@ Its functions include:
 - Subscribing to traffic change events by NIC or UID
 
 > **NOTE**
-
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics.md).
 
 The following describes the development procedure specific to each application scenario.
@@ -20,24 +19,24 @@ The following describes the development procedure specific to each application s
 
 For the complete list of APIs and example code, see [Traffic Management](../reference/apis-network-kit/js-apis-net-statistics.md).
 
-| API                                                                                                            | Description                                                                                                  |
-|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                                           | Obtains the real-time downlink data traffic of the specified NIC.                                                                                      |
-| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                                           | Obtains the real-time uplink data traffic of the specified NIC.                                                                                      |
-| getCellularRxBytes(callback: AsyncCallback\<number>): void;                                                     | Obtains the real-time downlink data traffic of the cellular network.                                                                                       |
-| getCellularTxBytes(callback: AsyncCallback\<number>): void;                                                     | Obtains the real-time uplink data traffic of the cellular network.                                                                                       |
-| getAllRxBytes(callback: AsyncCallback\<number>): void;                                                          | Obtains the real-time downlink data traffic of the all NICs.                                                                                      |
-| getAllTxBytes(callback: AsyncCallback\<number>): void;                                                          | Obtains the real-time uplink data traffic of the all NICs.                                                                                      |
-| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                                             | Obtains the real-time downlink data traffic of the specified application.                                                                                      |
-| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                                             | Obtains the real-time uplink data traffic of the specified application.                                                                                      |
-| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void;        | Obtains the historical data traffic of the specified NIC. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).             |
-| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;              | Obtains the historical data traffic of the specified application. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).             |
-| getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                                       | Obtains the real-time downlink data traffic of the specified socket.                                                                                  |
-| getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                                       | Obtains the real-time uplink data traffic of the specified socket.                                                                                  |
-| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void;            | Subscribes to traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).               |
-| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;          | Unsubscribes from traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).             |
-| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>;                      | Obtains the traffic statistics of all applications on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md).|
-| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence>; | Obtains the traffic statistics of the specified application on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md). |
+| API                                                      | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void; | Obtains the real-time downlink data traffic of the specified NIC.                               |
+| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified NIC.                               |
+| getCellularRxBytes(callback: AsyncCallback\<number>): void;  | Obtains the real-time downlink data traffic of the cellular network.                                  |
+| getCellularTxBytes(callback: AsyncCallback\<number>): void;  | Obtains the real-time uplink data traffic of the cellular network.                                  |
+| getAllRxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time downlink data traffic of the all NICs.                               |
+| getAllTxBytes(callback: AsyncCallback\<number>): void;       | Obtains the real-time uplink data traffic of the all NICs.                               |
+| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void; | Obtains the real-time downlink data traffic of the specified application.                               |
+| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified application.                               |
+| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyiface10).|
+| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified application. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyuid10).|
+| getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | Obtains the real-time downlink data traffic of the specified socket.                             |
+| getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | Obtains the real-time uplink data traffic of the specified socket.                             |
+| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void; | Subscribes to traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsonnetstatschange10).|
+| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void; | Unsubscribes from traffic change events. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsoffnetstatschange10).|
+| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo\>; | Obtains the traffic statistics of all applications on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12).|
+| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence\>; | Obtains the traffic statistics of the specified application on the specified network within the specified period. This is a system API. For details, see [API Reference](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12).|
 
 ## Obtaining Real-Time Traffic Data by NIC or UID
 
