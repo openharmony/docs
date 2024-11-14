@@ -21,7 +21,7 @@ API version 12及之后，系统为提升用户隐私安全保护能力，剪贴
 
 - 使用安全控件
 
-    使用[安全控件](../../../application-dev/security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
+    使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
     已经使用了安全控件的应用无需做任何适配就可以访问剪贴板内容。
 
@@ -30,9 +30,10 @@ API version 12及之后，系统为提升用户隐私安全保护能力，剪贴
     ohos.permission.READ_PASTEBOARD是受限的user_grant（用户授权）权限，使用自定义控件的应用可以通过申请ohos.permission.READ_PASTEBOARD权限，在用户授权的场景下访问剪贴板内容。
 
     权限申请步骤：
+    <!--RP1-->
+    1.通过[ACL方式](../../security/AccessToken/declare-permissions-in-acl.md)，申请高级别权限。
     
-    1.通过[ACL方式](../../../application-dev/security/AccessToken/declare-permissions-in-acl.md)，申请高级别权限。
+    2.在module.json5配置文件中[声明权限](../../security/AccessToken/declare-permissions.md)。
     
-    2.在module.json5配置文件中[声明权限](../../../application-dev/security/AccessToken/declare-permissions.md)。
-    
-    3.通过弹窗[向用户申请权限](../../../application-dev/security/AccessToken/request-user-authorization.md)。
+    3.通过弹窗[向用户申请权限](../../security/AccessToken/request-user-authorization.md)。
+    <!--RP1End-->
