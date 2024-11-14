@@ -34,7 +34,7 @@
     target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
    ```
 
-3. 调用cameraManager类中的OH_CameraManager_CreateCaptureSession()方法创建一个会话。
+3. 调用cameraManager类中的[OH_CameraManager_CreateCaptureSession()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createcapturesession)方法创建一个会话。
      
    ```c++
     Camera_Manager *cameraManager = nullptr;
@@ -49,8 +49,17 @@
     }
    ```
 
-4. 调用captureSession类中的OH_CaptureSession_BeginConfig()方法配置会话。
-     
+4. 调用captureSession类中的[OH_CaptureSession_SetSessionMode()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_setsessionmode)方法配置会话模式。
+
+   ```c++
+    ret = OH_CaptureSession_SetSessionMode(captureSession, NORMAL_PHOTO);
+    if (ret != CAMERA_OK) {
+        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetSessionMode failed.");
+    }
+   ```
+
+5. 调用captureSession类中的[OH_CaptureSession_BeginConfig()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_beginconfig)方法配置会话。
+
    ```c++
     ret = OH_CaptureSession_BeginConfig(captureSession);
     if (ret != CAMERA_OK) {
@@ -58,9 +67,9 @@
     }
    ```
 
-5. 使能。向会话中添加相机的输入流和输出流，调用OH_CaptureSession_AddInput()添加相机的输入流；调用OH_CaptureSession_AddPreviewOutput()和OH_CaptureSession_AddPhotoOutput()添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
+6. 使能。向会话中添加相机的输入流和输出流，调用[OH_CaptureSession_AddInput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addinput)添加相机的输入流；调用[OH_CaptureSession_AddPreviewOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addpreviewoutput)和[OH_CaptureSession_AddPhotoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addphotooutput)添加相机的输出流。以下示例代码以添加预览流previewOutput和拍照流photoOutput为例，即当前模式支持拍照和预览。
 
-     调用captureSession类中的commitConfig()和start()方法提交相关配置，并启动会话。
+     调用captureSession类中的[OH_CaptureSession_CommitConfig()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_commitconfig)和[OH_CaptureSession_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_start)方法提交相关配置，并启动会话。
      
    ```c++
     // 向会话中添加相机输入流
@@ -94,7 +103,7 @@
     }
    ```
 
-6. 会话控制。调用captureSession类中的stop()方法可以停止当前会话。调用removeOutput()和addOutput()方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
+7. 会话控制。调用captureSession类中的[OH_CaptureSession_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_stop)方法可以停止当前会话。调用[OH_CaptureSession_RemovePhotoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_removephotooutput)和[OH_CaptureSession_AddVideoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_capturesession_addvideooutput)方法可以完成会话切换控制。以下示例代码以移除拍照流photoOutput，添加视频流videoOutput为例，完成了拍照到录像的切换。
      
    ```c++
     ret = OH_CaptureSession_Stop(captureSession);
