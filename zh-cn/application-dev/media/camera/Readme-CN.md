@@ -38,6 +38,7 @@
   - [预览(C/C++)](native-camera-preview.md)
   - [预览流二次处理(C/C++)](native-camera-preview-imageReceiver.md)
   - [拍照(C/C++)](native-camera-shooting.md)
+  - [分段式拍照(C/C++)](native-camera-deferred-capture.md)
   - [录像(C/C++)](native-camera-recording.md)
   - [录像流二次处理(C/C++)](native-camera-recording-imageReceiver.md)
   - [元数据(C/C++)](native-camera-metadata.md)
