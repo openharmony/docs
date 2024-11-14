@@ -4003,6 +4003,20 @@ Allows a system application to access the microcontroller unit (MCU) log directo
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_VIRTUAL_KEYBOARD
+
+Allows an application to update the virtual keyboard status or a service to query the virtual keyboard status.
+
+With this permission, the application can update the virtual keyboard status, and the service can query the virtual keyboard status. Currently, this permission is available only to 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
