@@ -130,9 +130,8 @@
 5. 使用restore()方法恢复数据。
      
    ```ts
-   let restoreFile= 'BK001';
    try {
-     kvStore.restore(restoreFile, (err) => {
+     kvStore.restore(backupFile, (err) => {
        if (err) {
          console.error(`Fail to restore data. Code:${err.code},message:${err.message}`);
        } else {
