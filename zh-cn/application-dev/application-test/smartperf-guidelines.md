@@ -913,7 +913,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    Socket Process called!
    —
   ```
-  >**说明**
 
 
 - 获取电池电量
