@@ -23,7 +23,7 @@ type NetBearType = connection.NetBearType
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [connection.NetBearType](./js-apis-net-connection.md#NetBearType) | 网络类型。 |
+| [connection.NetBearType](./js-apis-net-connection.md#netbeartype) | 网络类型。 |
 
 
 
