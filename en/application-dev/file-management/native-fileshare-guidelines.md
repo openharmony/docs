@@ -21,7 +21,7 @@ For details about the APIs, see [FileShare](../reference/apis-core-file-kit/file
 
 - Before using the **FileShare** APIs, check that your device has SystemCapability.FileManagement.AppFileService.FolderAuthorization.
 
-- To call **FileShare** APIs, the application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md).
+- To call **FileShare** APIs, the application must have the ohos.permission.FILE_ACCESS_PERSIST permission. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 ## How to Develop
 

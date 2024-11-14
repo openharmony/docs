@@ -117,7 +117,7 @@ The following example provides only the settings for accessing the Security & Pr
 
 The caller must have the [ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER](../AccessToken/permissions-for-system-apps.md#ohospermissionaccess_security_privacy_center) permission.
 
-For details about how to request the permission, see [Workflow for Using Permissions](../AccessToken/determine-application-mode.md).
+For details about how to request the permission, see [Workflow for Requesting Permissions](../AccessToken/determine-application-mode.md).
 
 ## Accessing the Security & Privacy Framework via a UIAbility
 
