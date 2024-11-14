@@ -10,16 +10,16 @@ The following table lists the APIs for event listening. For details, see [Input]
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
-| Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback) |Creates a key event listener.|
-| Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback) |Creates a mouse event listener.|
-| Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback) |Creates a touch event listener.|
-| Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback) |Creates a listener for all axis events.|
-| Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback) |Creates a listener for the specified type of axis events.|
-| Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback) |Removes a key event listener.|
-| Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback) |Removes a mouse event listener.|
-| Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback) |Removes a touch event listener.|
-| Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback) |Removes a listener for all axis events.|
-| Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback) |Removes a listener for the specified type of axis events.|
+| Input_Result OH_Input_AddKeyEventMonitor(Input_KeyEventCallback callback) |Creates a key event listener. |
+| Input_Result OH_Input_AddMouseEventMonitor(Input_MouseEventCallback callback) |Creates a mouse event listener. |
+| Input_Result OH_Input_AddTouchEventMonitor(Input_TouchEventCallback callback) |Creates a touch event listener. |
+| Input_Result OH_Input_AddAxisEventMonitorForAll(Input_AxisEventCallback callback) |Creates a listener for all axis events. |
+| Input_Result OH_Input_AddAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback) |Creates a listener for the specified type of axis events. |
+| Input_Result OH_Input_RemoveKeyEventMonitor(Input_KeyEventCallback callback) |Removes a key event listener. |
+| Input_Result OH_Input_RemoveMouseEventMonitor(Input_MouseEventCallback callback) |Removes a mouse event listener. |
+| Input_Result OH_Input_RemoveTouchEventMonitor(Input_TouchEventCallback callback) |Removes a touch event listener. |
+| Input_Result OH_Input_RemoveAxisEventMonitorForAll(Input_AxisEventCallback callback) |Removes a listener for all axis events. |
+| Input_Result OH_Input_RemoveAxisEventMonitor(InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback) |Removes a listener for the specified type of axis events. |
 
 ## How to Develop
 

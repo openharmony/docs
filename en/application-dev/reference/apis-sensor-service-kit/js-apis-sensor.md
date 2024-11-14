@@ -4315,11 +4315,11 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                |
-| ---- | ------ | ---- | ---- | ------------------------------------ |
-| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s².|
-| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s².|
-| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s².|
+| Name| Type  | Readable| Writable| Description                                                      |
+| ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s². The value is equal to the reported physical quantity.|
+| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s². The value is equal to the reported physical quantity.|
+| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s². The value is equal to the reported physical quantity.|
 
 
 ## LinearAccelerometerResponse
@@ -4376,11 +4376,11 @@ Describes the orientation sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                             |
-| ----- | ------ | ---- | ---- | --------------------------------- |
-| alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees.|
-| beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees.|
-| gamma | number | Yes  | Yes  | Rotation angle of the device around the y-axis, in degrees.|
+| Name | Type  | Readable| Writable| Description                                                 |
+| ----- | ------ | ---- | ---- | ----------------------------------------------------- |
+| alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees. The value ranges from 0 to 360. |
+| beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees. The value ranges from 0 to ±180.|
+| gamma | number | Yes  | Yes  | Rotation angle of the device around the y-axis, in degrees. The value ranges from 0 to ±90. |
 
 
 ## RotationVectorResponse
@@ -4407,11 +4407,11 @@ Describes the gyroscope sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                            |
-| ---- | ------ | ---- | ---- | -------------------------------- |
-| x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s.|
-| y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s.|
-| z    | number | Yes  | Yes  | Angular velocity of rotation around the z-axis of the device, in rad/s.|
+| Name| Type  | Readable| Writable| Description                                                  |
+| ---- | ------ | ---- | ---- | ------------------------------------------------------ |
+| x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
+| y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
+| z    | number | Yes  | Yes  | Angular velocity of rotation around the z-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
 
 
 ## GyroscopeUncalibratedResponse
