@@ -3816,18 +3816,6 @@ let myContact: contact.Contact = {
 ```
 
 
-  或使用new一个Contact对象的方式创建数据：
-
-```js
-let myContact = new contact.Contact();
-let name = new contact.Name();
-name.fullName = "fullName";
-let phoneNumber = new contact.PhoneNumber();
-phoneNumber.phoneNumber = "138xxxxxxxx";
-myContact.name = name;
-myContact.phoneNumbers = [phoneNumber];
-```
-
 
 ## ContactAttributes
 
@@ -3856,14 +3844,6 @@ let contactAttributes: contact.ContactAttributes = {
         contact.Attribute.ATTR_PHONE
     ]
 };
-```
-
-或使用new一个ContactAttributes对象的方式创建数据：
-
-
-```js
-let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
 
 
@@ -3976,13 +3956,6 @@ let holder: contact.Holder = {
 };
 ```
 
-  或使用new一个Holder对象的方式创建数据：
-
-```js
-let holder = new contact.Holder();
-holder.holderId = 1;
-```
-
 
 ## Event
 
@@ -4053,13 +4026,6 @@ let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
-```
-
-  或使用new一个Group对象的方式创建数据：
-
-```js
-let group = new contact.Group();
-group.title = "title";
 ```
 
 
@@ -4147,14 +4113,6 @@ let name: contact.Name = {
 };
 ```
 
-  或使用new一个name对象的方式创建数据：
-
-```js
-let name = new contact.Name();
-name.familyName = "familyName";
-name.fullName = "fullName";
-```
-
 
 ## NickName
 
@@ -4179,14 +4137,6 @@ let nickName: contact.NickName = {
 };
 ```
 
-  或使用new一个NickName对象的方式创建数据：
-
-```js
-let nickName = new contact.NickName();
-nickName.nickName = "nickName";
-```
-
-
 ## Note
 
 联系人的备注类。
@@ -4208,13 +4158,6 @@ nickName.nickName = "nickName";
 let note: contact.Note = {
     noteContent: "noteContent"
 };
-```
-
-  或使用new一个Note对象的方式创建数据：
-
-```js
-let note = new contact.Note();
-note.noteContent = "noteContent";
 ```
 
 
@@ -4241,14 +4184,6 @@ let organization: contact.Organization = {
     name: "name",
     title: "title"
 };
-```
-
-  或使用new一个Organization对象的方式创建数据：
-
-```js
-let organization = new contact.Organization();
-organization.name = "name";
-organization.title = "title";
 ```
 
 
@@ -4337,13 +4272,6 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 let portrait: contact.Portrait = {
     uri: "uri"
 };
-```
-
-  或使用new一个Portrait对象的方式创建数据：
-
-```js
-let portrait = new contact.Portrait();
-portrait.uri = "uri";
 ```
 
 
@@ -4529,9 +4457,3 @@ let website: contact.Website = {
 };
 ```
 
-  或使用new一个Website对象的方式创建数据：
-
-```js
-let website = new contact.Website();
-website.website = "website";
-```
