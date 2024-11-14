@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+允许对三方应用进程设置保活。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.ACCESS_BBOX_DIR
 
 允许系统应用读取bbox路径下的日志文件。

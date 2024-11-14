@@ -1415,6 +1415,60 @@ The target bundle does not exist.
 
 检查传入的bundleName、userId和appIndex参数是否正确。
 
+## 16300008 指定的包不存在主UIAbility。
+
+**错误信息**
+
+The target bundle has no main uiability.
+
+**错误描述**
+
+应用不存在主UIAbility。
+
+**可能原因**
+
+应用的mainElement不是UIAbility。
+
+**处理步骤**
+
+检查应用module.json中的mainElement对应的ability是否是UIAbility。
+
+## 16300009 指定的包不存在状态栏。
+
+**错误信息**
+
+The target bundle has no status-bar ability.
+
+**错误描述**
+
+应用不存在状态栏。
+
+**可能原因**
+
+应用不存在状态栏。
+
+**处理步骤**
+
+检查应用是否有状态栏。
+
+## 16300010 指定的应用在运行中但没有绑定状态栏。
+
+**错误信息**
+
+The target application is not attached to status bar.
+
+**错误描述**
+
+应用运行后没有绑定状态栏。
+
+**可能原因**
+
+应用有状态栏，但在运行过程中没有绑定状态栏。
+
+**处理步骤**
+
+检查应用是否绑定状态栏。
+
 ## 29600001 图片编辑内部错误。
 
 **错误信息**
