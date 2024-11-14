@@ -63,7 +63,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-2. Use **OH_FileShare_ActivatePermission** to activate the persistent permissions on files. The maximum value of **policyNum** is **500**.
+2. Call **OH_FileShare_ActivatePermission** to activate the persistent permissions on files. The maximum value of **policyNum** is **500**.
     ```c++
     auto ret = OH_FileShare_ActivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -77,7 +77,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-3. Use **OH_FileShare_DeactivatePermission** to deactivate the persistent permissions on files. The maximum value of **policyNum** is **500**.
+3. Call **OH_FileShare_DeactivatePermission** to deactivate the persistent permissions on files. The maximum value of **policyNum** is **500**.
     ```c++
     auto ret = OH_FileShare_DeactivatePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -91,7 +91,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-4. Use **OH_FileShare_RevokePermission** to revoke the persistent permissions from files. The maximum value of **policyNum** is **500**.
+4. Call **OH_FileShare_RevokePermission** to revoke the persistent permissions from files. The maximum value of **policyNum** is **500**.
     ```c++
     auto ret = OH_FileShare_RevokePermission(policy, POLICY_NUM, &result, &resultNum);
     if (ret != ERR_OK) {
@@ -105,7 +105,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     }
     OH_FileShare_ReleasePolicyErrorResult(result, resultNum);
     ```
-5. Use **OH_FileShare_CheckPersistentPermission** to check the persistent permissions on files. The maximum value of **policyNum** is **500**.
+5. Call **OH_FileShare_CheckPersistentPermission** to check the persistent permissions on files. The maximum value of **policyNum** is **500**.
     ```c++
     bool *result = nullptr;
     auto ret = OH_FileShare_CheckPersistentPermission(policy, POLICY_NUM, &result, &resultNum);
