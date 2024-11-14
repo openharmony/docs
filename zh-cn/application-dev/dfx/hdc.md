@@ -465,11 +465,7 @@ hdc list targets -v
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | hdc start server, listening: _::ffff:127.0.0.1:8710_ | 启动服务进程并显示服务进程网络监听参数 |
-   | Start server finish | 服务进程启动成功 |
-   | hdc server process already exists | 服务进程已存在 |
-   | Kill server finish | 重启服务进程，原服务进程终止成功 |
-   | [Fail]具体失败信息 | 服务进程启动失败 |
+   | 无返回值 | 服务进程启动成功 |
 
    **使用方法：**
 
@@ -1082,26 +1078,15 @@ hdc -l5 start
 
 | 平台 | 路径 | 备注 |
 | -------- | -------- | -------- |
-| Windows | %temp%\hdc_logs | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc_logs |
-| Linux | /tmp/hdc_logs | - |
-| MacOS | $TMPDIR/hdc_logs | - |
-
-hdc_logs日志文件夹将存在以下类型日志：
-
-|日志类型 | 日志名称格式 | 日志用途 | 备注 |
-| -------- | -------- | -------- | -------- |
-| 实时日志 | hdc.log | 实时记录hdc server日志 | 每次重启hdc server，将会重命名原有日志并记录新的hdc.log|
-| 历史日志临时文件 | hdc-%Y%m%d-%H%M%S.log | 转储历史日志归档生成的中间文件 | 以时间`2024年9月19日16:18:57.921`为例，<br>对应时间格式为：`20240919-161857921`，<br>生成的日志临时文件名为：`hdc-20240919-161857921.log` |
-| 历史日志归档文件 | hdc-%Y%m%d-%H%M%S.log.tgz | 压缩存储历史日志 | 归档文件为`.tgz`类型压缩文件，可使用解压工具进行解压查看。<br>以历史日志临时文件名`hdc-20240919-161857921.log`为例，<br>对应的历史日志归档文件名为：`hdc-20240919-161857921.log.tgz`，<br>历史日志归档文件生成后，对应的历史日志临时文件将自动删除。 |
-| 实时日志缓存临时文件 | .hdc.cache.log | 实时日志产生的临时缓存 | |
+| Windows | %temp%\hdc.log | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc.log |
+| Linux | /tmp/hdc.log | - |
+| MacOS | $TMPDIR/hdc.log | - |
 
 日志相关环境变量：
 
 | 环境变量名称             | 默认值 | 说明                             |
 |--------------------|-----|--------------------------------|
 | OHOS_HDC_LOG_LEVEL | 5   | 用于配置服务进程日志记录级别，日志级别详情参考：<br>[全局option相关命令](#全局option相关命令)指定运行时日志等级章节  |
-| OHOS_HDC_LOG_LIMIT | 300 | 用于配置日志条目数量阈值。<br>当日志记录超出此阈值时，<br>系统将自动启动日志清理机制，<br>以维护日志存储空间的优化。<br>当前系统设定下，日志存储空间的上限为3GB，<br>该限制目前不可调整。|
-
 
 环境变量配置方法：
 
@@ -1269,5 +1254,5 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 1. 命令行执行`hdc list targets`查看返回值。
 2. 查看`设备管理`是否有`HDC Device`。
-3. 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录下hdc_logs文件夹中，不同平台目录位置存在差异，可参考[日志获取场景](#日志获取场景)）。
+3. 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录，不同平台目录位置存在差异，可参考[日志获取场景](#日志获取场景)）。
 4. 通过hdc.log日志定位相关问题。
