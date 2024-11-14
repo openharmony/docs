@@ -25,6 +25,18 @@ Allows a window to be displayed with animation for an atomic service without the
 
 **Valid since**: 12
 
+### ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+Allows a system application to set the keep-alive flag for other applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ### ohos.permission.ACCESS_BBOX_DIR
 
 Allows a system application to access the bbox directory.
