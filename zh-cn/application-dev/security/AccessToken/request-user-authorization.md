@@ -40,7 +40,7 @@
 
 效果展示：
 
-![zh-cn_image_local](figures/zh-cn_image_local.png)
+![zh-cn_image_location](figures/zh-cn_image_location.png)
 
 1. 申请ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION权限，配置方式请参见[声明权限](declare-permissions.md)。
 
