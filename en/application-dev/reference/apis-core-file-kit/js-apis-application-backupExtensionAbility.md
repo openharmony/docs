@@ -60,7 +60,9 @@ Called when data is being backed up. You need to implement extended data backup 
 onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
 
 Called to pass parameters to the application during the application backup or restore process.
+
 **onBackupEx()** and **onBackup()** are mutually exclusive. If **onBackupEx()** needs to be overridden, call **onBackupEx()** preferentially.
+
 The return value of **onBackupEx()** cannot be an empty string. If an empty string is returned, **onRestore** will be called.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
@@ -102,9 +104,6 @@ The return value of **onBackupEx()** cannot be an empty string. If an empty stri
 > **NOTE**
 >
 > The following shows the sample code for asynchronous implementation.
-
-
-
 
 **Example**
 
@@ -162,8 +161,10 @@ Called when data is being restored. You need to implement extended data restore 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
 Called when data is being restored. You need to implement the extended data restore operation. Asynchronous implementation is supported.
+
 **onRestoreEx** and **onRestore** are mutually exclusive. Call **onRestoreEx** preferentially if it is overridden.
 The return value of **onRestoreEx** cannot be an empty string. If an empty string is returned, the system will attempt to call **onRestore**.
+
 The return value of **onRestoreEx()** is in JSON format. For details, see the sample code.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
@@ -241,9 +242,10 @@ This callback returns the service processing progress of the application. The re
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 > **NOTE**
+> 
+> - The system provides the default processing mechanism if **onProcess** is not implemented. If **onProcess** is used, the return value must strictly comply with that in the sample code.
+> - If **onProcess** is used, **onBackup/onBackupEx** and **onRestore/onRestoreEx** must be asynchronously executed in a dedicated thread. Otherwise, **onProcess** cannot run properly. For details, see the sample code.
 >
-> - The system provides the default processing mechanism if **onProcess** is not implemented. If **onProcess** is used, the return value must strictly comply with that in the sample code. If **onProcess** is used, **onBackup/onBackupEx** and **onRestore/onRestoreEx** must be asynchronously executed
->   in a dedicated thread. Otherwise, **onProcess** cannot run properly. For details, see the sample code.
 > - The following example shows the recommended use of **onProcess**.
 
 **Example**
@@ -253,43 +255,55 @@ This callback returns the service processing progress of the application. The re
   import { taskpool } from '@kit.ArkTS';
 
   interface ProgressInfo {
-    progressed: number,
-    total: number
+    name: string, // appName
+    processed: number, // Processed data records.
+    total: number, // Total count.
+    isPercentage: boolean // (Optional) The value true means to display the progress in percentage; the value false or not implemented means to display the progress by the number of items.
   }
 
   class BackupExt extends BackupExtensionAbility {
     // In the following code, the appJob method is the simulated service code, and args specifies the parameters of appJob(). This method is used to start a worker thread in the task pool.
     async onBackup() {
       console.log(`onBackup begin`);
+      let args = 100; // args is a parameter of appJob().
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
-        await taskpool.execute(jobTask, taskpool.Priority.HIGH);
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
         console.error("onBackup error." + error.message);
       }
+      taskpool.terminateTask (jobTask); // Manually destroy the task.
       console.log(`onBackup end`);
     }
 
     async onRestore() {
       console.log(`onRestore begin`);
+      let args = 100; // args is a parameter of appJob().
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
-        await taskpool.execute(jobTask, taskpool.Priority.HIGH);
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
         console.error("onRestore error." + error.message);
       }
+      taskpool.terminateTask (jobTask); // Manually destroy the task.
       console.log(`onRestore end`);
     }
-
+ 
 
     onProcess(): string {
       console.log(`onProcess begin`);
-      let processInfo: ProgressInfo = {
-        progressed: 100, // Processed data.
-        total: 1000, // Total data.
-      }
+      let process: string = `{
+       "progressInfo":[
+         {
+          "name": "callact", // appName
+          "processed": 100, // Processed data records.
+          "total": 1000, // Total count.
+          "isPercentage", true // (Optional) The value true means to display the progress in percentage; the value false or not implemented means to display the progress by the number of items.
+         }
+       ]
+      }`;
       console.log(`onProcess end`);
-      return JSON.stringify(processInfo);
+      return JSON.stringify(process);
     }
   }
 
