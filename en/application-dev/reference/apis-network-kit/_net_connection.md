@@ -15,8 +15,8 @@ Provides the C APIs of the network connection module for network management.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_connection.h](net__connection_8h.md) | Provides the C APIs of the network connection module for network management.| 
-| [net_connection_type.h](net__connection__type_8h.md) | Declares the structs for the C APIs of the network connection module.| 
+| [net_connection.h](net__connection_8h.md) | Provides the C APIs of the network connection module for network management.<br>**File to include**: \<network\/netmanager\/net_connection.h\>| 
+| [net_connection_type.h](net__connection__type_8h.md) | Declares the structs for the C APIs of the network connection module.<br>**File to include**: \<network\/netmanager\/net_connection_type.h\>| 
 
 
 ### Structs
@@ -27,11 +27,11 @@ Provides the C APIs of the network connection module for network management.
 | [NetConn_NetCapabilities](_net_conn___net_capabilities.md) | Network capability set.| 
 | [NetConn_NetAddr](_net_conn___net_addr.md) | Network address.| 
 | [NetConn_Route](_net_conn___route.md) | Route configuration.| 
-| [NetConn_HttpProxy](_net_conn___http_proxy.md) | Proxy configuration information.| 
+| [NetConn_HttpProxy](_net_conn___http_proxy.md) | Proxy configuration.| 
 | [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | Network connection information.| 
 | [NetConn_NetHandleList](_net_conn___net_handle_list.md) | Network list.| 
-| [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | Network connection callbacks. |
-| [NetConn_NetSpecifier](_net_conn___net_specifier.md) | Network specifier, including network capability sets and network identifier. |
+| [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | Defines network status callbacks.|
+| [NetConn_NetSpecifier](_net_conn___net_specifier.md) | Defines the network feature set, including a network capability set and a network ID.|
 
 
 ### Macros
@@ -57,13 +57,12 @@ Provides the C APIs of the network connection module for network management.
 | [NetConn_NetCapabilities](#netconn_netcapabilities) | Network capability set.| 
 | [NetConn_NetAddr](#netconn_netaddr) | Network address.| 
 | [NetConn_Route](#netconn_route) | Route configuration.| 
-| [NetConn_HttpProxy](#netconn_httpproxy) | Proxy configuration information.| 
+| [NetConn_HttpProxy](#netconn_httpproxy) | Proxy configuration.| 
 | [NetConn_ConnectionProperties](#netconn_connectionproperties) | Network connection information.| 
 | [NetConn_NetHandleList](#netconn_nethandlelist) | Network list.| 
 | (\*[OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | Pointer to the custom DNS resolver.| 
-| [NetConn_NetConnCallback](#netconn_netconncallback) | Network connection callbacks. |
-| [NetConn_NetSpecifier](#netconn_netspecifier) | Network specifier, including network capability sets and network identifier. |
-
+| [NetConn_NetConnCallback](#netconn_netconncallback) | Defines network status callbacks.|
+| [NetConn_NetSpecifier](#netconn_netspecifier) | Defines the network feature set, including a network capability set and a network ID.|
 
 ### Enums
 
@@ -89,12 +88,12 @@ Provides the C APIs of the network connection module for network management.
 | [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | Registers a custom DNS resolver.| 
 | [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver) (void) | Unregisters a custom DNS resolver.| 
 | [OH_NetConn_BindSocket](#oh_netconn_bindsocket) (int32_t socketFd, [NetConn_NetHandle](_net_conn___net_handle.md) \*netHandle) | Binds a socket to the specified network.|
-| [OH_NetConn_SetAppHttpProxy](#oh_netconn_setapphttpproxy) ([NetConn_HttpProxy](_net_conn___http_proxy.md) \*httpProxy) | Sets http proxy information to current application. |
-| [OH_NetConn_RegisterAppHttpProxyCallback](#oh_netconn_registerapphttpproxycallback) ([OH_NetConn_AppHttpProxyChange](#oh_netconn_apphttpproxychange) appHttpProxyChange, uint32_t \*callbackId) | Registers callback to listen for changes to the application-level http proxy. |
-| [OH_NetConn_UnregisterAppHttpProxyCallback](#oh_netconn_unregisterapphttpproxycallback) (uint32_t callbackId) | Unregisters a callback function that listens for application-level proxy changes. | 
-| [OH_NetConn_RegisterNetConnCallback](#oh_netconn_registernetconncallback) ([NetConn_NetSpecifier](_net_conn___net_specifier.md) \*specifier, [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t timeoutMS, uint32_t \*callbackId) | Registers callback, used to monitor specific network status. |
-| [OH_NetConn_RegisterDefaultNetConnCallback](#oh_netconn_registerdefaultnetconncallback) ([NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t \*callbackId) | Registers a callback to listen default network's status changed. |
-| [OH_NetConn_UnregisterNetConnCallback](#oh_netconn_unregisternetconncallback) (uint32_t callbackId) | Unregisters network status callback. |
+| [OH_NetConn_SetAppHttpProxy](#oh_netconn_setapphttpproxy) ([NetConn_HttpProxy](_net_conn___http_proxy.md) \*httpProxy) | Sets the application-level HTTP proxy information.|
+| [OH_NetConn_RegisterAppHttpProxyCallback](#oh_netconn_registerapphttpproxycallback) ([OH_NetConn_AppHttpProxyChange](#oh_netconn_apphttpproxychange) appHttpProxyChange, uint32_t \*callbackId) | Registers a listener for application-level proxy changes.|
+| [OH_NetConn_UnregisterAppHttpProxyCallback](#oh_netconn_unregisterapphttpproxycallback) (uint32_t callbackId) | Unregisters the listener for application-level proxy changes.| 
+| [OH_NetConn_RegisterNetConnCallback](#oh_netconn_registernetconncallback) ([NetConn_NetSpecifier](_net_conn___net_specifier.md) \*specifier, [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t timeoutMS, uint32_t \*callbackId) | Registers a callback for network status changes.|
+| [OH_NetConn_RegisterDefaultNetConnCallback](#oh_netconn_registerdefaultnetconncallback) ([NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t \*callbackId) | Registers a callback for status changes of the default network.|
+| [OH_NetConn_UnregisterNetConnCallback](#oh_netconn_unregisternetconncallback) (uint32_t callbackId) | Unregisters the callback for network status changes.|
 
 
 ## Type Description
@@ -121,7 +120,7 @@ typedef struct NetConn_HttpProxy NetConn_HttpProxy
 
 **Description**
 
-Proxy configuration information.
+Proxy configuration.
 
 **Since**: 11
 
@@ -247,15 +246,15 @@ typedef void(* OH_NetConn_AppHttpProxyChange) (NetConn_HttpProxy *proxy)
 
 **Description**
 
-Callback for application’s http proxy information changed.
+Defines the callback for application-level proxy changes.
 
 **Since**: 12
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| proxy | The changed proxy information, may be a null pointer. | 
+| proxy | Proxy configuration information (probably a null pointer).| 
 
 
 ### NetConn_NetConnCallback
@@ -266,7 +265,7 @@ typedef struct NetConn_NetConnCallback NetConn_NetConnCallback
 
 **Description**
 
-Network connection callbacks.
+Defines network status callbacks.
 
 **Since**: 12
 
@@ -279,7 +278,7 @@ typedef struct NetConn_NetSpecifier NetConn_NetSpecifier
 
 **Description**
 
-Network specifier, including network capability sets and network identifier.
+Defines the network feature set, including a network capability set and a network ID.
 
 **Since**: 12
 
@@ -303,7 +302,7 @@ Network carrier type.
 | ------------------------| ----------------------- |
 | NETCONN_BEARER_CELLULAR | Cellular network.             |
 | NETCONN_BEARER_WIFI     | Wi-Fi.                 |
-| NETCONN_BEARER_BLUETOOTH     | Bluetooth. <br>**Since**: 12 |
+| NETCONN_BEARER_BLUETOOTH     | Bluetooth.<br>**Since**: 12|
 | NETCONN_BEARER_ETHERNET | Ethernet.             |
 | NETCONN_BEARER_VPN      | Virtual private network.<br>**Since**: 12|
 
@@ -327,7 +326,8 @@ Network capability set.
 | NETCONN_NET_CAPABILITY_INTERNET | Internet.| 
 | NETCONN_NET_CAPABILITY_NOT_VPN | Non-VPN.| 
 | NETCONN_NET_CAPABILITY_VALIDATED | Verified.| 
-| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | In checking connectivity.<br>**Since**: 12 | 
+| NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | Connectivity check.<br>**Since**: 12| 
+
 
 ## Function Description
 
@@ -503,7 +503,7 @@ Obtains the default network proxy.
 
 | Name| Description| 
 | -------- | -------- |
-| httpProxy | Proxy configuration information.| 
+| httpProxy | Proxy configuration.| 
 
 **Returns**
 
@@ -685,7 +685,7 @@ Registers a custom DNS resolver.
 
 | Name| Description| 
 | -------- | -------- |
-| resolver | Pointer to the custom DNS resolver.| 
+| resolver | Pointer to the custom DNS resolver.|
 
 **Returns**
 
@@ -775,7 +775,7 @@ int32_t OH_NetConn_SetAppHttpProxy(NetConn_HttpProxy *httpProxy)
 
 **Description**
 
-Sets http proxy information to current application.
+Sets the application-level proxy configuration.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -785,7 +785,7 @@ Sets http proxy information to current application.
 
 | Name| Description|
 | -------- | -------- |
-| httpProxy | Information about the proxy that needs to be set. |
+| httpProxy | Application-level proxy configuration.|
 
 **Returns**
 
@@ -802,7 +802,7 @@ int32_t OH_NetConn_RegisterAppHttpProxyCallback(OH_NetConn_AppHttpProxyChange ap
 
 **Description**
 
-Registers callback to listen for changes to the application-level http proxy.
+Registers a callback for application-level proxy changes.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -812,8 +812,8 @@ Registers callback to listen for changes to the application-level http proxy.
 
 | Name| Description|
 | -------- | -------- |
-| appHttpProxyChange | Callback that need to be registered to listen for changes to the http proxy. |
-| callbackId | Callback id returned after registration, associated with a registered callback. |
+| appHttpProxyChange | Pointer to the callback for application-level proxy changes.|
+| callbackId | Callback ID.|
 
 **Returns**
 
@@ -830,7 +830,7 @@ void OH_NetConn_UnregisterAppHttpProxyCallback(uint32_t callbackId)
 
 **Description**
 
-Unregisters a callback function that listens for application-level proxy changes.
+Unregisters the callback for application-level proxy changes.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -840,7 +840,7 @@ Unregisters a callback function that listens for application-level proxy changes
 
 | Name| Description|
 | -------- | -------- |
-| callbackId | Id of the callback function that needs to be deregistered. |
+| callbackId | Callback ID, which is obtained during registration.|
 
 
 ### OH_NetConn_RegisterNetConnCallback()
@@ -851,7 +851,7 @@ int32_t OH_NetConn_RegisterNetConnCallback(NetConn_NetSpecifier *specifier, NetC
 
 **Description**
 
-Registers callback, used to monitor specific network status.
+Registers a callback to for status changes of the specified network.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -861,10 +861,10 @@ Registers callback, used to monitor specific network status.
 
 | Name| Description|
 | -------- | -------- |
-| specifier | Specifier information. |
-| netConnCallback | The callback needed to be registered. |
-| timeout | The timeout period in milliseconds, 0 indicates an infinite wait. |
-| callbackId | callbackId out param, corresponding to a registered callback. |
+| specifier | Network feature set.|
+| netConnCallback | Registered callbacks.|
+| timeout | Waiting time, in milliseconds. The value **0** indicates infinite waiting.|
+| callbackId | Callback IDs.|
 
 **Returns**
 
@@ -878,11 +878,11 @@ Registers callback, used to monitor specific network status.
 
 **2100003**: internal error.
 
-**2100008**: the callback already exists.
+**2101008**: The callback has been registered.
 
-**2101022**: the number of requests exceeded the maximum allowed.
+**2101022**: The maximum number of requests is exceeded.
 
-**Permission：**
+**Required permissions**:
 
 ohos.permission.GET_NETWORK_INFO
 
@@ -895,7 +895,7 @@ int32_t OH_NetConn_RegisterDefaultNetConnCallback(NetConn_NetConnCallback *netCo
 
 **Description**
 
-Registers a callback to listen default network's status changed.
+Registers a callback to for status changes of the default network.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -905,8 +905,8 @@ Registers a callback to listen default network's status changed.
 
 | Name| Description|
 | -------- | -------- |
-| netConnCallback | The callback needed to be registered. |
-| callbackId | Out param, corresponding to a registered callback. |
+| netConnCallback | Registered callbacks.|
+| callbackId | Callback IDs.|
 
 **Returns**
 
@@ -920,11 +920,11 @@ Registers a callback to listen default network's status changed.
 
 **2100003**: internal error.
 
-**2100008**: the callback already exists.
+**2101008**: The callback has been registered.
 
-**2101022**: the number of requests exceeded the maximum allowed.
+**2101022**: The maximum number of requests is exceeded.
 
-**Permission：**
+**Required permissions**:
 
 ohos.permission.GET_NETWORK_INFO
 
@@ -937,7 +937,7 @@ int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId)
 
 **Description**
 
-Unregisters network status callback.
+Unregisters the callback for network status changes.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -945,9 +945,9 @@ Unregisters network status callback.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| callBackId | The id corresponding to a registered callback. |
+| callBackId | Callback ID.|
 
 **Returns**
 
@@ -961,8 +961,8 @@ Unregisters network status callback.
 
 **2100003**: internal error.
 
-**2100007**: the callback does not exists.
+**2101007**: The corresponding callback is not found.
 
-**Permission：**
+**Required permissions**:
 
 ohos.permission.GET_NETWORK_INFO
