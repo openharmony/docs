@@ -32,7 +32,7 @@
 
 4. 创建录像输出流。
 
-   根据传入的SurfaceId，通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过OH_CameraManager_CreateVideoOutput()方法创建录像输出流。
+   根据传入的SurfaceId，通过CameraOutputCapability类中的videoProfiles，可获取当前设备支持的录像输出流。然后，定义创建录像的参数，通过[OH_CameraManager_CreateVideoOutput()](../../reference/apis-camera-kit/_o_h___camera.md#oh_cameramanager_createvideooutput)方法创建录像输出流。
 
    > **说明：**
    > 预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推。
@@ -75,7 +75,7 @@
 
 5. 开始录像。
 
-   通过videoOutput的OH_VideoOutput_Start()方法启动录像输出流。
+   通过videoOutput的[OH_VideoOutput_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_start)方法方法启动录像输出流。
 
      ```c++
       // 启动录像输出流
@@ -87,7 +87,7 @@
 
 6. 停止录像。
 
-   通过videoOutput的OH_VideoOutput_Stop()方法停止录像输出流。
+   通过videoOutput的[OH_VideoOutput_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_stop)方法停止录像输出流。
 
    ```c++
     // 停止录像输出流
