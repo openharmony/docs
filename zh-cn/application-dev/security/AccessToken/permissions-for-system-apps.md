@@ -3989,6 +3989,20 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_VIRTUAL_KEYBOARD
+
+允许应用/服务更新/查询虚拟键盘状态。
+
+通过该权限，应用可以更新虚拟键盘状态，服务可以查询虚拟键盘状态。当前仅2in1设备场景下可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
