@@ -21,5 +21,9 @@ type NetBearType = connection.NetBearType
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| [connection.NetBearType](./js-apis-net-connection.md#NetBearType) | 网络类型。 |
+
 
 

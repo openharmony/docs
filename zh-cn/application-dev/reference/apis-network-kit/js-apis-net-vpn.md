@@ -23,7 +23,7 @@ type LinkAddress = connection.LinkAddress
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | 网络链路信息 |
+| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | 网络链路信息。 |
 
 ## RouteInfo
 
@@ -35,7 +35,7 @@ type RouteInfo = connection.RouteInfo
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [connection.RouteInfo](./js-apis-net-connection.md#routeinfo) | 网络路由信息 |
+| [connection.RouteInfo](./js-apis-net-connection.md#routeinfo) | 网络路由信息。 |
 
 
 ## AbilityContext
@@ -44,4 +44,4 @@ type AbilityContext = _AbilityContext
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md) | 需要保存状态的UIAbility所对应的context，继承自Context，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法 |
+| [_AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 需要保存状态的UIAbility所对应的context，继承自Context，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法。 |

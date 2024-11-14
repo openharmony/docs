@@ -10,7 +10,7 @@
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.vpnExtension (VPN增强管理)](js-apis-net-vpnExtension.md)
-  - [@ohos.net.vpn (VPN)](js-apis-net-vpn.md)
+  - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
