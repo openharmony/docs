@@ -5355,6 +5355,7 @@ try {
 setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;;
 
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅2in1设备可用。
+当异形窗口大小发生变化时，实际的显示内容为掩码大小和窗口大小的交集部分。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
