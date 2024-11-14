@@ -5,9 +5,9 @@
 The app check tool is used to analyze and detect application installation packages. Based on the parameter settings, it scans the HAP, HSP, or APP file in the specified path and generates detection reports, providing data support for you to optimize the package structure or locate problems. The tool provides the following functions:
 - Scans for duplicate files.
 - Scans for large files (files that exceed the specified size).
-- Collects statistics on the size and proportion of each type of file.
+- Collects statistics on the size and proportion of each type of file.<br>
 
-By default, the tool generates detection reports in JSON and HTML format.
+By default, the tool generates detection reports in JSON and HTML format.<br>
 The **app_check_tool.jar** package of the tool is stored in the **toolchains** directory of the SDK.
 
 ![App check tool architecture](figures/app-check-tool-construct.png)
@@ -29,7 +29,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 | ---------------- | ---------- | ------------------------------------------------------------------ |
 | --input          | Yes        | Path of the HAP, HSP, or APP file.                               |
 | --out-path       | Yes        | Path of the detection reports.                                          |
-| --stat-duplicate | No        | Whether to scan for duplicate files. The default value is **false**.<br>- **true**: Scanning is enabled.<br>- **false**: Scanning is disabled. |
+| --stat-duplicate | No        | Whether to scan for duplicate files. The default value is **false**.<br>**true**: Scanning is enabled.<br>**false**: Scanning is disabled. |
 
 **Detection report in JSON format**
 
@@ -60,7 +60,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
 | param     | String | Parameter passed in by the scanning program.         |
 | startTime | String | Start time of the task.             |
 | stopTime  | String | End time of the task.             |
-| result    | Struct | [Fields of result](#section1).       |
+| result    | Struct | [Fields of result](#section1)       |
 
 **Fields of result**<a name="section1"></a>
 
@@ -112,7 +112,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 | param     | String | Parameter passed in by the scanning program.                 |
 | startTime | String | Start time of the task.                     |
 | stopTime  | String | End time of the task.                     |
-| result    | Struct | [Fields of result](#section2).               |
+| result    | Struct | [Fields of result](#section2)               |
 
 **Fields of result**<a name="section2"></a>
 
@@ -135,7 +135,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | ------------- | ---------- | ------------------------------------------------------------------------- |
 | --input       | Yes        | Path of the HAP, HSP, or APP file.                                      |
 | --out-path    | Yes        | Path of the detection reports.                                                 |
-| --stat-suffix | No        | Whether to collect statistics on the size and proportion of each type of file. The default value is **false**.<br>- **true**: Statistics collection is enabled.<br>- **false**: Statistics collection is disabled.|
+| --stat-suffix | No        | Whether to collect statistics on the size and proportion of each type of file. The default value is **false**.<br>**true**: Statistics collection is enabled.<br>**false**: Statistics collection is disabled.|
 
 **Detection report in JSON format**
 
@@ -186,7 +186,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | startTime | String          | Start time of the task.                                                                        |
 | stopTime  | String          | End time of the task.                                                                        |
 | pathList  | Vector\<String> | Paths of multiple HAP and HSP files.                                                                 |
-| result    | Struct          | [Fields of result](#section3).                                                                  |
+| result    | Struct          | [Fields of result](#section3)                                                                  |
 
 **Fields of result**<a name="section3"></a>
 
@@ -194,11 +194,11 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 | --------- | ------ | ------------------------------------------ |
 | suffix    | String | File name extension.                        |
 | totalSize | int    | Total size of the files with the same file name extension, in bytes.|
-| files     | Stuct  | [Fields of files](#section4).                      |
+| files     | Stuct  | [Fields of files](#section4)                      |
 
 **Fields of files**<a name="section4"></a>
 | Field    | Type  | Description                                                               |
 | -------- | ------ | ------------------------------------------------------------------- |
 | file     | String | Path of a file.                                                         |
 | size     | int    | Size of the file.                                                       |
-| compress | bool   | Whether the file is compressed. This field is displayed only for .so files.<br>- **true**: The file is compressed.<br>- **false**: The file is not compressed.|
+| compress | bool   | Whether the file is compressed. This field is displayed only for .so files.<br>**true**: The file is compressed.<br>**false**: The file is not compressed.|
