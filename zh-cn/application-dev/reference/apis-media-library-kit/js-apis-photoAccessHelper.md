@@ -1786,11 +1786,16 @@ clone(title: string): Promise&lt;PhotoAsset&gt;
 | ---------- | ------- | ---- | ---------------------------------- |
 | title| string | 是    | 克隆后资产的标题。 |
 
+title参数规格为：
+- 不应包含扩展名。
+- 文件名字符串长度为1~255。
+- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;PhotoAsset&gt; | Promise对象，返回PhotoAsset。 |
+| Promise&lt;PhotoAsset&gt; | Promise对象，返回[PhotoAsset](#photoasset)。 |
 
 **错误码：**
 
