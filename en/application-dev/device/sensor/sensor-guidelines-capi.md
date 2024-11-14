@@ -14,8 +14,8 @@ For details about the APIs, see [Sensor API Reference](../../reference/apis-sens
 | OH_Sensor_GetInfos(Sensor_Info **infos, uint32_t *count)     | Obtains information about all sensors on the device.                                |
 | OH_Sensor_Subscribe(const Sensor_SubscriptionId *id, const Sensor_SubscriptionAttribute *attribute, const Sensor_Subscriber *subscriber) | Subscribe to sensor data. The system will report sensor data to the subscriber at the specified frequency.<br>To subscribe to data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.<br>To subscribe to data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.<br>To subscribe to data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.<br>To subscribe to data of health-related sensors, such as heart rate sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the subscription fails.<br>You do not need to request any permission to subscribe to data of other types of sensors.|
 | OH_Sensor_Unsubscribe(const Sensor_SubscriptionId *id, const Sensor_Subscriber *subscriber) | Unsubscribes from sensor data.<br>To unsubscribe from data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.<br>To unsubscribe from data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.<br>To unsubscribe from data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.<br>To unsubscribe from data of health-related sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the unsubscription fails.<br>You do not need to request any permission to unsubscribe from data of other types of sensors.|
-| OH_Sensor_CreateInfos(uint32_t count)                        | Creates an array of instances with the given number. For details, see [Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md).|
-| OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count) | Destroys the array of instances and reclaims the memory. For details, see [Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md).|
+| OH_Sensor_CreateInfos(uint32_t count)                        | Creates an array of instances with the given number. For details, see [Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md#sensor_info).|
+| OH_Sensor_DestroyInfos(Sensor_Info **sensors, uint32_t count) | Destroys the array of instances and reclaims the memory. For details, see [Sensor_Info](../../reference/apis-sensor-service-kit/_sensor.md#sensor_info).|
 | OH_SensorInfo_GetName(Sensor_Info *sensor, char *sensorName, uint32_t *length) | Obtains the sensor name.                                            |
 | OH_SensorInfo_GetVendorName(Sensor_Info* sensor, char *vendorName, uint32_t *length) | Obtains the sensor's vendor name.                                      |
 | OH_SensorInfo_GetType(Sensor_Info* sensor, Sensor_Type *sensorType) | Obtains the sensor type.                                            |
@@ -28,16 +28,13 @@ For details about the APIs, see [Sensor API Reference](../../reference/apis-sens
 | OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t *length) | Obtains sensor data.<br>The data length and content depend on the sensor type. The format of the sensor data reported is as follows:<br>- SENSOR_TYPE_ACCELEROMETER: data[0], data[1], and data[2], indicating the acceleration around the x, y, and z axes of a device, respectively, in m/s².<br>- SENSOR_TYPE_GYROSCOPE: data[0], data[1], and data[2], indicating the angular velocity of rotation around the x, y, and z axes of a device, respectively, in rad/s.<br>- SENSOR_TYPE_AMBIENT_LIGHT: data[0], indicating the ambient light intensity, in lux. Since API version 12, two extra data records are returned, where **data[1]** indicates the color temperature (in kelvin), and **data[2]** indicates the infrared luminance (in cd/m²).<br> - SENSOR_TYPE_MAGNETIC_FIELD: data[0], data[1], and data[2], indicating the magnetic field strength around the x, y, and z axes of a device, respectively, in μT.<br>- SENSOR_TYPE_BAROMETER: data[0], indicating the atmospheric pressure, in hPa.<br>- SENSOR_TYPE_HALL: data[0], indicating the opening/closing state of the flip cover. The value **0** means that the flip cover is opened, and a value greater than 0 means that the flip cover is closed.<br>- SENSOR_TYPE_PROXIMITY: data[0], indicates the approaching state. The value **0** means the two objects are close to each other, and a value greater than 0 means that they are far away from each other.<br>- SENSOR_TYPE_ORIENTATION: data[0], data[1], and data[2], indicating the rotation angles of a device around the z, x, and y axes, respectively, in degree.<br>- SENSOR_TYPE_GRAVITY: data[0], data[1], and data[2], indicating the gravitational acceleration around the x, y, and z axes of a device, respectively, in m/s².<br>- SENSOR_TYPE_ROTATION_VECTOR: data[0], data[1] and data[2], indicating the rotation angles of a device around the x, y, and z axes, respectively, in degree. data[3] indicates the rotation vector.<br>- SENSOR_TYPE_PEDOMETER_DETECTION: data[0], indicating the pedometer detection status. The value **1** means that the number of detected steps changes.<br>- SENSOR_TYPE_PEDOMETER: data[0], indicating the number of steps a user has walked.<br>- SENSOR_TYPE_HEART_RATE: data[0], indicating the heart rate value.|
 | OH_Sensor_CreateSubscriptionId(void)                         | Creates a **Sensor_SubscriptionId** instance.                        |
 | OH_Sensor_DestroySubscriptionId(Sensor_SubscriptionId *id)   | Destroys a **Sensor_SubscriptionId** instance and reclaims memory.                  |
-| OH_SensorSubscriptionId_GetType(Sensor_SubscriptionId *id, Sensor_Type *sensorType) | Obtains the sensor type.                                            |
 | OH_SensorSubscriptionId_SetType(Sensor_SubscriptionId* id, const Sensor_Type sensorType) | Sets the sensor type.                                            |
 | OH_Sensor_CreateSubscriptionAttribute(void)                  | Creates a **Sensor_SubscriptionAttribute** instance.                      |
 | OH_Sensor_DestroySubscriptionAttribute(Sensor_SubscriptionAttribute *attribute) | Destroys a **Sensor_SubscriptionAttribute** instance and reclaims memory.            |
 | OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAttribute* attribute, const int64_t samplingInterval) | Sets the interval for reporting sensor data.                                    |
-| OH_SensorSubscriptionAttribute_GetSamplingInterval(Sensor_SubscriptionAttribute* attribute, int64_t *samplingInterval) | Obtains the interval for reporting sensor data.                                    |
 | OH_Sensor_CreateSubscriber(void)                             | Creates a **Sensor_Subscriber** instance.                             |
 | OH_Sensor_DestroySubscriber(Sensor_Subscriber *subscriber)   | Destroys a **Sensor_Subscriber** instance and reclaims memory.                       |
 | OH_SensorSubscriber_SetCallback(Sensor_Subscriber* subscriber, const Sensor_EventCallback callback) | Sets a callback function to report sensor data.                          |
-| OH_SensorSubscriber_GetCallback(Sensor_Subscriber* subscriber, Sensor_EventCallback *callback) | Obtains the callback function used to report sensor data.                          |
 
 
 ## How to Develop
@@ -48,7 +45,7 @@ The following uses the acceleration sensor as an example to describe the develop
 
    ![Create a project](figures/004.png)
 
-2. Check whether the corresponding permission has been configured. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+2. Configure the acceleration sensor permission. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
    ```json
    "requestPermissions": [
@@ -66,7 +63,7 @@ The following uses the acceleration sensor as an example to describe the develop
    target_link_libraries(entry PUBLIC libohsensor.so)
    ```
 
-4. Import the module.
+4. Write the **napi_init.cpp** file to import related modules.
 
    ```c
    #include "sensors/oh_sensor.h"
@@ -136,7 +133,7 @@ The following uses the acceleration sensor as an example to describe the develop
            return nullptr;
        }
        Sensor_Info **sensors = OH_Sensor_CreateInfos(count); // Create an array of instances with the given number.
-       if (ret != SENSOR_SUCCESS) {
+       if (sensor == nullptr) {
            return nullptr;
        }        
        ret = OH_Sensor_GetInfos(sensors, &count); // Obtain information about all sensors on the device.
@@ -231,11 +228,26 @@ The following uses the acceleration sensor as an example to describe the develop
    }
    ```
    
-9. Introduce the NAPI APIs to the **index.d.ts** file in **types/libentry**.
+9. Add related APIs to the **Init** function.
+
+   ```c
+   static napi_value Init(napi_env env, napi_value exports)
+      {
+          napi_property_descriptor desc[] = {
+              { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
+              { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
+          };
+          napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+          return exports;
+      }
+      EXTERN_C_END
+   ```
+
+10. Introduce the NAPI APIs to the **index.d.ts** file in **types/libentry**.
 
    ```c
    export const getSensorInfos: () => number;
    export const subscriber: () => number;
    ```
 
-10. Write JavaScript test cases to test the APIs.
+   
