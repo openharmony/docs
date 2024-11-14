@@ -268,7 +268,7 @@ fadingEdge(value: boolean)
 
 barOverlap(value: boolean)
 
-设置TabBar是否背后变模糊并叠加在TabContent之上。若设置barOverlap为true，TabBar默认背景色修改为'#F2F1F3F5'并添加模糊效果。
+设置TabBar是否背后变模糊并叠加在TabContent之上。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -278,7 +278,7 @@ barOverlap(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
+| value  | boolean | 是   | TabBar是否背后变模糊并叠加在TabContent之上。当barOverlap设置为true时，TabBar默认模糊材质的BlurStyle值修改为'BlurStyle.COMPONENT_THICK'。<br />默认值：false |
 
 ### barBackgroundColor<sup>10+</sup>
 
@@ -890,7 +890,7 @@ setTabBarOpacity(opacity: number): void
 
 ### 示例1
 
-本示例通过onChange实现切换时自定义tabBar和TabContent的联动。
+本示例通过onAnimationStart、onChange实现切换时自定义tabBar和TabContent的联动。
 
 ```ts
 // xxx.ets
@@ -1196,13 +1196,12 @@ struct TabsOpaque {
 // xxx.ets
 @Entry
 @Component
-struct barBackgroundColorTest {
-  private controller: TabsController = new TabsController()
+struct barHeightTest {
+  @State arr: number[] = [0, 1, 2, 3]
   @State barOverlap: boolean = true;
-  @State barBackgroundColor: string = '#88888888';
-
   build() {
     Column() {
+      Text(`barOverlap ${this.barOverlap}`).fontSize(16)
       Button("barOverlap变化").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
@@ -1212,41 +1211,25 @@ struct barBackgroundColorTest {
           }
         })
 
-      Tabs({ barPosition: BarPosition.Start, index: 0, controller: this.controller }) {
+      Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
+            List({ space: 10 }) {
+              ForEach(this.arr, (item: number) => {
+                ListItem() {
+                  Text("item" + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
+                }
+              }, (item: string) => item)
+            }.width('100%').height('100%')
+            .lanes(2).alignListItem(ListItemAlign.Center)
+          }.width('100%').height('100%')
           .backgroundColor(Color.Pink)
         }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "1"))
-
-        TabContent() {
-          Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
-          .backgroundColor(Color.Yellow)
-        }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "2"))
-
-        TabContent() {
-          Column() {
-            Text(`barOverlap ${this.barOverlap}`).fontSize(16).margin({ top: this.barOverlap ? '56vp' : 0 })
-            Text(`barBackgroundColor ${this.barBackgroundColor}`).fontSize(16)
-          }.width('100%').width('100%').height('100%')
-          .backgroundColor(Color.Green)
-        }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), "3"))
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), "测试0"))
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
+      .scrollable(false)
       .height('60%')
       .barOverlap(this.barOverlap)
-      .scrollable(true)
-      .animationDuration(10)
-      .barBackgroundColor(this.barBackgroundColor)
     }
     .height(500)
     .padding({ top: '24vp', left: '24vp', right: '24vp' })
