@@ -5761,7 +5761,7 @@ open接口flags参数常量。文件打开标签。
 
 ## ReadStream<sup>12+</sup>
 
-文件可读流，需要先通过[fs.createReadStream](#fscreatereadstream12)方法来构建一个ReadStream实例。
+文件可读流，需要先通过[fs.createReadStream](#fscreatereadstream12)方法来构建一个ReadStream实例。ReadStream继承自数据流基类[stream](../apis-arkts/js-apis-stream.md#readable)。
 
 **规格**：ReadStream读到的数据为解码后的字符串，其编码格式当前仅支持'utf-8'。
 
@@ -5830,7 +5830,7 @@ close(): void
 
 ## WriteStream<sup>12+</sup>
 
-文件可写流，需要先通过[fs.createWriteStream](#fscreatewritestream12)方法来构建一个WriteStream实例。
+文件可写流，需要先通过[fs.createWriteStream](#fscreatewritestream12)方法来构建一个WriteStream实例。WriteStream继承自数据流基类[stream](../apis-arkts/js-apis-stream.md#writable)。
 
 ### 属性
 
