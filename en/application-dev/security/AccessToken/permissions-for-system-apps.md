@@ -4285,6 +4285,18 @@ Allows an application to obtain brief information of the recovery key.
 
 **Valid since**: 14
 
+### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
+
+Allows an UIExtensionAbility to be displayed on the locked screen.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 14
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
