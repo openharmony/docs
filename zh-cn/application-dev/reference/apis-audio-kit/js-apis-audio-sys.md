@@ -1619,6 +1619,215 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+### selectInputDeviceByFilter<sup>14+</sup>
+
+selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDeviceDescriptor: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+**系统接口：** 该接口为系统接口
+
+根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                         | 类型                                                                | 必填 | 说明                                      |
+|-----------------------------|-------------------------------------------------------------------| ---- |-----------------------------------------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。                                  |
+| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。                                  |
+| callback                    | AsyncCallback&lt;void&gt;                                         | 是   | 回调函数。当选择音频输出设备成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.MIC,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : "",
+}];
+
+async function selectInputDeviceByFilter() {
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor, (err: BusinessError) => {
+    if (err) {
+        console.error(`Result ERROR: ${err}`);
+    } else {
+        console.info('Select input devices by filter result callback: SUCCESS'); }
+    });
+}
+```
+
+### selectInputDeviceByFilter<sup>14+</sup>
+
+selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+**系统接口：** 该接口为系统接口
+
+根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明     |
+| ----------------------| ------------------------------------------------------------ | ---- |--------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。 |
+| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 是   | 输入设备类。 |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise对象，无返回结果。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.MIC,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : "",
+}];
+
+async function selectInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor).then(() => {
+        console.info('Select input devices by filter result promise: SUCCESS');
+    }).catch((err: BusinessError) => {
+        console.error(`Result ERROR: ${err}`);
+    })
+}
+```
+
+### getPreferredOutputDeviceByFilter<sup>14+</sup>
+
+getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescriptors
+
+**系统接口：** 该接口为系统接口
+
+根据过滤条件，查询音频输出接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| filter                      | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+
+**示例：**
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let outputAudioRendererFilter: audio.AudioRendererFilter = {
+  uid : 20010041,
+  rendererInfo : {
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
+  },
+  rendererId : 0
+};
+
+async function selectOutputDeviceByFilter(){
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    let desc : audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceByFilter(outputAudioRendererFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
+### getPreferredInputDeviceByFilter<sup>14+</sup>
+
+getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
+
+**系统接口：** 该接口为系统接口
+
+根据过滤条件，查询音频输入设备，当前只能查询一个输入设备，返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+|---------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| filter              | [AudioCapturerFilter](#audiocapturerfilter14)                     | 是   | 过滤条件类。 |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+async function getPreferredInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
+    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+    let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceByFilter(inputAudioCapturerFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 描述音频渲染器更改信息。
@@ -1675,6 +1884,30 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
     rendererFlags : 0
   },
   rendererId : 0
+};
+```
+## AudioCapturerFilter<sup>14+</sup>
+
+过滤条件类。在调用selectOutputDeviceByFilter接口前，需要先创建AudioCapturerFilter实例。
+
+**系统接口：** 该接口为系统接口
+
+| 名称          | 类型                                     | 必填 | 说明          |
+| -------------| ---------------------------------------- | ---- | -------------- |
+| uid          | number                                   |  否  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| capturerInfo | [AudioCapturerInfo](js-apis-audio.md#audiocapturerinfo8) |  否  | 表示采集器信息。。<br> **系统能力：** SystemCapability.Multimedia.Audio.Capturer|
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
 };
 ```
 
