@@ -71,10 +71,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量 &gt; 系统变量**中，将SDK的toolchains完整路径添加到Path变量值中，具体路径信息以SDK**实际配置路径**为准。
 
-以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_%YourSDKPath%_\openharmony\toolchains为例：
+以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_%YourSDKPath%_\openharmony\toolchains<!--RP1End-->为例：
 
 ![系统变量](figures/hdc_img_002.PNG)
-<!--RP1End-->
+
 ![编辑环境变量](figures/hdc_image_003.PNG)
 
 **Linux/macOS环境变量设置方法**
@@ -277,11 +277,14 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
    **使用方法：**
 
-   客户端打印LOG_DEBUG级别日志:
+   客户端打印LOG_DEBUG级别日志，以执行shell ls为例，命令示例如下:
+
    ```shell
    hdc -l 5 shell ls
    ```
-   服务进程前台模式启动指定LOG_LIBUSB级别日志:
+
+   服务进程前台模式启动指定LOG_LIBUSB级别日志，命令示例如下:
+
    ```shell
    hdc kill && hdc -l 6 -m
    ```
@@ -289,7 +292,8 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
     > **说明：**
     > `-m`参数指定以前台模式启动服务进程，可以直接观察前台日志输出，按下Ctrl+C退出进程。
 
-   服务进程后台启动模式指定LOG_LIBUSB级别日志:
+   服务进程后台启动模式指定LOG_LIBUSB级别日志，命令示例如下:
+
    ```shell
    hdc kill && hdc -l 6 start
    ```
@@ -352,7 +356,8 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
     | Connect server failed | 与服务进程建立连接失败 |
     | -s content port incorrect. | 端口号超出可设置范围（1~65535）|
     
-    使用方法：
+    **使用方法：**
+
     ```shell
     # 在已有服务进程，且服务进程的网络监听参数为127.0.0.1:8710的环境中，执行查询设备命令
     hdc -s 127.0.0.1:8710 list targets
@@ -377,27 +382,32 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    | -------- | -------- |
    | Connect server failed | 与服务进程建立连接失败 | 
 
-    使用方法：
+    **使用方法：**
+
     ```shell
     # 启动后台服务进程
     hdc start
     # 跳过进程查询，直接执行命令
     hdc -p list targets
     ```
+
     > **说明：**
     > 在未指定 -p 参数的情况下直接执行 command 命令时，客户端将首先检查本地是否已有运行的服务进程。若系统未检测到运行的服务进程，客户端将自动启动服务进程，并建立连接以传递命令；若系统检测到运行的服务进程，客户端将直接与该后台服务建立连接并下发相应的命令。
 
 9. 使用前台启动模式启动服务进程，命令格式如下：
+
     ```shell
     hdc -m
     ```
+
     **返回值：**
     | 返回值 | 说明 |
     | -------- | -------- |
     | Initial failed | 服务进程初始化失败 |
     | [I][_1970-01-01 00:00:00.000_][_abcd_][_session.cpp:25_] _Program running. Ver: X.X.Xa Pid:12345_ | 正常打印对应等级的日志，显示服务端活动状态 |
     
-    使用方法：
+    **使用方法：**
+
     ```shell
     # 指定当前服务进程的网络监听参数并启动服务进程
     hdc -s 127.0.0.1:8710 -m
@@ -1084,6 +1094,7 @@ hdc_logs日志文件夹将存在以下类型日志：
 | 实时日志缓存临时文件 | .hdc.cache.log | 实时日志产生的临时缓存 | |
 
 日志相关环境变量：
+
 | 环境变量名称             | 默认值 | 说明                             |
 |--------------------|-----|--------------------------------|
 | OHOS_HDC_LOG_LEVEL | 5   | 用于配置服务进程日志记录级别，日志级别详情参考：<br>[全局option相关命令](#全局option相关命令)指定运行时日志等级章节  |
@@ -1091,8 +1102,8 @@ hdc_logs日志文件夹将存在以下类型日志：
 
 
 环境变量配置方法：
-> **说明：**
-> 以下通过配置OHOS_HDC_LOG_LEVEL环境变量为例，配置环境变量值为：5，介绍环境变量配置方法。
+
+以下通过配置OHOS_HDC_LOG_LEVEL环境变量为例，配置环境变量值为：5，介绍环境变量配置方法。
 
 | 操作系统 | 配置方法 |
 |---|---|
