@@ -48,27 +48,27 @@ Image Kit编解码支持多种图片格式，并采用了高效的算法和优�
 
 ## 约束与限制
 
-在图片处理中，可能需要使用用户图片，应用需要向用户申请对应的读写操作权限才能保证功能的正常运行。
+- **读写权限限制：**
+
+  在图片处理中，可能需要使用用户图片，应用需要向用户申请对应的读写操作权限才能保证功能的正常运行。
+
+- **选择合适的C API接口：**
+  
+  图片框架当前提供了两套C API接口，分别为[依赖于JS对象的C API](../../reference/apis-image-kit/image.md)和[不依赖于JS对象的C API](../../reference/apis-image-kit/_image___native_module.md)。
+  - 依赖于JS对象的C接口
+  
+    这类接口可以完成图片编解码，图片接收器，处理图像数据等功能，相关示例代码可以参考[图片开发指导(依赖JS对象)(C/C++)](Readme-CN.md)节点下的内容。开发者可查看[Image](../../reference/apis-image-kit/image.md)模块下的C API，确认API范围。这部分API在API 11之前发布，在后续的版本不再增加新功能。
+
+  - 不依赖于JS对象的C接口
+  
+    这类接口除了提供上述图片框架基础功能，还可以完成多图编解码等新特性，相关开发指导请参考[图片开发指导(C/C++)](Readme-CN.md)节点下的内容。开发者可查看[Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md)模块下的C API，确认API范围。这部分API从API 12开始支持，并将持续演进，**推荐开发者使用**。
+
+  > **注意：**
+  > 两套C API不建议同时使用，在部分场景下存在不兼容的问题。
 
 ## 与相关Kit的关系
 
 图片框架提供图片编解码能力，为Image组件及图库等应用提供支撑，其解码结果可以传给[Image组件](../../ui/arkts-graphics-display.md)显示。
-
-## 接口说明
-图片框架提供了ArkTS与C两种不同语言的API。对于C语言的API，图片框架提供了两套接口：
-- 依赖于JS对象的C接口
-  
-  这类接口可以完成图片编解码，图片接收器，图像变换，处理图像数据等功能，相关示例代码可以参考[图片开发指导(依赖JS对象)(C/C++)](Readme-CN.md)。例如要引入编码相关的接口，可以依赖<multimedia/image_framework/image_packer_mdk.h>，接口头文件一般以xx_mdk命名。
-
-  在API 11发布，API 12后不再添加新功能
-
-- 不依赖于JS对象的C接口
-  
-  这类接口除了提供上述图片框架基础功能，还可以完成多图编解码等新特性，相关示例代码可以参考[图片开发指导(C/C++)](Readme-CN.md)。例如编码接口需要依赖<multimedia/image_framework/image/image_packer_native.h>，接口头文件一般以xx_native命名。
-  
-  在API 12发布，是以后图片框架C语言API的主要演进方向，推荐开发者使用。
-
-注意：不推荐两套C接口同时使用，部分场景可能存在不兼容。
 
 ## 相关实例
 
