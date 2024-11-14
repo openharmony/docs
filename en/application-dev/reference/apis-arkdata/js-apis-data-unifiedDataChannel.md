@@ -803,6 +803,8 @@ Represents the image data type corresponding to [PixelMap](../apis-image-kit/js-
 
 ```ts
 import { image } from '@kit.ImageKit';  // Module where the PixelMap class is defined.
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const color = new ArrayBuffer(96); // Create a PixelMap object.
 let opts: image.InitializationOptions = {
@@ -821,6 +823,20 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
     let sdpixel = new unifiedDataChannel.SystemDefinedPixelMap();
     sdpixel.rawData = u8Array;
     let unifiedData = new unifiedDataChannel.UnifiedData(sdpixel);
+
+    // Read the record of the pixelMap type from unifiedData.
+    let records = unifiedData.getRecords();
+    for (let i = 0; i < records.length; i++) {
+      if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
+        let pixelmapRecord = records[i] as unifiedDataChannel.SystemDefinedPixelMap;
+        let newArraybuf = pixelmapRecord.rawData.buffer;
+        pixelmap.writeBufferToPixels(newArraybuf).then(() => {
+          console.info('Succeeded in writing data from buffer to a pixelMap');
+        }).catch((error: BusinessError) => {
+          console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
+        })
+      }
+    }
   }
 })
 ```
