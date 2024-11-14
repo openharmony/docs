@@ -1164,9 +1164,11 @@
   - Media<!--media-->
     - Audio Kit<!--audio-kit-->
       - [Introduction to Audio Kit](media/audio/audio-kit-intro.md)
-      - [Processing Audio Interruption Events](media/audio/audio-playback-concurrency.md)
-      - [Extended Audio Concurrency Strategy (ArkTS)](media/audio/audio-session-management.md)
-      - [Extended Audio Concurrency Strategy (C/C++)](media/audio/using-ohaudio-for-session.md)
+      - [Selecting an Appropriate Audio Stream Type](media/audio/using-right-streamusage-and-sourcetype.md)
+      - [Introduction to Audio Focus and Audio Session](media/audio/audio-playback-concurrency.md)
+      - Audio Focus Management<!--audio-session-->
+        - [Using AudioSession to Manage Audio Focus (ArkTS)](media/audio/audio-session-management.md)
+        - [Using AudioSession to Manage Audio Focus (C/C++)](media/audio/using-ohaudio-for-session.md)
       - Audio Playback<!--audio-playback-->
         - [Audio Playback Overview](media/audio/audio-playback-overview.md)
         - [Using AudioRenderer for Audio Playback](media/audio/using-audiorenderer-for-playback.md)
@@ -3644,7 +3646,7 @@
     - Media Library Kit<!--media-library-api-->
       - ArkTS APIs<!--media-library-arkts-->
         - [@ohos.file.photoAccessHelper (Album Management)](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)
-        - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper.md)
+        - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper.md)
         <!--Del-->
         - [@ohos.file.photoAccessHelper (Album Management) (System API)](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
         - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object) (System API)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper-sys.md)
