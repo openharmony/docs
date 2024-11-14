@@ -6,7 +6,11 @@ The **measure** module provides APIs for measuring text metrics, such as text he
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
+> This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
+>
 > Since API version 12, you can use the **getMeasureUtils** API in **UIContext** to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)r object associated with the current UI context.
+>
+> To perform more complex text measurements, you are advised to call the corresponding graphics measurement API, specifically [Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph).
 
 ## Modules to Import
 
@@ -18,7 +22,7 @@ import { MeasureText } from '@kit.ArkUI'
 
 measureText(options: MeasureOptions): number
 
-Measures the width of the given single-line text.
+Measures the width of the given text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -28,16 +32,20 @@ Measures the width of the given single-line text.
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [MeasureOptions](#measureoptions) | Yes   | Information about the measured text. |
+| options | [MeasureOptions](#measureoptions) | Yes   | Information about the measured text.|
 
 **Return value**
 
 | Type         | Description      |
 | ------------  | --------- |
-| number        | Text width.<br>Unit: px |
+| number        | Text width.<br>Unit: px|
 
 
 **Example**
+
+> **NOTE**
+>
+>You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
 
 ```ts
 import { MeasureText } from '@kit.ArkUI'
@@ -45,7 +53,7 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  @State textWidth: number = MeasureText.measureText({
+  @State textWidth: number = MeasureText.measureText({ // You are advised to use this.getUIContext().getMeasureUtils().measureText().
     textContent: "Hello word",
     fontSize: '50px'
   })
@@ -66,7 +74,7 @@ struct Index {
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
-Measures the width and height of the given single-line text.
+Measures the width and height of the given text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -76,16 +84,20 @@ Measures the width and height of the given single-line text.
 
 | Name    | Type                             | Mandatory  | Description       |
 | ------- | ------------------------------- | ---- | --------- |
-| options | [MeasureOptions](#measureoptions) | Yes   | Information about the measured text. |
+| options | [MeasureOptions](#measureoptions) | Yes   | Information about the measured text.|
 
 **Return value**
 
 | Type         | Description      |
 | ------------  | --------- |
-| [SizeOptions](arkui-ts/ts-types.md#sizeoptions)  | Layout width and height occupied by the text.<br>**NOTE**<br>The return values for text width and height are both in px. |
+| [SizeOptions](arkui-ts/ts-types.md#sizeoptions)  | Layout width and height occupied by the text.<br>**NOTE**<br>The return values for text width and height are both in px.|
 
 
 **Example**
+
+> **NOTE**
+>
+>You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
 
 ```ts
 import { MeasureText } from '@kit.ArkUI'
@@ -93,7 +105,7 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  textSize : SizeOptions = MeasureText.measureTextSize({
+  textSize : SizeOptions = MeasureText.measureTextSize({ // You are advised to use this.getUIContext().getMeasureUtils().measureText().
     textContent: "Hello word",
     fontSize: '50px'
   })
@@ -118,7 +130,7 @@ Provides attributes of the measured text.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type                                                                                               | Mandatory | Description                     |
+| Name          | Type                                                                                               | Mandatory| Description                     |
 | -------------- | -------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------- |
 | textContent | string \| [Resource](arkui-ts/ts-types.md#resource)                                                                                             | Yes  | Content of the measured text.                                 |
 | constraintWidth<sup>10+</sup> | number \| string \| [Resource](arkui-ts/ts-types.md#resource)   | No  | Layout width of the measured text.<br>**NOTE**<br>The default unit is vp. The value cannot be a percentage. If this parameter is not set, the value of **SizeOption** is the maximum width allowed for the single-line text.                            |
@@ -131,7 +143,7 @@ Provides attributes of the measured text.
 | overflow<sup>10+</sup>  | number \| [TextOverflow](arkui-ts/ts-appendix-enums.md#textoverflow)         | No  | Display mode when the measured text is too long.|
 | maxLines<sup>10+</sup>  | number                                                                                    | No  | Maximum number of lines in the measured text.|
 | lineHeight<sup>10+</sup>  | number \| string \| [Resource](arkui-ts/ts-types.md#resource)    | No  | Line height of the measured text.|
-| baselineOffset<sup>10+</sup>  | number \| string                                                          | No  | Baseline offset of the measured text.<br>Default value: **0** |
-| textCase<sup>10+</sup>  | number \| [TextCase](arkui-ts/ts-appendix-enums.md#textcase)                 | No  | Case of the measured text.<br>Default value: **TextCase.Normal** |
-| textIndent<sup>11+</sup> | number \| string  | No | Indentation of the first line.<br>Default value: **0** |
-| wordBreak<sup>11+</sup> | [WordBreak](arkui-ts/ts-appendix-enums.md#wordbreak11) | No  | Line break rule.<br>Default value: **WordBreak.BREAK_WORD**<br>**NOTE**<br>When used with **{overflow: TextOverflow.Ellipsis}** and **maxLines**, **WordBreak.BREAK_ALL** can insert line breaks between letters when overflow occurs and display excess content with an ellipsis (...). |
+| baselineOffset<sup>10+</sup>  | number \| string                                                          | No  | Baseline offset of the measured text.<br>Default value: **0**|
+| textCase<sup>10+</sup>  | number \| [TextCase](arkui-ts/ts-appendix-enums.md#textcase)                 | No  | Case of the measured text.<br>Default value: **TextCase.Normal**|
+| textIndent<sup>11+</sup> | number \| string  | No | Indentation of the first line.<br>Default value: **0**|
+| wordBreak<sup>11+</sup> | [WordBreak](arkui-ts/ts-appendix-enums.md#wordbreak11) | No  | Line break rule.<br>Default value: **WordBreak.BREAK_WORD**<br>**NOTE**<br>When used with **{overflow: TextOverflow.Ellipsis}** and **maxLines**, **WordBreak.BREAK_ALL** can insert line breaks between letters when overflow occurs and display excess content with an ellipsis (...).|

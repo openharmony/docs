@@ -28,9 +28,9 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  - For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
->  
->  - For the **\<AlphabetIndexer>** component, the **auto** option of **width** means to adapt to the maximum width of index entries.
+>  - In the [TextInput](./ts-basic-components-textinput.md) component, setting **width** to **auto** means that the width adapts to the width of the text content.
+>
+>  - In the [AlphabetIndexer](./ts-container-alphabet-indexer.md) component, setting **width** to **auto** means that the width adapts to the maximum width of index entries.
 
 ## height
 
@@ -54,7 +54,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components.
+>  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer] (./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components.
 
 ## size
 
@@ -98,7 +98,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 ## margin
 
-margin(value: margin | Length | LocalizedMargin)
+margin(value: Margin | Length | LocalizedMargin)
 
 Sets the margin of the component.
 
@@ -114,7 +114,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 | Name| Type                                                        | Mandatory    | Description                                                        |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) \| [LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
+| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) \| [LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the [Row](./ts-container-row.md), [Column](./ts-container-column.md), or [Flex](./ts-container-flex.md) container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **Column** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
 
 ## layoutWeight
 
@@ -132,7 +132,7 @@ Sets the weight of the component during layout.
 
 | Name  | Type                        | Mandatory     | Description                                      |
 | ----- | -------------------------- | ------- | ---------------------------------------- |
-| value | number \| string | Yes| Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| value | number \| string | Yes| Weight of the component during layout. When the size of the parent container is determined, the container space is allocated along the main axis among the component and its sibling components based on their respective weights, ignoring their own size settings.<br>Default value: **0**<br>**NOTE**<br>This parameter is only effective in [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [Flex](./ts-container-flex.md) container components.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.<br>If any child component in a container has the **layoutWeight** attribute set to a value greater than 0, then child components will no longer be laid out based on **flexShrink** and **flexGrow**.|
 
 ## constraintSize
 
@@ -154,18 +154,19 @@ Since API version 10, this API supports the calc calculation feature.
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Yes   | Constraint size of the component to set. **constraintSize** takes precedence over **width** and **height**. See **Impact of constraintSize on width/height**.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Unit: vp<br>|
 
-**Impact of constraintSize on width/height**
+**Impact of constraintSize(minWidth/maxWidth/minHeight/maxHeight) on width/height**
 
 | Default Value                                     | Result                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| /                                        | max(minWidth/minHeight, min(maxWidth/maxHeight, width/height)) |
-| maxWidth/maxHeight                       | max(minWidth/minHeight, width/height)    |
-| minWidth/minHeight                       | min(maxWidth/maxHeight, width/height)    |
-| width/height                             | In the case of maxWidth/maxHeight > minWidth/minHeight, the layout logic of the component is used,<br>and the result is between maxWidth/maxHeight and minWidth/minHeight.<br> In other cases, the result is max(minWidth/minHeight, maxWidth/maxHeight).|
-| maxWidth/maxHeight && width/height       | minWidth/minHeight                       |
-| minWidth/minHeight && width/height       | The layout logic of the component is used. The final result does not exceed maxWidth/maxHeight.    |
-| maxWidth/maxHeight && minWidth/minHeight | Width/Height, which may be stretched or compressed based on other layout attributes.          |
-| maxWidth/maxHeight && minWidth/minHeight && width/height | The layout restrictions passed by the parent container are used for layout.                       |
+| \ | width=MAX(minWidth,MIN(maxWidth,width))<br>height=MAX(minHeight,MIN(maxHeight,height)) |
+| maxWidth, maxHeight| width=MAX(minWidth,width)<br>height=MAX(minHeight,height) |
+| minWidth, minHeight| width=MIN(maxWidth,width)<br>height=MIN(maxHeight,height) |
+| width, height| If minWidth < maxWidth, the layout logic of the component takes effect, and the value range of **width** is [minWidth, maxWidth]. Otherwise, width = MAX(minWidth, maxWidth).<br>If minHeight < maxHeight, the layout logic of the component takes effect, and the value range of **height** is [minHeight, maxHeight]. Otherwise, height = MAX (minHeight, maxHeight).|
+| width and maxWidth; height and maxHeight| width = minWidth<br>height = minHeight |
+| width and minWidth; and height and minHeight| The layout logic of the component takes effect, and the value of **width** cannot be greater than that of **maxWidth**.<br>The layout logic of the component takes effect, and the value of **height** cannot be greater than that of **maxHeight**.|
+| minWidth and maxWidth; minHeight and maxHeight| The width of the component is initially determined by the value of **width**, and it may be adjusted based on other layout attributes.<br>The height of the component is initially determined by the value of **height**, and it may be adjusted based on other layout attributes.|
+| width, minWidth, and maxWidth| The layout restrictions passed by the parent container are used for layout.|
+| height, minHeight, and maxHeight| The layout restrictions passed by the parent container are used for layout.|
 
 ## SizeOptions
 
@@ -193,7 +194,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+>  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer](./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components. In the [TextInput](./ts-basic-components-textinput.md) component, setting **width** to **auto** means that the width adapts to the width of the text content.
 
 ## Example
 ### Example 1

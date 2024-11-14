@@ -30,7 +30,7 @@ Declares the UI input event capabilities provided by ArkUI on the native side.
 | Name| Description| 
 | -------- | -------- |
 | [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 } | Enumerates the UI input event types. | 
-| { UI_TOUCH_EVENT_ACTION_CANCEL = 0, UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3 } | Enumerates the action codes of the input event. | 
+| {<br>OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br>} | Enumerates the action codes of the input event. | 
 | {<br>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br>} | Enumerates the tool types of the input event. | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | Enumerates the source types of the input event. | 
 | [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | Enumerates the hit test modes. | 
@@ -122,6 +122,9 @@ Enumerates the action codes of the input event.
 
 | Value| Description| 
 | -------- | -------- |
+| OH_NATIVEXCOMPONENT_RESULT_SUCCESS  | Success. | 
+| OH_NATIVEXCOMPONENT_RESULT_FAILED  | Failure. | 
+| OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER  | Invalid parameter. | 
 | UI_TOUCH_EVENT_ACTION_CANCEL  | Cancellation of touch. | 
 | UI_TOUCH_EVENT_ACTION_DOWN  | Pressing of touch. | 
 | UI_TOUCH_EVENT_ACTION_MOVE  | Moving of touch. | 

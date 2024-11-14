@@ -439,9 +439,9 @@ Defines an interpolation curve. For details about the animation, see <!--RP1-->[
 
 | Name     | Description                                 |
 | ------- | ----------------------------------- |
-| Cover   | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Cover   | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
-| Auto    | The original image aspect ratio is retained.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
+| Auto    | The original image aspect ratio remains unchanged. Default value.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
 | FILL<sup>12+</sup> | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## GradientDirection
@@ -488,14 +488,14 @@ Defines an interpolation curve. For details about the animation, see <!--RP1-->[
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name     | Description     |
-| ------- | ------- |
-| Lighter | The font weight is lighter.  |
-| Normal  | The font weight is normal.|
-| Regular | The font weight is regular.|
-| Medium  | The font weight is medium.|
-| Bold    | The font weight is bold.  |
-| Bolder  | The font weight is bolder. |
+| Name   |  Value  |    Description  |
+| ------- | ----- | ----------- |
+| Lighter |  100  |   The font weight is lighter.|
+| Normal  |  400  |   The font weight is normal.|
+| Regular |  400  |   The font weight is regular.|
+| Medium  |  500  |   The font weight is medium.|
+| Bold    |  700  |   The font weight is bold.  |
+| Bolder  |  900  |   The font weight is bolder.|
 
 ## TextAlign
 
@@ -683,7 +683,7 @@ This API is supported in ArkTS widgets.
 | Name   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
-| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.|
+| INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 
 ## Nullable <sup>11+</sup>
