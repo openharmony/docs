@@ -252,7 +252,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 | -a&nbsp;-f | -a为可选参数，指定-a后，-f为必选参数。执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
 | -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数，未指定-q。根据包名查询补丁信息。 |
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
-| -t | 可选参数，应用的目标路径。|
+| -t | 可选参数，快速修复应用到指定目标路径。|
 | -d | 可选参数，应用快速修复调试模式。|
 
 
@@ -1227,9 +1227,12 @@ Error: installd set selinux label failed.
 **处理步骤**
 
 1. 确认签名文件p7b中apl字段是否有误。
-![示例图](figures/zh-cn_image_9568359.png)
+
+    ![示例图](figures/zh-cn_image_9568359.png)
+
 2. 若apl字段有误，修改UnsgnedReleasedProfileTemplate.json文件中apl字段，并重新签名。
-![示例图](figures/zh-cn_image_9568359_2.png)
+
+    ![示例图](figures/zh-cn_image_9568359_2.png)
 
 
 ### 9568403 安装加密校验失败
