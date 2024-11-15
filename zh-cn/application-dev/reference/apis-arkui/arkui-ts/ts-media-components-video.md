@@ -21,7 +21,7 @@
 
 ### Video
 
-Video(value: VideoOptions)
+Video(value: [VideoOptions](#videooptions对象说明))
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -115,7 +115,7 @@ controls(value: boolean)
 
 ### objectFit
 
-objectFit(value: ImageFit)
+objectFit(value: [ImageFit](ts-appendix-enums.md#imagefit))
 
 设置视频显示模式。
 
@@ -151,7 +151,7 @@ enableAnalyzer(enable: boolean)
 
 设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
 使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
-不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。
+不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时[overlay](ts-universal-attributes-overlay.md)中[CustomBuilder](ts-types.md#custombuilder8)属性将失效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -170,7 +170,7 @@ enableAnalyzer(enable: boolean)
 
 ### analyzerConfig<sup>12+</sup>
 
-analyzerConfig(config: ImageAnalyzerConfig)
+analyzerConfig(config: [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig))
 
 设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能。
 
@@ -188,7 +188,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 ### onStart
 
-onStart(event:&nbsp;VoidCallback)
+onStart(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 播放时触发该事件。
 
@@ -204,7 +204,7 @@ onStart(event:&nbsp;VoidCallback)
 
 ### onPause
 
-onPause(event:&nbsp;VoidCallback)
+onPause(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 暂停时触发该事件。
 
@@ -220,7 +220,7 @@ onPause(event:&nbsp;VoidCallback)
 
 ### onFinish
 
-onFinish(event:&nbsp;VoidCallback)
+onFinish(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 播放结束时触发该事件。
 
@@ -256,7 +256,7 @@ onStop(event: Callback&lt;void&gt;)
 
 ### onPrepared
 
-onPrepared(callback: Callback\<PreparedInfo>)
+onPrepared(callback: [Callback](ts-types.md#callback12)\<[PreparedInfo](#preparedinfo14对象说明)>)
 
 视频准备完成时触发该事件。
 
@@ -272,7 +272,7 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 ### onSeeking
 
-onSeeking(callback: Callback\<PlaybackInfo>)
+onSeeking(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 操作进度条过程时上报时间信息。
 
@@ -288,7 +288,7 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 ### onSeeked
 
-onSeeked(callback: Callback\<PlaybackInfo>)
+onSeeked(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 操作进度条完成后，上报播放时间信息。
 
@@ -304,7 +304,7 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 ### onUpdate
 
-onUpdate(callback: Callback\<PlaybackInfo>)
+onUpdate(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 播放进度变化时触发该事件。
 
@@ -320,7 +320,7 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 ### onFullscreenChange
 
-onFullscreenChange(callback: Callback\<FullscreenInfo>)
+onFullscreenChange(callback: [Callback](ts-types.md#callback12)\<[FullscreenInfo](#fullscreeninfo14对象说明)>)
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
