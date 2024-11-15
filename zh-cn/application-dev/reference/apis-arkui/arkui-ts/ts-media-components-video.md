@@ -61,43 +61,6 @@ Video(value: VideoOptions)
 | Speed_Forward_1_75_X | 1.75倍速播放。 |
 | Speed_Forward_2_00_X | 2倍速播放。    |
 
-## FullscreenInfo<sup>14+</sup>对象说明
-
-用于描述当前视频是否进入全屏播放状态。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态    |
-
-## PreparedInfo<sup>14+</sup>对象说明
-
-用于描述当前视频的时长，单位为秒。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| duration    | number  | 是   | 当前视频的时长，单位为秒        |
-
-## PlaybackInfo<sup>14+</sup>对象说明
-
-用于描述当前视频播放的进度，单位为秒。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| time        | number  | 是   | 当前视频播放的进度，单位为秒      |
-
-
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -371,6 +334,41 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ---------- | ------- | ---- | ----------------------------------------------------- |
 | callback | [Callback](ts-types.md#callback12)\<FullscreenInfo> | 是   | 当前视频是否进入全屏播放状态。 |
 
+### FullscreenInfo<sup>14+</sup>对象说明
+
+用于描述当前视频是否进入全屏播放状态。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态    |
+
+### PreparedInfo<sup>14+</sup>对象说明
+
+用于描述当前视频的时长，单位为秒。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| duration    | number  | 是   | 当前视频的时长，单位为秒        |
+
+### PlaybackInfo<sup>14+</sup>对象说明
+
+用于描述当前视频播放的进度，单位为秒。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| time        | number  | 是   | 当前视频播放的进度，单位为秒      |
 
 ## VideoController
 
