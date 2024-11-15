@@ -12,7 +12,7 @@
 
 \@Monitor装饰器用于监听状态变量修改，使得状态变量具有深度监听的能力：
 
-- \@Monitor装饰器支持在\@ComponentV2装饰的自定义组件中使用，未被状态变量装饰器[\@Local](arkts-new-local.md)、[\@Param](arkts-new-param.md)、[\@Provider](arkts-new-Provider-and-Consumer.md)、[\@Comsumer](arkts-new-Provider-and-Consumer.md)、[\@Computed](arkts-new-Computed.md)装饰的变量无法被\@Monitor监听到变化。
+- \@Monitor装饰器支持在\@ComponentV2装饰的自定义组件中使用，未被状态变量装饰器[\@Local](arkts-new-local.md)、[\@Param](arkts-new-param.md)、[\@Provider](arkts-new-Provider-and-Consumer.md)、[\@Consumer](arkts-new-Provider-and-Consumer.md)、[\@Computed](arkts-new-Computed.md)装饰的变量无法被\@Monitor监听到变化。
 
 - \@Monitor装饰器支持在类中与[\@ObservedV2、\@Trace](arkts-new-observedV2-and-trace.md)配合使用，不允许在未被\@ObservedV2装饰的类中使用\@Monitor装饰器。未被\@Trace装饰的属性无法被\@Monitor监听到变化。
 - 当观测的属性变化时，\@Monitor装饰器定义的回调方法将被调用。判断属性是否变化使用的是严格相等（===），当严格相等为false的情况下，就会触发\@Monitor的回调。当在一次事件中多次改变同一个属性时，将会使用初始值和最终值进行比较以判断是否变化。
@@ -798,7 +798,7 @@ message change from initialized to Index aboutToAppear
 message change from Index aboutToAppear to Index click to change message
 ```
 
-类中定义的\@Monitor随着类的销毁失效。而由于类的实际销毁释放依赖于垃圾回收机制，因此会出现即使所在自定义组件已经销毁，类确还未及时销毁，导致类中定义的\@Monitor仍在监听变化的情况。
+类中定义的\@Monitor随着类的销毁失效。而由于类的实际销毁释放依赖于垃圾回收机制，因此会出现即使所在自定义组件已经销毁，类却还未及时销毁，导致类中定义的\@Monitor仍在监听变化的情况。
 
 ```ts
 @ObservedV2
