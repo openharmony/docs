@@ -368,7 +368,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 参数名       | 类型    | 必填 | 说明                         |
 | ----------- | ------- | ---- | ---------------------------- |
-| time        | number  | 是   | 当前视频播放的进度，单位为秒      |
+| time        | number  | 是   | 当前视频播放的进度，单位为秒。      |
 
 ## VideoController
 
