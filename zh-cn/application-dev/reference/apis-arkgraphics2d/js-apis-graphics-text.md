@@ -1668,7 +1668,7 @@ struct Index {
 
 getPositions(): Array<common2D.Point>
 
-获取该渲染单元中每个字形相对于每行的索引。
+获取该渲染单元中每个字形相对于每行的字形位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
