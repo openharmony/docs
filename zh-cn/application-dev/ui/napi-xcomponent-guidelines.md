@@ -1348,23 +1348,27 @@ Native侧
         int64_t surfaceId = 0;
         size_t argc = 3;
         napi_value args[3] = {nullptr};
-    
+
         if (napi_ok != napi_get_cb_info(env, info, &argc, args, nullptr, nullptr)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
                          "ChangeSurface: GetContext napi_get_cb_info failed");
+            return nullptr;
         }
         bool lossless = true;
         int index = 0;
         if (napi_ok != napi_get_value_bigint_int64(env, args[index++], &surfaceId, &lossless)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "ChangeSurface: Get value failed");
+            return nullptr;
         }
         double width;
         if (napi_ok != napi_get_value_double(env, args[index++], &width)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "ChangeSurface: Get width failed");
+            return nullptr;
         }
         double height;
         if (napi_ok != napi_get_value_double(env, args[index++], &height)) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "ChangeSurface: Get height failed");
+            return nullptr;
         }
         auto pluginRender = GetPluginRender(surfaceId);
         if (pluginRender == nullptr) {
