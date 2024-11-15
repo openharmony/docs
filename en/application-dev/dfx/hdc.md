@@ -97,11 +97,10 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
       vi ~/.zshrc
       ```
 
-2. Press **i** to enter **Insert** mode.
+2. Press **i** to enter **Insert** mode.<!--RP2-->
 
 3. Enter the following content and  add the SDK path to the **PATH**.
 
-<!--RP2-->
    In the following example, the **toolchains** path of the local SDK is **/User/*username*/sdk/openharmony/10/toolchains**.
 
    ```shell
