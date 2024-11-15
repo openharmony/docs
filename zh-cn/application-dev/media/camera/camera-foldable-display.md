@@ -3,6 +3,8 @@
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
+
 ## 创建XComponent
    使用两个[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)分别展示折叠态和展开态，防止切换折叠屏状态亮屏的时候上一个摄像头还未关闭，残留上一个摄像头的画面。
 

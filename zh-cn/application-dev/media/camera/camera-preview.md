@@ -2,6 +2,8 @@
 
 预览是启动相机后看见的画面，通常在拍照和录像前执行。
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
+
 ## 开发步骤
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。

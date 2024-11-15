@@ -2,6 +2,8 @@
 
 相机应用可通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
+
 ## 开发步骤
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
