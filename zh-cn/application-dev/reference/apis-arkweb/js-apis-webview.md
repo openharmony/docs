@@ -981,7 +981,7 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 | data       | string | 是   | 按照"base64"或者"URL"编码后的一段字符串。                    |
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
 | encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
-| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。 |
+| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。当加载大量html文件时，需设置为"data"。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
@@ -4259,6 +4259,10 @@ struct WebComponent {
 removeCache(clearRom: boolean): void
 
 清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
+
+> **说明：**
+>
+> 可以通过在data/storage/el2/base/cache/web/Cache目录下查看Webview的缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
