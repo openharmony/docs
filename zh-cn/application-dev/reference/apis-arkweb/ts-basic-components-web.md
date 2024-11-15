@@ -655,7 +655,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)
+设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
