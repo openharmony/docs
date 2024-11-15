@@ -192,7 +192,7 @@ onStart(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 播放时触发该事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -208,7 +208,7 @@ onPause(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 暂停时触发该事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -224,7 +224,7 @@ onFinish(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 播放结束时触发该事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -260,7 +260,7 @@ onPrepared(callback: Callback\<[PreparedInfo](#preparedinfo14对象说明)>)
 
 视频准备完成时触发该事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -276,7 +276,7 @@ onSeeking(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 操作进度条过程时上报时间信息。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -292,7 +292,7 @@ onSeeked(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 操作进度条完成后，上报播放时间信息。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -308,7 +308,7 @@ onUpdate(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 播放进度变化时触发该事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -324,7 +324,7 @@ onFullscreenChange(callback: Callback\<[FullscreenInfo](#fullscreeninfo14对象�
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
