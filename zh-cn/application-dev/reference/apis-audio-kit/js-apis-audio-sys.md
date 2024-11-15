@@ -1623,9 +1623,9 @@ async function selectOutputDeviceByFilter(){
 
 selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDeviceDescriptor: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-**系统接口：** 该接口为系统接口
-
 根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1681,9 +1681,9 @@ async function selectInputDeviceByFilter() {
 
 selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-**系统接口：** 该接口为系统接口
-
 根据过滤条件，选择音频输入设备，当前只能选择一个输入设备，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1744,9 +1744,9 @@ async function selectInputDeviceByFilter(){
 
 getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescriptors
 
-**系统接口：** 该接口为系统接口
+根据过滤条件，查询音频输出设备。
 
-根据过滤条件，查询音频输出接口。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1788,9 +1788,9 @@ async function selectOutputDeviceByFilter(){
 
 getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
 
-**系统接口：** 该接口为系统接口
+根据过滤条件，查询音频输入设备，当前只能查询一个输入设备。
 
-根据过滤条件，查询音频输入设备，当前只能查询一个输入设备，返回结果。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
