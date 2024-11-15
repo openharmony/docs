@@ -270,15 +270,15 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置最大矩阵系数
     int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
     // 配置编码Profile
-    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
+    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_HIGH);
     // 配置编码比特率模式
-    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
+    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR);
     // 配置关键帧的间隔，单位为毫秒
-    int32_t iFrameInterval = 23000;
+    int32_t iFrameInterval = 1000;
     // 配置比特率
-    int64_t bitRate = 3000000;
+    int64_t bitRate = 5000000;
     // 配置编码质量
-    int64_t quality = 0;
+    int64_t quality = 90;
 
     OH_AVFormat *format = OH_AVFormat_Create();
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置
