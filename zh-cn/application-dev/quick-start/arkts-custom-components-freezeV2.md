@@ -329,3 +329,137 @@ struct NavigationContentMsgStack {
 9.再次点击“Back Page”回到PageOne，此时，仅pageOneStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
 10.再次点击“Back Page”回到初始页。
+
+
+## 限制条件
+如下面的例子所示，FreezeBuildNode中使用了自定义节点[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)。BuilderNode可以通过命令式动态挂载组件，而组件冻结又是强依赖父子关系来通知是否开启组件冻结。如果父组件使用组件冻结，且组件树的中间层级上又启用了BuilderNode，则BuilderNode的子组件将无法被冻结。
+
+```
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
+// 定义一个Params类，用于传递参数
+@ObservedV2
+class Params {
+  // 单例模式，确保只有一个Params实例
+  static singleton_: Params;
+
+  // 获取Params实例的方法
+  static instance() {
+    if (!Params.singleton_) {
+      Params.singleton_ = new Params(0);
+    }
+    return Params.singleton_;
+  }
+
+  // 使用@Trace装饰器装饰message属性，以便跟踪其变化
+  @Trace message: string = "Hello";
+  index: number = 0;
+
+  constructor(index: number) {
+    this.index = index;
+  }
+}
+
+// 定义一个buildNodeChild组件，它包含一个message属性和一个index属性
+@ComponentV2
+struct buildNodeChild {
+  // 使用Params实例作为storage属性
+  storage: Params = Params.instance();
+  @Param index: number = 0;
+
+  // 使用@Monitor装饰器监听storage.message的变化
+  @Monitor("storage.message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`FreezeBuildNode buildNodeChild message callback func ${this.storage.message}, index:${this.index}`);
+  }
+
+  build() {
+    Text(`buildNode Child message: ${this.storage.message}`).fontSize(30)
+  }
+}
+
+// 定义一个buildText函数，它接收一个Params参数并构建一个Column组件
+@Builder
+function buildText(params: Params) {
+  Column() {
+    buildNodeChild({ index: params.index })
+  }
+}
+
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private index: number = 0;
+  
+  // 构造函数接收一个index参数
+  constructor(index: number) {
+    super();
+    this.index = index;
+  }
+
+  // 创建并返回一个FrameNode
+  makeNode(context: UIContext): FrameNode | null {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.index));
+    return this.textNode.getFrameNode();
+  }
+}
+
+// 定义一个Index组件，它包含一个message属性和一个data数组
+@Entry
+@ComponentV2
+struct Index {
+  // 使用Params实例作为storage属性
+  storage: Params = Params.instance();
+  private data: number[] = [0, 1];
+
+  build() {
+    Row() {
+      Column() {
+        Button("change").fontSize(30)
+          .onClick(() => {
+            this.storage.message += 'a';
+          })
+
+        Tabs() {
+          // 使用Repeat重复渲染TabContent组件
+          Repeat<number>(this.data)
+            .each((obj: RepeatItem<number>) => {
+              TabContent() {
+                FreezeBuildNode({ index: obj.item })
+                  .margin({ top: 20 })
+              }.tabBar(`tab${obj.item}`)
+            })
+            .key((item: number) => item.toString())
+        }
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+// 定义一个FreezeBuildNode组件，它包含一个message属性和一个index属性
+@ComponentV2({ freezeWhenInactive: true })
+struct FreezeBuildNode {
+  // 使用Params实例作为storage属性
+  storage: Params = Params.instance();
+  @Param index: number = 0;
+
+  // 使用@Monitor装饰器监听storage.message的变化
+  @Monitor("storage.message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`FreezeBuildNode message callback func ${this.storage.message}, index: ${this.index}`);
+  }
+
+  build() {
+    NodeContainer(new TextNodeController(this.index))
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#FFF0F0F0')
+  }
+}
+```
+
+点击Button("change")。改变message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。未显示的TabContent中的BuilderNode节点下组件的@Watch方法onMessageUpdated也被触发，并没有被冻结。
+
+![builderNode.gif](figures/builderNode.gif)
