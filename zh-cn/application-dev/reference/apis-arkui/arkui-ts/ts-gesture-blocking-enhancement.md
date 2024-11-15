@@ -513,6 +513,7 @@ struct Index {
   @State selectedIndex: number = 0
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
+  innerSelectedIndex: number = 0
   controller?: TabsController = new TabsController();
   @Builder
   tabBuilder(index: number, name: string) {
@@ -544,6 +545,10 @@ struct Index {
               Column().width('100%').height('100%').backgroundColor(Color.Pink)
             }.tabBar(new SubTabBarStyle('pink'))
           }
+          .onAnimationStart((index: number, targetIndex: number) => {
+            console.info('ets onGestureRecognizerJudgeBegin child:' + targetIndex)
+            this.innerSelectedIndex = targetIndex
+          })
           .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
             others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
             console.info('ets onGestureRecognizerJudgeBegin child')
@@ -555,15 +560,17 @@ struct Index {
                 if (swiperTaget instanceof ScrollableTargetInfo) {
                   console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
                 }
-                if (swiperTaget instanceof ScrollableTargetInfo && (swiperTaget.isEnd() || swiperTaget.isBegin())) {
+                if (swiperTaget instanceof ScrollableTargetInfo && 
+                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) ||
+                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) {
                   let panEvent = event as PanGestureEvent;
                   console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
-                  swiperTaget.isEnd())
-                  if (panEvent && panEvent.offsetX < 0 && swiperTaget.isEnd()) {
+                  swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
+                  if (panEvent && panEvent.offsetX < 0 && (swiperTaget.isEnd() || this.innerSelectedIndex === 1)) {
                     console.info('ets onGestureRecognizerJudgeBegin child reject end')
                     return GestureJudgeResult.REJECT;
                   }
-                  if (panEvent && panEvent.offsetX > 0 && swiperTaget.isBegin()) {
+                  if (panEvent && panEvent.offsetX > 0 && (swiperTaget.isBegin() || this.innerSelectedIndex === 0)) {
                     console.info('ets onGestureRecognizerJudgeBegin child reject begin')
                     return GestureJudgeResult.REJECT;
                   }
