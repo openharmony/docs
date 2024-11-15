@@ -268,7 +268,7 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| callback | [Callback](ts-types.md#callback12)\<PreparedInfo> | 是   | 当前视频的时长。 |
+| callback | [Callback](ts-types.md#callback12)\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
 
 ### onSeeking
 
@@ -284,7 +284,7 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | [Callback](ts-types.md#callback12)\<PlaybackInfo> | 是   | 当前视频播放的进度。 |
+| callback   | [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onSeeked
 
@@ -300,7 +300,7 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | [Callback](ts-types.md#callback12)\<PlaybackInfo> | 是   | 当前视频播放的进度。 |
+| callback   | [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onUpdate
 
@@ -316,7 +316,7 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | [Callback](ts-types.md#callback12)\<PlaybackInfo> | 是   | 当前视频播放的进度。 |
+| callback   | [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onFullscreenChange
 
@@ -332,7 +332,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| callback | [Callback](ts-types.md#callback12)\<FullscreenInfo> | 是   | 当前视频是否进入全屏播放状态。 |
+| callback | [Callback](ts-types.md#callback12)\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
 
 ### FullscreenInfo<sup>14+</sup>对象说明
 
