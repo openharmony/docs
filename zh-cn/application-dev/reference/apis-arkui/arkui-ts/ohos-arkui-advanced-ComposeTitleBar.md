@@ -86,17 +86,17 @@ struct Index {
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_save'),
+      value: $r('app.media.ic_public_reduce'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_save'),
+      value: $r('app.media.ic_public_edit'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_save'),
+      value: $r('app.media.ic_public_remove'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
