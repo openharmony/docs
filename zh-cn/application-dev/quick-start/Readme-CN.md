@@ -60,6 +60,7 @@
     - [stateStyles：多态样式](arkts-statestyles.md)
     - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
     - [@Require装饰器：校验构造传参](arkts-require.md)
+    - [@Reusable装饰器：组件复用](arkts-reusable.md)
   - 状态管理
     - [状态管理概述](arkts-state-management-overview.md)
     - 状态管理（V1稳定版）
