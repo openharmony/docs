@@ -1822,7 +1822,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
-依据圆弧经过的点和圆弧半径创建圆弧路径。
+依据给定的控制点和圆弧半径创建圆弧路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1834,10 +1834,10 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 | 参数名    | 类型     | 必填  | 说明         |
 | ------ | ------ | ---- | --------------- |
-| x1     | number | 是  | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp。 |
-| y1     | number | 是  | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp。 |
-| x2     | number | 是  | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp。 |
-| y2     | number | 是  | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp。 |
+| x1     | number | 是  | 第一个控制点的x坐标值。<br>默认单位：vp。 |
+| y1     | number | 是  | 第一个控制点的y坐标值。<br>默认单位：vp。 |
+| x2     | number | 是  | 第二个控制点的x坐标值。<br>默认单位：vp。 |
+| y2     | number | 是  | 第二个控制点的y坐标值。<br>默认单位：vp。 |
 | radius | number | 是  | 圆弧的圆半径值。<br>默认单位：vp。 |
 
  **示例：**
@@ -1859,9 +1859,37 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .backgroundColor('#ffff00')
           .onReady(() =>{
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            offContext.moveTo(100, 20)
-            offContext.arcTo(150, 20, 150, 70, 50)
+
+            // 切线
+            offContext.beginPath()
+            offContext.strokeStyle = '#808080'
+            offContext.lineWidth = 1.5;
+            offContext.moveTo(360, 20);
+            offContext.lineTo(360, 170);
+            offContext.lineTo(110, 170);
+            offContext.stroke();
+
+            // 圆弧
+            offContext.beginPath()
+            offContext.strokeStyle = '#000000'
+            offContext.lineWidth = 3;
+            offContext.moveTo(360, 20)
+            offContext.arcTo(360, 170, 110, 170, 150)
             offContext.stroke()
+
+            // 起始点
+            offContext.beginPath();
+            offContext.fillStyle = '#00ff00';
+            offContext.arc(360, 20, 4, 0, 2 * Math.PI);
+            offContext.fill();
+
+            // 控制点
+            offContext.beginPath();
+            offContext.fillStyle = '#ff0000';
+            offContext.arc(360, 170, 4, 0, 2 * Math.PI);
+            offContext.arc(110, 170, 4, 0, 2 * Math.PI);
+            offContext.fill();
+
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
           })
@@ -1873,6 +1901,10 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   ```
 
   ![zh-cn_image_0000001193872524](figures/zh-cn_image_0000001193872524.png)
+
+  > 此示例中，arcTo()创建的圆弧为黑色，圆弧的两条切线为灰色。控制点为红色，起始点为绿色。
+  >
+  > 可以想象两条切线：一条切线从起始点到第一个控制点，另一条切线从第一个控制点到第二个控制点。arcTo()在这两条切线间创建一个圆弧，并使圆弧与这两条切线都相切。
 
 
 ### ellipse
@@ -2100,7 +2132,7 @@ struct Fill {
 }
 ```
 
- ![zh-cn_image_000000127777775](figures/zh-cn_image_000000127777775.png)
+ ![zh-cn_image_000000127777775](figures/zh-cn_image_000000127777775.jpg)
 
 
 
@@ -2216,7 +2248,7 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
   }
   ```
 
-  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
+  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.jpg)
 
 
 ### reset<sup>12+</sup>
@@ -2842,10 +2874,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 | 参数    | 类型 | 必填   | 说明 |
 | ----- | ---------------------------------------- | ---- | ----------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 图片资源，请参考ImageBitmap或PixelMap。 |
-| sx    | number | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>默认单位：vp。 |
-| sy    | number | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>默认单位：vp。 |
-| sw    | number | 是  | 裁切源图像时需要裁切的宽度。<br>默认单位：vp。 |
-| sh    | number | 是  | 裁切源图像时需要裁切的高度。<br>默认单位：vp。 |
+| sx    | number | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
+| sy    | number | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
+| sw    | number | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
+| sh    | number | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
 | dx    | number | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。 |
 | dy    | number | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。 |
 | dw    | number | 是  | 绘制区域的宽度。<br>默认单位：vp。 |
@@ -3380,6 +3412,12 @@ transferToImageBitmap(): ImageBitmap
 restore(): void
 
 对保存的绘图上下文进行恢复。
+
+> **说明：**
+>
+> 当restore()次数未超出save()次数时，从栈中弹出存储的绘制状态并恢复CanvasRenderingContext2D对象的属性、剪切路径和变换矩阵的值。</br>
+> 当restore()次数超出save()次数时，此方法不做任何改变。</br>
+> 当没有保存状态时，此方法不做任何改变。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

@@ -1,8 +1,9 @@
 # Permissions for All Applications
 
-Before requesting permissions for your application, read and understand the [Workflow for Using Permissions](determine-application-mode.md) and this topic to determine the permissions required.
+Before requesting permissions for your application, read and understand the [Workflow for Requesting Permissions](determine-application-mode.md) and this topic to determine the permissions required.
 
 > **NOTE**
+> 
 > "Enable via ACL" is not involved for permissions of the normal level.
 
 ## system_grant Permissions
@@ -275,7 +276,7 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 
 Allows an application to run dynamically delivered ArkCompiler bytecode when the ArkCompiler runtime engine is in restricted mode.
 
-This permission is available only for certain system applications.
+The APIs related to this permission are system APIs and are available only for specific system applications.
 
 **Permission level**: normal
 
@@ -337,7 +338,7 @@ Allows an application to access the navigation service.
 
 Allows an application to protect its sensitive data from being accessed after the screen is locked.
 
-After the application obtains this permission, a directory in **/el5** will be automatically created. Access to the data in this directory is denied after the screen is locked. There is no API for this permission.
+After the application obtains this permission, a directory in **/el5** will be automatically created. Access to the data in this directory is denied after the screen is locked.
 
 **Permission level**: normal
 

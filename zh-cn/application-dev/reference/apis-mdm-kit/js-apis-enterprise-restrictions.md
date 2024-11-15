@@ -31,7 +31,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力。<br/>- printer：设备打印能力。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。<br/>- wifi：设备WIFI能力。 <!--RP1--><!--RP1End--> |
+| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1使用。<br/>- printer：设备打印能力，当前仅支持2in1使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力。 <br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。<!--RP1--><!--RP1End--> |
 | disallow | boolean                                                 | 是   | true表示禁止使用，false表示允许使用。                        |
 
 **错误码**：
@@ -77,7 +77,7 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力。<br/>- printer：设备打印能力。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。<br/>- wifi：设备WIFI能力。<!--RP2--><!--RP2End--> |
+| feature | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1使用。<br/>- printer：设备打印能力，当前仅支持2in1使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。<br/>- wifi：设备WIFI能力。<br/>- tethering<sup>14+</sup>：网络共享能力。 <br/>- inactiveUserFreeze<sup>14+</sup>：非活跃用户运行能力，当前仅支持2in1使用。企业空间场景下，系统切换到企业空间用户，个人空间用户属于非活跃用户。 <!--RP2--><!--RP2End--> |
 
 **返回值：**
 
@@ -128,7 +128,7 @@ setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, a
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | feature名称。<br/>- fingerprintForAccount：设备指纹认证能力。|
+| feature  | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力。|
 | disallow | boolean                                                 | 是   | true表示禁用，false表示启用。                        |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
 
@@ -154,7 +154,7 @@ let wantTemp: Want = {
 };
 
 try {
-  restrictions.setDisallowedPolicyForAccount(wantTemp, 'fingerprintForAccount', true, 100);
+  restrictions.setDisallowedPolicyForAccount(wantTemp, 'fingerprint', true, 100);
   console.info('Succeeded in setting fingerprint disabled');
 } catch (err) {
   console.error(`Failed to set fingerprint disabled. Code is ${err.code}, message is ${err.message}`);
@@ -176,7 +176,7 @@ getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): 
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature | string                                                  | 是   | feature名称。<br/>- fingerprintForAccount：设备指纹认证能力。|
+| feature | string                                                  | 是   | feature名称。<br/>- fingerprint：设备指纹认证能力。|
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
 
 **返回值：**
@@ -206,10 +206,10 @@ let wantTemp: Want = {
 };
 
 try {
-  let result: boolean = restrictions.getDisallowedPolicyForAccount(wantTemp, 'fingerprintForAccount', 100);
-  console.info(`Succeeded in querying is the fingerprintForAccount function disabled : ${result}`);
+  let result: boolean = restrictions.getDisallowedPolicyForAccount(wantTemp, 'fingerprint', 100);
+  console.info(`Succeeded in querying is the fingerprint function disabled : ${result}`);
 } catch (err) {
-  console.error(`Failed to set fingerprintForAccount disabled. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set fingerprint disabled. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -228,7 +228,7 @@ addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | 特征名称。<br/>- snapshot_skip：屏幕快照跳过。|
+| feature  | string                                                  | 是   | 特征名称。<br/>- snapshotSkip：屏幕快照跳过。|
 | list | Array\<string>                                                 | 是   | 包名等内容的名单集合。                      |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
 
@@ -253,10 +253,10 @@ let wantTemp: Want = {
 };
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
-  restrictions.addDisallowedListForAccount(wantTemp, 'snapshot_skip', valueList, 100);
-  console.info('Succeeded in adding disallowed snapshot_skip feature');
+  restrictions.addDisallowedListForAccount(wantTemp, 'snapshotSkip', valueList, 100);
+  console.info('Succeeded in adding disallowed snapshotSkip feature');
 } catch (err) {
-  console.error(`Failed to add disallowed snapshot_skip feature. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to add disallowed snapshotSkip feature. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -275,7 +275,7 @@ removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | 特征名称。<br/>- snapshot_skip：屏幕快照跳过。|
+| feature  | string                                                  | 是   | 特征名称。<br/>- snapshotSkip：屏幕快照跳过。|
 | list | Array\<string>                                                 | 是   | 包名等内容的名单集合。                       |
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
 
@@ -300,10 +300,10 @@ let wantTemp: Want = {
 };
 let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
 try {
-  restrictions.removeDisallowedListForAccount(wantTemp, 'snapshot_skip', valueList, 100);
-  console.info('Succeeded in removing disallowed snapshot_skip feature');
+  restrictions.removeDisallowedListForAccount(wantTemp, 'snapshotSkip', valueList, 100);
+  console.info('Succeeded in removing disallowed snapshotSkip feature');
 } catch (err) {
-  console.error(`Failed to remove disallowed snapshot_skip feature. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to remove disallowed snapshotSkip feature. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -322,7 +322,7 @@ getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Ar
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature | string                                                  | 是   | 特征名称。<br/>- snapshot_skip：屏幕快照跳过。|
+| feature | string                                                  | 是   | 特征名称。<br/>- snapshotSkip：屏幕快照跳过。|
 | accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
 
 **返回值：**
@@ -352,7 +352,7 @@ let wantTemp: Want = {
 };
 
 try {
-  let result: Array<string> = restrictions.getDisallowedListForAccount(wantTemp, 'snapshot_skip', 100);
+  let result: Array<string> = restrictions.getDisallowedListForAccount(wantTemp, 'snapshotSkip', 100);
   console.info('Succeeded in querying disallowed list for account');
 } catch (err) {
   console.error(`Failed to query disallowed list for account. Code is ${err.code}, message is ${err.message}`);

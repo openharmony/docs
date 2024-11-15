@@ -1,6 +1,6 @@
-# Camera Photographing (C/C++)
+# Photo Capture (C/C++)
 
-Photographing is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
+Photo capture is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
@@ -71,7 +71,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 5. Set camera parameters.
 
-   You can set camera parameters to adjust photographing functions, including the flash, zoom ratio, and focal length.
+   You can set camera parameters to adjust photo capture functions, including the flash, zoom ratio, and focal length.
 
    ```c++
     // Check whether the camera has flash.
@@ -165,7 +165,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
     }
    ```
 
-6. Trigger photographing.
+6. Trigger photo capture.
 
     Call **OH_PhotoOutput_Capture()**.
 
@@ -182,7 +182,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 During camera application development, you can listen for the status of the photo output stream, including the start of the photo stream, the start and end of the photo frame, and the errors of the photo output stream.
 
-- Register the **'onFrameStart'** event to listen for photographing start events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the bottom layer starts exposure for photographing for the first time. The capture ID is returned.
+- Register the **'onFrameStart'** event to listen for photo capture start events. This event can be registered when a **PhotoOutput** instance is created and is triggered when the bottom layer starts exposure for photo capture for the first time. The capture ID is returned.
     
   ```c++
     ret = OH_PhotoOutput_RegisterCallback(photoOutput, GetPhotoOutputListener());
@@ -211,7 +211,7 @@ During camera application development, you can listen for the status of the phot
     }
   ```
 
-- Register the **'onFrameEnd'** event to listen for photographing end events. This event can be registered when a **PhotoOutput** instance is created.
+- Register the **'onFrameEnd'** event to listen for photo capture end events. This event can be registered when a **PhotoOutput** instance is created.
     
   ```c++
     void PhotoOutputOnFrameEnd(Camera_PhotoOutput* photoOutput, int32_t frameCount)

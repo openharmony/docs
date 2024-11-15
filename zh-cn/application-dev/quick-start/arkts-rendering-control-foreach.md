@@ -507,6 +507,7 @@ struct ForEachSort {
 - 尽量避免在最终的键值生成规则中包含数据项索引`index`，以防止出现[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。如果业务确实需要使用`index`，例如列表需要通过`index`进行条件渲染，开发者需要接受`ForEach`在改变数据源后重新创建组件所带来的性能损耗。
 - 基本数据类型的数据项没有唯一`ID`属性。如果使用基本数据类型本身作为键值，必须确保数组项无重复。因此，对于数据源会发生变化的场景，建议将基本数据类型数组转化为具备唯一`ID`属性的对象数据类型数组，再使用`ID`属性作为键值生成规则。
 - 对于以上限制规则，`index`参数存在的意义为：index是开发者保证键值唯一性的最终手段；对数据项进行修改时，由于`itemGenerator`中的`item`参数是不可修改的，所以须用index索引值对数据源进行修改，进而触发UI重新渲染。
+- ForEach在下列容器组件 [List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) 内使用的时候，不要与[LazyForEach](./arkts-rendering-control-lazyforeach.md) 混用。 以List为例，同时包含ForEach、LazyForEach的情形是不推荐的。
 
 ## 不推荐案例
 

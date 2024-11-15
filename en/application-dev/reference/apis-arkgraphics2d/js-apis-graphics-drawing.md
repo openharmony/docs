@@ -7,6 +7,8 @@ The Drawing module provides basic drawing capabilities, such as drawing rectangl
 > - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - This module uses the physical pixel unit, px.
+>
+> - The module operates under a single-threaded model. The caller needs to manage thread safety and context state transitions.
 
 ## Modules to Import
 
@@ -192,7 +194,7 @@ path.moveTo(10,10);
 
 lineTo(x: number, y: number) : void
 
-Draws a line segment from the last point of this path to the target point.
+Draws a line segment from the last point of this path to the target point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -260,7 +262,7 @@ path.arcTo(10, 15, 10, 10, 10, 10);
 
 quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
-Draws a quadratic Bezier curve from the last point of this path to the target point.
+Draws a quadratic Bezier curve from the last point of this path to the target point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -329,7 +331,7 @@ path.conicTo(200, 400, 100, 200, 0);
 
 cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-Draws a cubic Bezier curve from the last point of this path to the target point.
+Draws a cubic Bezier curve from the last point of this path to the target point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -365,7 +367,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 
 rMoveTo(dx : number, dy : number): void
 
-Sets the start point relative to the last point of this path.
+Sets the start position relative to the last point of this path. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -397,7 +399,7 @@ path.rMoveTo(10, 10);
 
 rLineTo(dx : number, dy : number): void
 
-Draws a line segment from the last point of this path to a point relative to the last point.
+Draws a line segment from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -429,7 +431,7 @@ path.rLineTo(400, 200);
 
 rQuadTo(dx1: number, dy1: number, dx2: number, dy2: number): void
 
-Draws a quadratic Bezier curve from the last point of this path to a point relative to the last point.
+Draws a quadratic Bezier curve from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -463,7 +465,7 @@ path.rQuadTo(100, 0, 0, 200);
 
 rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
-Draws a conic curve from the last point of this path to a point relative to the last point.
+Draws a conic curve from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -475,7 +477,7 @@ Draws a conic curve from the last point of this path to a point relative to the 
 | ctrlY  | number | Yes  | Y offset of the control point relative to the last point. A positive number indicates an upward shift from the last point, and a negative number indicates a downward shift from the last point. The value is a floating point number.|
 | endX   | number | Yes  | X offset of the target point relative to the last point. A positive number indicates a rightward shift from the last point, and a negative number indicates a leftward shift from the last point. The value is a floating point number.|
 | endY   | number | Yes  | Y offset of the target point relative to the last point. A positive number indicates an upward shift from the last point, and a negative number indicates a downward shift from the last point. The value is a floating point number.|
-| weight | number | Yes  | Weight of the curve, which determines its shape. The larger the value, the closer of the curve to the control point. If the value is less than or equal to 0, this API is equivalent to [lineTo](#lineto), that is, adding a line segment from the last point of the path to the target point. If the value is 1, this API is equivalent to [quadTo](#quadto). The value is a floating point number.|
+| weight | number | Yes  | Weight of the curve, which determines its shape. The larger the value, the closer of the curve to the control point. If the value is less than or equal to 0, this API is equivalent to [rLineTo](#rlineto12), that is, adding a line segment from the last point of the path to the target point. If the value is 1, this API is equivalent to [rQuadTo](#rquadto12). The value is a floating point number.|
 
 **Error codes**
 
@@ -498,7 +500,7 @@ path.rConicTo(200, 400, 100, 200, 0);
 
 rCubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-Draws a cubic Bezier curve from the last point of this path to a point relative to the last point.
+Draws a cubic Bezier curve from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -890,7 +892,7 @@ Adds a polygon to this path.
 
 | Name| Type  | Mandatory| Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| points | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point)   | Yes  | Array that holds the vertex coordinates of the polygon.|
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | Yes  | Array that holds the vertex coordinates of the polygon.|
 | close  | boolean                                                        | Yes  | Whether to close the path, that is, whether to add a line segment from the start point to the end point of the path. The value **true** means to close the path, and **false** means the opposite.|
 
 **Error codes**
@@ -1546,7 +1548,7 @@ Draws a spot shadow and uses a given path to outline the ambient shadow.
 
 | Name         | Type                                      | Mandatory  | Description        |
 | ------------ | ---------------------------------------- | ---- | ---------- |
-| path | [Path](#path)                | Yes   | **Path** object, which can generate the shadow.|
+| path | [Path](#path)                | Yes   | **Path** object, which is used to outline the shadow.|
 | planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | 3D vector, which is used to calculate the offset in the Z axis.|
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | Yes   | Position of the light relative to the canvas.|
 | lightRadius   | number           | Yes   | Radius of the light. The value is a floating point number.     |
@@ -3481,7 +3483,7 @@ Creates a **TextBlob** object from the text. The coordinates of each font in the
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string             | Yes  | Content to be used for drawing the text blob.                  |
 | len      | number             | Yes  | Number of fonts. The value is an integer and is obtained from [countText](#counttext12).|
-| points   |[common2D.Point[]](js-apis-graphics-common2D.md#point)      | Yes  |Array of points, which are used to specify the coordinates of each font. The array length must be the same as the value of **len**.|
+| points   |[common2D.Point](js-apis-graphics-common2D.md#point)[]     | Yes  |Array of points, which are used to specify the coordinates of each font. The array length must be the same as the value of **len**.|
 | font     | [Font](#font)      | Yes  | **Font** object.|
 
 **Return value**
@@ -6719,33 +6721,14 @@ Enumerates the modes of scaling a source rectangle into a destination rectangle.
 
 Implements a matrix.
 
-$$
-Expressed as \begin{bmatrix}
-    scaleX & skewX & transX \\
-    skewY & scaleY & transY \\
-    pers0 & pers1 & pers2
-\end{bmatrix} 3*3 matrix.
-$$
+A 3 x 3 matrix is shown as below.
+
+![matrix_3x3](figures/matrix3X3.PNG)
+
 Elements in the matrix from left to right and from top to bottom respectively represent a horizontal scale coefficient, a horizontal skew coefficient, a horizontal translation coefficient, a vertical skew coefficient, a vertical scale coefficient, a vertical translation coefficient, an X-axis perspective coefficient, a Y-axis perspective coefficient, and a perspective scale coefficient.
 If (x<sub>1</sub>, y<sub>1</sub>) is the source coordinate point, (x<sub>2</sub>, y<sub>2</sub>) is the coordinate point obtained by transforming the source coordinate point using the matrix, then the relationship between the two coordinate points is as follows:
-$$\left[ \begin{matrix}
-   x_2 \\
-   y_2 \\
-   1
-  \end{matrix}
-  \right] = \left[
- \begin{matrix}
-  scaleX & skewX & transX \\
-  skewY & scaleY & transY \\
-  pers0 & pers1 & pers2
-  \end{matrix}
-  \right] \left[
- \begin{matrix}
-   x_1 \\
-   y_1 \\
-   1
-  \end{matrix}
-  \right]$$
+
+![matrix_xy](figures/matrix_xy.PNG)
 
 ### constructor<sup>12+</sup>
 
@@ -7327,13 +7310,13 @@ Maps a source point array to a destination point array by means of matrix transf
 
 | Name         | Type   | Mandatory| Description                                                       |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Yes  | Array of source points.|
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of source points.|
 
 **Return value**
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Array of points obtained.|
+| Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Array of points obtained.|
 
 **Error codes**
 
@@ -7477,8 +7460,8 @@ Sets this matrix to a transformation matrix that maps the source point array to 
 
 | Name         | Type   | Mandatory| Description                                                       |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Yes  | Array of source points. The array length must be the same as the value of **count**.|
-| dst | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | Yes  | Array of destination points. The array length must be the same as the value of **count**.|
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of source points. The array length must be the same as the value of **count**.|
+| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of destination points. The array length must be the same as the value of **count**.|
 | count | number | Yes  | Number of points in each array. The value is an integer.|
 
 **Return value**

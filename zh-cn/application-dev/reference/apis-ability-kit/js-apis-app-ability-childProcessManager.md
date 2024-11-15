@@ -16,7 +16,7 @@ childProcessManager模块提供子进程管理能力，支持子进程启动操�
 import { childProcessManager } from '@kit.AbilityKit';
 ```
 
-## childProcessManager.StartMode
+## StartMode
 
 子进程启动模式枚举。
 
@@ -42,7 +42,7 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | srcEntry | string | 是 | 子进程源文件路径，只支持源文件放在entry类型的模块中，以src/main为根目录。例如子进程文件在entry模块下src/main/ets/process/DemoProcess.ets，则srcEntry为"./ets/process/DemoProcess.ets"。<br/>另外，需要确保子进程源文件被其它文件引用到，防止被构建工具优化掉。（详见下方示例代码） |
-  | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
+  | startMode | [StartMode](#startmode) | 是 | 子进程启动模式。 |
 
 **返回值：**
 
@@ -59,7 +59,7 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child process exceeds upper bound. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 
@@ -111,7 +111,7 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | srcEntry | string | 是 | 子进程源文件路径，只支持源文件放在entry类型的模块中，以src/main为根目录。例如子进程文件在entry模块下src/main/ets/process/DemoProcess.ets，则srcEntry为"./ets/process/DemoProcess.ets"。<br/>另外，需要确保子进程源文件被其它文件引用到，防止被构建工具优化掉。（详见下方示例代码） |
-  | startMode | [StartMode](#childprocessmanagerstartmode) | 是 | 子进程启动模式。 |
+  | startMode | [StartMode](#startmode) | 是 | 子进程启动模式。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当子进程启动成功，err为undefined，data为获取到的子进程pid；否则为错误对象。 |
 
 **错误码**：
@@ -123,7 +123,7 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
-| 16000062  | The number of child process exceeds upper bound. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 
@@ -197,7 +197,7 @@ startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildPr
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. The API cannot be called in a child process. |
-| 16000062  | The number of child process exceeds upper bound. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 
@@ -291,7 +291,7 @@ startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: Ch
 | 801 | Capability not supported. Capability not supported. Failed to call the API due to limited device capabilities. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. The API cannot be called in a child process. |
-| 16000062  | The number of native child process exceeds upper bound. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 

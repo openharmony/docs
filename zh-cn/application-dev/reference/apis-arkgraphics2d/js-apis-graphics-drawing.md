@@ -3564,7 +3564,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | 是   | 绘制字形的文本内容。                   |
 | font     | [Font](#font)                 | 是   | 字型对象。           |
-| encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。 |
+| encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。当前只有TEXT_ENCODING_UTF8生效，其余编码类型也会被视为TEXT_ENCODING_UTF8。 |
 
 **返回值：**
 
@@ -3720,7 +3720,7 @@ static makeFromFile(filePath: string): Typeface
 
 | 参数名         | 类型                                       | 必填   | 说明                  |
 | ----------- | ---------------------------------------- | ---- | ------------------- |
-| filePath | string           | 是   | 表示字体资源存放的路径。 |
+| filePath | string           | 是   | 表示字体资源存放的路径。应用沙箱路径和真实物理路径的对应关系请参考[应用沙箱路径和真实物理路径的对应关系](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)。 |
 
 **返回值：**
 
@@ -4658,6 +4658,117 @@ let font : drawing.Font = new drawing.Font();
 let text : string = 'hello world';
 let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
+```
+
+### getBounds<sup>14+</sup>
+
+getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
+
+获取字形数组中每个字形对应的边界矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| glyphs | Array\<number> | 是   | 字形索引数组，可由[textToGlyphs](#texttoglyphs12)生成。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | 返回得到的字形边界矩形数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let font: drawing.Font = new drawing.Font();
+            let text: string = 'hello world';
+            let glyphs: number[] = font.textToGlyphs(text);
+            let fontBounds: Array<common2D.Rect> = font.getBounds(glyphs);
+            for (let index = 0; index < fontBounds.length; index++) {
+              console.info("get fontWidths[", index, "] left:", fontBounds[index].left, " top:", fontBounds[index].top,
+                " right:", fontBounds[index].right, " bottom:", fontBounds[index].bottom);
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### createPathForGlyph<sup>14+</sup>
+
+createPathForGlyph(index: number): Path
+
+获取指定字形的路径轮廓。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明   |
+| -------- | --------------------- | ---- | ------ |
+| index | number | 是   | 字形索引。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| [Path](#path) | 返回指定字形的路径轮廓。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let text: string = '你好';
+    let glyphs: number[] = font.textToGlyphs(text);
+    for (let index = 0; index < glyphs.length; index++) {
+      let path: drawing.Path = font.createPathForGlyph(glyphs[index])
+      canvas.drawPath(path)
+    }
+  }
+}
 ```
 
 ## FontMetricsFlags<sup>12+</sup>
@@ -6721,33 +6832,14 @@ brush.reset();
 
 矩阵对象。
 
-$$
-表示为\begin{bmatrix}
-    scaleX & skewX & transX \\
-    skewY & scaleY & transY \\
-    pers0 & pers1 & pers2
-\end{bmatrix}的3*3矩阵。
-$$
+表示为3*3的矩阵，如下图所示：
+
+![matrix_3x3](figures/matrix3X3.PNG)
+
 矩阵中的元素从左到右，从上到下分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。
 设(x<sub>1</sub>, y<sub>1</sub>)为源坐标点，(x<sub>2</sub>, y<sub>2</sub>)为源坐标点通过矩阵变换后的坐标点，则两个坐标点的关系如下：
-$$\left[ \begin{matrix}
-   x_2 \\
-   y_2 \\
-   1
-  \end{matrix}
-  \right] = \left[
- \begin{matrix}
-  scaleX & skewX & transX \\
-  skewY & scaleY & transY \\
-  pers0 & pers1 & pers2
-  \end{matrix}
-  \right] \left[
- \begin{matrix}
-   x_1 \\
-   y_1 \\
-   1
-  \end{matrix}
-  \right]$$
+
+![matrix_xy](figures/matrix_xy.PNG)
 
 ### constructor<sup>12+</sup>
 
@@ -8064,7 +8156,7 @@ import { common2D,drawing } from '@kit.ArkGraphics2D';
 
 let startPt: common2D.Point = { x: 100, y: 100 };
 let endPt: common2D.Point = { x: 300, y: 300 };
-let shaderEffect =drawing.ShaderEffect.createLinearGradient(startPt, endPt，[0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+let shaderEffect =drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
 ### createRadialGradient<sup>12+</sup>

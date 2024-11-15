@@ -82,7 +82,7 @@ app.json5配置文件包含以下标签。
 | hwasanEnabled | 标识应用程序是否开启HWAsan检测。HWAsan(HardWare-assisted AddressSanitizer)是利用Top-Byte-Ignore特性实现的增强版Asan，与Asan相比HWAsan的内存开销更低，检测到的内存错误范围更大。<br/>-&nbsp;true：当前工程开启HWAsan检测。<br/>-&nbsp;false：当前工程不开启HWAsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | ubsanEnabled | 标识应用程序是否开启UBsan检测。<br/>UBsan(Undefined Behavior Sanitizer)是一个用于运行时检测程序中未定义行为的工具，旨在帮助开发人员发现代码中潜在的错误和漏洞。<br/>-&nbsp;true：当前工程开启UBsan检测。<br/>-&nbsp;false：当前工程不开启UBsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | cloudFileSyncEnabled | 标识当前应用是否启用端云文件同步能力。 <br/>-&nbsp;true：当前应用启用端云文件同步能力。<br/>-&nbsp;false：当前应用不启用端云文件同步能力。 | 布尔值 | 该标签可缺省，缺省值为false。  |
-| configuration | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，跟随系统默认设定。 |
+| [configuration](#configuration标签) | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，缺省时configuration使用跟随系统默认设定。 |
 
 ## icon标签
 
@@ -92,7 +92,7 @@ app.json5配置文件包含以下标签。
 
 1. 将图标的前景资源和背景资源放在AppScope/resources/base/media目录下。
 
-2. 在上述media目录下创建一个json文件（例如：layered-image.json），在文件中引用前景资源和背景资源。
+2. 在上述media目录下创建一个json文件（例如：layered-image.json），在文件中引用前景资源和背景资源，详见[图标资源规范](https://developer.huawei.com/consumer/cn/doc/design-guides/application-icon-0000001953444009#section634668113212)。
 
 分层图标资源文件示例：
 
@@ -150,7 +150,7 @@ appEnvironments标签示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| multiAppModeType          | 标识应用多开模式类型，支持的取值如下：<br/>-&nbsp;multiInstance：多实例模式。<br/>-&nbsp;appClone：应用分身模式。 | 字符串  | 该标签不可缺省。 |
+| multiAppModeType          | 标识应用多开模式类型，支持的取值如下：<br/>-&nbsp;multiInstance：多实例模式。该字段仅支持2in1设备，常驻进程不支持该字段。<br/>-&nbsp;appClone：应用分身模式。 | 字符串  | 该标签不可缺省。 |
 | maxCount         | 标识最大允许的应用多开个数，支持的取值如下：<br/>-&nbsp;multiInstance模式：取值范围1\~10。<br/>-&nbsp;appClone模式：取值范围1\~5。      | 数值  | 该标签不可缺省。 |
 
 multiAppMode标签示例：

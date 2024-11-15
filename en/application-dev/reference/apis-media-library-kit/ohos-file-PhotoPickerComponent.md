@@ -116,7 +116,7 @@ Sends data to **PhotoPickerComponent**. **DataType** specifies the type of data 
 
 setMaxSelected(maxSelected: MaxSelected): void
 
-Sets the maximum number of images, maximum number of videos, and maximum number of total media assets that be selected on a real-time basis.
+Sets the maximum number of images, maximum number of videos, and maximum number of total media assets that can be selected on a real-time basis.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

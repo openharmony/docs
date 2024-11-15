@@ -148,6 +148,26 @@
     }
     ```
 
+4. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册UIServiceExtensionAbility，type标签需要设置为“uiService”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+
+    ```json
+    {
+      "module": {
+        // ...
+        "extensionAbilities": [
+          {
+            "name": "UIServiceExtAbility",
+            "icon": "$media:icon",
+            "description": "uiService",
+            "type": "uiService",
+            "exported": true,
+            "srcEntry": "./ets/UIServiceExtAbility/UIServiceExtAbility.ets"
+          }
+        ]
+      }
+    }
+    ```
+
 ### 启动UIServiceExtension
 
 应用通过[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability13)方法启动一个[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)，组件的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的want对象。[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行，窗口创建失败或销毁后该服务会被销毁。因此，后台服务需要在其工作完成时通过调用[UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md#uiserviceextensioncontextterminateself13)来自行停止。

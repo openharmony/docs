@@ -1,4 +1,4 @@
-# Camera Preview (C/C++)
+# Preview (C/C++)
 
 Preview is the image you see after you start the camera application but before you take photos or record videos.
 

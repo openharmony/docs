@@ -61,7 +61,7 @@
   - [hidumper](hidumper.md)
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
-  - [hisysevent](hisysevent.md)
   <!--Del-->
+  - [hisysevent](hisysevent.md)
   - [uinput](uinput.md)
   <!--DelEnd-->

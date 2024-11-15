@@ -61,6 +61,8 @@ disturbanceFields(fields: Array&lt;DisturbanceFieldOptions&gt;)
 
 Sets the disturbance fields.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -73,6 +75,8 @@ Sets the disturbance fields.
 emitter(value: Array&lt;EmitterProperty&gt;)
 
 Sets the emitter parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -115,6 +119,8 @@ interface ParticleOptions<
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | emitter | [EmitterOptions](#emitteroptions)<[PARTICLE](#particletype)> | Yes| Particle emitter.|
@@ -147,6 +153,8 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>lifeTimeRange?:number<sup>12+<sup><br>} | Yes| Particle configuration.<br>- **type**: particle type, which can be **IMAGE** or **POINT**.<br><br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **config**: configuration of the particle type.<br>- The value type of **config** is subject to the value of **type**.<br>1. If **type** is **ParticleType.POINT**, the **config** type is [PointParticleParameters](#pointparticleparameters).<br>2. If **type** is **ParticleType.IMAGE**, the **config** type is [ImageParticleParameters](#imageparticleparameters).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **count**: number of particles. The value is greater than or equal to -1. The value **-1** indicates that the number of particles is infinite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **lifetime**: lifetime of a single particle. The default value is **1000** (that is, 1000 ms, 1s). The value is greater than or equal to -1. The value **-1** indicates that the lifetime of the particle is infinite. If the value specified is less than **-1**, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **lifeTimeRange**: range of particle lifetime values. After **lifeTimeRange** is set, the lifetime of a particle is a random integer between [lifetime – lifeTimeRange, lifetime + lifeTimeRange]. **lifeTimeRange** has a default value of 0, and its value range is from 0 to positive infinity. If it is set to a negative value, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -166,7 +174,9 @@ interface ParticleConfigs {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Parameter  | Type  | Mandatory| Description|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
 | [ParticleType.POINT]      | [PointParticleParameters](#pointparticleparameters) | Yes   | Point particle configuration.|
 | [ParticleType.IMAGE]      | [ImageParticleParameters](#imageparticleparameters) | Yes   | Image particle configuration.|
@@ -180,7 +190,9 @@ interface PointParticleParameters {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Parameter  | Type  | Mandatory| Description|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
 | radius      | [VP](ts-types.md#vp10)| Yes   | Particle radius.|
 
@@ -195,7 +207,9 @@ interface ImageParticleParameters {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Parameter  | Type  | Mandatory| Description|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
 | src      | [ResourceStr](ts-types.md#resourcestr) | Yes   | Image path. SVG images are not supported.|
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]| Yes   | Image size.|
@@ -213,10 +227,14 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
   };
 }
 ```
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | \[[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)\] | Yes| Initial color range of the particle. The initial color of particles generated by the particle emitter is randomly selected in this range.<br>Default value: **range:[Color.White,Color.White]**<br>**Atomic service API**: This API can be used in atomic services since API version 11.
-| distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | No| Type of distribution for the generation of initial color random values of the particle. Both uniform distribution and normal (Gaussian) distribution are supported.<br>Default value: **DistributionType.UNIFORM**<br>**Atomic service API**: This API can be used in atomic services since API version 12.
+| distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | No| Type of random value distribution for the initial color of the particle. Both uniform distribution and normal (Gaussian) distribution are supported.<br>Default value: **DistributionType.UNIFORM**<br>**Atomic service API**: This API can be used in atomic services since API version 12.
 | updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | No| How the color property is updated. The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The property does not change. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The property changes randomly. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The property changes with the animation curve. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE].<br>The default value of **type** is **ParticleUpdater.NONE**.<br>**NOTE**<br>When **type** is set to **ParticleUpdater.RANDOM** or **ParticleUpdater.CURVE**, the color configuration in **updater** has higher priority than that in **range**. During the animation time period configured in **updater**, the color configuration from **updater** is used. Outside of the animation time period configured in **updater**, the color configuration from **range** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 
@@ -235,6 +253,8 @@ interface ParticleColorPropertyUpdaterConfigs {
 ```
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -255,6 +275,8 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | [TYPE, TYPE] | Yes| Initial property value range of the particle. The initial property value of particles generated by the particle emitter is randomly selected in this range.<br>**NOTE**<br>If a property is set to an invalid value, the default value will be used. If the maximum value is less than the minimum value, the default range will be used. **TYPE** is number.<br>The default value varies by property:<br>1. **opacity** property: **range:[1.0,1.0]**; the value ranges from 0 to 1; the default value is **0.0**.<br>2. **scale** property: **range:[1.0,1.0]**; the value is greater than or equal to 0; the default value is **1.0**.<br>3. **speed** property in **acceleration**: **range:[0.0,0.0]**; the value is greater than or equal to 0; the default value is **0.0**.<br>4. **angle** property in **acceleration**: **range:[0.0,0.0]**; the value range is (-∞, +∞); the default value is **0.0**.<br>5. **spin** property: **range:[0.0,0.0]**; the default value is **0.0**.
@@ -272,9 +294,11 @@ interface ParticlePropertyUpdaterConfigs<T> {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-[[ParticleUpdater.NONE]|void | Yes| The property does not change.|
+[[ParticleUpdater.NONE]|void | Yes| The color does not change.|
 | [ParticleUpdater.RANDOM] | [T, T] | Yes| The property changes randomly, with the per-second change difference being a value randomly generated from the range.<br>The target property value is obtained by applying the change difference to the current property value. For example, if the current property value is **0.2** and **config** is set to **[0.1,1.0]**, then:<br>1. When the random change difference is 0.5, the target property value is 0.2 + 0.5 = 0.7.<br>2. The change difference may also be a negative value. For example, if the current property value is **0.2** and **config** is set to **[-3.0,2.0]**, then when the random change difference is **-2.0**, the target property value is 0.2 - 2.0 = -1.8.<br>**NOTE**<br>**config** sets the value range of the change difference. While the change difference does not have a maximum or minimum value limit, the target property value does. Therefore, if the target property value is greater than the maximum property value, the maximum property value will be used instead; if the target property value is less than the minimum property value, the minimum property value will be used instead. **T** represents a number.<br>For example, if the value range of **opacity** is **[0.0, 1.0]**, then if the target property value is greater than 1.0, **1.0** will be used instead.|
 |[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<T\>> | Yes| The property changes with the animation curve. The array type indicates that multiple animation segments can be set for the current property, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms. **T** represents a number.|
 
@@ -293,13 +317,15 @@ interface ParticlePropertyAnimation<T> {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |from| T | Yes| Initial value of the property. If the value is invalid, the default value will be used.|
 | to | T | Yes| Target value of the property. If the value is invalid, the default value will be used.|
 |startMillis|number | Yes| Start time of the animation.|
 |endMillis|number | Yes| End time of the animation.|
-|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)| No| Animation curve.<br>Default value: **Curve.Linear**|
+|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)| No| Animation curve.<br>Default value: **Curve.Linear**|
 
 
 ## ParticleType
@@ -310,6 +336,8 @@ enum ParticleType {
 }
 ```
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Description|
 | -------- |  -------- | 
@@ -329,6 +357,8 @@ enum ParticleEmitterShape {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Description|
 | -------- |  -------- | 
 RECTANGLE |The particle emitter is rectangular.|
@@ -343,6 +373,8 @@ enum DistributionType {
 }
 ```
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Description|
 | -------- |  -------- | 
@@ -360,6 +392,8 @@ enum ParticleUpdater {
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name | Description|
 | -------- |  -------- | 
 |NONE |No change.|
@@ -369,6 +403,8 @@ enum ParticleUpdater {
 ## DisturbanceFieldOptions<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type   | Mandatory| Description                        |
 | ------ | ------- | ---- | ---------------------------- |
@@ -385,6 +421,8 @@ enum ParticleUpdater {
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name       | Description  |
 | --------| ----------|
 | RECT    | Rectangle.  |
@@ -394,6 +432,8 @@ enum ParticleUpdater {
 ## EmitterProperty<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type   | Mandatory| Description                        |
 | ------ | ------- | ---- | ---------------------------- |
@@ -465,7 +505,7 @@ struct ParticleExample {
           opacity:{
             range:[0.0,1.0],// The initial value of particle opacity is randomly generated from the [0.0, 1.0] range.
             updater:{
-              type:ParticleUpdater.CURVE,// Opacity changes randomly.
+              type:ParticleUpdater.CURVE,
               config:[
                 {
                   from:0.0,
@@ -503,7 +543,7 @@ struct ParticleExample {
             speed:{
               range:[3,9],
               updater:{
-                type:ParticleUpdater.RANDOM,
+                type:ParticleUpdater.RANDOM,// The speed changes randomly.
                 config:[1,20]
               }
             },
@@ -542,7 +582,7 @@ struct ParticleExample {
               particle:{
                 type:ParticleType.IMAGE,
                 config:{
-                  src:$r("app.media.glass"),
+                  src:$r("app.media.book"),
                   size:[10,10]
                 },
                 count: this.myCount,
@@ -664,7 +704,7 @@ struct ParticleExample {
             particle:{
               type:ParticleType.IMAGE,
               config:{
-                src:$r('app.media.book'),
+                src:$r('app.media.heart'),
                 size:[10,10]
               },
               count: this.myCount,
@@ -785,7 +825,7 @@ struct ParticleExample {
             particle:{
               type:ParticleType.IMAGE,
               config:{
-                src:$r('app.media.squares'),
+                src:$r('app.media.sun'),
                 size:[10,10]
               },
               count: this.myCount,
@@ -911,7 +951,7 @@ struct ParticleExample {
   }
 }
 ```
-![particle](figures/particle_image.gif)
+![particle](figures/particle_inage_one.gif)
 
 ### Example 3
 
@@ -971,7 +1011,7 @@ struct ParticleExample {
           opacity:{
             range:[0.0,1.0],// The initial value of particle opacity is randomly generated from the [0.0, 1.0] range.
             updater:{
-              type:ParticleUpdater.CURVE,// Opacity changes randomly.
+              type:ParticleUpdater.CURVE,
               config:[
                 {
                   from:0.0,

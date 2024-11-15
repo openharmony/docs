@@ -36,11 +36,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
-**参数：**
-
-
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | iconSymbolOptions<sup>12+</sup> | [SymbolOptions](#symboloptions12) | 否 | - | icon为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -61,6 +57,8 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | TEXT_ARROW |  0  | 文本按钮（带右箭头）。 |
@@ -71,6 +69,8 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 ## SelectOptions
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -83,6 +83,8 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。 |
@@ -92,11 +94,13 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fontColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。 |
+| fontColor | Array&lt;[ResourceColor](ts-types.md#resourcecolor)&gt; | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。 |
 | fontSize | number \|string \|[Resource](ts-types.md#Resource) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)大小。<br/>默认值：系统默认值。 |
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight)\|number \|string | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| fontWeight | number \|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
 | effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 

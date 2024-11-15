@@ -1,4 +1,4 @@
-# Sample of Secondary Processing of Recording Streams (C/C++)
+# Sample of Secondary Processing of Video Streams (C/C++)
 
 ## Development Process
 
@@ -13,7 +13,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
     ```
 
-2. Import the NDK APIs on the C++ side, and perform recording based on the surface ID passed in.
+2. Import the NDK APIs on the C++ side, and perform video recording based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
     #include "ohcamera/camera.h"
@@ -212,7 +212,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
         }
 
-        // Create a preview output stream. For details about the surfaceId parameter, see the <XComponent>. The preview stream is the surface provided by the <XComponent>.
+        // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
         OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");

@@ -322,7 +322,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11枚举说明) | 是   | 下拉菜单项的宽度。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OptionWidthMode](ts-appendix-enums.md#optionwidthmode11) | 是   | 下拉菜单项的宽度。 |
 
 ### optionHeight<sup>11+</sup>
 
@@ -382,7 +382,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 描述               |
+| 名称                | 说明             |
 | ------------------- | ------------------ |
 | END<sup>10+</sup>   | 文字在前，箭头在后。 |
 | START<sup>10+</sup> | 箭头在前，文字在后。 |
@@ -393,7 +393,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 描述               |
+| 名称                | 说明             |
 | ------------------- | ------------------ |
 | START               | 按照语言方向起始端对齐。 |
 | CENTER              | 居中对齐。 |

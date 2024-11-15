@@ -7,8 +7,6 @@
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-
-
 ## 子组件
 
 无
@@ -53,7 +51,7 @@ DataPanel(options: DataPanelOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------| ------------ |
 | Line   | 线型数据面板。 |
 | Circle | 环形数据面板。 |
@@ -95,7 +93,7 @@ valueColors(value: Array<ResourceColor | LinearGradient>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| value  | Array<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient](#lineargradient10对象说明)> | 是   | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。 |
+| value  | Array<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient](#lineargradient10)> | 是   | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。 |
 
 ### trackBackgroundColor<sup>10+</sup>
 
@@ -172,17 +170,23 @@ DataPanelShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptio
 
 | 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 否 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
+| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 否 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
 
-## LinearGradient<sup>10+</sup>对象说明
+## LinearGradient<sup>10+</sup>
 
-线性渐变颜色描述。
+### constructor
 
 constructor(colorStops: ColorStop[])
 
+线性渐变颜色描述。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型 | 必填 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名         | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
 | colorStops | [ColorStop](#colorstop10对象说明)[] | 是 | 存储渐变颜色和渐变点。|
 

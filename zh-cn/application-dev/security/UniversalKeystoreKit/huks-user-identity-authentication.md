@@ -111,6 +111,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
+let IV = '1234567890123456';
 let srcKeyAlias = 'test_sm4_key_alias';
 let handle: number;
 let challenge: Uint8Array;
@@ -137,6 +138,14 @@ let properties: Array<huks.HuksParam> = [{
   tag: huks.HuksTag.HUKS_TAG_IV,
   value: StringToUint8Array(IV),
 }];
+
+function StringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
 
 let huksOptions: huks.HuksOptions = {
   properties: properties,

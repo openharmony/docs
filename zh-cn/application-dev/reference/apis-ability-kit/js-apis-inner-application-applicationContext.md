@@ -606,7 +606,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>13+</sup>
+## ApplicationContext.killAllProcesses<sup>14+</sup>
 
 killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
@@ -715,7 +715,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -886,7 +886,7 @@ restartApp(want: Want): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
+| 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
 
 **示例：**
@@ -1089,7 +1089,7 @@ setFontSizeScale(fontSizeScale: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.The input size is less than zero.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. |
 
 **示例：**
 

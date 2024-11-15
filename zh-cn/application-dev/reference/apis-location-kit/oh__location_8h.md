@@ -7,7 +7,7 @@
 
 \@kit LocationKit
 
-**库：** libohlocation.so
+**库：** liblocation_ndk.so
 
 **系统能力：** SystemCapability.Location.Location.Core
 

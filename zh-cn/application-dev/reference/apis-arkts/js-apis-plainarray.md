@@ -689,10 +689,6 @@ for(let i = 0;i < 10;i++) {
 
 返回一个包含key-value键值对的迭代器对象，其中key是number类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang

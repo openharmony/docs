@@ -34,7 +34,7 @@ The specified ability does not exist.
 
 **错误信息**
 
-Incorrect Ability type.
+Incorrect ability type.
 
 **错误描述**
 
@@ -53,7 +53,7 @@ Incorrect Ability type.
 
 **错误信息**
 
-Id does not exist.
+The specified ID does not exist.
 
 **错误描述**
 
@@ -71,7 +71,7 @@ Id does not exist.
 
 **错误信息**
 
-Can not start invisible component.
+Failed to start the invisible ability.
 
 **错误描述**
 
@@ -126,7 +126,7 @@ Cross-user operations are not allowed.
 
 **错误信息**
 
-Service busy, there are concurrent tasks, waiting for retry.
+Service busy. There are concurrent tasks. Try again later.
 
 **错误描述**
 
@@ -270,7 +270,7 @@ Service timeout.
 
 **错误信息**
 
-The previous ability is starting, wait start later.
+Another ability is being started. Wait until it finishes starting.
 
 **错误描述**
 
@@ -288,7 +288,7 @@ The previous ability is starting, wait start later.
 
 **错误信息**
 
-The application is not allow jumping to other applications when api version is above 11.
+Redirection to a third-party application is not allowed in API version 11 or later.
 
 **错误描述**
 
@@ -302,15 +302,21 @@ The application is not allow jumping to other applications when api version is a
 
 **错误信息**
 
-Can not match any component.
+No matching ability is found.
 
 **错误描述**
 
 隐式启动无法查找到匹配的Ability。
 
+**可能原因**
+
+1. 隐式启动的参数配置有误。
+2. 指定的HAP包未安装。
+
 **处理步骤**
 
-修改隐式启动的匹配项。
+1. 确保隐式启动的参数配置正确。
+2. 确保对应的HAP包已安装。
 
 ## 16000050 内部错误
 
@@ -390,7 +396,7 @@ The ability is not on the top of the UI.
 
 **错误信息**
 
-Installation-free service is busy, please wait and try again later.
+The installation-free service is busy. Try again later.
 
 **错误描述**
 
@@ -498,7 +504,7 @@ Invalid URI type.
 
 **错误信息**
 
-Sandbox application can not grant URI permission.
+A sandbox application cannot grant URI permission.
 
 **错误描述**
 
@@ -534,7 +540,7 @@ Operation not supported.
 
 **错误信息**
 
-The number of child process exceeds upper bound.
+The number of child processes exceeds the upper limit.
 
 **错误描述**
 
@@ -552,7 +558,7 @@ The number of child process exceeds upper bound.
 
 **错误信息**
 
-The target to restart does not belong to the current app or is not a UIAbility.
+The target to restart does not belong to the current application or is not a UIAbility.
 
 **错误描述**
 
@@ -588,7 +594,7 @@ Restart too frequently. Try again at least 10s later.
 
 **错误信息**
 
-The interface can be called only when ability is foreground.
+The API can be called only when the ability is running in the foreground.
 
 **错误描述**
 
@@ -606,7 +612,7 @@ The interface can be called only when ability is foreground.
 
 **错误信息**
 
-An ability cannot move to foreground or background in Wukong mode.
+An ability cannot switch to the foreground or background in Wukong mode.
 
 **错误描述**
 
@@ -624,7 +630,7 @@ wukong模式，不允许移动Ability到前台/后台。
 
 **错误信息**
 
-Start options check failed.
+The StartOptions check failed.
 
 **错误描述**
 
@@ -643,7 +649,7 @@ Start options check failed.
 
 **错误信息**
 
-Ability already running.
+The ability is already running.
 
 **错误描述**
 
@@ -803,15 +809,15 @@ The APP_INSTANCE_KEY is invalid.
 
 **错误描述**
 
-指定的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)不存在时，返回该错误码。
+指定的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)不存在时，返回该错误码。
 
 **可能原因**
 
-应用的实例中不存在该[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)指定的实例。
+应用的实例中不存在该[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)指定的实例。
 
 **处理步骤**
 
-确保传入的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)是一个有效值。
+确保传入的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)是一个有效值。
 
 ## 16000077 应用的实例数量已达到上限
 
@@ -859,7 +865,7 @@ The APP_INSTANCE_KEY cannot be specified.
 
 **错误描述**
 
-[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)不支持同时指定。当指定[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)的同时指定[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)，返回该错误码。
+[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)不支持同时指定。当指定[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)的同时指定[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)，返回该错误码。
 
 **可能原因**
 
@@ -867,7 +873,7 @@ The APP_INSTANCE_KEY cannot be specified.
 
 **处理步骤**
 
-参数[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)只支持二选一。
+参数[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)只支持二选一。
 
 ## 16000080 不支持创建新实例
 
@@ -877,7 +883,7 @@ Creating an instance is not supported.
 
 **错误描述**
 
-只允许应用使用[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)创建自己的实例，不允许应用间启动时为其他应用创建实例。否则，返回该错误码。
+只允许应用使用[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)创建自己的实例，不允许应用间启动时为其他应用创建实例。否则，返回该错误码。
 
 **可能原因**
 
@@ -885,39 +891,39 @@ Creating an instance is not supported.
 
 **处理步骤**
 
-删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)。
+删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
 
- - AddAbilityMonitor failed.
+ - Calling AddAbilityMonitor failed.
 
- - AddAbilityMonitorSync failed.
+ - Calling AddAbilityMonitorSync failed.
 
- - RemoveAbilityMonitor failed.
+ - Calling RemoveAbilityMonitor failed.
 
- - RemoveAbilityMonitorSync failed.
+ - Calling RemoveAbilityMonitorSync failed.
 
- - WaitAbilityMonitor failed.
+ - Calling WaitAbilityMonitor failed.
 
- - GetCurrentTopAbility failed.
+ - Calling GetCurrentTopAbility failed.
 
- - DoAbilityForeground failed.
+ - Calling DoAbilityForeground failed.
 
- - DoAbilityBackground failed.
+ - Calling DoAbilityBackground failed.
 
- - FinishTest failed.
+ - Calling FinishTest failed.
 
- - AddAbilityStageMonitor failed.
+ - Calling AddAbilityStageMonitor failed.
 
- - AddAbilityStageMonitorSync failed.
+ - Calling AddAbilityStageMonitorSync failed.
 
- - RemoveAbilityStageMonitor failed.
+ - Calling RemoveAbilityStageMonitor failed.
 
- - RemoveAbilityStageMonitorSync failed.
+ - Calling RemoveAbilityStageMonitorSync failed.
 
- - WaitAbilityStageMonitor failed.
+ - Calling WaitAbilityStageMonitor failed.
 
 **错误描述**
 
@@ -971,7 +977,7 @@ Invalid wantAgent object.
 
 **错误信息**
 
-the wantAgent object does not exist.
+The wantAgent object does not exist.
 
 **错误描述**
 
@@ -989,7 +995,7 @@ the wantAgent object does not exist.
 
 **错误信息**
 
-wangAgent object has been canceled.
+The wantAgent object has been canceled.
 
 **错误描述**
 
@@ -1064,7 +1070,7 @@ The caller has been released.
 
 **错误信息**
 
-Callee invalid. The callee does not exist.
+The callee does not exist.
 
 **错误描述**
 
@@ -1100,7 +1106,7 @@ Release error. The caller does not call any callee.
 
 **错误信息**
 
-Method registered. The method has registered.
+The method has been registered.
 
 **错误描述**
 
@@ -1118,7 +1124,7 @@ Method registered. The method has registered.
 
 **错误信息**
 
-Method not registered. The method has not registered.
+The method has not been registered.
 
 **错误描述**
 
@@ -1172,7 +1178,7 @@ Mission not found.
 
 **错误信息**
 
-Input error. The specified mission listener does not exist.
+The specified mission listener does not exist.
 
 **错误描述**
 
@@ -1190,7 +1196,7 @@ Input error. The specified mission listener does not exist.
 
 **错误信息**
 
-The target application is not self application.
+The target application is not the current application.
 
 **错误描述**
 
@@ -1208,7 +1214,7 @@ The target application is not self application.
 
 **错误信息**
 
-The bundle is not exist or no patch has applied.
+The bundle does not exist or no patch has been applied.
 
 **错误描述**
 
@@ -1287,7 +1293,7 @@ Failed to enable the patch package.
 
 **错误信息**
 
-Failed to enable the patch package.
+Failed to remove the patch package.
 
 **错误描述**
 
@@ -1359,7 +1365,7 @@ Internal error.
 
 **错误信息**
 
-The application has a apply quick fix task that is being processed.
+The application has an ongoing quick fix task.
 
 **错误描述**
 
@@ -1408,6 +1414,60 @@ The target bundle does not exist.
 **处理步骤**
 
 检查传入的bundleName、userId和appIndex参数是否正确。
+
+## 16300008 指定的包不存在主UIAbility。
+
+**错误信息**
+
+The target bundle has no main uiability.
+
+**错误描述**
+
+应用不存在主UIAbility。
+
+**可能原因**
+
+应用的mainElement不是UIAbility。
+
+**处理步骤**
+
+检查应用module.json中的mainElement对应的ability是否是UIAbility。
+
+## 16300009 指定的包不存在状态栏。
+
+**错误信息**
+
+The target bundle has no status-bar ability.
+
+**错误描述**
+
+应用不存在状态栏。
+
+**可能原因**
+
+应用不存在状态栏。
+
+**处理步骤**
+
+检查应用是否有状态栏。
+
+## 16300010 指定的应用在运行中但没有绑定状态栏。
+
+**错误信息**
+
+The target application is not attached to status bar.
+
+**错误描述**
+
+应用运行后没有绑定状态栏。
+
+**可能原因**
+
+应用有状态栏，但在运行过程中没有绑定状态栏。
+
+**处理步骤**
+
+检查应用是否绑定状态栏。
 
 ## 29600001 图片编辑内部错误。
 

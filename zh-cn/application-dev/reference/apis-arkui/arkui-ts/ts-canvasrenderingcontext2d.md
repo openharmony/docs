@@ -46,7 +46,7 @@ RenderingContextSettings(antialias?: boolean)
 
 ### LengthMetricsUnit<sup>12+</sup>
 
-用来配置CanvasRenderingContext2D对象的单位模式，配置后无法动态更改，详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
+用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改，详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
 
 **示例：**
 
@@ -121,6 +121,7 @@ struct LengthMetricsUnitDemo {
 | [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality-1) | 否 | 否 | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值："low"。 |
 | [direction](#direction)                  | [CanvasDirection](#canvasdirection) | 否 | 否 | 用于设置绘制文字时使用的文字方向。<br/>默认值："inherit"。 |
 | [filter](#filter)                        | string | 否 | 否 | 用于设置图像的滤镜，可以组合任意数量的滤镜。<br/>支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'。 |
+| [canvas<sup>13+</sup>](#canvas13)                        | [FrameNode](../../apis-arkui/js-apis-arkui-frameNode.md) | 是 | 否 | 获取和CanvasRenderingContext2D关联的Canvas组件的FrameNode实例。<br/>可用于监听关联的Canvas组件的可见状态。<br/>默认值：null。 |
 
 > **说明：**
 >
@@ -776,6 +777,51 @@ struct WidthExample {
 ```
 
 ![zh-cn_image_canvas_width](figures/zh-cn_image_canvas_width.png)
+
+
+### canvas<sup>13+</sup>
+
+```ts
+import { FrameNode } from '@kit.ArkUI'
+// xxx.ets
+@Entry
+@Component
+struct CanvasExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private text: string = ''
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let node: FrameNode = this.context.canvas
+          node?.commonEvent.setOnVisibleAreaApproximateChange(
+            { ratios: [0, 1], expectedUpdateInterval: 10},
+            (isVisible: boolean, currentRatio: number) => {
+              if (!isVisible && currentRatio <= 0.0) {
+                this.text = 'Canvas is completely invisible.'
+              }
+              if (isVisible && currentRatio >= 1.0) {
+                this.text = 'Canvas is fully visible.'
+              }
+              this.context.reset()
+              this.context.font = '30vp sans-serif'
+              this.context.fillText(this.text, 50, 50)
+            }
+          )
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_canvas](figures/zh-cn_image_canvas.png)
 
 
 ### imageSmoothingQuality
@@ -1735,7 +1781,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
-依据圆弧经过的点和圆弧半径创建圆弧路径。
+依据给定的控制点和圆弧半径创建圆弧路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1747,10 +1793,10 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | --------------- |
-| x1     | number | 是    | 圆弧经过的第一个点的x坐标值。<br>默认单位：vp。 |
-| y1     | number | 是    | 圆弧经过的第一个点的y坐标值。<br>默认单位：vp。 |
-| x2     | number | 是    | 圆弧经过的第二个点的x坐标值。<br>默认单位：vp。 |
-| y2     | number | 是    | 圆弧经过的第二个点的y坐标值。<br>默认单位：vp。 |
+| x1     | number | 是    | 第一个控制点的x坐标值。<br>默认单位：vp。 |
+| y1     | number | 是    | 第一个控制点的y坐标值。<br>默认单位：vp。 |
+| x2     | number | 是    | 第二个控制点的x坐标值。<br>默认单位：vp。 |
+| y2     | number | 是    | 第二个控制点的y坐标值。<br>默认单位：vp。 |
 | radius | number | 是    | 圆弧的圆半径值。<br>默认单位：vp。 |
 
 **示例：**
@@ -1770,9 +1816,35 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.moveTo(100, 20)
-            this.context.arcTo(150, 20, 150, 70, 50)
+            // 切线
+            this.context.beginPath()
+            this.context.strokeStyle = '#808080'
+            this.context.lineWidth = 1.5;
+            this.context.moveTo(360, 20);
+            this.context.lineTo(360, 170);
+            this.context.lineTo(110, 170);
+            this.context.stroke();
+            
+            // 圆弧
+            this.context.beginPath()
+            this.context.strokeStyle = '#000000'
+            this.context.lineWidth = 3;
+            this.context.moveTo(360, 20)
+            this.context.arcTo(360, 170, 110, 170, 150)
             this.context.stroke()
+            
+            // 起始点
+            this.context.beginPath();
+            this.context.fillStyle = '#00ff00';
+            this.context.arc(360, 20, 4, 0, 2 * Math.PI);
+            this.context.fill();
+            
+            // 控制点
+            this.context.beginPath();
+            this.context.fillStyle = '#ff0000';
+            this.context.arc(360, 170, 4, 0, 2 * Math.PI);
+            this.context.arc(110, 170, 4, 0, 2 * Math.PI);
+            this.context.fill();
           })
       }
       .width('100%')
@@ -1782,6 +1854,10 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   ```
 
   ![zh-cn_image_0000001238712419](figures/zh-cn_image_0000001238712419.png)
+
+  > 此示例中，arcTo()创建的圆弧为黑色，圆弧的两条切线为灰色。控制点为红色，起始点为绿色。
+  >
+  > 可以想象两条切线：一条切线从起始点到第一个控制点，另一条切线从第一个控制点到第二个控制点。arcTo()在这两条切线间创建一个圆弧，并使圆弧与这两条切线都相切。
 
 
 ### ellipse
@@ -1997,7 +2073,7 @@ struct Fill {
 }
 ```
 
- ![zh-cn_image_000000127777774](figures/zh-cn_image_000000127777774.png)
+ ![zh-cn_image_000000127777774](figures/zh-cn_image_000000127777774.jpg)
 
 
 ### clip
@@ -2104,7 +2180,7 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
   }
   ```
 
-  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
+  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.jpg)
 
 
 ### reset<sup>12+</sup>
@@ -2703,10 +2779,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
-| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>默认单位：vp。 |
-| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>默认单位：vp。 |
-| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>默认单位：vp。 |
-| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>默认单位：vp。 |
+| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。 |
+| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
+| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
+| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，API Version 14前，默认单位：px；API Version 14及以后，默认单位：vp。  |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。|
 | dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp。 |
@@ -3227,6 +3303,12 @@ restore(): void
 
 对保存的绘图上下文进行恢复。
 
+> **说明：**
+>
+> 当restore()次数未超出save()次数时，从栈中弹出存储的绘制状态并恢复CanvasRenderingContext2D对象的属性、剪切路径和变换矩阵的值。</br>
+> 当restore()次数超出save()次数时，此方法不做任何改变。</br>
+> 当没有保存状态时，此方法不做任何改变。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -3489,6 +3571,154 @@ struct CanvasExample {
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032420.png)
 
+### on('onAttach')<sup>13+</sup>
+
+on(type: 'onAttach', callback: () => void): void
+
+订阅CanvasRenderingContext2D与Canvas组件发生绑定的场景。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
+| callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调 |
+
+### on('onDetach')<sup>13+</sup>
+
+on(type: 'onDetach', callback: () => void): void
+
+订阅CanvasRenderingContext2D与Canvas组件解除绑定的场景。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
+| callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调 |
+
+### off('onAttach')<sup>13+</sup>
+
+off(type: 'onAttach', callback?: () => void): void
+
+取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的场景。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
+| callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空代表取消订阅发生绑定对应的回调。 |
+
+### off('onDetach')<sup>13+</sup>
+
+off(type: 'onDetach', callback?: () => void): void
+
+取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的场景。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
+| callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调。<br>非空代表取消订阅接触绑定对应的回调。 |
+
+**示例：**
+
+```ts
+import { FrameNode } from '@kit.ArkUI'
+// xxx.ets
+@Entry
+@Component
+struct AttachDetachExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private node: FrameNode | null = null
+
+  attachCallback(): void {
+    console.info('CanvasRenderingContext2D attached to the canvas frame node.')
+    this.node = this.context.canvas
+  }
+  detachCallback(): void {
+    console.info('CanvasRenderingContext2D detach from the canvas frame node.')
+    this.node = null
+  }
+  aboutToAppear(): void {
+    this.context.on('onAttach', this.attachCallback.bind(this))
+    this.context.on('onDetach', this.detachCallback.bind(this))
+  }
+  aboutToDisappear(): void {
+    this.context.off('onAttach', this.attachCallback)
+    this.context.off('onDetach', this.detachCallback)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Scroll(this.scroller) {
+        Flex({ direction: FlexDirection.Column}) {
+          ForEach(this.arr, (item: number) => {
+            Row() {
+              if (item == 3) {
+                Canvas(this.context)
+                  .width('100%')
+                  .height(150)
+                  .backgroundColor('#ffff00')
+                  .onReady(() => {
+                    this.context.font = '30vp sans-serif'
+                    this.node?.commonEvent.setOnVisibleAreaApproximateChange(
+                      { ratios: [0, 1], expectedUpdateInterval: 10},
+                      (isVisible: boolean, currentRatio: number) => {
+                        if (!isVisible && currentRatio <= 0.0) {
+                          console.info('Canvas is completely invisible.')
+                        }
+                        if (isVisible && currentRatio >= 1.0) {
+                          console.info('Canvas is fully visible.')
+                        }
+                      }
+                    )
+                  })
+              } else {
+                Text(item.toString())
+                  .width('100%')
+                  .height(150)
+                  .backgroundColor(Color.Blue)
+                  .borderRadius(15)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Center)
+                  .margin({ top: 5 })
+              }
+            }
+          }, (item: number) => item.toString())
+        }
+      }
+      .width('90%')
+      .scrollBar(BarState.Off)
+      .scrollable(ScrollDirection.Vertical)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
 ### startImageAnalyzer<sup>12+</sup>
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
@@ -3714,8 +3944,8 @@ struct ImageAnalyzerExample {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---------- | -------------- | ------ | ---------------- | ------------------------ |
-| width                    | number | 是 | 否 | 只读属性，字符串的宽度。 |
-| height                   | number | 是 | 否 | 只读属性，字符串的高度。 |
+| width                    | number | 是 | 否 | 只读属性，文本方块的宽度。 |
+| height                   | number | 是 | 否 | 只读属性，文本方块的高度。 |
 | actualBoundingBoxAscent  | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界顶部的距离。 |
 | actualBoundingBoxDescent | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界底部的距离。 |
 | actualBoundingBoxLeft    | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界左侧的距离。 |

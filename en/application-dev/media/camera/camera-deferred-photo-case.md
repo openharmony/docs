@@ -1,8 +1,8 @@
-# High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)
+# High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)
 
-This topic provides sample code that covers the complete high-performance photographing process to help you understand the complete API calling sequence.
+This topic provides sample code that covers the complete high-performance photo capture process to help you understand the complete API calling sequence.
 
-Before referring to the sample code, you are advised to read [High-Performance Camera Photographing (for System Applications Only) (ArkTS)](camera-deferred-photo.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Camera Photographing](camera-shooting.md).
+Before referring to the sample code, you are advised to read [High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Photo Capture](camera-shooting.md).
 
 ## Development Process
 
@@ -340,7 +340,7 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // Set the photo quality to high.
     rotation: camera.ImageRotation.ROTATION_0 // Set the rotation angle of the photo to 0.
   }
-  // Use the current photographing settings to take photos.
+  // Use the current photo capture settings to take photos.
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to capture the photo ${err.message}`);
@@ -348,20 +348,22 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+
+  // After the photo capture is complete, call the following APIs to close the camera and release the session. Do not release the session before the photo capture is complete.
   // Stop the session.
-  photoSession.stop();
+  await photoSession.stop();
 
   // Release the camera input stream.
-  cameraInput.close();
+  await cameraInput.close();
 
   // Release the preview output stream.
-  previewOutput.release();
+  await previewOutput.release();
 
   // Release the photo output stream.
-  photoOutput.release();
+  await photoOutput.release();
 
   // Release the session.
-  photoSession.release();
+  await photoSession.release();
 
   // Set the session to null.
   photoSession = undefined;

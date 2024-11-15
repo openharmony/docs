@@ -9,10 +9,10 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 **表1** Native侧IPC接口
 
-| 接口名                               | 描述                                                             |
-| ------------------------------------ | ---------------------------------------------------------------- |
-| sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
-| virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
+| 类/接口 | 方法名                               | 描述                                                             |
+|----------|  ------------------------------------ | ---------------------------------------------------------------- |
+| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
+| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
 | IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
 <!--DelEnd-->
 

@@ -458,7 +458,7 @@ getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 获取应用程序的外部缓存目录。使用callback异步回调。
 
-**说明：**
+> **说明：**
 >
 > 从API version 7开始不再支持。
 
@@ -492,7 +492,7 @@ getExternalCacheDir(): Promise\<string>
 
 获取应用程序的外部缓存目录。使用Promise异步回调。
 
-**说明：**
+> **说明：**
 >
 > 从API version 7开始不再支持。
 
@@ -617,7 +617,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态。使用Promise异步回调。
 
-**说明：**
+> **说明：**
 >
 > 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
@@ -654,7 +654,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 设置恢复此功能时是否唤醒屏幕。使用callback异步回调。
 
-**说明：**
+> **说明：**
 >
 > 从API version 7开始支持，从API version 12开始废弃，替代接口window.setWakeUpScreen仅面向系统应用开放。
 
@@ -686,7 +686,7 @@ setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 设置恢复此功能时是否唤醒屏幕。使用Promise异步回调。
 
-**说明：**
+> **说明：**
 >
 > 从API version 7开始支持，从API version 12开始废弃，替代接口window.setWakeUpScreen仅面向系统应用开放。
 

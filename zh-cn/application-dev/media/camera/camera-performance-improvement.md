@@ -74,7 +74,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 > **说明：**
 >
 > - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported)及[enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)接口的调用需要在[addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11)、[addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11)后，[commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11)之前。
-> - on接口需要在enableQuickThumbnail(true)之后生效。
+> - on接口需要在[enableQuickThumbnail(true)](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)之后生效。
 
 ### 开发示例
 

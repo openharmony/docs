@@ -32,7 +32,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //getWantAgent回调
@@ -66,7 +66,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }, getWantAgentCallback);
@@ -97,7 +97,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
 wantAgent.getWantAgent({
     wants: [
@@ -121,7 +121,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data: _WantAgent) => {
@@ -149,7 +149,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
@@ -194,7 +194,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }, getWantAgentCallback);
@@ -227,7 +227,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
 //wantAgent对象
 let wantAgentObj: _WantAgent;
@@ -254,7 +254,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data: _WantAgent) => {
@@ -290,7 +290,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
@@ -335,7 +335,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }, getWantAgentCallback);
@@ -368,7 +368,7 @@ getUid(agent: WantAgent): Promise\<number\>
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
 //wantAgent对象
 let wantAgentObj: _WantAgent;
@@ -395,7 +395,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data) => {
@@ -430,7 +430,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
@@ -475,7 +475,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }, getWantAgentCallback);
@@ -508,7 +508,7 @@ cancel(agent: WantAgent): Promise\<void\>
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
@@ -536,7 +536,7 @@ wantAgent.getWantAgent({
         }
     }
 ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data) => {
@@ -573,7 +573,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
@@ -619,7 +619,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }, getWantAgentCallback);
@@ -648,7 +648,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
@@ -695,7 +695,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }, getWantAgentCallback);
@@ -729,7 +729,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 **示例：**
 
 ```ts
-import wantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
 //wantAgent对象
 let wantAgentObj1: _WantAgent;
@@ -757,7 +757,7 @@ wantAgent.getWantAgent({
             }
         }
     ],
-    operationType: wantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
     wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data) => {

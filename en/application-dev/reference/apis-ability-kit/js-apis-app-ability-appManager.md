@@ -23,10 +23,10 @@ Enumerates the processes states.
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
 | STATE_CREATE    | 0   |    The process is being created.      |
-| STATE_FOREGROUND          | 2   |    The process is running in the foreground.     |
-| STATE_ACTIVE  | 3   |     The process is active.  |
-| STATE_BACKGROUND        | 4   |    The process is running in the background.          |
-| STATE_DESTROY        | 5   |    The process is being destroyed.        |
+| STATE_FOREGROUND          | 1   |    The process is running in the foreground.     |
+| STATE_ACTIVE  | 2   |     The process is active.  |
+| STATE_BACKGROUND        | 3   |    The process is running in the background.          |
+| STATE_DESTROY        | 4   |    The process is being destroyed.        |
 
 ## appManager.isRunningInStabilityTest
 
@@ -40,15 +40,15 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description | 
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -80,15 +80,15 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type | Description | 
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. | 
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
 
@@ -118,15 +118,15 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type | Description | 
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. | 
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
 
@@ -155,15 +155,15 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description | 
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. | 
+  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -194,7 +194,7 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-  | Type | Description | 
+  | Type| Description| 
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  | 
 
@@ -202,7 +202,7 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
 
@@ -231,15 +231,15 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description | 
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes |Callback used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  | 
+  | callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the memory size, in MB. You can perform error processing or other custom processing based on the size.  | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -274,15 +274,15 @@ Obtains information about the running processes. This API uses a promise to retu
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback. |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
 
@@ -315,15 +315,15 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description | 
+  | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes |Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes|Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |

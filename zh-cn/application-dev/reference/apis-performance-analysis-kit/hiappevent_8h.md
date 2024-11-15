@@ -45,6 +45,8 @@ HiAppEvent模块的应用事件打点函数定义。
    OH_HiAppEvent_DestroyParamList(list);
    ```
 
+**引用文件：** &lt;hiappevent/hiappevent.h&gt;
+
 **起始版本：** 8
 
 **相关模块：**[HiAppEvent](_hi_app_event.md)

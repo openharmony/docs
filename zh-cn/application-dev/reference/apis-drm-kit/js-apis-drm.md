@@ -504,7 +504,7 @@ setConfigurationString(configName: string, value: string): void
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，属性名参考[PreDefinedConfigName](#predefinedconfigname)。                   |
+| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
 | value  | string     | 是   | 配置属性值。                   |
 
 **错误码：**
@@ -544,7 +544,7 @@ getConfigurationString(configName: string): string
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，由设备上的DRM解决方案决定，属性名参考[PreDefinedConfigName](#predefinedconfigname)。                   |
+| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
 
 **返回值：**
 
@@ -589,8 +589,8 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，由设备上的DRM解决方案决定，属性名参考[PreDefinedConfigName](#predefinedconfigname)。                   |
-| value  | Uint8Array     | 是   | 数组类型的配置属性值。                   |
+| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
+| value  | Uint8Array     | 是   | 数组类型的配置属性值，具体属性值由设备上DRM解决方案决定。                   |
 
 **错误码：**
 
@@ -632,7 +632,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| configName  | string     | 是   | 配置属性名，由设备上的DRM解决方案决定，属性名参考[PreDefinedConfigName](#predefinedconfigname)。                   |
+| configName  | string     | 是   | 配置属性名，不能为空，属性名参考[PreDefinedConfigName](#predefinedconfigname)，具体支持的属性名由设备上DRM解决方案决定。                   |
 
 **返回值：**
 
@@ -1380,7 +1380,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<Uint8Array\>          | Promise对象，离线媒体密钥释放请求。                   |
+| Promise<Uint8Array\>          | Promise对象，设备上的DRM解决方案支持离线媒体密钥释放处理，则返回离线媒体密钥释放请求。                   |
 
 **错误码：**
 
@@ -1430,7 +1430,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| Promise<void\>          | Promise对象。                   |
+| Promise<void\>          | Promise对象，设备上的DRM解决方案支持离线媒体密钥释放处理，则返回。                   |
 
 **错误码：**
 

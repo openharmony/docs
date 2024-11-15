@@ -53,8 +53,8 @@ Video(value: VideoOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 描述        |
-| -------------------- | --------- |
+| 名称                 | 说明           |
+| -------------------- | -------------- |
 | Speed_Forward_0_75_X | 0.75倍速播放。 |
 | Speed_Forward_1_00_X | 1倍速播放。    |
 | Speed_Forward_1_25_X | 1.25倍速播放。 |
@@ -446,11 +446,11 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称               | 描述             |
-| ---------------- | -------------- |
-| PreviousKeyframe | 跳转到前一个最近的关键帧。  |
-| NextKeyframe     | 跳转到后一个最近的关键帧。  |
-| ClosestKeyframe  | 跳转到最近的关键帧。     |
+| 名称             | 说明                         |
+| ---------------- | ---------------------------- |
+| PreviousKeyframe | 跳转到前一个最近的关键帧。   |
+| NextKeyframe     | 跳转到后一个最近的关键帧。   |
+| ClosestKeyframe  | 跳转到最近的关键帧。         |
 | Accurate         | 精准跳转，不论是否为关键帧。 |
 
 ## 示例

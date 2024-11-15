@@ -1550,7 +1550,70 @@ async function example() {
   }
 }
 ```
+### getKeyFrameThumbnail<sup>14+</sup>
 
+getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>;
+
+获取视频中关键视频帧位置的指定类型缩略图，使用promise方式返回异步结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| beginFrameTimeMs | number | 是    | 获取视频帧的时间位置，单位ms，0：封面帧 |
+| type | [ThumbnailType](#thumbnailtype13)| 是    | 缩略图类型 |
+
+**返回值：**
+
+| 类型                            | 说明                    |
+| ----------------------------- | --------------------- |
+| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.       |
+| 202   | Called by non-system application.       |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011   | Internal system error.       
+
+**示例：**
+
+```ts
+import { common }  from '@kit.AbilityKit';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import image from '@ohos.multimedia.image';
+
+async function example() {
+  try{
+    console.info('getKeyFrameThumbnail demo');
+    let context = getContext(this) as common.UIAbilityContext;
+    let phAccessHelper:photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_TYPE, photoAccessHelper.PhotoType.VIDEO);
+    let fetchOption: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
+    let pixelMap: image.PixelMap = await asset.getKeyFrameThumbnail(0, photoAccessHelper.ThumbnailType.LCD);
+    console.info('getKeyFrameThumbnail success');
+  } catch (error) {
+    console.error('getKeyFrameThumbnail failed, error: ' + JSON.stringify(error));
+  }
+}
+```
 ## PhotoAsset
 
 提供封装文件属性的方法。
@@ -4133,6 +4196,61 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
+### setSupportedWatermarkType<sup>14+</sup>
+
+setSupportedWatermarkType(watermarkType: WatermarkType): void
+
+设置拍照照片支持的水印类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| watermarkType | [WatermarkType](#watermarktype14) | 是   | 水印可编辑标识。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+const context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+async function example() {
+  console.info('setSupportedWatermarkTypeDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+    let asset = await fetchResult.getFirstObject();
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.setSupportedWatermarkType(photoAccessHelper.WatermarkType.BRAND_COMMON);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply setSupportedWatermarkType successfully');
+  } catch (err) {
+    console.error(`apply setSupportedWatermarkType failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## MediaAssetsChangeRequest<sup>11+</sup>
 
 批量资产变更请求。
@@ -4952,7 +5070,7 @@ async function example() {
 }
 ```
 
-### dismiss<sup>12+</sup>
+### dismiss<sup>13+</sup>
 
 dismiss(): void
 
@@ -5217,6 +5335,537 @@ async function example() {
 }
 ```
 
+## CloudEnhancement<sup>13+</sup>
+
+云增强管理类，该类用于生成AI云增强照片任务的管理、获取原照片与AI云增强照片的关联关系。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### getCloudEnhancementInstance<sup>13+</sup>
+
+static getCloudEnhancementInstance(context: Context): CloudEnhancement
+
+获取云增强类实例。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getCloudEnhancementInstanceDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    await cloudEnhancementInstance.submitCloudEnhancementTasks([asset], hasCloudWatermark);
+  } catch (err) {
+    console.error(`getCloudEnhancementInstanceDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### submitCloudEnhancementTasks<sup>13+</sup>
+
+submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWatermark: boolean): Promise&lt;void&gt;
+
+提交云增强任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAssets | Array<[PhotoAsset](#photoasset)> | 是   | 需要增强照片的[PhotoAsset](#photoasset)集合。 |
+| hasCloudWatermark | boolean | 是   | 增强后图片是否添加云增强水印。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('submitCloudEnhancementTasksDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    await cloudEnhancementInstance.submitCloudEnhancementTasks([asset], hasCloudWatermark);
+  } catch (err) {
+    console.error(`submitCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### prioritizeCloudEnhancementTask<sup>13+</sup>
+
+prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
+
+提升指定云增强任务的优先级。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAsset | [PhotoAsset](#photoasset) | 是   | 需要修改云增强优先级照片的[PhotoAsset](#photoasset)。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('prioritizeCloudEnhancementTaskDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // 查询进行中的云增强任务
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let hasCloudWatermark = true;
+    await cloudEnhancementInstance.prioritizeCloudEnhancementTask(asset);
+  } catch (err) {
+    console.error(`prioritizeCloudEnhancementTaskDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### cancelCloudEnhancementTasks<sup>13+</sup>
+
+cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
+
+取消指定云增强任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAssets | Array<[PhotoAsset](#photoasset)> | 是   | 需要取消云增强任务的[PhotoAsset](#photoasset)集合。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('cancelCloudEnhancementTasksDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // 查询进行中的云增强任务
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    await cloudEnhancementInstance.cancelCloudEnhancementTasks([asset]);
+  } catch (err) {
+    console.error(`cancelCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### cancelAllCloudEnhancementTasks<sup>13+</sup>
+
+cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
+
+取消全部云增强任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('cancelAllCloudEnhancementTasksDemo');
+  try {
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    await cloudEnhancementInstance.cancelCloudEnhancementTasks();
+  } catch (err) {
+    console.error(`cancelAllCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### queryCloudEnhancementTaskState<sup>13+</sup>
+
+queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancementTaskState&gt;
+
+查询云增强任务信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAsset | [PhotoAsset](#photoasset) | 是   | 需要查询云增强任务信息的[PhotoAsset](#photoasset)。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('queryCloudEnhancementTaskStateDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // 查询进行中的云增强任务
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 2);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    const cloudEnhancementTaskState: photoAccessHelper.CloudEnhancementTaskState
+      = await cloudEnhancementInstance.queryCloudEnhancementTaskState(asset);
+    let taskStage = cloudEnhancementTaskState.taskStage;
+    if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_EXCEPTION) {
+      console.log("task has exception");
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_PREPARING) {
+      console.log("task is preparing");
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_UPLOADING) {
+      let transferredFileSize = cloudEnhancementTaskState.transferredFileSize;
+      let totalFileSize = cloudEnhancementTaskState.totalFileSize;
+      let message = `task is uploading, transferredFileSize: ${transferredFileSize}, totalFileSize: ${totalFileSize}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_EXECUTING) {
+      let expectedDuration = cloudEnhancementTaskState.expectedDuration;
+      let message = `task is executing, expectedDuration: ${expectedDuration}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING) {
+      let transferredFileSize = cloudEnhancementTaskState.transferredFileSize;
+      let totalFileSize = cloudEnhancementTaskState.totalFileSize;
+      let message = `task is downloading, transferredFileSize: ${transferredFileSize}, totalFileSize: ${totalFileSize}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_FAILED) {
+      let errCode = cloudEnhancementTaskState.statusCode;
+      let message = `task is failed, errCode: ${errCode}`;
+      console.log(message);
+    } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_COMPLETED) {
+      console.log("task is completed");
+    }
+  } catch (err) {
+    console.error(`queryCloudEnhancementTaskStateDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### syncCloudEnhancementTaskStatus<sup>13+</sup>
+
+syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
+
+同步云增强任务状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('syncCloudEnhancementTaskStatusDemo');
+  try {
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    await cloudEnhancementInstance.syncCloudEnhancementTaskStatus();
+  } catch (err) {
+    console.error(`syncCloudEnhancementTaskStatusDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getCloudEnhancementPair<sup>13+</sup>
+
+getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
+
+查询云增强配对照片。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| photoAsset | [PhotoAsset](#photoasset) | 是   | 需要修改云增强优先级照片的[PhotoAsset](#photoasset)。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getCloudEnhancementPairDemo');
+  let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  // 查询已完成的云增强任务
+  photoPredicates.equalTo(photoAccessHelper.PhotoKeys.CE_AVAILABLE, 5);
+  let photoFetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: photoPredicates
+  };
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  try {
+    let fetchResult = await phAccessHelper.getAssets(photoFetchOptions);
+    let asset = await fetchResult.getLastObject();
+    let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
+      = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
+    let photoAsset: photoAccessHelper.PhotoAsset
+      = await cloudEnhancementInstance.getCloudEnhancementPair(asset);
+  } catch (err) {
+    console.error(`getCloudEnhancementPairDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setVideoEnhancementAttr<sup>13+</sup>
+
+setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: string): Promise&lt;void&gt;
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| videoEnhancementType       | [VideoEnhancementType](#videoenhancementtype13) | 是    | 需要进行分段式视频的处理类型。 |
+| photoId | string | 是    | 图片的photoId。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+| 14000016 | Operation Not Support.            |
+
+**示例：**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    let photoId = "202410011800";
+    assetChangeRequest.setVideoEnhancementAttr(photoAccessHelper.VideoEnhancementType.QUALITY_ENHANCEMENT_LOCAL, photoId);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+  } catch (err) {
+    console.error(`setVideoEnhancementAttr fail with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getFaceId<sup>13+</sup>
+
+getFaceId(): Promise\<string>
+
+获取人像相册或合影相册的封面人脸标识。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                | 说明                                |
+| :------------------ | :---------------------------------- |
+| Promise&lt;string&gt; | Promise对象，人像相册返回tag_id，合影相册返回group_tag，未找到返回空字符串。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| :------- | :----------------------------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 14000011 | Internal system error                                        |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('getFaceIdDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    predicates.equalTo("user_display_level", 1);
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult =
+      await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.PORTRAIT,
+        fetchOptions);
+    let album = await fetchResult?.getFirstObject();
+    let faceId = await album?.getFaceId();
+    console.info(`getFaceId successfully, faceId: ${faceId}`);
+    fetchResult.close();
+  } catch (err) {
+    console.error(`getFaceId failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoSubtype
 
 枚举，不同[PhotoAsset](#photoasset)的类型。
@@ -5268,9 +5917,10 @@ async function example() {
 | GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | 城市相册。**系统接口**：此接口为系统接口。         |
 | SHOOTING\_MODE<sup>11+</sup>      | 4101       | 拍摄模式相册。**系统接口**：此接口为系统接口。       |
 | PORTRAIT<sup>11+</sup>            | 4102       | 人像相册。**系统接口**：此接口为系统接口。         |
-| GROUP_PHOTO<sup>12+</sup>         | 4103       | 合影相册。**系统接口**：此接口为系统接口。         |
+| GROUP_PHOTO<sup>13+</sup>         | 4103       | 合影相册。**系统接口**：此接口为系统接口。         |
 | HIGHLIGHT<sup>12+</sup>           | 4104       | 时刻相册。**系统接口**：此接口为系统接口。         |
 | HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | 时刻建议相册。**系统接口**：此接口为系统接口。         |
+| CLOUD_ENHANCEMENT<sup>13+</sup> | 1032     | AI云增强相册。**系统接口**：此接口为系统接口。         |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -5305,6 +5955,8 @@ async function example() {
 | PENDING<sup>11+</sup>  | 'pending'            | pending状态。**系统接口**：此接口为系统接口。           |
 | DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | 删除日期（删除文件时间距1970年1月1日的毫秒数值）。**系统接口**：此接口为系统接口。<br>注意：查询照片时，不支持基于该字段排序。 |
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | 动态照片效果模式。**系统接口**：此接口为系统接口。 |
+| CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | 云增强任务标识。**系统接口**：此接口为系统接口。 |
+| SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | 水印可编辑标识。**系统接口**：此接口为系统接口。 |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -5535,3 +6187,94 @@ async function example() {
 | HIDE_LOCATION_ONLY |  1 |  脱敏地理位置信息。 |
 | HIDE_SHOOTING_PARAM_ONLY |  2 |  脱敏拍摄参数。 |
 | NO_HIDE_SENSITIVE_TYPE |  3 |  不脱敏。 |
+
+## CloudEnhancementTaskStage<sup>13+</sup>
+
+枚举，应用查询云增强任务状态时，在[CloudEnhancementTaskState](#cloudenhancement13)接口中返回，表示云增强任务状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| TASK_STAGE_EXCEPTION |  -1 |  云增强任务异常。 |
+| TASK_STAGE_PREPARING |  0 |  云增强任务准备中。 |
+| TASK_STAGE_UPLOADING |  1 |  云增强任务上传中。 |
+| TASK_STAGE_EXECUTING |  2 |  云增强任务执行中。 |
+| TASK_STAGE_DOWNLOADING |  3 |  云增强任务下载中。 |
+| TASK_STAGE_FAILED |  4 |  云增强任务失败。 |
+| TASK_STAGE_COMPLETED |  5 |  云增强任务已完成。 |
+
+## CloudEnhancementState<sup>13+</sup>
+
+枚举，表示云增强状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| UNAVAILABLE |  0 |  云增强不可用。 |
+| AVAILABLE |  1 |  云增强可用。 |
+| EXECUTING |  2 |  云增强执行中。 |
+| COMPLETED |  3 |  云增强已完成。 |
+
+## CloudEnhancementTaskState<sup>13+</sup>
+
+云增强任务状态，应用调用调用云增强任务查询接口的返回类型，包含云增强任务状态及部分状态下的额外信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 必定提供 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|taskStage       |[CloudEnhancementTaskStage](#cloudenhancementtaskstage13)  |是 | 云增强任务状态。 |
+|transferredFileSize          |number  |否 | 已传输的文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
+|totalFileSize          |number  |否 | 总文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
+|expectedDuration          |number  |否 | 排队时间。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_EXECUTING时提供。  |
+|statusCode          |number  |否 | 状态码。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_FAILED时提供。  |
+
+## VideoEnhancementType<sup>13+</sup>
+
+枚举，分段式视频的二段式触发类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| QUALITY_ENHANCEMENT_LOCAL |  0 |  在端侧增强处理。 |
+| QUALITY_ENHANCEMENT_CLOUD |  1 |  在云侧增强处理。 |
+| QUALITY_ENHANCEMENT_LOCAL_AND_CLOUD |  2 |  在端侧和云侧同时增强处理。 |
+
+## ThumbnailType<sup>13+</sup>
+
+枚举，缩略图类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| LCD         | 1  | 获取LCD缩略图    |
+| THM          | 2 | 获取THM缩略图    |
+
+## WatermarkType<sup>14+</sup>
+
+枚举，水印可编辑标识。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| DEFAULT |  0 |  不支持水印可编辑。 |
+| BRAND_COMMON |  1 |  支持品牌和通用水印可编辑。 |
+| COMMON |  2 |  支持通用水印可编辑。 |
+| BRAND |  3 |  支持品牌水印可编辑。 |

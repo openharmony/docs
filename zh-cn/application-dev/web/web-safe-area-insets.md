@@ -1,20 +1,19 @@
 # 网页中安全区域计算和避让适配
 
-Web组件提供了利用W3C CSS进行安全区域计算并避让适配的能力，用来支持异形屏幕设备在沉浸式效果下页面的正常显示。
+## 概述
+安全区域定义为页面的显示区域，其默认不与系统设置的非安全区域（如状态栏、导航栏）重叠，以确保开发者设计的界面均布局于安全区域内。然而，当Web组件启用沉浸式模式时，网页元素可能会出现与状态栏或导航栏重叠的问题。具体示例如图1所示，红色虚线框划定的区域即为安全区域，而顶部状态栏、屏幕挖孔区域和底部导航条则被界定为非安全区域，Web组件开启沉浸式效果时，网页内底部元素与导航条发生重叠。
 
-## 实现原理
+**图1** Web组件开启沉浸式效果时网页内底部元素与导航条发生重叠
 
-ArkWeb内核会监听Web组件及系统安全区域的位置和尺寸，根据两者的重叠区域计算当前Web组件的安全区域以及各个方向上需要避让的距离。
+![web-safe-area](figures/arkweb_safearea2.png)
 
-## 使用场景
+Web组件提供了利用W3C CSS进行安全区域计算并避让适配的能力，用来支持异形屏幕设备在沉浸式效果下页面的正常显示，网页开发者可以使用该能力对重叠元素进行避让。ArkWeb内核将持续监测Web组件及系统安全区域的位置与尺寸，依据两者的重叠部分，计算出当前Web组件的安全区域，以及在各个方向上所需避让的具体距离。
 
-安全区域是指页面的显示区域，默认不与系统设置的非安全区域比如状态栏、导航栏区域重叠，开发者开发的界面都被布局在安全区域内。当Web组件应用了沉浸式效果时，网页内元素就可能会出现与状态栏或导航栏区域重叠的体验问题。
+## 实现场景
 
-此时，网页开发者想对重叠元素进行避让，就可以使用该功能。
+### 开启Web组件沉浸式效果
 
-### Web组件开启沉浸式效果
-
-开发者可以通过[expandSafeArea](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea)来开启沉浸式效果。
+开发者可以通过[expandSafeArea](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)来开启沉浸式效果。
 
   ```ts
   // xxx.ets
@@ -36,33 +35,37 @@ ArkWeb内核会监听Web组件及系统安全区域的位置和尺寸，根据�
   ```
 
 ### 设置网页在可视窗口中的布局方式
+
 `viewport-fit`用于限制网页在安全区域内的展示形态。默认为`auto`，与`contain`表现一致，表示可视窗口完全包含网页内容，即网页全部内容展示于安全区域内。而`cover`则表示网页内容完全覆盖可视窗口，即网页内容不仅展示于安全区域，还包含非安全区域，即可能与状态栏和导航栏发生重叠，只有这种场景下网页需要进行避让适配，设置方式如下：
+
 ```
 <meta name='viewport' content='viewport-fit=cover'>
 ```
-### 网页元素进行避让适配
+### 对网页元素进行避让
 
-网页元素进行避让适配，主要利用`env()` CSS函数，用于向CSS插入用户代码定义的变量，允许开发人员将其内容放置在视口的安全区域中，该规范中定义的`safe-area-inset-*`值可用于确保内容即使在非矩形的视区中也可以完全显示，语法如下：
+网页元素的避让适配主要依赖于env() CSS函数，该函数用于在CSS中插入由用户代码定义的变量。这使得开发人员能够将内容置于可视窗口（viewport）的安全区域内。在规范中定义的safe-area-inset-*值，确保了即使在非矩形视区中，内容也能得到完全显示。其语法如下：
 ```
-/* 直接使用四个safe-area-inset-*环境变量值 */
+/* safe-area-inset-*可设置上、右、下、左，四个方向上的避让值 */
 env(safe-area-inset-top);
 env(safe-area-inset-right);
 env(safe-area-inset-bottom);
 env(safe-area-inset-left);
 
-/* 基于fallback使用四个safe-area-inset-*环境变量值 */
+/* 基于fallback，使用safe-area-inset-*设置四个方向上的避让值 */
 /* 下述长度单位参见：https://developer.mozilla.org/zh-CN/docs/Web/CSS/length */
 env(safe-area-inset-top, 20px);
 env(safe-area-inset-right, 1em);
 env(safe-area-inset-bottom, 0.5vh);
 env(safe-area-inset-left, 1.4rem);
 ```
-`safe-area-inset-top`, `safe-area-inset-right`, `safe-area-inset-bottom`, `safe-area-inset-left`
-> `safe-area-inset-*`由四个定义了视口边缘内矩形的 top, right, bottom 和 left 的环境变量组成，这样可以安全地放入内容，而不会有被非矩形的显示切断的风险。对于矩形视口，例如普通的2in1设备显示器，其值等于零。对于非矩形显示器（如圆形表盘，移动设备屏幕等），在用户代理设置的四个值形成的矩形内，所有内容均可见。
 
-不同于其他的 CSS 属性，用户代理定义的属性名字对大小写敏感。同时，需要注意`env()`必须配合`viewport-fit=cover`使用。
+>  **说明：** 
+>
+> safe-area-inset-*由四个环境变量组成，分别定义了可视窗口边缘内矩形的top、right、bottom和left，确保内容可以安全地放置，避免被非矩形显示区域切断。在矩形视口（如普通2in1设备的显示器）中，这些值等于零。而对于非矩形显示器（例如圆形表盘、移动设备屏幕等），所有内容都将在用户代理设定的四个值所形成的矩形区域内可见。
 
-对于一些购物网站，首页网页底部为tab形式的fix元素，在沉浸式状态下这些fix元素就需要进行底部避让，以防止fix元素与系统导航条发生重叠遮挡，举例如下：
+不同于其他的CSS属性，用户代理定义的属性名字对大小写敏感。同时，需要注意`env()`必须配合`viewport-fit=cover`使用。
+
+对于一些购物网站，首页网页底部为Tab形式的绝对布局元素，在沉浸式状态下这些绝对布局元素就需要进行底部避让，以防止绝对布局元素与系统导航条发生重叠遮挡，避让效果见图2：
 ```
 .tab-bottom {
     padding-bottom: env(safe-area-inset-bottom);
@@ -74,3 +77,7 @@ env(safe-area-inset-left, 1.4rem);
     padding-bottom: max(env(safe-area-inset-bottom), 30px);
 }
 ```
+
+**图2** Web组件开启沉浸式效果时网页内底部元素避让导航条区域
+
+![web-safe-area](figures/arkweb_safearea1.png)

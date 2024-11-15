@@ -554,7 +554,7 @@ try {
 
 ## 获取应用的appId
 
-appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可以通过[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo)接口获取。
+appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可以通过[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14)接口获取。
 
 **示例：**
 

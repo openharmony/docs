@@ -11,7 +11,7 @@ The autoFillManager module provides APIs for saving accounts and passwords.
 ## Modules to Import
 
 ```ts
-import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { autoFillManager } from '@kit.AbilityKit';
 ```
 
 ## AutoSaveCallback

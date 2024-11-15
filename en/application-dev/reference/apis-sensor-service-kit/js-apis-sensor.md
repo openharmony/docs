@@ -36,7 +36,7 @@ Subscribes to data of the acceleration sensor.
 
 **Error codes** 
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -85,7 +85,7 @@ Subscribes to data of the uncalibrated acceleration sensor.
 
 **Error codes**  
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -135,7 +135,7 @@ Subscribes to data of the ambient light sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -179,7 +179,7 @@ Subscribes to data of the ambient temperature sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -223,7 +223,7 @@ Subscribes to data of the barometer sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -267,7 +267,7 @@ Subscribes to data of the gravity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -317,7 +317,7 @@ Subscribes to data of the gyroscope sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -367,7 +367,7 @@ Subscribes to data of the uncalibrated gyroscope sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -418,7 +418,7 @@ Subscribes to data of the Hall effect sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -465,7 +465,7 @@ Subscribes to data of the heart rate sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -510,7 +510,7 @@ Subscribes to data of the humidity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -557,7 +557,7 @@ Subscribes to data of the linear acceleration sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -604,7 +604,7 @@ Subscribes to data of the magnetic field sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -650,7 +650,7 @@ Subscribes to data of the uncalibrated magnetic field sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -693,7 +693,7 @@ Subscribes to data of the orientation sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -741,7 +741,7 @@ Subscribes to data of the pedometer sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -797,7 +797,7 @@ Subscribes to data of the pedometer detection sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -842,7 +842,7 @@ Subscribes to data of the proximity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -887,7 +887,7 @@ Subscribes to data of the rotation vector sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -935,7 +935,7 @@ Subscribes to data of the significant motion sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -980,7 +980,7 @@ Subscribes to data of the wear detection sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1027,7 +1027,7 @@ Obtains data of the acceleration sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1072,7 +1072,7 @@ Obtains data of the uncalibrated acceleration sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1118,7 +1118,7 @@ Obtains data of the ambient light sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1158,7 +1158,7 @@ Obtains data of the temperature sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1198,7 +1198,7 @@ Obtains data of the barometer sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1238,7 +1238,7 @@ Obtains data of the gravity sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1282,7 +1282,7 @@ Obtains to data of the gyroscope sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1327,7 +1327,7 @@ Obtains data of the uncalibrated gyroscope sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1373,7 +1373,7 @@ Obtains data of the Hall effect sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1415,7 +1415,7 @@ Obtains data of the heart rate sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1456,7 +1456,7 @@ Obtains data of the humidity sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1498,7 +1498,7 @@ Obtains data of the linear acceleration sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1541,7 +1541,7 @@ Obtains data of the magnetic field sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1583,7 +1583,7 @@ Obtains data of the uncalibrated magnetic field sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1628,7 +1628,7 @@ Obtains data of the orientation sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1672,7 +1672,7 @@ Obtains data of the pedometer sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1715,7 +1715,7 @@ Obtains data of the pedometer sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1756,7 +1756,7 @@ Obtains data of the proximity sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1796,7 +1796,7 @@ Obtains data of the rotation vector sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1839,7 +1839,7 @@ Obtains data of the significant motion sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1879,7 +1879,7 @@ Obtains data of the wear detection sensor once.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1925,7 +1925,7 @@ Unsubscribes from data of the acceleration sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1978,7 +1978,7 @@ Unsubscribes from data of the uncalibrated acceleration sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2029,7 +2029,7 @@ Unsubscribes from data of the ambient light sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2079,7 +2079,7 @@ Unsubscribes from data of the ambient temperature sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2129,7 +2129,7 @@ Unsubscribes from data of the barometer sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2179,7 +2179,7 @@ Unsubscribes from data of the gravity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2234,7 +2234,7 @@ Unsubscribes from data of the gyroscope sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2287,7 +2287,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2338,7 +2338,7 @@ Unsubscribes from data of the Hall effect sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2390,7 +2390,7 @@ Unsubscribes from data of the heart rate sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2441,7 +2441,7 @@ Unsubscribes from data of the humidity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2493,7 +2493,7 @@ Unsubscribes from data of the linear acceleration sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2544,7 +2544,7 @@ Unsubscribes from data of the magnetic field sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2594,7 +2594,7 @@ Unsubscribes from data of the uncalibrated magnetic field sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2646,7 +2646,7 @@ Unsubscribes from data of the orientation sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2698,7 +2698,7 @@ Unsubscribes from data of the pedometer sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2751,7 +2751,7 @@ Unsubscribes from data of the pedometer detection sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2802,7 +2802,7 @@ Unsubscribes from data of the proximity sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2852,7 +2852,7 @@ Unsubscribes from data of the rotation vector sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2902,7 +2902,7 @@ Unsubscribes from data of the significant motion sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -2952,7 +2952,7 @@ Unsubscribes from data of the wear detection sensor.
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3003,11 +3003,12 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -3059,7 +3060,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3109,7 +3110,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses an asynchr
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3161,7 +3162,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3206,7 +3207,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3261,7 +3262,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3312,7 +3313,7 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3378,7 +3379,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3437,7 +3438,7 @@ Obtains the rotation matrix from a rotation vector. This API uses an asynchronou
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3489,7 +3490,7 @@ Obtains the rotation matrix from a rotation vector. This API uses a promise to r
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3537,7 +3538,7 @@ Transforms a rotation vector based on the coordinate system. This API uses an as
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3594,7 +3595,7 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3644,7 +3645,7 @@ Obtains the quaternion from a rotation vector. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3696,7 +3697,7 @@ Obtains the quaternion from a rotation vector. This API uses a promise to return
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3742,7 +3743,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3801,7 +3802,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3852,7 +3853,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3904,7 +3905,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3948,7 +3949,7 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -3993,7 +3994,7 @@ Obtains information about all sensors on the device. This API uses a promise to 
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -4076,7 +4077,7 @@ Obtains information about the sensor of a specific type. This API uses an asynch
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -4126,7 +4127,7 @@ Obtains information about the sensor of a specific type. This API uses a promise
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -4174,7 +4175,7 @@ Obtains information about the sensor of a specific type. This API returns the re
 
 **Error codes**
 
-For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -4314,11 +4315,11 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                |
-| ---- | ------ | ---- | ---- | ------------------------------------ |
-| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s².|
-| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s².|
-| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s².|
+| Name| Type  | Readable| Writable| Description                                                      |
+| ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s². The value is equal to the reported physical quantity.|
+| y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s². The value is equal to the reported physical quantity.|
+| z    | number | Yes  | Yes  | Acceleration along the z-axis of the device, in m/s². The value is equal to the reported physical quantity.|
 
 
 ## LinearAccelerometerResponse
@@ -4375,11 +4376,11 @@ Describes the orientation sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                             |
-| ----- | ------ | ---- | ---- | --------------------------------- |
-| alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees.|
-| beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees.|
-| gamma | number | Yes  | Yes  | Rotation angle of the device around the y-axis, in degrees.|
+| Name | Type  | Readable| Writable| Description                                                 |
+| ----- | ------ | ---- | ---- | ----------------------------------------------------- |
+| alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees. The value ranges from 0 to 360. |
+| beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees. The value ranges from 0 to ±180.|
+| gamma | number | Yes  | Yes  | Rotation angle of the device around the y-axis, in degrees. The value ranges from 0 to ±90. |
 
 
 ## RotationVectorResponse
@@ -4406,11 +4407,11 @@ Describes the gyroscope sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                            |
-| ---- | ------ | ---- | ---- | -------------------------------- |
-| x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s.|
-| y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s.|
-| z    | number | Yes  | Yes  | Angular velocity of rotation around the z-axis of the device, in rad/s.|
+| Name| Type  | Readable| Writable| Description                                                  |
+| ---- | ------ | ---- | ---- | ------------------------------------------------------ |
+| x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
+| y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
+| z    | number | Yes  | Yes  | Angular velocity of rotation around the z-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
 
 
 ## GyroscopeUncalibratedResponse
@@ -4603,9 +4604,9 @@ Describes the sensor data reporting frequency.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name    | Type                                                      | Readable| Writable| Description                                                        |
-| -------- | ---------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
+| Name    | Type                                                       | Readable| Writable| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. The maximum and minimum values of this parameter are determined by the reporting frequency supported by the hardware. If the configured frequency is greater than the maximum value, the maximum value is used for data reporting. If the configured frequency is less than the minimum value, the minimum value is used for data reporting.|
 
 ## SensorFrequency<sup>11+</sup>
 
@@ -4617,11 +4618,11 @@ Defines the reporting frequency mode of the sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| game   | string | No  | The sensor reports data every 20,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
-| ui     | string | No  | The sensor reports data every 60,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
-| normal | string | No  | The sensor reports data every 200,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
+| Type    | Description                                                        |
+| -------- | ------------------------------------------------------------ |
+| 'game'   | Game mode, which specifies a sensor data reporting frequency of 20,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
+| 'ui'     | UI mode, which specifies a sensor data reporting frequency of 60,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
+| 'normal' | Normal mode, which specifies a sensor data reporting frequency of 200,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
 
 ## RotationMatrixResponse
 
@@ -4662,7 +4663,6 @@ Describes a geomagnetic response object.
 | deflectionAngle | number | Yes  | Yes  | Magnetic declination, which is the angle between true north (geographic north) and the magnetic north (the horizontal component of the field).|
 | levelIntensity  | number | Yes  | Yes  | Horizontal intensity of the magnetic field vector field.                                |
 | totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                                  |
-
 
 ## LocationOptions
 

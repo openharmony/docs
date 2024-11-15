@@ -5,7 +5,7 @@
 
 Defines C APIs for the radio module.
 
-**Library**: libtelephony_data.so
+**Library**: libtelephony_radio.so
 
 **System capability**: SystemCapability.Telephony.CoreService
 

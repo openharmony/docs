@@ -167,9 +167,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    Native实现。
    ```cpp
    // entry/src/main/cpp/napi_init.cpp
-   
-   #include "NativeEntry.h"
    #include "napi/native_api.h"
+   #include "NativeEntry.h"
    
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {
@@ -576,7 +575,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 
 5. 完善步骤3的CreateTextListExample函数，实现Native文本列表的创建和挂载显示。
    ```c
-   // NativeEntry.h
+   // NormalTextListExample.h
    // 自定义NDK接口入口函数。
    
    #ifndef MYAPPLICATION_NORMALTEXTLISTEXAMPLE_H

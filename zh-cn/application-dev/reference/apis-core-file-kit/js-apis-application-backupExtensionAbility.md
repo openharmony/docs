@@ -251,45 +251,55 @@ onProcess(): string;
   import { taskpool } from '@kit.ArkTS';
 
   interface ProgressInfo {
-    progressed: number,
-    total: number
+    name: string, // appName
+    processed: number, // 已处理的数据 
+    total: number, // 总数
+    isPercentage: boolean // 可选字段，true表示需要按百分比的格式化展示进度，false或者不实现该字段表示按具体项数展示进度
   }
 
   class BackupExt extends BackupExtensionAbility {
     // 如下代码中，appJob方法为模拟的实际业务代码，args为appJob方法的参数，用于提交到taskpool中，开启子线程进行工作
     async onBackup() {
       console.log(`onBackup begin`);
-      let args = 0; // args为appJob方法的参数
+      let args = 100; // args为appJob方法的参数
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
-        await taskpool.execute(jobTask, taskpool.Priority.HIGH);
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
         console.error("onBackup error." + error.message);
       }
+      taskpool.terminateTask(jobTask); // 需要手动销毁
       console.log(`onBackup end`);
     }
 
     async onRestore() {
       console.log(`onRestore begin`);
-      let args = 0; // args为appJob方法的参数
+      let args = 100; // args为appJob方法的参数
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
-        await taskpool.execute(jobTask, taskpool.Priority.HIGH);
+        await taskpool.execute(jobTask, taskpool.Priority.LOW);
       } catch (error) {
         console.error("onRestore error." + error.message);
       }
+      taskpool.terminateTask(jobTask); // 需要手动销毁
       console.log(`onRestore end`);
     }
-
+ 
 
     onProcess(): string {
       console.log(`onProcess begin`);
-      let processInfo: ProgressInfo = {
-        progressed: 100, // 已经处理的数据数量
-        total: 1000, // 总的数据数量
-      }
+      let process: string = `{
+       "progressInfo":[
+         {
+          "name": "callact", // appName
+          "processed": 100, // 已处理的数据 
+          "total": 1000, //总数
+          "isPercentage", true // 可选字段，true表示需要按百分比的格式化展示进度，false或者不实现该字段表示按具体项数展示进度
+         }
+       ]
+      }`;
       console.log(`onProcess end`);
-      return JSON.stringify(processInfo);
+      return JSON.stringify(process);
     }
   }
 

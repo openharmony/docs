@@ -50,7 +50,7 @@ Progress(options: ProgressOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                     | 描述                                       |
+| 名称                     | 说明                                     |
 | ---------------------- | ---------------------------------------- |
 | Linear                 | 线性样式。从API version9开始，高度大于宽度的时候自适应垂直显示。   |
 | Ring      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
@@ -66,7 +66,7 @@ Progress(options: ProgressOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 描述                                       |
+| 名称        | 说明                                     |
 | --------- | ---------------------------------------- |
 | Linear    | 线性样式。                                    |
 | Ring<sup>8+</sup>      | 环形无刻度样式，环形圆环逐渐显示至完全填充效果。                 |
@@ -74,7 +74,7 @@ Progress(options: ProgressOptions)
 | ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
 | Capsule<sup>8+</sup>   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。高度大于宽度的时候自适应垂直显示。 |
 
-##  ProgressStyleMap说明 
+##  ProgressStyleMap对象说明 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -132,17 +132,13 @@ color(value: ResourceColor | LinearGradient)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 进度条前景色。<br/>默认值：<br/>- Capsule：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10：'\#33006cde'<br/>&nbsp;&nbsp;&nbsp;API version 11及以上：'\#33007dff'<br/>- Ring：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10及以上：起始端：'\#ff86c1ff'，结束端：'\#ff254ff7'<br/>- 其他样式：'\#ff007dff' |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 进度条前景色。<br/>默认值：<br/>- Capsule：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10：'\#33006cde'<br/>&nbsp;&nbsp;&nbsp;API version 11及以上：'\#33007dff'<br/>- Ring：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10及以上：起始端：'\#ff86c1ff'，结束端：'\#ff254ff7'<br/>- 其他样式：'\#ff007dff' |
 
 ### style<sup>8+</sup>
 
 style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| LinearStyleOptions \| ScaleRingStyleOptions \| EclipseStyleOptions)
 
 设置组件的样式。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -171,6 +167,8 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 设置隐私敏感。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -301,7 +299,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                    | 描述             |
+| 名称                    | 说明      |
 | ----------------------- | ---------------- |
 | LOADING  | 加载中。 |
 | PROGRESSING | 进度更新中。 |

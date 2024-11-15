@@ -30,7 +30,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 - **domain**：用于指定输出日志所对应的业务领域，取值范围为0x0000~0xFFFF，开发者可以根据需要进行自定义。
 
-- **tag**：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。
+- **tag**：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。
 
 - **level**：用于指定日志级别。取值见[LogLevel](../reference/apis-performance-analysis-kit/js-apis-hilog.md#loglevel)。
 
@@ -119,3 +119,6 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    选择当前的设备及进程，日志级别选择Verbose，搜索内容设置为“testTag”。此时窗口仅显示符合条件的日志。
 
    打印日志结果为“hello World 3”。
+
+<!--RP1-->
+<!--RP1End-->

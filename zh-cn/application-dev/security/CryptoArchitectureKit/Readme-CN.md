@@ -74,8 +74,11 @@
     - [使用ECDH进行密钥协商](crypto-key-agreement-using-ecdh.md)
     - [使用X25519进行密钥协商](crypto-key-agreement-using-x25519.md)
     - [使用DH进行密钥协商](crypto-key-agreement-using-dh.md)
-- [消息摘要计算(ArkTS)](crypto-generate-message-digest.md)
-- [消息摘要计算(C/C++)](crypto-generate-message-digest-ndk.md)
+- 消息摘要计算
+  - [消息摘要计算介绍及算法规格](crypto-generate-message-digest-overview.md)
+  - 消息摘要计算开发指导
+    - [消息摘要计算(ArkTS)](crypto-generate-message-digest.md)
+    - [消息摘要计算(C/C++)](crypto-generate-message-digest-ndk.md)
 - [消息认证码计算](crypto-compute-mac.md)
 - [安全随机数生成](crypto-generate-random-number.md)
 - 密钥派生

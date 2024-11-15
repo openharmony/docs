@@ -15,7 +15,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 
-| Name    | Type                                   | Readable| Writable| Description                     |
+| Name    | Type                                   | Read-Only| Optional| Description                     |
 | -------- | --------------------------------------- | ---- | ---- | ------------------------- |
 | packages | Array\<[PackageConfig](#packageconfig)> | Yes  | No  | Package configuration information in the **pack.info** file.      |
 | summary  | [PackageSummary](#packagesummary)       | Yes  | No  | Package summary information in the **pack.info** file.|
@@ -26,7 +26,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name               | Type          | Readable| Writable| Description                                                        |
+| Name               | Type          | Read-Only| Optional| Description                                                        |
 | ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | deviceTypes          | Array\<string> | Yes  | No  | Device types supported by the bundle.                                      |
 | name                | string         | Yes  | No  | Bundle name.                                                  |
@@ -39,7 +39,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name   | Type                                         | Readable| Writable| Description                |
+| Name   | Type                                         | Read-Only| Optional| Description                |
 | ------- | --------------------------------------------- | ---- | ---- | -------------------- |
 | app     | [BundleConfigInfo](#bundleconfiginfo)         | Yes  | No  | Bundle configuration information.      |
 | modules | Array\<[ModuleConfigInfo](#moduleconfiginfo)> | Yes  | No  | Module configuration information of the bundle.|
@@ -50,7 +50,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name      | Type               | Readable| Writable| Description                                  |
+| Name      | Type               | Read-Only| Optional| Description                                  |
 | ---------- | ------------------- | ---- | ---- | -------------------------------------- |
 | bundleName | string              | Yes  | No  | Bundle name. It uniquely identifies an application.|
 | version    | [Version](#version) | Yes  | No  | Bundle version.                            |
@@ -61,7 +61,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name              | Type                                             | Readable| Writable| Description                              |
+| Name              | Type                                             | Read-Only| Optional| Description                              |
 | ------------------ | ------------------------------------------------- | ---- | ---- | ---------------------------------- |
 | mainAbility | string | Yes| No| Name of the main ability.|
 | apiVersion         | [ApiVersion](#apiversion)                         | Yes  | No  | API version of the module.                 |
@@ -76,7 +76,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name               | Type   | Readable| Writable| Description                                                        |
+| Name               | Type   | Read-Only| Optional| Description                                                        |
 | ------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
 | deliveryWithInstall | boolean | Yes  | No  | Whether the HAP file will be installed when the user installs the bundle. The value **true** means that the HAP file will be automatically installed when the user installs the bundle, and **false** means the opposite.|
 | installationFree    | boolean | Yes  | No  | Whether the HAP file supports the installation-free feature. The value **true** means that the HAP file supports the installation-free feature and meets installation-free constraints, and **false** means the opposite.|
@@ -89,7 +89,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name   | Type                                       | Readable| Writable| Description                                                        |
+| Name   | Type                                       | Read-Only| Optional| Description                                                        |
 | ------- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | name    | string                                      | Yes  | No  | Name of the ability. The name must be unique in the bundle.           |
 | label   | string                                      | Yes  | No  | Name of the ability displayed to users. The value is a resource index to names in multiple languages.|
@@ -102,7 +102,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name | Type                                       | Readable| Writable| Description                                                        |
+| Name | Type                                       | Read-Only| Optional| Description                                                        |
 | ----- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | name | string | Yes| No| Name of the ExtensionAbility.|
 | forms | Array\<[AbilityFormInfo](#abilityforminfo)> | Yes  | No  | Widget information.|
@@ -113,7 +113,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name               | Type          | Readable| Writable| Description                                                        |
+| Name               | Type          | Read-Only| Optional| Description                                                        |
 | ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | name                | string         | Yes  | No  | Widget name.                                           |
 | type                | string         | Yes  | No  | Widget type.                                           |
@@ -129,7 +129,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name       | Type  | Readable| Writable| Description                |
+| Name       | Type  | Read-Only| Optional| Description                |
 | ----------- | ------ | ---- | ---- | -------------------- |
 | releaseType | string | Yes  | No  | Name of the API version.        |
 | compatible  | number | Yes  | No  | Minimum API version.|
@@ -141,7 +141,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| Name                    | Type  | Readable| Writable| Description                                                        |
+| Name                    | Type  | Read-Only| Optional| Description                                                        |
 | ------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | minCompatibleVersionCode | number | Yes  | No  | Minimum compatible version of the bundle. It is used to check whether the bundle is compatible with a version on other devices in the cross-device scenario. The value is a 32-bit non-negative integer.|
 | name                     | string | Yes  | No  | Version number of the bundle visible to users.                      |

@@ -35,3 +35,4 @@
       - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
 - 错误码
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
+  - [全局快捷键管理错误码](errorcode-inputconsumer.md)

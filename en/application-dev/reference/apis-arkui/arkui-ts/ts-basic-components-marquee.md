@@ -1,13 +1,13 @@
 # Marquee
 
-The **\<Marquee>** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
+The **Marquee** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **Marquee** component.
 
 
 >  **NOTE**
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  To ensure that scrolling frame rates are not affected, it is recommended that the number of **\<Marquee>** components in a scroll container does not exceed four, or alternatively, use the [\<Text>](ts-basic-components-text.md) component's [TextOverflow.MARQUEE](ts-appendix-enums.md#textoverflow) as a substitute.
+>  To ensure that scrolling frame rates are not affected, it is recommended that the number of **Marquee** components in a scroll container does not exceed four, or alternatively, use the [Text](ts-basic-components-text.md) component's [TextOverflow.MARQUEE](ts-appendix-enums.md#textoverflow) as a substitute.
 
 ## Child Components
 
@@ -22,22 +22,23 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string } | Yes | Parameters of the marquee.<br>**start**: whether to start scrolling.<br>**NOTE**<br>This parameter cannot be used to restart scrolling that has been completed.<br>- **step**: scrolling step. If the step is greater than the text width, the default value is taken.<br>Default value: **6**, in vp<br>- **loop**: number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**<br>**NOTE**<br>Regardless of the value, the marquee scrolls only once on an ArkTS widget.<br>- **fromStart**: whether the text scrolls from the start.<br>Default value: **true**<br>- **src**: text to scroll. |
+| value | { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string } | Yes| Parameters of the marquee.<br>**start**: whether to start scrolling.<br>**NOTE**<br>This parameter cannot be used to restart scrolling that has been completed.<br>- **step**: scrolling step. If the step is greater than the text width, the default value is taken.<br>Default value: **6**, in vp<br>- **loop**: number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**<br>**NOTE**<br>Regardless of the value, the marquee scrolls only once on an ArkTS widget.<br>- **fromStart**: whether the text scrolls from the start.<br>Default value: **true**<br>- **src**: text to scroll.|
 
 ## Attributes
-In addition to the universal text attributes [fontColor](ts-universal-attributes-text-style.md#fontcolor), [fontSize](ts-universal-attributes-text-style.md#fontsize), [fontWeight](ts-universal-attributes-text-style.md#fontweight), and [fontFamily](ts-universal-attributes-text-style.md#fontfamily), the following attributes are supported.
 
-### allowScale
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-allowScale(value: boolean)
+### fontColor
 
-Sets whether to allow text to scale.
+fontColor(value: ResourceColor)
 
-This attribute is not supported currently.
+Sets the font color.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -47,25 +48,97 @@ This attribute is not supported currently.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                |
-| ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | Yes  | Whether to allow text to scale.<br>Default value: **false** |
+| Name| Type                                      | Mandatory| Description      |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color.|
 
-### marqueeUpdateStrategy<sup>12+</sup>
+### fontSize
 
-marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
+fontSize(value: number | string | Resource)
 
-Sets the scrolling strategy for the marquee after its attributes are updated. (This attribute takes effect when the marquee is in the playing state and the text content width exceeds the width of the marquee component.)<br>
+Sets the text size.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                |
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This parameter cannot be set in percentage.|
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+Sets the font weight. If the value is too large, the text may be clipped depending on the font.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings that represent a number, for example, **"400"**, and the following enumerated values of **FontWeight** are supported: **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**.<br>Default value: **FontWeight.Normal**|
+
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+Sets the font family.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Resource](ts-types.md#resource) \| string | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
+
+### allowScale
+
+allowScale(value: boolean)
+
+Sets whether to allow text to scale.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                |
 | ------ | ------- | ---- | ------------------------------------ |
-| value |[MarqueeUpdateStrategy](ts-appendix-enums.md#marqueeupdatestrategy12) | Yes | Scrolling strategy of the marquee after its attributes are updated.<br>Default value: **MarqueeUpdateStrategy.DEFAULT** |
+| value  | boolean | Yes  | Whether to allow text to scale.<br>Default value: **false**<br>**NOTE**<br>This parameter is effective only when **fontSize** is in fp units.|
+
+### marqueeUpdateStrategy<sup>12+</sup>
+
+marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
+
+Sets the scrolling strategy for the marquee after its attributes are updated. (This attribute takes effect when the marquee is in the playing state and the text content width exceeds the width of the marquee component.)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                |
+| ------ | ------- | ---- | ------------------------------------ |
+| value |[MarqueeUpdateStrategy](ts-appendix-enums.md#marqueeupdatestrategy12)| Yes| Scrolling strategy of the marquee after its attributes are updated.<br>Default value: **MarqueeUpdateStrategy.DEFAULT**|
 
 ## Events
 
@@ -73,7 +146,7 @@ Sets the scrolling strategy for the marquee after its attributes are updated. (T
 
 onStart(event: () =&gt; void)
 
-Triggered when the marquee starts scrolling.
+Called when the marquee text changes or starts scrolling.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

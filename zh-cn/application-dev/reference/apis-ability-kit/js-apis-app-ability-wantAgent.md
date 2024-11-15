@@ -1,10 +1,11 @@
 # @ohos.app.ability.wantAgent (WantAgent模块)
 
-app.ability.WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
+app.ability.WantAgent是一个封装了[Want](./js-apis-app-ability-want.md)对象的类，允许应用程序能够在未来的某个时间点执行该Want。该模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取包名等功能。
+WantAgent的一个典型应用场景是通知处理。例如，当用户点击通知时，会触发WantAgent的[trigger](#wantagenttrigger)接口，并拉起目标应用。具体使用请参考[通知模块](../../notification/notification-with-wantagent.md)。该模块将会取代[@ohos.wantAgent](js-apis-wantAgent.md)模块，建议优先使用本模块。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -17,6 +18,8 @@ import { wantAgent } from '@kit.AbilityKit';
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
+
+三方应用只能设置自己应用的Ability。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -36,7 +39,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -71,7 +74,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -98,6 +101,8 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
 
+三方应用只能设置自己应用的Ability。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -121,7 +126,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -155,7 +160,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -197,7 +202,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -232,7 +237,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -295,7 +300,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -330,7 +335,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -383,7 +388,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -418,7 +423,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -481,7 +486,7 @@ getUid(agent: WantAgent): Promise\<number\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -516,7 +521,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -570,7 +575,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -605,7 +610,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -668,7 +673,7 @@ cancel(agent: WantAgent): Promise\<void\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -703,7 +708,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -795,7 +800,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -888,7 +893,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -987,7 +992,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1042,7 +1047,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -1078,7 +1083,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1141,7 +1146,7 @@ getOperationType(agent: WantAgent): Promise\<number>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -1179,7 +1184,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1209,7 +1214,7 @@ try {
 }
 ```
 
-## wantAgentFlags
+## WantAgentFlags
 
 表示使用WantAgent类型的枚举。
 
@@ -1250,7 +1255,7 @@ try {
 
 
 
-## CompleteData 
+## CompleteData
 
 表示主动激发WantAgent返回的数据。
 
@@ -1262,7 +1267,7 @@ try {
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | 否 | 否   | 触发的wantAgent。       |
 | want           | [Want](js-apis-app-ability-want.md#属性)                            | 否 | 否   | 存在的被触发的want。     |
-| finalCode      | number                          | 否 | 否   | 触发wantAgent的请求代码。|
+| finalCode      | number                          | 否 | 否   | 触发wantAgent的执行结果。<br/>- 对于启动Ability的场景(即[OperationType](#operationtype) 取值为 1、2、3时)，执行成功finalcode为0，执行失败finalcode取值参见[元能力子系统错误码](errorcode-ability.md)。<br/>- 对于发布公共事件的场景(即[OperationType](#operationtype)取值为4时)，执行成功finalcode为0，执行失败finalcode取值参见[事件错误码](../apis-basic-services-kit/errorcode-CommonEventService.md)。 |
 | finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |
 

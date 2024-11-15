@@ -72,7 +72,7 @@
 RS侧trace标签示例	含义
 RSMainThread::ProcessCommandUni [7291，51]	反序列化组件树信息
 RenderFrame	将渲染树翻译为GPU绘制指令
-Repaint	硬件合成器合成绘制
+Repaint	硬件合成器合成绘制。
 
 App侧序列化与RS侧反序列化的Trace示例标签中都有 [7291，51]，分别是线程号与帧编号标识。可以看到被处理的帧信息，是按编号在App侧与RS侧一一对应的。  
 

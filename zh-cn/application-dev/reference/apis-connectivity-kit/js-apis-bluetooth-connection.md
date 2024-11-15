@@ -637,11 +637,14 @@ try {
 ```
 
 
-## connection.setLocalName
+## connection.setLocalName<sup>(deprecated)</sup>
 
 setLocalName(name: string): void
 
 设置蓝牙本地设备名称。
+
+> **说明：**<br/>
+> 从API version 10开始支持，从API version 12开始废弃，不再提供替代接口。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 

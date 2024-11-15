@@ -1049,6 +1049,8 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取最新的一张图片。
 
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
+
 **起始版本：** 10
 
 **参数:**
@@ -1097,6 +1099,8 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 ```
 **描述**
 通过[ImageReceiverNative](#imagereceivernative)获取下一张图片。
+
+**注意**：此接口需要在[OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback)回调后调用，才能正常的接收到数据。并且使用此接口返回 **Image** 对象创建的[ImageNative](#imagenative)使用完毕后需要调用[OH_Image_Release](#oh_image_release)方法释放，释放后才可以继续接收新的数据。
 
 **起始版本：** 10
 
@@ -1211,7 +1215,7 @@ int32_t OH_Image_Release (ImageNative * native)
 int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 ```
 **描述**
-获取native **ImageNative** 对象的 [OhosImageSize](_ohos_image_size.md) 信息。如果[ImageNative](image.md#imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[OhosImageSize](_ohos_image_size.md)中的宽高分别对应YUV图像的宽高；如果[ImageNative](image.md#imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[OhosImageSize](_ohos_image_size.md)中的宽等于JPEG数据大小，高等于1。[ImageNative](image.md#imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。
+获取native **ImageNative** 对象的 [OhosImageSize](_ohos_image_size.md) 信息。如果[ImageNative](image.md#imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[OhosImageSize](_ohos_image_size.md)中的宽高分别对应YUV图像的宽高；如果[ImageNative](image.md#imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[OhosImageSize](_ohos_image_size.md)中的宽等于JPEG数据大小，高等于1。[ImageNative](image.md#imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[预览流二次处理(C/C++)](../../media/camera/native-camera-preview-imageReceiver.md)与[拍照(C/C++)](../../media/camera/native-camera-shooting.md)。
 
 **起始版本：** 10
 
@@ -2479,7 +2483,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap**数据设置项。  | 
+| source | 应用层的 **PixelMap** 对象。  | 
 | alpha | alpha通道的指针。  | 
 
 **返回：**
@@ -2990,7 +2994,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap** 对象。  |
+| source | 应用层的 **PixelMap** 对象。  |
 
 **返回：**
 

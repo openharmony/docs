@@ -24,7 +24,7 @@ Inner error.
 ## 15500010 删除用户首选项持久化文件失败
 **错误信息**
 
-Failed to delete preferences file.
+Failed to delete the user preferences persistence file.
 
 **错误描述**
 
@@ -45,7 +45,7 @@ Failed to delete preferences file.
 
 **错误信息**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **错误描述**
 
@@ -63,7 +63,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
- Only supported in stage mode.
+The operations is supported in stage mode only.
 
 **错误描述**
 
@@ -81,7 +81,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
-The data group id is not valid.
+Invalid dataGroupId.
 
 **错误描述**
 

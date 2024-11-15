@@ -60,12 +60,16 @@ EXTERN_C_END
         createOps.alphaType = 0;
         size_t bufferSize = createOps.width * createOps.height * 4;
         void *buff = malloc(bufferSize);
+        if (buff == nullptr) {
+            return udfVar;
+        }
 
         char *cc = (char *)buff;
         for (int i = 0; i < 96; i++) {
             *(cc++) = (char)i;
         }
         int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelMap);
+        free(buff);
         if (res != IMAGE_RESULT_SUCCESS || pixelMap == nullptr) {
             return udfVar;
         }

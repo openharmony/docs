@@ -159,7 +159,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](../apis-image-kit/js-apis-image.md#region7)  | 是   | 裁剪的尺寸。                         |
+| region                 | [Region](../apis-image-kit/js-apis-image.md#region8)  | 是   | 裁剪的尺寸。                         |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -1302,7 +1302,7 @@ crop(region: image.Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/js-apis-image.md#region7) | 是   | 裁剪的尺寸。|
+| region | [Region](../apis-image-kit/js-apis-image.md#region8) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
@@ -1343,7 +1343,7 @@ cropSync(region: image.Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/js-apis-image.md#region7)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](../apis-image-kit/js-apis-image.md#region8)   | 是   | 裁剪的尺寸。                  |
 
 **错误码：**
 
@@ -1776,11 +1776,11 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 const path: string = context.cacheDir + "/test.jpg";
-let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
 ```
 
@@ -1944,9 +1944,9 @@ sendableImageSourceApi.release().then(() => {
 | 名称     | 类型               | 只读 | 可选 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region) | 否   | 否   | 要裁剪的图像区域。                                 |
-| size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[双路预览(ArkTS)](../../media/camera/camera-dual-channel-preview.md)与[拍照实现方案(ArkTS)](../../media/camera/camera-shooting-case.md)。                                         |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
-| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。|
+| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](js-apis-image.md#getimageproperty11)接口读取相关的EXIF信息。|
 
 ### getComponent
 
@@ -2082,6 +2082,8 @@ readLatestImage(): Promise\<Image>
 
 从ImageReceiver读取最新的图片，并使用promise返回结果。
 
+**注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
@@ -2113,6 +2115,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 从ImageReceiver读取下一张图片，并使用promise返回结果。
+
+**注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 

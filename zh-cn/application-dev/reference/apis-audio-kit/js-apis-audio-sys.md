@@ -49,7 +49,7 @@ import { audio } from '@kit.AudioKit';
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
-}
+};
 let tonePlayer: audio.TonePlayer;
 
 audio.createTonePlayer(audioRendererInfo, (err, data) => {
@@ -95,7 +95,7 @@ async function createTonePlayerBefore(){
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_DTMF,
     rendererFlags : 0
-  }
+  };
   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
 ```
@@ -137,17 +137,17 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+};
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
-}
+};
 
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
+};
 
 audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
@@ -440,11 +440,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
   'key_example': 'value_example'
-}
+};
+
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
 }).catch ((err: BusinessError) => {
-    console.error(`Failed to set the audio extra parameters ${err}`);
+  console.error(`Failed to set the audio extra parameters ${err}`);
 });
 ```
 
@@ -490,7 +491,7 @@ let subKeys: Array<String> = ['key_example'];
 audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
   console.info(`Promise returned to indicate that the value of the audio extra parameters is obtained ${value}.`);
 }).catch ((err: BusinessError) => {
-    console.error(`Failed to get the audio extra parameters ${err}`);
+  console.error(`Failed to get the audio extra parameters ${err}`);
 });
 ```
 
@@ -587,6 +588,7 @@ getSpatializationManager(): AudioSpatializationManager
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
 let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
@@ -625,9 +627,9 @@ disableSafeMediaVolume(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.disableSafeMediaVolume().then(() => {
-    console.info('disableSafeMediaVolume success.');
+  console.info('disableSafeMediaVolume success.');
 }).catch ((err: BusinessError) => {
-    console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+  console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
 });
 ```
 
@@ -638,7 +640,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeManager中的[on('volumeChange')](js-apis-audio.md#onvolumechange9)替代。
 
-监听系统音量变化事件，使用callback方式返回结果。
+监听系统音量变化事件（当系统音量发生变化时触发），使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -650,7 +652,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'（系统音量变化事件，检测到系统音量改变时，触发该事件）。 |
+| type     | string                                 | 是   | 监听事件，固定为：'volumeChange'。 |
 | callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **示例：**
@@ -667,7 +669,7 @@ audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-监听铃声模式变化事件，使用callback方式返回结果。
+监听铃声模式变化事件（当[铃声模式](js-apis-audio.md#audioringmode)发生改变时触发），使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[on('ringerModeChange')](js-apis-audio.md#onringermodechange9)替代。
@@ -680,7 +682,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | 是   | 事件回调类型，支持的事件为：'ringerModeChange'（铃声模式变化事件，检测到铃声模式改变时，触发该事件）。 |
+| type     | string                                    | 是   | 监听事件，固定为：'ringerModeChange'。 |
 | callback | Callback<[AudioRingMode](js-apis-audio.md#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。                                                   |
 
 **示例：**
@@ -1768,6 +1770,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1781,7 +1784,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isSpatializationSupportedForDevice: boolean = audioSpatializationManager.isSpatializationSupportedForDevice(deviceDescriptor);
   console.info(`AudioSpatializationManager isSpatializationSupportedForDevice: ${isSpatializationSupportedForDevice}`);
@@ -1820,6 +1824,7 @@ isHeadTrackingSupported(): boolean
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
   console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
@@ -1866,6 +1871,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1879,7 +1885,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isHeadTrackingSupportedForDevice: boolean = audioSpatializationManager.isHeadTrackingSupportedForDevice(deviceDescriptor);
   console.info(`AudioSpatializationManager isHeadTrackingSupportedForDevice: ${isHeadTrackingSupportedForDevice}`);
@@ -1927,7 +1934,8 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
@@ -1980,7 +1988,8 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(enable).then(() => {
   console.info(`setSpatializationEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2043,8 +2052,9 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
-let enabled: boolean = true
+};
+let enabled: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(deviceDescriptor, enabled).then(() => {
   console.info(`setSpatializationEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2084,6 +2094,7 @@ isSpatializationEnabled(): boolean
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
   console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -2130,6 +2141,7 @@ isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -2143,7 +2155,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled(deviceDescriptor);
   console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -2157,7 +2170,7 @@ try {
 
 on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
-订阅空间音频渲染开关状态变化事件。
+监听空间音频渲染开关状态变化事件（当空间音频渲染开关状态发生变化时触发），使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onspatializationenabledchangeforanydevice12)替代。
@@ -2170,8 +2183,8 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 是   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。    |
+| type     | string                                               | 是   | 监听事件，固定为：'spatializationEnabledChange'。 |
+| callback | Callback<boolean\> | 是   | 回调函数，返回空间音频渲染开关状态，true为打开，false为关闭。    |
 
 **错误码：**
 
@@ -2197,7 +2210,7 @@ audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEn
 
 on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-订阅空间音频渲染开关状态变化事件。
+监听空间音频渲染开关状态变化事件（当空间音频渲染开关状态发生变化时触发），使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -2207,7 +2220,7 @@ on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpat
 
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForAnyDevice'。 |
+| type     | string                                               | 是   | 监听事件，固定为：'spatializationEnabledChangeForAnyDevice'。 |
 | callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态    |
 
 **错误码：**
@@ -2235,7 +2248,7 @@ audioSpatializationManager.on('spatializationEnabledChangeForAnyDevice', (audioS
 
 off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
-取消订阅空间音频渲染开关状态变化事件。
+取消监听空间音频渲染开关状态变化事件，使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offspatializationenabledchangeforanydevice12)替代。
@@ -2248,8 +2261,8 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | Callback对象，返回空间音频渲染开关状态，true为打开，false为关闭。 |
+| type     | string                                              | 是   | 监听事件，固定为：'spatializationEnabledChange'。 |
+| callback | Callback<boolean\> | 否   | 回调函数，返回空间音频渲染开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 
@@ -2264,15 +2277,24 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 **示例：**
 
 ```ts
-import { audio } from '@kit.AudioKit';
+// 取消该事件的所有监听
 audioSpatializationManager.off('spatializationEnabledChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let spatializationEnabledChangeCallback = (isSpatializationEnabled: boolean) => {
+  console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
+};
+
+audioSpatializationManager.on('spatializationEnabledChange', spatializationEnabledChangeCallback);
+
+audioSpatializationManager.off('spatializationEnabledChange', spatializationEnabledChangeCallback);
 ```
 
 ### off('spatializationEnabledChangeForAnyDevice')<sup>12+</sup>
 
 off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-取消订阅空间音频渲染开关状态变化事件。
+取消监听空间音频渲染开关状态变化事件，使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -2282,8 +2304,8 @@ off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSp
 
 | 参数名   | 类型                                                 | 必填 | 说明                                           |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'spatializationEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频渲染开关状态    |
+| type     | string                                               | 是   | 监听事件，固定为：'spatializationEnabledChangeForAnyDevice'。 |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | 回调函数，返回设备信息和空间音频渲染开关状态。 |
 
 **错误码：**
 
@@ -2299,7 +2321,19 @@ off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSp
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
+// 取消该事件的所有监听
 audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let spatializationEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+};
+
+audioSpatializationManager.on('spatializationEnabledChangeForAnyDevice', spatializationEnabledChangeForAnyDeviceCallback);
+
+audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice', spatializationEnabledChangeForAnyDeviceCallback);
 ```
 
 ### setHeadTrackingEnabled<sup>(deprecated)</sup>
@@ -2340,7 +2374,8 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
@@ -2393,7 +2428,8 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
   console.info(`setHeadTrackingEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2456,8 +2492,9 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
-let enable: boolean = true
+};
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(deviceDescriptor, enable).then(() => {
   console.info(`setHeadTrackingEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2497,6 +2534,7 @@ isHeadTrackingEnabled(): boolean
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
   console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -2543,6 +2581,7 @@ isHeadTrackingEnabled(): boolean
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -2556,7 +2595,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled(deviceDescriptor);
   console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -2570,7 +2610,7 @@ try {
 
 on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
-订阅头动跟踪开关状态变化事件。
+监听头动跟踪开关状态变化事件（当动跟踪开关状态发生变化时触发），使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onheadtrackingenabledchangeforanydevice12)替代。
@@ -2583,7 +2623,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
+| type     | string                                               | 是   | 监听事件，固定为：'headTrackingEnabledChange'。 |
 | callback | Callback<boolean\> | 是   | Callback对象，返回头动跟踪开关状态，true为打开，false为关闭。 |
 
 **错误码：**
@@ -2610,7 +2650,7 @@ audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnable
 
 on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-订阅头动跟踪开关状态变化事件。
+监听头动跟踪开关状态变化事件（当动跟踪开关状态发生变化时触发），使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -2620,8 +2660,8 @@ on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatia
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态    |
+| type     | string                                               | 是   | 监听事件，固定为：'headTrackingEnabledChangeForAnyDevice'。 |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态。    |
 
 **错误码：**
 
@@ -2639,7 +2679,7 @@ on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatia
 import { audio } from '@kit.AudioKit';
 
 audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
-    console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
   console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
 });
 ```
@@ -2648,7 +2688,7 @@ audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', (audioSpa
 
 off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
-取消订阅头动跟踪开关状态变化事件。
+取消监听头动跟踪开关状态变化事件，使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用[off(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offheadtrackingenabledchangeforanydevice12)替代。
@@ -2661,8 +2701,8 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChange'。 |
-| callback | Callback<boolean\> | 否   | Callback对象，返回头动跟踪开关状态，true为打开，false为关闭。 |
+| type     | string                                              | 是   | 监听事件，固定为：'headTrackingEnabledChange'。 |
+| callback | Callback<boolean\> | 否   | 回调函数，返回头动跟踪开关状态，true为打开，false为关闭。 |
 
 **错误码：**
 
@@ -2678,14 +2718,25 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
+// 取消该事件的所有监听
 audioSpatializationManager.off('headTrackingEnabledChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let headTrackingEnabledChangeCallback = (isHeadTrackingEnabled: boolean) => {
+  console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+};
+
+audioSpatializationManager.on('headTrackingEnabledChange', headTrackingEnabledChangeCallback);
+
+audioSpatializationManager.off('headTrackingEnabledChange', headTrackingEnabledChangeCallback);
 ```
 
 ### off('headTrackingEnabledChangeForAnyDevice')<sup>12+</sup>
 
-off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<boolean\>): void
+off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
 
-取消订阅头动跟踪开关状态变化事件。
+取消监听头动跟踪开关状态变化事件，使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -2695,8 +2746,8 @@ off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<boolean\>
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'headTrackingEnabledChangeForAnyDevice'。 |
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | Callback对象，返回设备信息和空间音频头动开关状态    |
+| type     | string                                              | 是   | 监听事件，固定为：'headTrackingEnabledChangeForAnyDevice'。 |
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | 是   | 回调函数，返回设备信息和空间音频头动开关状态。 |
 
 **错误码：**
 
@@ -2712,7 +2763,19 @@ off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<boolean\>
 
 ```ts
 import { audio } from '@kit.AudioKit';
+
+// 取消该事件的所有监听
 audioSpatializationManager.off('headTrackingEnabledChangeForAnyDevice');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let headTrackingEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+};
+
+audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', headTrackingEnabledChangeForAnyDeviceCallback);
+
+audioSpatializationManager.off('headTrackingEnabledChangeForAnyDevice', headTrackingEnabledChangeForAnyDeviceCallback);
 ```
 
 ### updateSpatialDeviceState<sup>11+</sup>
@@ -2749,12 +2812,14 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let spatialDeviceState: audio.AudioSpatialDeviceState = {
   address: "123",
   isSpatializationSupported: true,
   isHeadTrackingSupported: true,
   spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
-}
+};
+
 try {
   audioSpatializationManager.updateSpatialDeviceState(spatialDeviceState);
   console.info(`AudioSpatializationManager updateSpatialDeviceState success`);
@@ -2798,6 +2863,7 @@ setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
   console.info(`AudioSpatializationManager setSpatializationSceneType success`);
@@ -2836,6 +2902,7 @@ getSpatializationSceneType(): AudioSpatializationSceneType
 ```ts
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
   console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
@@ -2870,7 +2937,7 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
   isSpatializationSupported: true,
   isHeadTrackingSupported: true,
   spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
-}
+};
 ```
 
 ## AudioSpatialDeviceType<sup>11+</sup>
