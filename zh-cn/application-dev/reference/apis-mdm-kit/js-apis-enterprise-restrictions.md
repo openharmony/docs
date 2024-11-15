@@ -31,7 +31,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1使用。<br/>- printer：设备打印能力，当前仅支持2in1使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。<br/>- wifi：设备WIFI能力。 <!--RP1--><!--RP1End--> |
+| feature  | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1使用。<br/>- printer：设备打印能力，当前仅支持2in1使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用。<br/>- wifi：设备WIFI能力。 <!--RP1--><!--RP1End--> |
 | disallow | boolean                                                 | 是   | true表示禁止使用，false表示允许使用。                        |
 
 **错误码**：
@@ -77,7 +77,7 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 | 参数名  | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| feature | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1使用。<br/>- printer：设备打印能力，当前仅支持2in1使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。<br/>- wifi：设备WIFI能力。<!--RP2--><!--RP2End--> |
+| feature | string                                                  | 是   | feature名称。<br/>- bluetooth：设备蓝牙能力。<br/>- modifyDateTime：设备修改系统时间能力，当前仅支持2in1使用。<br/>- printer：设备打印能力，当前仅支持2in1使用。<br/>- hdc：设备HDC能力。<br/>- microphone：设备麦克风能力。<br/>- fingerprint：设备指纹认证能力。<br/>- usb：设备USB能力。禁用后外接的USB设备无法使用。<br/>- wifi：设备WIFI能力。<!--RP2--><!--RP2End--> |
 
 **返回值：**
 
