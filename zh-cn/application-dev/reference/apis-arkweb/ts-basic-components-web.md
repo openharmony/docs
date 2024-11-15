@@ -8649,7 +8649,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
 
-网页绘制页面最大内容度量信息的回调。
+网页绘制页面度量信息的回调，当网页加载完页面主要内容时会触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
