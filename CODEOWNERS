@@ -624,8 +624,8 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-attr
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md @luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md	@jiangtao92	@zhaojian2021	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md	@jiangtao92	@zhaojian2021	@tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md	@zhangfanfan2	@zhanghaibo0	@luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md	@zhangfanfan2	@zhanghaibo0	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md	@raulnaruto_admin	@cheng-feiwang	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md	@raulnaruto_admin	@cheng-feiwang	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md	@jiangtao92	@sunfei2021	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md	@jyj-0306	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md	@jiangtao92	@piggyguy	@tomatodevboy	@HelloCrease
