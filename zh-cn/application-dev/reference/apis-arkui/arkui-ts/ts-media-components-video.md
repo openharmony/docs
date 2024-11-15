@@ -21,7 +21,7 @@
 
 ### Video
 
-Video(value: [VideoOptions](#videooptions对象说明))
+Video(value: VideoOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -115,7 +115,7 @@ controls(value: boolean)
 
 ### objectFit
 
-objectFit(value: [ImageFit](ts-appendix-enums.md#imagefit))
+objectFit(value: ImageFit)
 
 设置视频显示模式。
 
@@ -170,7 +170,7 @@ enableAnalyzer(enable: boolean)
 
 ### analyzerConfig<sup>12+</sup>
 
-analyzerConfig(config: [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig))
+analyzerConfig(config: ImageAnalyzerConfig)
 
 设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能。
 
@@ -188,7 +188,7 @@ analyzerConfig(config: [ImageAnalyzerConfig](ts-image-common.md#imageanalyzercon
 
 ### onStart
 
-onStart(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
+onStart(event:&nbsp;VoidCallback)
 
 播放时触发该事件。
 
@@ -204,7 +204,7 @@ onStart(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 ### onPause
 
-onPause(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
+onPause(event:&nbsp;VoidCallback)
 
 暂停时触发该事件。
 
@@ -220,7 +220,7 @@ onPause(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
 
 ### onFinish
 
-onFinish(event:&nbsp;[VoidCallback](ts-types.md#voidcallback12))
+onFinish(event:&nbsp;VoidCallback)
 
 播放结束时触发该事件。
 
@@ -256,7 +256,7 @@ onStop(event: Callback&lt;void&gt;)
 
 ### onPrepared
 
-onPrepared(callback: Callback\<[PreparedInfo](#preparedinfo14对象说明)>)
+onPrepared(callback: Callback\<PreparedInfo>)
 
 视频准备完成时触发该事件。
 
@@ -272,7 +272,7 @@ onPrepared(callback: Callback\<[PreparedInfo](#preparedinfo14对象说明)>)
 
 ### onSeeking
 
-onSeeking(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
+onSeeking(callback: Callback\<PlaybackInfo>)
 
 操作进度条过程时上报时间信息。
 
@@ -288,7 +288,7 @@ onSeeking(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 ### onSeeked
 
-onSeeked(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
+onSeeked(callback: Callback\<PlaybackInfo>)
 
 操作进度条完成后，上报播放时间信息。
 
@@ -304,7 +304,7 @@ onSeeked(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 ### onUpdate
 
-onUpdate(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
+onUpdate(callback: Callback\<PlaybackInfo>)
 
 播放进度变化时触发该事件。
 
@@ -320,7 +320,7 @@ onUpdate(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 ### onFullscreenChange
 
-onFullscreenChange(callback: Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)>)
+onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
@@ -344,11 +344,11 @@ onFullscreenChange(callback: Callback\<[FullscreenInfo](#fullscreeninfo14对象�
 
 | 参数名       | 类型    | 必填 | 说明                         |
 | ----------- | ------- | ---- | ---------------------------- |
-| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态    |
+| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
 
 ### PreparedInfo<sup>14+</sup>对象说明
 
-用于描述当前视频的时长，单位为秒。
+用于描述当前视频的时长。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -356,11 +356,11 @@ onFullscreenChange(callback: Callback\<[FullscreenInfo](#fullscreeninfo14对象�
 
 | 参数名       | 类型    | 必填 | 说明                         |
 | ----------- | ------- | ---- | ---------------------------- |
-| duration    | number  | 是   | 当前视频的时长，单位为秒        |
+| duration    | number  | 是   | 当前视频的时长，单位为秒。        |
 
 ### PlaybackInfo<sup>14+</sup>对象说明
 
-用于描述当前视频播放的进度，单位为秒。
+用于描述当前视频播放的进度。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
