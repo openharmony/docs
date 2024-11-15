@@ -130,7 +130,6 @@
 5. 使用restore()方法恢复数据。
      
    ```ts
-   let backupFile = 'BK001';
    try {
      kvStore.restore(backupFile, (err) => {
        if (err) {
@@ -148,7 +147,7 @@
 6. 当本地设备存储空间有限或需要重新备份时，还可使用deleteBackup()方法删除备份，释放存储空间。
      
    ```ts
-   let files = ['BK001'];
+   let files = [backupFile];
    try {
      kvStore.deleteBackup(files).then((data) => {
        console.info(`Succeed in deleting Backup. Data:filename is ${data[0]},result is ${data[1]}.`);
