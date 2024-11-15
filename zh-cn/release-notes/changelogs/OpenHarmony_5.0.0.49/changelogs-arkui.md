@@ -216,3 +216,86 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.4 Tabs组件barOverlap接口默认效果变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+优化Tabs组件barOverlap属性设置为true时，TabBar的模糊效果和渲染性能。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：设置barOverlap属性为true时，TabBar默认背景色修改为'#F2F1F3F5'并添加模糊效果。
+
+变更后：设置barOverlap属性为true时，TabBar默认模糊材质的BlurStyle值修改为'BlurStyle.COMPONENT_THICK'。
+
+| 变更前 | 变更后 |
+|------ |--------|
+|![barOverlap_after](figures/before_baroverlap.jpg)|![barOverlap_before](figures/after_baroverlap.jpg)|
+
+**起始API Level**
+
+API 10
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.49 版本开始。
+
+**变更的接口/组件**
+
+barOverlap接口
+
+**适配指导**
+
+当barOverlap设置为true时，开发者若期望无模糊效果，设置barBackgroundBlurStyle为BlurStyle.NONE。示例如下：
+
+```ts
+@Entry
+@Component
+struct barHeightTest {
+  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End }) {
+        TabContent() {
+          Column() {
+            List({ space: 10 }) {
+              ForEach(this.arr, (item: number) => {
+                ListItem() {
+                  Text("item" + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
+                }
+              }, (item: string) => item)
+            }.width('100%').height('100%')
+            .lanes(2).alignListItem(ListItemAlign.Center)
+          }.width('100%').height('100%')
+          .backgroundColor(Color.Pink)
+        }
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), "测试0"))
+
+        TabContent() {
+          Column() {
+            List({ space: 10 }) {
+              ForEach(this.arr, (item: number) => {
+                ListItem() {
+                  Text("item" + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
+                }
+              }, (item: string) => item)
+            }.width('100%').height('100%')
+            .lanes(2).alignListItem(ListItemAlign.Center)
+          }.width('100%').height('100%')
+          .backgroundColor(Color.Blue)
+        }
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), "测试1"))
+      }
+      .barOverlap(true)
+      .barBackgroundBlurStyle(BlurStyle.NONE) // 关闭TabBar模糊效果
+    }
+  }
+}
+```
