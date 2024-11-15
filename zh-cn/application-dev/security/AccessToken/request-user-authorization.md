@@ -36,13 +36,13 @@
 
 ## 开发步骤
 
-以申请使用麦克风权限为例进行说明。
+以申请使用位置权限为例进行说明。
 
 效果展示：
 
-![zh-cn_image_0000001701708034](figures/zh-cn_image_0000001701708034.png)
+![zh-cn_image_location](figures/zh-cn_image_location.png)
 
-1. 申请ohos.permission.MICROPHONE权限，配置方式请参见[声明权限](declare-permissions.md)。
+1. 申请ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION权限，配置方式请参见[声明权限](declare-permissions.md)。
 
 2. 校验当前是否已经授权。
 
@@ -52,7 +52,7 @@
    import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
-   const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
+   const permissions: Array<Permissions> = ['ohos.permission.LOCATION'，'ohos.permission.APPROXIMATELY_LOCATION'];
    
    async function checkPermissionGrant(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
@@ -86,7 +86,7 @@
      if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
        // 已经授权，可以继续访问目标操作
      } else {
-       // 申请麦克风权限
+       // 申请位置权限
      }
    }
    ```
@@ -109,7 +109,7 @@
       import { window } from '@kit.ArkUI';
       import { BusinessError } from '@kit.BasicServicesKit';
       
-      const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
+      const permissions: Array<Permissions> = ['ohos.permission.LOCATION'，'ohos.permission.APPROXIMATELY_LOCATION'];
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
@@ -148,7 +148,7 @@
       import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
       import { BusinessError } from '@kit.BasicServicesKit';
       
-      const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
+      const permissions: Array<Permissions> = ['ohos.permission.LOCATION'，'ohos.permission.APPROXIMATELY_LOCATION'];
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
