@@ -82,6 +82,8 @@ transform(value: object)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                      | 类型                       | 必填 | 说明                                                         |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | x                         | number                     | 否   | 旋转轴向量x坐标。                                            |
@@ -99,6 +101,8 @@ transform(value: object)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型                       | 必填 | 说明            |
 | ---- | -------------------------- | ---- | --------------- |
 | x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。 |
@@ -111,13 +115,15 @@ transform(value: object)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 类型                       | 必填 | 说明                                                         |
 | ------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | x       | number                     | 否   | x轴的缩放倍数。x>1时以x轴方向放大，0<x<1时以x轴方向缩小，x<0时沿x轴反向并缩放。 |
 | y       | number                     | 否   | y轴的缩放倍数。y>1时以y轴方向放大，0<y<1时以y轴方向缩小，y<0时沿y轴反向并缩放。 |
 | z       | number                     | 否   | z轴的缩放倍数。z>1时以z轴方向放大，0<z<1时以z轴方向缩小，z<0时沿z轴反向并缩放。 |
-| centerX | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。                                          |
-| centerY | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。                                          |
+| centerX | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。<br/>单位：vp|
+| centerY | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。<br/>单位：vp|
 
 > **说明：**
 >
