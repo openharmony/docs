@@ -97,11 +97,10 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       vi ~/.zshrc
       ```
 
-2. 单击字母“i”，进入**Insert**模式。
+2. 单击字母“i”，进入**Insert**模式。<!--RP2-->
 
 3. 输入以下内容，在PATH路径下**增加**SDK路径信息，具体路径信息以SDK**实际配置路径**为准。
 
-<!--RP2-->
    以下内容以本地SDK的toolchains完整路径_$YourSDKPath_/openharmony/toolchains为例：
 
    ```shell
