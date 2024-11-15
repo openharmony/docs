@@ -256,7 +256,7 @@ onStop(event: Callback&lt;void&gt;)
 
 ### onPrepared
 
-onPrepared(callback: [Callback](ts-types.md#callback12)\<[PreparedInfo](#preparedinfo14对象说明)>)
+onPrepared(callback: Callback\<[PreparedInfo](#preparedinfo14对象说明)>)
 
 视频准备完成时触发该事件。
 
@@ -268,11 +268,11 @@ onPrepared(callback: [Callback](ts-types.md#callback12)\<[PreparedInfo](#prepare
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| callback | [Callback](ts-types.md#callback12)\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
+| callback | Callback\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
 
 ### onSeeking
 
-onSeeking(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)>)
+onSeeking(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 操作进度条过程时上报时间信息。
 
@@ -284,11 +284,11 @@ onSeeking(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playback
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onSeeked
 
-onSeeked(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)>)
+onSeeked(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 操作进度条完成后，上报播放时间信息。
 
@@ -300,11 +300,11 @@ onSeeked(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbacki
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onUpdate
 
-onUpdate(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)>)
+onUpdate(callback: Callback\<[PlaybackInfo](#playbackinfo14对象说明)>)
 
 播放进度变化时触发该事件。
 
@@ -316,11 +316,11 @@ onUpdate(callback: [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbacki
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | [Callback](ts-types.md#callback12)\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onFullscreenChange
 
-onFullscreenChange(callback: [Callback](ts-types.md#callback12)\<[FullscreenInfo](#fullscreeninfo14对象说明)>)
+onFullscreenChange(callback: Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)>)
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
@@ -332,7 +332,7 @@ onFullscreenChange(callback: [Callback](ts-types.md#callback12)\<[FullscreenInfo
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| callback | [Callback](ts-types.md#callback12)\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
+| callback | Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
 
 ### FullscreenInfo<sup>14+</sup>对象说明
 
