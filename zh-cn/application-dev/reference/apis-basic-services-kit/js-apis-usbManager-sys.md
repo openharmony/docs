@@ -717,6 +717,54 @@ usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.
 });
 ```
 
+## addAccessoryRight<sup>14+<sup>
+
+addAccessoryRight(tokenId: number, accessory: USBAccessory): void;
+
+为应用程序添加访问USB配件权限。
+
+usbManager.requestAccessoryRight会触发弹窗请求用户授权；addAccessoryRight不会触发弹窗，而是直接添加应用程序访问设备的权限。
+
+**系统接口：** 此接口为系统接口
+
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
+
+**系统能力：** SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名    | 类型         | 必填 | 说明                     |
+| --------- | ------------ | ---- | ------------------------ |
+| tokenId   | number       | 是   | 应用程序tokenId。 |
+| accessory | USBAccessory | 是   | USB配件。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The permission check failed.                                 |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+
+**示例：**
+
+```ts
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | boundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
+  let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
+  let tokenId: number = boundleInfo.appInfo.accessTokenId
+  usbManager.addAccessoryRight(tokenId, accList[0])
+  hilog.info(0, 'testTag ui', `addAccessoryRight success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `addAccessoryRight error ${error.code}, message is ${error.message}`)
+}
+```
+
 ## USBPort
 
 USB设备端口。
