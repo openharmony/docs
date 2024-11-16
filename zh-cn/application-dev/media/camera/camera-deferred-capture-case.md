@@ -1,8 +1,7 @@
 # 分段式拍照实现方案(ArkTS)
 
-当前示例提供完整的分段式拍照流程介绍，方便开发者了解完整的接口调用顺序。
-
 在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
+当前示例提供完整的分段式拍照流程介绍，方便开发者了解完整的接口调用顺序。
 
 在参考以下示例前，建议开发者查看[分段式拍照(ArkTS)](camera-deferred-capture.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[拍照](camera-shooting.md)等单个流程。
 
