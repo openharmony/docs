@@ -944,7 +944,7 @@ Creates an instance of a compressed or decompressed object. The instance of the 
 
 | Type         | Description                    |
 | ------------- | ------------------------ |
-| [Zip](#zip12) | Returned instance of a compressed or decompressed object.|
+| [Zip](#zip12) | The instance of the compressed or decompressed object is returned.|
 
 **Example**
 
@@ -1018,7 +1018,7 @@ zip.zlibVersion().then((data) => {
 
 zlibCompileFlags(): Promise&lt;number&gt;
 
-Returns a flag indicating a compile-time option. This API uses a promise to return the result. The flag indicating compile-time options is returned upon a success.
+Returns a flag indicating a compile-time option. This API uses a promise to return the result. The flag indicating a compile-time option is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1110,12 +1110,12 @@ Compresses the source buffer to the destination buffer. This API uses a promise 
 
 **Parameters**
 
-| Name   | Type         | Mandatory| Description                                                |
-| --------- | ------------- | ---- | ---------------------------------------------------- |
-| dest      | ArrayBuffer   | Yes  | Destination buffer.                                        |
-| source    | ArrayBuffer   | Yes  | Source buffer.                                      |
-| level     | CompressLevel | Yes  | Compression level. For details, see [zip.CompressLevel](#zipcompresslevel).|
-| sourceLen | number        | No  | Length of the source data.                                        |
+| Name   | Type         | Mandatory| Description                                         |
+| --------- | ------------- | ---- | --------------------------------------------- |
+| dest      | ArrayBuffer   | Yes  | Destination buffer.                                 |
+| source    | ArrayBuffer   | Yes  | Source buffer.                               |
+| level     | CompressLevel | Yes  | For details, see [CompressLevel](#compresslevel).|
+| sourceLen | number        | No  | Length of the source data.                                 |
 
 **Return value**
 
@@ -1349,9 +1349,9 @@ Verifies the checksum inside the compressed stream. This API uses a promise to r
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1408,9 +1408,9 @@ Finds the synchronization point of the current decompressed stream. This API use
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1467,9 +1467,9 @@ Skips invalid compressed data until a complete re-render point is found. This AP
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1559,9 +1559,9 @@ Resets the state of the decompressed stream to preserve the allocated Huffman Tr
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1619,9 +1619,9 @@ Initializes the decompression dictionary from a given uncompressed byte sequence
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1717,9 +1717,9 @@ Initializes the decompression dictionary from a given uncompressed byte sequence
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1776,9 +1776,9 @@ Equivalent to call the **inflateEnd** API and then **inflateInit** API. However,
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1837,9 +1837,9 @@ Initializes the decompression dictionary from a given uncompressed byte sequence
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -1955,9 +1955,9 @@ Initializes the internal stream state for decompression. This API uses a promise
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2010,9 +2010,9 @@ Initializes the internal stream state for decompression. This API uses a promise
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2065,9 +2065,9 @@ Sets the header information of a gzip file before decompressing data. This API u
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2184,9 +2184,9 @@ Frees up all dynamically allocated data structures of the decompression stream. 
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2248,9 +2248,9 @@ Copies the decompression stream. This API uses a promise to return the result. T
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2367,9 +2367,9 @@ Initializes the internal stream state for decompression before using the **infla
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2400,9 +2400,9 @@ Releases all memory allocated by the **inflateBackInit()** function. This API us
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2455,9 +2455,9 @@ InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) 
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2617,16 +2617,16 @@ Decompresses the data. This API uses a promise to return the result. The result 
 
 **Parameters**
 
-| Name| Type             | Mandatory| Description                                                  |
-| ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                       |
-| flush  | CompressFlushMode | Yes  | For details, see [zip.CompressFlushMode<sup>12+<sup/>](#zipcompressflushmode12).|
+| Name| Type             | Mandatory| Description                                               |
+| ------ | ----------------- | ---- | --------------------------------------------------- |
+| strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                    |
+| flush  | CompressFlushMode | Yes  | For details, see [CompressFlushMode](#compressflushmode12).|
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2704,16 +2704,16 @@ Initializes the internal stream state for compression. This API uses a promise t
 
 **Parameters**
 
-| Name| Type         | Mandatory| Description                                                |
-| ------ | ------------- | ---- | ---------------------------------------------------- |
-| strm   | ZStream       | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                     |
-| level  | CompressLevel | Yes  | For details, see [zip.CompressLevel](#zipcompresslevel).|
+| Name| Type         | Mandatory| Description                                         |
+| ------ | ------------- | ---- | --------------------------------------------- |
+| strm   | ZStream       | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).              |
+| level  | CompressLevel | Yes  | For details, see [CompressLevel](#compresslevel).|
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2764,20 +2764,20 @@ Initializes the internal stream state for compression. This API uses a promise t
 
 **Parameters**
 
-| Name    | Type            | Mandatory| Description                                                      |
-| ---------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm       | ZStream          | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                           |
-| level      | CompressLevel    | Yes  | For details, see [zip.CompressLevel](#zipcompresslevel).      |
-| method     | CompressMethod   | Yes  | For details, see [zip.CompressMethod<sup>12+</sup>](#zipcompressmethod12).  |
-| windowBits | number           | Yes  | The logarithm with base 2 based on the maximum window size.                             |
-| memLevel   | MemLevel         | Yes  | For details, see [zip.MemLevel](#zipmemlevel).                |
-| strategy   | CompressStrategy | Yes  | For details, see [zip.CompressStrategy](#zipcompressstrategy).|
+| Name    | Type            | Mandatory| Description                                               |
+| ---------- | ---------------- | ---- | --------------------------------------------------- |
+| strm       | ZStream          | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                    |
+| level      | CompressLevel    | Yes  | For details, see [CompressLevel](#compresslevel).      |
+| method     | CompressMethod   | Yes  | For details, see [CompressMethod](#compressmethod12).  |
+| windowBits | number           | Yes  | The logarithm with base 2 based on the maximum window size.                      |
+| memLevel   | MemLevel         | Yes  | For details, see [MemLevel](#memlevel).                |
+| strategy   | CompressStrategy | Yes  | For details, see [CompressStrategy](#compressstrategy).|
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2829,16 +2829,16 @@ Compresses data. This API uses a promise to return the result. The result state 
 
 **Parameters**
 
-| Name| Type             | Mandatory| Description                                                  |
-| ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                       |
-| flush  | CompressFlushMode | Yes  | For details, see [zip.CompressFlushMode<sup>12+</sup>](#zipcompressflushmode12). |
+| Name| Type             | Mandatory| Description                                               |
+| ------ | ----------------- | ---- | --------------------------------------------------- |
+| strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                    |
+| flush  | CompressFlushMode | Yes  | For details, see [CompressFlushMode](#compressflushmode12).|
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -2901,9 +2901,9 @@ Frees up all dynamically allocated data structures of the compression stream. Th
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3035,9 +3035,9 @@ Provides the header information of the gzip file when **deflateInit2()** request
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3100,9 +3100,9 @@ Copies the compression stream. This API uses a promise to return the result. The
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3165,9 +3165,9 @@ Initializes the compression dictionary from a given sequence of bytes. This API 
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3303,9 +3303,9 @@ Fine-tunes the internal compressed parameters of **deflate**. This API uses a pr
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3367,9 +3367,9 @@ Equivalent to call the **deflateEnd** API and then **deflateInit** API. However,
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3431,9 +3431,9 @@ Resets the initialized deflate compression stream, but retains the compression p
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3491,7 +3491,7 @@ Returns the number of bytes and bits that has been generated but has not yet bee
 
 | Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
@@ -3553,17 +3553,17 @@ Dynamically updates the compression level and compression strategy. This API use
 
 **Parameters**
 
-| Name  | Type            | Mandatory| Description                                                      |
-| -------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm     | ZStream          | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                           |
-| level    | CompressLevel    | Yes  | For details, see [zip.CompressLevel](#zipcompresslevel).      |
-| strategy | CompressStrategy | Yes  | For details, see [zip.CompressStrategy](#zipcompressstrategy).|
+| Name  | Type            | Mandatory| Description                                               |
+| -------- | ---------------- | ---- | --------------------------------------------------- |
+| strm     | ZStream          | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                    |
+| level    | CompressLevel    | Yes  | For details, see [CompressLevel](#compresslevel).      |
+| strategy | CompressStrategy | Yes  | For details, see [CompressStrategy](#compressstrategy).|
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3627,9 +3627,9 @@ Inserts bits and values into the compression stream. This API uses a promise to 
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
@@ -3680,12 +3680,12 @@ async function demo() {
 **System capability**: SystemCapability.BundleManager.Zlib
 
 | Name    | Type            | Readable| Writable| Description                                                      |
-| -------- | ---------------- | ---- | ---- | ---------------------------------------------------------- |
-| level    | CompressLevel     | Yes  | No  | For details. see [zip.CompressLevel](#zipcompresslevel).      |
-| memLevel | MemLevel         | Yes  | No  | For details, see [zip.MemLevel](#zipmemlevel).                |
-| strategy | CompressStrategy | Yes  | No  | For details, see [zip.CompressStrategy](#zipcompressstrategy).|
+| -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
+| level    | CompressLevel     | Yes  | No | For details, see [CompressLevel](#compresslevel).      |
+| memLevel | MemLevel         | Yes  | No | For details, see [MemLevel](#memlevel).                |
+| strategy | CompressStrategy | Yes  | No | For details, see [CompressStrategy](#compressstrategy).|
 
-## zip.CompressLevel
+## CompressLevel
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3698,7 +3698,7 @@ async function demo() {
 | COMPRESS_LEVEL_BEST_COMPRESSION    | 9    | Compression level 9 that gives the best compression.     |
 | COMPRESS_LEVEL_DEFAULT_COMPRESSION | -1   | Default compression level.     |
 
-## zip.MemLevel
+## MemLevel
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3706,11 +3706,11 @@ async function demo() {
 
 | Name             | Value  | Description                            |
 | ----------------- | ---- | -------------------------------- |
-| MEM_LEVEL_MIN     | 1    | Minimum memory used by the **zip** API during compression.|
-| MEM_LEVEL_MAX     | 9    | Maximum memory used by the **zip** API during compression.|
-| MEM_LEVEL_DEFAULT | 8    | Default memory used by the **zip** API during compression.|
+| MEM_LEVEL_MIN     | 1    | Minimum memory used by the **zlib** API during compression.|
+| MEM_LEVEL_MAX     | 9    | Maximum memory used by the **zlib** API during compression.|
+| MEM_LEVEL_DEFAULT | 8    | Default memory used by the **zlib** API during compression.|
 
-## zip.CompressStrategy
+## CompressStrategy
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3724,7 +3724,7 @@ async function demo() {
 | COMPRESS_STRATEGY_RLE              | 3    | RLE compression strategy.        |
 | COMPRESS_STRATEGY_FIXED            | 4    | Fixed compression strategy.          |
 
-## zip.ErrorCode
+## ErrorCode
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
@@ -3733,7 +3733,7 @@ async function demo() {
 | ERROR_CODE_OK    | 0    | The API is successfully called.|
 | ERROR_CODE_ERRNO | -1   | Failed to call the API.|
 
-## zip.CompressFlushMode<sup>12+</sup>
+## CompressFlushMode<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3749,7 +3749,7 @@ async function demo() {
 | BLOCK         | 5    | Allows more precise control.                          |
 | TREES         | 6    | Implements special purposes.                      |
 
-## zip.CompressMethod<sup>12+</sup>
+## CompressMethod<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3759,7 +3759,7 @@ async function demo() {
 | -------- | ---- | ---------- |
 | DEFLATED | 8    | Compression method.|
 
-## zip.ReturnStatus<sup>12+</sup>
+## ReturnStatus<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3794,10 +3794,10 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name   | Type        | Readable| Writable| Description                                                 |
-| ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
-| destLen | number       | Yes  | No  | Total length of the destination buffer.                                 |
+| Name   | Type        | Readable| Writable| Description                                         |
+| ------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status  | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| destLen | number       | Yes  | No  | Total length of the destination buffer.                         |
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
@@ -3805,10 +3805,10 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name            | Type        | Readable| Writable| Description                                                 |
-| ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
-| dictionaryLength | number       | Yes  | No  | Length of a dictionary.                                         |
+| Name            | Type        | Readable| Writable| Description                                         |
+| ---------------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status           | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| dictionaryLength | number       | Yes  | No  | Length of a dictionary.                                 |
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
@@ -3816,11 +3816,11 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name            | Type        | Readable| Writable| Description                                                 |
-| ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
-| destLength       | number       | Yes  | No  | Length of the destination buffer.                                    |
-| sourceLength     | number       | Yes  | No  | Length of the source buffer.                                      |
+| Name        | Type        | Readable| Writable| Description                                         |
+| ------------ | ------------ | ---- | ---- | --------------------------------------------- |
+| status       | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| destLength   | number       | Yes  | No  | Length of the destination buffer.                           |
+| sourceLength | number       | Yes  | No  | Length of the source buffer.                             |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
@@ -3828,11 +3828,11 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name   | Type        | Readable| Writable| Description                                                 |
-| ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
-| pending | number       | Yes  | No  | Number of output bytes that have been generated.                                 |
-| bits    | number       | Yes  | No  | Number of output bits that have been generated.                                   |
+| Name   | Type        | Readable| Writable| Description                                         |
+| ------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status  | ReturnStatus | Yes  | No  | For details, see [ReturnStatus](#returnstatus12).|
+| pending | number       | Yes  | No  | Number of output bytes that have been generated.                         |
+| bits    | number       | Yes  | No  | Number of output bits that have been generated.                           |
 
 ## GzHeader<sup>12+</sup>
 
@@ -4247,9 +4247,9 @@ Clears all pending output of the file. Closes the file and releases decompressio
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4375,9 +4375,9 @@ Describes the last error message that reported for the file. This API uses a pro
 
 **Return value**
 
-| Type                                                       | Description                                                     |
-| ----------------------------------------------------------- | --------------------------------------------------------- |
-| Promise&lt;[GzErrorOutputInfo](#zipgzerroroutputinfo12)&gt; | Promise used to return the result.|
+| Type                                                    | Description                                                     |
+| -------------------------------------------------------- | --------------------------------------------------------- |
+| Promise&lt;[GzErrorOutputInfo](#gzerroroutputinfo12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4516,13 +4516,13 @@ Flushes all pending output into a compressed file. This API uses a promise to re
 
 | Name| Type             | Mandatory| Description                                                        |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| flush  | CompressFlushMode | Yes  | Controls the flushing operation. For details, see [zip.CompressFlushMode<sup>12+</sup>](#zipcompressflushmode12).|
+| flush  | CompressFlushMode | Yes  | Controls the flushing mode. For details, see [CompressFlushMode](#compressflushmode12).|
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4731,7 +4731,7 @@ struct Index {
 
 gzclosew(): Promise&lt;ReturnStatus&gt;
 
-Clears all pending output of the file. Closes the file and releases decompression or compression state if necessary. These features are applied only for writing or appending. This API uses a promise to return the result. The result state is returned.
+Implements the same functions as that of **gzclose()** for writing or appending. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4739,9 +4739,9 @@ Clears all pending output of the file. Closes the file and releases decompressio
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4793,7 +4793,7 @@ struct Index {
 
 gzcloser(): Promise&lt;ReturnStatus&gt;
 
-Clears all pending output of the file. Closes the file and releases decompression or compression state if necessary. These features are applied only for reading. This API uses a promise to return the result. The result state is returned.
+Implements the same functions as that of **gzclose()** for reading only. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4801,9 +4801,9 @@ Clears all pending output of the file. Closes the file and releases decompressio
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -5071,14 +5071,14 @@ Dynamically updates the compression level and compression policy of a file. This
 
 | Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| level    | CompressLevel    | Yes  | Compression level. For details, see [zip.CompressLevel](#zipcompresslevel).|
-| strategy | CompressStrategy | Yes  | Compression strategy. For details, see [zip.CompressStrategy](#zipcompressstrategy).|
+| level    | CompressLevel    | Yes  | Compression level. For details, see [CompressLevel](#compresslevel).     |
+| strategy | CompressStrategy | Yes  | Compression policy. For details, see [CompressStrategy](#compressstrategy).|
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -5143,7 +5143,7 @@ Sets the start position to the offset position relative to the next **gzread** o
 | Name| Type                | Mandatory| Description                                                        |
 | ------ | -------------------- | ---- | ------------------------------------------------------------ |
 | offset | number               | Yes  | Target offset position.                                              |
-| whence | OffsetReferencePoint | Yes  | Defines the reference point for the offset. For details, see [zip.OffsetReferencePoint<sup>12+</sup>](#zipoffsetreferencepoint12). |
+| whence | OffsetReferencePoint | Yes  | Defines the reference point for the offset. For details, see [OffsetReferencePoint](#offsetreferencepoint12).|
 
 **Return value**
 
@@ -5210,9 +5210,9 @@ Repositions the file pointer to the beginning of the file. This feature is appli
 
 **Return value**
 
-| Type                                             | Description                       |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
+| Type                                          | Description                       |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -5615,7 +5615,7 @@ struct Index {
 
 gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 
-Reads bytes from a compressed file until **len-1** characters are read, a newline character is read and transferred to a buffer, or an end-of-file condition is encountered. This API uses a promise to return the result. The null-terminated strings are returned.
+Reads bytes from a compressed file until len-1 characters are read, a newline character is read and transferred to a buffer, or an end-of-file condition is encountered. This API uses a promise to return the result. The null-terminated strings are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5684,18 +5684,18 @@ struct Index {
 }
 ```
 
-## zip.GzErrorOutputInfo<sup>12+</sup>
+## GzErrorOutputInfo<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name     | Type        | Readable| Writable| Description                                            |
-| --------- | ------------ | ---- | ---- | ------------------------------------------------ |
-| status    | ReturnStatus | Yes  | No  | Returns the zlib file status code. For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
-| statusMsg | string       | Yes  | No  | The last status message reported on the zlib file.        |
+| Name     | Type        | Readable| Writable| Description                                        |
+| --------- | ------------ | ---- | ---- | -------------------------------------------- |
+| status    | ReturnStatus | Yes  | No  | Returns the zlib file status code. For details, see ReturnStatus definition.|
+| statusMsg | string       | Yes  | No  | The last status message reported on the zlib file.    |
 
-## zip.OffsetReferencePoint<sup>12+</sup>
+## OffsetReferencePoint<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

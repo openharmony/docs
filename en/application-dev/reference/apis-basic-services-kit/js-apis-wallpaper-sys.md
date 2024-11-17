@@ -695,7 +695,6 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessErr
 });
 ```
 
-
 ## wallpaper.getImage<sup>9+</sup>
 
 getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
@@ -742,8 +741,6 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.P
     console.error(`failed to getImage because: ${JSON.stringify(error)}`);
 });
 ```
-
-
 
 ## wallpaper.getPixelMap<sup>(deprecated)</sup>
 

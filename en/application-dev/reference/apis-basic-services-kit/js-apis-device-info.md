@@ -6,7 +6,7 @@ The **deviceInfo** module provides terminal device information query, which cann
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > Some parameters whose return value is the default value are not yet available.
-> The APIs of this module return information about device constants. You're not expected to call these APIs frequently.
+> The APIs of this module return information about device constants. You are not expected to call these APIs frequently.
 
 ## Modules to Import
 
@@ -58,7 +58,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | distributionOSVersion<sup>10+</sup> | String | Yes| No| Distribution OS version.<!--Del--> It is defined by the issuer.<!--DelEnd-->.<!--RP1--><!--RP1End-->  |
 | distributionOSApiVersion<sup>10+</sup> | number| Yes| No| Distribution OS API version.<!--Del--> It is defined by the issuer.<!--DelEnd-->.|
 | distributionOSReleaseType<sup>10+</sup> | String | Yes| No| Distribution OS release type.<!--Del--> It is defined by the issuer.<!--DelEnd-->.|
-| ODID<sup>12+</sup> | String | Yes| No|Vendor anonymous identifier.<br>An ODID will be regenerated in the following scenarios:<br>Restore a phone to its factory settings.<br>Uninstall and reinstall all apps with the same **developerId** on one device.<br>An ODID is generated based on the following rules:<br>The value is generated based on the groupId parsed from the developerId in the signature information. The developerId rule is groupId.developerId. If no groupId exists, the entire developerId is used as the groupId.<br>Apps with the same **developerId** use the same ODID on one device.<br>Apps with different **developerId**s use different ODIDs on one device.<br>Apps with the same **developerId** use different ODIDs on different devices.<br>Apps with different **developerId**s use different ODIDs on different devices.<br>**NOTE**<br>The data length is 37 bytes.|
+| ODID<sup>12+</sup> | String | Yes| No|Vendor Anonymous Identifier<br>An ODID will be regenerated in the following scenarios:<br>Restore a phone to its factory settings.<br>Uninstall and reinstall all applications with the same **developerId** on one device.<br>An ODID is generated based on the following rules:<br>The value is generated based on the **groupId** parsed from the **developerId** in the signature information. As **groupId.developerId** is the rule, if no **groupId** exists, the **developerId** is used as the **groupId**.<br>Applications with the same **developerId** use the same ODID on one device.<br>Applications with different **developerId**s use different ODIDs on one device.<br>Applications with the same **developerId** use different ODIDs on different devices.<br>Applications with different **developerId**s use different ODIDs on different devices.<br>**NOTE**<br>The data length is 37 bytes.|
 
 **Example**
 

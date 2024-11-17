@@ -9,16 +9,16 @@ The **Emitter** module provides the capabilities of sending and processing inter
 ## Modules to Import
 
 ```ts
-import emitter from '@ohos.events.emitter';
+import { emitter } from '@kit.BasicServicesKit';
 ```
 
 ## Required Permissions
 
-None
+None.
 
 ## emitter.on
 
-on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
+on(event: InnerEvent, callback: Callback\<EventData\>): void
 
 Subscribes to an event in persistent manner and executes a callback after the event is received.
 
@@ -48,7 +48,7 @@ emitter.on(innerEvent, () => {
 
 ## emitter.on<sup>11+</sup>
 
-on(eventId: string, callback:  Callback\<[EventData](#eventdata)\>): void
+on(eventId: string, callback:  Callback\<EventData\>): void
 
 Subscribes to an event in persistent manner and executes a callback after the event is received.
 
@@ -60,7 +60,7 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 
 | Name  | Type                               | Mandatory| Description                                  |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| eventId    | string                              | Yes  | Event to subscribe to in persistent manner. The value cannot be an empty string.                      |
+| eventId    | string                              | Yes  | Event to subscribe to in persistent manner. The value cannot be an empty string and exceed 10240 bytes.                      |
 | callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback to be executed when the event is received.|
 
 **Example**
@@ -72,9 +72,48 @@ emitter.on("eventId", () => {
 });
 ```
 
+## emitter.on<sup>12+</sup>
+
+on<T\>(eventId: string, callback:  Callback\<GenericEventData<T\>\>): void
+
+Subscribes to an event in persistent manner and executes a callback after the event is received.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Emitter
+
+**Parameters**
+
+| Name  | Type                               | Mandatory| Description                                  |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| eventId    | string                              | Yes  | Event to subscribe to in persistent manner. The value cannot be an empty string and exceed 10240 bytes.                      |
+| callback | Callback\<[GenericEventData<T\>](#genericeventdatat12)\> | Yes  | Callback to be executed when the event is received.|
+
+**Example**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+let callback = (eventData: emitter.GenericEventData<Sample>): void => {
+   let storage: Sample = eventData.data!;
+   storage.printCount();
+}
+// Execute the callback after receiving the event whose eventId is eventId.
+emitter.on("eventId", callback);
+```
+
 ## emitter.once
 
-once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
+once(event: InnerEvent, callback: Callback\<EventData\>): void
 
 Subscribes to an event in one-shot manner and unsubscribes from it after the event callback is executed.
 
@@ -104,7 +143,7 @@ emitter.once(innerEvent, () => {
 
 ## emitter.once<sup>11+</sup>
 
-once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
+once(eventId: string, callback: Callback\<EventData\>): void
 
 Subscribes to an event in one-shot manner and unsubscribes from it after the event callback is executed.
 
@@ -116,7 +155,7 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 
 | Name  | Type                               | Mandatory| Description                                  |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| eventId    | string                              | Yes  | Event to subscribe to in one-shot manner. The value cannot be an empty string.                      |
+| eventId    | string                              | Yes  | Event to subscribe to in one-shot manner. The value cannot be an empty string and exceed 10240 bytes.                      |
 | callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback to be executed when the event is received.|
 
 **Example**
@@ -126,6 +165,45 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 emitter.once("eventId", () => {
     console.info('once callback');
 });
+```
+
+## emitter.once<sup>12+</sup>
+
+once<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
+
+Subscribes to an event in one-shot manner and unsubscribes from it after the event callback is executed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Emitter
+
+**Parameters**
+
+| Name  | Type                               | Mandatory| Description                                  |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| eventId    | string                              | Yes  | Event to subscribe to in one-shot manner. The value cannot be an empty string and exceed 10240 bytes.                      |
+| callback | Callback\<[GenericEventData<T\>](#genericeventdatat12)\> | Yes  | Callback to be executed when the event is received.|
+
+**Example**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+let callback = (eventData: emitter.GenericEventData<Sample>): void => {
+   let storage: Sample = eventData.data!;
+   storage.printCount();
+}
+// Execute the callback after receiving the event whose eventId is eventId.
+emitter.once("eventId", callback);
 ```
 
 ## emitter.off
@@ -165,20 +243,20 @@ Unsubscribes from an event.
 
 | Name | Type  | Mandatory| Description    |
 | ------- | ------ | ---- | -------- |
-| eventId | string | Yes  | Event ID. The value cannot be an empty string.|
+| eventId | string | Yes  | Event ID. The value cannot be an empty string and exceed 10240 bytes.|
 
 **Example**
 
 ```ts
-// Unregister the callbacks of all events whose eventID is **eventId**.
+// Unregister the callbacks of all events whose eventID is eventId.
 emitter.off("eventId");
 ```
 
 ## emitter.off<sup>10+</sup>
 
-off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
+off(eventId: number, callback: Callback\<EventData\>): void
 
-Unsubscribes from an event. If the specified callback has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event. If **Callback\<EventData\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -194,7 +272,7 @@ Unsubscribes from an event. If the specified callback has been registered throug
 **Example**
 
 ```ts
-// Unregister the emitterCallback callback for the event whose eventID is 1.
+// Unregister the callbacks of all events whose eventID is 1.
 // If the callback has not been registered, no processing is performed.
 emitter.off(1, () => {
   console.info('callback');
@@ -203,9 +281,9 @@ emitter.off(1, () => {
 
 ## emitter.off<sup>11+</sup>
 
-off(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
+off(eventId: string, callback: Callback\<EventData\>): void
 
-Unsubscribes from an event. If the specified callback has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+Unsubscribes from an event. If **Callback\<EventData\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -215,24 +293,64 @@ Unsubscribes from an event. If the specified callback has been registered throug
 
 | Name  | Type                               | Mandatory| Description                      |
 | -------- | ----------------------------------- | ---- | -------------------------- |
-| eventId  | string                              | Yes  | Event ID. The value cannot be an empty string.                  |
+| eventId  | string                              | Yes  | Event ID. The value cannot be an empty string and exceed 10240 bytes.                  |
 | callback | Callback\<[EventData](#eventdata)\> | Yes  | Callback to unregister.|
 
 **Example**
 
 ```ts
-// Unregister the emitterCallback callback for the event whose eventID is eventId.
+// Unregister the callback of the event whose eventID is eventId.
 // If the callback has not been registered, no processing is performed.
 emitter.off("eventId", () => {
   console.info('callback');
 });
 ```
 
+## emitter.off<sup>12+</sup>
+
+off<T\>(eventId: string, callback: Callback\<GenericEventData<T\>\>): void
+
+Unsubscribes from an event. If **Callback\<GenericEventData<T\>\>** has been registered through the **on** or **once** API, it is unregistered. Otherwise, no processing is performed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Emitter
+
+**Parameters**
+
+| Name  | Type                               | Mandatory| Description                      |
+| -------- | ----------------------------------- | ---- | -------------------------- |
+| eventId  | string                              | Yes  | Event ID. The value cannot be an empty string and exceed 10240 bytes.                  |
+| callback | Callback\<[GenericEventData<T\>](#genericeventdatat12)\> | Yes  | Callback to unregister.|
+
+**Example**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+let callback = (eventData: emitter.GenericEventData<Sample>): void => {
+   let storage: Sample = eventData.data!;
+   storage.printCount();
+}
+// Unregister the callback of the event whose eventID is eventId.
+// If the callback has not been registered, no processing is performed.
+emitter.off("eventId", callback);
+```
+
 ## emitter.emit
 
-emit(event: [InnerEvent](#innerevent), data?: [EventData](#eventdata)): void
+emit(event: InnerEvent, data?: EventData): void
 
-Emits an event.
+Emits the specified event.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -250,7 +368,7 @@ Emits an event.
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -265,7 +383,7 @@ emitter.emit(innerEvent, eventData);
 
 ## emitter.emit<sup>11+</sup>
 
-emit(eventId: string, data?: [EventData](#eventdata)): void
+emit(eventId: string, data?: EventData): void
 
 Emits the specified event.
 
@@ -277,7 +395,7 @@ Emits the specified event.
 
 | Name | Type                   | Mandatory| Description            |
 | ------- | ----------------------- | ---- | ---------------- |
-| eventId | string                  | Yes  | ID of the event to emit. The value cannot be an empty string.  |
+| eventId | string                  | Yes  | ID of the event to emit. The value cannot be an empty string and exceed 10240 bytes.  |
 | data    | [EventData](#eventdata) | No  | Data passed in the event.|
 
 **Example**
@@ -285,7 +403,7 @@ Emits the specified event.
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -293,9 +411,48 @@ let eventData: emitter.EventData = {
 emitter.emit("eventId", eventData);
 ```
 
+## emitter.emit<sup>12+</sup>
+
+emit<T\>(eventId: string, data?: GenericEventData<T\>): void
+
+Emits the specified event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Emitter
+
+**Parameters**
+
+| Name | Type                   | Mandatory| Description            |
+| ------- | ----------------------- | ---- | ---------------- |
+| eventId | string                  | Yes  | ID of the event to emit. The value cannot be an empty string and exceed 10240 bytes.  |
+| data    | [GenericEventData<T\>](#genericeventdatat12) | No  | Data passed in the event.|
+
+**Example**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+class SelfEventData implements emitter.EventData {
+    data: Sample = new Sample();
+}
+
+let eventData = new SelfEventData();
+emitter.emit("eventId", eventData);
+```
+
 ## emitter.emit<sup>11+</sup>
 
-emit(eventId: string, options: [Options](#options11), data?: [EventData](#eventdata)): void
+emit(eventId: string, options: Options, data?: EventData): void
 
 Emits an event of a specified priority.
 
@@ -307,7 +464,7 @@ Emits an event of a specified priority.
 
 | Name | Type                   | Mandatory| Description            |
 | ------- | ----------------------- | ---- | ---------------- |
-| eventId | string                  | Yes  | ID of the event to emit. The value cannot be an empty string.  |
+| eventId | string                  | Yes  | ID of the event to emit. The value cannot be an empty string and exceed 10240 bytes.  |
 | options | [Options](#options11)   | Yes  | Event emit priority.    |
 | data    | [EventData](#eventdata) | No  | Data passed in the event.|
 
@@ -316,7 +473,7 @@ Emits an event of a specified priority.
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -328,9 +485,53 @@ let options: emitter.Options = {
 emitter.emit("eventId", options, eventData);
 ```
 
+## emitter.emit<sup>12+</sup>
+
+emit<T\>(eventId: string, options: Options, data?: GenericEventData<T\>): void
+
+Emits an event of a specified priority.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Emitter
+
+**Parameters**
+
+| Name | Type                   | Mandatory| Description            |
+| ------- | ----------------------- | ---- | ---------------- |
+| eventId | string                  | Yes  | ID of the event to emit. The value cannot be an empty string and exceed 10240 bytes.  |
+| options | [Options](#options11)   | Yes  | Event emit priority.    |
+| data    | [GenericEventData<T\>](#genericeventdatat12) | No  | Data passed in the event.|
+
+**Example**
+
+```ts
+@Sendable
+class Sample {
+    constructor() {
+        this.count = 100;
+    }
+    printCount() {
+        console.info('Print count : ' + this.count);
+    }
+    count: number;
+}
+
+class SelfEventData implements emitter.EventData {
+    data: Sample = new Sample();
+}
+
+let options: emitter.Options = {
+    priority: emitter.EventPriority.HIGH
+};
+
+let eventData = new SelfEventData();
+emitter.emit("eventId", options, eventData);
+```
+
 ## emitter.getListenerCount<sup>11+</sup>
 
-getListenerCount(eventId: number|string): number
+getListenerCount(eventId: number | string): number
 
 Obtains the number of subscriptions to a specified event.
 
@@ -342,7 +543,7 @@ Obtains the number of subscriptions to a specified event.
 
 | Name | Type          | Mandatory| Description    |
 | ------- | -------------- | ---- | -------- |
-| eventId | number\|string | Yes  | Event ID. The value of the string type cannot be an empty string.|
+| eventId | number \| string | Yes  | Event ID. The value of the string type cannot be an empty string.|
 
 **Example**
 
@@ -373,22 +574,22 @@ Describes an event to subscribe to or emit. The **EventPriority** settings do no
 
 **System capability**: SystemCapability.Notification.Emitter
 
-| Name    | Type                       | Readable| Writable| Description                                |
+| Name    | Type                       | Read Only| Optional| Description                                |
 | -------- | ------------------------------- | ---- | ---- | ------------------------------ |
-| eventId  | number                          | Yes  | Yes  | Event ID.|
-| priority | [EventPriority](#eventpriority) | Yes  | Yes  | Emit priority of the event.            |
+| eventId  | number                          | No  | No  | Event ID.|
+| priority | [EventPriority](#eventpriority) | No  | Yes  | Emit priority of the event.            |
 
 ## EventData
 
-Describes the data passed in the event.
+Describes data passed in the event.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Notification.Emitter
 
-| Name| Type          | Readable| Writable| Description          |
+| Name| Type          | Read Only| Optional| Description          |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | Yes  | Yes  | Data passed in the event. The value can be in any of the following types: Array, ArrayBuffer, Boolean, DataView, Date, Error, Map, Number, Object, Primitive (except symbol), RegExp, Set, String, and TypedArray. The maximum data size is 16 MB.|
+| data | { [key: string]: any } | No  | Yes  | Data passed in the event. The value can be in any of the following types: Array, ArrayBuffer, Boolean, DataView, Date, Error, Map, Number, Object, Primitive (except symbol), RegExp, Set, String, and TypedArray. The maximum data size is 16 MB.|
 
 ## Options<sup>11+</sup>
 
@@ -398,6 +599,18 @@ Describes the event emit priority.
 
 **System capability**: SystemCapability.Notification.Emitter
 
-| Name    | Type                           | Readable| Writable| Description          |
+| Name    | Type                           | Read Only| Optional| Description          |
 | -------- | ------------------------------- | ---- | ---- | -------------- |
-| priority | [EventPriority](#eventpriority) | Yes  | Yes  | Event priority.|
+| priority | [EventPriority](#eventpriority) | No  | Yes  | Event priority.|
+
+## GenericEventData<T\><sup>12+</sup>
+
+Describes the generic data passed in the event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Emitter
+
+| Name    | Type                           | Read Only| Optional| Description          |
+| -------- | ------------------------------- | ---- | ---- | -------------- |
+| data | T | No  | Yes  | Data passed in the event. **T**: generic type.|
