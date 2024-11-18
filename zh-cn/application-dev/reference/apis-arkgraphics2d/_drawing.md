@@ -15802,7 +15802,7 @@ void OH_Drawing_TextStyleAddFontFeature (OH_Drawing_TextStyle* , const char* tag
 ### OH_Drawing_TextStyleAddFontVariation()
 
 ```
-void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* axis, int value )
+void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* , const float  )
 ```
 
 **描述**
@@ -15818,8 +15818,8 @@ void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* a
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
-| char | 可变字体属性键值对中的键。目前仅支持'wght'，表示字重属性。 |
-| int | 设置的可变字体属性键值对的值。目前默认字体下字重属性支持的取值范围为\[0,900\]。 |
+| char\* | 可变字体属性键值对中的键。目前仅支持'wght'，表示字重属性。 |
+| float | 设置的可变字体属性键值对的值。目前默认字体下字重属性支持的取值范围为[0,900]。 |
 
 
 ### OH_Drawing_TextStyleAddShadow()
