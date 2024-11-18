@@ -332,9 +332,9 @@
           - 线程间通信场景<!--interthead-communication-guide-->
             - [使用TaskPool执行独立的耗时任务](arkts-utils/independent-time-consuming-task.md)
             - [使用TaskPool执行多个耗时任务](arkts-utils/multi-time-consuming-tasks.md)
-            - [TaskPool任务与主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
-            - [Worker和主线程的即时消息通信](arkts-utils/worker-communicates-with-mainthread.md)
-            - [Worker同步调用主线程的接口](arkts-utils/worker-invoke-mainthread-interface.md)
+            - [TaskPool任务与宿主线程通信](arkts-utils/taskpool-communicates-with-mainthread.md)
+            - [Worker和宿主线程的即时消息通信](arkts-utils/worker-communicates-with-mainthread.md)
+            - [Worker同步调用宿主线程的接口](arkts-utils/worker-invoke-mainthread-interface.md)
         - 应用多线程开发<!--multithread-develop-guide-->
           - [应用多线程开发概述](arkts-utils/multithread-develop-overview.md)
           - 耗时任务并发场景<!--time-consuming-task-->
