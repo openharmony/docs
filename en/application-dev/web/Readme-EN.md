@@ -3,28 +3,35 @@
 - [Introduction to ArkWeb](web-component-overview.md)
 - [Lifecycle of Web Components](web-event-sequence.md)
 - Setting Basic Attributes and Events
-  - [Default User Agent String](web-default-userAgent.md)
+  - [Setting UserAgent](web-default-userAgent.md)
   - [Managing Cookies and Data Storage](web-cookie-and-data-storage-mgmt.md)
   - [Setting the Dark Mode](web-set-dark-mode.md)
   - [Opening Pages in a New Window](web-open-in-new-window.md)
   - [Managing Location Permissions](web-geolocation-permission.md)
   - [Using Incognito Mode](web-incognito-mode.md)
-- Using Frontend Page JavaScript Code on the Application
+  - [Using Motion and Orientation Sensors](web-sensor.md)
+- Web Rendering and Layout
+  - [Rendering Modes of the Web Component](web-render-mode.md)
+  - [Fitting In the Page Content Layout](web-fit-content.md)
+  - [Optimizing the Page Flash During the Redirection to A New Web Component](web-router-flash-optimization.md)
+- Using Frontend Page JavaScript Code in the Application
   - [Invoking Frontend Page Functions on the Application](web-in-app-frontend-page-function-invoking.md)
   - [Invoking Application Functions on the Frontend Page](web-in-page-app-function-invoking.md)
-  - [Establishing a Data Channel Between the Application and Frontend Page](web-app-page-data-channel.md)
-  - [Mutual Invoking (C/C++) Between the Application Side and Frontend Pages](arkweb-ndk-jsbridge.md)
+  - [Establishing a Data Channel Between the Application and the Frontend Page](web-app-page-data-channel.md)
+  - [Mutual Invoking (C/C++) Between the Application and the Frontend Page](arkweb-ndk-jsbridge.md)
+  - [Establishing a Data Channel Between the Application and the Frontend Page (C/C++)](arkweb-ndk-page-data-channel.md)
 - Managing Web Page Interactions
   - [Implementing Nested Scrolling](web-nested-scrolling.md)
+  - [Implementing Content Scrolling](web-content-scrolling.md)
 - Managing Cyber Security and Privacy for Web Components
   - [Resolving Cross-Origin Resource Access](web-cross-origin.md)
   - [Intelligent Tracking Prevention](web-intelligent-tracking-prevention.md)
-  - [Enabling Ads Blocking of the Web Component](web-adsblock.md)
-  - [Advanced Security Mode](web-advanced-security-mode.md)
+  - [Enabling Ads Blocking](web-adsblock.md)
+  - [Using Secure Shield Mode](web-secure-shield-mode.md)
 - Managing Web Page Loading and Browsing Records
-  - [Loading Pages](web-page-loading-with-web-components.md)
+  - [Loading Web Pages](web-page-loading-with-web-components.md)
   - [Managing Page Redirection and Browsing History Navigation](web-redirection-and-browsing-history-mgmt.md)
-  - [Intercepting Network Requests Initiated by the Web Component](web-scheme-handler.md)
+  - [Intercepting Network Requests Initiated by Web Components](web-scheme-handler.md)
   - [Customizing Page Request Responses](web-resource-interception-request-mgmt.md)
   - [Accelerating Web Page Access with Preconnecting and Prefetching](web-predictor.md)
   - [Setting Back-forward Cache](web-set-back-forward-cache.md)
@@ -33,12 +40,15 @@
   - [Uploading Files](web-file-upload.md)
   - [Downloading Files](web-download.md)
 - Using Web Multimedia
-  - [Holding a Video Conference with WebRTC](web-rtc.md)
+  - [Starting a Camera and Microphone with WebRTC](web-rtc.md)
   - [Taking Over the Media Playback on Web Pages](app-takeovers-web-media.md)
 - Processing Web Page Content
   - [Printing Frontend Pages](web-print.md)
   - [Previewing PDF Files](web-pdf-preview.md)
-- [Rendering and Drawing Video and Button Components at the Same Layer](web-same-layer.md)
+  - [Calculating and Adjusting Safe Area Insets](web-safe-area-insets.md)
+- [Using Same-Layer Rendering](web-same-layer.md)
 - Web Debugging
   - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)
   - [Using Crashpad to Collect Web Component Crash Information](web-crashpad.md)
+  
+  <!--no_check-->

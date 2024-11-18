@@ -60,14 +60,18 @@ To use DevTools for frontend page debugging, perform the following steps:
 
 4. Enter **chrome://inspect/\#devices** in the address box of the Chrome browser on the PC. Once the device is identified, you can get started with page debugging. The debugging effect is as follows:
 
-     **Figure 1** Page debugging effect 
+     **Figure 1** Successful device identification 
+
+     ![debug-succeed](figures/debug-succeed.png)
+
+     **Figure 2** Page debugging effect 
 
      ![debug-effect](figures/debug-effect.png)
 
 
 5. To debug multiple applications, click **Configure** under **Devices** and add multiple port numbers.
 
-     **Figure 2** Adding port numbers 
+     **Figure 3** Adding port numbers 
 
      ![debug-effect](figures/debug-domains.png)
 
@@ -150,6 +154,28 @@ To use DevTools for frontend page debugging, perform the following steps:
 7. You can use a script to accelerate debugging on macOS or Linux: Create an .sh file that contains the following information (pay attention to chmod and format conversion), start the application to debug, and run the script:
    ```
    #!/bin/bash
+
+   # Get current fport rule list
+   CURRENT_FPORT_LIST=$(hdc fport ls)
+
+   # Delete the existing fport rule one by one
+   while IFS= read -r line; do
+       # Extract the taskline
+       IFS=' ' read -ra parts <<< "$line"
+       taskline="${parts[1]} ${parts[2]}"
+   
+       # Delete the corresponding fport rule
+       echo "Removing forward rule for $taskline"
+       hdc fport rm $taskline
+       result=$?
+   
+       if [ $result -eq 0 ]; then
+           echo "Remove forward rule success, taskline:$taskline"
+       else
+           echo "Failed to remove forward rule, taskline:$taskline"
+       fi
+   
+   done <<< "$CURRENT_FPORT_LIST"
 
    # Initial port number
    INITIAL_PORT=9222
