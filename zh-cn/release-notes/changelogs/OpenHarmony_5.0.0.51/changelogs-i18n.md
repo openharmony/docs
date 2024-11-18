@@ -115,7 +115,7 @@ intl.DateTimeFormat.format
 不要对该接口的返回值做特殊的判断，该接口返回值仅用于界面显示。
 
 
-## cl.global.4  日期时间段格式化在zh-Hans-HK下结果错误问题修改
+## cl.global.4  日期时间段格式化在zh-Hant-HK下结果错误问题修改
 
 **访问级别**
 
