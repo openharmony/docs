@@ -18,7 +18,7 @@ import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOpt
 
 ## Popup
 
-Popup(options: PopupOptions)
+Popup(options: PopupOptions): void
 
 **装饰器类型：**@Builder
 
