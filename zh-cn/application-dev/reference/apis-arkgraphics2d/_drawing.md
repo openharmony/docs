@@ -3950,7 +3950,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath (const OH_Drawing_Font* font, co
 | -------- | -------- |
 | font | 指示字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 |
 | text | 指示要获取轮廓路径的文本字符串。 |
-| byteLength | 指示要获取对应文本路径的字节长度。 |
+| byteLength | 指示要获取对应文本路径的字节长度，如果此字节长度大于text字符串的字节长度，会发生未定义行为。 |
 | encoding | 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引。 |
 | x | 指示文本在绘图区域内以原点为起始位置的X坐标。 |
 | y | 指示文本在绘图区域内以原点为起始位置的Y坐标。 |
