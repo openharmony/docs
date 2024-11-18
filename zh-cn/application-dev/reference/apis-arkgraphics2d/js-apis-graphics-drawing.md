@@ -4722,6 +4722,57 @@ struct Index {
 }
 ```
 
+### getTextPath<sup>14+</sup>
+
+getTextPath(text: string, byteLength: number, x: number, y: number): Path;
+
+获取文字的轮廓路径。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明                    |
+| ------   | ------------------------------------------------   | ---- | ---------------------- |
+|   text   |    string                                          | 是   | 表示存储UTF-8 文本编码的字符。|
+|byteLength|    number                                          | 是   | 表示要获取对应文本路径的字节长度，按传入的字节长度和实际的文本字节大小之间的最小值来获取对应的文本路径。|
+|    x     |    number                                          | 是   | 表示文本在绘图区域内以原点为起始位置的X坐标。|
+|    y     |    number                                          | 是   | 表示文本在绘图区域内以原点为起始位置的Y坐标。|
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| [Path](#path) | 返回获取到的文本的路径轮廓。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+import { buffer } from '@kit.ArkTS';
+import { RenderNode } from '@kit.ArkUI';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    font.setSize(50)
+    let myString: string = "你好, HarmonyOS";
+    let length = buffer.from(myString).length;
+    let path = font.getTextPath(myString, length, 0, 100)
+    canvas.drawPath(path)
+  }
+}
+```
+
 ### createPathForGlyph<sup>14+</sup>
 
 createPathForGlyph(index: number): Path
