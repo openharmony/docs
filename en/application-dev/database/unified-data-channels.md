@@ -78,18 +78,18 @@ The following example describes how to implement many-to-many data sharing. The 
 3. Update the **UnifiedData** object inserted.
 
    ```ts
-   let plainText = new unifiedDataChannel.PlainText();
-   plainText.textContent = 'How are you!';
-   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+   let plainTextUpdate = new unifiedDataChannel.PlainText();
+   plainTextUpdate.textContent = 'How are you!';
+   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(plainTextUpdate);
    
    // Specify the URI of the UnifiedData object to update.
-   let options: unifiedDataChannel.Options = {
+   let optionsUpdate: unifiedDataChannel.Options = {
      //The key here is an example and cannot be directly used. Use the value in the callback of insertData().
      key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
    
    try {
-     unifiedDataChannel.updateData(options, unifiedData, (err) => {
+     unifiedDataChannel.updateData(optionsUpdate, unifiedDataUpdate, (err) => {
        if (err === undefined) {
          console.info('Succeeded in updating data.');
        } else {
@@ -105,12 +105,12 @@ The following example describes how to implement many-to-many data sharing. The 
 
    ```ts
    // Specify the type of the data channel whose data is to be deleted.
-   let options: unifiedDataChannel.Options = {
+   let optionsDelete: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
    };
 
    try {
-     unifiedDataChannel.deleteData(options, (err, data) => {
+     unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
        if (err === undefined) {
          console.info(`Succeeded in deleting data. size = ${data.length}`);
          for (let i = 0; i < data.length; i++) {

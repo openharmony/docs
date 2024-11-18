@@ -1808,7 +1808,7 @@ Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image, uint32_t
 Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *size)
 ```
 **描述**
-获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[Image_Size](_image___size.md)中的宽高分别对应YUV图像的宽高；如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[Image_Size](_image___size.md)中的宽等于JPEG数据大小，高等于1。[OH_ImageNative](#oh_imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。
+获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[Image_Size](_image___size.md)中的宽高分别对应YUV图像的宽高；如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[Image_Size](_image___size.md)中的宽等于JPEG数据大小，高等于1。[OH_ImageNative](#oh_imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[预览流二次处理(C/C++)](../../media/camera/native-camera-preview-imageReceiver.md)与[拍照(C/C++)](../../media/camera/native-camera-shooting.md)。
 
 **起始版本：** 12
 
@@ -2266,6 +2266,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* r
 **描述**
 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。
 
+**注意**：此接口需要在[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调后调用，才能正常的接收到数据。并且此接口返回的[OH_ImageNative](#oh_imagenative)使用完毕后需要调用[OH_ImageNative_Release](#oh_imagenative_release)方法释放，释放后才可以继续接收新的数据。
+
 **起始版本：** 12
 
 **参数:**
@@ -2291,6 +2293,8 @@ Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* rec
 ```
 **描述**
 通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。
+
+**注意**：此接口需要在[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调后调用，才能正常的接收到数据。并且此接口返回的[OH_ImageNative](#oh_imagenative)使用完毕后需要调用[OH_ImageNative_Release](#oh_imagenative_release)方法释放，释放后才可以继续接收新的数据。
 
 **起始版本：** 12
 

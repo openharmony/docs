@@ -13,6 +13,8 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
 
 [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker) will not be maintained in later versions. You are advised to [use a security component to create a media asset](../media/medialibrary/photoAccessHelper-savebutton.md).
 
+If the security component cannot be called to save images and videos in your development, use [PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to save images and videos.
+
 ## Saving Documents
 
 1. Import modules.
@@ -23,6 +25,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    ```
+
 2. Create a **documentSaveOptions** instance.
 
    ```ts
@@ -34,7 +37,8 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    documentSaveOptions.fileSuffixChoices = ['Document|.txt', '.pdf'];
    ```
 
-3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2) instance, and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3) to start the FilePicker page to save the document.
+3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12) instance, and call [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to start the FilePicker page to save the document.
+
    ```ts
    let uris: Array<string> = [];
    // Ensure that getContext(this) returns UIAbilityContext.
@@ -49,14 +53,15 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
+
 > **NOTE**
 >
-> - The URI cannot be directly used in the Picker callback to open the document. You need to define a global variable to save the URI.
-> - The permission for the URIs returned by [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3) of Picker is a temporary read/write permission. The temporary permission will be invalidated once the application exits.
+> - Avoid directly using a URI in the Picker callback to open the document. Instead, define a global variable to save the URI.
+> - The permission for the URIs returned by [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save) of Picker is a temporary read/write permission. The temporary permission will be invalidated once the application exits.
 > - You can persist the temporary permission for a URI, which is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
-> - You can also directly save the documents to the **Download** folder. For details, see [Saving Files to Download](#saving-files-to-download).
+> - You can also directly save the documents to the **Download** folder. For details, see [Saving Files to the Download Directory](#saving-files-to-the-download-directory).
 
-4. After the application UI is returned from FilePicker, use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is returned after the document is opened.
+4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is returned after the document is opened.
 
    ```ts 
    const uri = '';
@@ -65,7 +70,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the document based on the FD, and use **fs.closeSync()** to close the FD.
+5. Call [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the document based on the FD, and call **fs.closeSync()** to close the FD.
 
    ```ts
    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
@@ -93,7 +98,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; 
    ```
 
-3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6) to start the FilePicker page to save the audio clip.
+3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-5) to start the FilePicker page to save the audio clip.
    ```ts
    let uri: string = '';
    // Ensure that getContext(this) returns UIAbilityContext.
@@ -109,12 +114,12 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    ```
 > **NOTE**
 >
-> - The URI cannot be directly used in the Picker callback to open the audio clip. You need to define a global variable to save the URI.
+> - Avoid directly using a URI in the Picker callback to open the audio clip. Instead, define a global variable to save the URI.
 > - The permission for the URIs returned by [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3) of Picker is a temporary read/write permission. The temporary permission will be invalidated once the application exits.
 > - You can persist the temporary permission for a URI, which is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
-> - You can also directly save audio clips to the **Download** folder. For details, see [Saving Files to Download](#saving-files-to-download).
+> - You can also directly save audio clips to the **Download** folder. For details, see [Saving Files to the Download Directory](#saving-files-to-the-download-directory).
 
-4. After the application UI is returned from FilePicker, use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
+4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
 
    ```ts
    // Note that the permission specified by the mode parameter of fs.openSync() is fileIo.OpenMode.READ_WRITE.
@@ -122,7 +127,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the audio clip based on the FD, and use **fs.closeSync()** to close the FD.
+5. Call [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the audio clip based on the FD, and use **fs.closeSync()** to close the FD.
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
@@ -130,7 +135,7 @@ To enable the saved image or video to be viewed in **Gallery**, [create the medi
    fs.closeSync(file);
  
    ```
-## Saving Files to Download
+## Saving Files to the Download Directory
 
 When using **save()**, you can set **pickerMode** to **DOWNLOAD**, which will trigger user authorization. After the user allows the operation, a folder with the current HAP bundle name will be created in the **Download** directory of the user, and the folder URI will be returned by **save()**. As a result, user files can be directly stored in the folder with this URI.
 1. Import modules.
@@ -151,7 +156,7 @@ When using **save()**, you can set **pickerMode** to **DOWNLOAD**, which will tr
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD; 
    ```
 
-3. Create a **DocumentViewPicker** instance, and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6) to start the FilePicker modal page to save the audio clip. After the user allows the operation, a folder of the corresponding application is created in the **Download** directory and the URI of the folder is returned.
+3. Create a **DocumentViewPicker** instance, and call [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-1) to start the FilePicker modal page to save the audio clip. After the user allows the operation, a folder of the corresponding application is created in the **Download** directory and the URI of the folder is returned.
    
    ```ts
    let uri: string = '';

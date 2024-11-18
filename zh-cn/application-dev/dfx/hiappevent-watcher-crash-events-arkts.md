@@ -4,6 +4,10 @@
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[应用事件打点API文档](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)。
 
+> **说明：**
+>
+> 使用ArkTS接口订阅崩溃事件，包含JsError和NativeCrash两种崩溃类型。
+
 **事件自定义参数设置接口功能介绍：**
 
 | 接口名                                              | 描述                                         |

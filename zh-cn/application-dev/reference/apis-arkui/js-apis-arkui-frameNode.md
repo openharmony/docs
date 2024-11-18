@@ -716,7 +716,7 @@ isAttached(): boolean
 
 getInspectorInfo(): Object
 
-获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
+获取节点的结构信息，该信息和DevEco Studio内置<!--RP1-->ArkUI Inspector<!--RP1End-->工具里面的一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1402,7 +1402,9 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 | ------------------ | ------------------ |
 | [Text](#text12) | Text类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Text');
@@ -1443,7 +1445,9 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 | ------------------ | ------------------ |
 | [Column](#column12) | Column类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Column');
@@ -1483,7 +1487,9 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 | ------------------ | ------------------ |
 | [Row](#row12) | Row类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Row');
@@ -1523,7 +1529,9 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 | ------------------ | ------------------ |
 | [Stack](#stack12) | Stack类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Stack');
@@ -1563,7 +1571,9 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 | ------------------ | ------------------ |
 | [GridRow](#gridrow12) | GridRow类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'GridRow');
@@ -1603,7 +1613,9 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 | ------------------ | ------------------ |
 | [GridCol](#gridcol12) | GridCol类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'GridCol');
@@ -1643,7 +1655,9 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 | ------------------ | ------------------ |
 | [Flex](#flex12) | Flex类型的FrameNode节点。 |
 
-**示例：**
+**示例： **
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Flex');
@@ -1683,7 +1697,9 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 | ------------------ | ------------------ |
 | [Swiper](#swiper12) | Swiper类型的FrameNode节点。 |
 
-**示例：**
+**示例： ** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Swiper');
@@ -1803,7 +1819,9 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 | ------------------ | ------------------ |
 | [RelativeContainer](#relativecontainer12) | RelativeContainer类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'RelativeContainer');
@@ -1843,7 +1861,9 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 | ------------------ | ------------------ |
 | [Divider](#divider12) | Divider类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Divider');
@@ -1883,7 +1903,9 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 | ------------------ | ------------------ |
 | [LoadingProgress](#loadingprogress12) | LoadingProgress类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'LoadingProgress');
@@ -1923,7 +1945,9 @@ createNode(context: UIContext, nodeType: 'Search'): Search
 | ------------------ | ------------------ |
 | [Search](#search12) | Search类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Search');
@@ -1963,7 +1987,9 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank;
 | ------------------ | ------------------ |
 | [Blank](#blank12) | Blank类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Blank');
@@ -2003,7 +2029,9 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 | ------------------ | ------------------ |
 | [Image](#image12) | Image类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Image');
@@ -2043,7 +2071,9 @@ createNode(context: UIContext, nodeType: 'List'): List
 | ------------------ | ------------------ |
 | [List](#list12) | List类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'List');
@@ -2083,7 +2113,9 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 | ------------------ | ------------------ |
 | [ListItem](#listitem12) | ListItem类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'ListItem');
@@ -2124,7 +2156,9 @@ createNode(context: UIContext, nodeType: 'TextInput'): TextInput
 | ------------------ | ------------------ |
 | [TextInput](#textinput12) | TextInput类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'TextInput');
@@ -2165,7 +2199,9 @@ createNode(context: UIContext, nodeType: 'Button'): Button
 | ------------------ | ------------------ |
 | [Button](#button12) | Button类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Button');
@@ -2206,7 +2242,9 @@ createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
 | ------------------ | ------------------ |
 | [ListItemGroup](#listitemgroup12) | ListItemGroup类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'ListItemGroup');
@@ -2247,7 +2285,9 @@ createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
 | ------------------ | ------------------ |
 | [WaterFlow](#waterflow12) | WaterFlow类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'WaterFlow');
@@ -2288,7 +2328,9 @@ createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
 | ------------------ | ------------------ |
 | [FlowItem](#flowitem12) | FlowItem类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'FlowItem');
@@ -2329,7 +2371,9 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 | ------------------ | ------------------ |
 | [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'XComponent');
@@ -2358,7 +2402,9 @@ createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOption
 | ------------------ | ------------------ |
 | [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 let controller: XComponentController = new XComponentController();

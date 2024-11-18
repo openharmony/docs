@@ -18,7 +18,7 @@ A relational database (RDB) store is used to store data in complex relational mo
 **RelationalStore** provides APIs for applications to perform data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
 
 **Figure 1** Working mechanism
- 
+
 ![relationStore_local](figures/relationStore_local.jpg)
 
 
@@ -40,23 +40,26 @@ A relational database (RDB) store is used to store data in complex relational mo
 
 The following table lists the APIs used for RDB data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.| 
-| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.| 
-| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.| 
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.| 
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.| 
-| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.| 
-| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.| 
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.|
+| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.|
+| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.|
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.|
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.|
+| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.|
+| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.|
 
 
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
+
+If error code 14800011 is reported, the RDB store is corrupted and needs to be rebuilt. For details, see [Rebuilding an RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
+
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
 
    Stage model:
-     
+   
    ```ts
    import { relationalStore} from '@kit.ArkData'; // Import the relationalStore module.
    import { UIAbility } from '@kit.AbilityKit';
@@ -96,19 +99,15 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
          // For example, upgrade the RDB store from version 1 to version 2.
          if (store.version === 1) {
            // Upgrade the RDB store from version 1 to version 2, and change the table structure from EMPLOYEE (NAME, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS).
-           if (store !== undefined) {
-             (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-             store.version = 2;
-           }
+           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
+           store.version = 2;
          }
 
          // For example, upgrade the RDB store from version 2 to version 3.
          if (store.version === 2) {
            // Upgrade the RDB store from version 2 to version 3, and change the table structure from EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) to EMPLOYEE (NAME, AGE, SALARY, CODES).
-           if (store !== undefined) {
-             (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-             store.version = 3;
-           }
+           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
+           store.version = 3;
          }
        });
 
@@ -176,7 +175,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
 2. Use **insert()** to insert data to the RDB store. <br>Example:
-     
+   
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -316,11 +315,15 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    >
    > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
-5. Back up the database in the same directory. <br>Example:
+5. Back up the database in the same directory. 
+
+   Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
+
+   Example: Perform manual backup of an RDB store.
 
    ```ts
    if (store !== undefined) {
-     //Backup.db indicates the name of the backup database file. By default, the database file is backed up in the same path as the RdbStore file. You can also specify the path customDir + "backup.db".
+     // Backup.db indicates the name of the database backup file. By default, it is in the same directory as the RdbStore file. You can also specify the directory, which is in the customDir + backup.db format.
      (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
        if (err) {
          console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
@@ -331,7 +334,11 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    }
    ```
 
-6. Restore data from the database backup. <br>Example:
+6. Restore data from the database backup. 
+
+   You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
+
+   Example: Call [restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore) to restore an RDB store from the data that is manually backed up.
 
    ```ts
    if (store !== undefined) {
@@ -345,47 +352,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    }
    ```
 
-7. If the database file is corrupted, rebuild the database.
-
-   If error code 14800011 is reported when the RDB store is opened, or data is added, deleted, modified, or queried, the database file is corrupted. The sample code for rebuilding the RDB store is as follows:
-
-   ```ts
-   if (store !== undefined) {
-     // If the database file is corrupted, close all database connections and result sets. You can use store.close() or set the object to null.
-     (store as relationalStore.RdbStore).close();
-     store = undefined;
-     // Set config.allowRebuild to true and call getRdbStore to open the RDB store again.
-     const STORE_CONFIG: relationalStore.StoreConfig = {
-       name: 'RdbTest.db',
-       securityLevel: relationalStore.SecurityLevel.S3,
-       allowRebuild: true
-     };
-
-     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-       store = rdbStore;
-       console.info('Get RdbStore successfully.')
-     }).catch((err: BusinessError) => {
-       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-     })
-
-     if (store !== undefined) {
-       // Check whether the RDB store is rebuilt successfully.
-       if ((store as relationalStore.RdbStore).rebuilt === relationalStore.RebuildType.REBUILT) {
-         console.info('Succeeded in rebuilding RdbStore.');
-         // Use the database backup file before the corruption to restore data.
-         (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
-           if (err) {
-             console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
-             return;
-           }
-           console.info(`Succeeded in restoring RdbStore.`);
-         })
-       }
-     }
-   }
-   ``` 
-
-8. Delete the RDB store.
+7. Delete the RDB store.
 
    Use **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
 

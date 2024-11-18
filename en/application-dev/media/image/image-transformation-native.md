@@ -62,7 +62,7 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
         OHOS::Media::OH_GetImageInfo(env, argValue[0], &pixelMapInfo);
         return result;
     }
-   ```
+    ```
 
 2. Obtain the memory address of a **PixelMap** object and lock the memory.
 

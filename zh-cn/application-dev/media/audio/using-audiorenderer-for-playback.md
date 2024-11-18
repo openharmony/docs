@@ -41,7 +41,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 

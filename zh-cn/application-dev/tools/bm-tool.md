@@ -260,7 +260,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 | -a&nbsp;-f | -a为可选参数，指定-a后，-f为必选参数。执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
 | -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数，未指定-q。根据包名查询补丁信息。 |
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
-| -t | 可选参数，应用的目标路径。|
+| -t | 可选参数，快速修复应用到指定目标路径。|
 | -d | 可选参数，应用快速修复调试模式。|
 
 
@@ -320,7 +320,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## 共享库依赖关系查询命令
 
-显示指定应用和指定模块依赖的共享库信息
+显示指定应用和指定模块依赖的共享库信息。
 ```bash
 bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
@@ -341,7 +341,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## 应用执行编译AOT命令
 
-应用执行编译AOT命令
+应用执行编译AOT命令。
 ```bash
 bm compile [-h] [-m mode] [-r bundleName]
 ```
@@ -363,7 +363,7 @@ bm compile -m partial com.example.myapplication
 
 ## 拷贝ap文件命令
 
-拷贝ap文件到指定应用的/data/local/pgo路径
+拷贝ap文件到指定应用的/data/local/pgo路径。
 
 ```bash
 bm copy-ap [-h] [-a] [-n bundleName]
@@ -386,7 +386,7 @@ bm copy-ap -n com.example.myapplication
 
 ## 查询overlay应用信息命令
 
-打印overlay应用的overlayModuleInfo
+打印overlay应用的overlayModuleInfo。
 ```bash
 bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId] [-t targetModuleName]
 ```
@@ -458,7 +458,7 @@ HAP包未经签名认证。
 **处理步骤**
 
 1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。在连接设备后，重新为应用进行签名。
-2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP1-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP1End-->。
+2. 使用手动签名，请参考<!--RP1-->[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section297715173233)<!--RP1End-->。
 <br></br>
 
 ### 9568347 解析本地so文件失败
@@ -659,7 +659,7 @@ Error: signature verification failed due to not trusted app source.
 
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
+	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 		```
 		//UDID获取命令
 		hdc shell bm get -u
@@ -723,12 +723,13 @@ Error: install sign info inconsistent.
 
 **可能原因**
 
-设备上已安装的应用与新安装的应用中签名不一致。如果在Edit Configurations中勾选了“Keep Application Data”（不卸载应用，覆盖安装），并且重新进行了签名，将导致该报错。
+设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+
 
 **处理步骤**
-
+zh-cn\application-dev\quick-start\integrated-hsp.md
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
-
+2. 如果是因不同团队提供的HSP导致签名不一致问题，可以采用[集成态HSP](../quick-start/integrated-hsp.md)的方式统一提供HSP；在多HAP包的情况下，必须确保所有HAP包的签名一致。
 
 ### 9568329 签名信息验证失败
 **错误信息**

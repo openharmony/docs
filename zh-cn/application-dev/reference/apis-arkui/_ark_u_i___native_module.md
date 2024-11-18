@@ -21,16 +21,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [drag_and_drop.h](drag__and__drop_8h.md) | 提供NativeDrag相关接口定义。  <br> **库：** libace_ndk.z.so| 
-| [drawable_descriptor.h](drawable__descriptor_8h.md) | 提供NativeDrawableDescriptor接口的类型定义。 <br> **库：** libace_ndk.z.so| 
-| [native_animate.h](native__animate_8h.md) | 提供ArkUI在Native侧的动画接口定义集合。  <br> **库：** libace_ndk.z.so| 
-| [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。 <br> **库：** libace_ndk.z.so | 
-| [native_gesture.h](native__gesture_8h.md) | 提供NativeGesture接口的类型定义。 <br> **库：** libace_ndk.z.so | 
-| [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。 <br> **库：** libace_ndk.z.so | 
-| [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。 <br> **库：** libace_ndk.z.so | 
-| [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。 <br> **库：** libace_ndk.z.so | 
-| [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。 <br> **库：** libace_ndk.z.so | 
-| [styled_string.h](styled__string_8h.md) | 提供ArkUI在Native侧的属性字符串能力。  <br> **库：** libace_ndk.z.so | 
+| [drag_and_drop.h](drag__and__drop_8h.md) | 提供NativeDrag相关接口定义。  | 
+| [drawable_descriptor.h](drawable__descriptor_8h.md) | 提供NativeDrawableDescriptor接口的类型定义。 | 
+| [native_animate.h](native__animate_8h.md) | 提供ArkUI在Native侧的动画接口定义集合。  | 
+| [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  | 
+| [native_gesture.h](native__gesture_8h.md) | 提供NativeGesture接口的类型定义。  | 
+| [native_interface.h](native__interface_8h.md) | 提供NativeModule接口的统一入口函数。  | 
+| [native_node.h](native__node_8h.md) | 提供NativeNode接口的类型定义。  | 
+| [native_node_napi.h](native__node__napi_8h.md) | 提供ArkTS侧的FrameNode转换NodeHandle的方式。  | 
+| [native_type.h](native__type_8h.md) | 提供NativeModule公共的类型定义。  | 
+| [styled_string.h](styled__string_8h.md) | 提供ArkUI在Native侧的属性字符串能力。   | 
 
 
 ### 结构体

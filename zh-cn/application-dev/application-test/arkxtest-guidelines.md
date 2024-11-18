@@ -3,8 +3,7 @@
 
 ## 概述
 
-自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行等内容。
-
+自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。<br>本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行方法。同时，以shell命令方式，对外提供了获取截屏、控件树、录制用户操作、便捷注入UI模拟操作等能力，助力开发者更灵活方便测试和验证。
 
 ## 实现原理
 
@@ -20,40 +19,30 @@
 
   ![](figures/TestFlow.PNG)
 
-
 ### UI测试框架
 
   图3.UI测试框架主要功能
 
   ![](figures/Uitest.PNG)
 
-
-## 约束与限制
-
-- UI测试框架的能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
-
-## 环境准备
-
-### 环境要求
-
-- 自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
-
-- 脚本执行需要PC连接硬件设备，如<!--RP1-->开发板<!--RP1End-->等。
+## 基于ArkTS编写和执行测试
 
 ### 搭建环境
 
 DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
 
-## 新建和编写测试脚本
+### 新建和编写测试脚本
 
-### 新建测试脚本
+#### 新建测试脚本
 
 <!--RP2-->
-1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
-2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
+在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
+
+在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
+
 <!--RP2End-->
 
-### 编写单元测试脚本
+#### 编写单元测试脚本
 
 本章节主要描述单元测试框架支持能力，以及能力的使用方法, 具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
 
@@ -89,102 +78,100 @@ export default function abilityTest() {
       await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
+      const ability: UIAbility = await delegator.getCurrentTopAbility();
+      console.info("get top ability");
+      expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
       done();
     })
   })
 }
 ```
 
-### 编写UI测试脚本
+#### 编写UI测试脚本
 
-本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
+本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口，<!--RP1-->具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)<!--RP1End-->。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
-1.编写Index.ets页面代码， 作为被测示例demo。
+1. 编写Index.ets页面代码， 作为被测示例demo。
 
-```ts
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World'
+  ```ts
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Hello World'
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Text("Next")
-          .fontSize(50)
-          .margin({top:20})
-          .fontWeight(FontWeight.Bold)
-        Text("after click")
-          .fontSize(50)
-          .margin({top:20})
-          .fontWeight(FontWeight.Bold)
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+          Text("Next")
+            .fontSize(50)
+            .margin({top:20})
+            .fontWeight(FontWeight.Bold)
+          Text("after click")
+            .fontSize(50)
+            .margin({top:20})
+            .fontWeight(FontWeight.Bold)
+        }
+        .width('100%')
       }
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
-}
-```
+  ```
 
-2.在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
+2. 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
-```ts
-import { describe, it, expect } from '@ohos/hypium';
-// 导入测试依赖kit
-import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-import { UIAbility, Want } from '@kit.AbilityKit';
+  ```ts
+  import { describe, it, expect } from '@ohos/hypium';
+  // 导入测试依赖kit
+  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+  import { UIAbility, Want } from '@kit.AbilityKit';
 
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-function sleep(time: number) {
-  return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
-}
-export default function abilityTest() {
-  describe('ActsAbilityTest', () => {
-    it('testUiExample',0, async (done: Function) => {
-      console.info("uitest: TestUiExample begin");
-      //start tested ability
-      const want: Want = {
-        bundleName: bundleName,
-        abilityName: 'EntryAbility'
-      }
-      await delegator.startAbility(want);
-      await sleep(1000);
-      //check top display ability
-      await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
-        console.info("get top ability");
-        expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
-      })
-      //ui test code
-      //init driver
-      let driver = Driver.create();
-      await driver.delayMs(1000);
-      //find button on text 'Next'
-      let button = await driver.findComponent(ON.text('Next'));
-      //click button
-      await button.click();
-      await driver.delayMs(1000);
-      //check text
-      await driver.assertComponentExist(ON.text('after click'));
-      await driver.pressBack();
-      done();
+  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+  function sleep(time: number) {
+    return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+  }
+  export default function abilityTest() {
+    describe('ActsAbilityTest', () => {
+       it('testUiExample',0, async (done: Function) => {
+          console.info("uitest: TestUiExample begin");
+          //start tested ability
+          const want: Want = {
+             bundleName: bundleName,
+             abilityName: 'EntryAbility'
+          }
+          await delegator.startAbility(want);
+          await sleep(1000);
+          //check top display ability
+          const ability: UIAbility = await delegator.getCurrentTopAbility();
+          console.info("get top ability");
+          expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+          //ui test code
+          //init driver
+          const driver = Driver.create();
+          await driver.delayMs(1000);
+          //find button on text 'Next'
+          const button = await driver.findComponent(ON.text('Next'));
+          //click button
+          await button.click();
+          await driver.delayMs(1000);
+          //check text
+          await driver.assertComponentExist(ON.text('after click'));
+          await driver.pressBack();
+          done();
+       })
     })
-  })
-}
-```
+  }
+  ```
 
-## 执行测试脚本
+### 执行测试脚本
 
-### DevEco Studio执行
+#### 在DevEco Studio执行
 
-通过点击按钮执行，当前支持以下执行方式：
+脚本执行需要连接硬件设备。通过点击按钮执行，当前支持以下执行方式：
 
 1、测试包级别执行，即执行测试包内的全部用例。
 
@@ -202,11 +189,11 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5)下各章节内的覆盖率统计模式。
 
-### CMD执行
+#### 在CMD执行
 
-将应用测试包安装到测试设备上，在cmd窗口中执行aa命令，完成对用例测试。
+脚本执行需要连接硬件设备，将应用测试包安装到测试设备上，在cmd窗口中执行aa命令，完成对用例测试。
 
 > **说明：**
 >
@@ -237,11 +224,11 @@ export default function abilityTest() {
 | size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small        
 | stress       | 指定要执行用例的执行次数                                    |  正整数                                         | -s stress 1000                            |
 
-**cmd窗口执行test命令**
+**在cmd窗口执行test命令**
 
-- 参数配置和命令基于Stage模型
-- 打开cmd窗口
-- 执行 aa test 命令
+> **说明：**
+>
+>参数配置和命令均是基于Stage模型。
 
 
 示例代码1：执行所有测试用例。
@@ -314,24 +301,24 @@ export default function abilityTest() {
 
 - cmd模式执行过程,会打印如下相关日志信息。
 
-```
-OHOS_REPORT_STATUS: class=testStop
-OHOS_REPORT_STATUS: current=1
-OHOS_REPORT_STATUS: id=JS
-OHOS_REPORT_STATUS: numtests=447
-OHOS_REPORT_STATUS: stream=
-OHOS_REPORT_STATUS: test=stop_0
-OHOS_REPORT_STATUS_CODE: 1
+ ```
+  OHOS_REPORT_STATUS: class=testStop
+  OHOS_REPORT_STATUS: current=1
+  OHOS_REPORT_STATUS: id=JS
+  OHOS_REPORT_STATUS: numtests=447
+  OHOS_REPORT_STATUS: stream=
+  OHOS_REPORT_STATUS: test=stop_0
+  OHOS_REPORT_STATUS_CODE: 1
 
-OHOS_REPORT_STATUS: class=testStop
-OHOS_REPORT_STATUS: current=1
-OHOS_REPORT_STATUS: id=JS
-OHOS_REPORT_STATUS: numtests=447
-OHOS_REPORT_STATUS: stream=
-OHOS_REPORT_STATUS: test=stop_0
-OHOS_REPORT_STATUS_CODE: 0
-OHOS_REPORT_STATUS: consuming=4
-```
+  OHOS_REPORT_STATUS: class=testStop
+  OHOS_REPORT_STATUS: current=1
+  OHOS_REPORT_STATUS: id=JS
+  OHOS_REPORT_STATUS: numtests=447
+  OHOS_REPORT_STATUS: stream=
+  OHOS_REPORT_STATUS: test=stop_0
+  OHOS_REPORT_STATUS_CODE: 0
+  OHOS_REPORT_STATUS: consuming=4
+ ```
 
 | 日志输出字段               | 日志输出字段含义       |
 | -------           | -------------------------|
@@ -346,14 +333,15 @@ OHOS_REPORT_STATUS: consuming=4
 
 - cmd执行完成后,会打印如下相关日志信息。
 
-```
-OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
-OHOS_REPORT_CODE: 0
+ ```
+  OHOS_REPORT_RESULT: stream=Tests run: 447, Failure: 0, Error: 1, Pass: 201, Ignore: 245
+  OHOS_REPORT_CODE: 0
 
-OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
-OHOS_REPORT_STATUS: taskconsuming=16029
+  OHOS_REPORT_RESULT: breakOnError model, Stopping whole test suite if one specific test case failed or error
+  OHOS_REPORT_STATUS: taskconsuming=16029
 
-```
+ ```
+
 | 日志输出字段               | 日志输出字段含义           |
 | ------------------| -------------------------|
 | run    | 当前测试包用例总数。 |
@@ -363,139 +351,234 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 | Ignore | 当前未执行用例个数。 |
 | taskconsuming| 执行当前测试用例总耗时（ms）。 |
 
+> **说明：**
+>
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
-## 录制用户操作
-### 使用录制功能
-> 将当前界面操作记录到/data/local/tmp/layout/record.csv，结束录制操作使用Ctrl+C结束录制
+## 基于shell命令测试
 
-```shell  
- hdc shell uitest uiRecord record
-```
-### 查看录制数据
-支持两种方式查看数据。
+在开发过程中，若需要快速进行截屏、 录屏、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
 
-#### 命令读取并打印录制数据
+> **说明：**
+>
+> 使用cmd的方式，需要配置好hdc相关的环境变量。
 
-```shell  
- hdc shell uitest uiRecord read
-```
-#### 命令导出 record.csv文件查看录制数据
-```shell  
-hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存储路径,用户可自定义
-```
-- record 数据字段含义请参考如下示例数据。
-```
-{
-	"ABILITY": "com.ohos.launcher.MainAbility", // 前台应用界面
-	"BUNDLE": "com.ohos.launcher", // 操作应用
-	"CENTER_X": "", // 预留字段,暂未使用
-	"CENTER_Y": "", // 预留字段,暂未使用
-	"EVENT_TYPE": "pointer", //  
-	"LENGTH": "0", // 总体步长
-	"OP_TYPE": "click", //事件类型，当前支持点击、双击、长按、拖拽、滑动、抛滑动作录制
-	"VELO": "0.000000", // 离手速度
-	"direction.X": "0.000000",// 总体移动X方向
-	"direction.Y": "0.000000", // 总体移动Y方向
-	"duration": 33885000.0, // 手势操作持续时间
-	"fingerList": [{
-		"LENGTH": "0", // 总体步长
-		"MAX_VEL": "40000", // 最大速度
-		"VELO": "0.000000", // 离手速度
-		"W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 起点控件bounds
-		"W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 起点控件hierarchy
-		"W1_ID": "", // 起点控件id
-		"W1_Text": "", // 起点控件text
-		"W1_Type": "Image", // 起点控件类型
-		"W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 终点控件bounds
-		"W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 终点控件hierarchy
-		"W2_ID": "", // 终点控件id
-		"W2_Text": "", // 终点控件text
-		"W2_Type": "Image", // 终点控件类型
-		"X2_POSI": "47", // 终点X
-		"X_POSI": "47", // 起点X
-		"Y2_POSI": "301", // 终点Y
-		"Y_POSI": "301", // 起点Y
-		"direction.X": "0.000000", // x方向移动量
-		"direction.Y": "0.000000" // Y方向移动量
-	}],
-	"fingerNumber": "1" //手指数量
-}
+**命令列表**
+| 命令            | 配置参数   |描述                              |
+|---------------|---------------------------------|---------------------------------|
+| help          | help|  显示uitest工具能够支持的命令信息。            |
+| screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名, 只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
+| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件,也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
+| uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
+| uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
+| --version | --version|获取当前工具版本信息。                     |
+| start-daemon|start-daemon| 拉起uitest测试进程。 |
+
+### 截图使用示例
+
+```bash
+# 存储路径：/data/local/tmp，文件名：时间戳 + .png。
+hdc shell uitest screenCap
+# 指定存储路径和文件名,存放在/data/local/tmp/下。
+hdc shell uitest screenCap -p /data/local/tmp/1.png
 ```
 
-## shell命令方式注入UI模拟操作
-> 支持操作类型：点击 双击 长按 慢滑 快滑 拖拽 输入文字 KeyEvent。
+### 获取控件树使用示例
 
-| 配置参数名       | 配置参数含义                                  | 配置参数取值                                                                                                                                                                                                                | 示例                                                                                  |
-|-------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| click       | 模拟单击操作                                  | point_x (必选参数,点击x坐标点)<br/> point_y (必选参数,点击y坐标点)                                                                                                                                                                      | hdc shell uitest uiInput click point_x point_y                                      |
-| doubleClick | 模拟双击操作                                  | point_x (必选参数,双击x坐标点)<br/> point_y (必选参数,双击y坐标点)                                                                                                                                                                      | hdc shell uitest uiInput doubleClick point_x point_y                                |
-| longClick   | 模拟长按操作                                  | point_x (必选参数,长按x坐标点)<br/> point_y (必选参数,长按y坐标点)                                                                                                                                                                      | hdc shell uitest uiInput longClick point_x point_y                                  |
-| fling       | 模拟快滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50, 单位: px) | hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
-| swipe       | 模拟慢滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s))                                               | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
-| drag        | 模拟拖拽操作                                  | from_x (必选参数,拖拽起点x坐标)<br/> from_y(必选参数,拖拽起点y坐标)<br/> to_x(必选参数,拖拽终点x坐标)<br/> to_y(必选参数,拖拽终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s))                                               | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
-| dircFling   | 模拟指定方向滑动操作                              | direction (可选参数,滑动方向,可选值: [0,1,2,3], 滑动方向: [左,右,上,下],默认值: 0)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50, 单位: px)                                            | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
-| inputText        | 模拟输入框输入文本操作                             | point_x (必选参数,输入框x坐标点)<br/> point_y (必选参数,输入框y坐标点)<br/> input(输入文本)                                                                                                                                                   | hdc shell uitest uiInput inputText  point_x point_y text                                  |
-| keyEvent    | 模拟实体按键事件(如:键盘,电源键,返回上一级,返回桌面等),以及组合按键操作 | keyID (必选参数,实体按键对应ID)<br/> keyID2 (可选参数,实体按键对应ID)                                                                                                                                                                     | hdc shell uitest uiInput keyEvent keyID                                             |
+```bash
+hdc shell uitest dumpLayout -p /data/local/tmp/1.json
+```
 
-示例代码1：执行点击事件。
-```shell  
- hdc shell uitest uiInput click 100 100
+### 用户录制操作
+>**说明**
+>
+> 录制过程中，需等待当前操作的识别结果在命令行输出后，再进行下一步操作。
+
+```bash
+# 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
+hdc shell uitest uiRecord record
+# 读取并打印录制数据。
+hdc shell uitest uiRecord read
 ```
-示例代码2：执行双击事件。
-```shell  
- hdc shell uitest uiInput doubleClick 100 100
+
+以下举例为：record数据中包含的字段及字段含义，仅供参考
+
+ ```
+ {
+	 "ABILITY": "com.ohos.launcher.MainAbility", // 前台应用界面
+	 "BUNDLE": "com.ohos.launcher", // 操作应用
+	 "CENTER_X": "", // 预留字段,暂未使用
+	 "CENTER_Y": "", // 预留字段,暂未使用
+	 "EVENT_TYPE": "pointer", //  
+	 "LENGTH": "0", // 总体步长
+	 "OP_TYPE": "click", //事件类型，当前支持点击、双击、长按、拖拽、滑动、抛滑动作录制
+	 "VELO": "0.000000", // 离手速度
+	 "direction.X": "0.000000",// 总体移动X方向
+	 "direction.Y": "0.000000", // 总体移动Y方向
+	 "duration": 33885000.0, // 手势操作持续时间
+	 "fingerList": [{
+		 "LENGTH": "0", // 总体步长
+		 "MAX_VEL": "40000", // 最大速度
+		 "VELO": "0.000000", // 离手速度
+		 "W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 起点控件bounds
+		 "W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 起点控件hierarchy
+		 "W1_ID": "", // 起点控件id
+		 "W1_Text": "", // 起点控件text
+		 "W1_Type": "Image", // 起点控件类型
+		 "W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 终点控件bounds
+		 "W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 终点控件hierarchy
+		 "W2_ID": "", // 终点控件id
+		 "W2_Text": "", // 终点控件text
+		 "W2_Type": "Image", // 终点控件类型
+		 "X2_POSI": "47", // 终点X
+		 "X_POSI": "47", // 起点X
+		 "Y2_POSI": "301", // 终点Y
+		 "Y_POSI": "301", // 起点Y
+		 "direction.X": "0.000000", // x方向移动量
+		 "direction.Y": "0.000000" // Y方向移动量
+	 }],
+	 "fingerNumber": "1" //手指数量
+ }
+ ```
+
+### 注入UI模拟操作
+
+| 命令   | 必填 | 描述              | 
+|------|------|-----------------|
+| help   | 是    | uiInput命令相关帮助信息。 |
+| click   | 是    | 模拟单击操作。      | 
+| doubleClick   | 是    | 模拟双击操作。      | 
+| longClick   | 是    | 模拟长按操作。     | 
+| fling   | 是    | 模拟快滑操作。   | 
+| swipe   | 是    | 模拟慢滑操作。     | 
+| drag   | 是    | 模拟拖拽操作。     | 
+| dircFling   | 是    | 模拟指定方向滑动操作。     |
+| inputText   | 是    | 模拟输入框输入文本操作。     |
+| keyEvent   | 是    | 模拟实体按键事件(如：键盘,电源键,返回上一级,返回桌面等)，以及组合按键操作。     | 
+
+
+#### uiInput click/doubleClick/longClick使用示例
+
+| 配置参数    | 必填 | 描述            |
+|---------|------|-----------------|
+| point_x | 是      | 点击x坐标点。 |
+| point_y | 是       | 点击y坐标点。 |
+
+```shell
+# 执行单击事件。
+hdc shell uitest uiInput click 100 100
+
+# 执行双击事件。
+hdc shell uitest uiInput doubleClick 100 100
+
+# 执行长按事件。
+hdc shell uitest uiInput longClick 100 100
 ```
-示例代码3：执行长按事件。
+
+#### uiInput fling使用示例
+
+| 配置参数  | 必填             | 描述               |      
+|------|------------------|-----------------|
+| from_x   | 是                | 滑动起点x坐标。 | 
+| from_y   | 是                | 滑动起点y坐标。 | 
+| to_x   | 是                | 滑动终点x坐标。 |
+| to_y   | 是                | 滑动终点y坐标。 |
+| swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
+| stepLength_   | 否 | 滑动步长。默认值: 滑动距离/50。<br>  **为实现更好的模拟效果，推荐参数缺省/使用默认值。**  | 
+
+
 ```shell  
- hdc shell uitest uiInput longClick 100 100
-```
-示例代码4：执行快滑操作。
-```shell  
+# 执行快滑操作，stepLength_缺省。
 hdc shell uitest uiInput fling 10 10 200 200 500 
-```
-示例代码5：执行慢滑操作。
+``` 
+
+#### uiInput swipe/drag使用示例
+
+| 配置参数  | 必填             | 描述               |      
+|------|------------------|-----------------|
+| from_x   | 是                | 滑动起点x坐标。 | 
+| from_y   | 是                | 滑动起点y坐标。 | 
+| to_x   | 是                | 滑动终点x坐标。 |
+| to_y   | 是                | 滑动终点y坐标。 |
+| swipeVelocityPps_   | 否      | 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。 | 
+
 ```shell  
-hdc shell uitest uiInput swipe 10 10 200 200 500 
-```
-示例代码6：执行拖拽操作。
-```shell  
+# 执行慢滑操作。
+hdc shell uitest uiInput swipe 10 10 200 200 500
+
+# 执行拖拽操作。 
 hdc shell uitest uiInput drag 10 10 100 100 500 
 ```
-示例代码7：执行向左滑动操作。
+
+#### uiInput dircFling使用示例
+
+| 配置参数             | 必填       | 描述 |
+|-------------------|-------------|----------|
+| direction         | 否 | 滑动方向，取值范围：[0,1,2,3]，默认值为0。<br> 0代表向左滑动，1代表向右滑动，2代表向上滑动，3代表向下滑动。    | 
+| swipeVelocityPps_ | 否| 滑动速度，单位: (px/s)，取值范围：200-40000。<br> 默认值: 600。    | 
+| stepLength        | 否        | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 |
+
 ```shell  
+# 执行左滑操作
 hdc shell uitest uiInput dircFling 0 500
-```
-示例代码8：执行向右滑动操作。
-```shell  
+# 执行向右滑动操作
 hdc shell uitest uiInput dircFling 1 600
-```
-示例代码9：执行向上滑动操作。
-```shell  
+# 执行向上滑动操作。
 hdc shell uitest uiInput dircFling 2 
-```
-示例代码10：执行向下滑动操作。
-```shell  
+# 执行向下滑动操作。
 hdc shell uitest uiInput dircFling 3
 ```
 
-示例代码11：执行输入框输入操作。
+#### uiInput inputText使用示例
+
+| 配置参数             | 必填       | 描述 |       
+|------|------------------|----------|
+| point_x   | 是                | 输入框x坐标点。 | 
+| point_y   | 是                | 输入框y坐标点。 |
+| text   | 是                | 输入文本内容。  |
+
 ```shell  
-hdc shell uitest uiInput inputText 100 100 hello
+# 执行输入框输入操作。
+hdc shell uitest uiInput inputText 100 100 hello 
 ```
 
-示例代码12：执行返回主页操作。
+#### uiInput keyEvent使用示例
+
+| 配置参数             | 必填       | 描述 |                
+|------|------|----------|
+| keyID1   | 是    | 实体按键对应ID，取值范围：KeyCode/Back/Home/Power。<br>当取Back/Home/Power时，不支持输入组合键。 | 
+| keyID2    | 否    | 实体按键对应ID。 |
+| keyID3    | 否    | 实体按键对应ID。 |
+
+>**说明**
+>
+> 最多支持传入是三个键值，<!--RP3-->键值的具体取值请参考[KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->。
+
 ```shell  
+# 执行执行返回主页操作。
 hdc shell uitest uiInput keyEvent Home
-```
-示例代码13：执行返回上一步操作。
-```shell  
+# 执行返回主页操作。
 hdc shell uitest uiInput keyEvent Back
-```
-示例代码14：执行组合键粘贴操作。
-```shell  
+# 执行组合键粘贴操作。
 hdc shell uitest uiInput keyEvent 2072 2038
 ```
+
+### 获取版本信息
+
+```bash
+hdc shell uitest --version
+```
+### 拉起uitest测试进程
+
+```shell  
+hdc shell uitest start-daemon
+```
+
+>**说明**
+>
+> 设备需调成开发者模式。
+> 仅元能力aa test拉起的测试hap才能调用Uitest的能力。
+> <!--RP4-->测试hap的[APL等级级别](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)需为system_basic、normal<!--RP4End-->。
 
 <!--Del-->
 ## 相关实例

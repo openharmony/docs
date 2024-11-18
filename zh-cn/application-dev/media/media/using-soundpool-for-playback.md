@@ -1,4 +1,4 @@
-# 使用SoundPool开发音频播放功能
+# 使用SoundPool播放短音频(ArkTS)
 
 使用SoundPool（音频池）提供的接口，可以实现低时延短音播放。
 
@@ -263,7 +263,7 @@ function loadCallback() {
 function finishPlayCallback() {
   // 播放完成回调
   soundPool.on('playFinished', () => {
-    console.info("recive play finished message");
+    console.info("receive play finished message");
     // 可进行下次播放
   })
 }

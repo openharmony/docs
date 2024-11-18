@@ -201,30 +201,28 @@ nfcController.on("nfcStateChange", (nfcState : number)=> {
 
 // open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (!nfcController.isNfcOpen()) {
-  let ret: boolean = nfcController.openNfc();
-  console.log("nfcController openNfc ret: " + ret);
-}
-
-// from api9, use 'enableNfc' to open nfc.
-try {
-  nfcController.enableNfc();
-  console.log("nfcController enableNfc success");
-} catch (businessError) {
-  console.error("nfcController enableNfc businessError: " + businessError);
+  // from api9, use 'enableNfc' to open nfc.
+  try {
+    nfcController.enableNfc();
+    console.log("nfcController enableNfc success");
+  } catch (businessError) {
+    console.error("nfcController enableNfc businessError: " + businessError);
+  }
+} else {
+  console.log("nfcController NFC has been opened");
 }
 
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (nfcController.isNfcOpen()) {
-  let ret: boolean = nfcController.closeNfc();
-  console.log("controller closeNfc ret: " + ret);
-}
-
-// from api9, use 'disableNfc' to close nfc.
-try {
-  nfcController.disableNfc();
-  console.log("nfcController disableNfc success");
-} catch (businessError) {
-  console.error("nfcController disableNfc businessError: " + businessError);
+  // from api9, use 'disableNfc' to close nfc.
+  try {
+    nfcController.disableNfc();
+    console.log("nfcController disableNfc success");
+  } catch (businessError) {
+    console.error("nfcController disableNfc businessError: " + businessError);
+  }
+} else {
+  console.log("nfcController NFC has been closed");
 }
 
 // unregister callback

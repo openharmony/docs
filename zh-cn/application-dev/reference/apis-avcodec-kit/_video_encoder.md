@@ -408,7 +408,7 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec *codec)
 OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow ** window )
 ```
 **描述**
-从视频编码器获取输入surface，必须在调用OH_VideoEncoder_Prepare接口之前调用此接口。
+从视频编码器获取输入surface，必须在调用OH_VideoEncoder_Configure接口之后OH_VideoEncoder_Prepare接口之前调用此接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 

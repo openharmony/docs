@@ -27,106 +27,149 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 4. 处理虚拟网卡的数据，如：读写操作。
 5. 销毁 VPN 网络。
 
-本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考: [简易 Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考: [简易 Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)。
 
-示例程序主要包含两个部分：js 功能代码和 C++功能代码
+示例程序主要包含两个部分：js 功能代码和 C++功能代码。
 
 ## VPN 示例源码(js 部分)
 
-主要功能：实现业务逻辑，如：创建隧道、建立 VPN 网络、保护 VPN 网络、销毁 VPN 网络
+主要功能：实现业务逻辑，如：创建隧道、建立 VPN 网络、保护 VPN 网络、销毁 VPN 网络。
 
 ```js
-import { vpn } from '@kit.NetworkKit';
-import { common } from '@kit.AbilityKit';
-import vpn_client from "libvpn_client.so";
-import { BusinessError } from '@kit.BasicServicesKit';
+import Want from '@ohos.app.ability.Want';
+import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import vpnExt from '@ohos.net.vpnExtension';
+import hilog from '@ohos.hilog';
+import common from '@ohos.app.ability.common';
 
-let TunnelFd: number = -1;
+// vpn_client是一个C语言便携的so，比如import vpn_client from 'libvpn_client.so';
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Test VPN';
+import socket from '@ohos.net.socket';
 
-  private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+const TAG: string = "[MyVpnExtAbility]";
+let g_tunFd = -1;
+let g_tunnelFd = -1;
 
-  //1. 建立一个VPN的网络隧道，下面以UDP隧道为例。
-  CreateTunnel() {
-    TunnelFd = vpn_client.udpConnect("192.168.43.208", 8888);
+export default class MyVpnExtAbility extends VpnExtensionAbility {
+  private VpnConnection: vpnExt.VpnConnection = vpnExt.createVpnConnection(this.context);
+  private vpnServerIp: string = '192.168.85.185';
+  private tunIp: string = '10.0.0.8';
+  private blockedAppName: string = 'com.example.testvpn';
+
+  onCreate(want: Want) {
+    console.info(TAG, `xdw onCreate, want: ${want.abilityName}`);
+    // this.context.stopVpnExtensionAbility(want);
+    this.VpnConnection = vpnExt.createVpnConnection(this.context);
+    console.info("wmw createVpnConnection success")
+    this.CreateTunnel();
+    this.Protect();
+    console.info("xdw step4");
   }
 
-  //2. 保护前一步建立的UDP隧道。
+  onRequest(want: Want, startId: number) {
+    console.info(TAG, `xdw onRequest, want: ${want.abilityName}`);
+  }
+
+  onConnect(want: Want) {
+    console.info(TAG, `xdw onConnect, want: ${want.abilityName}`);
+    // 返回ServiceExtImpl对象，客户端获取后便可以与ServiceExtensionAbility进行通信
+    let abilityName  = want.parameters?.abilityName.toString();
+    let bundleName = want.parameters?.bundleName.toString();
+    return null;
+  }
+
+  onDisconnect(want: Want) {
+    console.info(TAG, `xdw onDisconnect, want: ${want.abilityName}`);
+  }
+
+  onDestroy() {
+    console.info(TAG, `xdw onDestroy`);
+    this.Destroy();
+  }
+
+  Destroy() {
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy');
+    //关闭VPN
+    this.VpnConnection.destroy().then(() => {
+      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy Success');
+    }).catch((err: Error) => {
+      hilog.error(0x0000, 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
+    })
+  }
+
+  CreateTunnel() {
+    console.info("xdw step1")
+    // 连接VPN服务器
+  }
+
   Protect() {
-    this.VpnConnection.protect(TunnelFd).then(() => {
-      console.info("vpn Protect Success.");
-    }).catch((err: BusinessError) => {
-      console.info("vpn Protect Failed " + JSON.stringify(err));
+    console.info("xdw step2")
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
+    this.VpnConnection.protect(g_tunnelFd).then(() => {
+      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
+      this.SetupVpn();
+    }).catch((err: Error) => {
+      hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
     })
   }
 
   SetupVpn() {
-    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress;
-    tunAddr.address.address = "10.0.0.5";
-    tunAddr.address.family = 1;
+    console.info("xdw step3")
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn SetupVpn');
 
-    let config : vpn.VpnConfig = {} as vpn.VpnConfig;
-    config.addresses.push(tunAddr);
-    config.mtu = 1400;
-    config.dnsAddresses = ["114.114.114.114"];
+    class Address {
+      address: string;
+      family: number;
 
-    //3. 建立一个VPN网络。
-    this.VpnConnection.setUp(config).then((data: number) => {
-      console.info("tunfd: " + JSON.stringify(data));
-      //4. 处理虚拟网卡的数据，如：读写操作。
-      vpn_client.startVpn(data, TunnelFd)
-    }).catch((err: BusinessError) => {
-      console.info("setUp fail" + JSON.stringify(err));
-    });
-  }
-
-  //5.销毁VPN网络。
-  Destroy() {
-    vpn_client.stopVpn(TunnelFd);
-    this.VpnConnection.destroy().then(() => {
-      console.info("vpn Destroy Success.");
-    }).catch((err: BusinessError) => {
-      console.info("vpn Destroy Failed " + JSON.stringify(err));
-    })
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            console.info("vpn Client")
-          })
-        Button('CreateTunnel').onClick(() => {
-          this.CreateTunnel()
-        }).fontSize(50)
-        Button('Protect').onClick(() => {
-          this.Protect()
-        }).fontSize(50)
-        Button('SetupVpn').onClick(() => {
-          this.SetupVpn()
-        }).fontSize(50)
-        Button('Destroy').onClick(() => {
-          this.Destroy()
-        }).fontSize(50)
+      constructor(address: string, family: number) {
+        this.address = address;
+        this.family = family;
       }
-      .width('100%')
     }
-    .height('100%')
+
+    class AddressWithPrefix {
+      address: Address;
+      prefixLength: number;
+
+      constructor(address: Address, prefixLength: number) {
+        this.address = address;
+        this.prefixLength = prefixLength;
+      }
+    }
+
+    class Config {
+      addresses: AddressWithPrefix[];
+      dnsAddresses: string[];
+      trustedApplications: string[];
+      blockedApplications: string[];
+
+      constructor(
+        tunIp: string,
+        blockedAppName: string
+      ) {
+        this.addresses = [
+          new AddressWithPrefix(new Address(tunIp, 1), 24)
+        ];
+        this.dnsAddresses = ["114.114.114.114"];
+        this.trustedApplications = [];
+        this.blockedApplications = [];
+      }
+    }
+
+    let config = new Config(this.tunIp, this.blockedAppName);
+
+    try {
+      this.VpnConnection.create(config);
+    } catch (error) {
+      hilog.error(0x0000, 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(error) ?? '');
+    }
   }
 }
 ```
 
 ## VPN 示例源码(c++部分)
 
-主要功能：具体业务的底层实现，如：UDP 隧道 Client 端的实现、虚拟网卡读写数据的实现
+主要功能：具体业务的底层实现，如：UDP 隧道 Client 端的实现、虚拟网卡读写数据的实现。
 
 ```c++
 #include "napi/native_api.h"

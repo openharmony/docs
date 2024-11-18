@@ -6132,3 +6132,16 @@ async function example() {
 |totalFileSize          |number  |否 | 总文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
 |expectedDuration          |number  |否 | 排队时间。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_EXECUTING时提供。  |
 |statusCode          |number  |否 | 状态码。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_FAILED时提供。  |
+
+## ThumbnailType<sup>13+</sup>
+
+枚举，缩略图类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| LCD         | 1  | 获取LCD缩略图    |
+| THM          | 2 | 获取THM缩略图    |

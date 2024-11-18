@@ -12,7 +12,7 @@
 
 目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
-每一种编码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+每一种编码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
 <!--RP1--><!--RP1End-->
 
@@ -55,15 +55,15 @@
 
 1. 有两种方式可以使编码器进入Initialized状态：
    - 初始创建编码器实例时，编码器处于Initialized状态。
-   - 任何状态下调用OH_VideoEncoder_Reset接口，编码器将会移回Initialized状态。
+   - 任何状态下，调用OH_VideoEncoder_Reset接口，编码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoEncoder_Configure接口配置编码器，配置成功后编码器进入Configured状态。
-3. Configured状态下调用OH_VideoEncoder_Prepare()进入Prepared状态。
-4. Prepared状态调用OH_VideoEncoder_Start接口使编码器进入Executing状态：
+3. Configured状态下，调用OH_VideoEncoder_Prepare()进入Prepared状态。
+4. Prepared状态下，调用OH_VideoEncoder_Start接口使编码器进入Executing状态：
    - 处于Executing状态时，调用OH_VideoEncoder_Stop接口可以使编码器返回到Prepared状态。
 
 5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
-   - Error状态下可以调用OH_VideoEncoder_Reset接口将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy接口移动到最后的Released状态。
+   - Error状态下，可以调用OH_VideoEncoder_Reset接口将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy接口移动到最后的Released状态。
 
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoEncoder_Start接口之后，编码器立即进入Running子状态。
@@ -272,15 +272,15 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置最大矩阵系数
     int32_t matrix = static_cast<int32_t>(OH_MatrixCoefficient::MATRIX_COEFFICIENT_IDENTITY);
     // 配置编码Profile
-    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_BASELINE);
+    int32_t profile = static_cast<int32_t>(OH_AVCProfile::AVC_PROFILE_HIGH);
     // 配置编码比特率模式
-    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
+    int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR);
     // 配置关键帧的间隔，单位为毫秒
-    int32_t iFrameInterval = 23000;
+    int32_t iFrameInterval = 1000;
     // 配置比特率
-    int64_t bitRate = 3000000;
+    int64_t bitRate = 5000000;
     // 配置编码质量
-    int64_t quality = 0;
+    int64_t quality = 90;
 
     OH_AVFormat *format = OH_AVFormat_Create();
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置
@@ -743,7 +743,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽、高跨距，通过回调函数OnNeedInputBuffer获取
+    struct DstRect // 目标内存区域的宽、高跨距，通过接口OH_VideoEncoder_GetInputDescription获取
     {
         int32_t wStride;
         int32_t hStride;
@@ -756,29 +756,31 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     };
 
     Rect rect = {320, 240};
-    DstRect dstRect = {320, 250};
+    DstRect dstRect = {320, 256};
     SrcRect srcRect = {320, 250};
-    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
-    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride * 3 / 2]; // 目标内存区域的指针
+    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride * 3 / 2]; // 源内存区域的指针
+    uint8_t* dstTemp = dst;
+    uint8_t* srcTemp = src;
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
-        memcpy_s(dst, src, rect.width);
+        memcpy_s(dstTemp, srcTemp, rect.width);
         // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
     // padding
     // 更新源数据和目标数据的指针，指针都向下移动一个padding
-    dst += (dstRect.hStride - rect.height) * dstRect.wStride;
-    src += (srcRect.hStride - rect.height) * srcRect.wStride;
+    dstTemp += (dstRect.hStride - rect.height) * dstRect.wStride;
+    srcTemp += (srcRect.hStride - rect.height) * srcRect.wStride;
     rect.height >>= 1;
     // UV 将UV区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
-        memcpy_s(dst, src, rect.width);
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        memcpy_s(dstTemp, srcTemp, rect.width);
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
 
     delete[] dst;

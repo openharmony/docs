@@ -12,7 +12,7 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
-每一种解码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
 <!--RP1--><!--RP1End-->
 
@@ -58,15 +58,15 @@
 
 1. 有两种方式可以使解码器进入Initialized状态：
    - 初始创建解码器实例时，解码器处于Initialized状态。
-   - 任何状态下调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
+   - 任何状态下，调用OH_VideoDecoder_Reset接口，解码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoDecoder_Configure接口配置解码器，配置成功后解码器进入Configured状态。
-3. Configured状态下调用OH_VideoDecoder_Prepare接口进入Prepared状态。
-4. Prepared状态调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
+3. Configured状态下，调用OH_VideoDecoder_Prepare接口进入Prepared状态。
+4. Prepared状态下，调用OH_VideoDecoder_Start接口使解码器进入Executing状态：
    - 处于Executing状态时，调用OH_VideoDecoder_Stop接口可以使解码器返回到Prepared状态。
 
 5. 在极少数情况下，解码器可能会遇到错误并进入Error状态。解码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
-   - Error状态下可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
+   - Error状态下，可以调用解码器OH_VideoDecoder_Reset接口将解码器移到Initialized状态；或者调用OH_VideoDecoder_Destroy接口移动到最后的Released状态。
 
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoDecoder_Start接口之后，解码器立即进入Running子状态。
@@ -214,7 +214,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
     > **说明：**
     >
-    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    > 1. 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    > 2. 播放视频时，若视频码流的SPS中包含颜色信息，解码器会把这些信息（RangeFlag、ColorPrimary、MatrixCoefficient、TransferCharacteristic）通过
+    > OH_AVCodecOnStreamChanged接口中的OH_AVFormat返回。
     >
 
 5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
@@ -931,7 +933,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     使用示例：
 
     ```c++
-    struct Rect   // 源内存区域的宽、高，通过回调函数OnNewOutputBuffer获取
+    // 源内存区域的宽、高，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取
+    struct Rect
     {
         int32_t width;
         int32_t height;
@@ -942,37 +945,39 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         int32_t wStride;
         int32_t hStride;
     };
-
-    struct SrcRect // 源内存区域的宽、高跨距，通过回调函数OnNewOutputBuffer获取
+    // 源内存区域的宽、高跨距，通过回调函数OnStreamChanged或接口OH_VideoDecoder_GetOutputDescription获取
+    struct SrcRect
     {
         int32_t wStride;
         int32_t hStride;
     };
 
     Rect rect = {320, 240};
-    DstRect dstRect = {320, 250};
-    SrcRect srcRect = {320, 250};
-    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
+    DstRect dstRect = {320, 240};
+    SrcRect srcRect = {320, 256};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride * 3 / 2]; // 目标内存区域的指针
     uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
+    uint8_t* dstTemp = dst;
+    uint8_t* srcTemp = src;
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
-        memcpy_s(dst, src, rect.width);
+        memcpy_s(dstTemp, srcTemp, rect.width);
         // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
     // padding
     // 更新源数据和目标数据的指针，指针都向下移动一个padding
-    dst += (dstRect.hStride - rect.height) * dstRect.wStride;
-    src += (srcRect.hStride - rect.height) * srcRect.wStride;
+    dstTemp += (dstRect.hStride - rect.height) * dstRect.wStride;
+    srcTemp += (srcRect.hStride - rect.height) * srcRect.wStride;
     rect.height >>= 1;
     // UV 将UV区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
-        memcpy_s(dst, src, rect.width);
-        dst += dstRect.wStride;
-        src += srcRect.wStride;
+        memcpy_s(dstTemp, srcTemp, rect.width);
+        dstTemp += dstRect.wStride;
+        srcTemp += srcRect.wStride;
     }
 
     delete[] dst;

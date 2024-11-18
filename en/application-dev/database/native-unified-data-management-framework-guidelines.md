@@ -81,9 +81,9 @@ libudmf.so
 
 To use the UTD to obtain plaintext data, perform the following steps:
 1. Obtain **typeId** of the UTD based on the file name extension **.txt**.
-2. Obtains **typeId** of the UTD based on the MIME type **text/plain**.
+2. Obtain **typeId** of the UTD based on the MIME type **text/plain**.
 3. Use the **typeId**s obtained to create two UTD instances.
-4. Checks whether the two UTD instances are the same.
+4. Check whether the two UTD instances are the same.
 5. Destroy the pointers created.
 
 ```c
@@ -115,7 +115,7 @@ OH_Utd_Destroy(utd2);
 ## Sending Uniform Data Struct Data Using the UDMF
 
 To send hyperlink data, perform the following steps:
-1. Creates a uniform data struct for hyperlink data.
+1. Create a uniform data struct for hyperlink data.
 2. Set the URL and description for the hyperlink.
 3. Write the hyperlink data into an **OH_UdmfRecord** instance.
 4. Add the **OH_UdmfRecord** instance to an **OH_UdmfData** instance.
@@ -159,7 +159,7 @@ OH_UdmfData_Destroy(data);
 To obtain the uniform data struct from a hyperlink instance, perform the following steps:
 1. Create an **OH_UdmfData** instance to hold the data read from the database.
 2. Obtain data from the database based on the key.
-3. Checks whether data of the hyperlink type exists.
+3. Check whether data of the hyperlink type exists.
 4. Obtain a record from **OH_UdmfData**, and then obtain hyperlink data from the data record.
 5. Obtain information in the hyperlink data.
 6. Destroy the pointers created.

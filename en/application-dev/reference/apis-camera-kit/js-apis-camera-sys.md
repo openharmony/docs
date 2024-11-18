@@ -118,6 +118,21 @@ Enumerates the policy types.
 | ----------------------------- |-----|---------|
 | PRIVACY<sup>12+</sup>          | 1   | Privacy.|
 
+## LightPaintingType<sup>12+</sup>
+
+Enumerates the types of light painting shutter modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Value  | Description     |
+| ----------------------------- |-----|---------|
+| TRAFFIC_TRAILS         | 0   | Traffic trails.|
+| STAR_TRAILS          | 1   | Star trails.|
+| SILKY_WATER          | 2   | Silky water.|
+| LIGHT_GRAFFITI          | 3   | Light graffiti.|
+
 ## CameraManager
 
 Implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** instance.
@@ -535,6 +550,17 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 }
 ```
 
+## CameraOcclusionDetectionResult<sup>12+</sup>
+Describes the status indicating whether the camera is occluded.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Type                                               | Read-only| Optional| Description               |
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| isCameraOccluded                 | boolean              |  Yes | No|Whether the camera is occluded.       |
+
 ## CameraOutputCapability<sup>12+</sup>
 
 Describes the camera output capability.
@@ -559,6 +585,78 @@ Enumerates the camera output formats.
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | Depth map in DEPTH_16 format.     |
 | CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | Depth map in DEPTH_32 format.     |
+
+## CameraInput
+
+Defines the camera input object.
+
+It provides camera device information used in [Session](js-apis-camera.md#session11).
+
+### on('cameraOcclusionDetection')<sup>12+</sup>
+
+on(type: 'cameraOcclusionDetection', callback: AsyncCallback\<CameraOcclusionDetectionResult\>): void
+
+Subscribes to CameraInput occlusion events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| type     | string                           | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a **CameraInput** instance is created. It is triggered when the occlusion status of the camera module changes, and the occlusion status is returned.|
+| callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | Yes  | Callback used to return the occlusion status. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, CameraOcclusionDetectionResult: camera.CameraOcclusionDetectionResult): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraOcclusionDetection with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`isCameraOccluded : ${CameraOcclusionDetectionResult.isCameraOccluded}`);
+}
+
+function registerCameraOcclusionDetection(cameraInput: camera.CameraInput): void {
+  cameraInput.on('cameraOcclusionDetection', callback);
+}
+```
+
+### off('cameraOcclusionDetection')<sup>12+</sup>
+
+off(type: 'cameraOcclusionDetection', callback?: AsyncCallback\<CameraOcclusionDetectionResult\>): void
+
+Unsubscribes from CameraInput occlusion events.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type            | Mandatory| Description                                                     |
+| -------- | --------------- | ---- |---------------------------------------------------------|
+| type     | string          | Yes  | Event type. The value is fixed at **'cameraOcclusionDetection'**. The event can be listened for when a **CameraInput** instance is created.|
+| callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('cameraOcclusionDetection')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, CameraOcclusionDetectionResult: camera.CameraOcclusionDetectionResult): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraOcclusionDetection with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`isCameraOccluded : ${CameraOcclusionDetectionResult.isCameraOccluded}`);
+}
+
+function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): void {
+  cameraInput.off('cameraOcclusionDetection', callback);
+}
+```
 
 ## DepthDataAccuracy<sup>12+</sup>
 
@@ -1200,7 +1298,7 @@ A class object that functions as a thumbnail proxy.
 
 getThumbnail(): Promise<image.PixelMap>
 
-Obtains the pixel map of a thumbnail.
+Obtains the PixelMap of a thumbnail.
 
 **System API**: This is a system API.
 
@@ -1210,7 +1308,7 @@ Obtains the pixel map of a thumbnail.
 
 | Type           | Description                    |
 | -------------- | ----------------------- |
-| Promise\<image.PixelMap\> | Pixel map of the thumbnail.|
+| Promise\<image.PixelMap\> | PixelMap of the thumbnail.|
 
 **Error codes**
 
@@ -1926,6 +2024,192 @@ function enableMirror(videoOutput: camera.VideoOutput): void {
   return videoOutput.enableMirror(true);
 }
 ```
+
+## MetadataOutput
+
+Implements metadata streams. It inherits from [CameraOutput](js-apis-camera.md#cameraoutput).
+
+### addMetadataObjectTypes<sup>13+</sup> 
+
+addMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
+
+Adds the types of metadata objects to be detected.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                 | Type                                              | Mandatory| Description                         |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function addMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.addMetadataObjectTypes(types);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`addMetadataObjectTypes error. error code: ${err.code}`);
+  }
+}
+```
+
+### removeMetadataObjectTypes<sup>13+</sup> 
+
+removeMetadataObjectTypes(types: Array\<MetadataObjectType\>): void
+
+Removes the types of metadata objects to be detected.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                 | Type                                              | Mandatory| Description                         |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Metadata object types, which are obtained through **getSupportedOutputCapability**.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not system application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.                                   |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types: Array<camera.MetadataObjectType>): void {
+  try {
+    metadataOutput.removeMetadataObjectTypes(types);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`removeMetadataObjectTypes error. error code: ${err.code}`);
+  }
+}
+```
+
+## MetadataObjectType
+
+Enumerates the types of metadata objects used for camera detection.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value  | Description             |
+| -------------------------- | ---- | ----------------- |
+| HUMAN_BODY<sup>13+</sup>                 | 1    | Metadata object used for human body detection.|
+| CAT_FACE<sup>13+</sup>                   | 2    | Metadata object used for cat face detection.|
+| CAT_BODY<sup>13+</sup>                   | 3    | Metadata object used for cat body detection.|
+| DOG_FACE<sup>13+</sup>                   | 4    | Metadata object used for dog face detection.|
+| DOG_BODY<sup>13+</sup>                   | 5    | Metadata object used for dog body detection.|
+| SALIENT_DETECTION<sup>13+</sup>          | 6    | Metadata object used for salient detection.|
+
+## Emotion<sup>13+</sup>
+Enumerates the types of emotions in the detected human face information.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value  | Description             |
+| -------------------------- | ---- | ----------------- |
+| NEUTRAL                 | 0    | Quiet and calm.|
+| SADNESS                   | 1    | Sad.|
+| SMILE                   | 2    | Smile.|
+| SURPRISE                   | 3    | Surprise.|
+
+## MetadataObject
+
+Implements the basic metadata object used for camera detection. This class is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name        | Type                                       | Read-only| Optional|Description               |
+| -----------  | ------------------------------------------- | ---- | ---- | ----------------- |
+| objectId<sup>13+</sup>     | number                                      |  Yes |  No | Metadata object ID.|
+| confidence<sup>13+</sup>   | number                                      |  Yes |  No | Confidence of the detection, with a value range of [0,1].|
+
+## MetadataFaceObject<sup>13+</sup>
+
+Implements the human face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                   | Type                             | Read-only| Optional|Description               |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                             |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                            |  Yes |  No | Right eye area.|
+| emotion                | [Emotion](#emotion13)             |  Yes |  No | Detected emotion.|
+| emotionConfidence      | number                            |  Yes |  No | Confidence of the emotion detection, with a value range of [0,1].|
+| pitchAngle             | number                            |  Yes |  No | Pitch angle, with a value range of [-90, 90], where downward is positive.|
+| yawAngle               | number                            |  Yes |  No | Yaw angle, with a value range of [-90, 90], where rightward is positive.|
+| rollAngle              | number                            |  Yes |  No | Row angle, with a value range of [-180, 180], where clockwise direction is positive.|
+
+## MetadataHumanBodyObject<sup>13+</sup>
+
+Implements the human body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataCatFaceObject<sup>13+</sup>
+
+Implements the cat face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                   | Type                             | Read-only| Optional|Description               |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Right eye area.|
+
+## MetadataCatBodyObject<sup>13+</sup>
+
+Implements the cat body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataDogFaceObject<sup>13+</sup>
+
+Implements the dog face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                   | Type                             | Read-only| Optional|Description               |
+| ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
+| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Left eye area.|
+| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  Yes |  No | Right eye area.|
+
+## MetadataDogBodyObject<sup>13+</sup>
+
+Implements the dog body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataSalientDetectionObject<sup>13+</sup>
+
+Implements the salient detection metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## PortraitEffect
 
@@ -5841,7 +6125,7 @@ Subscribes to automatic ISO change events to obtain real-time ISO information. T
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
 
 **Error codes**
 
@@ -5882,7 +6166,7 @@ Unsubscribes from automatic ISO change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
 
 **Error codes**
 
@@ -5900,7 +6184,7 @@ function unregisterIsoInfoEvent(professionalPhotoSession: camera.ProfessionalPho
 
 ### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
 
@@ -5913,7 +6197,7 @@ Subscribes to exposure information change events to obtain the exposure informat
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
 
 **Error codes**
 
@@ -5941,7 +6225,7 @@ function registerExposureInfoEvent(professionalPhotoSession: camera.Professional
 
 ### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 Unsubscribes from exposure information change events.
 
@@ -5954,7 +6238,7 @@ Unsubscribes from exposure information change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
 
 **Error codes**
 
@@ -5972,7 +6256,7 @@ function unregisterExposureInfoEvent(professionalPhotoSession: camera.Profession
 
 ### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<ApertureInfo\>): void
 
 Subscribes to aperture change events to obtain the real-time aperture information. This API uses an asynchronous callback to return the result.
 
@@ -5985,7 +6269,7 @@ Subscribes to aperture change events to obtain the real-time aperture informatio
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
 
 **Error codes**
 
@@ -6013,7 +6297,7 @@ function registerApertureInfoEvent(professionalPhotoSession: camera.Professional
 
 ### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<ApertureInfo\>): void
 
 Unsubscribes from aperture change events.
 
@@ -6026,7 +6310,7 @@ Unsubscribes from aperture change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
 
 **Error codes**
 
@@ -6044,7 +6328,7 @@ function unregisterApertureInfoEvent(professionalPhotoSession: camera.Profession
 
 ### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 Subscribes to illumination change events to obtain real-time illumination information. This API uses an asynchronous callback to return the result.
 
@@ -6057,7 +6341,7 @@ Subscribes to illumination change events to obtain real-time illumination inform
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
 
 **Error codes**
 
@@ -6085,7 +6369,7 @@ function registerLuminationInfoEvent(professionalPhotoSession: camera.Profession
 
 ### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 Unsubscribes from illumination change events.
 
@@ -6098,7 +6382,7 @@ Unsubscribes from illumination change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
 
 **Error codes**
 
@@ -6346,7 +6630,7 @@ function unregisterSmoothZoomInfo(professionalVideoSession: camera.ProfessionalV
 
 ### on('isoInfoChange')<sup>12+</sup>
 
-on(type: 'isoInfoChange', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
 
 Subscribes to automatic ISO change events to obtain real-time ISO information. This API uses an asynchronous callback to return the result.
 
@@ -6359,7 +6643,7 @@ Subscribes to automatic ISO change events to obtain real-time ISO information. T
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
 
 **Error codes**
 
@@ -6387,7 +6671,7 @@ function registerIsoInfoEvent(professionalVideoSession: camera.ProfessionalVideo
 
 ### off('isoInfoChange')<sup>12+</sup>
 
-off(type: 'isoInfoChange', callback?: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
 
 Unsubscribes from automatic ISO change events.
 
@@ -6400,7 +6684,7 @@ Unsubscribes from automatic ISO change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
 
 **Error codes**
 
@@ -6418,7 +6702,7 @@ function unregisterIsoInfoEvent(professionalVideoSession: camera.ProfessionalVid
 
 ### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
 
@@ -6431,7 +6715,7 @@ Subscribes to exposure information change events to obtain the exposure informat
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
-| callback | AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>| Yes  | Callback used to return the exposure information.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
 
 **Error codes**
 
@@ -6459,7 +6743,7 @@ function registerExposureInfoEvent(professionalVideoSession: camera.Professional
 
 ### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 Unsubscribes from exposure information change events.
 
@@ -6472,7 +6756,7 @@ Unsubscribes from exposure information change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
 
 **Error codes**
 
@@ -6490,7 +6774,7 @@ function unregisterExposureInfoEvent(professionalVideoSession: camera.Profession
 
 ### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<ApertureInfo\>): void
 
 Subscribes to aperture change events to obtain the aperture information. This API uses an asynchronous callback to return the result.
 
@@ -6503,7 +6787,7 @@ Subscribes to aperture change events to obtain the aperture information. This AP
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
 
 **Error codes**
 
@@ -6531,7 +6815,7 @@ function registerApertureInfoEvent(professionalVideoSession: camera.Professional
 
 ### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<ApertureInfo\>): void
 
 Unsubscribes from aperture change events.
 
@@ -6544,7 +6828,7 @@ Unsubscribes from aperture change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
 
 **Error codes**
 
@@ -6562,7 +6846,7 @@ function unregisterApertureInfoEvent(professionalVideoSession: camera.Profession
 
 ### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 Subscribes to illumination change events to obtain illumination information. This API uses an asynchronous callback to return the result.
 
@@ -6575,7 +6859,7 @@ Subscribes to illumination change events to obtain illumination information. Thi
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
-| callback | AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>| Yes  | Callback used to return the illumination information.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
 
 **Error codes**
 
@@ -6603,7 +6887,7 @@ function registerLuminationInfoEvent(professionalVideoSession: camera.Profession
 
 ### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 Unsubscribes from illumination change events.
 
@@ -6616,7 +6900,7 @@ Unsubscribes from illumination change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12))\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
 
 **Error codes**
 
@@ -7339,7 +7623,7 @@ Subscribes to automatic ISO change events to obtain real-time ISO information. T
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
 
 **Error codes**
 
@@ -7380,7 +7664,7 @@ Unsubscribes from automatic ISO change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
 
 **Error codes**
 
@@ -7398,7 +7682,7 @@ function unregisterIsoInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSess
 
 ### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
 
@@ -7411,7 +7695,7 @@ Subscribes to exposure information change events to obtain the exposure informat
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
 
 **Error codes**
 
@@ -7439,7 +7723,7 @@ function registerExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoS
 
 ### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 Unsubscribes from exposure information change events.
 
@@ -7452,7 +7736,7 @@ Unsubscribes from exposure information change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
 
 **Error codes**
 
@@ -7470,7 +7754,7 @@ function unregisterExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhot
 
 ### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 Subscribes to illumination change events to obtain real-time illumination information. This API uses an asynchronous callback to return the result.
 
@@ -7483,7 +7767,7 @@ Subscribes to illumination change events to obtain real-time illumination inform
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
 
 **Error codes**
 
@@ -7511,7 +7795,7 @@ function registerLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhot
 
 ### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 Unsubscribes from illumination change events.
 
@@ -7524,7 +7808,7 @@ Unsubscribes from illumination change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
 
 **Error codes**
 
@@ -7542,7 +7826,7 @@ function unregisterLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePh
 
 ### on('tryAEInfoChange')<sup>12+</sup>
 
-on(type: 'tryAEInfoChange', callback: AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>): void
+on(type: 'tryAEInfoChange', callback: AsyncCallback\<TryAEInfo\>): void
 
 Subscribes to Try AE change events to obtain real-time Try AE parameters. This API uses an asynchronous callback to return the result.
 
@@ -7555,7 +7839,7 @@ Subscribes to Try AE change events to obtain real-time Try AE parameters. This A
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'tryAEInfoChange'**.        |
-| callback | AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>| Yes  | Callback used to return the Try AE parameters.        |
+| callback | AsyncCallback\<[TryAEInfo](#tryaeinfo12)\>| Yes  | Callback used to return the Try AE parameters.        |
 
 **Error codes**
 
@@ -7583,7 +7867,7 @@ function registerTryAEInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSess
 
 ### off('tryAEInfoChange')<sup>12+</sup>
 
-off(type: 'tryAEInfoChange', callback?: AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>): void
+off(type: 'tryAEInfoChange', callback?: AsyncCallback\<TryAEInfo\>): void
 
 Unsubscribes from Try AE change events.
 
@@ -7596,7 +7880,7 @@ Unsubscribes from Try AE change events.
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | Yes  | Event type. The value is fixed at **'tryAEInfoChange'**.        |
-| callback | AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('tryAEInfoChange')**.|
+| callback | AsyncCallback\<[TryAEInfo](#tryaeinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('tryAEInfoChange')**.|
 
 **Error codes**
 
@@ -8020,5 +8304,343 @@ function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
     let err = error as BusinessError;
     console.error(`The setTimeLapsePreviewType call failed. error code: ${err.code}`);
   }
+}
+```
+
+## LightPaintingPhotoSession<sup>12+</sup>
+
+LightPaintingPhotoSession extends Session, Flash, Focus, Zoom, ColorEffect
+
+Implements a light painting photo session, which sets the parameters of the light painting photo mode and saves all [CameraInput](js-apis-camera.md#camerainput) and [CameraOutput](js-apis-camera.md#cameraoutput) instances required to run the camera. It inherits from [Session](js-apis-camera.md#session11).
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to **LightPaintingPhotoSession** error events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                                                                       | Mandatory | Description                                                                                                                                                                     |
+|----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type     | string                                                                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).                                                                                                          |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  console.error(`LightPaintingPhotoSession error code: ${err.code}`);
+}
+
+function registerSessionError(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from **LightPaintingPhotoSession** error events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                                                                       | Mandatory| Description                                                         |
+|----------|---------------------------------------------------------------------------|----|-------------------------------------------------------------|
+| type     | string                                                                    | Yes | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.                       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+function unregisterSessionError(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+Subscribes to focus state change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                                         | Mandatory| Description                                                                     |
+|-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
+| type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created. This event is triggered only when the camera focus state changes in auto focus mode.|
+| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | Yes | Callback used to return the focus state change.                                                       |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+Unsubscribes from focus state change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                                         | Mandatory| Description                                                          |
+|-----------|---------------------------------------------|----|--------------------------------------------------------------|
+| type      | string                                      | Yes | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.                  |
+| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+function unregisterFocusStateChange(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('focusStateChange');
+}
+```
+
+### on('smoothZoomInfoAvailable')<sup>12+</sup>
+
+on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
+
+Subscribes to smooth zoom state change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                  | Mandatory| Description                      |
+| -------- | ----------------------- | ---- | ------------------------ |
+| type     | string                  | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | Yes  | Callback used to return the smooth zoom state change. |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
+function registerSmoothZoomInfo(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('smoothZoomInfoAvailable', callback);
+}
+```
+
+### off('smoothZoomInfoAvailable')<sup>12+</sup>
+
+off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>): void
+
+Unsubscribes from smooth zoom state change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                      |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**Example**
+
+```ts
+function unregisterSmoothZoomInfo(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### getLightPaintingType<sup>12+</sup>
+
+getLightPaintingType(): LightPaintingType
+
+Obtains the type of light painting shutter mode in use.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+| Type                                            | Description                   |
+|------------------------------------------------- | --------------------- |
+| [LightPaintingType](#lightpaintingtype12) | Type of light painting shutter mode. |
+
+**Error codes**
+ 
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+function getLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): camera.LightPaintingType {
+  let type: camera.LightPaintingType = lightPaintingPhotoSession.getLightPaintingType();
+  return type;
+}
+```
+
+### setLightPaintingType<sup>12+</sup>
+
+setLightPaintingType(type: LightPaintingType): void
+
+Sets the type of light painting shutter mode.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+| Name     | Type                    | Mandatory| Description                |
+| -------- | ----------------------- | ---- | ------------------- |
+| type | [LightPaintingType](#lightpaintingtype12) | Yes  | Type of light painting mode.|
+
+**Error codes**
+ 
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  try {
+    let type: camera.LightPaintingType = camera.LightPaintingType.TRAFFIC_TRAILS;
+    lightPaintingPhotoSession.setLightPaintingType(type);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setLightPaintingType call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getSupportedLightPaintingTypes<sup>12+</sup>
+
+getSupportedLightPaintingTypes(): Array\<LightPaintingType\>
+
+Obtains the supported types of light painting shutter mode.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+| Type                                            | Description                   |
+|------------------------------------------------- | --------------------- |
+| Array\<[LightPaintingType](#lightpaintingtype12)\> | Supported types of light painting shutter mode. |
+
+**Error codes**
+ 
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+function getSupportedLightPaintingTypes(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): Array<camera.LightPaintingType> {
+  let types: Array<camera.LightPaintingType> = lightPaintingPhotoSession.getSupportedLightPaintingTypes();
+  return types
 }
 ```

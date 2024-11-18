@@ -7,6 +7,8 @@
 
 **库：** libace_ndk.z.so
 
+**引用文件：** <arkui/native_gesture.h>
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **起始版本：** 12

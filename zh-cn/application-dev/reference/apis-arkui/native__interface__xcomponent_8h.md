@@ -7,6 +7,8 @@
 
 **库：** libace_ndk.z.so
 
+**引用文件：** <ace/xcomponent/native_interface_xcomponent.h>
+
 **起始版本：** 8
 
 **相关模块：**[Native XComponent](_o_h___native_x_component.md)
