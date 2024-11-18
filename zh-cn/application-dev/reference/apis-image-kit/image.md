@@ -598,7 +598,11 @@ UnAccessPixels
 
 **返回：**
 
-操作成功则返回OHOS_IMAGE_RESULT_SUCCESS；如果操作失败，则返回错误码。
+参考[IRNdkErrCode](#irndkerrcode-1)。
+
+如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
+
+如果操作失败返回IMAGE_RESULT_BAD_PARAMETER。
 
 
 ### OH_GetImageInfo()
@@ -623,7 +627,11 @@ int32_t OH_GetImageInfo (napi_env env, napi_value value, OhosPixelMapInfo * info
 
 **返回：**
 
-如果获取并保存信息成功，则返回**0**; 如果操作失败，则返回错误码。
+参考[IRNdkErrCode](#irndkerrcode-1)。
+
+如果操作成功返回OHOS_IMAGE_RESULT_SUCCESS；
+
+如果操作失败返回IMAGE_RESULT_BAD_PARAMETER。
 
 **参见：**
 
