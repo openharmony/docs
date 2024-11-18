@@ -69,7 +69,7 @@
     <!--Del-->
     - [@ohos.configPolicy (Configuration Policy) (System API)](js-apis-configPolicy-sys.md)
     - [@ohos.settings (Data Item Settings) (System API)](js-apis-settings-sys.md)
-    - @ohos.systemDateTime (System Time and Time Zone) (System API)](js-apis-system-date-time-sys.md)
+    - [@ohos.systemDateTime (System Time and Time Zone) (System API)](js-apis-system-date-time-sys.md)
     - [@ohos.systemDateTime (System Time and Time Zone)](js-apis-date-time.md)
     - [@ohos.wallpaper (Wallpaper) (System API)](js-apis-wallpaper-sys.md)
     - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API)](js-apis-WallpaperExtensionAbility-sys.md)
@@ -126,4 +126,3 @@
   - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Intelligent Voice Error Codes](errorcode-intelligentVoice.md)
   <!--DelEnd-->
-<!--no_check-->
