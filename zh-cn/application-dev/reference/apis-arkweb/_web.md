@@ -171,7 +171,7 @@
 | [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) [OH_NativeArkWeb_GetJavaScriptProxyValidCallback](#oh_nativearkweb_getjavascriptproxyvalidcallback) (const char \*webTag) | 获取已注册的对象可注册时的回调函数。  | 
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁时的回调函数。  | 
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取已注册的组件销毁时的回调函数。  | 
-F
+
 ## 宏定义说明
 
 
