@@ -285,6 +285,7 @@ struct Example {
         .backgroundColor(this.color)
       Button('animate')
         .margin(50)
+        .width(this.wid)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
         .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions)=>{
           // animateTo前修改wid时的布局同步的触发了onSizeChange事件，也会被带入无限循环动画中
@@ -326,6 +327,7 @@ struct Example {
         .backgroundColor(this.color)
       Button('animate')
         .margin(50)
+        .width(this.wid)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
         .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions)=>{
           // onSizeChange为同步回调，最好不在同步回调中直接修改状态变量。  
