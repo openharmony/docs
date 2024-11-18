@@ -903,9 +903,10 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400201                |  Camera service fatal error.               |
+| 错误码ID         | 错误信息                                                                                                                                           |
+| --------------- |------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
+| 7400201                | Camera service fatal error.                                                                                                                    |
 
 **示例：**
 
@@ -1359,11 +1360,12 @@ open(): Promise\<void\>
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400107                |  Can not use camera cause of conflict.               |
-| 7400108                |  Camera disabled cause of security reason.                                  |
-| 7400201                |  Camera service fatal error.                                  |
+| 错误码ID   | 错误信息                                      |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400107 | Can not use camera cause of conflict.     |
+| 7400108 | Camera disabled cause of security reason. |
+| 7400201 | Camera service fatal error.               |
 
 **示例：**
 
@@ -7829,9 +7831,9 @@ isAutoDeviceSwitchSupported(): boolean
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103         |  Session not config.                           |
+| 错误码ID         | 错误信息                                              |
+| --------------- |---------------------------------------------------|
+| 7400103         | Session not config, only throw in session usage.  |
 
 **示例：**
 
@@ -7882,11 +7884,12 @@ enableAutoDeviceSwitch(enabled: boolean): void
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400102         |  The colorSpace does not match the format.     |
-| 7400103         |  Session not config.                           |
-| 7400201         |  Camera service fatal error.                   |
+| 错误码ID   | 错误信息                                                                                                                                       |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |
+| 7400102  | Operation not allowed.                                                                                                                         |
+| 7400103  | Session not config.                                                                                                                            |
+| 7400201  | Camera service fatal error.                                                                                                                    |
 
 **示例：**
 
