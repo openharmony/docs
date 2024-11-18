@@ -156,7 +156,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 #### ConcurrentMark
 
 - 函数方法：`TryTriggerConcurrentMarking`
-- 说明：尝试触发并发mark，将遍历对象进行标记的任务交由线程池中并发运行，减少主线程挂起时间。
+- 说明：尝试触发并发mark，将遍历对象进行标记的任务交由线程池中并发运行，减少UI主线程挂起时间。
 - 典型日志：`fullMarkRequested`,`trigger full mark`,`Trigger the first full mark`,`Trigger full mark`,`Trigger the first semi mark`,`Trigger semi mark`
 
 #### new space GC前后的阈值调整
