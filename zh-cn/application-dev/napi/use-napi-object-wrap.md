@@ -85,7 +85,7 @@
                              [[maybe_unused]] void* finalize_hint)
    {
      OH_LOG_INFO(LOG_APP, "MyObject::Destructor called");
-     reinterpret_cast<MyObject*>(nativeObject)->~MyObject();
+     delete reinterpret_cast<MyObject*>(nativeObject);
    }
    
    napi_value MyObject::Init(napi_env env, napi_value exports)
@@ -155,12 +155,24 @@
    
        obj->env_ = env;
        // 通过napi_wrap将ArkTS对象jsThis与C++对象obj绑定
-       napi_wrap(env,
-                 jsThis,
-                 reinterpret_cast<void*>(obj),
-                 MyObject::Destructor,
-                 nullptr,  // finalize_hint
-                 &obj->wrapper_);
+       napi_status status = napi_wrap(env,
+                                      jsThis,
+                                      reinterpret_cast<void*>(obj),
+                                      MyObject::Destructor,
+                                      nullptr,  // finalize_hint
+                                      &obj->wrapper_);
+       // napi_wrap失败时，必须手动释放已分配的内存，以防止内存泄漏
+       if (status != napi_ok) {
+         OH_LOG_INFO(LOG_APP, "Failed to bind native object to js object"
+                     ", return code: %{public}d", status);
+         delete obj;
+         return jsThis;
+       }
+       // 从napi_wrap接口的result获取napi_ref的行为，将会为jsThis创建强引用，
+       // 若开发者不需要主动管理jsThis的生命周期，可直接在napi_wrap最后一个参数中传入nullptr，
+       // 或者使用napi_reference_unref方法将napi_ref转为弱引用。
+       uint32_t refCount = 0;
+       napi_reference_unref(env, obj->wrapper, &refCount);
    
        return jsThis;
      } else {
