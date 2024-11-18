@@ -57,7 +57,7 @@ Register a PIN inputer to transmit PIN data.
 1. Define a PIN inputer and obtain the PIN.
 
    ```ts
-   let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]); // you can obtain a PIN throught other ways.
+   let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]); // you can obtain a PIN through other ways.
    let inputer: osAccount.IInputer = {
      onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
        callback.onSetData(authSubType, pinData);
@@ -78,7 +78,7 @@ Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.
 
 **Procedure**
 
-1. Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
+Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
 
    ```ts
    let challenge: Uint8Array = await userIDM.openSession();
@@ -90,7 +90,7 @@ Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sy
 
 **Procedure**
 
-1. Defines the PIN authentication credential.
+1. Define the PIN authentication credential.
 
    ```ts
    let credentialInfo: osAccount.CredentialInfo = {
@@ -310,3 +310,4 @@ Use [closeSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys
 ```ts
 userIDM.closeSession();
 ```
+
