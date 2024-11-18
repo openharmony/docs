@@ -218,6 +218,95 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
+### on('windowRectChange')
+
+on(type: 'windowRectChange', callback: Callback<window.RectChangeOptions>): void
+
+Subscribes to EmbeddedComponent rectangle (position and size) change events.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name  | Type                          | Mandatory| Description                                                    |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | Yes  | Event type. The value is fixed at **'windowRectChange'**, indicating the EmbeddedComponent rectangle change event.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)>; | Yes  | Callback used to return the value and reason of the EmbeddedComponent rectangle change.                          |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This UIExtension window proxy state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // Subscribes to EmbeddedComponent rectangle (position and size) change events
+    extensionWindow.on('windowRectChange', (data: window.RectChangeOptions) => {
+        console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+    });
+  }
+}
+```
+
+### off('windowRectChange')
+
+off(type: 'windowRectChange', callback?: Callback<window.RectChangeOptions>): void
+
+Unsubscribes from EmbeddedComponent rectangle (position and size) change events.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name  | Type                          | Mandatory| Description                                                        |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | Yes  | Event type. The value is fixed at **'windowRectChange'**, indicating the EmbeddedComponent rectangle change event.    |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.RectChangeOptions](js-apis-window.md#rectchangeoptions12)> | No  | Callback used to return the value and reason of the EmbeddedComponent rectangle change. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This UIExtension window proxy state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
+
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // Unsubscribes from EmbeddedComponent rectangle (position and size) change events
+    extensionWindow.off('windowRectChange');
+  }
+}
+```
+
 ### createSubWindowWithOptions
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
