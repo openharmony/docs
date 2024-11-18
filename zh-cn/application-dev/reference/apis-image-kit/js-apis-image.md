@@ -3664,7 +3664,7 @@ setMemoryNameSync(name: string): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-async function Demo() {
+async function SetMemoryNameSync() {
   if (pixelMap != undefined) {
     try {
       pixelMap.setMemoryNameSync("PixelMapName Test");
