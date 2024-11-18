@@ -1,4 +1,4 @@
-# Setting User Agent
+# Setting UserAgent
 
 ## Default User Agent String
 
@@ -9,10 +9,14 @@ Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}) AppleWebKit/537.36 (KHTML, like
 | Field.              | Description              | Remarks              |
 | ------------------ | ------------------ | ------------------ |
 | deviceType         | Device type.          | Obtained through the mapping of the system parameter **const.product.devicetype**.|
-| OSName             | OS name of the distribution.| Obtained through the system parameter **const.product.os.dist.name**.|
-| OSVersion          | OS version of the distribution.| Obtained through parsing the system parameter <!--RP1-->**const.ohos.fullname**<!--RP1End-->.|
+| OSName             | OS name of the distribution.| Obtained by parsing the system parameter <!--RP1-->**const.product.os.dist.name**<!--RP1End-->.|
+| OSVersion          |OS version of the distribution.| Obtained by parsing the system parameter **const.ohos.fullname**.|
 | ArkWeb VersionCode | ArkWeb version.      |- |
 | Mobile (optional)    | Whether the device is a mobile phone.    |- |
+
+> **NOTE**
+>
+> - Currently, the **viewport** attribute of the **meta** tag on the frontend HTML page is enabled based on whether **UserAgent** contains the **Mobile** field. If **UserAgent** does not contain the **Mobile** field, the **viewport** attribute in the **meta** tag is disabled by default. In this case, you can explicitly set [metaViewport](../reference/apis-arkweb/ts-basic-components-web.md#metaviewport12) to **true** to enable the **viewport** attribute.
 
 Example:
 
@@ -22,7 +26,7 @@ You are advised to use the **ArkWeb** keyword to identify whether the device is 
 
 ## When to Use
 
-Use [getUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getuseragent) to obtain the default **UserAgent**, and you can customize the **UserAgent**.
+Example of using [getUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getuseragent) to obtain the default user agent, which can be customized:
 
 ```ts
 // xxx.ets
@@ -66,7 +70,7 @@ struct WebComponent {
   aboutToAppear(): void {
     webview.once('webInited', () => {
       try {
-        // Define a custom user agent on the application side.
+        // Customize a user agent on the application side.
         this.ua = this.controller.getUserAgent() + 'xxx';
         this.controller.setCustomUserAgent(this.ua);
       } catch (error) {
@@ -84,7 +88,7 @@ struct WebComponent {
 ```
 
 In the following example, the custom user agent set through [setCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#setcustomuseragent10) overwrites the user agent of the system.
-When the **src** of the **Web** component is set to a URL, you are advised to set **UserAgent** in **onControllerAttached**. For details, see the following example. You are not advised to set **UserAgent** in **onLoadIntercept**. Otherwise, the setting may fail occasionally. If **UserAgent** is not set in **onControllerAttached**, calling **setCustomUserAgent** may load a page that is inconsistent with the custom user agent.
+When **src** of the **Web** component is set to a URL, you are advised to set **UserAgent** in **onControllerAttached**. For details, see the following example. You are not advised to set **UserAgent** in **onLoadIntercept**. Otherwise, the setting may fail occasionally. If **UserAgent** is not set in **onControllerAttached**, calling **setCustomUserAgent** may load a page that is inconsistent with the custom user agent.
 When **src** of the **Web** component is set to an empty string, you are advised to call **setCustomUserAgent** to set **UserAgent** and then use **loadUrl** to load a specific page.
 
 ```ts
@@ -144,3 +148,4 @@ struct WebComponent {
   }
 }
 ```
+<!--RP3--><!--RP3End-->

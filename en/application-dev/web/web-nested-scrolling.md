@@ -1,9 +1,9 @@
 # Implementing Nested Scrolling
 
 There may be times when you want to implement nested scrolling for the **Web** component. A typical use case is a page that contains multiple scrollable areas including the **Web** component, whose scrolling is intrinsically linked with the scroll positions in other areas.
-If you opt to embed a **Web** component in a scroll container (such as [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) and [List](../reference/apis-arkui/arkui-ts/ts-container-list.md)) for nested scrolling, use the [NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11) enum of the ArkUI framework. You can specify the default nested scrolling mode through [nestedScroll](../reference/apis-arkweb/ts-basic-components-web.md#nestedscroll11) during creation of the **Web** component; this nested scrolling mode allows for dynamic changes.
+If you opt to embed a **Web** component in a scroll container (such as [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md) and [List](../reference/apis-arkui/arkui-ts/ts-container-list.md)) for nested scrolling, use the [NestedScrollMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) enum of the ArkUI framework. You can specify the default nested scrolling mode through [nestedScroll](../reference/apis-arkweb/ts-basic-components-web.md#nestedscroll11) during creation of the **Web** component; this nested scrolling mode allows for dynamic changes.
 
-**nestedScroll** is a [NestedScrollOptions](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrolloptions11) object that has two attributes: **scrollForward** and **scrollBackward**, both of which are [NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11) enum values.
+**nestedScroll** is a [NestedScrollOptions](../reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10) object that has two attributes: **scrollForward** and **scrollBackward**, both of which are [NestedScrollMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) enum values.
 
 When a **Web** component is nested in multiple scrollable containers, the offset and speed values that are not consumed by the **Web** component are passed to the parent container that is closest to the **Web** component in the same direction so that the parent container can continue to scroll. A swipe gesture can initiate scrolling along either the x-axis or y-axis. If the finger moves between the x-axis and y-axis, the scrolling occurs along the axis where the offset or speed has a larger absolute value. If the absolute values of the offset or speed on the x-axis and y-axis are the same, the scrolling occurs in the direction of the scrollable component closest to the **Web** component.
 
@@ -139,3 +139,4 @@ struct NestedScroll {
 ```
 
 ![web-nested-scrolling](figures/web-nested-scrolling.gif)
+<!--RP1--><!--RP1End-->
