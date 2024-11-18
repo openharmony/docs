@@ -18,7 +18,7 @@ import { Chip, ChipOptions, ChipSize } from '@kit.ArkUI';
 
 ## Chip
 
-Chip({options:ChipOptions})
+Chip({options:ChipOptions}): void
 
 **装饰器类型：**@Builder
 
