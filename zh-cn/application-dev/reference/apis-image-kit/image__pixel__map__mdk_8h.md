@@ -37,8 +37,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md#anonymous-enum-23) = 0,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md#anonymous-enum-23) = 1,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md#anonymous-enum-23) = 2,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md#anonymous-enum-23) = 3 } | PixelMap透明度类型的枚举。 | 
-| { [OHOS_PIXEL_MAP_READ_ONLY](image.md#anonymous-enum-23-1) = 0,<br/>[OHOS_PIXEL_MAP_EDITABLE](image.md#anonymous-enum-23-1) = 1 } | PixelMap编辑类型的枚举。 | 
+| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md#pixelmap透明度类型) = 0,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md#pixelmap透明度类型) = 1,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md#pixelmap透明度类型) = 2,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md#pixelmap透明度类型) = 3 } | PixelMap透明度类型的枚举。 | 
+| { [OHOS_PIXEL_MAP_READ_ONLY](image.md#pixelmap-编辑类型) = 0,<br/>[OHOS_PIXEL_MAP_EDITABLE](image.md#pixelmap-编辑类型) = 1 } | PixelMap编辑类型的枚举。 | 
 | [OH_PixelMap_AntiAliasingLevel](image.md#oh_pixelmap_antialiasinglevel) { <br/>OH_PixelMap_AntiAliasing_NONE = 0, <br/>OH_PixelMap_AntiAliasing_LOW = 1, <br/>OH_PixelMap_AntiAliasing_MEDIUM = 2, <br/>OH_PixelMap_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
 
 
