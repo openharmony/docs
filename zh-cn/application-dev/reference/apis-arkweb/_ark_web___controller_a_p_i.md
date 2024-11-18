@@ -76,8 +76,8 @@ void(* ArkWeb_ControllerAPI::destroyWebMessagePorts) (ArkWeb_WebMessagePortPtr *
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| Post | Message端口结构体指针数组。  | 
-| 端口数量。 |  | 
+| ports | Message端口结构体指针数组。  | 
+| size | 端口数量。 |  
 
 
 ### getLastJavascriptProxyCallingFrameUrl
