@@ -40,9 +40,9 @@
         - 线程间通信场景
             - [使用TaskPool执行独立的耗时任务](independent-time-consuming-task.md)
             - [使用TaskPool执行多个耗时任务](multi-time-consuming-tasks.md)
-            - [TaskPool任务与主线程通信](taskpool-communicates-with-mainthread.md)
-            - [Worker和主线程的即时消息通信](worker-communicates-with-mainthread.md)
-            - [Worker同步调用主线程的接口](worker-invoke-mainthread-interface.md)
+            - [TaskPool任务与宿主线程通信](taskpool-communicates-with-mainthread.md)
+            - [Worker和宿主线程的即时消息通信](worker-communicates-with-mainthread.md)
+            - [Worker同步调用宿主线程的接口](worker-invoke-mainthread-interface.md)
     - 应用多线程开发
         - [应用多线程开发概述](multithread-develop-overview.md)
         - 耗时任务并发场景

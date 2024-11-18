@@ -288,7 +288,7 @@ function testExecutePeriodically(args: number): void {
   while ((Date.now() - t) < args) {
     continue;
   }
-  taskpool.Task.sendData(args); // 向主线程发送消息
+  taskpool.Task.sendData(args); // 向宿主线程发送消息
 }
 
 function printResult(data: number): void {
@@ -933,7 +933,7 @@ export class DeriveClass extends BaseClass {
 <!--code_no_check-->
 ```ts
 // index.ets
-// 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
+// 宿主线程（这里的宿主线程为UI主线程）调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
 import { BaseClass, DeriveClass } from './sendable'
