@@ -52,7 +52,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ARKWEB_MEMBER_EXISTS](#arkweb_member_exists)(s, f)&nbsp;&nbsp;&nbsp;&nbsp;((intptr_t) &amp; ((s)-&gt;f) - (intptr_t)(s) + sizeof((s)-&gt;f) &lt;= \*reinterpret_cast&lt;size_t\*&gt;(s)) | 检查结构体中是否存在该成员变量。  | 
-| [ARKWEB_MEMBER_MISSING](#arkweb_member_missing)(s, f)&nbsp;&nbsp;&nbsp;(\![ARKWEB_MEMBER_EXISTS](#arkweb_member_exists)(s, f) \|\| !((s)-&gt;f)) | 当前结构体存在该成员变量则返回false，否则返回true。  | 
+| [ARKWEB_MEMBER_MISSING](#arkweb_member_missing)(s, f)&nbsp;&nbsp;&nbsp;(![ARKWEB_MEMBER_EXISTS](#arkweb_member_exists)(s, f) \|\| !((s)-&gt;f)) | 当前结构体存在该成员变量则返回false，否则返回true。  | 
 
 
 ### 类型定义
@@ -172,6 +172,7 @@
 | void [OH_NativeArkWeb_SetDestroyCallback](#oh_nativearkweb_setdestroycallback) (const char \*webTag, [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) callback) | 设置组件销毁时的回调函数。  | 
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取已注册的组件销毁时的回调函数。  | 
 
+
 ## 宏定义说明
 
 
@@ -197,7 +198,6 @@
 当前结构体存在该成员变量则返回false，否则返回true。
 
 **起始版本：** 12
-
 
 ## 类型定义说明
 
