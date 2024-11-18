@@ -6,6 +6,12 @@ The chip component is typically used in the search box history or email address 
 >
 > This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import { Chip, ChipOptions, ChipSize } from '@kit.ArkUI';
+```
+
 ## Child Components
 
 Not supported
@@ -44,13 +50,18 @@ Defines the type and style parameters of the chip.
 | label           | [LabelOptions](#labeloptions)                                | Yes  | Text of the chip.  |
 | suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | No  | Suffix icon of the chip.|
 | suffixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | No  | Symbol-type suffix icon of the chip.|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal').**|
+| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | No| Accessibility settings of the symbol-type suffix icon.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Background color of the chip.<br>Default value: **$r('sys.color.ohos_id_color_button_normal')**|
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | No  | Background color of the chip when it is activated.<br>Default value: **$r('sys.color.ohos_id_color_emphasize').**|
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | No  | Border radius of the chip. This parameter cannot be set in percentage.<br>Default value: **$r('sys.float.ohos_id_corner_radius_button')**|
-| allowClose      | boolean                                                      | No  | Whether to show the close icon.<br>Default value: **true** |
+| allowClose      | boolean                                                      | No  | Whether to show the close icon.<br>Default value: **true**|
 | onClose         | ()=>void                                                     | No  | Event triggered when the close icon is clicked.|
-| onClicked<sup>12+</sup>       | ()=>void                                       | No  | Event triggered when the chip is clicked.                                      |
+| onClicked<sup>12+</sup>       | Callback\<void> | No  | Event triggered when the chip is clicked.                                      |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**|
+| closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | No| Accessibility settings of the default close icon.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the chip.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the chip.<br>Default value: **"auto"**|
+| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | No| Type of selected state for the chip.|
 
 > **NOTE**
 >
@@ -60,13 +71,13 @@ Defines the type and style parameters of the chip.
 >
 > 3. Default font colors for **prefixSymbol** and **suffixSymbol**: **normalFontColor**: **[$r('sys.color.ohos_id_color_primary')]**; **activatedFontColor**: **[$r('sys.color.ohos_id_color_text_primary_contrary')]**. The default value of **fontColor** is **16**.
 >
-> 4. The default value of **fillColor** is **$r('sys.color.ohos_id_color_secondary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_primary')** for **suffixIcon**. The color parsing of **fillColor** is the same as that of the **\<Image>** component.
+> 4. The default value of **fillColor** is **$r('sys.color.ohos_id_color_secondary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_primary')** for **suffixIcon**. The color parsing of **fillColor** is the same as that of the **Image** component.
 >
-> 5. The default value of **activatedFillColor** is **$r('sys.color.ohos_id_color_text_primary_contrary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_text_primary_contrary')** for **suffixIcon**. The color parsing of **activatedFillColor** is the same as that of the **\<Image>** component.
+> 5. The default value of **activatedFillColor** is **$r('sys.color.ohos_id_color_text_primary_contrary')** for **prefixIcon** and **$r('sys.color.ohos_id_color_text_primary_contrary')** for **suffixIcon**. The color parsing of **activatedFillColor** is the same as that of the **Image** component.
 
 ## ChipSize
 
-Defines the size type of the chip.
+Enumerates the size types of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -77,9 +88,23 @@ Defines the size type of the chip.
 | NORMAL | "NORMAL" | Normal size.|
 | SMALL  | "SMALL"  | Small size. |
 
+## AccessibilitySelectedType<sup>14+</sup>
+
+Enumerates the selected state types of the chip.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| ---- | -- | ---- |
+| CLICKED | 0 | Default selected state type of the chip.|
+| CHECKED | 1 | Selected state type of the chip when used as a check box.|
+| SELECTED | 2 | Selected state type of the chip when used as a radio button.|
+
 ## IconCommonOptions
 
-Defines the common icon attributes of the chip.
+Defines the common icon options of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -99,9 +124,9 @@ Defines the common icon attributes of the chip.
 
 ## PrefixIconOptions
 
-Defines the attributes of the prefix icon.
+Defines the prefix icon options.
 
-Inherits from [IconCommonOptions](#iconcommonoptions).
+Inherits [IconCommonOptions](#iconcommonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -109,9 +134,9 @@ Inherits from [IconCommonOptions](#iconcommonoptions).
 
 ## SuffixIconOptions
 
-Defines the attributes of the suffix icon.
+Defines the suffix icon options.
 
-Inherits from [IconCommonOptions](#iconcommonoptions).
+Inherits [IconCommonOptions](#iconcommonoptions).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -120,10 +145,41 @@ Inherits from [IconCommonOptions](#iconcommonoptions).
 | Name  | Type      | Mandatory| Description              |
 | ------ | ---------- | ---- | ------------------ |
 | action | () => void | No  | Action of the suffix icon.|
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text of the suffix icon.|
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description of the suffix icon.|
+| accessibilityLevel<sup>14+</sup> | string | No| Accessibility level of the suffix icon.<br>Default value: **"auto"**|
+
+## AccessibilityOptions<sup>14+</sup>
+
+Defines the accessibility options of the suffix icon.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| ------ | ---------- | ---- | ------------------ |
+| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text.|
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility description.|
+| accessibilityLevel | string | No| Accessibility level.<br>Default value: **"auto"**|
+
+## ChipSuffixSymbolGlyphOptions<sup>14+</sup>
+
+Defines the accessibility options of the symbol-type suffix icon.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| ---- | ---- | --- | ---- |
+| action | [VoidCallback](ts-types.md#voidcallback12) | No| Action of the suffix icon.|
+| normalAccessibility | [AccessibilityOptions](#accessibilityoptions14) | No| Accessibility settings for the normal state.|
+| activatedAccessibility | [AccessibilityOptions](#accessibilityoptions14) | No| Accessibility settings for the activated state.|
 
 ## ChipSymbolGlyphOptions<sup>12+</sup>
 
-Defines the options for prefix and suffix icons.
+Defines the prefix and suffix icon options.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -141,7 +197,7 @@ Defines the options for prefix and suffix icons.
 
 ## LabelOptions
 
-Defines the text attributes of the chip.
+Defines the label options of the chip.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -156,6 +212,16 @@ Defines the text attributes of the chip.
 | fontFamily  | string                                     | No  | Font family.<br>Default value: **"HarmonyOS Sans"**|
 | labelMargin | [LabelMarginOptions](#labelmarginoptions)  | No  | Spacing between the text and the left and right icons.|
 | localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | No| Spacing between the localized text and the left and right icons.<br>Default value: {<br>start:  LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br>} |
+
+## CloseOptions<sup>14+</sup>
+
+Defines the accessibility settings of the close icon. The default value of **accessibilityText** is **Delete**.
+
+Inherits [AccessibilityOptions](#accessibilityoptions14).
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## LabelMarginOptions
 
@@ -471,3 +537,224 @@ struct ChipPage {
 
 
 ![](figures/chip6.png)
+
+### Example 7
+
+This example implements the accessibility feature for a chip with an image-type suffix icon.
+
+```ts
+
+import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Builder
+function DefaultFunction(): void {
+}
+
+@Component
+struct SectionGroup {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 4 }) {
+      Text(this.title)
+        .fontColor('#FF666666')
+        .fontSize(12)
+      Column({ space: 8 }) {
+        this.content()
+      }
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+  }
+}
+
+@Component
+struct SectionItem {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 12 }) {
+      Text(this.title)
+      this.content()
+    }
+    .backgroundColor('#FFFFFFFF')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
+  }
+}
+
+@Entry
+@Component
+struct ChipExample2 {
+  @State activated: boolean = false;
+
+  build() {
+    NavDestination() {
+      Scroll() {
+        SectionGroup({ title: 'Suffix icon readout' }) {
+          SectionItem({ title: 'Custom Readout' }) {
+            Chip({
+              label: { text: 'Chip' },
+              suffixIcon: {
+                src: $r('sys.media.ohos_ic_public_cut'),
+                accessibilityText: 'Icon',
+                accessibilityDescription: 'Speak usage hints',
+                action: () => {
+                  this.getUIContext().getPromptAction().showToast({
+                    message: 'Suffix icon touched.'
+                  });
+                }
+              },
+              onClicked: () => {
+                this.getUIContext().getPromptAction().showToast({
+                  message: 'Chip touched.'
+                });
+              }
+            })
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Example 8
+
+This example implements the accessibility feature for a chip with a symbol-type suffix icon.
+
+```ts
+
+import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Builder
+function DefaultFunction(): void {
+}
+
+@Component
+struct SectionGroup {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 4 }) {
+      Text(this.title)
+        .fontColor('#FF666666')
+        .fontSize(12)
+      Column({ space: 8 }) {
+        this.content()
+      }
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+  }
+}
+
+@Component
+struct SectionItem {
+  @Prop
+  @Require
+  title: ResourceStr;
+  @BuilderParam
+  @Require
+  content: () => void = DefaultFunction;
+
+  build() {
+    Column({ space: 12 }) {
+      Text(this.title)
+      this.content()
+    }
+    .backgroundColor('#FFFFFFFF')
+    .borderRadius(12)
+    .padding(12)
+    .width('100%')
+  }
+}
+
+@Entry
+@Component
+struct ChipExample2 {
+  @State activated: boolean = false;
+
+  build() {
+    NavDestination() {
+      Scroll() {
+          SectionGroup({ title: 'Suffix symbol readout' }) {
+            SectionItem({ title: 'activatedAccessibility' }) {
+              Chip({
+                label: { text: 'Chip' },
+                activated: true,
+                suffixSymbol: {
+                  activated: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
+                    .fontSize(72),
+                },
+                suffixSymbolOptions: {
+                  activatedAccessibility: {
+                    accessibilityText: 'Music',
+                    accessibilityDescription: 'Speak usage hints'
+                  },
+                  action: () => {
+                    this.getUIContext().getPromptAction().showToast({
+                      message: 'Suffix symbol touched.'
+                    });
+                  }
+                },
+                onClicked: () => {
+                  this.getUIContext().getPromptAction().showToast({
+                    message: 'Chip touched.'
+                  });
+                }
+              })
+            }
+            SectionItem({ title: 'normalAccessibility' }) {
+              Chip({
+                label: { text: 'Chip' },
+                suffixSymbol: {
+                  normal: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
+                    .fontSize(72),
+                },
+                suffixSymbolOptions: {
+                  normalAccessibility: {
+                    accessibilityText: 'Music',
+                    accessibilityDescription: 'Speak usage hints'
+                  },
+                  action: () => {
+                    this.getUIContext().getPromptAction().showToast({
+                      message: 'Suffix symbol touched.'
+                    });
+                  }
+                },
+                onClicked: () => {
+                  this.getUIContext().getPromptAction().showToast({
+                    message: 'Chip touched.'
+                  });
+                }
+              })
+            }
+          }
+        }
+      }
+      .padding({
+        top: 8,
+        bottom: 8,
+        left: 16,
+        right: 16,
+      })
+    }
+}
+```

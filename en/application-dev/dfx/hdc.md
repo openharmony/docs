@@ -97,17 +97,18 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
       vi ~/.zshrc
       ```
 
-2. Press **i** to enter **Insert** mode.
+2. Press **i** to enter **Insert** mode.<!--RP2-->
 
 3. Enter the following content and  add the SDK path to the **PATH**.
 
-   In the following example, the **toolchains** path of the local SDK is <!--RP1-->**/User/*username*/sdk/openharmony/10/toolchains**<!--RP1End-->.
+   In the following example, the **toolchains** path of the local SDK is **/User/*username*/sdk/openharmony/10/toolchains**.
 
    ```shell
    HDC_SDK_PATH=/User/username/sdk/openharmony/10/toolchains
    launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH # This command needs to be executed only on macOS.
    export PATH=$PATH:$HDC_SDK_PATH
    ```
+<!--RP2End-->
 
 4. Press **Esc** to exit **Insert** mode. Then enter **:wq** and press **Enter** to save the settings.
 

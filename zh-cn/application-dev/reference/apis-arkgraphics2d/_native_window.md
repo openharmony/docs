@@ -271,8 +271,8 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride，单位为Byte。 | 
 | SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。<br>从API version 14开始废弃，无替代接口。 | 
 | GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔， 函数中的可变参数是 [输出] int32_t \*interval。<br>从API version 14开始废弃，无替代接口。 | 
-| SET_TIMEOUT | 设置请求本地窗口缓冲区的超时等待时间， 函数中的可变参数是 [输入] int32_t timeout，单位为毫秒。 | 
-| GET_TIMEOUT | 获取请求本地窗口缓冲区的超时等待时间， 函数中的可变参数是 [输出] int32_t \*timeout，单位为毫秒。 | 
+| SET_TIMEOUT | 设置请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输入] int32_t timeout，单位为毫秒。 | 
+| GET_TIMEOUT | 获取请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输出] int32_t \*timeout，单位为毫秒。 | 
 | SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间， 函数中的可变参数是 [输入] int32_t colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
 | GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间， 函数中的可变参数是 [out int32_t \*colorGamut]，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
 | SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
@@ -285,7 +285,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 | 
 | SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
 | SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
-| SET_DESIRED_PRESENT_TIMESTAMP<sup>14+</sup> | 设置本地窗口缓冲区期望上屏时间的时间戳。 当且仅当RenderService为本地窗口的消费者时，该时间戳生效。 本操作执行后需要配合调用[OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer)生效。 生产者下一次放入队列的buffer，达到该期望上屏时间后，才会被RenderService消费并上屏。 如果buffer队列中存在多个生产者放入的buffer，都设置了desiredPresentTimestamp并已达到期望上屏时间，则较早入队的buffer将被消费者丢弃回队列。 如果期望上屏时间大于消费者提供的时间 1 秒以上，则该期望上屏时间戳将被忽略。 函数中的可变参数是 [输入] int64_t desiredPresentTimestamp，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。 | 
+| SET_DESIRED_PRESENT_TIMESTAMP<sup>13+</sup> | 设置本地窗口缓冲区期望上屏时间的时间戳。 当且仅当RenderService为本地窗口的消费者时，该时间戳生效。 本操作执行后需要配合调用[OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer)生效。 生产者下一次放入队列的buffer，达到该期望上屏时间后，才会被RenderService消费并上屏。 如果buffer队列中存在多个生产者放入的buffer，都设置了desiredPresentTimestamp并已达到期望上屏时间，则较早入队的buffer将被消费者丢弃回队列。 如果期望上屏时间大于消费者提供的时间 1 秒以上，则该期望上屏时间戳将被忽略。 函数中的可变参数是 [输入] int64_t desiredPresentTimestamp，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。 | 
 
 ### OHHDRMetadataKey
 

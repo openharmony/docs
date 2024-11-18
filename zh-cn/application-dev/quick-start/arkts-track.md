@@ -11,7 +11,7 @@
 
 ## 概述
 
-\@Track是class对象的属性装饰器。当一个class对象是状态变量时，@Track装饰的属性发生变化，只会触发该属性关联的UI更新；而未被标记的属性不能在UI中使用。
+\@Track是class对象的属性装饰器。当一个class对象是状态变量时，@Track装饰的属性发生变化，只会触发该属性关联的UI更新；而未被标记的属性不能在UI中使用，如果使用，会发生运行时报错。
 
 
 ## 装饰器说明
@@ -68,20 +68,20 @@ struct AddLog {
   build() {
     Row() {
       Column() {
-        Text(this.logTrack.str1) // UINode1
+        Text(this.logTrack.str1) // Text1
           .fontSize(this.isRender(1))
           .fontWeight(FontWeight.Bold)
-        Text(this.logTrack.str2) // UINode2
+        Text(this.logTrack.str2) // Text2
           .fontSize(this.isRender(2))
           .fontWeight(FontWeight.Bold)
         Button('change logTrack.str1')
           .onClick(() => {
             this.logTrack.str1 = 'Bye';
           })
-        Text(this.logNotTrack.str1) // UINode3
+        Text(this.logNotTrack.str1) // Text3
           .fontSize(this.isRender(3))
           .fontWeight(FontWeight.Bold)
-        Text(this.logNotTrack.str2) // UINode4
+        Text(this.logNotTrack.str2) // Text4
           .fontSize(this.isRender(4))
           .fontWeight(FontWeight.Bold)
         Button('change logNotTrack.str1')
@@ -98,16 +98,16 @@ struct AddLog {
 
 在上面的示例中：
 
-1. 类LogTrack中的属性均被@Track装饰器装饰，点击按钮"change logTrack.str1"，此时UINode1刷新，UINode2不刷新，只有一条日志输出，避免了冗余刷新。
-```ts
-Text 1 is rendered
-```
+1. 类LogTrack中的属性均被@Track装饰器装饰，点击按钮"change logTrack.str1"，此时Text1刷新，Text2不刷新，只有一条日志输出，避免了冗余刷新。
+    ```ts
+    Text 1 is rendered
+    ```
 
-2. 类logNotTrack中的属性均未被@Track装饰器装饰，点击按钮"change logNotTrack.str1"，此时UINode3、UINode4均会刷新，有两条日志输出，存在冗余刷新。
-```ts
-Text 3 is rendered
-Text 4 is rendered
-```
+2. 类logNotTrack中的属性均未被@Track装饰器装饰，点击按钮"change logNotTrack.str1"，此时Text3、Text4均会刷新，有两条日志输出，存在冗余刷新。
+    ```ts
+    Text 3 is rendered
+    Text 4 is rendered
+    ```
 
 ## 限制条件
 
@@ -154,7 +154,7 @@ struct AddLog {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            // The properties without @Track can be used in the event handler.
+            // 没有被@Track装饰的属性可以在点击事件中使用。
             console.log('owner: ' + this.log.owner +
               ' id: ' + this.log.id +
               ' time: ' + this.log.time +

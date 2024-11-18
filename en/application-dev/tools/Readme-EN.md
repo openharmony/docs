@@ -10,8 +10,12 @@
 - [Advanced Notification Manager](anm-tool.md)
 - [Enterprise Device Manager](edm-tool.md)
 - [restool](restool.md)<!--Del-->
-- [LLDB](lldb-tool.md)<!--DelEnd-->
+- [Low Level Debugger](lldb-tool.md)<!--DelEnd-->
 - [param](param-tool.md)
-- Command Line Utilities
+- [power-shell](power-shell.md)
+- [Access Token Manager](atm-tool.md)<!--Del-->
+- [Account Manager](acm-tool.md)<!--DelEnd-->
+- Command Line Tools
   - [Toybox](toybox.md)
   - [mediatool](mediatool.md)
+  - [devicedebug](devicedebug-tool.md)

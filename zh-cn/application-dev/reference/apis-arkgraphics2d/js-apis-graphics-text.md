@@ -8,6 +8,7 @@
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
+- [LineTypeset](#linetypeset14)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildlinetypeset14)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -20,6 +21,63 @@
 
 ```ts
 import { text } from '@kit.ArkGraphics2D';
+```
+
+## text.matchFontDescriptors<sup>14+</sup>
+
+matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
+
+根据指定的字体描述符返回所有符合要求的系统字体描述符，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| - | - | - | - |
+| desc | [FontDescriptor](#fontdescriptor14) | 是 | 指定需要用来做匹配的字体描述符，其中path字段不作为有效匹配字段，weight字段不填写时不生效，其他字段为非默认值时生效，如果所有字段都不填写或者是默认值，则返回所有的系统字体描述符。如果匹配失败，返回空数组。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| - | - |
+| Promise&lt;Array&lt;[FontDescriptor](#fontdescriptor14)&gt;&gt; | Promise对象，返回所有匹配到的系统字体描述符。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("font descriptor")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            console.info(`Get font descriptor start`)
+            let promise = text.matchFontDescriptors({
+              weight: text.FontWeight.W400,
+            })
+            promise.then((data) => {
+              console.info(`Font descriptor array size: ${data.length}`);
+              console.info(`Font descriptor result: ${JSON.stringify(data)}`)
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to match the font descriptor, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 ## TextAlign
@@ -295,6 +353,25 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
 | halfLeading    | boolean                                              | 是   | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
 
+## FontDescriptor<sup>14+</sup>
+
+字体描述符信息。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| - | - | -  | - | - |
+| path | string | 否 | 是 | 字体绝对路径，可取任意值，默认值为空字符串。 |
+| postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意值，默认值为空字符串。 |
+| fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
+| fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
+| fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。作为[matchFontDescriptors](#textmatchfontdescriptors14)接口入参使用时，不使用该字段视作该字段为默认值。 |
+| width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
+| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
+| monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
+| symbolic | boolean | 否 | 是 | 是否支持符号，true表示支持，false表示不支持，默认值为false。 |
+
 ## FontCollection
 
 字体管理器。
@@ -387,6 +464,54 @@ struct RenderTest {
 }
 ```
 
+### loadFont<sup>14+</sup>
+
+loadFont(name: string, path: string | Resource): Promise\<void>
+
+使用指定的别名和文件路径加载对应字体，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名 | 类型               | 必填 | 说明                              |
+|   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
+|   name   | string             | 是   | 该字体对应使用的别名，可填写任意值，可使用该别名指定并使用该字体。 |
+|   path   | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+let fontCollection: text.FontCollection = new text.FontCollection();
+
+@Entry
+@Component
+struct RenderTest {
+  async loadFontPromise() {
+    fontCollection.loadFont('testName', 'file:///system/fonts/a.ttf').then((data) => {
+      console.info(`Succeeded in doing loadFont ${JSON.stringify(data)} `);
+    }).catch((error: Error) => {
+      console.error(`Failed to do loadFont, error: ${JSON.stringify(error)} message: ${error.message}`);
+    });
+  }
+
+  aboutToAppear() {
+    this.loadFontPromise();
+  }
+
+  build() {
+  }
+}
+```
+
 ### clearCaches
 
 clearCaches(): void
@@ -421,14 +546,15 @@ struct Index {
 
 | 名称                 | 类型                                        | 只读 | 可选 | 说明                                          |
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
-| textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
+| textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的文本样式。|
 | textDirection        | [TextDirection](#textdirection)            | 是   | 是   | 文本方向，默认为LTR。                          |
-| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。                     |
+| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。当与制表符对齐方式同时配置时（即同时配置tab属性时），制表符对齐方式不生效。|
 | wordBreak            | [WordBreak](#wordbreak)                    | 是   | 是   | 断词类型，默认为BREAK_WORD。                    |
 | maxLines             | number                                     | 是   | 是   | 最大行数限制，整数，默认为1e9。                  |
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
+| tab<sup>14+</sup>   | [TextTab](#texttab14)  | 是   | 是   | 表示段落中文本制表符之后文本的对齐方式及位置，默认为将制表符替换为一个空格。与文本对齐方式（即align属性）或省略号样式（即[TextStyle](#textstyle)中的ellipsis属性）共同配置时，此参数不生效。 |
 
 
 ## PlaceholderAlignment
@@ -504,6 +630,104 @@ layoutSync(width: number): void
 ```ts
 paragraph.layoutSync(100);
 ```
+
+### layout<sup>14+</sup>
+
+layout(width: number): Promise\<void>
+
+进行排版，计算所有字形的位置，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名   |    类型               | 必填 | 说明                                    |
+|   -----   |   ------------------  | ---- | --------------------------------------- |
+|   width   | number                | 是   | 单行的最大宽度，取值范围为大于0的浮点数，单位为物理像素单位px。    |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { drawing, text } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit';
+
+let textStyle: text.TextStyle = {
+  color: {
+    alpha: 255,
+    red: 255,
+    green: 0,
+    blue: 0
+  },
+  fontSize: 30,
+};
+let paragraphStyle: text.ParagraphStyle = {
+  textStyle: textStyle,
+};
+let fontCollection: text.FontCollection = new text.FontCollection();
+let paragraphGraphBuilder = new text.ParagraphBuilder(paragraphStyle, fontCollection);
+// 添加文本字符串
+paragraphGraphBuilder.addText("test");
+// 生成排版对象
+let paragraph = paragraphGraphBuilder.build();
+
+function textFunc(pixelmap: PixelMap) {
+  // 通过图片对象构造画布
+  let canvas = new drawing.Canvas(pixelmap);
+  // 进行绘制文本字符串
+  paragraph.paint(canvas, 100, 10);
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixelmap?: PixelMap = undefined;
+  fun: Function = textFunc;
+
+  async prepareLayoutPromise() {
+    // 排版对象进行布局计算
+    paragraph.layout(200).then((data) => {
+      console.info(`Succeeded in doing layout,  ${JSON.stringify(data)}`);
+    }).catch((error: Error) => {
+      console.error(`Failed to do layout, error: ${JSON.stringify(error)} message: ${error.message}`);
+    });
+  }
+
+  aboutToAppear() {
+    this.prepareLayoutPromise();
+  }
+
+  build() {
+    Column() {
+      Image(this.pixelmap).width(200).height(200);
+      Button("layout")
+        .width(100)
+        .height(50)
+        .onClick(() => {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          if (this.pixelmap == undefined) {
+            // 构造图片对象
+            this.pixelmap = image.createPixelMapSync(color, opts);
+          }
+          // 进行绘制文字
+          this.fun(this.pixelmap);
+        })
+    }
+  }
+}
+```
+
+>**说明：**
+>
+>示意图展示了layout接口示例代码点击按钮之后的运行结果。
+>
+>![zh-ch_image_layout.png](figures/zh-ch_image_layout.png)
 
 ### paint
 
@@ -1008,6 +1232,87 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
+## LineTypeset<sup>14+</sup>
+
+保存着文本内容以及样式的载体，可以用于计算单行排版信息。
+
+下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset14)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
+
+### getLineBreak<sup>14+</sup>
+
+getLineBreak(startIndex: number, width: number): number
+
+计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | 是 | 开始计算排版的起始位置（包括起始位置）。取值范围需要为[0,文本字符总数）的整数，参数非法时抛出异常。|
+| width | number | 是   | 可用于排版的宽度，大于0的浮点数，单位为物理像素px。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| number | 返回在限定排版宽度的情况下，从指定位置处开始可以排版的字符总数，取值为整数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+```
+
+### createLine<sup>14+</sup>
+
+createLine(startIndex: number, count: number): TextLine
+
+根据指定的排版区间生成文本行对象。 
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | 是 | 开始计算排版的起始位置，整数，取值范围为[0, 文本字符总数)。|
+| count | number | 是   | 从指定排版起始位置开始进行排版的字符个数，取值为[0,文本字符总数)的整数，startIndex和count之和不能大于文本字符总数。当count为0时，表示指定的排版区间为[startIndex, 文本结尾]。可以先使用[getLineBreak](#getlinebreak14)获得合理的可用于进行排版的字符总数。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| [TextLine](#textline) | 根据文本区间字符生成的TextLine对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+let line : text.TextLine = lineTypeset.createLine(startIndex, count);
+```
+
 ## RunMetrics
 
 描述文本行中连续文本块的布局信息和度量数据。
@@ -1371,18 +1676,67 @@ import { drawing, text, common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit';
 
 function textFunc() {
+  let myTextStyle: text.TextStyle = {
+    color : {alpha: 255, red: 255, green: 0, blue: 0},
+    fontSize : 20,
+  };
   let myParagraphStyle: text.ParagraphStyle = {
-    align: text.TextAlign.END,
+    textStyle : myTextStyle,
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addText("123456789");
   let paragraph = ParagraphGraphBuilder.build();
+  paragraph.layoutSync(200);
 }
 
 @Entry
 @Component
 struct Index {
   fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### buildLineTypeset<sup>14+</sup>
+
+buildLineTypeset(): LineTypeset
+
+构建生成一个行排版器。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                     | 说明                           |
+| ------------------------ | ------------------------------ |
+| [LineTypeset](#linetypeset14)  | 可用于行排版的LineTypeset对象。|
+
+**示例：**
+
+```ts
+import { text } from '@kit.ArkGraphics2D'
+
+function test() {
+  let myParagraphStyle: text.ParagraphStyle = {
+    align: text.TextAlign.JUSTIFY,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addText("123456789");
+  let lineTypeset = ParagraphGraphBuilder.buildLineTypeset();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = test;
   build() {
     Column() {
       Button().onClick(() => {
@@ -1441,12 +1795,59 @@ struct Index {
 }
 ```
 
+## TypographicBounds<sup>14+</sup>
+
+文本行的排版边界。文本行排版边界与排版字体、排版字号有关，与字符本身无关，例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，排版边界就包括行首和末尾空格的边界。例如字符串为"j"或"E"，排版边界相同，即与字符本身无关。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| - | - | - | - | - |
+| ascent | number | 是 | 否 | 文本行的上升高度，浮点数。 |
+| descent | number | 是 | 否 | 文本行的下降高度，浮点数。 |
+| leading | number | 是 | 否 | 文本行的行间距，浮点数。 |
+| width | number | 是 | 否 | 排版边界的总宽度，浮点数。 |
+
+>**说明：**
+>
+>示意图展示了ascent、descent、leading、top、baseline、bottom、next line top的含义。width为文本行排版包括左右空格的宽度。top为文本行的最高点，baseline为字符基线，bottom为文本行的最低点，next line top为下一个文本行的最高点。
+>
+>![zh-ch_image_Typographic.png](figures/zh-ch_image_Typographic.png)
+>
+>示意图展示了字符串为" a b "的排版边界。
+>
+>![zh-ch_image_TypographicBounds.png](figures/zh-ch_image_TypographicBounds.png)
+>
+>示意图展示了字符串为"j"或"E"的排版边界。
+>
+>![zh-ch_image_TypographicBounds_Character.png](figures/zh-ch_image_TypographicBounds_Character.png)
+
+## CaretOffsetsCallback<sup>14+</sup>
+
+type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean) => boolean
+
+将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| - | - | - | - |
+| offset | number | 是 | 文本行中每个字符的偏移量，浮点数。 |
+| index | number | 是 | 文本行中每个字符的索引值，整数。 |
+| leadingEdge | boolean | 是 | 光标是否位于字符的前缘，true表示位于字符前缘，即偏移量不包含该字符宽度，false表示位于字符后缘，即偏移量包含该字符宽度。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| - | - |
+| boolean | 表示是否停止调用该回调函数，true表示停止调用该回调函数，false表示继续调用该回调函数。 |
+
 ## TextLine
 
 描述段落基础文本行结构的载体。
 
-下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口获取到TextLine对象实例，再通过此实例调用对应方法。
-
+下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset14)类的[createLine()](#createline14)接口获取到TextLine对象实例，再通过此实例调用对应方法。
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -1488,7 +1889,7 @@ struct Index {
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。
+获取该文本行中的文本在整个段落文本中的索引区间。使用[LineTypeset](#linetypeset14)类的[creatLine](#createline14)方法创建的[TextLine](#textline)对象属于一个内部的临时对象，通过该对象调用[getTextRange](#gettextrange)方法返回的索引区间是相对于临时的[Paragraph](#paragraph)对象的区间，该临时对象在下一次调用[creatLine](#createline14)方法时会自动销毁。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1582,12 +1983,422 @@ import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
 import { image } from '@kit.ImageKit';
 
-function textFunc() {
-  const color: ArrayBuffer = new ArrayBuffer(160000);
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
-  let pixelMap: image.PixelMap = image.createPixelMapSync(color, opts);
-  let canvas = new drawing.Canvas(pixelMap);
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
   lines[0].paint(canvas, 0, 0);
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixelmap?: PixelMap = undefined;
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Image(this.pixelmap).width(200).height(200);
+      Button().onClick(() => {
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
+      })
+    }
+  }
+}
+```
+
+### createTruncatedLine<sup>14+</sup>
+
+createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string): TextLine
+
+创建一个截断的文本行对象。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -| - | - | - |
+| width | number | 是 | 截断后的行宽度，浮点数。|
+| ellipsisMode | [EllipsisMode](#ellipsismode) | 是 | 截断的类型。|
+| ellipsis | string | 是 | 截断的标记字符串。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| [TextLine](#textline)  | 截断的文本行对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit';
+
+function textFunc(pixelmap: PixelMap) {
+  let canvas = new drawing.Canvas(pixelmap);
+  let truncatedTextLine = lines[0].createTruncatedLine(100, text.EllipsisMode.START, "...");
+  truncatedTextLine.paint(canvas, 0, 100);
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixelmap?: PixelMap = undefined;
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Image(this.pixelmap).width(200).height(200);
+      Button().onClick(() => {
+        if (this.pixelmap == undefined) {
+          const color: ArrayBuffer = new ArrayBuffer(160000);
+          let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 } }
+          this.pixelmap = image.createPixelMapSync(color, opts);
+        }
+        this.fun(this.pixelmap);
+      })
+    }
+  }
+}
+```
+
+### getTypographicBounds<sup>14+</sup>
+
+getTypographicBounds(): TypographicBounds
+
+获取文本行的排版边界。文本行排版边界与排版字体、排版字号有关，与字符本身无关。例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，排版边界就包括行首和末尾空格的边界。例如字符串为"j"或"E"，排版边界相同，即与字符本身无关。
+
+>**说明：**
+>
+>示意图展示了字符串为" a b "的排版边界。
+>
+>![zh-ch_image_TypographicBounds.png](figures/zh-ch_image_TypographicBounds.png)
+>
+>示意图展示了字符串为"j"或"E"的排版边界。
+>
+>![zh-ch_image_TypographicBounds_Character.png](figures/zh-ch_image_TypographicBounds_Character.png)
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型 | 说明  |
+| -| - |
+| [TypographicBounds](#typographicbounds14) | 文本行的排版边界。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let bounds = lines[0].getTypographicBounds();
+  console.info('textLine ascent:' + bounds.ascent + ', descent:' + bounds.descent + ', leading:' + bounds.leading + ', width:' + bounds.width);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getImageBounds<sup>14+</sup>
+
+getImageBounds(): common2D.Rect
+
+获取文本行的图像边界。文本行图像边界与排版字体、排版字号、字符本身都有关，相当于视觉边界。例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，用户在界面上只能看到"a b"，图像边界即为不包括带行首和末尾空格的边界。例如字符串为"j"或"E"，视觉边界不同，即与字符本身有关，"j"字符串的视觉边界宽度小于"E"字符串的视觉边界宽度，"j"字符串的视觉边界高度大于"E"字符串的视觉边界高度。
+
+>**说明：**
+>
+>示意图展示了字符串为" a b "的图像边界。
+>
+>![zh-ch_image_ImageBounds.png](figures/zh-ch_image_ImageBounds.png)
+>
+>示意图展示了字符串为"j"或"E"的图像边界。
+>
+>![zh-ch_image_ImageBounds_Character.png](figures/zh-ch_image_ImageBounds_Character.png)
+
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| [common2D.Rect](js-apis-graphics-common2D.md#rect)  | 文本行的图像边界。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let imageBounds = lines[0].getImageBounds();
+  console.info('textLine left:' + imageBounds.left + ', top:' + imageBounds.top + ', right:' + imageBounds.right + ', bottom:' + imageBounds.bottom);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getTrailingSpaceWidth<sup>14+</sup>
+
+getTrailingSpaceWidth(): number
+
+获取文本行尾部空白字符的宽度。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| number | 文本行尾部空白字符的宽度，浮点数。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let trailingSpaceWidth = lines[0].getTrailingSpaceWidth();
+  console.info('textLine trailingSpaceWidth:' + trailingSpaceWidth);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getStringIndexForPosition<sup>14+</sup>
+
+getStringIndexForPosition(point: common2D.Point): number
+
+获取给定位置在文本行中对应的字符串索引。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -| - | - | - |
+| point | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是 | 要查找索引的位置。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| number | 给定位置在文本行中对应的字符串索引，整数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let point : common2D.Point = { x: 15.0, y: 2.0 };
+  let index = lines[0].getStringIndexForPosition(point);
+  console.info('textLine getStringIndexForPosition(15.0, 2.0):' + index);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getOffsetForStringIndex<sup>14+</sup>
+
+getOffsetForStringIndex(index: number): number
+
+获取文本行中给定字符串索引处的偏移量。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -| - | - | - |
+| index | number | 是 | 要获取偏移量的字符串索引，整数。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| number | 给定字符串索引处的偏移量，浮点数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let offset = lines[0].getOffsetForStringIndex(3);
+  console.info('textLine getOffsetForStringIndex(3):' + offset);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### enumerateCaretOffsets<sup>14+</sup>
+
+enumerateCaretOffsets(callback: CaretOffsetsCallback): void
+
+枚举文本行中每个字符的偏移量和索引值。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -| - | - | - |
+| callback | [CaretOffsetsCallback](#caretoffsetscallback14) | 是 | 用户自定义函数。将文本行中枚举的每个字符偏移量、索引值作为参数的回调方法 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function callback(offset: number, index: number, leadingEdge: boolean): boolean {
+  console.info('textLine: offset: ' + offset + ', index: ' + index + ', leadingEdge: ' + leadingEdge);
+  return index > 50;
+}
+
+function textFunc() {
+  lines[0].enumerateCaretOffsets(callback);
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getAlignmentOffset<sup>14+</sup>
+
+getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
+
+获取文本行根据对齐因子和对齐宽度计算对齐后所需的偏移量。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -| - | - | - |
+| alignmentFactor | number | 是 | 对齐因子，即对齐的程度，浮点数。小于等于0.0表示左对齐，大于0.0小于0.5表示偏左对齐，0.5表示居中对齐，大于0.5小于1.0表示偏右对齐，大于等于1.0表示右对齐。|
+| alignmentWidth | number | 是 | 对齐宽度，即文本行的宽度，浮点数。如果小于文本行的实际宽度，则返回0。|
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| number | 计算得到的对齐所需偏移量，浮点数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let alignmentOffset = lines[0].getAlignmentOffset(0.5, 500);
+  console.info('textLine getAlignmentOffset(0.5, 500):' + alignmentOffset);
 }
 
 @Entry
@@ -1841,3 +2652,28 @@ struct Index {
   }
 }
 ```
+
+## TextTab<sup>14+</sup>
+
+段落风格的文本制表符，储存了对齐方式和位置。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称               | 类型                    | 只读 | 可选 | 说明                                               |
+| -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
+| alignment          | [TextAlign](#textalign) | 是   |  否  | 段落中制表符之后的文本对齐方式，支持设置[TextAlign](#textalign)的LEFT左对齐、RIGHT右对齐和CENTER居中对齐方式，其他枚举值为左对齐效果，默认为左对齐效果。 |
+| location           | number                  | 是   |  否  | 制表符之后的文本对齐位置，浮点数，单位为物理像素px，最小值为1.0，当该值小于1.0时，该制表符会被替换为一个空格。 |
+
+**示例：**
+
+alignment为CENTER，location为200，文本为"12/t345"：
+
+![zh-ch_image_AlignmentCenter.png](figures/zh-ch_image_AlignmentCenter.png)
+
+alignment为LEFT，location为100，文本为"abccccccccc/tdef"：
+
+![zh-ch_image_AlignmentLeft.png](figures/zh-ch_image_AlignmentLeft.png)
+
+alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
+
+![zh-ch_image_AlignmentRight.png](figures/zh-ch_image_AlignmentRight.png)

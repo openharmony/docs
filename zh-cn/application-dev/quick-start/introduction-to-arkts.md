@@ -1261,6 +1261,52 @@ let map: Record<string, PersonInfo> = {
 }
 ```
 
+### 抽象类 
+
+带有修饰符abstract的类称为抽象类。抽象类可用于表示一组更具体的概念所共有的概念。
+
+如果尝试创建抽象类的实例，则会发生编译时的错误：
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  //编译时错误：不能创建抽象类的具体实例
+```
+
+抽象类的子类可以是抽象类也可以是非抽象类。抽象父类的非抽象子类可以实例化。因此，执行抽象类的构造函数和该类非静态字段的字段初始化器：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) { 
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### 抽象方法
+
+带有abstract修饰符的方法称为抽象方法，抽象方法可以被声明但不能被实现。
+
+只有抽象类内才能有抽象方法，如果非抽象类具有抽象方法，则会发生编译时错误：
+
+```typescript
+class Y {
+  abstract method(p: string)  //编译时错误：抽象方法只能在抽象类内。
+}
+```
+
 ## 接口
 
 接口声明引入新类型。接口是定义代码协定的常见方式。

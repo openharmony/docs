@@ -72,7 +72,7 @@
 
 5. 开始录像。
    
-   通过videoOutput的OH_VideoOutput_Start()方法启动录像输出流。
+   通过videoOutput的[OH_VideoOutput_Start()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_start)方法启动录像输出流。
 
    ```c++
       // 启动录像输出流
@@ -84,7 +84,7 @@
 
 6. 停止录像。
      
-   通过videoOutput的OH_VideoOutput_Stop()方法停止录像输出流。
+   通过videoOutput的[OH_VideoOutput_Stop()](../../reference/apis-camera-kit/_o_h___camera.md#oh_videooutput_stop)方法停止录像输出流。
 
    ```c++
       // 停止录像输出流

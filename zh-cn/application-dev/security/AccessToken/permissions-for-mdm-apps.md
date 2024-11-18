@@ -225,7 +225,7 @@
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-允许在企业设备上安装企业MDM应用包
+允许在企业设备上安装企业MDM应用包。
 
 **权限级别**：system_core
 
@@ -238,7 +238,7 @@
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-允许企业MDM应用在企业设备上自升级
+允许企业MDM应用在企业设备上自升级。
 
 **权限级别**：system_core
 
@@ -279,7 +279,7 @@
 
 允许应用下发文件管控策略。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -287,12 +287,14 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
+
+**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
 
 ## ohos.permission.FILE_GUARD_MANAGER
 
 允许应用进行公共目录扫描及设置文件扩展属性。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -300,6 +302,8 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
+
+**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 

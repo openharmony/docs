@@ -123,7 +123,7 @@ try {
 
 ## access.on('stateChange')<a name="stateChange"></a>
 
-on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
+on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
 Subscribes to Bluetooth state changes. This API uses an asynchronous callback to return the result.
 
@@ -168,7 +168,7 @@ try {
 
 ## access.off('stateChange')
 
-off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
+off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 Unsubscribes from Bluetooth state changes.
 

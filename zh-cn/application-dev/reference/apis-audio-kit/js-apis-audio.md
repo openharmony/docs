@@ -82,7 +82,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 0
 };
 
@@ -135,7 +135,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 0
 };
 
@@ -164,7 +164,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **需要权限：** ohos.permission.MICROPHONE
 
-当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
@@ -215,7 +215,7 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **需要权限：** ohos.permission.MICROPHONE
 
-当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
@@ -753,6 +753,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
+## DeviceBlockStatusInfo<sup>13+</sup>
+
+描述音频设备被堵塞状态和设备信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                              | 必填 | 说明               |
+| :---------------- | :------------------------------------------------ | :--- | :----------------- |
+| blockStatus       | [DeviceBlockStatus](#deviceblockstatus13)           | 是   | 音频设备堵塞状态。 |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
+
 ## ChannelBlendMode<sup>11+</sup>
 
 枚举，声道混合模式类型。
@@ -805,6 +816,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | CONNECT    | 0    | 设备连接。     |
 | DISCONNECT | 1    | 断开设备连接。 |
 
+## DeviceBlockStatus<sup>13+</sup>
+
+枚举，表示音频设备是否被堵塞。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 值   | 说明           |
+| :--------- | :--- | :------------- |
+| UNBLOCKED  | 0    | 音频设备正常。    |
+| BLOCKED    | 1    | 音频设备被堵塞。 |
+
 ## AudioCapturerOptions<sup>8+</sup>
 
 音频采集器选项信息。
@@ -838,6 +860,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
@@ -4203,6 +4226,107 @@ try {
 }
 ```
 
+### isMicBlockDetectionSupported<sup>13+</sup>
+
+isMicBlockDetectionSupported(): Promise&lt;boolean&gt;
+
+获取当前设备是否支持麦克风状态检测，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象，返回当前设备是否支持堵麦回调注册状态，true为支持，false为不支持。 |
+
+**示例：**
+
+```ts
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+});
+```
+
+### on('micBlockStatusChanged')<sup>13+</sup>
+
+on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): void
+
+监听音频麦克风是否被堵塞变化事件。在使用此功能之前，用户应查询当前设备是否支持检测，应用只有在使用麦克风录音时，并且所使用的麦克风的堵塞状态发生改变，
+才会收到回调，目前此检测功能仅支持麦克风位于本地设备上，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 是   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+let blockMic: boolean = audioRoutingManager.isMicBlockDetectionSupported()
+if (blockMic == true) {
+  audioRoutingManager.on('micBlockStatusChanged', async(deviceBlockStatusInfo: ESObject) =>{
+  if (deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.Blocked ||
+    deviceBlockStatusInfo.DeviceBlockStatus == audioRoutingManager.blocksStatus.UNBlocked) {
+    console.info(`${Tag}: on_micBlockStatusChanged: SUCCESS`);
+  })
+}
+```
+
+### off('micBlockStatusChanged')<sup>13+</sup>
+
+off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>): void
+
+取消监听音频麦克风是否被堵塞变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 监听事件，固定为：'micBlockStatusChanged'。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 否   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听
+audioRoutingManager.off('micBlockStatusChanged');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+  console.info(`device descriptor size : ${micBlockStatusChanged.deviceDescriptors.length} `);
+  console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+};
+
+audioRoutingManager.on('micBlockStatusChanged', micBlockStatusCallback);
+
+audioRoutingManager.off('micBlockStatusChanged', micBlockStatusCallback);
+```
+
 ### on('deviceChange')<sup>9+</sup>
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
@@ -5337,7 +5461,7 @@ function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
 
 let deviceRoleValue: audio.DeviceRole | undefined = undefined;
 let deviceTypeValue: audio.DeviceType | undefined = undefined;
-audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors) => {
+audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != undefined && deviceRoleValue != undefined){

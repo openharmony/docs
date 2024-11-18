@@ -57,3 +57,77 @@ Unsupported operation. The current device does not support port role switching.
 **处理步骤**
 
 使用正确的端口角色。
+
+## 14400004 服务异常
+
+**错误信息**
+
+Service exception. Possible causes: No accessory is plugged in.
+
+**错误描述**
+
+服务异常。
+
+**可能原因：**
+
+没有配件插入。
+
+**处理步骤**
+
+插入配件。
+
+## 14400005 数据库操作异常
+
+**错误信息**
+
+Database operation exception.
+
+**错误描述**
+
+数据库操作异常。
+
+**处理步骤**
+
+尝试重新调用接口。
+
+## 14401001 目标USB配件未匹配
+
+**错误信息**
+
+The target USBAccessory not matched.
+
+**错误描述**
+
+目标USB配件未匹配。
+
+**处理步骤**
+
+通过getAccessoryList获得配件列表，使用匹配的USBAccessory重新操作。
+
+## 14401002 打开配件节点失败
+
+**错误信息**
+
+Failed to open the native accessory node.
+
+**错误描述**
+
+打开配件节点失败。
+
+**处理步骤**
+
+尝试重新调用接口。
+
+## 14401003 不能重复打开配件
+
+**错误信息**
+
+Cannot reopen the accessory.
+
+**错误描述**
+
+不能重复打开配件。
+
+**处理步骤**
+
+配件已被打开，继续执行后续开发操作。

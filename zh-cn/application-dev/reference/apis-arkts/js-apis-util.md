@@ -4118,6 +4118,7 @@ isGeneratorFunction(value: Object): boolean
   export function* foo() {}
   ```
 
+  <!--code_no_check-->
   ```ts
   import { foo } from './test'
 
@@ -4158,6 +4159,7 @@ isGeneratorObject(value: Object): boolean
   export const generator = foo();
   ```
 
+  <!--code_no_check-->
   ```ts
   import { generator } from './test'
 
@@ -4621,6 +4623,7 @@ isSymbolObject(value: Object): boolean
   export const symbols = Symbol('foo');
   ```
 
+  <!--code_no_check-->
   ```ts
   import { symbols } from './test'
 
@@ -4953,6 +4956,7 @@ isModuleNamespaceObject(value: Object): boolean
   }
   ```
 
+  <!--code_no_check-->
   ```ts
   import * as nameSpace from './test';
 

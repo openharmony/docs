@@ -1,6 +1,6 @@
 # Permissions for System Applications
 
-Before requesting permissions for your application, read and understand the [Workflow for Using Permissions](determine-application-mode.md) and this topic to determine the permissions required.
+Before requesting permissions for your application, read and understand the [Workflow for Requesting Permissions](determine-application-mode.md) and this topic to determine the permissions required.
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ Before requesting permissions for your application, read and understand the [Wor
 
 The following lists the system_grant permissions that can be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.PRE_START_ATOMIC_SERVICE
 
@@ -24,6 +24,18 @@ Allows a window to be displayed with animation for an atomic service without the
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+Allows a system application to set the keep-alive flag for other applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
 
 ### ohos.permission.ACCESS_BBOX_DIR
 
@@ -3991,11 +4003,37 @@ Allows an application or a service to initiate user identity authentication from
 
 **Valid since**: 13
 
+### ohos.permission.ACCESS_MCU_LOG_DIR
+
+Allows a system application to access the microcontroller unit (MCU) log directory.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_VIRTUAL_KEYBOARD
+
+Allows an application to update the virtual keyboard status or a service to query the virtual keyboard status.
+
+With this permission, the application can update the virtual keyboard status, and the service can query the virtual keyboard status. Currently, this permission is available only to 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -4237,11 +4275,59 @@ Allows an application to access Super Hub.
 
 **Valid since**: 12
 
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+Allows an application to create or remove the recovery key.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+Allows an application to utilize the recovery key to reset the lock screen password or restore user data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+Allows an application to obtain brief information of the recovery key.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
+### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
+
+Allows an UIExtensionAbility to be displayed on the locked screen.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 14
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
 
-For details about the process for requesting permissions, see [Workflow for Using Permissions](determine-application-mode.md).
+For details about the process for requesting permissions, see [Workflow for Requesting Permissions](determine-application-mode.md).
 
 ### ohos.permission.READ_AUDIO
 

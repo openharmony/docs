@@ -126,7 +126,7 @@
 | int [OH_Rdb_SetDbType](#oh_rdb_setdbtype) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int dbType) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)，设置数据库类型[Rdb_DBType](#rdb_dbtype)。 | 
 | const int \* [OH_Rdb_GetSupportedDbType](#oh_rdb_getsupporteddbtype) (int \*typeCount) | 获得支持的数据库类型[Rdb_DBType](#rdb_dbtype)。 | 
 | [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, int \*errCode) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2), 获得一个对应的[OH_Rdb_Store](_o_h___rdb___store.md)实例，用来操作关系型数据库。 | 
-| int [OH_Rdb_DeleteStoreV2](#oh_rdb_deletestorev2) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)删除数据库。 | 
+| int [OH_Rdb_DeleteStoreV2](#oh_rdb_deletestorev2) (const [OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config) | 使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)删除数据库。当使用向量数据库时，在调用接口前，应当确保向量数据库已经被正确关闭。 | 
 | int [OH_Rdb_ExecuteByTrxId](#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | 使用指定的事务ID执行无返回值的SQL语句。 | 
 | int [OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | 在开始执行SQL语句之前，开始事务, 并获得该事务的ID。 | 
 | int [OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | 使用指定的事务ID, 回滚已经执行的SQL语句。 | 
@@ -1143,7 +1143,7 @@ int OH_Rdb_DeleteStoreV2 (const OH_Rdb_ConfigV2 *config)
 
 **描述**
 
-使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)删除数据库。
+使用指定的数据库文件配置[OH_Rdb_ConfigV2](#oh_rdb_configv2)删除数据库。当使用向量数据库时，在调用接口前，应当确保向量数据库已经被正确关闭。
 
 **起始版本：** 14
 

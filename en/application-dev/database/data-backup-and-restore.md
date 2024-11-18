@@ -10,7 +10,7 @@ You may need to restore a database in any of the following cases:
 - The database is unavailable due to data loss or corruption, or dirty data.
 
 
-Both KV stores and RDB stores support database backup and restore. In addition, KV stores allow you to delete database backups to release local storage space.
+Both KV stores and RDB stores support database backup and restore. You can also delete KV store backups to release local storage space.
 
 
 ## Backing Up, Restoring, and Deleting a KV Store
@@ -161,13 +161,88 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
+## Backing Up an RDB Store
 
-## Backing Up and Restoring an RDB Store
+A database backup can be used to quickly restore a corrupted RDB store.
 
-You can use **backup()** to back up an RDB store, and use **restore()** to restore an RDB store. For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
+Two backup modes are available: manual backup and automatic backup. Automatic backup is available only for system applications.
 
-1. Use **getRdbStore()** to create an RDB store.
-     
+### Manual Backup
+
+Use [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup) to manually back up an RDB store. <br>Example:
+
+   ```ts
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo } from '@kit.CoreFileKit';
+   
+   let store: relationalStore.RdbStore | undefined = undefined;
+
+   let context = getContext(this);
+
+   const STORE_CONFIG: relationalStore.StoreConfig = {
+     name: 'RdbTest.db',
+     securityLevel: relationalStore.SecurityLevel.S3,
+     allowRebuild: true
+   };
+   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
+     store = rdbStore;
+     if (err) {
+       console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
+       return;
+     }
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+     })
+     console.info('Succeeded in getting RdbStore.');
+
+     // Backup.db indicates the name of the database backup file. By default, it is in the same directory as the RdbStore file. You can also specify the directory in the customDir + backup.db format.
+     (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+           return;
+        }
+        console.info(`Succeeded in backing up RdbStore.`);
+     })
+   })
+   ```
+
+<!--Del-->
+
+### Automatic Backup (for System Applications Only)
+
+To implement hot backup of an RDB store, set **haMode** in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#storeconfig) to **MAIN_REPLICA**. This parameter is available only for system applications. <br>Example:
+
+   ```ts
+   // Set haMode to MAIN_REPLICA.
+   const AUTO_BACKUP_CONFIG :relationalStore.StoreConfig = {
+     name: "BackupResotreTest.db",
+     securityLevel: relationalStore.SecurityLevel.S3,
+     haMode: relationalStore.HAMode.MAIN_REPLICA, // Data is written to the main and replica stores on a real-time basis.
+     allowRebuild: true
+   }
+
+   // Use getRdbStore() to create an RDB store instance.
+   relationalStore.getRdbStore(context, AUTO_BACKUP_CONFIG, (err, store) => {
+     if (err) {
+       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+       return;
+     }
+     console.info('Succeeded in getting RdbStore.');
+   })
+   ```
+
+<!--DelEnd-->
+
+## Rebuilding an RDB Store
+
+If error code 14800011 is reported during the creation or use of an RDB store, the database is corrupted. If this occurs, you can rebuild the RDB store and restore data from a backup.
+
+To enable automatic rebuild of an RDB store, set **allowRebuild** in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig) to **true**. The newly rebuilt RDB store is empty. You need to create tables and restore data from the database backup. For details about how to back up RDB store data, see [Backing Up an RDB Store](#backing-up-an-rdb-store). For details about how to restore RDB store data, see [Restoring RDB Store Data](#restoring-rdb-store-data).
+
+If **allowRebuild** in **StoreConfig** is set to **true** before the database is corrupted, the database will be automatically rebuilt when corrupted.
+
+If **allowRebuild** in **StoreConfig** is not set or is set to **false**, set **allowRebuild** to **true** and open the rebuilt RDB store. <br>Example:
+
    ```ts
    import { relationalStore } from '@kit.ArkData';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -178,7 +253,8 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
 
    const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db',
-     securityLevel: relationalStore.SecurityLevel.S3
+     securityLevel: relationalStore.SecurityLevel.S3,
+     allowRebuild: true
    };
    relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
      store = rdbStore;
@@ -192,85 +268,137 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    })
    ```
 
-2. Use **insert()** to insert data to the RDB store.
-     
+## Restoring RDB Store Data
+
+If an RDB store is corrupted, you can restore it by using the database backup.
+
+You can restore data from either the manual backup data or automatic backup data. The latter is available only for system applications.
+
+### Restoring from Manual Backup Data
+
+You can use **backup()** to [perform manual backup](#manual-backup) and use **restore()** to restore data from the manual backup data.
+
+The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
+
+1. Throw an exception that indicates database corruption.
+
    ```ts
-   import { ValuesBucket } from '@kit.ArkData';
-
-   let value1 = 'Rose';
-   let value2 = 18;
-   let value3 = 100.5;
-   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-
-   // You can use either of the following:
-   const valueBucket1: ValuesBucket = {
-     'NAME': value1,
-     'AGE': value2,
-     'SALARY': value3,
-     'CODES': value4,
-   };
-   const valueBucket2: ValuesBucket = {
-     NAME: value1,
-     AGE: value2,
-     SALARY: value3,
-     CODES: value4,
-   };
-   const valueBucket3: ValuesBucket = {
-     "NAME": value1,
-     "AGE": value2,
-     "SALARY": value3,
-     "CODES": value4,
-   };
-
-   if(store != undefined) {
-     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
-       if (err) {
-         console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
-         return;
+   let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+   if (store != undefined) {
+     (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
+       let resultSet = result;
+       try {
+         /* ...
+            Logic for adding, deleting, and modifying data.
+            ...
+         */
+         // Throw an exception.
+         if (resultSet?.rowCount == -1) {
+           resultSet ?.isColumnNull(0);
+         }
+         // Call other APIs such as resultSet.goToFirstRow() and resultSet.count(), which also throw exceptions.
+         while (resultSet.goToNextRow()) {
+           console.info(JSON.stringify(resultSet.getRow()))
+         }
+         resultSet.close();
+       } catch (err) {
+           if (err.code === 14800011) {
+              // Perform step 2 (close result sets and then restore data).
+           }
+           console.error(JSON.stringify(err));
        }
-       console.info(`Succeeded in inserting data. rowId:${rowId}`);
      })
    }
    ```
 
-3. Use **backup()** to back up the RDB store.
-     
+2. Close all opened result sets.
+
    ```ts
-   if(store != undefined) {
-     (store as relationalStore.RdbStore).backup('dbBackup.db', (err) => {
-       if (err) {
-         console.error(`Failed to back up data. Code:${err.code},message:${err.message}`);
-         return;
+   // Obtain all opened result sets.
+   let resultSets: Array<relationalStore.ResultSet> = [];
+   // Call resultSet.close() to close all opened result sets.
+   for (let resultSet of resultSets) {
+     try {
+       resultSet.close();
+     } catch (e) {
+         if (e.code !== 14800014) {
+           console.error(`Code:${e.code}, message:${e.message}`);
+         }
+     }
+   }
+   ```
+
+3. Call **restore()** to restore data.
+
+   ```ts
+   try {
+     let context = getContext();
+     // Backup.db indicates the name of the database backup file. By default, it is in the same directory as the RdbStore file. You can also specify the directory in the customDir + backup.db format.
+     let backup = context.databaseDir + '/backup/test_backup.db';
+     if(!fileIo.access(backup)) {
+       console.info("no backup file");
+       try {
+         (store as relationalStore.RdbStore).close;
+         store = undefined;
+       } catch (e) {
+           if (e.code != 14800014) {
+             console.info(JSON.stringify(e));
+           }
        }
-       console.info('Succeeded in backing up data.');
-     })
-   }
-   ```
-
-4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
-     
-   ```ts
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Lisa');
-   if(store != undefined) {
-     (store as relationalStore.RdbStore).delete(predicates).then((rows: number) => {
-       console.info(`Delete rows: ${rows}`);
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
-     })
-   }
-   ```
-
-5. Use **restore()** to restore the RDB store.
-     
-   ```ts
-   if(store != undefined) {
-     (store as relationalStore.RdbStore).restore('dbBackup.db', (err) => {
-       if (err) {
-         console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
-         return;
+       let storeConfig: relationalStore.StoreConfig = {
+         name: "BackupResotreTest.db",
+         securityLevel: relationalStore.SecurityLevel.S3,
+         allowRebuild: true
        }
-       console.info('Succeeded in restoring data.');
-     })
+       // Open the rebuilt RDB store and create tables.
+       // Generate data.
+       return
+     }
+     // Call restore() to restore data.
+     (store as relationalStore.RdbStore).restore(backup);
+   } catch (e) {
+       console.error(`Code:${e.code}, message:${e.message}`);
    }
    ```
+
+<!--Del-->
+
+### Restoring from Automatic Backup Data (for System Applications Only)
+
+Use [restore()](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#restore12) to restore data from the [automatic backup data](#automatic-backup-for-system-applications-only). Only system applications support this operation.
+
+The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
+
+   ```ts
+   if (store !== undefined) {
+     try {
+       // Add, delete, modify, and query data.
+     } catch (err) {
+         if (err.code == 14800011) {
+           // Obtain all opened result sets.
+           let resultSets: Array<relationalStore.ResultSet> = [];
+           // Call resultSet.close() to close all opened result sets.
+           for (let resultSet of resultSets) {
+             try {
+               resultSet.close();
+             } catch (e) {
+                 if (e.code !== 14800014) {
+                   console.info(`Code:${err.code}, message:${err.message}`);
+                 }
+             }
+           }
+   
+           (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+             if (err) {
+               console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+               return;
+             }
+             console.info(`Succeeded in restoring RdbStore.`);
+           })
+         }
+         console.info(`Code:${err.code}, message:${err.message}`);
+     }
+   }
+   ```
+
+<!--DelEnd-->

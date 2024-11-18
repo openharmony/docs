@@ -71,11 +71,13 @@ mediatool recv <resource-uri> <dest-path>
 
 将```<resource-uri>```指定为```all```则能够将所有媒体库资源的源文件导出。当```<resource-uri>```为```all```时，```<dest-path>```必须为文件夹路径。
 
+```<dest-path>```只支持/data/local/tmp下的路径。
+
 **使用示例：**
 ```shell
-> mediatool recv file://media/Photo/3 /data/out.jpg
+> mediatool recv file://media/Photo/3 /data/local/tmp/out.jpg
 Table Name: Photos
-/data/out.jpg
+/data/local/tmp/out.jpg
 ```
 
 ### mediatool delete
@@ -103,10 +105,15 @@ mediatool delete <resource-uri>
 ### mediatool query
 
 ```shell
-mediatool query <display-name>
+mediatool query <display-name> [-p] [-u]
 ```
-  该命令能够查询出所有名字为```<display-name>```的媒体库资源的源文件在设备中的真实路径。
-  
+  该命令能够查询出所有名字为```<display-name>```的媒体库资源，返回资源源文件真实路径或媒体资源uri。默认返回源文件真实路径。
+
+   | 选项               | 说明             |
+  | ---- |--------------- |
+  | -p | 返回媒体资源源文件在设备中的真实路径。（默认） |
+  | -u | 返回媒体资源uri。不能与-p选项同时使用。 |
+
   **使用示例：**
 
   ```shell
@@ -123,4 +130,15 @@ mediatool query <display-name>
   # 查询的名字格式不正确
   > mediatool query IMG_001
   The displayName format is not correct!
+
+  # 查询媒体资源源文件路径
+  > mediatool query MyImage.jpg -p
+  find 1 result:
+  /storage/cloud/100/files/Photo/2/IMG_1721381297_001.jpg
+
+  # 查询媒体资源uri
+  > mediatool query MyImage.jpg -u
+  find 1 result:
+  uri
+  "file://media/Photo/2/IMG_1721381297_001/MyImage.jpg"
   ```

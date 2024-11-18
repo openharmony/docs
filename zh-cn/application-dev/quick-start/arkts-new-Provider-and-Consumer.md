@@ -43,7 +43,7 @@
 | \@Provider属性装饰器 | 说明                                                  |
 | ------------------ | ----------------------------------------------------- |
 | 装饰器参数         | `aliasName?: string`，别名，缺省时默认为属性名。|
-| 支持类型           | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持装饰[箭头函数](#\@Provider和\@Consumer装饰回调事件，用于组件之间完成行为抽象)。 |
+| 支持类型           | 自定义组件中成员变量。属性的类型可以为number、string、boolean、class、Array、Date、Map、Set等类型。支持装饰[箭头函数](#provider和consumer装饰回调事件用于组件之间完成行为抽象)。 |
 | 从父组件初始化      | 禁止。 |
 | 本地初始化         | 必须本地初始化。 |
 | 观察能力         | 能力等同于\@Trace。变化会同步给对应的\@Consumer。 |

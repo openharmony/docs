@@ -200,7 +200,7 @@ struct Title {
         .width(50)
         .height(50)
         .translate({
-          x:this.translateObj.translateX // this.translateObj.translateX used in two component both in Row
+          x:this.translateObj.translateX // this.translateObj.translateX 绑定在Image和Text组件上
         })
       Text("Title")
         .fontSize(20)
@@ -225,7 +225,7 @@ struct Page {
       .width(200)
       .height(400)
       .translate({
-        x:this.translateObj.translateX //this.translateObj.translateX used in two components both in Column
+        x:this.translateObj.translateX //this.translateObj.translateX 绑定在Stack和Button组件上
       })
       Button("move")
         .translate({
@@ -285,7 +285,7 @@ struct Page1 {
           })
         })
     }
-    .translate({ // the component in Column shares the same property translate
+    .translate({ // 子组件Stack和Button设置了同一个translate属性，可以统一到Column上设置
       x: this.translateObj.translateX
     })
   }

@@ -1,5 +1,6 @@
 # 性能提升方案(仅对系统应用开放)(ArkTS)
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
 相机启动性能受限于底层器件上电、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前需确认是否支持相关特性。
 
 ​相关特性分别在打开相机设备过程、配流过程以及拍照过程中。本文档针对三个场景分别进行介绍。
@@ -74,7 +75,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 > **说明：**
 >
 > - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported)及[enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)接口的调用需要在[addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11)、[addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11)后，[commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11)之前。
-> - on接口需要在enableQuickThumbnail(true)之后生效。
+> - on接口需要在[enableQuickThumbnail(true)](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail)之后生效。
 
 ### 开发示例
 

@@ -1,17 +1,21 @@
 # 使用Deep Linking实现应用间跳转
 
-采用Deep Linking进行跳转时，系统会根据接口中传入的uri信息，按照[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)在本地已安装的应用中，寻找到符合URL skill配置的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
-
-
+采用Deep Linking进行跳转时，系统会根据接口中传入的uri信息，在本地已安装的应用中寻找到符合条件的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
 
 ## 实现原理
 
 Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标应用。隐式Want的uri匹配规则详见[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)。
 
 
-## 目标应用在配置文件中注册URL skill
+## 目标应用在配置文件中注册应用链接
 
-为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中声明URL skill。其中，uri字段的scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
+为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)的skills字段中声明应用链接。其中，uri字段的scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
+
+> **说明：**
+> 
+> Deep Linking中的scheme取值通常不为https、http、file，否则会拉起默认的系统浏览器。
+
+
 
 配置示例如下：
 

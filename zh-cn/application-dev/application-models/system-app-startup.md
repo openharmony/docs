@@ -61,7 +61,8 @@
 
 <!--RP2-->
 ### 相机
-[Camera Kit](../media/camera/camera-overview.md)提供了相机Picker （Camera Picker），用于拍照、录制。详见[cameraPicker](../reference/apis-camera-kit/js-apis-cameraPicker.md)。
+
+[Camera Kit](../media/camera/camera-overview.md)提供了相机Picker （Camera Picker），用于拍照、录像。详见[通过系统相机拍照和录像](../media/camera/camera-picker.md)。
 <!--RP2End-->
 
 ### 文件管理

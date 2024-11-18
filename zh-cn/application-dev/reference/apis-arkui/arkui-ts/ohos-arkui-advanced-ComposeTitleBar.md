@@ -23,7 +23,6 @@ import { ComposeTitleBar } from '@kit.ArkUI'
 ## 属性
 不支持[通用属性](ts-universal-attributes-size.md)
 
-
 ## ComposeTitleBar
 
 ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array&lt;ComposeTitleBarMenuItem&gt;})
@@ -33,8 +32,6 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -55,7 +52,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。<br>item属性不支持触发isEnabled属性。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包，item属性不支持触发action事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## 事件
@@ -63,30 +60,35 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 ## 示例
 
+该示例实现了简单的标题栏，带有返回箭头的标题栏和带有右侧菜单项目列表的标题栏。
 ```ts
 import { ComposeTitleBar, promptAction, ComposeTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
+  //定义右侧菜单项目列表
   private menuItems: Array<ComposeTitleBarMenuItem> = [
     {
+      //菜单图片资源
       value: $r('app.media.ic_public_save'),
+      //启用图标
+      isEnabled: true,
+      //点击菜单时触发事件
+      action: () => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value: $r('app.media.ic_public_reduce'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_save'),
+      value: $r('app.media.ic_public_edit'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
     {
-      value: $r('app.media.ic_public_save'),
-      isEnabled: true,
-      action: () => promptAction.showToast({ message: "show toast index 1" })
-    },
-    {
-      value: $r('app.media.ic_public_save'),
+      value: $r('app.media.ic_public_remove'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "show toast index 1" })
     },
@@ -95,6 +97,7 @@ struct Index {
   build() {
     Row() {
       Column() {
+        //分割线
         Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
           title: "标题",
@@ -114,6 +117,7 @@ struct Index {
           menuItems: this.menuItems,
         })
         Divider().height(2).color(0xCCCCCC)
+        //定义带头像的标题栏
         ComposeTitleBar({
           menuItems: [{ isEnabled: true, value: $r('app.media.ic_public_save'),
             action: () => promptAction.showToast({ message: "show toast index 1" })

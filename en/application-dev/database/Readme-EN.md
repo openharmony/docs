@@ -27,9 +27,10 @@
   <!--Del-->
   - One-to-Many Data Sharing (for System Applications Only)
     - [Sharing Data via DataShareExtensionAbility](share-data-by-datashareextensionability.md)
-    - [Silent Access via the DatamgrService](share-data-by-silent-access.md)
+    - [Silent Access via DatamgrService](share-data-by-silent-access.md)
   <!--DelEnd-->
   - Many-to-Many Data Sharing
     - [Sharing Data Using Unified Data Channels](unified-data-channels.md)
 - [RelationalStore Development (C/C++)](native-relational-store-guidelines.md)
 - [UDMF Development Guide (C/C++)](native-unified-data-management-framework-guidelines.md)
+- [Persisting User Preferences (C/C++)](preferences-guidelines.md)

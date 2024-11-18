@@ -2,9 +2,11 @@
 
 ## 概述
 
-声明剪贴板框架错误码信息。 引用文件：&lt;database/pasteboard/oh_pasteboard_err_code.h&gt;
+声明剪贴板框架错误码信息。 
 
 **库：** libpasteboard.so
+
+**引用文件：** <database/pasteboard/oh_pasteboard_err_code.h>
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 

@@ -183,7 +183,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 ### 属性
 
-| 名称    | 类型                                                         | 必填 | 描述       |
+| 名称    | 类型                                                         | 必填 | 说明       |
 | ------- | ------------------------------------------------------------ | ---- | ---------- |
 | buttons | [ItemRestriction](#itemrestriction)\<[SegmentButtonTextItem](#segmentbuttontextitem)> | 是   | 按钮信息。 |
 
@@ -199,7 +199,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 ### 属性
 
-| 名称      | 类型                                              | 必填 | 描述                          |
+| 名称      | 类型                                              | 必填 | 说明                        |
 | -------- | ------------------------------------------------- | ---- | ----------------------------- |
 | buttons  | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | 是   | 按钮信息。                    |
 | multiply | boolean                                           | 否   | 是否可以多选，默认值：false。 |

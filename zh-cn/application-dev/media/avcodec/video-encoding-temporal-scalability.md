@@ -241,6 +241,7 @@
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
         OH_AVBuffer_SetParameter(buffer, format);
+        OH_AVFormat_Destroy(format);
         // 通知编码器buffer输入完成
         OH_VideoEncoder_PushInputBuffer(codec, index);
     }

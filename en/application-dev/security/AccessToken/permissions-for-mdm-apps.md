@@ -279,7 +279,7 @@ Allows a device administrator application to set enterprise information.
 
 Allows an application to update the file guard policy.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -287,12 +287,14 @@ Allows an application to update the file guard policy.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
+
+**Changelog**: For API versions 10 to 14, the permission is of the **system_core** level and is available only to MDM application. Starting with API version 14, the permission level changes to **system_basic** and becomes accessible to normal enterprise applications.
 
 ## ohos.permission.FILE_GUARD_MANAGER
 
-Allows an application to scan user directories and set file extended properties.
+Allows an application to scan media and sandbox and set file extended properties.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
@@ -300,6 +302,8 @@ Allows an application to scan user directories and set file extended properties.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 10
+
+**Changelog**: For API versions 10 to 14, the permission is of the **system_core** level and is available only to MDM application. Starting with API version 14, the permission level changes to **system_basic** and becomes accessible to normal enterprise applications.
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 

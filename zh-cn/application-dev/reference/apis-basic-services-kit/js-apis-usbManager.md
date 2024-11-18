@@ -774,6 +774,256 @@ let ret: number = usbManager.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```
 
+## usbManager.hasAccessoryRight<sup>14+</sup>
+
+hasAccessoryRight(accessory: USBAccessory): boolean
+
+检查应用程序是否有权访问USB配件。
+
+需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名    | 类型         | 必填 | 说明                                  |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+| 14401001 | The target USBAccessory not matched.                         |
+
+**返回值：**
+
+| 类型    | 说明                          |
+| ------- | ----------------------------- |
+| boolean | true表示应用程序有权访问USB配件，false表示应用程序无权访问USB配件。 |
+
+**示例：**
+
+```ts
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = usbManager.hasAccessoryRight(accList[0])
+  hilog.info(0, 'testTag ui', `hasAccessoryRight success, ret:${flag}`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `hasAccessoryRight error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.requestAccessoryRight<sup>14+</sup>
+
+requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
+
+为指定应用程序申请访问USB配件的访问权限。
+
+需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
+
+**系统能力**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名    | 类型         | 必填 | 说明                                  |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+| 14401001 | The target USBAccessory not matched.                         |
+
+**返回值：**
+
+| 类型             | 说明                          |
+| ---------------- | ----------------------------- |
+| Promise&lt;boolean&gt; | Promise对象，返回应用程序访问配件权限的申请结果。返回true表示权限申请成功；返回false表示权限申请失败。 |
+
+**示例：**
+
+```ts
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  hilog.info(0, 'testTag ui', `requestAccessoryRight success, ret:${flag}`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `requestAccessoryRight error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.cancelAccessoryRight<sup>14+</sup>
+
+cancelAccessoryRight(accessory: USBAccessory): void;
+
+取消当前应用程序访问USB配件的权限。
+
+需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
+
+**系统能力**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名    | 类型         | 必填 | 说明                                  |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+| 14401001 | The target USBAccessory not matched.                         |
+
+**示例：**
+
+```ts
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  usbManager.cancelAccessoryRight(accList[0])
+  hilog.info(0, 'testTag ui', `cancelAccessoryRight success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `cancelAccessoryRight error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.getAccessoryList<sup>14+</sup>
+
+getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
+
+获取当前已接入主机的USB配件列表。
+
+**系统能力**  SystemCapability.USB.USBManager
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+
+**返回值：**
+
+| 类型                          | 说明                                               |
+| ----------------------------- | -------------------------------------------------- |
+| Array<Readonly&lt;USBAccessory&gt;> | 只读的USB配件列表。当前仅支持列表中包含1个USB配件。 |
+
+**示例：**
+
+```ts
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  hilog.info(0, 'testTag ui', `getAccessoryList success, accList: ${JSON.stringify(accList)}`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `getAccessoryList error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.openAccessory<sup>14+</sup>
+
+openAccessory(accessory: USBAccessory): USBAccessoryHandle;
+
+获取配件句柄并打开配件文件描述符。
+
+需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
+
+**系统能力**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名    | 类型         | 必填 | 说明                                  |
+| --------- | ------------ | ---- | ------------------------------------- |
+| accessory | [USBAccessory](#usbaccessory14) | 是   | USB配件，需要通过[getAccessoryList](#usbmanagergetaccessorylist14)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
+| 14400004 | Service exception. Possible causes: No accessory is plugged in. |
+| 14401001 | The target USBAccessory not matched.                         |
+| 14401002 | Failed to open the native accessory node.                    |
+| 14401003 | Cannot reopen the accessory.                                 |
+
+**返回值：**
+
+| 类型               | 说明        |
+| ------------------ | ----------- |
+| [USBAccessoryHandle](#usbaccessoryhandle14) | USB配件句柄。 |
+
+**示例：**
+
+```ts
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let handle = usbManager.openAccessory(accList[0])
+  hilog.info(0, 'testTag ui', `openAccessory success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `openAccessory error ${error.code}, message is ${error.message}`)
+}
+```
+
+## usbManager.closeAccessory<sup>14+</sup>
+
+closeAccessory(accessoryHandle: USBAccessoryHandle): void;
+
+关闭配件文件描述符。
+
+需要调用[usbManager.openAccessory](#usbmanageropenaccessory14)获取配件列表，得到[USBAccessoryHandle](#usbaccessoryhandle14)作为参数。
+
+**系统能力**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名          | 类型               | 必填 | 说明                                   |
+| --------------- | ------------------ | ---- | -------------------------------------- |
+| accessoryHandle | [USBAccessoryHandle](#usbaccessoryhandle14) | 是   | USB配件句柄。需要通过[openAccessory](#usbmanageropenaccessory14)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+
+**示例：**
+
+```ts
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let handle = usbManager.openAccessory(accList[0])
+  usbManager.closeAccessory(handle)
+  hilog.info(0, 'testTag ui', `closeAccessory success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `closeAccessory error ${error.code}, message is ${error.message}`)
+}
+```
+
 ## USBEndpoint
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。
@@ -922,3 +1172,26 @@ USB设备消息传输通道，用于确定设备。
 | USB_REQUEST_DIR_TO_DEVICE   | 0    | 写数据，主设备往从设备。 |
 | USB_REQUEST_DIR_FROM_DEVICE | 0x80 | 读数据，从设备往主设备。 |
 
+## USBAccessory<sup>14+</sup>
+
+USB配件信息。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称         | 类型   | 必填 | 说明             |
+| ------------ | ------ | ---- | ---------------- |
+| manufacturer | string | 是   | 配件的生产厂商。 |
+| product      | string | 是   | 配件的产品类型。 |
+| description  | string | 是   | 配件的描述。     |
+| version      | string | 是   | 配件的版本。     |
+| serialNumber | string | 是   | 配件的SN号。     |
+
+## USBAccessoryHandle<sup>14+</sup>
+
+USB配件句柄。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称        | 类型   | 必填 | 说明                                      |
+| ----------- | ------ | ---- | ----------------------------------------- |
+| accessoryFd | number | 是   | 配件文件描述符。合法的accessoryFd是正整数。 |

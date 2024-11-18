@@ -154,6 +154,7 @@
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
           - 拉起指定应用<!--directional-redirection-->
+            - [拉起指定应用概述](application-models/app-startup-overview.md)
             - [（可选）使用canOpenLink判断应用是否可访问](application-models/canopenlink.md)
             - [使用Deep Linking实现应用间跳转](application-models/deep-linking-startup.md)
             <!--Del-->
@@ -161,11 +162,14 @@
             <!--DelEnd-->
             - [显式Want跳转切换应用链接跳转适配指导](application-models/uiability-startup-adjust.md)
             - [应用链接说明](application-models/app-uri-config.md)
-          - [拉起指定类型的应用](application-models/start-intent-panel.md)
+          - 拉起指定类型的应用<!--specified-type-app-redirection-->
+            - [拉起指定类型的应用概述](application-models/start-intent-panel.md)
             - [拉起导航类应用（startAbilityByType）](application-models/start-navigation-apps.md)
             - [拉起邮件类应用（startAbilityByType）](application-models/start-email-apps.md)
             - [拉起邮件类应用（mailto方式）](application-models/start-email-apps-by-mailto.md)
             - [拉起金融类应用（startAbilityByType）](application-models/start-finance-apps.md)
+            - [拉起航班类应用（startAbilityByType）](application-models/start-flight-apps.md)
+            - [拉起快递类应用（startAbilityByType）](application-models/start-express-apps.md)
             - [拉起图片编辑类应用（startAbilityByType）](application-models/photoEditorExtensionAbility.md)
             - [拉起文件处理类应用（startAbility）](application-models/file-processing-apps-startup.md)
           - [拉起系统应用](application-models/system-app-startup.md)
@@ -1178,8 +1182,8 @@
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
-          - [hisysevent](dfx/hisysevent.md)
         <!--Del-->
+          - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
       - Test Kit（应用测试服务）<!--test-kit-->
@@ -1504,7 +1508,7 @@
           - [使用Node-API接口进行异步任务开发](napi/use-napi-asynchronous-task.md)
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
-          - [非ArkTS线程调用ArkTS函数](napi/use-uv-queue-work.md)
+          - [Native与sendable ArkTS对象绑定](napi/use-sendable-napi.md)
           - [使用Node-API接口创建ArkTs运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
@@ -3004,6 +3008,7 @@
           - [MDNS错误码](reference/apis-network-kit/errorcode-net-mdns.md)
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
+          - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
 
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->

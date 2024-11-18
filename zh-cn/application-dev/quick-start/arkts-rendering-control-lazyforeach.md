@@ -33,7 +33,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 在LazyForEach首次渲染时，会根据上述键值生成规则为数据源的每个数组项生成唯一键值，并创建相应的组件。
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -97,7 +97,7 @@ struct MyComponent {
 当不同数据项生成的键值相同时，框架的行为是不可预测的。例如，在以下代码中，`LazyForEach`渲染的数据项键值均相同，在滑动过程中，`LazyForEach`会对划入划出当前页面的子组件进行预加载，而新建的子组件和销毁的原子组件具有相同的键值，框架可能存在取用缓存错误的情况，导致子组件渲染有问题。
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -161,7 +161,7 @@ struct MyComponent {
 #### 添加数据
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -227,10 +227,10 @@ struct MyComponent {
 #### 删除数据
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
-  dataArray: string[] = [];
+  private dataArray: string[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -297,10 +297,10 @@ struct MyComponent {
 #### 交换数据
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
-  dataArray: string[] = [];
+  private dataArray: string[] = [];
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -379,7 +379,7 @@ struct MyComponent {
 #### 改变单个数据
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -455,7 +455,7 @@ struct MyComponent {
 #### 改变多个数据
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -540,7 +540,7 @@ struct MyComponent {
 #### 精准批量修改数据
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -623,39 +623,7 @@ onDatasetChange接口由开发者一次性通知LazyForEach应该做哪些操作
 第二个例子，直接给数组赋值，不涉及 splice 操作。operations直接从比较原数组和新数组得到。
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: string[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): string {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDatasetChange(operations: DataOperation[]): void {
-    this.listeners.forEach(listener => {
-      listener.onDatasetChange(operations);
-    })
-  }
-}
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -746,70 +714,12 @@ struct MyComponent {
 4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
 5. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
 
-
-
 - ### 改变数据子属性
 
 若仅靠`LazyForEach`的刷新机制，当`item`变化时若想更新子组件，需要将原来的子组件全部销毁再重新构建，在子组件结构较为复杂的情况下，靠改变键值去刷新渲染性能较低。因此框架提供了`@Observed`与@`ObjectLink`机制进行深度观测，可以做到仅刷新使用了该属性的组件，提高渲染性能。开发者可根据其自身业务特点选择使用哪种刷新方式。
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -845,7 +755,7 @@ class StringData {
 @Component
 struct MyComponent {
   private moved: number[] = [];
-  @State data: MyDataSource = new MyDataSource();
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
@@ -886,11 +796,262 @@ struct ChildComponent {
 **图10**  LazyForEach改变数据子属性  
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
+- ### 使用状态管理V2
+
+状态管理V2提供了`@ObservedV2`与`@Trace`装饰器可以实现对属性的深度观测，使用`@Local`和`@Param`可以实现对子组件的刷新管理，仅刷新使用了对应属性的组件。
+
+#### 嵌套类属性变化观测
+
+```ts
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: StringData[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): StringData {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: StringData): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: StringData): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+class StringData {
+  firstLayer: FirstLayer;
+
+  constructor(firstLayer: FirstLayer) {
+    this.firstLayer = firstLayer;
+  }
+}
+
+class FirstLayer {
+  secondLayer: SecondLayer;
+
+  constructor(secondLayer: SecondLayer) {
+    this.secondLayer = secondLayer;
+  }
+}
+
+class SecondLayer {
+  thirdLayer: ThirdLayer;
+
+  constructor(thirdLayer: ThirdLayer) {
+    this.thirdLayer = thirdLayer;
+  }
+}
+
+@ObservedV2
+class ThirdLayer {
+  @Trace forthLayer: String;
+
+  constructor(forthLayer: String) {
+    this.forthLayer = forthLayer;
+  }
+}
+
+@Entry
+@ComponentV2
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 20; i++) {
+      this.data.pushData(new StringData(new FirstLayer(new SecondLayer(new ThirdLayer('Hello' + i)))));
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: StringData, index: number) => {
+        ListItem() {
+          Text(item.firstLayer.secondLayer.thirdLayer.forthLayer.toString()).fontSize(50)
+            .onClick(() => {
+              item.firstLayer.secondLayer.thirdLayer.forthLayer += '!';
+            })
+        }
+      }, (item: StringData, index: number) => index.toString())
+    }.cachedCount(5)
+  }
+}
+```
+
+`@ObservedV2`与`@Trace`用于装饰类以及类中的属性，配合使用能深度观测被装饰的类和属性。示例中，展示了深度嵌套类结构下，通过`@ObservedV2`和`@Trace`实现对多层嵌套属性变化的观测和子组件刷新。当点击子组件`Text`修改被`@Trace`修饰的嵌套类最内层的类成员属性时，仅重新渲染依赖了该属性的组件。
+
+#### 组件内部状态
+
+```ts
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: StringData[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): StringData {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: StringData): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: StringData): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@ObservedV2
+class StringData {
+  @Trace message: string;
+
+  constructor(message: string) {
+    this.message = message;
+  }
+}
+
+@Entry
+@ComponentV2
+struct MyComponent {
+  data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 20; i++) {
+      this.data.pushData(new StringData('Hello' + i));
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: StringData, index: number) => {
+        ListItem() {
+          Row() {
+
+            Text(item.message).fontSize(50)
+              .onClick(() => {
+                // 修改@ObservedV2装饰类中@Trace装饰的变量，触发刷新此处Text组件
+                item.message += '!';
+              })
+            ChildComponent()
+          }
+        }
+      }, (item: StringData, index: number) => index.toString())
+    }.cachedCount(5)
+  }
+}
+
+@ComponentV2
+struct ChildComponent {
+  @Local message: string = '?';
+
+  build() {
+    Row() {
+      Text(this.message).fontSize(50)
+        .onClick(() => {
+          // 修改@Local装饰的变量，触发刷新此处Text组件
+          this.message += '?';
+        })
+    }
+  }
+}
+```
+
+`@Local`使得自定义组件内被修饰的变量具有观测其变化的能力，该变量必须在组件内部进行初始化。示例中，点击`Text`组件修改`item.message`会触发变量更新并刷新使用该变量的组件，`ChildComponent`中`@Local`装饰的变量`message`变化时也能刷新子组件。
+
+#### 组件外部输入
+
+```ts
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: StringData[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): StringData {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: StringData): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: StringData): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@ObservedV2
+class StringData {
+  @Trace message: string;
+
+  constructor(message: string) {
+    this.message = message;
+  }
+}
+
+@Entry
+@ComponentV2
+struct MyComponent {
+  data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 20; i++) {
+      this.data.pushData(new StringData('Hello' + i));
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: StringData, index: number) => {
+        ListItem() {
+          ChildComponent({ data: item.message })
+            .onClick(() => {
+              item.message += '!';
+            })
+        }
+      }, (item: StringData, index: number) => index.toString())
+    }.cachedCount(5)
+  }
+}
+
+@ComponentV2
+struct ChildComponent {
+  @Param @Require data: string = '';
+
+  build() {
+    Row() {
+      Text(this.data).fontSize(50)
+    }
+  }
+}
+```
+
+使用`@Param`装饰器可以让子组件接受外部输入的参数，实现父子组件之间的数据同步。在`MyComponent`中创建子组件时，将变量`item.message`传递，使用`@Param`修饰的变量`data`与之关联。点击`ListItem`中的组件修改`item.message`，数据变化会从父组件传递到子组件，并且触发子组件的刷新。
+
 ## 拖拽排序
 当LazyForEach在List组件下使用，并且设置了onMove事件，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。onMove中修改数据源不需要调用DataChangeListener中接口通知数据源变化。
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -967,7 +1128,7 @@ struct Parent {
 ### 渲染结果非预期
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1036,7 +1197,7 @@ struct MyComponent {
 修复代码如下所示。
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1103,7 +1264,7 @@ struct MyComponent {
 }
 ```
 
-在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。要保证`reloadData`方法重建数据项，必须保证数据项能生成新的key。这里用了`item + index.toString()`保证被删除数据项后面的数据项都被重建。如果用`item + Data.now().toString()`替代，那么所有数据项都生成新的key，导致所有数据项都被重建。这种方法，效果是一样的，只是性能略差。
+在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。要保证`reloadData`方法重建数据项，必须保证数据项能生成新的key。这里用了`item + index.toString()`保证被删除数据项后面的数据项都被重建。如果用`item + Date.now().toString()`替代，那么所有数据项都生成新的key，导致所有数据项都被重建。这种方法，效果是一样的，只是性能略差。
 
 **图13**  修复LazyForEach删除数据非预期  
 ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
@@ -1111,63 +1272,7 @@ struct MyComponent {
 ### 重渲染时图片闪烁
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1248,63 +1353,7 @@ struct MyComponent {
 修复代码如下所示。
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1343,7 +1392,7 @@ class StringData {
 @Component
 struct MyComponent {
   // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
-  @State data: MyDataSource = new MyDataSource();
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
@@ -1388,63 +1437,7 @@ struct ChildComponent {
 ### @ObjectLink属性变化UI未更新
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1488,7 +1481,7 @@ class NestedString {
 @Component
 struct MyComponent {
   private moved: number[] = [];
-  @State data: MyDataSource = new MyDataSource();
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
@@ -1532,63 +1525,7 @@ struct ChildComponent {
 修复代码如下所示。
 
 ```ts
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: StringData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): StringData {
-    return this.originDataArray[index];
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded();
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdd(index);
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChange(index);
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDelete(index);
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMove(from, to);
-    })
-  }
-}
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: StringData[] = [];
@@ -1632,7 +1569,7 @@ class NestedString {
 @Component
 struct MyComponent {
   private moved: number[] = [];
-  @State data: MyDataSource = new MyDataSource();
+  private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
@@ -1676,7 +1613,7 @@ struct ChildComponent {
 在List的onScrollIndex方法中调用onDataReloaded有产生屏幕闪烁的风险。
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1762,7 +1699,7 @@ struct MyComponent {
 用onDatasetChange代替onDataReloaded，不仅可以修复闪屏的问题，还能提升加载性能。
 
 ```ts
-/** BasicDataSource代码见文档末尾 **/
+/** BasicDataSource代码见文档末尾附件: string类型数组的BasicDataSource代码 **/
 
 class MyDataSource extends BasicDataSource {
   private dataArray: string[] = [];
@@ -1846,9 +1783,103 @@ struct MyComponent {
 修复后的效果如下图  
 ![LazyForEach-Screen-Flicker-Repair](figures/LazyForEach-Screen-Flicker-Repair.gif)
 
+### 组件复用渲染异常
+
+`@Reusable`与`@ComponentV2`混用会导致组件渲染异常。
+
+```ts
+/** BasicDataSource代码见文档末尾附件: StringData类型数组的BasicDataSource代码 **/
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: StringData[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): StringData {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: StringData): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: StringData): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+
+class StringData {
+  message: string;
+
+  constructor(message: string) {
+    this.message = message;
+  }
+}
+
+@Entry
+@ComponentV2
+struct MyComponent {
+  data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 30; i++) {
+      this.data.pushData(new StringData('Hello' + i));
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: StringData, index: number) => {
+        ListItem() {
+          ChildComponent({ data: item })
+            .onAppear(() => {
+              console.log('onAppear: ' + item.message)
+            })
+        }
+      }, (item: StringData, index: number) => index.toString())
+    }.cachedCount(5)
+  }
+}
+
+@Reusable
+@Component
+struct ChildComponent {
+  @State data: StringData = new StringData('');
+
+  aboutToAppear(): void {
+    console.log('aboutToAppear: ' + this.data.message);
+  }
+
+  aboutToRecycle(): void {
+    console.log('aboutToRecycle: ' + this.data.message);
+  }
+
+  // 对复用的组件进行数据更新
+  aboutToReuse(params: Record<string, ESObject>): void {
+    this.data = params.data as StringData;
+    console.log('aboutToReuse: ' + this.data.message);
+  }
+
+  build() {
+    Row() {
+      Text(this.data.message).fontSize(50)
+    }
+  }
+}
+```
+
+反例中，在`@ComponentV2`装饰的组件`MyComponent`中，`LazyForEach`列表中使用了`@Reusable`装饰的组件`ChildComponent`，导致组件渲染失败，观察日志可以看到组件触发了`onAppear`，但是没有触发`aboutToAppear`。
+
+将`@ComponentV2`修改为`@Component`可以修复渲染异常。修复后，当滑动事件触发组件节点下树时，对应的可复用组件`ChildComponent`从组件树上被加入到复用缓存中而不是被销毁，并触发`aboutToRecycle`事件，打印日志信息。当滑动需要显示新的节点时，会将可复用的组件从复用缓存中重新加入到节点树，并触发`aboutToReuse`刷新组件数据，并打印日志信息。
+
 ## 附件
 
-string类型数组的BasicDataSource代码：
+### string类型数组的BasicDataSource代码
 
 ```ts
 // Basic implementation of IDataSource to handle data listener
@@ -1918,6 +1949,74 @@ class BasicDataSource implements IDataSource {
       listener.onDataMove(from, to);
       // 写法2：listener.onDatasetChange(
       //         [{type: DataOperationType.EXCHANGE, index: {start: from, end: to}}]);
+    })
+  }
+
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+}
+```
+
+### StringData类型数组的BasicDataSource代码
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: StringData[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): StringData {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
     })
   }
 
