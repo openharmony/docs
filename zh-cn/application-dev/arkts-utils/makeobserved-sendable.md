@@ -6,7 +6,7 @@
 - makeObserved在传入@Sendable类型的数据后有观察能力，且其变化可以触发UI刷新。
 - 从子线程中获取一个整体数据，然后对UI线程的可观察数据做整体替换。
 - 从子线程获取的数据重新执行makeObserved，将数据变为可观察数据。
-- 将数据从主线程传递回子线程时，仅传递不可观察的数据。makeObserved的返回值不可直接传给子线程。
+- 将数据从UI主线程传递回子线程时，仅传递不可观察的数据。makeObserved的返回值不可直接传给子线程。
 
 ```ts
 // SendableData.ets
@@ -52,7 +52,7 @@ struct Index {
 
       Button("task").onClick(() => {
         // 将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。
-        // 因为数据的构建和处理可以在子线程中完成，但有观察能力的数据不能传给子线程，只有在主线程里才可以操作可观察的数据。
+        // 因为数据的构建和处理可以在子线程中完成，但有观察能力的数据不能传给子线程，只有在UI主线程里才可以操作可观察的数据。
         // 所以这里只是将`this.send`的属性`name`传给子线程操作。
         taskpool.execute(threadGetData, this.send.name).then(val => {
           // 和@Local一起使用，可以观察this.send的变化

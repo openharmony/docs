@@ -381,7 +381,7 @@ The function is not called in the TaskPool thread.
 
 **可能原因**
 
-在主线程中或在非taskpool的其他线程中调用该函数。
+在UI主线程中或在非taskpool的其他线程中调用该函数。
 
 **处理步骤**
 
