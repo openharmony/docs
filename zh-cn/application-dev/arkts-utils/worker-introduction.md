@@ -1,6 +1,6 @@
 # Worker简介
 
-Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与主线程分离，在后台线程中运行一个脚本进行耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞主线程的运行。具体接口信息及使用方法详情请见[Worker](../reference/apis-arkts/js-apis-worker.md)。
+Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与宿主线程分离，在后台线程中运行一个脚本进行耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞宿主线程的运行。具体接口信息及使用方法详情请见[Worker](../reference/apis-arkts/js-apis-worker.md)。
 
 
 ## Worker运作机制
@@ -19,7 +19,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - Worker创建后需要手动管理生命周期，且最多同时运行的Worker子线程数量为64个，详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 由于不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
 - 序列化传输的数据量大小限制为16MB。
-- 使用Worker模块时，需要在主线程中注册onerror接口，否则当Worker线程出现异常时会发生jscrash问题。
+- 使用Worker模块时，需要在宿主线程中注册onerror接口，否则当Worker线程出现异常时会发生jscrash问题。
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
 - 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。

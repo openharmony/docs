@@ -12,7 +12,7 @@ Sendable对象为可共享的，其跨线程前后指向同一个JS对象，如�
 
 当多个并发实例尝试同时更新Sendable数据时，会发生数据竞争，例如[ArkTS共享容器](arkts-collections-introduction.md)的多线程操作。因此，ArkTS提供了[异步锁](arkts-async-lock-introduction.md)的机制来避免不同并发实例间的数据竞争。同时，还可以通过[对象冻结接口](sendable-freeze.md)冻结对象，将其变为只读对象，就可以不用考虑数据的竞争问题。
 
-Sendable对象提供了并发实例间高效的通信效率，即引用传递的能力，一般适用于开发者自定义大对象需要线程间通信的场景，例如子线程读取数据库的数据返回主线程。
+Sendable对象提供了并发实例间高效的通信效率，即引用传递的能力，一般适用于开发者自定义大对象需要线程间通信的场景，例如子线程读取数据库的数据返回宿主线程。
 
 ## 基础概念
 
@@ -20,7 +20,7 @@ Sendable对象提供了并发实例间高效的通信效率，即引用传递的
 
 Sendable协议定义了ArkTS的可共享对象体系及其规格约束。符合Sendable协议的数据（以下简称Sendable对象）可以在ArkTS并发实例间传递。
 
-默认情况下，Sendable数据在ArkTS并发实例间（包括主线程、TaskPool、Worker线程）传递的行为是引用传递。同时，ArkTS也支持Sendable数据在ArkTS并发实例间拷贝传递。
+默认情况下，Sendable数据在ArkTS并发实例间（包括UI主线程、TaskPool线程、Worker线程）传递的行为是引用传递。同时，ArkTS也支持Sendable数据在ArkTS并发实例间拷贝传递。
 
 ### ISendable
 
