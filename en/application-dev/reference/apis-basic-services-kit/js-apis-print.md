@@ -359,7 +359,7 @@ Provides information about the document to print. This API must be implemented b
 
 onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttributes, fd: number, writeResultCallback: (jobId: string, writeResult: PrintFileCreationState) => void): void
 
-Updates the file to be printed. This API uses **writeResultCallback** as the callback.
+Sends an empty PDF file descriptor to a third-party application. The third-party application updates the file with the new print attributes and then calls **writeResultCallback** to print the file.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -371,8 +371,8 @@ Updates the file to be printed. This API uses **writeResultCallback** as the cal
 | jobId | string | Yes| ID of the print job.|
 | oldAttrs | PrintAttributes | Yes| Old print attributes.|
 | newAttrs | PrintAttributes | Yes| New print attributes.|
-| fd | number | Yes| File descriptor.|
-| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | Yes| Callback used to return the result.|
+| fd | number | Yes| PDF file descriptor sent to the API caller.|
+| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | Yes| Callback used to print the updated file.|
 
 **Error codes**
 
@@ -572,7 +572,7 @@ Prints files. This API uses an asynchronous callback to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
-| context | Context | Yes| UIAbility context used to start printing.|
+| context | Context | Yes| UIAbilityContext used to start the system print UI.|
 | callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -621,7 +621,7 @@ Prints files. This API uses a promise to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call the **uriPermissionManager.grantUriPermission()** API to authorize the print application. This API is a system API. [print](#print11-2) is recommended for third-party application.|
-| context | Context | Yes| UIAbility context used to start printing.|
+| context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
@@ -671,10 +671,10 @@ Prints a file. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobName | string | Yes| Name of the file to print.|
-| printAdapter | PrintDocumentAdapter | Yes| Feature implemented by a third-party application.|
+| jobName | string | Yes| Name of the file to print, for example, **test.pdf**. The printer uses the [onStartLayoutWrite](#onstartlayoutwrite) API to send the **fd** of the empty PDF file to the API caller. The API caller uses the new print attributes to update the file to print.|
+| printAdapter | PrintDocumentAdapter | Yes| [PrintDocumentAdapter](#printdocumentadapter11) API instance implemented by a third-party application.|
 | printAttributes | PrintAttributes | Yes| Print attributes.|
-| context | Context | Yes| UIAbility context used to start printing.|
+| context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
@@ -731,9 +731,9 @@ Defines the print attributes.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| copyNumber | number | No| Copy of the file list.|
-| pageRange | PrintPageRange | No| Range of pages to print.|
-| pageSize | PrintPageSize \| PrintPageType | No| Page size of the files to print.|
+| copyNumber | number | No| Number of printed file copies.|
+| pageRange | PrintPageRange | No| Page range of the file to print.|
+| pageSize | PrintPageSize \| PrintPageType | No| Page size of the file to print.|
 | directionMode | PrintDirectionMode | No| Print direction mode.|
 | colorMode | PrintColorMode | No| Color mode of the files to print.|
 | duplexMode | PrintDuplexMode | No| Duplex mode of the files to print.|
@@ -749,7 +749,7 @@ Defines the print range.
 | -------- | -------- | -------- | -------- |
 | startPage | number | No| Start page.|
 | endPage | number | No| End page.|
-| pages | Array&lt;number&gt; | No| Discrete pages.|
+| pages | Array&lt;number&gt; | No| Page range set of the file to print.|
 
 
 ## PrintPageSize<sup>11+</sup>
@@ -761,8 +761,8 @@ Defines the size of the printed page.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| id | string | Yes| Page size ID.|
-| name | string | Yes| Page size name.|
+| id | string | Yes| Paper size ID.|
+| name | string | Yes| Paper size name.|
 | width | number | Yes| Page width, in millimeters.|
 | height | number | Yes| Page height, in millimeters.|
 

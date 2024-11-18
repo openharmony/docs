@@ -154,7 +154,7 @@ Deactivates (logs out of) a system account. This API uses a promise to return th
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-Example: Deactivate system account 100.
+**Example**: Deactivate system account 100.
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
@@ -918,7 +918,7 @@ Obtains the ID of the foreground system account.
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the foreground system account obtained.|
+| Promise&lt;number&gt; | Promise used to return the result. return the ID of the foreground system account obtained.|
 
 **Error codes**
 
@@ -1011,7 +1011,7 @@ Creates a system account. This API uses a promise to return the result.
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | Yes  | Name of the system account to create.|
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create.|
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12. |
 
 **Return value**
 
@@ -1125,7 +1125,7 @@ Creates a system account and associates it with the specified domain account. Th
 | ---------- | ---------------------------------------- | ---- | -------------------- |
 | type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create.|
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
-| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12. |
 
 **Return value**
 
@@ -1175,7 +1175,7 @@ Creates a system account and associates it with the specified domain account. Th
 
 queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-Queries information about the system account to which the current process belongs. This API uses a promise to return the result.
+Obtains information about the system account to which the current process belongs. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1866,7 +1866,7 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
 
 getBundleIdForUidSync(uid: number): number
 
-Obtains the bundle ID based on the specified UID. This API returns the result synchronously.
+Obtains the bundle ID based on the specified UID. The API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2599,7 +2599,7 @@ Starts user authentication based on the specified challenge value, authenticatio
 | Name          | Type                                    | Mandatory| Description                               |
 | --------------- | ---------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                               | Yes | Challenge value, which is a random number used to prevent replay attacks and improve security.|
-| authType        | [AuthType](#authtype8)                   | Yes | Authentication type.                       |
+| authType        | [AuthType](#authtype8)                   | Yes | Authentication credential type.                       |
 | authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | Yes | Trust level of the authentication result.              |
 | options         | [AuthOptions](#authoptions12) | Yes| Optional parameters for the authentication.|
 | callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback used to return the authentication result. |
@@ -2795,7 +2795,7 @@ Creates a PIN authentication instance.
 
 registerInputer(inputer: IInputer): void
 
-Register a PIN inputer.
+Registers a PIN inputer.
 
 **System API**: This is a system API.
 
@@ -2869,7 +2869,7 @@ Provides APIs for managing credential inputers.
 
 static registerInputer(authType: AuthType, inputer: IInputer): void
 
-Register a credential inputer.
+Registers a credential inputer.
 
 **System API**: This is a system API.
 
@@ -3136,7 +3136,7 @@ Obtains information about a domain account.
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | Yes  | Options for obtaining the domain account information.|
+| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | Yes  | Domain account information.|
 | callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3810,7 +3810,7 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| token | Uint8Array  | Yes  | New token of the domain account.|
+| token | Uint8Array  | Yes  | New domain account token.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the token is successfully updated, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3863,7 +3863,7 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| token | Uint8Array  | Yes  | New token of the domain account.|
+| token | Uint8Array  | Yes  | New domain account token.|
 
 **Return value**
 
@@ -3918,7 +3918,7 @@ Updates information of a domain account. This API uses a promise to return the r
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information to update.|
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | New domain account information.|
 
 **Error codes**
@@ -4021,7 +4021,7 @@ Obtains information about the specified domain account. This API uses a promise 
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Options for obtaining the domain account information.|
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | Yes  | Domain account information.|
 
 **Return value**
 
@@ -4393,7 +4393,7 @@ Obtains the server configuration of a domain account. This API uses a promise to
 
 ## UserIdentityManager<sup>8+</sup>
 
-Provides APIs for user identity management (IDM).
+Provides APIs for user IDM.
 
 **System API**: This is a system API.
 
@@ -4581,7 +4581,7 @@ Adds credential information, including the credential type, subtype, and token (
 
 updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
-Updates credential information. This API uses a callback to return the result.
+Updates credential information. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4593,8 +4593,8 @@ Updates credential information. This API uses a callback to return the result.
 
 | Name          | Type                                 | Mandatory| Description                    |
 | --------------- | ------------------------------------- | --- | ------------------------- |
-| credentialInfo  | [CredentialInfo](#credentialinfo8)    | Yes | New credential information.            |
-| callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback used to return the new credential information.|
+| credentialInfo  | [CredentialInfo](#credentialinfo8)    | Yes | Credential information to add.            |
+| callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback used to return the result.|
 
 **Error codes**
 
@@ -5407,7 +5407,7 @@ Enumerates the types of properties to obtain.
 | Name          | Value| Description     |
 | ------------- | ------ | --------- |
 | AUTH_SUB_TYPE | 1      | Authentication credential subtype.|
-| REMAIN_TIMES  | 2      | Remaining time.  |
+| REMAIN_TIMES  | 2      | Number of remaining times.  |
 | FREEZING_TIME | 3      | Freezing time.  |
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | Enrollment progress.  |
 | SENSOR_INFO<sup>10+</sup> | 5      | Sensor information.  |
@@ -5555,14 +5555,14 @@ Enumerates the tip codes for fingerprint authentication.
 
 ## OsAccountInfo
 
-Represents information about a system account.
+Represents the system account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default.|
-| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**.|
+| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default. |
+| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**. |
 
 ## OsAccountType
 
@@ -5572,19 +5572,19 @@ Enumerates the system account types.
 
 | Name  | Value| Description        |
 | ------ | ------ | ----------- |
-| PRIVATE<sup>12+</sup> | 1024  | Private account. Only one privacy account is allowed.<br>**System API**: This is a system API.  |
+| PRIVATE<sup>12+</sup> | 1024  | Privacy account. Only one privacy account is allowed.<br>**System API**: This is a system API. |
 
 ## DomainAccountInfo<sup>8+</sup>
 
-Represents information about a domain account.
+Represents domain account information.
 
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default.|
-| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
-| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default.|
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default. |
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**. |
+| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default. |
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5596,7 +5596,7 @@ Defines the constraint source type.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| localId      | number | Yes  | ID of the system account.    |
+| localId      | number | Yes  | ID of the target system account.    |
 | type | [ConstraintSourceType](#constraintsourcetype9) | Yes  | Type of the constrain source.|
 
 ## ConstraintSourceType<sup>9+</sup>
@@ -5691,7 +5691,7 @@ Represents the optional parameter used to create a system account.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br><br>Exceed 255 characters.|
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5703,7 +5703,7 @@ Represents a set of optional parameters for creating a system account bound to t
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br><br>Exceed 255 characters.|
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
 
 ## GetAuthInfoOptions<sup>12+</sup>
 
