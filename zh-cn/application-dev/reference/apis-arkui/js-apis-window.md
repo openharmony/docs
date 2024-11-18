@@ -10424,7 +10424,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`Failed to check whether the window support the rect auto-save. Cause code: ${err.code}, message: ${err.message}`);
       });
     } catch (exception) {
-      console.error(`Failed to check whether the window support the rect auto-save. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to check whether the window support the rect auto-save. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
