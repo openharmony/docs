@@ -499,6 +499,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
       this.extensionWindow?.on('windowSizeChange', (size: window.Size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
+      this.extensionWindow?.on('windowRectChange', (data: window.RectChangeOptions) => {
+          console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
+      });
       this.extensionWindow?.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
@@ -506,6 +509,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
     aboutToDisappear(): void {
       this.extensionWindow?.off('windowSizeChange');
+      this.extensionWindow?.off('windowRectChange');
       this.extensionWindow?.off('avoidAreaChange');
     }
 
