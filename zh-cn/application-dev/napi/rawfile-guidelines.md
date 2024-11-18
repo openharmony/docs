@@ -25,7 +25,7 @@
 | bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor) | 释放rawfile的fd。                        |
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | 释放native resource manager相关资源。    |
 | bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | 判断路径是否是rawfile下的目录    |
-详细的接口说明请参考[rawfile函数说明](../reference/apis-localization-kit/rawfile.md##函数说明)
+详细的接口说明请参考[rawfile函数说明](../reference/apis-localization-kit/rawfile.md#函数说明)
 
 ## 开发步骤
 
