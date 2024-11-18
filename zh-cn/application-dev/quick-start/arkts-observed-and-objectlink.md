@@ -1830,7 +1830,7 @@ struct Child02 {
 }
 ```
 
-数据源通知@ObjectLink是依赖@ObjectLink所属自定义组件更新，是异步调用。上述示例中，Parent包含Child01，Child01包含Child02，在进行点击时，Child01传箭头函数给Child02，此时调用Child02的点击事件，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是给子组件Child02标脏，Child02的更新要等待下一次vsync信号，而@ObjectLink的更新依赖其所属自定义组件的更新函数，所以日志4打印的this.per.name的值仍然是1。
+数据源通知@ObjectLink是依赖@ObjectLink所属自定义组件更新，是异步调用。上述示例中，Parent包含Child01，Child01包含Child02，在进行点击时，Child01传箭头函数给Child02，此时调用Child02的点击事件，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child02标记为需要更新的节点，Child02的更新要等待下一次vsync信号，而@ObjectLink的更新依赖其所属自定义组件的更新函数，所以日志4打印的this.per.name的值仍然是1。
 
 当@ObjectLink @Watch('onChange02') per: Person的@Watch函数执行时，当前已执行Child02的更新函数，@ObjectLink已被通知更新，所以日志5打印的值为2。
 
@@ -1841,7 +1841,7 @@ struct Child02 {
 
 - 日志3：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值完成。
 
-- 日志4：onClickFType方法内selectItemBlock执行完，此时只做了标脏，未将最新的值更新给Child02 @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
+- 日志4：onClickFType方法内selectItemBlock执行完，此时只是将子组件Child02标记为需要更新的节点，未将最新的值更新给Child02 @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
 
 - 日志5：下一次vsync信号触发Child02更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
 
