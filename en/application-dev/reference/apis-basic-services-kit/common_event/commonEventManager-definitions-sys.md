@@ -2,11 +2,13 @@
 
 This document provides a list of common events defined by the system.
 
-Common event types are defined in [Support enumeration of the ohos.commonEventManager module](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#support).
+Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
 
 > **NOTE**
 >
-> The current page contains only the system APIs of this module. For details about other public APIs, see [System Common Events](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md).
+> The current page contains only the system APIs of this module. For details about other public APIs, see [System Common Events](../common_event/commonEventManager-definitions.md).
+
+
 
 
 ## Ability Kit
@@ -22,9 +24,9 @@ When the specified user finishes the boot process on the device, the event notif
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
+**Required subscriber permissions**: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
 
-**Value:** "usual.event.BOOT_COMPLETED"
+**Value**: "usual.event.BOOT_COMPLETED"
 
 ### COMMON_EVENT_PACKAGE_INSTALLATION_STARTED<sup>12+</sup>
 
@@ -36,9 +38,9 @@ When a new application starts to be installed by a specified user on the device,
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** "usual.event.PACKAGE_INSTALLATION_STARTED"
+**Value**: "usual.event.PACKAGE_INSTALLATION_STARTED"
 
 
 
@@ -57,9 +59,9 @@ System applications can call JavaScript APIs to apply for removing resource usag
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** "usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED"
+**Value**: "usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED"
 
 
 
@@ -76,9 +78,9 @@ When the system charging type changes, the event notification service is trigger
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** "usual.event.CHARGE_TYPE_CHANGED"
+**Value**: "usual.event.CHARGE_TYPE_CHANGED"
 
 
 ### COMMON_EVENT_USER_ADDED
@@ -87,15 +89,15 @@ Indicates that a user has been added to the system.
 
 When a system account is created, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **createOsAccount** and **createOsAccountForDomain**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
+APIs related to this event: **createOsAccount** and **createOsAccountForDomain**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
+**Required subscriber permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
 
-**Value:** "usual.event.USER_ADDED"
+**Value**: "usual.event.USER_ADDED"
 
 
 ### COMMON_EVENT_USER_REMOVED
@@ -104,15 +106,15 @@ Indicates that a user has been removed from the system.
 
 When a system account is removed, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **removeOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
+APIs related to this event: **removeOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
+**Required subscriber permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
 
-**Value:** "usual.event.USER_REMOVED"
+**Value**: "usual.event.USER_REMOVED"
 
 
 ### COMMON_EVENT_DOMAIN_ACCOUNT_STATUS_CHANGED
@@ -121,15 +123,15 @@ Indicates that the status of the domain account status changes.
 
 When a domain user account is authenticated, deleted, or has the token updated, the event notification service is triggered to publish this event carrying the system account ID, domain name, and account status.
 
-APIs related to this event: **removeOsAccount**, **DomainAccountManager.auth**, and **updateAccountToken**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
+APIs related to this event: **removeOsAccount**, **DomainAccountManager.auth**, and **updateAccountToken**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.GET_LOCAL_ACCOUNTS (for system applications only)
+**Required subscriber permissions**: ohos.permission.GET_LOCAL_ACCOUNTS (for system applications only)
 
-**Value:** "usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED"
+**Value**: "usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED"
 
 
 ### COMMON_EVENT_USER_SWITCHED
@@ -138,22 +140,22 @@ Indicates that a user switchover is complete.
 
 When a system account is switched, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **activateOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
+APIs related to this event: **activateOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
+**Required subscriber permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
 
-**Value:** "usual.event.USER_SWITCHED"
+**Value**: "usual.event.USER_SWITCHED"
 
 
 
 
 ## Core File Kit
 
-This document lists the common system events provided by the file management subsystem to applications. Applications can use [APIs](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md) to subscribe to common system events.
+This document lists the common system events provided by the file management subsystem to applications. Applications can use [APIs](../js-apis-commonEventManager.md) to subscribe to common system events.
 
 
 ### COMMON_EVENT_VOLUME_REMOVED
@@ -166,9 +168,9 @@ This common event is triggered when an external storage device is removed.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
+**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
 
-**Value:** "usual.event.data.VOLUME_REMOVED"
+**Value**: "usual.event.data.VOLUME_REMOVED"
 
 ### COMMON_EVENT_VOLUME_UNMOUNTED
 
@@ -180,9 +182,9 @@ This common event is triggered when an external storage device is successfully u
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
+**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
 
-**Value:** "usual.event.data.VOLUME_UNMOUNTED"
+**Value**: "usual.event.data.VOLUME_UNMOUNTED"
 
 
 ### COMMON_EVENT_VOLUME_MOUNTED
@@ -195,9 +197,9 @@ This common event is triggered when an external storage device is successfully m
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
+**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
 
-**Value:** "usual.event.data.VOLUME_MOUNTED"
+**Value**: "usual.event.data.VOLUME_MOUNTED"
 
 
 ### COMMON_EVENT_VOLUME_BAD_REMOVAL
@@ -210,9 +212,9 @@ This common event is triggered when an external storage device is directly remov
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
+**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
 
-**Value:** "usual.event.data.VOLUME_BAD_REMOVAL"
+**Value**: "usual.event.data.VOLUME_BAD_REMOVAL"
 
 
 ### COMMON_EVENT_VOLUME_EJECT
@@ -225,9 +227,25 @@ This common event is triggered when the user calls the **unmount** API on a moun
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
+**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
 
-**Value:** "usual.event.data.VOLUME_EJECT"
+**Value**: "usual.event.data.VOLUME_EJECT"
+
+
+### COMMON_EVENT_RESTORE_START<sup>13+</sup>
+
+Indicates the common event that an application starts to be restored.
+
+When a data migration application starts the backup and restore framework to perform a restoration task, the event notification service is triggered to publish this event.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: ohos.permission.START_RESTORE_NOTIFICATION
+
+**Value**: "usual.event.RESTORE_START"
+
 
 
 
@@ -243,9 +261,9 @@ When the device receives an SMS message, the event notification service is trigg
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.RECEIVE_SMS (for system apps only)
+**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
 
-**Value:** usual.event.SMS_RECEIVED_COMPLETED
+**Value**: usual.event.SMS_RECEIVED_COMPLETED
 
 
 ### COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED<sup>10+</sup>
@@ -258,9 +276,9 @@ When the device receives an emergency cell broadcast message, the event notifica
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.RECEIVE_SMS (for system apps only)
+**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
 
-**Value:** usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED
+**Value**: usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED
 
 
 ### COMMON_EVENT_SMS_CB_RECEIVE_COMPLETED<sup>10+</sup>
@@ -273,9 +291,9 @@ When the device receives a cell broadcast message, the event notification servic
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.RECEIVE_SMS (for system apps only)
+**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
 
-**Value:** usual.event.SMS_CB_RECEIVE_COMPLETED
+**Value**: usual.event.SMS_CB_RECEIVE_COMPLETED
 
 ### COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+</sup>
 
@@ -287,9 +305,9 @@ When the carrier configuration of the device is updated, the event notification 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.OPERATOR_CONFIG_CHANGED
+**Value**: usual.event.OPERATOR_CONFIG_CHANGED
 
 
 ### COMMON_EVENT_SIM_CARD_DEFAULT_SMS_SUBSCRIPTION_CHANGED<sup>10+</sup>
@@ -302,24 +320,24 @@ When the default primary SIM card for the SMS service is updated, the event noti
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.DEFAULT_SMS_SUBSCRIPTION_CHANGED
+**Value**: usual.event.DEFAULT_SMS_SUBSCRIPTION_CHANGED
 
 
 ### COMMON_EVENT_SIM_CARD_DEFAULT_DATA_SUBSCRIPTION_CHANGED<sup>10+</sup>
 
 Indicates that the default primary SIM card for the data service has been updated.
 
-When the default primary SIM card for the data service is updated, the event notification service is triggered to release the system common event.
+When the default primary SIM card for the data service is updated, the event notification service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.DEFAULT_DATA_SUBSCRIPTION_CHANGED
+**Value**: usual.event.DEFAULT_DATA_SUBSCRIPTION_CHANGED
 
 
 ### COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED<sup>10+</sup>
@@ -332,9 +350,9 @@ When the default primary SIM card of the device is updated, the event notificati
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.SIM.DEFAULT_MAIN_SUBSCRIPTION_CHANGED
+**Value**: usual.event.SIM.DEFAULT_MAIN_SUBSCRIPTION_CHANGED
 
 
 ### COMMON_EVENT_SET_PRIMARY_SLOT_STATUS<sup>11+</sup>
@@ -347,9 +365,9 @@ When the status of the action for setting the primary SIM card changes (for exam
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.SET_PRIMARY_SLOT_STATUS
+**Value**: usual.event.SET_PRIMARY_SLOT_STATUS
 
 
 ### COMMON_EVENT_PRIMARY_SLOT_ROAMING<sup>11+</sup>
@@ -362,14 +380,14 @@ When the roaming status of the default primary SIM card changes, the event notif
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.PRIMARY_SLOT_ROAMING
+**Value**: usual.event.PRIMARY_SLOT_ROAMING
 
 
 ### COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+</sup>
 
-Indicates that the default primary SIM card for the data service has been updated. 
+Indicates that the default primary SIM card for the voice service has been updated. 
 
 When the default primary SIM card for the voice service is updated, the event notification service is triggered to publish this event.
 
@@ -377,9 +395,9 @@ When the default primary SIM card for the voice service is updated, the event no
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.DEFAULT_VOICE_SUBSCRIPTION_CHANGED
+**Value**: usual.event.DEFAULT_VOICE_SUBSCRIPTION_CHANGED
 
 
 ### COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED<sup>10+</sup>
@@ -392,9 +410,9 @@ When the cellular data status of the device is updated, the event notification s
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.CELLULAR_DATA_STATE_CHANGED
+**Value**: usual.event.CELLULAR_DATA_STATE_CHANGED
 
 
 ### COMMON_EVENT_INCOMING_CALL_MISSED<sup>10+</sup>
@@ -407,9 +425,9 @@ When an incoming call is missed on the device, the event notification service is
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.GET_TELEPHONY_STATE (for system apps only)
+**Required subscriber permissions**: ohos.permission.GET_TELEPHONY_STATE (for system apps only)
 
-**Value:** usual.event.INCOMING_CALL_MISSED
+**Value**: usual.event.INCOMING_CALL_MISSED
 
 
 ### COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+</sup>
@@ -422,9 +440,9 @@ When there is a change in the radio status of the device, the event notification
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.RADIO_STATE_CHANGE
+**Value**: usual.event.RADIO_STATE_CHANGE
 
 
 ### COMMON_EVENT_SPECIAL_CODE<sup>10+</sup>
@@ -437,9 +455,9 @@ When a secret code is successfully sent on the device, the event notification se
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.DIALER_SPECIAL_CODE
+**Value**: usual.event.DIALER_SPECIAL_CODE
 
 
 ### COMMON_EVENT_AUDIO_QUALITY_CHANGE<sup>10+</sup>
@@ -452,11 +470,9 @@ When there is a change in the audio quality of the device, the event notificatio
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.AUDIO_QUALITY_CHANGE
-
-
+**Value**: usual.event.AUDIO_QUALITY_CHANGE
 
 
 ## Reserved Common Event
@@ -473,9 +489,9 @@ When an STK command is sent, the event notification service is triggered to publ
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.STK_COMMAND
+**Value**: usual.event.STK_COMMAND
 
 
 ### COMMON_EVENT_STK_SESSION_END<sup>10+</sup>
@@ -488,9 +504,9 @@ When an STK session ends, the event notification service is triggered to publish
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.STK_SESSION_END
+**Value**: usual.event.STK_SESSION_END
 
 
 ### COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+</sup>
@@ -503,10 +519,10 @@ When the STK card status is updated, the event notification service is triggered
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
 
-**Value:** usual.event.STK_CARD_STATE_CHANGED
+**Value**: usual.event.STK_CARD_STATE_CHANGED
 
 ### COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+</sup>
 
@@ -518,9 +534,9 @@ When an STK Alpha identifier is sent, the event notification service is triggere
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** none
+**Required subscriber permissions**: none
 
-**Value:** usual.event.STK_ALPHA_IDENTIFIER
+**Value**: usual.event.STK_ALPHA_IDENTIFIER
 
 
 ### COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+</sup>
@@ -533,6 +549,6 @@ When the device receives a WAP push message, the event notification service is t
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions:** ohos.permission.RECEIVE_SMS (for system apps only)
+**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
 
-**Value:** usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED
+**Value**: usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED

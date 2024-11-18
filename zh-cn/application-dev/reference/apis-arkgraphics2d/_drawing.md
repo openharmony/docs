@@ -3950,7 +3950,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath (const OH_Drawing_Font* font, co
 | -------- | -------- |
 | font | 指示字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 |
 | text | 指示要获取轮廓路径的文本字符串。 |
-| byteLength | 指示要获取对应文本路径的字节长度。 |
+| byteLength | 指示要获取对应文本路径的字节长度，如果此字节长度大于text字符串的字节长度，会发生未定义行为。 |
 | encoding | 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引。 |
 | x | 指示文本在绘图区域内以原点为起始位置的X坐标。 |
 | y | 指示文本在绘图区域内以原点为起始位置的Y坐标。 |
@@ -15802,7 +15802,7 @@ void OH_Drawing_TextStyleAddFontFeature (OH_Drawing_TextStyle* , const char* tag
 ### OH_Drawing_TextStyleAddFontVariation()
 
 ```
-void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* axis, int value )
+void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* , const float  )
 ```
 
 **描述**
@@ -15818,8 +15818,8 @@ void OH_Drawing_TextStyleAddFontVariation (OH_Drawing_TextStyle* , const char* a
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
-| char | 可变字体属性键值对中的键。目前仅支持'wght'，表示字重属性。 |
-| int | 设置的可变字体属性键值对的值。目前默认字体下字重属性支持的取值范围为\[0,900\]。 |
+| char\* | 可变字体属性键值对中的键。目前仅支持'wght'，表示字重属性。 |
+| float | 设置的可变字体属性键值对的值。目前默认字体下字重属性支持的取值范围为[0,900]。 |
 
 
 ### OH_Drawing_TextStyleAddShadow()
