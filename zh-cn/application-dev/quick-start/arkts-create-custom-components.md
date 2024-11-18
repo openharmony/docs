@@ -340,7 +340,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，如果需要使用条件判断，请使用if。示例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用[if](./arkts-rendering-control-ifelse.md)。示例如下。
 
   ```ts
   build() {
@@ -369,13 +369,20 @@ struct Son {
   }
   ```
 
-- 不允许使用表达式，反例如下。
+- 不允许使用表达式，请使用if组件，示例如下。
 
   ```ts
   build() {
     Column() {
       // 反例：不允许使用表达式
       (this.aVar > 10) ? Text('...') : Image('...')
+
+      // 正例：使用if判断
+      if(this.aVar > 10) {
+        Text('...')
+      } else {
+        Image('...')
+      }
     }
   }
   ```
