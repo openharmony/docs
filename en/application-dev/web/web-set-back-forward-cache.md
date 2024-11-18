@@ -4,9 +4,9 @@ By enabling the back-forward cache for **Web** components, you can navigate thro
 
 ## Enabling Back-forward Cache
 
-You can use [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12) to enable the back-forward cache for the **Web** components.
+You can use [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12) to enable the back-forward cache for the **Web** component.
 
-This API must be called before calling [initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the kernel.
+This API must be called before calling [initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the kernel.
 
 ```ts
 // EntryAbility.ets
