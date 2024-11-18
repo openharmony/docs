@@ -43,7 +43,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
 
-## 示例
+## 示例（基础用法）
 ```ts
 import { SwipeRefresher } from '@kit.ArkUI';
 
