@@ -561,8 +561,8 @@ struct Index {
                   console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
                 }
                 if (swiperTaget instanceof ScrollableTargetInfo && 
-                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) ||
-                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) {
+                  ((swiperTaget.isEnd() || this.innerSelectedIndex === 1) || // 此处判断swiperTaget.isEnd()为true或当前Tabs索引为内层Tabs的总数-1时，表明内层Tabs滑动到尽头
+                    (swiperTaget.isBegin() || this.innerSelectedIndex === 0))) { // 此处判断swiperTaget.isBegin()为true或当前Tabs索引为0时，表明内层Tabs滑动到开头
                   let panEvent = event as PanGestureEvent;
                   console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
                   swiperTaget.isEnd() + ' index:' + this.innerSelectedIndex)
