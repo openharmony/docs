@@ -3,7 +3,7 @@
 ## 概述
 
 
-本文主要提供应用性能敏感场景下的高性能编程的相关建议，助力开发者开发出高性能的应用。高性能编程实践，是在开发过程中逐步总结出来的一些高性能的写法和建议，在业务功能实现过程中，我们要同步思考并理解高性能写法的原理，运用到代码逻辑实现中。ArkTS编程规范可参考[ArkTS编程规范](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
+本文主要提供应用性能敏感场景下的高性能编程的相关建议，助力开发者开发出高性能的应用。高性能编程实践，是在开发过程中逐步总结出来的一些高性能的写法和建议，在业务功能实现过程中，要同步思考并理解高性能写法的原理，运用到代码逻辑实现中。ArkTS编程规范可参考[ArkTS编程规范](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
 
 ## 声明与表达式
 
