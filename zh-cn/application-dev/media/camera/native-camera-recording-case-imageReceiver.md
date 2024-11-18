@@ -2,6 +2,7 @@
 
 ## 开发流程
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
 在获取到相机支持的输出流能力后，开始创建录像流，开发流程如下。
 
 ![Recording Development Process](figures/recording-ndk-imageReceiver-development-process.png)
