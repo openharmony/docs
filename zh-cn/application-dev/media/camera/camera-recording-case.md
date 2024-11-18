@@ -1,5 +1,6 @@
 # 录像实现方案(ArkTS)
 
+在开发相机应用时，需要先申请相机相关权限[开发准备](camera-preparation.md)。
 当前示例提供完整的录像流程介绍，方便开发者了解完整的接口调用顺序。
 
 在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[录像](camera-recording.md)等单个流程。
