@@ -1,13 +1,13 @@
 # Invoking Frontend Page Functions on the Application
 
+You can call [runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript) and [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10) on an application to call JavaScript functions of frontend pages.
 
-You can call [runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript) on an application to call JavaScript functions of frontend pages.
-
+The parameter types of [runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript) and [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10) are different. In [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10), the input parameter type can be **string** or **ArrayBuffer** (JavaScript script data obtained from files), and the execution result can be obtained through **AsyncCallback**.
 
 In the following example, when a user clicks the **runJavaScript** button on the application, the **htmlTest()** API of the frontend page will be triggered.
 
 - Frontend page code:
-  
+
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -37,7 +37,7 @@ In the following example, when a user clicks the **runJavaScript** button on the
 
 
 - Application code:
-  
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -56,7 +56,7 @@ In the following example, when a user clicks the **runJavaScript** button on the
       Column() {
         Button('runJavaScript')
           .onClick(() => {
-            // If the frontend page function has no parameter, delete param.
+            // If no parameter is required for the functions in the frontend page, delete param.
             this.webviewController.runJavaScript('htmlTest(param)');
           })
         Button('runJavaScriptCodePassed')

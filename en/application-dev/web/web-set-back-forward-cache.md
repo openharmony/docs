@@ -4,9 +4,9 @@ By enabling the back-forward cache for **Web** components, you can navigate thro
 
 ## Enabling Back-forward Cache
 
-You can use [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12) to enable the back-forward cache for the **Web** components.
+You can use [enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12) to enable the back-forward cache for the **Web** component.
 
-This API must be called before calling [initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the kernel.
+This API must be called before calling [initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the kernel.
 
 ```ts
 // EntryAbility.ets
@@ -32,7 +32,7 @@ export default class EntryAbility extends UIAbility {
 You can use [setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12) to set the back-forward cache options for each **Web** component.
 
 In the following example, the maximum number of pages that can be cached in the **Web** component is set to **10**, and each page is cached for 300s.
-
+  
 ```ts
 // xxx.ts
 import { webview } from '@kit.ArkWeb';
@@ -65,5 +65,3 @@ struct Index {
   }
 }
 ```
-
-<!--no_check-->
