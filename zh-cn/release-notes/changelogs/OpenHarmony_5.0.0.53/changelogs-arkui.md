@@ -63,7 +63,7 @@ struct barHeightTest {
 }
 ```
 
-## cl.arkui.2 轴事件正确分发到XComponent组件变更
+## cl.arkui.2 轴事件分发到XComponent组件变更
 
 **访问级别**
 
