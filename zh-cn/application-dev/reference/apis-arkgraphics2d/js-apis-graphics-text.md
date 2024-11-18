@@ -2495,11 +2495,67 @@ struct Index {
 }
 ```
 
+### getGlyphs<sup>14+</sup>
+
+getGlyphs(range: Range): Array\<number>
+
+获取该渲染单元指定范围内每个字符对应的字形序号。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | 是   | 要获取的字形序号范围，range.start表示范围开始的位置，range.end表示范围的长度，如果长度是0表示从范围range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
+
+**返回值：**
+
+| 类型            | 说明                             |
+| --------------- | -------------------------------- |
+| Array\<number>  | 该渲染单元中每个字符对应的字形序号。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function textFunc() {
+  let glyphs = runs[0].getGlyphs(); // 获取渲染块全部字形序号
+  let glyphsRange = runs[0].getGlyphs({start:1, end:2}); // 获取渲染块从起始位置1开始, 长度为2范围内的字形序号
+  glyphsRange = runs[0].getGlyphs({start:-1, end:2}); // -1是非法参数，将返回undefined
+  glyphsRange = runs[0].getGlyphs({start:0, end:-10}); // -10是非法参数，将返回undefined
+  let glyphsNull = runs[0].getGlyphs(null); // null是非法参数，将返回undefined
+  let glyphsUndefined = runs[0].getGlyphs(undefined); // undefined是非法参数，将返回undefined
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
 ### getPositions
 
 getPositions(): Array<common2D.Point>
 
-获取该渲染单元中每个字形相对于每行的索引。
+获取该渲染单元中每个字形相对于每行的字形位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2507,7 +2563,7 @@ getPositions(): Array<common2D.Point>
 
 | 类型                   | 说明                                   |
 | ---------------------- | ------------------------------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该渲染单元中每个字形相对于每行的索引。 |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该渲染单元中每个字形相对于每行的字形位置。 |
 
 **示例：**
 
@@ -2515,7 +2571,54 @@ getPositions(): Array<common2D.Point>
 import { text } from "@kit.ArkGraphics2D";
 
 function textFunc() {
-  let positions = runs[0].getPositions();
+  let positions = runs[0].getPositions(); // 获取渲染块全部字形位置
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+### getPositions<sup>14+</sup>
+
+getPositions(range: Range): Array<common2D.Point>
+
+获取该渲染单元指定范围内每个字形相对于每行的字形位置数组。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | 是   | 要获取的字形位置范围，range.start表示范围开始的位置，range.end表示范围的长度，如果长度是0表示从范围range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
+
+**返回值：**
+
+| 类型                   | 说明                                   |
+| ---------------------- | ------------------------------------- |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该渲染单元中每个字形相对于每行的字形位置。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let positions = runs[0].getPositions(); // 获取渲染块全部字形位置
+  let positionsRange = runs[0].getPositions({start:1, end:2}); // 获取渲染块从起始位置1开始, 长度为2范围内的字形位置
+  positionsRange = runs[0].getPositions({start:-1, end:2}); // -1是非法参数，将返回undefined
+  positionsRange = runs[0].getPositions({start:0, end:-10}); // -10是非法参数，将返回undefined
+  let positionsNull = runs[0].getPositions(null); // null是非法参数，将返回undefined
+  let positionsUndefined = runs[0].getPositions(undefined); // undefined是非法参数，将返回undefined
 }
 
 @Entry
@@ -2677,3 +2780,193 @@ alignment为LEFT，location为100，文本为"abccccccccc/tdef"：
 alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
 
 ![zh-ch_image_AlignmentRight.png](figures/zh-ch_image_AlignmentRight.png)
+
+### getStringRange<sup>14+</sup>
+
+getStringRange(): Range
+
+获取该渲染单元生成字形的字符范围。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| [Range](#range) | 渲染单元生成字形的字符范围，Rang类型中的start表示字符范围的开始位置，该位置是相对于整个段落的索引，Rang类型中的end表示字符范围的长度。|
+
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let runStringRange = runs[0].getStringRange();
+  let location = runStringRange.start;
+  let length = runStringRange.end;
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getStringIndices<sup>14+</sup>
+
+getStringIndices(range?: Range): Array\<number>
+
+获取渲染单元指定范围内字形的字符索引，该索引是相对于整个段落的偏移。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | 否   | 要获取的字符索引范围，range.start表示范围开始的位置，range.end表示范围的长度，如果长度是0表示从范围range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。不传该参数时，默认获取整个渲染块。|
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| Array\<number>  | 该渲染单元中每个字符的索引。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let indices = runs[0].getStringIndices(); // 获取渲染块全部字符索引
+  let indicesRange = runs[0].getStringIndices({start:1, end:2}); // 获取渲染块从起始位置1开始, 长度为2范围内的字符索引
+  indicesRange = runs[0].getStringIndices({start:-1, end:2}); // -1是非法参数，将返回undefined
+  indicesRange = runs[0].getStringIndices({start:0, end:-10}); // -10是非法参数，将返回undefined
+  let indicesNull = runs[0].getStringIndices(null); // null是非法参数，将返回undefined
+  let indicesUndefined = runs[0].getStringIndices(undefined); // undefined是非法参数，将返回undefined
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getImageBounds<sup>14+</sup>
+
+getImageBounds(): common2D.Rect
+
+获取该渲染单元的图像边界，图像边界与排版字体、排版字号、字符本身都有关，相当于视觉边界，例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，用户在界面上只能看到"a b"，图像边界即为不包括带行首和末尾空格的边界。
+
+>**说明：**
+>
+>示意图展示了字符串为" a b "的图像边界。
+>
+>![zh-ch_image_ImageBounds.png](figures/zh-ch_image_ImageBounds.png)
+>
+>示意图展示了字符串为"j"或"E"的图像边界。
+>
+>![zh-ch_image_ImageBounds_Character.png](figures/zh-ch_image_ImageBounds_Character.png)
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+|   [common2D.Rect](js-apis-graphics-common2D.md#rect)  | 该渲染单元的图像边界。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let bounds = runs[0].getImageBounds();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getTypographicBounds<sup>14+</sup>
+
+getTypographicBounds(): TypographicBounds
+
+获取该渲染单元的排版边界，排版边界与排版字体、排版字号有关，与字符本身无关，例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，排版边界就包括行首和末尾空格的边界。
+
+>**说明：**
+>
+>示意图展示了字符串为" a b "的排版边界。
+>
+>![zh-ch_image_TypographicBounds.png](figures/zh-ch_image_TypographicBounds.png)
+>
+>示意图展示了字符串为"j"或"E"的排版边界。
+>
+>![zh-ch_image_TypographicBounds_Character.png](figures/zh-ch_image_TypographicBounds_Character.png)
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+|  [TypographicBounds](#typographicbounds14)  | 该渲染单元的排版边界。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function textFunc() {
+  let typographicBounds = runs[0].getTypographicBounds();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = textFunc;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
