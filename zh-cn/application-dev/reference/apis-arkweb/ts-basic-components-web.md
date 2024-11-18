@@ -2055,7 +2055,7 @@ enableNativeEmbedMode(mode: boolean)
 
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用英文非空字串，不区分大小写。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用ASCII可显示字符。
 
 若指定类型与w3c定义的object或embed标准类型重合，ArkWeb内核将其识别为非同层标签。
 
