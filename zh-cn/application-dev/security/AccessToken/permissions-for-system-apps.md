@@ -4197,6 +4197,18 @@
 
 **起始版本**：12
 
+### ohos.permission.USE_USER_ACCESS_MANAGER
+
+允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
+
+**权限级别** system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：17
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
