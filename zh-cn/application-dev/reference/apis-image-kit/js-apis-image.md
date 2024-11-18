@@ -177,7 +177,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
@@ -209,7 +209,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
@@ -286,7 +286,7 @@ class MySequence implements rpc.Parcelable {
     return true;
   }
 }
-async function Demo() {
+async function CreatePixelMapFromParcel() {
   const color: ArrayBuffer = new ArrayBuffer(96);
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -357,7 +357,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo(surfaceId: string) {
+async function CreatePixelMapFromSurface(surfaceId: string) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   image.createPixelMapFromSurface(surfaceId, region).then(() => {
     console.info('Succeeded in creating pixelmap from Surface');
@@ -446,7 +446,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePixelMapSync() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
@@ -486,7 +486,7 @@ createPixelMapSync(options: InitializationOptions): PixelMap
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePixelMapSync() {
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
   return pixelMap;
@@ -525,7 +525,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -586,7 +586,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreatePremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -639,7 +639,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallb
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateUnpremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -700,7 +700,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateUnpremultipliedPixelMap() {
   const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
   let bufferArr = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i += 4) {
@@ -1215,7 +1215,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsToBuffer() {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer).then(() => {
@@ -1251,7 +1251,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsToBuffer() {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
@@ -1298,7 +1298,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsToBufferSync() {
   const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
   if (pixelMap != undefined) {
     pixelMap.readPixelsToBufferSync(readBuffer);
@@ -1341,7 +1341,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
@@ -1357,7 +1357,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
@@ -1404,7 +1404,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
@@ -1423,7 +1423,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function ReadPixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
@@ -1473,7 +1473,7 @@ readPixelsSync(area: PositionArea): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ReadPixelsSync() {
   const area : image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -1521,7 +1521,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
@@ -1541,7 +1541,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
@@ -1592,7 +1592,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
@@ -1614,7 +1614,7 @@ async function Demo() {
   }
 }
 
-async function Demo() {
+async function WritePixels() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
     stride: 8,
@@ -1669,7 +1669,7 @@ writePixelsSync(area: PositionArea): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WritePixelsSync() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8),
     offset: 0,
@@ -1715,7 +1715,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WriteBufferToPixels() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -1755,7 +1755,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WriteBufferToPixels() {
   const color: ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -1804,7 +1804,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function WriteBufferToPixelsSync() {
   const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
   let bufferArr : Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -1840,7 +1840,7 @@ getImageInfo(): Promise\<ImageInfo>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function GetImageInfo() {
   if (pixelMap != undefined) {
     pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
       if (imageInfo != undefined) {
@@ -1876,7 +1876,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function GetImageInfo() {
   if (pixelMap != undefined) {
     pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
       if (error) {
@@ -1921,7 +1921,7 @@ getImageInfoSync(): ImageInfo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function GetImageInfoSync() {
   if (pixelMap != undefined) {
     let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
     return imageInfo;
@@ -2026,7 +2026,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Opacity() {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate, (err: BusinessError) => {
@@ -2070,7 +2070,7 @@ opacity(rate: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Opacity() {
   let rate: number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacity(rate).then(() => {
@@ -2112,7 +2112,7 @@ opacitySync(rate: number): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function OpacitySync() {
   let rate : number = 0.5;
   if (pixelMap != undefined) {
     pixelMap.opacitySync(rate);
@@ -2143,7 +2143,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateAlphaPixelmap() {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
       console.info('Succeeded in creating alpha pixelmap.');
@@ -2177,7 +2177,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateAlphaPixelmap() {
   if (pixelMap != undefined) {
     pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
       if (alphaPixelMap == undefined) {
@@ -2221,7 +2221,7 @@ createAlphaPixelmapSync(): PixelMap
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CreateAlphaPixelmapSync() {
   if (pixelMap != undefined) {
     let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
     return pixelmap;
@@ -2255,7 +2255,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Scale() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -2301,7 +2301,7 @@ scale(x: number, y: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Scale() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -2346,7 +2346,7 @@ scaleSync(x: number, y: number): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ScaleSync() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -2395,7 +2395,7 @@ scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Scale() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -2441,7 +2441,7 @@ scaleSync(x: number, y: number, level: AntiAliasingLevel): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ScaleSync() {
   let scaleX: number = 2.0;
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
@@ -2475,7 +2475,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Translate() {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -2521,7 +2521,7 @@ translate(x: number, y: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Translate() {
   let translateX: number = 50.0;
   let translateY: number = 10.0;
   if (pixelMap != undefined) {
@@ -2565,7 +2565,7 @@ translateSync(x: number, y: number): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function TranslateSync() {
   let translateX : number = 50.0;
   let translateY : number = 10.0;
   if (pixelMap != undefined) {
@@ -2598,7 +2598,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Rotate() {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle, (err: BusinessError) => {
@@ -2642,7 +2642,7 @@ rotate(angle: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Rotate() {
   let angle: number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotate(angle).then(() => {
@@ -2684,7 +2684,7 @@ rotateSync(angle: number): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function RotateSync() {
   let angle : number = 90.0;
   if (pixelMap != undefined) {
     pixelMap.rotateSync(angle);
@@ -2717,7 +2717,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Flip() {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -2763,7 +2763,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Flip() {
   let horizontal: boolean = true;
   let vertical: boolean = false;
   if (pixelMap != undefined) {
@@ -2807,7 +2807,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function FlipSync() {
   let horizontal : boolean = true;
   let vertical : boolean = false;
   if (pixelMap != undefined) {
@@ -2840,7 +2840,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Crop() {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.crop(region, (err: BusinessError) => {
@@ -2884,7 +2884,7 @@ crop(region: Region): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Crop() {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.crop(region).then(() => {
@@ -2927,7 +2927,7 @@ cropSync(region: Region): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function CropSync() {
   let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
   if (pixelMap != undefined) {
     pixelMap.cropSync(region);
@@ -2962,7 +2962,7 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 **示例：**
 
 ```ts
-async function Demo() {
+async function GetColorSpace() {
   if (pixelMap != undefined) {
     let csm = pixelMap.getColorSpace();
   }
@@ -2996,7 +2996,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-async function Demo() {
+async function SetColorSpace() {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -3037,7 +3037,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ApplyColorSpace() {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -3090,7 +3090,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function ApplyColorSpace() {
   let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
@@ -3393,7 +3393,7 @@ class MySequence implements rpc.Parcelable {
     return true;
   }
 }
-async function Demo() {
+async function Marshalling() {
   const color: ArrayBuffer = new ArrayBuffer(96);
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -3481,7 +3481,7 @@ class MySequence implements rpc.Parcelable {
     return true;
   }
 }
-async function Demo() {
+async function Unmarshalling() {
   const color: ArrayBuffer = new ArrayBuffer(96);
   let bufferArr: Uint8Array = new Uint8Array(color);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -3535,7 +3535,7 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Release() {
   if (pixelMap != undefined) {
     pixelMap.release().then(() => {
       console.info('Succeeded in releasing pixelmap object.');
@@ -3571,7 +3571,7 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
+async function Release() {
   if (pixelMap != undefined) {
     pixelMap.release((err: BusinessError) => {
       if (err) {
@@ -3664,7 +3664,7 @@ setMemoryNameSync(name: string): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-async function Demo() {
+async function SetMemoryNameSync() {
   if (pixelMap != undefined) {
     try {
       pixelMap.setMemoryNameSync("PixelMapName Test");
