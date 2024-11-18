@@ -95,7 +95,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 ## 示例
 
-### 示例1
+### 示例1（设置左侧图标、主标题及自定义右侧图标区）
 
 ```ts
 // 该示例主要演示EditableTitleBar设置左侧图标、主标题及自定义右侧图标区的效果。
@@ -145,7 +145,7 @@ struct Index {
 
 ![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
 
-### 示例2
+### 示例2（设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距）
 
 ```ts
 // 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
