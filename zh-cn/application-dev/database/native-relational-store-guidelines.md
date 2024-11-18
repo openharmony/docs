@@ -113,7 +113,7 @@ libnative_rdb_ndk.z.so
    config.area = RDB_SECURITY_AREA_EL1;
    
    int errCode = 0;
-   // 获取获取OH_Rdb_Store实例
+   // 获取OH_Rdb_Store实例
    OH_Rdb_Store *store_ = OH_Rdb_GetOrOpen(&config, &errCode);
    ```
 
