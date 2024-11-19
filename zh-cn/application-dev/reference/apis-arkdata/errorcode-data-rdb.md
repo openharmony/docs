@@ -147,7 +147,7 @@ The database does not respond.
 
 **错误信息**
 
-The database is already attached.
+The database alias already exists.
 
 **错误描述**
 
@@ -532,7 +532,7 @@ WAL文件大小超过默认上限（200M）。
 
 **错误信息**
 
-Failed to obtain subscription service.
+Failed to obtain the subscription service.
 
 **错误描述**
 
@@ -550,7 +550,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
- Only supported in stage mode.
+The operation is supported in the stage model only.
 
 **错误描述**
 
@@ -568,7 +568,7 @@ Failed to obtain subscription service.
 
 **错误信息**
 
-The data group id is not valid.
+Invalid data ground ID.
 
 **错误描述**
 
