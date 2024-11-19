@@ -234,7 +234,7 @@ struct Index {
 
 ![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
 
-###  示例2(设置工具栏自定义样式)
+### 示例2(设置工具栏自定义样式)
 ```ts
 import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 
