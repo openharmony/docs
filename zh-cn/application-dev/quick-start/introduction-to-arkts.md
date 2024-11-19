@@ -14,7 +14,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
 
-如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)。
+如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)<!--RP1--><!--RP1End-->。
 
 ## 基本知识
 
@@ -1720,7 +1720,7 @@ async function test() {
 
 更多的使用动态import的业务场景和使用实例见[动态import](../arkts-utils/arkts-dynamic-import.md)。
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### 顶层语句
 
