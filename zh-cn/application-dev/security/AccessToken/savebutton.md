@@ -7,7 +7,7 @@
 与需要触发系统应用并由用户选择具体保存路径的Picker不同，保存控件可以直接保存到指定的媒体库路径，使得操作更为便捷。
 
 保存控件效果如图所示。
-  
+
 ![zh-cn_image_0000001701740676](figures/zh-cn_image_0000001701740676.png)
 
 ## 约束与限制
@@ -37,6 +37,8 @@
 
    当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
+   图片保存到媒体库的详细介绍可参考[保存媒体库资源](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+
    ```ts
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { fileIo } from '@kit.CoreFileKit';
