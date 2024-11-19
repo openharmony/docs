@@ -72,7 +72,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-
+工具栏列表属性的基础用法，展示列表子项超出5个时的显示效果。
 ```ts
 import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 
