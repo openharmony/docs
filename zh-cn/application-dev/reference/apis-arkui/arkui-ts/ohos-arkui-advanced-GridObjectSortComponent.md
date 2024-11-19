@@ -56,7 +56,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认：点击添加。            |
 | editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认：编辑。             |
 
-## GridObjectSortComponentType 
+## GridObjectSortComponentType
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -85,13 +85,12 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 不支持[通用事件](ts-universal-events-click.md)。
 
-## 示例（基本用法）
+## 示例
 网格对象的编辑排序组件基础用法，涉及对组件配置信息初始化，数据初始化，保存、取消方法的使用。
 
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@kit.ArkUI'
 
-// 网格对象的编辑排序组件基础用法，涉及对组件配置信息初始化，数据初始化，保存、取消方法的使用。
 @Entry
 @Component
 struct Index {
