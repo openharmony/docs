@@ -4821,7 +4821,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 参数名             | 类型    | 必填 | 说明                                        |
 | ------------------ | ------- | ---- |-------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。ratio的有效范围会随[WindowLimits](#windowlimits11)变化而变化。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。ratio的有效范围会随[WindowLimits](#windowlimits11)变化而变化。如果先设置了[WindowLimits](#windowlimits11)，后设置的ratio与limits冲突，会返回错误码；如果先设置了缩放比例ratio，后设置的limits与ratio冲突，窗口的缩放比例可能会不跟随设置的长宽比（ratio）。 |
 
 **返回值：**
 
@@ -4888,7 +4888,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名             | 类型    | 必填 | 说明                                         |
 | ------------------ | ------- | ---- |--------------------------------------------|
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。ratio的有效范围会随[WindowLimits](#windowlimits11)变化而变化。 |
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，受窗口最大最小尺寸限制，比例值下限为最小宽度/最大高度，上限为最大宽度/最小高度。窗口最大最小尺寸由[WindowLimits](#windowlimits11)和系统限制的交集决定，系统限制优先级高于[WindowLimits](#windowlimits11)。ratio的有效范围会随[WindowLimits](#windowlimits11)变化而变化。如果先设置了[WindowLimits](#windowlimits11)，后设置的ratio与limits冲突，会返回错误码；如果先设置了缩放比例ratio，后设置的limits与ratio冲突，窗口的缩放比例可能会不跟随设置的长宽比（ratio）。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **错误码：**
