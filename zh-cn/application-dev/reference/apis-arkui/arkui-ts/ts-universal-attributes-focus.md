@@ -175,6 +175,16 @@ activate(): void
 >
 >  详细介绍请参见[activate](../js-apis-arkui-UIContext.md#activate14)。
 
+### setAutoFocusTransfer<sup>14+</sup>
+
+setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
+
+设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](../js-apis-router.md#routerpushurl9)、[Navigation](ts-basic-components-navigation.md#navigation)、[Menu](ts-basic-components-menu.md#menu)、[Dialog](ohos-arkui-advanced-Dialog.md)、[Popup](ohos-arkui-advanced-Popup.md#popup)等。
+
+>  **说明：**
+>
+>  详细介绍请参见[setAutoFocusTransfer](../js-apis-arkui-UIContext.md#setautofocustransfer14)。
+
 ## FocusBoxStyle<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。

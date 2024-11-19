@@ -6901,6 +6901,68 @@ struct ActivateExample {
 }
 ```
 
+### setAutoFocusTransfer<sup>14+</sup>
+
+setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
+
+设置页面切换时，新的页面是否需要主动获取焦点。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| setAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+  build() {
+    Column() {
+      Text('这是自定义弹窗')
+        .fontSize(30)
+        .height(100)
+      Text('弹窗不能主动获取焦点')
+        .fontSize(20)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close()
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+  })
+  aboutToDisappear() {
+    this.dialogController = null
+  }
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+    .onFocus(()=>{this.getUIContext().getFocusController().setAutoFocusTransfer(false)})
+  }
+}
+```
 
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
