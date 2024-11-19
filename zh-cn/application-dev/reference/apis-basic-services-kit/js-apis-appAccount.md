@@ -422,7 +422,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
+| 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
 
@@ -472,7 +472,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
+| 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
 
