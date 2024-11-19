@@ -1269,7 +1269,6 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
-| 12400001 | Application not found. |
 
 **示例：**
 
@@ -1317,7 +1316,6 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
-| 12400001 | Application not found. |
 
 **示例：**
 
@@ -1359,7 +1357,6 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or owners. |
-| 12400001 | Application not found. |
 
 **示例：**
 
@@ -1862,7 +1859,6 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 | 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
@@ -1916,7 +1912,6 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 | 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
