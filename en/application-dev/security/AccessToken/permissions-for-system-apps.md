@@ -4644,3 +4644,39 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+### ohos.permission.READ_APP_LOCK
+
+Allows system applications to read the application lock status.
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.WRITE_APP_LOCK
+
+Allows system applications to modify the application lock status.
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+Control services to start the application lock.
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
