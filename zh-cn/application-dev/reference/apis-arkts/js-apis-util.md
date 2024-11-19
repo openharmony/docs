@@ -3824,11 +3824,15 @@ isAsyncFunction(value: Object): boolean
   ```
 
 
-### isBooleanObject<sup>8+</sup>
+### isBooleanObject<sup>(deprecated)</sup>
 
 isBooleanObject(value: Object): boolean
 
 检查输入的value是否是一个Boolean对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3856,11 +3860,15 @@ isBooleanObject(value: Object): boolean
   ```
 
 
-### isBoxedPrimitive<sup>8+</sup>
+### isBoxedPrimitive<sup>(deprecated)</sup>
 
 isBoxedPrimitive(value: Object): boolean
 
 检查输入的value是否是Boolean或Number或String或Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4364,11 +4372,15 @@ isNativeError(value: Object): boolean
   ```
 
 
-### isNumberObject<sup>8+</sup>
+### isNumberObject<sup>(deprecated)</sup>
 
 isNumberObject(value: Object): boolean
 
 检查输入的value是否是Number对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4562,11 +4574,15 @@ isSetIterator(value: Object): boolean
   ```
 
 
-### isStringObject<sup>8+</sup>
+### isStringObject<sup>(deprecated)</sup>
 
 isStringObject(value: Object): boolean
 
 检查输入的value是否是String对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4594,11 +4610,15 @@ isStringObject(value: Object): boolean
   ```
 
 
-### isSymbolObject<sup>8+</sup>
+### isSymbolObject<sup>(deprecated)</sup>
 
 isSymbolObject(value: Object): boolean
 
 检查输入的value是否是Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
