@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import CommonEvent from '@ohos.commonEvent';
+import commonEvent from '@ohos.commonEvent';
 ```
 
 ## Support
@@ -19,7 +19,7 @@ import CommonEvent from '@ohos.commonEvent';
 
 全部系统公共事件枚举定义请参见[系统公共事件定义](./common_event/commonEvent-definitions.md)。
 
-## CommonEvent.publish<sup>(deprecated)</sup>
+## commonEvent.publish<sup>(deprecated)</sup>
 
 publish(event: string, callback: AsyncCallback\<void>): void
 
@@ -52,10 +52,10 @@ function publishCB(err:Base.BusinessError) {
 }
 
 //发布公共事件
-CommonEvent.publish("event", publishCB);
+commonEvent.publish("event", publishCB);
 ```
 
-## CommonEvent.publish<sup>(deprecated)</sup>
+## commonEvent.publish<sup>(deprecated)</sup>
 
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
@@ -98,10 +98,10 @@ function publishCB(err:Base.BusinessError) {
 }
 
 //发布公共事件
-CommonEvent.publish("event", options, publishCB);
+commonEvent.publish("event", options, publishCB);
 ```
 
-## CommonEvent.createSubscriber<sup>(deprecated)</sup>
+## commonEvent.createSubscriber<sup>(deprecated)</sup>
 
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
@@ -144,10 +144,10 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
 }
 
 // 创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createCB);
+commonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
-## CommonEvent.createSubscriber<sup>(deprecated)</sup>
+## commonEvent.createSubscriber<sup>(deprecated)</sup>
 
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
@@ -183,7 +183,7 @@ let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
 };
 
 // 创建订阅者
-CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => {
+commonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => {
     console.info("createSubscriber");
     subscriber = commonEventSubscriber;
 }).catch((err:Base.BusinessError) => {
@@ -191,7 +191,7 @@ CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEv
 });
 ```
 
-## CommonEvent.subscribe<sup>(deprecated)</sup>
+## commonEvent.subscribe<sup>(deprecated)</sup>
 
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
@@ -239,15 +239,15 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
-        CommonEvent.subscribe(subscriber, subscribeCB);
+        commonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
 // 创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createCB);
+commonEvent.createSubscriber(subscribeInfo, createCB);
 ```
 
-## CommonEvent.unsubscribe<sup>(deprecated)</sup>
+## commonEvent.unsubscribe<sup>(deprecated)</sup>
 
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>): void
 
@@ -295,7 +295,7 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
-        CommonEvent.subscribe(subscriber, subscribeCB);
+        commonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
@@ -309,8 +309,8 @@ function unsubscribeCB(err:Base.BusinessError) {
 }
 
 // 创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createCB);
+commonEvent.createSubscriber(subscribeInfo, createCB);
 
 // 取消订阅公共事件
-CommonEvent.unsubscribe(subscriber, unsubscribeCB);
+commonEvent.unsubscribe(subscriber, unsubscribeCB);
 ```
