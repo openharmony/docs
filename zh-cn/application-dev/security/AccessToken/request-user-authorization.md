@@ -81,15 +81,15 @@
    }
    
    async function checkPermissions(): Promise<void> {
-     let grantStatus1: boolean = await checkPermissionGrant(permissions[0]) === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;//获取精确定位权限状态
-     let grantStatus2: boolean = await checkPermissionGrant(permissions[1]) === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;//获取模糊定位权限状态
-     //精确定位权限只能跟模糊定位权限一起申请，或者已经有模糊定位权限才能申请精确定位权限
+     let grantStatus1: boolean = await checkPermissionGrant(permissions[0]) === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;// 获取精确定位权限状态
+     let grantStatus2: boolean = await checkPermissionGrant(permissions[1]) === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;// 获取模糊定位权限状态
+     // 精确定位权限只能跟模糊定位权限一起申请，或者已经有模糊定位权限才能申请精确定位权限
      if (grantStatus2 && !grantStatus1) {
-      //申请精确定位权限
+        // 申请精确定位权限
      } else if (!grantStatus1 && !grantStatus2) {
-      //申请模糊定位权限与精确定位权限或单独申请模糊定位权限
+        // 申请模糊定位权限与精确定位权限或单独申请模糊定位权限
      } else {
-      // 已经授权，可以继续访问目标操作
+        //  已经授权，可以继续访问目标操作
      }
    }
    ```
