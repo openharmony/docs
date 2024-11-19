@@ -72,7 +72,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-
+该示例展示了工具栏子项state属性分别设置ENABLE、DISABLE、ACTIVATE状态的不同显示效果。
 ```ts
 import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 
