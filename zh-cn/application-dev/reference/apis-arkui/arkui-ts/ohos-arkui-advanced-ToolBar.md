@@ -168,6 +168,7 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 
 ## 示例
 
+### 示例1（基础用法）
 ```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
 
@@ -233,6 +234,7 @@ struct Index {
 
 ![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
 
+### 示例2(设置工具栏自定义样式)
 ```ts
 import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 
@@ -240,7 +242,7 @@ import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarM
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions();
-  @State toolBarModifier: ToolBarModifier =
+  private toolBarModifier: ToolBarModifier =
   new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
   @State dividerModifier: DividerModifier = new DividerModifier().height(0);
 
