@@ -316,11 +316,11 @@ This error code is reported when the current **WebviewController** object is inv
 
 **Possible Causes**
 
-The **WebviewController** object is not associated with a valid **Web** component.
+The **WebviewController** object is not associated with a valid **\<Web>** component.
 
 **Solution**
 
-Use a **WebviewController** object that is associated with a valid **Web** component.
+Use a **WebviewController** object that is associated with a valid **\<Web>** component.
 
 ## 17100018 No WebDownloadDelegate Available
 
