@@ -1041,9 +1041,17 @@ int uv_async_send(uv_async_t* handle)
 
 uv_loop_t* loop = nullptr;
 uv_async_t* async = nullptr;
+int g_counter = 10;
 void async_handler(uv_async_t* handle)
 {
     printf("ohos async print\n");
+    if (--g_counter == 0) {
+        // 调用uv_close关闭async，在主循环中释放内存。
+        uv_close((uv_handle_t*)async, [](uv_handle_t* handle) {
+            printf("delete async\n");
+            delete (uv_async_t*)handle;
+        });
+    }
 }
 
 int main()
@@ -1053,16 +1061,10 @@ int main()
     uv_async_init(loop, async, async_handler);
     std::thread subThread([]() {
         for (int i = 0; i < 10; i++) {
-            usleep(100);
+            usleep(100); // 避免多次调用uv_async_send只执行一次
             printf("%dth: subThread triggered\n", i);
             uv_async_send(async);
         }
-        // 调用uv_close关闭async，在主循环中释放内存。
-        uv_close((uv_handle_t*)async, [](uv_handle_t* handle) {
-            printf("delete async\n");
-            delete (uv_async_t*)handle;
-        });
-        uv_stop(loop);
     });
     subThread.detach();
     return uv_run(loop, UV_RUN_DEFAULT);
@@ -1097,6 +1099,7 @@ ohos async print
 8th:subThread triggered
 ohos async print
 9th:subThread triggered
+ohos async print
 delete async
 ```
 
