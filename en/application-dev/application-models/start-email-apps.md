@@ -1,4 +1,4 @@
-# Starting an Email Application
+# Using startAbilityByType to Start an Email Application
 
 This topic describes how to open the vertical domain panel of email applications.
 
@@ -6,16 +6,16 @@ This topic describes how to open the vertical domain panel of email applications
 
 If the **type** field in **startAbilityByType** is set to **mail**, **wantParam** contains the following properties.
 
-| Name                             | Description                                  | Data Type| Mandatory                  |
-| ------------------------------------- | -------------------------------------- | -------- | -------------------------- |
-| email                                 | Email address of the recipient. Multiple email addresses, separated by commas (,), are supported.| string[ ] | No                        |
-| cc                                    | Email address of the CC recipient. Multiple email addresses, separated by commas (,), are supported.| string[ ] | No                        |
-| bcc                                   | Email address of the BCC recipient. Multiple email addresses, separated by commas (,), are supported.| string[ ] | No                        |
-| subject                               | Email subject.                              | string   | No                        |
-| body                                  | Email body.                              | string   | No                        |
-| ability.params.stream                 | Email attachments (URI list of the attachments).         | string[ ] | No                        |
-| ability.want.params.uriPermissionFlag | At least the read permission must be granted on the email attachments.              | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags)   | Mandatory when an email attachment exists.|
-| sceneType                             | 1: Send an email.                  | number   | No. When this parameter is left unspecified, the default value **1** is used.                        |
+| Name                               | Type                                                        | Mandatory| Description                                                        |
+| ------------------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| email                                 | string[ ]                                                    | No  | Email address of the recipient. Multiple email addresses, separated by commas (,), are supported.                      |
+| cc                                    | string[ ]                                                    | No  | Email address of the CC recipient. Multiple email addresses, separated by commas (,), are supported.                      |
+| bcc                                   | string[ ]                                                    | No  | Email address of the BCC recipient. Multiple email addresses, separated by commas (,), are supported.                      |
+| subject                               | string                                                       | No  | Email subject.                                                    |
+| body                                  | string                                                       | No  | Email body.                                                    |
+| ability.params.stream                 | string[ ]                                                    | No  | Email attachments (URI list of the attachments).                               |
+| ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | No  | At least the read permission must be granted on the email attachments. This parameter is mandatory when **ability.params.stream** is specified.|
+| sceneType                             | number                                                       | No  | 1: Send an email. The default value is **1**.                             |
 
 > **NOTE**
 >
@@ -101,14 +101,14 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 
     The **want.parameters** parameter contains the following parameters, which may be slightly different from the ones passed in by the caller.
 
-    | Name            | Description                                                        | Data Type| Mandatory|
-    | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | email  | Email address of the recipient. Multiple email addresses, separated by commas (,), are supported.                                 | string[ ] | No|
-    | cc | Email address of the CC recipient. Multiple email addresses, separated by commas (,), are supported.                                 | string[ ] | No|
-    | bcc    | Email address of the BCC recipient. Multiple email addresses, separated by commas (,), are supported.                                 | string[ ] | No |
-    | subject    | Email subject.                              | string   | No |
-    | body   | Email body.                            | string | No |
-    | stream | Email attachments (URI list of the attachments).                 | string[ ] | No |
+    | Name | Type     | Mandatory| Description                                  |
+    | ------- | --------- | ---- | -------------------------------------- |
+    | email   | string[ ] | No  | Email address of the recipient. Multiple email addresses, separated by commas (,), are supported.|
+    | cc      | string[ ] | No  | Email address of the CC recipient. Multiple email addresses, separated by commas (,), are supported.|
+    | bcc     | string[ ] | No  | Email address of the BCC recipient. Multiple email addresses, separated by commas (,), are supported.|
+    | subject | string    | No  | Email subject.                              |
+    | body    | string    | No  | Email body.                              |
+    | stream  | string[ ] | No  | Email attachments (URI list of the attachments).     |
     
     > **NOTE**
     > 

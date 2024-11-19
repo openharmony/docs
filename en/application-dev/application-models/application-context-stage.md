@@ -26,7 +26,7 @@
       }
     }
     ```
-    
+     
      > **NOTE**
      >
      > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
@@ -54,7 +54,7 @@
       }
     }
     ```
-  - [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md), and [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md).
+  - [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes, setting the application language and color mode, clearing application data, and revoking permissions requested from users. It can be obtained from [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md), and [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md).
     
     ```ts
     import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
@@ -219,14 +219,13 @@ The application file paths obtained by the preceding contexts are different.
 
 Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection.
 
-In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. For details about the permissions required for a specific encryption level, see [AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security.  For details about the permissions required for a specific encryption level, see [AreaMode](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) in [ContextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md).
 
-<ul>
-<li>EL1: For private files, such as alarms and wallpapers, the application can place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password.</li>
-<li>EL2: For sensitive files, such as personal privacy data, the application can place them in a directory with the user-level encryption (EL2).</li>
-<li>EL3: For step recording, file download, or music playback that needs to read, write, and create files when the screen is locked, the application can place these files in EL3.</li>
-<li>EL4: For files that are related to user security information and do not need to be read, written, or created when the screen is locked, the application can place them in EL4.</li>
-</ul>
+- EL1: For private files, such as alarms and wallpapers, the application can place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password.
+- EL2: For sensitive files, such as personal privacy data, the application can place them in a directory with the user-level encryption (EL2).
+- EL3: For step recording, file download, or music playback that needs to read, write, and create files when the screen is locked, the application can place these files in EL3.
+- EL4: For files that are related to user security information and do not need to be read, written, or created when the screen is locked, the application can place them in EL4.
+- EL5: By default, sensitive user privacy files cannot be read or written on the lock screen. If such files need to be read or written on the lock screen, you can call [Access](../reference/apis-ability-kit/js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess) to apply for reading or writing files before the screen is locked or create new files that can be read and written after the screen is locked. It is more appropriate to place these files in EL5.
 
 You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md).
 ```ts
@@ -248,6 +247,10 @@ export default class EntryAbility extends UIAbility {
 
     // Before storing sensitive information, switch the encryption level to EL4.
     this.context.area = contextConstant.AreaMode.EL4; // Change the encryption level.
+    // Store sensitive information.
+
+    // Before storing sensitive information, switch the encryption level to EL5.
+    this.context.area = contextConstant.AreaMode.EL5; // Change the encryption level.
     // Store sensitive information.
   }
 }
@@ -309,11 +312,12 @@ struct Page_Context {
 
 ### Obtaining the Context of Other Modules in the Current Application
 
-Call [createModuleContext(moduleName:string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
-
+Call [createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
+  
   ```ts
-  import { common } from '@kit.AbilityKit';
+  import { common, application } from '@kit.AbilityKit';
   import { promptAction } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let storageEventCall = new LocalStorage();
 
@@ -332,12 +336,18 @@ Call [createModuleContext(moduleName:string)](../reference/apis-ability-kit/js-a
             }
             .onClick(() => {
               let moduleName2: string = 'entry';
-              let moduleContext: Context = this.context.createModuleContext(moduleName2);
-              if (moduleContext !== null) {
-                promptAction.showToast({
-                  message: ('Context obtained.')
+              application.createModuleContext(this.context, moduleName2)
+                .then((data: common.Context) => {
+                  console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
+                  if (data !== null) {
+                    promptAction.showToast({
+                      message: ('Context obtained.')
+                    });
+                  }
+                })
+                .catch((err: BusinessError) => {
+                  console.error(`CeateMudleContext failed, err code:${err.code}, err msg: ${err.message}`);
                 });
-              }
             })
           }
           //...

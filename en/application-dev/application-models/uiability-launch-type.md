@@ -10,6 +10,9 @@ The launch type of the [UIAbility](../reference/apis-ability-kit/js-apis-app-abi
 
 - [Specified](#specified)
 
+> **NOTE**
+>
+> **standard** is the former name of **multiton** and provides the same effect as the multiton mode.
 
 ## Singleton
 
