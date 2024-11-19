@@ -5,13 +5,13 @@
 
 定义常用传感器属性。
 
-**库：** libohsensor.so
+**库**：libohsensor.so
 
-**系统能力：** SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
-**起始版本：** 11
+**起始版本**：11
 
-**相关模块：** [Sensor](_sensor.md)
+**相关模块**：[Sensor](_sensor.md)
 
 
 ## 汇总
