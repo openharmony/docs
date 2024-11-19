@@ -46,7 +46,7 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
-展示content、isLoading不同传值的不同加载效果。
+展示设置属性content为空字串及不为空、isLoading为true和false的不同加载效果。
 ```ts
 import { SwipeRefresher } from '@kit.ArkUI';
 
