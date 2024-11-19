@@ -168,7 +168,7 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 
 ## 示例
 
-### 实例1（基础用法）
+### 示例1（基础用法）
 ```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
 
