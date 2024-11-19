@@ -26,7 +26,24 @@ GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就
 > 
 > 以下参数未提示可配置的均为不可配置项，由系统自行设定。
 
-以下参数值有多个阶段划分的对应heap总大小64MB-128MB/128MB-256MB/大于256MB三个阶段的范围情况，剩余内存空间充足的情况下默认均为第三段大于256MB情况。
+根据系统分配heap总大小64MB-128MB/128MB-256MB/大于256MB的三个范围，以下参数系统会设置不同的大小。如果表格内范围仅有一个值，则表示该参数值不随heap总大小变化。手机设备heap总大小默认为大于256MB。
+开发者可以查看[hidebug接口文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)，使用相关接口查询内存信息。
+
+#### 堆大小相关参数
+
+| 参数名称 | 范围 | 作用 |
+| --- | --- | :--- |
+| HeapSize | 448MB | 主线程默认堆空间总大小,小内存设备会依据实际内存池大小修正 |
+| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小 |
+| NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小 |
+| SnapshotSpaceSize | 512KB | 快照空间大小 |
+| MachineCodeSpaceSize | 2MB | 机器码空间大小 |
+
+#### worker线程堆上限
+
+| 参数名称 | 范围 | 作用 |
+| --- | --- | --- |
+| HeapSize  | 768 MB | work类型线程堆空间大小 |
 
 #### Semi Space
 
@@ -38,6 +55,14 @@ heap中会生成两个Semi Space供copying使用。
 | semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M| 首次单独触发Semi Space的并发mark的界限值，超过该值则触发 |
 | semiSpaceStepOvershootSize| 2MB | 允许过冲最大大小 |
 
+#### Old Space 和 Huge Object Space
+
+初始化时均设定为Heap剩余未分配空间的大小，默认手机设备主线程OldSpaceSize上限接近350MB。
+
+| 参数名称 | 范围 | 作用 |
+| --- | --- | :--- |
+| oldSpaceOvershootSize | 4MB/8MB/8MB | oldSpace允许过冲最大大小 |
+
 #### 其他空间
 
 | 参数名称 | 范围 | 作用 |
@@ -46,30 +71,6 @@ heap中会生成两个Semi Space供copying使用。
 | defaultNonMovableSpaceSize | 2 MB/6 MB/64 MB | NonMovableSpace默认空间大小|
 | defaultSnapshotSpaceSize | 512 KB/512 KB/ 4 MB | SnapshotSpace默认空间大小|
 | defaultMachineCodeSpaceSize | 2 MB/2 MB/8 MB | MachineCodeSpace默认空间大小|
-
-#### Old Space 和 Huge Object Space
-
-初始化时都设定为Heap剩余未分配空间的大小。
-
-| 参数名称 | 范围 | 作用 |
-| --- | --- | :--- |
-| oldSpaceOvershootSize | 4MB/8MB/8MB | oldSpace允许过冲最大大小 |
-
-#### 堆大小相关参数
-
-| 参数名称 | 范围 | 作用 |
-| --- | --- | :--- |
-| HeapSize | 448MB-1024MB | 堆总大小，实际系统分配大小根据堆类型不同分配不同，或内存池不够会降低下限 |
-| SemispaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | semispace空间大小 |
-| NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小 |
-| SnapshotSpaceSize | 512KB | 快照空间大小 |
-| MachineCodeSpaceSize | 2MB | 机器码空间大小 |
-
-#### worker线程堆上限
-
-| 参数名称 | 范围 | 作用 |
-| --- | --- | --- |
-| heapSize  | 768 MB | work类型heap空间大小 |
 
 #### 解释器栈大小
 
