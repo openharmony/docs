@@ -5,7 +5,9 @@
 
 A cookie is a segment of data sent from the server to the client to uniquely identify a user during network access. The client may hold the data and provide it to the server at later interactions so that the server can quickly identify the client identity and status.
 
-The **Web** component provides the **WebCookieManager** class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
+When the **SameSite** attribute of a cookie is not specified, the default value is **SameSite=Lax**. The cookie is sent only when the user navigates to the source site of the cookie and is not sent in cross-site requests.
+
+The **Web** component provides the WebCookieManager class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
 
 The following uses [configCookieSync()](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11) as an example to describe how to set a cookie's value to **value=test** for **www\.example.com**. For details about functions and usage of other APIs, see [WebCookieManager()](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager).
 
