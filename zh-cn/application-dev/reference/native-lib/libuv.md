@@ -898,7 +898,7 @@ static napi_value TestTimer(napi_env env, napi_callback_info info) {
 
 **场景二：** 如果需要在指定的子线程抛定时器，请使用线程安全函数`uv_async_send`实现。
 
-ArkTS测：
+ArkTS侧：
 
 ```typescript
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -935,7 +935,7 @@ struct Index {
 }
 ```
 
-Native C++测：
+Native C++侧：
 
 ```c++
 #include <napi/native_api.h>
