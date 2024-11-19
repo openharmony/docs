@@ -5325,7 +5325,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ### packToData<sup>13+</sup>
 
-packToData(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
+packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -5338,7 +5338,7 @@ packToData(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
 | source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
 
 **错误码：**
 
@@ -5347,7 +5347,7 @@ packToData(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5382,7 +5382,7 @@ imagePackerApi.packToData(imageSourceApi, packOpts)
 
 ### packToData<sup>13+</sup>
 
-packToData(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
+packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
@@ -5395,7 +5395,7 @@ packToData(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 | 参数名 | 类型                            | 必填 | 说明               |
 | ------ | ------------------------------- | ---- | ------------------ |
 | source | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap源。 |
-| option | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
 
 **返回值：**
 
@@ -5410,7 +5410,7 @@ packToData(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401 | If the parameter is invalid. |
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5812,7 +5812,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5873,7 +5873,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5927,7 +5927,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
@@ -5989,7 +5989,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
+| 62980096| The Operation failed.              |
 | 62980101 | The image data is abnormal. |
 | 62980106 | The image is too large. |
 | 62980113 | Unknown image format. |
