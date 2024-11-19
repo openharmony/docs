@@ -85,14 +85,17 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 不支持[通用事件](ts-universal-events-click.md)。
 
-## 示例
+## 示例（基本用法）
+网格对象的编辑排序组件基础用法，涉及对组件配置信息初始化，数据初始化，保存、取消方法的使用。
 
 ```ts
 import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@kit.ArkUI'
 
+// 网格对象的编辑排序组件基础用法，涉及对组件配置信息初始化，数据初始化，保存、取消方法的使用。
 @Entry
 @Component
 struct Index {
+  // 组件数据初始化
   @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
@@ -159,6 +162,7 @@ struct Index {
     },
   ]
 
+  // 组件配置信息初始化
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.IMAGE_TEXT,
     imageSize: 45,
@@ -173,12 +177,14 @@ struct Index {
       GridObjectSortComponent({
         options: this.option,
         dataList: this.dataList,
+        // 保存编辑排序的回调函数，返回编辑后的数据。
         onSave: (
           select: Array<GridObjectSortComponentItem>,
           unselect: Array<GridObjectSortComponentItem>
         ) => {
           // save ToDo
         },
+        // 取消保存数据的回调。
         onCancel: () =>{
           // cancel ToDo
         }
