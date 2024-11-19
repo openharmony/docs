@@ -80,7 +80,7 @@ In the following example, when a user clicks the **Open Page in New Window** but
   <!DOCTYPE html>
   <html>
   <head>
-      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width"/>
       <title>WindowEvent</title>
   </head>
   <body>
@@ -88,17 +88,23 @@ In the following example, when a user clicks the **Open Page in New Window** but
   <script type="text/javascript">
       function OpenNewWindow()
       {
+          var txt ='Opened window'
           let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          openedWindow.document.write (" <p>This is my window</p>");
+          openedWindow.document.write("<p>" + "<br><br>" + txt.fontsize(10) + "</p>");
           openedWindow.focus();
-
       }
   </script>
   </body>
   </html>
   ```
+
+**Figure 1** Effect of opening a page in a new window 
+
+![web-open-in-new-window](figures/web-open-in-new-window_en.png)
+
+
 ## Samples
 
 The following samples are provided to help you better understand how to create a window:
 
-- [Browser (ArkTS) (Full SDK) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)
+- [Browser (ArkTS) (Full SDK) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.0-Release/code/BasicFeature/Web/Browser)
