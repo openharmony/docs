@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for the JavaScript object.
+Defines a JavaScript object.
 
 **Since**: 12
 

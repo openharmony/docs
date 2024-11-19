@@ -8,6 +8,7 @@ The **Web** component can be used to display web pages. It can be used with the 
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## Required Permissions
+
 To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 ## Child Components
@@ -16,22 +17,22 @@ Not supported
 
 ## APIs
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean})
+Web(value: WebOptions)
 
 > **NOTE**
 >
 > Transition animation is not supported.
+>
 > **Web** components on the same page must be bound to different **WebviewController** instances.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
 | Name       | Type                                    | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl).|
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Rendering mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamically adjusted): The **Web** component is rendered asynchronously.<br>**RenderMode.SYNC_RENDER**: The **Web** component is rendered synchronously within the current execution context.|
-| incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
-| sharedRenderProcessToken<sup>12+</sup> | string | No| The token of the shared rendering process specified by the **Web** component. In multi-rendering process mode, the **Web** component with the same token preferentially attempts to reuse the rendering process bound to the token. The token is bound to the rendering process when the rendering process is initialized. When the rendering process is not associated with a **Web** component, its binding to the token is removed.<br> Default value: **""** |
+| value        | [WebOptions](#weboptions)   | Yes   | Define web options.|
+
 **Example**
 
 Example of loading online web pages:
@@ -72,7 +73,7 @@ Example of loading online web pages in incognito mode:
   }
   ```
 
-Example of rendering the **Web** component synchronously within the current execution context:
+Example of rendering the **Web** component in synchronous mode:
 
   ```ts
   // xxx.ets
@@ -93,7 +94,7 @@ Example of rendering the **Web** component synchronously within the current exec
 
 Example of using the **Web** component to specify the shared rendering process.
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -111,7 +112,8 @@ Example of using the **Web** component to specify the shared rendering process.
   }
   ```
 
-Example of loading local web pages:
+Example of loading local web pages using **$rawfile()**:
+
 
   ```ts
   // xxx.ets
@@ -131,6 +133,7 @@ Example of loading local web pages:
   }
   ```
 
+Example of loading a link with the hash (#) route through the resource protocol in WebView:
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -229,9 +232,23 @@ Example of loading local resource files in the sandbox:
    </html>
    ```
 
+## WebOptions
+
+Define web options through [APIs](#apis).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name       | Type                                    | Mandatory  | Description                                    |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| src        | string \| [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl).|
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)  | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Rendering mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamically adjusted): The **Web** component is rendered asynchronously.<br>**RenderMode.SYNC_RENDER**: The **Web** component is rendered synchronously within the current execution context.|
+| incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
+| sharedRenderProcessToken<sup>12+</sup> | string | No| The token of the shared rendering process specified by the **Web** component. In multi-rendering process mode, the **Web** component with the same token preferentially attempts to reuse the rendering process bound to the token. The token is bound to the rendering process when the rendering process is initialized. When the rendering process is not associated with a **Web** component, its binding to the token is removed.<br> Default value: **""** |
+
 ## Attributes
 
-The following universal attributes are supported: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexGrow](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [stateStyles](../apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md#statestyles), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)
+The following universal attributes are supported: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexGrow](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [stateStyles](../apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md#statestyles), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)
 
 ### domStorageAccess
 
@@ -243,9 +260,9 @@ Sets whether to enable the DOM Storage API. By default, this feature is disabled
 
 **Parameters**
 
-| Name             | Type   | Mandatory  | Default Value  | Description                                |
-| ---------------- | ------- | ---- | ----- | ------------------------------------ |
-| domStorageAccess | boolean | Yes   | false | Whether to enable the DOM Storage API.|
+| Name             | Type   | Mandatory  | Description                                |
+| ---------------- | ------- | ---- | ------------------------------------ |
+| domStorageAccess | boolean | Yes   | Whether to enable the DOM Storage API. The default value is **false**.|
 
 **Example**
 
@@ -275,11 +292,13 @@ Sets whether to enable access to the file system in the application. This settin
 
 **fileAccess** is disabled by default since API version 12. When **fileAccess** is set to **false**, files in the read-only **/data/storage/el1/bundle/entry/resources/resfile** directory can still be accessed through the **file** protocol.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name       | Type   | Mandatory  | Default Value | Description                  |
-| ---------- | ------- | ---- | ---- | ---------------------- |
-| fileAccess | boolean | Yes   | false | Whether to enable access to the file system in the application.<br>Default value:<br>API version 11 and earlier: **true**<br> API version 12 and later: **false**|
+| Name       | Type   | Mandatory  | Description                  |
+| ---------- | ------- | ---- | ---------------------- |
+| fileAccess | boolean | Yes   | Whether to enable access to the file system in the application.<br>Default value:<br>API version 11 and earlier: **true**<br> API version 12 and later: **false**|
 
 **Example**
 
@@ -307,11 +326,13 @@ imageAccess(imageAccess: boolean)
 
 Sets whether to enable automatic image loading. By default, this feature is enabled.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name        | Type   | Mandatory  | Default Value | Description           |
-| ----------- | ------- | ---- | ---- | --------------- |
-| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading.|
+| Name        | Type   | Mandatory  | Description           |
+| ----------- | ------- | ---- | --------------- |
+| imageAccess | boolean | Yes   | Whether to enable automatic image loading. Default value: **true**|
 
 **Example**
   ```ts
@@ -337,6 +358,8 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated. This API can be used in synchronous or asynchronous mode, or in both modes. If the API can be used in both synchronous and asynchronous modes, it is called asynchronously by default. Only one object can be registered through this API. To register multiple objects, use [registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy).
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -397,11 +420,13 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 Sets whether JavaScript scripts can be executed. By default, JavaScript scripts can be executed.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name             | Type   | Mandatory  | Default Value | Description               |
-| ---------------- | ------- | ---- | ---- | ------------------- |
-| javaScriptAccess | boolean | Yes   | true | Whether JavaScript scripts can be executed.|
+| Name             | Type   | Mandatory  | Description               |
+| ---------------- | ------- | ---- | ------------------- |
+| javaScriptAccess | boolean | Yes   | Whether JavaScript scripts can be executed. Default value: **true**|
 
 **Example**
 
@@ -428,11 +453,13 @@ overScrollMode(mode: OverScrollMode)
 
 Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **Web** component plays a bounce effect animation.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type                                   | Mandatory  | Default Value                 | Description              |
-| ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11) | Yes   | OverScrollMode.NEVER | Whether to enable the overscroll mode.|
+| Name | Type                                   | Mandatory  | Description              |
+| ---- | --------------------------------------- | ---- | ------------------ |
+| mode | [OverScrollMode](#overscrollmode11) | Yes   | Whether to enable the overscroll mode. Default value: **OverScrollMode.NEVER**|
 
 **Example**
 
@@ -460,11 +487,13 @@ mixedMode(mixedMode: MixedMode)
 
 Sets whether to enable loading of HTTP and HTTPS hybrid content can be loaded. By default, this feature is disabled.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Default Value           | Description     |
-| --------- | --------------------------- | ---- | -------------- | --------- |
-| mixedMode | [MixedMode](#mixedmode)| Yes   | MixedMode.None | Mixed content to load.|
+| Name      | Type                       | Mandatory  | Description     |
+| --------- | --------------------------- | ---- | --------- |
+| mixedMode | [MixedMode](#mixedmode)| Yes   | Mixed content to load. Default value: **MixedMode.None**|
 
 **Example**
 
@@ -492,11 +521,13 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 Sets whether to enable access to online images through HTTP and HTTPS. By default, this feature is enabled.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name              | Type   | Mandatory  | Default Value | Description            |
-| ----------------- | ------- | ---- | ---- | ---------------- |
-| onlineImageAccess | boolean | Yes   | true | Whether to enable access to online images through HTTP and HTTPS.|
+| Name              | Type   | Mandatory  | Description            |
+| ----------------- | ------- | ---- | ---------------- |
+| onlineImageAccess | boolean | Yes   | Whether to enable access to online images through HTTP and HTTPS. Default value: **true**|
 
 **Example**
 
@@ -524,11 +555,13 @@ zoomAccess(zoomAccess: boolean)
 
 Sets whether to enable zoom gestures. By default, this feature is enabled.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name       | Type   | Mandatory  | Default Value | Description         |
-| ---------- | ------- | ---- | ---- | ------------- |
-| zoomAccess | boolean | Yes   | true | Whether to enable zoom gestures.|
+| Name       | Type   | Mandatory  | Description         |
+| ---------- | ------- | ---- | ------------- |
+| zoomAccess | boolean | Yes   | Whether to enable zoom gestures. Default value: **true**|
 
 **Example**
 
@@ -556,11 +589,13 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 Sets whether to load web pages by using the overview mode. By default, this feature is enabled. Currently, only mobile devices are supported.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name               | Type   | Mandatory  | Default Value | Description           |
-| ------------------ | ------- | ---- | ---- | --------------- |
-| overviewModeAccess | boolean | Yes   | true | Whether to load web pages by using the overview mode.|
+| Name               | Type   | Mandatory  | Description           |
+| ------------------ | ------- | ---- | --------------- |
+| overviewModeAccess | boolean | Yes   | Whether to load web pages by using the overview mode. Default value: **true**|
 
 **Example**
 
@@ -588,11 +623,13 @@ databaseAccess(databaseAccess: boolean)
 
 Sets whether to enable database access. By default, this feature is disabled.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name           | Type   | Mandatory  | Default Value  | Description             |
-| -------------- | ------- | ---- | ----- | ----------------- |
-| databaseAccess | boolean | Yes   | false | Whether to enable database access.|
+| Name           | Type   | Mandatory  | Description             |
+| -------------- | ------- | ---- | ----------------- |
+| databaseAccess | boolean | Yes   | Whether to enable database access. The default value is **false**.|
 
 **Example**
 
@@ -618,13 +655,15 @@ Sets whether to enable database access. By default, this feature is disabled.
 
 geolocationAccess(geolocationAccess: boolean)
 
-Sets whether to enable geolocation access. By default, this feature is enabled.
+Sets whether to enable geolocation access. By default, this feature is enabled. For details, see [Managing Location Permissions](../../web/web-geolocation-permission.md).
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name              | Type   | Mandatory  | Default Value | Description           |
-| ----------------- | ------- | ---- | ---- | --------------- |
-| geolocationAccess | boolean | Yes   | true | Whether to enable geolocation access.|
+| Name              | Type   | Mandatory  | Description           |
+| ----------------- | ------- | ---- | --------------- |
+| geolocationAccess | boolean | Yes   | Whether to enable geolocation access. Default value: **true**|
 
 **Example**
 
@@ -646,17 +685,19 @@ Sets whether to enable geolocation access. By default, this feature is enabled.
   }
   ```
 
-### mediaPlayGestureAccess
+### mediaPlayGestureAccess<sup>9+</sup>
 
 mediaPlayGestureAccess(access: boolean)
 
 Sets whether video playback must be started by user gestures. This API is not applicable to videos that do not have an audio track or whose audio track is muted.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type   | Mandatory  | Default Value | Description               |
-| ------ | ------- | ---- | ---- | ------------------- |
-| access | boolean | Yes   | true | Whether video playback must be started by user gestures.|
+| Name   | Type   | Mandatory  | Description               |
+| ------ | ------- | ---- | ------------------- |
+| access | boolean | Yes   | Whether video playback must be started by user gestures. Default value: **true**|
 
 **Example**
 
@@ -686,11 +727,13 @@ multiWindowAccess(multiWindow: boolean)
 Sets whether to enable the multi-window permission. By default, this feature is disabled.
 Enabling the multi-window permission requires implementation of the **onWindowNew** event. For the sample code, see [onWindowNew](#onwindownew9).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name        | Type   | Mandatory  | Default Value  | Description        |
-| ----------- | ------- | ---- | ----- | ------------ |
-| multiWindow | boolean | Yes   | false | Whether to enable the multi-window permission.|
+| Name        | Type   | Mandatory  | Description        |
+| ----------- | ------- | ---- | ------------ |
+| multiWindow | boolean | Yes   | Whether to enable the multi-window permission. The default value is **false**.|
 
 **Example**
 
@@ -717,16 +760,19 @@ Enabling the multi-window permission requires implementation of the **onWindowNe
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 Sets whether to display the horizontal scrollbar, including the default system scrollbar and custom scrollbar. By default, the horizontal scrollbar is displayed.
+
 > **NOTE**
 >
 > - If an @State decorated variable is used to control the horizontal scrollbar visibility, **controller.refresh()** must be called for the settings to take effect.
 > - If the horizontal scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **Web** component one by one.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name                | Type   | Mandatory  | Default Value | Description        |
-| ------------------- | ------- | ---- | ---- | ------------ |
-| horizontalScrollBar | boolean | Yes   | true | Whether to display the horizontal scrollbar.|
+| Name                | Type   | Mandatory  | Description        |
+| ------------------- | ------- | ---- | ------------ |
+| horizontalScrollBar | boolean | Yes   | Whether to display the horizontal scrollbar. Default value: **true**|
 
 **Example**
 
@@ -734,19 +780,19 @@ Sets whether to display the horizontal scrollbar, including the default system s
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
     @State isShow: boolean = false;
-
+  
     build() {
       Column() {
         // If an @State decorated variable is used to control the horizontal scrollbar visibility, controller.refresh() must be called for the settings to take effect.
         Button('refresh')
           .onClick(() => {
-            this.isShow = true;
+              this.isShow = true;
             try {
               this.controller.refresh();
             } catch (error) {
@@ -768,13 +814,13 @@ Sets whether to display the horizontal scrollbar, including the default system s
   <head>
       <title>Demo</title>
       <style>
-        body {
-          width:3000px;
+          body {
+            width:3000px;
           height:3000px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
       </style>
   </head>
   <body>
@@ -794,11 +840,13 @@ Sets whether to display the vertical scrollbar, including the default system scr
 > - If an @State decorated variable is used to control the vertical scrollbar visibility, **controller.refresh()** must be called for the settings to take effect.
 > - If the vertical scrollbar visibility changes frequently through an @State decorated variable, it is recommended that the variable correspond to the **Web** component one by one.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name              | Type   | Mandatory  | Default Value | Description        |
-| ----------------- | ------- | ---- | ---- | ------------ |
-| verticalScrollBar | boolean | Yes   | true | Whether to display the vertical scrollbar.|
+| Name              | Type   | Mandatory  | Description        |
+| ----------------- | ------- | ---- | ------------ |
+| verticalScrollBar | boolean | Yes   | Whether to display the vertical scrollbar. Default value: **true**|
 
 **Example**
 
@@ -806,27 +854,27 @@ Sets whether to display the vertical scrollbar, including the default system scr
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
     @State isShow: boolean = false;
-
+  
     build() {
       Column() {
         // If an @State decorated variable is used to control the vertical scrollbar visibility, controller.refresh() must be called for the settings to take effect.
         Button('refresh')
-        .onClick(() => {
-          this.isShow = true;
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
+          .onClick(() => {
+              this.isShow = true;
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
         })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(this.isShow)
+          .verticalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -840,13 +888,13 @@ Sets whether to display the vertical scrollbar, including the default system scr
   <head>
       <title>Demo</title>
       <style>
-        body {
-          width:3000px;
+          body {
+            width:3000px;
           height:3000px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
       </style>
   </head>
   <body>
@@ -865,17 +913,21 @@ Sets whether the password should be saved. This API is a void API.
 >
 > This API is deprecated since API version 10, and no new API is provided as a substitute.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### cacheMode
 
 cacheMode(cacheMode: CacheMode)
 
 Sets the cache mode.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Default Value              | Description     |
-| --------- | --------------------------- | ---- | ----------------- | --------- |
-| cacheMode | [CacheMode](#cachemode9) | Yes   | CacheMode.Default | Cache mode to set.|
+| Name      | Type                       | Mandatory  | Description     |
+| --------- | --------------------------- | ---- | --------- |
+| cacheMode | [CacheMode](#cachemode)| Yes   | Cache mode to set. Default value: **CacheMode.Default**|
 
 **Example**
 
@@ -904,11 +956,13 @@ copyOptions(value: CopyOptions)
 
 Sets the pasteboard copy options.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Default Value              | Description     |
-| --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.LocalDevice | Pasteboard copy options.|
+| Name      | Type                       | Mandatory  | Description     |
+| --------- | --------------------------- | ---- | --------- |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | Pasteboard copy options. Default value: **CopyOptions.LocalDevice**|
 
 **Example**
 
@@ -935,13 +989,15 @@ textZoomAtio(textZoomAtio: number)
 
 Sets the text zoom ratio of the page. The default value is **100**, which indicates 100%.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 This API is deprecated since API version 9. You are advised to use [textZoomRatio<sup>9+</sup>](#textzoomratio9) instead.
 
 **Parameters**
 
-| Name         | Type  | Mandatory  | Default Value | Description                            |
-| ------------ | ------ | ---- | ---- | -------------------------------- |
-| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
+| Name         | Type  | Mandatory | Description                            |
+| ------------ | ------ | ---- | -------------------------------- |
+| textZoomAtio | number | Yes  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞). Default value: **100**|
 
 **Example**
 
@@ -967,11 +1023,13 @@ textZoomRatio(textZoomRatio: number)
 
 Sets the text zoom ratio of the page. The default value is **100**, which indicates 100%.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name          | Type  | Mandatory  | Default Value | Description                            |
-| ------------- | ------ | ---- | ---- | -------------------------------- |
-| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
+| Name          | Type  | Mandatory  | Description                            |
+| ------------- | ------ | ---- | -------------------------------- |
+| textZoomRatio | number | Yes   | Text zoom ratio to set. The value is an integer. The value range is (0, +∞). Default value: **100**|
 
 **Example**
 
@@ -1000,11 +1058,13 @@ initialScale(percent: number)
 
 Sets the scale factor of the entire page. The default value is 100%.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type  | Mandatory  | Default Value | Description                         |
-| ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page.|
+| Name    | Type  | Mandatory  | Description                         |
+| ------- | ------ | ---- | ----------------------------- |
+| percent | number | Yes   | Scale factor of the entire page. Default value: **100**|
 
 **Example**
 
@@ -1037,11 +1097,13 @@ Sets the user agent.
 >
 > This API is supported since API version 8 and deprecated since API version 10. You are advised to use [setCustomUserAgent](js-apis-webview.md#setcustomuseragent10)<sup>10+</sup> instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name      | Type  | Mandatory  | Default Value | Description     |
-| --------- | ------ | ---- | ---- | --------- |
-| userAgent | string | Yes   | -    | User agent to set.|
+| Name      | Type  | Mandatory  | Description     |
+| --------- | ------ | ---- | --------- |
+| userAgent | string | Yes   | User agent to set.|
 
 **Example**
 
@@ -1070,11 +1132,13 @@ blockNetwork(block: boolean)
 
 Sets whether to block online downloads.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type   | Mandatory  | Default Value  | Description               |
-| ----- | ------- | ---- | ----- | ------------------- |
-| block | boolean | Yes   | false | Whether to block online downloads.|
+| Name  | Type   | Mandatory  | Description               |
+| ----- | ------- | ---- | ------------------- |
+| block | boolean | Yes   | Sets whether to block online downloads. The default value is **false**.|
 
 **Example**
 
@@ -1103,11 +1167,13 @@ defaultFixedFontSize(size: number)
 
 Sets the default fixed font size for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                                    |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 13   | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| Name | Type  | Mandatory  | Description                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| size | number | Yes   | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. Default value: **13**|
 
 **Example**
 
@@ -1136,11 +1202,13 @@ defaultFontSize(size: number)
 
 Sets the default font size for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                                    |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 16   | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| Name | Type  | Mandatory  | Description                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| size | number | Yes   | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. Default value: **16**|
 
 **Example**
 
@@ -1169,11 +1237,13 @@ minFontSize(size: number)
 
 Sets the minimum font size for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                                    |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 8    | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| Name | Type  | Mandatory  | Description                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| size | number | Yes   | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. Default value: **8**|
 
 **Example**
 
@@ -1202,11 +1272,13 @@ minLogicalFontSize(size: number)
 
 Sets the minimum logical font size for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                                    |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 8    | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
+| Name | Type  | Mandatory  | Description                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| size | number | Yes   | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. Default value: **8**|
 
 **Example**
 
@@ -1235,11 +1307,13 @@ webFixedFont(family: string)
 
 Sets the fixed font family for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value      | Description               |
-| ------ | ------ | ---- | --------- | ------------------- |
-| family | string | Yes   | monospace | Fixed font family to set.|
+| Name   | Type  | Mandatory  | Description               |
+| ------ | ------ | ---- | ------------------- |
+| family | string | Yes   | Sets the fixed font family for the web page. Default value: **monospace**|
 
 **Example**
 
@@ -1268,11 +1342,13 @@ webSansSerifFont(family: string)
 
 Sets the sans serif font family for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value       | Description                    |
-| ------ | ------ | ---- | ---------- | ------------------------ |
-| family | string | Yes   | sans-serif | Sans serif font family to set.|
+| Name   | Type  | Mandatory  | Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| family | string | Yes   | Sets the sans serif font family for the web page. Default value: **sans-serif**|
 
 **Example**
 
@@ -1301,11 +1377,13 @@ webSerifFont(family: string)
 
 Sets the serif font family for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value  | Description               |
-| ------ | ------ | ---- | ----- | ------------------- |
-| family | string | Yes   | serif | Serif font family to set.|
+| Name   | Type  | Mandatory  | Description               |
+| ------ | ------ | ---- | ------------------- |
+| family | string | Yes   | Sets the serif font family for the web page. Default value: **serif**|
 
 **Example**
 
@@ -1334,11 +1412,13 @@ webStandardFont(family: string)
 
 Sets the standard font family for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value       | Description                  |
-| ------ | ------ | ---- | ---------- | ---------------------- |
-| family | string | Yes   | sans serif | Standard font family to set.|
+| Name   | Type  | Mandatory  | Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| family | string | Yes   | Sets the standard font family for the web page. Default value: **sans-serif**|
 
 **Example**
 
@@ -1367,11 +1447,13 @@ webFantasyFont(family: string)
 
 Sets the fantasy font family for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value    | Description                 |
-| ------ | ------ | ---- | ------- | --------------------- |
-| family | string | Yes   | fantasy | Fantasy font family to set.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| family | string | Yes   | Sets the fantasy font family for the web page. Default value: **fantasy**|
 
 **Example**
 
@@ -1399,11 +1481,13 @@ webCursiveFont(family: string)
 
 Sets the cursive font family for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value    | Description                 |
-| ------ | ------ | ---- | ------- | --------------------- |
-| family | string | Yes   | cursive | Cursive font family to set.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| family | string | Yes   | Sets the cursive font family for the web page. Default value: **cursive**|
 
 **Example**
 
@@ -1432,11 +1516,13 @@ darkMode(mode: WebDarkMode)
 
 Sets the web dark mode. By default, web dark mode is disabled. When it is enabled, the **Web** component enables the dark theme defined for web pages if the theme has been defined in **prefers-color-scheme** of a media query, and remains unchanged otherwise. To enable the forcible dark mode, use this API with [forceDarkAccess](#forcedarkaccess9).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type                            | Mandatory  | Default Value            | Description                  |
-| ---- | -------------------------------- | ---- | --------------- | ---------------------- |
-| mode | [WebDarkMode](#webdarkmode9) | Yes   | WebDarkMode.Off | Web dark mode to set.|
+| Name | Type                            | Mandatory  | Description                  |
+| ---- | -------------------------------- | ---- | ---------------------- |
+| mode | [WebDarkMode](#webdarkmode9) | Yes   | Web dark mode to set. Default value: **WebDarkMode.Off**|
 
 **Example**
 
@@ -1465,11 +1551,13 @@ forceDarkAccess(access: boolean)
 
 Sets whether to enable forcible dark mode for the web page. By default, this feature is turned off. This API is applicable only when dark mode is enabled in [darkMode](#darkmode9).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type   | Mandatory  | Default Value  | Description           |
-| ------ | ------- | ---- | ----- | --------------- |
-| access | boolean | Yes   | false | Whether to enable forcible dark mode for the web page.|
+| Name   | Type   | Mandatory  | Description           |
+| ------ | ------- | ---- | --------------- |
+| access | boolean | Yes   | Sets whether to enable forcible dark mode for the web page. The default value is **false**.|
 
 **Example**
 
@@ -1504,6 +1592,8 @@ Sets whether form data should be saved. This API is a void API.
 >
 > This API is deprecated since API version 10, and no new API is provided as a substitute.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### wideViewModeAccess<sup>(deprecated)</sup>
 
 wideViewModeAccess(wideViewModeAccess: boolean)
@@ -1514,17 +1604,21 @@ Sets whether to support the viewport attribute of the HTML **\<meta>** tag. This
 >
 > This API is deprecated since API version 10, and no new API is provided as a substitute.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### pinchSmooth<sup>9+</sup>
 
 pinchSmooth(isEnabled: boolean)
 
 Sets whether to enable smooth pinch mode for the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name      | Type   | Mandatory  | Default Value  | Description         |
-| --------- | ------- | ---- | ----- | ------------- |
-| isEnabled | boolean | Yes   | false | Whether to enable smooth pinch mode for the web page.|
+| Name      | Type   | Mandatory  | Description         |
+| --------- | ------- | ---- | ------------- |
+| isEnabled | boolean | Yes   | Whether to enable smooth pinch mode for the web page. The default value is **false**.|
 
 **Example**
 
@@ -1565,11 +1659,13 @@ To check the settings of **persist.web.allowWindowOpenMethod.enabled**,
 run the **hdc shell param get persist.web.allowWindowOpenMethod.enabled** command. If the attribute is set to 0 or does not exist,
 you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 1** command to enable it.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type   | Mandatory  | Default Value                                     | Description                     |
-| ---- | ------- | ---- | ---------------------------------------- | ------------------------- |
-| flag | boolean | Yes   | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**.| Whether to allow a new window to automatically open through JavaScript.|
+| Name | Type   | Mandatory   | Description                     |
+| ---- | ------- | ---- | ------------------------- |
+| flag | boolean | Yes   | Whether to allow a new window to automatically open through JavaScript. When the **persist.web.allowWindowOpenMethod.enabled** system attribute is set to **true**, the default value of **flag** is **true**; otherwise, the default value of **flag** is **false**.|
 
 **Example**
 
@@ -1577,7 +1673,7 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  // There are two Web components on the same page. When the Web Component object opens a new window, the NewWebViewComp object is displayed. 
+  // There are two Web components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -1620,7 +1716,7 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
               builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
-            // Return the WebviewController object corresponding to the new window to the <Web> kernel.
+            // Return the WebviewController object corresponding to the new window to the Web kernel.
             // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
             // If the event.handler.setWebController API is not called, the render process will be blocked.
             event.handler.setWebController(popController);
@@ -1644,11 +1740,13 @@ Sets the web-based media playback policy, including the validity period for auto
 > - It is recommended that you set the same **audioExclusive** value for all **Web** components.
 > - Audio and video interruption takes effect within an app and between apps, and playback resumption takes effect only between apps.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                 | Mandatory  | Default Value                                     | Description                                    |
-| ------- | ------------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
-| options | [WebMediaOptions](#webmediaoptions10) | Yes   | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
+| Name    | Type                                 | Mandatory  | Description                                    |
+| ------- | ------------------------------------- | ---- | ---------------------------------------- |
+| options | [WebMediaOptions](#webmediaoptions10) | Yes   | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed. Default value: **{resumeInterval: 0, audioExclusive: true}**|
 
 **Example**
 
@@ -1681,11 +1779,13 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 >
 > - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                               | Mandatory  | Default Value | Description              |
-| ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
 
 **Example in the .ets file**
 
@@ -1753,11 +1853,13 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 >
 > - The script runs before any JavaScript code of the page, when the DOM tree has been loaded and rendered.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                               | Mandatory  | Default Value | Description              |
-| ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
 
 **Example**
 
@@ -1817,16 +1919,21 @@ Sets the web layout mode.
 > - After the **Web** component is created, dynamic switching of the **layoutMode** is not supported.
 > - The width and height of the **Web** component cannot exceed 500,000 px each.
 > - Frequent changes to the page width and height will trigger a re-layout of the **Web** component, which can affect the user experience.
+> - Waterfall web pages are not supported (drop down to the bottom to load more).
+> - Only height adaptation is supported. Width adaptation is not supported.
+> - Because the height is adaptive to the web page height, the component height cannot be changed by modifying the component height attribute.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type                                 | Mandatory  | Default Value               | Description                 |
-| ---- | ------------------------------------- | ---- | ------------------ | --------------------- |
-| mode | [WebLayoutMode](#weblayoutmode11) | Yes   | WebLayoutMode.NONE | Web layout mode.|
+| Name | Type                                 | Mandatory  | Description                 |
+| ---- | ------------------------------------- | ---- | --------------------- |
+| mode | [WebLayoutMode](#weblayoutmode11) | Yes   | Web layout mode. Default value: **WebLayoutMode.NONE**.|
 
 **Example**
 
-  1. After specifying the **layoutMode** as **WebLayoutMode.FIT_CONTENT**, you must explicitly specify **renderMode** as **RenderMode.SYNC_RENDER**.
+  1. After specifying the **layoutMode** as **WebLayoutMode.FIT_CONTENT**, you need to explicitly specify the **renderMode** to **RenderMode.SYNC_RENDER**. Otherwise, rendering errors may occur when the viewport height exceeds 7680px in the default **RenderMode.ASYNC_RENDER**.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -1835,7 +1942,7 @@ Sets the web layout mode.
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
 
     build() {
       Column() {
@@ -1846,7 +1953,7 @@ Sets the web layout mode.
   }
   ```
 
-  2. After specifying the **layoutMode** as **WebLayoutMode.FIT_CONTENT**, you are advised to specify **overScrollMode** as **OverScrollMode.NEVER**.
+  2. After specifying the layoutMode as **WebLayoutMode.FIT_CONTENT**, you are advised to specify **overScrollMode** as **OverScrollMode.NEVER**. Otherwise, when the web page scrolls to the edge in the nested scrolling scenario, the rebounding effect is triggered first, which affects user experience.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -1855,7 +1962,7 @@ Sets the web layout mode.
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
     @State overScrollMode: OverScrollMode = OverScrollMode.NEVER;
 
     build() {
@@ -1876,18 +1983,20 @@ Sets nested scrolling options.
 
 > **NOTE**
 >
-> - You can set the nested scrolling mode in both forward and backward directions to implement scrolling linkage with the parent component.
+> - You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.
 > - You can set separate nested scrolling modes for the forward and backward directions.
-> - The default mode for **scrollForward** and **scrollBackward** is **NestedScrollMode.SELF_FIRST**.
+> - The default mode for **scrollForward** and **scrollBackward** is [NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10).
 > - Containers that support nested scrolling: **\<Grid>**, **\<List>**, **\<Scroll>**, **\<Swiper>**, **\<Tabs>**, **\<WaterFlow>**.
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
 > - In nested scrolling scenarios, since the **Web** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
 | Name  | Type                                    | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11) | Yes   | Nested scrolling options.|
+| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10)| Yes   | Nested scrolling options.|
 
 **Example**
 
@@ -1911,16 +2020,18 @@ Sets nested scrolling options.
   }
   ```
 ### enableNativeEmbedMode<sup>11+</sup>
+
 enableNativeEmbedMode(mode: boolean)
 
 Specifies whether to enable the same-layer rendering feature. By default, this feature is disabled.
 
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name  | Type                     | Mandatory  | Default Value               | Description            |
-| ----- | ---------------------------------------- | ---- | ------------------| ---------------- |
-| mode |  boolean | Yes   | false | Whether to enable the same-layer rendering feature.|
+| Name  | Type                     | Mandatory  | Description            |
+| ----- | ---------------------------------------- | ---- | ---------------- |
+| mode |  boolean | Yes   | Whether to enable the same-layer rendering feature. The default value is **false**.|
 
 **Example**
 
@@ -1941,16 +2052,23 @@ Specifies whether to enable the same-layer rendering feature. By default, this f
   }
   ```
 ### registerNativeEmbedRule<sup>12+</sup>
+
 registerNativeEmbedRule(tag: string, type: string)
 
-Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type can be any non-empty string, case-insensitive. If the standard type is the same as the standard type of **object** or **embed**, the ArkWeb engine will recognize it as a non-same-layer tag. This API is also controlled by the **enableNativeEmbedMode** API and does not take effect if same-layer rendering is not enabled. When this API is not used, the ArkWeb engine recognizes the **embed** tags with the "native/" prefix as same-layer tags.
+Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type can be any non-empty string, case-insensitive.
+
+If the specified type is the same as the W3C standard **object** or **embed** type, the ArkWeb kernel identifies the type as a non-same-layer tag.
+
+This API is also controlled by the **enableNativeEmbedMode** API and does not take effect if same-layer rendering is not enabled. When this API is not used, the ArkWeb engine recognizes the **embed** tags with the "native/" prefix as same-layer tags.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description            |
-|------|--------| ---- |------|------------------|
-| tag  | string | Yes   | ""   | Tag name.            |
-| type | string | Yes   | ""   | Tag type. It is used by the ArkWeb engine for prefix matching.|
+| Name | Type  | Mandatory  | Description            |
+|------|--------| ---- |------------------|
+| tag  | string | Yes   | Tag name.            |
+| type | string | Yes  | Tag type. It is used by the ArkWeb engine for prefix matching.|
 
 **Example**
 
@@ -1978,11 +2096,13 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 Sets the default character encoding for web pages.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                                    |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| textEncodingFormat | string | Yes   | "UTF-8"   | Default character encoding.|
+| Name | Type  | Mandatory  | Description                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| textEncodingFormat | string | Yes   | Default character encoding. Default value: **"UTF-8"**|
 
   **Example**
 
@@ -2022,7 +2142,7 @@ Sets the default character encoding for web pages.
 ```
 ### metaViewport<sup>12+</sup>
 
-metaViewport(enable: boolean)
+metaViewport(enabled: boolean)
 
 Sets whether the **viewport** property of the **meta** tag is enabled.
 
@@ -2033,11 +2153,13 @@ Sets whether the **viewport** property of the **meta** tag is enabled.
 > - If set to an invalid value, this parameter does not take effect.
 > - If the device is 2-in-1, the **viewport** property is not supported. This means that, regardless of whether this parameter is set to **true** or **false**, the **viewport** property will not be parsed and a default layout will be used.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                        |
-| ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | Yes  | true   | Whether the **viewport** property of the **meta** tag is enabled.|
+| Name| Type| Mandatory| Description                        |
+| ------ | -------- | ---- | -------------------------------- |
+| enabled | boolean  | Yes  | Whether the **viewport** property of the **meta** tag is enabled. Default value: **true**|
 
 **Example**
 
@@ -2070,17 +2192,20 @@ struct WebComponent {
 </body>
 </html>
 ```
+
 ### textAutosizing<sup>12+</sup>
 
 textAutosizing(textAutosizing: boolean)
 
 Sets whether automatic text resizing is enabled.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                                    |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| textAutosizing | boolean | Yes   | true   | Whether automatic text resizing is enabled.|
+| Name | Type  | Mandatory  | Description                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| textAutosizing | boolean | Yes   | Whether automatic text resizing is enabled. Default value: **true**|
 
   **Example**
 
@@ -2111,9 +2236,9 @@ Enable the [application takeover of web media playback feature](../../web/app-ta
 
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description|
-| ---- | ------ | ---- | ---- | ---------------------|
-| config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | Yes   |  {enable: false, shouldOverlay: false} | **enable**: whether to enable the feature.<br> **shouldOverlay**: whether the image of the video player taken over by the application will overlay the web page content, if this feature is enabled.|
+| Name | Type  | Mandatory  | Description|
+| ---- | ------ | ---- | ---------------------|
+| config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | Yes   | **enable**: whether to enable the feature.<br> **shouldOverlay**: whether the image of the video player taken over by the application will overlay the web page content, if this feature is enabled. Default value: **{enable: false, shouldOverlay: false}**|
 
   **Example**
 
@@ -2143,11 +2268,13 @@ Sets the extended options of the custom context menu on selection, including the
 
 The API only supports the selection of plain text; if the selected content contains images or other non-text elements, the **action** information may display garbled content.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name             | Type                                                        | Description         |
-| ------------------- | ----------------------------------------------------------   | ------------- |
-| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu options, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
+| Name             | Type                                                        | Mandatory  | Description         |
+| ------------------- | ----------------------------------------------------------    | ---- | ------------- |
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Yes   | Extended options of the custom context menu on selection.<br>The number of menu options, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
 
 **Example**
 
@@ -2177,7 +2304,7 @@ The API only supports the selection of plain text; if the selected content conta
   }
   ```
 
-  HTML file to be loaded:
+ HTML file to be loaded:
   ```html
   <!--index.html-->
   <!DOCTYPE html>
@@ -2192,6 +2319,48 @@ The API only supports the selection of plain text; if the selected content conta
   </html>
   ```
 
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+Called after an ad is blocked on the web page to notify the user of detailed information about the blocked ad. To reduce the frequency of notifications and minimize the impact on the page loading process, only the first notification is made when the page is fully loaded. Subsequent blocking events are reported at intervals of 1 second, and no notifications are sent if there is no ad blocked.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | Yes| Callback for **onAdsBlocked**.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+          }
+        })
+      }
+    }
+  }
+  ```
+
 ### keyboardAvoidMode<sup>12+</sup>
 
 keyboardAvoidMode(mode: WebKeyboardAvoidMode)
@@ -2199,6 +2368,8 @@ keyboardAvoidMode(mode: WebKeyboardAvoidMode)
 Sets the custom soft keyboard avoidance mode.
 
 If the keyboard avoidance mode set in **UIContext** is [KeyboardAvoidMode.RESIZE](../apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11), this API does not take effect.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -2242,6 +2413,7 @@ If the keyboard avoidance mode set in **UIContext** is [KeyboardAvoidMode.RESIZE
   ```
 
 ### editMenuOptions<sup>12+</sup>
+
 editMenuOptions(editMenu: EditMenuOptions)
 
 Sets the custom menu options of the **Web** component.
@@ -2254,7 +2426,10 @@ You can use [onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuite
 
 If this API is used together with [selectionMenuOptions](#selectionmenuoptions12), **selectionMenuOptions** does not take effect.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
+
 | Name             | Type                             | Mandatory  | Description         |
 | ------------------- | ------------------------------   | ------ | ------------- |
 | editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions)| Yes    | Custom menu options of the **Web** component.<br>The number of menu options, menu content size, and icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.<br>The values of ([TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)) supported by the **Web** component are **CUT**, **COPY**, **PASTE**, and **SELECT_ALL**.<br>**textRange** in **onMenuItemClick()** is useless in the **Web** component. The input value is **-1**.|
@@ -2272,7 +2447,7 @@ struct WebComponent {
 
   onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
     let items = menuItems.filter((menuItem) => {
-        // Filter the menu items as required.
+      // Filter the menu items as required.
       return (
         menuItem.id.equals(TextMenuItemId.CUT) ||
         menuItem.id.equals(TextMenuItemId.COPY) ||
@@ -2307,7 +2482,7 @@ struct WebComponent {
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // User-defined behavior.
       console.log ("Intercept ID: customItem1")
-      return true;// Return true. There is no difference between true and false to the custom menu option, but true is recommended.
+      return true;// There is no difference between true and false to the custom menu option, but true is recommended.
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
       // User-defined behavior.
       console.log ("Intercept ID: app.string.customItem2")
@@ -2352,11 +2527,13 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 Called when **alert()** is invoked to display an alert dialog box on the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                 | Description           |
-| ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | Callback used when **alert()** is invoked to display an alert dialog box on the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
+| Name    | Type                  | Mandatory  | Description           |
+| ------- | --------------------- | ---- | --------------- |
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | Yes   | Callback used when **alert()** is invoked to display an alert dialog box on the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2403,7 +2580,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
   }
   ```
 
-  HTML file to be loaded:
+ HTML file to be loaded:
   ```html
   <!--index.html-->
   <!DOCTYPE html>
@@ -2429,11 +2606,13 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 Called when this page is about to exit after the user refreshes or closes the page. This API takes effect only when the page has obtained focus.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                 | Description           |
-| ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | Callback used when this page is about to exit after the user refreshes or closes the page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
+| Name    | Type                 | Mandatory  | Description           |
+| ------- | --------------------- | ---- | --------------- |
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | Yes   | Callback used when this page is about to exit after the user refreshes or closes the page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2480,7 +2659,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
   }
   ```
 
-  HTML file to be loaded:
+ HTML file to be loaded:
   ```html
   <!--index.html-->
   <!DOCTYPE html>
@@ -2506,11 +2685,13 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 Called when **confirm()** is invoked by the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                 | Description           |
-| ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | Callback used when **confirm()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
+| Name    | Type                 | Mandatory  | Description           |
+| ------- | --------------------- | ---- | --------------- |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | Yes   | Called when **confirm()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2592,11 +2773,13 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 Called when **prompt()** is invoked by the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                 | Description           |
-| ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | Callback used when **prompt()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
+| Name    | Type                 | Mandatory  | Description           |
+| ------- | --------------------- | ---- | --------------- |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | Yes   | Called when **prompt()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2675,11 +2858,13 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 Called to notify the host application of a JavaScript console message.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                             | Description     |
-| ------- | --------------------------------- | --------- |
-| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | Called when the web page receives a JavaScript console message.<br>Return value: boolean<br> Returns **true** if the message will not be printed to the console; returns **false** otherwise.|
+| Name    | Type                             | Mandatory  | Description     |
+| ------- | --------------------------------- | ---- | --------- |
+| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | Yes   | Called when the web page receives a JavaScript console message.<br>Return value: boolean<br> Returns **true** if the message will not be printed to the console; returns **false** otherwise.|
 
 **Example**
 
@@ -2734,11 +2919,13 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 Instructs the main application to start downloading a file.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name               | Type  | Description                               |
-| ------------------ | ------ | ----------------------------------- |
-| callback                | Callback\<[OnDownloadStartEvent](#ondownloadstartevent12)\> | Called when the download starts.                          |
+| Name               | Type  | Mandatory  | Description                               |
+| ------------------ | ------ | ---- | ----------------------------------- |
+| callback           | Callback\<[OnDownloadStartEvent](#ondownloadstartevent12)\> | Yes   | Called when the download starts. |
 
 **Example**
 
@@ -2772,13 +2959,15 @@ Instructs the main application to start downloading a file.
 
 onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
-Called when an error occurs during web page loading. For better results, simplify the implementation logic in the callback. This API is called when there is no network connection.
+Called when an error occurs during web page loading. The error may occur on the main resource or sub-resource. You can use **request.isMainFrame()** to determine whether an error occurs on the main resource. For better results, simplify the implementation logic in the callback. This API is called when there is no network connection.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name    | Type                                    | Description           |
-| ------- | ---------------------------------------- | --------------- |
-| callback | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent12)\> | Called when an error occurs during web page loading.     |
+| Name    | Type                                    | Mandatory  | Description           |
+| ------- | ---------------------------------------- | ---- | --------------- |
+| callback | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent12)\> | Yes   | Called when an error occurs during web page loading.     |
 
 **Example**
 
@@ -2821,11 +3010,13 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
 Called when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type                                    | Description      |
-| -------- | ---------------------------------------- | ---------- |
-| callback  | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent12)\> | Called when an HTTP error occurs during web page resource loading.|
+| Name     | Type                                    | Mandatory  | Description      |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent12)\> | Yes   | Called when an HTTP error occurs during web page resource loading.|
 
 **Example**
 
@@ -2875,11 +3066,13 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 Called when the web page starts to be loaded. This API is called only for the main frame content, and not for the iframe or frameset content.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Description     |
-| ---- | ------ | --------- |
-| callback  | Callback\<[OnPageBeginEvent](#onpagebeginevent12)\> | Called when the web page starts to be loaded.|
+| Name | Type  | Mandatory  | Description     |
+| ---- | ------ | ---- | --------- |
+| callback  | Callback\<[OnPageBeginEvent](#onpagebeginevent12)\> | Yes   | Called when the web page starts to be loaded.|
 
 **Example**
 
@@ -2911,11 +3104,13 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 Called when the web page loading is complete. This API takes effect only for the main frame content.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Description     |
-| ---- | ------ | --------- |
-| callback  | Callback\<[OnPageEndEvent](#onpageendevent12)\> | Called when the web page loading is complete.|
+| Name | Type  | Mandatory  | Description     |
+| ---- | ------ | ---- | --------- |
+| callback  | Callback\<[OnPageEndEvent](#onpageendevent12)\> | Yes   | Called when the web page loading is complete.|
 
 **Example**
 
@@ -2947,11 +3142,13 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 Called when the web page loading progress changes.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name        | Type  | Description                 |
-| ----------- | ------ | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | Called when the web page loading progress changes.|
+| Name        | Type  | Mandatory  | Description                 |
+| ----------- | ------ | ---- | --------------------- |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | Yes   | Called when the web page loading progress changes.|
 
 **Example**
 
@@ -2982,11 +3179,13 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 Called when the document title of a web page is changed. If the <title\> element is not set for an HTML5 page, the corresponding URL is returned.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type  | Description         |
-| ----- | ------ | ------------- |
-| callback | Callback\<[OnTitleReceiveEvent](#ontitlereceiveevent12)\> | Called when the document title of the web page is changed.|
+| Name  | Type  | Mandatory  | Description         |
+| ----- | ------ | ---- | ------------- |
+| callback | Callback\<[OnTitleReceiveEvent](#ontitlereceiveevent12)\> | Yes   | Called when the document title of the web page is changed.|
 
 **Example**
 
@@ -3018,11 +3217,13 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 Called when loading of the web page is complete and the access history of a web page is refreshed.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name        | Type   | Description                                    |
-| ----------- | ------- | ---------------------------------------- |
-| callback         | Callback\<[OnRefreshAccessedHistoryEvent](#onrefreshaccessedhistoryevent12)\>  | Called when the access history of the web page is refreshed.               |
+| Name        | Type   | Mandatory  | Description                                    |
+| ----------- | ------- | ---- | ---------------------------------------- |
+| callback         | Callback\<[OnRefreshAccessedHistoryEvent](#onrefreshaccessedhistoryevent12)\>  | Yes   | Called when the access history of the web page is refreshed.               |
 
 **Example**
 
@@ -3058,6 +3259,8 @@ Called when an SSL error occurs during resource loading.
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### onFileSelectorShow<sup>(deprecated)</sup>
 
 onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
@@ -3068,17 +3271,23 @@ Called to process an HTML form whose input type is **file**, in response to the 
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [onShowFileSelector<sup>9+</sup>](#onshowfileselector9) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### onRenderExited<sup>9+</sup>
 
 onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 Called when the rendering process exits abnormally.
 
+After **onRenderExited()** is executed on a page of an application, all **Web** components exit.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name             | Type                                    | Description            |
-| ---------------- | ---------------------------------------- | ---------------- |
-| callback | Callback\<[OnRenderExitedEvent](#onrenderexitedevent12)\> | Called when the rendering process exits abnormally.|
+| Name             | Type                                    | Mandatory  | Description            |
+| ---------------- | ---------------------------------------- | ---- | ---------------- |
+| callback | Callback\<[OnRenderExitedEvent](#onrenderexitedevent12)\> | Yes   | Called when the rendering process exits abnormally.|
 
 **Example**
 
@@ -3109,11 +3318,13 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
 Called when the rendering process does not respond.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type                                                        | Description                                  |
-| -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | Callback triggered when the rendering process does not respond.|
+| Name  | Type                                                        | Mandatory  | Description                                  |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | Yes   | Callback triggered when the rendering process does not respond.|
 
 **Example**
 
@@ -3144,11 +3355,13 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 Called when the rendering process transitions back to a normal operating state from an unresponsive state. This callback indicates that the web page was not actually frozen.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type                                                        | Description                                  |
-| -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | Callback triggered when the rendering process transitions back to a normal operating state from an unresponsive state.|
+| Name  | Type                                                        | Mandatory  | Description                                  |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | Yes   | Callback triggered when the rendering process transitions back to a normal operating state from an unresponsive state.|
 
 **Example**
 
@@ -3178,11 +3391,13 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
 Called to process an HTML form whose input type is **file**. If this function is not called or returns **false**, the **Web** component provides the default **Select File** handling UI. If it returns **true**, the application can customize the response behavior for **Select File**.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name         | Type                                    | Description             |
-| ------------ | ---------------------------------------- | ----------------- |
-| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | File selection result to be sent to the **Web** component.<br>Return value: boolean<br> The value **true** means that you can invoke the system-provided popup capability. The value **false** means that the custom dialog box drawn in the function is ineffective.|
+| Name         | Type                                    | Mandatory  | Description             |
+| ------------ | ---------------------------------------- | ---- | ----------------- |
+| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | Yes   | File selection result to be sent to the **Web** component.<br>Return value: boolean<br> The value **true** means that you can invoke the system-provided popup capability. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -3283,11 +3498,13 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 Called to notify the **Web** component of the URL of the loaded resource file.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Description          |
-| ---- | ------ | -------------- |
-| callback  | Callback\<[OnResourceLoadEvent](#onresourceloadevent12)\> | Callback invoked when a URL is loaded.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback  | Callback\<[OnResourceLoadEvent](#onresourceloadevent12)\> | Yes| Callback invoked when a URL is loaded.|
 
 **Example**
 
@@ -3317,11 +3534,13 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 Called when the display ratio of this page changes.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type  | Description        |
-| -------- | ------ | ------------ |
-| callback | Callback\<[OnScaleChangeEvent](#onscalechangeevent12)\> | Callback invoked when the display ratio of the page changes.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnScaleChangeEvent](#onscalechangeevent12)\> | Yes| Callback invoked when the display ratio of the page changes.|
 
 **Example**
 
@@ -3352,17 +3571,13 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 Called when the **Web** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 This API is deprecated since API version 10. You are advised to use [onLoadIntercept<sup>10+</sup>](#onloadintercept10) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type                                    | Description     |
-| ---- | ---------------------------------------- | --------- |
-| data | string \| [WebResourceRequest](#webresourcerequest) | URL information.|
-
-**Return value**
-
-| Type     | Description                      |
-| ------- | ------------------------ |
-| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { data:string \| [WebResourceRequest](#webresourcerequest) }) => boolean | Yes| URL information. Returns **true** if the access is blocked; returns **false** otherwise.|
 
 **Example**
 
@@ -3395,11 +3610,13 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 Called when the **Web** component is about to access a URL. This API is used to block the URL and return the response data.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                    | Description       |
-| ------- | ---------------------------------------- | ----------- |
-| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | Callback invoked when the **Web** component is about to load a URL.<br>The return value is [WebResourceResponse](#webresourceresponse). If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | Yes| Callback invoked when the **Web** component is about to load a URL.<br>The return value is [WebResourceResponse](#webresourceresponse). If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode.|
 
 **Example**
 
@@ -3438,8 +3655,10 @@ Called when the **Web** component is about to access a URL. This API is used to 
               headerKey: "Cache-Control",
               headerValue: "no-cache"
             }
+            // Add a new element to the end of the array and return the length of the new array.
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
+            console.log('The response header result length is :' + length);
             const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
               this.responseWeb.setResponseHeader(this.heads);
               this.responseWeb.setResponseData(this.webData);
@@ -3467,11 +3686,13 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 Called when an HTTP authentication request is received.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                | Description            |
-| ------- | ------------------------------------ | ---------------- |
-| callback | Callback\<[OnHttpAuthRequestEvent](#onhttpauthrequestevent12), boolean\> | Callback invoked when the browser requires user credentials.<br>Return value: boolean<br> Returns **true** if the authentication is successful; returns **false** otherwise.  |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnHttpAuthRequestEvent](#onhttpauthrequestevent12), boolean\> | Yes| Callback invoked when the browser requires user credentials.<br>Return value: boolean<br> Returns **true** if the authentication is successful; returns **false** otherwise.  |
 
 **Example**
 
@@ -3532,11 +3753,13 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 Called to notify users when an SSL error occurs with a request for the main frame.
 To include errors with requests for subframes, use the [OnSslErrorEvent](#onsslerrorevent12) API.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                | Description          |
-| ------- | ------------------------------------ | -------------- |
-| callback | Callback\<[OnSslErrorEventReceiveEvent](#onsslerroreventreceiveevent12)\> | Callback invoked when the web page receives an SSL error.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnSslErrorEventReceiveEvent](#onsslerroreventreceiveevent12)\> | Yes| Callback invoked when the web page receives an SSL error.|
 
 **Example**
 
@@ -3584,11 +3807,13 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 Called to notify users when an SSL error occurs during the loading of resources (for the main frame and subframes). To handle SSL errors for requests for the main frame, use the **isMainFrame** field to distinguish.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                | Description          |
-| ------- | ------------------------------------ | -------------- |
-| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | Callback invoked when an SSL error occurs during resource loading.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | Yes| Callback invoked when an SSL error occurs during resource loading.|
 
 **Example**
 
@@ -3642,11 +3867,13 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 Called when an SSL client certificate request is received.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type                                    | Description           |
-| -------- | ---------------------------------------- | --------------- |
-| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationrequestevent12)\> | Callback invoked when an SSL client certificate is required from the user. |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationevent12)\> | Yes| Callback invoked when an SSL client certificate is required from the user. |
 
   **Example**
 
@@ -3786,7 +4013,7 @@ Called when an SSL client certificate request is received.
      @Component
      struct WebComponent {
        controller: webview.WebviewController = new webview.WebviewController();
-       @State message: string ='Hello World' // message is used for debugging and observation.
+       @State message: string = 'Hello World' // message is used for debugging and observation.
        certManager = CertManagerService.getInstance();
 
        build() {
@@ -3842,11 +4069,13 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
 Called when a permission request is received. To call this API, you need to declare the **ohos.permission.CAMERA** and **ohos.permission.MICROPHONE** permissions.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                    | Description          |
-| ------- | ---------------------------------------- | -------------- |
-| callback | Callback\<[OnPermissionRequestEvent](#onpermissionrequestevent12)\> | Callback invoked when a permission request is received.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnPermissionRequestEvent](#onpermissionrequestevent12)\> | Yes| Callback invoked when a permission request is received.|
 
 **Example**
 
@@ -3947,11 +4176,13 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
 Called when a context menu is displayed after the user clicks the right mouse button or long presses a specific element, such as an image or a link.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type                                    | Description       |
-| ------ | ---------------------------------------- | ----------- |
-| callback  | Callback\<[OnContextMenuShowEvent](#oncontextmenushowevent12), boolean\> | Callback invoked during a call to allow for the display of a custom context menu.<br>Return value: boolean<br> The value **true** means a valid custom menu, and **false** means an invalid custom menu.    |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback  | Callback\<[OnContextMenuShowEvent](#oncontextmenushowevent12), boolean\> | Yes| Callback invoked during a call to allow for the display of a custom context menu.<br>Return value: boolean<br> The value **true** means a valid custom menu, and **false** means an invalid custom menu.    |
 
 **Example**
 
@@ -4099,11 +4330,13 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 Called when a context menu is hidden after the user clicks the right mouse button or long presses a specific element, such as an image or a link.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type                                    | Description       |
-| ------ | ---------------------------------------- | ----------- |
-| callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | Parameters related to the context menu.    |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | Yes| Parameters related to the context menu.    |
 
 **Example**
 
@@ -4129,15 +4362,17 @@ Called when a context menu is hidden after the user clicks the right mouse butto
 
 ### onScroll<sup>9+</sup>
 
-onScroll(callback: Callback\<OnScrollEvent\>): WebAttribute;
+onScroll(callback: Callback\<OnScrollEvent\>)
 
 Called when the scrollbar of the page scrolls.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type  | Description                  |
-| ------- | ------ | ---------------------- |
-| callback | Callback\<[OnScrollEvent](#onscrollevent12)\> | Callback invoked when the scrollbar scrolls to a specified position.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnScrollEvent](#onscrollevent12)\> | Yes| Callback invoked when the scrollbar scrolls to a specified position.|
 
 **Example**
 
@@ -4168,11 +4403,13 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
 Called when a request to obtain the geolocation information is received.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name        | Type                           | Description          |
-| ----------- | ------------------------------- | -------------- |
-| callback      | Callback\<[OnGeolocationShowEvent](#ongeolocationshowevent12)\>  | Callback invoked when a request to obtain the geolocation information is received.    |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback      | Callback\<[OnGeolocationShowEvent](#ongeolocationshowevent12)\>  | Yes| Callback invoked when a request to obtain the geolocation information is received.    |
 
 **Example**
 
@@ -4240,11 +4477,13 @@ onGeolocationHide(callback: () => void)
 
 Called to notify the user that the request for obtaining the geolocation information received when [onGeolocationShow](#ongeolocationshow) is called has been canceled.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type      | Description                |
-| -------- | ---------- | -------------------- |
-| callback | () => void | Callback invoked when the request for obtaining geolocation information has been canceled. |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | () => void | Yes| Callback invoked when the request for obtaining geolocation information has been canceled. |
 
 **Example**
 
@@ -4275,11 +4514,13 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 Called when the **Web** component enters full screen mode.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                    | Description          |
-| ------- | ---------------------------------------- | -------------- |
-| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Callback invoked when the **Web** component enters full screen mode.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Yes| Callback invoked when the **Web** component enters full screen mode.|
 
 **Example**
 
@@ -4313,11 +4554,13 @@ onFullScreenExit(callback: () => void)
 
 Called when the **Web** component exits full screen mode.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type      | Description         |
-| -------- | ---------- | ------------- |
-| callback | () => void | Callback invoked when the component exits full screen mode.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | () => void | Yes| Callback invoked when the component exits full screen mode.|
 
 **Example**
 
@@ -4356,11 +4599,13 @@ Called to notify the user of a new window creation request, when **multiWindowAc
 If the **event.handler.setWebController** API is not called, the render process will be blocked.
 If opening a new window is not needed, set the parameter to **null** when calling the **event.handler.setWebController** API.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name          | Type                                    | Description                         |
-| ------------- | ---------------------------------------- | ----------------------------- |
-| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>                                  | Callback invoked when the web page requests the user to create a new window.   |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>           | Yes| Callback invoked when the web page requests the user to create a new window.   |
 
 **Example**
 
@@ -4368,7 +4613,7 @@ If opening a new window is not needed, set the parameter to **null** when callin
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  // There are two **Web** components on the same page. When the **Web** component opens a new window, **NewWebViewComp** is displayed. 
+  // There are two Web components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -4411,7 +4656,7 @@ If opening a new window is not needed, set the parameter to **null** when callin
               builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
-            // Return the WebviewController object corresponding to the new window to the <Web> kernel.
+            // Return the WebviewController object corresponding to the new window to the Web kernel.
             // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
             // If the event.handler.setWebController API is not called, the render process will be blocked.
             event.handler.setWebController(popController);
@@ -4427,11 +4672,13 @@ onWindowExit(callback: () => void)
 
 Called when this window is closed.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type      | Description        |
-| -------- | ---------- | ------------ |
-| callback | () => void | Callback invoked when the window is closed.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | () => void | Yes| Callback invoked when the window is closed.|
 
 **Example**
 
@@ -4461,11 +4708,13 @@ onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
 
 Called to notify the caller of the search result on the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name               | Type   | Description                                    |
-| ------------------ | ------- | ---------------------------------------- |
-| callback | Callback\<[OnSearchResultReceiveEvent](#onsearchresultreceiveevent12)\>  | Callback invoked to notify the caller of the search result on the web page.        |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnSearchResultReceiveEvent](#onsearchresultreceiveevent12)\>  | Yes| Callback invoked to notify the caller of the search result on the web page.        |
 
 **Example**
 
@@ -4498,11 +4747,13 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
 Called when the web form data can be resubmitted.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                    | Description       |
-| ------- | ---------------------------------------- | ----------- |
-| callback | Callback\<[OnDataResubmittedEvent](#ondataresubmittedevent12)\> | Callback invoked when the web form data can be resubmitted.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnDataResubmittedEvent](#ondataresubmittedevent12)\> | Yes| Callback invoked when the web form data can be resubmitted.|
 
 **Example**
 
@@ -4560,11 +4811,13 @@ onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
 Called when the old page is not displayed and the new page is about to be visible.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Description                      |
-| ---- | ------ | -------------------------- |
-| callback  | Callback\<[OnPageVisibleEvent](#onpagevisibleevent12)\> | Callback invoked when the old page is not displayed and the new page is about to be visible.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback  | Callback\<[OnPageVisibleEvent](#onpagevisibleevent12)\> | Yes| Callback invoked when the old page is not displayed and the new page is about to be visible.|
 
 **Example**
 
@@ -4594,17 +4847,13 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 Called when the key event is intercepted and before it is consumed by the webview.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type                                    | Description          |
-| ----- | ---------------------------------------- | -------------- |
-| event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) | Key event that is triggered.|
-
-**Return value**
-
-| Type     | Description                                      |
-| ------- | ---------------------------------------- |
-| boolean | Whether to continue to transfer the key event to the webview kernel.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event:[KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent)) => boolean| Yes| Key event that is triggered. Return value: Whether to continue to transfer the key event to the webview kernel.|
 
 **Example**
 
@@ -4638,11 +4887,13 @@ onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
 Called when an apple-touch-icon URL is received.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name        | Type   | Description                       |
-| ----------- | ------- | --------------------------- |
-| callback         | Callback\<[OnTouchIconUrlReceivedEvent](#ontouchiconurlreceivedevent12)\>  | Callback invoked when an apple-touch-icon URL is received.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback  | Callback\<[OnTouchIconUrlReceivedEvent](#ontouchiconurlreceivedevent12)\>  | Yes| Callback invoked when an apple-touch-icon URL is received.|
 
 **Example**
 
@@ -4672,11 +4923,13 @@ onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
 
 Called when this web page receives a new favicon.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                    | Description                     |
-| ------- | ---------------------------------------- | ------------------------- |
-| callback | Callback\<[OnFaviconReceivedEvent](#onfaviconreceivedevent12)\> | Callback invoked when the current web page receives a new favicon.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnFaviconReceivedEvent](#onfaviconreceivedevent12)\> | Yes| Callback invoked when the current web page receives a new favicon.|
 
 **Example**
 
@@ -4709,11 +4962,13 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
 
 Called when the audio playback status on the web page changes.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type   | Description                              |
-| ------- | ------- | ---------------------------------- |
-| callback | Callback\<[OnAudioStateChangedEvent](#onaudiostatechangedevent12)\> | Callback invoked when the audio playback status on the web page changes.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnAudioStateChangedEvent](#onaudiostatechangedevent12)\> | Yes| Callback invoked when the audio playback status on the web page changes.|
 
 **Example**
 
@@ -4745,11 +5000,13 @@ Called when the audio playback status on the web page changes.
 
 Called when the first content paint occurs on the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name                   | Type  | Description                             |
-| ---------------------- | ------ | --------------------------------- |
-| callback    | Callback\<[OnFirstContentfulPaintEvent](#onfirstcontentfulpaintevent12)\> | Callback invoked when the first content paint occurs on the web page.         |
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback    | Callback\<[OnFirstContentfulPaintEvent](#onfirstcontentfulpaintevent12)\> | Yes| Callback invoked when the first content paint occurs on the web page.         |
 
 **Example**
 
@@ -4783,11 +5040,13 @@ onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeanin
 
 Called when the first meaningful paint occurs on the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type                                                        | Description                                  |
-| -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | Callback invoked when the First Meaningful Paint occurs on the web page.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | Yes| Callback invoked when the First Meaningful Paint occurs on the web page.|
 
 **Example**
 
@@ -4818,11 +5077,13 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargest
 
 Called when the largest content paint occurs on the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type                                                        | Description                                |
-| -------- | ------------------------------------------------------------ | ------------------------------------ |
-| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | Callback invoked when the largest content paint occurs on the web page.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | Yes| Callback invoked when the largest content paint occurs on the web page.|
 
 **Example**
 
@@ -4857,11 +5118,13 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 Called when the **Web** component is about to access a URL. This API is used to determine whether to block the access, which is allowed by default.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                    | Description       |
-| ------- | ---------------------------------------- | ----------- |
-| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | Callback invoked when the **Web** component is about to access a URL.<br>Return value: boolean<br> Returns **true** if the access is blocked; returns **false** otherwise.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | Yes| Callback invoked when the **Web** component is about to access a URL.<br>Return value: boolean<br> Returns **true** if the access is blocked; returns **false** otherwise.|
 
 **Example**
 
@@ -4895,6 +5158,8 @@ onRequestSelected(callback: () => void)
 
 Called when the **Web** component obtains the focus.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Example**
 
   ```ts
@@ -4922,11 +5187,13 @@ onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
 
 Called when a screen capture request is received.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                    | Description          |
-| ------- | ---------------------------------------- | -------------- |
-| callback | Callback\<[OnScreenCaptureRequestEvent](#onscreencapturerequestevent12)\> | Called when a screen capture request is received.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnScreenCaptureRequestEvent](#onscreencapturerequestevent12)\> | Yes| Called when a screen capture request is received.|
 
 **Example**
 
@@ -4976,11 +5243,13 @@ onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
 Called when the web page is overscrolled. It is used to notify the user of the offset of the overscroll.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type  | Description               |
-| ------- | ------ | ------------------- |
-| callback | Callback\<[OnOverScrollEvent](#onoverscrollevent12)\> | Callback invoked when the web page is overscrolled.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | Callback\<[OnOverScrollEvent](#onoverscrollevent12)\> | Yes| Callback invoked when the web page is overscrolled.|
 
 **Example**
 
@@ -5009,8 +5278,10 @@ Called when the web page is overscrolled. It is used to notify the user of the o
 
 onControllerAttached(callback: () => void)
 
-Called when the controller is successfully bound to the **Web** component. The controller must be WebviewController.
+Called when the controller is successfully bound to the **Web** component. The controller must be WebviewController. Do not call APIs related to the **Web** component before this callback event. Otherwise, a js-error exception will be thrown.
 As the web page is not yet loaded when this callback is called, APIs for operating the web page, for example, [zoomIn](js-apis-webview.md#zoomin) and [zoomOut](js-apis-webview.md#zoomout), cannot be used in the callback. Other APIs, such as [loadUrl](js-apis-webview.md#loadurl) and [getWebId](js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
 
@@ -5080,11 +5351,13 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnav
 
 Called when a web page redirection request is submitted.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name         | Type                                                                        | Description                   |
-| -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | Callback invoked when a web page redirection request is submitted.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | Yes| Callback invoked when a web page redirection request is submitted.|
 
 **Example**
 
@@ -5118,11 +5391,13 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
 
 Called when the safe browsing check result is received.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                                                                      | Description                   |
-| ----------| --------------------------------------------------------------------------| ---------------------- |
-| callback  | [OnSafeBrowsingCheckResultCallback](#onsafebrowsingcheckresultcallback11) | Called when the safe browsing check result is received.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback  | [OnSafeBrowsingCheckResultCallback](#onsafebrowsingcheckresultcallback11) | Yes| Called when the safe browsing check result is received.|
 
 **Example**
 
@@ -5162,15 +5437,17 @@ Called when the safe browsing check result is received.
 
 ### onNativeEmbedLifecycleChange<sup>11+</sup>
 
-onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
+onNativeEmbedLifecycleChange(callback: (event: NativeEmbedDataInfo) => void)
 
-Called when the lifecycle of the Embed tag changes.
+Called when the lifecycle of the same-layer **Embed** tag changes.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name         | Type                                                                        | Description                   |
-| -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Callback invoked when the lifecycle of the Embed tag changes.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback       | (event: [NativeEmbedDataInfo](#nativeembeddatainfo11)) => void | Yes| Callback invoked when the lifecycle of the same-layer tag changes.|
 
 **Example**
 
@@ -5240,8 +5517,8 @@ export default class EntryAbility extends UIAbility {
 
     build() {
       Column() {
-        // Default behavior: Click the button to navigate to a new page, close the index page, and destroy the <Embed> tag.
-        // Added in API version 12: When BFCache is enabled for the page that supports same-layer rendering, clicking the button navigates to a new page, closes the index page, and puts the <Embed> tag into BFCache.
+        // Default behavior: Click the button to navigate to a new page, close the index page, and destroy the same-layer tag.
+        // Added in API version 12: When BFCache is enabled for the page that supports same-layer rendering, clicking the button navigates to a new page, closes the index page, and puts the same-layer tag into BFCache.
         Button('Destroy')
         .onClick(() => {
           try {
@@ -5251,7 +5528,7 @@ export default class EntryAbility extends UIAbility {
           }
         })
 
-        // Added in API version 12: When BFCache is enabled for the page that supports same-layer rendering, clicking the button to return to the page causes the <Embed> tag to exit BFCache.
+        // Added in API version 12: When BFCache is enabled for the page that supports same-layer rendering, clicking the button to return to the page causes the same-layer tag to exit BFCache.
         Button('backward')
         .onClick(() => {
           try {
@@ -5261,7 +5538,7 @@ export default class EntryAbility extends UIAbility {
           }
         })
 
-        // Added in API version 12: When BFCache is enabled for the page that supports same-layer rendering, clicking a button to advance to the next page causes the <Embed> tag to enter BFCache.
+        // Added in API version 12: When BFCache is enabled for the page that supports same-layer rendering, clicking a button to advance to the next page causes the same-layer tag to enter BFCache.
         Button('forward')
         .onClick(() => {
           try {
@@ -5278,11 +5555,11 @@ export default class EntryAbility extends UIAbility {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
-            // The Create event is triggered when the <Embed> tag is detected on the loaded page.
+            // The Create event is triggered when the same-layer tag is detected on the loaded page.
             if (event.status == NativeEmbedStatus.CREATE) {
               this.embedStatus = 'Create';
             }
-            // The Update event is triggered when the <Embed> tag on the page is moved or scaled.
+            // The Update event is triggered when the same-layer tag on the page is moved or scaled.
             if (event.status == NativeEmbedStatus.UPDATE) {
               this.embedStatus = 'Update';
             }
@@ -5336,15 +5613,17 @@ export default class EntryAbility extends UIAbility {
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
 
-onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
+onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
 
-Called when a finger touches a same-layer rendering tag.
+Called when a finger touches a same-layer tag.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name         | Type                                                                        | Description                   |
-| -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | Callback invoked when a finger touches a same-layer rendering tag.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback       | (event: [NativeEmbedTouchInfo](#nativeembedtouchinfo11)) => void | Yes| Callback invoked when a finger touches a same-layer tag.|
 
 **Example**
 
@@ -5497,11 +5776,13 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
 
 Called when the intelligent tracking prevention feature is enabled and the tracker cookie is blocked.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name      | Type                                                                                        | Description                        |
-| ----------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
-| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | Callback invoked when the intelligent tracking prevention feature is enabled and the tracker cookie is blocked.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | Yes| Callback invoked when the intelligent tracking prevention feature is enabled and the tracker cookie is blocked.|
 
 **Example**
 
@@ -5548,11 +5829,13 @@ This callback is triggered when the **iframe** loads the redirection of a non-HT
 
 Do not use the same URL to call the **loadUrl(String)** API and then return **true**. Doing so would unnecessarily cancel the current loading and start a new load with the same URL. The correct way to continue loading the given URL is to simply return **false**, rather than calling **loadUrl(String)**.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name         | Type                                                                        | Description                   |
-| -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | Callback for **onOverrideUrlLoading**.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | Yes| Callback for **onOverrideUrlLoading**.|
 
 **Example**
 
@@ -5589,7 +5872,7 @@ Do not use the same URL to call the **loadUrl(String)** API and then return **tr
   </head>
   <body>
     <h1>onOverrideUrlLoading Demo</h1>
-    <a href="about:blank">Click here</a> to visit about:blank.
+    <a href="about:blank">Click here</a>// to visit about:blank.
   </body>
   </html>
   ```
@@ -5600,11 +5883,13 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
 
 Called when the **viewport-fit** configuration in the web page's **\<meta>** tag changes. The application can adapt its layout to the viewport within this callback.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type                                                        | Description                                  |
-| -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnViewportFitChangedCallback](#onviewportfitchangedcallback12) | Callback invoked when the **viewport-fit** configuration in the web page's **\<meta>** tag changes.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | [OnViewportFitChangedCallback](#onviewportfitchangedcallback12) | Yes| Callback invoked when the **viewport-fit** configuration in the web page's **\<meta>** tag changes.|
 
 **Example**
 
@@ -5656,11 +5941,13 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 Called before any editable element (such as the **\<input>** tag) on the web page invokes the soft keyboard. The application can use this API to intercept the display of the system's soft keyboard and configure a custom soft keyboard. (With this API, the application can determine whether to use the system's default soft keyboard, a system soft keyboard with a custom Enter key, or a completely application-defined soft keyboard).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name  | Type                                                        | Description                                  |
-| -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [WebKeyboardCallback](#webkeyboardcallback12) | Callback invoked for intercepting the soft keyboard invoking in the web page.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | [WebKeyboardCallback](#webkeyboardcallback12) | Yes| Callback invoked for intercepting the soft keyboard invoking in the web page.|
 
 **Example**
 
@@ -5830,30 +6117,110 @@ Called before any editable element (such as the **\<input>** tag) on the web pag
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-Called when the visibility of a same-layer rendering tag (such as an **Embed** tag or an **Object** tag) on a web page changes in the viewport. By default, the same-layer rendering tag is invisible. If the rendering tag is visible when you access the page for the first time, the callback is triggered; otherwise, it is not triggered. That is, if the same-layer rendering tag changes from a non-zero value to **0 x 0**, the callback is triggered. If the rendering tag size changes from **0 x 0** to a non-zero value, the callback is not triggered. If all the same-layer rendering tags are invisible, they are reported as invisible. If all the same-layer rendering tags or part of them are visible, they are reported as invisible.
+Called when the visibility of a same-layer tag (such as an **Embed** tag or an **Object** tag) on a web page changes in the viewport. By default, the same-layer tag is invisible. If the rendering tag is visible when you access the page for the first time, the callback is triggered; otherwise, it is not triggered. That is, if the same-layer tag changes from a non-zero value to **0 x 0**, the callback is triggered. If the rendering tag size changes from **0 x 0** to a non-zero value, the callback is not triggered. If all the same-layer tags are invisible, they are reported as invisible. If all the same-layer rendering tags or part of them are visible, they are reported as invisible.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name         | Type                                                                        | Description                   |
-| -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnNativeEmbedVisibilityChangeCallback](#onnativeembedvisibilitychangecallback12) | Called when the visibility of a same-layer rendering tag changes.|
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback       | [OnNativeEmbedVisibilityChangeCallback](#onnativeembedvisibilitychangecallback12) | Yes| Called when the visibility of a same-layer tag changes.|
 
 **Example**
+
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { NodeController, BuilderNode, NodeRenderType, FrameNode, UIContext } from "@kit.ArkUI";
+
+  declare class Params {
+    text: string;
+    width: number;
+    height: number;
+  }
+
+  declare class nodeControllerParams {
+    surfaceId: string;
+    renderType: NodeRenderType;
+    width: number;
+    height: number;
+  }
+
+  class MyNodeController extends NodeController {
+    private rootNode: BuilderNode<[Params]> | undefined | null;
+    private surfaceId_: string = "";
+    private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_: number = 0;
+    private height_: number = 0;
+
+    setRenderOption(params: nodeControllerParams) {
+      this.surfaceId_ = params.surfaceId;
+      this.renderType_ = params.renderType;
+      this.width_ = params.width;
+      this.height_ = params.height;
+    }
+
+    makeNode(uiContext: UIContext): FrameNode | null {
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
+      this.rootNode.build(wrapBuilder(ButtonBuilder), { text: "myButton", width: this.width_, height: this.height_ });
+      return this.rootNode.getFrameNode();
+    }
+
+    postEvent(event: TouchEvent | undefined): boolean {
+      return this.rootNode?.postTouchEvent(event) as boolean;
+    }
+  }
+
+  @Component
+  struct ButtonComponent {
+    @Prop params: Params;
+    @State bkColor: Color = Color.Red;
+
+    build() {
+      Column() {
+        Button(this.params.text)
+          .height(50)
+          .width(200)
+          .border({ width: 2, color: Color.Red })
+          .backgroundColor(this.bkColor)
+
+      }
+      .width(this.params.width)
+      .height(this.params.height)
+    }
+  }
+
+  @Builder
+  function ButtonBuilder(params: Params) {
+    ButtonComponent({ params: params })
+      .backgroundColor(Color.Green)
+  }
 
   @Entry
   @Component
   struct WebComponent {
     @State embedVisibility: string = '';
     controller: webview.WebviewController = new webview.WebviewController();
+    private nodeController: MyNodeController = new MyNodeController();
 
     build() {
       Column() {
         Stack() {
+          NodeContainer(this.nodeController)
           Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
+            .onNativeEmbedLifecycleChange((embed) => {
+              if (embed.status == NativeEmbedStatus.CREATE) {
+                this.nodeController.setRenderOption({
+                  surfaceId: embed.surfaceId as string,
+                  renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
+                  width: px2vp(embed.info?.width),
+                  height: px2vp(embed.info?.height)
+                });
+                this.nodeController.rebuild();
+              }
+            })
             .onNativeEmbedVisibilityChange((embed) => {
               if (embed.visibility) {
                 this.embedVisibility = 'Visible';
@@ -5881,7 +6248,7 @@ Called when the visibility of a same-layer rendering tag (such as an **Embed** t
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeVideo" type = "native/video" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -5902,7 +6269,6 @@ Called to intercept the soft keyboard from editable elements on a web page. This
 | ------------- | ------ | ---- | ------------------ |
 | keyboardCallbackInfo    | [WebKeyboardCallbackInfo](#webkeyboardcallbackinfo12) | Yes   | Input parameter of the callback for intercepting the soft keyboard from editable elements on a web page, including [WebKeyboardController](#webkeyboardcontroller12) and editable element attributes. |
 
-
 **Return value**
 
 | Type              | Description                                                        |
@@ -5913,20 +6279,24 @@ Called to intercept the soft keyboard from editable elements on a web page. This
 
 Represents the input parameter of the callback for intercepting the soft keyboard from editable elements on a web page, including [WebKeyboardController](#webkeyboardcontroller12) and editable element attributes.
 
-| Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
-| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
-| controller | [WebKeyboardController](#webkeyboardcontroller12)  | Yes   | No   | Yes   | Controller used to control the input, deletion, and closure of the custom keyboard.|
-| attributes | Record<string, string> | Yes   | No   | Yes   | Attributes of the web page element that triggered the soft keyboard to pop up.
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name            | Type     | Mandatory  | Description                                      |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| controller | [WebKeyboardController](#webkeyboardcontroller12)  | Yes   | Controller used to control the input, deletion, and closure of the custom keyboard.|
+| attributes | Record<string, string> | Yes   | Attributes of the web page element that triggered the soft keyboard to pop up.
 
 ## WebKeyboardOptions<sup>12+</sup>
 
 Represents the return value of the callback that intercepts the soft keyboard from editable elements on the web page. You can specify the type of the keyboard to be used, and it is returned to the Web kernel to display a keyboard of the corresponding type.
 
-| Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
-| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
-| useSystemKeyboard | boolean  | Yes   | Yes   | Yes   | Whether to use the system's default soft keyboard.|
-| enterKeyType | number | Yes   | Yes   | No   | Type of the Enter key of the system soft keyboard. For details about the value range, see [EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10). This parameter has effect only when **useSystemKeyboard** is set to **true** and **enterKeyType** is set to a valid value.|
-| customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | Yes   | Yes   | No   | Builder of a custom keyboard. This parameter is required when **useSystemKeyboard** is set to **false**. After it is set, the Web component starts the custom keyboard as configured.
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name            | Type     | Mandatory  | Description                                      |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| useSystemKeyboard | boolean  | Yes   | Whether to use the system's default soft keyboard.|
+| enterKeyType | number | No   | Type of the Enter key of the system soft keyboard. For details about the value range, see [EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10). This parameter has effect only when **useSystemKeyboard** is set to **true** and **enterKeyType** is set to a valid value.|
+| customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | No   | Builder of a custom keyboard. This parameter is required when **useSystemKeyboard** is set to **false**. After it is set, the **Web** component starts the custom keyboard as configured.
 
 ## WebKeyboardController<sup>12+</sup>
 
@@ -5938,11 +6308,13 @@ insertText(text: string): void
 
 Inserts a character.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description             |
-| ------ | -------- | ---- | ------ | --------------------- |
-| text   | string   | Yes  | -      | Character to insert into the **Web** component text box.|
+| Name| Type| Mandatory| Description|
+| ------ | -------- | ---- | --------------------- |
+| text | string | Yes| Character to insert into the **Web** component text box.|
 
 ### deleteForward<sup>12+</sup>
 
@@ -5950,11 +6322,13 @@ deleteForward(length: number): void
 
 Deletes characters from the end to the beginning for the length specified by the **length** parameter.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| length | number   | Yes  | -      | Length of characters to be deleted from the end to the beginning.|
+| Name| Type| Mandatory| Description                |
+| ------ | -------- | ---- | ------------------------ |
+| length | number   | Yes  | Length of characters to be deleted from the end to the beginning.|
 
 ### deleteBackward12+</sup>
 
@@ -5962,11 +6336,13 @@ deleteBackward(length: number): void
 
 Deletes characters from the beginning to the end for the length specified by the **length** parameter.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| length | number   | Yes  | -      | Length of characters to be deleted from the beginning to the end.|
+| Name| Type| Mandatory| Description                |
+| ------ | -------- | ---- | ------------------------ |
+| length | number   | Yes  | Length of characters to be deleted from the beginning to the end.|
 
 ### sendFunctionKey<sup>12+</sup>
 
@@ -5974,11 +6350,13 @@ sendFunctionKey(key: number): void
 
 Inserts a function key. Currently, only the Enter key type is supported. For details about the value, see [EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                                  |
-| ------ | -------- | ---- | ------ | ------------------------------------------ |
-| key    | number   | Yes  | -      | Function key to insert into the **Web** component text box. Currently, only the Enter key is supported.|
+| Name| Type| Mandatory| Description                                  |
+| ------ | -------- | ---- | ------------------------------------------ |
+| key    | number   | Yes  | Function key to insert into the **Web** component text box. Currently, only the Enter key is supported.|
 
 ### close<sup>12+</sup>
 
@@ -5986,45 +6364,7 @@ close(): void
 
 Closes this custom keyboard.
 
-### onAdsBlocked<sup>12+</sup>
-
-onAdsBlocked(callback: OnAdsBlockedCallback)
-
-Called after an ad is blocked on the web page to notify the user of detailed information about the blocked ad. To reduce the frequency of notifications and minimize the impact on the page loading process, only the first notification is made when the page is fully loaded. Subsequent blocking events are reported at intervals of 1 second, and no notifications are sent if there is no ad blocked.
-
-**Parameters**
-
-| Name         | Type                                                                        | Description                   |
-| -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | Callback for **onAdsBlocked**.|
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    @State totalAdsBlockCounts: number = 0;
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'https://www.example.com', controller: this.controller })
-        .onAdsBlocked((details: AdsBlockedDetails) => {
-          if (details) {
-            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
-            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
-            this.totalAdsBlockCounts += adList.length;
-            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
-          }
-        })
-      }
-    }
-  }
-  ```
+**System capability**: SystemCapability.Web.Webview.Core
 
 ## ConsoleMessage
 
@@ -6035,6 +6375,8 @@ Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#
 getLineNumber(): number
 
 Obtains the number of rows in this console message.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6048,6 +6390,8 @@ getMessage(): string
 
 Obtains the log information of this console message.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description                    |
@@ -6060,6 +6404,8 @@ getMessageLevel(): MessageLevel
 
 Obtains the level of this console message.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type                               | Description                    |
@@ -6071,6 +6417,8 @@ Obtains the level of this console message.
 getSourceId(): string
 
 Obtains the path and name of the web page source file.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6088,11 +6436,15 @@ handleCancel(): void
 
 Notifies the **Web** component of the user's cancel operation in the dialog box.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### handleConfirm
 
 handleConfirm(): void
 
 Notifies the **Web** component of the user's confirm operation in the dialog box.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### handlePromptConfirm<sup>9+</sup>
 
@@ -6100,11 +6452,13 @@ handlePromptConfirm(result: string): void
 
 Notifies the **Web** component of the user's confirm operation in the dialog box as well as the dialog box content.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value | Description       |
-| ------ | ------ | ---- | ---- | ----------- |
-| result | string | Yes   | -    | User input in the dialog box.|
+| Name   | Type  | Mandatory  | Description       |
+| ------ | ------ | ---- | ----------- |
+| result | string | Yes   | User input in the dialog box.|
 
 ## FullScreenExitHandler<sup>9+</sup>
 
@@ -6114,15 +6468,21 @@ Implements a **FullScreenExitHandler** object for listening for exiting full scr
 
 constructor()
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### exitFullScreen<sup>9+</sup>
 
 exitFullScreen(): void
 
-Exits full screen mode.
+Called when the **Web** component exits full screen mode.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ## ControllerHandler<sup>9+</sup>
 
 Implements a **WebviewController** object for new **Web** components. For the sample code, see [onWindowNew](#onwindownew9).
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### setWebController<sup>9+</sup>
 
@@ -6130,11 +6490,13 @@ setWebController(controller: WebviewController): void
 
 Sets a **WebviewController** object. If opening a new window is not needed, set the parameter to **null**.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name       | Type                                    | Mandatory  | Default Value | Description                                    |
-| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**.|
+| Name       | Type                                    | Mandatory| Description                                    |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
 
@@ -6145,6 +6507,8 @@ Implements the **WebResourceError** object. For the sample code, see [onErrorRec
 getErrorCode(): number
 
 Obtains the error code for resource loading.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6157,6 +6521,8 @@ Obtains the error code for resource loading.
 getErrorInfo(): string
 
 Obtains error information about resource loading.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6174,6 +6540,8 @@ getRequestHeader(): Array\<Header\>
 
 Obtains the information about the resource request header.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type                        | Description        |
@@ -6185,6 +6553,8 @@ Obtains the information about the resource request header.
 getRequestUrl(): string
 
 Obtains the URL of the resource request.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6198,6 +6568,8 @@ isMainFrame(): boolean
 
 Checks whether the resource request is in the main frame.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type     | Description              |
@@ -6209,6 +6581,8 @@ Checks whether the resource request is in the main frame.
 isRedirect(): boolean
 
 Checks whether the resource request is redirected by the server.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6222,6 +6596,8 @@ isRequestGesture(): boolean
 
 Checks whether the resource request is associated with a gesture (for example, a tap).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type     | Description                  |
@@ -6234,6 +6610,8 @@ getRequestMethod(): string
 
 Obtains the request method.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description     |
@@ -6244,10 +6622,12 @@ Obtains the request method.
 
 Describes the request/response header returned by the **Web** component.
 
-| Name         | Type    | Description           |
-| ----------- | ------ | ------------- |
-| headerKey   | string | Key of the request/response header.  |
-| headerValue | string | Value of the request/response header.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Type    | Mandatory  | Description           |
+| ----------- | ------ | ---- | ------------- |
+| headerKey   | string | Yes   | Key of the request/response header.  |
+| headerValue | string | Yes   | Value of the request/response header.|
 
 ## WebResourceResponse
 
@@ -6258,6 +6638,8 @@ Implements the **WebResourceResponse** object. For the sample code, see [onHttpE
 getReasonMessage(): string
 
 Obtains the status code description of the resource response.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6271,6 +6653,8 @@ getResponseCode(): number
 
 Obtains the status code of the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description         |
@@ -6282,6 +6666,8 @@ Obtains the status code of the resource response.
 getResponseData(): string
 
 Obtains the data in the resource response.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6295,6 +6681,8 @@ getResponseEncoding(): string
 
 Obtains the encoding string of the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description        |
@@ -6306,6 +6694,8 @@ Obtains the encoding string of the resource response.
 getResponseHeader() : Array\<Header\>
 
 Obtains the resource response header.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6319,6 +6709,8 @@ getResponseMimeType(): string
 
 Obtains the MIME type of the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description                |
@@ -6331,11 +6723,13 @@ setResponseData(data: string \| number \| Resource \| ArrayBuffer): void
 
 Sets the data in the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type                                    | Mandatory  | Default Value | Description                                    |
-| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
+| Name | Type                                    | Mandatory  | Description                                    |
+| ---- | ---------------------------------------- | ---- | ---------------------------------------- |
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -6343,11 +6737,13 @@ setResponseEncoding(encoding: string): void
 
 Sets the encoding string of the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type  | Mandatory  | Default Value | Description        |
-| -------- | ------ | ---- | ---- | ------------ |
-| encoding | string | Yes   | -    | Encoding string to set.|
+| Name     | Type  | Mandatory  | Description        |
+| -------- | ------ | ---- | ------------ |
+| encoding | string | Yes   | Encoding string to set.|
 
 ### setResponseMimeType<sup>9+</sup>
 
@@ -6355,11 +6751,13 @@ setResponseMimeType(mimeType: string): void
 
 Sets the MIME type of the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type  | Mandatory  | Default Value | Description                |
-| -------- | ------ | ---- | ---- | -------------------- |
-| mimeType | string | Yes   | -    | MIME type to set.|
+| Name     | Type  | Mandatory  | Description                |
+| -------- | ------ | ---- | -------------------- |
+| mimeType | string | Yes  | MIME type to set.|
 
 ### setReasonMessage<sup>9+</sup>
 
@@ -6367,11 +6765,13 @@ setReasonMessage(reason: string): void
 
 Sets the status code description of the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type  | Mandatory  | Default Value | Description           |
-| ------ | ------ | ---- | ---- | --------------- |
-| reason | string | Yes   | -    | Status code description to set.|
+| Name   | Type  | Mandatory  | Description           |
+| ------ | ------ | ---- | --------------- |
+| reason | string | Yes  | Status code description to set.|
 
 ### setResponseHeader<sup>9+</sup>
 
@@ -6379,11 +6779,13 @@ setResponseHeader(header: Array\<Header\>): void
 
 Sets the resource response header.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type                      | Mandatory  | Default Value | Description      |
-| ------ | -------------------------- | ---- | ---- | ---------- |
-| header | Array\<[Header](#header)\> | Yes   | -    | Resource response header to set.|
+| Name   | Type                      | Mandatory  | Description      |
+| ------ | -------------------------- | ---- | ---------- |
+| header | Array\<[Header](#header)\> | Yes  | Resource response header to set.|
 
 ### setResponseCode<sup>9+</sup>
 
@@ -6391,11 +6793,13 @@ setResponseCode(code: number): void
 
 Sets the status code of the resource response.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description         |
-| ---- | ------ | ---- | ---- | ------------- |
-| code | number | Yes   | -    | Status code to set.|
+| Name | Type  | Mandatory  | Description         |
+| ---- | ------ | ---- | ------------- |
+| code | number | Yes  | Status code to set. If the resource ends with an error, set the error code by referring to [@ohos.web.netErrorList](js-apis-netErrorList.md). Do not set the error code to **ERR_IO_PENDING**, which may block the synchronous **XMLHttpRequest**.|
 
 ### setResponseIsReady<sup>9+</sup>
 
@@ -6403,11 +6807,13 @@ setResponseIsReady(IsReady: boolean): void
 
 Sets whether the resource response data is ready.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type   | Mandatory  | Default Value | Description         |
-| ------- | ------- | ---- | ---- | ------------- |
-| IsReady | boolean | Yes   | true | Whether the resource response data is ready.|
+| Name  | Type   | Mandatory | Description         |
+| ------- | ------- | ---- | ------------- |
+| IsReady | boolean | Yes  | Whether the resource response data is ready. Default value: **true**|
 
 ## FileSelectorResult<sup>9+</sup>
 
@@ -6419,11 +6825,13 @@ handleFileList(fileList: Array\<string\>): void
 
 Instructs the **Web** component to select a file.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type           | Mandatory  | Default Value | Description        |
-| -------- | --------------- | ---- | ---- | ------------ |
-| fileList | Array\<string\> | Yes   | -    | List of files to operate.|
+| Name     | Type           | Mandatory | Description        |
+| -------- | --------------- | ---- | ------------ |
+| fileList | Array\<string\> | Yes  | List of files to operate.|
 
 ## FileSelectorParam<sup>9+</sup>
 
@@ -6434,6 +6842,8 @@ Implements the **FileSelectorParam** object. For the sample code, see [onShowFil
 getTitle(): string
 
 Obtains the title of this file selector.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6447,6 +6857,8 @@ getMode(): FileSelectorMode
 
 Obtains the mode of the file selector.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type                                      | Description         |
@@ -6459,6 +6871,8 @@ getAcceptType(): Array\<string\>
 
 Obtains the file filtering type.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type             | Description       |
@@ -6470,6 +6884,8 @@ Obtains the file filtering type.
 isCapture(): boolean
 
 Checks whether multimedia capabilities are invoked.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6487,18 +6903,22 @@ cancel(): void
 
 Cancels HTTP authentication as requested by the user.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### confirm<sup>9+</sup>
 
 confirm(userName: string, password: string): boolean
 
 Performs HTTP authentication with the user name and password provided by the user.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type  | Mandatory  | Default Value | Description      |
-| -------- | ------ | ---- | ---- | ---------- |
-| userName | string | Yes   | -    | HTTP authentication user name.|
-| password      | string | Yes   | -    | HTTP authentication password. |
+| Name     | Type  | Mandatory | Description      |
+| -------- | ------ | ---- | ---------- |
+| userName | string | Yes  | HTTP authentication user name.|
+| password      | string | Yes  | HTTP authentication password. |
 
 **Return value**
 
@@ -6511,6 +6931,8 @@ Performs HTTP authentication with the user name and password provided by the use
 isHttpAuthInfoSaved(): boolean
 
 Sets whether to use the account name and password cached on the server for authentication.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6528,11 +6950,15 @@ handleCancel(): void
 
 Cancels this request.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### handleConfirm<sup>9+</sup>
 
 handleConfirm(): void
 
 Continues using the SSL certificate.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ## ClientAuthenticationHandler<sup>9+</sup>
 
@@ -6543,6 +6969,8 @@ Implements a **ClientAuthenticationHandler** object returned by the **Web** comp
 confirm(priKeyFile : string, certChainFile : string): void
 
 Uses the specified private key and client certificate chain.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -6555,9 +6983,13 @@ Uses the specified private key and client certificate chain.
 
 confirm(authUri : string): void
 
-**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
-
 Instructs the **Web** component to use the specified credentials (obtained from the certificate management module).
+
+> **NOTE**
+>
+> The **ohos.permission.ACCESS_CERT_MANAGER** permission must be declared.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -6571,11 +7003,15 @@ cancel(): void
 
 Cancels the client certificate request sent by the same host and port server. No additional event will be reported for requests from the same host and port server.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### ignore<sup>9+</sup>
 
 ignore(): void
 
 Ignores this request.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ## PermissionRequest<sup>9+</sup>
 
@@ -6587,11 +7023,15 @@ deny(): void
 
 Denies the permission requested by the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### getOrigin<sup>9+</sup>
 
 getOrigin(): string
 
 Obtains the origin of this web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6605,6 +7045,8 @@ getAccessibleResource(): Array\<string\>
 
 Obtains the list of accessible resources requested for the web page. For details about the resource types, see [ProtectedResourceType](#protectedresourcetype9).
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type             | Description           |
@@ -6617,11 +7059,13 @@ grant(resources: Array\<string\>): void
 
 Grants the permission for resources requested by the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name      | Type           | Mandatory  | Default Value | Description           |
-| --------- | --------------- | ---- | ---- | --------------- |
-| resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant.|
+| Name      | Type           | Mandatory  | Description           |
+| --------- | --------------- | ---- | --------------- |
+| resources | Array\<string\> | Yes  | List of resources that can be requested by the web page with the permission to grant.|
 
 ## ScreenCaptureHandler<sup>10+</sup>
 
@@ -6633,11 +7077,15 @@ deny(): void
 
 Rejects this screen capture request.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### getOrigin<sup>10+</sup>
 
 getOrigin(): string
 
 Obtains the origin of this web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6649,15 +7097,19 @@ Obtains the origin of this web page.
 
 grant(config: ScreenCaptureConfig): void
 
-**Required permissions:** ohos.permission.MICROPHONE
-
 Grants the screen capture permission.
+
+> **NOTE**
+>
+> The **ohos.permission.MICROPHONE** permission must be declared.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
-| Name   | Type                                    | Mandatory  | Default Value | Description   |
-| ------ | ---------------------------------------- | ---- | ---- | ------- |
-| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
+| Name   | Type                                    | Mandatory  | Description   |
+| ------ | ---------------------------------------- | ---- | ------- |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes  | Screen capture configuration.|
 
 ## EventResult<sup>12+</sup>
 
@@ -6667,17 +7119,21 @@ Represents the event consumption result sent to the **Web** component. For detai
 
 setGestureEventResult(result: boolean): void
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type  | Mandatory  | Description   |
+| Name         | Type| Mandatory | Description            |
 | ------- | ------ | ---- | ------- |
-| result | boolean | Yes   | Whether to consume the gesture event.|
+| result          | boolean  | Yes   | Whether to consume the gesture event.|
 
 **Example**
 
 See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 ## ContextMenuSourceType<sup>9+</sup>
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name      | Value| Description        |
 | --------- | -- |------------ |
@@ -6687,12 +7143,16 @@ See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 ## ContextMenuMediaType<sup>9+</sup>
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name   | Value| Description           |
 | ----- | -- | ------------- |
 | None  | 0 | Non-special media or other media types.|
 | Image | 1 | Image.          |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name       | Value| Description                         |
 | --------- | -- | --------------------------- |
@@ -6706,6 +7166,8 @@ See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
 Supports using with a bitwise OR operator. For example, to support CAN_CUT, CAN_COPY, and CAN_SELECT_ALL at the same time, use CAN_CUT | CAN_COPY | CAN_SELECT_ALL or 11.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name           | Value| Description    |
 | -------------- | -- | -------- |
@@ -6725,6 +7187,8 @@ x(): number
 
 Obtains the X coordinate of the context menu.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description                |
@@ -6736,6 +7200,8 @@ Obtains the X coordinate of the context menu.
 y(): number
 
 Obtains the Y coordinate of the context menu.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6749,6 +7215,8 @@ getLinkUrl(): string
 
 Obtains the URL of the destination link.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description                       |
@@ -6760,6 +7228,8 @@ Obtains the URL of the destination link.
 getUnfilteredLinkUrl(): string
 
 Obtains the URL of the destination link.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6773,6 +7243,8 @@ getSourceUrl(): string
 
 Obtain the source URL.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type    | Description                      |
@@ -6784,6 +7256,8 @@ Obtain the source URL.
 existsImageContents(): boolean
 
 Checks whether image content exists.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6797,6 +7271,8 @@ getMediaType(): ContextMenuMediaType
 
 Obtains the media type of this web page element.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type                                      | Description       |
@@ -6808,6 +7284,8 @@ Obtains the media type of this web page element.
 getSelectionText(): string
 
 Obtains the selected text.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6821,6 +7299,8 @@ getSourceType(): ContextMenuSourceType
 
 Obtains the event source of the context menu.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type                                      | Description     |
@@ -6832,6 +7312,8 @@ Obtains the event source of the context menu.
 getInputFieldType(): ContextMenuInputFieldType
 
 Obtains the input field type of this web page element.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6845,6 +7327,8 @@ isEditable(): boolean
 
 Checks whether this web page element is editable.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type     | Description                        |
@@ -6856,6 +7340,8 @@ Checks whether this web page element is editable.
 getEditStateFlags(): number
 
 Obtains the edit state flag of this web page element.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -6873,11 +7359,15 @@ closeContextMenu(): void
 
 Closes this context menu. This API must be called when no operations in **WebContextMenuResult** are performed.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### copyImage<sup>9+</sup>
 
 copyImage(): void
 
 Copies the image specified in **WebContextMenuParam**.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### copy<sup>9+</sup>
 
@@ -6885,11 +7375,15 @@ copy(): void
 
 Copies text related to this context menu.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### paste<sup>9+</sup>
 
 paste(): void
 
 Performs the paste operation related to this context menu.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### cut<sup>9+</sup>
 
@@ -6897,11 +7391,15 @@ cut(): void
 
 Performs the cut operation related to this context menu.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### selectAll<sup>9+</sup>
 
 selectAll(): void
 
 Performs the select all operation related to this context menu.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ## JsGeolocation
 
@@ -6911,21 +7409,27 @@ Implements the **PermissionRequest** object. For the sample code, see [onGeoloca
 
 constructor()
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### invoke
 
 invoke(origin: string, allow: boolean, retain: boolean): void
 
 Sets the geolocation permission status of a web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name   | Type   | Mandatory  | Default Value | Description                                    |
-| ------ | ------- | ---- | ---- | ---------------------------------------- |
-| origin | string  | Yes   | -    | Index of the origin.                              |
-| allow  | boolean | Yes   | -    | Geolocation permission status.                            |
-| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions).|
+| Name   | Type   | Mandatory | Description                                    |
+| ------ | ------- | ---- | ---------------------------------------- |
+| origin | string  | Yes  | Index of the origin.                              |
+| allow  | boolean | Yes  | Geolocation permission status.                            |
+| retain | boolean | Yes  | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions).|
 
 ## MessageLevel
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name   | Value| Description   |
 | ----- | -- | ---- |
@@ -6939,6 +7443,8 @@ Sets the geolocation permission status of a web page.
 
 Enumerates the reasons why the rendering process exits.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name                        | Value| Description               |
 | -------------------------- | -- | ----------------- |
 | ProcessAbnormalTermination | 0 | The rendering process exits abnormally.        |
@@ -6949,22 +7455,28 @@ Enumerates the reasons why the rendering process exits.
 
 ## MixedMode
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name       | Value| Description                                |
 | ---------- | -- | ---------------------------------- |
 | All        | 0 | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
 | Compatible | 1 | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
 | None       | 2 | HTTP and HTTPS hybrid content cannot be loaded.              |
 
-## CacheMode<sup>9+</sup>
+## CacheMode
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name     | Value| Description                                  |
 | ------- | -- | ------------------------------------ |
-| Default | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
+| Default<sup>9+</sup> | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
 | None    | 1 | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
 | Online  | 2 | The cache is not used to load the resources. All resources are obtained from the Internet.              |
 | Only    | 3 | The cache alone is used to load the resources.                       |
 
 ## FileSelectorMode<sup>9+</sup>
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                  | Value| Description        |
 | -------------------- | -- | ---------- |
@@ -6974,6 +7486,8 @@ Enumerates the reasons why the rendering process exits.
 | FileSaveMode         | 3 | Save a file.   |
 
  ## HitTestType
+
+ **System capability**: SystemCapability.Web.Webview.Core
 
 | Name           | Value| Description                      |
 | ------------- | -- | ------------------------ |
@@ -6988,6 +7502,8 @@ Enumerates the reasons why the rendering process exits.
 
  ## OverScrollMode<sup>11+</sup>
 
+ **System capability**: SystemCapability.Web.Webview.Core
+
 | Name    | Value| Description         |
 | ------ | -- | ----------- |
 | NEVER  | 0 | The overscroll mode is disabled.|
@@ -7001,6 +7517,8 @@ Implements the callback context menu customizes the hidden callback.
 
 Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name          | Value| Description         |
 | ------------ | -- | ----------- |
 | Invalid      | 0 | Minor error.      |
@@ -7009,6 +7527,8 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | Untrusted    | 3 | The certificate issuer is not trusted.|
 
 ## ProtectedResourceType<sup>9+</sup>
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                         | Value| Description           | Remarks                        |
 | --------------------------- | --------------- | ------------- | -------------------------- |
@@ -7019,6 +7539,8 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
 ## WebDarkMode<sup>9+</sup>
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name  | Value| Description          |
 | ---- | -- | ------------ |
 | Off  | 0 | The web dark mode is disabled.  |
@@ -7026,6 +7548,8 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | Auto | 2 | The web dark mode setting follows the system settings.|
 
 ## WebCaptureMode<sup>10+</sup>
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name         | Value| Description     |
 | ----------- | -- | ------- |
@@ -7035,41 +7559,31 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
 Describes the web-based media playback policy.
 
-| Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
-| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
-| resumeInterval | number  | Yes   | Yes   | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
-| audioExclusive | boolean | Yes   | Yes   | No   | Whether the audio of multiple **Web** instances in an application is exclusive.                      |
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name            | Type     | Mandatory  | Description                                      |
+| -------------- | ------- | ---- | ---------------------------------------- |
+| resumeInterval | number  | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
+| audioExclusive | boolean | No   | Whether the audio of multiple **Web** instances in an application is exclusive.                      |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
 Provides the web screen capture configuration.
 
-| Name         | Type                                     | Readable  | Writable  | Mandatory  | Description        |
-| ----------- | --------------------------------------- | ---- | ---- | ---- | ---------- |
-| captureMode | [WebCaptureMode](#webcapturemode10) | Yes   | Yes   | Yes   | Web screen capture mode.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Type                                     | Mandatory  | Description        |
+| ----------- | --------------------------------------- | ---- | ---------- |
+| captureMode | [WebCaptureMode](#webcapturemode10) | Yes   | Web screen capture mode.|
 
 ## WebLayoutMode<sup>11+</sup>
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name         | Value| Description                |
 | ----------- | -- | ------------------ |
 | NONE        | 0 | The web layout follows the system.        |
 | FIT_CONTENT | 1 | The web layout adapts to the page size.|
-
-## NestedScrollOptions<sup>11+</sup>
-
-| Name            | Type              | Description                  |
-| -------------- | ---------------- | -------------------- |
-| scrollForward  | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls forward.|
-| scrollBackward | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls backward.|
-
-## NestedScrollMode<sup>11+</sup>
-
-| Name          | Value| Description                                      |
-| ------------ | -- | ---------------------------------------- |
-| SELF_ONLY    | 0 | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary.                          |
-| SELF_FIRST   | 1 | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.|
-| PARENT_FIRST | 2 | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
-| PARALLEL     | 3 | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -7080,6 +7594,8 @@ Implements the **DataResubmissionHandler** object for resubmitting or canceling 
 resend(): void
 
 Resends the web form data.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
 
@@ -7109,6 +7625,8 @@ Resends the web form data.
 cancel(): void
 
 Cancels the resending of web form data.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
 
@@ -7141,6 +7659,7 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 
 ### Creating an Object
 
+<!--code_no_check-->
 ```ts
 let webController: WebController = new WebController()
 ```
@@ -7152,6 +7671,8 @@ getCookieManager(): WebCookie
 Obtains the cookie management object of the **Web** component.
 
 This API is deprecated since API version 9. You are advised to use [getCookie](js-apis-webview.md#getcookiedeprecated) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -7188,6 +7709,8 @@ Requests focus for this web page.
 
 This API is deprecated since API version 9. You are advised to use [requestFocus<sup>9+</sup>](js-apis-webview.md#requestfocus) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Example**
 
   ```ts
@@ -7216,6 +7739,8 @@ accessBackward(): boolean
 Checks whether going to the previous page can be performed on the current page.
 
 This API is deprecated since API version 9. You are advised to use [accessBackward<sup>9+</sup>](js-apis-webview.md#accessbackward) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -7253,6 +7778,8 @@ Checks whether going to the next page can be performed on the current page.
 
 This API is deprecated since API version 9. You are advised to use [accessForward<sup>9+</sup>](js-apis-webview.md#accessforward) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Return value**
 
 | Type     | Description                   |
@@ -7289,11 +7816,13 @@ Performs a specific number of steps forward or backward from the current page.
 
 This API is deprecated since API version 9. You are advised to use [accessStep<sup>9+</sup>](js-apis-webview.md#accessstep) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                 |
-| ---- | ------ | ---- | ---- | --------------------- |
-| step | number | Yes   | -    | Number of the steps to take. A positive number means to go forward, and a negative number means to go backward.|
+| Name | Type  | Mandatory | Description                 |
+| ---- | ------ | ---- | --------------------- |
+| step | number | Yes  | Number of the steps to take. A positive number means to go forward, and a negative number means to go backward.|
 
 **Return value**
 
@@ -7326,11 +7855,13 @@ This API is deprecated since API version 9. You are advised to use [accessStep<s
 
 ### backward<sup>(deprecated)</sup>
 
-backward(): void
+backward()
 
 Goes to the previous page based on the history stack. This API is generally used together with **accessBackward**.
 
 This API is deprecated since API version 9. You are advised to use [backward<sup>9+</sup>](js-apis-webview.md#backward) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
 
@@ -7355,11 +7886,13 @@ This API is deprecated since API version 9. You are advised to use [backward<sup
 
 ### forward<sup>(deprecated)</sup>
 
-forward(): void
+forward()
 
 Goes to the next page based on the history stack. This API is generally used together with **accessForward**.
 
 This API is deprecated since API version 9. You are advised to use [forward<sup>9+</sup>](js-apis-webview.md#forward) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
 
@@ -7390,11 +7923,13 @@ Deletes a specific application JavaScript object that is registered with the win
 
 This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](js-apis-webview.md#deletejavascriptregister) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description                                    |
-| ---- | ------ | ---- | ---- | ---------------------------------------- |
-| name | string | Yes   | -    | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side.|
+| Name | Type  | Mandatory | Description                                    |
+| ---- | ------ | ---- | ---------------------------------------- |
+| name | string | Yes  | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side.|
 
 **Example**
 
@@ -7425,6 +7960,8 @@ getHitTest(): HitTestType
 Obtains the element type of the area being clicked.
 
 This API is deprecated since API version 9. You are advised to use [getHitTest<sup>9+</sup>](js-apis-webview.md#gethittest) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
 
@@ -7466,15 +8003,17 @@ If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be proces
 
 This API is deprecated since API version 9. You are advised to use [loadData<sup>9+</sup>](js-apis-webview.md#loaddata) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name       | Type  | Mandatory  | Default Value | Description                                    |
-| ---------- | ------ | ---- | ---- | ---------------------------------------- |
-| data       | string | Yes   | -    | Character string obtained after being Base64 or URL encoded.             |
-| mimeType   | string | Yes   | -    | Media type (MIME).                             |
-| encoding   | string | Yes   | -    | Encoding type, which can be Base64 or URL.               |
-| baseUrl    | string | No   | -    | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**.|
-| historyUrl | string | No   | -    | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty.|
+| Name       | Type  | Mandatory  | Description                                    |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| data       | string | Yes  | Character string obtained after being Base64 or URL encoded.             |
+| mimeType   | string | Yes  | Media type (MIME).                             |
+| encoding   | string | Yes  | Encoding type, which can be Base64 or URL.               |
+| baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**.|
+| historyUrl | string | No  | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty.|
 
 **Example**
 
@@ -7513,12 +8052,14 @@ The object injected through **registerJavaScriptProxy** is still valid on a new 
 
 This API is deprecated since API version 9. You are advised to use [loadUrl<sup>9+</sup>](js-apis-webview.md#loadurl) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name    | Type                      | Mandatory  | Default Value | Description          |
-| ------- | -------------------------- | ---- | ---- | -------------- |
-| url     | string \| Resource                     | Yes   | -    | URL to load.    |
-| headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL.|
+| Name    | Type                      | Mandatory | Description          |
+| ------- | -------------------------- | ---- | -------------- |
+| url     | string \| Resource                     | Yes | URL to load.    |
+| headers | Array\<[Header](#header)\> | No   | Additional HTTP request header of the URL. The default value is **[]**.|
 
 **Example**
 
@@ -7549,6 +8090,8 @@ Called when the **Web** component enters the active state.
 
 This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](js-apis-webview.md#onactive) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Example**
 
   ```ts
@@ -7578,6 +8121,8 @@ Called when the **Web** component enters the inactive state.
 
 This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](js-apis-webview.md#oninactive) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Example**
 
   ```ts
@@ -7600,11 +8145,14 @@ This API is deprecated since API version 9. You are advised to use [onInactive<s
   ```
 
 ### zoom<sup>(deprecated)</sup>
+
 zoom(factor: number): void
 
 Sets a zoom factor for the current web page.
 
 This API is deprecated since API version 9. You are advised to use [zoom<sup>9+</sup>](js-apis-webview.md#zoom) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -7642,6 +8190,8 @@ Called when the **Web** component refreshes the web page.
 
 This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](js-apis-webview.md#refresh) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Example**
 
   ```ts
@@ -7671,13 +8221,15 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 
 This API is deprecated since API version 9. You are advised to use [registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name       | Type           | Mandatory  | Default Value | Description                                    |
-| ---------- | --------------- | ---- | ---- | ---------------------------------------- |
-| object     | object          | Yes   | -    | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5. The parameters and return value can only be of the string, number, or Boolean type.|
-| name       | string          | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
-| methodList | Array\<string\> | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
+| Name       | Type           | Mandatory | Description                                    |
+| ---------- | --------------- | ---- | ---------------------------------------- |
+| object     | object          | Yes   | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5. The parameters and return value can only be of the string, number, or Boolean type.|
+| name       | string          | Yes   | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
+| methodList | Array\<string\> | Yes   | Methods of the JavaScript object to be registered at the application side.                |
 
 **Example**
 
@@ -7746,12 +8298,14 @@ Executes a JavaScript script. This API uses an asynchronous callback to return t
 
 This API is deprecated since API version 9. You are advised to use [runJavaScript<sup>9+</sup>](js-apis-webview.md#runjavascript) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name     | Type                    | Mandatory  | Default Value | Description                                    |
-| -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
-| script   | string                   | Yes   | -    | JavaScript script.                           |
-| callback | (result: string) => void | No   | -    | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned.|
+| Name     | Type                    | Mandatory| Description                                    |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| script   | string                   | Yes  | JavaScript script.                           |
+| callback | (result: string) => void | No  | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned.|
 
 **Example**
 
@@ -7808,6 +8362,8 @@ Stops page loading.
 
 This API is deprecated since API version 9. You are advised to use [stop<sup>9+</sup>](js-apis-webview.md#stop) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Example**
 
   ```ts
@@ -7836,6 +8392,8 @@ clearHistory(): void
 Clears the browsing history.
 
 This API is deprecated since API version 9. You are advised to use [clearHistory<sup>9+</sup>](js-apis-webview.md#clearhistory) instead.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Example**
 
@@ -7870,6 +8428,8 @@ Sets the cookie. This API returns the result synchronously. Returns **true** if 
 
 This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](js-apis-webview.md#setcookie) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### saveCookie<sup>(deprecated)</sup>
 
 saveCookie()
@@ -7878,9 +8438,13 @@ Saves the cookies in the memory to the drive. This API returns the result synchr
 
 This API is deprecated since API version 9. You are advised to use [saveCookieAsync<sup>9+</sup>](js-apis-webview.md#savecookieasync) instead.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ## ScriptItem<sup>11+</sup>
 
 Describes the **ScriptItem** object injected to the **Web** component through the [javaScriptOnDocumentStart](#javascriptondocumentstart11) attribute.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name         | Type            | Mandatory  | Description                   |
 | ----------- | -------------- | ---- | --------------------- |
@@ -7890,6 +8454,8 @@ Describes the **ScriptItem** object injected to the **Web** component through th
 ## WebNavigationType<sup>11+</sup>
 
 Defines the navigation type.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
@@ -7903,6 +8469,8 @@ Defines the navigation type.
 
 Provides detailed information about the web page that has been submitted for redirection.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | isMainFrame     | boolean                              | Yes   | Whether the document is the main document.|
@@ -7914,6 +8482,8 @@ Provides detailed information about the web page that has been submitted for red
 ## ThreatType<sup>11+</sup>
 
 Enumerates the website threat types.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Value| Description                  |
 | ---------------- | -- | ----------------------|
@@ -7928,9 +8498,13 @@ type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedD
 
 Called when a navigation item is submitted.
 
-| Name               | Type                                          | Description               |
-| -------------------- | ------------------------------------------------ | ------------------- |
-| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | Detailed information about the web page that has been submitted for redirection.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | Yes| Detailed information about the web page that has been submitted for redirection.|
 
 ## OnSafeBrowsingCheckResultCallback<sup>11+</sup>
 
@@ -7938,13 +8512,19 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 
 Called by a website safe browsing check.
 
-| Name     | Type                     | Description             |
-| ---------- | ---------------------------- | ------------------- |
-| threatType | [ThreatType](#threattype11)  | Website threat type. |
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| threatType | [ThreatType](#threattype11)  | Yes| Website threat type. |
 
 ## FullScreenEnterEvent<sup>12+</sup>
 
 Provides details about the callback event for the **Web** component to enter the full-screen mode.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
@@ -7958,23 +8538,29 @@ type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
 
 Called when the **Web** component enters full screen mode.
 
-| Name     | Type                     | Description             |
-| ---------- | ---------------------------- | ------------------- |
-| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Callback event for the **Web** component to enter full screen mode.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Yes| Callback event for the **Web** component to enter full screen mode.|
 
 ## SslErrorEvent<sup>12+</sup>
 
 Provides details about the callback invoked when an SSL error occurs during resource loading.
 
-| Name    | Type                                | Description          |
-| ------- | ------------------------------------ | -------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | User operation.|
-| error   | [SslError](#sslerror9)          | Error code.          |
-| url   | string           | URL.          |
-| originalUrl   | string          | Original URL of the request.          |
-| referrer   | string          | Referrer URL.          |
-| isFatalError   | boolean           | Whether the error is a fatal error.          |
-| isMainFrame   | boolean          | Whether the request is made for the main frame.          |
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name    | Type                                | Mandatory  | Description          |
+| ------- | ------------------------------------ | ---- | -------------- |
+| handler | [SslErrorHandler](#sslerrorhandler9) | Yes   | User operation.|
+| error   | [SslError](#sslerror9)       | Yes   | Error code.          |
+| url   | string                                 | Yes   | URL.          |
+| originalUrl   | string                         | Yes   | Original URL of the request.          |
+| referrer   | string                            | Yes   | Referrer URL.          |
+| isFatalError   | boolean                       | Yes   | Whether the error is a fatal error.          |
+| isMainFrame   | boolean                        | Yes   | Whether the request is made for the main frame.          |
 
 
 ## OnSslErrorEventCallback<sup>12+</sup>
@@ -7983,61 +8569,76 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 Provides details about the callback invoked when an SSL error occurs during resource loading.
 
-| Name     | Type                     | Description             |
-| ---------- | ---------------------------- | ------------------- |
-| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | Details about the callback invoked when an SSL error occurs during resource loading.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | Yes| Details about the callback invoked when an SSL error occurs during resource loading.|
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-Defines the lifecycle of the **embed** tag. When the same-layer rendering tag exists on the loaded page, **CREATE** is triggered. When the same-layer rendering tag is moved or is enlarged, **UPDATE **is triggered. When the page exits, **DESTROY** is triggered.
+Defines the lifecycle of the same-layer tag. When the same-layer tag exists on the loaded page, **CREATE** is triggered. When the same-layer tag is moved or is enlarged, **UPDATE **is triggered. When the page exits, **DESTROY** is triggered.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
-| CREATE                        | 0 | The tag is created.  |
-| UPDATE                        | 1 | The tag is updated.  |
-| DESTROY                       | 2 | The tag is destroyed.|
-| ENTER_BFCACHE<sup>12+</sup>   | 3 | The tag enters the BFCache.  |
-| LEAVE_BFCACHE<sup>12+</sup>   | 4 | The tag leaves the BFCache.|
+| CREATE                        | 0 | The same-layer tag is created.  |
+| UPDATE                        | 1 | The same-layer tag is updated.  |
+| DESTROY                       | 2 | The same-layer tag is destroyed.|
+| ENTER_BFCACHE<sup>12+</sup>   | 3 | The same-layer tag enters the BFCache.  |
+| LEAVE_BFCACHE<sup>12+</sup>   | 4 | The same-layer tag leaves the BFCache.|
 
 ## NativeEmbedInfo<sup>11+</sup>
 
-Provides detailed information about the **\<embed>** tag.
+Provides detailed information about the same-layer tag.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name               | Type                                 | Mandatory  | Description                       |
 |-------------------| ------------------------------------ | ---- |---------------------------|
-| id                | string             | No   | ID of the tag.            |
-| type              | string                              | No   | Type of the tag. The value is in lowercase.  |
-| src               | string                              | No   | **src** information of the tag.           |
-| width             | number  | No   | Width of the tag, in px.         |
-| height            | number                              | No   | Height of the tag, in px.         |
-| url               | string                              | No   | URL of the tag.           |
+| id                | string             | No   | ID of the same-layer tag.            |
+| type              | string                              | No   | Type of the same-layer tag. The value is in lowercase.  |
+| src               | string                              | No   | **src** information of the same-layer tag.           |
+| width             | number  | No   | Width of the same-layer tag, in px.         |
+| height            | number                              | No   | Height of the same-layer tag, in px.         |
+| url               | string                              | No   | URL of the same-layer tag.           |
 | tag<sup>12+</sup> | string              | No   | Name of the tag, which consists of uppercase letters.             |
-| params<sup>12+</sup>            | map<string, string> | No   | List of key-value pairs contained in the **object** tag that form a map of the Object type. Use the methods provided by the Object type to operate the map object. |
+| params<sup>12+</sup>            | Map<string, string> | No   | List of key-value pairs contained in the **object** tag that form a map of the Object type. Use the methods provided by the Object type to operate the map object. |
 | position<sup>12+</sup>          | Position            | No   | Position of the same-layer tag relative to the **Web** component in the screen coordinate system, which is different from the standard **Position**. The unit is px.|
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
-Provides detailed information about the lifecycle changes of the **\<embed>** tag.
+Provides detailed information about the lifecycle changes of the same-layer tag.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| status     | [NativeEmbedStatus](#nativeembedstatus11)             | No   | Lifecycle status of the tag.|
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | No   | Lifecycle status of the same-layer tag.|
 | surfaceId  | string                              | No   | Surface ID of the native image. |
-| embedId | string                              | No   | Unique ID of the tag. |
-| info  | [NativeEmbedInfo](#nativeembedinfo11)  | No   | Detailed information about the tag.      |
+| embedId | string                              | No   | Unique ID of the same-layer tag. |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | No   | Detailed information about the same-layer tag.      |
+
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
-Provides touch information of the **\<embed>** tag.
+Provides touch information of the same-layer tag.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | No   | Unique ID of the tag.|
+| embedId     | string   | No   | Unique ID of the same-layer tag.|
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent)  | No   | Touch action information.|
 | result<sup>12+</sup>     | [EventResult](#eventresult12)   | No   | Gesture event consumption result.|
 
 ## FirstMeaningfulPaint<sup>12+</sup>
 
 Provides detailed information about the first meaningful paint.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                    | Type  | Mandatory| Description                                  |
 | ------------------------ | ------ | ---- | -------------------------------------- |
@@ -8050,13 +8651,19 @@ type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPai
 
 Called when the first meaningful paint occurs on the web page.
 
-| Name              | Type                                       | Description                        |
-| -------------------- | ----------------------------------------------- | -------------------------------- |
-| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | Information about the first meaningful paint.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | Yes| Information about the first meaningful paint.|
 
 ## LargestContentfulPaint<sup>12+</sup>
 
 Provides detailed information about the largest content paint.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                     | Type  | Mandatory| Description                                    |
 | ------------------------- | ------ | ---- | ---------------------------------------- |
@@ -8074,13 +8681,19 @@ type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContent
 
 Called when the largest content paint occurs on the web page.
 
-| Name                | Type                                           | Description                            |
-| ---------------------- | --------------------------------------------------- | ------------------------------------ |
-| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | Information about the largest content paint.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | Yes| Information about the largest content paint.|
 
 ## IntelligentTrackingPreventionDetails<sup>12+</sup>
 
 Provides detailed information about intelligent tracking prevention.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name          | Type                               | Mandatory  | Description        |
 | ------------- | ------------------------------------| ----- | ------------ |
@@ -8093,9 +8706,13 @@ type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPrev
 
 Represents the callback invoked when the tracker cookie is intercepted.
 
-| Name  | Type                                                                         | Description                   |
-| ------- | -------------------------------------------------------------------------------- | ------------------------- |
-| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | Detailed information about intelligent tracking prevention.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | Yes| Detailed information about intelligent tracking prevention.|
 
 ## OnOverrideUrlLoadingCallback<sup>12+</sup>
 
@@ -8103,11 +8720,13 @@ type OnOverrideUrlLoadingCallback = (webResourceRequest: WebResourceRequest) => 
 
 Represents a callback for **onOverrideUrlLoading**.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name               | Type                                          | Description               |
-| -------------------- | ------------------------------------------------ | ------------------- |
-| webResourceRequest | [WebResourceRequest](#webresourcerequest)  | Information about the URL request.|
+| Name             | Type   | Mandatory  |  Description|
+| ------------------ | ------- | ---- | ------------- |
+| webResourceRequest   |   [WebResourceRequest](#webresourcerequest)   | Yes  | Information about the URL request.|
 
 **Return value**
 
@@ -8117,29 +8736,33 @@ Represents a callback for **onOverrideUrlLoading**.
 
 ## RenderMode<sup>12+</sup>
 
-Enumerates the rendering modes of the **Web** component.
+Enumerates the rendering mode of **Web** components. By default, the asynchronous rendering mode is used.
+
+The asynchronous rendering mode is recommended because it has better performance and lower power consumption.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
-| ASYNC_RENDER                        | 0 | The **Web** component is rendered asynchronously.  |
-| SYNC_RENDER                        | 1 | The **Web** component is rendered synchronously within the current execution context.  |
+| ASYNC_RENDER                        | 0 | The **Web** component is rendered asynchronously. The ArkWeb component as a graphic surface node is displayed independently. The maximum width of the **Web** component is 7,680 px (physical pixel).  |
+| SYNC_RENDER                        | 1 | The **Web** component is rendered synchronously. The ArkWeb component as a graphic canvas node is displayed together with the system component. The maximum width of the **Web** component is 500,000 px (physical pixel).  |
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
-
-type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 Represents the configuration for [enabling the application to take over web page media playback](#enablenativemediaplayer12).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Read Only| Mandatory| Description|
-|------|------|------|------|------|
-|  enable  | boolean | No| Yes| Whether to enable the feature.<br> **true**: enabled<br> **false** (default): disabled|
-|  shouldOverlay | boolean | No| Yes| Whether the video player's display overlays the web page content when the application takes over the web page's video player.<br> **true**: The video player's display overlays the web page content. This means that the height of the video layer is adjusted to cover the web page content.<br> **false** (default): The video player's display does not overlay the web page content. This means that the video player maintains its original height and is embedded within the web page.|
+| Name| Type| Mandatory| Description|
+|------|------|------|------|
+|  enable  | boolean | Yes| Whether to enable the feature.<br> **true**: enabled<br> **false** (default): disabled|
+|  shouldOverlay | boolean | Yes| Whether the video player's display overlays the web page content when the application takes over the web page's video player.<br> **true**: The video player's display overlays the web page content. This means that the height of the video layer is adjusted to cover the web page content.<br> **false** (default): The video player's display does not overlay the web page content. This means that the video player maintains its original height and is embedded within the web page.|
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
 Provides the reason why the rendering process does not respond.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
@@ -8149,6 +8772,8 @@ Provides the reason why the rendering process does not respond.
 ## RenderProcessNotRespondingData<sup>12+</sup>
 
 Provides detailed information about the unresponsive rendering process.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                    | Type  | Mandatory| Description                                  |
 | ------------------------ | ------ | ---- | -------------------------------------- |
@@ -8162,9 +8787,13 @@ type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingDa
 
 Represents a callback invoked when the rendering process does not respond.
 
-| Name              | Type                                       | Description                        |
-| -------------------- | ----------------------------------------------- | -------------------------------- |
-| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | Detailed information about the unresponsive rendering process. |
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | Yes| The detailed information about the unresponsive rendering process.|
 
 ## OnRenderProcessRespondingCallback<sup>12+</sup>
 
@@ -8172,9 +8801,13 @@ type OnRenderProcessRespondingCallback = () => void
 
 Represents a callback invoked when the rendering process transitions back to a normal operating state from an unresponsive state.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 ## ViewportFit<sup>12+</sup>
 
 Enumerates the viewport types available for **viewport-fit** in the web page **\<meta>** tag.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
@@ -8188,13 +8821,19 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 Represents the callback invoked when the **viewport-fit** configuration in the web page's **\<meta>** tag changes.
 
-| Name              | Type                                       | Description                        |
-| -------------------- | ----------------------------------------------- | -------------------------------- |
-| viewportFit | [ViewportFit](#viewportfit12) | Viewport type for **viewport-fit** in the web page **\<meta>** tag.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| viewportFit | [ViewportFit](#viewportfit12) | Yes| Viewport type for **viewport-fit** in the web page **\<meta>** tag.|
 
 ## ExpandedMenuItemOptions<sup>12+</sup>
 
 Defines the custom expanded menu options.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name          | Type                                            | Mandatory   | Description            |
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
@@ -8206,6 +8845,8 @@ Defines the custom expanded menu options.
 
 Enumerates the soft keyboard avoidance modes.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name              | Value| Description          |
 | ------------------ | -- | ------------ |
 | RESIZE_VISUAL      | 0 | For soft keyboard avoidance, the visual viewport is resized, but not the layout viewport.  |
@@ -8216,6 +8857,8 @@ Enumerates the soft keyboard avoidance modes.
 
 Represents the callback invoked when the web page loading ends.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | Yes| URL of the page.                      |
@@ -8223,6 +8866,8 @@ Represents the callback invoked when the web page loading ends.
 ## OnPageBeginEvent<sup>12+</sup>
 
 Represents the callback invoked when the web page loading begins.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8232,6 +8877,8 @@ Represents the callback invoked when the web page loading begins.
 
 Represents the callback invoked when the web page loading progress changes.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | newProgress | number | Yes| New loading progress. The value is an integer ranging from 0 to 100.                      |
@@ -8239,6 +8886,8 @@ Represents the callback invoked when the web page loading progress changes.
 ## OnTitleReceiveEvent<sup>12+</sup>
 
 Represents the callback invoked when the document title of the web page is changed.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8248,6 +8897,8 @@ Represents the callback invoked when the document title of the web page is chang
 
 Represents the callback invoked when a request to obtain the geolocation information is received.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | origin | string | Yes| Index of the origin.                      |
@@ -8256,6 +8907,8 @@ Represents the callback invoked when a request to obtain the geolocation informa
 ## OnAlertEvent<sup>12+</sup>
 
 Represents the callback invoked when **alert()** is invoked to display an alert dialog box on the web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8267,6 +8920,8 @@ Represents the callback invoked when **alert()** is invoked to display an alert 
 
 Represents the callback invoked when this page is about to exit after the user refreshes or closes the page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | Yes| URL of the web page where the dialog box is displayed.                      |
@@ -8276,6 +8931,8 @@ Represents the callback invoked when this page is about to exit after the user r
 ## OnConfirmEvent<sup>12+</sup>
 
 Represents the callback invoked when **confirm()** is invoked by the web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8287,15 +8944,20 @@ Represents the callback invoked when **confirm()** is invoked by the web page.
 
 Represents the callback invoked when **prompt()** is invoked by the web page.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | Yes| URL of the web page where the dialog box is displayed.                      |
 | message | string | Yes| Message displayed in the dialog box.                      |
+| value | string | Yes| Information in the dialog box.                      |
 | result | [JsResult](#jsresult) | Yes| User operation.                      |
 
-## onConsoleEvent<sup>12+</sup>
+## OnConsoleEvent<sup>12+</sup>
 
 Represents the callback invoked to notify the host application of a JavaScript console message.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8304,6 +8966,8 @@ Represents the callback invoked to notify the host application of a JavaScript c
 ## OnErrorReceiveEvent<sup>12+</sup>
 
 Represents the callback invoked when an error occurs during web page loading.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8314,6 +8978,8 @@ Represents the callback invoked when an error occurs during web page loading.
 
 Represents the callback invoked when an HTTP error occurs during web page resource loading.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | request | [WebResourceRequest](#webresourcerequest) | Yes| Encapsulation of a web page request.     |
@@ -8322,6 +8988,8 @@ Represents the callback invoked when an HTTP error occurs during web page resour
 ## OnDownloadStartEvent<sup>12+</sup>
 
 Represents the callback invoked when the main application starts downloading a file.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8335,6 +9003,8 @@ Represents the callback invoked when the main application starts downloading a f
 
 Represents the callback invoked when the access history of the web page is refreshed.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url         | string  | Yes| URL to be accessed.                                 |
@@ -8344,6 +9014,8 @@ Represents the callback invoked when the access history of the web page is refre
 
 Represents the callback invoked when the rendering process exits.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | renderExitReason | [RenderExitReason](#renderexitreason9) | Yes| Cause for the abnormal exit of the rendering process.|
@@ -8352,22 +9024,28 @@ Represents the callback invoked when the rendering process exits.
 
 Represents the callback invoked to notify the file selector result.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | result       | [FileSelectorResult](#fileselectorresult9) | Yes| File selection result to be sent to the **Web** component.|
 | fileSelector | [FileSelectorParam](#fileselectorparam9) | Yes| Information about the file selector.      |
 
-## onResourceLoadEvent<sup>12+</sup>
+## OnResourceLoadEvent<sup>12+</sup>
 
 Represents the callback invoked when the URL is loaded.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url  | string | Yes| URL of the loaded resource file.|
 
-## onScaleChangeEvent<sup>12+</sup>
+## OnScaleChangeEvent<sup>12+</sup>
 
 Represents the callback invoked when the display scale of this page changes.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8377,6 +9055,8 @@ Represents the callback invoked when the display scale of this page changes.
 ## OnHttpAuthRequestEvent<sup>12+</sup>
 
 Represents the callback invoked when an HTTP authentication request is received.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8388,38 +9068,48 @@ Represents the callback invoked when an HTTP authentication request is received.
 
 Represents the callback invoked when the **Web** component is about to load a URL.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | request | [WebResourceRequest](#webresourcerequest) | Yes| Information about the URL request.|
 
-## onPermissionRequestEvent<sup>12+</sup>
+## OnPermissionRequestEvent<sup>12+</sup>
 
 Represents the callback invoked when a permission request is received.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | request | [PermissionRequest](#permissionrequest9) | Yes| User operation.|
 
-## onScreenCaptureRequestEvent<sup>12+</sup>
+## OnScreenCaptureRequestEvent<sup>12+</sup>
 
 Represents the callback invoked when a screen capture request is received.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [ScreenCaptureHandler](#screencapturehandler10) | Yes| User operation.|
 
-## onContextMenuShowEvent<sup>12+</sup>
+## OnContextMenuShowEvent<sup>12+</sup>
 
 Represents the callback invoked during a call to allow for the display of a custom context menu.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | param  | [WebContextMenuParam](#webcontextmenuparam9) | Yes| Parameters related to the context menu.    |
 | result | [WebContextMenuResult](#webcontextmenuresult9) | Yes| Result of the context menu.|
 
-## onSearchResultReceiveEvent<sup>12+</sup>
+## OnSearchResultReceiveEvent<sup>12+</sup>
 
 Represents the callback invoked to notify the caller of the search result on the web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8427,9 +9117,11 @@ Represents the callback invoked to notify the caller of the search result on the
 | numberOfMatches    | number  | Yes| Total number of matches.                           |
 | isDoneCounting     | boolean | Yes| Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**.|
 
-## onScrollEvent<sup>12+</sup>
+## OnScrollEvent<sup>12+</sup>
 
 Represents the callback invoked when the scrollbar scrolls to a specified position.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8440,14 +9132,18 @@ Represents the callback invoked when the scrollbar scrolls to a specified positi
 
 Represents the callback invoked when the web page receives an SSL error.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | Yes| User operation.|
 | error   | [SslError](#sslerror9)          | Yes| Error code.          |
 
-## onClientAuthenticationRequestEvent<sup>12+</sup>
+## OnClientAuthenticationEvent<sup>12+</sup>
 
 Represents the callback invoked when an SSL client certificate is required from the user.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8461,6 +9157,8 @@ Represents the callback invoked when an SSL client certificate is required from 
 
 Represents the callback invoked when the web page requests the user to create a new window.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | isAlert       | boolean                                  | Yes| Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.   |
@@ -8468,67 +9166,83 @@ Represents the callback invoked when the web page requests the user to create a 
 | targetUrl     | string                                   | Yes| Target URL.                       |
 | handler       | [ControllerHandler](#controllerhandler9) | Yes| **WebviewController** instance for setting the new window.|
 
-## onTouchIconUrlReceivedEvent<sup>12+</sup>
+## OnTouchIconUrlReceivedEvent<sup>12+</sup>
 
 Represents the callback invoked when an apple-touch-icon URL is received.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url         | string  | Yes| Received apple-touch-icon URL.|
 | precomposed | boolean | Yes| Whether the apple-touch-icon is precomposed.  |
 
-## onFaviconReceivedEvent<sup>12+</sup>
+## OnFaviconReceivedEvent<sup>12+</sup>
 
 Represents the callback invoked when this web page receives a new favicon.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| **PixelMap** object of the received favicon.|
 
-## onPageVisibleEvent<sup>12+</sup>
+## OnPageVisibleEvent<sup>12+</sup>
 
 Represents the callback invoked when the old page is not displayed and the new page is about to be visible.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url  | string | Yes| URL of the new page that is able to be visible when the old page is not displayed.|
 
-## onDataResubmittedEvent<sup>12+</sup>
+## OnDataResubmittedEvent<sup>12+</sup>
 
 Represents the callback invoked when the web form data can be resubmitted.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [DataResubmissionHandler](#dataresubmissionhandler9) | Yes| Handler for resubmitting web form data.|
 
-## onAudioStateChangedEvent<sup>12+</sup>
+## OnAudioStateChangedEvent<sup>12+</sup>
 
 Represents the callback invoked when the audio playback status on the web page changes.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | playing | boolean | Yes| Audio playback status on the current page. The value **true** means that audio is being played, and **false** means the opposite.|
 
-## onFirstContentfulPaintEvent<sup>12+</sup>
+## OnFirstContentfulPaintEvent<sup>12+</sup>
 
 Represents the callback invoked when the first content paint occurs on the web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | navigationStartTick    | number | Yes| Navigation start time, in microseconds.         |
 | firstContentfulPaintMs | number | Yes| Time between navigation and when the content is first rendered, in milliseconds.|
 
-## onLoadInterceptEvent<sup>12+</sup>
+## OnLoadInterceptEvent<sup>12+</sup>
 
 Represents the callback invoked when the **Web** component is about to access a URL.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | data | [WebResourceRequest](#webresourcerequest) | Yes| Information about the URL request.|
 
-## onOverScrollEvent<sup>12+</sup>
+## OnOverScrollEvent<sup>12+</sup>
 
 Represents the callback invoked when the web page is overscrolled.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
@@ -8539,50 +9253,64 @@ Represents the callback invoked when the web page is overscrolled.
 
 Defines the JavaScript object to be injected.
 
+**System capability**: SystemCapability.Web.Webview.Core
+
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | object     | object                                   | Yes   | Object to be registered. Methods can be declared, but attributes cannot.                  |
 | name       | string                                   | Yes   | Name of the object to be registered, which is the same as that invoked in the window.               |
 | methodList | Array\<string\>                          | Yes   | Synchronous methods of the JavaScript object to be registered at the application side.                |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | No   | Asynchronous methods of the JavaScript object to be registered at the application side. Asynchronous methods do not provide return values.  |
-| permission<sup>12+</sup>  | string  | No   | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL trustlist at the object and method levels.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md). |
+| permission<sup>12+</sup>  | string  | No   | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL whitelist at the object and method levels.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
 
 ## AdsBlockedDetails<sup>12+</sup>
 
 Provides detailed information about the blocked ads when ads are blocked.
 
-| Name| Type                                                                         | Description                   |
-| ------- | -------------------------------------------------------------------------------- | ------------------------- |
-| url | string  | URL of the page where ads are blocked.|
-| adsBlocked | Array\<string\>  | URLs or DOMPath of the blocked ads. If ads have the same URLs, duplicate elements may exist.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name| Type                                                                          | Mandatory  | Description                   |
+| ------- | --------------------------------------------------------------------------------  | ---- | ------------------------- |
+| url | string  | Yes   | URL of the page where ads are blocked.|
+| adsBlocked | Array\<string\>  | Yes   | URLs or DOMPath of the blocked ads. If ads have the same URLs, duplicate elements may exist.|
 
 ## OnAdsBlockedCallback<sup>12+</sup>
 
 type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 
 Represents the callback invoked when ads are blocked on the web page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 **Parameters**
 
-| Name              | Type                                       | Description                        |
-| -------------------- | ----------------------------------------------- | -------------------------------- |
-| details | [AdsBlockedDetails](#adsblockeddetails12) | Detailed information about the blocked ads when ads are blocked.|
+| Name              | Type                                       | Mandatory  | Description                        |
+| -------------------- | ----------------------------------------------- | ---- | -------------------------------- |
+| details | [AdsBlockedDetails](#adsblockeddetails12) | Yes   | Detailed information about the blocked ads when ads are blocked.|
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>
 
-Provides visibility information of the **embed** tag.
+Provides visibility information about the same-layer tag.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 | Name          | Type                               | Mandatory  | Description             |
 | -------------  | ------------------------------------| ----- | ------------------ |
-| visibility     | boolean                             | No    | Whether the **embed** tag is visible.        |
-| embedId        | string                              | No    | ID of the same-layer rendering tag. |
+| visibility     | boolean                             | Yes    | Whether the **embed** tag is visible.        |
+| embedId        | string                              | Yes    | ID of the same-layer rendering tag. |
 
 ## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
 
 type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
 
-Represents the callback invoked when the visibility of an **embed** tag changes.
+Called when the visibility of a same-layer tag changes.
 
-| Name  | Type                                                                         | Description                   |
-| ------- | -------------------------------------------------------------------------------- | ------------------------- |
-| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | The visibility information about the **embed** tag.|
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | Yes| Visibility information about the same-layer tag.|
+<!--no_check-->
