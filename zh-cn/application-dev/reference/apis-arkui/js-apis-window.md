@@ -4809,7 +4809,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 设置窗口内容布局的比例，使用Promise异步回调。
 
-通过其他接口设置窗口大小时(如[resize](#resize9)、[resizeAsync](#resizeasync12))，不受ratio约束。
+通过其他接口如[resize](#resize9)、[resizeAsync](#resizeasync12)设置窗口大小时，不受ratio约束。
 
 仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
@@ -4876,7 +4876,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口内容布局的比例，使用callback异步回调。
 
-通过其他接口设置窗口大小时(如[resize](#resize9)、[resizeAsync](#resizeasync12))，不受ratio约束。
+通过其他接口如[resize](#resize9)、[resizeAsync](#resizeasync12)设置窗口大小时，不受ratio约束。
 
 仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
