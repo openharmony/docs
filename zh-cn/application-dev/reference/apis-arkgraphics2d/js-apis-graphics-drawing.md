@@ -1991,7 +1991,7 @@ class DrawingRenderNode extends RenderNode {
 
 ### clear<sup>13+</sup>
 
-clear(number): void
+clear(color: number): void
 
 使用指定颜色填充画布上的裁剪区域。
 
