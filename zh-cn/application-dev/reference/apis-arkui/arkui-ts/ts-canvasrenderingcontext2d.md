@@ -1312,6 +1312,8 @@ stroke(): void
 
   ![zh-cn_image_0000001238832389](figures/zh-cn_image_0000001238832389.png)
 
+### stroke
+
 stroke(path: Path2D): void
 
 根据指定的路径，进行边框绘制操作。
