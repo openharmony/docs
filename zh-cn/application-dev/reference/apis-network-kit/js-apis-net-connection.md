@@ -259,7 +259,9 @@ cat server.pem \
         }
       }
     ]
-  }
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
 }
 ```
 
@@ -301,6 +303,10 @@ cat server.pem \
 可包含0或者1个base-config
 
 必须包含1个domain-config
+
+**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true**
+
+**trust-current-user-ca: 是否信任当前用户安装的证书，默认true**
 
 **base-config(object:指示应用程序范围的安全配置)**
 
