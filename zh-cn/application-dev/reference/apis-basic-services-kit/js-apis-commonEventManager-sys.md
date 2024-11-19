@@ -269,7 +269,7 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
-  if (err) {
+  if (err.code != 0) {
     console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
     return;
   }
