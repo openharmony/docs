@@ -40,13 +40,13 @@ barHeight
 
 若组件高度发生变化，开发者期望保持原有高度样式。示例如下：
 
-```
+```ts
 @Entry
 @Component
 struct barHeightTest {
   build() {
     Column() {
-      Tabs() {
+      Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           Column().width('100%').width('100%').height('100%').backgroundColor(Color.Pink)
         }
