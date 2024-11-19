@@ -17,6 +17,8 @@ To ensure best experience for UI app development for OpenHarmony ecosystem, ArkT
 
 This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.
 
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-commonlibrary-overview.md).
+
 ## The Basics
 
 ### Declarations
@@ -150,7 +152,7 @@ let instance: Class <void>
 
 #### `Object` Type
 
-An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.
+An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.`The 'object' type is used to represent types other than the primitive types.
 
 #### `Array` Type
 
