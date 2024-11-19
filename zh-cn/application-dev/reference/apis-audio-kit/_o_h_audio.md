@@ -3222,7 +3222,7 @@ AUDIOSTREAM_ERROR_INVALID_PARAM：
 
   1. 参数builder为nullptr；
   2. StreamType无效；
-  3. 创建OHAudioRenderer失败。
+  3. 创建OHAudioCapturer失败。
 
 
 ### OH_AudioStreamBuilder_GenerateRenderer()
