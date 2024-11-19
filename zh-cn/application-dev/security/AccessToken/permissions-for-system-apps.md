@@ -4321,6 +4321,42 @@
 
 **起始版本**：14
 
+### ohos.permission.READ_APP_LOCK
+
+允许系统应用读取应用锁状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.WRITE_APP_LOCK
+
+允许系统应用修改应用锁状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+管控业务拉起应用锁。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
@@ -4642,39 +4678,3 @@
 **ACL使能**：true
 
 **起始版本**：14
-
-### ohos.permission.READ_APP_LOCK
-
-允许系统应用读取应用锁状态。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
-
-### ohos.permission.WRITE_APP_LOCK
-
-允许系统应用修改应用锁状态。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
-
-### ohos.permission.ACCESS_APP_LOCK
-
-管控业务拉起应用锁。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
