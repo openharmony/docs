@@ -486,3 +486,16 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：13
+
+## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+允许设备管理应用委托其他应用设置设备管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：14

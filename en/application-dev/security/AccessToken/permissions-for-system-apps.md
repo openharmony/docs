@@ -505,6 +505,18 @@ Allows an application to activate enterprise devices.
 
 **Valid since**: 12
 
+### ohos.permission.RECEIVE_ENTERPRISE_POLICY_EVENT
+
+Allows a system application to subscribe to the policy events published by the Enterprise Device Management service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 14
+
 ### ohos.permission.PUBLISH_SYSTEM_COMMON_EVENT
 
 Allows an application to publish system common events.
