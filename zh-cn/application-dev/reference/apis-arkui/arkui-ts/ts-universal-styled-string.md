@@ -2017,7 +2017,7 @@ struct styled_string_demo8 {
 }
 ```
 
-![](figures/styledstring_8.gif)
+![](figures/styledString_8.gif)
 
 
 
