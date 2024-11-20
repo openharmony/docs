@@ -239,6 +239,7 @@ int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, stru
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 - [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参config为空指针。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
 
 
 ### OH_Usb_GetCurrentInterfaceSetting()
@@ -313,6 +314,7 @@ int32_t OH_Usb_Init (void )
 
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 
 ### OH_Usb_Release()
 
@@ -343,6 +345,7 @@ int32_t OH_Usb_ReleaseResource (void)
 
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 
 ### OH_Usb_ReleaseInterface()
 
@@ -426,6 +429,8 @@ int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct Us
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 - [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参setup、data或者dataLen为空指针，亦或datalen小于读取到的数据长度。
 - [USB_DDK_MEMORY_ERROR](#usbddkerrcode)：表示拷贝读取数据的内存失败。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
 
 
 ### OH_Usb_SendControlWriteRequest()
@@ -457,6 +462,8 @@ int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct U
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 - [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参setup或者data为空指针。
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
 
 
 ### OH_Usb_SendPipeRequest()
@@ -485,7 +492,8 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 - [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参pipe、devMmap或者devMmap的地址为空指针。
-
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
 
 ### OH_Usb_SendPipeRequestWithAshmem()<sup>12+</sup>
 
@@ -513,4 +521,5 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 - [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
 - [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参pipe、ashmem或者ashmem的地址为空指针。
-
+- [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
+- [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
