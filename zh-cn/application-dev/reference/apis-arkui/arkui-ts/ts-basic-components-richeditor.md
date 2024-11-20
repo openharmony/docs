@@ -3284,6 +3284,7 @@ struct Index {
   @State content: string = ""
   private my_offset: number | undefined = undefined
   private my_builder: CustomBuilder = undefined
+  @BuilderParam my_builder2:() => void = placeholderBuilder2;
 
   @Builder
   placeholderBuilder() {
@@ -3530,7 +3531,9 @@ struct Index {
             }
           })
           Button('builder2').onClick(() => {
-            this.my_builder = placeholderBuilder2.bind(this)
+            this.my_builder = () => {
+              this.my_builder2()
+            }
           })
           Button('builder3').onClick(() => {
             this.my_builder = () => {
