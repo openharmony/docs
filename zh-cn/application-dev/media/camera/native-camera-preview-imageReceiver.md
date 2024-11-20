@@ -46,8 +46,8 @@
        // 设置图片参数
        Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
        Image_Size imgSize;
-       imgsize.width = 1080; // 创建预览流的宽
-       imgsize.height = 1080; // 创建预览流的高
+       imgSize.width = 1080; // 创建预览流的宽
+       imgSize.height = 1080; // 创建预览流的高
        int32_t capacity = 8; // BufferQueue里最大Image数量，推荐填写8
        errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
        errCode = OH_ImageReceiverOptions_SetCapacity(options, capacity);
