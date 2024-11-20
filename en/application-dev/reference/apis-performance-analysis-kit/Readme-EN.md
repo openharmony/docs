@@ -1,6 +1,6 @@
-# Performance Analysis Kit API Reference
+# Performance Analysis Kit
 
-- ArkTS APIs
+- ArkTS API
   - [@ohos.faultLogger (FaultLogger)](js-apis-faultLogger.md)
   - [@ohos.hichecker (HiChecker)](js-apis-hichecker.md)
   - [@ohos.hidebug (HiDebug)](js-apis-hidebug.md)
@@ -10,13 +10,13 @@
   - [@ohos.hiviewdfx.hiAppEvent (HiAppEvent)](js-apis-hiviewdfx-hiappevent.md)
   - [@ohos.hiviewdfx.jsLeakWatcher (JS Leak Watcher)](js-apis-jsleakwatcher.md)
   <!--Del-->
-  - [@ohos.hiSysEvent (HiSysEvent)](js-apis-hisysevent-sys.md)
-  - [@ohos.logLibrary (Log Library)](js-apis-loglibrary-sys.md)
+  - [@ohos.hiSysEvent (HiSysEvent)(System API)](js-apis-hisysevent-sys.md)
+  - [@ohos.logLibrary (LogLibrary)(System API)](js-apis-loglibrary-sys.md)
   <!--DelEnd-->
   - APIs No Longer Maintained
     - [@ohos.bytrace (ByTrace)](js-apis-bytrace.md)
     - [@ohos.hiAppEvent (HiAppEvent)](js-apis-hiappevent.md)
-- C APIs
+- C API
   - Modules
     - [HiAppEvent](_hi_app_event.md)
     - [HiDebug](_hi_debug.md)
@@ -52,3 +52,5 @@
   - [HiSysEvent Error Codes](errorcode-hisysevent-sys.md)
   - [Log Library Error Codes](errorcode-loglibrary-sys.md)
   <!--DelEnd-->
+
+<!--no_check-->
