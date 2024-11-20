@@ -312,7 +312,7 @@ int32_t OH_Usb_Init (void )
 **返回:**
 
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
-- [USB_DDK_FAILED](#usbddkerrcode)：表示权限校验失败、连接usb_ddk服务失败或者内部错误失败。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 
 ### OH_Usb_Release()
 
