@@ -17,6 +17,8 @@
 
 - 获取视频缩略图（[AVImageGenerator](#avimagegenerator12)<sup>12+</sup>）
 
+- 屏幕录制（[AVScreenCaptureRecorder](#avscreencapturerecorder12)<sup>12+</sup>）
+
 ## 导入模块
 
 ```ts
