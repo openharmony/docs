@@ -147,7 +147,7 @@ toybox的执行方式有两种：
 | killall   | 向具有给定名称的所有进程发送信号（默认：SIGTERM）。<br />usage: killall [-l] [-iqv] [-SIGNAL \| -s SIGNAL]  PROCESS\_NAME... |
 | killall5  | 对当前会话以外的所有进程发送信号。<br />usage: killall5 [-l [SIGNAL]] [-SIGNAL \| -s SIGNAL] [-o PID]... |
 | pidof   | 打印具有给定名称的所有进程的PID。<br />usage: pidof [-s] [-o omitpid[,omitpid...]] [NAME...] |
-| pkill   | 按照进程名来杀死进程。<br />usage: pkill [-fnovx] [-SIGNAL|-l SIGNAL] [PATTERN] [-G GID,] [-g PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] |
+| pkill   | 按照进程名来杀死进程。<br />usage: pkill [-fnovx] [-SIGNAL\|-l SIGNAL] [PATTERN] [-G GID,] [-g PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] |
 | pmap    | 查看进程的内存映射情况。<br />usage: pmap [-xq] [pids...] |
 | ps      | 显示进程信息。<br />usage: ps [-AadefLlnwZ] [-gG GROUP,] [-k FIELD,] [-o FIELD,] [-p PID,] [-t TTY,] [-uU USER,] |
 | pwdx    | 打印进程的工作目录。<br />usage: pwdx PID... |
