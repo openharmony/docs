@@ -178,6 +178,8 @@ sendMouseEvent(event: MouseEvent): boolean
 
 ## 示例
 
+该示例主要展示如何通过组件标识接口，获取特定id组件的属性，以及如何向该id的组件触发事件。
+
 ```ts
 // xxx.ets
 import { IntentionCode } from '@kit.InputKit'
