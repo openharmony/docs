@@ -4323,6 +4323,42 @@ Allows an UIExtensionAbility to be displayed on the locked screen.
 
 **Valid since**: 14
 
+### ohos.permission.READ_APP_LOCK
+
+Allows a system application to read the application lock state.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.WRITE_APP_LOCK
+
+Allows a system application to set the application lock state.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+Allows an application to access the application lock.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
