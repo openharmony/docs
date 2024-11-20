@@ -41,6 +41,10 @@ Refresh(value: RefreshOptions)
 | promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置刷新区域底部显示的自定义文本。<br/>**说明：**<br/>输入文本的限制参考Text组件，使用builder或refreshingContent参数自定义刷新区域显示内容时，promptText不显示。<br/>promptText设置有效时，[refreshOffset](#refreshoffset12)属性默认值为96vp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | refreshingContent<sup>12+</sup>    | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否    | 自定义刷新区域显示内容。<br/>**说明：**<br/>与builder参数同时设置时builder参数不生效。<br/>自定义组件设置了固定高度时，自定义组件会以固定高度显示在刷新区域下方；自定义组件未设置高度时，自定义组件高度会自适应刷新区域高度，会发生自定义组件高度跟随刷新区域变化至0的现象。建议对自定义组件设置最小高度约束来避免自定义组件高度小于预期的情况发生，具体可参照[示例5](#示例5)。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
+>  **补充说明：**
+>  - 当未设置builder或refreshingContent时，是通过更新子组件的[translate](ts-universal-attributes-transformation.md#translate)属性实现的下拉位移效果，下拉位移过程中不会触发子组件的[onAreaChange](ts-universal-component-area-change-event.md#onareachange)事件，子组件设置[translate](ts-universal-attributes-transformation.md#translate)属性时不会生效。
+>  - 当设置了builder或refreshingContent时，是通过更新子组件相对于Refresh组件的位置实现的下拉位移效果，下拉位移过程中可以触发子组件的[onAreaChange](ts-universal-component-area-change-event.md#onareachange)事件，子组件设置[position](ts-universal-attributes-location.md#position)属性时会固定子组件相对于Refresh组件的位置导致子组件不会跟手进行下拉位移。
+
 ## 属性
 
 支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -49,7 +53,7 @@ Refresh(value: RefreshOptions)
 
 refreshOffset(value: number)
 
-设置触发刷新的下拉偏移量。
+设置触发刷新的下拉偏移量，当下拉距离小于该属性设置值时离手不会触发刷新。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -480,10 +484,11 @@ struct RefreshExample {
   @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
   @State refreshStatus: RefreshStatus = RefreshStatus.Inactive
   private contentNode?: ComponentContent<Object> = undefined
+  private params: Params = new Params(RefreshStatus.Inactive)
 
   aboutToAppear():void {
-    let uiContext = this.getUIContext();
-    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), new Params(this.refreshStatus))
+    let uiContext = this.getUIContext()
+    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), this.params)
   }
 
   build() {
@@ -511,7 +516,8 @@ struct RefreshExample {
       .refreshOffset(96)
       .onStateChange((refreshStatus: RefreshStatus) => {
         this.refreshStatus = refreshStatus
-        this.contentNode?.update(new Params(this.refreshStatus)) // 更新自定义组件内容
+        this.params.refreshStatus = refreshStatus
+        this.contentNode?.update(this.params) // 更新自定义组件内容
         console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
       .onRefreshing(() => {
