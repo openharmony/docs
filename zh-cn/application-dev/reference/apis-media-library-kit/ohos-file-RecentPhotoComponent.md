@@ -41,7 +41,7 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 | recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | 否  | 最近图片配置参数信息。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                |
 | onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | 否  | 最近图片查询结果回调函数。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。              |
 | onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | 是  | 选择最近图片回调函数。<br> **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。                |
-| onRecentPhotoCheckInfo   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | 否  | 最近图片查询结果回调函数，并且返回该照片的相关信息。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
+| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | 否  | 最近图片查询结果回调函数，并且返回该照片的相关信息。<br> **原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## RecentPhotoOptions
 
