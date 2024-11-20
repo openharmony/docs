@@ -717,7 +717,7 @@ Error: install sign info inconsistent.
 
 
 **处理步骤**
-zh-cn\application-dev\quick-start\integrated-hsp.md
+
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
 2. 如果是因不同团队提供的HSP导致签名不一致问题，可以采用[集成态HSP](../quick-start/integrated-hsp.md)的方式统一提供HSP；在多HAP包的情况下，必须确保所有HAP包的签名一致。
 
