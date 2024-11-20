@@ -159,9 +159,9 @@
            }
            if (imgComponent.byteBuffer) {
              // 请参考步骤7解析buffer数据，本示例以方式一为例
-             let width = 640; // 宽为创建ImageReceiver时image.Size的width
-             let height = 480; // 高为创建ImageReceiver时image.Size的height
-             let stride = imgComponent.rowStride;
+             let width = nextImage.size.width; // 获取图片的宽
+             let height = nextImage.size.height; // 获取图片的高
+             let stride = imgComponent.rowStride; // 获取图片的stride
              console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
              // stride与width一致
              if (stride == width) {
@@ -194,7 +194,7 @@
    }
    ```
 
-7. 通过 [image.Component]()解析图片buffer数据参考：
+7. 通过 [image.Component](../../reference/apis-image-kit/js-apis-image.md#component9)解析图片buffer数据参考：
 
    > **注意：**
    > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：
