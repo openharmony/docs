@@ -4347,7 +4347,7 @@
 
 ### ohos.permission.ACCESS_APP_LOCK
 
-管控业务拉起应用锁。
+允许应用访问应用锁。
 
 **权限级别**：system_basic
 
