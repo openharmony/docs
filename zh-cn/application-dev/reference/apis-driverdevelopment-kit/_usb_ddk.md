@@ -344,18 +344,7 @@ int32_t OH_Usb_ReleaseResource (void)
 - [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
 - [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
 
-```
-void OH_Usb_Release (void )
-```
-
-**描述:**
-
-释放DDK。
-
-**需要权限**：ohos.permission.ACCESS_DDK_USB
-
 ### OH_Usb_ReleaseInterface()
-
 
 ```
 int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
