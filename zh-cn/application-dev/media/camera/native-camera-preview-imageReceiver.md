@@ -46,8 +46,8 @@
        // 设置图片参数
        Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
        Image_Size imgSize;
-       imgSize.width = 1080; // 创建预览流的宽
-       imgSize.height = 1080; // 创建预览流的高
+       imgsize.width = 1080; // 创建预览流的宽
+       imgsize.height = 1080; // 创建预览流的高
        int32_t capacity = 8; // BufferQueue里最大Image数量，推荐填写8
        errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
        errCode = OH_ImageReceiverOptions_SetCapacity(options, capacity);
@@ -69,9 +69,7 @@
 
    ```c++
    OH_ImageReceiverNative *receiver; // 步骤3创建的实例
-   uint32_t PREVIEW_WIDTH = 1080; // 创建预览流的宽
-   uint32_t PREVIEW_HEIGHT = 1080; // 创建预览流的高
-   
+
    // 图像回调函数，参考媒体/Image Kit（图片处理服务）
    static void OnCallback(OH_ImageReceiverNative *receiver) {
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
@@ -79,6 +77,12 @@
        OH_ImageNative *image = nullptr;
        // 从bufferQueue中获取图像
        Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
+       // 读取图像宽高
+       Image_Size size;
+       errCode = OH_ImageNative_GetImageSize(image, &size);
+       OH_LOG_INFO(LOG_APP, "OH_ImageNative_GetImageSize errCode:%{public}d width:%{public}d height:%{public}d", errCode,
+           size.width, size.height);
+
        // 获取图像ComponentType
        size_t typeSize = 0;
        OH_ImageNative_GetComponentTypes(image, nullptr, &typeSize);
@@ -99,17 +103,17 @@
        OH_NativeBuffer_Map(imageBuffer, &srcVir);
        uint8_t* srcBuffer = static_cast<uint8_t*>(srcVir);
        // 判断行距与预览流宽是否一致，如不一致，需要考虑stride对读取buffer的影响
-       if (stride == PREVIEW_WIDTH) {
+       if (stride == size.width) {
            // 传给其他不需要stride的接口处理
        } else {
            // 传给其他支持stride的接口处理，或去除stride数据
            // 去除stride数据示例:将byteBuffer中的数据去除stride，拷贝得到新的dstBuffer数据
-           size_t dstBufferSize = PREVIEW_WIDTH * PREVIEW_HEIGHT * 1.5; // 相机预览流返回NV21格式
+           size_t dstBufferSize = size.width * size.height * 1.5; // 相机预览流返回NV21格式
            std::unique_ptr<uint8_t[]> dstBuffer = std::make_unique<uint8_t[]>(dstBufferSize);
            uint8_t *dstPtr = dstBuffer.get();
-           for (int j = 0; j < PREVIEW_HEIGHT * 1.5; j++) {
-               memcpy(dstPtr, srcBuffer, PREVIEW_WIDTH);
-               dstPtr += PREVIEW_WIDTH;
+           for (int j = 0; j < size.height * 1.5; j++) {
+               memcpy(dstPtr, srcBuffer, size.width);
+               dstPtr += size.width;
                srcBuffer += stride;
            }
            // 传给其他不需要stride的接口处理
