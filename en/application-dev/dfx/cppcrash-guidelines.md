@@ -249,10 +249,10 @@ Pid:9623                           <- Process ID
 Uid:0                              <- User ID
 Process name:./crasher_cpp         <- Process name
 Process life time:1s               <- Process life time
-Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004 probably caused by NULL pointer dereference <-  Fault cause and null pointer prompt
+Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004 probably caused by NULL pointer dereference  <- Fault cause and null pointer prompt
 Fault thread info:
 Tid:9623, Name:crasher_cpp         <- Thread ID, thread name
-#00 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44) <- Call stack
+#00 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44)  <- Call stack
 #01 pc 000064d1 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+160)(adfc673300571d2da1e47d1d12f48b44)
 #02 pc 00006569 /system/bin/crasher_cpp(main+92)(adfc673300571d2da1e47d1d12f48b44)
 #03 pc 00072b98 /system/lib/ld-musl-arm.so.1(libc_start_main_stage2+56)(d820b1827e57855d4f9ed03ba5dfea83)
@@ -263,7 +263,7 @@ r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
 r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
 r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
 fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
-Memory near registers:  <-  Memory near fault registers
+Memory near registers:  <- Memory near fault registers
 r4([stack]):
     ffd27e30 72656873
     ffd27e34 7070635f
@@ -314,7 +314,7 @@ pc(/system/bin/crasher_cpp):
     00966dcc eb000000
     ...
     00966e44 e5907008
-FaultStack: <- Stack of the crashed thread
+FaultStack:  <- Stack of the crashed thread
     ffd27260 00000000
     ffd27264 f7cac628
     ...
@@ -334,7 +334,7 @@ sp2:ffd272e0 ffd27334
 sp3:ffd272f8 00000000
     ffd272fc ffd27334
 
-Maps:   <-  Process maps files when the fault occurs
+Maps:   <- Process maps files when the fault occurs
 962000-966000 r--p 00000000 /system/bin/crasher_cpp
 966000-96c000 r-xp 00003000 /system/bin/crasher_cpp
 96c000-96f000 r--p 00008000 /system/bin/crasher_cpp
@@ -349,7 +349,7 @@ f7cab000-f7cad000 rw-p 0011f000 /system/lib/ld-musl-arm.so.1
 f7cad000-f7cbc000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
 ffd07000-ffd28000 rw-p 00000000 [stack]
 ffff0000-ffff1000 r-xp 00000000 [vectors]
-OpenFiles:   <-  FD information of the file opened by the process when the fault occurs
+OpenFiles:   <- FD information of the file opened by the process when the fault occurs
 0->/dev/pts/1 native object of unknown type 0
 1->/dev/pts/1 native object of unknown type 0
 2->/dev/pts/1 native object of unknown type 0
@@ -395,7 +395,7 @@ Pid:10026                                 <- Process ID
 Uid:0                                     <- User ID
 Process name:./crasher_cpp                <- Process name
 Process life time:1s                      <- Process life time
-Reason:Signal:SIGSEGV(SEGV_MAPERR)@0000000000 probably caused by NULL pointer dereference  <- Fault Cause
+Reason:Signal:SIGSEGV(SEGV_MAPERR)@0000000000 probably caused by NULL pointer dereference  <- Fault cause
 LastFatalMessage: Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack   <- Attempt to obtain an unreliable stack from the thread stack
 Fault thread info:
 Tid:10026, Name:crasher_cpp               <- Thread ID, thread name
@@ -507,7 +507,7 @@ In application development, you can locate the problematic code in the cppcrash 
 
 #### Method 3: DevEco Studio hstack
 
-hstack is a tool provided by DevEco Studio for you to restore the crash stack of an obfuscated release app to the source code stack. It runs on Windows, macOS, and Linux platforms. [DevEco Studio hstack User Guide](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-command-line-hstack-0000001777724494-V5)
+hstack is a tool provided by DevEco Studio for you to restore the crash stack of an obfuscated release app to the source code stack. It runs on Windows, macOS, and Linux. For details, see [DevEco Studio hstack User Guide](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-command-line-hstack-V5).
 
 ### Reviewing Code Based on Services
 
@@ -535,7 +535,7 @@ objdump -S -l xxxx                 Disassembles the xxxx file and display the so
 - SIGABRT
     Generally, this fault is triggered by the user, framework, or C library, and you can locate the problematic code in the first frame of the framework library. In this case, check whether resources such as thread and file descriptor are properly used, and whether the invoking sequence of APIs is correct.
 - SIGSEGV
-  - Multithreading operation of STL collection is not thread-safe. If the collection is added or deleted on multiple threads, the **SIGSEGV** crash occurs. If **llvm-addr2line** is used and the result code involve operations on collections, this could be the reason for the crash.
+  - Multithreading operation collection in STD library is not thread-safe. If the collection is added or deleted on multiple threads, the **SIGSEGV** crash occurs. If **llvm-addr2line** is used and the result code involve operations on collections, this could be the reason for the crash.
   - If the pointer does not match the lifecycle of an object, for example, using a raw pointer to store the **sptr** type and **shared_ptr** type, can lead to memory leak and dangling pointer. A raw pointer is a pointer that does not have features such as encapsulation and automatic memory management. It is only a simple pointer to the memory address. The memory to which the pointer points is not protected or managed. A raw pointer can directly access the pointed memory, but problems such as memory leak and null pointer reference may also occur. Therefore, when using a raw pointer, pay attention to potential security problems. You are advised to use smart pointers to manage memory.
 - Use after free
     This fault occurs when the reference of a released stack variable is not set to null and the access continues.
@@ -602,7 +602,7 @@ The **SIGSEGV** signal indicates a Segmentation Fault of the program. This fault
 - **SIGSEGV** occurs when a user-mode program accesses a memory area outside its bound.
 - **SIGSEGV** also occurs when a user-mode program accesses a memory without correct permission.
 
-In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all pointer overwriting causes **SIGSEGV**. The **SIGSEGV** crash would not be triggered unless an out-of-bounds pointer is dereferenced. In addition, even if an out-of-bounds pointer is dereferenced, the **SIGSEGV** crash may not be caused. The **SIGSEGV** crash involves the operating system, C library, compiler, and linker. The example is as follows.
+In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all pointer overwriting causes **SIGSEGV**. The **SIGSEGV** crash would not be triggered unless an out-of-bounds pointer is dereferenced. In addition, even if an out-of-bounds pointer is dereferenced, the **SIGSEGV** crash may not be caused. The **SIGSEGV** crash involves the operating system, C library, compiler, and linker. The examples are as follows:
 
 - The memory area is read-only memory.
     The sample code is as follows:
@@ -699,7 +699,7 @@ In most cases, **SIGSEGV** is caused by pointer overwriting. However, not all po
 
     ![cppcrash-demo3](figures/cppcrash_image_007.png)
 
-    The preceding are common causes for **SIGSEGV** crashes. Other scenarios may also trigger  **SIGSEGV** crashes, which include stack overflow memory access, heap overflow memory access, global wild pointer access, execution on an invalid address, and invalid parameter invocation. The **SIGSEGV** crash is associated to the stack allocation and recovery of the operating system and the compiler. 
+    The preceding are common causes for **SIGSEGV** crashes. Other scenarios may also trigger **SIGSEGV** crashes, which include stack overflow memory access, heap overflow memory access, global wild pointer access, execution on an invalid address, and invalid parameter invocation. The **SIGSEGV** crash is associated to the stack allocation and recovery of the operating system and the compiler. 
 
 #### Type 2: SIGABRT Crash
 
@@ -737,7 +737,7 @@ The **SIGABRT** signal is sent to abort the process. This signal can be called b
     }
     ```
 
-    In addition to the **abort()** function, other exception handling mechanisms in C++ include the **assert()** function, **exit()** function, exception capture mechanism (**try-catch**), and **exception** class. The **assert()** function is used to check some data in the function execution. If the check fails, the process aborts.  The corresponding fault scenario is shown below. 
+    In addition to the **abort()** function, other exception handling mechanisms in C++ include the **assert()** function, **exit()** function, exception capture mechanism (**try-catch**), and **exception** class. The **assert()** function is used to check some data in the function execution. If the check fails, the process aborts. The corresponding fault scenario is shown below. 
 
     ![cppcrash-demo5](figures/cppcrash_image_009.png)
 
@@ -760,7 +760,7 @@ The following figure shows the crash call stack.
 ![cppcrash-demo6](figures/cppcrash_image_010.png)
 
 **Fault Analysis**
-This address error is regular, but it is abnormal that the node address fall in **libace_napi_ark.z.so**. In this case, this may be memory corruption error. You can use [ASan Check](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-0000001545528013-V5) to locate the memory corruption error. By performing stress tests to reproduce the problem, ASan can also be used to find the regular crash scenario. The fault detected by ASan is the same as that in the crash stack above. The stack reports **heap-use-after-free**, which was actually a double free of the same address. During the second free operation, the address is used to access to its object member, resulting in a UAF fault. 
+This address error is regular, but it is abnormal that the node address fall in **libace_napi_ark.z.so**. In this case, this may be memory corruption error. You can use [ASan Check](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-V5) to locate the memory corruption error. By performing stress tests to reproduce the problem, ASan can also be used to find the regular crash scenario. The fault detected by ASan is the same as that in the crash stack above. The stack reports **heap-use-after-free**, which was actually a double free of the same address. During the second free operation, the address is used to access to its object member, resulting in a UAF fault. 
 The key logs of ASan are as follows:
 
 ```
@@ -829,7 +829,7 @@ Therefore, for the same **WeakNode**, there may be two functions for release. If
 Invoke a callback when **JsiWeak** calls **SetWeakCallback**. Therefore, the callback can notify **JsiWeak** to reset **CopyableGlobal** when **IterateWeakEcmaGlobalStorage** releases the **WeakNode**, ensuring the same address is not double-freed.
 
 **Suggestions**
-When using memory, consider whether the memory is double-freed or not freed. Additionally, when locating memory access crashes(usually **SIGSEGV** crashes),  run the ASan to reproduce the fault if there is no clue based on the crash stack analysis.
+When using memory, consider whether the memory is double-freed or not freed. Additionally, when locating memory access crashes (usually **SIGSEGV** crashes), run the ASan to reproduce the fault if there is no clue based on the crash stack analysis.
 
 #### Type 2: Multi-thread Crash
 
@@ -837,11 +837,11 @@ When using memory, consider whether the memory is double-freed or not freed. Add
 **napi_env** is still used after being released.
 
 **Symptom**
-The **env** of a **napi** API is invalid. The crash stack is mounted to **NativeEngineInterface::ClearLastError()**. Based on the log of **env** address, it is found that the **env** is used after being released. .
+The **env** of a **napi** API is invalid. The crash stack is mounted to **NativeEngineInterface::ClearLastError()**. Based on the log of **env** address, it is found that the **env** is used after being released.
 
 ![cppcrash-demo9](figures/cppcrash_image_015.png)
 
-The key crash stack is as follows:
+The key crash stack is as follows.
 
 ![cppcrash-demo8](figures/cppcrash_image_014.png)
 
@@ -862,10 +862,10 @@ When you create a native **napi_value**, it needs to be used with **napi_handle_
 **napi_value** is a raw pointer (a struct pointer). It is used to hold JS objects and maintain the lifecycle of JS objects to ensure that JS objects are not collected by GC. **napi_handle_scope** is used to manage **napi_value**. Once out of **napi_handle_scope**, **napi_value** is collected by GC, and **napi_value** no longer holds the JS object (no longer protects the JS object's lifecycle)
 
 **Fault Analysis**
-By decompiling the crash stack, the upper-level interface of the problematic **napi** interface can be located, in which the problematic **napi_value** can be found. In this case, you need to check if the **napi_value** is called out of **napi_handle_scope**. 
+By decompiling the crash stack, the upper-level interface of the problematic **napi** interface can be located, in which the problematic **napi_value** can be found. In this case, you need to check if the **napi_value** is used out of **napi_handle_scope**. 
 
 **Cases**
-The **napi_value** is called out of the scope of the NAPI framework.
+The **napi_value** is used out of the scope of the NAPI framework.
 
 ![cppcrash-demo9](figures/cppcrash_image_016.png)
 
@@ -895,7 +895,7 @@ Pointers should be null-checked before using it to prevent null pointers and pro
 
 #### Tool 1: ASAN
 
-[ASan Check](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-0000001545528013-V5)
+[ASan Check](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-V5)
 
 #### Tool 2: Ark Multi Thread Check
 
@@ -911,7 +911,7 @@ Select **Multi Thread Check** on DevEco to enable Ark multi-thread detection.
 If the stack of crash logs is difficult to analyze and the probability of this problem is high, you need to enable multi-thread detection. When the multi-thread detection is enabled, if the fatal information in the **cpp_crash** log is "Fatal: ecma_vm cannot run in multi-thread! thread:3096 currentThread:3550", it indicates that a multi-thread security problem occurs. That is, the calling thread ID is **3550**, but the JS thread is created by thread **3096**. The **vm** is used across threads.
 
 **Cases**
-After the function is enabled, the system crashes again. If the problem is caused by multiple threads, fatal information is displayed.
+After the function is enabled, the crash is triggered again. If the problem is caused by multiple threads, fatal information is displayed. The following is an example:
 
 ```
 Fatal: ecma_vm cannot run in multi-thread! thread:xxx currentThread:yyy
@@ -942,7 +942,7 @@ ii. If the stack frame under **libace_napi.z.so** does not transfer the **napi_e
 #### Tool 3: objdump
 
 **How to Use**
-objdump binary is a system-side tool. Developers must have the OpenHarmony compilation environment. The project code can be obtained from Gitee.
+objdump binary is a system tool. You must have the OpenHarmony compilation environment, whose project code can be obtained from Gitee. The command is as follows:
 
 ```
 repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify --no-clone-bundle --depth=1
@@ -950,7 +950,7 @@ repo sync -c
 ./build/prebuilts_download.sh
 ```
 
-The tool is stored in the project directory **prebuilts/clang/ohos/linux-x86_64/llvm/bin/llvm-objdump**.
+You can obtain the tool in **prebuilts/clang/ohos/linux-x86_64/llvm/bin/llvm-objdump** of the project. The command is as follows:
 
 ```
 prebuilts/clang/ohos/linux-x86_64/llvm/bin/llvm-objdump -d libark_jsruntime.so > dump.txt
@@ -976,16 +976,16 @@ Tid:6655, Name:GC_WorkerThread
 # 09 pc 0000000000085d04 /system/lib/ld-musl-aarch64.so.1
 ```
 
-Run the addr2line to locate the error codes.
+Run the addr2line command to locate the error line.
 
 ![cppcrash-demo14](figures/cppcrash_image_021.png)
 
-The preceding information indicates that a null pointer is accessed and the process is suspended when  **InYoungSpace** is accessed. Therefore, it can be suspected that the **Region** is a null pointer.
+The preceding information indicates that a null pointer is accessed and the process is suspended when **InYoungSpace** is accessed. Therefore, it can be suspected that the **Region** is a null pointer.
 Use objdump to disassemble and search for the error address **4492d4**. The command is as follows:
 
 ![cppcrash-demo15](figures/cppcrash_image_022.png)
 
-Check the **x20** register, and the value is **0x000000000000000**. The preceding information shows that the **x20** performs bitwise operation based on **x2** (the last 18 bits are cleared, which is a typical **Region::ObjectAddressToRange** operation). The analysis shows that **x2** is the second parameter object of the **MarkObject** function, and **x20** is the variable **objectRegion**.
+Check the **x20** register, and the value is **0x000000000000000**. The preceding information shows that **x20** performs bitwise operation based on **x2** (the last 18 bits are cleared, which is a typical **Region::ObjectAddressToRange** operation). The analysis shows that **x2** is the second parameter object of the **MarkObject** function, and **x20** is the variable **objectRegion**.
 
 ```
 Registers: x0:0000007f0fe31560 x1:0000000000000003 x2:0000000000000000 x3:0000005593100000

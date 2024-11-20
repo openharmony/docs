@@ -34,7 +34,7 @@ You can identify the cause of the crash, mostly application issues, based on Err
 
 JS crash exceptions are classified into the following types in the **Reason** field based on exception scenarios:
 
- - **Error**: **Error** is the most basic type. Other error types are inherited from this type. The **Error** object consists of  **message** and **name**, which indicate the error message and error name, respectively. Generally, exceptions of the **Error** type are thrown by developers.
+ - **Error**: **Error** is the most basic type. Other error types are inherited from this type. The **Error** object consists of **message** and **name**, which indicate the error message and error name, respectively. Generally, exceptions of the **Error** type are thrown by developers.
 
  - **TypeError**: As the most common error type at run-time, **TypeError** indicates a variable or parameter that is not of the expected type.
 
@@ -57,7 +57,7 @@ The process crash log is a type of fault log managed together with the app freez
 
 - Method 1: DevEco Studio
 
-    DevEco Studio collects process crash logs in **/data/log/faultlog/faultlogger/** and archives the logs in FaultLog. For details, see <!--RP1-->[DevEco Studio User Guide-FaultLog](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->. 
+    DevEco Studio collects process crash logs in **/data/log/faultlog/faultlogger/** and archives the logs in FaultLog. For details, see <!--RP1-->[Fault Log](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->. 
 
 - Method 2: hiAppEvent APIs
 
@@ -77,7 +77,7 @@ Generally, the cause of the fault can be found by locating the problematic code 
 
 #### 1. StackTrace Scenarios
 
-In JS Crash fault logs, the **StackTrace** field provides the call stack information about the JS Crash exception. Common  **StackTrace** information includes the following:
+In JS Crash fault logs, the **StackTrace** field provides the call stack information about the JS Crash exception. Common **StackTrace** information includes the following:
 
 1. The stack top indicates the problematic code, as shown in the following example. You can click the link to locate the problematic code.
     ```
@@ -190,7 +190,7 @@ Perform call stack analysis as follows:
 
   If "Cannot get Source Map info, dump raw stack" is displayed, the JS stack fails to obtain the row and column numbers for the problematic code. In this case, clicking the provided hyperlink in DevEco Studio navigates you to an incorrect position or displays an error that indicates the position does not exist.
 
-  When an error occurs during the running of application code, the error stack information is printed. If the TS stack fails to obtain the row and column numbers for ArkTS code, the filename extension of the error stack is still "ets". You need to compile the intermediate product in the **build** directory to generate TS code and locate the problematic code in JS. For details, see [Application Stack Parsing](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-0000001814726289-V5).
+  When an error occurs during the running of application code, the error stack information is printed. If the TS stack fails to obtain the row and column numbers for ArkTS code, the filename extension of the error stack is still "ets". You need to compile the intermediate product in the **build** directory to generate TS code and locate the problematic code in JS. For details, see [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5).
 
 
 ## Case Study
@@ -236,8 +236,8 @@ Error message:Cannot read property xxx of undefined
 
 2. Analyze log information.
 
-    According to the log information, **TypeError** is reported because the **needRenderTranslate** object read is **undefined**. Then, obtain the error location based on the call stack.
-If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be covnerted from the JS stack. You can refer to [Application Stack Parsing](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-0000001814726289-V5) to parse the row number.
+    According to the log information, **TypeError** is reported because the **needRenderTranslate** object is **undefined**. Then, obtain the error location based on the stack trace.
+If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be converted from the JS stack. You can refer to [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5) to parse the row number.
 
 3. Locate the error code.
 
@@ -316,7 +316,7 @@ To solve this problem, locate the problematic code line based on the fault log a
 2. Analyze log information.
 
     According to the log information, an **Error** exception is thrown by the code. Then, obtain the error location based on the stack trace.
-If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be covnerted from the JS stack. You can refer to [Application Stack Parsing](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-0000001814726289-V5) to parse the row number.
+If "Cannot get SourceMap info, dump raw stack" is displayed, the application is installed using a release package and the eTS row and column numbers cannot be converted from the JS stack. You can refer to [Stack Trace Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5) to parse the row number.
 
 3. Locate the error code.
 
