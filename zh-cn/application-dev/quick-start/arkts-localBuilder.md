@@ -60,6 +60,7 @@ this.MyBuilderFunction()
 ### 按引用传递参数
 
 按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@LocalBuilder方法内的UI刷新。
+若子组件调用父组件的@LocalBuilder函数，传入的参数发生变化，不会引起\@LocalBuilder方法内的UI刷新。
 
 使用场景：
 
@@ -141,6 +142,100 @@ struct Parent {
 }
 ```
 
+子组件引用父组件的@LocalBuilder函数，传入的参数为状态变量，状态变量的改变不会引发@LocalBuilder方法内的UI刷新，原因是@Localbuilder装饰的函数绑定在父组件上，状态变量刷新机制是刷新本组件以及其子组件，对父组件无影响，故无法引发刷新。若使用@Builder修饰则可引发刷新，原因是@Builder改变了函数的this指向，此时函数被绑定到子组件上，故能引发UI刷新。
+
+使用场景：
+
+组件Child将@State修饰的label值按照函数传参方式传递到Parent的@Builder和@LocalBuilder函数内，在被@Builder修饰的函数内，this指向Child，参数变化能引发UI刷新，在被@LocalBuilder修饰的函数内，this指向Parent，参数变化不能引发UI刷新。
+
+
+```ts
+class LayoutSize {
+  size:number = 0;
+}
+
+@Entry
+@Component
+struct Parent {
+  label:string = 'parent';
+  @State layoutSize:LayoutSize = {size:0};
+
+  @LocalBuilder
+  // @Builder
+  componentBuilder($$:LayoutSize) {
+    Text(`${'this :'+this.label}`);
+    Text(`${'size :'+$$.size}`);
+  }
+
+  build() {
+    Column() {
+      Child({contentBuilder: this.componentBuilder });
+    }
+  }
+}
+
+@Component
+struct Child {
+  label:string = 'child';
+  @BuilderParam contentBuilder:((layoutSize: LayoutSize) => void);
+  @State layoutSize:LayoutSize = {size:0};
+
+  build() {
+    Column() {
+      this.contentBuilder({size: this.layoutSize.size});
+      Button("add child size").onClick(()=>{
+        this.layoutSize.size += 1;
+      })
+    }
+  }
+}
+```
+
+使用场景：
+
+组件Child将@Link引用Parent的@State修饰的label值按照函数传参方式传递到Parent的@Builder和@LocalBuilder函数内，在被@Builder修饰的函数内，this指向Child，参数变化能引发UI刷新，在被@LocalBuilder修饰的函数内，this指向Parent，参数变化不能引发UI刷新。
+
+```ts
+class LayoutSize {
+  size:number = 0;
+}
+
+@Entry
+@Component
+struct Parent {
+  label:string = 'parent';
+  @State layoutSize:LayoutSize = {size:0};
+
+  @LocalBuilder
+  // @Builder
+  componentBuilder($$:LayoutSize) {
+    Text(`${'this :'+this.label}`);
+    Text(`${'size :'+$$.size}`);
+  }
+
+  build() {
+    Column() {
+      Child({contentBuilder: this.componentBuilder,layoutSize:this.layoutSize});
+    }
+  }
+}
+
+@Component
+struct Child {
+  label:string = 'child';
+  @BuilderParam contentBuilder:((layoutSize: LayoutSize) => void);
+  @Link layoutSize:LayoutSize;
+
+  build() {
+    Column() {
+      this.contentBuilder({size: this.layoutSize.size});
+      Button("add child size").onClick(()=>{
+        this.layoutSize.size += 1;
+      })
+    }
+  }
+}
+```
 
 ### 按值传递参数
 
