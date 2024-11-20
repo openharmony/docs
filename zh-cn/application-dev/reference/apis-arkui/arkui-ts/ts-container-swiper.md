@@ -1352,8 +1352,10 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 
 ## 示例
 
-### 示例1
-该示例实现了通过indicatorInteractive控制导航点交互功能。
+### 示例1（设置导航点交互）
+
+该示例通过indicatorInteractive接口，实现了控制导航点交互的功能。
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1466,8 +1468,10 @@ struct SwiperExample {
 
 ![swiper](figures/swiper.gif)
 
-### 示例2
-该示例演示了使用数字指示器的效果和功能。
+### 示例2（设置数字指示器）
+
+该示例通过DigitIndicator接口，实现了数字指示器的效果和功能。
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1550,8 +1554,10 @@ struct SwiperExample {
 ```
 ![swiper](figures/swiper-digit.gif)
 
-### 示例3
-该示例通过displayCount属性实现了按组翻页的效果。
+### 示例3（设置按组翻页）
+
+该示例通过displayCount属性实现了按组翻页效果。
+
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1634,9 +1640,9 @@ struct SwiperExample {
 ```
 ![swiper](figures/swiper-swipe-by-group.gif)
 
-### 示例4
+### 示例4（设置自定义页面切换动画）
 
-本示例通过customContentTransition接口实现了自定义Swiper页面切换动画。
+该示例通过customContentTransition接口，实现了自定义Swiper页面切换动画效果。
 
 ```ts
 // xxx.ets
@@ -1713,9 +1719,9 @@ struct SwiperCustomAnimationExample {
 ```
 ![swiper](figures/swiper-custom-animation.gif)
 
-### 示例5
+### 示例5（设置圆点导航点超长显示）
 
-本示例通过DotIndicator接口的maxDisplayCount属性实现了圆点导航点超长显示动画效果。
+该示例通过DotIndicator接口的maxDisplayCount属性，实现了圆点导航点超长显示动画效果。
 
 ```ts
 class MyDataSource implements IDataSource {
