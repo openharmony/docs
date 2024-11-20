@@ -478,14 +478,14 @@ The development procedure is as follows:
     }
     ```
 
-2. Parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed in the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback of the UIAbility of the SMS application, call [[getRouter()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter) in the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) class to obtain a [Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
+2. Parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed in the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter) in the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) class to obtain a [Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
 
     ```ts
     import { AbilityConstant, Want, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import type { Router, UIContext } from '@kit.ArkUI';
     import type { BusinessError } from '@kit.BasicServicesKit';
-   
+      
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[EntryAbility]';
 
@@ -684,27 +684,27 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
     ```ts
     import { rpc } from '@kit.IPCKit';
-
+    
     class MyParcelable {
       num: number = 0;
       str: string = '';
-
+    
       constructor(num: number, string: string) {
         this.num = num;
         this.str = string;
       }
-
+    
       mySequenceable(num: number, string: string): void {
         this.num = num;
         this.str = string;
       }
-
+    
       marshalling(messageSequence: rpc.MessageSequence): boolean {
         messageSequence.writeInt(this.num);
         messageSequence.writeString(this.str);
         return true;
       }
-
+    
       unmarshalling(messageSequence: rpc.MessageSequence): boolean {
         this.num = messageSequence.readInt();
         this.str = messageSequence.readString();
@@ -722,55 +722,55 @@ For the CalleeAbility, implement the callback to receive data and the methods to
     import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { rpc } from '@kit.IPCKit';
-
+    
     const MSG_SEND_METHOD: string = 'CallSendMsg';
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[CalleeAbility]';
-
+    
     class MyParcelable {
       num: number = 0;
       str: string = '';
-
+    
       constructor(num: number, string: string) {
         this.num = num;
         this.str = string;
       }
-
+    
       mySequenceable(num: number, string: string): void {
         this.num = num;
         this.str = string;
       }
-
+    
       marshalling(messageSequence: rpc.MessageSequence): boolean {
         messageSequence.writeInt(this.num);
         messageSequence.writeString(this.str);
         return true;
       }
-
+    
       unmarshalling(messageSequence: rpc.MessageSequence): boolean {
         this.num = messageSequence.readInt();
         this.str = messageSequence.readString();
         return true;
       }
     }
-
+    
     function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
-
+    
       // Obtain the parcelable data sent by the CallerAbility.
       let receivedData: MyParcelable = new MyParcelable(0, '');
       data.readParcelable(receivedData);
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
       let num: number = receivedData.num;
-
+    
       // Process the data.
       // Return the parcelable data result to the CallerAbility.
       return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
     }
-
+    
     export default class CalleeAbility extends UIAbility {
       caller: Caller | undefined;
-
+    
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         try {
           this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
@@ -778,7 +778,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
         }
       }
-
+    
       releaseCall(): void {
         try {
           if (this.caller) {
@@ -790,7 +790,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
         }
       }
-
+    
       onDestroy(): void {
         try {
           this.callee.off(MSG_SEND_METHOD);
@@ -822,15 +822,15 @@ For the CalleeAbility, implement the callback to receive data and the methods to
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
-
+    
     const TAG: string = '[Page_UIAbilityComponentsInteractive]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     @Entry
     @Component
     struct Page_UIAbilityComponentsInteractive {
       caller: Caller | undefined = undefined;
-
+    
       // Register the onRelease() listener of the CallerAbility.
       private regOnRelease(caller: Caller): void {
         hilog.info(DOMAIN_NUMBER, TAG, `caller is ${caller}`);
@@ -845,7 +845,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
         }
       };
-
+    
       build() {
         Column() {
           // ...
