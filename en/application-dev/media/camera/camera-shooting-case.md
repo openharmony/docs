@@ -1,5 +1,7 @@
 # Photo Capture Sample (ArkTS)
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 This topic provides sample code that covers the complete photo capture process to help you understand the complete API calling sequence.
 
 Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Photo Capture](camera-shooting.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
