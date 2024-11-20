@@ -17,7 +17,7 @@ To ensure best experience for UI app development for OpenHarmony ecosystem, ArkT
 
 This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.
 
-For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-commonlibrary-overview.md).
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-overview.md).
 
 ## The Basics
 
@@ -1453,6 +1453,16 @@ interface ExtendedStyle extends Style {
 ```
 
 An extended interface contains all properties and methods of the interface it extends, and can also add its own properties and methods.
+
+
+### Abstract class and interface
+
+Abstract classes and interfaces cannot be instantiated. Abstract classes are abstractions of classes, used to capture the general characteristics of subclasses, and interfaces are abstractions of behavior. The difference between abstract classes and interfaces in ArkTS is as follows:
+
+* Abstract classes can only inherit from a single source, while interfaces can be implemented in multiple layers;
+* In abstract classes, there can be implementations of methods, but interfaces are completely abstract and there is no implementation of methods;
+* The interface cannot contain static code blocks and static methods, while abstract classes can have static code blocks and static functions;
+* Abstract classes can have constructors, while interfaces cannot have constructors.
 
 ## Generic Types and Functions
 
