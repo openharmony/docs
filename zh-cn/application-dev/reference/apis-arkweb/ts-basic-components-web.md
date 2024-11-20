@@ -2816,6 +2816,61 @@ struct WebComponent {
 </html>
 ```
 
+### blurOnKeyboardHideMode<sup>14+</sup>
+
+blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
+
+设置当软键盘收起时Web元素失焦模式。枚举类型的默认值为SILENT，当用户手动收起软键盘时焦点仍在文本框。可更改为BLUR，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填   | 说明               |
+| ---- | --------------------------------------- | ---- | ------------------ |
+| mode | [BlurOnKeyboardHideMode](#bluronkeyboardhidemode14枚举说明) | 是    | 设置设置当软键盘收起时Web元素失焦关闭或开启。默认值：BlurOnKeyboardHideMode.SILENT。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State blurMode: BlurOnKeyboardHideMode = BlurOnKeyboardHideMode.BLUR;
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .blurOnKeyboardHideMode(this.blurMode)
+      }
+    }
+  }
+  ```
+
+ 加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>blurOnKeyboardHideMode Demo</h1>
+    <input type="text" id="input_a">
+    <script>
+      const inputElement = document.getElementById('input_a');
+      inputElement.addEventListener('blur', function() {
+        console.log('Input has lost focus');
+      });
+    </script>
+  </body>
+</html>
+```
+
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -9737,3 +9792,16 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式, 未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：MenuType.SELECTION_MENU     |
+
+## BlurOnKeyboardHideMode<sup>14+</sup>枚举说明
+
+设置手动收起软键盘时Web元素是否失焦。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称     | 值 | 说明          |
+| ------ | -- | ----------- |
+| SILENT  | 0 | 软键盘收起时web组件失焦功能关闭。 |
+| BLUR | 1 | 软键盘收起时web组件失焦功能开启。 |
