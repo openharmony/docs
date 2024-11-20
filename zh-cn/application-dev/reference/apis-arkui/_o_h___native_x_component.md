@@ -726,10 +726,10 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| root | 指向Native接口创建的组件实例的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| root | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
@@ -751,10 +751,10 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| root | 指向Native接口创建的组件实例的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| root | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
@@ -959,9 +959,9 @@ OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent (ArkUI_NodeHandle n
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| node | 指向Native接口创建的组件实例的指针。  | 
+| node | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
@@ -1411,6 +1411,8 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* compon
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
 | callback | 指示指向显示更新回调的指针。  |
+| timestamp | 当前帧到达的时间（单位：纳秒）。 |
+| targetTimestamp | 下一帧预期到达的时间（单位：纳秒）。 |
 
 **返回：**
 
@@ -1433,10 +1435,10 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback (OH_NativeXComponen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| callback | 指示指向自定义事件拦截回调的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| callback | 指示指向自定义事件拦截回调的指针。  |
 
 **返回：**
 
@@ -1455,11 +1457,11 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback (OH_NativeXComponent * 
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| callback | 指示指向UI输入事件回调的指针。  | 
-| type | 指示当前UI输入事件的类型。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| callback | 指示指向UI输入事件回调的指针。  |
+| type | 指示当前UI输入事件的类型。  |
 
 **返回：**
 
