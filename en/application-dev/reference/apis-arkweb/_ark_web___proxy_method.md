@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for the proxy method.
+Defines a proxy method.
 
 **Since**: 12
 
