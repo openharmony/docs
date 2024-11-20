@@ -24,7 +24,7 @@ Obtains the size of heap memory (including the allocator metadata) held by a pro
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| bigint | Size of the heap memory (including the allocator metadata) held by the process, in bytes. |
+| bigint | Size of the heap memory (including the allocator metadata) held by the process, in bytes.|
 
 **Example**
 
@@ -46,7 +46,7 @@ Obtains the size of the heap memory allocated to a process service, which is mea
 
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| bigint | Size of the heap memory allocated to a process service, in bytes. |
+| bigint | Size of the heap memory allocated to a process service, in bytes.|
 
 
 **Example**
@@ -68,7 +68,7 @@ Obtains the size of the cache memory held by the memory allocator.
 
 | Type  | Description                           |
 | ------ | ------------------------------- |
-| bigint | Size of the cache memory held by the memory allocator, in bytes. |
+| bigint | Size of the cache memory held by the memory allocator, in bytes.|
 
 **Example**
 ```ts
@@ -89,7 +89,7 @@ Obtains the size of the physical memory actually used by the application process
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| bigint | Size of the physical memory actually used by the application process, in KB. |
+| bigint | Size of the physical memory actually used by the application process, in KB.|
 
 **Example**
 ```ts
@@ -110,7 +110,7 @@ Obtains the virtual set size used by the application process.
 
 | Type  | Description                                    |
 | ------ | ---------------------------------------- |
-| bigint | Virtual set size used by the application process, in KB. |
+| bigint | Virtual set size used by the application process, in KB.|
 
 **Example**
 
@@ -132,7 +132,7 @@ Obtains the size of the shared dirty memory of a process.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| bigint | Size of the shared dirty memory of the process, in KB. |
+| bigint | Size of the shared dirty memory of the process, in KB.|
 
 
 **Example**
@@ -154,7 +154,7 @@ Obtains the size of the private dirty memory of a process.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| bigint | Size of the private dirty memory of the process, in KB. |
+| bigint | Size of the private dirty memory of the process, in KB.|
 
 **Example**
 ```ts
@@ -177,7 +177,7 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | CPU usage of the process. |
+| number | CPU usage of the process.|
 
 
 **Example**
@@ -199,7 +199,7 @@ Obtains system service information.
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | serviceid | number | Yes  | Obtains the system service information based on the specified service ID.|
 | fd | number | Yes  | File descriptor to which data is written by the API.|
@@ -209,7 +209,7 @@ Obtains system service information.
 
 For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | The parameter check failed. Possible causes:1.The parameter type error 2.The args parameter is not string array  |
 | 11400101 | ServiceId invalid. The system ability does not exist.                                           |
@@ -255,15 +255,15 @@ Starts the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` 
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`. |
+| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed,Parameter type error                        |
 
@@ -315,15 +315,15 @@ Exports the heap data.
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`. |
+| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed, Parameter type error                      |
 
@@ -353,9 +353,9 @@ Starts the profiling method. `startProfiling()` and `stopProfiling()` are called
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`. |
+| filename | string | Yes  | User-defined profile name. The `filename.json` file is generated in the `files` directory of the application based on the specified `filename`.|
 
 **Example**
 
@@ -405,9 +405,9 @@ Exports the heap data.
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`. |
+| filename | string | Yes  | User-defined heap file name. The `filename.heapsnapshot` file is generated in the `files` directory of the application based on the specified `filename`.|
 
 **Example**
 
@@ -454,7 +454,7 @@ Obtains the CPU usage of application threads.
 
 | Type            | Description                                                       |
 | -----------------| ------------------------------------------------------------|
-| [ThreadCpuUsage](#threadcpuusage12)[] | CPU usage of all threads of the current application process. |
+| [ThreadCpuUsage](#threadcpuusage12)[] | CPU usage of all threads of the current application process.|
 
 
 
@@ -478,11 +478,21 @@ Starts application trace collection. **startAppTraceCapture()** and **[stopAppTr
 
 **startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
 
+When an application calls **startAppTraceCapture()** to collect trace data and the size of the data exceeds the value of **limitSize**, the system automatically calls **stopAppTraceCapture()** to stop collecting trace data. If **limitSize** is set improperly, the collected trace data is insufficient for fault analysis. Therefore, you need to evaluate the value of **limitSize** as required.
+
+Evaluation method: limitSize = Expected trace collection duration x Unit trace traffic.
+
+Expected trace collection duration: You can determine the duration based on the fault scenario. The unit is second.
+
+Unit trace traffic: The size of a trace generated by an application per second. The recommended value is 300 KB/s. You are advised to use the actual value of your application. The unit is KB/s.
+
+To obtain the unit trace traffic, you can call **startAppTraceCapture()** with **limitSize** set to the maximum value 500 MB. After **N** seconds, call **stopAppTraceCapture()** to stop the collection and check the trace size (**S** KB). The unit trace traffic is S/N.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                                                 |
+| Name  | Type    | Mandatory| Description                                                                                 |
 | -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
 | tags     | number[] | Yes  | For details, see [tags](#tags12).                                                     |
 | flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).         |
@@ -498,7 +508,7 @@ Starts application trace collection. **startAppTraceCapture()** and **[stopAppTr
 
 For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not within the enumeration type 3.The parameter type error or parameter order error|
 | 11400102 | Capture trace already enabled.                                         |
@@ -524,9 +534,11 @@ hidebug.stopAppTraceCapture();
 
 stopAppTraceCapture() : void
 
-Stops application trace collection. **startAppTraceCapture()** and **[stopAppTraceCapture()](#hidebugstopapptracecapture12)** must be called in pairs.
+Stops application trace collection. [startAppTraceCapture()](#hidebugstartapptracecapture12) and **stopAppTraceCapture()** must be called in pairs.
 
 **startAppTraceCapture()** always occurs before **stopAppTraceCapture()**; that is, calling the APIs in the sequence similar to the following is prohibited: start -> start -> stop, start -> stop -> stop, and start -> start -> stop -> stop.
+
+If **startAppTraceCapture ()** is called without a properly specified **limitSize**, the size of the generated trace may exceed the **limitSize** value, causing the system to automatically call **stopAppTraceCapture()**. In this case, if **stopAppTraceCapture()** is called again, an error code 11400105 will be displayed.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -534,7 +546,7 @@ Stops application trace collection. **startAppTraceCapture()** and **[stopAppTra
 
 For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | The status of the trace is abnormal                                |
 | 11400105 |   No capture trace running                                       |
@@ -596,7 +608,7 @@ For example, if the CPU usage of system resources is **50%**, **0.5** is returne
 
 For details about the error codes, see [HiDebug CPU Usage Error Codes](errorcode-hiviewdfx-hidebug-cpuusage.md).
 
-| ID | Error Message                                           |
+| ID| Error Message                                           |
 | ------- |-------------------------------------------------|
 | 11400104 | The status of the system CPU usage is abnormal. |
 
@@ -620,17 +632,17 @@ Sets the number of FDs, number of threads, JS memory, or native memory limit of 
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                                        |
+| Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  Yes | Types of resource leakage: pss_memory (native memory) leak, js_heap (js heap memory) leak, fd (file descriptor) leak, and thread (thread) leak. |
-| value | number |  Yes | The maximum value of a resource leakage type. Value range: pss_memory leak **[1024, 4 * 1024 * 1024] (in KB)**, js_heap memory leak **[85, 95]** (85% to 95% of the upper limit of the JS heap memory), fd leak [10, 10000], thread leak **[1, 1000]** |
-| enableDebugLog | boolean |  Yes | Whether to enable debug log. The default value is **false**. Set this parameter to **true** only in the dark version because collecting debug logs consumes too much CPU or memory. |
+| type | string |  Yes | Types of resource leakage: pss_memory (native memory) leak, js_heap (js heap memory) leak, fd (file descriptor) leak, and thread (thread) leak.|
+| value | number |  Yes | The maximum value of a resource leakage type. Value range: pss_memory leak **[1024, 4 * 1024 * 1024] (in KB)**, js_heap memory leak **[85, 95]** (85% to 95% of the upper limit of the JS heap memory), fd leak [10, 10000], thread leak **[1, 1000]**|
+| enableDebugLog | boolean |  Yes | Whether to enable debug log. The default value is **false**. Set this parameter to **true** only in the dark version because collecting debug logs consumes too much CPU or memory.|
 
 **Error codes**
 
 For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | Invalid argument, Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
 | 11400104 | Set limit failed due to remote exception |
@@ -694,7 +706,7 @@ Obtains system memory information.
 
 | Type | Description                     |
 | ------ | -------------------------- |
-| [SystemMemInfo](#systemmeminfo12) | System memory iInformation.|
+| [SystemMemInfo](#systemmeminfo12) | System memory information.|
 
 **Example**
 
@@ -722,7 +734,7 @@ Obtains all system GC statistics.
 
 | Type                   | Description      |
 |-----------------------|----------|
-| [GcStats](#gcstats12) | System GC statistics. |
+| [GcStats](#gcstats12) | System GC statistics.|
 
 **Example**
 
@@ -747,21 +759,21 @@ Obtains the specified system GC statistics based on parameters.
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description         |
+| Name  | Type  | Mandatory| Description         |
 | -------- | ------ | ---- |-------------|
-| item | string | Yes  | Item of the GC statistics to be obtained. |
+| item | string | Yes  | Item of the GC statistics to be obtained.|
 
 | Input Parameter                        | Return Value Description         |
 |------------------------------|----------------|
 | ark.gc.gc-count | Count of GC of the calling thread.    |
-| ark.gc.gc-time | GC time triggered by the calling thread, in milliseconds. |
+| ark.gc.gc-time | GC time triggered by the calling thread, in milliseconds.|
 | ark.gc.gc-bytes-allocated | Memory size allocated to the Ark VM of the calling thread, in bytes.|
-| ark.gc.gc-bytes-freed | Memory freed by the GC of the calling thread, in bytes. |
-| ark.gc.fullgc-longtime-count | Count of long fullGC of the calling thread. |
+| ark.gc.gc-bytes-freed | Memory freed by the GC of the calling thread, in bytes.|
+| ark.gc.fullgc-longtime-count | Count of long fullGC of the calling thread.|
 
 **Error codes**
 
-| ID | Error Message                                                                                                      |
+| ID| Error Message                                                                                                      |
 | ------- |------------------------------------------------------------------------------------------------------------|
 | 401 | Possible causes:1. Invalid parameter, a string parameter required. 2. Invalid parameter, unknown property. |
 
@@ -783,7 +795,7 @@ Defines the memory limit of the application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory | Description        |
+| Name     | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
 | rssLimit    | bigint |  Yes | Limit on the resident set size, in KB.    |
 | vssLimit  | bigint |  Yes | Limit on the virtual memory size, in KB.      |
@@ -796,11 +808,11 @@ Describes the VM memory information.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name              | Type   | Readable | Writable | Description                               |
+| Name              | Type   | Readable| Writable| Description                               |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
 | totalHeap          | bigint  | Yes  | No  | Total heap size of the current VM, in KB.   |
 | heapUsed           | bigint  | Yes  | No  | Heap size used by the current VM, in KB. |
-| allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in KB. |
+| allArraySize       | bigint  | Yes  | No  | Size of all array objects of the current VM, in KB.|
 
 ## ThreadCpuUsage<sup>12+</sup>
 
@@ -808,7 +820,7 @@ Describes the CPU usage of a thread.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name              | Type   | Readable | Writable | Description                               |
+| Name              | Type   | Readable| Writable| Description                               |
 | -------------------| ------- | ---- | ---- | ----------------------------------- |
 | threadId           | number  | Yes  | No  | Thread ID.                          |
 | cpuUsage           | number  | Yes  | No  | CPU usage of the thread.                      |
@@ -860,7 +872,7 @@ Describes memory information of the application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory | Description        |
+| Name     | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
 | pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB.    |
 | vss  | bigint |  Yes | Size of the occupied virtual memory (including the memory occupied by the shared library), in KB.      |
@@ -876,7 +888,7 @@ Describes the system memory information.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name     | Type  | Mandatory | Description        |
+| Name     | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
 | totalMem  | bigint |  Yes | Total memory of the system, in KB.    |
 | freeMem  | bigint |  Yes | Free memory of the system, in KB.      |
@@ -888,16 +900,16 @@ Defines the type of the trace collection thread.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name                        | Value | Description                   |
+| Name                        | Value| Description                   |
 | --------------------------- |---| ----------------------- |
 | MAIN_THREAD                 | 1 | The main thread of the application.|
-| ALL_THREADS                 | 2 | All threads of the application. |
+| ALL_THREADS                 | 2 | All threads of the application.|
 
 ## GcStats<sup>12+</sup>
 
 type GcStats = Record&lt;string, number&gt;
 
-Key-value pair format used to store GC statistics. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use the lock mechanism for the instance.
+Key-value pair format used to store GC statistics. This type is not multi-thread safe. If a **GcStats** instance is operated by multiple threads at the same time in an application, use the lock mechanism for the instance.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -910,7 +922,97 @@ Key-value pair format used to store GC statistics. This type is not multi-thread
 | Name                    | Type  | Description                     |
 |-------------------------| ------ |------------------------- |
 | ark.gc.gc-count         | number |  Count of GC of the calling thread.|
-| ark.gc.gc-time          | number |  GC time triggered by the calling thread, in milliseconds. |
-| ark.gc.gc-bytes-allocated | number | Memory size allocated to the Ark VM of the calling thread, in bytes. |
+| ark.gc.gc-time          | number |  GC time triggered by the calling thread, in milliseconds.|
+| ark.gc.gc-bytes-allocated | number | Memory size allocated to the Ark VM of the calling thread, in bytes.|
 | ark.gc.gc-bytes-freed   | number | Memory freed by the GC of the calling thread, in bytes.|
-| ark.gc.fullgc-longtime-count | number |  Count of long fullGC of the calling thread. |
+| ark.gc.fullgc-longtime-count | number |  Count of long fullGC of the calling thread.|
+
+## hidebug.isDebugState<sup>12+</sup>
+
+isDebugState(): boolean
+
+Obtains whether an application process is being debugged. If the ark or native layer of the application process is being debugged, **true** is returned. Otherwise, **false** is returned.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type | Description                     |
+| ------ | -------------------------- |
+| boolean | Whether an application process is being debugged.|
+
+**Example**
+
+```ts
+import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
+
+hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
+```
+
+## hidebug.getGraphicsMemory<sup>14+</sup>
+
+getGraphicsMemory(): Promise&lt;number&gt;
+
+Obtains the size of the GPU memory. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type                   | Description                          |
+|-----------------------|------------------------------|
+| Promise&lt;number&gt; | Size of the GPU memory, in KB.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | Failed to get the application memory due to a remote exception. |
+
+**Example**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+hidebug.getGraphicsMemory().then((ret: number) => {
+    hilog.info(0x000, "testTag", `graphicsMemory: ${ret}`)
+}).catch((error: BusinessError) => {
+    hilog.info(0x000, "testTag", `error code: ${error.code}, error msg: ${error.message}`);
+})
+```
+
+## hidebug.getGraphicsMemorySync<sup>14+</sup>
+
+getGraphicsMemorySync(): number
+
+Obtains the size of the GPU memory. This API uses a synchronous callback to return the result.
+
+**Note**: This API involves multiple cross-process communications and may have performance problems. The asynchronous API **getGraphicsMemory** is recommended.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type | Description        |
+| ------ |------------|
+| number | Size of the GPU memory, in KB.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | Failed to get the application memory due to a remote exception. |
+
+**Example**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    hilog.info(0x000, "testTag", `graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
+} catch (error) {
+    hilog.info(0x000, "testTag", `error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
+```
