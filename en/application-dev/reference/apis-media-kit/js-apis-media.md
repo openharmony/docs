@@ -720,7 +720,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
-| 5400106  | Unsupport format.     |
+| 5400106  | Unsupported format.     |
 
 **Example**
 
@@ -835,8 +835,10 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
+let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
@@ -867,7 +869,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **Example**
 
@@ -906,7 +908,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **Example**
 
@@ -1489,7 +1491,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
-Selects an audio track when the AVPlayer is used to play a video with multiple audio tracks. This API uses a promise to return the result.
+Selects a track when the AVPlayer is used to play a resource with multiple audio and video tracks. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1499,8 +1501,8 @@ Selects an audio track when the AVPlayer is used to play a video with multiple a
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| index | number | Yes  | Index of the audio track, which is obtained from [MediaDescription](#mediadescription8).|
-| mode   | [SwitchMode](#switchmode12) | No  | Video track switch mode. The default mode is **SMOOTH**. Only the DASH protocol is supported. **This parameter is valid only for video playback.**|
+| index | number | Yes  | Index of the track. You can call [getTrackDescription](#gettrackdescription9-1) to obtain all track information [MediaDescription](#mediadescription8) of the current resource.|
+| mode   | [SwitchMode](#switchmode12) | No  | Video track switch mode. The default mode is **SMOOTH**. This parameter takes effect only for the switch of a video track for DASH streams.|
 
 **Return value**
 
@@ -1546,7 +1548,7 @@ avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
 
 deselectTrack(index: number): Promise\<void>
 
-Deselects an audio track when the AVPlayer is used to play a video with multiple audio tracks. This API uses a promise to return the result.
+Deselects a track when the AVPlayer is used to play a resource with multiple audio and video tracks. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1556,7 +1558,7 @@ Deselects an audio track when the AVPlayer is used to play a video with multiple
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| index | number | Yes  | Index of the audio track, which is obtained from [MediaDescription](#mediadescription8).|
+| index | number | Yes  | Track index, which is obtained from [MediaDescription] (#mediadescription8) by calling [getTrackDescription](#gettrackdescription9-1).|
 
 **Return value**
 
@@ -1817,7 +1819,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [bitrateDone](#onbitratedone9) event. Note that the AVPlayer selects a proper bit rate based on the network connection speed.
+Sets the bit rate for the streaming media. This API is valid only for HLS/DASH streams. By default, the AVPlayer selects a proper bit rate based on the network connection speed. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [bitrateDone](#onbitratedone9) event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1827,7 +1829,7 @@ Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. Th
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS stream by subscribing to the [availableBitrates](#onavailablebitrates9) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the minimum bit rate that is closed to the bit rate to set. If the length of the available bit rate list obtained through the event is 0, no bit rate can be set and the **bitrateDone** callback will not be triggered.|
+| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS/DASH stream by subscribing to the [availableBitrates](#onavailablebitrates9) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the bit rate that is closed to the bit rate to set. If the length of the available bit rate list obtained through the event is 0, no bit rate can be set and the **bitrateDone** callback will not be triggered.|
 
 **Example**
 
@@ -1886,7 +1888,7 @@ avPlayer.off('bitrateDone')
 
 on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
-Subscribes to available bit rates of HLS streams. This event is reported only after the AVPlayer switches to the prepared state.
+Subscribes to available bit rates of HLS/DASH streams. This event is reported only after the AVPlayer switches to the prepared state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1911,7 +1913,7 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 
 off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
-Unsubscribes from available bit rates of HLS streams. This event is reported after [prepare](#prepare9) is called.
+Unsubscribes from available bit rates of HLS/DASH streams. This event is reported after [prepare](#prepare9) is called.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2488,6 +2490,7 @@ Adds an external subtitle to a video based on the FD. Currently, the external su
 
 ```ts
 import { media } from '@kit.MediaKit'
+import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
@@ -2700,8 +2703,6 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 
 Subscribes to update events of the maximum audio level value, which is periodically reported when audio resources are played.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
@@ -2724,8 +2725,6 @@ avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
 off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 
 Unsubscribes from update events of the maximum amplitude.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -4192,7 +4191,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | 5400103  | I/O error.             |
 | 5400104  | Time out.              |
 | 5400105  | Service died.          |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.    |
 | 5400107  | Audio interrupted.     |
 
 **Example**
@@ -4254,6 +4253,8 @@ When the application initiates multiple subscriptions to this event, the last su
 **Example**
 
 ```ts
+import { audio } from '@kit.AudioKit'
+
 let capturerChangeInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCapturerChangeInfo) => {
@@ -4311,13 +4312,15 @@ When the application initiates multiple subscriptions to this event, the last su
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
+let context = getContext(this) as common.UIAbilityContext
 
 // Example: Process the photoAsset callback and save the video.
-async saveVideo(asset: photoAccessHelper.PhotoAsset) {
+async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4855,7 +4858,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | 5400103  | I/O error.              |
 | 5400104  | Time out.            |
 | 5400105  | Service died.           |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.      |
 
 **Example**
 
@@ -7558,6 +7561,8 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 Creates a media source for streaming media to be pre-downloaded.
 
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
 **System capability**: SystemCapability.Multimedia.Media.Core
 
 **Parameters**
@@ -7664,8 +7669,8 @@ Describes the playback strategy.
 | preferredBufferDuration | number | No | Preferred buffer duration, in seconds. The value ranges from 1 to 20.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | preferredHdr | boolean | No  | Whether HDR is preferred. The value **true** means that HDR is preferred, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | mutedMediaType | [MediaType](#mediatype8) | No| Media type for muted playback. Only **MediaType.MEDIA_TYPE_AUD** can be set.|
-| preferredAudioLanguage | string | No| Preferred audio track language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not invoked, and you are advised to retain the default value.|
-| preferredSubtitleLanguage | string | No| Preferred subtitle language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not invoked, and you are advised to retain the default value.|
+| preferredAudioLanguage<sup>13+</sup> | string | No| Preferred audio track language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| preferredSubtitleLanguage<sup>13+</sup> | string | No| Preferred subtitle language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 

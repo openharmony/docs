@@ -1,9 +1,9 @@
-# Using AVPlayer for Audio Playback (C/C++)
+# Using AVPlayer to Play Audio (C/C++)
 
 The [AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music.
 
 
-The full playback process includes creating an **AVPlayer** instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the **AVPlayer** instance.
+The full playback process includes creating an AVPlayer instance, setting callback functions, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the AVPlayer instance.
 
 
 During application development, you can obtain the playback process information through the callbacks [OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback) and [OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback) of the AVPlayer. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
@@ -46,10 +46,9 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```
 
 You can use C/C++ APIs related to audio playback by including the header files [avplayer.h](../../reference/apis-media-kit/avplayer_8h.md), [avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
-
 Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API reference.
 
-1. Create an **AVPlayer** instance by calling [OH_AVPlayer_Create()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_create). The AVPlayer is initialized to the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state.
+1. Create an AVPlayer instance by calling [OH_AVPlayer_Create()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_create). The AVPlayer is initialized to the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state.
 
 2. Set callbacks to listen for events. Specifically, call [OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback) and [OH_AVPlayer_SetOnErrorCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setonerrorcallback) to set the information callback and error callback, which are used in the entire process scenario. The table below lists the supported events.
    | Event Type| Description|
@@ -57,7 +56,7 @@ Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API refer
    | OH_AVPlayerOnInfoCallback | Mandatory; used to listen for AVPlayer process information.|
    | OH_AVPlayerOnErrorCallback | Mandatory; used to listen for AVPlayer errors.|
 
-    The application can obtain more information from the callbacks set by calling [OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback) and [OH_AVPlayer_SetOnErrorCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setonerrorcallback). In addition, it can set **userData** to distinguish different **AVPlayer** instances.
+    The application can obtain more information from the callbacks set by calling [OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback) and [OH_AVPlayer_SetOnErrorCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setonerrorcallback). In addition, it can set **userData** to distinguish different AVPlayer instances.
 
 3. Set the media asset. Specifically, call [OH_AVPlayer_SetURLSource()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_seturlsource) to set the URL of the media asset. The AVPlayer enters the [AV_INITIALIZED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state.
 
@@ -73,7 +72,7 @@ Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API refer
 
 9. (Optional) Reset the media asset by calling [OH_AVPlayer_Reset()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_reset). The AVPlayer enters the [AV_IDLE](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state again and you can change the media asset URL.
 
-10. Exit the playback. Specifically, call [OH_AVPlayer_Release()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_release) to destroy the instance. The AVPlayer enters the [AV_RELEASED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state and exits the playback. Further actions on the **AVPlayer** instance may lead to undefined behavior, such as the process crashing or the application terminating unexpectedly.
+10. Exit the playback. Specifically, call [OH_AVPlayer_Release()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_release) to destroy the instance. The AVPlayer enters the [AV_RELEASED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1) state and exits the playback. Further actions on the AVPlayer instance may lead to undefined behavior, such as the process crashing or the application terminating unexpectedly.
 
 ## Sample Code
 
