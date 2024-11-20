@@ -159,9 +159,9 @@
            }
            if (imgComponent.byteBuffer) {
              // 请参考步骤7解析buffer数据，本示例以方式一为例
-             let width = nextImage.size.width;
-             let height = nextImage.size.height;
-             let stride = imgComponent.rowStride;
+             let width = nextImage.size.width; // 获取图片的宽
+             let height = nextImage.size.height; // 获取图片的高
+             let stride = imgComponent.rowStride; // 获取图片的stride
              console.debug(`getComponent with width:${width} height:${height} stride:${stride}`);
              // stride与width一致
              if (stride == width) {
