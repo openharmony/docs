@@ -138,6 +138,8 @@ import { formInfo } from '@kit.FormKit';
 | Dimension_2_1      | 5   | 2 x 1 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| DIMENSION_2_3<sup>14+<sup>      | 8   | 2 x 3 form。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用，为穿戴设备使用。|
+| DIMENSION_3_3<sup>14+<sup>      | 9   | 3 x 3 form。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用，为穿戴设备使用。|
 
 ##  FormShape<sup>12+</sup> 
 
