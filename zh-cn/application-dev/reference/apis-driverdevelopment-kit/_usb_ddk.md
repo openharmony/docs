@@ -51,7 +51,7 @@
 | -------- | -------- |
 | [OH_Usb_Init](#oh_usb_init) (void) | 初始化DDK。 |
 | [OH_Usb_Release](#oh_usb_release) (void) | 释放DDK。 |
-| [OH_Usb_ReleaseResource](#oh_usb_releaseResource14) (void) | 释放DDK。 |
+| [OH_Usb_ReleaseResource](#oh_usb_releaseresource14) (void) | 释放DDK。 |
 | [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) (uint64_t deviceId, struct [UsbDeviceDescriptor](_usb_device_descriptor.md) \*desc) | 获取设备描述符。 |
 | [OH_Usb_GetConfigDescriptor](#oh_usb_getconfigdescriptor) (uint64_t deviceId, uint8_t configIndex, struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*\*const config) | 获取配置描述符。请在描述符使用完后使用[OH_Usb_FreeConfigDescriptor()](#oh_usb_freeconfigdescriptor)释放描述符，否则会造成内存泄露。 |
 | [OH_Usb_FreeConfigDescriptor](#oh_usb_freeconfigdescriptor) (const struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*const config) | 释放配置描述符，请在描述符使用完后释放描述符，否则会造成内存泄露。 |
@@ -330,7 +330,7 @@ void OH_Usb_Release (void)
 ### OH_Usb_ReleaseResource()<sup>14+</sup>
 
 ```
-void OH_Usb_ReleaseResource (void)
+int32_t OH_Usb_ReleaseResource (void)
 ```
 
 **描述:**
