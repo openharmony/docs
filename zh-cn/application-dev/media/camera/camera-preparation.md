@@ -37,5 +37,4 @@
 | 分段式拍照 | [分段式拍照(ArkTS)](camera-deferred-capture.md) | -  |
 | 动态照片 | [动态照片(ArkTS)](camera-moving-photo.md) | - |
 | 录像 | [录像(ArkTS)](camera-recording.md) | [录像(C/C++)](native-camera-recording.md) |
-| 录像流二次处理 | - | [录像流二次处理(C/C++)](native-camera-recording-imageReceiver.md) |
 | 元数据 | [元数据(ArkTS)](camera-metadata.md) | [元数据(C/C++)](native-camera-metadata.md) |
