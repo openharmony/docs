@@ -120,5 +120,3 @@ The following describes how to add a button in the application and click the but
    ```Text
    09-10 09:40:26.755 17221-17221/com.example.myapplication I A00000/testTag: GetSystemCpuUsage: 0.083904
    ```
-
-<!--no_check-->
