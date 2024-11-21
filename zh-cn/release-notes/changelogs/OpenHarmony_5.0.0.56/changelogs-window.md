@@ -8,7 +8,7 @@
 
 **变更原因**
 
-2in1设备下禁用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口，只能调用maximize接口进入沉浸式。
+2in1设备下禁用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口，只能调用maximize接口进入沉浸式，在进入最大化时通过maximize接口的入参控制状态栏和Dock栏的显示、隐藏状态。
 
 **变更影响**
 
