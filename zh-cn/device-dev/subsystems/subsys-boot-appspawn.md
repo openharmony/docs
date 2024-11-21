@@ -134,7 +134,7 @@
    参考沙盒配置说明，修改配置文件。
 
    - 进入设备下：/system/etc/sandbox/路径下，直接修改对应沙盒配置文件， 重新启动。
-   - 代码路径下：base/startup/appspawn_standard， 修改对应沙盒配置文件。
+   - 代码路径下：base/startup/appspawn， 修改对应沙盒配置文件。
 
   **表 3**  沙盒配置文件解释
 
