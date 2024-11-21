@@ -1431,7 +1431,7 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
-| 1300010 | The operation is not supported in full-screen mode. |
+| 1300010 | The operation in the current window status is invalid. |
 
 **示例：**
 
@@ -1489,7 +1489,7 @@ moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
-| 1300010 | The operation is not supported in full-screen mode. |
+| 1300010 | The operation in the current window status is invalid. |
 
 **示例：**
 
@@ -1671,7 +1671,7 @@ resizeAsync(width: number, height: number): Promise&lt;void&gt;
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
-| 1300010 | The operation is not supported in full-screen mode. |
+| 1300010 | The operation in the current window status is invalid. |
 
 **示例：**
 
