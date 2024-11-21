@@ -34,7 +34,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 用于指定国家，要求是合法的国家码。            |
-| locale       | string  | 是    | 指定国家的区域ID，要求是合法的区域ID。     |
+| locale       | string  | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
 | sentenceCase | boolean | 否    | 本地化显示文本时，首字母是否大写。默认值：true。 |
 
 **返回值：**
@@ -82,8 +82,8 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | 是    | 用于指定语言，要求是合法的语言ID。            |
-| locale       | string  | 是    | 指定语言的区域ID，要求是合法的区域ID。     |
+| language     | string  | 是    | 指定语言，要求是合法的语言ID。            |
+| locale       | string  | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。     |
 | sentenceCase | boolean | 否    | 本地化显示文本时，首字母是否大写。默认值：true。 |
 
 **返回值：**
@@ -290,7 +290,7 @@ static getSystemLocale(): string
 
 | 类型     | 说明      |
 | ------ | ------- |
-| string | 系统区域ID。 |
+| string | 区域信息的字符串。 |
 
 **示例：**
   ```ts
@@ -458,7 +458,7 @@ isRTL(locale: string): boolean
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| locale | string | 是    | 区域ID。 |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
 
 **返回值：**
 
@@ -486,7 +486,7 @@ getCalendar(locale: string, type? : string): Calendar
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | 合法的区域ID，例如zh-Hans-CN。                 |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。                 |
 | type   | string | 否    | 合法的日历类型，取值包括：buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。<br>默认值：区域默认的日历类型。不同取值代表的含义和不同场景下取值请参考[设置日历和历法](../../internationalization/i18n-calendar.md)。 |
 
 **返回值：**
@@ -516,7 +516,7 @@ constructor(locale?: string)
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | 否    | 合法的区域ID，例如zh-Hans-CN。 |
+| locale | string | 否    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，例如zh-Hans-CN。<br>默认值：系统当前locale。 |
 
 **错误码：**
 
@@ -581,7 +581,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 | 名称  | 类型   | 可读   | 可写   | 说明                |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | 是    | 是    | 实体类型，当前支持电话号码和日期类型。 |
+| type | string | 是    | 是    | 实体类型，当前支持phone_number和date类型。 |
 | begin | number | 是    | 是    | 实体的起始位置。 |
 | end | number | 是    | 是    | 实体的终止位置。 |
 
@@ -870,13 +870,13 @@ getDisplayName(locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | 区域ID。 |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **返回值：**
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| string | 日历在locale所指示的区域的名字。如,buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
+| string | 日历在locale所指示区域的名字。如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。|
 
 **示例：**
   ```ts
@@ -1125,7 +1125,6 @@ format(number: string): string
   console.log(formatResult); // formatResult: 130 493
   ```
 
-
 ### getLocationName<sup>9+</sup>
 
 getLocationName(number: string, locale: string): string
@@ -1141,7 +1140,7 @@ getLocationName(number: string, locale: string): string
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | number | string | 是    | 电话号码。获取其他地区号码的归属地时，需要在号码前加00+国际区号。 |
-| locale | string | 是    | 合法的区域ID。 |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **返回值：**
 
@@ -1198,7 +1197,7 @@ getInstance(locale?:string): IndexUtil
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 否    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>默认值：系统Locale。 |
+| locale | string | 否    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>默认值：系统Locale。 |
 
 **返回值：**
 
@@ -1255,7 +1254,7 @@ addLocale(locale: string): void
 
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
-| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **示例：**
   ```ts
@@ -1306,7 +1305,7 @@ getLineInstance(locale: string): BreakIterator
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
-| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。<br>生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域规则进行断句。 |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。<br>生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域规则进行断句。 |
 
 **返回值：**
 
@@ -1629,7 +1628,7 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
-| locale | string  | 否    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。默认值：系统Locale。                |
+| locale | string  | 否    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。默认值：系统Locale。                |
 | isDST  | boolean | 否    | 时区对象本地化时是否考虑夏令时。默认值：false。 |
 
 **返回值：**
@@ -1757,7 +1756,7 @@ static getCityDisplayName(cityID: string, locale: string): string
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID。 |
-| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。  |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。  |
 
 **返回值：**
 
@@ -2251,7 +2250,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | fromUnit | [UnitInfo](#unitinfo8) | 是    | 需要转换的单位。                                 |
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
-| locale   | string                 | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
+| locale   | string                 | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
 | style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md) |
 
 **返回值：**
@@ -2281,7 +2280,7 @@ static getDateOrder(locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | 表示区域信息的字符串，由语言、脚本、国家或地区组成，如：zh-Hans-CN。 |
+| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。 |
 
 **返回值：**
 
@@ -2310,7 +2309,7 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | 是    | 指定的时间，如：16。 |
-| locale | string | 否    | 表示区域信息的字符串，由语言、脚本、国家或地区组成。如：zh-Hans-CN。 <br>默认是当前区域。|
+| locale | string | 否    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。 <br>默认是当前区域。|
 
 **返回值：**
 
@@ -2353,8 +2352,8 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | 待匹配的区域ID，如：zh-Hans-CN。 |
-| localeList | string[] | 是   | 指定区域ID列表。 |
+| locale | string | 是    | 待匹配的[区域信息字符串](../internationalization/i18n-locale-culture.md#实现原理)，如：zh-Hans-CN。 |
+| localeList | string[] | 是   | 被指定的区域字符串列表。 |
 
 **返回值：**
 
@@ -2721,7 +2720,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
-| locale       | string  | 是    | 显示指定国家的区域ID。     |
+| locale       | string  | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：**
@@ -2751,7 +2750,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
-| locale       | string  | 是    | 显示指定国家的区域ID。     |
+| locale       | string  | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：**
@@ -2782,7 +2781,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言。            |
-| locale       | string  | 是    | 显示指定语言的区域ID。     |
+| locale       | string  | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。      |
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。默认值：true。 |
 
 **返回值：**
