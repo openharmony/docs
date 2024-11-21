@@ -20,7 +20,7 @@ import { appManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -180,7 +180,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -256,7 +256,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList:
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -438,7 +438,7 @@ off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -529,7 +529,7 @@ off(type: 'applicationState', observerId: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -744,7 +744,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -796,7 +796,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -841,7 +841,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -903,7 +903,7 @@ killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: bo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -969,7 +969,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1020,7 +1020,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1075,7 +1075,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1131,7 +1131,7 @@ killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1191,7 +1191,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1246,7 +1246,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1300,7 +1300,7 @@ getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1351,7 +1351,7 @@ getProcessMemoryByPid(pid: number): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1404,7 +1404,7 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1455,7 +1455,7 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1508,7 +1508,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1561,7 +1561,7 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1717,7 +1717,7 @@ try {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口。
+**系统接口**: 此接口为系统接口。
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
@@ -1793,7 +1793,7 @@ preloadApplication(bundleName: string, userId: number, mode: PreloadMode, appInd
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -1858,7 +1858,7 @@ getRunningMultiAppInfo(bundleName: string): Promise\<RunningMultiAppInfo>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -1915,7 +1915,7 @@ isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2041,7 +2041,7 @@ getSupportedProcessCachePids(bundleName : string): Promise\<Array\<number>>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -2098,7 +2098,7 @@ clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2157,7 +2157,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 
 **系统能力**: SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2221,7 +2221,7 @@ getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<Ke
 
 **系统能力**: SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2266,5 +2266,62 @@ try {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
   console.error(`[appManager] getKeepAliveBundles error: ${code}, ${message}`);
+}
+```
+
+
+## appManager.killProcessesInBatch<sup>14+</sup>
+
+killProcessesInBatch(pids: Array\<number>): Promise\<void>
+
+批量查杀进程。本接口当前仅支持2in1设备。
+
+**需要权限**: ohos.permission.KILL_APP_PROCESSES
+
+**系统能力**: SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pids    | Array\<number>   | 是    | 要查杀的进程ID。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let pids: Array<number> = [100, 101, 102];
+  appManager.killProcessesInBatch(pids).then(() => {
+    console.log(`killProcessesInBatch success`);
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessesInBatch fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] killProcessesInBatch error: ${code}, ${message}`);
 }
 ```
