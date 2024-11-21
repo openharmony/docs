@@ -59,7 +59,7 @@ The following describes how to add a button in the application and click the but
    @Component
    struct Index {
      @State message: string = 'Hello World'
-   
+
      build() {
        Row() {
          Column() {
@@ -80,5 +80,8 @@ The following describes how to add a button in the application and click the but
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
    Then, the CPU usage logs obtained using **hidebug.getSystemCpuUsage()** are displayed in the window.
    ```Text
-	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381 
+	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381
    ```
+
+<!--RP1-->
+<!--RP1End-->
