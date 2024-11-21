@@ -9,6 +9,8 @@ Defines the functions for debugging.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
+**File to include**: <hidebug/hidebug.h>
+
 **Since**: 12
 
 **Related module**: [HiDebug](_hi_debug.md)
