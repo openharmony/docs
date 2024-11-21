@@ -53,6 +53,10 @@ Output:
 <...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
 ```
 
+**File to include**:
+
+&lt;hitrace/trace.h&gt;
+
 **Since**
 
 10
@@ -66,13 +70,13 @@ Output:
 
 ### Structs
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | Defines the **HiTraceId** instance. | 
 
 ### Types
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | Defines an enum for whether a **HiTraceId** instance is valid. | 
 | typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | Defines an enum for the version number of **HiTrace**. | 
@@ -84,7 +88,7 @@ Output:
 
 ### Enums
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { [HITRACE_ID_INVALID](_hitrace.md) = 0, [HITRACE_ID_VALID](_hitrace.md) = 1 } | Enumerates whether a **HiTraceId** instance is valid. | 
 | [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1](_hitrace.md) = 0 } | Enumerates the version numbers of **HiTrace**. | 
@@ -95,7 +99,7 @@ Output:
 
 ### Functions
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | [HiTraceId](_hi_trace_id.md) [OH_HiTrace_BeginChain](_hitrace.md#oh_hitrace_beginchain) (const char \*name, int flags) | Starts tracing a process. | 
 | void [OH_HiTrace_EndChain](_hitrace.md#oh_hitrace_endchain) () | Stops tracing the process and clears the trace ID of the calling thread if the given trace ID is valid. Otherwise, no operation is performed. | 
