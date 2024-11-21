@@ -71,7 +71,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 |---------------| ------------------------------- | ---- |-----------------------------|
 | backupInfo    |string | 是   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。 |
 
-**说明：**
+> **说明：**
 >
 > 同步处理业务场景中，推荐使用示例如下。
 
@@ -99,7 +99,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
   }
   ```
 
-**说明：**
+> **说明：**
 >
 > 异步处理业务场景中，推荐使用示例如下。
 
@@ -172,7 +172,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
 | restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数 |
 
-**说明：**
+> **说明：**
 >
 > 异步处理业务场景中，推荐使用示例如下。
 
@@ -200,7 +200,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
   }
   ```
 
-**说明：**
+> **说明：**
 >
 > 同步处理业务场景中，推荐使用示例如下。
 
@@ -232,17 +232,14 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 onProcess(): string;
 
-备份恢复框架增加进度返回接口，该接口为同步接口，由应用在执行onBackup(onBackupEx)/onRestore(onRestoreEx)期间进行实现，
-返回应用自身处理业务的进度，返回值为json结构，使用方法见示例代码。
+备份恢复框架增加进度返回接口。该接口为同步接口，由应用在执行onBackup(onBackupEx)/onRestore(onRestoreEx)期间进行实现。返回应用自身处理业务的进度，返回值为json结构，使用方法见示例代码。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 > **说明：**
-> (1) onProcess可以不实现，系统有默认处理机制；若要实现，返回值结构严格按照示例代码返回</br>
-> (2) 实现onProcess时，业务需要将onBackup(onBackupEx)/onRestore(onRestoreEx)做异步实现，且需要单
-> 独开辟子线程，否则onProcess相关功能无法正常运行,具体使用方式见示例代码
->
-> onProcess() 推荐使用示例如下。
+> - onProcess可以不实现，系统有默认处理机制；若要实现，返回值结构严格按照示例代码返回。
+> - 实现onProcess时，业务需要将onBackup(onBackupEx)/onRestore(onRestoreEx)做异步实现，且需要单独开辟子线程，否则onProcess相关功能无法正常运行。具体使用方式见示例代码。
+> - onProcess() 推荐使用示例如下。
 
 **示例：**
 
