@@ -59,7 +59,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onBundleAdded(bundleName: string): void
 
-应用安装事件回调。
+应用安装事件回调，回调中包含应用包名。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -69,7 +69,7 @@ onBundleAdded(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 安装应用Bundle名称。 |
+| bundleName | string | 是    | 被安装应用的包名。 |
 
 **示例：**
 
@@ -81,11 +81,11 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtensionAbility.onBundleRemoved
+## EnterpriseAdminExtensionAbility.onBundleAdded<sup>14+</sup>
 
-onBundleRemoved(bundleName: string): void
+onBundleAdded(bundleName: string, accountId: number): void
 
-应用卸载事件回调。
+应用安装事件回调，回调中包含应用包名和账号ID。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -95,7 +95,34 @@ onBundleRemoved(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 卸载应用Bundle名称。 |
+| bundleName | string | 是    | 被安装应用的包名。 |
+| accountId | number | 是    | 被安装应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleAdded(bundleName: string, accountId?: number) {
+    console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleRemoved
+
+onBundleRemoved(bundleName: string): void
+
+应用卸载事件回调，回调中包含应用包名。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 被卸载应用的包名。 |
 
 **示例：**
 
@@ -103,6 +130,33 @@ onBundleRemoved(bundleName: string): void
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleRemoved(bundleName: string) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onBundleRemoved<sup>14+</sup>
+
+onBundleRemoved(bundleName: string, accountId: number): void
+
+应用卸载事件回调，回调中包含应用包名和账号ID。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 被卸载应用的包名。 |
+| accountId | number | 是    | 被卸载应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onBundleRemoved(bundleName: string, accountId?: number) {
+    console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
   }
 };
 ```
