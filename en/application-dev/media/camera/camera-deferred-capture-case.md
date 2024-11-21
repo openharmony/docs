@@ -1,5 +1,7 @@
 # Deferred Photo Delivery Sample (ArkTS)
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 This topic provides sample code that covers the complete deferred photo delivery process to help you understand the complete API calling sequence.
 
 Before referring to the sample code, you are advised to read [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and [Photo Capture](camera-shooting.md).
