@@ -60,6 +60,9 @@
 
       ```ts
       // Stage模型
+      // 导入resourceManager资源管理器
+      import { resourceManager } from '@kit.LocalizationKit';
+
       const context : Context = getContext(this);
       // 获取resourceManager资源管理器
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
@@ -70,6 +73,7 @@
       // 导入resourceManager资源管理器
       import { resourceManager } from '@kit.LocalizationKit';
       import { BusinessError } from '@kit.BasicServicesKit';
+
       resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
          console.log("Succeeded in getting resourceManager")
       }).catch((err : BusinessError) => {
@@ -94,6 +98,9 @@
 
       ```ts
       // Stage模型
+      // 导入resourceManager资源管理器
+      import { resourceManager } from '@kit.LocalizationKit';
+
       const context : Context = getContext(this);
       // 获取resourceManager资源管理器
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
@@ -104,6 +111,7 @@
       // 导入resourceManager资源管理器
       import { resourceManager } from '@kit.LocalizationKit';
       import { BusinessError } from '@kit.BasicServicesKit';
+
       resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
          console.log("Succeeded in getting resourceManager")
       }).catch((err : BusinessError) => {
@@ -154,7 +162,8 @@
    - 设置期望的format进行解码：
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
-      import image from '@ohos.multimedia.image';
+      import { image } from '@kit.ImageKit';
+
       let img = await getContext(this).resourceManager.getMediaContent($r('app.media.image'));
       let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
       let decodingOptions : image.DecodingOptions = {
@@ -171,7 +180,8 @@
    - HDR图片解码
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
-      import image from '@ohos.multimedia.image';
+      import { image } from '@kit.ImageKit';
+
       let img = await getContext(this).resourceManager.getMediaContent($r('app.media.CUVAHdr'));
       let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
       let decodingOptions : image.DecodingOptions = {
@@ -201,15 +211,20 @@
 1. 获取resourceManager资源管理。
 
    ```ts
+   // 导入resourceManager资源管理器
+   import { resourceManager } from '@kit.LocalizationKit';
+
    const context : Context = getContext(this);
    // 获取resourceManager资源管理
    const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
 2. 创建ImageSource。
-   - 通过rawfile文件夹下test.jpg的ArrayBuffer创建。
+   - 方式一：通过rawfile文件夹下test.jpg的ArrayBuffer创建。
 
      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
+
       resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
          console.log("Succeeded in getting RawFileContent")
          // 获取图片的ArrayBuffer
@@ -220,9 +235,11 @@
       });
      ```
 
-   - 通过rawfile文件夹下test.jpg的RawFileDescriptor创建。
+   - 方式二：通过rawfile文件夹下test.jpg的RawFileDescriptor创建。
 
      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
+
       resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
          console.log("Succeeded in getting RawFd")
          const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
