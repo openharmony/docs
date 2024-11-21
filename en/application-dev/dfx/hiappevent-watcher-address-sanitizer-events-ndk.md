@@ -8,7 +8,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 | **API**                                                      | **Description**                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher)   | Adds a watcher to listen for application events.|
+| int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher \*watcher)   | Adds a watcher to listen for application events.|
 | int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher \*watcher) | Removes a watcher for the specified application events.|
 
 ## **How to Develop**
@@ -47,18 +47,19 @@ The following describes how to subscribe an address sanitizer event for an array
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
+3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   # include "json/json.h"
-   # include "hilog/log.h"
-   # include "hiappevent/hiappevent.h"
+   #include "napi/native_api.h"
+   #include "json/json.h"
+   #include "hilog/log.h"
+   #include "hiappevent/hiappevent.h"
    
-   # undef LOG_TAG
-   # define LOG_TAG "testTag"
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to application events. 
+4. Subscribe to system events.
 
    - Watcher of the onReceive type:
 
@@ -106,9 +107,9 @@ The following describes how to subscribe an address sanitizer event for an array
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // Set the watcher name. The system identifies different watchers based on their names.
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-         // Set the event type to EVENT_ADDRESS_SANITIZER.
+         // Set the event to subscribe to EVENT_ADDRESS_SANITIZER.
          const char *names[] = {EVENT_ADDRESS_SANITIZER};
-         // Add the system events to watch, for example, system events.
+         // Add the events to watch, for example, system events.
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
          OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -116,7 +117,7 @@ The following describes how to subscribe an address sanitizer event for an array
          OH_HiAppEvent_AddWatcher(systemEventWatcher);
          return {};
      }
-     ```
+     ``` 
 
    - Watcher of the onTrigger type:
 
@@ -170,9 +171,9 @@ The following describes how to subscribe an address sanitizer event for an array
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // Set the watcher name. The system identifies different watchers based on their names.
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-         // Set the event type to EVENT_ADDRESS_SANITIZER.
+         // Set the event to subscribe to EVENT_ADDRESS_SANITIZER.
          const char *names[] = {EVENT_ADDRESS_SANITIZER};
-         // Add the system events to watch, for example, system events.
+         // Add the events to watch, for example, system events.
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // Set the implemented callback function. The callback function will be triggered when the conditions set by OH_HiAppEvent_SetTriggerCondition are met.
          OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -269,7 +270,7 @@ The following describes how to subscribe an address sanitizer event for an array
    HiAppEvent eventInfo.params.log_over_limit=false
    ```
 
-10. Remove the application event watcher.
+10. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -279,7 +280,7 @@ The following describes how to subscribe an address sanitizer event for an array
     }
     ```
 
-11. Destroy the application event watcher.
+11. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
@@ -289,5 +290,3 @@ The following describes how to subscribe an address sanitizer event for an array
         return {};
     }
     ```
-
-<!--no_check-->

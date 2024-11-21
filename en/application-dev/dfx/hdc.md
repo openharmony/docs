@@ -12,7 +12,7 @@ Obtain hdc from the **toolchains** folder in OpenHarmony SDK. For first-time use
 
 1. Choose **This PC > Properties >Advanced system settings > Advanced > Environment Variables**, add the variable **HDC_SERVER_PORT**, and set its value to any port number not in use, such as **7035**.
 
-![Create system variable](figures/hdc_image_001.png)
+![Create system variable](figures/hdc_image_001_en.PNG)
 
 2. Restart DevEco Studio.
 
@@ -73,9 +73,9 @@ Choose **This PC > Properties > Advanced system settings > Advances > Environmen
 
 In the following example, the **toolchains** path of the local SDK is <!--RP1-->**/User/username/sdk/openharmony/10/toolchains**<!--RP1End-->.
 
-![System Variables](figures/hdc_img_002.png)
+![System Variables](figures/hdc_img_002_en.PNG)
 
-![Edit Environment Variable](figures/hdc_image_003.png)
+![Edit Environment Variable](figures/hdc_image_003_en.PNG)
 
 **Linux/macOS**
 
@@ -97,18 +97,17 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
       vi ~/.zshrc
       ```
 
-2. Press **i** to enter **Insert** mode.<!--RP2-->
+2. Press **i** to enter **Insert** mode.
 
-3. Enter the following content and  add the SDK path to the **PATH**.
+3. Enter the following content and add the SDK path to the **PATH**.
 
-   In the following example, the **toolchains** path of the local SDK is **/User/*username*/sdk/openharmony/10/toolchains**.
+   In the following example, the **toolchains** path of the local SDK is <!--RP1-->**_/User/username/sdk/openharmony/10/toolchains_**<!--RP1End-->.
 
    ```shell
    HDC_SDK_PATH=/User/username/sdk/openharmony/10/toolchains
    launchctl setenv HDC_SDK_PATH $HDC_SDK_PATH # This command needs to be executed only on macOS.
    export PATH=$PATH:$HDC_SDK_PATH
    ```
-<!--RP2End-->
 
 4. Press **Esc** to exit **Insert** mode. Then enter **:wq** and press **Enter** to save the settings.
 
@@ -180,6 +179,7 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
 | -v/version | Displays hdc version information.|
 | -t [connect-key] [command] | Connects to the specified device. You can run the **hdc list targets** command to obtain the **connect-key**.|
 | -l [level] | Sets the levels of the logs generated during the running of the tool. The default value is **LOG_INFO**.|
+| wait | Waits for the device to be properly connected and checks whether the device is connected and ready to receive instructions.|
 | checkserver | Obtains the **client-server** version.|
 
 1. Display hdc help information.
@@ -273,7 +273,26 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
    hdc -l 5 shell ls
    ```
 
-5. Obtain the client-server version information.
+5. Wait until the device is connected properly.
+
+   ```shell
+   hdc wait // Wait for the device to connect.
+   hdc -t connect-key wait // Wait for the specified device to connect. Replace connect-key with the specified device ID.
+   ```
+
+   **Return value**
+   | Return Value| Description|
+   | -------- | -------- |
+   | None| After the **hdc wait** command is executed, the process ends when a properly connected device is identified.|
+
+   **Usage**
+
+   ```shell
+   hdc wait
+   hdc -t connect-key wait
+   ```
+
+6. Obtain the client-server version information.
 
    ```shell
    hdc checkserver
@@ -319,9 +338,10 @@ hdc list targets -v
 
 | Command| Description|
 | -------- | -------- |
-| target mount | Mounts the system partition in read/write mode(unavailable to user).|
-| target boot | Restarts the target device.|
-| smode [-r] | Grants the **root** permission to the background hdc service running on the device. You can use the **-r** option to revoke the granted permission(unavailable to user).|
+| target mount | Mounts the system partition in read/write mode (unavailable to user).|
+| target boot [-bootloader\|-recovery] | Restarts a target device. You can use the **-bootloader** option to enter the fastboot mode and the **-recovery** option to enter the recovery mode.|
+| target boot [MODE] | Restart a target device to enter the corresponding mode. **MODE** is an option supported by **reboot** in the **/bin/begetctl** command.|
+| smode [-r] | Grants the **root** permission to the background hdc service running on the device. You can use the **-r** option to revoke the granted permission (unavailable to user).|
 | kill [-r] | Terminates the hdc process. You can use the **-r** option to restart the process.|
 | start [-r] | Starts the hdc process. You can use the **-r** option to restart the process.|
 
@@ -334,8 +354,7 @@ hdc list targets -v
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | Mount finish | Mounting succeeded.|
-   | [Fail]Mount failed | Mounting failed.|
+   | No return value | The service is started successfully.|
 
    **Usage**
 
@@ -343,7 +362,30 @@ hdc list targets -v
    hdc target mount
    ```
 
-2. Grant the **root** permission to the background hdc service running on the device.
+2. Restart the target device.
+
+   ```shell
+   target boot [-bootloader|-recovery]
+   target boot [MODE]
+   ```
+
+   **Parameters**
+   | Name| Description|
+   | -------- | -------- |
+   | Not specified| Restarts a device.|
+   | -bootloader| Restarts a device to enter the **fastboot** mode.|
+   | -recovery | Restarts a device to enter the **recovery** mode.|
+   | MODE | Restarts a device to enter the **MODE** mode. The **MODE** option is supported by **reboot** in the **/bin/begetctl** command. You can run the **hdc shell "/bin/begetctl -h \grep reboot"** command to obtain the options.|  |
+
+   **Usage**
+
+   ```shell
+   hdc target boot -bootloader // Restart the device to enter the fastboot mode.
+   hdc target boot -recovery // Restart the device to enter the recovery mode.
+   hdc target boot shutdown // Shut down the device.
+   ```
+
+3. Grant the **root** permission to the background hdc service running on the device.
 
    ```shell
    hdc smode [-r]
@@ -362,7 +404,7 @@ hdc list targets -v
    hdc smode -r  // Revoke the root permission.
    ```
 
-3. Terminate the hdc service.
+4. Terminate the hdc service.
 
    ```shell
    hdc kill [-r]
@@ -381,7 +423,7 @@ hdc list targets -v
    hdc kill -r // Restart and terminate the service process. 
    ```
 
-4. Start the hdc service.
+5. Start the hdc service.
 
    ```shell
    hdc start [-r]
@@ -701,7 +743,8 @@ hdc list targets -v
 
 | Command| Description|
 | -------- | -------- |
-| jpid | Displays the apps that can be debugged.|
+| jpid | Displays the PIDs of all applications that have enabled JDWP on the device.|
+| track-jpid [-a\|-p]  | Displays the PID and name of the application for which JDWP is enabled on the device in real time. If no parameter is specified, only the processes of the **debug** application are displayed. If the **-a** parameter is specified, the processes of the **debug** and **release** applications are displayed. If the **-p** parameter is specified, the **debug** and **release** labels are not displayed.|
 | hilog [options] | Obtains the log information of the device. **options** indicates the parameters supported by HiLog. You can run the **hdc hilog -h** command to obtain the parameter information. |
 | shell [command] | Runs a debugging command specified by *command*. The supported commands vary with the system type or version. You can run the **hdc shell ls /system/bin** command to view the supported commands. |
 
@@ -728,7 +771,7 @@ hdc list targets -v
    hdc shell "hilog -r" // Clear the cached logs.
    ```
 
-2. Display apps that can be debugged.
+2. Display the PIDs of all processes that enable JDWP.
 
    ```shell
    hdc jpid
@@ -737,8 +780,8 @@ hdc list targets -v
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | Apps| List of apps that can be debugged.|
-   | [empty] | No apps can be debugged.|
+   | PID list| PIDs of the applications that enable JDWP|
+   | [empty] | No process enables JDWP.|
 
    **Usage**
 
@@ -746,7 +789,32 @@ hdc list targets -v
    hdc jpid
    ```
 
-3. Run a command.
+3. Display the PIDs and application names of the processes that enable JDWP on the device in real time.
+
+   ```shell
+   track-jpid [-a|-p]
+   ```
+
+   **Parameters**
+   | Parameter| Description|
+   | -------- | -------- |
+   | Not specified| Displays only the PIDs, bundle names, and process names of debug applications.|
+   | -a | Displays the PIDs, bundle names, and process names of the debug and release applications. |
+   | -p | Displays the PIDs, bundle names, and process names of the debug and release applications, but does not display the **debug** and **release** labels.|
+
+   **Return value**
+   | Return Value| Description|
+   | -------- | -------- |
+   | PIDs and bundle/process name list| - |
+   | [empty] | If no parameter is specified, no process of the debug application enables JDWP. If the **-a** or **-p** parameter is specified, no process enables JDWP.|
+
+   **Usage**
+
+   ```shell
+   hdc track-jpid
+   ```
+
+4. Run a command.
 
    ```shell
    hdc shell [command]
@@ -769,6 +837,30 @@ hdc list targets -v
    hdc shell ps -ef  
    hdc shell help -a // List all available commands.
    ```
+
+### Security Command
+
+| Command| Description|
+| -------- | -------- |
+| keygen FILE | Generates a new key pair and save the private key and public key to **FILE** and **FILE.pub** respectively. The file name **FILE** can be customized.|
+
+1. Generate a new key pair.
+
+   ```shell
+   hdc keygen FILE
+   ```
+
+   **Parameters**
+   | Parameter| Description|
+   | -------- | -------- |
+   | FILE | Custom file name.|
+
+   **Usage**
+
+   ```shell
+   hdc keygen key // Generate the key and key.pub files in the current directory.
+   ```
+
 
 ## When to Use
 
@@ -874,7 +966,7 @@ The collected logs are stored in the following path.
 
 | OS| Path| Remarks|
 | -------- | -------- | -------- |
-| Windows | %temp%\hdc.log | The following is an example. Replace *Username* with the actual one.<br>C:\Users\Username\AppData\Local\Temp\hdc.log|
+| Windows | %temp%\hdc.log | The following is an example. Replace *Username* with the actual one.<br/>C:\Users\Username\AppData\Local\Temp\hdc.log |
 | Linux | /tmp/hdc.log | - |
 | MacOS | $TMPDIR/hdc.log | - |
 
@@ -950,8 +1042,9 @@ Perform the following operations to locate the fault.
 
 - Case 3: "[Fail]Failed to communicate with daemon" is displayed when the device is connected. 
 
-  When "[Fail]Failed to communicate with daemon" is displayed after a hdc command is executed, possible causes are as follows:
+  When "[Fail]Failed to communicate with daemon" is displayed after a hdc command is executed.
 
+  Possible causes are as follows:
 
   - The hdc or SDK does not match the device. If the device is the latest version, update the hdc or SDK tool to the latest version.
   - The port is occupied.
@@ -967,7 +1060,7 @@ Perform the following operations to locate the fault.
     Solution:
     1. Check the software processes that come with hdc, including software with built-in hdc, such as DevEco Studio and DevEco Testing.
 
-       Stop these software processses and run hdc commands.
+       Stop these software processes and run hdc commands.
 
     2. Check hdc port status.
 
@@ -991,7 +1084,7 @@ Perform the following operations to locate the fault.
 
        Windows:
 
-       Choose **Task Manager** > **Details**, right-click  the **hdc.exe** process and choose **Open file location**. Check whether the location is the same as that configured in the environment variable. If not, stop the **hdc.exe** process by running the **hdc kill** command or terminating the process in **Task Manager**. Then, run the hdc command again. (The hdc server will be restarted by running the hdc command.)
+       Choose **Task Manager** > **Details**, right-click the **hdc.exe** process and choose **Open file location**. Check whether the location is the same as that configured in the environment variable. If not, stop the **hdc.exe** process by running the **hdc kill** command or terminating the process in **Task Manager**. Then, run the hdc command again. (The hdc server will be restarted by running the hdc command.)
 
        Unix:
 
@@ -1025,7 +1118,7 @@ The **hdc.exe**/hdc binary file cannot be executed using the CLI.
 
   macOS: macOS 11 or later is recommended.
 
-  Windows: Windows 10 or Windows 11 64-bit is recommended. If the WinUSB library or driver is missing in an earlier version, use [Zadig](https://github.com/pbatard/libwdi/releases) to update it. For Windows 10 or Windows 11 64-bit, use [Zadig](https://github.com/pbatard/libwdi/releases) to install the libusb-win32 driver.
+  Windows: Windows 10 or Windows 11 64-bit is recommended. If the WinUSB library or driver is missing in an earlier version, use [Zadig](https://github.com/pbatard/libwdi/releases) to update it. For Windows 10 or Windows 11 64-bit, use [Zadig](https://github.com/pbatard/libwdi/releases) to install the libusb-win32 driver. For details, see [Zadig](https://github.com/pbatard/libwdi/releases).
 
 - Improper running mode: Use the correct command to run the hdc tool instead of double-clicking the file.
 

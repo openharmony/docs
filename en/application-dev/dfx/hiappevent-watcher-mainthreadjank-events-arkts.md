@@ -72,9 +72,7 @@ The following describes how to subscribe to the main thread jank event, which is
      .fontWeight(FontWeight.Bold)
      .onClick(() => {
          let t = Date.now();
-         while (Date.now() - t <= 350){
-         
-         }
+         while (Date.now() - t <= 350) {}
      })
    ```
 

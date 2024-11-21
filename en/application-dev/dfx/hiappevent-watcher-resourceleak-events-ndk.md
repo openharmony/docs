@@ -48,15 +48,16 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   # include "json/json.h"
-   # include "hilog/log.h"
-   # include "hiappevent/hiappevent.h"
+   #include "napi/native_api.h"
+   #include "json/json.h"
+   #include "hilog/log.h"
+   #include "hiappevent/hiappevent.h"
    
-   # undef LOG_TAG
-   # define LOG_TAG "testTag"
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to application events.
+4. Subscribe to system events.
 
     - Watcher of the onReceive type:
 
@@ -85,6 +86,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                           auto bundleName = params["bundle_name"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto memory = writer.write(params["memory"]);
+                          auto externalLog = writer.write(eventInfo["external_log"]);
+                          std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true":"false";
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
@@ -92,6 +95,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
                       }
                   }
               }
@@ -101,9 +106,9 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
           // Set the watcher name. The system identifies different watchers based on their names.
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // Set the event type to EVENT_RESOURCE_OVERLIMIT.
+          // Set the event to watch to EVENT_RESOURCE_OVERLIMIT.
           const char *names[] = {EVENT_RESOURCE_OVERLIMIT};
-          // Add the system events to watch, for example, system events.
+          // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
           // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -139,6 +144,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                       auto bundleName = eventInfo["bundle_name"].asString();
                       auto bundleVersion = eventInfo["bundle_version"].asString();
                       auto memory = writer.write(eventInfo["memory"]);
+                      auto externalLog = writer.write(eventInfo["external_log"]);
+                      std::string logOverLimit = eventInfo["log_over_limit"].asBool() ? "true":"false";
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
@@ -146,6 +153,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
                   }
               }
           }
@@ -160,9 +169,9 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
           // Set the watcher name. The system identifies different watchers based on their names.
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-          // Set the event type to EVENT_RESOURCE_OVERLIMIT.
+          // Set the event to watch to EVENT_RESOURCE_OVERLIMIT.
           const char *names[] = {EVENT_RESOURCE_OVERLIMIT};
-          // Add the system events to watch, for example, system events.
+          // Add the events to watch, for example, system events.
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
           // Set the implemented callback function. The callback function will be triggered when the conditions set by OH_HiAppEvent_SetTriggerCondition are met.
           OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -209,13 +218,33 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    ```
 
 7. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
-   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event. The sample code is as follows:
+   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event, and enable **System resource leak log** in **Developer options**. The sample code is as follows:
 
    ```ts
-    Button("memoryleak").onClick(()=>{
-      // Construct a scenario for triggering a resource leak event in onClick(). The leak size is 1 MB.
-      hidebug.setAppResourceLimit("pss_memory", 1024, true);
-    })
+    import hidebug from "@ohos.hidebug";
+
+    @Entry
+    @Component
+    struct Index {
+    @State leakedArray: string[][] = [];
+
+    build() {
+      Column() {
+        Row() {
+          Column() {
+            Button("pss leak")
+              .onClick(() => {
+                hidebug.setAppResourceLimit("pss_memory", 1024, true);
+                for (let i = 0; i < 20 * 1024; i++) {
+                  this.leakedArray.push(new Array(1).fill("leak"));
+                }
+              })
+          }
+        }
+        .height('100%')
+        .width('100%')
+      }
+    }
    ```
 
 8. Click the **Run** button in DevEco Studio to run the project, and then a memory leak event will be reported after 15 to 30 minutes.
@@ -234,9 +263,11 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936}
+   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572401_6808.log","/data/storage/el2/log/resourcelimit/RESOURCE_OVERLIMIT_1725614572412_6808.log"]
+   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=false
    ```
 
-10. Remove the application event watcher.
+10. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -246,7 +277,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     }
     ```
 
-11. Destroy the application event watcher.
+11. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
@@ -256,5 +287,3 @@ For details about how to use the APIs (such as parameter usage restrictions and 
         return {};
     }
     ```
-
-<!--no_check-->
