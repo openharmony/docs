@@ -142,7 +142,7 @@ static setSystemLocale(locale: string): void
 
 | 参数名    | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| locale | string | 是    | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
+| locale | string | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。 |
 
 **错误码：**
 
@@ -551,6 +551,6 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 | 名称            | 类型            |  必填 |   说明                                 |
 | --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  否  | [表示区域信息的字符串](../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值为系统Locale。    |
+| locale          | string          |  否  | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值为系统Locale。    |
 | isUseLocalName  | boolean         |  否  | 表示是否使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
 | isSuggestedFirst | boolean        |  否  | 表示是否将推荐语言或国家地区在排序结果中置顶。<br>isSuggestedFirst属性默认值为true。  |
