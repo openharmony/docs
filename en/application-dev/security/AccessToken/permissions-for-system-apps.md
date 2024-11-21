@@ -4173,6 +4173,18 @@ Allows an application to start SuperHub.
 
 **Valid since**: 12
 
+### ohos.permission.USE_USER_ACCESS_MANAGER
+
+Allows an application to query and configure user identity authentication policies, and verify the authentication result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 17
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
