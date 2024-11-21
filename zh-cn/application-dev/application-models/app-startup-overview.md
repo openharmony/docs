@@ -4,7 +4,7 @@
 
 > **说明：**
 > 
-> 从API 12开始，已不再支持三方应用使用指定Ability方式（即显式Want）拉起其他应用。关于如何从指定Ability方式切换到指定应用链接方式，详见[显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)。
+> 从API 12开始，已不再推荐三方应用使用指定Ability方式（即显式Want）拉起其他应用。关于如何从指定Ability方式切换到指定[应用链接](app-startup-overview.md#应用链接)方式，详见[显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)。
 
 
 ## 应用链接
