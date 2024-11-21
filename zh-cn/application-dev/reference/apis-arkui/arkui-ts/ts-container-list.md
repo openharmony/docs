@@ -195,7 +195,7 @@ List设置cachedCount后，显示区域外上下各会预加载并布局cachedCo
 
 editMode(value: boolean)
 
-设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3)实现删除选中的list项。
+设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
 
 从API version9开始废弃不再使用，无替代接口。
 
@@ -1039,7 +1039,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 ## 示例
 
-### 示例1
+### 示例1（添加滚动事件）
 该示例实现了设置纵向列表，并在当前显示界面发生改变时回调索引。
 ```ts
 // xxx.ets
@@ -1093,7 +1093,8 @@ struct ListExample {
 ![zh-cn_image_0000001174264378](figures/zh-cn_image_0000001174264378.gif)
 
 
-### 示例2
+### 示例2（设置子元素对齐）
+该示例展示了不同ListItemAlign枚举值下，List组件交叉轴方向子元素对齐效果。
 
 ```ts
 // xxx.ets
@@ -1144,7 +1145,8 @@ struct ListLanesExample {
 ![list](figures/list-alignListItem.gif)
 
 
-### 示例3
+### 示例3（设置编辑模式）
+该示例展示了如何设置当前List组件是否处于可编辑模式。
 
 ```ts
 // xxx.ets
@@ -1201,7 +1203,8 @@ struct ListExample {
 
 ![list](figures/list3.gif)
 
-### 示例4
+### 示例4（设置限位对齐）
+该示例展示了List组件设置居中限位的实现效果。
 
 ```ts
 // xxx.ets
@@ -1252,7 +1255,7 @@ struct ListExample {
 
 ![list](figures/list4.gif)
 
-### 示例5
+### 示例5（跳转准确）
 该示例通过设置childrenMainSize属性，实现了List在子组件高度不一致时调用scrollTo接口也可以跳转准确。
 
 如果配合状态管理V2使用，详情见：[List与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#list)。
@@ -1317,7 +1320,7 @@ struct ListExample {
 
 ![list](figures/list5.gif)
 
-### 示例6
+### 示例6（获得子组件索引信息）
 该示例展示了含有group时，获得List组件的Item索引相关信息。
 ```ts
 // xxx.ets
@@ -1426,11 +1429,10 @@ interface TimeTable {
 
 ![list](figures/getItemIndex_listGroup.gif)
 
-### 示例7
+### 示例7（设置边缘渐隐）
+该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度。
 
 ```ts
-// xxx.ets
-//该示例实现了List组件开启边缘渐隐效果并设置边缘渐隐长度
 import { LengthMetrics } from '@kit.ArkUI'
 @Entry
 @Component
