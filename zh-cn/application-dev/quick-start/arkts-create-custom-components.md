@@ -248,7 +248,6 @@ struct Son {
           }
         })
     }
-    .justifyContent(FlexAlign.SpaceBetween)
     .height(56)
   }
 }

@@ -1,7 +1,7 @@
 # \@Track装饰器：class对象属性级更新
 
 
-\@Track应用于class对象的属性级更新。@Track装饰的属性变化时，只会触发该属性关联的UI更新。
+\@Track应用于class对象的属性级更新。\@Track装饰的属性变化时，只会触发该属性关联的UI更新。
 
 
 > **说明：**
@@ -11,7 +11,7 @@
 
 ## 概述
 
-\@Track是class对象的属性装饰器。当一个class对象是状态变量时，@Track装饰的属性发生变化，只会触发该属性关联的UI更新；而未被标记的属性不能在UI中使用，如果使用，会发生运行时报错。
+\@Track是class对象的属性装饰器。当一个class对象是状态变量时，\@Track装饰的属性发生变化，只会触发该属性关联的UI更新；如果class类中使用了\@Track装饰器，则未被\@Track装饰器装饰的属性不能在UI中使用，如果使用，会发生运行时报错。
 
 
 ## 装饰器说明
@@ -25,13 +25,13 @@
 
 ## 观察变化和行为表现
 
-当一个class对象是状态变量时，@Track装饰的属性发生变化，该属性关联的UI触发更新。
+当一个class对象是状态变量时，\@Track装饰的属性发生变化，该属性关联的UI触发更新。
 
 > **说明：**
 >
-> 当class对象中没有一个属性被标记@Track，行为与原先保持不变。@Track没有深度观测的功能。
+> 当class对象中没有一个属性被标记\@Track，行为与原先保持不变。\@Track没有深度观测的功能。
 
-使用@Track装饰器可以避免冗余刷新。
+使用\@Track装饰器可以避免冗余刷新。
 
 ```ts
 class LogTrack {
@@ -98,12 +98,12 @@ struct AddLog {
 
 在上面的示例中：
 
-1. 类LogTrack中的属性均被@Track装饰器装饰，点击按钮"change logTrack.str1"，此时Text1刷新，Text2不刷新，只有一条日志输出，避免了冗余刷新。
+1. 类LogTrack中的属性均被\@Track装饰器装饰，点击按钮"change logTrack.str1"，此时Text1刷新，Text2不刷新，只有一条日志输出，避免了冗余刷新。
     ```ts
     Text 1 is rendered
     ```
 
-2. 类logNotTrack中的属性均未被@Track装饰器装饰，点击按钮"change logNotTrack.str1"，此时Text3、Text4均会刷新，有两条日志输出，存在冗余刷新。
+2. 类logNotTrack中的属性均未被\@Track装饰器装饰，点击按钮"change logNotTrack.str1"，此时Text3、Text4均会刷新，有两条日志输出，存在冗余刷新。
     ```ts
     Text 3 is rendered
     Text 4 is rendered
@@ -111,16 +111,16 @@ struct AddLog {
 
 ## 限制条件
 
-- 不能在UI中使用非@Track装饰的属性，包括不能绑定在组件上、不能用于初始化子组件，错误的使用将导致JSCrash；可以在非UI中使用非@Track装饰的属性，如事件回调函数中、生命周期函数中等。
+- 如果class类中使用了\@Track装饰器，那么该class类中非\@Track装饰的属性不能在UI中使用，包括不能绑定在组件上、不能用于初始化子组件，错误的使用将导致JSCrash；可以在非UI中使用非\@Track装饰的属性，如事件回调函数中、生命周期函数中等。
 
-- 建议开发者不要混用包含@Track的class对象和不包含@Track的class对象，如联合类型中、类继承中等。
+- 建议开发者不要混用包含\@Track的class对象和不包含\@Track的class对象，如联合类型中、类继承中等。
 
 
 ## 使用场景
 
 ### \@Track和自定义组件更新
 
-以下示例展示组件更新和\@Track的处理步骤。对象log是\@State装饰的状态变量，logInfo是@Track的成员属性，其余成员属性都是非@Track装饰的，而且也不准备在UI中更新它们的值。
+以下示例展示组件更新和\@Track的处理步骤。对象log是\@State装饰的状态变量，logInfo是\@Track的成员属性，其余成员属性都是非\@Track装饰的，而且也不准备在UI中更新它们的值。
 
 
 ```ts
@@ -177,5 +177,5 @@ struct AddLog {
 
 1. AddLog自定义组件的Text.onClick点击事件自增字符串' info.'。
 
-2. 由于\@State log变量的@Track属性logInfo更改，Text重新渲染。
+2. 由于\@State log变量的\@Track属性logInfo更改，Text重新渲染。
 
