@@ -5832,6 +5832,7 @@ try {
 setWindowDecorVisible(isVisible: boolean): void
 
 设置窗口标题栏是否可见，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+禁用窗口标题栏装饰之后，主窗口进入全屏沉浸式时鼠标Hover到热区上会显示悬浮标题栏，如果想禁用参考[setTitleAndDockHoverShown()](#settitleanddockhovershown14)接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6070,9 +6071,8 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-<!--RP1-->
 设置窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-<!--RP1End-->
+对于主窗口进入全屏沉浸式时鼠标Hover到热区上显示悬浮标题栏不受该接口影响，悬浮标题栏的高度为固定值37vp。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

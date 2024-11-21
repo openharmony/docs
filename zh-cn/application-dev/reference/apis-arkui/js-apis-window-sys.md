@@ -3409,7 +3409,7 @@ promise.then(() => {
 
 disableWindowDecor(): void
 
-禁止窗口装饰。
+禁止窗口装饰。禁用窗口标题栏装饰之后，主窗口进入全屏沉浸式时鼠标Hover到热区上会显示悬浮标题栏，如果想禁用参考[setTitleAndDockHoverShown()](./js-apis-window.md#settitleanddockhovershown14)接口。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
