@@ -89,7 +89,7 @@ mediatool recv <resource-uri> <dest-path>
 
 将`<resource-uri>`指定为`all`则能够将所有媒体库资源的源文件导出。当`<resource-uri>`为`all`时，`<dest-path>`必须为文件夹路径。
 
-```<dest-path>```只支持/data/local/tmp下的路径。
+<!--RP1--><!--RP1End-->
 
 **使用示例：**
 
