@@ -59,6 +59,7 @@
       - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
       - [@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
       - [@Require装饰器：校验构造传参](quick-start/arkts-require.md)
+      - [@Reusable装饰器：组件复用](quick-start/arkts-reusable.md)
     - 状态管理<!--arkts-state-management-->
       - [状态管理概述](quick-start/arkts-state-management-overview.md)
       - 状态管理（V1稳定版）<!--arkts-state-management-v1-->
@@ -3307,6 +3308,8 @@
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
+            - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
+            - [InitSync](reference/apis-basic-services-kit/_init_sync.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
@@ -3314,6 +3317,8 @@
             - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - 头文件<!--basic-services-headerfile-->
+            - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
+            - [init_sync.h](reference/apis-basic-services-kit/init__sync_8h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
@@ -4166,7 +4171,7 @@
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
-    - Vulkan<!--vulkan-->
+    - Vulkan<!--vulkan-guide-->
       - [Vulkan开发指导](reference/native-lib/vulkan-guidelines.md)
       - [Vulkan支持能力](reference/native-lib/vulkan.md)
       - Vulkan扩展能力<!--vulkan-extensions-->
