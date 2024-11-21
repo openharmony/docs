@@ -37,9 +37,9 @@ Refresh(value: RefreshOptions)
 | refreshing | boolean                                  | 是    | 组件当前是否处于刷新中状态。true表示处于刷新中状态，false表示未处于刷新中状态。<br/>默认值：false<br/>该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | offset<sup>(deprecated)</sup>    | number&nbsp;\|&nbsp;string   | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>从API version 11开始废弃，无替代接口<br/>**说明：**<br/>offset取值范围[0vp,64vp]。大于64vp按照64vp处理。不支持百分比，不支持负数 。|
 | friction<sup>(deprecated)</sup>   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。<br/>从API version 11开始废弃，从API version 12开始，可用[pullDownRatio](#pulldownratio12)属性替代。 |
-| builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 自定义刷新区域显示内容。<br/>**说明：**<br/>API version 10及之前版本，自定义组件的高度限制在64vp之内。API version 11及以后版本没有此限制。 <br/>自定义组件设置了固定高度时，自定义组件会以固定高度显示在刷新区域下方；自定义组件未设置高度时，自定义组件高度会自适应刷新区域高度，会发生自定义组件高度跟随刷新区域变化至0的现象。建议对自定义组件设置最小高度约束来避免自定义组件高度小于预期的情况发生，具体可参照[示例2](#示例2)。 <br/>从API version 12开始，建议使用refreshingContent参数替代builder参数自定义刷新区域显示内容，以避免刷新过程中因自定义组件销毁重建造成的动画中断问题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 自定义刷新区域显示内容。<br/>**说明：**<br/>API version 10及之前版本，自定义组件的高度限制在64vp之内。API version 11及以后版本没有此限制。 <br/>自定义组件设置了固定高度时，自定义组件会以固定高度显示在刷新区域下方；自定义组件未设置高度时，自定义组件高度会自适应刷新区域高度，会发生自定义组件高度跟随刷新区域变化至0的现象。建议对自定义组件设置最小高度约束来避免自定义组件高度小于预期的情况发生，具体可参照[示例3](#示例3自定义刷新区域显示内容-builder)。 <br/>从API version 12开始，建议使用refreshingContent参数替代builder参数自定义刷新区域显示内容，以避免刷新过程中因自定义组件销毁重建造成的动画中断问题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | promptText<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置刷新区域底部显示的自定义文本。<br/>**说明：**<br/>输入文本的限制参考Text组件，使用builder或refreshingContent参数自定义刷新区域显示内容时，promptText不显示。<br/>promptText设置有效时，[refreshOffset](#refreshoffset12)属性默认值为96vp。<br/>自定义文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)为2。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| refreshingContent<sup>12+</sup>    | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否    | 自定义刷新区域显示内容。<br/>**说明：**<br/>与builder参数同时设置时builder参数不生效。<br/>自定义组件设置了固定高度时，自定义组件会以固定高度显示在刷新区域下方；自定义组件未设置高度时，自定义组件高度会自适应刷新区域高度，会发生自定义组件高度跟随刷新区域变化至0的现象。建议对自定义组件设置最小高度约束来避免自定义组件高度小于预期的情况发生，具体可参照[示例5](#示例5)。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| refreshingContent<sup>12+</sup>    | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否    | 自定义刷新区域显示内容。<br/>**说明：**<br/>与builder参数同时设置时builder参数不生效。<br/>自定义组件设置了固定高度时，自定义组件会以固定高度显示在刷新区域下方；自定义组件未设置高度时，自定义组件高度会自适应刷新区域高度，会发生自定义组件高度跟随刷新区域变化至0的现象。建议对自定义组件设置最小高度约束来避免自定义组件高度小于预期的情况发生，具体可参照[示例4](#示例4自定义刷新区域显示内容-refreshingcontent)。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 >  **补充说明：**
 >  - 当未设置builder或refreshingContent时，是通过更新子组件的[translate](ts-universal-attributes-transformation.md#translate)属性实现的下拉位移效果，下拉位移过程中不会触发子组件的[onAreaChange](ts-universal-component-area-change-event.md#onareachange)事件，子组件设置[translate](ts-universal-attributes-transformation.md#translate)属性时不会生效。
@@ -161,9 +161,9 @@ onOffsetChange(callback: Callback\<number>)
 
 ## 示例 
 
-### 示例1
+### 示例1（默认刷新样式）
 
-刷新区域使用默认样式。
+刷新区域使用默认刷新样式。
 
 ```ts
 // xxx.ets
@@ -213,9 +213,64 @@ struct RefreshExample {
 }
 ```
 
-![zh-cn_image_refresh_example1](figures/zh-cn_image_refresh_example1.gif)
+![zh-cn_image_refresh_default](figures/zh-cn_image_refresh_default.gif)
 
-### 示例2 
+### 示例2（设置刷新区域显示文本）
+
+通过promptText参数设置刷新区域显示文本。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State promptText: string = "Refreshing..."
+  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing, promptText: this.promptText}) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('70%').height(80).fontSize(16).margin(10)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .onScrollIndex((first: number) => {
+          console.info(first.toString())
+        })
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(96)
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onOffsetChange((value: number) => {
+        console.info('Refresh onOffsetChange offset:' + value)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false
+        }, 2000)
+        console.log('onRefreshing test')
+      })
+    }
+  }
+}
+```
+
+![zh-cn_image_refresh_prompttext](figures/zh-cn_image_refresh_prompttext.gif)
+
+### 示例3（自定义刷新区域显示内容-builder）
 
 通过builder参数自定义刷新区域显示内容。
 
@@ -281,11 +336,174 @@ struct RefreshExample {
 }
 ```
 
-![zh-cn_image_refresh_example2](figures/zh-cn_image_refresh_example2.gif)
+![zh-cn_image_refresh_builder](figures/zh-cn_image_refresh_builder.gif)
 
-### 示例3
+### 示例4（自定义刷新区域显示内容-refreshingContent）
 
-边界刷新回弹效果。
+通过refreshingContent参数自定义刷新区域显示内容。
+
+```ts
+import { ComponentContent } from '@ohos.arkui.node';
+
+class Params {
+  refreshStatus: RefreshStatus = RefreshStatus.Inactive
+
+  constructor(refreshStatus: RefreshStatus) {
+    this.refreshStatus = refreshStatus;
+  }
+}
+
+@Builder
+function customRefreshingContent(params:Params) {
+  Stack() {
+    Row() {
+      LoadingProgress().height(32)
+      Text("refreshStatus: "+params.refreshStatus).fontSize(16).margin({left:20})
+    }
+    .alignItems(VerticalAlign.Center)
+  }
+  .align(Alignment.Center)
+  .clip(true)
+  .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  .width("100%")
+}
+
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State refreshStatus: RefreshStatus = RefreshStatus.Inactive
+  private contentNode?: ComponentContent<Object> = undefined
+  private params: Params = new Params(RefreshStatus.Inactive)
+
+  aboutToAppear():void {
+    let uiContext = this.getUIContext()
+    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), this.params)
+  }
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('70%').height(80).fontSize(16).margin(10)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .onScrollIndex((first: number) => {
+          console.info(first.toString())
+        })
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .backgroundColor(0x89CFF0)
+      .pullToRefresh(true)
+      .refreshOffset(96)
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        this.refreshStatus = refreshStatus
+        this.params.refreshStatus = refreshStatus
+        this.contentNode?.update(this.params) // 更新自定义组件内容
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false
+        }, 2000)
+        console.log('onRefreshing test')
+      })
+    }
+  }
+}
+```
+![zh-cn_image_refresh_refreshingcontent](figures/zh-cn_image_refresh_refreshingcontent.gif)
+
+### 示例5（实现最大下拉距离）
+
+通过[pullDownRatio](#pulldownratio12)属性和[onOffsetChange](#onoffsetchange12)事件实现最大下拉距离。
+
+```ts
+import { ComponentContent } from '@ohos.arkui.node';
+
+@Builder
+function customRefreshingContent() {
+  Stack() {
+    Row() {
+      LoadingProgress().height(32)
+    }
+    .alignItems(VerticalAlign.Center)
+  }
+  .align(Alignment.Center)
+  .clip(true)
+  .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
+  .width("100%")
+}
+
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false
+  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State maxRefreshingHeight: number = 100.0
+  @State ratio: number = 1
+  private contentNode?: ComponentContent<Object> = undefined
+
+  aboutToAppear():void {
+    let uiContext = this.getUIContext();
+    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent))
+  }
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
+        List() {
+          ForEach(this.arr, (item: string) => {
+            ListItem() {
+              Text('' + item)
+                .width('70%').height(80).fontSize(16).margin(10)
+                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+            }
+          }, (item: string) => item)
+        }
+        .onScrollIndex((first: number) => {
+          console.info(first.toString())
+        })
+        .width('100%')
+        .height('100%')
+        .alignListItem(ListItemAlign.Center)
+        .scrollBar(BarState.Off)
+      }
+      .backgroundColor(0x89CFF0)
+      .pullDownRatio(this.ratio)
+      .pullToRefresh(true)
+      .refreshOffset(64)
+      .onOffsetChange((offset: number)=>{
+          this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3) // 越接近最大距离，下拉跟手系数越小
+      })
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false
+        }, 2000)
+        console.log('onRefreshing test')
+      })
+    }
+  }
+}
+```
+
+![zh-cn_image_refresh_maxrefreshingheight](figures/zh-cn_image_refresh_maxrefreshingheight.gif)
+
+### 示例6（实现下拉刷新上拉加载更多）
+
+Refresh组件与List组件组合实现下拉刷新上拉加载更多效果。
 
 ```ts
 // xxx.ets
@@ -391,221 +609,3 @@ struct ListRefreshLoad {
 ```
 
 ![refresh_boundary_resilience](figures/refresh_boundary_resilience.gif)
-
-### 示例4
-
-通过promptText参数设置刷新区域显示文本。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State promptText: string = "Refreshing..."
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
-
-  build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, promptText: this.promptText}) {
-        List() {
-          ForEach(this.arr, (item: string) => {
-            ListItem() {
-              Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-            }
-          }, (item: string) => item)
-        }
-        .onScrollIndex((first: number) => {
-          console.info(first.toString())
-        })
-        .width('100%')
-        .height('100%')
-        .alignListItem(ListItemAlign.Center)
-        .scrollBar(BarState.Off)
-      }
-      .backgroundColor(0x89CFF0)
-      .pullToRefresh(true)
-      .refreshOffset(96)
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onOffsetChange((value: number) => {
-        console.info('Refresh onOffsetChange offset:' + value)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-        }, 2000)
-        console.log('onRefreshing test')
-      })
-    }
-  }
-}
-```
-
-![zh-cn_image_refresh_example4](figures/zh-cn_image_refresh_example4.gif)
-
-### 示例5
-
-通过refreshingContent参数自定义刷新区域显示内容
-
-```ts
-import { ComponentContent } from '@ohos.arkui.node';
-
-class Params {
-  refreshStatus: RefreshStatus = RefreshStatus.Inactive
-
-  constructor(refreshStatus: RefreshStatus) {
-    this.refreshStatus = refreshStatus;
-  }
-}
-
-@Builder
-function customRefreshingContent(params:Params) {
-  Stack() {
-    Row() {
-      LoadingProgress().height(32)
-      Text("refreshStatus: "+params.refreshStatus).fontSize(16).margin({left:20})
-    }
-    .alignItems(VerticalAlign.Center)
-  }
-  .align(Alignment.Center)
-  .clip(true)
-  .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
-  .width("100%")
-}
-
-@Entry
-@Component
-struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
-  @State refreshStatus: RefreshStatus = RefreshStatus.Inactive
-  private contentNode?: ComponentContent<Object> = undefined
-  private params: Params = new Params(RefreshStatus.Inactive)
-
-  aboutToAppear():void {
-    let uiContext = this.getUIContext()
-    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), this.params)
-  }
-
-  build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
-        List() {
-          ForEach(this.arr, (item: string) => {
-            ListItem() {
-              Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-            }
-          }, (item: string) => item)
-        }
-        .onScrollIndex((first: number) => {
-          console.info(first.toString())
-        })
-        .width('100%')
-        .height('100%')
-        .alignListItem(ListItemAlign.Center)
-        .scrollBar(BarState.Off)
-      }
-      .backgroundColor(0x89CFF0)
-      .pullToRefresh(true)
-      .refreshOffset(96)
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        this.refreshStatus = refreshStatus
-        this.params.refreshStatus = refreshStatus
-        this.contentNode?.update(this.params) // 更新自定义组件内容
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-        }, 2000)
-        console.log('onRefreshing test')
-      })
-    }
-  }
-}
-```
-![zh-cn_image_refresh_example5](figures/zh-cn_image_refresh_example5.gif)
-
-### 示例6
-
-通过[pullDownRatio](#pulldownratio12)属性和[onOffsetChange](#onoffsetchange12)事件实现最大下拉距离
-
-```ts
-import { ComponentContent } from '@ohos.arkui.node';
-
-@Builder
-function customRefreshingContent() {
-  Stack() {
-    Row() {
-      LoadingProgress().height(32)
-    }
-    .alignItems(VerticalAlign.Center)
-  }
-  .align(Alignment.Center)
-  .clip(true)
-  .constraintSize({minHeight:32}) // 设置最小高度约束保证自定义组件高度随刷新区域高度变化时自定义组件高度不会低于minHeight
-  .width("100%")
-}
-
-@Entry
-@Component
-struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
-  @State maxRefreshingHeight: number = 100.0
-  @State ratio: number = 1
-  private contentNode?: ComponentContent<Object> = undefined
-
-  aboutToAppear():void {
-    let uiContext = this.getUIContext();
-    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent))
-  }
-
-  build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
-        List() {
-          ForEach(this.arr, (item: string) => {
-            ListItem() {
-              Text('' + item)
-                .width('70%').height(80).fontSize(16).margin(10)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-            }
-          }, (item: string) => item)
-        }
-        .onScrollIndex((first: number) => {
-          console.info(first.toString())
-        })
-        .width('100%')
-        .height('100%')
-        .alignListItem(ListItemAlign.Center)
-        .scrollBar(BarState.Off)
-      }
-      .backgroundColor(0x89CFF0)
-      .pullDownRatio(this.ratio)
-      .pullToRefresh(true)
-      .refreshOffset(64)
-      .onOffsetChange((offset: number)=>{
-          this.ratio = 1 - Math.pow((offset / this.maxRefreshingHeight), 3) // 越接近最大距离，下拉跟手系数越小
-      })
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-        }, 2000)
-        console.log('onRefreshing test')
-      })
-    }
-  }
-}
-```
-
-![zh-cn_image_refresh_example6](figures/zh-cn_image_refresh_example6.gif)
