@@ -326,6 +326,18 @@ import { window } from '@kit.ArkUI';
 | ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入沉浸式布局，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
 
+## MoveConfiguration<sup>14+</sup>
+
+move接口配置信息。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 必填 | 说明                                       |
+| ------ | ------ | ---- | ------------------------------------------ |
+| displayId<sup>12+</sup>  | number | 否 | 窗口所在屏幕ID，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -1459,7 +1471,7 @@ try {
 
 ### moveWindowToAsync<sup>12+</sup>
 
-moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
+moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
 移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
 
@@ -1476,6 +1488,7 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 | -- | ----- | -- | --------------------------------------------- |
 | x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
 | y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| moveConfiguration | MoveConfiguration | 否 | move接口配置信息。 |
 
 **返回值：**
 
@@ -1516,7 +1529,7 @@ try {
 
 ### moveWindowToGlobal<sup>13+</sup>
 
-moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
+moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
 基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
 
@@ -1534,6 +1547,7 @@ moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 | -- | ----- | -- | --------------------------------------------- |
 | x | number | 是 | 表示以屏幕左上角为起点，窗口在x轴方向移动的值，单位为px。值为正表示右移，值为负表示左移。该参数仅支持整数输入，浮点数输入将向下取整。 |
 | y | number | 是 | 表示以屏幕左上角为起点，窗口在y轴方向移动的值，单位为px。值为正表示下移，值为负表示上移。该参数仅支持整数输入，浮点数输入将向下取整。 |
+| moveConfiguration | MoveConfiguration | 否 | move接口配置信息。 |
 
 **返回值：**
 
