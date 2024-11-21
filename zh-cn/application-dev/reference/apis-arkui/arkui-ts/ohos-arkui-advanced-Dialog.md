@@ -188,6 +188,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 ## 示例
 
 ### 示例1（上图下文弹出框）
+上图下文弹出框,包含imageRes、content等内容。
 
 ```ts
 import { TipsDialog } from '@kit.ArkUI';
@@ -262,6 +263,7 @@ struct Index {
 ![TipsDialog](figures/TipsDialog.png)
 
 ### 示例2（纯列表弹出框）
+纯列表弹出框，包含selectedIndex、radioContent等内容。
 
 ```ts
 import { SelectDialog } from '@kit.ArkUI'
@@ -323,7 +325,8 @@ struct Index {
 
 ![SelectDialog](figures/SelectDialog.png)
 
-### 示例3（文本+勾选弹出框）
+### 示例3（文本与勾选弹出框）
+文本与勾选弹出框，包含content、checkTips等内容。
 
 ```ts
 import { ConfirmDialog } from '@kit.ArkUI'
@@ -380,6 +383,7 @@ struct Index {
 ![2024-06-03](figures/2024-06-03_150422.png)
 
 ### 示例4（纯文本弹出框）
+纯文本弹出框，包含primaryTitle、secondaryTitle、content等内容。
 
 ```ts
 import { AlertDialog } from '@kit.ArkUI'
@@ -430,6 +434,7 @@ struct Index {
 ![AlertDialog](figures/AlertDialog.png)
 
 ### 示例5（进度条弹出框）
+进度条弹出框，包含content等内容。
 
 ```ts
 import { LoadingDialog } from '@kit.ArkUI'
@@ -466,6 +471,7 @@ struct Index {
 ![LoadingDialog](figures/LoadingDialog.png)
 
 ### 示例6（自定义主题风格弹出框）
+自定义主题风格弹出框，包含content、theme等内容。
 
 ```ts
 import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'
@@ -517,6 +523,7 @@ struct Index {
 ![loading_dialog_with_theme](figures/advanced_dialog_loading_dialog_with_theme.png)
 
 ### 示例7（自定义深浅色模式弹出框）
+自定义深浅色模式弹出框，包含content、themeColorMode等内容。
 
 ```ts
 import { LoadingDialog } from '@kit.ArkUI'
@@ -554,6 +561,7 @@ struct Index {
 ![loading_dialog_with_colorMode](figures/advanced_dialog_loading_dialog_with_colorMode.png)
 
 ### 示例8（自定义内容弹出框）
+支持自定义内容弹出框，包含contentBuilder、buttons等内容。
 
 ```ts
 import { CustomContentDialog } from '@kit.ArkUI'
