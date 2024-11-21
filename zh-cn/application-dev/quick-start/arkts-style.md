@@ -106,6 +106,23 @@
 - 组件内\@Styles的优先级高于全局\@Styles。
   框架优先找当前组件内的\@Styles，如果找不到，则会全局查找。
 
+## 限制条件
+
+- 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
+
+```ts
+// 错误写法
+@Styles function backgroundColorStyle() {
+  if (true) {
+    .backgroundColor(Color.Red)
+  }
+}
+
+// 正确写法
+@Styles function backgroundColorStyle() {
+  .backgroundColor(Color.Red)
+}
+``` 
 
 ## 使用场景
 
