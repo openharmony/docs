@@ -176,9 +176,9 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 ## 示例
 
-### 示例1
+### 示例1（弹出普通菜单）
 
-普通菜单
+该示例为bindMenu通过配置MenuElement弹出普通菜单。
 
 ```ts
 // xxx.ets
@@ -211,9 +211,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/zh-cn_image_0000001174582862.gif)
 
-### 示例2
+### 示例2（弹出自定义菜单）
 
-自定义内容菜单
+该示例为bindMenu通过配置CustomBuilder弹出自定义菜单。
 
 ```ts
 @Entry
@@ -261,9 +261,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001186807708](figures/zh-cn_image_0000001186807708.gif)
 
-### 示例3
+### 示例3（长按弹出菜单）
 
-菜单(长按触发显示)
+该示例为bindContextMenu通过配置responseType.LongPress弹出菜单。
 
 ```ts
 // xxx.ets
@@ -299,9 +299,9 @@ struct ContextMenuExample {
 
 ![longMenu](figures/longMenu.gif)
 
-### 示例4
+### 示例4（右键弹出指向型菜单）
 
-指向性菜单(右键触发显示)
+该示例为bindContextMenu通过配置responseType.RightClick、enableArrow弹出指向型菜单。
 
 ```ts
 // xxx.ets
@@ -342,9 +342,9 @@ struct DirectiveMenuExample {
 
 ![zh-cn_image_0000001689126950](figures/zh-cn_image_0000001689126950.png)
 
-### 示例5
+### 示例5（长按弹出菜单的截图预览样式）
 
-长按悬浮菜单（预览内容为截图形式）
+该示例为bindContextMenu通过配置responseType.LongPress、preview的MenuPreviewMode类型弹出菜单预览样式。
 
 ```ts
 // xxx.ets
@@ -386,9 +386,9 @@ struct Index {
 
 ![preview-image](figures/preview-image.png)
 
-### 示例6
+### 示例6（长按弹出菜单的自定义预览样式）
 
-长按悬浮菜单（自定义预览内容）
+该示例为bindContextMenu通过配置responseType.LongPress、preview的CustomBuilder类型弹出菜单自定义预览样式。
 
 ```ts
 // xxx.ets
@@ -438,9 +438,9 @@ struct Index {
 
 ![preview-builder](figures/preview-builder.png)
 
-### 示例7
+### 示例7（设置状态变量弹出菜单）
 
-通过绑定isShown控制菜单（自定义预览内容）
+该示例为bindContextMenu通过配置isShown弹出菜单预览样式。
 
 ```ts
 // xxx.ets
@@ -496,9 +496,9 @@ struct Index {
 }
 ```
 
-### 示例8
+### 示例8（设置菜单和预览的动效）
 
-通过transition自定义菜单和预览的显示/退出动效属性
+该示例为bindContextMenu通过配置transition，实现自定义菜单以及菜单预览时的显示和退出动效。
 
 ```ts
 // xxx.ets
@@ -564,9 +564,9 @@ struct MenuExample {
 
 ![preview-builder](figures/menu2.gif)
 
-### 示例9
+### 示例9（设置symbol类型图标）
 
-普通菜单(使用symbol类型图标)
+该示例为bindMenu通过配置MenuElement的symbolIcon弹出菜单。
 
 ```ts
 // xxx.ets
@@ -604,9 +604,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
 
-### 示例10
+### 示例10（设置一镜到底动效）
 
-通过hoverScale实现组件截图到自定义预览图的一镜到底过渡动效
+该示例为bindContextMenu通过配置preview中hoverScale，实现组件截图到自定义预览图的一镜到底过渡动效。
 
 ```ts
 // xxx.ets

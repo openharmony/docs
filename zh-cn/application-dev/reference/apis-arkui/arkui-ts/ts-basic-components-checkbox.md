@@ -215,7 +215,9 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 
 ## 示例
 
-### 示例1
+### 示例1（设置多选框形状）
+
+该示例通过配置CheckBoxShape实现圆形和圆角方形多选框样式。
 
 ```ts
 // xxx.ets
@@ -246,7 +248,9 @@ struct CheckboxExample {
 
 ![](figures/checkbox.gif)
 
-### 示例2
+### 示例2（设置多选框颜色）
+
+该示例通过配置mark实现自定义多选框的颜色。
 
 ```ts
 // xxx.ets
@@ -296,7 +300,7 @@ struct Index {
 
 ![](figures/checkbox2.gif)
 
-### 示例3
+### 示例3（自定义多选框样式）
 该示例实现了自定义复选框样式的功能，自定义样式实现了一个五边形复选框，如果选中，内部会出现红色三角图案，标题会显示选中字样，如果取消选中，红色三角图案消失，标题会显示非选中字样。
 
 ```ts
@@ -369,8 +373,8 @@ struct Index {
 
 ![](figures/checkbox3.gif)
 
-### 示例4
-该示例设置选中样式为Text。
+### 示例4（设置文本多选框样式）
+该示例通过配置indicatorBuilder实现选中样式为Text。
 ```ts
 // xxx.ets
 @Entry

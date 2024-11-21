@@ -203,7 +203,9 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 
 ## 示例
 
-### 示例1
+### 示例1（设置多选框群组）
+
+该示例用于控制多选框全选或者不全选状态。
 
 ```ts
 // xxx.ets
@@ -263,7 +265,9 @@ struct CheckboxExample {
 ```
 ![checkboxGroup](figures/checkboxGroup.gif)
 
-### 示例2
+### 示例2（自定义勾选样式）
+
+该示例通过配置mark实现自定义多选框群组的勾选样式。
 
 ```ts
 // xxx.ets
