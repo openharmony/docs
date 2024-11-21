@@ -41,6 +41,8 @@ AlphabetIndexer(value: AlphabetIndexerOptions)
 
 [padding](ts-universal-attributes-size.md#padding)属性默认为4vp。
 
+文本最大的字体缩放倍数[maxFontScale](ts-basic-components-text.md#maxfontscale12)和最小的字体缩放倍数[minFontScale](ts-basic-components-text.md#minfontscale12)皆为1，不跟随系统字体大小调节变化。
+
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### color
