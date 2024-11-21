@@ -92,11 +92,15 @@
     - [@ohos.systemTime(系统时间、时区)](js-apis-system-time.md)
 - C API
   - 模块
+    - [DeviceInfo](_device_info.md)
+    - [InitSync](_init_sync.md)
     - [OsAccount](_os_account.md)
     - [OH_Scan](c-apis-scan.md)
     - [TimeService](_time_service.md)
     - [CommonEvent](capi-common-event.md)
   - 头文件
+    - [deviceinfo.h](deviceinfo_8h.md)
+    - [init_sync.h](init__sync_8h.md)
     - [os_account.h](os__account_8h.md)
     - [os_account_common.h](os__account__common_8h.md)
     - [time_service.h](time__service_8h.md)
