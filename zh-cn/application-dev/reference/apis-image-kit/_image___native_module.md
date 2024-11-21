@@ -1353,7 +1353,7 @@ Image_ErrorCode OH_DecodingOptions_Create(OH_DecodingOptions **options)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 
 **返回：**
 
@@ -1374,7 +1374,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredDynamicRange(OH_DecodingOptions *op
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredDynamicRange | 期望的动态范围值 [IMAGE_DYNAMIC_RANGE](#image_dynamic_range)。  | 
 
 **返回：**
@@ -1396,7 +1396,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredRegion(OH_DecodingOptions *options,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredRegion | 解码区域。  | 
 
 **返回：**
@@ -1418,7 +1418,7 @@ Image_ErrorCode OH_DecodingOptions_GetDesiredSize(OH_DecodingOptions *options, I
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredSize | 期望输出大小。  | 
 
 **返回：**
@@ -1440,7 +1440,7 @@ Image_ErrorCode OH_DecodingOptions_GetIndex(OH_DecodingOptions *options, uint32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | index | 解码图片序号。  | 
 
 **返回：**
@@ -1462,7 +1462,7 @@ Image_ErrorCode OH_DecodingOptions_GetPixelFormat(OH_DecodingOptions *options, i
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | pixelFormat | pixel格式[PIXEL_FORMAT](#pixel_format)。 | 
 
 **返回：**
@@ -1484,7 +1484,7 @@ Image_ErrorCode OH_DecodingOptions_GetRotate(OH_DecodingOptions *options, float 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | rotate | 旋转角度，单位为deg。  | 
 
 **返回：**
@@ -1506,7 +1506,7 @@ Image_ErrorCode OH_DecodingOptions_Release(OH_DecodingOptions *options)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 
 **返回：**
 
@@ -1527,7 +1527,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredDynamicRange(OH_DecodingOptions *op
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredDynamicRange | 期望的动态范围值 [IMAGE_DYNAMIC_RANGE](#image_dynamic_range)。  | 
 
 **返回：**
@@ -1549,7 +1549,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredRegion(OH_DecodingOptions *options,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredRegion | 解码区域。  | 
 
 **返回：**
@@ -1571,7 +1571,7 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredSize(OH_DecodingOptions *options, I
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | desiredSize | 期望输出大小。  | 
 
 **返回：**
@@ -1593,7 +1593,7 @@ Image_ErrorCode OH_DecodingOptions_SetIndex(OH_DecodingOptions *options, uint32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | index | 解码图片序号。  | 
 
 **返回：**
@@ -1615,7 +1615,7 @@ Image_ErrorCode OH_DecodingOptions_SetPixelFormat(OH_DecodingOptions *options, i
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | pixelFormat | pixel格式[PIXEL_FORMAT](#pixel_format)。  | 
 
 **返回：**
@@ -1637,7 +1637,7 @@ Image_ErrorCode OH_DecodingOptions_SetRotate(OH_DecodingOptions *options, float 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| options | 被操作的OH_DecodingOptions指针。  | 
+| options | 被操作的[OH_DecodingOptions](#oh_decodingoptions)指针。  | 
 | rotate | 旋转角度，单位为deg。  | 
 
 **返回：**
