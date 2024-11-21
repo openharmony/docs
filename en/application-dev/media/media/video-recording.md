@@ -1,4 +1,4 @@
-# Video Recording
+# Using AVRecorder to Record Videos (ArkTS)
 
 The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
@@ -20,7 +20,7 @@ For details about the state, see [AVRecorderState](../../reference/apis-media-ki
 
 Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
-1. Create an **AVRecorder** instance. The AVRecorder is in the **idle** state.
+1. Create an AVRecorder instance. The AVRecorder is in the **idle** state.
      
    ```ts
    import { media } from '@kit.MediaKit';
@@ -109,7 +109,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 
 5. Initialize the video data input source.
 
-   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](../camera/camera-recording.md).
+   This step is performed in the video data collection module. For the camera module, you need to create a Camera instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](../camera/camera-recording.md).
 
 6. Start recording.
 
