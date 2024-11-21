@@ -157,11 +157,13 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
    Call [capture](../../reference/apis-camera-kit/js-apis-camera.md#capture-2) in the **PhotoOutput** class to capture a photo. In this API, the first parameter specifies the settings (for example, photo quality and rotation angle) for photo capture, and the second parameter is a callback function.
 
+   To obtain the photo rotation angle (specified by **rotation**), call [getPhotoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getphotorotation12) in the [PhotoOutput](../../reference/apis-camera-kit/js-apis-camera.md#photooutput) class.
+
    ```ts
    function capture(captureLocation: camera.Location, photoOutput: camera.PhotoOutput): void {
      let settings: camera.PhotoCaptureSetting = {
        quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // Set the photo quality to high.
-       rotation: camera.ImageRotation.ROTATION_0, // Set the rotation angle of the photo to 0.
+       rotation: camera.ImageRotation.ROTATION_0, // The photo rotation angle, camera.ImageRotation.ROTATION_0, is obtained through getPhotoRotation.
        location: captureLocation, // Set the geolocation information of the photo.
        mirror: false // Disable mirroring (disabled by default).
      };

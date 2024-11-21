@@ -1,5 +1,7 @@
 # Device Input Management (ArkTS)
 
+Before developing a camera application, request the camera permission. For details, see [Camera Development Preparations](camera-preparation.md).
+
 A camera application invokes and controls a camera device to perform basic operations such as preview, photo capture, and video recording.
 
 ## How to Develop
