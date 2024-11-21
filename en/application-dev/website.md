@@ -15,8 +15,6 @@
         - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
-        - [Dynamic Import](quick-start/arkts-dynamic-import.md)
-        - [Lazy Import](quick-start/arkts-lazy-import.md)
       - [Application Installation, Uninstall, and Update](quick-start/application-package-install-uninstall.md)
     - Application Configuration Files in Stage Model<!--application-configuration-file-stage-->
       - [Overview of Application Configuration Files in Stage Model](quick-start/application-configuration-file-overview-stage.md)
@@ -27,18 +25,16 @@
       - [Structure of the app Tag](quick-start/app-structure.md)
       - [Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
       - [Structure of the module Tag](quick-start/module-structure.md)
-      - Typical Scenario Development
+    - Typical Scenario Development
       - [Integrated HSP](quick-start/integrated-hsp.md)
-        - [Converting HAR to HSP](quick-start/har-to-hsp.md)
-        - [Converting HSP to HAR](quick-start/hsp-to-har.md)
+      - [Converting HAR to HSP](quick-start/har-to-hsp.md)
+      - [Converting HSP to HAR](quick-start/hsp-to-har.md)
       - [Creating a Static Shortcut of the Application](quick-start/typical-scenario-configuration.md)
   - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS<!--learning-arkts-->
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
     - [Introduction to ArkTS](quick-start/introduction-to-arkts.md)
-    - [Basic Principles of Ark Bytecode](quick-start/arkts-bytecode-fundamentals.md)
-    - [Ark Bytecode File Format](quick-start/arkts-bytecode-file-format.md)
-    - [Naming Rules of Ark Bytecode Functions](quick-start/arkts-bytecode-function-name.md)
+    - [ArkTS Coding Style Guide](quick-start/arkts-coding-style-guide.md)
     - TypeScript to ArkTS Migration Guide<!--typescript-to-arkts-migration-->
       - [ArkTS Migration Background](quick-start/arkts-migration-background.md)
       - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
@@ -47,7 +43,7 @@
     - Basic Syntax of UI Paradigms<!--arkts-ui-paradigm-basic-syntax-->
       - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
       - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
-      - Custom Components<!--arkts-custom-components-->
+      - Custom Components<!--arkts-custom-comp-->
         - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
         - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
         - [Custom Component Layout](quick-start/arkts-page-custom-components-layout.md)
@@ -118,7 +114,7 @@
       - [Application Models](application-models/application-models.md)
       - Stage Model Development<!--stage-model-development-->
         - [Stage Model Development Overview](application-models/stage-model-development-overview.md)
-        - Stage Model Application Components<!--stage-model-application-components-->
+        - Stage Model Application Components<!--stage-model-application-comp-->
           - [Application- or Component-Level Configuration](application-models/application-component-configuration-stage.md)
           - UIAbility Component<!--uiability-->
             - [UIAbility Overview](application-models/uiability-overview.md)
@@ -140,6 +136,7 @@
             - [Want Overview](application-models/want-overview.md)
             - [Matching Rules of Explicit Want and Implicit Want](application-models/explicit-implicit-want-mappings.md)
             - [Using Explicit Want to Start an Application Component](application-models/ability-startup-with-explicit-want.md)
+            - [Common action and entities Values (Not Recommended)](application-models/actions-entities.md)
           - [Component Startup Rules (Stage Model)](application-models/component-startup-rules.md)
           - [AppStartup](application-models/app-startup.md)
           <!--Del-->
@@ -159,12 +156,13 @@
             <!--DelEnd-->
             - [Switching from Explicit Want Redirection to Linking Redirection](application-models/uiability-startup-adjust.md)
             - [Application URI Description](application-models/app-uri-config.md)
-          - [Starting an Application of the Specified Type](application-models/start-intent-panel.md)
-            - [Starting a Navigation Application](application-models/start-navigation-apps.md)
-            - [Starting an Email Application](application-models/start-email-apps.md)
-            - [Starting a Financial Application](application-models/start-finance-apps.md)
-            - [Starting an Image Editing Application](application-models/photoEditorExtensionAbility.md)
-            - [Starting a File Application](application-models/file-processing-apps-startup.md)
+          - Starting an Application of the Specified Type<!--specified-type-app-redirection-->
+            - [Overview of Starting an Application of the Specified Type](application-models/start-intent-panel.md)
+            - [Using startAbilityByType to Start a Navigation Application](application-models/start-navigation-apps.md)
+            - [Using startAbilityByType to Start an Email Application](application-models/start-email-apps.md)
+            - [Using startAbilityByType to Start a Financial Application](application-models/start-finance-apps.md)
+            - [Using startAbilityByType to Start an Image Editing Application](application-models/photoEditorExtensionAbility.md)
+            - [Using startAbility to Start a File Application](application-models/file-processing-apps-startup.md)
           - [Starting a System Application](application-models/system-app-startup.md)
         - [Process Model (Stage Model)](application-models/process-model-stage.md)
         - [Thread Model (Stage Model)](application-models/thread-model-stage.md)
@@ -178,7 +176,7 @@
         - [Application Configuration File (Stage Model)](application-models/config-file-stage.md)
       - FA Model Development<!--fa-model-development-->
         - [FA Model Development Overview](application-models/fa-model-development-overview.md)
-        - FA Model Application Components<!--fa-model-application-components-->
+        - FA Model Application Components<!--fa-model-application-comp-->
           - [Application- or Component-Level Configuration](application-models/application-component-configuration-fa.md)
           - PageAbility Component Development<!--pageability-->
             - [PageAbility Overview](application-models/pageability-overview.md)
@@ -248,7 +246,6 @@
           - [LifecycleService Switching](application-models/lifecycleservice-switch.md)
           - [LifecycleData Switching](application-models/lifecycledata-switch.md)
           - [DataAbilityHelper Switching](application-models/dataabilityhelper-switch.md)
-          - [mediaLibrary Switching](application-models/medialibrary-switch.md)
           - [request Switching](application-models/request-switch.md)
           - [resourceManager Switching](application-models/resourcemanager-switch.md)
           - [window Switching](application-models/window-switch.md)
@@ -289,6 +286,7 @@
           - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
       - [RelationalStore Development (C/C++)](database/native-relational-store-guidelines.md)
       - [UDMF Development Guide (C/C++)](database/native-unified-data-management-framework-guidelines.md)
+      - [Persisting User Preferences (C/C++)](database/preferences-guidelines.md)
     - ArkTS<!--arkts-->
       - [Introduction to ArkTS](arkts-utils/arkts-commonlibrary-overview.md)
       - Concurrency<!--concurrency-->
@@ -307,7 +305,6 @@
         - Appendix<!--appendixes-->
           - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
           - [Serialization Types Supported by TaskPool and Worker](arkts-utils/serialization-support-types.md)
-          - [Precautions for Multithread Safe](arkts-utils/multi-thread-safety.md)
           - [\@Concurrent Decorator: Declaring and Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
           - [Sendable Development](arkts-utils/arkts-sendable.md)
           - [System Objects That Accessed Sendable](arkts-utils/arkts-sendable-system-object-list.md)
@@ -353,23 +350,24 @@
             - [Radio Button (Radio)](ui/arkts-common-components-radio-button.md)
             - [Toggle](ui/arkts-common-components-switch.md)
             - [Progress Indicator (Progress)](ui/arkts-common-components-progress-indicator.md)
-            - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
-            - [Text Input (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
-            - [Rich Text (RichEditor)](ui/arkts-common-components-richeditor.md)
             - [Image Display (Image)](ui/arkts-graphics-display.md)
-            - [Custom Dialog Box (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
             - [Video Playback (Video)](ui/arkts-common-components-video-player.md)
-            - [Symbol Glyph (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
             - [Native XComponent](ui/napi-xcomponent-guidelines.md)
           - Adding a Popup and Menu<!--arkts-add-popup-menu-->
             - [Popup](ui/arkts-popup-and-menu-components-popup.md)
             - [Menu](ui/arkts-popup-and-menu-components-menu.md)
-          - Using Text<!--arkts-use-text-->.
-            - [Styled String (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
         - Setting Component Navigation and Page Routing<!--arkts-set-navigation-routing-->
           - [Component Navigation (Recommended)](ui/arkts-navigation-navigation.md)
           - [Page Routing (@ohos.router) (Not Recommended)](ui/arkts-routing.md)
           - [Page Routing](ui/arkts-router-to-navigation.md)
+        - Using Text<!--arkts-use-text-->
+          - [Text Display (Text/Span)](ui/arkts-common-components-text-display.md)
+          - [Text Input (TextInput/TextArea)](ui/arkts-common-components-text-input.md)
+          - [Rich Text (RichEditor)](ui/arkts-common-components-richeditor.md)
+          - [Symbol Glyph (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
+          - [Styled String (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
+        - Using Dialog Box<!--arkts-use-dialog-->
+          - [Custom Dialog Box (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
         - Using Graphics<!--arkts-draw-graphics-->
           - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
           - [Drawing Custom Graphics on the Canvas (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
@@ -428,6 +426,9 @@
         - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
           - [Setting the Theme and Skin](ui/theme_skinning.md)
+        <!--Del-->
+        - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
+        <!--DelEnd-->
         - Using NDK APIs to Build UIs<!--arkts-use-ndk-->
           - [NDK API Overview](ui/ndk-build-ui-overview.md)
           - [Integrating with ArkTS Pages](ui/ndk-access-the-arkts-page.md)
@@ -439,9 +440,6 @@
           - [Building Dialog Boxes](ui/ndk-build-pop-up-window.md)
           - [Building Custom Components](ui/ndk-build-custom-components.md)
           - [Embedded ArkTS Component](ui/ndk-embed-arkts-components.md)
-        <!--Del-->
-        - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
-        <!--DelEnd-->
       - UI Development (JavaScript-compatible Web-like Development Paradigm)<!--ui-js-dev-->
         - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui/ui-js-overview.md)
         - Framework Overview<!--js-framework-overview-->
@@ -467,15 +465,15 @@
           - [Developing Animations](ui/ui-js-building-ui-animation.md)
           - [Defining Gesture Events](ui/ui-js-building-ui-event.md)
           - [Defining Page Routes](ui/ui-js-building-ui-routes.md)
-        - Common Component Development Guidelines<!--ui-js-components-->
-          - Container Component Development<!--ui-js-container-components-->
+        - Common Component Development Guidelines<!--ui-js-comp-->
+          - Container Component Development<!--ui-js-container-comp-->
             - [List Development](ui/ui-js-components-list.md)
             - [Dialog Development](ui/ui-js-components-dialog.md)
             - [Form Development](ui/ui-js-components-form.md)
             - [Stepper Development](ui/ui-js-components-stepper.md)
             - [Tabs Development](ui/ui-js-component-tabs.md)
             - [Swiper Development](ui/ui-js-components-swiper.md)
-          - Basic Component Development<!--ui-js-basic-components-->
+          - Basic Component Development<!--ui-js-basic-comp-->
             - [Text Development](ui/ui-js-components-text.md)
             - [Input Development](ui/ui-js-components-input.md)
             - [Button Development](ui/ui-js-components-button.md)
@@ -550,7 +548,6 @@
         - [Resolving Cross-Origin Resource Access](web/web-cross-origin.md)
         - [Intelligent Tracking Prevention](web/web-intelligent-tracking-prevention.md)
         - [Enabling Ads Blocking for Web Components](web/web-adsblock.md)
-        - [Advanced Security Mode](web/web-advanced-security-mode.md)
       - Managing Web Page Loading and Browsing Records<!--web-manage-loading-browsing-->
         - [Loading Pages](web/web-page-loading-with-web-components.md)
         - [Managing Page Redirection and Browsing History Navigation](web/web-redirection-and-browsing-history-mgmt.md)
@@ -569,7 +566,6 @@
         - [Printing Frontend Pages](web/web-print.md)
         - [Previewing PDF Files](web/web-pdf-preview.md)
         - [Calculating and Adjusting Safe Area Insets](web/web-safe-area-insets.md)
-      - [Rendering and Drawing Video and Button Components at the Same Layer](web/web-same-layer.md)
       - Web Debugging<!--web-debugging-->
         - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
         - [Using Crashpad to Collect Web Component Crash Information](web/web-crashpad.md)
@@ -578,10 +574,11 @@
       - Background Task Management
       <!--DelEnd-->
         - [Background Task Overview](task-management/background-task-overview.md)
-        - [Transient Task](task-management/transient-task.md)
-        - [Continuous Task](task-management/continuous-task.md)
-        - [Deferred Task](task-management/work-scheduler.md)
-        - [Agent-powered Reminder](task-management/agent-powered-reminder.md)
+        - [Transient Task (ArkTS)](task-management/transient-task.md)
+        - [Transient Task (C/C++)](task-management/native-transient-task.md)
+        - [Continuous Task (ArkTS)](task-management/continuous-task.md)
+        - [Deferred Task (ArkTS)](task-management/work-scheduler.md)
+        - [Agent-powered Reminder (ArkTS)](task-management/agent-powered-reminder.md)
         <!--Del-->
         - [Requesting Efficiency Resources (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
         <!--DelEnd-->
@@ -664,10 +661,10 @@
       - [Service Widget Development in FA Model](form/widget-development-fa.md)
     - IME Kit<!--ime-kit-->
       - [Introduction to IME Kit](inputmethod/ime-kit-intro.md)
-      - [Implementing an Input Method Application](inputmethod/inputmethod_application_guide.md)
-      - [Using the Input Method in a Custom Edit Box](inputmethod/custom_input_box_guide.md)
-      - [Switching Between Input Methods](inputmethod/switch_inputmehod_guide.md)
-      - [Setting Input Method Subtypes](inputmethod/input_method_subtype_guide.md)
+      - [Implementing an Input Method Application](inputmethod/inputmethod-application-guide.md)
+      - [Using the Input Method in a Custom Edit Box](inputmethod/use-inputmethod-in-custom-edit-box.md)
+      - [Switching Between Input Methods](inputmethod/switch-inputmehod-guide.md)
+      - [Setting Input Method Subtypes](inputmethod/input-method-subtype-guide.md)
     - IPC Kit<!--ipc-kit-->
       - [Introduction to IPC Kit](ipc/ipc-rpc-overview.md)
       - [IPC and RPC Development](ipc/ipc-rpc-development-guideline.md)
@@ -676,41 +673,41 @@
     - Localization Kit<!--localization-kit-->
       - [Introduction to Localization Kit](internationalization/i18n-l10n.md)
       - Application Internationalization<!--i18n-->
-        - [UI Design for Internationalization](internationalization/i18n-ui-design.md)
-        - [Locale and Cultural Habit Division](internationalization/i18n-locale-culture.md)
-        - Language and User Preference Setting<!--i18n-language-user-preferences-->
-          - [System Language and Region Setting](internationalization/i18n-system-language-region.md)
-          - [Preferred Language Setting](internationalization/i18n-preferred-language.md)
+          - [UI Design for Internationalization](internationalization/i18n-ui-design.md)
+          - [Locale and Cultural Habit Division](internationalization/i18n-locale-culture.md)
+          - Language and User Preference Setting<!--i18n-language-user-preferences-->
+              - [System Language and Region Setting](internationalization/i18n-system-language-region.md)
+              - [Preferred Language Setting](internationalization/i18n-preferred-language.md)
               <!--Del-->
-          - [User Preference Setting (for System Applications Only)](internationalization/i18n-user-preferences.md)
+              - [User Preference Setting (for System Applications Only)](internationalization/i18n-user-preferences.md)
               <!--DelEnd-->
-        - [Date and Time Formatting](internationalization/i18n-time-date.md)
-        - [Number and Unit of Measurement Formatting](internationalization/i18n-numbers-weights-measures.md)
-        - [Phone Number Formatting](internationalization/i18n-phone-numbers.md)
-        - [Calendar Setting](internationalization/i18n-calendar.md)
-        - Time Zone and DST Setting<!--i18n-time-zone-dst-->
-          - [Timezone Setting](internationalization/i18n-time-zone.md)
-          - [DST Transition](internationalization/i18n-dst-transition.md)
-        - Multilingual Sorting<!--i18n-sorting-->
-          - [Overview of Multilingual Sorting](internationalization/i18n-sorting-overview.md)
-          - [Sorting by Local Habits](internationalization/i18n-sorting-local.md)
-          - [Sorting by Indexes](internationalization/i18n-sorting-index.md)
-        - [Character Processing](internationalization/i18n-character-processing.md)
-        - Name Localization<!--i18n-name-localization-->
-          - [Language and Locale Name Localization](internationalization/i18n-language-region-display.md)
-          - [Time Zone Name Localization](internationalization/i18n-time-zone-display.md)
+          - [Date and Time Formatting](internationalization/i18n-time-date.md)
+          - [Number and Unit of Measurement Formatting](internationalization/i18n-numbers-weights-measures.md)
+          - [Phone Number Formatting](internationalization/i18n-phone-numbers.md)
+          - [Calendar Setting](internationalization/i18n-calendar.md)
+          - Time Zone and DST Setting<!--i18n-time-zone-dst-->
+              - [Timezone Setting](internationalization/i18n-time-zone.md)
+              - [DST Transition](internationalization/i18n-dst-transition.md)
+          - Multilingual Sorting<!--i18n-sorting-->
+              - [Overview of Multilingual Sorting](internationalization/i18n-sorting-overview.md)
+              - [Sorting by Local Habits](internationalization/i18n-sorting-local.md)
+              - [Sorting by Indexes](internationalization/i18n-sorting-index.md)
+          - [Character Processing](internationalization/i18n-character-processing.md)
+          - Name Localization<!--i18n-name-localization-->
+              - [Language and Locale Name Localization](internationalization/i18n-language-region-display.md)
+              - [Time Zone Name Localization](internationalization/i18n-time-zone-display.md)
       - Application Localization<!--i10n-->
-        - [Multilingual Resource Provisioning](internationalization/l10n-multilingual-resources.md)
-        - Application Translation<!--i10n-translation-->
-          - [Hard Coding and Concatenation Prevention](internationalization/l10n-hard-coding-concatenate.md)
-          - [Scene and Context Clarification for Translation](internationalization/l10n-translation-scene.md)
-          - [Singular/Plural Form Selection](internationalization/l10n-singular-plural.md)
+          - [Multilingual Resource Provisioning](internationalization/l10n-multilingual-resources.md)
+          - Application Translation<!--i10n-translation-->
+              - [Hard Coding and Concatenation Prevention](internationalization/l10n-hard-coding-concatenate.md)
+              - [Scene and Context Clarification for Translation](internationalization/l10n-translation-scene.md)
+              - [Singular/Plural Form Selection](internationalization/l10n-singular-plural.md)
       - Localization Testing<!--i10n-testing-->
-        - Pseudo-Localization Testing<!--pseudo-i18n-testing-->
-          - [Overview of Pseudo-Localization Testing](internationalization/pseudo-i18n-testing-overview.md)
-          - [Pseudo-Localization Testing for Translation](internationalization/pseudo-i18n-testing-translation.md)
-          - [Pseudo-Localization Testing for UI Mirroring](internationalization/pseudo-i18n-testing-mirror.md)
-        - [Linguistic Testing](internationalization/linguistic-testing.md)
+          - Pseudo-Localization Testing<!--pseudo-i18n-testing-->
+              - [Overview of Pseudo-Localization Testing](internationalization/pseudo-i18n-testing-overview.md)
+              - [Pseudo-Localization Testing for Translation](internationalization/pseudo-i18n-testing-translation.md)
+              - [Pseudo-Localization Testing for UI Mirroring](internationalization/pseudo-i18n-testing-mirror.md)
+          - [Linguistic Testing](internationalization/linguistic-testing.md)
   - System<!--system-->
     - Security<!--system-security-->
       - Application Access Control<!--access-control-->
@@ -733,7 +730,7 @@
             <!--DelEnd-->
             - [Permissions for MDM Applications](security/AccessToken/permissions-for-mdm-apps.md)
           - [Application Permission Groups](security/AccessToken/app-permission-group-list.md)
-        - Using Security Components<!--security-components-->
+        - Using Security Components<!--security-comp-->
           - [Security Component Overview](security/AccessToken/security-component-overview.md)
           - [Using PasteButton](security/AccessToken/pastebutton.md)
           - [Using SaveButton](security/AccessToken/savebutton.md)
@@ -832,8 +829,11 @@
             - [Key Agreement Using ECDH](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
             - [Key Agreement Using X25519](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
             - [Key Agreement Using DH](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
-        - [MD Operation (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
-        - [MD Operation (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+        - MD Operations
+          - [MD Overview and Algorithm Specifications](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
+          - MD Generation Development
+            - [MD Operations (ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+            - [MD Operations (C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
         - [MAC Operation](security/CryptoArchitectureKit/crypto-compute-mac.md)
         - [Random Number Generation](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - Key Derivation<!--crypto-key-derivation-->
@@ -843,7 +843,9 @@
       - Data Protection Kit<!--data-protection-kit-->
         - DLP Service<!--dlp-->
           - [Introduction to the DLP Service](security/DataProtectionKit/dlp-overview.md)
+          <!--Del-->
           - [DLP Service Development](security/DataProtectionKit/dlp-guidelines.md)
+          <!--DelEnd-->
       - Device Certificate Kit<!--device-certificate-kit-->
         - [Introduction to Device Certificate Kit](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - Certificate Framework<!--certificate-framework-->
@@ -858,6 +860,7 @@
         - Certificate Management<!--certManager-->
           - [Certificate Management Overview](security/DeviceCertificateKit/certManager-overview.md)
           - [Certificate Management Development](security/DeviceCertificateKit/certManager-guidelines.md)
+          - [Certificate Management Dialog Box Development](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
       - Universal Keystore Kit<!--huks-kit-->
         - [Introduction to Universal Keystore Kit](security/UniversalKeystoreKit/huks-overview.md)
         - [Basic Concepts of HUKS](security/UniversalKeystoreKit/huks-concepts.md)
@@ -914,7 +917,7 @@
             - [Anonymous Key Attestation (C/C++)](security/UniversalKeystoreKit/huks-key-anon-attestation-ndk.md)
             <!--Del-->
             - [Non-anonymous Key Attestation (ArkTS)](security/UniversalKeystoreKit/huks-key-attestation-arkts.md)
-            - [Non-anonymous Key attestation (C/C++)](security/UniversalKeystoreKit/huks-key-attestation-ndk.md)
+            - [Non-anonymous Key Attestation (C/C++)](security/UniversalKeystoreKit/huks-key-attestation-ndk.md)
             <!--DelEnd-->
         - Other Operations<!--huks-other-operations-->
           - Checking Key Existence<!--huks-check-key-->
@@ -959,19 +962,19 @@
           - [WLAN Service Development Overview](connectivity/wlan/wlan-overview.md)
           - [P2P Development Guide](connectivity/wlan/p2p-development-guide.md)
       - Distributed Service Kit<!--distributed-service-kit-->
-        - [Introduction to Distributed Service Kit](distributedservice/distributedservice-kit-intro.md)
-        - [Distributed Device Management Development](distributedservice/devicemanager-guidelines.md)
+          - [Introduction to Distributed Service Kit](distributedservice/distributedservice-kit-intro.md)
+          - [Distributed Device Management Development](distributedservice/devicemanager-guidelines.md)
       - Network Kit<!--network-kit-->
         - [Introduction to Network Kit](network/net-mgmt-overview.md)
         - Data Transmission Capabilities of Network Kit<!--network-kit-data-transmission-->
-          - [HTTP Data Request](network/http-request.md)
-          - [WebSocket Connection](network/websocket-connection.md)
-          - [Socket Connection](network/socket-connection.md)
+            - [HTTP Data Request](network/http-request.md)
+            - [WebSocket Connection](network/websocket-connection.md)
+            - [Socket Connection](network/socket-connection.md)
             - [MDNS](network/net-mdns.md)
         - Network Management Capabilities of Network Kit<!--network-kit-network-management-->
-          - [Network Connection Management](network/net-connection-manager.md)
-          - [NetConnection Development (C/C++)](network/native-netmanager-guidelines.md)
-          - [Traffic Management](network/net-statistics.md)
+            - [Network Connection Management](network/net-connection-manager.md)
+            - [NetConnection Development (C/C++)](network/native-netmanager-guidelines.md)
+            - [Traffic Management](network/net-statistics.md)
           <!--Del-->
             - [Network Sharing (for System Applications Only)](network/net-sharing.md)
             - [Ethernet Connection Management (for System Applications Only)](network/net-ethernet.md)  
@@ -982,33 +985,33 @@
         - [Call Service Development](telephony/telephony-call.md)
         - [SMS Service Development](telephony/telephony-sms.md)
     - Basic Functions<!--system-basicfun-->
-      - Basic Service Kit<!--basic-services-kit-->
+      - Basic Services Kit<!--basic-services-kit-->
         - [Introduction to Basic Services Kit](basic-services/basic-services-kit-overview.md)
         - Application Events<!--app-events-->
           - IPC<!--event-ipc-->
-            - [Introduction to Common Events](basic-services/common-event/common-event-overview.md)
-            - Common Event Subscription<!--common-event-->
+              - [Introduction to Common Events](basic-services/common-event/common-event-overview.md)
+              - Common Event Subscription<!--common-event-->
                   <!--Del-->
-              - [Common Event Subscription Overview](basic-services/common-event/common-event-subscription-overview.md)
+                  - [Common Event Subscription Overview](basic-services/common-event/common-event-subscription-overview.md)
                   <!--DelEnd-->
-              - [Subscribing to Common Events in Dynamic Mode](basic-services/common-event/common-event-subscription.md)
+                  - [Subscribing to Common Events in Dynamic Mode](basic-services/common-event/common-event-subscription.md)
                   <!--Del-->
-              - [Subscribing to Common Events in Static Mode (for System Applications Only)](basic-services/common-event/common-event-static-subscription.md)
+                  - [Subscribing to Common Events in Static Mode (for System Applications Only)](basic-services/common-event/common-event-static-subscription.md)
                   <!--DelEnd-->
-              - [Unsubscribing from Common Events in Dynamic Mode](basic-services/common-event/common-event-unsubscription.md)
-            - [Publishing Common Events](basic-services/common-event/common-event-publish.md)
+                  - [Unsubscribing from Common Events in Dynamic Mode](basic-services/common-event/common-event-unsubscription.md)
+              - [Publishing Common Events](basic-services/common-event/common-event-publish.md)
               <!--Del-->
-            - [Removing Sticky Common Events (for System Applications Only)](basic-services/common-event/common-event-remove-sticky.md)
+              - [Removing Sticky Common Events (for System Applications Only)](basic-services/common-event/common-event-remove-sticky.md)
               <!--DelEnd-->
           - Inter-Thread Communication<!--event-itc-->
-            - [Using Emitter for Inter-Thread Communication](basic-services/common-event/itc-with-emitter.md)
+              - [Using Emitter for Inter-Thread Communication](basic-services/common-event/itc-with-emitter.md)
         - Account Management<!--account-management-->
           <!--Del-->
           - [Account Management Overview](basic-services/account/account-overview.md)
-          - System Account<!--os-account-->      
-            - [Managing System Accounts (for System Applications Only)](basic-services/account/manage-os-account.md)
+          - System Accounts (for System Applications Only)<!--os-account-->      
+            - [Managing System Accounts](basic-services/account/manage-os-account.md)
             - [Applying Constraints for System Accounts](basic-services/account/control-os-account-by-constraints.md)
-            - [Managing System Account Credentials (for System Applications Only)](basic-services/account/manage-os-account-credential.md)
+            - [Managing System Account Credentials](basic-services/account/manage-os-account-credential.md)
           - Domain Account (for System Applications Only)<!--domain-account-->
             - [Managing Domain Accounts](basic-services/account/manage-domain-account.md)
             - [Authenticating Domain Accounts](basic-services/account/auth-domain-account.md)
@@ -1021,15 +1024,16 @@
         - USB Service<!--usb-->
           - [USB Service Development Overview](basic-services/usb/usb-overview.md)
           - [USB Service Development](basic-services/usb/usb-guidelines.md)
+          - [FAQs](basic-services/faqs/faqs-usb.md)
         <!--Del-->
         - Update Service<!--update-->
           - [Sample Server Development Overview](basic-services/update/sample-server-overview.md)
           - [Sample Server Development](basic-services/update/sample-server-guidelines.md)
         <!--DelEnd-->
         - Pasteboard Service<!--pasteboard-->
+          - [Requesting Permissions to Access the Pasteboard](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
           - [Using the Pasteboard to Copy and Paste](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
-          - [Delayed Copy and Paste Function of the Pasteboard](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
-          - [Requesting Permissions to Access the Pasteboard] (basic-services/pasteboard/get-pastedata-permission-guidelines.md)
+
         - Upload and Download<!--upload-download-->
           - [Uploading and Downloading Application Files](basic-services/request/app-file-upload-download.md)
       - Function Flow Runtime Kit<!--ffrt-kit-->
@@ -1054,8 +1058,9 @@
     - Hardware<!--system-hardware-->
       - Driver Development Kit<!--driver-development-kit-->
         - [Introduction to Driver Development Kit](device/driver/driverdevelopment-overview.md)
+        - [Peripheral Driver Client Development](device/driver/externaldevice-guidelines.md)
         - [DriverExtensionAbility Development](device/driver/driverextensionability.md)
-        - [Peripheral Management Development](device/driver/externaldevice-guidelines.md)
+        - [FAQs](device/driver/externaldevice-faqs.md)
       - Multimodal Awareness Kit<!--multimodal-awareness-kit-->
         - [Introduction to MultimodalAwareness Kit](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary Development](device/stationary/stationary-guidelines.md)
@@ -1118,7 +1123,7 @@
           - [Using HiDebug (ArkTS)](dfx/hidebug-guidelines-arkts.md)
           - [Using HiDebug (C/C++)](dfx/hidebug-guidelines-ndk.md)
         - HiCollie
-          - [Using HiCollie (C/C++)](dfx/hiicollie-guidelines-ndk.md)
+          - [Using HiCollie (C/C++)](dfx/hicollie-guidelines-ndk.md)
         - Error Management<!--error-manager-->
           - [Development of Error Manager](dfx/errormanager-guidelines.md)
           - [Development of Application Recovery](dfx/apprecovery-guidelines.md)
@@ -1132,8 +1137,8 @@
           - [hidumper](dfx/hidumper.md)
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
-          - [hisysevent](dfx/hisysevent.md)
         <!--Del-->
+          - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
       - Test Kit<!--test-kit-->
@@ -1155,15 +1160,19 @@
         - [LLDB](tools/lldb-tool.md)
         <!--DelEnd-->
         - [param](tools/param-tool.md)
+        - [power-shell](tools/power-shell.md)
+        - [Access Token Manager](tools/atm-tool.md)
         - Command Line Utilities<!--command-line-utilities-->
           - [Toybox](tools/toybox.md)
           - [mediatool](tools/mediatool.md)
   - Media<!--media-->
     - Audio Kit<!--audio-kit-->
       - [Introduction to Audio Kit](media/audio/audio-kit-intro.md)
-      - [Processing Audio Interruption Events](media/audio/audio-playback-concurrency.md)
-      - [Extended Audio Concurrency Strategy (ArkTS)](media/audio/audio-session-management.md)
-      - [Extended Audio Concurrency Strategy (C/C++)](media/audio/using-ohaudio-for-session.md)
+      - [Selecting an Appropriate Audio Stream Type](media/audio/using-right-streamusage-and-sourcetype.md)
+      - [Introduction to Audio Focus and Audio Session](media/audio/audio-playback-concurrency.md)
+      - Audio Focus Management<!--audio-session-->
+        - [Using AudioSession to Manage Audio Focus (ArkTS)](media/audio/audio-session-management.md)
+        - [Using AudioSession to Manage Audio Focus (C/C++)](media/audio/using-ohaudio-for-session.md)
       - Audio Playback<!--audio-playback-->
         - [Audio Playback Overview](media/audio/audio-playback-overview.md)
         - [Using AudioRenderer for Audio Playback](media/audio/using-audiorenderer-for-playback.md)
@@ -1206,14 +1215,15 @@
         - [Video Encoding](media/avcodec/video-encoding.md)
         - [Temporal Layered Video Encoding](media/avcodec/video-encoding-temporal-scalability.md)
         - [Video Decoding](media/avcodec/video-decoding.md)
-      - File Muxing and Demuxing<!--file-muxing-demuxing-->
-        - [Audio and Video Muxing](media/avcodec/audio-video-muxer.md)
-        - [Audio and Video Demuxing](media/avcodec/audio-video-demuxer.md)
+      - Media Data Muxing and Demuxing<!--file-muxing-demuxing-->
+        - [Media Data Muxing](media/avcodec/audio-video-muxer.md)
+        - [Media Data Demuxing](media/avcodec/audio-video-demuxer.md)
     - AVSession Kit<!--avsession-kit-->
       - [Introduction to AVSession Kit](media/avsession/avsession-overview.md)
       - Local AVSession<!--local-avsession-->
         - [Local AVSession Overview](media/avsession/local-avsession-overview.md)
         - [AVSession Provider](media/avsession/using-avsession-developer.md)
+        - [AVSession Provider (C/C++)](media/avsession/using-ohavsession-developer.md)
         - [Accessing AVSession](media/avsession/avsession-access-scene.md)
         <!--Del-->
         - [AVSession Controller (for System Applications Only)](media/avsession/using-avsession-controller.md)
@@ -1228,42 +1238,49 @@
       - [Introduction to Camera Kit](media/camera/camera-overview.md)
       - [Camera Development Preparations](media/camera/camera-preparation.md)
       - Camera Development (ArkTS)<!--camera-dev-arkts-->
+        - [Camera Device Management (ArkTS)](media/camera/camera-device-management.md)
         - [Device Input Management (ArkTS)](media/camera/camera-device-input.md)
         - [Camera Session Management (ArkTS)](media/camera/camera-session-management.md)
-        - [Camera Preview (ArkTS)](media/camera/camera-preview.md)
-        - [Camera Photographing (ArkTS)](media/camera/camera-shooting.md)
-        - [Camera Recording (ArkTS)](media/camera/camera-recording.md)
+        - [Preview (ArkTS)](media/camera/camera-preview.md)
+        - [Photo Capture (ArkTS)](media/camera/camera-shooting.md)
+        - [Video Recording (ArkTS)](media/camera/camera-recording.md)
         - [Camera Metadata (ArkTS)](media/camera/camera-metadata.md)
+        - [Using the Flashlight (ArkTS)](media/camera/camera-torch-use.md)
+        - [Adapting to Camera Changes in Different Folding States (ArkTS)](media/camera/camera-foldable-display.md)
         <!--Del-->
-        - [High-Performance Camera Photographing (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo.md)
+        - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo.md)
         <!--DelEnd-->
         - [Deferred Photo Delivery (ArkTS)](media/camera/camera-deferred-capture.md)
         - [Moving Photos (ArkTS)](media/camera/camera-moving-photo.md)
+        - [Basic Camera Animation (ArkTS)](media/camera/camera-animation.md)
         <!--Del-->
         - [Depth Data (for System Applications Only) (ArkTS)](media/camera/camera-depth-data.md)
         <!--DelEnd-->
       - Camera Best Practices (ArkTS)<!--Camera-best-practices-arkts-->
-        - [Camera Photographing Sample (ArkTS)](media/camera/camera-shooting-case.md)
-        - [Camera Recording Sample (ArkTS)](media/camera/camera-recording-case.md)
+        - [Using the Camera Picker (ArkTS)](media/camera/camera-picker.md)
+        - [Photo Capture Sample (ArkTS)](media/camera/camera-shooting-case.md)
+        - [Video Recording Sample (ArkTS)](media/camera/camera-recording-case.md)
         - [Dual-Channel Preview (ArkTS)](media/camera/camera-dual-channel-preview.md)
         - [Deferred Photo Delivery Sample (ArkTS)](media/camera/camera-deferred-capture-case.md)
         <!--Del-->
         - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](media/camera/camera-performance-improvement.md)
-        - [High-Performance Camera Photographing Sample (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo-case.md)
+        - [High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo-case.md)
         <!--DelEnd-->
       - Camera Development (C/C++)<!--camera-dev-native-->
+        - [Camera Device Management (C/C++)](media/camera/native-camera-device-management.md)
         - [Device Input Management (C/C++)](media/camera/native-camera-device-input.md)
         - [Camera Session Management (C/C++)](media/camera/native-camera-session-management.md)
-        - [Camera Preview (C/C++)](media/camera/native-camera-preview.md)
+        - [Preview (C/C++)](media/camera/native-camera-preview.md)
         - [Secondary Processing of Preview Streams (C/C++)](media/camera/native-camera-preview-imageReceiver.md)
-        - [Camera Photographing (C/C++)](media/camera/native-camera-shooting.md)
-        - [Camera Recording (C/C++)](media/camera/native-camera-recording.md)
+        - [Photo Capture (C/C++)](media/camera/native-camera-shooting.md)
+        - [Video Recording (C/C++)](media/camera/native-camera-recording.md)
         - [Secondary Processing of Video Streams (C/C++)](media/camera/native-camera-recording-imageReceiver.md)
         - [Camera Metadata (C/C++)](media/camera/native-camera-metadata.md)
+        - [Using the Flashlight (C/C++)](media/camera/native-camera-torch-use.md)
       - Camera Best Practices (C/C++)<!--camera-best-practices-native-->
         - [Camera Photographing Sample (C/C++)](media/camera/native-camera-shooting-case.md)
-        - [Camera Recording Sample (C/C++)](media/camera/native-camera-recording-case.md)
-        - [Sample of Secondary Processing of Recording Streams (C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
+        - [Photo Capture Sample (C/C++)](media/camera/native-camera-recording-case.md)
+        - [Sample of Secondary Processing of Video Streams (C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
     - DRM Kit<!--drm-kit-->
       - [Introduction to DRM Kit](media/drm/drm-overview.md)
       - DRM Development (ArkTS)<!--drm-arkts-dev-->
@@ -1276,17 +1293,21 @@
       - [Introduction to Image Kit](media/image/image-overview.md)
       - Image Development (ArkTS)<!--image-arkts-dev-->
         - [Using ImageSource to Encode Images](media/image/image-decoding.md)
+        - [Using ImageSource to Decode Pictures](media/image/image-picture-decoding.md)
         - [Using PixelMap to Transform Images](media/image/image-transformation.md)
         - [Using PixelMap to Perform PixelMap Operations](media/image/image-pixelmap-operation.md)
         - [Using ImagePacker to Encode Images](media/image/image-encoding.md)
+        - [Using ImagePacker to Encode Pictures](media/image/image-picture-encoding.md)
         - [Editing EXIF Data](media/image/image-tool.md)
       - Image Development (C/C++)<!--image-native-->
         - [Introduction to the Image_NativeModule Structs](media/image/image-structure-c.md)
         - [Using Image_NativeModule to Decode Images](media/image/image-source-c.md)
+        - [Using Image_NativeModule to Decode Pictures](media/image/image-source-picture-c.md)
         - [Using Image_NativeModule to Receive Images](media/image/image-receiver-c.md)
         - [Using Image_NativeModule for PixelMap Operations](media/image/pixelmap-c.md)
         - [Using Image_NativeModule to Process Image Information](media/image/image-info-c.md)
         - [Using Image_NativeModule to Encode Images](media/image/image-packer-c.md)
+        - [Using Image_NativeModule to Encode Pictures](media/image/image-packer-picture-c.md)
         - [Using ImageEffect to Edit Images](media/image/image-effect-guidelines.md)
       - Image Development (Dependent on JS Objects) (C/C++)<!--image-native-js-objects-->
         - [Using Image to Decode Images](media/image/image-decoding-native.md)
@@ -1326,7 +1347,7 @@
         - [Managing System Albums](media/medialibrary/photoAccessHelper-systemAlbum-guidelines.md)
         - [Observing Media Assets](media/medialibrary/photoAccessHelper-notify-guidelines.md)
         - [Requesting Media Assets Using MediaAssetManager (C/C++)](media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)
-  - Graphics<!--graphics-->
+  - Graphics
     - ArkGraphics 2D<!--arkgraphics-2d-->
       - [Introduction to ArkGraphics 2D](graphics/arkgraphics2D-introduction.md)
       - Using Variable Frame Rates<!--displaysync-->
@@ -1355,9 +1376,10 @@
       - [Resetting OAID Information (for System Applications Only)](ads-service/oaid/oaid-service-sys.md)
       <!--DelEnd-->
 
-  - Calendar Kit<!--calendar-kit-->
+    - Calendar Kit<!--calendar-kit-->
       - [Introduction to Calendar Kit](calendarmanager/calendarmanager-overview.md)
-      - [Calendar Kit Development](calendarmanager/calendarmanager-guidelines.md)
+      - [Calendar Management](calendarmanager/calendarmanager-calendar-developer.md)
+      - [Event Management](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit<!--contacts-kit-->
       - [Contacts Kit Development](contacts/contacts-intro.md)
     - Location Kit<!--location-kit-->
@@ -1406,7 +1428,7 @@
       - C/C++ Standard Library<!--c-cpp-->
         - [C/C++ Mechanisms](napi/c-cpp-overview.md)
         - [Using fdsan](napi/fdsan.md)
-      - Using Node-API
+      - Using Node-API<!--using-napi-interaction-with-cpp-->
         - [Node-API Overview](napi/napi-introduction.md)
         - [Node-API Data Types and APIs](napi/napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi/napi-guidelines.md)
@@ -1436,32 +1458,28 @@
           - [Asynchronous Task Development Using Node-API](napi/use-napi-asynchronous-task.md)
           - [Thread Safety Development Using Node-API](napi/use-napi-thread-safety.md)
           - [Wrapping a Native Object in an ArkTS Object](napi/use-napi-object-wrap.md)
-          - [Calling Back ArkTS APIs in a Non-ArkTS Thread](napi/use-uv-queue-work.md)
-          - [Creating an ArkTs Runtime Environment Using Node-API](napi/use-napi-ark-runtime.md)
           - [Loading a Module in the Main Thread Using Node-API](napi/use-napi-load-module.md)
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
-          - [Error Handling Using Node-API](napi/use-napi-about-error.md)
-          - [Using Node-API Extension APIs](napi/use-napi-about-extension.md)
         - [Node-API FAQs](napi/use-napi-faqs.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
         - [JSVM-API Data Types and APIs](napi/jsvm-data-types-interfaces.md)
         - [JSVM-API Development Process](napi/use-jsvm-process.md)
         - JSVM-API Development Specifications
-          - [JSVM-API Development Specifications](napi/jsvm-guidelines.md)
-          - [JSVM-API FAQs](napi/jsvm-frequently-questions.md)
+            - [JSVM-API Development Specifications](napi/jsvm-guidelines.md)
+            - [JSVM-API FAQs](napi/jsvm-frequently-questions.md)
         - JSVM-API Usage Guide<!--jsvm-use-->
-          - [Working with Task Queues Using JSVM-API](napi/use-jsvm-execute_tasks.md)
-          - [Working with VM Snapshots Using JSVM-API](napi/use-jsvm-create-snapshot.md)
-          - [Developing Wasm Using JSVM-API](napi/use-jsvm-about-wasm.md)
+            - [Working with Task Queues Using JSVM-API](napi/use-jsvm-execute_tasks.md)
+            - [Working with VM Snapshots Using JSVM-API](napi/use-jsvm-create-snapshot.md)
+            - [Developing Wasm Using JSVM-API](napi/use-jsvm-about-wasm.md)
         - JSVM-API Use Cases<!--jsvm-scenarios-->
-          - [JSVM-API Debugging](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
-          - JSVM-API Tuning and Performant Coding Cases
-            - [Creating and Destroying JS VMs Using JSVM-API](napi/use-jsvm-runtime-task.md)
-            - [Accelerating Compilation Using a Code Cache](napi/use-jsvm-about-code-cache.md)
-            - [JSVM Tuning Practices](napi/jsvm-optimizations.md)
+            - [JSVM-API Debugging](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+            - JSVM-API Tuning and Performant Coding Cases
+              - [Creating and Destroying JS VMs Using JSVM-API](napi/use-jsvm-runtime-task.md)
+              - [Accelerating Compilation Using a Code Cache](napi/use-jsvm-about-code-cache.md)
+              - [JSVM Tuning Practices](napi/jsvm-optimizations.md)
       - Resource Management<!--resource-management-->
         - [Raw File Development](napi/rawfile-guidelines.md)
       - Thread Scheduling<!--thread-scheduling-->
@@ -1482,7 +1500,8 @@
       - [OpenHarmony ABIs](napi/ohos-abi.md)
       - [CPU Features](napi/cpu-features.md)
       - [Using Neon Instructions](napi/neon-guide.md)
-
+  <!--Del-->
+  
 - API References
   - API Reference Overview<!--ref-overview-api-->
     - [SystemCapability](reference/syscap.md)
@@ -1491,7 +1510,7 @@
   - Application Framework<!--app-framework-api-->
     - Ability Kit<!--ability-api-->
       - ArkTS APIs<!--ability-arkts-->
-        - Stage Model
+        - Stage Model<!--stage-model-->
           - [@ohos.app.ability.Ability (Ability Base Class)](reference/apis-ability-kit/js-apis-app-ability-ability.md)
           - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
           - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
@@ -1540,11 +1559,11 @@
           - [@ohos.app.ability.StartOptions (StartOptions) (System API)](reference/apis-ability-kit/js-apis-app-ability-startOptions-sys.md)
           - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI) (System API)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
           <!--DelEnd-->
-        - FA Model
+        - FA Model<!--fa-model-->
           - [@ohos.ability.ability (Ability)](reference/apis-ability-kit/js-apis-ability-ability.md)
           - [@ohos.ability.featureAbility (FeatureAbility)](reference/apis-ability-kit/js-apis-ability-featureAbility.md)
           - [@ohos.ability.particleAbility (ParticleAbility)](reference/apis-ability-kit/js-apis-ability-particleAbility.md)
-        - Both Models (Recommended)
+        - Both Models (Recommended)<!--both-models-->
           - [@ohos.abilityAccessCtrl (Ability Access Control)](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
           - [@ohos.ability.screenLockFileManager (Sensitive Data Access Management Under Lock Screen)](reference/apis-ability-kit/js-apis-screenLockFileManager.md)
           - [@ohos.app.ability.appManager (appManager)](reference/apis-ability-kit/js-apis-app-ability-appManager.md)
@@ -1589,7 +1608,7 @@
           - [@ohos.privacyManager (Privacy Management) (System API)](reference/apis-ability-kit/js-apis-privacyManager-sys.md)
           <!--DelEnd-->
         - Dependent Elements and Definitions<!--ability-api-interface-depend-->
-          - ability
+          - ability<!--ability-->
             - [abilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
             - [connectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
             - [dataAbilityHelper](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md)
@@ -1597,11 +1616,11 @@
             - [dataAbilityResult](reference/apis-ability-kit/js-apis-inner-ability-dataAbilityResult.md)
             - [startAbilityParameter](reference/apis-ability-kit/js-apis-inner-ability-startAbilityParameter.md)
             - [want](reference/apis-ability-kit/js-apis-inner-ability-want.md)
-          - app
+          - app<!--app-->
             - [appVersionInfo](reference/apis-ability-kit/js-apis-inner-app-appVersionInfo.md)
             - [context](reference/apis-ability-kit/js-apis-inner-app-context.md)
             - [processInfo](reference/apis-ability-kit/js-apis-inner-app-processInfo.md)
-          - application
+          - application<!--ability-arkts-application-->
             - [abilityMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityMonitor.md)
             - [AbilityStageContext](reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)
             - [abilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
@@ -1623,7 +1642,7 @@
             <!--Del-->
             - [AbilityFirstFrameStateData (System API)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateData-sys.md)
             - [AbilityFirstFrameStateObserver (System API)](reference/apis-ability-kit/js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
-            - [AbilityForegroundStateObserver (System API)](reference/apis-ability-kit/js-apis-inner-application-abilityForegroundStateObserver-sys)
+            - [AbilityForegroundStateObserver (System API)](reference/apis-ability-kit/js-apis-inner-application-abilityForegroundStateObserver-sys.md)
             - [AbilityRunningInfo (System API)](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo-sys.md)
             - [AbilityStateData (System API)](reference/apis-ability-kit/js-apis-inner-application-abilityStateData-sys.md)
             - [AppForegroundStateObserver (System API)](reference/apis-ability-kit/js-apis-inner-application-appForegroundStateObserver-sys.md)
@@ -1657,7 +1676,7 @@
             - [ViewData (System API)](reference/apis-ability-kit/js-apis-inner-application-viewData-sys.md)
             - [AutoFillRect (System API)](reference/apis-ability-kit/js-apis-inner-application-autoFillRect-sys.md)
             <!--DelEnd-->
-          - bundleManager
+          - bundleManager<!--bundleManager-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundleManager-abilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md)
             - [bundleInfo](reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md)
@@ -1683,15 +1702,15 @@
             - [SharedBundleInfo (System API)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
             - [shortcutInfo (System API)](reference/apis-ability-kit/js-apis-bundleManager-shortcutInfo-sys.md)
             <!--DelEnd-->
-          - continuation
+          - continuation<!--continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
-          - security
+          - security<!--ability-security-->
             - [PermissionRequestResult](reference/apis-ability-kit/js-apis-permissionrequestresult.md)
-          - wantAgent
+          - wantAgent<!--wantAgent-->
             - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
             - [wantAgentInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)
-        - APIs No Longer Maintained
+        - APIs No Longer Maintained<!--ability-arkts-dep-->
           - [@ohos.ability.dataUriUtils (DataUriUtils) (System API)](reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)
           - [@ohos.ability.errorCode (ErrorCode)](reference/apis-ability-kit/js-apis-ability-errorCode.md)
           - [@ohos.ability.wantConstant (wantConstant)](reference/apis-ability-kit/js-apis-ability-wantConstant.md)
@@ -1714,7 +1733,7 @@
           - [@ohos.distributedBundle (Distributed Bundle Management) (System API)](reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)
           <!--DelEnd-->
           - [@system.package (Bundle Management)](reference/apis-ability-kit/js-apis-system-package.md)
-          - bundle
+          - bundle<!--bundle-->
             - [abilityInfo](reference/apis-ability-kit/js-apis-bundle-AbilityInfo.md)
             - [applicationInfo](reference/apis-ability-kit/js-apis-bundle-ApplicationInfo.md)
             - [bundleInfo](reference/apis-ability-kit/js-apis-bundle-BundleInfo.md)
@@ -1733,14 +1752,19 @@
       - C APIs<!--ability-c-->
         - Modules<!--ability-module-->
           - [AbilityAccessControl](reference/apis-ability-kit/_ability_access_control.md)
+          - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
           - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
         - Header Files<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
+          - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
+          - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
+          - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
         - Structs<!--ability-struct-->
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
+          - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
       - Error Codes<!--ability-arkts-errcode-->
         - [Ability Error Codes](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule Error Codes](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
@@ -1782,13 +1806,14 @@
           - [@ohos.data.rdb (RDB)](reference/apis-arkdata/js-apis-data-rdb.md)
           - [@ohos.data.storage (Lightweight Data Storage)](reference/apis-arkdata/js-apis-data-storage.md)
           - [@system.storage (Data Storage)](reference/apis-arkdata/js-apis-system-storage.md)
-          - data/rdb
+          - data/rdb<!--data-rdb-->
             - [resultSet](reference/apis-arkdata/js-apis-data-resultset.md) 
       - C APIs<!--arkdata-c-->
         - Modules<!--arkdata-module-->
           - [Data](reference/apis-arkdata/_data.md)
           - [RDB](reference/apis-arkdata/_r_d_b.md)
           - [UDMF](reference/apis-arkdata/_u_d_m_f.md)
+          - [Preferences](reference/apis-arkdata/_preferences.md)
         - Header Files<!--arkdata-headerfile-->
           - [data_asset.h](reference/apis-arkdata/data__asset_8h.md)
           - [oh_cursor.h](reference/apis-arkdata/oh__cursor_8h.md)
@@ -1802,6 +1827,9 @@
           - [udmf_meta.h](reference/apis-arkdata/udmf__meta_8h.md)
           - [uds.h](reference/apis-arkdata/uds_8h.md)
           - [utd.h](reference/apis-arkdata/utd_8h.md)
+          - [oh_preferences.h](reference/apis-arkdata/oh__preferences_8h.md)
+          - [oh_preferences_option.h](reference/apis-arkdata/oh__preferences__option_8h.md)
+          - [oh_preferences_value.h](reference/apis-arkdata/oh__preferences__value_8h.md)
         - Structs<!--arkdata-struct-->
           - [OH_Cursor](reference/apis-arkdata/_o_h___cursor.md)
           - [OH_Predicates](reference/apis-arkdata/_o_h___predicates.md)
@@ -1864,7 +1892,7 @@
         - [Common Library Error Codes](reference/apis-arkts/errorcode-utils.md)
     - ArkUI<!--arkui-api-->
       - ArkTS APIs<!--arkui-arkts-->
-        - UI Page
+        - UI Page<!--ui-->
           - [@ohos.animator (Animator)](reference/apis-arkui/js-apis-animator.md)
           - [@ohos.arkui.componentSnapshot (Component Snapshot)](reference/apis-arkui/js-apis-arkui-componentSnapshot.md)
           - [@ohos.arkui.componentUtils (componentUtils)](reference/apis-arkui/js-apis-arkui-componentUtils.md)
@@ -1907,14 +1935,14 @@
             - [Graphics](reference/apis-arkui/js-apis-arkui-graphics.md)
             - [NodeController](reference/apis-arkui/js-apis-arkui-nodeController.md)
             - [RenderNode](reference/apis-arkui/js-apis-arkui-renderNode.md)
-            - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - Graphics
+        - Graphics<!--graphics-api-->
           - [@ohos.display (Display)](reference/apis-arkui/js-apis-display.md)
           - [@ohos.PiPWindow (PiP Window)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (Window)](reference/apis-arkui/js-apis-window.md)
+          - [@ohos.screenshot (Screenshot)](reference/apis-arkui/js-apis-screenshot.md)
           <!--Del-->
           - [@ohos.animation.windowAnimationManager (Window Animation Management) (System API)](reference/apis-arkui/js-apis-windowAnimationManager-sys.md)
           - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility) (System API)](reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md)
@@ -1930,10 +1958,11 @@
           - [@system.configuration (Application Configuration)](reference/apis-arkui/js-apis-system-configuration.md)
           - [@system.mediaquery (Media Query)](reference/apis-arkui/js-apis-system-mediaquery.md)
           - [@system.prompt (Prompt)](reference/apis-arkui/js-apis-system-prompt.md)
-          - [@system.router (Page Routing)](reference/apis-arkui/js-apis-system-router.md)
+          - [@system.router (Page Routing)](reference/apis-arkui/js-apis-system-router.md)        
+          - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
       - ArkTS Components<!--arkui-declarative-comp-->
-        - Universal Component Information
-          - Universal Events
+        - Universal Component Information<!--universal-component-information-->
+          - Universal Events<!--universal-events-->
             - [Click Event](reference/apis-arkui/arkui-ts/ts-universal-events-click.md)
             - [Touch Event](reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)
             - [Show/Hide Event](reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)
@@ -1941,6 +1970,7 @@
             - [Key Event](reference/apis-arkui/arkui-ts/ts-universal-events-key.md)
             - [Focus Event](reference/apis-arkui/arkui-ts/ts-universal-focus-event.md)
             - [Mouse Event](reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md)
+            - [Hover Event](reference/apis-arkui/arkui-ts/ts-universal-events-hover.md)
             - [Accessibility Hover Event](reference/apis-arkui/arkui-ts/ts-universal-accessibility-hover-event.md)
             - [Component Area Change Event](reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md)
             - [Component Size Change Event](reference/apis-arkui/arkui-ts/ts-universal-component-size-change-event.md)
@@ -1948,7 +1978,7 @@
             - [Custom Keyboard Shortcuts](reference/apis-arkui/arkui-ts/ts-universal-events-keyboardshortcut.md)
             - [Custom Event Dispatch](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-child-touch-test.md)
             - [Custom Event Interception](reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)
-          - Universal Attributes
+          - Universal Attributes<!--universal-attributes-->
             - [Size](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [Location](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [Layout Constraints](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -1987,10 +2017,10 @@
             - [Drawing Modifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [Content Modifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [Custom Property](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
-            - Touch Interactions
+            - Touch Interactions<!--touch-interactions-->
               - [Touch Target](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
               - [Hit Test Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
-            - Transition
+            - Transition<!--transition-->
               - [Modal Transition](reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)
               - [Sheet Transition](reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)
             - [Obscuring](reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md)
@@ -2004,7 +2034,7 @@
             <!--Del-->
             - [Point Light Style (System API)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
             <!--DelEnd-->
-          - Gesture Handling
+          - Gesture Handling<!--gesture-handling-->
             - [Gesture Binding Methods](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
             - [TapGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)
             - [LongPressGesture](reference/apis-arkui/arkui-ts/ts-basic-gestures-longpressgesture.md)
@@ -2016,7 +2046,7 @@
             - [Custom Gesture Judgment](reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md)
             - [Bound Gesture Configuration](reference/apis-arkui/arkui-ts/ts-uigestureevent.md)
             - [Gesture Blocking Enhancement](reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md)
-        - Rows, Columns, and Stacking
+        - Rows, Columns, and Stacking<!--rows-columns-and-stacking-->
           - [Flex](reference/apis-arkui/arkui-ts/ts-container-flex.md)
           - [Column](reference/apis-arkui/arkui-ts/ts-container-column.md)
           - [Row](reference/apis-arkui/arkui-ts/ts-container-row.md)
@@ -2029,7 +2059,7 @@
           - [Row (System API)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
           - [Stack (System API)](reference/apis-arkui/arkui-ts/ts-container-stack-sys.md)
           <!--DelEnd-->
-        - Grid and Column Layout
+        - Grid and Column Layout<!--grid-and-column-layout-->
           - [GridRow](reference/apis-arkui/arkui-ts/ts-container-gridrow.md)
           - [GridCol](reference/apis-arkui/arkui-ts/ts-container-gridcol.md)
           - [ColumnSplit](reference/apis-arkui/arkui-ts/ts-container-columnsplit.md)
@@ -2037,7 +2067,7 @@
           - [SplitLayout](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
           - [FoldSplitContainer](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
           - [SideBarContainer](reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md)
-        - Scroll and Swipe
+        - Scroll and Swipe<!--scroll-and-swipe-->
           - [List](reference/apis-arkui/arkui-ts/ts-container-list.md)
           - [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md)
           - [ListItemGroup](reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)
@@ -2056,16 +2086,15 @@
           <!--Del-->
           - [List (System API)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
           <!--DelEnd-->
-        - Navigation and Switching
+        - Navigation and Switching<!--navigation-and-switching-->
           - [Navigation](reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)
-          - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
           - [NavDestination](reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)
           - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [Stepper](reference/apis-arkui/arkui-ts/ts-basic-components-stepper.md)
           - [StepperItem](reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md)
           - [Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)
           - [TabContent](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)
-        - Buttons and Selections
+        - Buttons and Selections<!--buttons-and-selections-->
           - [Button](reference/apis-arkui/arkui-ts/ts-basic-components-button.md)
           - [Toggle](reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)
           - [Checkbox](reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md)
@@ -2082,7 +2111,7 @@
           - [ProgressButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)
           - [SegmentButton](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md)
           - [Filter](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md)
-        - Text and Input
+        - Text and Input<!--text-and-input-->
           - [Text](reference/apis-arkui/arkui-ts/ts-basic-components-text.md)
           - [TextArea](reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)
           - [TextInput](reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)
@@ -2101,7 +2130,7 @@
           <!--Del-->
           - [TextInput (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-textinput-sys.md)
           <!--DelEnd-->
-        - Images and Videos
+        - Images and Videos<!--images-and-videos-->
           - [Image](reference/apis-arkui/arkui-ts/ts-basic-components-image.md)
           - [ImageAnimator](reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md)
           - [Video](reference/apis-arkui/arkui-ts/ts-media-components-video.md)
@@ -2110,7 +2139,7 @@
           - [Image (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md)
           - [MediaCachedImage (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-mediacachedimage-sys.md)
           <!--DelEnd-->
-        - Information Display
+        - Information Display<!--information-display-->
           - [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)
           - [Badge](reference/apis-arkui/arkui-ts/ts-container-badge.md)
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
@@ -2129,10 +2158,10 @@
           - [TextClock](reference/apis-arkui/arkui-ts/ts-basic-components-textclock.md)
           - [TextTimer](reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md)
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
-        - Blank and Divider
+        - Blank and Divider<!--blank-and-divider-->
           - [Blank](reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)
           - [Divider](reference/apis-arkui/arkui-ts/ts-basic-components-divider.md)
-        - Canvas Drawing
+        - Canvas Drawing<!--canvas-drawing-->
           - [Canvas](reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)
           - [CanvasGradient](reference/apis-arkui/arkui-ts/ts-components-canvas-canvasgradient.md)
           - [CanvasPattern](reference/apis-arkui/arkui-ts/ts-components-canvas-canvaspattern.md)
@@ -2144,7 +2173,7 @@
           - [OffscreenCanvas](reference/apis-arkui/arkui-ts/ts-components-offscreencanvas.md)
           - [OffscreenCanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
           - [Path2D](reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md)
-        - Graphic Drawing
+        - Graphic Drawing<!--graphic-drawing-->
           - [Circle](reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md)
           - [Ellipse](reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md)
           - [Line](reference/apis-arkui/arkui-ts/ts-drawing-components-line.md)
@@ -2153,23 +2182,23 @@
           - [Path](reference/apis-arkui/arkui-ts/ts-drawing-components-path.md)
           - [Rect](reference/apis-arkui/arkui-ts/ts-drawing-components-rect.md)
           - [Shape](reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md)
-        - Rendering Drawing
+        - Rendering Drawing<!--rendering-drawing-->
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
           - [Component3D](reference/apis-arkui/arkui-ts/ts-basic-components-component3d.md)
           - [EmbeddedComponent](reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) 
-        - Title Bars and Toolbars
+        - Title Bars and Toolbars<!--bars-and-toolbars-->
           - [ComposeTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
           - [EditableTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
           - [SelectTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
           - [TabTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
           - [ToolBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ToolBar.md)
           - [SubHeader](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SubHeader.md)
-        - Menus
+        - Menus<!--menus-->
           - [Menu](reference/apis-arkui/arkui-ts/ts-basic-components-menu.md)
           - [MenuItem](reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md)
           - [MenuItemGroup](reference/apis-arkui/arkui-ts/ts-basic-components-menuitemgroup.md)
           - [ContextMenu](reference/apis-arkui/arkui-ts/ts-methods-menu.md)
-        - Animation
+        - Animation<!--animation-->
           - [Property Animation (animation)](reference/apis-arkui/arkui-ts/ts-animatorproperty.md)
           - [Explicit Animation (animateTo)](reference/apis-arkui/arkui-ts/ts-explicit-animation.md)
           - [Keyframe Animation (keyframeAnimateTo)](reference/apis-arkui/arkui-ts/ts-keyframeAnimateTo.md)
@@ -2183,7 +2212,7 @@
           <!--Del-->
           - [Implicit Shared Element Transition (geometryTransition) (System API)](reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition-sys.md)
           <!--DelEnd-->  
-        - Pop-up Window
+        - Pop-up Window<!--dialog-boxes-->
           - [Alert Dialog Box (AlertDialog)](reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)
           - [Action Sheet (ActionSheet)](reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md)
           - [Custom Dialog Box (CustomDialog)](reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
@@ -2191,14 +2220,14 @@
           - [Date Picker Dialog Box (DatePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-datepicker-dialog.md)
           - [Time Picker Dialog Box (TimePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md)
           - [Text Picker Dialog Box (TextPickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)
-          - [Dialog(reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
-        - Service Widgets
+          - [Dialog](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
+        - Service Widgets<!--service-widgets-->
           - [FormLink](reference/apis-arkui/arkui-ts/ts-container-formlink.md)
           - [FormMenu](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
           <!--Del-->
           - [FormComponent (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
           <!--DelEnd-->
-        - Security
+        - Security<!--arkui-security-->
           - [Security Component Universal Attributes](reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)
           - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
           - [PasteButton](reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)
@@ -2206,9 +2235,9 @@
           <!--Del-->
           - [SaveButton (System API)](reference/apis-arkui/arkui-ts/ts-security-components-savebutton-sys.md)
           <!--DelEnd-->
-        - Themes
+        - Themes<!--themes-->
           - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md) 
-        - Atomic Services
+        - Atomic Services<!--atomic-services-->
           - [AtomicServiceNavigation](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
           - [AtomicServiceTabs](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
           - [AtomicServiceWeb](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
@@ -2218,19 +2247,19 @@
           - [InnerFullScreenLaunchComponent (System API)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
           <!--DelEnd-->
           - [NavPushPathHelper](reference/apis-arkui/arkui-ts/ohos-atomicservice-NavPushPathHelper.md)
-        - Custom Placeholder Components
+        - Custom Placeholder Components<!--custom-placeholder-comp-->
           - [NodeContainer](reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)
           - [ContentSlot](reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)
-        - Custom Components
+        - Custom Components<!--custom-comp-->
           - [Custom Component Lifecycle](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
           - [Custom Component Layout](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
           - [Custom Component Built-in APIs](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
-        - State Management and Rendering Control
+        - State Management and Rendering Control<!--state-management-and-rendering-control-->
           - [State Management with Application-level Variables](reference/apis-arkui/arkui-ts/ts-state-management.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
-        - Common Definitions
+        - Common Definitions<!--common-definitions-->
           - [Basic Types](reference/apis-arkui/arkui-ts/ts-types.md)
           - [Pixel Units](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
           - [Enums](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
@@ -2239,23 +2268,25 @@
           - [Enums (System API)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
           <!--DelEnd-->
         <!--Del-->
-        - Other
+        - Other<!--other-->
           - [EffectComponent (System API)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
           - [IsolatedComponent (System API)](reference/apis-arkui/arkui-ts/ts-container-isolated-component-sys.md) 
           - [RemoteWindow (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md)
           - [PluginComponent (System API)](reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md)
           - [UIExtensionComponent (System API)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
         <!--DelEnd-->
-        - Components and APIs No Longer Maintained
+        - Components and APIs No Longer Maintained<!--arkui-declarative-comp-dep-->
           <!--Del-->
           - [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
           <!--DelEnd-->
-          - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
+          - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)        
+          - [NavRouter](reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)
+          - [Navigator](reference/apis-arkui/arkui-ts/ts-container-navigator.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
           - [Click Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
       - JavaScript Components<!--arkui-js-comp-->
         - JavaScript-compatible Web-like Development Paradigm (ArkUI.Full)<!--arkui-js-full-comp-->
-          - Universal Component Information
+          - Universal Component Information<!--js-full-universal-comp-infor-->
             - [Universal Attributes](reference/apis-arkui/arkui-js/js-components-common-attributes.md)
             - [Universal Styles](reference/apis-arkui/arkui-js/js-components-common-styles.md)
             - [Universal Events](reference/apis-arkui/arkui-js/js-components-common-events.md)
@@ -2266,7 +2297,7 @@
             - [Media Query](reference/apis-arkui/arkui-js/js-components-common-mediaquery.md)
             - [Custom Font Styles](reference/apis-arkui/arkui-js/js-components-common-customizing-font.md)
             - [Atomic Layout](reference/apis-arkui/arkui-js/js-components-common-atomic-layout.md)
-          - Container Components
+          - Container Components<!--js-full-container-comp-->
             - [badge](reference/apis-arkui/arkui-js/js-components-container-badge.md)
             - [dialog](reference/apis-arkui/arkui-js/js-components-container-dialog.md)
             - [div](reference/apis-arkui/arkui-js/js-components-container-div.md)
@@ -2284,7 +2315,7 @@
             - [tabs](reference/apis-arkui/arkui-js/js-components-container-tabs.md)
             - [tab-bar](reference/apis-arkui/arkui-js/js-components-container-tab-bar.md)
             - [tab-content](reference/apis-arkui/arkui-js/js-components-container-tab-content.md)
-          - Basic Components
+          - Basic Components<!--js-full-basic-comp-->
             - [button](reference/apis-arkui/arkui-js/js-components-basic-button.md)
             - [chart](reference/apis-arkui/arkui-js/js-components-basic-chart.md)
             - [divider](reference/apis-arkui/arkui-js/js-components-basic-divider.md)
@@ -2314,9 +2345,9 @@
             - [toggle](reference/apis-arkui/arkui-js/js-components-basic-toggle.md)
             - [web](reference/apis-arkui/arkui-js/js-components-basic-web.md)
             - [xcomponent](reference/apis-arkui/arkui-js/js-components-basic-xcomponent.md)
-          - Media Components
+          - Media Components<!--js-full-media-comp-->
             - [video](reference/apis-arkui/arkui-js/js-components-media-video.md)
-          - Canvas Components
+          - Canvas Components<!--js-full-canvas-comp-->
             - [canvas](reference/apis-arkui/arkui-js/js-components-canvas-canvas.md)
             - [CanvasRenderingContext2D](reference/apis-arkui/arkui-js/js-components-canvas-canvasrenderingcontext2d.md)
             - [Image](reference/apis-arkui/arkui-js/js-components-canvas-image.md)
@@ -2326,12 +2357,12 @@
             - [ImageBitmap](reference/apis-arkui/arkui-js/js-components-canvas-imagebitmap.md)
             - [OffscreenCanvas](reference/apis-arkui/arkui-js/js-components-canvas-offscreencanvas.md)
             - [OffscreenCanvasRenderingContext2D](reference/apis-arkui/arkui-js/js-offscreencanvasrenderingcontext2d.md)
-          - Grid Components
+          - Grid Components<!--js-full-grid-comp-->
             - [Basic Concepts](reference/apis-arkui/arkui-js/js-components-grid-basic-concepts.md)
             - [grid-container](reference/apis-arkui/arkui-js/js-components-grid-container.md)
             - [grid-row](reference/apis-arkui/arkui-js/js-components-grid-row.md)
             - [grid-col](reference/apis-arkui/arkui-js/js-components-grid-col.md)
-          - SVG Components
+          - SVG Components<!--js-full-svg-comp-->
             - [Universal Attributes](reference/apis-arkui/arkui-js/js-components-svg-common-attributes.md)
             - [svg](reference/apis-arkui/arkui-js/js-components-svg.md)
             - [rect](reference/apis-arkui/arkui-js/js-components-svg-rect.md)
@@ -2347,7 +2378,7 @@
             - [animate](reference/apis-arkui/arkui-js/js-components-svg-animate.md)
             - [animateMotion](reference/apis-arkui/arkui-js/js-components-svg-animatemotion.md)
             - [animateTransform](reference/apis-arkui/arkui-js/js-components-svg-animatetransform.md)
-          - Custom Components
+          - Custom Components<!--js-full-custom-comp-->
             - [Basic Usage](reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md)
             - [props](reference/apis-arkui/arkui-js/js-components-custom-props.md)
             - [Style Inheritance](reference/apis-arkui/arkui-js/js-components-custom-style.md)
@@ -2356,29 +2387,29 @@
           - [Dynamic Component Creation](reference/apis-arkui/arkui-js/js-components-create-elements.md)
           - [Data Type Attributes](reference/apis-arkui/arkui-js/js-appendix-types.md)
         - JavaScript-compatible Web-like Development Paradigm (ArkUI.Lite)<!--arkui-js-lite-comp-->
-          - Framework
+          - Framework<!--js-lite-framework-overview-->
             - [File Organization](reference/apis-arkui/arkui-js-lite/js-lite-framework-file.md)
             - ["js" Tag](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-tag.md)
             - [app.js](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-file.md)
             - [Lifecycle](reference/apis-arkui/arkui-js-lite/js-lite-framework-lifecycle.md)
             - [Multi-Language Capability](reference/apis-arkui/arkui-js-lite/js-lite-framework-localization.md)
-            - Syntax
+            - Syntax<!--js-lite-syntax-->
               - [HML](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-hml.md)
               - [CSS](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-css.md)
               - [JavaScript](reference/apis-arkui/arkui-js-lite/js-lite-framework-syntax-js.md)
-          - Universal Component Information
+          - Universal Component Information<!--js-lite-universal-comp-infor-->
             - [Universal Events](reference/apis-arkui/arkui-js-lite/js-lite-common-events.md)
             - [Universal Attributes](reference/apis-arkui/arkui-js-lite/js-lite-common-attributes.md)
             - [Universal Styles](reference/apis-arkui/arkui-js-lite/js-lite-common-styles.md)
             - [Animation Styles](reference/apis-arkui/arkui-js-lite/js-lite-components-common-animation.md)
             - [Media Query](reference/apis-arkui/arkui-js-lite/js-lite-components-common-mediaquery.md)
-          - Container Components
+          - Container Components<!--js-lite-container-comp-->
             - [div](reference/apis-arkui/arkui-js-lite/js-lite-components-container-div.md)
             - [list](reference/apis-arkui/arkui-js-lite/js-lite-components-container-list.md)
             - [list-item](reference/apis-arkui/arkui-js-lite/js-lite-components-container-list-item.md)
             - [stack](reference/apis-arkui/arkui-js-lite/js-lite-components-container-stack.md)
             - [swiper](reference/apis-arkui/arkui-js-lite/js-lite-components-container-swiper.md)
-          - Basic Components
+          - Basic Components<!--js-lite-basic-comp-->
             - [chart](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-chart.md)
             - [image](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-image.md)
             - [image-animator](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-image-animator.md)
@@ -2390,19 +2421,19 @@
             - [slider](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-slider.md)
             - [switch](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-switch.md)
             - [text](reference/apis-arkui/arkui-js-lite/js-lite-components-basic-text.md)
-          - Canvas Components
+          - Canvas Components<!--js-lite-canvas-comp-->
             - [canvas](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvas.md)
             - [CanvasRenderingContext2D](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvasrenderingcontext2d.md)
         - JavaScript Service Widget UI Components<!--arkui-card-comp-->
-          - Framework
+          - Framework<!--card-comp-framework-overview-->
             - [File Organization](reference/apis-arkui/js-service-widget-ui/js-service-widget-file.md)
-            - Syntax
+            - Syntax<!--card-comp-syntax-->
               - [HML](reference/apis-arkui/js-service-widget-ui/js-service-widget-syntax-hml.md)
               - [CSS](reference/apis-arkui/js-service-widget-ui/js-service-widget-syntax-css.md)
             - [Multi-Language Capability](reference/apis-arkui/js-service-widget-ui/js-service-widget-multiple-languages.md)
             - [Version Compatibility Adaptation](reference/apis-arkui/js-service-widget-ui/js-service-widget-version-compatibility.md)
             - [Theme Configuration](reference/apis-arkui/js-service-widget-ui/js-service-widget-theme.md)
-          - Universal Component Information
+          - Universal Component Information<!--card-comp-universal-comp-infor-->
             - [Universal Attributes](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-attributes.md)
             - [Universal Styles](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-styles.md)
             - [Universal Events](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-events.md)
@@ -2411,14 +2442,14 @@
             - [Custom Font Styles](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-customizing-font.md)
             - [Accessibility](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-accessibility.md)
             - [Atomic Layout](reference/apis-arkui/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
-          - Container Components
+          - Container Components<!--card-comp-container-comp-->
             - [badge](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-badge.md)
             - [div](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-div.md)
             - [list](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-list.md)
             - [list-item](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-list-item.md)
             - [stack](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-stack.md)
             - [swiper](reference/apis-arkui/js-service-widget-ui/js-service-widget-container-swiper.md)
-          - Basic Components
+          - Basic Components<!--card-comp-basic-comp-->
             - [button](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-button.md)
             - [calendar](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-calendar.md)
             - [chart](reference/apis-arkui/js-service-widget-ui/js-service-widget-basic-chart.md)
@@ -2509,19 +2540,20 @@
       - ArkTS Components<!--arkweb-comp-->
         - [Web](reference/apis-arkweb/ts-basic-components-web.md)
       - C APIs<!--arkweb-c-->
-    - Modules<!--arkweb-module-->
+        - Modules<!--arkweb-module-->
           - [Web](reference/apis-arkweb/_web.md)
-              - Header Files<!--arkweb-headerfile-->
+          - Header Files<!--arkweb-headerfile-->
             - [arkweb_error_code.h](reference/apis-arkweb/arkweb__error__code_8h.md)
             - [arkweb_interface.h](reference/apis-arkweb/arkweb__interface_8h.md)
             - [arkweb_net_error_list.h](reference/apis-arkweb/arkweb__net__error__list_8h.md)
             - [arkweb_scheme_handler.h](reference/apis-arkweb/arkweb__scheme__handler_8h.md)
             - [arkweb_type.h](reference/apis-arkweb/arkweb__type_8h.md)
             - [native_interface_arkweb.h](reference/apis-arkweb/native__interface__arkweb_8h.md)
-              - Structs<!--arkweb-struct-->
+          - Structs<!--arkweb-struct-->
             - [ArkWeb_AnyNativeAPI](reference/apis-arkweb/_ark_web___any_native_a_p_i.md)
             - [ArkWeb_ComponentAPI](reference/apis-arkweb/_ark_web___component_a_p_i.md)
             - [ArkWeb_ControllerAPI](reference/apis-arkweb/_ark_web___controller_a_p_i.md)
+            - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/_ark_web___cookie_manager_a_p_i.md)
             - [ArkWeb_JavaScriptBridgeData](reference/apis-arkweb/_ark_web___java_script_bridge_data.md)
             - [ArkWeb_JavaScriptObject](reference/apis-arkweb/_ark_web___java_script_object.md)
             - [ArkWeb_ProxyMethod](reference/apis-arkweb/_ark_web___proxy_method.md)
@@ -2542,7 +2574,7 @@
         - [@ohos.resourceschedule.deviceStandby (Device Standby) (System API)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md)
         - [@ohos.resourceschedule.usageStatistics (Device Usage Statistics) (System API)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)
         <!--DelEnd-->
-        - application
+        - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
         - APIs No Longer Maintained<!--background-tasks-arkts-dep-->
           - [@ohos.backgroundTaskManager (Background Task Management)](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
@@ -2552,6 +2584,14 @@
           - [@ohos.backgroundTaskManager (Background Task Management) (System API)](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager-sys.md)
           - [@ohos.bundleState (Device Usage Statistics) (System API)](reference/apis-backgroundtasks-kit/js-apis-deviceUsageStatistics-sys.md)
           <!--DelEnd-->
+      - C APIs<!--background-tasks-c-->
+        - Modules<!--background-tasks-module-->
+          - [TransientTask](reference/apis-backgroundtasks-kit/_transient_task.md)
+        - Header Files<!--background-tasks-headerfile-->
+          - [transient_task_api.h](reference/apis-backgroundtasks-kit/transient__task__api_8h.md)
+          - [transient_task_type.h](reference/apis-backgroundtasks-kit/transient__task__type_8h.md)
+        - Structs<!--background-tasks-struct-->
+          - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
       - Error Codes<!--background-tasks-arkts-errcode-->
         - [BackgroundTaskManager Error Codes](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
         - [DeviceUsageStatistics Error Codes](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
@@ -2608,7 +2648,7 @@
           - [FileShare_PolicyInfo](reference/apis-core-file-kit/_file_share___policy_info.md)
       - Error Codes<!--core-file-arkts-errcode-->
         - [File Management Error Codes](reference/apis-core-file-kit/errorcode-filemanagement.md)
--     Form Kit<!--form-api-->
+    - Form Kit<!--form-api-->
       - ArkTS APIs<!--form-arkts-->
         - [@ohos.app.form.formBindingData (formBindingData)](reference/apis-form-kit/js-apis-app-form-formBindingData.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
@@ -2622,12 +2662,12 @@
         - [@ohos.app.form.formProvider (FormProvider) (System API)](reference/apis-form-kit/js-apis-app-form-formProvider-sys.md)
         - [@ohos.app.form.formObserver (formObserver) (System API)](reference/apis-form-kit/js-apis-app-form-formObserver-sys.md)
         <!--DelEnd-->
-        - application
+        - application<!--form-arkts-application-->
           - [FormExtensionContext](reference/apis-form-kit/js-apis-inner-application-formExtensionContext.md)
           <!--Del-->
           - [FormExtensionContext (System API)](reference/apis-form-kit/js-apis-inner-application-formExtensionContext-sys.md)
           <!--DelEnd-->
-     - APIs No Longer Maintained<!--form-arkts-dep-->
+      - APIs No Longer Maintained<!--form-arkts-dep-->
         - [@ohos.application.formBindingData (formBindingData)](reference/apis-form-kit/js-apis-application-formBindingData.md)
         - [@ohos.application.formError (FormError)](reference/apis-form-kit/js-apis-application-formError.md)
         - [@ohos.application.formInfo (FormInfo)](reference/apis-form-kit/js-apis-application-formInfo.md)
@@ -2699,19 +2739,19 @@
       - Error Codes<!--localization-arkts-errcode-->
         - [I18n Error Codes](reference/apis-localization-kit/errorcode-i18n.md)
         - [Resource Manager Error Codes](reference/apis-localization-kit/errorcode-resource-manager.md)
-    - System <!--system-api-->
-      - Security<!--system-security-api-->
-        - Asset Store Kit<!--asset-store-api-->
-          - ArkTS APIs<!--asset-store-arkts-->
-            - [@ohos.security.asset (Asset Store Service)](reference/apis-asset-store-kit/js-apis-asset.md)
+  - System<!--system-api-->
+    - Security<!--system-security-api-->
+      - Asset Store Kit<!--asset-store-api-->
+        - ArkTS APIs<!--asset-store-arkts-->
+          - [@ohos.security.asset (Asset Store Service)](reference/apis-asset-store-kit/js-apis-asset.md)
           <!--Del-->
-            - [@ohos.security.asset (Asset Store Service) (System API)](reference/apis-asset-store-kit/js-apis-asset-sys.md)
+          - [@ohos.security.asset (Asset Store Service) (System API)](reference/apis-asset-store-kit/js-apis-asset-sys.md)
           <!--DelEnd-->
-          - C APIs<!--asset-store-c-->
-            - Modules<!--asset-store-module-->
+        - C APIs<!--asset-store-c-->
+          - Modules<!--asset-store-module-->
             - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
             - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
-            - Header Files<!--asset-store-headerfile-->
+          - Header Files<!--asset-store-headerfile-->
             - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
             - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
           - Structs<!--asset-store-struct-->
@@ -2727,22 +2767,22 @@
           - [@ohos.security.cryptoFramework (Crypto Framework)](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)
           - APIs No Longer Maintained<!--crypto-architecture-arkts-dep-->
             - [@system.cipher (Cipher Algorithm)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
-        - C APIs
-          - Modules
+        - C APIs<!--crypto-architecture-c-->
+          - Modules<!--crypto-architecture-module-->
             - [CryptoAsymKeyApi](reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md)
             - [CryptoCommonApi](reference/apis-crypto-architecture-kit/_crypto_common_api.md)
             - [CryptoDigestApi](reference/apis-crypto-architecture-kit/_crypto_digest_api.md)
             - [CryptoSignatureApi](reference/apis-crypto-architecture-kit/_crypto_signature_api.md)
             - [CryptoSymCipherApi](reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md)
             - [CryptoSymKeyApi](reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md)
-          - Header Files
+          - Header Files<!--crypto-architecture-headerfile-->
             - [crypto_asym_key.h](reference/apis-crypto-architecture-kit/crypto__asym__key_8h.md)
             - [crypto_common.h](reference/apis-crypto-architecture-kit/crypto__common_8h.md)
             - [crypto_digest.h](reference/apis-crypto-architecture-kit/crypto__digest_8h.md)
             - [crypto_signature.h](reference/apis-crypto-architecture-kit/crypto__signature_8h.md)
             - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
             - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
-          - Structs
+          - Structs<!--crypto-architecture-struct-->
             - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)  
         - Error Codes<!--crypto-architecture-arkts-errcode-->
           - [Crypto Framework Error Codes](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
@@ -2758,12 +2798,14 @@
         - ArkTS APIs<!--device-certificate-arkts-->
           - [@ohos.security.cert (Certificate)](reference/apis-device-certificate-kit/js-apis-cert.md)
           - [@ohos.security.certManager (Certificate Management)](reference/apis-device-certificate-kit/js-apis-certManager.md)
+          - [@ohos.security.certManagerDialog (Certificate Management Dialog Box)](reference/apis-device-certificate-kit/js-apis-certManagerDialog.md)
           <!--Del-->
           - [@ohos.security.certManager (Certificate Management) (System API)](reference/apis-device-certificate-kit/js-apis-certManager-sys.md)
           <!--DelEnd-->
         - Error Codes<!--device-certificate-arkts-errcode-->
           - [Certificate Error Codes](reference/apis-device-certificate-kit/errorcode-cert.md)
           - [Certificate Management Error Codes](reference/apis-device-certificate-kit/errorcode-certManager.md)
+          - [Certificate Management Dialog Box Error Codes](reference/apis-device-certificate-kit/errorcode-certManagerDialog.md)
       - Universal Keystore Kit<!--universal-keystore-api-->
         - ArkTS APIs<!--universal-keystore-arkts-->
           - [@ohos.security.huks (HUKS)](reference/apis-universal-keystore-kit/js-apis-huks.md)
@@ -2848,16 +2890,23 @@
           - tag
             - [nfctech (Standard NFC Technologies)](reference/apis-connectivity-kit/js-apis-nfctech.md)
             - [tagSession (Standard NFC Tag Session)](reference/apis-connectivity-kit/js-apis-tagSession.md)
+        - C APIs<!--connectivity-c-->
+          - Modules<!--connectivity-module-->
+            - [Bluetooth](reference/apis-connectivity-kit/_bluetooth.md)
+            - [Wifi](reference/apis-connectivity-kit/_wifi.md)
+        - Header Files<!--connectivity-headerfile-->
+            - [oh_bluetooth.h](reference/apis-connectivity-kit/oh__bluetooth_8h.md)
+            - [oh_wifi.h](reference/apis-connectivity-kit/oh__wifi_8h.md)
         - Error Codes<!--connectivity-arkts-errcode-->
           - [Bluetooth Error Codes](reference/apis-connectivity-kit/errorcode-bluetoothManager.md)
           - [Wi-Fi Error Codes](reference/apis-connectivity-kit/errorcode-wifi.md)
           - [NFC Error Codes](reference/apis-connectivity-kit/errorcode-nfc.md)
           - [SE Error Codes](reference/apis-connectivity-kit/errorcode-se.md)
         - APIs No Longer Maintained<!--connectivity-arkts-dep-->
-          - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
-          - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
-          - [@ohos.wifi (WLAN) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-wifi.md)
-          - [@ohos.wifiext (WLAN Extension) (To Be Deprecated Soon)](reference/apis-connectivity-kit/js-apis-wifiext.md)
+          - [@ohos.bluetooth (Bluetooth) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
+          - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
+          - [@ohos.wifi (WLAN) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-wifi.md)
+          - [@ohos.wifiext (WLAN Extension) (To Be Deprecated)](reference/apis-connectivity-kit/js-apis-wifiext.md)
           - [@system.bluetooth (Bluetooth)](reference/apis-connectivity-kit/js-apis-system-bluetooth.md)
           <!--Del-->
           - [@ohos.bluetooth (Bluetooth) (To Be Deprecated) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-sys.md)
@@ -2875,7 +2924,9 @@
           <!--DelEnd-->
         - Error Codes<!--distributed-service-arkts-errcode-->
           - [Device Management Error Codes](reference/apis-distributedservice-kit/errorcode-device-manager.md)
+          <!--Del-->
           - [Screen Hopping Error Codes](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
+          <!--DelEnd-->
       - Network Kit<!--network-api-->
         - ArkTS APIs<!--network-api-arkts-->
           - [@ohos.net.connection (Network Connection Management)](reference/apis-network-kit/js-apis-net-connection.md)
@@ -2942,6 +2993,7 @@
           - [MDNS Error Codes](reference/apis-network-kit/errorcode-net-mdns.md)
           - [Traffic Management Error Codes](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN Error Codes](reference/apis-network-kit/errorcode-net-vpn.md)
+          - [Network Security Error Codes](reference/apis-network-kit/errorcode-net-networkSecurity.md)
 
       - Telephony Kit<!--telephony-api-->
         - ArkTS APIs<!--telephony-arkts-->
@@ -2955,17 +3007,27 @@
           - [@ohos.telephony.call (Call) (System API)](reference/apis-telephony-kit/js-apis-call-sys.md)
           - [@ohos.telephony.data (Cellular Data) (System API)](reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
           - [@ohos.telephony.observer (Observer) (System API)](reference/apis-telephony-kit/js-apis-observer-sys.md)
-        - [@ohos.telephony.radio (Radio) (System API)](reference/apis-telephony-kit/js-apis-radio-sys.md)
+          - [@ohos.telephony.radio (Radio) (System API)](reference/apis-telephony-kit/js-apis-radio-sys.md)
           - [@ohos.telephony.sim (SIM Management) (System API)](reference/apis-telephony-kit/js-apis-sim-sys.md)
           - [@ohos.telephony.sms (SMS) (System API)](reference/apis-telephony-kit/js-apis-sms-sys.md)
           - [@ohos.telephony.vcard (VCard) (System API)](reference/apis-telephony-kit/js-apis-vcard-sys.md)
           <!--DelEnd-->
+        - C APIs<!--telephony-c-->
+          - Modules<!--telephony-module-->
+            - [Telephony Data](reference/apis-telephony-kit/ndk-apis-telephony-data.md)
+            - [Telephony Radio](reference/apis-telephony-kit/ndk-apis-telephony-radio.md)
+          - Header Files<!--telephony-headerfile-->
+            - [telephony_data.h](reference/apis-telephony-kit/telephony__data_8h.md)
+            - [telephony_radio.h](reference/apis-telephony-kit/telephony__radio_8h.md)
+            - [telephony_radio_type.h](reference/apis-telephony-kit/telephony__radio__type_8h.md)
+          - Structs<!--telephony-struct-->
+            - [Telephony_NetworkState](reference/apis-telephony-kit/_telephony__network_state.md)
         - Error Codes<!--telephony-arkts-errcode-->
           - [Telephony Error Codes](reference/apis-telephony-kit/errorcode-telephony.md)
     - Basic Functions<!--system-basicfun-api-->
       - Basic Service Kit<!--basic-services-api-->
         - ArkTS APIs<!--basic-services-arkts-->
-          - Account Management
+          - Account Management<!--account-management-arkts-->
             - [@ohos.account.appAccount (App Account Management)](reference/apis-basic-services-kit/js-apis-appAccount.md)
             - [@ohos.account.distributedAccount (Distributed Account Management)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
             - [@ohos.account.osAccount (System Account Management)](reference/apis-basic-services-kit/js-apis-osAccount.md)
@@ -2973,7 +3035,7 @@
             - [@ohos.account.distributedAccount (Distributed Account Management) (System API)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
             - [@ohos.account.osAccount (System Account Management) (System API)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
             <!--DelEnd-->
-          - Device Management
+          - Device Management<!--device-management-arkts-->
             - [@ohos.batteryInfo (Battery Information)](reference/apis-basic-services-kit/js-apis-battery-info.md)
             - [@ohos.deviceInfo (Device Information)](reference/apis-basic-services-kit/js-apis-device-info.md)
             - [@ohos.power (System Power Management)](reference/apis-basic-services-kit/js-apis-power.md)
@@ -2993,7 +3055,7 @@
             - [@ohos.usbManager (USB Management) (System API)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
             - [@ohos.update (Update) (System API)](reference/apis-basic-services-kit/js-apis-update-sys.md)
             <!--DelEnd-->
-          - Data File Processing
+          - Data File Processing<!--data-file-processing-arkts-->
             - [@ohos.pasteboard (Pasteboard)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (Print)](reference/apis-basic-services-kit/js-apis-print.md)
             - [@ohos.request (Upload and Download)](reference/apis-basic-services-kit/js-apis-request.md)
@@ -3005,24 +3067,24 @@
             - [@ohos.print (Print) (System API)](reference/apis-basic-services-kit/js-apis-print-sys.md)
             - [@ohos.request (Upload and Download) (System API)](reference/apis-basic-services-kit/js-apis-request-sys.md)
             <!--DelEnd-->
-          - Process and Thread Communication
+          - Process and Thread Communication<!--process-thread-communi-arkts-->
             - [System Common Events](reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md)
             <!--Del-->
             - [System Common Events (System API)](reference/apis-basic-services-kit/common_event/commonEventManager-definitions-sys.md)
             <!--DelEnd-->
-          - [@ohos.commonEventManager (Common Event)](reference/apis-basic-services-kit/js-apis-commonEventManager.md)
+            - [@ohos.commonEventManager (Common Event)](reference/apis-basic-services-kit/js-apis-commonEventManager.md)
             - [@ohos.events.emitter (Emitter)](reference/apis-basic-services-kit/js-apis-emitter.md)
             <!--Del-->
             - [@ohos.commonEventManager (Common Event) (System API)](reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md)
             - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility) (System API)](reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)
             - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext) (System API)](reference/apis-basic-services-kit/js-apis-application-StaticSubscriberExtensionContext-sys.md)
             <!--DelEnd-->
-            - commonEvent
+            - commonEvent<!--commonEvent-->
               - [CommonEventData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventData.md)
               - [CommonEventPublishData](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)
               - [CommonEventSubscriber](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md)
               - [CommonEventSubscribeInfo](reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-          - Others
+          - Others<!--others-->
             <!--Del-->
             - [@ohos.ai.intelligentVoice (Intelligent Voice) (System API)](reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md)
             <!--DelEnd-->
@@ -3059,24 +3121,30 @@
             - [@ohos.systemTime (System Time and Time Zone)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C APIs<!--basic-services-c-->
           - Modules<!--basic-services-module-->
+            - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
+            - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
-            - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
           - Header Files<!--basic-services-headerfile-->
+            - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
+            - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
+            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
-            - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
-            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
         - Error Codes<!--basic-services-arkts-errcode-->
           - [USB Error Codes](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock Error Codes](reference/apis-basic-services-kit/errorcode-runninglock.md)
           - [zlib Error Codes](reference/apis-basic-services-kit/errorcode-zlib.md) 
+          <!--Del-->
           - [Battery Info Error Codes](reference/apis-basic-services-kit/errorcode-battery-info.md)
           - [Power Consumption Statistics Error Codes](reference/apis-basic-services-kit/errorcode-batteryStatistics.md)
+          <!--DelEnd-->
           - [Pasteboard Error Codes](reference/apis-basic-services-kit/errorcode-pasteboard.md)
+          <!--Del-->
           - [Brightness Error Codes](reference/apis-basic-services-kit/errorcode-brightness.md)
+          <!--DelEnd-->
           - [Thermal Manager Error Codes](reference/apis-basic-services-kit/errorcode-thermal.md)
           - [Upload and Download Error Codes](reference/apis-basic-services-kit/errorcode-request.md)
           - [Time and Time Zone Error Codes](reference/apis-basic-services-kit/errorcode-time.md)
@@ -3084,13 +3152,11 @@
           - [System Parameter Error Codes](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
           - [Power Manager Error Codes](reference/apis-basic-services-kit/errorcode-power.md)
           - [Account Management Error Codes](reference/apis-basic-services-kit/errorcode-account.md)
-          <!--Del-->
           - [Update Error Codes](reference/apis-basic-services-kit/errorcode-update.md)
-          <!--DelEnd-->
-          - [Screen Lock Management Error Codes](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [Print Error Codes](reference/apis-basic-services-kit/errorcode-print.md)
-          - [Device Attestation Error Codes](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           <!--Del-->
+          - [Screen Lock Management Error Codes](reference/apis-basic-services-kit/errorcode-screenlock.md)
+          - [Device Attestation Error Codes](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           - [Intelligent Voice Error Codes](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
       - Function Flow Runtime Kit<!--function-flow-runtime-api-->
@@ -3148,7 +3214,8 @@
                 - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
                 - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
             - Structs<!--input-struct-->
-                - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+              - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
+              - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - Error Codes<!--input-arkts-errcode-->
           - [Screen Hopping Error Codes](reference/apis-input-kit/errorcode-multimodalinput.md)
       - MDM Kit<!--mdm-api-->
@@ -3197,7 +3264,7 @@
           <!--Del-->
           - [@ohos.driver.deviceManager (Peripheral Management) (System API)](reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager-sys.md)
           <!--DelEnd-->
-          - application
+          - application<!--driver-development-arkts-application-->
             - [DriverExtensionContext](reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md)
         - C APIs<!--driver-development-c-->
           - Modules<!--driver-development-module-->
@@ -3409,11 +3476,20 @@
         <!--Del-->
         - [@ohos.app.ability.MediaControlExtensionAbility (ExtensionAbility for Media Playback Control) (System API)](reference/apis-avsession-kit/js-apis-app-ability-MediaControlExtensionAbility-sys.md)
         - [@ohos.multimedia.avsession (AVSession Management) (System API)](reference/apis-avsession-kit/js-apis-avsession-sys.md)
-        - application
+        - application<!--avsession-arkts-application-->
           - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control) (System API)](reference/apis-avsession-kit/js-apis-inner-application-MediaControlExtensionContext-sys.md)
         <!--DelEnd-->
       - ArkTS Components<!--avsession-comp-->
         - [@ohos.multimedia.avCastPicker (AVCastPicker)](reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md)
+      - C APIs<!--avsession-c-->
+        - Modules<!--avsession-module-->
+          - [OHAVSession](reference/apis-avsession-kit/_o_h_a_v_session.md)
+        - Header Files<!--avsession-headerfile-->
+          - [native_avmetadata.h](reference/apis-avsession-kit/native__avmetadata_8h.md)
+          - [native_avsession.h](reference/apis-avsession-kit/native__avsession_8h.md)
+          - [native_avsession_errors.h](reference/apis-avsession-kit/native__avsession__errors_8h.md)
+        - Structs<!--avsession-struct-->
+          - [AVSession_PlaybackPosition](reference/apis-avsession-kit/_a_v_session___playback_position.md)
       - Error Codes<!--avsession-arkts-errcode-->
         - [AVSession Management Error Codes](reference/apis-avsession-kit/errorcode-avsession.md)
     - Camera Kit<!--camera-api-->
@@ -3502,6 +3578,7 @@
           - [Image](reference/apis-image-kit/image.md)
           - [Image_NativeModule](reference/apis-image-kit/_image___native_module.md)
           - [ImageEffect](reference/apis-image-kit/_image_effect.md)
+          - [ImageProcessing](reference/apis-image-kit/_image_processing.md)
         - Header Files<!--image-headerfile-->
           - [image_mdk.h](reference/apis-image-kit/image__mdk_8h.md)
           - [image_mdk_common.h](reference/apis-image-kit/image__mdk__common_8h.md)
@@ -3515,10 +3592,13 @@
           - [image_packer_native.h](reference/apis-image-kit/image__packer__native_8h.md)
           - [image_receiver_native.h](reference/apis-image-kit/image__receiver__native_8h.md)
           - [image_source_native.h](reference/apis-image-kit/image__source__native_8h.md)
+          - [picture_native.h](reference/apis-image-kit/picture__native_8h.md)
           - [pixelmap_native.h](reference/apis-image-kit/pixelmap__native_8h.md)
           - [image_effect.h](reference/apis-image-kit/image__effect_8h.md)
           - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
           - [image_effect_filter.h](reference/apis-image-kit/image__effect__filter_8h.md)
+          - [image_processing.h](reference/apis-image-kit/image__processing_8h.md)
+          - [image_processing_types.h](reference/apis-image-kit/image__processing__types_8h.md)
         - Structs<!--image-struct-->
           - [ImagePacker_Opts](reference/apis-image-kit/_image_packer___opts__.md)
           - [OH_Pixelmap_HdrDynamicMetadata](reference/apis-image-kit/_o_h___pixelmap___hdr_dynamic_metadata.md)
@@ -3551,6 +3631,7 @@
           - [ImageEffect_FilterNames](reference/apis-image-kit/_image_effect___filter_names.md)
           - [ImageEffect_Region](reference/apis-image-kit/_image_effect___region.md)
           - [ImageEffect_Size](reference/apis-image-kit/_image_effect___size.md)
+          - [ImageProcessing_ColorSpaceInfo](reference/apis-image-kit/_image_processing___color_space_info.md)
       - Error Codes<!--image-arkts-errcode-->
         - [Image Error Codes](reference/apis-image-kit/errorcode-image.md)
     - Media Kit<!--media-api-->
@@ -3568,12 +3649,15 @@
         - Modules<!--media-module-->
           - [AVPlayer](reference/apis-media-kit/_a_v_player.md)
           - [AVScreenCapture](reference/apis-media-kit/_a_v_screen_capture.md)
+          - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
         - Header Files<!--media-headerfile-->
           - [avplayer.h](reference/apis-media-kit/avplayer_8h.md)
           - [avplayer_base.h](reference/apis-media-kit/avplayer__base_8h.md)
           - [native_avscreen_capture.h](reference/apis-media-kit/native__avscreen__capture_8h.md)
           - [native_avscreen_capture_base.h](reference/apis-media-kit/native__avscreen__capture__base_8h.md)
           - [native_avscreen_capture_errors.h](reference/apis-media-kit/native__avscreen__capture__errors_8h.md)
+          - [video_processing.h](reference/apis-media-kit/video__processing_8h.md)
+          - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
         - Structs<!--media-struct-->
           - [AVPlayerCallback](reference/apis-media-kit/_a_v_player_callback.md)
           - [OH_AudioBuffer](reference/apis-media-kit/_o_h___audio_buffer.md)
@@ -3587,12 +3671,13 @@
           - [OH_VideoCaptureInfo](reference/apis-media-kit/_o_h___video_capture_info.md)
           - [OH_VideoEncInfo](reference/apis-media-kit/_o_h___video_enc_info.md)
           - [OH_VideoInfo](reference/apis-media-kit/_o_h___video_info.md)
+          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/_video_processing___color_space_info.md)
       - Error Codes<!--media-arkts-errcode-->
         - [Media Error Codes](reference/apis-media-kit/errorcode-media.md)
     - Media Library Kit<!--media-library-api-->
       - ArkTS APIs<!--media-library-arkts-->
         - [@ohos.file.photoAccessHelper (Album Management)](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)
-        - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper.md)
+        - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper.md)
         <!--Del-->
         - [@ohos.file.photoAccessHelper (Album Management) (System API)](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
         - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object) (System API)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper-sys.md)
@@ -3614,7 +3699,7 @@
         - Structs<!--media-library-struct-->
           - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)  
-  - Graphics<!--graphics-api-->
+  - Graphics
     - ArkGraphics 2D<!--arkgraphics-api-->
       - ArkTS APIs<!--arkgraphics-arkts-->
         - [@ohos.effectKit (Image Effects)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
@@ -3638,6 +3723,7 @@
           - [NativeWindow](reference/apis-arkgraphics2d/_native_window.md)
           - [OH_NativeBuffer](reference/apis-arkgraphics2d/_o_h___native_buffer.md)
           - [OH_NativeImage](reference/apis-arkgraphics2d/_o_h___native_image.md)
+          - [NativeColorSpaceManager](reference/apis-arkgraphics2d/_native_color_space_manager.md)
         - Header Files<!--arkgraphics-headerfile-->
           - [drawing_bitmap.h](reference/apis-arkgraphics2d/drawing__bitmap_8h.md)
           - [drawing_brush.h](reference/apis-arkgraphics2d/drawing__brush_8h.md)
@@ -3661,6 +3747,7 @@
           - [drawing_pen.h](reference/apis-arkgraphics2d/drawing__pen_8h.md)
           - [drawing_pixel_map.h](reference/apis-arkgraphics2d/drawing__pixel__map_8h.md)
           - [drawing_point.h](reference/apis-arkgraphics2d/drawing__point_8h.md)
+          - [drawing_record_cmd.h](reference/apis-arkgraphics2d/drawing__record__cmd_8h.md)
           - [drawing_rect.h](reference/apis-arkgraphics2d/drawing__rect_8h.md)
           - [drawing_region.h](reference/apis-arkgraphics2d/drawing__region_8h.md)
           - [drawing_register_font.h](reference/apis-arkgraphics2d/drawing__register__font_8h.md)
@@ -3681,6 +3768,7 @@
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)
           - [native_vsync.h](reference/apis-arkgraphics2d/native__vsync_8h.md)
+          - [native_color_space_manager.h](reference/apis-arkgraphics2d/native__color__space__manager_8h.md)
         - Structs<!--arkgraphics-struct-->
           - [DisplaySoloist_ExpectedRateRange](reference/apis-arkgraphics2d/_display_soloist___expected_rate_range.md)
           - [OH_Drawing_BitmapFormat](reference/apis-arkgraphics2d/_o_h___drawing___bitmap_format.md)
@@ -3717,18 +3805,20 @@
           - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
           - [Region](reference/apis-arkgraphics2d/_region.md)
           - [Rect](reference/apis-arkgraphics2d/_rect.md)
+          - [ColorSpacePrimaries](reference/apis-arkgraphics2d/_color_space_primaries.md)
+          - [WhitePointArray](reference/apis-arkgraphics2d/_white_point_array.md)
       - Error Codes<!--arkgraphics-arkts-errcode-->
         - [colorSpaceManager Error Codes](reference/apis-arkgraphics2d/errorcode-colorspace-manager.md)
     - ArkGraphics 3D<!--arkgraphics-3d-api-->
       - ArkTS APIs<!--arkgraphics-3d-arkts-->
         - [@ohos.graphics.scene (ArkGraphics 3D)](reference/apis-arkgraphics3d/js-apis-scene.md)
-        - graphics3d
+        - graphics3d<!--graphics3d-->
           - [Scene](reference/apis-arkgraphics3d/js-apis-inner-scene.md)
           - [SceneNode](reference/apis-arkgraphics3d/js-apis-inner-scene-nodes.md)
           - [SceneType](reference/apis-arkgraphics3d/js-apis-inner-scene-types.md)
           - [SceneResources](reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md)
           - [ScenePostProcessSettings](reference/apis-arkgraphics3d/js-apis-inner-scene-post-process-settings.md)
-    - Application Services
+  - Application Services
     <!--Del-->
     - Ads Kit<!--ads-api-->
       - ArkTS APIs<!--ads-arkts-->
@@ -3761,6 +3851,14 @@
         - APIs No Longer Maintained<!--location-arkts-dep-->
           - [@ohos.geolocation (Geolocation)](reference/apis-location-kit/js-apis-geolocation.md)
           - [@system.geolocation (Geolocation)](reference/apis-location-kit/js-apis-system-location.md)
+      - C APIs<!--location-c-->
+        - Modules<!--location-module-->
+          - [Location](reference/apis-location-kit/_location.md)
+        - Header Files<!--location-headerfile-->
+          - [oh_location.h](reference/apis-location-kit/oh__location_8h.md)
+          - [oh_location_type.h](reference/apis-location-kit/oh__location__type_8h.md)
+        - Structs<!--location-struct-->
+          - [Location_BasicInfo](reference/apis-location-kit/_location___basic_info.md)
       - Error Codes<!--location-arkts-errcode-->
         - [Location Service Error Codes](reference/apis-location-kit/errorcode-geoLocationManager.md)
     - Notification Kit<!--notification-api-->
@@ -3770,7 +3868,7 @@
         - [@ohos.notificationManager (NotificationManager) (System API)](reference/apis-notification-kit/js-apis-notificationManager-sys.md)
         - [@ohos.notificationSubscribe (NotificationSubscribe) (System API)](reference/apis-notification-kit/js-apis-notificationSubscribe-sys.md)
         <!--DelEnd-->
-        - notification
+        - notification<!--notification-->
           - [NotificationActionButton](reference/apis-notification-kit/js-apis-inner-notification-notificationActionButton.md)
           - [NotificationCommonDef](reference/apis-notification-kit/js-apis-inner-notification-notificationCommonDef.md)
           - [NotificationContent](reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md)
@@ -3795,6 +3893,11 @@
           <!--Del-->
           - [@ohos.notification (Notification) (System API)](reference/apis-notification-kit/js-apis-notification-sys.md)
           <!--DelEnd-->
+      - C APIs<!--notification-c-->
+        - Modules<!--notification-module-->
+          - [Notification](reference/apis-notification-kit/capi-notification.md)
+        - Header Files<!--notification-headerfile-->
+          - [notification.h](reference/apis-notification-kit/notification_8h.md)
       - Error Codes<!--notification-arkts-errcode-->
         - [Notification Error Codes](reference/apis-notification-kit/errorcode-notification.md)
   - AI<!--ai-api-->
@@ -3866,10 +3969,10 @@
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
-    - Vulkan
+    - Vulkan<!--vulkan-->
       - [Vulkan Development](reference/native-lib/vulkan-guidelines.md)
       - [Vulkan Capabilities](reference/native-lib/vulkan.md)
-      - Vulkan Extensions
+      - Vulkan Extensions<!--vulkan-extensions-->
         - [Vulkan Module](reference/native-lib/_vulkan.md)
         - [vulkan_ohos.h](reference/native-lib/vulkan__ohos_8h.md)
         - [VkExternalFormatOHOS](reference/native-lib/_vk_external_format_o_h_o_s.md)
@@ -3879,7 +3982,7 @@
         - [VkNativeBufferPropertiesOHOS](reference/native-lib/_vk_native_buffer_properties_o_h_o_s.md)
         - [VkNativeBufferUsageOHOS](reference/native-lib/_vk_native_buffer_usage_o_h_o_s.md)
         - [VkSurfaceCreateInfoOHOS](reference/native-lib/_vk_surface_create_info_o_h_o_s.md)
-    - Appendix
+    - Appendix<!--appendixes-->
       - [libc Symbols Not Exported](reference/native-lib/musl-peculiar-symbol.md)
       - [Restricted musl libc APIs](reference/native-lib/guidance-on-ndk-libc-interfaces-affected-by-permissions.md)
       - [EGL Symbols Exported](reference/native-lib/egl-symbol.md)

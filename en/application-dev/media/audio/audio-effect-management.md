@@ -29,7 +29,7 @@ Before the management, you must call [createAudioRenderer(options: AudioRenderer
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
-      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags: 0
     };
 

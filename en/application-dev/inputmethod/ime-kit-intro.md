@@ -34,7 +34,7 @@ IME Kit provides two types of APIs: input method framework APIs and input method
 
 ## Related Kits
 
-ArkUI: With respect to soft keyboards and custom text input boxes, IME Kit can use some components, events, animations, and state management capabilities provided by ArkUI, for example, the **Text** and **Button** components and the **onClick** event.
+ArkUI: With respect to soft keyboards and custom text input boxes, IME Kit can use some components, events, animations, and state management capabilities provided by ArkUI, for example, the **\<Text>** and **\<Button>** components and the **onClick** event.
 
 
 ## Constraints
