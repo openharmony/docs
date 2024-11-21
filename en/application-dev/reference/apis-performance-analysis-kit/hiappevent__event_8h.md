@@ -16,6 +16,8 @@ int res = OH_HiAppEvent_Write("user_domain", EVENT_USER_LOGIN, BEHAVIOR, list);
 OH_HiAppEvent_DestroyParamList(list);
 ```
 
+**File to include**: <hiappevent/hiappevent_event.h>
+
 **Since**: 8
 
 **Related module**: [HiAppEvent](_hi_app_event.md)

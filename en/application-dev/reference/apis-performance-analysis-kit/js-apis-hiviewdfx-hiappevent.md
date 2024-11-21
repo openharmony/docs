@@ -1,6 +1,6 @@
-# @ohos.hiviewdfx.hiAppEvent (HiAppEvent)
+# @ohos.hiviewdfx.hiAppEvent (Application Event Logging)
 
-The **HiAppEvent** module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
+The **hiAppEvent** module provides application event-related functions, including flushing application events to a disk, querying and clearing application events, and customizing application event logging configuration.
 
 > **NOTE**
 >
@@ -27,7 +27,7 @@ The configuration information of **Processor** must be provided by the data proc
 
 **Parameters**
 
-| Name    | Type       | Mandatory | Description             |
+| Name    | Type       | Mandatory| Description             |
 | ---------  | ---------- | ---- | -------------    |
 | processor  | [Processor](#processor11)  | Yes  | Data processor.|
 
@@ -35,11 +35,11 @@ The configuration information of **Processor** must be provided by the data proc
 
 | Type   | Description                  |
 | ------ | ---------------------- |
-| number | ID of the data processor to be added. If the operation fails, **-1** is returned. If the operation is successful, a value greater than **0** is returned. |
+| number | ID of the data processor to be added. If the operation fails, **-1** is returned. If the operation is successful, a value greater than **0** is returned.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -65,12 +65,12 @@ Defines a data processor for reporting events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name               | Type                    | Mandatory | Description                                                                                                       |
+| Name               | Type                    | Mandatory| Description                                                                                                       |
 | ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
 | name                | string                  | Yes  | Name of a data processor. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                          |
 | debugMode           | boolean                 | No  | Whether to enable the debug mode. The default value is **false**. The value **true** means to enable the debugging mode, and the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                   |
 | routeInfo           | string                  | No  | Server location information. It is left empty by default. The length of the input string cannot exceed 8 KB. If the length exceeds 8 KB, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                  |
-| appId               | string                  | No  | Application ID. It is left empty by default. The length of the input string cannot exceed 8 KB. If the length exceeds 8 KB, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| appId               | string                  | No  | Application ID. It is left empty by default. The length of the input string cannot exceed 8 KB. If the length exceeds 8 KB, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onStartReport       | boolean                 | No  | Whether to report an event when the data processor starts. The default value is **false**. The value **true** means to report events, and the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                  |
 | onBackgroundReport  | boolean                 | No  | Whether to report an event when an application switches to the background. The default value is **false**. The value **true** means to report events, and the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                |
 | periodReport        | number                  | No  | Interval for event reporting, in seconds. The input value must be greater than or equal to **0**. If the input value is less than **0**, the default value **0** is used and periodic reporting is not performed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                               |
@@ -78,8 +78,8 @@ Defines a data processor for reporting events.
 | userIds             | string[]                | No  | Name array of user IDs that can be reported by the data processor. **name** corresponds to the **name** parameter of the [setUserId](#hiappeventsetuserid11) API.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
 | userProperties      | string[]                | No  | Name array of user properties that can be reported by the data processor. **name** corresponds to the **name** parameter of the [setUserProperty](#hiappeventsetuserproperty11) API.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | No  | Array of events that can be reported by the data processor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                |
-| configId<sup>12+</sup> | number | No | Configuration ID for data processor. The input value must be greater than or equal to **0**. If the input value is less than **0**, the default value 0 is used. If the input value is greater than 0, the value uniquely identifies a data processor with its name.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| customConfigs<sup>12+</sup> | Record\<string, string> | No | Custom extended parameters. If the input parameter name and value do not meet the specifications, extended parameters are not configured by default. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- A parameter value is a string contains a maximum of 1024 characters.<br>- The number of parameters must be less than 32.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| configId<sup>12+</sup> | number | No| Configuration ID for data processor. The input value must be greater than or equal to **0**. If the input value is less than **0**, the default value 0 is used. If the input value is greater than 0, the value uniquely identifies a data processor with its name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| customConfigs<sup>12+</sup> | Record\<string, string> | No| Custom extended parameters. If the input parameter name and value do not meet the specifications, extended parameters are not configured by default. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- A parameter value is a string contains a maximum of 1024 characters.<br>- The number of parameters must be less than 32.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## AppEventReportConfig<sup>11+</sup>
 
@@ -89,11 +89,11 @@ Description of events that can be reported by the data processor.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name        | Type   | Mandatory | Description                                                         |
+| Name        | Type   | Mandatory| Description                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| domain      | string  | No  | Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (_). |
+| domain      | string  | No  | Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (_).|
 | name        | string  | No  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter. |
-| isRealTime  | boolean | No  | Whether to report events in real time. The value **true** means to report events, and the value **false** means the opposite. |
+| isRealTime  | boolean | No  | Whether to report events in real time. The value **true** means to report events, and the value **false** means the opposite.|
 
 ## hiAppEvent.removeProcessor<sup>11+</sup>
 
@@ -107,13 +107,13 @@ Removes a data processor.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                        |
+| Name| Type   | Mandatory| Description                        |
 | ------| ------- | ---- | --------------------------- |
 | id    | number  | Yes  | ID of a data processor. The value must be greater than **0**.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -145,19 +145,19 @@ Writes events to the event file of the current day through **AppEventInfo** obje
 
 **Parameters**
 
-| Name  | Type                          | Mandatory | Description          |
+| Name  | Type                          | Mandatory| Description          |
 | -------- | ------------------------------ | ---- | -------------- |
-| info     | [AppEventInfo](#appeventinfo) | Yes  | Application event object. |
-| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result. |
+| info     | [AppEventInfo](#appeventinfo) | Yes  | Application event object.|
+| callback | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message                                     |
+| ID| Error Message                                     |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11100001 | Function is disabled.                         |
+| 11100001 | Function disabled.                            |
 | 11101001 | Invalid event domain.                         |
 | 11101002 | Invalid event name.                           |
 | 11101003 | Invalid number of event parameters.           |
@@ -201,24 +201,24 @@ Writes events to the event file of the current day through **AppEventInfo** obje
 
 **Parameters**
 
-| Name | Type                          | Mandatory | Description          |
+| Name| Type                          | Mandatory| Description          |
 | ------ | ------------------------------ | ---- | -------------- |
-| info   | [AppEventInfo](#appeventinfo) | Yes  | Application event object. |
+| info   | [AppEventInfo](#appeventinfo) | Yes  | Application event object.|
 
 **Return value**
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message                                     |
+| ID| Error Message                                     |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 11100001 | Function is disabled.                         |
+| 11100001 | Function disabled.                            |
 | 11101001 | Invalid event domain.                         |
 | 11101002 | Invalid event name.                           |
 | 11101003 | Invalid number of event parameters.           |
@@ -256,12 +256,12 @@ Defines parameters for an **AppEventInfo** object.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name     | Type                   | Mandatory | Description                                                        |
+| Name     | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| domain    | string                  | Yes  | Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (_). |
+| domain    | string                  | Yes  | Event domain. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (_).|
 | name      | string                  | Yes  | Event name. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.|
 | eventType | [EventType](#eventtype) | Yes  | Event type.                                                  |
-| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
+| params    | object                  | Yes  | Event parameter object, which consists of a parameter name and a parameter value. In system events, the fields contained in **params** are defined by system. For details about the fields, you can see the introduction to system events, for example, [Crash Event Overview](../../dfx/hiappevent-watcher-crash-events.md). For application events, you need to define the logging parameters. The specifications are as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign (`$`). It must start with a letter or dollar sign (`$`) and end with a digit or letter.<br>- The parameter value can be a string, number, boolean, or array. If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded. If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated. If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>- The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.|
 
 ## hiAppEvent.setEventParam<sup>12+</sup>
 
@@ -275,23 +275,23 @@ Method for setting custom event parameters. This API uses a promise to return th
 
 **Parameters**
 
-| Name | Type                          | Mandatory | Description          |
+| Name| Type                          | Mandatory| Description          |
 | ------ | ------------------------------ | ---- | -------------- |
-| params | Record&lt;string, [ParamType](#paramtype12)&gt; | Yes | Custom parameter object. The parameter names and parameter values are defined as follows:<br>- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value is of the [ParamType](#paramtype12) and contains a maximum of 1024 characters.<br>- The number of parameters must be less than 64. |
-| domain | string                        | Yes | Event domain. The event domain can be associated with application events and system events (hiAppEvent.domain.OS). |
-| name   | string                        | No | Event name. The default value is an empty string, which indicates all event names in the associated event domain. The event name can be associated with application events and system events. System events can be associated only with crash events (hiAppEvent.event.APP_CRASH) and freeze events (hiAppEvent.event.APP_FREEZE). |
+| params | Record&lt;string, [ParamType](#paramtype12)&gt; | Yes| Custom parameter object. The parameter names and parameter values are defined as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value is of the [ParamType](#paramtype12) and contains a maximum of 1024 characters.<br>- The number of parameters must be less than 64.|
+| domain | string                        | Yes| Event domain. The event domain can be associated with application events and system events (hiAppEvent.domain.OS).|
+| name   | string                        | No| Event name. The default value is an empty string, which indicates all event names in the associated event domain. The event name can be associated with application events and system events. System events can be associated only with crash events (hiAppEvent.event.APP_CRASH) and freeze events (hiAppEvent.event.APP_FREEZE).|
 
 **Return value**
 
 | Type               | Description         |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message                                     |
+| ID| Error Message                                     |
 | -------- | --------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11101007 | The number of parameter keys exceeds the limit. |
@@ -343,15 +343,15 @@ Configures the application event logging function, such as setting the event log
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description                    |
+| Name| Type                         | Mandatory| Description                    |
 | ------ | ----------------------------- | ---- | ------------------------ |
-| config | [ConfigOption](#configoption) | Yes  | Configuration items for application event logging. |
+| config | [ConfigOption](#configoption) | Yes  | Configuration items for application event logging.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message                        |
+| ID| Error Message                        |
 | -------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11103001 | Invalid max storage quota value. |
@@ -380,10 +380,10 @@ Provides configuration options for application event logging.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name      | Type   | Mandatory | Description                                                        |
+| Name      | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| disable    | boolean | No  | Whether to enable the event logging function. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite. |
-| maxStorage | string  | No  | Quota for the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.<br>The quota value must meet the following requirements:<br>- The quota value consists of only digits and a unit (which can be one of [b\|k\|kb\|m\|mb\|g\|gb\|t\|tb], which are case insensitive.)<br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left empty, **b** (that is, byte) is used by default. |
+| disable    | boolean | No  | Whether to enable the event logging function. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite.|
+| maxStorage | string  | No  | Quota for the directory that stores event logging files. The default value is **10M**.<br>If the directory size exceeds the specified quota when application event logging is performed, event logging files in the directory will be cleared one by one based on the generation time to ensure that directory size does not exceed the quota.<br>The quota value must meet the following requirements:<br>- The quota value consists of only digits and a unit (which can be one of [b\|k\|kb\|m\|mb\|g\|gb\|t\|tb], which are case insensitive.)<br>- The quota value must start with a digit. You can determine whether to pass the unit. If the unit is left empty, **b** (that is, byte) is used by default.|
 
 ## hiAppEvent.setUserId<sup>11+</sup>
 
@@ -397,14 +397,14 @@ Sets a user ID.
 
 **Parameters**
 
-| Name    | Type                     | Mandatory | Description          |
+| Name    | Type                     | Mandatory| Description          |
 | --------- | ------------------------- | ---- | -------------  |
 | name      | string                    | Yes  | Key of a user ID. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.  |
-| value     | string                    | Yes  | Value of a user ID. It can contain a maximum of 256 characters. If the value is **null** or left empty, the user ID is cleared. |
+| value     | string                    | Yes  | Value of a user ID. It can contain a maximum of 256 characters. If the value is **null** or left empty, the user ID is cleared.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -432,7 +432,7 @@ Obtains the value set by **setUserId**.
 
 **Parameters**
 
-| Name    | Type                   | Mandatory | Description        |
+| Name    | Type                   | Mandatory| Description        |
 | --------- | ----------------------- | ---- | ----------  |
 | name      | string                  | Yes  | Key of a user ID. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.|
 
@@ -440,11 +440,11 @@ Obtains the value set by **setUserId**.
 
 | Type   | Description                           |
 | ------ | ------------------------------- |
-| string | Value of a user ID. If no user ID is found, an empty string is returned. |
+| string | Value of a user ID. If no user ID is found, an empty string is returned.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -474,14 +474,14 @@ Sets user properties.
 
 **Parameters**
 
-| Name    | Type                     | Mandatory | Description          |
+| Name    | Type                     | Mandatory| Description          |
 | --------- | ------------------------- | ---- | -------------- |
 | name      | string                    | Yes  | Key of a user property. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit. |
 | value     | string                    | Yes  | Value of a user property. It is a string that contains a maximum of 1024 characters. If the value is **null**, **undefine**, or **empty**, the user property is cleared. |
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -509,7 +509,7 @@ Obtains the value set by **setUserProperty**.
 
 **Parameters**
 
-| Name    | Type                   | Mandatory | Description         |
+| Name    | Type                   | Mandatory| Description         |
 | --------- | ----------------------- | ---- | ----------    |
 | name      | string                  | Yes  | Key of a user property. The value is string that contains a maximum of 256 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must not start with a digit.|
 
@@ -517,11 +517,11 @@ Obtains the value set by **setUserProperty**.
 
 | Type   | Description                            |
 | ------ | -------------------------------- |
-| string | Value of a user property. If no user ID is found, an empty string is returned. |
+| string | Value of a user property. If no user ID is found, an empty string is returned.|
 
 **Error codes**
 
-| ID | Error Message         |
+| ID| Error Message         |
 | ------- | ----------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -551,21 +551,21 @@ Adds a watcher to subscribe to application events.
 
 **Parameters**
 
-| Name | Type                | Mandatory | Description            |
+| Name | Type                | Mandatory| Description            |
 | ------- | -------------------- | ---- | ---------------- |
-| watcher | [Watcher](#watcher) | Yes  | Watcher for application events. |
+| watcher | [Watcher](#watcher) | Yes  | Watcher for application events.|
 
 **Return value**
 
 | Type                                            | Description                                |
 | ------------------------------------------------ | ------------------------------------ |
-| [AppEventPackageHolder](#appeventpackageholder) | Subscription data holder. If the subscription fails, **null** will be returned. |
+| [AppEventPackageHolder](#appeventpackageholder) | Subscription data holder. If the subscription fails, **null** will be returned.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11102001 | Invalid watcher name.           |
@@ -612,6 +612,7 @@ hiAppEvent.addWatcher({
 });
 
 // 2. If no callback parameters are passed to the watcher, you can have subscription events processed manually through the subscription data holder.
+// For the crash event (hiAppEvent.event.APP_CRASH) and freeze event (hiAppEvent.event.APP_FREEZE) generated when the system exits abnormally, it takes some time for the system to capture maintenance and debugging logs. Typically, the capture is completed within 30s, in extreme cases, it takes about 2 minutes. If you want to manually process subscription events, you are advised to call takeNext() after the process starts.
 let holder = hiAppEvent.addWatcher({
   name: "watcher2",
 });
@@ -660,15 +661,15 @@ Removes a watcher to unsubscribe from application events.
 
 **Parameters**
 
-| Name | Type                | Mandatory | Description            |
+| Name | Type                | Mandatory| Description            |
 | ------- | -------------------- | ---- | ---------------- |
-| watcher | [Watcher](#watcher) | Yes  | Watcher for application events. |
+| watcher | [Watcher](#watcher) | Yes  | Watcher for application events.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | -------- | --------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11102001 | Invalid watcher name. |
@@ -696,13 +697,13 @@ Defines parameters for a **Watcher** object.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name            | Type                                                        | Mandatory | Description                                                        |
+| Name            | Type                                                        | Mandatory| Description                                                        |
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | name             | string                                                       | Yes  | Unique name of a watcher.                            |
 | triggerCondition | [TriggerCondition](#triggercondition)                        | No  | Subscription callback triggering condition. This parameter takes effect only when it is passed together with **onTrigger**.          |
 | appEventFilters  | [AppEventFilter](#appeventfilter)[]                          | No  | Subscription filtering condition. This parameter is passed only when subscription events need to be filtered.              |
-| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | No  | Subscription callback. This parameter takes effect only when it is passed together with **triggerCondition**. The input arguments are described as follows:<br>**curRow**: total number of subscription events when the callback is triggered.<br>**curSize**: total size of subscribed events when the callback is triggered, in bytes.<br>**holder**: subscription data holder, which can be used to process subscribed events. |
-| onReceive<sup>11+</sup>        | (domain: string, appEventGroups: Array<[AppEventGroup](#appeventgroup11)>) => void | No | Real-time subscription callback. Only this callback function is triggered if it is passed together with **onTrigger**. The input arguments are described as follows:<br>domain: domain name.<br>appEventGroups: event group. |
+| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | No  | Subscription callback. This parameter takes effect only when it is passed together with **triggerCondition**. The input arguments are described as follows:<br>**curRow**: total number of subscription events when the callback is triggered.<br>**curSize**: total size of subscribed events when the callback is triggered, in bytes.<br>**holder**: subscription data holder, which can be used to process subscribed events.|
+| onReceive<sup>11+</sup>        | (domain: string, appEventGroups: Array<[AppEventGroup](#appeventgroup11)>) => void | No| Real-time subscription callback. Only this callback function is triggered if it is passed together with **onTrigger**. The input arguments are described as follows:<br>domain: domain name.<br>appEventGroups: event group.|
 
 ## TriggerCondition
 
@@ -712,11 +713,11 @@ Defines callback triggering conditions. A callback is triggered when any specifi
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name   | Type  | Mandatory | Description                                  |
+| Name   | Type  | Mandatory| Description                                  |
 | ------- | ------ | ---- | -------------------------------------- |
-| row     | number | No  | Number of events.            |
-| size    | number | No  | Event data size, in bytes. |
-| timeOut | number | No  | Timeout interval, in unit of 30s.   |
+| row     | number | No  | Total number of events that trigger callback. The value is a positive integer. The default value is 0, indicating that no callback is triggered. If this parameter is set to a negative value, the default value is used.            |
+| size    | number | No  | Total size of events that trigger callback. The value is a positive integer, in bytes. The default value is 0, indicating that no callback is triggered. If this parameter is set to a negative value, the default value is used.|
+| timeOut | number | No  | Timeout interval for triggering callback. The value is a positive integer, in unit of 30s. The default value is 0, indicating that no callback is triggered. If this parameter is set to a negative value, the default value is used.   |
 
 ## AppEventFilter
 
@@ -726,11 +727,11 @@ Defines parameters for an **AppEventFilter** object.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name      | Type                     | Mandatory | Description                    |
+| Name      | Type                     | Mandatory| Description                    |
 | ---------- | ------------------------- | ---- | ------------------------ |
 | domain     | string                    | Yes  | Event domain.    |
-| eventTypes | [EventType](#eventtype)[] | No  | Event types. |
-| names<sup>11+</sup>      | string[]                  | No  | Names of the events to be subscribed. |
+| eventTypes | [EventType](#eventtype)[] | No  | Event types.|
+| names<sup>11+</sup>      | string[]                  | No  | Names of the events to be subscribed.|
 
 ## AppEventPackageHolder
 
@@ -748,9 +749,9 @@ A constructor used to create a holder object for subscription data. It is associ
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description                    |
+| Name| Type             | Mandatory| Description                    |
 | ------ | ----------------- | ---- | ------------------------ |
-| watcherName | string | Yes  | Watcher name. |
+| watcherName | string | Yes  | Watcher name.|
 
 **Example**
 
@@ -770,15 +771,15 @@ Sets the threshold for the data size of the application event package obtained e
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                        |
+| Name| Type  | Mandatory| Description                                        |
 | ------ | ------ | ---- | -------------------------------------------- |
-| size   | number | Yes  | Data size, in bytes. The value is greater than or equal to 0, otherwise, an exception is thrown. |
+| size   | number | Yes  | Data size, in bytes. The value is greater than or equal to 0, otherwise, an exception is thrown.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message           |
+| ID| Error Message           |
 | -------- | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11104001 | Invalid size value. |
@@ -802,15 +803,15 @@ Sets the number of data records obtained from the application event package each
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                        |
+| Name| Type  | Mandatory| Description                                        |
 | ------ | ------ | ---- | -------------------------------------------- |
-| size   | number | Yes  | Number of application events. The value must be greater than 0, otherwise, an exception is thrown. |
+| size   | number | Yes  | Number of application events. The value must be greater than 0, otherwise, an exception is thrown.|
 
 **Error codes**
 
 For details about the error codes, see [Application Event Logging Error Codes](errorcode-hiappevent.md).
 
-| ID | Error Message           |
+| ID| Error Message           |
 | -------- | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11104001 | Invalid size value. |
@@ -839,7 +840,7 @@ Extracts subscription event data based on the configured data size threshold or 
 
 | Type                               | Description                                                  |
 | ----------------------------------- | ------------------------------------------------------ |
-| [AppEventPackage](#appeventpackage) | Event package object. If all subscription event data has been retrieved, **null** is returned. |
+| [AppEventPackage](#appeventpackage) | Event package object. If all subscription event data has been retrieved, **null** is returned.|
 
 **Example**
 
@@ -854,13 +855,13 @@ Defines parameters for an **AppEventPackage** object.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name     | Type    | Mandatory | Description                          |
+| Name     | Type    | Mandatory| Description                          |
 | --------- | -------- | ---- | ------------------------------ |
 | packageId | number   | Yes  | Event package ID, which is named from **0** in ascending order.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
 | row       | number   | Yes  | Number of events in the event package.<br>**Atomic service API**: This API can be used in atomic services since API version 11.            |
-| size      | number   | Yes  | Event size of the event package, in bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| size      | number   | Yes  | Event size of the event package, in bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | data      | string[] | Yes  | Event data in the event package.<br>**Atomic service API**: This API can be used in atomic services since API version 11.            |
-| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | Yes  | Event object group.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | Yes  | Event object group.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## AppEventGroup<sup>11+</sup>
 
@@ -873,7 +874,7 @@ Defines the event group returned by a subscription.
 | Name         | Type                           | Mandatory | Description         |
 | ------------- | ------------------------------- | ---- | ------------- |
 | name          | string                          | Yes  | Event name.    |
-| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | Yes  | Event object group. |
+| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | Yes  | Event object group.|
 
 ## hiAppEvent.clearData
 
@@ -902,10 +903,10 @@ Enumerates event types.
 
 | Name     | Value  | Description          |
 | --------- | ---- | -------------- |
-| FAULT     | 1    | Fault event. |
-| STATISTIC | 2    | Statistical event. |
-| SECURITY  | 3    | Security event. |
-| BEHAVIOR  | 4    | Behavior event. |
+| FAULT     | 1    | Fault event.|
+| STATISTIC | 2    | Statistical event.|
+| SECURITY  | 3    | Security event.|
+| BEHAVIOR  | 4    | Behavior event.|
 
 
 ## domain<sup>11+</sup>
@@ -916,9 +917,9 @@ Defines the domain name of predefined events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name | Type  | Description      |
+| Name| Type  | Description      |
 | ---  | ------ | ---------- |
-| OS   | string | System domain. |
+| OS   | string | System domain.|
 
 
 ## event
@@ -931,16 +932,16 @@ Defines the names of predefined events.
 | ------------------------- | ------ | -------------------- |
 | USER_LOGIN                | string | User login event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
 | USER_LOGOUT               | string | User logout event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| DISTRIBUTED_SERVICE_START | string | Distributed service startup event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| DISTRIBUTED_SERVICE_START | string | Distributed service startup event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | APP_CRASH<sup>11+</sup>   | string | Application crash event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
 | APP_FREEZE<sup>11+</sup>  | string | Application freeze event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
 | APP_LAUNCH<sup>12+</sup>  | string | Event indicating the application launch duration.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | SCROLL_JANK<sup>12+</sup> | string | Event indicating frame loss during swiping.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| CPU_USAGE_HIGH<sup>12+</sup> | string | Event indicating a high CPU usage.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| BATTERY_USAGE<sup>12+</sup> | string | Event indicating battery usage statistics.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| RESOURCE_OVERLIMIT<sup>12+</sup> | string | Event indicating an application resource leakage.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| ADDRESS_SANITIZER<sup>12+</sup> | string | Address sanitizer event.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| MAIN_THREAD_JANK<sup>12+</sup> | string | Main thread jank event.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| CPU_USAGE_HIGH<sup>12+</sup> | string | Event indicating a high CPU usage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BATTERY_USAGE<sup>12+</sup> | string | Event indicating battery usage statistics.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | Event indicating an application resource leakage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| ADDRESS_SANITIZER<sup>12+</sup> | string | Address sanitizer event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAIN_THREAD_JANK<sup>12+</sup> | string | Main thread jank event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## param
@@ -955,4 +956,4 @@ Defines the names of predefined event parameters.
 | ------------------------------- | ------ | ------------------ |
 | USER_ID                         | string | Custom user ID.    |
 | DISTRIBUTED_SERVICE_NAME        | string | Distributed service name.  |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Distributed service instance ID. |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Distributed service instance ID.|
