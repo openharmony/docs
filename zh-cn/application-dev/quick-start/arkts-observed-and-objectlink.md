@@ -1113,10 +1113,10 @@ class Cousin extends Parent {
   cousinId: number = 47;
   child: Child;
 
-  constructor(parent: number, cousinId: number, child: number) {
-    super(parent);
+  constructor(parentId: number, cousinId: number, childId: number) {
+    super(parentId);
     this.cousinId = cousinId;
-    this.child = new Child(child);
+    this.child = new Child(childId);
   }
 
   getCousinId(): number {
@@ -1131,8 +1131,8 @@ class Cousin extends Parent {
     return this.child.getChildId();
   }
 
-  setChild(child: number): void {
-    return this.child.setChildId(child);
+  setChild(childId: number): void {
+    return this.child.setChildId(childId);
   }
 }
 
@@ -1215,10 +1215,10 @@ class Cousin extends Parent {
   cousinId: number = 47;
   child: Child;
 
-  constructor(parent: number, cousinId: number, child: number) {
-    super(parent);
+  constructor(parentId: number, cousinId: number, childId: number) {
+    super(parentId);
     this.cousinId = cousinId;
-    this.child = new Child(child);
+    this.child = new Child(childId);
   }
 
   getCousinId(): number {
@@ -1233,8 +1233,8 @@ class Cousin extends Parent {
     return this.child.getChildId();
   }
 
-  setChild(child: number): void {
-    return this.child.setChildId(child);
+  setChild(childId: number): void {
+    return this.child.setChildId(childId);
   }
 }
 
@@ -1515,7 +1515,7 @@ struct ParentComp {
 
 ### \@Prop与\@ObjectLink的差异
 
-在下面的示例代码中，\@ObjectLink装饰的变量是对数据源的引用，即在this.value.subValue和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
+在下面的示例代码中，\@ObjectLink装饰的变量是对数据源的引用，即this.value.subCounter和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter时，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
 
 
 ```ts
