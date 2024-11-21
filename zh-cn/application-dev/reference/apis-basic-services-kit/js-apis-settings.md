@@ -340,7 +340,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
     console.error(`Failed to get the setting. ${err.message} `);
     return;
   }
-  console.log(`callback:value -> ${JSON.stringify(value)}`)
+  console.log(`callback:value -> ${value}`)
 });
 ```
 
@@ -373,7 +373,7 @@ getValue(context: Context, name: string): Promise\<string>
 import settings from '@ohos.settings';
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-  console.log(`promise:value -> ${JSON.stringify(value)}`)
+  console.log(`promise:value -> ${value}`)
 });
 ```
 
@@ -403,7 +403,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
+| Promise\<string> | Promise对象。返回获得的数据项的值。 |
 
 **示例**：
 
@@ -413,7 +413,7 @@ import settings from '@ohos.settings';
 // 更新数据项亮度的值（该数据项在数据库中已存在，故getValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+  console.log(`Promise:value -> ${value}`);
 });
 ```
 
