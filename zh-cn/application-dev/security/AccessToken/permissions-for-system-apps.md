@@ -4357,6 +4357,30 @@
 
 **起始版本**：13
 
+### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+
+允许应用设置或移除其使用UDMF支持的数据分享范围。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+
+允许应用设置或移除剪贴板数据的可粘贴范围。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
