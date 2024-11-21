@@ -227,7 +227,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
+getBundleStats(packageName: string, index?: number): Promise&lt;BundleStats&gt;
 
 Obtains the storage space of an application, in bytes. This API uses a promise to return the result.
 
@@ -242,6 +242,7 @@ Obtains the storage space of an application, in bytes. This API uses a promise t
   | Name     | Type  | Mandatory| Description    |
   | ----------- | ------ | ---- | -------- |
   | packageName | string | Yes  | Bundle name.|
+  | index<sup>12+</sup> | number | No  | Index of an application clone. The default value is **0**, which indicates the application itself. When an application clone is created, an index is assigned from 1 sequentially to **appIndex** of [BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo). The index can be obtained by [getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12).|
 
 **Return value**
 
@@ -265,18 +266,34 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
-    console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-  }).catch((err: BusinessError) => {
-    console.error("getBundleStats failed with error:" + JSON.stringify(err));
-  });
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, index).then((BundleStats: storageStatistics.BundleStats) => {
+      hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+    });
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed with error: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getBundleStats<sup>9+</sup>
 
-getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
+getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;, index?: number): void
 
 Obtains the storage space of an application, in bytes. This API uses an asynchronous callback to return the result.
 
@@ -292,6 +309,7 @@ Obtains the storage space of an application, in bytes. This API uses an asynchro
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name.|
   | callback | AsyncCallback&lt;[Bundlestats](js-apis-file-storage-statistics.md#bundlestats9)&gt; | Yes  | Callback used to return the application storage space obtained.|
+  | index<sup>12+</sup> | number | No  | Index of an application clone. The default value is **0**, which indicates the application itself. When an application clone is created, an index is assigned from 1 sequentially to **appIndex** of [BundleResourceInfo](../apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md#bundleresourceinfo). The index can be obtained by [getBundleResourceInfo](../apis-ability-kit/js-apis-bundleResourceManager-sys.md#bundleresourcemanagergetbundleresourceinfo12).|
 
 **Error codes**
 
@@ -309,16 +327,31 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
+  import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+  import storageStatistics from "@ohos.file.storageStatistics";
   import { BusinessError } from '@ohos.base';
-  let packageName: string = "";
-  storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
-    if (error) {
-      console.error("getBundleStats failed with error:" + JSON.stringify(error));
-    }  else {
-      // Do something.
-      console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
-    }
-  });
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let bundleName = "com.example.myapplication";
+  let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+  try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+
+    let packageName:string = bundleName;
+    let index:number = resourceInfo.appIndex;
+    storageStatistics.getBundleStats(packageName, (err: BusinessError, BundleStats: storageStatistics.BundleStats) => {
+      if (err) {
+        hilog.error(0x0000, 'testTag', 'getBundleStats failed with error: %{public}s', JSON.stringify(err));
+      } else {
+        hilog.info(0x0000, 'testTag', 'getBundleStats successfully. BundleStats: %{public}s', JSON.stringify(BundleStats));
+      }
+    }, index);
+  
+  } catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed: %{public}s', message);
+  }
   ```
 
 ## storageStatistics.getTotalSize<sup>9+</sup>
