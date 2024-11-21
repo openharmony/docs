@@ -30,6 +30,7 @@
     - [HSP转HAR指导](hsp-to-har.md)
     - [创建应用静态快捷方式](typical-scenario-configuration.md)
     - [创建应用分身](app-clone.md)
+    - [创建应用多实例](multiInstance.md)
     - [配置分层图标](layered-image.md)
 
 - [资源分类与访问](resource-categories-and-access.md)
