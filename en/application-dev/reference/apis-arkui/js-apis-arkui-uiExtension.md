@@ -237,14 +237,11 @@ Subscribes to EmbeddedComponent rectangle (position and size) change events.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This UIExtension window proxy state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -283,14 +280,11 @@ Unsubscribes from EmbeddedComponent rectangle (position and size) change events.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
 | 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This UIExtension window proxy state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
