@@ -70,7 +70,7 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 
 | 名称       | 类型     | 必填     | 说明         |
 | ---------- | ---------------- | ---------- | ------------------------------- |
-| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13对象说明) | 否   | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。 |
+| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14对象说明) | 否   | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。 |
 
 confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
@@ -100,8 +100,8 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| primaryButton   | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13对象说明) | 是 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。 |
-| secondaryButton | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13对象说明) | 是 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。 |
+| primaryButton   | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14对象说明) | 是 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。 |
+| secondaryButton | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14对象说明) | 是 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。 |
 
 ## AlertDialogParamWithOptions<sup>10+</sup>对象说明
 
@@ -118,7 +118,7 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 ## AlertDialogButtonOptions<sup>10+</sup>对象说明
 
-继承自[AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13对象说明)。
+继承自[AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14对象说明)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,9 +126,9 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 | --------------------- | ------- | ---- | ------------------------------------------------------------ |
 | primary<sup>12+</sup> | boolean | 否   | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。在defaultFocus为true时不生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## AlertDialogButtonBaseOptions<sup>13+</sup>对象说明
+## AlertDialogButtonBaseOptions<sup>14+</sup>对象说明
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
