@@ -1931,9 +1931,9 @@ layoutMode(mode: WebLayoutMode)
 > 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件高度基于前端页面高度的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
 >
 > Web组件高度基于前端页面自适应布局有如下限制：
-> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
+> - 如果Web组件宽或长度超过7680px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
 > - Web组件创建后不支持动态切换layoutMode模式
-> - Web组件宽高规格：分别不超过50万px。
+> - Web组件宽高规格：指定RenderMode.SYNC_RENDER模式时，分别不超过50万px；指定RenderMode.ASYNC_RENDER模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
 > - 仅支持高度自适应，不支持宽度自适应。
