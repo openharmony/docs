@@ -48,5 +48,3 @@
 - Web Debugging
   - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)
   - [Using Crashpad to Collect Web Component Crash Information](web-crashpad.md)
-  
-  <!--no_check-->
