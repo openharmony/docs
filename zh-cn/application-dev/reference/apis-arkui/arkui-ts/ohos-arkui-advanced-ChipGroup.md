@@ -542,9 +542,9 @@ export struct ChipGroupExample2 {
           }
         },
         {
-          symbol: new SymbolGlyphModifier($r('sys.symbol.more'))
-            .accessibilityText('更多')
-            .accessibilityDescription('新手提醒'),
+          symbol: new SymbolGlyphModifier($r('sys.symbol.more')),
+          accessibilityText: '更多',
+          accessibilityDescription: '新手提醒',
           action: () => {
             this.getUIContext().getPromptAction().showToast({
               message: '更多按钮被点击！'
@@ -720,9 +720,9 @@ export struct ChipGroupExample2 {
           }
         },
         {
-          symbol: new SymbolGlyphModifier($r('sys.symbol.more'))
-            .accessibilityText('更多')
-            .accessibilityDescription('新手提醒'),
+          symbol: new SymbolGlyphModifier($r('sys.symbol.more')),
+          accessibilityText: '更多',
+          accessibilityDescription: '新手提醒',
           action: () => {
             this.getUIContext().getPromptAction().showToast({
               message: '更多按钮被点击！'
