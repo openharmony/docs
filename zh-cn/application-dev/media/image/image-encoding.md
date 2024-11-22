@@ -45,8 +45,6 @@
      // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
-   }).finally(()=>{
-     fs.closeSync(file.fd);
    })
    ```
 
@@ -58,8 +56,6 @@
        // data 为打包获取到的文件流，写入文件保存即可得到一张图片
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
-   }).finally(()=>{
-     fs.closeSync(file.fd);
    })
    ```
 
@@ -79,6 +75,8 @@
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
+   }).finally(()=>{
+     fs.closeSync(file.fd);
    })
    ```
 
@@ -94,6 +92,8 @@
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
+   }).finally(()=>{
+     fs.closeSync(file.fd);
    })
    ```
 
