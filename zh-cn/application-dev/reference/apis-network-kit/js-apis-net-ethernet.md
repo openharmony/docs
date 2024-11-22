@@ -3,7 +3,7 @@
 以太网连接管理主要提供有线网络能力，提供获取有线网络的IP地址等信息。
 
 > **说明：**
-> 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -11,7 +11,20 @@
 import { ethernet } from '@kit.NetworkKit';
 ```
 
-## ethernet.getMacAddress
+## HttpProxy
+
+type HttpProxy = connection.HttpProxy;
+
+网络代理配置信息。
+
+**系统能力**：SystemCapability.Communication.NetManager.Ethernet
+
+| 类型 | 说明                                       |
+| ------- | ----------------------------------------|
+| connection.HttpProxy     | 网络代理配置信息。      |
+
+
+## ethernet.getMacAddress<sup>14+</sup>
 
 getMacAddress(): Promise\<Array\<MacAddressInfo>>
 
@@ -25,7 +38,7 @@ getMacAddress(): Promise\<Array\<MacAddressInfo>>
 
 | 类型                                                    | 说明                               |
 |-------------------------------------------------------| ---------------------------------- |
-| Promise\<Array[\<MacAddressInfo>](#macaddressinfo)> | 以Promise形式返回接口信息。        |
+| Promise\<Array[\<MacAddressInfo>](#macaddressinfo14)> | 以Promise形式返回接口信息。        |
 
 **错误码：**
 
@@ -48,7 +61,7 @@ ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
 });
 ```
 
-## MacAddressInfo
+## MacAddressInfo<sup>14+</sup>
 以太网网卡名称及MAC地址信息。
 
 **系统能力**：SystemCapability.Communication.NetManager.Ethernet
