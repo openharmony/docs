@@ -299,3 +299,4 @@ OpenHarmony 5.0.1 Release版本对标准系统的能力进行持续完善，以�
 | I9SXZ8 | 进程com.ohos.contacts小概率因THREAD_BLOCK_6S卡在libark_jsruntime.so出现appfreeze。 | 该问题因联系人应用卡在了窗口的 windowStage.loadContent()方法产生，会导致应用卡死，重启应用可解决。 | 12月15日 | 
 | IB36B2 | 进程com.ohos.mms小概率出现jscrash，问题栈为close。 | 该问题会导致短信应用闪退，重启应用可解决。 | 12月15日 | 
 
+<!--no_check-->
