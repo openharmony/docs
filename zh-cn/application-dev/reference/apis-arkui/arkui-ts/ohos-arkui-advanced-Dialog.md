@@ -219,7 +219,7 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 ## 示例
 
 ### 示例1（上图下文弹出框）
-上图下文弹出框,包含imageRes、content等内容。
+上图下文弹出框，包含imageRes、content等内容。
 
 ```ts
 import { TipsDialog } from '@kit.ArkUI';
