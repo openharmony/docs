@@ -36,6 +36,7 @@ The Crypto framework supports the following padding modes for RSA signing and si
 > **NOTE**
 >
 > It takes time to generate an RSA2048, RSA3072, RSA4096, or RSA8192 asymmetric key pair or when the plaintext length exceeds 2048 bits. Since the execution of the main thread has a time limit, the operation may fail if you use a synchronous API. You are advised to use asynchronous APIs or use [multithread concurrent tasks](../../arkts-utils/multi-thread-concurrency-overview.md) to generate a key of a large size.
+>
 
 ### PKCS1
 
@@ -113,7 +114,7 @@ In the following table, the options included in the square brackets ([]) are mut
 | RSA8192 | PSS | SHA256 | [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512] | 9+ |
 | RSA8192 | PSS | SHA384 | [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512] | 9+ |
 | RSA8192 | PSS | SHA512 | [MGF1_MD5\|MGF1_SHA1\|MGF1_SHA224\|MGF1_SHA256\|MGF1_SHA384\|MGF1_SHA512] | 9+ |
-| RSA | PSS | MD algorithm that meets the length requirements | MGF1_ MD algorithm that meets the length requirements| 10+ |
+| RSA | PSS | MD algorithm that meets the length requirements| MGF1_ MD algorithm that meets the length requirements| 10+ |
 
 As indicated by the last row in the preceding table, you can specify the RSA key type without the key length to ensure compatibility with the key generated based on the key parameter. In this case, the signing or signature verification operation varies depending on the actual key length.
 
@@ -215,6 +216,7 @@ In the following table, the options included in the square brackets ([]) are mut
 | ECC_BrainPoolP384t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 11+ |
 | ECC_BrainPoolP512r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 11+ |
 | ECC_BrainPoolP512t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 11+ |
+| ECC_Secp256k1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 14+ |
 | ECC | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 10+ |
 
 As indicated by the last row in the preceding table, you can specify the key type without the key length and curve name to ensure compatibility with the key generated based on the key parameter. In this case, the signing or signature verification operation varies depending on the actual key length.

@@ -8,8 +8,9 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 
 
 1. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an RSA asymmetric key pair (**KeyPair**) based on the specified key parameters.
+   
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Generating an Asymmetric Key Pair Based on Key Parameters](crypto-generate-asym-key-pair-from-key-spec.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
-
+   
 2. Use [cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign) with the string parameter **'RSA|PSS|SHA256|MGF1_SHA256'** to create a **Sign** instance. As indicated by the string parameter, the key type is RSA without length, the padding mode is **PSS**, the MD algorithm is **SHA256**, and the mask algorithm is **MGF1_SHA256**.
 
 3. Use [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
@@ -19,9 +20,10 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 5. Use [Sign.getSignSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getsignspec10) to obtain other parameters for signing.
 
 6. Use [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
-   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
 
-7. Use [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2) to generate a signature.
+   Currently, the amount of data to be passed in by a single **Sign.update()** is not limited. You can determine how to pass in data based on the data volume.
+
+7. Use [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-1) to generate a signature.
 
 
 **Signature Verification**
@@ -34,9 +36,10 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 3. Use [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
 4. Use [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
-
-5. Use [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
+   
+   Currently, the amount of data to be passed in by a single **Verify.update()** is not limited. You can determine how to pass in data based on the data volume.
+   
+5. Use [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-1) to verify the data signature.
 
 - Example (using asynchronous APIs):
 
