@@ -13,7 +13,7 @@
 - Web Rendering and Layout
   - [Rendering Modes of the Web Component](web-render-mode.md)
   - [Fitting In the Page Content Layout](web-fit-content.md)
-  - [Optimizing the Page Flash During the Redirection to A New Web Component](web-router-flash-optimization.md)
+  - [Optimizing the Page Flash During the Redirection](web-router-flash-optimization.md)
 - Using Frontend Page JavaScript Code in the Application
   - [Invoking Frontend Page Functions on the Application](web-in-app-frontend-page-function-invoking.md)
   - [Invoking Application Functions on the Frontend Page](web-in-page-app-function-invoking.md)
@@ -50,5 +50,3 @@
 - Web Debugging
   - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)
   - [Using Crashpad to Collect Web Component Crash Information](web-crashpad.md)
-  
-  <!--no_check-->
