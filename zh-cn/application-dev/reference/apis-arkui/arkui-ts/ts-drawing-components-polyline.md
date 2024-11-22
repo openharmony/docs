@@ -14,7 +14,7 @@
 
 ## 接口
 
-Polyline(value?: {width?: string | number, height?: string | number})
+Polyline(options?: PolylineOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -24,7 +24,21 @@ Polyline(value?: {width?: string | number, height?: string | number})
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | {width?: string \| number, height?: string \| number} | 否 | width：宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>height：高度。<br/>默认值：0<br/>异常值按照默认值处理。|
+| options | [PolylineOptions](ts-drawing-components-polyline.md#polylineoptions14对象说明) | 否 | Polyline绘制区域。|
+
+## PolylineOptions<sup>14+</sup>对象说明
+用于描述Polyline绘制区域。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
+| height | string \| number | 否 | 高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
 
 ## 属性
 

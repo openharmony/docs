@@ -13,7 +13,7 @@
 
 ## 接口
 
-Path(value?: { width?: number | string; height?: number | string; commands?: string })
+Path(options?: PathOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -25,7 +25,22 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 | 参数名                                             | 类型         | 必填 | 说明                   |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
-| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | 否   | width：路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>height：路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/> commands：径绘制的命令字符串。默认值：''<br/>异常值按照默认值处理。|
+| options  | [PathOptions](ts-drawing-components-path.md#pathoptions14对象说明) | 否   | Path绘制区域。|
+
+## PathOptions<sup>14+</sup>对象说明
+用于描述Path绘制区域。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
+| height | string \| number | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
+| [commands](ts-drawing-components-path.md#commands) | string  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。默认值：''<br/>异常值按照默认值处理。 |
 
 ## 属性
 
