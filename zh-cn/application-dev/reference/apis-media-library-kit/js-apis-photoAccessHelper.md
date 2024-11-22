@@ -1047,13 +1047,11 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 ```ts
 import fs from '@ohos.file.fs';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
     
     try {
-        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
         let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
             title: '123456', 
             fileNameExtension: 'jpg',
@@ -4326,7 +4324,7 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011       | System inner fail.         |
+| 14000011       | Internal system error.         |
 
 **示例：**
 
@@ -4372,8 +4370,8 @@ async function example() {
 
 onDataPrepared(data: T, map?: Map<string, string>): void
 
-媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
-T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。
+媒体资源就绪通知，当所请求的资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。每个资源请求与回调一一对应。
+T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。其中，ArrayBuffer表示图片/视频资源数据，[ImageSource](../apis-image-kit/js-apis-image.md#imagesource)表示图片源，[MovingPhoto](#movingphoto12)表示动态照片对象，boolean表示图片/视频资源是否成功写入应用沙箱。
 
 map支持返回的信息：
 | map键名  | 值说明 |
@@ -4453,7 +4451,7 @@ map支持返回的信息：
 |------|---| ---- |-------------------------------------------------------------------------------|
 | data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
 | imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
-| map<sup>13+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。 |
+| map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。 |
 
 **示例**
 ```ts
@@ -5160,7 +5158,7 @@ async function example() {
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
-| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 
 ## PhotoSelectResult

@@ -20,9 +20,9 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
 
 - **onWindowReady**：当该Ability的应用窗口创建成功时触发该回调。
 
-- **onConnect**：当窗口扩展组件AbilityComponent连接该Ability时回调。
+- **onConnect**：当窗口扩展组件UIExtensionComponent连接该Ability时回调。
 
-- **onDisconnect**：当窗口扩展组件AbilityComponent断开与该Ability的连接时回调。
+- **onDisconnect**：当窗口扩展组件UIExtensionComponent断开与该Ability的连接时回调。
 
 
 **开发步骤**
@@ -38,15 +38,15 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
    ```ts
     import { WindowExtensionAbility, window } from '@kit.ArkUI';
     import { Want } from '@kit.AbilityKit';
+    import {BusinessError} from '@kit.BasicServiceKit';
 
     export default class WindowExtAbility extends WindowExtensionAbility {
         onWindowReady(window: window.Window) {
-            window.loadContent('WindowExtAbility/pages/index1').then(() => {
-                window.getProperties().then((pro) => {
-                    console.info("WindowExtension " + JSON.stringify(pro));
-                })
-                window.show();
-            })
+            window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
+              let pro = window.getWindowProperties();
+              console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+              window.showWindow();
+            });
         }
 
         onConnect(want: Want) {
@@ -81,13 +81,13 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
 
 ## 拉起一个嵌入式UIAbility
 
-系统应用可以通过AbilityComponent容器加载创建好的WindowExtensionAbility。
+系统应用可以通过UIExtensionComponent容器加载创建好的WindowExtensionAbility。
 
 **开发步骤**
 
-1. 开发者在连接一个嵌入式应用时，需要在DevEco Studio工程中相应的pages界面中加入AbilityComponent控件。
+1. 开发者在连接一个嵌入式应用时，需要在DevEco Studio工程中相应的pages界面中加入UIExtensionComponent控件。
 
-2. 在AbilityComponent控件中写入正确的bundleName和abilityName。
+2. 在UIExtensionComponent控件中写入正确的bundleName和abilityName。
 
 3. 设置好宽高。示例代码如下：
 
@@ -100,7 +100,9 @@ struct Index {
   build() {
     Row() {
       Column() {
-        AbilityComponent({want:{abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"}})
+        UIExtensionComponent({
+          abilityName: "WindowExtAbility",
+          bundleName: "com.example.WindowExtAbility"})
           .width(500)
           .height(500)
       }
@@ -116,4 +118,4 @@ struct Index {
 
 针对WindowExtensionAbility开发，有以下相关实例可供参考：
 
-- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)
+- [窗口扩展应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/WindowManagement/WindowExtAbility)

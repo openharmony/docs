@@ -11,8 +11,8 @@
 
 ## 导入模块
 
-```
-import { ToolBar, ToolBarOptions, toolBarModifier, ItemState } from '@kit.ArkUI'
+```ts
+import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 ```
 
 
@@ -168,6 +168,8 @@ ToolBarSymbolGlyphOptions定义图标的属性。
 
 ## 示例
 
+### 示例1（工具栏不同状态的默认效果）
+该示例展示了工具栏子项state属性分别设置ENABLE、DISABLE、ACTIVATE状态的不同显示效果。
 ```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
 
@@ -233,6 +235,8 @@ struct Index {
 
 ![zh-cn_image_toolbar_example01](figures/zh-cn_image_toolbar_example01.png)
 
+### 示例2（设置工具栏自定义样式）
+该示例通过设置属性ToolBarModifier自定义工具栏高度、背景色、按压效果等样式。
 ```ts
 import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 
@@ -240,7 +244,7 @@ import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarM
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions();
-  @State toolBarModifier: ToolBarModifier =
+  private toolBarModifier: ToolBarModifier =
   new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
   @State dividerModifier: DividerModifier = new DividerModifier().height(0);
 

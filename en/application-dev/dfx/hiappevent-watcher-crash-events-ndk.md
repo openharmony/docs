@@ -4,6 +4,10 @@
 
 For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
 
+> **NOTE**
+>
+> The C/C++ APIs can be used to subscribe to JsError and NativeCrash events.
+
 **Subscription APIs**
 
 | API                                                      | Description                                        |
@@ -50,15 +54,16 @@ The following describes how to subscribe to the crash event triggered by a butto
 3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   # include "json/json.h"
-   # include "hilog/log.h"
-   # include "hiappevent/hiappevent.h"
+   #include "napi/native_api.h"
+   #include "json/json.h"
+   #include "hilog/log.h"
+   #include "hiappevent/hiappevent.h"
    
-   # undef LOG_TAG
-   # define LOG_TAG "testTag"
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to application events.
+4. Subscribe to system events.
 
    - Watcher of the onReceive type:
 
@@ -113,9 +118,9 @@ The following describes how to subscribe to the crash event triggered by a butto
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // Set the watcher name. The system identifies different watchers based on their names.
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-         // Set the event type to EVENT_APP_CRASH.
+         // Set the event to watch to EVENT_APP_CRASH.
          const char *names[] = {EVENT_APP_CRASH};
-         // Add the system events to watch, for example, system events.
+         // Add the events to watch, for example, system events.
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // Set the implemented callback. After receiving the event, the watcher immediately triggers the OnReceive callback.
          OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
@@ -185,9 +190,9 @@ The following describes how to subscribe to the crash event triggered by a butto
      static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
          // Set the watcher name. The system identifies different watchers based on their names.
          systemEventWatcher = OH_HiAppEvent_CreateWatcher("onTriggerWatcher");
-         // Set the event type to EVENT_APP_CRASH.
+         // Set the event to watch to EVENT_APP_CRASH.
          const char *names[] = {EVENT_APP_CRASH};
-         // Add the system events to watch, for example, system events.
+         // Add the events to watch, for example, system events.
          OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
          // Set the implemented callback function. The callback function will be triggered when the conditions set by OH_HiAppEvent_SetTriggerCondition are met.
          OH_HiAppEvent_SetWatcherOnTrigger(systemEventWatcher, OnTrigger);
@@ -220,13 +225,13 @@ The following describes how to subscribe to the crash event triggered by a butto
    export const registerWatcher: () => void;
    ```
 
-6. In the **EntryAbility.ets** file, add the following interface to **onCreate()**.
+6. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
 
    ```typescript
    // Import the dependent module.
    import testNapi from 'libentry.so'
 
-   // Add the interface to onCreate().
+   // Add the API to onCreate().
    // Register the system event watcher at startup.
    testNapi.registerWatcher();
    ```
@@ -239,9 +244,9 @@ The following describes how to subscribe to the crash event triggered by a butto
    })
    ```
 
-8. In DevEco Studio, click the **Run** button to run the project. Then, click the **appCrash** button to trigger a crash event. 
+8. In DevEco Studio, click the **Run** button to run the project. Then, click the **appCrash** button to trigger a crash event. After a crash occurs, the system uses different stack backtracking methods to generate crash logs based on the crash type (JsError or NativeCrash) and then invokes callback. The NativeCrash stack backtracking takes about 2s. In practice, the duration depends on the number of service threads and the duration of inter-process communication. JsError triggers in-process stack backtracking, and NativeCrash triggers out-of-process stack backtracking. Therefore, NativeCrash stack backtracking is more time-consuming than JsError stack backtracking. You can subscribe to crash events so that the stack backtracking result is asynchronously reported without blocking the current service.
 
-9. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+9. When the application is started next time, HiAppEvent reports the crash event to the registered watcher. You can view the processing logs of system event data in the **Log** window.
 
    ```text
    HiAppEvent eventInfo.domain=OS
@@ -261,7 +266,7 @@ The following describes how to subscribe to the crash event triggered by a butto
    HiAppEvent eventInfo.params.log_over_limit=0
    ```
 
-10. Remove the application event watcher.
+10. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -271,7 +276,7 @@ The following describes how to subscribe to the crash event triggered by a butto
     }
     ```
 
-11. Destroy the application event watcher.
+11. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
@@ -281,5 +286,3 @@ The following describes how to subscribe to the crash event triggered by a butto
         return {};
     }
     ```
-
-<!--no_check-->

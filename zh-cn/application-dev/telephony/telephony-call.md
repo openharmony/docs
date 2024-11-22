@@ -120,4 +120,4 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 
 针对拨打电话，有以下相关实例可供参考：
 
-- [拨打电话（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Call)
+- [拨打电话（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/SystemFeature/Telephony/Call)

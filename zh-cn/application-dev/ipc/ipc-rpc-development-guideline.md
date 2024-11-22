@@ -388,4 +388,4 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 针对IPC与RPC通信开发，有以下相关实例可供参考：
 
-- [RPC通信（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/RPC)
+- [RPC通信（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/Connectivity/RPC)

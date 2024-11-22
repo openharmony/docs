@@ -17,6 +17,8 @@
 
 - 获取视频缩略图（[AVImageGenerator](#avimagegenerator12)<sup>12+</sup>）
 
+- 屏幕录制（[AVScreenCaptureRecorder](#avscreencapturerecorder12)<sup>12+</sup>）
+
 ## 导入模块
 
 ```ts
@@ -719,7 +721,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
-| 5400106  | Unsupport format.     |
+| 5400106  | Unsupported format.     |
 
 **示例：**
 
@@ -834,8 +836,10 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
+let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
@@ -866,7 +870,7 @@ prepare(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **示例：**
 
@@ -905,7 +909,7 @@ prepare(): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **示例：**
 
@@ -2485,6 +2489,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 ```ts
 import { media } from '@kit.MediaKit'
+import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
 let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
@@ -2899,8 +2904,9 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。 |
-| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。 |
+| SPEED_FORWARD_3_00_X<sup>13+</sup> | 7    | 表示视频播放正常播速的3.00倍。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -4185,7 +4191,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.             |
 | 5400104  | Time out.              |
 | 5400105  | Service died.          |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.    |
 | 5400107  | Audio interrupted.     |
 
 **示例：**
@@ -4247,6 +4253,8 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 **示例：**
 
 ```ts
+import { audio } from '@kit.AudioKit'
+
 let capturerChangeInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCapturerChangeInfo) => {
@@ -4304,13 +4312,15 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
+let context = getContext(this) as common.UIAbilityContext
 
 // 例:处理photoAsset回调，保存video
-async saveVideo(asset: photoAccessHelper.PhotoAsset) {
+async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4848,7 +4858,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error.              |
 | 5400104  | Time out.            |
 | 5400105  | Service died.           |
-| 5400106  | Unsupport format.      |
+| 5400106  | Unsupported format.      |
 
 **示例：**
 

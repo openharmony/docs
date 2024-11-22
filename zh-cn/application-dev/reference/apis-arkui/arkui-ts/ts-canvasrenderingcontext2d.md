@@ -1312,6 +1312,8 @@ stroke(): void
 
   ![zh-cn_image_0000001238832389](figures/zh-cn_image_0000001238832389.png)
 
+### stroke
+
 stroke(path: Path2D): void
 
 根据指定的路径，进行边框绘制操作。
@@ -3582,6 +3584,16 @@ on(type: 'onAttach', callback: () => void): void
 | type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
 | callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调 |
 
+> **说明：**
+>
+> CanvasRenderingContext2D对象在同一时间只能与一个Canvas组件绑定。</br>
+> 当CanvasRenderingContext2D对象和Canvas组件发生绑定时，会触发'onAttach'回调，表示可以获取到[canvas](#canvas13)。</br>
+> 避免在'onAttach'中执行绘制方法，应保证Canvas组件已经'[onReady](ts-components-canvas-canvas.md#事件)'再进行绘制。</br>
+> 触发'onAttach'回调的一般场景：</br>
+> 1、Canvas组件创建时绑定CanvasRenderingContext2D对象;</br>
+> 2、CanvasRenderingContext2D对象新绑定一个Canvas组件时。</br>
+  
+
 ### on('onDetach')<sup>13+</sup>
 
 on(type: 'onDetach', callback: () => void): void
@@ -3598,6 +3610,13 @@ on(type: 'onDetach', callback: () => void): void
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
 | callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调 |
+
+> **说明：**
+>
+> 当CanvasRenderingContext2D对象和Canvas组件解除绑定时，会触发'onDetach'回调，表示应停止绘制行为。</br>
+> 触发'onDetach'回调的一般场景：</br>
+> 1、Canvas组件销毁时解除绑定CanvasRenderingContext2D对象;</br>
+> 2、CanvasRenderingContext2D对象新绑定一个Canvas组件，会先解除已有的绑定。</br>
 
 ### off('onAttach')<sup>13+</sup>
 

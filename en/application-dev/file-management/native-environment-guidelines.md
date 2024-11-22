@@ -36,7 +36,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
 #include <filemanagement/fileio/oh_fileio.h>
 ```
 
-1. Use **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** directory. The memory allocated must be released using **free()**. <br>Example:
+1. Call **OH_Environment_GetUserDownloadDir** to obtain the sandbox path of the user **Download** directory. The memory allocated must be released using **free()**. <br>Example:
 
     ```c
     void GetUserDownloadDirPathExample() {
@@ -51,7 +51,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
     }
    ```
 
-2. Use **OH_Environment_GetUserDesktopDir** to obtain the sandbox path of the user **Desktop** directory. The memory allocated must be released using **free()**. <br>Example:
+2. Call **OH_Environment_GetUserDesktopDir** to obtain the sandbox path of the user **Desktop** directory. The memory allocated must be released using **free()**. <br>Example:
 
     ```c
     void GetUserDesktopDirPathExample() {
@@ -66,7 +66,7 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
     }
    ```
 
-3. Use **OH_Environment_GetUserDocumentDir** to obtain the sandbox path of the user **Documents** directory. The memory allocated must be released using **free()**. <br>Example:
+3. Call **OH_Environment_GetUserDocumentDir** to obtain the sandbox path of the user **Documents** directory. The memory allocated must be released using **free()**. <br>Example:
 
     ```c
     void GetUserDocumentDirPathExample() {

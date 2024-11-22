@@ -24,9 +24,9 @@ Describes the domain name.
 | Name                         | Type  | Readable| Writable| Description                                                        |
 |-----------------------------| ------ | ---- | ---- | ------------------------------------------------------------ |
 | DEVICE_SHARED<sup>11+</sup> | string | Yes  | Yes  | Shared device domain.                                         |
-| USER_PROPERTY<sup>11+</sup> | string | Yes  | Yes  | User property domain.                                          |                                 |
+| USER_PROPERTY<sup>11+</sup> | string | Yes  | Yes  | User property domain.                                          |
 
-## date
+## date (Not Supported)
 
 Provides data items for setting the time and date formats.
 
@@ -41,7 +41,7 @@ Provides data items for setting the time and date formats.
 | AUTO_GAIN_TIME      | string | Yes  | Yes  | Whether the date, time, and time zone are automatically obtained from the Network Identity and Time Zone (NITZ).<br>The value **true** means that the date, time, and time zone are automatically obtained from NITZ;<br>and **false** means the opposite.|
 | AUTO_GAIN_TIME_ZONE | string | Yes  | Yes  | Whether the time zone is automatically obtained from NITZ.<br>The value **true** means that the time zone is automatically obtained from NITZ;<br>and **false** means the opposite.|
 
-## display
+## display (Not Supported)
 
 Provides data items for setting the display effects.
 
@@ -63,7 +63,7 @@ Provides data items for setting the display effects.
 | WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.                                                                             |
 | DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br><br>**0**: Display color inversion is disabled.                                                       |
 
-## general
+## general (Not Supported)
 
 Provides data items for setting the general information about the device.
 
@@ -90,7 +90,7 @@ Provides data items for setting the general information about the device.
 | SKIP_USE_HINTS                   | string | Yes  | Yes  | Whether the application should attempt to skip all introductory hints at the first startup. This feature is intended for temporary or experienced users.<br>**1**: The application attempts to skip all introductory hints at the first startup.<br>**0**: The application does not skip all introductory hints at the first startup.|
 | TOUCH_EXPLORATION_STATUS         | string | Yes  | Yes  | Whether touch exploration is enabled.<br>**1**: Touch exploration is enabled.<br>**0**: Touch exploration is disabled.|
 
-## input
+## input (Not Supported)
 
 Provides data items for setting input methods.
 
@@ -109,7 +109,7 @@ Provides data items for setting input methods.
 | AUTO_REPLACE_TEXT_INPUT              | string | Yes  | Yes  | Whether autocorrect is enabled for the text editor. Autocorrect enables the text editor to correct typos.<br>**0**: Autocorrect is disabled.<br>**1**: Autocorrect is enabled |
 | SHOW_PASSWORD_TEXT_INPUT             | string | Yes  | Yes  | Whether password presentation is enabled in the text editor. Password presentation enables the text editor to show password characters when the user types them.<br>**0**: Password presentation is disabled.<br>**1**: Password presentation is enabled.|
 
-## network
+## network (Not Supported)
 
 Provides data items for setting network information.
 
@@ -123,7 +123,7 @@ Provides data items for setting network information.
 | HTTP_PROXY_CFG           | string | Yes  | Yes  | Host name and port number of the global HTTP proxy. The host name and port number are separated by a colon (:).|
 | NETWORK_PREFERENCE_USAGE | string | Yes  | Yes  | User preferences for the network to use.                                  |
 
-## phone
+## phone (Not Supported)
 
 Provides data items for setting the modes of answering incoming and outgoing calls.
 
@@ -135,7 +135,7 @@ Provides data items for setting the modes of answering incoming and outgoing cal
 | ------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | RTT_CALLING_STATUS | string | Yes  | Yes  | Whether the real-time text (RTT) feature is enabled. If this feature is enabled, incoming and outgoing calls are answered as RTT calls when supported by the device and carrier.<br> **1**: RTT is enabled.<br> **0**: RTT is disabled.|
 
-## sound
+## sound (Not Supported)
 
 Provides data items for setting the sound effects.
 
@@ -157,7 +157,7 @@ Provides data items for setting the sound effects.
 | VIBRATE_STATUS               | string | Yes  | Yes  | Whether the device vibrates for an event. This attribute is used inside the system.<br>**1**: The device vibrates for an event.<br>**0**: The device does not vibrate for an event.|
 | HAPTIC_FEEDBACK_STATUS       | string | Yes  | Yes  | Whether haptic feedback is enabled.<br>**true**: Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
 
-## TTS
+## TTS (Not Supported)
 
 Provides data items for setting text-to-speech (TTS) information.
 
@@ -173,7 +173,7 @@ Provides data items for setting text-to-speech (TTS) information.
 | ENABLED_TTS_PLUGINS | string | Yes  | Yes  | List of activated plug-in packages used for TTS. Multiple plug-in packages are separated by spaces.          |
 
 
-## wireless
+## wireless (Not Supported)
 
 Provides data items for setting wireless network information.
 
@@ -208,13 +208,13 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                 | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context  | Context                 | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | value    | string                  | Yes  | Value of the data item. The value range varies by service.                              |
 | callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.              |
@@ -241,13 +241,13 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
 
 **Parameters**
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context | Context | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name    | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | value   | string  | Yes  | Value of the data item. The value range varies by service.                              |
 
@@ -269,7 +269,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').the
 });
 ```
 
-## setting.setValue<sup>11+</sup>
+## settings.setValue<sup>11+</sup>
 
 setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>
 
@@ -279,13 +279,17 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
+**Required permissions**: 
+
+ohos.permission.MANAGE_SETTINGS for writing the DEVICE_SHARED and USER_PROPERTY fields (available only to system applications); 
+
+ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (available only to system applications)
 
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                                                                                                                                                                 |
 | -------- | ---------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).                                                                                                                                                               |
+| context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).                                                                                                                                                               |
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items                                                                                                                                                                                                     |
 | value    | string                 | Yes  | Value of the data item. The value range varies by service.                                                                                                                                                                                                                                                    |
 |domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
@@ -308,7 +312,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', set
 });
 ```
 
-## setting.getValue<sup>10+</sup>
+## settings.getValue<sup>10+</sup>
 
 getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
@@ -322,7 +326,7 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the value of the data item.                            |
 
@@ -340,7 +344,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
 });
 ```
 
-## setting.getValue<sup>10+</sup>
+## settings.getValue<sup>10+</sup>
 
 getValue(context: Context, name: string): Promise\<string>
 
@@ -354,7 +358,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context | Context | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name    | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 
 **Return value**
@@ -383,11 +387,15 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
+**Required permissions**:  
+
+ohos.permission.MANAGE_SECURE_SETTINGS for reading the USER_SECURITY field (available only to system applications)
+
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 |domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
 
@@ -423,7 +431,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| context  | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context  | Context | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | defValue | string  | Yes  | Default value, which is returned when the value of a data item is not found in the database. Set this parameter as needed.|
 
@@ -445,7 +453,7 @@ let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_ST
 
 ## settings.getValueSync<sup>11+</sup>
 
-getValueSync(context: Context, name: string, defvalue: string, domainName: string): string;
+getValueSync(context: Context, name: string, defValue: string, domainName: string): string;
 
 Obtains the value of a data item. Unlike **getValue**, this API returns the result synchronously.
 
@@ -453,13 +461,17 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
+**Required permissions**:  
+
+ohos.permission.MANAGE_SECURE_SETTINGS for reading the USER_SECURITY field (available only to system applications)
+
 **Parameters**
 
 | Name       | Type                  | Mandatory| Description                                                        |
 |------------| ---------------------- | ---- | ------------------------------------------------------------ |
-| context    | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context    | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name       | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
-| defvalue   | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+| defValue   | string                 | Yes  | Value of the data item. The value range varies by service.                  |
 | domainName | string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
 
 
@@ -491,13 +503,13 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
+**Required permissions**: ohos.permission.MANAGE_SETTINGS (available only to system applications)
 
 **Parameters**
 
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context | Context | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name    | string  | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
 | value   | string  | Yes  | Value of the data item. The value range varies by service.                      |
 
@@ -529,13 +541,17 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
+**Required permissions**: 
+
+ohos.permission.MANAGE_SETTINGS for writing the DEVICE_SHARED and USER_PROPERTY fields (available only to system applications); 
+
+ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (available only to system applications)
 
 **Parameters**
 
 | Name    | Type                  | Mandatory| Description                                                        |
 |---------| ---------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name    | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 | value   | string                 | Yes  | Value of the data item. The value range varies by service.                  |
 | domainName | string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
@@ -570,7 +586,7 @@ Registers an observer in the specified context so that the specified data item c
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 |domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
 |observer  |  AsyncCallback\<void>  | Yes  | Callback used to return the value of the data item.                  |
@@ -587,12 +603,14 @@ Registers an observer in the specified context so that the specified data item c
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, value) => {
-  if(err){
-    console.error('Failed to get the setting.${err.message}');
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
+  if (err) {
+    console.error(`Failed to get the setting. ${err.message} `);
     return;
   }
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+  console.log(`callback:value -> ${JSON.stringify(val)}`)
+  let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+  console.log(`Promise:value -> ${value}`);
 });
 ```
 
@@ -608,7 +626,7 @@ Unregisters the observer under the specified domain name. This API returns the r
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
 | value    | string                 | Yes  | Value of the data item. The value range varies by service.                  |
 |domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
@@ -628,7 +646,7 @@ const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
-## settings.enableAirplaneMode
+## settings.enableAirplaneMode (Not Supported)
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -658,7 +676,7 @@ settings.enableAirplaneMode(isEnabled, (err:Error) => {
 })
 ```
 
-## settings.enableAirplaneMode
+## settings.enableAirplaneMode (Not Supported)
 
 enableAirplaneMode(enable: boolean): Promise\<void>
 
@@ -691,7 +709,7 @@ settings.enableAirplaneMode(isEnabled).then(() => {
 })
 ```
 
-## settings.canShowFloating
+## settings.canShowFloating (Not Supported)
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
@@ -717,7 +735,7 @@ settings.canShowFloating((err:Error, status: boolean) => {
 });
 ```
 
-## settings.canShowFloating
+## settings.canShowFloating (Not Supported)
 
 canShowFloating(): Promise\<boolean>
 
@@ -739,7 +757,7 @@ settings.canShowFloating().then((status:boolean) => {
 });
 ```
 
-## settings.getUriSync<sup>8+</sup>
+## settings.getUriSync<sup>8+</sup> (Not Supported)
 
 getUriSync(name: string): string
 
@@ -766,7 +784,7 @@ Obtains the URI of a data item.
 let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
-## setting.getURI<sup>(deprecated)</sup>
+## settings.getURI<sup>(deprecated)</sup> (Not Supported)
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
@@ -783,7 +801,7 @@ Obtains the URI of a data item. This API uses an asynchronous callback to return
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| callback | AsyncCallback\<object> | Yes  | Callback used to return the result. obtain the URI of the data item.                                 |
+| callback | AsyncCallback\<object> | Yes  | Callback used to return the result. Obtains the URI of a data item.                                 |
 
 **Example**
 
@@ -793,7 +811,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
 })
 ```
 
-## setting.getURI<sup>(deprecated)</sup>
+## settings.getURI<sup>(deprecated)</sup> (Not Supported)
 
 getURI(name: string): Promise\<object>
 
@@ -827,7 +845,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => 
 
 
 
-## setting.getValue<sup>(deprecated)</sup>
+## settings.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
 
@@ -835,7 +853,7 @@ Obtains the value of a data item in the database. This API uses an asynchronous 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getValue()](#settinggetvalue10) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getValue()](#settingsgetvalue10) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -865,7 +883,7 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err:Error,
 });
 ```
 
-## setting.getValue<sup>(deprecated)</sup>
+## settings.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
@@ -873,7 +891,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getValue()](#settinggetvalue10-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getValue()](#settingsgetvalue10-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
 
@@ -957,7 +975,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **Model restriction**: This API can be used only in the FA model.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_SETTINGS (available only to system applications)
 
 **System capability**: SystemCapability.Applications.Settings.Core
 

@@ -17,6 +17,7 @@
 2. 调用接口[OH_Huks_DeleteKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_deletekeyitem)，删除密钥。
 
 ```c++
+#include "napi/native_api.h"
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include <string.h>

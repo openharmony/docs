@@ -236,13 +236,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    int32_t ret;
    // 配置音频采样率（必须）
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
-   // 配置音频码率（必须）
+   // 配置音频码率（可选）
    constexpr uint32_t DEFAULT_BITRATE = 32000;
    // 配置音频声道数（必须）
    constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
    // 配置最大输入长度（可选）
    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1152;
-   // 配置是否为ADTS解码（acc）
+   // 配置是否为ADTS解码（aac解码时可选）
    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format

@@ -7,6 +7,8 @@ Declares the APIs used to intercept requests from ArkWeb.
 
 **Library**: libohweb.so
 
+**File to include**: <web/arkweb_scheme_handler.h>
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Since**: 12
@@ -102,8 +104,8 @@ Declares the APIs used to intercept requests from ArkWeb.
 | int32_t [OH_ArkWebResponse_SetHeaderByName](_web.md#oh_arkwebresponse_setheaderbyname) ([ArkWeb_Response](_web.md#arkweb_response) \*response, const char \*name, const char \*value, bool overwrite) | Sets a header for **ArkWeb_Response**. | 
 | void [OH_ArkWebResponse_GetHeaderByName](_web.md#oh_arkwebresponse_getheaderbyname) (const [ArkWeb_Response](_web.md#arkweb_response) \*response, const char \*name, char \*\*value) | Obtains the header from **ArkWeb_Response**. | 
 | int32_t [OH_ArkWebResourceHandler_Destroy](_web.md#oh_arkwebresourcehandler_destroy) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler) | Destroys an **ArkWeb_ResourceHandler** object. | 
-| int32_t [OH_ArkWebResourceHandler_DidReceiveResponse](_web.md#oh_arkwebresourcehandler_didreceiveresponse) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, const [ArkWeb_Response](_web.md#arkweb_response) \*response) | Transfers the constructed response header to the intercepted request. | 
-| int32_t [OH_ArkWebResourceHandler_DidReceiveData](_web.md#oh_arkwebresourcehandler_didreceivedata) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, const uint8_t \*buffer, int64_t bufLen) | Transfers the constructed response header to the intercepted request. | 
+| int32_t [OH_ArkWebResourceHandler_DidReceiveResponse](_web.md#oh_arkwebresourcehandler_didreceiveresponse) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, const [ArkWeb_Response](_web.md#arkweb_response) \*response) | Sends a response header to the intercepted request. **OH_ArkWebResourceHandler_DidReceiveResponse** is mandatory. If an error occurs before the response is received, set an error in the response and notify the kernel by calling this function. | 
+| int32_t [OH_ArkWebResourceHandler_DidReceiveData](_web.md#oh_arkwebresourcehandler_didreceivedata) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, const uint8_t \*buffer, int64_t bufLen) | Sends a response body to the intercepted request. | 
 | int32_t [OH_ArkWebResourceHandler_DidFinish](_web.md#oh_arkwebresourcehandler_didfinish) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler) | Notifies the ArkWeb kernel that the intercepted request has been finished and that no more data is available. | 
 | int32_t [OH_ArkWebResourceHandler_DidFailWithError](_web.md#oh_arkwebresourcehandler_didfailwitherror) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, [ArkWeb_NetError](_web.md#arkweb_neterror) errorCode) | Notifies the ArkWeb kernel that the intercepted request fails. | 
 | void [OH_ArkWeb_ReleaseString](_web.md#oh_arkweb_releasestring) (char \*string) | Releases the string created by NDK APIs. | 

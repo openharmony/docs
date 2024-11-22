@@ -1,9 +1,9 @@
 # Setting the Dark Mode
 
 
-The **Web** component allows you to set the dark mode for frontend pages.
+The **\<Web>** component allows you to set the dark mode for frontend pages.
 
-- Call [darkMode()](../reference/apis-arkweb/ts-basic-components-web.md#darkmode9) to configure an expected dark mode, which is disabled by default. When it is enabled, the **Web** component enables the dark theme defined for web pages if the theme has been defined in **prefers-color-scheme** of a media query, and remains unchanged otherwise. To forcibly enable the dark mode, you are advised to use this API with [forceDarkAccess()](../reference/apis-arkweb/ts-basic-components-web.md#forcedarkaccess9). [WebDarkMode.Off](../reference/apis-arkweb/ts-basic-components-web.md#webdarkmode9) indicates that the dark mode is disabled. [WebDarkMode.On](../reference/apis-arkweb/ts-basic-components-web.md#webdarkmode9) indicates that the dark mode is enabled and its setting follows the frontend page. [WebDarkMode.Auto](../reference/apis-arkweb/ts-basic-components-web.md#webdarkmode9) indicates that the dark mode is enabled and its setting follows the system.
+- Call [darkMode()](../reference/apis-arkweb/ts-basic-components-web.md#darkmode9) to configure an expected dark mode, which is disabled by default. When it is enabled, the **\<Web>** component enables the dark theme defined for web pages if the theme has been defined in **prefers-color-scheme** of a media query, and remains unchanged otherwise. To forcibly enable the dark mode, you are advised to use this API with [forceDarkAccess()](../reference/apis-arkweb/ts-basic-components-web.md#forcedarkaccess9). [WebDarkMode.Off](../reference/apis-arkweb/ts-basic-components-web.md#webdarkmode9) indicates that the dark mode is disabled. [WebDarkMode.On](../reference/apis-arkweb/ts-basic-components-web.md#webdarkmode9) indicates that the dark mode is enabled and its setting follows the frontend page. [WebDarkMode.Auto](../reference/apis-arkweb/ts-basic-components-web.md#webdarkmode9) indicates that the dark mode is enabled and its setting follows the system.
     In the following example, the dark mode setting is configured to follow the system by using [darkMode()](../reference/apis-arkweb/ts-basic-components-web.md#darkmode9).
 
     ```ts

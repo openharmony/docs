@@ -32,7 +32,7 @@ The **Web** component supports the intelligent tracking prevention. That is, whe
   }
   ```
 
-- Invoke the [isIntelligentTrackingPreventionEnabled](../reference/apis-arkweb/js-apis-webview.md#isintelligenttrackingpreventionenabled12) API to check whether the intelligent tracking prevention is enabled for the **Web** component.
+- Invoke the [isIntelligentTrackingPreventionEnabled](../reference/apis-arkweb/js-apis-webview.md#isintelligenttrackingpreventionenabled12) API to check whether the intelligent tracking prevention is enabled for the **Web **component.
 
   ```ts
   // xxx.ets

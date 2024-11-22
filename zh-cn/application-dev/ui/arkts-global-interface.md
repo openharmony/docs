@@ -1,4 +1,4 @@
-# Stage模型下ArkUI全局接口开发指导
+# 使用UI上下文接口操作界面（UIContext）
 
 ## 概述
 
@@ -9,7 +9,7 @@ OpenHarmony支持Stage模型后，存在一个ArkTS引擎里面运行多个ArkUI
 
 FA模型默认只支持一个ArkUI实例，没有多实例的场景。当框架切换到Stage模型后，在FA模型下开放的ArkUI全局接口，在调用时无法明确运行在哪个实例里，存在语义不明确的问题。并且，这些接口实现依赖了ArkUI实例相关的信息，如果实例不明确，会导致运行时会出现预期外的行为。
 
-为了解决此类问题，ArkUI针对Stage模型推出了替代接口，以便满足开发者在多实例场景下的诉求。可使用window的接口方法[`getUIContext`](../reference/apis-arkui/js-apis-window.md#getuicontext10)或者使用组件内置方法[`getUIContext`](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中对应的接口获取与实例绑定的对象。
+为了解决此类问题，ArkUI针对Stage模型推出了替代接口，以便满足开发者在多实例场景下的诉求。可使用window的接口方法[getUIContext](../reference/apis-arkui/js-apis-window.md#getuicontext10)或者使用组件内置方法[getUIContext](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext)直接获取当前组件所在的UIContext，并使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中对应的接口获取与实例绑定的对象。
 
 ## 接口替代关系
 
@@ -48,6 +48,8 @@ FA模型默认只支持一个ArkUI实例，没有多实例的场景。当框架�
 下述示例，实现了在具体窗口内弹出Toast。ArkUI可感知到是在当前页面下调用，找到对应的UI实例。但是，如果一些复杂场景的起始调用不在页面中，经过了异步调用，作用的实例就可能出现行为不明确的问题。
 
 ```ts
+import { promptAction } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -67,6 +69,8 @@ struct Index {
 下述示例，callNative是Node-API方法，回调如果是由C侧异步触发，执行时无法感知当前页面信息，无法确定响应的UI实例。
 
 ```ts
+import { promptAction } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -119,6 +123,8 @@ struct Index {
 
 ```ts
 // 执行绑定实例的闭包
+import { promptAction } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {

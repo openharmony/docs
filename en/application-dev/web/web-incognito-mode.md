@@ -1,7 +1,7 @@
 # Using Incognito Mode
 
 
-When creating a **Web** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#incognitomode) to **true**. When incognito mode, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **Web** component is destroyed.
+When creating a **Web** component, you can enable incognito mode for it by setting the optional parameter [incognitoMode](../reference/apis-arkweb/ts-basic-components-web.md#apis) to **true**. When incognito mode is enabled, data such as cookies and cache data during web page browsing is not stored in local persistent files. This means that such data is lost when the **Web** component is destroyed.
 
 - Create a [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component in incognito mode.
  
@@ -179,6 +179,15 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
+
+
+
+
+
+
+
+
+
 - Use [fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11) to obtain the cookie corresponding to the specified URL.
 
   ```ts
@@ -226,7 +235,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('configCookieSync')
           .onClick(() => {
             try {
-              // The third parameter of configCookieSync specifies whether to obtain the cookie for the specified URL in incognito mode (true) or in non-incognito mode (false).
+              // The third parameter of configCookieSync specifies whether to obtain the cookie for the specified URL in incognito mode (true) or non-incognito mode (false).
               webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

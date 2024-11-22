@@ -211,8 +211,8 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_FINANCE                  |  2647 | 金融键                         |
 | KEYCODE_CANCEL                   |  2648 | 取消键                         |
 | KEYCODE_KBDILLUM_TOGGLE          |  2649 | 键盘灯光切换键                     |
-| KEYCODE_KBDILLUM_DOWN            |  2650 | 键盘灯光调亮键                     |
-| KEYCODE_KBDILLUM_UP              |  2651 | 键盘灯光调暗键                     |
+| KEYCODE_KBDILLUM_DOWN            |  2650 | 键盘灯光调暗键                     |
+| KEYCODE_KBDILLUM_UP              |  2651 | 键盘灯光调亮键                     |
 | KEYCODE_SEND                     |  2652 | 发送键                         |
 | KEYCODE_REPLY                    |  2653 | 答复键                         |
 | KEYCODE_FORWARDMAIL              |  2654 | 邮件转发键                       |

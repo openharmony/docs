@@ -37,7 +37,8 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
                        "resource": "$profile:backup_config"
                    }
                ],
-               // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和               // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
+               // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和
+               // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
                // 如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
                "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
            }      
@@ -171,4 +172,4 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
 针对应用接入数据的备份与恢复，有以下相关实例可供参考：
 
-- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)
+- [应用接入数据备份恢复（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0.1-Release/code/BasicFeature/FileManagement/FileBackupExtension)

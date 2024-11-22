@@ -96,10 +96,11 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      // 在父组件中调用overBuilder组件时，
+      // 把this.label通过引用传递的方式传给overBuilder组件。
       overBuilder({ paramA1: this.label })
       Button('Click me').onClick(() => {
-        // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        // 单击Click me后，UI文本从Hello更改为ArkUI。
         this.label = 'ArkUI';
       })
     }
@@ -140,10 +141,11 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+      // 在父组件中调用overBuilder组件时，
+      // 把this.label通过引用传递的方式传给overBuilder组件。
       overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
-        // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        // 单击Click me后，UI文本从Hello更改为ArkUI。
         this.label = 'ArkUI';
       })
     }
@@ -389,7 +391,8 @@ struct Parent {
     Column() {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value, tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
+      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value,
+       tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
       Line()
         .width('100%')
         .height(10)
@@ -550,7 +553,7 @@ function childBuilder($$: Tmp) {
 
 @Component
 struct HelloChildComponent {
-  @State message: string = '';
+  @Prop message: string = '';
   build() {
     Row() {
       Text(`HelloChildComponent===${this.message}`)
@@ -720,7 +723,8 @@ struct Parent {
     Column() {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
-      overBuilder({str_value: this.objParam.str_value}, this.num) // 此处出现问题，使用了两个参数。
+      // 使用了两个参数，用法错误。
+      overBuilder({str_value: this.objParam.str_value}, this.num)
       Line()
         .width('100%')
         .height(10)
@@ -759,7 +763,8 @@ struct Parent {
     Column() {
       Text('通过调用@Builder渲染UI界面')
         .fontSize(20)
-      overBuilder({str_value: this.strParam.str_value}, {num_value: this.numParam.num_value}) // 此处出现问题，使用了两个参数。
+      // 使用了两个参数，用法错误。
+      overBuilder({str_value: this.strParam.str_value}, {num_value: this.numParam.num_value})
       Line()
         .width('100%')
         .height(10)
@@ -807,79 +812,6 @@ struct Parent {
         this.objParam.num_value = 1;
       })
     }
-  }
-}
-```
-
-### \@Builder函数里面使用的组件没有根节点包裹
-
-在\@Builder函数里使用if判断语句时，创建的组件没有被Column/Row(根节点)包裹，会出现组件创建不出来的情况。
-
-【反例】
-
-```ts
-const showComponent: boolean = true;
-@Builder function OverlayNode() {
-  // 没有Column或者Row根节点导致Text组件没有创建
-  if (showComponent) {
-      Text("This is overlayNode Blue page")
-        .fontSize(20)
-        .fontColor(Color.Blue)
-        .height(100)
-        .textAlign(TextAlign.End)
-    } else {
-      Text("This is overlayNode Red page")
-        .fontSize(20)
-        .fontColor(Color.Red)
-    }
-}
-
-@Entry
-@Component
-struct OverlayExample {
-
-  build() {
-    RelativeContainer() {
-      Text('Hello World')
-        .overlay(OverlayNode(), { align: Alignment.Center})
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-
-【正例】
-
-```ts
-const showComponent: boolean = true;
-@Builder function OverlayNode() {
-  Column() {
-    if (showComponent) {
-      Text("This is overlayNode Blue page")
-        .fontSize(20)
-        .fontColor(Color.Blue)
-        .height(100)
-        .textAlign(TextAlign.End)
-    } else {
-      Text("This is overlayNode Red page")
-        .fontSize(20)
-        .fontColor(Color.Red)
-    }
-  }
-}
-
-@Entry
-@Component
-struct OverlayExample {
-
-  build() {
-    RelativeContainer() {
-      Text('Hello World')
-        .overlay(OverlayNode(), { align: Alignment.Center})
-    }
-    .height('100%')
-    .width('100%')
   }
 }
 ```

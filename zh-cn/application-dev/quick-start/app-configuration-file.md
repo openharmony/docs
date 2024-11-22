@@ -114,7 +114,8 @@ icon标签示例：
 
 ## appEnvironments标签
 
-此标签标识应用配置的环境变量。
+此标签标识应用配置的环境变量。应用运行时有时会依赖一些三方库，这些三方库会使用到一些自定义的环境变量，为了不修改三方库的实现逻辑，可以在工程的配置文件中设置自定义的环境变量，
+以供运行时期使用。
 
 **表2** appEnvironments标签说明
 
@@ -146,7 +147,7 @@ appEnvironments标签示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| multiAppModeType          | 标识应用多开模式类型，支持的取值如下：<br/>-&nbsp;multiInstance：多实例模式。<br/>-&nbsp;appClone：应用分身模式。 | 字符串  | 该标签不可缺省。 |
+| multiAppModeType          | 标识应用多开模式类型，支持的取值如下：<br/>-&nbsp;multiInstance：多实例模式。该字段仅支持2in1设备。<br/>-&nbsp;appClone：应用分身模式。 | 字符串  | 该标签不可缺省。 |
 | maxCount         | 标识最大允许的应用多开个数，支持的取值如下：<br/>-&nbsp;multiInstance模式：取值范围1\~10。<br/>-&nbsp;appClone模式：取值范围1\~5。      | 数值  | 该标签不可缺省。 |
 
 multiAppMode标签示例：

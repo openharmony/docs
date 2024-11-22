@@ -223,15 +223,15 @@
 
 ## ColoringStrategy<sup>10+</sup>
 
-智能取色枚举类型，用于设置前景色。
+智能取色枚举类型。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 描述              |
 | ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LengthConstrain
 

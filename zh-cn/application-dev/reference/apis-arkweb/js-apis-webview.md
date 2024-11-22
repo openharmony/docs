@@ -981,7 +981,7 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 | data       | string | 是   | 按照"base64"或者"URL"编码后的一段字符串。                    |
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
 | encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
-| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。 |
+| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。当加载大量html文件时，需设置为"data"。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
@@ -1735,6 +1735,10 @@ struct Index {
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+
+> **说明：**
+>
+> 离屏组件不会触发runJavaScript接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4264,6 +4268,10 @@ removeCache(clearRom: boolean): void
 
 清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
 
+> **说明：**
+>
+> 可以通过在data/storage/el2/base/cache/web/Cache目录下查看Webview的缓存。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -6052,7 +6060,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。|
+| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
 
 **错误码：**
 
@@ -6099,9 +6107,9 @@ static getRenderProcessMode(): RenderProcessMode
 
 **返回值：**
 
-| 类型                                                         | 说明                   |
-| ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| 渲染子进程模式类型。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。|
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| [RenderProcessMode](#renderprocessmode12) | 渲染子进程模式类型。调用[getRenderProcessMode()](#getrenderprocessmode12)获取当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。 |
 
 
 **示例：**
@@ -8878,6 +8886,14 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 获取指定url对应cookie的值。
 
+> **说明：**
+>
+> 系统会自动清理过期的cookie，对于同名key的数据，新数据将会覆盖前一个数据。
+> 
+> 为了获取可正常使用的cookie值，fetchCookieSync需传入完整链接。
+> 
+> fetchCookieSync用于获取所有的cookie值，每条cookie值之间会通过"; "进行分隔，但无法单独获取某一条特定的cookie值。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -9116,13 +9132,15 @@ struct WebComponent {
 
 static configCookieSync(url: string, value: string, incognito?: boolean): void
 
-为指定url设置cookie的值。
+为指定url设置单个cookie的值。
 
 > **说明：**
 >
->configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
-
->同步cookie的时机建议在Web组件加载之前完成。
+> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>
+> 同步cookie的时机建议在Web组件加载之前完成。
+>
+> 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9161,7 +9179,7 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 仅支持设置单个cookie值。
+            // configCookieSync每次仅支持设置单个cookie值。
             webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -12827,7 +12845,11 @@ struct WebComponent {
 
 start(downloadPath: string): void
 
-开始一个下载，参数为下载文件的磁盘存储路径(包含文件名)。该接口需要在WebDownloadDelegate的onBeforeDownload回调中使用，如果在WebDownloadDelegate的onBeforeDownload中不调用start('xxx')该下载任务会一直处于PENDING状态。
+开始下载到指定目录，参数为下载文件的磁盘存储路径(包含文件名)。
+
+> **说明：**
+>
+>该接口应在WebDownloadDelegate的onBeforeDownload回调中使用。若在WebDownloadDelegate的onBeforeDownload中未调用start('xxx')，则下载任务将保持在PENDING状态。处于PENDING状态的下载会将文件下载到临时目录，临时文件会在WebDownloadItem.start指定目标路径后被重命名为目标路径，未下载完成的部分会在WebDownloadItem.start指定目标路径后直接下载到目标路径。如果在调用WebDownloadItem.start之前不希望下载到临时文件路径，可以先通过WebDownloadItem.cancel取消当前下载任务，随后通过WebDownloadManager.resumeDownload恢复被取消的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -13196,6 +13218,10 @@ struct WebComponent {
 onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 下载开始前通知给用户，用户需要在此接口中调用WebDownloadItem.start("xxx")并提供下载路径，否则下载会一直处于PENDING状态。
+
+> **说明：**
+>
+>处于PENDING状态的下载任务会首先将文件保存至临时目录。在调用WebDownloadItem.start并指定目标路径后，临时文件将被重命名为目标文件名，未完成下载的部分会在调用WebDownloadItem.start并指定目标路径后直接下载到目标路径。若希望避免在调用WebDownloadItem.start前生成临时文件，可先通过WebDownloadItem.cancel来取消当前的下载任务，之后再使用WebDownloadManager.resumeDownload来恢复被取消的下载任务。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

@@ -1,6 +1,6 @@
 # 常驻任务开发指导（Worker）
 
-此处提供使用Worker进行常驻任务的开发指导，Worker会持续执行任务直到主线程发出终止指令。
+此处提供使用Worker进行常驻任务的开发指导，Worker会持续执行任务直到宿主线程发出终止指令。
 
 开发过程和示例如下所示：
 
@@ -15,14 +15,14 @@
    import { worker } from '@kit.ArkTS';
    ```
 
-3. 在主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程。
+3. 在宿主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程。
 
    ```ts
    // Index.ets
    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
    ```
 
-4. 宿主线程发送'start'，开始执行某个长期运行的任务并接收子线程返回的相关消息。在不需要执行该任务时发送'stop'，停止该任务执行，该示例中10s后结束该任务。
+4. 此处宿主线程为UI主线程，宿主线程发送'start'，开始执行某个长期运行的任务并接收子线程返回的相关消息。在不需要执行该任务时发送'stop'，停止该任务执行，该示例中10s后结束该任务。
 
    ```ts
    // Index.ets
@@ -39,7 +39,7 @@
            .onClick(() => {
              workerInstance.postMessage({type: 'start'})
              workerInstance.onmessage = (event) => {
-               console.info('主线程收到消息:', event.data);
+               console.info('UI主线程收到消息:', event.data);
              }
              // 10秒后停止worker
              setTimeout(() => {

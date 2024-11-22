@@ -133,7 +133,7 @@
            return nullptr;
        }
        Sensor_Info **sensors = OH_Sensor_CreateInfos(count); // 用给定的数字创建一个实例数组。
-       if (sensor == nullptr) {
+       if (sensors == nullptr) {
            return nullptr;
        }        
        ret = OH_Sensor_GetInfos(sensors, &count); // 获取设备上所有传感器的信息。 
@@ -245,9 +245,15 @@
 
 10. 在types/libentry路径下index.d.ts文件中引入Napi接口。
 
-   ```c
-   export const getSensorInfos: () => number;
-   export const subscriber: () => number;
-   ```
+    ```c
+     export const getSensorInfos: () => number;
+     export const subscriber: () => number;
+    ```
 
-   
+11. 删除Index.ets中的已废弃函数。
+
+    ```js
+    .onClick(() => {
+        hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+    })
+    ```

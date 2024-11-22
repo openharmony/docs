@@ -82,6 +82,8 @@ transform(value: object)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                      | 类型                       | 必填 | 说明                                                         |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | x                         | number                     | 否   | 旋转轴向量x坐标。                                            |
@@ -99,6 +101,8 @@ transform(value: object)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型                       | 必填 | 说明            |
 | ---- | -------------------------- | ---- | --------------- |
 | x    | number&nbsp;\|&nbsp;string | 否   | x轴的平移距离。 |
@@ -111,19 +115,25 @@ transform(value: object)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称    | 类型                       | 必填 | 说明                                                         |
 | ------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | x       | number                     | 否   | x轴的缩放倍数。x>1时以x轴方向放大，0<x<1时以x轴方向缩小，x<0时沿x轴反向并缩放。 |
 | y       | number                     | 否   | y轴的缩放倍数。y>1时以y轴方向放大，0<y<1时以y轴方向缩小，y<0时沿y轴反向并缩放。 |
 | z       | number                     | 否   | z轴的缩放倍数。z>1时以z轴方向放大，0<z<1时以z轴方向缩小，z<0时沿z轴反向并缩放。 |
-| centerX | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。                                          |
-| centerY | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。                                          |
+| centerX | number&nbsp;\|&nbsp;string | 否   | 变换中心点x轴坐标。<br/>单位：vp|
+| centerY | number&nbsp;\|&nbsp;string | 否   | 变换中心点y轴坐标。<br/>单位：vp|
 
 > **说明：**
 >
 > 当组件同时设置了rotate和scale属性时，centerX和centerY的取值会发生冲突，此时centerX和centerY的值以最后设定的属性的值为准。
 
 ## 示例
+
+### 示例1（为组件添加图形变换效果）
+
+该示例通过rotate、translate、scale、transform为组件添加旋转、平移、缩放、变换矩阵效果。
 
 ```ts
 // xxx.ets
@@ -171,3 +181,47 @@ struct TransformExample {
 ```
 
 ![transform](figures/transform.PNG)
+
+### 示例2（设置旋转视距）
+
+该示例通过perspective为组件添加视距效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State prep: number = 10;
+
+  build() {
+    Row() {
+      Column() {
+        Stack()
+          .width(100)
+          .height(100)
+          .backgroundColor(Color.Red)
+          .rotate({ y: 1, angle: 45, perspective: this.prep })
+        Button('change prep')
+          .margin({ top: 100 })
+          .onClick(() => {
+            animateTo({
+              duration: 2000,
+              curve: Curve.EaseIn,
+              iterations: 1,
+              playMode: PlayMode.Normal,
+              onFinish: () => {
+                console.info('play end')
+              }
+            }, () => {
+              this.prep = 500 // 组件视距从10变换到500
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![perspective](figures/perspective.gif)

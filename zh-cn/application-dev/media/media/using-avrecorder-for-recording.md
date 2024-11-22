@@ -1,4 +1,4 @@
-# 使用AVRecorder开发音频录制功能
+# 使用AVRecorder录制音频(ArkTS)
 
 使用AVRecorder可以实现音频录制功能，本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解AVRecorder音频录制相关功能。
 

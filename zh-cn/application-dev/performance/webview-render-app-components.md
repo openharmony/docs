@@ -38,7 +38,6 @@
 
 ```html
 <!-- nativeembed_view.html -->
-...
   <body>
     <div>
       <div id="bodyId">
@@ -47,14 +46,16 @@
       </div>
     </div>
   </body>
-...
 ```
 
 上图中，搜索框+下方列表的原生商城组件如下：
 
 ```typescript
 // SearchComponent.ets
-...
+  
+// API以及模块引入
+// ...
+  
 @Component
 export struct SearchComponent {
   @Prop params: Params;
@@ -197,9 +198,9 @@ export struct SearchComponent {
         postStringToApp('shop_search_click')
     })
 
-    ...
+    // ...
     // 其余相关节点
-    ...
+    // ...
 
     let imageNodeList = []; // 商城node节点列表
     imageNodeData.forEach(item => {
@@ -237,9 +238,9 @@ export struct SearchComponent {
           .backgroundColor('#F1F3F5')
           .zoomAccess(false)// 不允许执行缩放
           .onPageEnd(() => { 
-            ...
+            // ...
             // 里面放下一步的内容
-            ...
+            // ...
           })
         if (this.isWebInit) {
           Column() {
@@ -370,9 +371,9 @@ export struct SearchComponent {
       .zoomAccess(false)// 不允许执行缩放
       .enableNativeEmbedMode(true) // 开启同层渲染模式
       .onNativeEmbedLifecycleChange((embed) => {
-        ...
+        // ...
         // 此处进行下一步
-        ...
+        // ...
       })
       .onNativeEmbedGestureEvent((touch) => { 
         // 获取同层渲染组件触摸事件信息
@@ -406,7 +407,7 @@ export struct SearchComponent {
 **图三：H5的Trace图**
 ![alt text](./figures/webview-render-app-components_5.png)  
 H5的分析：
-- 在应用侧，情况比较特殊，因为H5页面是在web侧渲染，所以app侧只有开始加载web之前的js处理阶段，在PageEnd后应用侧没有什么处  理。
+- 在应用侧，情况比较特殊，因为H5页面是在web侧渲染，所以app侧只有开始加载web之前的js处理阶段，在PageEnd后应用侧没有什么处理。
 - 在render_service侧，每一帧ReceiveVsync的耗时无明显变化。  
 
 ### 使用非同层渲染加载  

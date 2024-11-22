@@ -12,7 +12,7 @@ ArkTS目前主要提供两种并发能力支持线程间通信：TaskPool和Work
 
 - TaskPool提供了功能更强、并发编程更简易的任务池API。其中TaskPool涉及跨并发实例的对象传递行为与Worker一致，还是采用了标准的Structured Clone算法，并发通信的对象越大，耗时就越长。
 
-基于ArkTS提供的TaskPool及Worker并发接口，支持多种线程间通信能力，可以满足开发者的不同[线程间通信场景](independent-time-consuming-task.md)。比如：独立的耗时任务场景、多个耗时任务场景、TaskPool与主线程通信场景、Worker和主线程的异步通信场景、Worker同步调用主线程的接口等场景。同时，基于[Node-API](../napi/napi-introduction.md)提供的机制，支持C++线程跨线程调用ArkTS接口。
+基于ArkTS提供的TaskPool及Worker并发接口，支持多种线程间通信能力，可以满足开发者的不同[线程间通信场景](independent-time-consuming-task.md)。比如：独立的耗时任务场景、多个耗时任务场景、TaskPool线程与宿主线程通信场景、Worker线程和宿主线程的异步通信场景、Worker同步调用宿主线程的接口等场景。同时，基于[Node-API](../napi/napi-introduction.md)提供的机制，支持C++线程跨线程调用ArkTS接口。
 
 图1 序列化反序列化原理图
 

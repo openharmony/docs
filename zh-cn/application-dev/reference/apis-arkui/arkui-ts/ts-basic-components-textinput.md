@@ -47,6 +47,8 @@ TextInput(value?: TextInputOptions)
 >  
 >  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
 >
+>  当输入框设置padding为0时，可设置borderRadius为0避免光标被截断。
+>
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### type
@@ -971,7 +973,7 @@ enableHapticFeedback(isEnabled: boolean)
 | 名称                          | 说明                                                     |
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Password                      | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Password                      | 密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Email                         | 邮箱地址输入模式。<br/>支持数字、字母、下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Number                        | 纯数字输入模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PhoneNumber<sup>9+</sup>      | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -1044,6 +1046,8 @@ enableHapticFeedback(isEnabled: boolean)
 onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 输入内容发生变化时，触发该回调。
+
+在本回调中，若执行了光标操作，需要开发者在预上屏场景下依据previewText参数调整光标逻辑，以适应预上屏场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

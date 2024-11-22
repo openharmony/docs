@@ -1,16 +1,30 @@
 # Holding a Video Conference with WebRTC
 
-The **Web** component can start a camera and microphone by calling **navigator.mediaDevices.getUserMedia()**, a standard W3C API, in JavaScript. To call this API, you need to declare the **ohos.permission.CAMERA** and **ohos.permission.MICROPHONE** permissions.
+The **Web** component can start a camera and microphone by calling the W3C Standards-compliant API **navigator.mediaDevices.getUserMedia()** in JavaScript, and receive the permission request notification through [onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#onpermissionrequest9). To call these APIs, you need to declare the audio permissions in the **module.json5** file.
+
+- For details about how to add audio permissions, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.CAMERA"
+      },
+      {
+        "name" : "ohos.permission.MICROPHONE"
+      }
+    ]
+   ```
 
  The **constraints** parameter in the API is a **MediaStreamConstraints** object that specifies the types of media to request. It contains two members: **video** and **audio**.
 
-In the following example, when a user clicks the button for enabling the camera on the frontend page (**index.html**), the **Web** component starts the camera and microphone.
+In the following example, when a user clicks the button for enabling the camera on the frontend page and the **onConfirm** button, the **Web** component starts the camera and microphone.
 
 - Application code:
 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
@@ -23,27 +37,20 @@ In the following example, when a user clicks the button for enabling the camera 
       webview.WebviewController.setWebDebuggingAccess(true);
       let atManager = abilityAccessCtrl.createAtManager();
       atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
-        .then(data => {
-          let result: Array<number> = data.authResults;
-          let hasPermissions1 = true;
-          result.forEach(item => {
-            if (item === -1) {
-              hasPermissions1 = false;
-            }
-          })
-          if (hasPermissions1) {
-            console.info("hasPermissions1");
-          } else {
-            console.info(" not hasPermissions1");
-          }
-        }).catch(() => {
-        return;
-      });
+        .then((data) => {
+          console.info('data:' + JSON.stringify(data));
+          console.info('data permissions:' + data.permissions);
+          console.info('data authResults:' + data.authResults);
+        }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })
     }
+
 
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
+          // Obtain the permission request notification. After the onConfirm button is clicked, the camera and microphone are started.
           .onPermissionRequest((event) => {
             if (event) {
               AlertDialog.show({

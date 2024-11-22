@@ -15,7 +15,7 @@ loadNativeModule(moduleName: string): Object;
 > **说明**
 > moduleName指的是待加载模块所在的HAP下module.json5中配置的名字。
 >
-> loadNativeModule只局限于在主线程中进行模块加载。
+> loadNativeModule只局限于在UI主线程中进行模块加载。
 >
 > 该接口功能不论是加载常量字符串还是变量表达式入参，都需要配置依赖。
 

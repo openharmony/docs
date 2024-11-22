@@ -16,7 +16,7 @@
 
     > **说明：**
     >
-    > API 11及以前版本，可以通过指定Ability拉起其他应用。从API 12开始，已不再支持三方应用使用该方式拉起其他应用。
+    > 从API 12开始，已不再推荐三方应用使用指定Ability方式（即显式Want）拉起其他应用。关于如何从指定Ability方式切换到指定[应用链接](app-startup-overview.md#应用链接)方式，详见[显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)。
 
     - 指定应用链接（推荐）：通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口来指定[应用链接](app-startup-overview.md#应用链接)，拉起目标应用页面。
 
