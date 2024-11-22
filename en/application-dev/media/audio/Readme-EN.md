@@ -1,9 +1,11 @@
 # Audio Kit
 
 - [Introduction to Audio Kit](audio-kit-intro.md)
-- [Processing Audio Interruption Events](audio-playback-concurrency.md)
-- [Extended Audio Concurrency Strategy (ArkTS)](audio-session-management.md)
-- [Extended Audio Concurrency Strategy (C/C++)](using-ohaudio-for-session.md)
+- [Selecting an Appropriate Audio Stream Type](using-right-streamusage-and-sourcetype.md)
+- [Introduction to Audio Focus and Audio Session](audio-playback-concurrency.md)
+- Audio Focus Management
+  - [Using AudioSession to Manage Audio Focus (ArkTS)](audio-session-management.md)
+  - [Using AudioSession to Manage Audio Focus (C/C++)](using-ohaudio-for-session.md)
 - Audio Playback
   - [Audio Playback Overview](audio-playback-overview.md)
   - [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md)

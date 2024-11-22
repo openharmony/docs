@@ -1,20 +1,24 @@
-# Using SoundPool for Audio Playback
+# Using SoundPool to Play Short Sounds (ArkTS)
 
-The **SoundPool** class provides APIs to implement low-latency playback of short sounds.
+The SoundPool class provides APIs to implement low-latency playback of short sounds.
 
-Short sound effects (such as the camera shutter sound effect and system notification sound effect) are often required during application development. You can call the APIs provided by **SoundPool** to implement one-time loading of short sounds and multiple times of low-latency playback.
+Short sound effects (such as the camera shutter sound effect and system notification sound effect) are often required during application development. You can call the APIs provided by SoundPool to implement one-time loading of short sounds and multiple times of low-latency playback.
 
-Currently, the **SoundPool** APIs can be used to play an audio file that is less than 1 MB. If the size of an audio file exceeds 1 MB, 1 MB data is captured and played.
+Currently, the SoundPool APIs can be used to play an audio file that is less than 1 MB. If the size of an audio file exceeds 1 MB, 1 MB data is captured and played.
 
-This topic walks you through on how to use the **SoundPool** APIs to implement low-latency playback. For details about the API, see [SoundPool](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md).
+This topic walks you through on how to use the SoundPool APIs to implement low-latency playback. For details about the API, see [SoundPool](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md).
 
-The full process includes creating a **SoundPool** instance, loading a sound (including decapsulation and decoding), setting playback parameters (loop mode, and playback priority), playing the sound, stopping the playback, and releasing the instance. (For details about the decoding formats, see [Audio Decoding](../avcodec/audio-decoding.md).)
+The full process includes creating a SoundPool instance, loading a sound (including decapsulation and decoding), setting playback parameters (loop mode, and playback priority), playing the sound, stopping the playback, and releasing the instance. (For details about the decoding formats, see [Audio Decoding](../avcodec/audio-decoding.md).)
 
 During application development, you must subscribe to playback state changes and call the APIs in the defined sequence. Otherwise, an exception or undefined behavior may occur.  
 
+> **NOTE**
+> 
+> For details about the audio focus strategy when SoundPool is used to play short sounds, see [Introduction to Audio Focus and Audio Session](../audio/audio-playback-concurrency.md).
+
 ## How to Develop
 
-1. Call **createSoundPool()** to create a **SoundPool** instance.
+1. Call **createSoundPool()** to create a SoundPool instance.
 
     ```ts
     import { media } from '@kit.MediaKit';
@@ -22,6 +26,8 @@ During application development, you must subscribe to playback state changes and
     import { BusinessError } from '@kit.BasicServicesKit';
 
     let soundPool: media.SoundPool;
+    // If the value of usage in audioRenderInfo is STREAM_USAGE_UNKNOWN, STREAM_USAGE_MUSIC, STREAM_USAGE_MOVIE,
+    // or STREAM_USAGE_AUDIOBOOK, SoundPool plays a short sound in audio mixing mode, without interrupting the playback of other audio streams.
     let audioRendererInfo: audio.AudioRendererInfo = {
       usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags : 0
@@ -64,7 +70,10 @@ During application development, you must subscribe to playback state changes and
     ```
 
 5. Call **load()** to load a sound.
+
     You can pass in a URI or an FD to load the sound. The following uses the URI as an example. For more methods, see [SoundPool](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load).
+
+    When the system finishes loading the sound, the **loadComplete** callback is invoked to notify the user that the loading is complete. Perform the subsequent play operation after the callback is received.
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -86,7 +95,7 @@ During application development, you must subscribe to playback state changes and
     }
     ```
 
-6. Set the playback parameters and call **play()** to play the sound. If **play()** with the same sound ID passed in is called for multiple times, the sound is played only once.
+6. Set **PlayParameters**, and call **play** after the **loadComplete** callback is received. If **play()** with the same sound ID passed in is called for multiple times, the sound is played only once.
   
     ```ts
     let soundID: number;
@@ -205,7 +214,7 @@ During application development, you must subscribe to playback state changes and
 
 ## Sample Code
 
-The following sample code implements low-latency playback using **SoundPool**.
+The following sample code implements low-latency playback using SoundPool.
 
 ```ts
 import { audio } from '@kit.AudioKit';
@@ -216,6 +225,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let soundPool: media.SoundPool;
 let streamId: number = 0;
 let soundId: number = 0;
+// If the value of usage in audioRenderInfo is STREAM_USAGE_UNKNOWN, STREAM_USAGE_MUSIC, STREAM_USAGE_MOVIE,
+// or STREAM_USAGE_AUDIOBOOK, SoundPool plays a short sound in audio mixing mode, without interrupting the playback of other audio streams.
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
@@ -252,7 +263,7 @@ function loadCallback() {
 function finishPlayCallback() {
   // Callback invoked when the sound finishes playing.
   soundPool.on('playFinished', () => {
-    console.info("recive play finished message");
+    console.info("receive play finished message");
     // The sound can be played again.
   })
 }
@@ -263,7 +274,7 @@ function setErrorCallback() {
   })
 }
 async function PlaySoundPool() {
-  // Start playback. PlayParameters can be carried in the play() API.
+  // Start playback. The play operation can also contain PlayParameters. Perform the play operation after the audio resources are loaded, that is, after the loadComplete callback is received.
   soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
       console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)

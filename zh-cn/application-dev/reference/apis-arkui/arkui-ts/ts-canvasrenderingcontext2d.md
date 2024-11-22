@@ -99,9 +99,9 @@ struct LengthMetricsUnitDemo {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------- | ------------------------------- | ------------------ | ---------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
 | [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度。<br/>默认值：1(px)<br/>默认单位：vp <br/> linewidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。               |
-| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
+| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
 | [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
 | [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
 | [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。 |
@@ -1311,6 +1311,8 @@ stroke(): void
   ```
 
   ![zh-cn_image_0000001238832389](figures/zh-cn_image_0000001238832389.png)
+
+### stroke
 
 stroke(path: Path2D): void
 
@@ -3582,6 +3584,16 @@ on(type: 'onAttach', callback: () => void): void
 | type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
 | callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调 |
 
+> **说明：**
+>
+> CanvasRenderingContext2D对象在同一时间只能与一个Canvas组件绑定。</br>
+> 当CanvasRenderingContext2D对象和Canvas组件发生绑定时，会触发'onAttach'回调，表示可以获取到[canvas](#canvas13)。</br>
+> 避免在'onAttach'中执行绘制方法，应保证Canvas组件已经'[onReady](ts-components-canvas-canvas.md#事件)'再进行绘制。</br>
+> 触发'onAttach'回调的一般场景：</br>
+> 1、Canvas组件创建时绑定CanvasRenderingContext2D对象;</br>
+> 2、CanvasRenderingContext2D对象新绑定一个Canvas组件时。</br>
+  
+
 ### on('onDetach')<sup>13+</sup>
 
 on(type: 'onDetach', callback: () => void): void
@@ -3598,6 +3610,13 @@ on(type: 'onDetach', callback: () => void): void
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
 | callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调 |
+
+> **说明：**
+>
+> 当CanvasRenderingContext2D对象和Canvas组件解除绑定时，会触发'onDetach'回调，表示应停止绘制行为。</br>
+> 触发'onDetach'回调的一般场景：</br>
+> 1、Canvas组件销毁时解除绑定CanvasRenderingContext2D对象;</br>
+> 2、CanvasRenderingContext2D对象新绑定一个Canvas组件，会先解除已有的绑定。</br>
 
 ### off('onAttach')<sup>13+</sup>
 

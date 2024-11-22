@@ -43,7 +43,7 @@ Defines the data security level.
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-Sets a security label for a file. This API uses a promise to return the result.
+Sets the security label for a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -52,7 +52,7 @@ Sets a security label for a file. This API uses a promise to return the result.
 | Name   | Type      | Mandatory| Description                                        |
 | --------- | ------    | ---- | -------------------------------------------- |
 | path      | string    | Yes  | Path of the target file.                                    |
-| type      | [DataLevel](#datalevel) | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | [DataLevel](#datalevel) | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Return value**
 
@@ -91,7 +91,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
-Sets a security label for a file. This API uses an asynchronous callback to return the result.
+Sets the security label for a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -100,7 +100,7 @@ Sets a security label for a file. This API uses an asynchronous callback to retu
 | Name   | Type                     | Mandatory| Description                                        |
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | Yes  | Path of the target file.                                    |
-| type      | DataLevel                 | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | DataLevel                 | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                  |
 
 **Error codes**
@@ -136,7 +136,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 setSecurityLabelSync(path:string, type:DataLevel):void
 
-Sets a security label for a file. This API returns the result synchronously.
+Sets the security label for a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -145,7 +145,7 @@ Sets a security label for a file. This API returns the result synchronously.
 | Name   | Type  | Mandatory| Description                                        |
 | --------- | ------ | ---- | -------------------------------------------- |
 | path      | string | Yes  | Path of the target file.                                    |
-| type      | DataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | DataLevel | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Error codes**
 
@@ -173,7 +173,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-Obtains the security label of a file. This API uses a promise to return the result.
+Obtains the security label. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -220,7 +220,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
-Obtains the security label of a file. This API uses an asynchronous callback to return the result.
+Obtains the security label. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -264,7 +264,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getSecurityLabelSync(path:string):string
 
-Obtains the security label of a file. This API returns the result synchronously.
+Obtains the security label. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 

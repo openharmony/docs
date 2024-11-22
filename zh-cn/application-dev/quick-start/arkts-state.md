@@ -309,29 +309,25 @@ struct MyComponent {
 
 ![Video-state](figures/Video-state.gif)
 
-从该示例中，我们可以了解到\@State变量首次渲染的初始化流程：
+从该示例中，我们可以了解到\@State变量的初始化机制：
 
 
-1. 使用默认的本地初始化：
+1. 没有外部传入的情况下，使用默认的值进行初始化：
 
    ```ts
-   @State title: Model = new Model('Hello World');
-   @State count: number = 0;
+   // title没有外部传入，使用本地的值new Model('Hello World')进行初始化
+   MyComponent({ count: 1, increaseBy: 2 })
+   // increaseBy没有外部传入，使用本地的值1进行初始化
+   MyComponent({ title: new Model('Hello World 2'), count: 7 })
    ```
 
-2. 对于\@State来说，命名参数机制传递的值并不是必选的，如果没有命名参数传值，则使用本地初始化的默认值：
+2. 有外部传入的情况下，使用外部传入的值进行初始化：
 
    ```ts
-   class C1 {
-      public count:number;
-      public increaseBy:number;
-      constructor(count: number, increaseBy:number) {
-        this.count = count;
-        this.increaseBy = increaseBy;
-     }
-   }
-   let obj = new C1(1, 2);
-   MyComponent(obj)
+   // count和increaseBy均有外部传入，分别使用传入的1和2进行初始化
+   MyComponent({ count: 1, increaseBy: 2 })
+   // title和count均有外部传入，分别使用传入的new Model('Hello World 2')和7进行初始化
+   MyComponent({ title: new Model('Hello World 2'), count: 7 })
    ```
 
 
@@ -423,7 +419,7 @@ struct SetSample {
 
 ## State支持联合类型实例
 
-@State支持联合类型和undefined和null，在下面的示例中，count类型为number | undefined，点击Button改变count的属性或者类型，视图会随之刷新。
+\@State支持联合类型和undefined和null，在下面的示例中，count类型为number | undefined，点击Button改变count的属性或者类型，视图会随之刷新。
 
 ```ts
 @Entry
@@ -457,7 +453,7 @@ struct MyComponent {
 
 ### 使用箭头函数改变状态变量未生效
 
-箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下， changeCoverUrl的this指向PlayDetailViewModel，而不是被装饰器@State代理的状态变量。
+箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下， changeCoverUrl的this指向PlayDetailViewModel，而不是被装饰器\@State代理的状态变量。
 
 反例：
 
@@ -809,10 +805,10 @@ struct ConsumerChild {
 }
 ```
 
-以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给@Observed装饰的类对象以及使用状态变量装饰器如@State装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。  
+以上示例每次点击Button('change to self')，把相同的类常量赋值给一个Class类型的状态变量，会触发刷新。原因是在状态管理V1中，会给被\@Observed装饰的类对象以及使用状态变量装饰器如\@State装饰的Class、Date、Map、Set、Array类型的对象添加一层代理用于观测一层属性或API调用产生的变化。  
 当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Object类型，判断是不相等的，因此会触发赋值和刷新。  
-为了避免这种不必要的赋值和刷新，可以通过用@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
-方法一：增加@Observed
+为了避免这种不必要的赋值和刷新，可以通过用\@Observed装饰类，或者使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，如果相同则不执行赋值。  
+方法一：增加\@Observed
 
 ```ts
 @Observed
@@ -856,7 +852,7 @@ struct ConsumerChild {
 }
 ```
 
-以上示例，给对应的类增加了@Observed装饰器后，list[0]已经是Proxy类型了，这样再次赋值时，相同的对象，就不会触发刷新。
+以上示例，给对应的类增加了\@Observed装饰器后，list[0]已经是Proxy类型了，这样再次赋值时，相同的对象，就不会触发刷新。
 
 方法二：使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象
 
@@ -988,7 +984,7 @@ struct Index {
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 
-在build方法内，当@State装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
+在build方法内，当\@State装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
 
 【反例】
 

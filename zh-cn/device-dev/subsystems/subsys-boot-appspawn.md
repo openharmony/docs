@@ -134,15 +134,19 @@
    参考沙盒配置说明，修改配置文件。
 
    - 进入设备下：/system/etc/sandbox/路径下，直接修改对应沙盒配置文件， 重新启动。
-   - 代码路径下：base/startup/appspawn_standard， 修改对应沙盒配置文件。
+   - 代码路径下：base/startup/appspawn， 修改对应沙盒配置文件。
 
   **表 3**  沙盒配置文件解释
 
   | 沙盒配置文件 | 解释 |
   | -------- | -------- |
-  | appdata-sandbox64.json | 64位系统的沙盒配置 |
-  | appdata-sandbox.json | 32位系统的沙盒配置 |
-  | product-sandbox.json  | 应用沙盒的产品差异化配置 |
+  | appdata-sandbox-app.json            | 新特性沙盒应用挂载点配置 |
+  | appdata-sandbox-asan.json           | 新特性沙盒asan版本额外挂载点配置 |
+  | appdata-sandbox-isolated.json       | native进程沙盒挂载点配置 |
+  | appdata-sandbox-nweb.json           | 新特性沙盒渲染进程挂载点配置 |
+  | appdata-sandbox.json                | 32位系统的沙盒配置 |
+  | appdata-sandbox64.json              | 64位系统的沙盒配置 |
+  | appspawn_preload.json               | 预加载配置 |
 
 ### 开发实例
 以launcher应用新增独有配置应用为例：

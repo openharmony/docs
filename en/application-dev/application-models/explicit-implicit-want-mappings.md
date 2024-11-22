@@ -158,6 +158,10 @@ The matching rules are as follows:
 >
 > For system applications, **scheme** of their URIs starts with **ohos**, for example, **ohosclock://**. The URI of a third-party application cannot be the same as that of a system application. Otherwise, the third-party application cannot be started using the URI.
 
+**Figure 5** Example of the matching rules of uri in the want parameter
+
+![want-uri-case](figures/want-uri-case.png)
+
 ### Matching Rules of type
 
 > **NOTE**
@@ -186,7 +190,7 @@ The system matches **parameters** in the **want** parameter passed by the caller
 
 
 
-**Figure 5** Matching rules of linkFeature in the want parameter
+**Figure 6** Matching rules of linkFeature in the want parameter
 
 ![want-linkFeature](figures/linkFeature.png)
 

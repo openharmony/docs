@@ -3,7 +3,9 @@
 网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 
 > **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 无特殊说明，接口默认不支持并发。
 
 ## 导入模块
 
@@ -259,7 +261,9 @@ cat server.pem \
         }
       }
     ]
-  }
+  },
+  "trust-global-user-ca": false,
+  "trust-current-user-ca": false,
 }
 ```
 
@@ -301,6 +305,10 @@ cat server.pem \
 可包含0或者1个base-config
 
 必须包含1个domain-config
+
+**trust-global-user-ca: 是否信任企业MDM系统或设备管理员用户手动安装的CA证书，默认true**
+
+**trust-current-user-ca: 是否信任当前用户安装的证书，默认true**
 
 **base-config(object:指示应用程序范围的安全配置)**
 

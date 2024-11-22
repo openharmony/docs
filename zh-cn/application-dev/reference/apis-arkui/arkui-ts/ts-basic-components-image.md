@@ -647,9 +647,9 @@ type ImageErrorCallback = (error: ImageError) => void
 
 ## 示例
 
-### 示例1
+### 示例1（加载基本类型图片）
 
-加载基本类型图片
+加载png、gif、svg和jpg等基本类型的图片。
 
 ```ts
 @Entry
@@ -686,7 +686,7 @@ struct ImageExample1 {
 
 ![zh-cn_image_0000001592882500](figures/zh-cn_image_0000001592882500.gif)
 
-### 示例2
+### 示例2（下载与显示网络图片）
 
 加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。使用[HTTP](../../../network/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../../media/image/image-overview.md)。
 
@@ -747,9 +747,9 @@ struct ImageExample2 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.gif)
 
-### 示例3
+### 示例3（为图片添加事件）
 
-为图片添加事件
+为图片添加onClick和onFinish事件。
 
 ```ts
 @Entry
@@ -785,9 +785,9 @@ struct ImageExample3 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_0000001607845173.gif)
 
-### 示例4
+### 示例4（开启图像AI分析）
 <!--RP2-->
-使用enableAnalyzer接口开启图像AI分析
+使用enableAnalyzer接口开启图像AI分析。
 
 ```ts
 import { image } from '@kit.ImageKit'
@@ -839,9 +839,9 @@ struct ImageExample4 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view4.gif)
 <!--RP2End-->
-### 示例5
+### 示例5（拉伸图片）
 
-调整不同方向对图片进行拉伸
+调整不同方向对图片进行拉伸。
 
 ```ts
 @Entry
@@ -905,9 +905,9 @@ struct Index {
 
 ![imageResizable](figures/imageResizable.gif)
 
-### 示例6
+### 示例6（播放PixelMap数组动画）
 
-播放PixelMap数组动画
+该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)播放PixelMap数组动画。
 
 ```ts
 import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI'
@@ -985,9 +985,9 @@ struct ImageExample {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view6.gif)
 
-### 示例7
+### 示例7（为图像设置颜色滤镜效果）
 
-该示例实现了给图像设置颜色滤镜效果
+该示例通过[colorFilter](#colorfilter9)实现了给图像设置颜色滤镜效果。
 
 ```ts
 import { drawing, common2D } from '@kit.ArkGraphics2D';
@@ -1036,9 +1036,9 @@ struct ImageExample3 {
 ```
 ![imageSetColorFilter](figures/imageSetColorFilter.gif)
 
-### 示例8
+### 示例8（为图像设置填充效果）
 
-该示例实现了给图像设置objectFit效果
+该示例通过[objectFit](#objectfit)为图像设置填充效果。
 
 ```ts
 @Entry
@@ -1083,7 +1083,7 @@ struct ImageExample{
 
 ![imageResizable](figures/imageSetFit.gif)
 
-### 示例9
+### 示例9（切换显示不同类型图片）
 
 该示例展示了ResourceStr类型与ImageContent类型作为数据源的显示图片效果。
 
@@ -1112,9 +1112,9 @@ struct ImageContentExample {
 
 ![imageContent](figures/zh-cn_image_view9.gif)
 
-### 示例10
+### 示例10（配置隐私隐藏）
 
-该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+该示例通过[privacySensitive](#privacysensitive12)展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
 
 ```ts
 @Entry
@@ -1136,9 +1136,9 @@ struct ImageExample {
 
 ![imageContent](figures/zh-cn_image_view10.gif)
 
-### 示例11
+### 示例11（为图片设置扫光效果）
 
-该示例实现了给图片设置扫光效果。
+该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)实现了给图片设置扫光效果。
 
 ```ts
 import { curves } from '@kit.ArkUI';

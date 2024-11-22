@@ -213,14 +213,14 @@ process name [{bundleName}:{UIExtensionAbility name}]
 
 Example: process name [com.ohos.intentexecutedemo:xxx]
 
-**Figure 6** Type-based process model 
+**Figure 6** Type-based process model
 
 ![uiextability-type-process-example](figures/uiexteability-type-precess-example.png)
 
 ### One Process for Each UIExtensionAbility Instance
 Processes are allocated based on the [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) instance. That is, each UIExtensionAbility instance has an independent process. In this mode, UIExtensionAbility instances can communicate with each other only through IPCs. However, their statuses do not affect each other, improving security.
 
-**Figure 7** Instance-specific process model configuration 
+**Figure 7** Instance-specific process model configuration
 
 ![uiextability-instance-processmodel](figures/uiextability-instance-processmodel.png)
 
@@ -298,7 +298,7 @@ struct Index {
   }
 }
 ```
-**Figure 8** Index page generated based on the preceding code 
+**Figure 8** Index page generated based on the preceding code
 
 ![uiextability-instance-example](figures/uiextability-instance-example.png)
 

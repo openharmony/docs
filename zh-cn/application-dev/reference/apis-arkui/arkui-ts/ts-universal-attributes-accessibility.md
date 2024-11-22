@@ -171,6 +171,8 @@ accessibilitySelected(isSelect: boolean)
 
 ## 示例
 
+该示例主要演示accessibilityText无障碍文本和accessibilityDescription无障碍说明的播报内容。
+
 ```ts
 // xxx.ets
 @Entry
@@ -208,4 +210,3 @@ struct Index {
   }
 }
 ```
-

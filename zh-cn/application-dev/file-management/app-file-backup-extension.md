@@ -37,7 +37,8 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
                        "resource": "$profile:backup_config"
                    }
                ],
-               // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和               // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
+               // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和
+               // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
                // 如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
                "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
            }      

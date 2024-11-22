@@ -31,6 +31,7 @@
       - [HSP转HAR指导](quick-start/hsp-to-har.md)
       - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [创建应用分身](quick-start/app-clone.md)
+      - [创建应用多实例](quick-start/multiInstance.md)
       - [配置分层图标](quick-start/layered-image.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
@@ -59,6 +60,7 @@
       - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
       - [@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
       - [@Require装饰器：校验构造传参](quick-start/arkts-require.md)
+      - [@Reusable装饰器：组件复用](quick-start/arkts-reusable.md)
     - 状态管理<!--arkts-state-management-->
       - [状态管理概述](quick-start/arkts-state-management-overview.md)
       - 状态管理（V1稳定版）<!--arkts-state-management-v1-->
@@ -103,6 +105,7 @@
           - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
           - [getTarget接口：获取状态管理框架代理前的原始对象](quick-start/arkts-new-getTarget.md)
           - [makeObserved接口：将非观察数据变为可观察数据](quick-start/arkts-new-makeObserved.md)
+        - [MVVM模式（状态管理V2）](quick-start/arkts-mvvm-V2.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -477,7 +480,7 @@
         - [支持适老化](ui/arkui-support-for-aging-adaptation.md)
         - 主题设置<!--arkts-theme-->
           - [设置主题换肤](ui/theme_skinning.md)
-        - [Stage模型下ArkUI全局接口开发指导](ui/arkts-global-interface.md)
+        - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
         <!--Del-->
         - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](ui/arkts-ui-extension-components.md)
         <!--DelEnd-->
@@ -611,7 +614,7 @@
         - [拦截Web组件发起的网络请求](web/web-scheme-handler.md)
         - [自定义页面请求响应](web/web-resource-interception-request-mgmt.md)
         - [加速Web页面的访问](web/web-predictor.md)
-        - [Web前进后退缓存](web/web-set-back-forward-cache.md)
+        - [设置Web组件前进后退缓存](web/web-set-back-forward-cache.md)
         - [Web组件在不同窗口间迁移](web/web-component-migrate.md)
       - 管理网页文件上传与下载<!--web-manage-upload-download-->
         - [上传文件](web/web-file-upload.md)
@@ -1339,13 +1342,11 @@
         - [拍照(C/C++)](media/camera/native-camera-shooting.md)
         - [分段式拍照(C/C++)](media/camera/native-camera-deferred-capture.md)
         - [录像(C/C++)](media/camera/native-camera-recording.md)
-        - [录像流二次处理(C/C++)](media/camera/native-camera-recording-imageReceiver.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
         - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
       - 相机最佳实践(C/C++)<!--camera-best-practices-native-->
         - [拍照实现方案(C/C++)](media/camera/native-camera-shooting-case.md)
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
-        - [录像流二次处理的实现方案(C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
       - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
@@ -3115,9 +3116,12 @@
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
           - [@ohos.net.http (数据请求)](reference/apis-network-kit/js-apis-http.md)
           - [@ohos.net.mdns (MDNS管理)](reference/apis-network-kit/js-apis-net-mdns.md)
+          - [@ohos.net.policy (网络策略管理)](reference/apis-network-kit/js-apis-net-policy.md)
           - [@ohos.net.socket (Socket连接)](reference/apis-network-kit/js-apis-socket.md)
           - [@ohos.net.statistics (流量管理)](reference/apis-network-kit/js-apis-net-statistics.md)
+          - [@ohos.net.sharing (网络共享管理)](reference/apis-network-kit/js-apis-net-sharing.md)
           - [@ohos.net.vpnExtension (VPN增强管理)](reference/apis-network-kit/js-apis-net-vpnExtension.md)
+          - [@ohos.net.vpn (VPN管理)](reference/apis-network-kit/js-apis-net-vpn.md)
           - [@ohos.net.webSocket (WebSocket连接)](reference/apis-network-kit/js-apis-webSocket.md)
           - [@ohos.net.networkSecurity (Network Security)](reference/apis-network-kit/js-apis-networkSecurity.md)
           - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](reference/apis-network-kit/js-apis-VpnExtensionAbility.md)
@@ -3305,6 +3309,8 @@
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
+            - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
+            - [InitSync](reference/apis-basic-services-kit/_init_sync.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
@@ -3312,6 +3318,8 @@
             - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - 头文件<!--basic-services-headerfile-->
+            - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
+            - [init_sync.h](reference/apis-basic-services-kit/init__sync_8h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
@@ -4164,7 +4172,7 @@
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
-    - Vulkan<!--vulkan-->
+    - Vulkan<!--vulkan-guide-->
       - [Vulkan开发指导](reference/native-lib/vulkan-guidelines.md)
       - [Vulkan支持能力](reference/native-lib/vulkan.md)
       - Vulkan扩展能力<!--vulkan-extensions-->
