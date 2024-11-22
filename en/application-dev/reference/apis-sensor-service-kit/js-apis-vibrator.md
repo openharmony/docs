@@ -930,6 +930,7 @@ Enumerates the vibration scenarios.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 <!--RP1-->
+
 | Type    | Description                          |
 | ---------------- | ------------------------------ |
 | 'unknown'     | Unknown scenario, with the lowest priority. This parameter has a fixed value of **unknown**.|

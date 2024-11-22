@@ -34,7 +34,7 @@ Subscribes to data of the acceleration sensor.
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns.|
 
-**Error codes** 
+**Error codes**
 
 For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
@@ -83,7 +83,7 @@ Subscribes to data of the uncalibrated acceleration sensor.
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
 | options  | [Options](#options)                                          | No  | List of optional parameters. This parameter is used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
-**Error codes**  
+**Error codes**
 
 For details about the error codes, see [Sensor Error Codes](errorcode-sensor.md) and [Universal Error Codes](../errorcode-universal.md).
 
@@ -3792,7 +3792,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name        | Type               | Mandatory| Description          |
 | -------------- | ------------------- | ---- | -------------- |
-| rotationMatrix | Array&lt;number&gt; | Yes  | Rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes  | Rotation vector.|
 
 **Return value**
 
@@ -5755,7 +5755,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 
 Subscribes to only one data change of the proximity sensor.
 
-> **NOTE** 
+> **NOTE**
 >
 > This API is deprecated since API version 9. You are advised to use [sensor.once.PROXIMITY](#proximity9-1)<sup>9+</sup> instead.
 
@@ -6853,6 +6853,7 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 | timeMillis      | number                              | Yes   | Time for obtaining the magnetic declination, in milliseconds.|
 
 **Return value**
+
 | Type                                                      | Description                      |
 | ---------------------------------------------------------- | -------------------------- |
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
@@ -7075,7 +7076,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | Name                  | Type                 | Mandatory  | Description       |
 | --------------------- | ------------------- | ---- | --------- |
 | currentRotationMatrix | Array&lt;number&gt; | Yes   | Current rotation matrix.|
-| preRotationMatrix     | Array&lt;number&gt; | Yes   | Peer rotation matrix.  |
+| preRotationMatrix     | Array&lt;number&gt; | Yes   | Rotation vector to rotate.  |
 
 **Return value**
 
@@ -7310,7 +7311,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | Peer rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation vector to rotate.|
 
 **Return value**
 
