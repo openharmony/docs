@@ -79,6 +79,8 @@ MarginType定义marginType的类型。
 ## 示例
 ### 示例1(异常提示基本用法)
 
+该示例演示了设置异常提示的异常图标，异常提示的文字，异常提示的边距样式和右侧图标按钮的文字内容。
+
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 
@@ -113,6 +115,8 @@ struct Index {
 ![ExceptionPrompt1](figures/ExceptionPrompt1.png)
 
 ### 示例2(设置弹窗类型的异常提示)
+
+该示例展示了如何在弹窗中设置异常提示。
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
