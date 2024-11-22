@@ -301,6 +301,32 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 }
 ```
 
+### properties
+
+properties: WindowProxyProperties
+
+宿主应用窗口和 EmbeddedComponent 组件的信息。
+
+| 参数名     | 类型                                 | 说明                             |
+| ---------- | ------------------------------------ | -------------------------------- |
+| properties | [WindowProxyProperties](#windowproxyproperties) | EmbeddedComponent 组件以及宿主窗口的信息。 |
+
+**示例**
+
+```ts
+// ExtensionProvider.ts
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionWindow = session.getUIExtensionWindowProxy();
+    // 获取 EmbeddedComponent 位置和大小信息
+    const rect = extensionWindow.properties.uiExtensionHostWindowProxyRect;
+    console.log(`Rect Info: ${JSON.stringify(rect)}`);
+  }
+}
+```
+
 ### createSubWindowWithOptions
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
@@ -397,6 +423,13 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 | type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 窗口规避区类型。   |
 | area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 是| 窗口内容规避区域。 |
 
+## WindowProxyProperties
+
+用于表示宿主应用窗口和 EmbeddedComponent 组件的信息。
+
+| 名称                         | 类型        | 必填      | 说明                             |
+| ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
+| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | EmbeddedComponent 的位置和宽高。 |
 
 ## 完整示例
 
@@ -512,6 +545,10 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
         Text(this.message)
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
+        Button("获取组件大小").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
+          let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+          console.info(`EmbeddedComponent的宽高和位置信息: ${JSON.stringify(rect)}`);
+        })
         Button("获取系统规避区信息").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
           let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
           console.info(`系统规避区: ${JSON.stringify(avoidArea)}`);
