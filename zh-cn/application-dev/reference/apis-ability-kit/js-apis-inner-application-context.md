@@ -231,3 +231,54 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+## Context.createAreaModeContext<sup>16+</sup>
+
+createAreaModeContext(areaMode: contextConstant.AreaMode): Context
+
+当应用需要将不同类型的信息存放在不同目录下时，可以根据指定的数据加密级别创建应用上下文，以获取相应的路径。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| areaMode | [contextConstant.AreaMode](js-apis-app-ability-contextConstant.md#areamode) | 是   | 指定的数据加密等级。 |
+
+**返回值：**
+
+| 类型    | 说明                   |
+| ------- | ---------------------- |
+| Context | 指定数据加密等级的上下文。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { common, UIAbility, contextConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let areaMode: contextConstant.AreaMode = contextConstant.AreaMode.EL2;
+    let areaModeContext: common.Context;
+    try {
+      areaModeContext = this.context.createAreaModeContext(areaMode);
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'createAreaModeContext error is:%{public}s', JSON.stringify(error));
+    }
+  }
+}
+```
+
