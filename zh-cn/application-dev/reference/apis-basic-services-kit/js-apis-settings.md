@@ -340,7 +340,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
     console.error(`Failed to get the setting. ${err.message} `);
     return;
   }
-  console.log(`callback:value -> ${JSON.stringify(value)}`)
+  console.log(`callback:value -> ${value}`)
 });
 ```
 
@@ -373,7 +373,7 @@ getValue(context: Context, name: string): Promise\<string>
 import settings from '@ohos.settings';
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-  console.log(`promise:value -> ${JSON.stringify(value)}`)
+  console.log(`promise:value -> ${value}`)
 });
 ```
 
@@ -403,7 +403,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise对象。返回true表示操作成功，否则返回false。 |
+| Promise\<string> | Promise对象。返回获得的数据项的值。 |
 
 **示例**：
 
@@ -413,7 +413,7 @@ import settings from '@ohos.settings';
 // 更新数据项亮度的值（该数据项在数据库中已存在，故getValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+  console.log(`Promise:value -> ${value}`);
 });
 ```
 
@@ -628,14 +628,13 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放）|
 
 **返回值**：
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| boolean | 返回设置数据项的值是否成功的结果，true表示设置成功，false表示设置失败。 |
+| boolean | 返回注销指定域名下对指定键的监视器是否成功的结果，true表示注销成功，false表示注销失败。 |
 
 **示例**：
 
@@ -643,7 +642,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
+let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
 ## settings.enableAirplaneMode(暂不支持)
