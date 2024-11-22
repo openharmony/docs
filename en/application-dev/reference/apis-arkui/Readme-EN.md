@@ -32,7 +32,7 @@
     - [@ohos.arkui.uiExtension (uiExtension) (System API)](js-apis-arkui-uiExtension-sys.md)
     - [@ohos.deviceStatus.dragInteraction (Drag Interaction) (System API)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager) (System API)](js-apis-plugincomponent-sys.md)
-    - @ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
+    - [@ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (System API)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext) (System API)](js-apis-arkui-UIContext-sys.md)
     - [@ohos.promptAction (Prompt) (System API)](js-apis-promptAction-sys.md)
@@ -44,7 +44,6 @@
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
-      - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
@@ -52,6 +51,7 @@
     - [@ohos.display (Display)](js-apis-display.md)
     - [@ohos.PiPWindow (PiP Window)](js-apis-pipWindow.md)
     - [@ohos.window (Window)](js-apis-window.md)
+    - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (Window Animation Management) (System API)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility) (System API)](js-apis-application-windowExtensionAbility-sys.md)
@@ -68,6 +68,7 @@
     - [@system.mediaquery (Media Query)](js-apis-system-mediaquery.md)
     - [@system.prompt (Prompt)](js-apis-system-prompt.md)
     - [@system.router (Page Routing)](js-apis-system-router.md)
+    - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS Components
   - Universal Component Information
     - Universal Events
@@ -237,6 +238,7 @@
     - [Text Component Common APIs](arkui-ts/ts-text-common.md)
     <!--Del-->
     - [TextInput (System API)](arkui-ts/ts-basic-components-textinput-sys.md)
+    - [Styled String (System API)](arkui-ts/ts-universal-styled-string-sys.md)
     <!--DelEnd-->
   - Images and Videos
     - [Image](arkui-ts/ts-basic-components-image.md)
@@ -414,6 +416,7 @@
     - [native_interface.h](native__interface_8h.md)
     - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
+    - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
     - [native_node_napi.h](native__node__napi_8h.md)
     - [native_type.h](native__type_8h.md)
@@ -469,4 +472,3 @@
   - Graphics
     - [Display Error Codes](errorcode-display.md)
     - [Window Error Codes](errorcode-window.md)
-<!--no_check-->

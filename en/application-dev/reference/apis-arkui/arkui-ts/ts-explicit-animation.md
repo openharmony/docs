@@ -10,7 +10,7 @@ With **animateTo**, you can build explicit animations for state changes caused b
 >
 >**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 >
->  Since API version 10, you can use the [animateTo](../js-apis-arkui-UIContext.md#animateto) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+>  Since API version 10, you can use the [animateTo](../js-apis-arkui-UIContext.md#animateto) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext), which ensures that your animation is executed in the intended UI instance.
 > This API can be used in atomic services since API version 11.
 
 ## APIs

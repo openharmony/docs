@@ -2249,7 +2249,7 @@ Sets the border corner radius for this RenderNode.
 
 | Name| Type                                                        | Mandatory| Description                  |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | Yes  | Border corner radius of the RenderNode, in vp.|
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Yes  | Border corner radius of the RenderNode, in vp.|
 
 
 get borderRadius(): BorderRadiuses
@@ -2264,7 +2264,7 @@ Obtains the border corner radius of this RenderNode.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | Border corner radius of the RenderNode. By default, the corner radius of all borders is 0 vp.|
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Border corner radius of the RenderNode. By default, the corner radius of all borders is 0 vp.|
 
 **Example**
 

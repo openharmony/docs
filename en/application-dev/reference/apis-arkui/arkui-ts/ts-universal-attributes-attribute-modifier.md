@@ -100,6 +100,9 @@ CommonModifier, ColumnModifier, ColumnSplitModifier, RowModifier, RowSplitModifi
 
 ## Example
 ### Example 1
+
+For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier).
+
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
@@ -275,3 +278,4 @@ struct Index {
 }
 ```
 ![attributeModifier](figures/attributeModifier.gif)
+<!--no_check-->

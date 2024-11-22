@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
+AlphabetIndexer(value: AlphabetIndexerOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -24,8 +24,16 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
+| value | [AlphabetIndexerOptions](#alphabetindexeroptions14) | Yes| Options of the **AlphabetIndexer** component.|
+
+## AlphabetIndexerOptions<sup>14+</sup>
+
+Defines the options of the **AlphabetIndexer** component.
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
 | arrayValue | Array&lt;string&gt; | Yes| Array of strings to be displayed in the alphabetic index bar. The value cannot be null.|
-| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 
 ## Attributes
 
@@ -113,7 +121,7 @@ Sets the background color of the pop-up text.
 
 | Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the pop-up text.<br>Default value:<br>API version 11 and earlier: **0xFFFFFFFF**<br>API version 12 and later: **#66808080**|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the pop-up text.<br>The background blur effect of the pop-up text can affect the background color. You can disable the effect by setting [popupBackgroundBlurStyle](#popupbackgroundblurstyle12) to **NONE**.<br>Default value:<br>API version 11 and earlier: **0xFFFFFFFF**<br>API version 12 and later: **#66808080**|
 
 ### usingPopup
 
@@ -376,7 +384,7 @@ Sets the background blur style of the pop-up window.
 
 | Name| Type                                        | Mandatory| Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the pop-up window.<br>Default value: **COMPONENT_REGULAR**|
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the pop-up window.<br>The background blur effect can affect [popupBackground](#popupbackground). You can disable the effect by setting it to **NONE**.<br>Default value: **COMPONENT_REGULAR**|
 
 ### popupTitleBackground<sup>12+</sup>   
 
@@ -439,7 +447,7 @@ This API is deprecated since API version 8. You are advised to use [onSelect](#o
 
 ### onSelect<sup>8+</sup>
 
-onSelect(callback: (index: number) =&gt; void)
+onSelect(callback: OnAlphabetIndexerSelectCallback)
 
 Invoked when an item in the alphabetic indexer bar is selected. The return value is the index of the selected item.
 
@@ -451,11 +459,11 @@ Invoked when an item in the alphabetic indexer bar is selected. The return value
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | Yes  | Index of the selected item.|
+| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback14) | Yes  | Callback invoked when an item in the alphabetic indexer bar is selected.|
 
 ### onRequestPopupData<sup>8+</sup>
 
-onRequestPopupData(callback: (index: number) =&gt; Array&lt;string&gt;)
+onRequestPopupData(callback: OnAlphabetIndexerRequestPopupDataCallback)
 
 Invoked when a request for displaying content in the index pop-up window is sent after an item in the alphabetic indexer bar is selected.
 
@@ -467,17 +475,11 @@ Invoked when a request for displaying content in the index pop-up window is sent
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | Yes  | Index of the selected item.|
-
-**Return value**
-
-| Type  | Description                                                        |
-| ------ | ------------------------------------------------------------ |
-| Array&lt;string&gt; | String array corresponding to the selected index. The string array is displayed vertically in the pop-up window. It can display up to five strings at once and allows scrolling.|
+| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback14) | Yes  | Callback invoked when a request for displaying content in the index pop-up window is sent after an item in the alphabetic indexer bar is selected.|
 
 ### onPopupSelect<sup>8+</sup>
 
-onPopupSelect(callback: (index: number) =&gt; void)
+onPopupSelect(callback: OnAlphabetIndexerPopupSelectCallback)
 
 Invoked when an item in the index pop-up window is selected.
 
@@ -489,8 +491,54 @@ Invoked when an item in the index pop-up window is selected.
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| index  | number | Yes  | Index of the selected item.|
+| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback14) | Yes  | Invoked when an item in the index pop-up window is selected.|
 
+## OnAlphabetIndexerSelectCallback<sup>14+</sup>
+type OnAlphabetIndexerSelectCallback = (index: number) => void
+
+Represents a callback invoked when scrolling reaches the edge.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name | Type  | Mandatory| Description   |
+| ------- | ----- | ---- | ------ |
+| index    | number  | Yes  | Index of the selected item.|
+
+## OnAlphabetIndexerPopupSelectCallback<sup>14+</sup>
+type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
+
+Represents a callback invoked when scrolling reaches the edge.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name | Type  | Mandatory| Description   |
+| ------- | ----- | ---- | ------ |
+| index   | number  | Yes  | Index of the selected item.|
+
+## OnAlphabetIndexerRequestPopupDataCallback<sup>14+</sup>
+type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<string\>
+
+Represents a callback invoked when scrolling reaches the edge.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name | Type  | Mandatory| Description   |
+| ------- | ----- | ---- | ------ |
+| index   | number  | Yes  | Index of the selected item.|
+
+**Return value**
+| Type         | Description                |
+| ------------- | -------------------- |
+| Array\<string\> | String array corresponding to the selected index. The string array is displayed vertically in the pop-up window. It can display up to five strings at once and allows scrolling.|
 
 ## Example
 ### Example 1
@@ -716,12 +764,12 @@ struct AlphabetIndexerSample {
               .onClick(() => {
                 this.isNeedAutoCollapse = true;
               })
-            Button ('30% of Index Bar Height')
+            Button('30% of Index Bar Height')
               .margin('5vp')
               .onClick(() => {
                 this.indexerHeight = '30%';
               })
-            Button ('70% of Index Bar Height')
+            Button('70% of Index Bar Height')
               .margin('5vp')
               .onClick(() => {
                 this.indexerHeight = '70%';

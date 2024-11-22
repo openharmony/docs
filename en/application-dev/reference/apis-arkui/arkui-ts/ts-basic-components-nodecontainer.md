@@ -5,9 +5,11 @@ The **NodeContainer** component is a basic component that accepts an instance of
 > **NOTE**
 >
 > This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
 > Only custom [FrameNodes](../js-apis-arkui-frameNode.md) or the root FrameNode obtained from a [BuilderNode](../js-apis-arkui-builderNode.md) can be attached to this component.
 > [Proxy nodes](../js-apis-arkui-frameNode.md#ismodifiable12) of built-in system components obtained through querying cannot be attached to this component.
-
+>
+> This component does not work with the [attribute modifer](./ts-universal-attributes-attribute-modifier.md).
 ## Child Components
 
 Not supported
@@ -27,7 +29,6 @@ NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 | Name    | Type                                                | Mandatory| Description                                                        |
 | ---------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | controller | [NodeController](../js-apis-arkui-nodeController.md) | Yes  | **NodeController** instance used to control the upper and lower tree nodes in the **NodeContainer**. It represents the lifecycle of the **NodeContainer**.|
-
 ## Attributes
 
 The [universal attributes](ts-universal-attributes-size.md) are supported.

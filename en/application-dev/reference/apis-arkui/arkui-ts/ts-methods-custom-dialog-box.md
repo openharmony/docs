@@ -282,7 +282,7 @@ struct CustomDialogExample {
       Text('Dialog box outside the main window')
         .fontSize(30)
         .height(100)
-      Button ('Close')
+      Button('Close')
         .onClick(() => {
           if (this.controller != undefined) {
             this.controller.close()
@@ -368,7 +368,7 @@ struct CustomDialogExample {
       Text('This is a custom dialog box')
         .fontSize(30)
         .height(100)
-      Button ('Close')
+      Button('Close')
         .onClick(() => {
           if (this.controller != undefined) {
             this.controller.close()
@@ -440,7 +440,7 @@ struct CustomDialogUser {
 }
 ```
 
-![zh-cn_image_custom_style](figures/zh-cn_image_custom_style.gif)
+![en-us_image_custom_style](figures/en-us_image_custom_style.gif)
 
 ### Example 4
 
