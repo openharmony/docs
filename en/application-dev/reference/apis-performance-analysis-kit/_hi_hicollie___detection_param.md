@@ -15,7 +15,7 @@ Defines the extended parameters of the jank event detection, which are provided 
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
 | int [sampleStackTriggerTime](#samplestacktriggertime) | Extended parameter provided for subsequent development. |
 | int [reserved](#reserved) | Extended parameter provided for subsequent development. |
@@ -29,7 +29,7 @@ Defines the extended parameters of the jank event detection, which are provided 
 ```
 int HiCollie_DetectionParam::sampleStackTriggerTime
 ```
-**Description**<br>
+**Description**
 Extended parameter provided for subsequent development.
 
 
@@ -38,5 +38,5 @@ Extended parameter provided for subsequent development.
 ```
 int HiCollie_DetectionParam::reserved
 ```
-**Description**<br>
+**Description**
 Extended parameter provided for subsequent development.
