@@ -11,6 +11,7 @@ Telephony Kit（蜂窝通信服务）提供一系列API帮助开发者开发通�
 
 - sim模块（SIM卡管理）：应用可以调用API获取SIM卡相关信息，如服务提供商、ISO（International Organization for Standardization，国际标准化组织）国家码、归属PLMN（Public Land Mobile Network，公共陆地移动网络）号等，详情请参考[@ohos.telephony.sim API参考](../reference/apis-telephony-kit/js-apis-sim.md)。
 
+- esim模块（eSIM卡管理）：穿戴工程机支持eSIM，电话服务提供API给eSIM卡管理和eSIM卡服务使用等，详情请参考[@ohos.telephony.esim API参考](../reference/apis-telephony-kit/js-apis-esim.md)。
 
 ## 约束与限制
 
