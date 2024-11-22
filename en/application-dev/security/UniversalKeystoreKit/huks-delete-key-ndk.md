@@ -17,6 +17,7 @@ For example, delete a 256-bit HKDF key.
 2. Use [OH_Huks_DeleteKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_deletekeyitem) to delete the key.
 
 ```c++
+#include "napi/native_api.h"
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
 #include <string.h>
