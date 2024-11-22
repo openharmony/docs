@@ -109,6 +109,8 @@ onChange(callback: Callback\<Date>)
 
 ## 示例
 
+该示例实现了日历选择器组件，提供下拉日历弹窗。
+
 ```ts
 // xxx.ets
 @Entry
