@@ -150,7 +150,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     let dIn = BigInt("0x6a7df2ca63ead4dda191d614b6b385e0d9056a3d6d5cfe07db1daabee022db08212d97613d3328e0267c9dd23d787abde2afcb306aeb7dfce69246cc73f5c87fdf06030179a2114b767db1f083ff841c025d7dc00cd82435b9a90f695369e94df23d2ce458bc3b3283ad8bba2b8fa1ba62e2dce9accff3799aae7c840016f3ba8e0048c0b6cc4339af7161003a5beb864a0164b2c1c9237b64bc87556994351b27506c33d4bcdfce0f9c491a7d6b0628c7c852be4f0a9c3132b2ed3a2c8881e9aab07e20e17deb074691be677776a78b5c502e05d9bdde72126b3738695e2dd1a0a98a14247c65d8a7ee79432a092cb0721a12df798e44f7cfce0c498147a9b1");
     return genRsaKeyPairSpec(nIn, eIn, dIn);
   }
-  async function main() {
+  function main() {
     let plan = "This is a test";
     // Generate the RSA key pair parameter (Rsa2048KeyPairSpec) object.
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
@@ -162,7 +162,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     let pSource = new Uint8Array([1, 2, 3, 4]);
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
     // Generate a key pair.
-    let keyPair = await rsaGeneratorSpec.generateKeyPair();
+    let keyPair = rsaGeneratorSpec.generateKeyPairSync();
     // Initialize the encryption operation.
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair.pubKey, null);
     // Set and obtain the Cipher specifications after the initialization.
