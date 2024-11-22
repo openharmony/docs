@@ -227,7 +227,7 @@ export let lockObserve = new SecretKeyObserver();
 
 ### ECStoreManager
 
-ECStoreManager类用于管理应用的E类数据库和C类数据库。提供配置数据库信息、配置迁移函数的信息，根据密钥状态为应用提供相应的数据库句柄、关闭E类数据库接口、数据迁移完成后销毁C类数据库接口。
+ECStoreManager类用于管理应用的E类数据库和C类数据库。支持配置数据库信息、配置迁移函数的信息，可根据密钥状态为应用提供相应的数据库句柄，并提供了关闭E类数据库、数据迁移完成后销毁C类数据库等接口。
 
 ```ts
 // ECStoreManager.ts
