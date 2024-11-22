@@ -35,7 +35,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 |  |  | domainon | domain流控开关打开。 | 
 |  |  | domainoff | domain流控开关关闭。 | 
 | -L | --level | &lt;level&gt; | 指定级别的日志，示例：-L D/I/W/E/F。 | 
-| -t | --type | &lt;type&gt; | 指定类型的日志，示例：-t app core init。 | 
+| -t | --type | &lt;type&gt; | 指定类型的日志，示例：-t app/core/init/only_prerelease。app为应用日志，core为系统日志，init为启动日志，only_prerelease为仅在系统release版本前打印的日志，应用开发者无需关注。| 
 | -D | --domain | &lt;domain&gt; | 指定domain。 | 
 | -T | --tag | &lt;tag&gt; | 指定tag。 | 
 | -a | --head | &lt;n&gt; | 只显示前&lt;n&gt;行日志。 | 
@@ -197,6 +197,16 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    app----- 0x0------- -------------------------------- 285.00---- 11-15 16:04:34.877-- 44242.00-- 11-15 16:04:34.877-- 990------- 129.2K---- 0---------
    ```
 
+   **统计信息说明**
+   ```
+   MAX_FREQ：日志打印频率最高的每秒行数
+   TIME：    对应发生时间
+   MAX_TP：  日志打印频率最高的每秒字节数
+   LINES：   统计周期内的总行数
+   LENGTH：  统计周期内的总字节数
+   DROPPED： 统计周期内丢失的行数
+   ```
+
 ### 清除统计信息
 
    ```
@@ -315,7 +325,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    08-28 09:27:59.965   610  4064 I C01800/samgr/SAMGR: AddProc:media_analysis_service. size:75
    ```
 
-### 查看缓冲区前8行日志
+### 查看缓冲区前n行日志
 
    ```
    hilog -a 8
@@ -335,7 +345,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    11-15 16:04:48.749  5777  5901 I A00001/com.huawei.hmsapp.hiai.core/HiAI_PluginAbilityInfo: abilityInfo is null
    ```
 
-### 查看缓冲区后8行日志
+### 查看缓冲区后n行日志
 
    ```
    hilog -z 8
@@ -410,7 +420,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    >
    > 停止当前落盘任务： hilog -w stop
    >
-   > 开启kmsglog落盘任务，并且设置落盘文件名为kmsglog，大小为2M，数量为100个，压缩方式为zlib压缩： hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
+   > 开启kmsglog落盘任务，并且设置落盘规则，其中压缩方式可以为zlib，zstd，none。以设置规则为例：文件名为kmsglog，大小为2M，数量为100个, 其压缩方式为zlib压缩，命令行为： hilog -w start -t kmsg -f kmsglog -l 2M -n 100 -m zlib
 
    **使用样例：**
 
