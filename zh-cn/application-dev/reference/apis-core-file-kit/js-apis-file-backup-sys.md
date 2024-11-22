@@ -378,6 +378,55 @@ onProcess (bundleName: string, process: string)
   }
   ```
 
+## backup.getBackupVersion<sup>16+</sup>
+
+getBackupVersion(): string;
+
+获取备份恢复版本号信息。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| string | 返回备份恢复版本号信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
+
+  function getBackupVersion() {
+    try {
+      let result = backup.getBackupVersion();
+      console.info('getBackupVersion success， result: ' + result);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('getBackupVersion failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+**内容示例：**
+
+  ```json
+  { "backupVersion" : "16.0" }
+  ```
+
 ## backup.getLocalCapabilities
 
 getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
@@ -432,6 +481,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
  ```json
  {
+  "backupVersion" : "16.0",
   "bundleInfos" :[{
     "allToBackup" : true,
     "extensionName" : "BackupExtensionAbility",
@@ -497,6 +547,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
  ```json
  {
+  "backupVersion" : "16.0",
   "bundleInfos" :[{
     "allToBackup" : true,
     "extensionName" : "BackupExtensionAbility",
