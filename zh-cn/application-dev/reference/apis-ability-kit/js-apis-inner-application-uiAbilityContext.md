@@ -2023,7 +2023,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-将处于前台的Ability移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--> 该接口仅适用于deviceTypes为“default”的设备。<!--RP1End-->
+将处于前台的Ability移动到后台。使用Promise异步回调。仅支持在主线程调用。<br/><!--RP1--><!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2420,7 +2420,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.setRestoreEnabled<sup>13+</sup>
+## UIAbilityContext.setRestoreEnabled<sup>14+</sup>
 
 setRestoreEnabled(enabled: boolean): Promise\<void>
 

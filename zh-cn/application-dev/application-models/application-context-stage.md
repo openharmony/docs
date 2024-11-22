@@ -40,7 +40,7 @@
       }
     }
     ```
-  - 获取[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)。Module级别的Context，和基类Context相比，额外提供[HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)、[Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)等信息。
+  - 获取[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)（Module级别的Context）。和基类Context相比，额外提供[HapModuleInfo](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)、[Configuration](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md#属性)等信息。
     
     ```ts
     import { AbilityStage } from '@kit.AbilityKit';
@@ -52,7 +52,7 @@
       }
     }
     ```
-  - 获取[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)。应用级别的Context。ApplicationContext在基类Context的基础上提供了订阅应用内应用组件的生命周期的变化、订阅系统内存变化和订阅应用内系统环境的变化的能力，在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)、[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)、[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)中均可以获取。
+  - 获取[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)（应用级别的Context）。ApplicationContext在基类Context的基础上提供了订阅应用内应用组件的生命周期的变化、订阅系统内存变化、订阅应用内系统环境变化、设置应用语言、设置应用颜色模式、清除应用自身数据的同时撤销应用向用户申请的权限等能力，在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)、[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)、[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)中均可以获取。
     
     ```ts
     import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
@@ -310,11 +310,12 @@ struct Page_Context {
 
 ### 获取本应用中其他Module的Context
 
-调用[createModuleContext(moduleName:string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
+调用[createModuleContext(context: Context, moduleName: string)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
   
   ```ts
-  import { common } from '@kit.AbilityKit';
+  import { common, application } from '@kit.AbilityKit';
   import { promptAction } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let storageEventCall = new LocalStorage();
 
@@ -333,12 +334,18 @@ struct Page_Context {
             }
             .onClick(() => {
               let moduleName2: string = 'entry';
-              let moduleContext: Context = this.context.createModuleContext(moduleName2);
-              if (moduleContext !== null) {
-                promptAction.showToast({
-                  message: ('成功获取Context')
+              application.createModuleContext(this.context, moduleName2)
+                .then((data: common.Context) => {
+                  console.info(`CreateModuleContext success, data: ${JSON.stringify(data)}`);
+                  if (data !== null) {
+                    promptAction.showToast({
+                      message: ('成功获取Context')
+                    });
+                  }
+                })
+                .catch((err: BusinessError) => {
+                  console.error(`CeateMudleContext failed, err code:${err.code}, err msg: ${err.message}`);
                 });
-              }
             })
           }
           //...

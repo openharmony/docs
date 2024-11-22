@@ -46,7 +46,7 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 | 201      | permissions check fails.  |
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persisting error.        |
+| 12800005 | configuration persistence error.        |
 | 12800008 | input method manager service error. |
 
 **示例：**

@@ -4,7 +4,7 @@
 
 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
-大数据量场景下查询数据可能会导致耗时长甚至应用卡死，建议如下：
+大数据量场景下查询数据可能会导致耗时长甚至应用卡死，如有相关操作可参考文档[批量数据写数据库场景](../../arkts-utils/batch-database-operations-guide.md)，且有建议如下：
 - 单次查询数据量不超过5000条。
 - 在[TaskPool](../apis-arkts/js-apis-taskpool.md)中查询。
 - 拼接SQL语句尽量简洁。
@@ -32,7 +32,12 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
 
-当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
+| 打开方式  | 数据库实际加密类型           | 结果 |
+| ------- | -------------------------------- | ---- |
+| 非加密 | 加密                          | 将数据库加密后打开   |
+| 加密 | 非加密                          | 按非加密方式打开   |
+
+加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -56,8 +61,8 @@ getRdbStore目前不支持多线程并发操作。
 | 14800000  | Inner error.     |
 | 14800010  | Invalid database path.   |
 | 14800011  | Database corrupted.    |
-| 14801001  | Only supported in stage mode.    |
-| 14801002  | The data group id is not valid.     |
+| 14801001  | The operation is supported in the stage model only.    |
+| 14801002  | Invalid data ground ID.     |
 | 14800017  | Config changed.   |
 | 14800021  | SQLite: Generic error.    |
 | 14800022  | SQLite: Callback routine requested an abort.   |
@@ -128,7 +133,12 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
 
-当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
+| 打开方式  | 数据库实际加密类型           | 结果 |
+| ------- | -------------------------------- | ---- |
+| 非加密 | 加密                          | 将数据库加密后打开   |
+| 加密 | 非加密                          | 按非加密方式打开   |
+
+加密参数[encrypt](#storeconfig)只在首次创建数据库时生效，因此在创建数据库时，选择正确的加密参数非常重要，并且在之后无法更改加密参数。
 
 getRdbStore目前不支持多线程并发操作。
 
@@ -157,8 +167,8 @@ getRdbStore目前不支持多线程并发操作。
 | 14800000  | Inner error. |
 | 14800010  | Invalid database path. |
 | 14800011  | Database corrupted.  |
-| 14801001  | Only supported in stage mode.                               |
-| 14801002  | The data group id is not valid.                             |
+| 14801001  | The operation is supported in the stage model only.                               |
+| 14801002  | Invalid data ground ID.                             |
 | 14800017  | Config changed. |
 | 14800021  | SQLite: Generic error. |
 | 14800027  | SQLite: Attempt to write a readonly database. |
@@ -391,8 +401,8 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error.        |
 | 14800010  | Failed to open or delete database by invalid database path.        |
-| 14801001  | Only supported in stage mode.         |
-| 14801002  | The data group id is not valid.        |
+| 14801001  | The operation is supported in the stage model only.         |
+| 14801002  | Invalid data ground ID.        |
 
 **示例：**
 
@@ -481,8 +491,8 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 | 801       | Capability not supported.      |
 | 14800000  | Inner error.      |
 | 14800010  | Invalid database path.   |
-| 14801001  | Only supported in stage mode.   |
-| 14801002  | The data group id is not valid.   |
+| 14801001  | The operation is supported in the stage model only.   |
+| 14801002  | Invalid data ground ID.   |
 
 
 **示例：**
@@ -544,12 +554,12 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，dataGroupId共沙箱的方式不支持多进程访问加密数据库，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+</sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+</sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | isReadOnly<sup>12+</sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误；动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>动态库名需为完整路径，用于被sqlite加载，样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| pluginLibs<sup>12+</sup> | Array\<string> | 否 | 表示包含有fts（Full-Text Search，即全文搜索引擎）等能力的动态库名的数组。<br/>**使用约束：** <br/>1. 动态库名的数量限制最多为16个，如果超过该数量会开库失败，返回错误。<br/>2. 动态库名需为本应用沙箱路径下或系统路径下的动态库，如果动态库无法加载会开库失败，返回错误。<br/>3. 动态库名需为完整路径，用于被sqlite加载。<br/>样例：[context.bundleCodeDir+ "/libs/arm64/" + libtokenizer.so]，其中context.bundleCodeDir是应用沙箱对应的路径，"/libs/arm64/"表示子目录，libtokenizer.so表示动态库的文件名。当此参数不填时，默认不加载动态库。<br/>4. 动态库需要包含其全部依赖，避免依赖项丢失导致无法运行。<br/>例如：在ndk工程中，使用默认编译参数构建libtokenizer.so，此动态库依赖c++标准库。在加载此动态库时，由于namespace与编译时不一致，链接到了错误的libc++_shared.so，导致`__emutls_get_address`符号找不到。要解决此问题，需在编译时静态链接c++标准库，具体请参见[NDK工程构建概述](../../napi/build-with-ndk-overview.md)。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | cryptoParam<sup>14+</sup> | [CryptoParam](#cryptoparam14) | 否 | 指定用户自定义的加密参数。<br/>当此参数不填时，使用默认的加密参数，见[CryptoParam](#cryptoparam14)各参数默认值。<br/>此配置只有在encrypt选项设置为真时才有效。<br/>从API version 14开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
@@ -3707,7 +3717,7 @@ if(store != undefined) {
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
-根据指定条件查询数据库中的数据。
+根据指定条件查询数据库中的数据。对query同步接口获得的resultSet进行操作时，若逻辑复杂且循环次数过多，可能造成freeze问题，建议将此步骤放到[taskpool](../apis-arkts/js-apis-taskpool.md)线程中执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4078,7 +4088,7 @@ if(store != undefined) {
 
 querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
-根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个。
+根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个。对query同步接口获得的resultSet进行操作时，若逻辑复杂且循环次数过多，可能造成freeze问题，建议将此步骤放到[taskpool](../apis-arkts/js-apis-taskpool.md)线程中执行。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4837,7 +4847,7 @@ if(store != null) {
 
 commit():void
 
-提交已执行的SQL语句。
+提交已执行的SQL语句，跟[beginTransaction](#begintransaction)配合使用。
 此接口不允许嵌套事务，且不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -6177,7 +6187,7 @@ on(event: string, interProcess: boolean, observer: Callback\<void>): void
 | 801       | Capability not supported. |
 | 14800000  | Inner error.    |
 | 14800014  | Already closed.    |
-| 14800050  | Failed to obtain subscription service.    |
+| 14800050  | Failed to obtain the subscription service.    |
 
 **示例：**
 
@@ -6462,7 +6472,7 @@ off(event: string, interProcess: boolean, observer?: Callback\<void>): void
 | 801       | Capability not supported. |
 | 14800000     | Inner error.                           |
 | 14800014  | Already closed.    |
-| 14800050     | Failed to obtain subscription service. |
+| 14800050     | Failed to obtain the subscription service. |
 
 **示例：**
 
@@ -6614,7 +6624,7 @@ emit(event: string): void
 | 801       | Capability not supported.     |
 | 14800000  | Inner error.   |
 | 14800014  | Already closed.     |
-| 14800050  | Failed to obtain subscription service.    |
+| 14800050  | Failed to obtain the subscription service.    |
 
 
 **示例：**
@@ -6840,7 +6850,7 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
 | 14800015  | The database does not respond.                 |
-| 14800016  | The database is already attached.                |
+| 14800016  | The database alias already exists.                |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -6913,9 +6923,9 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
 | 14800015  | The database does not respond.                 |
-| 14800016  | The database is already attached.                |
-| 14801001  | Only supported in stage mode.                 |
-| 14801002  | The data group id is not valid.                |
+| 14800016  | The database alias already exists.                |
+| 14801001  | The operation is supported in the stage model only.                 |
+| 14801002  | Invalid data ground ID.                |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -7871,7 +7881,7 @@ if(resultSet != undefined) {
 
 getString(columnIndex: number): string
 
-以字符串形式获取当前行中指定列的值，如果当前列中的值为INTEGER、DOUBLE、TEXT、BLOB类型，会以字符串形式返回指定值，如果是当前列中的值为INTEGER，并且为空，则会返回空字符串""，其他类型则返回14800000,。
+以字符串形式获取当前行中指定列的值，如果当前列中的值为INTEGER、DOUBLE、TEXT、BLOB类型，会以字符串形式返回指定值，如果是当前列中的值为INTEGER，并且为空，则会返回空字符串""，其他类型则返回14800000。如果当前列中的值为DOUBLE类型，可能存在精度的丢失，建议使用[getDouble](#getdouble)接口获取。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -8257,15 +8267,19 @@ async function getDataByName(name: string, context: ctx.UIAbilityContext) {
   }
 }
 
-const task = new taskpool.Task(getDataByName, 'Lisa', this.context);
-const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
+async function run() {
+  const task = new taskpool.Task(getDataByName, 'Lisa', getContext());
+  const sendableValuesBucket  = await taskpool.execute(task) as sendableRelationalStore.ValuesBucket;
 
-if (sendableValuesBucket) {
-  const columnCount = sendableValuesBucket.size;
-  const age = sendableValuesBucket.get('age');
-  const name = sendableValuesBucket.get('name');
-  console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+  if (sendableValuesBucket) {
+    const columnCount = sendableValuesBucket.size;
+    const age = sendableValuesBucket.get('age');
+    const name = sendableValuesBucket.get('name');
+    console.info(`Query data in taskpool succeeded, name is "${name}", age is "${age}"`)
+  }
 }
+
+run()
 ```
 
 ### isColumnNull

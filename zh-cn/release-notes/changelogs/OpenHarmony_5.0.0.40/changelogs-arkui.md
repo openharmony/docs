@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为兼容性变更。
+该变更为不兼容变更。
 
 变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
 
@@ -24,11 +24,11 @@
 
 **起始API Level**
 
-API 13
+API 9
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.40开始。
+从OpenHarmony SDK 5.0.0.43开始。
 
 **变更的接口/组件**
 

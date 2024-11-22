@@ -189,7 +189,7 @@ struct Parent {
    1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法
    2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
-2. 属性更新：当\@Observed装饰的class属性改变时，会走到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
 
 ## 限制条件
@@ -1113,10 +1113,10 @@ class Cousin extends Parent {
   cousinId: number = 47;
   child: Child;
 
-  constructor(parent: number, cousinId: number, child: number) {
-    super(parent);
+  constructor(parentId: number, cousinId: number, childId: number) {
+    super(parentId);
     this.cousinId = cousinId;
-    this.child = new Child(child);
+    this.child = new Child(childId);
   }
 
   getCousinId(): number {
@@ -1131,8 +1131,8 @@ class Cousin extends Parent {
     return this.child.getChildId();
   }
 
-  setChild(child: number): void {
-    return this.child.setChildId(child);
+  setChild(childId: number): void {
+    return this.child.setChildId(childId);
   }
 }
 
@@ -1215,10 +1215,10 @@ class Cousin extends Parent {
   cousinId: number = 47;
   child: Child;
 
-  constructor(parent: number, cousinId: number, child: number) {
-    super(parent);
+  constructor(parentId: number, cousinId: number, childId: number) {
+    super(parentId);
     this.cousinId = cousinId;
-    this.child = new Child(child);
+    this.child = new Child(childId);
   }
 
   getCousinId(): number {
@@ -1233,8 +1233,8 @@ class Cousin extends Parent {
     return this.child.getChildId();
   }
 
-  setChild(child: number): void {
-    return this.child.setChildId(child);
+  setChild(childId: number): void {
+    return this.child.setChildId(childId);
   }
 }
 
@@ -1515,7 +1515,7 @@ struct ParentComp {
 
 ### \@Prop与\@ObjectLink的差异
 
-在下面的示例代码中，\@ObjectLink装饰的变量是对数据源的引用，即在this.value.subValue和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
+在下面的示例代码中，\@ObjectLink装饰的变量是对数据源的引用，即this.value.subCounter和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter时，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
 
 
 ```ts
@@ -1565,7 +1565,7 @@ struct CounterComp {
       Text(`this.value.counter：increase 7 `)
         .fontSize(30)
         .onClick(() => {
-          // click handler, Text(`this.subValue.counter: ${this.subValue.counter}`) will update
+          // 点击后Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1630,7 +1630,7 @@ struct ParentComp {
 
 【反例】
 
-如果用\@Prop替代\@ObjectLink。点击第一个click handler，UI刷新正常。但是点击第二个onClick事件，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
+如果用\@Prop替代\@ObjectLink。点击Text(`this.subValue.counter: ${this.subValue.counter}`)，UI刷新正常。但是点击Text(`this.value.counter：increase 7 `)，\@Prop 对变量做了一个本地拷贝，CounterComp的第一个Text并不会刷新。
 
   this.value.subCounter和this.subValue并不是同一个对象。所以this.value.subCounter的改变，并没有改变this.subValue的拷贝对象，Text(`this.subValue.counter: ${this.subValue.counter}`)不会刷新。
 
@@ -1644,13 +1644,11 @@ struct CounterComp {
       Text(`this.subValue.counter: ${this.subValue.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.subValue.counter += 7;
         })
       Text(`this.value.counter：increase 7 `)
         .fontSize(20)
         .onClick(() => {
-          // 2nd click handler
           this.value.incrSubCounter(7);
         })
       Divider().height(2)
@@ -1713,7 +1711,6 @@ struct SubCounterComp {
   build() {
     Text(`SubCounterComp: this.subValue.counter: ${this.subValue.counter}`)
       .onClick(() => {
-        // 2nd click handler
         this.subValue.counter = 7;
       })
   }
@@ -1726,13 +1723,11 @@ struct CounterComp {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)
         .fontSize(20)
         .onClick(() => {
-          // 1st click handler
           this.value.incrCounter();
         })
       SubCounterComp({ subValue: this.value.subCounter })
       Text(`this.value.incrSubCounter()`)
         .onClick(() => {
-          // 3rd click handler
           this.value.incrSubCounter(77);
         })
       Divider().height(2)
@@ -1966,7 +1961,7 @@ struct Child02 {
 }
 ```
 
-数据源通知@ObjectLink是依赖@ObjectLink所属自定义组件更新，是异步调用。上述示例中，Parent包含Child01，Child01包含Child02，在进行点击时，Child01传箭头函数给Child02，此时调用Child02的点击事件，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是给子组件Child02标脏，Child02的更新要等待下一次vsync信号，而@ObjectLink的更新依赖其所属自定义组件的更新函数，所以日志4打印的this.per.name的值仍然是1。
+数据源通知@ObjectLink是依赖@ObjectLink所属自定义组件更新，是异步调用。上述示例中，Parent包含Child01，Child01包含Child02，在进行点击时，Child01传箭头函数给Child02，此时调用Child02的点击事件，日志打印顺序是1-2-3-4-5，打印到日志4时，点击事件流程结束，此时仅仅是将子组件Child02标记为需要更新的节点，Child02的更新要等待下一次vsync信号，而@ObjectLink的更新依赖其所属自定义组件的更新函数，所以日志4打印的this.per.name的值仍然是1。
 
 当@ObjectLink @Watch('onChange02') per: Person的@Watch函数执行时，当前已执行Child02的更新函数，@ObjectLink已被通知更新，所以日志5打印的值为2。
 
@@ -1977,7 +1972,7 @@ struct Child02 {
 
 - 日志3：对Child01 @ObjectLink @Watch('onChange01') pers: Persons 赋值完成。
 
-- 日志4：onClickFType方法内selectItemBlock执行完，此时只做了标脏，未将最新的值更新给Child02 @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
+- 日志4：onClickFType方法内selectItemBlock执行完，此时只是将子组件Child02标记为需要更新的节点，未将最新的值更新给Child02 @ObjectLink @Watch('onChange02') per: Person，所以日志4打印的this.per.name的值仍然是1。
 
 - 日志5：下一次vsync信号触发Child02更新，@ObjectLink @Watch('onChange02') per: Person被更新，触发其@Watch方法，此时@ObjectLink @Watch('onChange02') per: Person为新值2。
 

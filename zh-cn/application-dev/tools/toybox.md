@@ -155,7 +155,7 @@ toybox的执行方式有两种：
 | setsid  | 在新的会话中运行命令。<br />usage: setsid [-t] command [args...] |
 | taskset | 启动一个仅在指定处理器上运行的任务，或者修改已经存在的进程的处理器偏好。<br />usage: taskset [-ap] [mask] [PID \| cmd [args...]] |
 | timeout | 创建子进程执行命令，如果子进程超时未退出，则向子进程发送一个信号。DURATION可以是小数。可选的后缀可以是“m”（分钟）、“h”（小时）、“d”（天）或“s”（秒，默认值）。<br />usage: timeout [-k DURATION] [-s SIGNAL] DURATION COMMAND... |
-| top     | 实时显示进程信息。<br />usage: top [-Hbq] [-k FIELD,] [-o FIELD,] [-s SORT] [-n NUMBER] [-m LINES] [-d SECONDS] [-p PID,] [-u USER,] |
+| top     | 实时显示进程信息。<br />usage: top [-Hhbq] [-k FIELD,] [-o FIELD,] [-s SORT] [-n NUMBER] [-m LINES] [-d SECONDS] [-p PID,] [-u USER,] |
 | nice    | 以指定的优先级运行命令。<br />usage: nice [-n PRIORITY] COMMAND [ARG...] |
 | nsenter | 在特定的命名空间中运行指令。<br />usage: nsenter [-t pid] [-F] [-i] [-m] [-n] [-p] [-u] [-U] COMMAND... |
 | ulimit/prlimit | 显示或者设置进程的资源限制。<br />usage: ulimit/prlimit [-P PID] [-SHRacdefilmnpqrstuv] [LIMIT] |
@@ -226,7 +226,7 @@ toybox的执行方式有两种：
 | cmp       | 比较文件的内容（如果只给出一个，则与标准输入设备进行比较），可选在开始时跳过字节。<br />usage: cmp [-l] [-s] FILE1 [FILE2 [SKIP1 [SKIP2]]] |
 | comm      | 读取FILE1和FILE2（这两个文件应该是有序的），并生成三个文本列作为输出：仅在FILE1中的行；仅在FILE2中的行；在两个文件中都有的行。“-”代表标准输入设备<br />usage: comm [-123] FILE1 FILE2  |
 | count     | 将标准输入设备复制到标准输出设备，将简单的进度指示器显示到标准错误输出stderr。<br />usage: count |
-| cp        | 将文件从SOURCE复制到DEST。如果有多个源，DEST必须是一个目录。<br />usage: cp [--preserve=motcxa] [-adlnrsvfipRHLP] SOURCE... DEST |
+| cp        | 将文件从SOURCE复制到DEST。如果有多个源，DEST必须是一个目录。<br />usage: cp [-adfHiLlnPpRrsTv] [--preserve=motcxa] [-t TARGET] SOURCE... [DEST] |
 | cpio      | 从“newc”格式的cpio档案中中读写文件。<br />usage: cpio -{o\|t\|i\|p DEST} [-v] [--verbose] [-F FILE] [--no-preserve-owner]<br />&emsp;[ignored: -mdu -H newc] |
 | crc32     | 输出每个文件的crc32校验和。<br />usage: crc32 [file...] |
 | cut       | 将每个FILE中的行的选定部分打印到标准输出。每个选择列表以逗号分隔，可以是数字（从1开始计数）或破折号分隔的范围(其中X-表示X到行尾，-X表示从开始到X)。<br />usage: cut [-Ds] [-bcfF LIST] [-dO DELIM] [FILE...] |
@@ -248,7 +248,7 @@ toybox的执行方式有两种：
 | hexedit   | 十六进制文件编辑器，所有修改立刻写入磁盘。<br />usage: hexedit FILENAME |
 | iconv     | 转换文件编码。<br />usage: iconv [-f FROM] [-t TO] [FILE...] |
 | inotifyd  | 在文件系统事件出现的时候，运行特定的程序。<br />usage: inotifyd PROG FILE[:MASK] ... |
-| install   | 复制文件并设置文件属性。<br />usage: install [-dDpsv] [-o USER] [-g GROUP] [-m MODE] [SOURCE...] DEST |
+| install   | 复制文件并设置文件属性。<br />usage: install [-dDpsv] [-o USER] [-g GROUP] [-m MODE] [-t TARGET] [SOURCE...] [DEST] |
 | link      | 创建文件的硬链接。<br />usage: link FILE NEWLINK |
 | ln        | 在 FROM 和 TO 之间创建软/硬链接。<br />usage: ln [-sfnv] [-t DIR] [FROM...] TO |
 | ls        | 查看当前目录有哪些文件/文件夹。<br />usage: ls [-ACFHLRSZacdfhiklmnpqrstux1] [--color[=auto]] [directory...] |
@@ -271,7 +271,7 @@ toybox的执行方式有两种：
 | pwd       | 打印工作（当前）目录。<br />usage: pwd [-L \| -P] |
 | readahead | 将文件预加载到磁盘缓存中。<br />usage: readahead FILE... |
 | readlink  | 如果没有选项，则显示symlink指向什么，如果不是symlink则返回错误。<br />usage: readlink FILE... |
-| realpath  | 显示规范绝对路径名<br />usage: realpath FILE... |
+| realpath  | 显示规范绝对路径名。<br />usage: realpath FILE... |
 | rev       | 逆向输出每一行。<br />usage: rev [FILE...] |
 | rm        | 删除文件。<br />usage: rm [-fiRrv] FILE... |
 | rmdir     | 删除一个或多个目录。<br />usage: rmdir [-p] [dirname...] |

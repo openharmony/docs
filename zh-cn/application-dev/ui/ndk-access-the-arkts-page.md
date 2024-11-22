@@ -3,7 +3,7 @@
 
 ## 占位组件
 
-使用NDK接口构建UI界面时，需要在ArkTS页面创建用于挂载NDK接口创建组件的占位组件。占位组件类型为[ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)，ContentSlot能够绑定一个NodeContent对象，该对象可通过Node-API传递到Native侧挂载显示Native组件。
+使用NDK接口构建UI界面时，需要在ArkTS页面创建用于挂载NDK接口创建组件的占位组件。占位组件类型为[ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)，ContentSlot能够绑定一个[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)对象，该对象可通过Node-API传递到Native侧挂载显示Native组件。
 
 - 占位组件和其他ArkTS内置组件使用方法相同。
   ```ts
@@ -167,9 +167,8 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    Native实现。
    ```cpp
    // entry/src/main/cpp/napi_init.cpp
-   
-   #include "NativeEntry.h"
    #include "napi/native_api.h"
+   #include "NativeEntry.h"
    
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {

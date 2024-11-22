@@ -495,46 +495,6 @@ import { ethernet } from '@kit.NetworkKit';
 ethernet.off('interfaceStateChange');
 ```
 
-## ethernet.getMacAddress<sup>13+</sup>
-
-getMacAddress(): Promise\<Array\<MacAddressInfo>>
-
-获取所有以太网网卡名称及MAC地址信息，使用Promise方式作为异步方法。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.GET_ETHERNET_LOCAL_MAC
-
-**系统能力**：SystemCapability.Communication.NetManager.Ethernet
-
-**返回值：**
-
-| 类型                              | 说明                               |
-| --------------------------------- | ---------------------------------- |
-| Promise\<Array[\<MacAddressInfo>](#macaddressinfo13)>   | 以Promise形式返回接口信息。        |
-
-**错误码：**
-
-| 错误码ID | 错误信息                                 |
-| ------- | ----------------------------------------|
-| 201     | Permission denied.                      |
-| 202     | Non-system applications use system APIs.                      |
-| 2200002 | Failed to connect to the service.       |
-| 2201005 | Device information does not exist.  |
-
-**示例：**
-
-```ts
-import { ethernet } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
-  console.info("getMacAddress promise data = " + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-  console.error("getMacAddress promise error = " + JSON.stringify(error));
-});
-```
-
 ## InterfaceConfiguration<sup>9+</sup>
 
 以太网连接配置网络信息。
@@ -580,16 +540,3 @@ ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
 | DHCP                  | 1    | 以太网连接动态配置网络信息。 |
 | LAN_STATIC<sup>11+</sup>| 2    | LAN连接静态配置网络信息。    |
 | LAN_DHCP<sup>11+</sup>  | 3    | LAN连接动态配置网络信息。    |
-
-## MacAddressInfo<sup>13+</sup>
-
-以太网网卡名称及MAC地址信息
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.Communication.NetManager.Ethernet
-
-| 名称         | 类型                    | 必填 | 说明                                                 |
-| ------------ | ----------------------- | --- | ---------------------------------------------------- |
-| iface        | string                  |  是 | 以太网卡名称。                                        |
-| macAddr       | string                |  是 | 以太网卡MAC地址信息。 |

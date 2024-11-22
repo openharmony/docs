@@ -14,6 +14,8 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。
 
+如需更详细了解ArkTS语言，可见[ArkTS具体指南](../arkts-utils/arkts-overview.md)<!--RP1--><!--RP1End-->。
+
 ## 基本知识
 
 ### 声明
@@ -138,7 +140,7 @@ let instance: Class <void>
 
 #### `Object`类型
 
-`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。
+`Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除非基本类型外的类型。
 
 #### `Array`类型
 
@@ -878,7 +880,7 @@ class Person {
     this.name = n;
   }
 
-  // 编译时错误：name可以是"undefined"，所以将这个API的返回值类型标记为string
+  // 编译时错误：name可以是"undefined"，所以这个API的返回值类型不能仅定义为string类型
   getNameWrong(): string {
     return this.name;
   }
@@ -1258,6 +1260,52 @@ interface PersonInfo {
 let map: Record<string, PersonInfo> = {
   'John': { age: 25, salary: 10},
   'Mary': { age: 21, salary: 20}
+}
+```
+
+### 抽象类 
+
+带有修饰符abstract的类称为抽象类。抽象类可用于表示一组更具体的概念所共有的概念。
+
+如果尝试创建抽象类的实例，则会发生编译时的错误：
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  //编译时错误：不能创建抽象类的具体实例
+```
+
+抽象类的子类可以是抽象类也可以是非抽象类。抽象父类的非抽象子类可以实例化。因此，执行抽象类的构造函数和该类非静态字段的字段初始化器：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) { 
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### 抽象方法
+
+带有abstract修饰符的方法称为抽象方法，抽象方法可以被声明但不能被实现。
+
+只有抽象类内才能有抽象方法，如果非抽象类具有抽象方法，则会发生编译时错误：
+
+```typescript
+class Y {
+  abstract method(p: string)  //编译时错误：抽象方法只能在抽象类内。
 }
 ```
 
@@ -1672,7 +1720,7 @@ async function test() {
 
 更多的使用动态import的业务场景和使用实例见[动态import](../arkts-utils/arkts-dynamic-import.md)。
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 ### 顶层语句
 

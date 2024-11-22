@@ -17,6 +17,8 @@ To ensure best experience for UI app development for OpenHarmony ecosystem, ArkT
 
 This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.<!--Del--> For details about programming specifications, see [ArkTS Coding Style Guide](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md).<!--DelEnd-->
 
+For a more detailed understanding of the ArkTS language, please refer to the [ArkTS Specific Guide](../arkts-utils/arkts-commonlibrary-overview.md).
+
 ## The Basics
 
 ### Declarations
@@ -150,7 +152,7 @@ let instance: Class <void>
 
 #### `Object` Type
 
-An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.
+An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.`The 'object' type is used to represent types other than the primitive types.
 
 #### `Array` Type
 
@@ -1299,6 +1301,52 @@ interface PersonInfo {
 let map: Record<string, PersonInfo> = {
   'John': { age: 25, salary: 10},
   'Mary': { age: 21, salary: 20}
+}
+```
+
+### Abstract Classes 
+
+A class with the modifier abstract is known as abstract class. Abstract classes can be used to represent notions that are common to some set of more concrete notions.
+
+A compile-time error occurs if an attempt is made to create an instance of an abstract class:
+
+```typescript
+abstract class X {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+let x = new X(666)  // Compile-time error: Cannot create an instance of an abstract class.
+```
+
+Subclasses of an abstract class can be non-abstract or in turn abstract. A non-abstract subclass of an abstract superclass can be instantiated. As a result, a constructor for the abstract class, and field initializers for non-static fields of that class are executed：
+
+```typescript
+abstract class Base {
+  field: number;
+  constructor(p: number) {
+    this.field = p; 
+  }
+}
+
+class Derived extends Base {
+  constructor(p: number) {
+    super(p); 
+  }
+}
+```
+
+#### Abstract Methods 
+
+A method with the modifier abstract is considered an abstract method. Abstract methods do not have bodies, i.e., they can be declared but not implemented.
+
+Only abstract classes can have abstract methods. A compile-time error occurs if a non-abstract class has an abstract method:
+
+```typescript
+class Y {
+  abstract method(p: string)  //Compile-time error: Abstract methods can only appear within an abstract class.
 }
 ```
 

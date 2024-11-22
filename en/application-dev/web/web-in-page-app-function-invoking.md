@@ -579,11 +579,16 @@ The following example registers the **test()** function with the frontend page. 
     }
 
     test(): Promise<string> {
-      let p: Promise<string> = new Promise((resolve, reject) => {  setTimeout(() => {console.log('Execution completed'); reject('fail');}, 10000);});
+      let p: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log ('Execution completed');
+          reject('fail');
+        }, 10000);
+      });
       return p;
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log(" " + param);
     }
   }

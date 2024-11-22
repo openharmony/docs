@@ -26,6 +26,7 @@ Controller相关的Native API结构体。 在调用API前建议通过ARKWEB_MEMB
 | [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) \*(\* [createWebMessagePorts](#createwebmessageports) )(const char \*webTag, size_t \*[size](#size)) | 创建Post Message端口。  | 
 | void(\* [destroyWebMessagePorts](#destroywebmessageports) )([ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) \*\*ports, size_t [size](#size)) | 销毁端口。  | 
 | [ArkWeb_ErrorCode](_web.md#arkweb_errorcode)(\* [postWebMessage](#postwebmessage) )(const char \*webTag, const char \*name, [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) \*webMessagePorts, size_t [size](#size), const char \*url) | 将端口发送到HTML主页面.  | 
+| const char \*(\* [getLastJavascriptProxyCallingFrameUrl](#getlastjavascriptproxycallingframeurl) )() | 获取调用JavaScriptProxy最后一帧的url。 在JavaScriptProxy调用的线程上调用。 通过registerJavaScriptProxy或者javaScriptProxy注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入对象frame的url。 在被调用函数内部获取url才能获取到正确值，可以在函数里内部获取url后保存下来。  | 
 
 
 ## 结构体成员变量说明
@@ -65,7 +66,7 @@ void(* ArkWeb_ControllerAPI::deleteJavaScriptRegister) (const char *webTag, cons
 ### destroyWebMessagePorts
 
 ```
-void(* ArkWeb_ControllerAPI::destroyWebMessagePorts) (ArkWeb_WebMessagePortPtr *ports, size_t *size)
+void(* ArkWeb_ControllerAPI::destroyWebMessagePorts) (ArkWeb_WebMessagePortPtr **ports, size_t size)
 ```
 **描述：**
 
@@ -76,7 +77,23 @@ void(* ArkWeb_ControllerAPI::destroyWebMessagePorts) (ArkWeb_WebMessagePortPtr *
 | 名称 | 描述 | 
 | -------- | -------- |
 | ports | Message端口结构体指针数组。  | 
-| size | 端口数量。 | 
+| size | 端口数量。 |  
+
+
+### getLastJavascriptProxyCallingFrameUrl
+
+```
+const char*(* ArkWeb_ControllerAPI::getLastJavascriptProxyCallingFrameUrl) ()
+```
+**描述：**
+
+获取调用JavaScriptProxy最后一帧的url。 在JavaScriptProxy调用的线程上调用。 通过registerJavaScriptProxy或者javaScriptProxy注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入对象frame的url。 在被调用函数内部获取url才能获取到正确值，可以在函数里内部获取url后保存下来。
+
+**起始版本：** 14
+
+**返回：**
+
+调用JavaScriptProxy最后一帧的url。
 
 
 ### postWebMessage

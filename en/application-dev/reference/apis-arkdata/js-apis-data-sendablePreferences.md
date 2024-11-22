@@ -5,13 +5,15 @@ The **sendablePreferences** module provides APIs for processing data in the form
 
 In the KV pairs, the key must be a string, and the value can be a number, a string, a Boolean value, a bigint, or a serializable object.
 
-The default encryption level of the shared user preferences is EL2, and the persistent files are stored in the corresponding **el2/** directory. Generally, the data in the **el2/** directory can be accessed only after at least one successful unlock operation (by PIN, fingerprint, or facial authentication) upon the start of the device. Avoid direct access to preferences data without the screen unlock operation. For details about how to modify the encryption level, see [Obtaining and Modifying Encryption Levels](../../../application-dev/application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
+The default encryption level of sendable preferences is EL2, and the persistent files are stored in the corresponding **el2/** directory. If there is no lock screen password, the sendable preferences can be directly accessed after the device is powered on. If there is a lock screen password, the data can be accessed only after at least one successful unlock operation (by PIN, fingerprint, or facial authentication). For security purposes, avoid direct access to sendable preferences without the screen unlock operation. For details about how to modify the encryption level, see [Obtaining and Modifying Encryption Levels](../../../application-dev/application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
+
+Sendable preferences can be passed between concurrent ArkTS instances (including the main thread and TaskPool or Worker threads) by reference. It allows for higher performance than [user preferences](js-apis-data-preferences.md). For more information, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The shared user preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use it in multi-process scenarios.
+> The shared user preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use it in multi-process scenarios.
 
 ## Modules to Import
 
@@ -51,7 +53,7 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 | Type                                   | Description                              |
 | --------------------------------------- | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
+| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.<br>This instance inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) by reference. For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).|
 
 **Error codes**
 
@@ -109,7 +111,7 @@ Obtains a **Preferences** instance. This API returns the result synchronously.
 
 | Type                       | Description                 |
 | --------------------------- | --------------------- |
-| [Preferences](#preferences) | **Preferences** instance obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
+| [Preferences](#preferences) | **Preferences** instance obtained.<br>This instance inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) by reference. For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).|
 
 **Error codes**
 
@@ -315,7 +317,7 @@ Represents the configuration options of a **Preferences** instance.
 
 ## Preferences
 
-Provides APIs for obtaining and modifying **Preferences** instances. **Preferences** inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference.
+Provides APIs for obtaining and modifying **Preferences** instances. **Preferences** inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) by reference.
 
 Before calling any API of **Preferences**, obtain a **Preferences** instance by using [sendablePreferences.getPreferences](#sendablepreferencesgetpreferences).
 
@@ -340,7 +342,7 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
-| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise used to return the value obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
+| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise used to return the value obtained.<br>This instance inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) by reference. For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).|
 
 **Error codes**
 
@@ -387,7 +389,7 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
-| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Value obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Value obtained.<br>This instance inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) by reference. For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).|
 
 **Error codes**
 
@@ -419,7 +421,7 @@ Obtains all KV pairs from this **Preferences** instance. This API uses a promise
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise used to return the KV pairs obtained.<br>This object inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use). |
+| Promise&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Promise used to return the KV pairs obtained.<br>This object inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) by reference. For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md). |
 
 **Error codes**
 
@@ -459,7 +461,7 @@ Obtains all KV pairs from this **Preferences** instance. This API returns the re
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | All KV pairs obtained.<br>This object inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | All KV pairs obtained.<br>This object inherits from [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) by reference. For details, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).|
 
 **Error codes**
 
@@ -767,6 +769,30 @@ promise.then(() => {
 })
 ```
 
+### flushSync<sup>14+</sup>
+
+flushSync(): void
+
+Flushes the data in the cached **Preferences** instance to the persistent file.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**Example**
+
+```ts
+preferences.flushSync();
+```
+
 ### clear
 
 clear(): Promise&lt;void&gt;
@@ -931,7 +957,7 @@ Subscribes to changes of specific data. The registered callback will be invoked 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
 | keys     | Array&lt;string&gt;                                          | Yes  | Keys to be observed.                                         |
-| callback | callback: Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Yes  | Callback used to return the KV pairs changed. The keys are the keys observed, and the values are the new values. The values support the following types: number, string, boolean, bigint, and serializable object. |
+| callback | callback: Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | Yes  | Callback used to return the KV pairs changed. The keys are the keys observed, and the values are the new values. The values support the following types: number, string, boolean, bigint, and serializable object.|
 
 **Error codes**
 
@@ -1096,3 +1122,4 @@ preferences.flush().then(() => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
 });
 ```
+<!--no_check-->

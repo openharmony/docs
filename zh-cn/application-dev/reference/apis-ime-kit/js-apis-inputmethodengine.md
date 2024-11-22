@@ -648,7 +648,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -691,7 +691,7 @@ off(type: 'privateCommand', callback?: Callback<Record<string, CommandDataType>>
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -731,7 +731,7 @@ getSecurityMode(): SecurityMode
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800004 | not an input method extension. |
+| 12800004 | not an input method. |
 
 **示例：**
 
@@ -765,7 +765,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method extension. |
+| 12800004   | not an input method. |
 
 **示例：**
 
@@ -815,7 +815,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
 | 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12800004   | not an input method extension. |
+| 12800004   | not an input method. |
 
 **示例：**
 
@@ -1900,7 +1900,7 @@ on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.height)}`);
   });
 } catch(err) {
   console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
@@ -1994,7 +1994,7 @@ off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
 import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.height)}`);
   });
 } catch(err) {
     console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
@@ -2227,7 +2227,7 @@ exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -2264,7 +2264,7 @@ exitCurrentInputType(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 12800008 | input method manager service error.            |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -3811,7 +3811,7 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 | -------- | ---------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                     |
-| 12800010 | not default input method configured by system. |
+| 12800010 | not the preconfigured default input method. |
 
 **示例：**
 
@@ -3865,7 +3865,7 @@ getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
 | 12800003 | input method client error.        |
-| 12800012 | input method panel doesn't exist. |
+| 12800012 | the input method panel does not exist. |
 | 12800013 | window manager service error.     |
 
 **示例：**
@@ -3914,7 +3914,7 @@ setPreviewText(text: string, range: Range): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
-| 12800011 | text preview is not supported.                               |
+| 12800011 | text preview not supported.                               |
 
 **示例：**
 
@@ -3956,7 +3956,7 @@ setPreviewTextSync(text: string, range: Range): void
 | -------- | ------------------------------------------------------------ |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
-| 12800011 | text preview is not supported.                               |
+| 12800011 | text preview not supported.                               |
 
 **示例：**
 
@@ -3995,7 +3995,7 @@ finishTextPreview(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800011 | text preview is not supported. |
+| 12800011 | text preview not supported. |
 
 **示例：**
 
@@ -4032,7 +4032,7 @@ finishTextPreviewSync(): void
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800011 | text preview is not supported. |
+| 12800011 | text preview not supported. |
 
 **示例：**
 
@@ -4056,6 +4056,7 @@ try {
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
+| bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
 
 ## KeyEvent
 

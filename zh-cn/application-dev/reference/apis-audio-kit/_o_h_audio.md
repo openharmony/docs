@@ -48,6 +48,7 @@
 | typedef struct [OH_AudioManager](#oh_audiomanager) [OH_AudioManager](#oh_audiomanager) | 声明音频管理器。  | 
 | typedef struct [OH_AudioRoutingManager](#oh_audioroutingmanager) [OH_AudioRoutingManager](#oh_audioroutingmanager) | 声明音频路由管理器，用于路由和设备相关功能的音频路由管理器的句柄。  | 
 | typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback))([OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | 此函数指针将指向用于返回更改的音频设备描述符的回调函数，可能返回多个音频设备描述符。  | 
+| typedef void(\* [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) status, void \*userData) | 此函数指针将指向用于返回音频设备堵塞状态的回调函数，可能返回多个音频设备描述符。  | 
 | typedef struct [OH_AudioSessionManager](#oh_audiosessionmanager) [OH_AudioSessionManager](#oh_audiosessionmanager) | 声明音频会话管理器。  | 
 | typedef struct [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) [OH_AudioSession_Strategy](#oh_audiosession_strategy) | 音频会话策略。  | 
 | typedef struct [OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) [OH_AudioSession_DeactivatedEvent](#oh_audiosession_deactivatedevent) | 音频会话已停用事件。  | 
@@ -74,6 +75,7 @@
 | [OH_AudioDevice_Type](#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备类型。 | 
 | [OH_AudioDevice_Flag](#oh_audiodevice_flag) {<br/>AUDIO_DEVICE_FLAG_NONE = 0,<br/>AUDIO_DEVICE_FLAG_OUTPUT = 1,<br/>AUDIO_DEVICE_FLAG_INPUT = 2,<br/>AUDIO_DEVICE_FLAG_ALL = 3<br/>} | 定义音频设备标志。 | 
 | [OH_AudioDevice_Usage](#oh_audiodevice_usage) {<br/>AUDIO_DEVICE_USAGE_MEDIA_OUTPUT = 1, <br/>AUDIO_DEVICE_USAGE_MEDIA_INPUT = 2, <br/>AUDIO_DEVICE_USAGE_MEDIA_ALL = 3, <br/>AUDIO_DEVICE_USAGE_CALL_OUTPUT = 4,<br/>AUDIO_DEVICE_USAGE_CALL_INPUT = 8, <br/>AUDIO_DEVICE_USAGE_CALL_ALL = 12<br/>} | 定义可获取的设备种类。  | 
+| [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) { <br/>AUDIO_DEVICE_UNBLOCKED = 0, <br/>AUDIO_DEVICE_BLOCKED = 1 } | 声明音频设备的堵塞状态。默认情况下，音频设备被视为未堵塞。 | 
 | [OH_AudioSession_ConcurrencyMode](#oh_audiosession_concurrencymode) { <br/>CONCURRENCY_DEFAULT = 0, <br/>CONCURRENCY_MIX_WITH_OTHERS = 1, <br/>CONCURRENCY_DUCK_OTHERS = 2, <br/>CONCURRENCY_PAUSE_OTHERS = 3 } | 音频并发模式。  | 
 | [OH_AudioSession_DeactivatedReason](#oh_audiosession_deactivatedreason) { <br/>DEACTIVATED_LOWER_PRIORITY = 0, <br/>DEACTIVATED_TIMEOUT = 1 } | 音频会话停用原因。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br/>AUDIOSTREAM_SUCCESS = 0,<br/>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br/>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br/>AUDIOSTREAM_ERROR_SYSTEM = 3<br/>} | 音频错误码。 | 
@@ -83,7 +85,7 @@
 | [OH_AudioStream_Usage](#oh_audiostream_usage) {<br/>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br/>AUDIOSTREAM_USAGE_MUSIC = 1,<br/>AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2,<br/>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br/>AUDIOSTREAM_USAGE_ALARM = 4,<br/>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br/>AUDIOSTREAM_USAGE_RINGTONE = 6,<br/>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br/>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br/>AUDIOSTREAM_USAGE_MOVIE = 10,<br/>AUDIOSTREAM_USAGE_GAME = 11,<br/>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br/>AUDIOSTREAM_USAGE_NAVIGATION = 13,<br/>AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) {<br/>AUDIOSTREAM_LATENCY_MODE_NORMAL = 0,<br/>AUDIOSTREAM_LATENCY_MODE_FAST = 1<br/>} | 定义音频时延模式。 | 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br/>AUDIOSTREAM_STATE_INVALID = -1,<br/>AUDIOSTREAM_STATE_NEW = 0,<br/>AUDIOSTREAM_STATE_PREPARED = 1,<br/>AUDIOSTREAM_STATE_RUNNING = 2,<br/>AUDIOSTREAM_STATE_STOPPED = 3,<br/>AUDIOSTREAM_STATE_RELEASED = 4,<br/>AUDIOSTREAM_STATE_PAUSED = 5<br/>} | 定义音频流的状态。 | 
-| [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br/>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br/>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br/>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7<br/>} | 定义音频流使用场景。 | 
+| [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br/>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br/>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br/>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7,<br/>AUDIOSTREAM_SOURCE_TYPE_CAMCORDER = 13<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_Event](#oh_audiostream_event) {<br/>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br/>} | 定义音频事件。 | 
 | [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) {<br/>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br/>AUDIOSTREAM_INTERRUPT_SHARE = 1<br/>} | 定义音频中断类型。 | 
 | [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) {<br/>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br/>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br/>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br/>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br/>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br/>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br/>} | 定义音频中断提示类型。 | 
@@ -117,6 +119,8 @@
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_RegisterDeviceChangeCallback](#oh_audioroutingmanager_registerdevicechangecallback)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDevice_Flag](#oh_audiodevice_flag) deviceFlag, [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback) | 注册音频路由管理器的设备更改回调。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_UnregisterDeviceChangeCallback](#oh_audioroutingmanager_unregisterdevicechangecallback)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback) | 取消注册音频路由管理器的设备更改回调。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | 释放音频设备描述符数组对象。  | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_IsMicBlockDetectionSupported](#oh_audioroutingmanager_ismicblockdetectionsupported) ([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, bool \*supported) | 查询当前设备是否支持麦克风堵塞状态检测。  | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_SetMicBlockStatusCallback](#oh_audioroutingmanager_setmicblockstatuscallback) ([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback) callback, void \*userData) | 设置麦克风是否堵塞状态回调。在使用此功能之前，用户应查询当前设备是否支持检测，应用只有在使用麦克风录音时， 并且所使用的麦克风的堵塞状态发生改变，才会收到回调，目前此检测功能仅支持麦克风位于本地设备上。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)([OH_AudioSessionManager](#oh_audiosessionmanager) \*\*audioSessionManager) | 获取音频会话管理器。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioSessionManager_ActivateAudioSession](#oh_audiosessionmanager_activateaudiosession)([OH_AudioSessionManager](#oh_audiosessionmanager) \*audioSessionManager, const [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) \*strategy) | 激活音频会话。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioSessionManager_DeactivateAudioSession](#oh_audiosessionmanager_deactivateaudiosession)([OH_AudioSessionManager](#oh_audiosessionmanager) \*audioSessionManager) | 停用音频会话。  | 
@@ -401,6 +405,25 @@ typedef struct OH_AudioRoutingManager OH_AudioRoutingManager
 **起始版本：** 12
 
 
+### OH_AudioRoutingManager_OnDeviceBlockStatusCallback
+
+```
+typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray, OH_AudioDevice_BlockStatus status, void *userData);
+```
+**描述**
+此函数指针将指向用于返回音频设备堵塞状态的回调函数，可能返回多个音频设备描述符。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioDeviceDescriptorArray | 音频设备描述符数组应当被释放，获取请调用[OH_AudioRoutingManager_GetDevices](#oh_audioroutingmanager_getdevices)接口。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
+| status | 音频设备的堵塞状态[OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus)。 |
+| userData | 用户自定义数据指针。 | 
+
+
 ### OH_AudioRoutingManager_OnDeviceChangedCallback
 
 ```
@@ -527,6 +550,22 @@ enum OH_AudioData_Callback_Result
 | -------- | -------- |
 | AUDIO_DATA_CALLBACK_RESULT_INVALID  | 表示音频数据回调结果无效。   | 
 | AUDIO_DATA_CALLBACK_RESULT_VALID  | 表示音频数据回调结果有效。   | 
+
+
+### OH_AudioDevice_BlockStatus
+
+```
+enum OH_AudioDevice_BlockStatus
+```
+**描述**
+声明音频设备的堵塞状态。默认情况下，音频设备被视为未堵塞。
+
+**起始版本：** 13
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIO_DEVICE_UNBLOCKED  | 音频设备未被堵塞。 | 
+| AUDIO_DEVICE_BLOCKED | 音频设备被堵塞。 | 
 
 
 ### OH_AudioDevice_ChangeType
@@ -917,6 +956,7 @@ enum OH_AudioStream_SourceType
 | AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION  | 语音识别。   | 
 | AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE  | 播放录音。   | 
 | AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION  | 通话。   | 
+| AUDIOSTREAM_SOURCE_TYPE_CAMCORDER | 录像。<br>**起始版本：** 13 |
 
 
 ### OH_AudioStream_State
@@ -2805,6 +2845,35 @@ AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
 AUDIOCOMMON_RESULT_ERROR_NO_MEMORY：内存不足。
 
 
+### OH_AudioRoutingManager_IsMicBlockDetectionSupported()
+
+```
+OH_AudioCommon_Result OH_AudioRoutingManager_IsMicBlockDetectionSupported(OH_AudioRoutingManager *audioRoutingManager, bool *supported)
+```
+**描述**
+查询当前设备是否支持麦克风堵塞状态检测。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioRoutingManager | 音频路由管理器句柄[OH_AudioRoutingManager](#oh_audioroutingmanager)。获取句柄通过[OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager)。  | 
+| supported | 查询结果。  | 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+1. 参数audioRoutingManager为nullptr； 
+2. 参数supported为nullptr。
+
+
 ### OH_AudioRoutingManager_RegisterDeviceChangeCallback()
 
 ```
@@ -2863,6 +2932,38 @@ AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
 
   1. 参数audioRoutingManager为nullptr；
   2. 参数audioDeviceDescriptorArray为nullptr。
+
+
+### OH_AudioRoutingManager_SetMicBlockStatusCallback()
+
+```
+OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(OH_AudioRoutingManager *audioRoutingManager OH_AudioRoutingManager_OnDeviceBlockStatusCallback callback, void *userData)
+```
+**描述**
+设置麦克风是否堵塞状态回调。
+
+在使用此功能之前，用户应查询当前设备是否支持检测，应用只有在使用麦克风录音时，并且所使用的麦克风的堵塞状态发生改变，才会收到回调，目前此检测功能仅支持麦克风位于本地设备上。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioRoutingManager | 音频路由管理器句柄[OH_AudioRoutingManager](#oh_audioroutingmanager)。获取句柄通过[OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager)。  | 
+| callback | 函数指针将指向用于返回接受设备麦克风堵塞状态 [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback) | 
+| userData | 用户自定义数据指针。  | 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+1. 参数audioRoutingManager为nullptr； 
+2. 参数callback为nullptr。
 
 
 ### OH_AudioRoutingManager_UnregisterDeviceChangeCallback()
@@ -3121,7 +3222,7 @@ AUDIOSTREAM_ERROR_INVALID_PARAM：
 
   1. 参数builder为nullptr；
   2. StreamType无效；
-  3. 创建OHAudioRenderer失败。
+  3. 创建OHAudioCapturer失败。
 
 
 ### OH_AudioStreamBuilder_GenerateRenderer()

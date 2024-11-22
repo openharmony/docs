@@ -27,7 +27,7 @@ deviceConfig包含设备上的应用配置信息，可以包含default、tv、ca
 | process | 标识应用或者Ability的进程名。如果在deviceConfig标签下配置了process标签，则该应用的所有Ability都运行在这个进程中。如果在abilities标签下也为某个Ability配置了process标签，则该Ability就运行在这个进程中。该标签最大长度为31。 | 字符串 | 可缺省，缺省值为空。 |
 | keepAlive | 标识应用是否始终保持运行状态，仅支持系统应用配置，三方应用配置不生效。该标签为布尔类型，可缺省，缺省值为false，如果配置为true，应用将始终保持为运行状态，并在系统启动的时候被系统驱动起来，应用进程退出后，系统也会重新启动应用进程。 | 布尔值 | 可缺省，缺省值为false。 |
 | supportBackup | 标识应用是否支持备份和恢复。如果配置为"false"，则不支持为该应用执行备份或恢复操作。 | 布尔值 | 可缺省，缺省值为false。 |
-| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。如果配置为"false"，则libs库以不压缩的方式存储。 | 布尔值 | 可缺省，缺省值为false。 |
+| compressNativeLibs | 在打包hap时，该字段标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。<br>在应用安装时，该字段用于标识libs库是否需要解压出来（API14及之后版本支持，之前的版本均默认解压libs库）。<br/>-&nbsp;true：libs库会解压出来。<br/>-&nbsp;false：libs库不会解压出来。 | 布尔值 | 该标签可缺省，在打包hap时缺省值为false。在安装应用时，该字段未配置时默认为true。 |
 | network | 标识网络安全性配置。该标签允许应用通过配置文件的安全声明来自定义其网络安全，无需修改应用代码。 | 对象 | 可缺省，缺省值为空。 |
 
 ## network对象的内部结构

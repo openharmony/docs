@@ -19,6 +19,8 @@ StepperItem()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 ### prevLabel
@@ -31,11 +33,11 @@ Sets the text label of the button on the left, which is not displayed on the fir
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes | Text label of the button on the left. |
+| value | string | Yes| Text label of the button on the left.|
 
 ### nextLabel
 
@@ -47,9 +49,9 @@ Sets the text label of the button on the right. The default value is **Start** f
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                           | Mandatory | Description                                                        |
+| Name| Type                           | Mandatory| Description                                                        |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | string                          | Yes  | Text label of the button on the right.                                          |
 
@@ -63,11 +65,11 @@ Sets the display status of **nextLabel** in the stepper.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                           | Mandatory | Description                                                        |
+| Name| Type                           | Mandatory| Description                                                        |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ItemState](#itemstate)  | No  | Display status of **nextLabel** in the stepper.<br>Default value: **ItemState.Normal** |
+| value  | [ItemState](#itemstate) | No  | Display status of **nextLabel** in the stepper.<br>Default value: **ItemState.Normal**|
 
 >  **NOTE**
 >
@@ -78,12 +80,14 @@ Sets the display status of **nextLabel** in the stepper.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-|   Name   | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+|   Name   | Description|
 | -------- |-------- |
-| Normal |The button on the right is clickable and can navigate users to the next **StepperItem** when it is clicked. |
-| Disabled |The button on the right is disabled. |
-| Waiting | The button on the right is not displayed, and a progress bar is displayed instead. |
-| Skip |The button on the right reads "Skip" by default. You can define the processing logic for this state in the **onSkip** callback of the stepper. |
+| Normal |The button on the right is clickable and can navigate users to the next **StepperItem** when it is clicked.|
+| Disabled |The button on the right is disabled.|
+| Waiting | The button on the right is not displayed, and a progress bar is displayed instead.|
+| Skip |The button on the right reads "Skip" by default. You can define the processing logic for this state in the **onSkip** callback of the stepper.|
 
 
 ## Example

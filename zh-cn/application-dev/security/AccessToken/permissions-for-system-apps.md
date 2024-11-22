@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+允许对三方应用进程设置保活。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ### ohos.permission.ACCESS_BBOX_DIR
 
 允许系统应用读取bbox路径下的日志文件。
@@ -1531,7 +1543,7 @@
 
 ### ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-允许应用发送代理通知
+允许应用发送代理通知。
 
 **权限级别**：system_core
 
@@ -3965,6 +3977,44 @@
 
 **起始版本**：13
 
+### ohos.permission.READ_WEATHER_DATA
+
+允许应用读取天气数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.ACCESS_MCU_LOG_DIR
+
+允许系统应用访问MCU（microcontroller unit）日志目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_VIRTUAL_KEYBOARD
+
+允许应用/服务更新/查询虚拟键盘状态。
+
+通过该权限，应用可以更新虚拟键盘状态，服务可以查询虚拟键盘状态。当前仅2in1设备场景下可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4214,6 +4264,90 @@
 ### ohos.permission.USER_AUTH_FROM_BACKGROUND
 
 允许应用/服务在后台发起用户身份认证请求。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.MANAGE_RECOVERY_KEY
+
+允许应用创建或删除恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.UTILIZE_RECOVERY_KEY
+
+允许应用使用恢复密钥重设锁屏密码或恢复用户数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
+
+允许应用获取恢复密钥的简要信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：14
+
+### ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN
+
+允许UIExtensionAbility显示在锁屏之上。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：14
+
+### ohos.permission.READ_APP_LOCK
+
+允许系统应用读取应用锁状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.WRITE_APP_LOCK
+
+允许系统应用修改应用锁状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.ACCESS_APP_LOCK
+
+允许应用访问应用锁。
 
 **权限级别**：system_basic
 

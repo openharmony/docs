@@ -194,7 +194,7 @@ struct Index {
 
       Row() {
         Column() {
-          Text ("Monochrome")
+          Text("Monochrome")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
@@ -204,7 +204,7 @@ struct Index {
         }
 
         Column() {
-          Text ("Multicolor")
+          Text("Multicolor")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
@@ -214,7 +214,7 @@ struct Index {
         }
 
         Column() {
-          Text ("Multilayer")
+          Text("Multilayer")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
@@ -226,7 +226,7 @@ struct Index {
 
       Row() {
         Column() {
-          Text ("No effect")
+          Text("No effect")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
@@ -235,7 +235,7 @@ struct Index {
         }
 
         Column() {
-          Text ("Overall scale effect")
+          Text("Overall scale effect")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
@@ -244,7 +244,7 @@ struct Index {
         }
 
         Column() {
-          Text ("Hierarchical effect")
+          Text("Hierarchical effect")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)

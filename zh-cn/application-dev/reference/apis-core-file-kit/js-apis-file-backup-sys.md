@@ -2149,6 +2149,146 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
   }); // 添加需要增量备份的应用
   ```
 
+### appendBundles<sup>12+</sup>
+
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt, infos: string[]): Promise&lt;void&gt;
+
+添加需要增量备份的应用。当前整个流程中，触发Release接口之前都可以进行appendBundles的调用。使用Promise异步回调。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型                                                           | 必填 | 说明                       |
+| --------------- | -------------------------------------------------------------- | ---- | -------------------------- |
+| bundlesToBackup | Array&lt;[IncrementalBackupData](#incrementalbackupdata12)&gt; | 是   | 需要增量备份的应用的数组。 |
+| infos  | string[] | 是   | 备份时各应用所需要扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
+| 13600001 | IPC error                                                                                      |
+| 13900001 | Operation not permitted                                                                        |
+| 13900005 | I/O error                                                                                      |
+| 13900011 | Out of memory                                                                                  |
+| 13900020 | Invalid argument                                                                               |
+| 13900025 | No space left on device                                                                        |
+| 13900042 | Unknown error                                                                                  |
+
+**示例：**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import { BusinessError } from '@ohos.base';
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info('onResultReport success, bundleName: ' + bundleName +'result: ' + result);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
+    }
+  };
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
+  let incrementalBackupData: backup.IncrementalBackupData = {
+    bundleName: "com.example.hiworld",
+    lastIncrementalTime: 1700107870, // 调用者传递上一次备份的时间戳
+    manifestFd:1 // 调用者传递上一次备份的manifest文件句柄
+  }
+      let infos: Array<string> = [
+        `
+        {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.hiworld"
+            }
+        ]
+    },
+    {
+        "infos": [
+            {
+                "details": [
+                    {
+                        "detail": [
+                            {
+                                "key1": "value1",
+                                "key2": "value2"
+                            }
+                        ]
+                    }
+                ],
+                "type": "unicast",
+                "bundleName": "com.example.myApp"
+            }
+        ]
+    }
+      `
+    ]
+  let incrementalBackupDataArray: backup.IncrementalBackupData[] = [incrementalBackupData];
+  // 添加需要增量备份的应用
+  incrementalBackupSession.appendBundles(incrementalBackupDataArray, infos).then(() => {
+    console.info('appendBundles success');
+  }).catch((err: BusinessError) => {
+    console.error('appendBundles failed with err: ' + JSON.stringify(err));
+  }); 
+  ```
 ### release<sup>12+</sup>
 
 release(): Promise&lt;void&gt;

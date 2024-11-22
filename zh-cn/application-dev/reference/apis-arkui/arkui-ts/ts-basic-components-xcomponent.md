@@ -1,6 +1,6 @@
 # XComponent
 
-提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。
+提供用于图形绘制和媒体数据写入的Surface，XComponent负责将其嵌入到视图中，支持应用自定义Surface位置和大小。具体指南请参考[自定义渲染 (XComponent)文档](../../../ui/napi-xcomponent-guidelines.md)。
 
 > **说明：**
 >
@@ -143,11 +143,11 @@ enableSecure(isSecure: boolean)
 
 ### onLoad
 
-onLoad(callback: (event?: object) => void )
+onLoad(callback: OnNativeLoadCallback )
 
 插件加载完成时回调事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,17 +155,39 @@ onLoad(callback: (event?: object) => void )
 
 | 参数名   | 类型   | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
-| event | object | 否    | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
+| callback | [OnNativeLoadCallback](#onnativeloadcallback14) | 是    | XComponent持有的Surface创建后回调事件。 |
 
 ### onDestroy
 
-onDestroy(event: () => void )
+onDestroy(event: VoidCallback )
 
 插件卸载完成时回调事件。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名   | 类型   | 必填   | 说明                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | [VoidCallback](ts-types.md#voidcallback12) | 是    | XComponent销毁后回调事件。 |
+
+## OnNativeLoadCallback<sup>14+</sup>
+
+type OnNativeLoadCallback = (event?: object) =\> void
+
+XComponent持有的Surface创建后回调事件。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名   | 类型   | 必填   | 说明                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| event | object | 否    | 获取XComponent实例对象的context，context上挂载的方法由开发者在Native层定义。 |
 
 ## XComponentController
 
@@ -533,7 +555,7 @@ struct XComponentExample {
         })
       Button('start AI analyze')
         .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config);
+          this.xComponentController.startImageAnalyzer(this.config)
             .then(() => {
               console.log("analysis complete");
             })
@@ -559,10 +581,10 @@ struct XComponentExample {
           nativeRender.DrawPattern(BigInt(surfaceId));
           let hasDraw: boolean = false;
           if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
           }
           if (hasDraw) {
-              this.currentStatus = "draw star";
+            this.currentStatus = "draw star";
           }
         })
       XComponent({
@@ -573,7 +595,7 @@ struct XComponentExample {
         .width(this.xcWidth)
         .height(this.xcHeight)
         .enableAnalyzer(true)
-      Test(this.currentStatus)
+      Text(this.currentStatus)
         .fontSize('24fp')
         .fontWeight(500)
     }

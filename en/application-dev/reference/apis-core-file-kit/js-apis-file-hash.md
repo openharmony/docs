@@ -30,7 +30,7 @@ Before using the APIs provided by this module to perform operations on a file or
 
 For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-## Hash.hash
+## hash.hash
 
 hash(path: string, algorithm: string): Promise&lt;string&gt;
 
@@ -74,7 +74,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   });
   ```
 
-## Hash.hash
+## hash.hash
 
 hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -114,7 +114,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     }
   });
   ```
-## Hash.createHash<sup>12+</sup>
+## hash.createHash<sup>12+</sup>
 
 createHash(algorithm: string): HashStream;
 

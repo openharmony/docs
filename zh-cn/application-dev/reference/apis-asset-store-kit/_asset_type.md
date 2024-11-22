@@ -244,7 +244,7 @@ enum Asset_Tag
 | ASSET_TAG_CONFLICT_RESOLUTION | 表示增加关键资产时的冲突处理策略，其值为uint32_t类型。 |
 | ASSET_TAG_UPDATE_TIME | 表示关键资产的更新时间（时间戳形式），其值为bytes类型。<br>**起始版本：** 12 |
 | ASSET_TAG_OPERATION_TYPE | 表示附加的操作类型，其值为uint32_t类型。<br>**起始版本：** 12 |
-| ASSET_TAG_REQUIRE_ATTR_ENCRYPTED | 表示是否加密业务自定义附属信息，其值为bool类型。<br>**起始版本：** 13 |
+| ASSET_TAG_REQUIRE_ATTR_ENCRYPTED | 表示是否加密业务自定义附属信息，其值为bool类型。<br>**起始版本：** 14 |
 
 
 ### Asset_TagType

@@ -1,6 +1,6 @@
 # C++线程间数据共享场景
 
-当应用在C++层进行多线程的并发计算时，因为ArkTS的API需要在ArkTS的环境执行，为了避免在非主线程每次回调等待主线程ArkTS环境中执行的API调用结果，需要在这些C++线程上创建ArkTS执行环境和直接调用API，并且可能需要在C++线程之间对Sendable对象进行共享和操作。
+当应用在C++层进行多线程的并发计算时，因为ArkTS的API需要在ArkTS的环境执行，为了避免在非UI主线程每次回调等待UI主线程ArkTS环境中执行的API调用结果，需要在这些C++线程上创建ArkTS执行环境和直接调用API，并且可能需要在C++线程之间对Sendable对象进行共享和操作。
 
 为了支持此类场景，需要实现在C++线程上创建调用ArkTS的能力，其次还需要对Sendable对象进行多线程共享和操作。
 
@@ -211,7 +211,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
 export const testSendSendable: () => void;
 ```
 
-主线程发起调用
+UI主线程发起调用
 
 ```ts
 // Index.ets
@@ -246,9 +246,9 @@ struct Index {
 
 整个过程主要包括的逻辑实现为：
 
-1. 在入口main函数所在的主线程创建ArkTS运行环境，并创建Sendable对象保存到result中，然后将result引用的Sendable对象序列化到一个全局序列化数据serializationData中。
+1. 在入口main函数所在的UI主线程创建ArkTS运行环境，并创建Sendable对象保存到result中，然后将result引用的Sendable对象序列化到一个全局序列化数据serializationData中。
 
-2. 当这些流程完成后，发起另外一个C++子线程，并在这个新的线程中创建ArkTS运行环境。然后再通过反序列化接口从serializationData中反序列化出主线程创建的Sendable对象，并保存到result中，从而实现了Sendable对象的跨C++线程传递。反序列化完成后，需要销毁反序列化数据避免内存泄露。这时主线程和子线程都同时持有这个Sendable共享对象，即可通过Node-API进行对象操作，比如读写或者传递到ArkTS层等。
+2. 当这些流程完成后，发起另外一个C++子线程，并在这个新的线程中创建ArkTS运行环境。然后再通过反序列化接口从serializationData中反序列化出UI主线程创建的Sendable对象，并保存到result中，从而实现了Sendable对象的跨C++线程传递。反序列化完成后，需要销毁反序列化数据避免内存泄露。这时UI主线程和子线程都同时持有这个Sendable共享对象，即可通过Node-API进行对象操作，比如读写或者传递到ArkTS层等。
 
    > **说明：**
    >

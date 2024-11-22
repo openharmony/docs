@@ -1,4 +1,4 @@
-# Using AVScreenCaptureRecorder to Record Screens and Save Them to a File (ArkTS)
+# Using AVScreenCaptureRecorder to Record Screens and Save Them to Files (ArkTS)
 
 Screen capture is mainly used to record the main screen.
 
@@ -97,9 +97,9 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
 
 4. Set screen capture parameters.
 
-    After creating the **screenCapture** instance, you can set the parameters required for screen capture.
+    ​After creating the **screenCapture** instance, you can set the parameters required for screen capture.
 
-    Parameters **videoBitrate**, **audioSampleRate**, **audioChannelCount**, **audioBitrate**, and **preset** are optional, with default values provided in the code snippet below. The audio streams of the microphone and system sound share a set of audio parameters: **audioSampleRate**, **audioChannelCount**, and **audioBitrate**.
+    ​Parameters **videoBitrate**, **audioSampleRate**, **audioChannelCount**, **audioBitrate**, and **preset** are optional, with default values provided in the code snippet below. The audio streams of the microphone and system sound share a set of audio parameters: **audioSampleRate**, **audioChannelCount**, and **audioBitrate**.
 
     ```javascript
     captureConfig: media.AVScreenCaptureRecordConfig = {

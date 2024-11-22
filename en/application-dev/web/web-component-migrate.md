@@ -1,13 +1,16 @@
 # Migrating Web Components Between Different Windows
 
-**Web** components can be mounted or removed on different pages in the window. Based on this capability, you can migrate the same **Web** component between different windows and drag a browser tab page out as an independent window.
+The **Web** component can be attached to and detached from the component trees in different windows, which enables the same **Web** component to be migrated between different windows. For example, you can drag a tab page to an independent window or drag it to another window.
 
+Web components are migrated between different windows based on the [Custom Node](../ui/arkts-user-defined-node.md) capability. You can use [BuilderNode](../ui/arkts-user-defined-arktsNode-builderNode.md) to create offline nodes for **Web** components and use [Custom Placeholder Node](../ui/arkts-user-defined-place-hoder.md) to attach and detach web nodes. The **Web** component is migrated between windows by detaching the web node from one window and attaching it to another window.
 
+In the following example, a **Web** component is created using a command when the main window Ability is started. You can use the functions and classes provided in **common.ets** to attach and detach the **Web** component. In addition, **Index.ets** provides an implementation method for attaching and detaching **Web** components. In this way, you can attach and detach **Web** components in different windows, in other words, migrate **Web** components between different windows. The following figure shows the migration process.
 
-In the following example, a **Web** component is created using a command when the main window ability is started. You can use the functions and classes provided in **common.ets** to mount and remove **Web** components. **Index.ets** shows a method to mount and remove **Web** components. In this way, you can mount and remove **Web** components in different windows, in other words, migrate **Web** components between different windows.
+![Example of Migrating Web Components](./figures/web-component-migrate_en.png)
 
-> ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**
-> Do not mount a **Web** component under two parent nodes at the same time. Otherwise, unexpected behavior occurs.
+> **NOTE**
+>
+> Do not attach a **Web** component under two parent nodes at the same time. Otherwise, unexpected behavior occurs.
 
 ```ts
 // Main window ability.
@@ -17,7 +20,6 @@ import { createNWeb, defaultUrl } from '../pages/common'
 // ...
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -25,7 +27,7 @@ import { createNWeb, defaultUrl } from '../pages/common'
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      // Create a dynamic **Web** component, in which the **UIContext** should be passed. (The component can be created at any time after **loadContent()** is called, and only one web component is created for the application.)
+      // Create a dynamic Web component, in which UIContext should be passed. (The component can be created at any time after loadContent() is called, and only one Web component is created for the application.)
       createNWeb(defaultUrl, windowStage.getMainWindowSync().getUIContext());
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });
@@ -35,7 +37,7 @@ import { createNWeb, defaultUrl } from '../pages/common'
 ```
 
 ```ts
-// Provide the capability for mounting **Web** components dynamically.
+// Provide the capability for attaching Web components dynamically.
 // pages/common.ets
 import { UIContext, NodeController, BuilderNode, FrameNode } from '@kit.ArkUI';
 import { webview } from '@kit.ArkWeb';
@@ -43,7 +45,6 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export const defaultUrl : string = 'https://www.example.com';
 
-// @Builder contains the specific information of the dynamic component.
 // Data is an input parameter of encapsulation class.
 class Data{
   url: string = '';
@@ -55,6 +56,7 @@ class Data{
   }
 }
 
+// @Builder contains the specific information of the dynamic component.
 @Builder
 function WebBuilder(data:Data) {
   Web({ src: data.url, controller: data.webController })
@@ -66,7 +68,7 @@ function WebBuilder(data:Data) {
 
 let wrap = wrapBuilder<[Data]>(WebBuilder);
 
-// Used to control and report the behavior of the node on the NodeContainer. This function must be used together with NodeContainer.
+// Used to control and report the behavior of the node in NodeContainer. This function must be used together with NodeContainer.
 export class MyNodeController extends NodeController {
   private builderNode: BuilderNode<[Data]> | null | undefined = null;
   private webController : webview.WebviewController | null | undefined = null;
@@ -78,19 +80,19 @@ export class MyNodeController extends NodeController {
     this.webController = webController;
   }
 
-  // This function must be overridden, which is used to construct the number of nodes, return the nodes and mount them to the NodeContainer.
-  // Call it or rebuild() to refresh when the NodeContainer is created.
+  // This function must be overridden, which is used to construct the number of nodes, return the nodes and attach them to NodeContainer.
+  // Call it or rebuild() to refresh when NodeContainer is created.
   makeNode(uiContext: UIContext): FrameNode | null {
-    // This node will be mounted to the parent node of NodeContainer.
+    // This node will be attached to the parent node of NodeContainer.
     return this.rootNode;
   }
 
-  // Mount the Webview.
+  // Attach the Webview.
   attachWeb() : void {
     if (this.builderNode) {
       let frameNode : FrameNode | null = this.builderNode.getFrameNode();
       if (frameNode?.getParent() != null) {
-        // Check whether the node is mounted before mounting the custom node.
+        // Check whether the custom node is attached before.
         hilog.error(0x0000, 'testTag', '%{public}s', 'The frameNode is already attached');
         return;
       }
@@ -98,7 +100,7 @@ export class MyNodeController extends NodeController {
     }
   }
 
-  // Uninstall the Webview.
+  // Detach the Webview.
   detachWeb() : void {
     this.rootNode = null;
   }
@@ -108,12 +110,12 @@ export class MyNodeController extends NodeController {
   }
 }
 
-// Create the BuilderNode required for saving the Map.
+// Create a BuilderNode required for saving Map.
 let builderNodeMap : Map<string, BuilderNode<[Data]> | undefined> = new Map();
-// Create the webview.WebviewController required for saving the map.
+// Create a webview.WebviewController required for saving Map.
 let webControllerMap : Map<string, webview.WebviewController | undefined> = new Map();
 
-// UIContext is required for initialization, which is obtained from Ability.
+// Use getUIContext() of the window or custom component to obtain the UIContext object required for initialization.
 export const createNWeb = (url: string, uiContext: UIContext) => {
   // Create a WebviewController.
   let webController = new webview.WebviewController() ;
@@ -140,7 +142,7 @@ export const getWebviewController = (url : string) : webview.WebviewController |
 ```
 
 ```ts
-// Use the Page of NodeController.
+// Use the pages of NodeController.
 // pages/Index.ets
 import { getBuilderNode, MyNodeController, defaultUrl, getWebviewController } from "./common"
 
@@ -155,7 +157,7 @@ struct Index {
       Column() {
         Button("Attach Webview")
           .onClick(() => {
-            // Do not mount the same node to different pages at the same time.
+            // Do not attach the same node to different pages at the same time.
             this.nodeController.attachWeb();
             this.nodeController.rebuild();
           })

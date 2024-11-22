@@ -31,7 +31,7 @@ Web(value: WebOptions)
 
 | 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value        | [WebOptions](#weboptions8)   | 是    | 定义Web选项。 |
+| value        | [WebOptions](#weboptions)   | 是    | 定义Web选项。 |
 
 **示例：**
 
@@ -232,7 +232,7 @@ Web组件指定共享渲染进程。
    </html>
    ```
 
-## WebOptions<sup>8+</sup>
+## WebOptions
 
 通过[接口](#接口)定义Web选项。
 
@@ -240,7 +240,7 @@ Web组件指定共享渲染进程。
 
 | 名称        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
+| src        | string \| [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
@@ -655,7 +655,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)
+设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1003,7 +1003,7 @@ struct WebComponent {
 
 textZoomAtio(textZoomAtio: number)
 
-设置页面的文本缩放百分比，默认为100%。
+设置页面的文本缩放百分比，默认为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1037,7 +1037,7 @@ textZoomAtio(textZoomAtio: number)
 
 textZoomRatio(textZoomRatio: number)
 
-设置页面的文本缩放百分比，默认为100%。
+设置页面的文本缩放百分比，默认为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2190,7 +2190,7 @@ forceDisplayScrollBar(enabled: boolean)
 
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用英文非空字串，不区分大小写。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用ASCII可显示字符。
 
 若指定类型与w3c定义的object或embed标准类型重合，ArkWeb内核将其识别为非同层标签。
 
@@ -2510,7 +2510,7 @@ Web组件自定义软件键盘避让模式。
 
 | 参数名              | 类型                              | 必填   | 说明          |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | 是     | Web软键盘避让模式。<br>默认是WebKeyboardAvoidMode.RESIZE_CONTENT避让行为。|
+| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | 是     | Web软键盘避让模式。<br>默认是WebKeyboardAvoidMode.RESIZE_CONTENT避让行为。<br>嵌套滚动场景下不推荐使用web软键盘避让，包括RESIZE_VISUAL与RESIZE_CONTENT。|
 
 **示例：**
 
@@ -2617,7 +2617,7 @@ struct WebComponent {
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // 用户自定义行为
       console.log("拦截 id：customItem1")
-      return true;// 用户自定义菜单选项返回true、false无影响，推荐返回true
+      return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
       // 用户自定义行为
       console.log("拦截 id：app.string.customItem2")
@@ -2713,9 +2713,9 @@ bindSelectionMenu(elementType: WebElementType, content: CustomBuilder, responseT
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| elementType     | [WebElementType](#webelementtype13)             | 是   | 菜单的类型。   |
+| elementType     | [WebElementType](#webelementtype13枚举说明)             | 是   | 菜单的类型。   |
 | content      | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)     | 是   | 菜单的内容。   |
-| responseType | [WebResponseType](#webresponsetype13)           | 是   | 菜单的响应类型。 |
+| responseType | [WebResponseType](#webresponsetype13枚举说明)           | 是   | 菜单的响应类型。 |
 | options      | [SelectionMenuOptionsExt](#selectionmenuoptionsext13)   | 否   | 菜单的选项。|
 
 **示例：**
@@ -2812,6 +2812,61 @@ struct WebComponent {
   <body>
     <h1>bindSelectionMenu Demo</h1>
     <img src="./img.png" >
+  </body>
+</html>
+```
+
+### blurOnKeyboardHideMode<sup>14+</sup>
+
+blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
+
+设置当软键盘收起时Web元素失焦模式。枚举类型的默认值为SILENT，当用户手动收起软键盘时焦点仍在文本框。可更改为BLUR，当用户手动收起软键盘时，焦点会从文本框转移到Web的body上，文本框失焦。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填   | 说明               |
+| ---- | --------------------------------------- | ---- | ------------------ |
+| mode | [BlurOnKeyboardHideMode](#bluronkeyboardhidemode14枚举说明) | 是    | 设置设置当软键盘收起时Web元素失焦关闭或开启。默认值：BlurOnKeyboardHideMode.SILENT。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State blurMode: BlurOnKeyboardHideMode = BlurOnKeyboardHideMode.BLUR;
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .blurOnKeyboardHideMode(this.blurMode)
+      }
+    }
+  }
+  ```
+
+ 加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>blurOnKeyboardHideMode Demo</h1>
+    <input type="text" id="input_a">
+    <script>
+      const inputElement = document.getElementById('input_a');
+      inputElement.addEventListener('blur', function() {
+        console.log('Input has lost focus');
+      });
+    </script>
   </body>
 </html>
 ```
@@ -3258,7 +3313,7 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
-网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
+网页加载遇到错误时触发该回调。主资源与子资源出错都会回调该接口，可以通过request.isMainFrame来判断是否是主资源报错。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3962,8 +4017,10 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
               headerKey: "Cache-Control",
               headerValue: "no-cache"
             }
+            // 将新元素追加到数组的末尾，并返回数组的新长度。
             let length = this.heads.push(head1);
             length = this.heads.push(head2);
+            console.log('The response header result length is :' + length);
             const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
               this.responseWeb.setResponseHeader(this.heads);
               this.responseWeb.setResponseData(this.webData);
@@ -5587,7 +5644,7 @@ onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
 onControllerAttached(callback: () => void)
 
-当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，且禁止在该事件回调前调用Web组件相关的接口，否则会抛出js-error异常。
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](js-apis-webview.md#zoomin)、[zoomOut](js-apis-webview.md#zoomout)等，可以使用[loadUrl](js-apis-webview.md#loadurl)、[getWebId](js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
@@ -6046,7 +6103,7 @@ onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
                 }
                 let ret = this.nodeController.postEvent(event.touchEvent)
                 if (event.result) {
-                  event.result.setGestureEventResult(ret);
+                  event.result.setGestureEventResult(ret, true);
                 }
                 console.log("embedId = " + event.embedId);
                 console.log("touchType = " + this.eventType);
@@ -7142,7 +7199,7 @@ setResponseCode(code: number): void
 
 | 参数名  | 类型   | 必填   | 说明          |
 | ---- | ------ | ---- | ------------- |
-| code | number | 是   | 要设置的资源响应的状态码。 |
+| code | number | 是   | 要设置的资源响应的状态码。如果该资源以错误结束，请参考[@ohos.web.netErrorList](js-apis-netErrorList.md)设置相应错误码，避免设置错误码为 ERR_IO_PENDING，设置为该错误码可能会导致XMLHttpRequest同步请求阻塞。 |
 
 ### setResponseIsReady<sup>9+</sup>
 
@@ -7460,15 +7517,16 @@ grant(config: ScreenCaptureConfig): void
 
 ### setGestureEventResult<sup>12+</sup>
 
-setGestureEventResult(result: boolean): void
+setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
-| 参数名     | 类型   | 必填   | 说明    |
-| ------- | ------ | ---- | ------- |
-| result | boolean | 是    | 是否消费该手势事件。 |
+| 参数名          | 类型 | 必填  | 说明             |
+| --------------- | -------- | ----  |------- |
+| result          | boolean  | 是    | 是否消费该手势事件。默认值为true。 |
+| stopPropagation<sup>14+</sup>| boolean  | 否   | 是否阻止冒泡，在result为true时生效。默认值为true。 |
 
 **示例：**
 
@@ -8043,6 +8101,7 @@ cancel(): void
 
 ### 创建对象
 
+<!--code_no_check-->
 ```ts
 let webController: WebController = new WebController()
 ```
@@ -9032,7 +9091,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
 
-网页绘制页面最大内容度量信息的回调。
+网页绘制页面度量信息的回调，当网页加载完页面主要内容时会触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9697,7 +9756,7 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | ------ | ------ | ---- | --------------------- |
 | nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | 是 | 提供同层标签的可见性信息。 |
 
-## WebElementType<sup>13+</sup>
+## WebElementType<sup>13+</sup>枚举说明
 
 网页元素信息。
 
@@ -9709,7 +9768,7 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | --------- | -- | ----------------- |
 | IMAGE     | 1 | 网页元素为图像类型。 |
 
-## WebResponseType<sup>13+</sup>
+## WebResponseType<sup>13+</sup>枚举说明
 
 菜单的响应类型。
 
@@ -9727,11 +9786,22 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**参数：**
-
 | 名称           | 类型                                             | 必填    | 说明             |
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | onAppear   | Callback\<void\>   | 否     | 自定义选择菜单弹出时回调。     |
 | onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式, 未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：MenuType.SELECTION_MENU     |
+
+## BlurOnKeyboardHideMode<sup>14+</sup>枚举说明
+
+设置手动收起软键盘时Web元素是否失焦。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称     | 值 | 说明          |
+| ------ | -- | ----------- |
+| SILENT  | 0 | 软键盘收起时web组件失焦功能关闭。 |
+| BLUR | 1 | 软键盘收起时web组件失焦功能开启。 |

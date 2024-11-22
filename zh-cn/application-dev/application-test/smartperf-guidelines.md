@@ -2,9 +2,12 @@
 
 ## 工具简介
 
-SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作简单易用。该工具可以监测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用、整机性能状况。<!--Del-->在开发过程中，会使用到有屏或无屏设备，对此SmartPerf Device提供了两种方式：分别是Device-hap端和Device-daemon端。Device-hap端适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。<!--DelEnd-->Device-daemon端支持shell命令行方式，同时适用于有屏和无屏设备。
+SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作简单易用。该工具可以监测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用、整机性能状况。
+
+<!--Del-->在开发过程中，会使用到有屏或无屏设备，对此SmartPerf Device提供了两种方式：分别是Device-hap端和Device-daemon端。Device-hap端适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。<!--DelEnd-->Device-daemon端支持shell命令行方式，同时适用于有屏和无屏设备。
 
 ### 指标说明
+
 - CPU：每秒读取一次设备节点下CPU大中小核的频点和各核使用率，衡量应用占用CPU资源的情况，占用过多的CPU资源会导致芯片发烫。
 - GPU：每秒读取一次设备节点下GPU的频点和负载信息，衡量应用占用GPU资源的情况，当GPU占用过多时，会导致性能下降，应用程序的运行速度变慢。
 - FPS：应用界面每秒刷新次数，衡量应用画面的流畅度，FPS越高通常表示图像流畅度越好，用户体验也越好。
@@ -28,7 +31,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 <!--Del-->
 
-## SmartPerf Device-hap端执行性能测试
+## SmartPerf Device-hap端
 
 下面的操作步骤和界面内容以RK3568设备为例。
 
@@ -60,9 +63,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 <!--DelEnd-->
 
 <!--RP1-->
-## SmartPerf Device-daemon端执行性能测试
+## SmartPerf Device-daemon端
+<!--RP1End-->
 
-### 基础采集帮助
+### 采集前提
 
 #### 进入shell
 
@@ -84,7 +88,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   #
   ```
 
-#### 执行查看帮助命令
+#### 执行和查看帮助命令
 
 <!--RP3-->
 
@@ -115,7 +119,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     -deviceinfo     get device information
     -server         start a process to listen to the socket message of the start and stop commands
     -clear          clear the process ID
-    -ohtestfps      used by the vilidator to obtain the fps, the collection times can be set
+    -ohtestfps      used by the validator to obtain the fps, the collection times can be set
     -editorServer   start a process to listen to the socket message of the editor
     -recordcapacity get the battery level difference
     --version       get version
@@ -123,7 +127,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     -editor         scenario-based collection identifier, parameter configuration items can be added later
     responseTime   get the page response delay after an application is operated
     completeTime   get the page completion delay after an application is operated
-    fpsohtest      used by the vilidator to obtain the fps
+    fpsohtest      used by the validator to obtain the fps
     example1:
     SP_daemon -N 20 -c -g -t -p -r -net -snapshot -d
     SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot -d
@@ -151,35 +155,25 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ### 基础采集
 
-#### 基础采集命令
-<!--RP1End-->
+#### 通过-N开启采集
 
 | 命令参数   |必选| 说明                   |
 | :-----| :-----| :--------------------- |
-| -N    |是| 设置采集次数(一秒采集一次)    |
+| -N    |是| 设置采集次数，一秒采集一次    |
 | -PKG  |否| 设置包名                |
-| -c    |否| 采集cpu的频点和使用率，设置应用包名：采集整机和应用CPU信息，不设置应用包名：采集整机CPU信息     |
+| -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息 <br>不设置应用包名时，采集整机CPU信息     |
 | -g    |否| 采集gpu的频点和负载信息   |
 | -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名        |
-| -profilerfps |否| 采集当前界面fps          |
 | -t    |否| 采集GPU温度、系统芯片温度           |
-| -r    |否| 采集内存，设置应用包名：采集整机和应用内存信息，不设置应用包名：采集整机内存信息             |
+| -r    |否| 采集内存。<br>设置应用包名时，采集整机和应用内存信息 <br>不设置应用包名时，采集整机内存信息             |
 | -snapshot |否| 屏幕截图             |
 | -net |否| 采集网络速率              |
 | -VIEW |否| 设置图层，需要先获取应用图层名                |
 | -d    |否| 采集DDR                 |
 | -sections|否| 设置分段采集          |
+<!--RP2--><!--RP2End-->
 
-#### 启停采集命令参数
-
-| 命令参数   |必选| 说明                   |
-| :-----|:-----| :--------------------- |
-| -start |是| 开始采集，该命令参数后可添加基础采集命令             |
-| -stop |是| 结束采集，执行后会生成采集报告              |
-
-#### 使用示例
-
-##### 执行基础采集命令
+##### 使用示例
 
 - 采集2次整机CPU大中小核频率、各核使用率
 
@@ -289,7 +283,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
+  >- 使用该命令采集时需进入被测应用内。
 
 - 采集1次整机GPU频率和负载
  
@@ -373,8 +367,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
-  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）
+  >- 使用该命令采集时需进入被测应用内。
+  >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）。
 
 - 采集2次截图
 
@@ -394,13 +388,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 截图采集是2秒截取一次
+  >- 截图采集是2秒截取一次。
   >
-  >- 截图报告存放路径为：data/local/tmp/capture
+  >- 截图报告存放路径为：data/local/tmp/capture。
   >
-  >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图
+  >- 采集结束后：进入 data/local/tmp/capture 查看生成的截图。
   >
-  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\
+  >- 导出截图到D盘：重启一个命令行工具执行命令： hdc file recv data/local/tmp/capture/screenCap_1700725192774.png D:\。
 
 - 采集2次网络速率
 
@@ -440,8 +434,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内，滑动或切换页面
-  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率
+  >- 使用该命令采集时需进入被测应用内，滑动或切换页面。
+  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率。
 
  
 - 采集10次指定图层帧率
@@ -464,11 +458,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- DisplayNode 是指定的图层名
+  >- DisplayNode 是指定的图层名。
   >
-  >- 使用该命令采集时，需在传入的图层上操作页面
+  >- 使用该命令采集时，需在传入的图层上操作页面。
   >
-  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）
+  >- 该命令不能与指定应用帧率一起采集（SP_daemon -N 20 -PKG ohos.samples.ecg -f 或 SP_daemon -N 20 -VIEW DisplayNode -f）。
 
 - 采集1次DDR信息
 
@@ -630,68 +624,20 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   >**说明**
   >
-  >- 使用该命令采集时需进入被测应用内
+  >- 使用该命令采集时需进入被测应用内。
 
-- 采集当前界面fps
 
-  ```
-    # SP_daemon -profilerfps 10
-    set num:10 success
-    fps:0|1711692357278
-    fps:0|1711692358278
-    fps:1|1711692359278
-    fps:0|1711692360278
-    fps:0|1711692361278
-    fps:0|1711692362278
-    fps:0|1711692363278
-    fps:0|1711692364278
-    fps:26|1711692365278
-    fps:53|1711692366278
-    SP_daemon exec finished!
-    #
-  ```
-  >**说明**
-  >
-  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数
-  >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
+#### 通过-start开启采集
 
-- fps分段采集
+先执行start开始采集命令，然后操作设备或应用，最后执行stop结束采集命令。
 
-  ```
-    # SP_daemon -profilerfps 100 -sections 10
-    set num:100 success
-    fps:0|1711692393278
-    fps:0|1711692394278
-    fps:0|1711692395278
-    fps:44|1711692396278
-    sectionsFps:0|1711692396278
-    sectionsFps:0|1711692396378
-    sectionsFps:40|1711692396478
-    sectionsFps:60|1711692396578
-    sectionsFps:60|1711692396678
-    sectionsFps:60|1711692396778
-    sectionsFps:60|1711692396878
-    sectionsFps:40|1711692396978
-    sectionsFps:60|1711692397078
-    sectionsFps:60|1711692397178
-    fps:51|1711692397278
+| 命令参数   |必选| 说明                   |
+| :-----|:-----| :--------------------- |
+| -start |是| 开始采集，该命令参数后可添加基础采集命令，一秒采集一次            |
+| -stop |是| 结束采集，执行后会生成采集报告              |
 
-    ...
-
-    SP_daemon exec finished!
-    #
-  ```
-  >**说明**
-  >
-  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数，10表示分段：目前支持设置 1 - 10（正整数）段采集
-  >
-  >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
-
-##### 执行启停采集命令
-
-- 启停服务
-    
+##### 使用示例
+  
    ```
    开始采集
    # SP_daemon -start -c
@@ -708,17 +654,15 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    ```
    >**说明**
    >
-   >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -r -d -net -snapshot
+   >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -r -d -net -snapshot。
    >
-   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot
+   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot。
    >
-   >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令
-   >
-   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
-   >
-#### 输出和查看采集结果
+   >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考[查看csv采集结果](#查看csv采集结果)。
 
-输出和查看采集结果前，需先执行上述的采集命令。
+#### 查看csv采集结果
+
+若采集结果保存在csv文件中，可以按照如下操作导出和查看结果内容。
 
   - 采集结果默认输出路径：/data/local/tmp/data.csv
 
@@ -756,8 +700,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | cpusoftIrqUsage   | 软中断的使用率         |%| 
     | cpusystemUsage    | 系统/内核态使用率      |%|
     | cpuuserUsage      | 用户态使用率           |%| 
-    | ProcId            | 进程id                ||
-    | ProcAppName       | app包名                || 
+    | ProcId            | 进程id                |-|
+    | ProcAppName       | app包名                |-| 
     | ProcCpuLoad       | 进程CPU负载占比        |%|
     | ProcCpuUsage      | 进程CPU使用率          |%| 
     | ProcUCpuUsage     | 进程用户态CPU使用率     |%|
@@ -797,18 +741,20 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ### 场景化采集
 
-#### 场景化采集命令参数及说明
+<!--RP7-->
+
+除基本采集外，还支持采集响应和完成时延等内容。场景化采集结果不写入data.csv，采集结果直接在命令框显示。
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
 | -editor|是|    场景化采集标识，后可添加参数配置项         |
-| -responseTime|否|    页面切换响应时延         |
-| -completeTime|否|    页面切换完成时延         |
-| -fpsohtest|否|    vilidator用于获取fps，默认采集10次(1秒采集一次)          |
+| -responseTime|否|    响应时延         |
+| -completeTime|否|    完成时延         |
+| -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次       |
 
 #### 使用示例
 
-- 应用的响应时延
+- 应用响应时延
 
   ```
    # SP_daemon -editor responseTime com.ohos.settings 设置
@@ -818,11 +764,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 采集前先进入应用内，在命令回车后切换应用内页面，等待打印采集结果
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 采集前先进入应用内，在命令框回车后切换至应用内页面，等待打印采集结果。
 
-  - 应用的完成时延
+- 应用完成时延
 
   ```
    # SP_daemon -editor completeTime com.ohos.settings 设置
@@ -832,11 +776,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 采集前先进入应用内，在命令回车后切换应用内页面，等待打印采集结果
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 采集前先进入应用内，在命令框回车后切换至应用内页面，等待打印采集结果。
 
-  - vilidator用于获取应用页面的帧率
+- validator获取应用页面帧率
 
   ```
    # SP_daemon -editor fpsohtest
@@ -844,13 +786,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 执行命令后需滑动或切换当前页面，等待10s后打印采集结果
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 执行命令后需滑动或切换当前页面，等待10s后打印采集结果。
+
+<!--RP7End-->
 
 ### 其他采集
 
-#### 其他采集命令参数
+当前设备电量采集结果可写入csv文件，其它命令需单独采集，采集结果不写入data.csv，仅在命令框显示。
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
@@ -858,14 +800,14 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -deviceinfo|否| 获取设备信息              |
 | -server|否|    启停采集用来拉起daemon进程           |
 | -clear|否|    清除所有SP_daemon进程           |
-| -ohtestfps|否|    vilidator用于获取fps，可设置采集次数(1秒采集一次)          |
+| -ohtestfps|否|    validator用于获取fps，可设置采集次数(1秒采集一次)          |
 | -editorServer|否|    editor工具用来拉起daemon进程         |
 | -recordcapacity|否|    获取当前设备电量         |
-<!--RP2--><!--RP2End-->
+| -profilerfps |否| 采集当前界面fps          |
 
 #### 使用示例
 
-  - 获取屏幕分辨率
+- 获取屏幕分辨率
 
   ```
    # SP_daemon -screen
@@ -875,11 +817,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv 
+  >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率。
 
-  - 获取设备信息
+- 获取设备信息
 
   ```
    # SP_daemon -deviceinfo
@@ -903,11 +843,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    command exec finished!
    #
   ```
-  >**说明**
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv 
 
-  - 启动一个进程来监听start和stop命令的socket消息
+- 启动一个进程来监听start和stop命令的socket消息。
 
   ```
    # SP_daemon -server
@@ -921,11 +858,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 可执行pidof SP_daemon查看进程id
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 可执行pidof SP_daemon查看进程id。
 
-  - 清除SP_daemon进程ID
+- 清除SP_daemon进程ID
 
   ```
    # pidof SP_daemon
@@ -940,11 +875,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 可执行pidof SP_daemon查看进程id
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 可执行pidof SP_daemon查看进程id。
 
-  - vilidator用于获取当前页面帧率
+- validator用于获取当前页面帧率
 
   ```
    # SP_daemon -ohtestfps 10
@@ -967,11 +900,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 该条命令里的10表示采集的次数（一秒采集一次），可以设置为其他正整数
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv
+  >- 该条命令里的10表示采集的次数（一秒采集一次），可以设置为其他正整数。
 
-  - 启动一个进程来监听editor工具的socket消息
+
+- 启动一个进程来监听editor工具的socket消息
 
   ```
    # SP_daemon -editorServer
@@ -981,11 +913,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    Socket Process called!
    —
   ```
-  >**说明**
-  >
-  >- 该命令需单独采集，采集结果不写入data.csv
 
-  - 获取电池电量
+
+- 获取电池电量
 
   ```
    # SP_daemon -recordcapacity
@@ -994,6 +924,58 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- recordTime表示时间戳，recordPower表示当前时刻的电量
+  >- recordTime表示时间戳，recordPower表示当前时刻的电量。
   >
-  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地
+  >- 该命令需单独采集，采集结果写入/data/local/tmp/powerLeftRecord.csv，可以使用hdc file recv导出到本地。具体请参考[查看csv采集结果](#查看csv采集结果)。
+
+- 采集当前界面fps
+
+  ```
+    # SP_daemon -profilerfps 10
+    set num:10 success
+    fps:0|1711692357278
+    fps:0|1711692358278
+    fps:1|1711692359278
+    fps:0|1711692360278
+    fps:0|1711692361278
+    fps:0|1711692362278
+    fps:0|1711692363278
+    fps:0|1711692364278
+    fps:26|1711692365278
+    fps:53|1711692366278
+    SP_daemon exec finished!
+    #
+  ```
+  >**说明**
+  >
+  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数。
+
+- fps分段采集
+
+  ```
+    # SP_daemon -profilerfps 100 -sections 10
+    set num:100 success
+    fps:0|1711692393278
+    fps:0|1711692394278
+    fps:0|1711692395278
+    fps:44|1711692396278
+    sectionsFps:0|1711692396278
+    sectionsFps:0|1711692396378
+    sectionsFps:40|1711692396478
+    sectionsFps:60|1711692396578
+    sectionsFps:60|1711692396678
+    sectionsFps:60|1711692396778
+    sectionsFps:60|1711692396878
+    sectionsFps:40|1711692396978
+    sectionsFps:60|1711692397078
+    sectionsFps:60|1711692397178
+    fps:51|1711692397278
+
+    ...
+
+    SP_daemon exec finished!
+    #
+  ```
+  >**说明**
+  >
+  >- 该条命令里的100表示采集的次数（一秒采集一次），可以设置为其他正整数，10表示分段：目前支持设置 1-10（正整数）段采集。

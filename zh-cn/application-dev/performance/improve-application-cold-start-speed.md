@@ -428,8 +428,8 @@ struct Index {
 
 ### 使用延迟加载Lazy-Import减少冷启动冗余文件执行
 
-可以通过延迟加载 [lazy-import](../quick-start/arkts-lazy-import) 延缓对冷启动时暂不执行的冗余文件的加载，而在后续导出变量被真正使用时再同步加载执行文件，节省资源以提高应用冷启动性能。  
-详细使用指导请参考[延迟加载lazy-import使用指导](Lazy-Import-Instructions.md)
+可以通过延迟加载 [lazy-import](../arkts-utils/arkts-lazy-import.md) 延缓对冷启动时暂不执行的冗余文件的加载，而在后续导出变量被真正使用时再同步加载执行文件，节省资源以提高应用冷启动性能。  
+详细使用指导请参考[延迟加载lazy-import使用指导](Lazy-Import-Instructions.md)。
 
 ### 减少多个HSP/HAP对于相同HAR的引用
 
@@ -523,7 +523,7 @@ export let funcResult = func();
 
 在应用启动流程中，系统会执行AbilityStage的生命周期回调函数。因此，不建议在这些回调函数中执行耗时过长的操作，耗时操作建议通过异步任务延迟处理或者放到其他线程执行。
 
-在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[AbilityStage组件容器](../application-models/abilitystage.md)
+在这些生命周期回调里，推荐开发者只做必要的操作，详情可以参考：[AbilityStage组件容器](../application-models/abilitystage.md)。
 
 以下为示例代码：
 

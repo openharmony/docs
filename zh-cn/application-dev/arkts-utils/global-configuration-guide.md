@@ -62,7 +62,7 @@
    export let config = new Config()
    ```
 
-2. 主线程及子线程访问全局配置项。
+2. UI主线程及子线程访问全局配置项。
 
    ```ts
    import { config } from './Config'

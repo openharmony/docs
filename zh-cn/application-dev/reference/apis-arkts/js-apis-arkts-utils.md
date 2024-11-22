@@ -575,6 +575,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 
 ```ts
 import { lang } from '@kit.ArkTS';
+import { collections } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';

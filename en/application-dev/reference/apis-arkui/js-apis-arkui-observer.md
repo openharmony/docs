@@ -23,12 +23,12 @@ Describes the state of the **NavDestination** component.
 
 | Name     | Value | Description                    |
 | --------- | --- | ------------------------ |
-| ON_SHOWN  | 0   | The **NavDestination** component is displayed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11. |
-| ON_HIDDEN | 1   | The **NavDestination** component is hidden.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11. |
+| ON_SHOWN  | 0   | The **NavDestination** component is displayed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.|
+| ON_HIDDEN | 1   | The **NavDestination** component is hidden.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 11.|
 | ON_APPEAR<sup>12+</sup> | 2   | The **NavDestination** component is mounted to the component tree.<br> **Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_DISAPPEAR<sup>12+</sup> | 3   | The **NavDestination** component is unmounted from the component tree.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_WILL_SHOW<sup>12+</sup> | 4   | The **NavDestination** is about to be displayed.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
-| ON_WILL_HIDE<sup>12+</sup> | 5   | The **NavDestination** component is about to be hidden.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12. |
+| ON_WILL_HIDE<sup>12+</sup> | 5   | The **NavDestination** component is about to be hidden.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_WILL_APPEAR<sup>12+</sup>| 6   | The **NavDestination** component is about to be mounted to the component tree.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | The **NavDestination** component is about to be unmounted from the component tree.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | ON_BACKPRESS<sup>12+</sup> | 100   | The back button is pressed on the **NavDestination** component.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
@@ -43,8 +43,8 @@ Enumerates the scroll event types.
 
 | Name     | Value | Description                    |
 | --------- | --- | ------------------------ |
-| SCROLL_START  | 0   | The scroll event starts. |
-| SCROLL_STOP   | 1   | The scroll event ends. |
+| SCROLL_START  | 0   | The scroll event starts.|
+| SCROLL_STOP   | 1   | The scroll event ends.|
 
 ## RouterPageState
 
@@ -83,11 +83,11 @@ Provides information about the **NavDestination** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | ID of the **Navigation** component that contains the target **NavDestination** component. |
-| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | Name of the **NavDestination** component. |
-| state        | [NavDestinationState](#navdestinationstate)        | Yes  | State of the **NavDestination** component. |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | ID of the **Navigation** component that contains the target **NavDestination** component.|
+| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | Name of the **NavDestination** component.|
+| state        | [NavDestinationState](#navdestinationstate)        | Yes  | State of the **NavDestination** component.|
 | index<sup>12+</sup>        | number        | Yes  | Index of the **NavDestination** component in the navigation stack.                  |
 | param<sup>12+</sup>        | Object        | No  | Parameters of the **NavDestination** component.                  |
 | navDestinationId<sup>12+</sup>        | string        | Yes  | Unique ID of the **NavDestination** component.                  |
@@ -100,9 +100,9 @@ Provides information about the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | string | Yes  | ID of the **Navigation** component. |
+| navigationId | string | Yes  | ID of the **Navigation** component.|
 | pathStack         | [NavPathStack](arkui-ts/ts-basic-components-navigation.md#navpathstack10) | Yes  | Routing stack of the **Navigation** component.                  |
 
 ## ScrollEventInfo<sup>12+</sup>
@@ -113,7 +113,7 @@ Provides the scroll event information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | id           | string                                             | Yes  | ID of the scrollable component.                              |
 | uniqueId           | number                                             | Yes  | Unique ID of the scrollable component.                              |
@@ -128,7 +128,7 @@ Describes the observer options.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                        |
+| Name        | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | id           | string                                             | Yes  | Component ID.                              |
 
@@ -140,9 +140,9 @@ Provides the information about a page during routing.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                | Type                                                        | Mandatory | Description                                          |
+| Name                | Type                                                        | Mandatory| Description                                          |
 | -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context of the router page that invokes the lifecycle callback. |
+| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context of the router page that invokes the lifecycle callback.|
 | index                | number                                                       | Yes  | Position of the router page that invokes the lifecycle callback, in the navigation stack.        |
 | name                 | string                                                       | Yes  | Name of the page that invokes the lifecycle callback.          |
 | path                 | string                                                       | Yes  | Path of the page that invokes the lifecycle callback.          |
@@ -157,9 +157,9 @@ Provides the information contained in the callback when the screen pixel density
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type                                     | Mandatory | Description                                  |
+| Name   | Type                                     | Mandatory| Description                                  |
 | ------- | ----------------------------------------- | ---- | -------------------------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context corresponding to the page when the screen pixel density changes. |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context corresponding to the page when the screen pixel density changes.|
 | density | number                                    | Yes  | Screen pixel density after the change.                |
 
 ## NavDestinationSwitchInfo<sup>12+</sup>
@@ -170,12 +170,12 @@ Provides the information about page switching of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                         |
+| Name        | Type                                              | Mandatory| Description                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information corresponding to **Navigation** component that triggers page switching. |
+| context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information corresponding to **Navigation** component that triggers page switching.|
 | from         | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | Yes  | Source page for page switching.        |
 | to           | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | Yes  | Destination page for page switching.        |
-| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11) | Yes  | Page switching operation type.        |
+| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11)| Yes  | Page switching operation type.        |
 
 ## NavDestinationSwitchObserverOptions<sup>12+</sup>
 
@@ -185,9 +185,9 @@ Provides the observer options for the page switching event of the **Navigation**
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                         |
+| Name        | Type                                              | Mandatory| Description                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | ID of the target **Navigation** component. |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | Yes  | ID of the target **Navigation** component.|
 
 ## TabContentInfo<sup>12+</sup>
 
@@ -197,7 +197,7 @@ Provides the **TabContent** switching information.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                              | Mandatory | Description                                         |
+| Name        | Type                                              | Mandatory| Description                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | tabContentId | string                                             | Yes  | ID of the **TabContent** component.                         |
 | tabContentUniqueId | number                                       | Yes  | Unique ID of the **TabContent** component.                   |
@@ -215,11 +215,11 @@ Subscribes to status changes of the **NavDestination** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                                    |
+| Name  | Type                                                 | Mandatory| Description                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component. |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component.|
 | callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **NavDestination** component.                            |
 
 **Example**
@@ -240,11 +240,11 @@ Unsubscribes from status changes of the **NavDestination** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                                    |
+| Name  | Type                                                 | Mandatory| Description                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component. |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component.|
 | callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | No  | Callback used to return the current state of the **NavDestination** component.                            |
 
 **Example**
@@ -263,11 +263,11 @@ Subscribes to status changes of the **NavDestination** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                                | Mandatory | Description                                                                    |
+| Name  | Type                                                                | Mandatory| Description                                                                    |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component. |
+| type     | string                                                               | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component.|
 | options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **Navigation** component that contains the target **NavDestination** component.                                              |
 | callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\>                | Yes  | Callback used to return the current state of the **NavDestination** component.                            |
 
@@ -289,11 +289,11 @@ Unsubscribes from status changes of the **NavDestination** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                                | Mandatory | Description                                                                    |
+| Name  | Type                                                                | Mandatory| Description                                                                    |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| type     | string                                                               | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component. |
+| type     | string                                                               | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the status change event of the **NavDestination** component.|
 | options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the **Navigation** component that contains the target **NavDestination** component.                                              |
 | callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\>                | No  | Callback used to return the current state of the **NavDestination** component.                            |
 
@@ -313,9 +313,9 @@ Subscribes to the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                                    |
+| Name  | Type                                                 | Mandatory| Description                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.                  |
 | callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | Yes  | Callback used to return the Callback used to return the information about the scroll event.                                          |
@@ -334,9 +334,9 @@ Unsubscribes from the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                                                                    |
+| Name  | Type                                                 | Mandatory| Description                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.                  |
 | callback | Callback\<[ScrollEventInfo](#scrolleventinfo12)\>       | No  | Callback used to return the Callback used to return the information about the scroll event.                                          |
@@ -355,9 +355,9 @@ Subscribes to the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                                | Mandatory | Description                                                                    |
+| Name  | Type                                                                | Mandatory| Description                                                                    |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                               | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.                  |
 | options  | [ObserverOptions](#observeroptions12)                                  | Yes  | ID of the target scrollable component.                                                |
@@ -377,9 +377,9 @@ Unsubscribes from the start and end of a scroll event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                                | Mandatory | Description                                                                    |
+| Name  | Type                                                                | Mandatory| Description                                                                    |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                               | Yes  | Event type. The value **'scrollEvent'** indicates the start and end of a scroll event.                  |
 | options  | [ObserverOptions](#observeroptions12)                                  | Yes  | ID of the target scrollable component.                                                |
@@ -394,11 +394,11 @@ import { uiObserver as observer } from '@kit.ArkUI'
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: observer.ObserverOptions = { id:"testId" };
+  options: observer.ObserverOptions = { id: "testId" };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
-    Row() {
+    Column() {
       Column() {
         Scroll(this.scroller) {
           Column() {
@@ -460,12 +460,12 @@ Subscribes to state changes of the page during routing.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing. |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | Yes  | Callback used to return the If **pageInfo** is passed, the current page state is returned.                |
 
 **Example**
@@ -514,12 +514,12 @@ Unsubscribes to state changes of the page during routing.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing. |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | No  | Callback to be unregistered.                |
 
 **Example**
@@ -559,12 +559,12 @@ Subscribes to the pixel density changes of the screen.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen. |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen.|
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[DensityInfo](#densityinfo12)\>        | Yes  | Callback used to return the screen pixel density after the change.                |
 
 **Example**
@@ -608,13 +608,13 @@ Unsubscribes from the pixel density changes of the screen.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                     | Mandatory | Description                                                                                          |
+| Name  | Type                                     | Mandatory| Description                                                                                          |
 | -------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------------------------- |
 | type     | string                                    | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen.                                         |
 | context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                                                            |
-| callback | Callback\<[DensityInfo](#densityinfo12)\> | No  | Callback to be unregistered. If this parameter is not specified, this API unregisters all callbacks for the **densityUpdate** event under the current UI context. |
+| callback | Callback\<[DensityInfo](#densityinfo12)\> | No  | Callback to be unregistered. If this parameter is not specified, this API unregisters all callbacks for the **densityUpdate** event under the current UI context.|
 
 ```ts
 import { uiObserver as observer, UIContext } from '@kit.ArkUI';
@@ -660,12 +660,12 @@ Subscribes to the dispatch of drawing instructions in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur. |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for. |
+| type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur.|
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<void\>        | Yes  | Callback used to return the                |
 
 **Example**
@@ -700,11 +700,11 @@ Unsubscribes from the dispatch of drawing instructions in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                     | Mandatory | Description                                                 |
+| Name  | Type                                     | Mandatory| Description                                                 |
 | -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
-| type     | string                                    | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur. |
+| type     | string                                    | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur.|
 | context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                   |
 | callback | Callback\<void\>   | No  | Callback to be unregistered.                               |
 
@@ -743,12 +743,12 @@ Subscribes to layout completion status in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed. |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed.|
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<void\>        | Yes  | Callback used to return the                |
 
 **Example**
@@ -783,11 +783,11 @@ Unsubscribes from layout completion status in each frame.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                     | Mandatory | Description                                                 |
+| Name  | Type                                     | Mandatory| Description                                                 |
 | -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
-| type     | string                                    | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed. |
+| type     | string                                    | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed.|
 | context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                   |
 | callback | Callback\<void\>   | No  | Callback to be unregistered.                               |
 
@@ -826,12 +826,12 @@ Subscribes to the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
 **Example**
@@ -952,12 +952,12 @@ Unsubscribes from the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 
 **Example**
@@ -974,12 +974,12 @@ Subscribes to the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
@@ -1102,12 +1102,12 @@ Unsubscribes from the page switching event of the **Navigation** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component. |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for. |
+| type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 
@@ -1125,12 +1125,12 @@ Subscribes to the **TabContent** switching event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | Yes  | Callback used to return the information about the **TabContent** switching event. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | Yes  | Callback used to return the information about the **TabContent** switching event.|
 
 **Example**
 
@@ -1191,12 +1191,12 @@ Unsubscribes from the **TabContent** switching event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | No  | Callback to be unregistered. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | No  | Callback to be unregistered.|
 
 **Example**
 
@@ -1212,13 +1212,13 @@ Subscribes to the **TabContent** switching event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| options  | [ObserverOptions](#observeroptions12)                        | Yes  | ID of the target **Tabs** component. |
-| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | Yes  | Callback used to return the information about the **TabContent** switching event. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| options  | [ObserverOptions](#observeroptions12)                        | Yes  | ID of the target **Tabs** component.|
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | Yes  | Callback used to return the information about the **TabContent** switching event.|
 
 **Example**
 
@@ -1279,15 +1279,14 @@ Unsubscribes from the **TabContent** switching event.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event. |
-| options  | [ObserverOptions](#observeroptions12)                        | Yes  | ID of the target **Tabs** component. |
-| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | No  | Callback to be unregistered. |
+| type     | string                                                       | Yes  | Event type. The value **'tabContentUpdate'** indicates the **TabContent** switching event.|
+| options  | [ObserverOptions](#observeroptions12)                        | Yes  | ID of the target **Tabs** component.|
+| callback | Callback\<[TabContentInfo](#tabcontentinfo12)\>              | No  | Callback to be unregistered.|
 
 **Example**
 
 See the example of [observer.on('tabContentUpdate')](#observerontabcontentupdate12-1).
-<!--no_check-->

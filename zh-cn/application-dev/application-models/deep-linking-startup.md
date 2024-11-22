@@ -1,17 +1,20 @@
 # 使用Deep Linking实现应用间跳转
 
-采用Deep Linking进行跳转时，系统会根据接口中传入的uri信息，按照[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)在本地已安装的应用中，寻找到符合URL skill配置的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
-
-
+采用Deep Linking进行跳转时，系统会根据接口中传入的uri信息，在本地已安装的应用中寻找到符合条件的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
 
 ## 实现原理
 
 Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标应用。隐式Want的uri匹配规则详见[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)。
 
 
-## 目标应用在配置文件中注册URL skill
+## 目标应用配置module.json5文件
 
-为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中声明URL skill。其中，uri字段的scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
+为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[skills标签](../quick-start/module-configuration-file.md#skills标签)。其中，uri字段的scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
+
+> **说明：**
+> 
+> Deep Linking中的scheme取值通常不为https、http、file，否则会拉起默认的系统浏览器。
+
 
 配置示例如下：
 
@@ -57,10 +60,9 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 示例代码如下：
 
 ```ts
-import { common } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { common, OpenLinkOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[UIAbilityComponentsOpenLink]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -97,16 +99,15 @@ struct Index {
 
 ### 使用startAbility实现应用跳转
 
-[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动时，还需要自己传入待匹配的action和entity。
+[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动时，还需要调用方传入待匹配的action和entity。
 
 
 示例代码如下：
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[UIAbilityComponentsOpenLink]';
 const DOMAIN_NUMBER: number = 0xFF00;

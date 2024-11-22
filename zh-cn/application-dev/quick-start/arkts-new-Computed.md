@@ -29,7 +29,7 @@ get varName(): T {
 | 从父组件初始化      | 禁止。 |
 | 可初始化子组件      | \@Param  |
 | 被执行的时机        | \@ComponentV2被初始化时，计算属性会被触发计算。当被计算的值改变的时候，计算属性也会发生计算。 |
-|是否允许赋值         | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](##使用限制)。|
+|是否允许赋值         | @Computed装饰的属性是只读的，不允许赋值，详情见[使用限制](#使用限制)。 |
 
 ## 使用限制
 
@@ -55,7 +55,7 @@ get varName(): T {
   }
   ```
 
-- \@Computed不能和双向绑定!!连用，\@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效。
+- \@Computed不能和双向绑定!!连用，\@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效，且产生运行时报错。
 
   ```ts
   @ComponentV2
@@ -81,7 +81,7 @@ get varName(): T {
       return this.count * 2;
     }
   
-    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效
+    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效，且产生运行时报错
     set double(newValue : number) {
       this.count = newValue / 2;
     }

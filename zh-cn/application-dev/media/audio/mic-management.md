@@ -53,14 +53,14 @@
    ```ts
    // 设置麦克风静音，入参为true
    async function setMicrophoneMuteTrue() {
-     await audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
+     await audioVolumeGroupManager.setMicMute(true).then(() => {
        console.info('setMicrophoneMute to mute.');
      });
    }
 
    // 取消麦克风静音，入参为false
    async function setMicrophoneMuteFalse() {
-     await audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
+     await audioVolumeGroupManager.setMicMute(false).then(() => {
        console.info('setMicrophoneMute to not mute.');
      });
    }
@@ -99,7 +99,7 @@
    // 设置麦克风静音
    async function setMicrophoneMuteTrue() {
      await loadVolumeGroupManager();
-     await audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
+     await audioVolumeGroupManager.setMicMute(true).then(() => {
        console.info('setMicrophoneMute to mute.');
      });
    }
@@ -107,7 +107,7 @@
    // 取消麦克风静音
    async function setMicrophoneMuteFalse() {
      await loadVolumeGroupManager();
-     await audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
+     await audioVolumeGroupManager.setMicMute(false).then(() => {
        console.info('setMicrophoneMute to not mute.');
      });
    }

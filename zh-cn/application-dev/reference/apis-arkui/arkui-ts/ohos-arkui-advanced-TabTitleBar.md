@@ -34,8 +34,6 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | 是 | - | 左侧页签项目列表，定义标题栏左侧的页签项目。 |
@@ -54,7 +52,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isEnabled | boolean | 否 | 是否启用。默认禁用。true：启用，false：禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## TabTitleBarTabItem
@@ -79,6 +77,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 ```ts
 import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
+//定义标题栏左侧的页签项目类
 class tabItem {
   title: ResourceStr;
   icon?: ResourceStr;
@@ -88,6 +87,7 @@ class tabItem {
   }
 }
 
+//定义标题栏右侧菜单项目接口
 interface menuItem {
   value: ResourceStr;
   isEnabled?: boolean;
@@ -98,6 +98,7 @@ interface menuItem {
 @Component
 struct Index {
   @Builder
+  //定义页签列表关联的页面
   componentBuilder() {
     Text("#1ABC9C\nTURQUOISE")
       .fontWeight(FontWeight.Bold)
@@ -136,7 +137,9 @@ struct Index {
       .backgroundColor("#3498DB")
   }
 
+  //定义几个左侧的页签项目
   private readonly tabItems: Array<tabItem> = [new tabItem('页签1'),new tabItem('页签2'),new tabItem('页签3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('页签4')]
+  //定义几个右侧的菜单项目
   private  readonly menuItems: Array<menuItem> = [
     {
       value: $r('app.media.ic_public_reduce'),
@@ -155,6 +158,7 @@ struct Index {
     },
   ]
 
+  //TabTitleBar效果展示
   build() {
     Row() {
       Column() {

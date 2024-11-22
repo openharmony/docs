@@ -9,7 +9,7 @@
   - [在新窗口中打开页面](web-open-in-new-window.md)
   - [管理位置权限](web-geolocation-permission.md)
   - [使用隐私模式](web-incognito-mode.md)
-  - [使用运动和方向传感器](web-sensor.md)
+  - [使用运动和方向传感器监测设备状态](web-sensor.md)
 - Web渲染和布局
   - [Web渲染模式](web-render-mode.md)
   - [使用Web组件大小自适应页面内容布局](web-fit-content.md)
@@ -34,7 +34,7 @@
   - [拦截Web组件发起的网络请求](web-scheme-handler.md)
   - [自定义页面请求响应](web-resource-interception-request-mgmt.md)
   - [加速Web页面的访问](web-predictor.md)
-  - [Web前进后退缓存](web-set-back-forward-cache.md)
+  - [设置Web组件前进后退缓存](web-set-back-forward-cache.md)
   - [Web组件在不同窗口间迁移](web-component-migrate.md)
 - 管理网页文件上传与下载
   - [上传文件](web-file-upload.md)

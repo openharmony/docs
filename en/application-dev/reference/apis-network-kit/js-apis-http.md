@@ -224,6 +224,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 > **NOTE**
 > This API supports only receiving of data not greater than 5 MB.
+>
+> If you need to pass in cookies, add them to the **options** parameter.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -330,6 +332,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 > **NOTE**
 > This API supports only receiving of data not greater than 5 MB.
+>
+> If you need to pass in cookies, add them to the **options** parameter.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1093,7 +1097,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially. If the specified type is **Object**, the value can contain a maximum of 65536 characters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**. The cache takes effect with the current process. The new cache will replace the old one.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | priority<sup>9+</sup>        | number                          | No  | Priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value range is [1,1000]. The default value is **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
-| header                       | Object                          | No  | HTTP request header. The default value is **{'content-Type': 'application/json'}**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| header                       | Object                          | No  | HTTP request header. If the request method is POST, PUT, DELETE, or null, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                            |
@@ -1184,7 +1188,7 @@ Defines the response to an HTTP request.
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | Yes  | Type of the return value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                          |
 | responseCode         | [ResponseCode](#responsecode) \| number      | Yes  | Result code for an HTTP request. If the callback function is successfully executed, a result code defined in [ResponseCode](#responsecode) will be returned. Otherwise, an error code will be returned in the **err** field in **AsyncCallback**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | header               | Object                                       | Yes  | Response header. The return value is a string in JSON format. If you want to use specific content in the response, you need to implement parsing of that content. Common fields and parsing methods are as follows:<br>- content-type: header['content-type'];<br>- status-line: header['status-line'];<br>- date: header.date/header['date'];<br>- server: header.server/header['server'];<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| cookies<sup>8+</sup> | string                                       | Yes  | Cookies returned by the server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                      |
+| cookies<sup>8+</sup> | string                                       | Yes  | Original cookies returned by the server. How to process the cookies is up to your decision.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
 | performanceTiming<sup>11+</sup> | [PerformanceTiming](#performancetiming11) | Yes| Time consumed in each phase of an HTTP request.|
 
 ## ClientCert<sup>11+</sup>

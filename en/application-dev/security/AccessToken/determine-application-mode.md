@@ -1,4 +1,4 @@
-# Workflow for Using Permissions
+# Workflow for Requesting Permissions
 
 You need to determine whether your application needs related permissions before accessing data or performing an operation. If permissions are required, you must request the permissions in the application installation package.
 

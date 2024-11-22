@@ -18,7 +18,7 @@
 - 单个\@Monitor装饰器能够同时监听多个属性的变化，当这些属性在一次事件中共同变化时，只会触发一次\@Monitor的回调方法。
 - \@Monitor装饰器具有深度监听的能力，能够监听嵌套类、多维数组、对象数组中指定项的变化。对于嵌套类、对象数组中成员属性变化的监听要求该类被\@ObservedV2装饰且该属性被\@Trace装饰。
 - 在继承类场景中，可以在父子组件中对同一个属性分别定义\@Monitor进行监听，当属性变化时，父子组件中定义的\@Monitor回调均会被调用。
-- 和[\@Watch装饰器](arkts-watch.md)类似，开发者需要自己定义回调函数，区别在于\@Watch装饰器将函数名作为参数，而\@Monitor直接装饰回调函数。\@Monitor与\@Watch的对比可以查看[\@Monitor与\@Watch的对比](#\@Monitor与\@Watch对比)。
+- 和[\@Watch装饰器](arkts-watch.md)类似，开发者需要自己定义回调函数，区别在于\@Watch装饰器将函数名作为参数，而\@Monitor直接装饰回调函数。\@Monitor与\@Watch的对比可以查看[\@Monitor与\@Watch的对比](#monitor与watch对比)。
 
 ## 状态管理V1版本\@Watch装饰器的局限性
 
@@ -797,7 +797,7 @@ message change from initialized to Index aboutToAppear
 message change from Index aboutToAppear to Index click to change message
 ```
 
-类中定义的\@Monitor随着类的销毁失效。而由于类的实际销毁释放依赖于垃圾回收机制，因此会出现即使所在自定义组件已经销毁，类确还未及时销毁，导致类中定义的\@Monitor仍在监听变化的情况。
+类中定义的\@Monitor随着类的销毁失效。而由于类的实际销毁释放依赖于垃圾回收机制，因此会出现即使所在自定义组件已经销毁，类却还未及时销毁，导致类中定义的\@Monitor仍在监听变化的情况。
 
 ```ts
 @ObservedV2
@@ -1041,8 +1041,8 @@ struct Index {
     Column() {
       Button("change age&name")
         .onClick(() => {
-          this.age = 25; // 同时改变状态变量age和非状态变量name
-          this.name = "Johny";
+          this.info.age = 25; // 同时改变状态变量age和非状态变量name
+          this.info.name = "Johny";
         })
     }
   }
@@ -1080,8 +1080,8 @@ struct Index {
     Column() {
       Button("change age&name")
         .onClick(() => {
-          this.age = 25; // 状态变量age改变
-          this.name = "Johny";
+          this.info.age = 25; // 状态变量age改变
+          this.info.name = "Johny";
         })
     }
   }
@@ -1111,7 +1111,7 @@ struct Index {
     Column() {
       Button("change age")
         .onClick(() => {
-          this.age = 25; // 状态变量age改变
+          this.info.age = 25; // 状态变量age改变
         })
     }
   }
@@ -1146,7 +1146,7 @@ struct Index {
     Column() {
       Button("change age")
         .onClick(() => {
-          this.age = 25; // 状态变量age改变
+          this.info.age = 25; // 状态变量age改变
         })
     }
   }
@@ -1173,7 +1173,7 @@ struct Index {
     Column() {
       Button("change age")
         .onClick(() => {
-          this.age = 25; // 状态变量age改变
+          this.info.age = 25; // 状态变量age改变
         })
     }
   }
