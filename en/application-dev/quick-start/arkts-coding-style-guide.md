@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Based on the language characteristics of ArkTS, as well as industry standards and practices, this guide provides coding guidelines to improve code specifications, security, and performance.
+Based on the language characteristics of ArkTS, as well as industry standards and practices, this guide provides coding guidelines to improve code standardization, security, and performance.
 
 This guide is applicable when you use ArkTS for coding during system or application development.
 
 ## Source
 
-ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some guidelines in this topic are extracted from [TypeScript and JavaScript Coding Style Guide](https://gitee.com/openharmony/docs/tree/master/en/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md). New guidelines are defined for ArkTS-specific syntax to improve code readability and execution performance.
+ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some rules in this topic are selected from the [TypeScript and JavaScript Coding Style Guide](https://gitee.com/openharmony/docs/tree/master/en/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md), providing standards for ArkTS-specific syntax to improve code readability and execution performance.
 
 ## Document Structure
 
@@ -26,18 +26,18 @@ Guidelines in **TypeScript and JavaScript Coding Style Guide** that are involved
 
 |  Term  | Acronym/Abbreviation | Description|
 |  ----  | ----  |  ----|
-| ArkTS  | -| ArkTS programming language|
+| ArkTS  | N/A| ArkTS programming language|
 | TypeScript  | TS | TypeScript programming language|
 | JavaScript  | JS | JavaScript programming language|
-| ESObject  | -| JS/TS object in ArkTS cross-language calls|
+| ESObject  | N/A| JS/TS object in ArkTS cross-language calls|
 
-## Conventions
+## Principle
 
 Guidelines are categorized as follows:
 
 **Rule**: a convention that must be complied with. All contents in this document are for ArkTS.
 
-**Recommendation**: a convention that must be taken into consideration.
+**Recommendation**: a convention that must be considered.
 
 ## Naming
 
@@ -57,7 +57,6 @@ A well-named identifier meets the following basic requirements:
 **[Description]**
 
 Classes are named in upper camel case.
-
 Class names are usually nouns or noun phrases, for example, Person, Student, and Worker. Avoid verbs and ambiguous words like Data and Info in class names.
 
 **[Correct Example]**
@@ -100,19 +99,13 @@ namespace Base64Utils {
 **[Description]**
 
 A method is usually named as a verb or verb phrase in lower camel case. Examples are as follows:
-- load + attributeName()
-
-- put + attributeName()
-
-- is + BooleanAttributeName()
-
-- has + noun/adjective()
-
-- verb()
-
-- verb + object()
-
-  A variable name is usually a noun or noun phrase in lower camel case.
+1.   load + attributeName()
+2.   put + attributeName()
+3.   is + BooleanAttributeName()
+4.   has + noun/adjective()
+5.   verb()
+6.   verb + object()
+A variable name is usually a noun or noun phrase in lower camel case.
 
 **[Correct Example]**
 ```
@@ -135,7 +128,7 @@ function findUser(userName: string) {
 
 **[Description]**
 
-A constant name must consist of uppercase letters separated by underscores `_`. A constant name should express complete semantics whenever possible.
+A constant name must consist of uppercase letters separated by underscores (_). A constant name should express complete semantics whenever possible.
 
 **[Correct Example]**
 
@@ -154,7 +147,7 @@ enum UserType {
 
 **[Description]**
 
-Add affirmative prefixes, such as is, has, can, and should, to local Boolean variables. It is confusing when a logical NOT operator is used in a double negative phrase, for example, !isNotError. Therefore, avoid defining negative Boolean variable names.
+It is recommended that a local variable of the Boolean type be prefixed with a meaningless expression, for example, is, has, can, or should. It is confusing when a logical NOT operator is used in a double negative phrase, for example, !isNotError. Therefore, avoid defining negative Boolean variable names.
 
 **[Incorrect Example]**
 
@@ -234,21 +227,19 @@ function test(dataSource: DataSource[]) {
 
 **[Description]**
 
-For readability, code lines should no be too long.
+The code line width should not be too long. Otherwise, it is difficult to read.
 
 The line width requirement encourages you to shorten method and variable names, reduce nesting, and write concise comments to improve code readability.
-
 It is recommended that each line contain no more than 120 characters unless a longer line can significantly improve the code readability and no information is hidden.
-
 Exception: If a one-line comment contains a command or URL of more than 120 characters, you can keep the line for ease in using copy, paste, and search with the **grep** command. Put the error information of preprocessor directives in one line to facilitate reading and understanding even if the line contains more than 120 characters.
 
-## Use Braces in Conditional Statements and Loop Statements
+### Use Braces in Conditional Statements and Loop Statements
 
 **[Category]** Recommendation
 
 **[Description]**
 
-It is a best practice to add braces `{}` to the execution body of statements such as `if`, `for`, `do`, and `while`, because omitting the braces can cause errors and reduce code clarity.
+It is a best practice to add braces ({}) to the execution body of statements such as **if**, **for**, **do**, and **while**, because omitting the braces can cause errors and reduce code clarity.
 
 **[Incorrect Example]**
 
@@ -272,13 +263,13 @@ for (let idx = 0; idx < 5; ++idx) {
 }
 ```
 
-### Indent the `case` or `default` Statement in a `switch` Statement Block
+### Indent the case or default Statement in a switch Statement Block
 
 **[Category]** Recommendation
 
 **[Description]**
 
-Use two spaces to indent the `case` or `default` statement in a `switch` statement block. Use two spaces to indent the line feed statement after the switch label.
+Use two spaces to indent the case or default statement in a switch statement block. Use two spaces to indent the line feed statement after the switch label.
 
 **[Correct Example]**
 
@@ -304,7 +295,6 @@ switch (condition) {
 **[Description]**
 
 When a statement is too long or difficult to read, start a new line at a proper position.
-
 During line breaking, always place operators at the end of lines, indicating that the operations are to be continued. This is also the default configurations of typical formatting tools.
 
 **[Correct Example]**
@@ -324,8 +314,7 @@ if (userCount > MAX_USER_COUNT ||
 **[Description]**
 
 Each statement should declare only one variable.
-
-In this way, it is easier to add variable declarations and can avoid errors, because you do not need to consider changing `;` to `,`. It is also easier for the debugger to debug variables one by one, rather than skipping all variables at a time.
+In this way, it is easier to add variable declarations and can avoid errors, because you do not need to consider changing a semicolon (;) to a comma (,). It is also easier for the debugger to debug variables one by one, rather than skipping all variables at a time.
 
 **[Incorrect Example]**
 
@@ -351,17 +340,17 @@ let pointY = 0;
 **[Description]**
 
 Use spaces to highlight keywords and important information. The general recommendations are as follows:
-- Add a space between keywords such as `if`, `for`, `while`, and `switch` and the open parentheses `(`.
-- Do not add a space between the method name and the open parentheses `(` of the parameter list when defining or calling the method.
-- Add a space between the keyword `else` or `catch` and the close brace `}`.
-- Add a space before the open brace `{`, except when:
-  a. The open brace is used as the first parameter of a method or the first element in an array, for example, `foo({ name: 'abc' })`
-  b. The open brace is used in a template name, for example, `abc${name}`
-- Add a space before and after each binary operator (`+`, `-`, `*`, `=`, `<`, `>`, `<=`, `>=`, `===`, `!==`, `&&`, `||`) and ternary operator (`?`, `:`).
-- Add a space after the comma in array initialization and the comma between multiple parameters in a method.
-- Do not add a space before a comma `,` or semicolon `;`.
-- Do not add spaces inside the square brackets `[]` of an array.
-- Do not contain multiple consecutive spaces. It is a bad practice if consecutive spaces in a line are not used for indentation.
+1.   Add a space between keywords such as **if**, **for**, **while**, and **switch** and the open parentheses.
+2.   Do not add a space between the method name and the open parentheses of the parameter list when defining or calling the method.
+3.   Add a space between the keyword **else** or **catch** and the close brace (}).
+4.   Add a space before the open brace ({), except when:
+a. The open brace is used as the first parameter of a method or the first element in an array, for example, **foo({ name: 'abc' })**.
+b. The open brace is used in a template name, for example, **abc${name}**.
+5.   Spaces are added before and after the binary operator (+, -, *, =, <, >, <=, >=, ===, !==, &&, ||). Spaces are added on both sides of the ternary operator (?, :).
+6.   Add a space after the comma in array initialization and the comma between multiple parameters in a method.
+7.   Do not add a space before a comma (,) or semicolon (;).
+8.   Do not add spaces inside the square brackets ([]) of an array.
+9.   Do not contain multiple consecutive spaces. It is a bad practice if consecutive spaces in a line are not used for indentation.
 
 **[Incorrect Example]**
 
@@ -427,8 +416,8 @@ bar('attr', {  // There is a space before the open brace.
 **[Correct Example]**
 
 ```
-const arr = [1, 2, 3]; // There is a space after the comma during array initialization. There is no space before the comma.
-myFunc(bar, foo, baz); // There is a space after the comma between multiple parameters of a method. There is no space before the comma.
+const arr = [1, 2, 3];  // There is a space after the comma during array initialization. There is no space before the comma.
+myFunc(bar, foo, baz);  // There is a space after the comma between multiple parameters of a method. There is no space before the comma.
 ```
 
 ### Use Single Quotation Marks for Strings
@@ -498,13 +487,13 @@ let obj: I = {
 }
 ```
 
-### Put `else` or `catch` in the Same Line as the Close Parenthesis `)` of the `if` or `try` Code Block
+### Put else or catch in the Same Line as the Close Parenthesis of the if or try Code Block
 
 **[Category]** Recommendation
 
 **[Description]**
 
-In conditional statements, place `else` in the same line as the close parenthesis `)` of the `if` code block. Similarly, in exception handling statements, place `catch` in the same line as the close parenthesis `)` of the `try` code block.
+In conditional statements, place **else** in the same line as the close parenthesis of the **if** code block. Similarly, in exception handling statements, place **catch** in the same line as the close parenthesis of the **try** code block.
 
 **[Incorrect Example]**
 
@@ -550,13 +539,13 @@ try {
 }
 ```
 
-### Put the Open Brace `{` and the Statement in the Same Line
+### Put the Open Brace and the Statement in the Same Line
 
 **[Category]** Recommendation
 
 **[Description]**
 
-Follow a consistent style of using braces in the project. You are advised to put the open brace `{` and the control or declaration statement in the same line.
+Follow a consistent style of using braces in the project. You are advised to put the open brace ({) and the control or declaration statement in the same line.
 
 **[Incorrect Example]**
 
@@ -583,7 +572,7 @@ function foo() {
 
 **[Description]**
 
-In ArkTS, the accessible modifiers `private`, `protected`, and `public` are provided. The default accessible modifier of an attribute is `public`. Selecting appropriate accessible modifiers can improve code security and readability. Note: If a class contains the `private` attribute, the class cannot be initialized through object literals.
+In ArkTS, the accessible modifiers **private**, **protected**, and **public** are provided. The default accessible modifier of an attribute is **public**. Selecting appropriate accessible modifiers can improve code security and readability. Note: If a class contains the **private** attribute, the class cannot be initialized through object literals.
 
 **[Incorrect Example]**
 
@@ -633,17 +622,15 @@ const num = 2.0;
 const num = -0.7;
 ```
 
-### Use `Number.isNaN()` to Check Whether a Variable Is `Number.NaN`
+### Use Number.isNaN() to Check Whether a Variable Is Number.NaN
 
 **[Category]** Rule
 
 **[Description]**
 
-In ArkTS, `Number.NaN` is a particular value of a numeric data type. It represents a non-numeric value in the double-precision 64-bit format, as defined in the IEEE floating-point standard.
-
-`Number.NaN` is unique in ArkTS because it is not equal to any value, including itself. Therefore, the result of comparison with `Number.NaN` is confusing, as the values of `Number.NaN !== Number.NaN` and `Number.NaN != Number.NaN` are both `true`.
-
-Therefore, you must use `Number.isNaN()` to check whether a value is `Number.NaN`.
+In ArkTS, **Number.NaN** is a particular value of a numeric data type. It represents a non-numeric value in the double-precision 64-bit format, as defined in the IEEE floating-point standard.
+**Number.NaN** is unique in ArkTS because it is not equal to any value, including itself. Therefore, the result of comparison with **Number.NaN** is confusing, as the values of **Number.NaN !== Number.NaN** and **Number.NaN != Number.NaN** are both **true**.
+Therefore, you must use **Number.isNaN()** to check whether a value is **Number.NaN**.
 
 **[Incorrect Example]**
 
@@ -669,13 +656,13 @@ if (!Number.isNaN(foo)) {
 }
 ```
 
-### Preferentially Use `Array` Object Methods for Array Traversal
+### Preferentially Use Array Object Methods for Array Traversal
 
 **[Category]** Rule
 
 **[Description]**
 
-To traverse an array, preferentially use the methods provided by `Array`, such as `forEach()`, `map()`, `every()`, `filter()`, `find()`, `findIndex()`, `reduce()`, and `some()`.
+To traverse an array, preferentially use the methods provided by **Array**, such as **forEach()**, **map()**, **every()**, **filter()**, **find()**, **findIndex()**, **reduce()**, and **some()**.
 
 **[Incorrect Example]**
 
@@ -702,8 +689,7 @@ const increasedByOne: number[] = numbers.map(num => num + 1);
 
 **[Description]**
 
-Control conditional expressions are usually used in `if`, `while`, `for`, and `?:` statements.
-
+Control conditional expressions are usually used in **if**, **while**, **for**, and **?:** statements.
 Assigning values in this type of expression often leads to unexpected behavior and poor code readability.
 
 **[Incorrect Example]**
@@ -724,13 +710,13 @@ if (isFoo) {
 }
 ```
 
-### Do Not Use `return`, `break`, `continue`, or `throw` in a `finally` Code Block
+### Do Not Use return, break, continue, or throw in a finally Code Block
 
 **[Category]** Rule
 
 **[Description]**
 
-If the `return`, `break`, `continue`, or `throw` statement is used in a `finally` code block or an exception that arise during method calling are not handled, the `finally` code block cannot properly stop. An abnormally stopped `finally` code block affects the throwing of exceptions in a `try` or `catch` block, and may affect the return value of a method. Therefore, ensure that the `finally` code block can stop properly.
+If the **return**, **break**, **continue**, or **throw** statement is used in a **finally** code block or an exception that arise during method calling are not handled, the **finally** code block cannot properly stop. An abnormally stopped **finally** code block affects the throwing of exceptions in a **try** or **catch** block, and may affect the return value of a method. Therefore, ensure that the **finally** code block can stop properly.
 
 **[Incorrect Example]**
 
@@ -764,13 +750,13 @@ function foo() {
 }
 ```
 
-### Do Not Use `ESObject`
+### Do Not Use ESObject
 
 **[Category]** Recommendation
 
 **[Description]**
 
-`ESObject` is mainly used for type annotation in ArkTS and TS/JS cross-language calls. Using it in other scenarios introduces unnecessary cross-language calls and causes extra performance overhead.
+**ESObject** is mainly used for type annotation in ArkTS and TS/JS cross-language calls. Using it in other scenarios introduces unnecessary cross-language calls and causes extra performance overhead.
 
 **[Incorrect Example]**
 
@@ -808,13 +794,13 @@ import { getObject, I } from 'lib'
 let obj: I = getObject(123);
 ```
 
-### Use `T[]` for the Array Type
+### Use T[] for the Array Type
 
 **[Category]** Recommendation
 
 **[Description]**
 
-ArkTS provides two array types: `T[]` and `Array<T>`. To ensure code readability, you are advised to use `T[]` to represent all array types.
+ArkTS provides two array types: **T[]** and **Array\<T>**. To ensure code readability, you are advised to use **T[]** to represent all array types.
 
 **[Incorrect Example]**
 
@@ -831,4 +817,4 @@ let x: number[] = [1, 2, 3];
 let y: string[] = ['a', 'b', 'c'];
 ```
 
- <!--no_check--> 
+<!--no_check-->
