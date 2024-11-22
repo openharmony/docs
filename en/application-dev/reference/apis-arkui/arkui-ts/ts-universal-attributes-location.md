@@ -22,7 +22,7 @@ Sets the alignment mode of the component content in the drawing area.
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **\<Stack>**, **\<Button>**, **\<StepperItem>**,**\<FolderStack>**, **\<Marquee>**, **\<Text>**, **\<TextArea>**, and **\<TextInput>**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>In the **\<Stack>** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Sets the alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **Stack**, **Button**, **StepperItem**,**FolderStack**, **Marquee**, **Text**, **TextArea**, and **TextInput**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal alignment cannot be set for text.<br>Default value: **Alignment.Center**<br>**NOTE**<br>In the **Stack** component, this attribute has the same effect as **alignContent**, which means that it sets the alignment mode of child components in the container.|
 
 ## direction
 
@@ -40,7 +40,7 @@ Sets how elements are laid out along the main axis of the container.
 
 | Name| Type                                       | Mandatory| Description                                               |
 | ------ | ------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [Direction](ts-appendix-enums.md#direction) | Yes  | How elements are laid out along the main axis of the container.<br>If this parameter is set to **auto**, the layout is subject to the system language.<br>The attribute does not take effect in the **\<Column>** component.<br>Default value: **Direction.Auto**|
+| value  | [Direction](ts-appendix-enums.md#direction) | Yes  | How elements are laid out along the main axis of the container.<br>If this parameter is set to **auto**, the layout is subject to the system language.<br>The attribute does not take effect in the **Column** component.<br>Default value: **Direction.Auto**|
 
 ## position
 
@@ -58,7 +58,7 @@ Sets the absolute position of the component relative to the position of the pare
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | Yes  | Absolute position of the component relative to the position of the parent component. If the parent container is **\<Row>**, **\<Column>**, or **\<Flex>**, the child component for which **position** is set does not take up space in the container.<br>If of the Position type, this parameter sets the position based on the upper left corner of the parent component. If of the Edges type, this parameter sets the position based on the offset relative to the four edges of the parent component. If of the LocalizedEdges type, this parameter sets the position based on the offset relative to the four edges of the parent component, with support for the mirror mode.<br>The **position** attribute is applicable to scenarios where the component's position in the parent container is fixed, for example, where it is pinned to top or floating on the UI.<br>The attribute is not available for a layout container whose width and height are zero.<br>The attribute does not take effect when the component is in a [\<RelativeContainer>](ts-container-relativecontainer.md) component and with the **alignRules** attribute set.|
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | Yes  | Absolute position of the component relative to the position of the parent component. If the parent container is **Row**, **Column**, or **Flex**, the child component for which **position** is set does not take up space in the container.<br>If of the Position type, this parameter sets the position based on the upper left corner of the parent component. If of the Edges type, this parameter sets the position based on the offset relative to the four edges of the parent component. If of the LocalizedEdges type, this parameter sets the position based on the offset relative to the four edges of the parent component, with support for the mirror mode.<br>The **position** attribute is applicable to scenarios where the component's position in the parent container is fixed, for example, where it is pinned to top or floating on the UI.<br>The attribute is not available for a layout container whose width and height are zero.<br>The attribute does not take effect when the component is in a [RelativeContainer](ts-container-relativecontainer.md) component and with the **alignRules** attribute set.|
 
 ## markAnchor
 
@@ -94,13 +94,13 @@ Sets the offset of the component relative to its original position.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12)  \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | Yes  | Offset of the component relative to its original position. The **offset** attribute does not affect the layout of the parent container. It adjusts the component position only during drawing.<br>If of the Position type, this parameter sets the offset relative to the upper left corner of the component. If of the Edges type, this parameter sets the offset relative to the four edges of the component. **{x: x, y: y}** has the same effect as **{left: x, top: y}** and **{right: -x, bottom: -y}**. The LocalizedEdges type supports the mirror mode: **start** is equivalent to **x** with left-to-right scripts and **-x** with right-to-left scripts.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none|
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12)  \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | Yes  | Offset of the component relative to its original position. The **offset** attribute does not affect the layout of the parent container. It adjusts the component position only during drawing.<br>If of the Position type, this parameter sets the offset relative to the upper left corner of the component. If of the Edges type, this parameter sets the offset relative to the four edges of the component. **{x: x, y: y}** has the same effect as **{left: x, top: y}** and **{right: -x, bottom: -y}**. The LocalizedEdges type supports the mirror mode: **start** is equivalent to **x** with left-to-right scripts and **-x** with right-to-left scripts.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>Default unit: vp<br>API version 10: none|
 
 ## alignRules<sup>9+</sup>
 
 alignRules(value: AlignRuleOption)
 
-Sets the alignment rules in the relative container. This API is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md).
+Sets the alignment rules in the relative container. This API is valid only when the container is [RelativeContainer](ts-container-relativecontainer.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -118,7 +118,7 @@ Sets the alignment rules in the relative container. This API is valid only when 
 
 alignRules(alignRule: LocalizedAlignRuleOptions)
 
-Sets the alignment rules in the relative container. This API is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md). This API takes the right-to-left scripts into account, using **start** and **end** instead of **left** and **right** for alignment in the horizontal direction. Prioritize this API in aligning child components in the relative container.
+Sets the alignment rules in the relative container. This API is valid only when the container is [RelativeContainer](ts-container-relativecontainer.md). This API takes the right-to-left scripts into account, using **start** and **end** instead of **left** and **right** for alignment in the horizontal direction. Prioritize this API in aligning child components in the relative container.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -184,14 +184,14 @@ Sets the alignment rules in the relative container. This API is valid only when 
 
 | Name  | Type                                      | Mandatory  | Description                                      |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| horizontal  | number | No| Bias value in the horizontal direction.<br>This parameter takes effect when the child component has a determinable width and two horizontal anchors.<br>Default value: **0.5**|
-| vertical  | number | No| Bias value in the vertical direction.<br>This parameter takes effect when the child component has a determinable height and two vertical anchors.<br>Default value: **0.5**|
+| horizontal  | number | No| Bias value in the horizontal direction.<br>This parameter takes effect when the child component has a correct width and two horizontal anchors.<br>Default value: **0.5**|
+| vertical  | number | No| Bias value in the vertical direction.<br>This parameter takes effect when the child component has a correct height and two vertical anchors.<br>Default value: **0.5**|
 
 ## chainMode<sup>12+</sup>
 
 chainMode(direction: Axis, style: ChainStyle)
 
-Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [\<RelativeContainer>](ts-container-relativecontainer.md).
+Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

@@ -8,7 +8,9 @@ A calendar picker dialog box is a dialog box that allows users to select a date 
 >
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
-## CalendarPickerDialog.show
+## CalendarPickerDialog
+
+### show
 
 static show(options?: CalendarDialogOptions)
 

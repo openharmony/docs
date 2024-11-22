@@ -1,6 +1,6 @@
 # Row (System API)
 
-The **\<Row>** component lays out child components horizontally.
+The **Row** component lays out child components horizontally.
 
 > **NOTE**
 >

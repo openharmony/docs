@@ -139,7 +139,7 @@ Sets the font weight for the button.
 
 | Name | Type                                                        | Mandatory | Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight of the button. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400**|
+| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight of the button. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** |
 
 ### fontStyle<sup>8+</sup>
 
@@ -193,7 +193,7 @@ Sets the font family.
 
 | Name | Type                                                | Mandatory | Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string \| [Resource](ts-types.md#resource) | Yes  | Font family. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.|
+| value  | string \| [Resource](ts-types.md#resource) | Yes  | Font family. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported. |
 
 ### labelStyle<sup>10+</sup>
 

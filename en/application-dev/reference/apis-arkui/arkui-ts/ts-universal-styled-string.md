@@ -271,7 +271,7 @@ replaceStyle(spanStyle: SpanStyle): void
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the original style is removed and replaced with the new style.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
+| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the original style is removed and replaced with the new style.<br>If **styledKey** of **SpanStyle** is **IMAGE** or **CUSTOM_SPAN**, this API takes effect only when an image or custom span with the length of 1 is at the **start** position.|
 
 **Error codes**
 
@@ -295,7 +295,7 @@ setStyle(spanStyle: SpanStyle): void
 
 | Name | Type                             | Mandatory| Description                                                        |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the new style is applied without removing the original style. If the style already exists, it is updated.<br>If **styledKey** of **SpanStyle** is **IMAGE**, this API takes effect only when an image with the length of 1 is at the **start** position.|
+| spanStyle | [SpanStyle](#spanstyle) | Yes  | Style object.<br>**NOTE**<br>By default, the new style is applied without removing the original style. If the style already exists, it is updated.<br>If **styledKey** of **SpanStyle** is **IMAGE** or **CUSTOM_SPAN**, this API takes effect only when an image or custom span with the length of 1 is at the **start** position.|
 
 ### removeStyle
 
@@ -982,7 +982,6 @@ struct styled_string_demo1 {
         Column() {
           // Display the styled string.
           Text(undefined, { controller: this.controller1 })
-          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
           Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
           Button('Change string1 Value')
             .onClick(() => {
@@ -1090,7 +1089,7 @@ struct styled_string_demo1 {
 }
 ```
 
-![](figures/styledstring_1.jpeg)
+![](figures/styledstring_1.png)
 
 ### Example 2
 

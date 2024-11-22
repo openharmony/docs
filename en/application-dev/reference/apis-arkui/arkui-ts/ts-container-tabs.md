@@ -15,7 +15,9 @@ Custom components cannot be used as child components. Only the [TabContent](ts-c
 
 >  **NOTE**
 >
->  If the child component has the **visibility** attribute set to **None** or **Hidden**, it is hidden but takes up space in the layout.
+>  If the child component has the **visibility** attribute set to **None** or **Hidden**, it is hidden but still takes up space in the layout.
+>
+>  The **TabContent** child component is not destroyed once it is displayed. If you need to implement lazy loading and resource release of pages, see [Example 11](#example-11).
 
 
 ## APIs
@@ -42,8 +44,8 @@ Enumerates the positions of the **Tabs** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Description                                      |
-| ----- | ---------------------------------------- |
+| Name | Description                                                        |
+| ----- | ------------------------------------------------------------ |
 | Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container.|
 | End   | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container.|
 
@@ -99,7 +101,7 @@ Sets the tab bar layout mode.
 | Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [BarMode](#barmode)                                  | Yes  | Layout mode.<br>Default value: **BarMode.Fixed**                                                |
-| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10)| No  | Layout style.<br>**NOTE**<br>This value is effective only when the tab bar is in scrollable mode.|
+| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10)| No  | Layout style of the tab bar in scrollable mode.<br>**NOTE**<br>This parameter is effective only when the tab bar is in horizontal scrollable mode.|
 
 ### barMode<sup>10+</sup>
 
@@ -131,14 +133,14 @@ Sets the tab bar layout mode to **BarMode.Scrollable**.
 
 | Name   | Type                             | Mandatory| Description                                   |
 | -------- | --------------------------------- | ---- | ------------------------------------- |
-| value    | [BarMode.Scrollable](#barmode)| Yes  | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in horizontal layout, the total height exceeds the tab bar height.       |
-| options | [ScrollableBarModeOptions](#scrollablebarmodeoptions10)| Yes  | Layout style.|
+| value    | [BarMode.Scrollable](#barmode)| Yes  | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in vertical layout, the total height exceeds the tab bar height.       |
+| options | [ScrollableBarModeOptions](#scrollablebarmodeoptions10)| Yes  | Layout style of the tab bar in scrollable mode.<br>**NOTE**<br>This parameter is effective only when the tab bar is in scrollable mode. |
 
 ### barWidth
 
 barWidth(value: Length)
 
-Sets the width of the tab bar. A value less than 0 or greater than the width of the **Tabs** component evaluates to the default value.
+Sets the width of the tab bar. If the set value is less than 0 or greater than the width of the **Tabs** component, the default value is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -154,7 +156,7 @@ Sets the width of the tab bar. A value less than 0 or greater than the width of 
 
 barHeight(value: Length)
 
-Sets the height of the tab bar. A value less than 0 or greater than the height of the **Tabs** component evaluates to the default value.
+Sets the height of the tab bar. If this attribute is set to **'auto'**, which takes effect only in horizontal mode, the tab bar adapts to the height of its child components. If the set value is less than 0 or greater than the height of the **Tabs** component, the default value is used. If a fixed value is set, the tab bar will not be able to expand into the bottom safe area.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -180,7 +182,7 @@ Sets the length of time required to complete the tab switching animation, which 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value **0** is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value **300** is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value **0** is used when the tab bar is set to **BottomTabBarStyle**; the default value **300** is used when the tab bar is set to any other style.<br>Unit: ms|
+| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value **0** is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value **300** is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value is **0** when the tab bar is set to **BottomTabBarStyle** and **300** when the tab bar is set to any other style.<br>Unit: ms|
 
 ### animationMode<sup>12+</sup>
 
@@ -380,7 +382,7 @@ Enumerates layout modes of the tab bar.
 
 | Name       | Value| Description                                      |
 | ---------- | -- | ---------------------------------------- |
-| Scrollable | 0  | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in horizontal layout, the total height exceeds the tab bar height.|
+| Scrollable | 0  | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in vertical layout, the total height exceeds the tab bar height.|
 | Fixed      | 1  | The width of each tab is determined by equally dividing the number of tabs by the bar width (or bar height in the vertical layout).|
 
 ## AnimationMode<sup>12+</sup>
@@ -461,7 +463,7 @@ Triggered when a tab is clicked.
 
 onAnimationStart(handler: (index: number, targetIndex: number, event: TabsAnimationEvent) => void)
 
-Triggered when the tab switching animation starts. The **index** parameter indicates the index before the animation starts (not the one after).
+Triggered when the tab switching animation starts. The **index** parameter indicates the index of the animation before it starts (not the final index when the animation ends). This callback is not triggered when **animationDuration** is set to **0**, which effectively disables the animation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -479,7 +481,7 @@ Triggered when the tab switching animation starts. The **index** parameter indic
 
 onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 
-Triggered when the tab switching animation ends. This event is triggered when the tab switching animation ends, whether it is caused by gesture interruption or not. The **index** parameter indicates the index after the animation ends.
+Triggered when the tab switching animation ends. This event is triggered when the tab switching animation ends, whether it is caused by gesture interruption or not. The **index** parameter indicates the index after the animation ends. This callback is not triggered when **animationDuration** is set to **0**, which effectively disables the animation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -715,20 +717,21 @@ struct TabsExample {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
-        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(16)
-        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
         .lineHeight(22)
         .margin({ top: 17, bottom: 7 })
       Divider()
         .strokeWidth(2)
         .color('#007DFF')
-        .opacity(this.currentIndex === index ? 1 : 0)
+        .opacity(this.selectedIndex === index ? 1 : 0)
     }.width('100%')
   }
 
@@ -757,7 +760,15 @@ struct TabsExample {
       .barHeight(56)
       .animationDuration(400)
       .onChange((index: number) => {
+        // currentIndex controls which tab is displayed.
         this.currentIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        // selectedIndex controls the color switching for the image and text in the custom tab bar.
+        this.selectedIndex = targetIndex
       })
       .width(360)
       .height(296)
@@ -827,7 +838,7 @@ struct TabsDivider1 {
         endMargin: this.endMargin
       })
 
-      Button ('Regular Divider').width('100%').margin({ bottom: '12vp'})
+      Button('Regular Divider').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.nullFlag = false;
           this.strokeWidth = 2;
@@ -853,11 +864,11 @@ struct TabsDivider1 {
             this.strokeWidth -= 2
           }
         })
-      Button ('Increase Top Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Top Margin').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           this.startMargin += 2
         })
-      Button ('Decrease Top Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Top Margin').width('100%').margin({ bottom: '12vp' })
         .onClick(() => {
           if (this.startMargin > 2) {
             this.startMargin -= 2
@@ -896,11 +907,11 @@ struct TabsOpaque {
 
   build() {
     Column() {
-      Button (Set Tab to Fade').width ('100%').margin ({bottom: '12vp'})
+      Button('Set Tab to Fade').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           this.selfFadingFade = true;
         })
-      Button (Set Tab Not to Fade').width ('100%').margin ({bottom: '12vp'})
+      Button('Set Tab Not to Fade').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           this.selfFadingFade = false;
         })
@@ -1009,7 +1020,7 @@ struct barBackgroundColorTest {
 
   build() {
     Column() {
-      Button ("Change barOverlap").width ('100%').margin ({ bottom:'12vp'})
+      Button("Change barOverlap").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
             this.barOverlap = false;
@@ -1132,7 +1143,7 @@ struct TabsExample5 {
           })
       }
 
-      Text ("Tab clicks: "+ this.clickedContent).width ('100%').height (200).margin ({ top: 5 })
+      Text("Clicked content: " + this.clickedContent).width('100%').height(200).margin({ top: 5 })
 
 
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
@@ -1405,13 +1416,13 @@ struct TabsExample {
           Column(){
             Text('Content of the Discover tab')
           }.width('100%').height('100%').backgroundColor('#007DFF').justifyContent(FlexAlign.Center)
-        }.tabBar (this.tabBuilder ('Discover', 1))
+        }.tabBar(this.tabBuilder('Discover',1))
 
         TabContent() {
           Column(){
             Text('Content of the Recommended tab')
           }.width('100%').height('100%').backgroundColor('#FFBF00').justifyContent(FlexAlign.Center)
-        }.tabBar (this.tabBuilder ('Recommended', 2))
+        }.tabBar(this.tabBuilder('Recommended',2))
 
         TabContent() {
           Column(){
@@ -1459,8 +1470,42 @@ struct TabsExample {
 This example uses **onChange**, **onAnimationStart**, **onAnimationEnd**, and **onGestureSwipe** APIs to customize the tab bar switching animation.
 
 ```ts
+// EntryAbility.ets
+import { Configuration, UIAbility } from '@kit.AbilityKit'
+import { i18n } from '@kit.LocalizationKit'
+import { CommonUtil } from '../common/CommonUtil'
+
+export default class EntryAbility extends UIAbility {
+  onConfigurationUpdate(newConfig: Configuration): void {
+    // Listen for system configuration changes.
+    if (newConfig.language) {
+      CommonUtil.setIsRTL(i18n.isRTL(newConfig.language))
+    }
+  }
+}
+```
+
+```ts
+// CommonUtil.ets
+import { i18n, intl } from '@kit.LocalizationKit'
+
+export class CommonUtil {
+  private static isRTL: boolean = i18n.isRTL((new intl.Locale()).language)
+
+  public static setIsRTL(isRTL: boolean): void {
+    CommonUtil.isRTL = isRTL
+  }
+
+  public static getIsRTL(): boolean {
+    return CommonUtil.isRTL
+  }
+}
+```
+
+```ts
 // xxx.ets
-import { ComponentUtils } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI'
+import { CommonUtil } from '../common/CommonUtil'
 
 @Entry
 @Component
@@ -1470,7 +1515,8 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
-  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils()
+  private textInfos: [number, number][] = []
+  private isStartAnimateTo: boolean = false
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1480,15 +1526,8 @@ struct TabsExample {
         .fontColor(this.currentIndex === index ? '#007DFF' : '#182431')
         .fontWeight(this.currentIndex === index ? 500 : 400)
         .id(index.toString())
-        .onAreaChange((oldValue: Area,newValue: Area) => {
-          if (this.currentIndex === index && (this.indicatorLeftMargin === 0 || this.indicatorWidth === 0)){
-            if (newValue.position.x != undefined) {
-              let positionX = Number.parseFloat(newValue.position.x.toString())
-              this.indicatorLeftMargin = Number.isNaN(positionX) ? 0 : positionX
-            }
-            let width = Number.parseFloat(newValue.width.toString())
-            this.indicatorWidth = Number.isNaN(width) ? 0 : width
-          }
+        .onAreaChange((oldValue: Area, newValue: Area) => {
+          this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
         })
     }.width('100%')
   }
@@ -1512,9 +1551,11 @@ struct TabsExample {
           Column().width('100%').height('100%').backgroundColor('#E67C92')
         }.tabBar(this.tabBuilder(3, 'pink'))
       }
-      .onAreaChange((oldValue: Area,newValue: Area)=> {
-        let width = Number.parseFloat(newValue.width.toString())
-        this.tabsWidth = Number.isNaN(width) ? 0 : width
+      .onAreaChange((oldValue: Area, newValue: Area)=> {
+        this.tabsWidth = newValue.width as number
+        if (!this.isStartAnimateTo) {
+          this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+        }
       })
       .barWidth('100%')
       .barHeight(56)
@@ -1523,69 +1564,72 @@ struct TabsExample {
       .backgroundColor('#F1F3F5')
       .animationDuration(this.animationDuration)
       .onChange((index: number) => {
-        this.currentIndex = index // Listen for index changes to switch the tab page content.
+        this.currentIndex = index // Listen for index changes to switch between tab pages.
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         // Triggered when the tab switching animation starts. The underline moves with the active tab, along with a width gradient.
         this.currentIndex = targetIndex
-        let targetIndexInfo = this.getTextInfo(targetIndex)
-        this.startAnimateTo(this.animationDuration, targetIndexInfo.left, targetIndexInfo.width)
+        this.startAnimateTo(this.animationDuration, this.textInfos[targetIndex][0], this.textInfos[targetIndex][1])
       })
-      .onAnimationEnd((index: number,event: TabsAnimationEvent) => {
+      .onAnimationEnd((index: number, event: TabsAnimationEvent) => {
         // Triggered when the tab switching animation ends. The underline animation stops.
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
-        this.startAnimateTo(0,currentIndicatorInfo.left,currentIndicatorInfo.width)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
+        this.startAnimateTo(0, currentIndicatorInfo.left, currentIndicatorInfo.width)
       })
-      .onGestureSwipe((index: number,event: TabsAnimationEvent) => {
+      .onGestureSwipe((index: number, event: TabsAnimationEvent) => {
         // Triggered on a frame-by-frame basis when the tab is switched by a swipe.
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
         this.currentIndex = currentIndicatorInfo.index
-        this.indicatorLeftMargin = currentIndicatorInfo.left
-        this.indicatorWidth = currentIndicatorInfo.width
+        this.setIndicatorAttr(currentIndicatorInfo.left, currentIndicatorInfo.width)
       })
 
       Column()
         .height(2)
         .width(this.indicatorWidth)
-        .margin({ left: this.indicatorLeftMargin, top:48})
+        .margin({ start: LengthMetrics.vp(this.indicatorLeftMargin), top: LengthMetrics.vp(48) })
         .backgroundColor('#007DFF')
     }.width('100%')
   }
 
-  private getTextInfo(index: number): Record<string, number> {
-    let rectangle = this.componentUtils.getRectangleById(index.toString())
-    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) }
-  }
-
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
     let nextIndex = index
-    if (index > 0 && event.currentOffset > 0) {
+    if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
       nextIndex--
-    } else if (index < 3 && event.currentOffset < 0) {
+    } else if (index < 3 && (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
       nextIndex++
     }
-    let indexInfo = this.getTextInfo(index)
-    let nextIndexInfo = this.getTextInfo(nextIndex)
+    let indexInfo = this.textInfos[index]
+    let nextIndexInfo = this.textInfos[nextIndex]
     let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth)
-    let currentIndex = swipeRatio > 0.5 ? nextIndex : index  // When the scroll distance exceeds half of the page, the tab bar switches to the next page.
-    let currentLeft = indexInfo.left + (nextIndexInfo.left - indexInfo.left) * swipeRatio
-    let currentWidth = indexInfo.width + (nextIndexInfo.width - indexInfo.width) * swipeRatio
+    let currentIndex = swipeRatio > 0.5 ? nextIndex : index // If the swipe distance exceeds half the page width, the tab bar switches to the next page.
+    let currentLeft = indexInfo[0] + (nextIndexInfo[0] - indexInfo[0]) * swipeRatio
+    let currentWidth = indexInfo[1] + (nextIndexInfo[1] - indexInfo[1]) * swipeRatio
     return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth }
   }
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
+    this.isStartAnimateTo = true
     animateTo({
       duration: duration, // Animation duration.
       curve: Curve.Linear, // Animation curve.
       iterations: 1, // Number of playback times.
       playMode: PlayMode.Normal // Animation playback mode.
       onFinish: () => {
+        this.isStartAnimateTo = false
         console.info('play end')
       }
     }, () => {
-      this.indicatorLeftMargin = leftMargin
-      this.indicatorWidth = width
+      this.setIndicatorAttr(leftMargin, width)
     })
+  }
+
+  private setIndicatorAttr(leftMargin: number, width: number) {
+    this.indicatorWidth = width
+    if (CommonUtil.getIsRTL()) {
+      this.indicatorLeftMargin = this.tabsWidth - leftMargin - width
+    } else {
+      this.indicatorLeftMargin = leftMargin
+    }
   }
 }
 ```
@@ -1668,3 +1712,109 @@ struct MyComponent {
   }
 }
 ```
+
+### Example 11
+
+
+This example demonstrates how to use a custom tab bar with the **Swiper** component and **LazyForEach** to implement lazy loading and resource release of pages.
+
+```ts
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): number {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct TabsSwiperExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  private list: number[] = []
+  private tabsController: TabsController = new TabsController()
+  private swiperController: SwiperController = new SwiperController()
+  private swiperData: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    for (let i = 0; i <= 9; i++) {
+      this.list.push(i);
+    }
+    this.swiperData = new MyDataSource(this.list)
+  }
+
+  @Builder tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.currentIndex === index ? 1 : 0)
+    }.width('20%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
+        ForEach(this.list, (index: number) =>{
+          TabContent().tabBar(this.tabBuilder(index, 'Tab ' + this.list[index]))
+        })
+      }
+      .onTabBarClick((index: number) => {
+        this.currentIndex = index
+        this.swiperController.changeIndex(index, true)
+      })
+      .barMode(BarMode.Scrollable)
+      .backgroundColor('#F1F3F5')
+      .height(56)
+      .width('100%')
+
+      Swiper(this.swiperController) {
+        LazyForEach(this.swiperData, (item: string) => {
+          Text(item.toString())
+            .onAppear(()=>{
+              console.info('onAppear ' + item.toString())
+            })
+            .onDisAppear(()=>{
+              console.info('onDisAppear ' + item.toString())
+            })
+            .width('100%')
+            .height('100%')
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .loop(false)
+      .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
+        this.currentIndex = targetIndex
+        this.tabsController.changeIndex(targetIndex)
+      })
+    }
+  }
+}
+```
+
+![tabs11](figures/tabs12.gif)

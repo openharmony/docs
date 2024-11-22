@@ -30,7 +30,7 @@ Registers a custom font with the font manager.
 
 | Name    | Type                         | Mandatory  | Description         |
 | ------- | --------------------------- | ---- | ----------- |
-| options | [FontOptions](#fontoptions) | Yes   | Information about the custom font to register. |
+| options | [FontOptions](#fontoptions) | Yes   | Information about the custom font to register.|
 
 ## FontOptions
 
@@ -41,9 +41,13 @@ Registers a custom font with the font manager.
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | familyName | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
-| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register. |
+| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 ```ts
 // xxx.ets
@@ -60,7 +64,7 @@ struct FontExample {
 
   aboutToAppear() {
     // Both familyName and familySrc support the Resource type.
-    font.registerFont({
+    font.registerFont({ // You are advised to use the this.getUIContext().getFont().registerFont() API.
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
@@ -108,7 +112,7 @@ struct FontExample {
 >
 > To use custom fonts globally in an application, register the fonts through the [windowStage.loadContent](js-apis-window.md#loadcontent9) API in the [onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback in the **EntryAbility.ets** file.
 >
-> In an HSP project, avoid using a relative path to register a custom font. For details, see <!--Del-->[<!--DelEnd-->Accessing Resources in an HSP Through $r<!--Del-->](../../quick-start/in-app-hsp.md#accessing-resources-in-an-hsp-through-r)<!--DelEnd-->.
+> In an HSP project, avoid using a relative path to register a custom font. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md#accessing-resources-in-an-hsp-through-r).
 
 ## font.getSystemFontList<sup>10+</sup>
 
@@ -132,6 +136,10 @@ Obtains the system font list.
 
 **Example**
 
+> **NOTE**
+>
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+
 ```ts
 // xxx.ets
 import { font } from '@kit.ArkUI';
@@ -146,7 +154,7 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .onClick(()=>{
-          this.fontList = font.getSystemFontList()
+          this.fontList = font.getSystemFontList() // You are advised to use the this.getUIContext().getFont().getSystemFontList() API.
         })
     }.width('100%')
   }
@@ -167,7 +175,7 @@ Obtains information about a system font based on the font name.
 
 | Name     | Type     | Mandatory   | Description         |
 | ---------- | --------- | ------- | ------------ |
-| fontName   | string    | Yes     | System font name. |
+| fontName   | string    | Yes     | System font name.|
 
 **Return value**
 
@@ -183,18 +191,22 @@ Obtains information about a system font based on the font name.
 
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| path           | string  | Yes | File path of the system font.       |
-| postScriptName | string  | Yes | PostScript name of the system font. |
-| fullName       | string  | Yes | Name of the system font.          |
-| family         | string  | Yes | Family of the system font.      |
-| subfamily      | string  | Yes | Subfamily of the system font.     |
-| weight         | number  | Yes | Weight of the system font, in px.       |
-| width          | number  | Yes | Width of the system font, in px.   |
-| italic         | boolean | Yes | Whether the system font is italic.         |
-| monoSpace      | boolean | Yes | Whether the system font is monospaced.        |
-| symbolic       | boolean | Yes | Whether the system font supports symbols. |
+| path           | string  | Yes| File path of the system font.       |
+| postScriptName | string  | Yes| PostScript name of the system font.|
+| fullName       | string  | Yes| Name of the system font.          |
+| family         | string  | Yes| Family of the system font.      |
+| subfamily      | string  | Yes| Subfamily of the system font.     |
+| weight         | number  | Yes| Weight of the system font, in px.       |
+| width          | number  | Yes| Width of the system font, in px.   |
+| italic         | boolean | Yes| Whether the system font is italic.         |
+| monoSpace      | boolean | Yes| Whether the system font is monospaced.        |
+| symbolic       | boolean | Yes| Whether the system font supports symbols. |
 
 **Example**
+
+> **NOTE**
+>
+> You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 ```ts
 // xxx.ets
@@ -209,7 +221,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
+          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic') // You are advised to use the this.getUIContext().getFont().getFontByName() API.
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
@@ -247,9 +259,9 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| fontDir        | Array\<string>  | Yes | Path to the system font file.     |
-| generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | Yes | List of supported generic font families. |
-| fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | Yes | List of alternate generic font families.          |
+| fontDir        | Array\<string>  | Yes| Path to the system font file.     |
+| generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | Yes| List of supported generic font families.|
+| fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | Yes| List of alternate generic font families.          |
 
 ## UIFontGenericInfo<sup>11+</sup>
 
@@ -258,9 +270,9 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| family        | string | Yes | Font family name, which is the value of **family** specified in the font file.     |
-| alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | Yes | Alias list. |
-| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | Yes | Weight of the font when displayed, which corresponds to the original weight. |
+| family        | string | Yes| Font family name, which is the value of **family** specified in the font file.     |
+| alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | Yes| Alias list.|
+| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | Yes| Weight of the font when displayed, which corresponds to the original weight.|
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 
@@ -269,8 +281,8 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| fontSetName  | string | Yes | Name of the font family corresponding to the alternate fonts.     |
-| fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | Yes | Alternate fonts for the font family. If **fontSetName** is **""**, it indicates that the fonts can be used as alternate fonts for all font families. |
+| fontSetName  | string | Yes| Name of the font family corresponding to the alternate fonts.     |
+| fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | Yes| Alternate fonts for the font family. If **fontSetName** is **""**, it indicates that the fonts can be used as alternate fonts for all font families.|
 
 ## UIFontAliasInfo<sup>11+</sup>
 
@@ -279,8 +291,8 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| name          | string  | Yes | Alias name.     |
-| weight        | number  | Yes | Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts. |
+| name          | string  | Yes| Alias name.     |
+| weight        | number  | Yes| Weight of the fonts included in the font family. If the value is greater than 0, the font family contains only the fonts with the specified weight. If the value is 0, the font family contains all fonts.|
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
@@ -289,8 +301,8 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| weight        | number  | Yes | Original weight of the font.     |
-| to            | number  | Yes | Weight of the font displayed in the application. |
+| weight        | number  | Yes| Original weight of the font.     |
+| to            | number  | Yes| Weight of the font displayed in the application.|
 
 ## UIFontFallbackInfo<sup>11+</sup>
 
@@ -299,8 +311,8 @@ Obtains the UI font configuration of the system.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 | Name           | Type   | Mandatory | Description                      |
 | -------------- | ------- | ------------------------- | ------------------------- |
-| language       | string  | Yes | Language supported by the font family. The language format is BCP 47.   |
-| family         | string  | Yes | Font family name, which is the value of **family** specified in the font file. |
+| language       | string  | Yes| Language supported by the font family. The language format is BCP 47.   |
+| family         | string  | Yes| Font family name, which is the value of **family** specified in the font file.|
 
 **Example**
 

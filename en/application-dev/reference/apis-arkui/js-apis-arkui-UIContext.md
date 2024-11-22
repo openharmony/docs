@@ -217,6 +217,15 @@ struct AnimateToExample {
   @State heightSize: number = 100
   @State rotateAngle: number = 0
   private flag: boolean = true
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+  }
 
   build() {
     Column() {
@@ -226,7 +235,7 @@ struct AnimateToExample {
         .margin(30)
         .onClick(() => {
           if (this.flag) {
-            uiContext.animateTo({
+            this.uiContext?.animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
               iterations: 3,
@@ -239,28 +248,37 @@ struct AnimateToExample {
               this.heightSize = 60
             })
           } else {
-            uiContext.animateTo({}, () => {
+            this.uiContext?.animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
             })
           }
           this.flag = !this.flag
         })
-      Button('change rotate angle')
+      Button('stop rotating')
         .margin(50)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
-        .onClick(() => {
-          uiContext.animateTo({
+        .onAppear(() => {
+          // The animation starts when the component appears.
+          this.uiContext?.animateTo({
             duration: 1200,
             curve: Curve.Friction,
             delay: 500,
             iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
             playMode: PlayMode.Alternate,
-            onFinish: () => {
-              console.info('play end')
+            expectedFrameRateRange: {
+              min: 10,
+              max: 120,
+              expected: 60,
             }
           }, () => {
             this.rotateAngle = 90
+          })
+        })
+        .onClick(() => {
+          this.uiContext?.animateTo({ duration: 0 }, () => {
+            // The value of this.rotateAngle is 90 before the animation. In an animation with a duration of 0, changing the property stops any previous animations for that property and applies the new value immediately.
+            this.rotateAngle = 0
           })
         })
     }.width('100%').margin({ top: 5 })
@@ -413,10 +431,46 @@ Obtains a FrameNode on the component tree based on the component ID.
 | ---------------------------------------- | ------------- |
 | [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node. |
 
+> **NOTE**
+>
+> The **getFrameNodeById** API searches for a node with a specific ID by traversing the tree, which can lead to poor performance. To deliver better performance, use the [getAttachedFrameNodeById](#getattachedframenodebyid12) API.
+
 **Example**
 
 ```ts
 uiContext.getFrameNodeById("TestNode")
+```
+
+### getAttachedFrameNodeById<sup>12+</sup>
+
+getAttachedFrameNodeById(id: string): FrameNode | null
+
+Obtains the entity node attached to the current window based on its component ID.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory  | Description                                   |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | string | Yes   | [Component ID](arkui-ts/ts-universal-attributes-component-id.md) of the target node.                         |
+
+**Return value**
+
+| Type                                      | Description           |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | FrameNode (if available) or null node.|
+
+> **NOTE**
+>
+> **getAttachedFrameNodeById** can only obtain nodes that are currently rendered on the screen.
+
+**Example**
+
+```ts
+uiContext.getAttachedFrameNodeById("TestNode")
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
@@ -581,7 +635,7 @@ Shows an alert dialog box.
 
 | Name    | Type                                      | Mandatory  | Description                 |
 | ------- | ---------------------------------------- | ---- | ------------------- |
-| options | [AlertDialogParamWithConfirm](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10)  | Yes   | Shows an **\<AlertDialog>** component in the given settings. |
+| options | [AlertDialogParamWithConfirm](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](arkui-ts/ts-methods-alert-dialog-box.md#alertdialogparamwithoptions10) | Yes   | Shows an **AlertDialog** component in the given settings.|
 
 
 **Example**
@@ -862,7 +916,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -1057,28 +1111,6 @@ Obtains the **DragController** object, which can be used to create and initiate 
 uiContext.getDragController();
 ```
 
-### getDragPreview<sup>11+</sup>
-
-getDragPreview(): dragController.DragPreview
-
-Obtains the **DragPreview** object, which represents the preview displayed during a drag.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value** 
-
-| Type                                                        | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks. |
-
-**Error codes**: For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-**Example**
-
-For details, see [animate](js-apis-arkui-dragController.md#animate11).
-
 ### keyframeAnimateTo<sup>11+</sup>
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
@@ -1147,7 +1179,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -1186,7 +1218,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **Example**
 
@@ -1630,7 +1662,12 @@ Creates a sheet whose content is as defined in **bindSheetContent** and displays
 
 > **NOTE**
 >
-> Since [updateBindSheet](#updatebindsheet12) and [closeBindSheet](#closebindsheet12) depend on **bindSheetContent**, you need to maintain the passed **bindSheetContent** yourself.
+> 1. When calling this API, if you don't provide a valid value for **targetId**, you won't be able to set **SheetOptions.preferType** to **POPUP** or **SheetOptions.mode** to **EMBEDDED**.
+>
+> 2. Since [updateBindSheet](#updatebindsheet12) and [closeBindSheet](#closebindsheet12) depend on **bindSheetContent**, you need to maintain the passed **bindSheetContent** yourself.
+>
+> 3. Setting **SheetOptions.UIContext** is not supported.
+>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1656,10 +1693,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120002 | The bindSheetContent already exists. |
-| 120004 | The targetld does not exist. |
+| 120004 | The targetId does not exist. |
 | 120005 | The node of targetId is not in the component tree. |
 | 120006 | The node of targetId is not a child of the page node or NavDestination node. |
 
@@ -1787,7 +1824,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120003 | The bindSheetContent cannot be found. |
 
@@ -1913,7 +1950,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 120001 | The bindSheetContent is incorrect. |
 | 120003 | The bindSheetContent cannot be found. |
 
@@ -2084,7 +2121,7 @@ Obtains information about a system font based on the font name.
 
 | Type                                     | Description          |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo10) | Information about the system font. |
+| [font.FontInfo](js-apis-font.md#fontinfo10) | Information about the system font.|
 
 **Example** 
 
@@ -2189,7 +2226,7 @@ In the following API examples, you must first use [getUIObserver()](#getuiobserv
 
 on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo\>): void
 
-Subscribes to state changes of this **\<NavDestination>** component.
+Subscribes to status changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2199,8 +2236,8 @@ Subscribes to state changes of this **\<NavDestination>** component.
 
 | Name  | Type                                                 | Mandatory | Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | Yes  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
 
@@ -2217,7 +2254,7 @@ observer.on('navDestinationUpdate', (info) => {
 
 off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from state changes of this **\<NavDestination>** component.
+Unsubscribes from status changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2227,8 +2264,8 @@ Unsubscribes from state changes of this **\<NavDestination>** component.
 
 | Name  | Type                                                 | Mandatory | Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example** 
 
@@ -2243,7 +2280,7 @@ observer.off('navDestinationUpdate');
 
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
-Subscribes to state changes of this **\<NavDestination>** component.
+Subscribes to state changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2253,9 +2290,9 @@ Subscribes to state changes of this **\<NavDestination>** component.
 
 | Name  | Type                                                        | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **NavDestination** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | Yes  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
 
@@ -2272,7 +2309,7 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
-Unsubscribes from state changes of this **\<NavDestination>** component.
+Unsubscribes from state changes of this **NavDestination** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2282,9 +2319,9 @@ Unsubscribes from state changes of this **\<NavDestination>** component.
 
 | Name  | Type                                                        | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **\<NavDestination>** component. |
-| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **\<NavDestination>** component.                                  |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **\<NavDestination>** component.                |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates the state change event of the **NavDestination** component.|
+| options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | Yes  | ID of the target **NavDestination** component.                                  |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | No  | Callback used to return the current state of the **NavDestination** component.                |
 
 **Example**
 
@@ -3014,7 +3051,7 @@ Subscribes to the dispatch of click event instructions.
 
 | Name  | Type                                                        | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. The registered callback is triggered when the click event occurs. |
+| type     | string                                                       | Yes  | Event type. The value **'didClick'** indicates the dispatch of click event instructions. The registered callback is triggered after the click event is about to occur.|
 | callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | Yes  | Callback used to return the **GestureEvent** object of the click event and the FrameNode of the component. |
 
 **Example**
@@ -3180,6 +3217,8 @@ on(type: 'tabContentUpdate', callback: Callback\<observer.TabContentInfo\>): voi
 
 Subscribes to the **TabContent** switching event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters** 
@@ -3246,6 +3285,8 @@ off(type: 'tabContentUpdate', callback?: Callback\<observer.TabContentInfo\>): v
 
 Unsubscribes from the **TabContent** switching event.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters** 
@@ -3264,6 +3305,8 @@ See the example of [on('tabContentUpdate')](#ontabcontentupdate12).
 on(type: 'tabContentUpdate', options: observer.ObserverOptions, callback: Callback\<observer.TabContentInfo\>): void
 
 Subscribes to the **TabContent** switching event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -3331,6 +3374,8 @@ struct TabsExample {
 off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Callback\<observer.TabContentInfo\>): void
 
 Unsubscribes from the **TabContent** switching event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -3445,7 +3490,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3497,7 +3542,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3557,7 +3602,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3614,7 +3659,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
 | 100003 | Page stack error. Too many pages are pushed.  |
@@ -3677,7 +3722,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
@@ -3725,9 +3770,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **Example**
 
@@ -3781,8 +3826,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **Example**
@@ -3834,7 +3879,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.               |
 
@@ -3893,7 +3938,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.   |
@@ -3945,7 +3990,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.  |
@@ -4004,7 +4049,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.  |
@@ -4061,7 +4106,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 | 100003 | Page stack error. Too many pages are pushed.  |
 | 100004 | Named route error. The named route does not exist.   |
@@ -4124,7 +4169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -4172,7 +4217,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.         |
 
@@ -4229,8 +4274,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if can not get the delegate, only throw in standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Failed to get the delegate. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.       |
 
 **Example**
@@ -4282,7 +4327,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                    |
 | ------ | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | if the number of parameters is less than 1 or the type of the url parameter is not string. |
 | 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 100004 | Named route error. The named route does not exist.        |
 
@@ -4463,7 +4508,7 @@ Obtains the status information about a page by its index.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#routerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist. |
+| router.[RouterState](js-apis-router.md#routerstate) \| undefined | State information about the target page. **undefined** if the specified index does not exist.|
 
 **Example** 
 
@@ -4499,7 +4544,7 @@ Obtains the status information about a page by its URL.
 
 | Type                         | Description     |
 | --------------------------- | ------- |
-| Array<router.[RouterState](js-apis-router.md#routerstate)> | Page routing state. |
+| Array<router.[RouterState](js-apis-router.md#routerstate)> | Page routing state.|
 
 **Example** 
 
@@ -4537,7 +4582,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4628,7 +4673,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4673,7 +4718,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4743,7 +4788,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4804,7 +4849,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                          |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001   | Internal error. |
 
 **Example**
@@ -4864,7 +4909,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4923,7 +4968,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | Internal error. |
 
 **Example**
@@ -4964,7 +5009,7 @@ try {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**.
+Opens a custom dialog box corresponding to **dialogContent**. This API uses a promise to return the result. The dialog box displayed through this API has its content fully following style settings of **dialogContent**. It is displayed in the same way where **customStyle** is set to **true**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4989,7 +5034,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103302 | Dialog content already exists.|
 
@@ -5074,7 +5119,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -5170,7 +5215,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                              |
 | ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -5237,6 +5282,120 @@ struct Index {
 }
 ```
 
+### openCustomDialog<sup>12+</sup>
+
+openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
+
+Creates and displays a custom dialog box. This API uses a promise to return the dialog box ID, which can be used with **closeCustomDialog**. **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description              |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [promptAction.CustomDialogOptions](js-apis-promptAction.md#customdialogoptions11) | Yes  | Content of the custom dialog box.|
+
+**Return value**
+
+| Type               | Description                                   |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | ID of the custom dialog box, which can be used with **closeCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+### closeCustomDialog<sup>12+</sup>
+
+closeCustomDialog(dialogId: number): void
+
+Closes the specified custom dialog box.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                            |
+| -------- | ------ | ---- | -------------------------------- |
+| dialogId | number | Yes  | ID of the custom dialog box to close. It is returned from **openCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { PromptAction } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  private customDialogComponentId: number = 0
+
+  @Builder
+  customDialogComponent() {
+    Column() {
+      Text('Dialog box').fontSize(30)
+      Row({ space: 50 }) {
+        Button("OK").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+        Button("Cancel").onClick(() => {
+          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            this.promptAction.openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
+                }
+              }
+            }).then((dialogId: number) => {
+              this.customDialogComponentId = dialogId
+            })
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## DragController<sup>11+</sup>
 In the following API examples, you must first use [getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
 
@@ -5254,7 +5413,7 @@ Executes dragging, by passing in the object to be dragged and the dragging infor
 
 | Name  | Type                                                        | Mandatory | Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)  | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [\<Image>](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#attributes) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging. |
+| custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Object to be dragged.<br> **NOTE**<br>The global builder is not supported. If the [Image](arkui-ts/ts-basic-components-image.md) component is used in the builder, enable synchronous loading, that is, set the [syncLoad](arkui-ts/ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo) | Yes  | Dragging information.                                                  |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[dragController.DragEventParam](js-apis-arkui-dragController.md#drageventparam12)&gt; | Yes  | Callback used to return the result.<br>- **event**: drag event information that includes only the drag result.<br>- **extraParams**: extra information about the drag event. |
 
@@ -5263,7 +5422,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **Example**
@@ -5348,7 +5507,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **Example**
@@ -5434,7 +5593,7 @@ struct DragControllerPage {
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): dragController.DragAction
 
-Creates a **DragAction** object, by explicitly specifying one or more drag previews, drag data, and information about the dragged object. If the drag initiated by a **DragAction** object is not complete, no new **DragAction** object can be created, and calling this API will throw an exception.
+Creates a drag action object for initiating drag and drop operations. You need to explicitly specify one or more drag previews, the drag data, and the drag handle point. If a drag operation initiated by an existing drag action object is not completed, no new object can be created, and calling the API will throw an exception. After the lifecycle of the drag action object ends, the callback functions registered on this object become invalid. Therefore, it is necessary to hold this object within a longer scope and replace the old value with a new object returned by **createDragAction** before each drag initiation.
 
 **NOTE**<br>You are advised to control the number of drag previews. If too many previews are passed in, the drag efficiency may be affected.
 
@@ -5460,7 +5619,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message     |
 | -------- | ------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal handling failed. |
 
 **Example**
@@ -5604,6 +5763,28 @@ struct DragControllerPage {
 }
 ```
 
+### getDragPreview<sup>11+</sup>
+
+getDragPreview(): dragController.DragPreview
+
+Obtains the **DragPreview** object, which represents the preview displayed during a drag.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | **DragPreview** object. It provides the API for setting the preview style. It does not work in the **OnDrop** and **OnDragEnd** callbacks.|
+
+**Error codes**: For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+**Example**
+
+For details, see [animate](js-apis-arkui-dragController.md#animate11).
+
 ### setDragEventStrictReportingEnabled<sup>12+</sup>
 
 setDragEventStrictReportingEnabled(enable: boolean): void
@@ -5728,7 +5909,7 @@ struct OverlayExample {
       Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
         --this.arrayIndex
       })
-      Button ("Delete ComponentContent" + this.arrayIndex).onClick () = >{
+      Button("Delete ComponentContent" + this.arrayIndex).onClick () = >{
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
           let componentContent = this.contentArray.splice(this.arrayIndex, 1)
           this.overlayNode.removeComponentContent(componentContent.pop())
@@ -6073,7 +6254,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 ```
 ## KeyboardAvoidMode<sup>11+</sup>
 
-Enumerates the avoidance modes for the virtual keyboard.
+Enumerates the modes in which the layout responds when the keyboard is displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -6081,8 +6262,8 @@ Enumerates the avoidance modes for the virtual keyboard.
 
 | Name  | Value  | Description      |
 | ------ | ---- | ---------- |
-| OFFSET | 0    | Avoid the virtual keyboard through offset. |
-| RESIZE | 1    | Avoid the virtual keyboard through resizing. |
+| OFFSET | 0    | The layout moves up.|
+| RESIZE | 1    | The layout is resized.|
 
 
 ## FocusController<sup>12+</sup>
@@ -6149,7 +6330,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-Sets focus on the specified entity node in the component tree based on the component ID.
+Sets focus on the specified entity node in the component tree based on the component ID. This API takes effect in the current frame.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6165,11 +6346,11 @@ Sets focus on the specified entity node in the component tree based on the compo
 
 For details about the error codes, see [Focus Error Codes](errorcode-focus.md).
 
-| ID | Error Message                                    |
-| ------ | ---------------------------------------- |
-| 150001 | This component is not focusable. |
-| 150002 | This component has an unfocusable ancestor.      |
-| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 150001   | the component cannot be focused.                |
+| 150002   | This component has an unfocusable ancestor.     |
+| 150003   | the component is not on tree or does not exist. |
 
 **Example**
 
@@ -6508,7 +6689,16 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | id       | string                                                       | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component. |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result.                                        |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | No   | Custom settings of the snapshot. |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
 
 **Example**
 
@@ -6563,14 +6753,23 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 | Name | Type  | Mandatory | Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component. |
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)                              | No   | Custom settings of the snapshot. |
+| id     | string | Yes  | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
 
 **Return value**
 
 | Type                                                        | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result. |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
 
 **Example**
 
@@ -6632,7 +6831,17 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes  | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback. |
 | delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot. |
+| options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | No   | Custom settings of the snapshot.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **Example**
 
@@ -6715,10 +6924,20 @@ Renders a custom component from [CustomBuilder](arkui-ts/ts-types.md#custombuild
 
 | Type                                                        | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result. |
-| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an image component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
+| delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an **Image** component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
-| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot. |
+| options<sup>12+</sup>       | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | No   | Custom settings of the snapshot.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **Example**
 
@@ -6774,15 +6993,86 @@ struct ComponentSnapshotExample {
 }
 ```
 
+### getSync<sup>12+</sup>
+
+getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
+
+Obtains the snapshot of a component that has been loaded. This API synchronously waits for the snapshot to complete and returns a [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) object.
+
+> **NOTE**
+>
+> The snapshot captures content rendered in the last frame. If a snapshot is taken at the same time as the component triggers an update, the updated rendering content will not be captured in the snapshot; instead, the snapshot will return the rendering content from the previous frame.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | Yes   | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | No   | Custom settings of the snapshot.|
+
+**Return value**
+
+| Type                           | Description      |
+| ----------------------------- | -------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message               |
+| ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
+| 160002 | Timeout. |
+
+**Example**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          try {
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixelmap
+          } catch (error) {
+            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
 ## FrameCallback<sup>12+</sup>
 
-Implements the API for setting the task that needs to be executed during the next frame rendering. It must be used together with [postFrameCallback](#postframecallback12) and [postDelayedFrameCallback](#postdelayedframecallback12) in [UIContext](#uicontext). Inherit this class and override the [onFrame](#onframe12) method to implement specific service logic.
+Implements the API for setting the task that needs to be executed during the next frame rendering. It must be used together with [postFrameCallback](#postframecallback12) and [postDelayedFrameCallback](#postdelayedframecallback12) in [UIContext](#uicontext). Extend this class and override either the [onFrame](#onframe12) or [onIdle](#onidle12) method to implement specific service logic.
 
 ### onFrame<sup>12+</sup>
 
-Called when the next frame is rendered.
-
 onFrame(frameTimeInNano: number): void
+
+Called when the next frame is rendered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6834,6 +7124,62 @@ struct Index {
 }
 ```
 
+### onIdle<sup>12+</sup>
+
+onIdle(timeLeftInNano: number): void
+
+Called after the rendering of the subsequent frame has finished and there is more than 1 millisecond left before the next VSync signal. If the time left is not more than 1 millisecond, the execution of this API will be deferred to a later frame.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                                   |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| timeLeftInNano | number | Yes  | Remaining idle time for the current frame.|
+
+**Example**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyIdleCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onIdle(timeLeftInNano: number) {
+    console.info('MyIdleCallback ' + this.tag + ' ' + timeLeftInNano.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('Invoke postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyIdleCallback("normTask"));
+          })
+        Button('Invoke postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyIdleCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## DynamicSyncScene<sup>12+</sup>
 
 In the following API examples, you must first use **requireDynamicSyncScene()** in **UIContext** to obtain a **DynamicSyncScene** instance, and then call the APIs using the obtained instance.
@@ -6844,7 +7190,7 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 Sets the expected frame rate range.
 
-The final result may not necessarily be the set frame rate range, as the system will make a comprehensive decision based on its capabilities, striving to meet what you have set.
+While you can specify a target frame rate for your application, the actual frame rate may vary. The system will take into account its capabilities and make decisions to optimize performance. It will aim to deliver a frame rate as close as possible to your setting, but this might not always be achievable.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

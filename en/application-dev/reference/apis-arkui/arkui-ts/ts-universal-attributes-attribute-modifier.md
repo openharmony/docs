@@ -7,6 +7,8 @@ With the attribute modifier, you can dynamically set component attributes, compl
 >  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > Ensure that the attributes set in **attributeModifier** are different from those set in other methods. Otherwise, **attributeModifier** does not take effect when the page is refreshed.
+>
+> **attributeModifier** does not support custom components.
 
 ## attributeModifier
 
@@ -71,7 +73,7 @@ In the preceding APIs, **instance** indicates the component type. You can custom
 
 | Name            | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
-| instance |Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **\<Button>** component and **TextAttribute** for the **\<Text>** component.|
+| instance |Component attribute class, which identifies the type of component to which attributes will be applied, for example, **ButtonAttribute** for the **Button** component and **TextAttribute** for the **Text** component.|
 
 **Value range of the instance parameter**
 
@@ -79,7 +81,7 @@ AlphabetIndexerAttribute, BadgeAttribute, BlankAttribute, ButtonAttribute, Calen
 
 **Supported attributes**
 
-Attributes whose input parameters are [CustomBuilder](ts-types.md#custombuilder8) or lamda expressions are not supported. In addition, gestures are not supported. Only the following events are supported: **onClick**, **onTouch**, **onAppear**, **onDisAppear**, **onMouse**, **onHover**, **onKeyEvent**, **onBlur**, **onFocus**, **onAreaChange**, **onSizeChange**, and **onGestureJudgeBegin**. Deprecated attributes are not supported. When an attribute not supported is used, the exception "Method not implemented " is thrown.
+Attributes whose input parameters are [CustomBuilder](ts-types.md#custombuilder8) or lamda expressions are not supported. In addition, gestures are not supported. Only the following events are supported: **onClick**, **onTouch**, **onAppear**, **onDisAppear**, **onMouse**, **onHover**, **onKeyEvent**, **onBlur**, **onFocus**, **onAreaChange**, **onSizeChange**, **onGestureJudgeBegin**, **onGestureRecognizerJudgeBegin**, and **shouldBuiltInRecognizerParallelWith**. Deprecated attributes are not supported. When an attribute not supported is used, the exception "Method not implemented " is thrown.
 ## Custom Modifier
 Custom modifiers can be used in building components and configuring attributes since API version 12. Through the custom modifiers, you can call the attribute and style APIs of encapsulated components.
 
@@ -98,6 +100,9 @@ CommonModifier, ColumnModifier, ColumnSplitModifier, RowModifier, RowSplitModifi
 
 ## Example
 ### Example 1
+
+
+
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
@@ -273,3 +278,4 @@ struct Index {
 }
 ```
 ![attributeModifier](figures/attributeModifier.gif)
+<!--no_check-->
