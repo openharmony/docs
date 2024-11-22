@@ -7,7 +7,7 @@ When it is tapped, the application obtains the permission to access the **mediaL
 This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
 The following figure shows the effect of the **SaveButton** component.
-  
+
 ![](figures/SaveButton_effect.png)
 
 ## Constraints
@@ -37,6 +37,8 @@ For example, to save the image in the dialog box shown above, the application on
 
    The following example uses the default parameters. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md). In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
    
+   For details about how to save images to the media library, see [Saving Media Assets](../../media/medialibrary/photoAccessHelper-savebutton.md).
+
    ```ts
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { fileIo } from '@kit.CoreFileKit';
