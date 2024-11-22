@@ -247,7 +247,9 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ## 示例
 
-### 播放Resource动画
+### 示例1（播放Resource动画）
+
+通过ImageAnimator组件播放Resource动画。
 
 ```ts
 // xxx.ets
@@ -323,9 +325,12 @@ struct ImageAnimatorExample {
 }
 ```
 
-### 播放PixelMap动画
+### 示例2（播放PixelMap动画）
+
+通过ImageAnimator组件播放PixelMap动画。
 
 ```ts
+// xxx.ets
 import { image } from '@kit.ImageKit'
 
 @Entry
