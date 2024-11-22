@@ -6932,6 +6932,7 @@ TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双�
 | useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
 | cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
+| isBidirectionalAuthentication           | boolean                                                 | 否 | 用于设置双向认证，默认为false。              |
 
 ## Protocol<sup>9+</sup>
 
