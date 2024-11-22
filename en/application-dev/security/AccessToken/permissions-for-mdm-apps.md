@@ -486,3 +486,33 @@ Allows an application to manage the enterprise recovery keys.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 13
+
+## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+Allows an application to interact across local accounts.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 7
+
+**Changelog**: For API version 7 to 13, the permission is available only to system applications. Starting with API version 14, the permission becomes accessible to normal enterprise applications.
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+Allows an application to obtain domain account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 10
+
+**Changelog**: For API version 10 to 13, the permission is available only to system applications. Starting with API version 14, the permission becomes accessible to normal enterprise applications.
