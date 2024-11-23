@@ -12,7 +12,7 @@ To encrypt an RDB store, set **encrypt** in **StoreConfig** to **true** when cre
 [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)
 
 
-## What do I do if the table data in an RDB store cannot be cleared by using **TRUNCATE TABLE**? (API version 9)
+## What should I do if the table data in an RDB store cannot be cleared by using **TRUNCATE TABLE**? (API version 9)
 
 **Symptom**
 
@@ -104,7 +104,7 @@ I do not know whether I need to design a lock mechanism for databases in develop
 The distributed data service (DDS), RDB store, and preferences provided by OpenHarmony have a lock mechanism. You do not need to bother with the lock mechanism during the development.
 
 
-## What if I failed to use get() to obtain the data saved by @ohos.data.storage put()? (API version 9)
+## What should I do if I failed to use get() to obtain the data saved by @ohos.data.storage put()? (API version 9)
 
 **Symptom**
 
@@ -115,7 +115,7 @@ After @ohos.data.storage **put()** is called to save data, **get()** is called t
 The **put()** method provided by **@ohos.data.storage** saves data in the memory. When the application exits, the data in the memory will be cleared. If you want to persist the data, you need to call **flush()** or **flushSync()** after **put()**. After data is persisted, you can use **get()** to obtain the data after the application is restarted.
 
 
-## What if a large text file fails to be saved in an RDB store? (API version 9)
+## What should I do if a large text file fails to be saved in an RDB store? (API version 9)
 
 **Symptom**
 
@@ -128,17 +128,17 @@ In versions earlier than API version 9, the maximum length of a text file is 102
 The limit on the text file size has been removed since API9 version.
 
 
-## What if "undefined" is returned by Preferences.get after Preferences.put is successful? (API version 9)
+## What should I do if "undefined" is returned by Preferences.get after Preferences.put is successful? (API version 9)
 
 **Symptom**
 
-Data is successfully saved using **preferences**, but fails to be obtained.
+Data is successfully saved using **Preferences.put()**, but fails to be obtained by **Preferences.get()**.
 
 **Solution**
 
 1. After **put()** is performed, use **flush()** to persist the data.
 
-2. Call **get()** after **flush()** is complete.
+2. Call **get()**.
 
 
 ## Can I specify the in-memory database mode when using an RDB store? (API version 9)
@@ -146,3 +146,18 @@ Data is successfully saved using **preferences**, but fails to be obtained.
 **Solution**
 
 RDB stores use SQLite. The default in-memory database mode is file, which cannot be changed.
+
+
+## How do I obtain the size of an RDB store?
+
+**Solution**
+
+You can use [execute](../reference/apis-arkdata/js-apis-data-relationalStore.md#execute12) to obtain the size of an RDB store, for example, SELECT page_count * page_size AS size FROM pragma_page_count(), pragma_page_size().
+
+## How do I obtain the path of an RDB store?
+
+**Solution**
+
+1. If you has the root permission, run the **find /data -name database_name** command.
+
+2. You can use File Browser of DevEco Studio to obtain the database file path.
