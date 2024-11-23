@@ -77,7 +77,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## 示例
 
-该示例实现了设置多行可折叠类型筛选器。
+该示例展示了设置FilterType属性为MULTI_LINE_FILTER的多行可折叠类型筛选器。
 
 ```ts
 import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'
