@@ -653,7 +653,7 @@ try {
 }
 ```
 
-## inputDevice.getIntervalSinceLastInput<sup>13+</sup>
+## inputDevice.getIntervalSinceLastInput<sup>14+</sup>
 
 getIntervalSinceLastInput(): Promise&lt;number&gt;
 
